@@ -9,49 +9,47 @@ import {
 } from '../base';
 
 export const asaycolor: Feature<string> = {
-  name: 'Admin chat color',
+  name: '管理员聊天颜色',
   category: 'ADMIN',
-  description: 'The color of your messages in Adminsay.',
+  description: '在管理员频道的字体颜色.',
   component: FeatureColorInput,
 };
 
 export const brief_outfit: Feature<string> = {
-  name: 'Brief outfit',
+  name: '临时装配',
   category: 'ADMIN',
-  description: 'The outfit to gain when spawning as the briefing officer.',
+  description: '在重生为临时用人员的时候的装配.',
   component: FeatureDropdownInput,
 };
 
 export const bypass_deadmin_in_centcom: FeatureToggle = {
-  name: 'Bypass deadmin options when in CentCom',
+  name: '作为Centcom时保留管理员',
   category: 'ADMIN',
   description:
-    'Whether or not to always remain an admin when spawned in CentCom.',
+    '作为Centcom人员时是否保留管理员身份.',
   component: CheckboxInput,
 };
 
 export const fast_mc_refresh: FeatureToggle = {
-  name: 'Enable fast MC stat panel refreshes',
+  name: '启用MC选项卡快速刷新',
   category: 'ADMIN',
   description:
-    'Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.',
+    '启用MC面板的快速刷新, 这可能会导致延迟所以确保你需要再启用.',
   component: CheckboxInput,
 };
 
 export const ghost_roles_as_admin: FeatureToggle = {
-  name: 'Get ghost roles while adminned',
+  name: '在启用管理员时允许参加幽灵轮',
   category: 'ADMIN',
   description: multiline`
-    If you de-select this, you will not get any ghost role pop-ups while
-    adminned! Every single pop-up WILL never show up for you in an adminned
-    state. However, this does not suppress notifications when you are
-    a regular player (deadminned).
+    禁用时无论是否是管理员都将在有幽灵轮时提醒.
+    启用时将在你作为管理员时不提醒幽灵轮.
 `,
   component: CheckboxInput,
 };
 
 export const comms_notification: FeatureToggle = {
-  name: 'Enable comms console sound',
+  name: '启用comms面板音效',
   category: 'ADMIN',
   component: CheckboxInput,
 };

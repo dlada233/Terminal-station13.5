@@ -6,29 +6,29 @@ import {
 } from '../base';
 
 export const chat_on_map: FeatureToggle = {
-  name: 'Enable Runechat',
+  name: '生动交流',
   category: 'RUNECHAT',
-  description: 'Chat messages will show above heads.',
+  description: '说的话将在头上显示.',
   component: CheckboxInput,
 };
 
 export const see_chat_non_mob: FeatureToggle = {
-  name: 'Enable Runechat on objects',
+  name: '启用物品的生动交流',
   category: 'RUNECHAT',
-  description: 'Chat messages will show above objects when they speak.',
+  description: '物品说的话将在它头上显示.',
   component: CheckboxInput,
 };
 
 export const see_rc_emotes: FeatureToggle = {
-  name: 'Enable Runechat emotes',
+  name: '生动表情',
   category: 'RUNECHAT',
-  description: 'Emotes will show above heads.',
+  description: '表情将在头上显示.',
   component: CheckboxInput,
 };
 
 export const max_chat_length: FeatureNumeric = {
-  name: 'Max chat length',
+  name: '最大生动交流字体长度',
   category: 'RUNECHAT',
-  description: 'The maximum length a Runechat message will show as.',
+  description: '生动交流的最大字体长度限制.',
   component: FeatureNumberInput,
 };

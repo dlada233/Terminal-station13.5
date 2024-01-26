@@ -2,6 +2,6 @@
 import { FeatureChoiced, FeatureDropdownInput } from '../../base';
 
 export const character_laugh: FeatureChoiced = {
-  name: 'Character Laugh',
+  name: '笑声',
   component: FeatureDropdownInput,
 };

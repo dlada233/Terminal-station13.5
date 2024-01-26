@@ -3,88 +3,88 @@ import { multiline } from 'common/string';
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const chat_bankcard: FeatureToggle = {
-  name: 'Enable income updates',
+  name: '启用收入信息',
   category: 'CHAT',
-  description: 'Receive notifications for your bank account.',
+  description: '接受关于银行账户的信息.',
   component: CheckboxInput,
 };
 
 export const chat_dead: FeatureToggle = {
-  name: 'Enable deadchat',
+  name: '启用幽灵频道',
   category: 'ADMIN',
   component: CheckboxInput,
 };
 
 export const chat_ghostears: FeatureToggle = {
-  name: 'Hear all messages',
+  name: '接收所有信息',
   category: 'GHOST',
   description: multiline`
-    When enabled, you will be able to hear all speech as a ghost.
-    When disabled, you will only be able to hear nearby speech.
+    启用时将在作为幽灵听到全世界的声音.
+    禁用时将只能听到你屏幕范围内的声音.
   `,
   component: CheckboxInput,
 };
 
 export const chat_ghostlaws: FeatureToggle = {
-  name: 'Enable law change updates',
+  name: '接收法令更变信息',
   category: 'GHOST',
-  description: 'When enabled, be notified of any new law changes as a ghost.',
+  description: '启用时将接收硅基法令更变信息.',
   component: CheckboxInput,
 };
 
 export const chat_ghostpda: FeatureToggle = {
-  name: 'Enable PDA notifications',
+  name: '接收PDA信息',
   category: 'GHOST',
-  description: 'When enabled, be notified of any PDA messages as a ghost.',
+  description: '启用时将接收他人PDA信息.',
   component: CheckboxInput,
 };
 
 export const chat_ghostradio: FeatureToggle = {
-  name: 'Enable radio',
+  name: '接收无线电信息',
   category: 'GHOST',
-  description: 'When enabled, be notified of any radio messages as a ghost.',
+  description: '启用时接收无线电信息.',
   component: CheckboxInput,
 };
 
 export const chat_ghostsight: FeatureToggle = {
-  name: 'See all emotes',
+  name: '接收表情信息',
   category: 'GHOST',
-  description: 'When enabled, see all emotes as a ghost.',
+  description: '启用时将接收所有表情信息.',
   component: CheckboxInput,
 };
 
 export const chat_ghostwhisper: FeatureToggle = {
-  name: 'See all whispers',
+  name: '接收低语信息',
   category: 'GHOST',
   description: multiline`
-    When enabled, you will be able to hear all whispers as a ghost.
-    When disabled, you will only be able to hear nearby whispers.
+    启用时将接收全球范围的低语.
+    禁用时将只接收屏幕范围内的低语.
   `,
   component: CheckboxInput,
 };
 
 export const chat_login_logout: FeatureToggle = {
-  name: 'See login/logout messages',
+  name: '接收上下线信息',
   category: 'GHOST',
-  description: 'When enabled, be notified when a player logs in or out.',
+  description: '启用时将接收他人上线或下线时的信息.',
   component: CheckboxInput,
 };
 
 export const chat_ooc: FeatureToggle = {
-  name: 'Enable OOC',
+  name: '启用OOC',
   category: 'CHAT',
   component: CheckboxInput,
 };
 
 export const chat_prayer: FeatureToggle = {
-  name: 'Listen to prayers',
+  name: '接收祈祷信息',
   category: 'ADMIN',
   component: CheckboxInput,
 };
 
 export const chat_pullr: FeatureToggle = {
-  name: 'Enable pull request notifications',
+  name: '启用PR提醒',
   category: 'CHAT',
-  description: 'Be notified when a pull request is made, closed, or merged.',
+  description: '启用时接收pull requests信息.',
   component: CheckboxInput,
 };

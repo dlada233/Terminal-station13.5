@@ -1,43 +1,43 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const tgui_fancy: FeatureToggle = {
-  name: 'Enable fancy TGUI',
+  name: '启用精致TGUI',
   category: 'UI',
-  description: 'Makes TGUI windows look better, at the cost of compatibility.',
+  description: '让TGUI更好看, 降低适配性.',
   component: CheckboxInput,
 };
 
 export const tgui_input: FeatureToggle = {
-  name: 'Input: Enable TGUI',
+  name: '输入框: 启用TGUI',
   category: 'UI',
-  description: 'Renders input boxes in TGUI.',
+  description: '将输入框替换为TGUI.',
   component: CheckboxInput,
 };
 
 export const tgui_input_large: FeatureToggle = {
-  name: 'Input: Larger buttons',
+  name: '输入框: 大按钮',
   category: 'UI',
-  description: 'Makes TGUI buttons less traditional, more functional.',
+  description: '让TGUI按钮更具功能性.',
   component: CheckboxInput,
 };
 
 export const tgui_input_swapped: FeatureToggle = {
-  name: 'Input: Swap Submit/Cancel buttons',
+  name: '输入框: 交换 提交/取消 按钮',
   category: 'UI',
-  description: 'Makes TGUI buttons less traditional, more functional.',
+  description: '让TGUI按钮更具功能性.',
   component: CheckboxInput,
 };
 
 export const tgui_lock: FeatureToggle = {
-  name: 'Lock TGUI to main monitor',
+  name: '锁定TGUI到你的主显示器',
   category: 'UI',
-  description: 'Locks TGUI windows to your main monitor.',
+  description: '锁定TGUI到你的主显示器.',
   component: CheckboxInput,
 };
 
 export const tgui_say_light_mode: FeatureToggle = {
-  name: 'Say: Light mode',
+  name: '交流: 亮色模式',
   category: 'UI',
-  description: 'Sets TGUI Say to use a light mode.',
+  description: '将交流TGUI切换为亮色模式.',
   component: CheckboxInput,
 };

@@ -2,9 +2,9 @@
 import { CheckboxInput, FeatureToggle } from '../../base';
 
 export const looc_admin_pref: FeatureToggle = {
-  name: 'See admin LOOC',
+  name: '管理员LOOC可见性',
   category: 'ADMIN',
   description:
-    'Toggles whether you want to see LOOC anywhere as an admin or not.',
+    '选择是否能看到管理员LOOC (Local OOC).',
   component: CheckboxInput,
 };

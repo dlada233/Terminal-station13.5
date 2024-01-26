@@ -3,11 +3,10 @@ import { multiline } from 'common/string';
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const darkened_flash: FeatureToggle = {
-  name: 'Enable darkened flashes',
+  name: '替换闪光白屏',
   category: 'GAMEPLAY',
   description: multiline`
-    When toggled, being flashed will show a dark screen rather than a
-    bright one.
+    启用时将被闪光时的白屏改为护眼的黑屏.
   `,
   component: CheckboxInput,
 };
