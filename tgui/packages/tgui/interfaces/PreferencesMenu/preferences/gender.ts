@@ -1,8 +1,8 @@
 export enum Gender {
-  Male = '男性',
-  Female = '女性',
-  Other = '多元',
-  Other2 = '中性',
+  Male = 'male',
+  Female = 'female',
+  Other = 'plural',
+  Other2 = 'neuter',
 }
 
 export const GENDERS = {
