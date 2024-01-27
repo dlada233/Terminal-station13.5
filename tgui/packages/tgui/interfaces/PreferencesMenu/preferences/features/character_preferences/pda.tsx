@@ -6,12 +6,12 @@ import {
 } from '../base';
 
 export const pda_theme: FeatureChoiced = {
-  name: 'PDA Theme',
+  name: 'PDA主题',
   category: 'GAMEPLAY',
   component: FeatureDropdownInput,
 };
 
 export const pda_ringtone: Feature<string> = {
-  name: 'PDA Ringtone',
+  name: 'PDA铃声',
   component: FeatureShortTextInput,
 };

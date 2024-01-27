@@ -10,7 +10,7 @@ import {
 } from '../base';
 
 export const screentip_color: Feature<string> = {
-  name: 'Screentips: Screentips color',
+  name: '小提示: 小提示颜色',
   category: 'UI',
   description: multiline`
     The color of screen tips, the text you see when hovering over something.
@@ -19,7 +19,7 @@ export const screentip_color: Feature<string> = {
 };
 
 export const screentip_images: FeatureToggle = {
-  name: 'Screentips: Allow images',
+  name: '小提示: 允许图像',
   category: 'UI',
   description: multiline`When enabled, screentip hints use images for
     the mouse button rather than LMB/RMB.`,
@@ -27,12 +27,10 @@ export const screentip_images: FeatureToggle = {
 };
 
 export const screentip_pref: FeatureChoiced = {
-  name: 'Screentips: Enable screentips',
+  name: '小提示: 启用小提示',
   category: 'UI',
   description: multiline`
-    Enables screen tips, the text you see when hovering over something.
-    When set to "Only with tips", will only show when there is more information
-    than just the name, such as what right-clicking it does.
+    启用那些需要你将光标放置于上才能显示的额外信息文本.
   `,
   component: FeatureDropdownInput,
 };

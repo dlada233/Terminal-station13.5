@@ -1,6 +1,6 @@
 import { FeatureChoiced, FeatureDropdownInput } from '../base';
 
 export const uplink_loc: FeatureChoiced = {
-  name: 'Uplink Spawn Location',
+  name: '上行链路藏匿位',
   component: FeatureDropdownInput,
 };

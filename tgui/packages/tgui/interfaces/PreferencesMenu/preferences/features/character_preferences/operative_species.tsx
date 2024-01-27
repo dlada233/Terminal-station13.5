@@ -1,6 +1,6 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const operative_species: FeatureToggle = {
-  name: 'Always Human as Operative',
+  name: '参与核行动时保持人类',
   component: CheckboxInput,
 };

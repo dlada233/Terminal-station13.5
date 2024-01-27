@@ -2,6 +2,6 @@
 import { FeatureChoiced, FeatureDropdownInput } from '../../base';
 
 export const brain_type: FeatureChoiced = {
-  name: 'Silicon and Synthetic Brain Type',
+  name: '硅基与和成人脑类',
   component: FeatureDropdownInput,
 };

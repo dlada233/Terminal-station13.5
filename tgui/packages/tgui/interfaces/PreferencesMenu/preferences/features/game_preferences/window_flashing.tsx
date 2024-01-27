@@ -3,11 +3,10 @@ import { multiline } from 'common/string';
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const windowflashing: FeatureToggle = {
-  name: 'Enable window flashing',
+  name: '启用窗口闪烁',
   category: 'UI',
   description: multiline`
-    When toggled, some important events will make your game icon flash on your
-    task tray.
+    启用时将在有重要事件时提醒你的窗口.
   `,
   component: CheckboxInput,
 };

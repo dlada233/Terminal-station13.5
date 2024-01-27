@@ -1,8 +1,8 @@
 import { Feature, FeatureDropdownInput } from '../base';
 
 export const mod_select: Feature<string> = {
-  name: 'MOD active module key',
+  name: '模块启用按键',
   category: 'GAMEPLAY',
-  description: 'The key you need to use an active MODsuit module.',
+  description: '启用模块服模块时的案件.',
   component: FeatureDropdownInput,
 };

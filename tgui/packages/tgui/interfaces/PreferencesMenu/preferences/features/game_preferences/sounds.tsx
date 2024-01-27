@@ -10,41 +10,41 @@ import {
 } from '../base';
 
 export const sound_ambience: FeatureToggle = {
-  name: 'Enable ambience',
+  name: '启用环境音效',
   category: 'SOUND',
   component: CheckboxInput,
 };
 
 export const sound_announcements: FeatureToggle = {
-  name: 'Enable announcement sounds',
+  name: '启用通知音效',
   category: 'SOUND',
-  description: 'When enabled, hear sounds for command reports, notices, etc.',
+  description: '启用时将听到通知, 警报等等的音效.',
   component: CheckboxInput,
 };
 
 export const sound_combatmode: FeatureToggle = {
-  name: 'Enable combat mode sound',
+  name: '启用战斗模式音效',
   category: 'SOUND',
-  description: 'When enabled, hear sounds when toggling combat mode.',
+  description: '启用时将在战斗模式启用时触发音效.',
   component: CheckboxInput,
 };
 
 export const sound_endofround: FeatureToggle = {
-  name: 'Enable end of round sounds',
+  name: '启用游戏结束音效',
   category: 'SOUND',
-  description: 'When enabled, hear a sound when the server is rebooting.',
+  description: '启用时将在服务器开始重启时播放结束音效.',
   component: CheckboxInput,
 };
 
 export const sound_instruments: FeatureToggle = {
-  name: 'Enable instruments',
+  name: '启用乐器声音',
   category: 'SOUND',
-  description: 'When enabled, be able hear instruments in game.',
+  description: '启用时将能在游戏内听到乐器演奏.',
   component: CheckboxInput,
 };
 
 export const sound_tts: FeatureChoiced = {
-  name: 'Enable TTS',
+  name: '启用TTS',
   category: 'SOUND',
   description: multiline`
     When enabled, be able to hear text-to-speech sounds in game.
@@ -54,46 +54,46 @@ export const sound_tts: FeatureChoiced = {
 };
 
 export const sound_tts_volume: Feature<number> = {
-  name: 'TTS Volume',
+  name: 'TTS音量',
   category: 'SOUND',
   description: 'The volume that the text-to-speech sounds will play at.',
   component: FeatureSliderInput,
 };
 
 export const sound_jukebox: FeatureToggle = {
-  name: 'Enable jukebox music',
+  name: '启用点唱机音乐',
   category: 'SOUND',
-  description: 'When enabled, hear music for jukeboxes, dance machines, etc.',
+  description: '启用时将能够听到点唱机播放的音乐.',
   component: CheckboxInput,
 };
 
 export const sound_lobby: FeatureToggle = {
-  name: 'Enable lobby music',
+  name: '启用大厅音乐',
   category: 'SOUND',
   component: CheckboxInput,
 };
 
 export const sound_midi: FeatureToggle = {
-  name: 'Enable admin music',
+  name: '启用管理员音乐',
   category: 'SOUND',
-  description: 'When enabled, admins will be able to play music to you.',
+  description: '启用时管理员将能够播放音乐给你.',
   component: CheckboxInput,
 };
 
 export const sound_ship_ambience: FeatureToggle = {
-  name: 'Enable ship ambience',
+  name: '启用飞船氛围音',
   category: 'SOUND',
   component: CheckboxInput,
 };
 
 export const sound_elevator: FeatureToggle = {
-  name: 'Enable elevator music',
+  name: '启用电梯音效',
   category: 'SOUND',
   component: CheckboxInput,
 };
 
 export const sound_achievement: FeatureChoiced = {
-  name: 'Achievement unlock sound',
+  name: '启用成就解锁音效',
   category: 'SOUND',
   description: multiline`
     The sound that's played when unlocking an achievement.
