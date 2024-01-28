@@ -4,7 +4,7 @@
 // MISC
 
 /datum/crafting_recipe/food/candiedapple
-	name = "Candied apple"
+	name = "苹果糖"
 	reqs = list(
 		/datum/reagent/consumable/caramel = 5,
 		/obj/item/food/grown/apple = 1
@@ -13,7 +13,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/spiderlollipop
-	name = "Spider Lollipop"
+	name = "蜘蛛棒棒糖"
 	reqs = list(/obj/item/stack/rods = 1,
 		/datum/reagent/consumable/sugar = 5,
 		/datum/reagent/water = 5,
@@ -23,7 +23,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/chococoin
-	name = "Choco coin"
+	name = "巧克力币"
 	reqs = list(
 		/obj/item/coin = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -32,7 +32,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/fudgedice
-	name = "Fudge dice"
+	name = "巧克力骰子"
 	reqs = list(
 		/obj/item/dice = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -41,7 +41,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/chocoorange
-	name = "Choco orange"
+	name = "巧克力橙子"
 	reqs = list(
 		/obj/item/food/grown/citrus/orange = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -50,7 +50,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/cheesyfries
-	name = "Cheesy fries"
+	name = "芝士薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/cheese/wedge = 1
@@ -59,7 +59,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/poutine
-	name = "Poutine"
+	name = "加拿大薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -69,7 +69,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/beans
-	name = "Beans"
+	name = "豆子罐头"
 	time = 40
 	reqs = list(/datum/reagent/consumable/ketchup = 5,
 		/obj/item/food/grown/soybeans = 2
@@ -78,7 +78,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/eggplantparm
-	name ="Eggplant parmigiana"
+	name ="茄子通心粉"
 	reqs = list(
 		/obj/item/food/cheese/wedge = 2,
 		/obj/item/food/grown/eggplant = 1
@@ -87,7 +87,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/melonkeg
-	name ="Melon keg"
+	name ="瓜桶"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/vodka = 25,
 		/obj/item/food/grown/holymelon = 1,
@@ -98,7 +98,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/honeybar
-	name = "Honey nut bar"
+	name = "蜂蜜坚果棒"
 	reqs = list(
 		/obj/item/food/grown/oat = 1,
 		/datum/reagent/consumable/honey = 5
@@ -129,7 +129,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/ricepudding
-	name = "Rice pudding"
+	name = "米饭布丁"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/datum/reagent/consumable/milk = 5,
@@ -140,7 +140,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/risotto
-	name = "Risotto"
+	name = "意大利调味饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -152,7 +152,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/butterbear //ITS ALIVEEEEEE!
-	name = "Living bear/butter hybrid"
+	name = "熊之炼金术"
 	reqs = list(
 		/obj/item/organ/internal/brain = 1,
 		/obj/item/organ/internal/heart = 1,
@@ -165,7 +165,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/crab_rangoon
-	name = "Crab Rangoon"
+	name = "炸蟹角"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/datum/reagent/consumable/cream = 5,
@@ -176,7 +176,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/royalcheese
-	name = "Royal Cheese"
+	name = "皇家奶酪"
 	reqs = list(
 		/obj/item/food/cheese/wheel = 1,
 		/obj/item/clothing/head/costume/crown = 1,
@@ -187,7 +187,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/ant_candy
-	name = "Ant Candy"
+	name = "蚂蚁糖"
 	reqs = list(/obj/item/stack/rods = 1,
 		/datum/reagent/consumable/sugar = 5,
 		/datum/reagent/water = 5,
@@ -197,7 +197,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/pesto
-	name = "Pesto"
+	name = "意大利青酱"
 	reqs = list(
 		/obj/item/food/cheese/firm_cheese_slice = 1,
 		/datum/reagent/consumable/salt = 5,
@@ -210,7 +210,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/tomato_sauce
-	name = "Tomato sauce"
+	name = "番茄酱"
 	reqs = list(
 		/obj/item/food/canned/tomatoes = 1,
 		/datum/reagent/consumable/salt = 2,
@@ -221,7 +221,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/bechamel_sauce
-	name = "Bechamel sauce"
+	name = "白酱"
 	reqs = list(
 		/datum/reagent/consumable/milk = 10,
 		/datum/reagent/consumable/flour = 5,
@@ -231,7 +231,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/pierogi
-	name = "Pierogi"
+	name = "波兰饺子"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/potato = 1,
@@ -241,7 +241,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/stuffed_cabbage
-	name = "Stuffed cabbage"
+	name = "卷心菜卷"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 2,
 		/obj/item/food/boiledrice = 1,
@@ -252,7 +252,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/granola_bar
-	name = "Granola bar"
+	name = "燕麦棒"
 	reqs = list(
 		/obj/item/food/grown/oat = 1,
 		/obj/item/food/grown/peanut = 1,
@@ -263,7 +263,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/onigiri
-	name = "Onigiri"
+	name = "饭团"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/seaweedsheet = 1,
@@ -272,7 +272,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/mashed_potatoes
-	name = "Mashed potatoes"
+	name = "土豆泥"
 	reqs = list(
 		/obj/item/food/grown/potato = 2,
 		/obj/item/food/grown/garlic = 1,
@@ -282,7 +282,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/pacoca
-	name = "Pacoca"
+	name = "花生酥糖"
 	reqs = list(
 		/obj/item/food/grown/peanut = 2,
 		/datum/reagent/consumable/sugar = 5,
@@ -292,7 +292,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/springroll
-	name = "Spring roll"
+	name = "春卷"
 	reqs = list(
 		/obj/item/food/grown/carrot = 1,
 		/obj/item/food/grown/cucumber = 1,
@@ -304,7 +304,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/caramel_popcorn
-	name = "Caramel popcorn"
+	name = "焦糖爆米花"
 	reqs = list(
 		/obj/item/food/popcorn = 1,
 		/datum/reagent/consumable/caramel = 3,
@@ -313,7 +313,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/salty_popcorn
-	name = "Salty popcorn"
+	name = "咸爆米花"
 	reqs = list(
 		/obj/item/food/popcorn = 1,
 		/datum/reagent/consumable/salt = 3,
@@ -322,7 +322,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/spacylibertyduff
-	name = "Spacy liberty duff"
+	name = "宇宙果冻"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/vodka = 5,
 		/obj/item/reagent_containers/cup/bowl = 1,
@@ -332,7 +332,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/amanitajelly
-	name = "Amanita jelly"
+	name = "鹅膏菌果冻"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/vodka = 5,
 		/obj/item/reagent_containers/cup/bowl = 1,
@@ -342,7 +342,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/buttered_baked_potato
-	name = "Buttered baked potato"
+	name = "烤黄油土豆"
 	reqs = list(
 		/obj/item/food/baked_potato = 1,
 		/obj/item/food/butterslice = 1,
@@ -351,7 +351,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/loaded_baked_potato
-	name = "Loaded baked potato"
+	name = "烤夹心土豆"
 	reqs = list(
 		/obj/item/food/baked_potato = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -362,7 +362,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/cheese_pierogi
-	name = "Cheese pierogi"
+	name = "波兰奶酪饺子"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/potato = 1,
@@ -372,7 +372,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/meat_pierogi
-	name = "Meat pierogi"
+	name = "波兰肉馅饺子"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/potato = 1,
@@ -382,7 +382,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/bonbon/caramel_truffle
-	name = "Caramel truffle"
+	name = "焦糖巧克力松露"
 	reqs = list(
 		/obj/item/food/chocolatebar = 1,
 		/datum/reagent/consumable/caramel = 2,
@@ -391,7 +391,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/bonbon/chocolate_truffle
-	name = "Chocolate truffle"
+	name = "巧克力松露"
 	reqs = list(
 		/obj/item/food/chocolatebar = 1,
 		/datum/reagent/consumable/sugar = 2,
@@ -400,7 +400,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/bonbon/peanut_truffle
-	name = "Peanut truffle"
+	name = "花生巧克力松露"
 	reqs = list(
 		/obj/item/food/chocolatebar = 1,
 		/obj/item/food/grown/peanut = 1,
@@ -409,7 +409,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/bonbon/peanut_butter_cup
-	name = "Peanut butter cup"
+	name = "花生酱杯"
 	reqs = list(
 		/obj/item/food/chocolatebar = 1,
 		/datum/reagent/consumable/peanut_butter = 2,
@@ -418,7 +418,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/pickles_jar
-	name = "Jar of pickles"
+	name = "腌菜罐"
 	reqs = list(
 		/obj/item/reagent_containers/cup/beaker/large = 1,
 		/obj/item/food/grown/cucumber = 10,
@@ -429,7 +429,7 @@
 	delete_contents = FALSE
 
 /datum/crafting_recipe/food/sauteed_eggplant
-	name = "Sauteed eggplant"
+	name = "嫩煎茄盒"
 	reqs = list(
 		/obj/item/food/grown/eggplant = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -439,7 +439,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/stuffed_eggplant
-	name = "Stuffed eggplant"
+	name = "茄盒"
 	reqs = list(
 		/obj/item/food/grown/eggplant = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -451,7 +451,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/baba_ghanoush
-	name = "Baba ghanoush"
+	name = "茄泥酱"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/pita_bread = 1,
@@ -464,7 +464,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/moussaka
-	name = "Moussaka"
+	name = "希腊茄盒"
 	reqs = list(
 		/obj/item/food/grown/eggplant = 2,
 		/obj/item/food/grown/garlic = 1,
@@ -476,7 +476,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/falafel
-	name = "Falafel"
+	name = "炸豆丸子"
 	reqs = list(
 		/obj/item/food/grown/soybeans = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -487,7 +487,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/candied_pineapple
-	name = "Candied pineapple"
+	name = "菠萝蜜饯"
 	reqs = list(
 		/obj/item/food/pineappleslice = 1,
 		/datum/reagent/consumable/sugar = 2,
@@ -497,7 +497,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/tzatziki_sauce
-	name = "Tzatziki sauce"
+	name = "希腊酸奶酱"
 	reqs = list(
 		/obj/item/food/grown/cucumber = 1,
 		/datum/reagent/consumable/nutriment/fat/oil/olive = 2,
@@ -508,7 +508,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/tzatziki_and_pita_bread
-	name = "Tzatziki and pita bread"
+	name = "皮塔饼配希腊酸奶酱"
 	reqs = list(
 		/obj/item/food/tzatziki_sauce = 1,
 		/obj/item/food/pita_bread = 1,
@@ -517,7 +517,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/grilled_beef_gyro
-	name = "Grilled beef gyro"
+	name = "希腊烤牛肉卷"
 	reqs = list(
 		/obj/item/food/tzatziki_sauce = 1,
 		/obj/item/food/pita_bread = 1,
@@ -530,7 +530,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/vegetarian_gyro
-	name = "Vegetarian gyro"
+	name = "希腊蔬菜卷"
 	reqs = list(
 		/obj/item/food/tzatziki_sauce = 1,
 		/obj/item/food/pita_bread = 1,
@@ -543,7 +543,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/raw_pita_bread
-	name = "Raw pita bread"
+	name = "生皮塔饼"
 	reqs = list(
 		/datum/reagent/consumable/flour = 10,
 		/datum/reagent/water = 5,

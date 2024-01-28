@@ -9,7 +9,7 @@
 	)
 	result = /obj/item/knife/shiv
 	category = CAT_WEAPON_MELEE
-	steps = list("Use cloth on a glass shard of any type")
+	steps = list("使用布在何类型的玻璃碎片上")
 
 /datum/crafting_recipe/restraints
 	reqs = list(/obj/item/stack/cable_coil = 15)
@@ -21,14 +21,14 @@
 	result = /obj/item/stack/sheet/runed_metal
 	category = CAT_CULT
 	non_craftable = TRUE
-	steps = list("Use Twisted Construction on plasteel")
+	steps = list("在扭曲的结构上使用塑钢")
 
 /datum/crafting_recipe/constructshell
 	reqs = list(/obj/item/stack/sheet/iron = 50)
 	result = /obj/structure/constructshell
 	category = CAT_CULT
 	non_craftable = TRUE
-	steps = list("Use Twisted Construction on iron")
+	steps = list("在扭曲的结构上使用铁板")
 
 // Food reactions
 
@@ -83,17 +83,17 @@
 	category = CAT_PASTRY
 
 /datum/crafting_recipe/food/reaction/chocolatebar
-	name = "Chocolate bar"
+	name = "巧克力块"
 	reaction = /datum/chemical_reaction/food/chocolate_bar3
 	result = /obj/item/food/chocolatebar
 	category = CAT_PASTRY
 
 /datum/crafting_recipe/food/reaction/chocolatebar/chocomilk
-	name = "Chocolate bar (choco milk)"
+	name = "巧克力块 (可可奶)"
 	reaction = /datum/chemical_reaction/food/chocolate_bar2
 
 /datum/crafting_recipe/food/reaction/chocolatebar/vegan
-	name = "Chocolate bar (vegan)"
+	name = "巧克力块 (素)"
 	reaction = /datum/chemical_reaction/food/chocolate_bar
 
 /datum/crafting_recipe/food/reaction/soysauce
@@ -126,13 +126,13 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/reaction/cakebatter
-	name = "Cake batter"
+	name = "蛋糕糊"
 	reaction = /datum/chemical_reaction/food/cakebatter
 	result = /obj/item/food/cakebatter
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/reaction/cakebatter/vegan
-	name = "Cake batter (vegan)"
+	name = "蛋糕糊 (素)"
 	reaction = /datum/chemical_reaction/food/cakebatter/vegan
 
 /datum/crafting_recipe/food/reaction/pancakebatter
@@ -201,7 +201,7 @@
 
 /datum/crafting_recipe/food/rollingpin
 	tool_behaviors =  list(TOOL_ROLLINGPIN)
-	steps = list("Flatten with a rolling pin")
+	steps = list("用擀面杖擀平")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -234,7 +234,7 @@
 
 /datum/crafting_recipe/food/knife
 	tool_behaviors =  list(TOOL_KNIFE)
-	steps = list("Slice with a knife")
+	steps = list("用刀切成片")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -389,7 +389,7 @@
 
 /datum/crafting_recipe/food/grill
 	machinery = list(/obj/machinery/griddle)
-	steps = list("Grill until ready")
+	steps = list("煎至熟")
 	category = CAT_MEAT
 	non_craftable = TRUE
 
@@ -489,8 +489,8 @@
 	result = /obj/item/food/pancakes
 	category = CAT_BREAD
 	steps = list(
-		"Pour batter onto a griddle",
-		"Bake until ready"
+		"把面糊倒在烤箱托盘上",
+		"烘烤至熟"
 	)
 
 /datum/crafting_recipe/food/grill/pancake/blueberry
@@ -500,9 +500,9 @@
 	)
 	result = /obj/item/food/pancakes/blueberry
 	steps = list(
-		"Pour batter onto a griddle",
-		"Add berries",
-		"Bake until ready"
+		"把面糊倒在烤箱托盘上",
+		"添加浆果",
+		"烘烤至熟"
 	)
 
 /datum/crafting_recipe/food/grill/pancake/choco
@@ -512,9 +512,9 @@
 	)
 	result = /obj/item/food/pancakes/chocolatechip
 	steps = list(
-		"Pour batter onto a griddle",
-		"Add chocolate",
-		"Bake until ready"
+		"把面糊倒在烤箱托盘上",
+		"添加巧克力",
+		"烘烤至熟"
 	)
 
 /datum/crafting_recipe/food/grill/hard_taco_shell
@@ -525,7 +525,7 @@
 // Machinery: Grinder
 /datum/crafting_recipe/food/grinder
 	machinery = list(/obj/machinery/reagentgrinder)
-	steps = list("Put into grinder and grind")
+	steps = list("放入搅拌机中grinde-研磨")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -548,12 +548,12 @@
 /datum/crafting_recipe/food/grinder/kortamilk
 	reqs = list(/obj/item/food/grown/korta_nut = 1)
 	result = /datum/reagent/consumable/korta_milk
-	steps = list("Put into grinder and juice")
+	steps = list("放入搅拌机中Juice-榨汁")
 
 /datum/crafting_recipe/food/grinder/kortanectar
 	reqs = list(/obj/item/food/grown/korta_nut/sweet = 1)
 	result = /datum/reagent/consumable/korta_nectar
-	steps = list("Put into grinder and juice")
+	steps = list("放入搅拌机中Juice-榨汁")
 
 /datum/crafting_recipe/food/grinder/mushroom_powder
 	reqs = list(/obj/item/food/grown/ash_flora/seraka = 1)
@@ -570,12 +570,12 @@
 /datum/crafting_recipe/food/grinder/butter
 	reqs = list(/datum/reagent/consumable/milk = MILK_TO_BUTTER_COEFF)
 	result = /obj/item/food/butter
-	steps = list("Put into grinder and mix")
+	steps = list("放入搅拌机中Mix-搅拌")
 
 /datum/crafting_recipe/food/grinder/mayonnaise
 	reqs = list(/datum/reagent/consumable/eggyolk = 1)
 	result = /datum/reagent/consumable/mayonnaise
-	steps = list("Put into grinder and mix")
+	steps = list("放入搅拌机中Mix-搅拌")
 
 /datum/crafting_recipe/food/grinder/sugar
 	reqs = list(/obj/item/food/grown/sugarcane = 1)
@@ -588,7 +588,7 @@
 /datum/crafting_recipe/food/grinder/cornstarch
 	reqs = list(/obj/item/food/grown/corn = 1)
 	result = /datum/reagent/consumable/corn_starch
-	steps = list("Put into grinder and juice")
+	steps = list("放入搅拌机中Juice-榨汁")
 
 /datum/crafting_recipe/food/grinder/sprinkles
 	reqs = list(/obj/item/food/donut/plain = 1)
@@ -613,7 +613,7 @@
 // Machinery: Processor
 /datum/crafting_recipe/food/processor
 	machinery = list(/obj/machinery/processor)
-	steps = list("Put into processor and activate")
+	steps = list("放入食物加工机加工")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -672,7 +672,7 @@
 // Machinery: Microwave
 /datum/crafting_recipe/food/microwave
 	machinery = list(/obj/machinery/microwave)
-	steps = list("Microwave until ready")
+	steps = list("微波炉加热")
 	category = CAT_MISCFOOD
 	non_craftable = TRUE
 
@@ -717,7 +717,7 @@
 // Machinery: Oven
 /datum/crafting_recipe/food/oven
 	machinery = list(/obj/machinery/oven)
-	steps = list("Bake in the oven until ready")
+	steps = list("在烤箱里烤熟")
 	category = CAT_BREAD
 	non_craftable = TRUE
 

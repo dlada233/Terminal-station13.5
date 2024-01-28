@@ -9,8 +9,8 @@
 #define OVEN_TRAY_X_OFFSET -2
 
 /obj/machinery/oven
-	name = "oven"
-	desc = "Why do they call it oven when you of in the cold food of out hot eat the food?"
+	name = "烤箱"
+	desc = "烤箱."
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "oven_off"
 	base_icon_state = "oven"
@@ -90,7 +90,7 @@
 		baked_item.fire_act(1000) //Hot hot hot!
 
 		if(SPT_PROB(10, seconds_per_tick))
-			visible_message(span_danger("You smell a burnt smell coming from [src]!"))
+			visible_message(span_danger("你从[src]那里闻到一股烧焦的味道!"))
 	set_smoke_state(worst_cooked_food_state)
 	update_appearance()
 	use_power(active_power_usage)
@@ -99,7 +99,7 @@
 /obj/machinery/oven/attackby(obj/item/I, mob/user, params)
 	if(open && !used_tray && istype(I, /obj/item/plate/oven_tray))
 		if(user.transferItemToLoc(I, src, silent = FALSE))
-			to_chat(user, span_notice("You put [I] in [src]."))
+			to_chat(user, span_notice("你放[I]进[src]."))
 			add_tray_to_oven(I, user)
 	else
 		return ..()
@@ -166,13 +166,13 @@
 	if(open)
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		set_smoke_state(OVEN_SMOKE_STATE_NONE)
-		to_chat(user, span_notice("You open [src]."))
+		to_chat(user, span_notice("你打开[src]."))
 		end_processing()
 		if(used_tray)
 			used_tray.vis_flags &= ~VIS_HIDE
 	else
 		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
-		to_chat(user, span_notice("You close [src]."))
+		to_chat(user, span_notice("你关上[src]."))
 		if(used_tray)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
@@ -216,8 +216,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/oven/range
-	name = "range"
-	desc = "And Oven AND a Stove? I guess that's why it's got range!"
+	name = "集成炉灶"
+	desc = "还有烤箱和炉子？"
 	icon_state = "range_off"
 	base_icon_state = "range"
 	pass_flags_self = PASSMACHINE|PASSTABLE|LETPASSTHROW // Like the griddle, short
@@ -233,8 +233,8 @@
 	AddComponent(/datum/component/stove, container_x = -6, container_y = 14, spawn_container = mapload_container)
 
 /obj/item/plate/oven_tray
-	name = "oven tray"
-	desc = "Time to bake cookies!"
+	name = "烤箱托盘"
+	desc = "是时候烤一些曲奇了!"
 	icon_state = "oven_tray"
 	max_items = 6
 	biggest_w_class = WEIGHT_CLASS_BULKY

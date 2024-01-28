@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////SALADS////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/herbsalad
-	name = "Herb salad"
+	name = "草本沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/ambrosia/vulgaris = 3,
@@ -14,7 +14,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/aesirsalad
-	name = "Aesir salad"
+	name = "神之沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/ambrosia/deus = 3,
@@ -24,7 +24,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/validsalad
-	name = "Valid salad"
+	name = "正经沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/ambrosia/vulgaris = 3,
@@ -35,7 +35,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/melonfruitbowl
-	name ="Melon fruit bowl"
+	name ="甜瓜果盘"
 	reqs = list(
 		/obj/item/food/grown/watermelon = 1,
 		/obj/item/food/grown/apple = 1,
@@ -48,7 +48,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/fruitsalad
-	name = "Fruit salad"
+	name = "水果沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/apple = 1,
@@ -61,7 +61,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/junglesalad
-	name = "Jungle salad"
+	name = "热带水果沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/apple = 2,
@@ -74,7 +74,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/citrusdelight
-	name = "Citrus delight"
+	name = "柑橘之乐"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/citrus/lime = 1,
@@ -98,7 +98,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/kale_salad
-	name = "Kale salad"
+	name = "羽衣甘蓝沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/carrot = 1,
@@ -110,7 +110,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/greek_salad
-	name = "Greek salad"
+	name = "希腊沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/olive = 1,
@@ -124,7 +124,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/caesar_salad
-	name = "Caesar salad"
+	name = "凯撒沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/cabbage = 2,
@@ -137,7 +137,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/spring_salad
-	name = "Spring salad"
+	name = "春季沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/cabbage = 2,
@@ -149,7 +149,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/potato_salad
-	name = "Potato salad"
+	name = "土豆沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/potato = 2,
@@ -161,7 +161,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/spinach_fruit_salad
-	name = "Spinach fruit salad"
+	name = "菠菜水果沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/herbs = 3,
@@ -173,7 +173,7 @@
 	category = CAT_SALAD
 
 /datum/crafting_recipe/food/antipasto_salad
-	name = "Antipasto salad"
+	name = "开胃沙拉"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/cabbage = 2,

@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////BREAD////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/meatbread
-	name = "Meat bread"
+	name = "肉面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/meat/cutlet/plain = 3,
@@ -14,7 +14,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/xenomeatbread
-	name = "Xenomeat bread"
+	name = "异形肉面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/meat/cutlet/xeno = 3,
@@ -24,7 +24,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/spidermeatbread
-	name = "Spidermeat bread"
+	name = "蜘蛛肉面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/meat/cutlet/spider = 3,
@@ -34,7 +34,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/sausagebread
-	name = "Sausage bread"
+	name = "香肠面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/sausage = 2,
@@ -43,7 +43,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/banananutbread
-	name = "Banana nut bread"
+	name = "奶油香蕉坚果面包"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/bread/plain = 1,
@@ -54,7 +54,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/tofubread
-	name = "Tofu bread"
+	name = "豆腐面包"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/tofu = 3,
@@ -64,7 +64,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/creamcheesebread
-	name = "Cream cheese bread"
+	name = "奶油芝士面包"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/bread/plain = 1,
@@ -74,7 +74,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/mimanabread
-	name = "Mimana bread"
+	name = "默蕉面包"
 	reqs = list(
 		/datum/reagent/consumable/soymilk = 5,
 		/obj/item/food/bread/plain = 1,
@@ -85,7 +85,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/garlicbread
-	name = "Garlic Bread"
+	name = "蒜蓉面包"
 	time = 40
 	reqs = list(/obj/item/food/grown/garlic = 1,
 				/obj/item/food/breadslice/plain = 1,
@@ -95,7 +95,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/butterbiscuit
-	name = "Butter Biscuit"
+	name = "奶油饼干"
 	reqs = list(
 		/obj/item/food/bun = 1,
 		/obj/item/food/butterslice = 1
@@ -104,7 +104,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/butterdog
-	name = "Butterdog"
+	name = "黄狗"
 	reqs = list(
 		/obj/item/food/bun = 1,
 		/obj/item/food/butter = 1,
@@ -113,7 +113,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/baguette
-	name = "Baguette"
+	name = "法棍面包"
 	time = 40
 	reqs = list(/datum/reagent/consumable/salt = 1,
 		/datum/reagent/consumable/blackpepper = 1,
@@ -123,7 +123,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/raw_breadstick
-	name = "Raw breadstick"
+	name = "生长面包"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/datum/reagent/consumable/salt = 1,
@@ -133,7 +133,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/raw_croissant
-	name = "Raw croissant"
+	name = "生羊角面包"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/datum/reagent/consumable/sugar = 1,
@@ -143,7 +143,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/throwing_croissant
-	name = "Throwing croissant"
+	name = "羊角面包镖"
 	reqs = list(
 		/obj/item/food/croissant = 1,
 		/obj/item/stack/rods = 1,
@@ -153,7 +153,7 @@
 	always_available = FALSE
 
 /datum/crafting_recipe/food/breaddog
-	name = "Living dog/bread hybrid"
+	name = "面包狗"
 	reqs = list(
 		/obj/item/organ/internal/brain = 1,
 		/obj/item/organ/internal/heart = 1,
@@ -168,7 +168,7 @@
 ////////////////////////////////////////////////TOAST////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/slimetoast
-	name = "Slime toast"
+	name = "史莱姆吐司"
 	reqs = list(
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/food/breadslice/plain = 1
@@ -177,7 +177,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/jelliedyoast
-	name = "Jellied toast"
+	name = "果酱面包"
 	reqs = list(
 		/datum/reagent/consumable/cherryjelly = 5,
 		/obj/item/food/breadslice/plain = 1
@@ -186,7 +186,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/butteredtoast
-	name = "Buttered Toast"
+	name = "黄油吐司"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/obj/item/food/butterslice = 1
@@ -195,7 +195,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/twobread
-	name = "Two bread"
+	name = "双面包"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/wine = 5,
 		/obj/item/food/breadslice/plain = 2
@@ -204,7 +204,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/moldybread // why would you make this?
-	name = "Moldy Bread"
+	name = "发霉面包片"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/obj/item/food/grown/mushroom/amanita = 1
@@ -213,7 +213,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/breadcat
-	name = "Bread cat/bread hybrid"
+	name = "面包猫"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/organ/internal/ears/cat = 1,
@@ -226,7 +226,7 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/frenchtoast
-	name = "Raw french toast"
+	name = "生法式吐司"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/obj/item/food/egg = 2,

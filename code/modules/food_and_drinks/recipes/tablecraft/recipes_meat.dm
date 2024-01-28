@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////KEBABS////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/humankebab
-	name = "Human kebab"
+	name = "烤人肉串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/meat/steak/plain/human = 2
@@ -12,7 +12,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/kebab
-	name = "Kebab"
+	name = "烤肉串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/meat/steak = 2
@@ -21,7 +21,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/tofukebab
-	name = "Tofu kebab"
+	name = "烤豆腐串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/tofu = 2
@@ -30,7 +30,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/tailkebab
-	name = "Lizard tail kebab"
+	name = "烤蜥蜴尾串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/organ/external/tail/lizard = 1
@@ -39,7 +39,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/fiestaskewer
-	name = "Fiesta Skewer"
+	name = "什锦肉串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/grown/chili = 1,
@@ -53,7 +53,7 @@
 ////////////////////////////////////////////////MR SPIDER////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/spidereggsham
-	name = "Spider eggs ham"
+	name = "绿蛋火腿"
 	reqs = list(
 		/datum/reagent/consumable/salt = 1,
 		/obj/item/food/spidereggs = 1,
@@ -65,7 +65,7 @@
 ////////////////////////////////////////////////MISC RECIPE's////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/tempehstarter
-	name = "Tempeh starter"
+	name = "天贝混合物"
 	reqs = list(
 		/obj/item/food/grown/soybeans = 5,
 		/obj/item/seeds/plump = 1
@@ -74,7 +74,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/cornedbeef
-	name = "Corned beef"
+	name = "咸牛肉和卷心菜"
 	reqs = list(
 		/datum/reagent/consumable/salt = 5,
 		/obj/item/food/meat/steak = 1,
@@ -84,7 +84,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/bearsteak
-	name = "Filet migrawr"
+	name = "燃力熊排"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/manly_dorf = 5,
 		/obj/item/food/meat/steak/bear = 1,
@@ -94,7 +94,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/stewedsoymeat
-	name = "Stewed soymeat"
+	name = "炖素肉"
 	reqs = list(
 		/obj/item/food/soydope = 2,
 		/obj/item/food/grown/carrot = 1,
@@ -104,7 +104,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/sausage
-	name = "Raw sausage"
+	name = "生香肠"
 	reqs = list(
 		/obj/item/food/raw_meatball = 1,
 		/obj/item/food/meat/rawcutlet = 2
@@ -113,7 +113,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/nugget
-	name = "Chicken nugget"
+	name = "鸡块"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 1
 	)
@@ -121,7 +121,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/rawkhinkali
-	name = "Raw Khinkali"
+	name = "生卡里饺"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -131,7 +131,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/meatbun
-	name = "Meat bun"
+	name = "包肉烧"
 	reqs = list(
 		/datum/reagent/consumable/soysauce = 5,
 		/obj/item/food/bun = 1,
@@ -142,7 +142,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/pigblanket
-	name = "Pig in a Blanket"
+	name = "猪包毯"
 	reqs = list(
 		/obj/item/food/bun = 1,
 		/obj/item/food/butterslice = 1,
@@ -152,7 +152,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/ratkebab
-	name = "Rat Kebab"
+	name = "鼠肉串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/deadmouse = 1
@@ -161,7 +161,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/doubleratkebab
-	name = "Double Rat Kebab"
+	name = "大鼠肉串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/deadmouse = 2
@@ -170,7 +170,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/ricepork
-	name = "Rice and Pork"
+	name = "猪肉拌饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/boiledrice = 1,
@@ -180,7 +180,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/ribs
-	name = "BBQ Ribs"
+	name = "烧烤肋排"
 	reqs = list(
 		/datum/reagent/consumable/bbqsauce = 5,
 		/obj/item/food/meat/steak = 2,
@@ -190,7 +190,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/meatclown
-	name = "Meat Clown"
+	name = "小丑肉"
 	reqs = list(
 		/obj/item/food/meat/steak = 1,
 		/obj/item/food/grown/banana = 1
@@ -199,7 +199,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/lasagna
-	name = "Lasagna"
+	name = "千层面"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 2,
 		/obj/item/food/grown/tomato = 1,
@@ -210,7 +210,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/gumbo
-	name = "Black eyed gumbo"
+	name = "黑眼秋葵汤饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/boiledrice = 1,
@@ -223,7 +223,7 @@
 
 
 /datum/crafting_recipe/food/fried_chicken
-	name = "Fried Chicken"
+	name = "炸鸡"
 	reqs = list(
 		/obj/item/food/meat/slab/chicken = 1,
 		/datum/reagent/consumable/flour = 5,
@@ -233,7 +233,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/beef_stroganoff
-	name = "Beef Stroganoff"
+	name = "俄式牛柳"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/datum/reagent/consumable/milk = 5,
@@ -248,7 +248,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/beef_wellington
-	name = "Beef Wellington"
+	name = "惠灵顿牛排"
 	reqs = list(
 		/obj/item/food/meat/steak = 1,
 		/obj/item/food/grown/mushroom = 1,
@@ -280,27 +280,8 @@
 	result = /obj/item/food/roast_dinner
 	category = CAT_MEAT
 
-/datum/crafting_recipe/food/full_roast_lizzy
-	name = "Grain-Free Roast Chicken Dinner"
-	reqs = list(
-		/obj/item/food/meat/steak/chicken = 2,
-		/obj/item/food/roastparsnip = 1,
-		/obj/item/food/grown/onion = 1,
-		/obj/item/food/grown/peas = 1,
-		/obj/item/food/grown/potato = 1,
-		/obj/item/food/grown/cabbage = 1,
-		/obj/item/food/grown/herbs = 1,
-		/datum/reagent/consumable/korta_flour = 25,
-		/datum/reagent/consumable/nutriment = 5,
-		/datum/reagent/blood = 5,
-		/datum/reagent/consumable/salt = 2,
-		/datum/reagent/consumable/blackpepper = 2
-	)
-	result = /obj/item/food/roast_dinner_lizzy
-	category = CAT_MEAT
-
 /datum/crafting_recipe/food/full_roast_tofu
-	name = "Meat-Free Roast Dinner"
+	name = "大盘烤鸡(伪)"
 	reqs = list(
 		/obj/item/food/tofu = 6,
 		/obj/item/food/roastparsnip = 1,
@@ -318,7 +299,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/full_english
-	name = "Full English Breakfast"
+	name = "全套英式早餐"
 	reqs = list(
 		/obj/item/food/sausage = 1,
 		/obj/item/food/friedegg = 2,
@@ -332,7 +313,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/envirochow
-	name = "Envirochow"
+	name = "狗吃狗粮"
 	reqs = list(
 		/obj/item/food/meat/slab/corgi = 2,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
@@ -341,7 +322,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/meatloaf
-	name = "Meatloaf"
+	name = "生肉卷"
 	reqs = list(
 		/obj/item/food/meat/slab = 2,
 		/obj/item/food/grown/onion = 1,
@@ -352,7 +333,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/sweet_and_sour_meatballs
-	name = "Sweet and sour meatballs"
+	name = "糖醋肉丸"
 	reqs = list(
 		/obj/item/food/meatball = 3,
 		/obj/item/food/pineappleslice = 1,
@@ -363,7 +344,7 @@
 	category = CAT_MEAT
 
 /datum/crafting_recipe/food/pineapple_skewer
-	name = "Pineapple skewer"
+	name = "菠萝肉串"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/pineappleslice = 2,

@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/herby_cheese
-	name = "Herby cheese"
+	name = "草酪"
 	reqs = list(
 		/obj/item/food/cheese/curd_cheese = 1,
 		/obj/item/food/grown/herbs = 4
@@ -8,7 +8,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/mothic_salad
-	name = "Mothic salad"
+	name = "蛾类沙拉"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 1,
 		/obj/item/food/onion_slice/red = 2,
@@ -18,7 +18,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/toasted_seeds
-	name = "Toasted seeds"
+	name = "烤种子"
 	reqs = list(
 		/obj/item/seeds/sunflower = 1,
 		/obj/item/seeds/pumpkin = 1,
@@ -29,7 +29,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/engine_fodder
-	name = "Engine fodder"
+	name = "引擎燃料"
 	reqs = list(
 		/obj/item/food/toasted_seeds = 1,
 		/obj/item/food/cnds = 1,
@@ -55,7 +55,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/sweet_chili_cabbage_wrap
-	name = "Sweet chili cabbage wrap"
+	name = "甜辣椒包菜"
 	reqs = list(
 		/obj/item/food/grilled_cheese = 1,
 		/obj/item/food/mothic_salad = 1,
@@ -109,7 +109,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/buttered_baked_corn
-	name = "Buttered baked corn"
+	name = "黄油烘玉米"
 	reqs = list(
 		/obj/item/food/oven_baked_corn = 1,
 		/obj/item/food/butterslice = 1
@@ -118,7 +118,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/fiesta_corn_skillet
-	name = "Fiesta corn skillet"
+	name = "杂烩玉米锅"
 	reqs = list(
 		/obj/item/food/oven_baked_corn = 1,
 		/obj/item/food/cornchips = 1,
@@ -141,7 +141,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/mozzarella_sticks
-	name = "Mozzarella sticks"
+	name = "马苏里拉奶酪条"
 	reqs = list(
 		/obj/item/food/cheese/mozzarella = 1,
 		/obj/item/food/breadslice/plain = 2,
@@ -161,7 +161,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/fueljacks_lunch
-	name = "Fueljack's lunch"
+	name = "加油工的午餐"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 1,
 		/obj/item/food/grown/potato = 1,
@@ -183,7 +183,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/hua_mulan_congee
-	name = "Hua Mulan congee"
+	name = "花木兰粥"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/soup/rice_porridge = 10,
 		/obj/item/food/meat/bacon = 1,
@@ -193,7 +193,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/fried_eggplant_polenta
-	name = "Fried eggplant and polenta"
+	name = "炸茄子配燕麦粥"
 	reqs = list(
 		/datum/reagent/consumable/nutriment/soup/cornmeal_porridge = 10,
 		/obj/item/food/grown/eggplant = 1,
@@ -205,7 +205,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/caprese_salad
-	name = "Caprese salad"
+	name = "卡布里沙拉"
 	reqs = list(
 		/obj/item/food/grown/tomato = 1,
 		/obj/item/food/cheese/mozzarella = 1,
@@ -337,7 +337,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/mothmallow
-	name = "Mothmallows"
+	name = "云块"
 	reqs = list(
 		/obj/item/food/grown/soybeans = 1,
 		/datum/reagent/consumable/vanilla = 5,
@@ -348,7 +348,7 @@
 	category = CAT_MOTH
 
 /datum/crafting_recipe/food/moffin
-	name = "Moffin"
+	name = "小云块"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/pastrybase = 1,

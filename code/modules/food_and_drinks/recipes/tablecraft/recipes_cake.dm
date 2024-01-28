@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////CAKE////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/carrotcake
-	name = "Carrot cake"
+	name = "胡萝卜蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/carrot = 2
@@ -13,7 +13,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/cheesecake
-	name = "Cheese cake"
+	name = "芝士蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/cheese/wedge = 2
@@ -22,7 +22,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/applecake
-	name = "Apple cake"
+	name = "苹果蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/apple = 2
@@ -31,7 +31,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/orangecake
-	name = "Orange cake"
+	name = "甘橙蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/citrus/orange = 2
@@ -40,7 +40,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/limecake
-	name = "Lime cake"
+	name = "酸橙蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/citrus/lime = 2
@@ -49,7 +49,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/lemoncake
-	name = "Lemon cake"
+	name = "柠檬蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/citrus/lemon = 2
@@ -58,7 +58,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/chocolatecake
-	name = "Chocolate cake"
+	name = "巧克力蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/chocolatebar = 2
@@ -67,7 +67,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/birthdaycake
-	name = "Birthday cake"
+	name = "生日蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/flashlight/flare/candle = 1,
@@ -78,7 +78,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/energycake
-	name = "Energy cake"
+	name = "能量蛋糕"
 	reqs = list(
 		/obj/item/food/cake/birthday = 1,
 		/obj/item/melee/energy/sword = 1,
@@ -88,7 +88,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/braincake
-	name = "Brain cake"
+	name = "脑蛋糕"
 	reqs = list(
 		/obj/item/organ/internal/brain = 1,
 		/obj/item/food/cake/plain = 1
@@ -97,7 +97,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/slimecake
-	name = "Slime cake"
+	name = "史莱姆蛋糕"
 	reqs = list(
 		/obj/item/slime_extract = 1,
 		/obj/item/food/cake/plain = 1
@@ -106,7 +106,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/pumpkinspicecake
-	name = "Pumpkin spice cake"
+	name = "南瓜香料蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/pumpkin = 2
@@ -115,7 +115,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/holycake
-	name = "Angel food cake"
+	name = "神圣蛋糕"
 	reqs = list(
 		/datum/reagent/water/holywater = 15,
 		/obj/item/food/cake/plain = 1
@@ -124,7 +124,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/poundcake
-	name = "Pound cake"
+	name = "黄油蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 4
 	)
@@ -132,7 +132,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/hardwarecake
-	name = "Hardware cake"
+	name = "硬糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/circuitboard = 2,
@@ -142,7 +142,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/berry_chocolate_cake
-	name = "strawberry chocolate cake"
+	name = "草莓巧克力蛋糕块"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/chocolatebar = 2,
@@ -152,7 +152,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/pavlovacream
-	name = "Pavlova with cream"
+	name = "帕芙洛娃"
 	reqs = list(
 		/datum/reagent/consumable/eggwhite = 12,
 		/datum/reagent/consumable/sugar = 15,
@@ -163,7 +163,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/pavlovakorta
-	name = "Pavlova with korta cream"
+	name = "坚果帕芙洛娃"
 	reqs = list(
 		/datum/reagent/consumable/eggwhite = 12,
 		/datum/reagent/consumable/sugar = 15,
@@ -174,7 +174,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/berry_vanilla_cake
-	name = "blackberry and strawberry vanilla cake"
+	name = "莓果香草蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/berries = 5
@@ -183,7 +183,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/clowncake
-	name = "clown cake"
+	name = "小丑蛋糕"
 	always_available = FALSE
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
@@ -194,7 +194,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/vanillacake
-	name = "vanilla cake"
+	name = "香草蛋糕"
 	always_available = FALSE
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
@@ -204,7 +204,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/trumpetcake
-	name = "Spaceman's Cake"
+	name = "宇航员蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/trumpet = 2,
@@ -216,7 +216,7 @@
 
 
 /datum/crafting_recipe/food/cak
-	name = "Living cat/cake hybrid"
+	name = "蛋糕猫"
 	reqs = list(
 		/obj/item/organ/internal/brain = 1,
 		/obj/item/organ/internal/heart = 1,
@@ -230,7 +230,7 @@
 	category = CAT_CAKE //Cat! Haha, get it? CAT? GET IT? We get it - Love Felines
 
 /datum/crafting_recipe/food/fruitcake
-	name = "english fruitcake"
+	name = "英式水果蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/no_raisin = 1,
@@ -241,7 +241,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/plumcake
-	name = "Plum cake"
+	name = "李子蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/plum = 2
@@ -250,7 +250,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/weddingcake
-	name = "Wedding cake"
+	name = "婚庆蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 4,
 		/datum/reagent/consumable/sugar = 120,
@@ -259,7 +259,7 @@
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/pineapple_cream_cake
-	name = "Pineapple cream cake"
+	name = "菠萝奶油蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/pineapple = 1,

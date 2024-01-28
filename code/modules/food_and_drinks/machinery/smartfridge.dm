@@ -2,8 +2,8 @@
 //  SmartFridge.  Much todo
 // -------------------------
 /obj/machinery/smartfridge
-	name = "smartfridge"
-	desc = "Keeps cold things cold and hot things cold."
+	name = "智能冰箱"
+	desc = "让冷的东西变冷，让热的东西变冷."
 	icon = 'icons/obj/machines/smartfridge.dmi'
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
@@ -55,16 +55,16 @@
 			return ITEM_INTERACT_BLOCKING
 
 		user.visible_message(
-			span_notice("[user.name] starts to cut the [name] free from the floor."),
-			span_notice("You start to cut [src] free from the floor..."),
-			span_hear("You hear welding."),
+			span_notice("[user.name]把[name]弄了下来."),
+			span_notice("你开始把[src]从地板上弄下来..."),
+			span_hear("你听到焊接的声音."),
 		)
 
 		if(!tool.use_tool(src, user, delay=100, volume=100))
 			return ITEM_INTERACT_BLOCKING
 
 		welded_down = FALSE
-		to_chat(user, span_notice("You cut [src] free from the floor."))
+		to_chat(user, span_notice("你把[src]从地板上弄了下来."))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!anchored)
@@ -75,36 +75,36 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user.name] starts to weld the [name] to the floor."),
-		span_notice("You start to weld [src] to the floor..."),
-		span_hear("You hear welding."),
+		span_notice("[user.name]开始将[name]焊接到地板上。"),
+		span_notice("你开始把[src]焊接到地板上..."),
+		span_hear("你听到焊接的声音."),
 	)
 
 	if(!tool.use_tool(src, user, delay = 100, volume = 100))
 		return ITEM_INTERACT_BLOCKING
 
 	welded_down = TRUE
-	to_chat(user, span_notice("You weld [src] to the floor."))
+	to_chat(user, span_notice("你把[src]焊接到地板上."))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/smartfridge/welder_act_secondary(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN))
-		balloon_alert(user, "no repair needed!")
+		balloon_alert(user, "无需维修!")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] is repairing [src]."),
-		span_notice("You begin repairing [src]..."),
-		span_hear("You hear welding."),
+		span_notice("[user]正在修复[src]."),
+		span_notice("你开始修复[src]..."),
+		span_hear("你听到了焊接的声音."),
 	)
 
 	if(tool.use_tool(src, user, delay = 40, volume = 50))
 		if(!(machine_stat & BROKEN))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You repair [src]"))
+		to_chat(user, span_notice("你修复了[src]"))
 		atom_integrity = max_integrity
 		set_machine_stat(machine_stat & ~BROKEN)
 		update_icon()
@@ -122,7 +122,7 @@
 
 /obj/machinery/smartfridge/can_be_unfasten_wrench(mob/user, silent)
 	if(welded_down)
-		balloon_alert(user, "unweld first!")
+		balloon_alert(user, "先焊松!")
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -143,7 +143,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(welded_down)
-		balloon_alert(user, "unweld first!")
+		balloon_alert(user, "先焊松!")
 	else
 		default_deconstruction_crowbar(tool)
 	return ITEM_INTERACT_SUCCESS
@@ -155,17 +155,17 @@
 	var/tool_tip_set = FALSE
 	if(held_item.tool_behaviour == TOOL_WELDER)
 		if(welded_down)
-			context[SCREENTIP_CONTEXT_LMB] = "Unweld"
+			context[SCREENTIP_CONTEXT_LMB] = "未焊接"
 			tool_tip_set = TRUE
 		else if (!welded_down && anchored)
-			context[SCREENTIP_CONTEXT_LMB] = "Weld down"
+			context[SCREENTIP_CONTEXT_LMB] = "已焊接"
 			tool_tip_set = TRUE
 		if(machine_stat & BROKEN)
-			context[SCREENTIP_CONTEXT_RMB] = "Repair"
+			context[SCREENTIP_CONTEXT_RMB] = "修理"
 			tool_tip_set = TRUE
 
 	else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "close" : "open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "开启"]面板"
 		tool_tip_set = TRUE
 
 	else if(held_item.tool_behaviour == TOOL_CROWBAR)
@@ -188,7 +188,7 @@
 	. = ..()
 
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: This unit can hold a maximum of <b>[max_n_of_items]</b> items.")
+		. += span_notice("状态显示如下:本冰箱最多可容纳<b>[max_n_of_items]</b>项物品.")
 
 	. += structure_examine()
 
@@ -197,14 +197,14 @@
 	. = ""
 
 	if(welded_down)
-		. += span_info("It's moorings are firmly [EXAMINE_HINT("welded")] to the floor.")
+		. += span_info("它的系泊很牢固地[EXAMINE_HINT("焊接在了")]地板上.")
 	else
-		. += span_info("It's moorings are loose and can be [EXAMINE_HINT("welded")] down.")
+		. += span_info("它的系泊松动了，并可以[EXAMINE_HINT("焊接")]紧.")
 
 	if(anchored)
-		. += span_info("It is [EXAMINE_HINT("wrenched")] down on the floor.")
+		. += span_info("它被[EXAMINE_HINT("拧紧")]在了地板上.")
 	else
-		. += span_info("It could be [EXAMINE_HINT("wrenched")] down.")
+		. += span_info("它可以被[EXAMINE_HINT("拧紧")].")
 
 /obj/machinery/smartfridge/update_appearance(updates=ALL)
 	. = ..()
@@ -258,7 +258,7 @@
 	if(!machine_stat)
 		var/shown_contents_length = visible_items()
 		if(shown_contents_length >= max_n_of_items)
-			balloon_alert(user, "no space!")
+			balloon_alert(user, "没有空间!")
 			return FALSE
 
 		if(!(weapon.item_flags & ABSTRACT) && \
@@ -266,7 +266,7 @@
 			accept_check(weapon) \
 		)
 			load(weapon)
-			user.visible_message(span_notice("[user] adds \the [weapon] to \the [src]."), span_notice("You add \the [weapon] to \the [src]."))
+			user.visible_message(span_notice("[user]添加[weapon]到[src]."), span_notice("你添加[weapon]到[src]."))
 			SStgui.update_uis(src)
 			if(visible_contents)
 				update_appearance()
@@ -288,22 +288,22 @@
 
 			if(loaded)
 				if(shown_contents_length >= max_n_of_items)
-					user.visible_message(span_notice("[user] loads \the [src] with \the [weapon]."), \
-						span_notice("You fill \the [src] with \the [weapon]."))
+					user.visible_message(span_notice("[user]装载[src]用[weapon]."), \
+						span_notice("你填充了[src]用[weapon]."))
 				else
-					user.visible_message(span_notice("[user] loads \the [src] with \the [weapon]."), \
-						span_notice("You load \the [src] with \the [weapon]."))
+					user.visible_message(span_notice("[user]装载[src]用[weapon]."), \
+						span_notice("你填充了[src]用[weapon]."))
 				if(weapon.contents.len)
-					to_chat(user, span_warning("Some items are refused."))
+					to_chat(user, span_warning("有些东西被拒绝入内."))
 				if (visible_contents)
 					update_appearance()
 				return TRUE
 			else
-				to_chat(user, span_warning("There is nothing in [weapon] to put in [src]!"))
+				to_chat(user, span_warning("[weapon]里没有东西可被放入[src]!"))
 				return FALSE
 
 	if(!user.combat_mode)
-		to_chat(user, span_warning("\The [src] smartly refuses [weapon]."))
+		to_chat(user, span_warning("[src]智能地拒绝了[weapon]."))
 		return FALSE
 
 	else
@@ -332,7 +332,7 @@
 	if(ismob(weapon.loc))
 		var/mob/owner = weapon.loc
 		if(!owner.transferItemToLoc(weapon, src))
-			to_chat(usr, span_warning("\the [weapon] is stuck to your hand, you cannot put it in \the [src]!"))
+			to_chat(usr, span_warning("[weapon]粘在了你的手上， 你不能把它放到[src]里!"))
 			return FALSE
 		return TRUE
 	else
@@ -388,13 +388,13 @@
 			var/desired = 0
 
 			if(isAI(living_mob))
-				to_chat(living_mob, span_warning("[src] does not respect your authority!"))
+				to_chat(living_mob, span_warning("[src]不认可你的许可!"))
 				return
 
 			if (params["amount"])
 				desired = text2num(params["amount"])
 			else
-				desired = tgui_input_number(living_mob, "How many items would you like to take out?", "Release", max_value = 50)
+				desired = tgui_input_number(living_mob, "您要带几样东西出去?", "Release", max_value = 50)
 				if(!desired)
 					return
 
@@ -424,8 +424,8 @@
 //  Drying Rack 'smartfridge'
 // ----------------------------
 /obj/machinery/smartfridge/drying_rack
-	name = "drying rack"
-	desc = "A wooden contraption, used to dry plant products, food and hide."
+	name = "烘干架"
+	desc = "一种木制的装置，用来烘干植物制品、食物和兽皮."
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "drying_rack"
 	resistance_flags = FLAMMABLE
@@ -457,10 +457,10 @@
 
 	var/tool_tip_set = FALSE
 	if(held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		tool_tip_set = TRUE
 	else if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Un" : ""]anchore"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "未" : ""]固定"
 		tool_tip_set = TRUE
 
 	return tool_tip_set ? CONTEXTUAL_SCREENTIP_SET : NONE
@@ -468,9 +468,9 @@
 /obj/machinery/smartfridge/drying_rack/structure_examine()
 	. = ""
 	if(anchored)
-		. += span_info("It's currently anchored to the floor. It can be [EXAMINE_HINT("wrenched")] loose.")
+		. += span_info("它当前被固定在地板上. 可以被[EXAMINE_HINT("扳手")]拧松.")
 	else
-		. += span_info("It's not anchored to the floor. It can be [EXAMINE_HINT("wrenched")] down.")
+		. += span_info("它当前没有固定在地板上. 可以被[EXAMINE_HINT("扳手")]拧紧.")
 	. += span_info("The whole rack can be [EXAMINE_HINT("pried")] apart.")
 
 /obj/machinery/smartfridge/drying_rack/welder_act(mob/living/user, obj/item/tool)
@@ -568,8 +568,8 @@
 //  Bar drink smartfridge
 // ----------------------------
 /obj/machinery/smartfridge/drinks
-	name = "drink showcase"
-	desc = "A refrigerated storage unit for tasty tasty alcohol."
+	name = "饮品展柜"
+	desc = "一种储存美味酒精的冷藏装置."
 	base_build_path = /obj/machinery/smartfridge/drinks
 	contents_icon_state = "drink"
 
@@ -589,7 +589,7 @@
 //  Food smartfridge
 // ----------------------------
 /obj/machinery/smartfridge/food
-	desc = "A refrigerated storage unit for food."
+	desc = "冷藏食品的冷藏储存装置."
 	base_build_path = /obj/machinery/smartfridge/food
 	contents_icon_state = "food"
 
@@ -606,8 +606,8 @@
 // Xenobiology Slime-Extract Smartfridge
 // -------------------------------------
 /obj/machinery/smartfridge/extract
-	name = "smart slime extract storage"
-	desc = "A refrigerated storage unit for slime extracts."
+	name = "智能史莱姆提取物冰箱"
+	desc = "一种储存史莱姆提取物的冷藏装置."
 	base_build_path = /obj/machinery/smartfridge/extract
 	contents_icon_state = "slime"
 
@@ -621,8 +621,8 @@
 // Cytology Petri Dish Smartfridge
 // -------------------------------------
 /obj/machinery/smartfridge/petri
-	name = "smart petri dish storage"
-	desc = "A refrigerated storage unit for petri dishes."
+	name = "智能培养皿冰箱"
+	desc = "培养皿的冷藏储存装置."
 	base_build_path = /obj/machinery/smartfridge/petri
 	contents_icon_state = "petri"
 
@@ -636,8 +636,8 @@
 // Organ Surgery Smartfridge
 // -------------------------
 /obj/machinery/smartfridge/organ
-	name = "smart organ storage"
-	desc = "A refrigerated storage unit for organ storage."
+	name = "智能器官冰箱"
+	desc = "一种用于器官储存的冷藏设备."
 	max_n_of_items = 20 //vastly lower to prevent processing too long
 	base_build_path = /obj/machinery/smartfridge/organ
 	contents_icon_state = "organ"
@@ -690,8 +690,8 @@
 // Chemistry Medical Smartfridge
 // -----------------------------
 /obj/machinery/smartfridge/chemistry
-	name = "smart chemical storage"
-	desc = "A refrigerated storage unit for medicine storage."
+	name = "智能化学品冰箱"
+	desc = "一种用于储存药品的冷藏储存装置."
 	base_build_path = /obj/machinery/smartfridge/chemistry
 	contents_icon_state = "chem"
 
@@ -741,8 +741,8 @@
 // Virology Medical Smartfridge
 // ----------------------------
 /obj/machinery/smartfridge/chemistry/virology
-	name = "smart virus storage"
-	desc = "A refrigerated storage unit for volatile sample storage."
+	name = "智能病毒冰箱"
+	desc = "一种用于挥发性样品储存的冷藏储存装置."
 	base_build_path = /obj/machinery/smartfridge/chemistry/virology
 	contents_icon_state = "viro"
 
@@ -762,8 +762,8 @@
 // Disk """fridge"""
 // ----------------------------
 /obj/machinery/smartfridge/disks
-	name = "disk compartmentalizer"
-	desc = "A machine capable of storing a variety of disks. Denoted by most as the DSU (disk storage unit)."
+	name = "磁盘管理器"
+	desc = "一种能储存多种磁盘的机器。用DSU(磁盘存储单元)表示."
 	icon_state = "disktoaster"
 	icon = 'icons/obj/machines/vending.dmi'
 	pass_flags = PASSTABLE

@@ -1,6 +1,6 @@
 /obj/machinery/stove
-	name = "stove"
-	desc = "You'd think this thing would be more useful in here."
+	name = "炉子"
+	desc = "你以为这东西放在这里会更有用."
 	icon = 'icons/obj/machines/kitchen_stove.dmi'
 	icon_state = "stove"
 	base_icon_state = "stove"
@@ -26,8 +26,8 @@
 // - Thermostat you can stick in the pot to see in examine the temperature
 // - Tasting the pot to learn its exact contents w/o sci goggles (chef skillchip?)
 /obj/item/reagent_containers/cup/soup_pot
-	name = "soup pot"
-	desc = "A tall soup designed to mix and cook all kinds of soup."
+	name = "煮汤锅"
+	desc = "一种用来混合和煮各种汤的高汤锅."
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "pot"
 	base_icon_state = "pot"
@@ -53,19 +53,19 @@
 
 /obj/item/reagent_containers/cup/soup_pot/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_RMB] = "Remove ingredient"
+		context[SCREENTIP_CONTEXT_RMB] = "移除成分"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	else if(can_add_ingredient(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Add ingredient"
+		context[SCREENTIP_CONTEXT_LMB] = "增加成分"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
 
 /obj/item/reagent_containers/cup/soup_pot/examine(mob/user)
 	. = ..()
-	. += span_notice("There's room for <b>[max_ingredients - LAZYLEN(added_ingredients)]</b> more ingredients \
-		or <b>[reagents.maximum_volume - reagents.total_volume]</b> more units of reagents in there.")
+	. += span_notice("锅内有<b>[max_ingredients - LAZYLEN(added_ingredients)]</b>更多的成分 \
+		或者<b>[reagents.maximum_volume - reagents.total_volume]</b>更多单位的成分在里面.")
 
 /**
  * Override standard reagent examine with something a bit more sensible for the soup pot,
@@ -74,7 +74,7 @@
 /obj/item/reagent_containers/cup/soup_pot/proc/reagent_special_examine(datum/source, mob/user, list/examine_list, can_see_insides = FALSE)
 	SIGNAL_HANDLER
 
-	examine_list += "Inside, you can see:"
+	examine_list += "在里面，你可以看到:"
 
 	if(LAZYLEN(added_ingredients) || reagents.total_volume > 0)
 		var/list/ingredient_amounts = list()
@@ -90,24 +90,24 @@
 				|| istype(current_reagent, /datum/reagent/water) \
 				|| istype(current_reagent, /datum/reagent/consumable) \
 			)
-				examine_list += "&bull; [round(current_reagent.volume, 0.01)] units of [current_reagent.name]"
+				examine_list += "&bull; [round(current_reagent.volume, 0.01)]单位的[current_reagent.name]"
 			else
 				unknown_volume += current_reagent.volume
 
 		if(unknown_volume > 0)
-			examine_list += "&bull; [round(unknown_volume, 0.01)] units of unknown reagents"
+			examine_list += "&bull; [round(unknown_volume, 0.01)]单位的未知成分"
 
 		if(reagents.total_volume > 0)
 			if(can_see_insides)
-				examine_list += span_notice("The contents of [src] have a temperature of [reagents.chem_temp]K.")
+				examine_list += span_notice("[src]里的内容物的温度达到了[reagents.chem_temp]K.")
 			else if(reagents.chem_temp > WATER_BOILING_POINT) // boiling point
-				examine_list += span_notice("The contents of [src] are boiling.")
+				examine_list += span_notice("[src]里的内容物正在沸腾.")
 
 	else
-		examine_list += "Nothing."
+		examine_list += "空无一物."
 
 	if(reagents.is_reacting)
-		examine_list += span_warning("It is currently mixing!")
+		examine_list += span_warning("正在混合中!")
 
 	return STOP_GENERIC_REAGENT_EXAMINE
 
@@ -125,15 +125,15 @@
 
 	// Too many ingredients
 	if(LAZYLEN(added_ingredients) >= max_ingredients)
-		balloon_alert(user, "too many ingredients!")
+		balloon_alert(user, "有太多成分了!")
 		return TRUE
 	if(!user.transferItemToLoc(attacking_item, src))
-		balloon_alert(user, "can't add that!")
+		balloon_alert(user, "不能添加了!")
 		return TRUE
 
 	// Ensures that faceatom works correctly, since we can can often be in another atom's loc (a stove)
 	var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
-	balloon_loc.balloon_alert(user, "ingredient added")
+	balloon_loc.balloon_alert(user, "成分已添加")
 	user.face_atom(balloon_loc)
 
 	LAZYADD(added_ingredients, attacking_item)
@@ -150,7 +150,7 @@
 
 	// Ensures that faceatom works correctly, since we can can often be in another atom's loc (a stove)
 	var/atom/movable/balloon_loc = ismovable(loc) ? loc : src
-	balloon_loc.balloon_alert(user, "ingredient removed")
+	balloon_loc.balloon_alert(user, "成分已移除")
 	user.face_atom(balloon_loc)
 
 	update_appearance(UPDATE_OVERLAYS)

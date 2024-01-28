@@ -15,8 +15,8 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 )))
 
 /obj/machinery/deepfryer//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
-	name = "deep fryer"
-	desc = "Deep fried <i>everything</i>."
+	name = "油炸锅"
+	desc = "油炸<i>一切</i>."
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "fryer_off"
 	density = TRUE
@@ -78,9 +78,9 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 /obj/machinery/deepfryer/examine(mob/user)
 	. = ..()
 	if(frying)
-		. += "You can make out \a [frying] in the oil."
+		. += "你能分辨出[frying]在油锅里."
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Frying at <b>[fry_speed*100]%</b> speed.<br>Using <b>[oil_use]</b> units of oil per second.")
+		. += span_notice("状态显示如下: 油炸效率<b>[fry_speed*100]%</b>.<br>每秒使用<b>[oil_use]</b>单位油.")
 
 /obj/machinery/deepfryer/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -91,23 +91,23 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	// Dissolving pills into the frier
 	if(istype(weapon, /obj/item/reagent_containers/pill))
 		if(!reagents.total_volume)
-			to_chat(user, span_warning("There's nothing to dissolve [weapon] in!"))
+			to_chat(user, span_warning("没法溶解[weapon]!"))
 			return
-		user.visible_message(span_notice("[user] drops [weapon] into [src]."), span_notice("You dissolve [weapon] in [src]."))
+		user.visible_message(span_notice("[user]投放[weapon]到[src]里."), span_notice("你投放[weapon]到[src]里."))
 		weapon.reagents.trans_to(src, weapon.reagents.total_volume, transferred_by = user)
 		qdel(weapon)
 		return
 	// Make sure we have cooking oil
 	if(!reagents.has_reagent(/datum/reagent/consumable/nutriment/fat, check_subtypes = TRUE))
-		to_chat(user, span_warning("[src] has no fat or oil to fry with!"))
+		to_chat(user, span_warning("[src]没有脂肪或油来油炸!"))
 		return
 	// Don't deep fry indestructible things, for sanity reasons
 	if(weapon.resistance_flags & INDESTRUCTIBLE)
-		to_chat(user, span_warning("You don't feel it would be wise to fry [weapon]..."))
+		to_chat(user, span_warning("你不觉得投放[weapon]是不明智的吗..."))
 		return
 	// No fractal frying
 	if(HAS_TRAIT(weapon, TRAIT_FOOD_FRIED))
-		to_chat(user, span_userdanger("Your cooking skills are not up to the legendary Doublefry technique."))
+		to_chat(user, span_userdanger("你的厨艺还达不到传说中的分形油炸法."))
 		return
 	// Handle opening up the fryer with tools
 	if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off", weapon)) //where's the open maint panel icon?!
@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 		audible_message(span_notice("[src] dings!"))
 	else if (cook_time >= DEEPFRYER_BURNTIME && !frying_burnt)
 		frying_burnt = TRUE
-		visible_message(span_warning("[src] emits an acrid smell!"))
+		visible_message(span_warning("[src]发出一种刺鼻的气味!"))
 
 	use_power(active_power_usage)
 
@@ -168,10 +168,10 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	icon_state = "fryer_off"
 
 /obj/machinery/deepfryer/proc/start_fry(obj/item/frying_item, mob/user)
-	to_chat(user, span_notice("You put [frying_item] into [src]."))
+	to_chat(user, span_notice("你把[frying_item]放进[src]."))
 	if(istype(frying_item, /obj/item/freeze_cube))
 		log_bomber(user, "put a freeze cube in a", src)
-		visible_message(span_userdanger("[src] starts glowing... Oh no..."))
+		visible_message(span_userdanger("[src]开始成长...噢不..."))
 		playsound(src, 'sound/effects/pray_chaplain.ogg', 100)
 		add_filter("entropic_ray", 10, list("type" = "rays", "size" = 35, "color" = COLOR_VIVID_YELLOW))
 		addtimer(CALLBACK(src, PROC_REF(blow_up)), 5 SECONDS)
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	fry_loop.start()
 
 /obj/machinery/deepfryer/proc/blow_up()
-	visible_message(span_userdanger("[src] blows up from the entropic reaction!"))
+	visible_message(span_userdanger("[src]从加热反应中爆炸!"))
 	explosion(src, devastation_range = 1, heavy_impact_range = 3, light_impact_range = 5, flame_range = 7)
 	deconstruct(FALSE)
 
@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 
 /obj/machinery/deepfryer/attack_hand(mob/living/user, list/modifiers)
 	if(frying)
-		to_chat(user, span_notice("You eject [frying] from [src]."))
+		to_chat(user, span_notice("你取出[frying]从[src]."))
 		frying.forceMove(drop_location())
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(frying)
@@ -205,17 +205,17 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 
 	else if(user.pulling && iscarbon(user.pulling) && reagents.total_volume)
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning("You need a better grip to do that!"))
+			to_chat(user, span_warning("你需要更紧的握住才能做到!"))
 			return
 		var/mob/living/carbon/dunking_target = user.pulling
 		log_combat(user, dunking_target, "dunked", null, "into [src]")
-		user.visible_message(span_danger("[user] dunks [dunking_target]'s face in [src]!"))
+		user.visible_message(span_danger("[user]把[dunking_target]的脸扣进[src]!"))
 		reagents.expose(dunking_target, TOUCH)
 		var/bio_multiplier = dunking_target.getarmor(BODY_ZONE_HEAD, BIO) * 0.01
 		var/target_temp = dunking_target.bodytemperature
 		var/cold_multiplier = 1
 		if(target_temp < TCMB + 10) // a tiny bit of leeway
-			dunking_target.visible_message(span_userdanger("[dunking_target] explodes from the entropic difference! Holy fuck!"))
+			dunking_target.visible_message(span_userdanger("[dunking_target]在冷热差中爆炸! Holy fuck!"))
 			dunking_target.investigate_log("has been gibbed by entropic difference (being dunked into [src]).", INVESTIGATE_DEATHS)
 			dunking_target.gib(DROP_ALL_REMAINS)
 			log_combat(user, dunking_target, "blew up", null, "by dunking them into [src]")
