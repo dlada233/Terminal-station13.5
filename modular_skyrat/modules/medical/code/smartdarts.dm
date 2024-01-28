@@ -1,7 +1,7 @@
 //The SmartDarts themselves
 /obj/item/reagent_containers/syringe/smartdart
-	name = "SmartDart"
-	desc = "Allows the user to safely inject chemicals at a range without harming the patient."
+	name = "智能镖"
+	desc = "允许远程注射化学品到目标上."
 	volume = 10
 	icon = 'modular_skyrat/modules/medical/icons/obj/smartdarts.dmi'
 	icon_state = "dart_0"
@@ -41,8 +41,8 @@
 
 //The base smartdartgun
 /obj/item/gun/syringe/smartdart
-	name = "medical SmartDart gun"
-	desc = "An adjusted version of the medical syringe gun that only allows SmartDarts to be chambered."
+	name = "医用飞镖枪"
+	desc = "调整版的医用注射器枪，只允许智能镖被装入腔室."
 	w_class = WEIGHT_CLASS_NORMAL //I might need to look into changing this later depending on feedback
 	icon = 'modular_skyrat/modules/medical/icons/obj/dartguns.dmi'
 	icon_state = "smartdartgun"
