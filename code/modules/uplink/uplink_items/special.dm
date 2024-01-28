@@ -1,5 +1,5 @@
 /datum/uplink_category/special
-	name = "Special"
+	name = "特殊"
 	weight = -3
 
 /datum/uplink_item/special
@@ -9,8 +9,8 @@
 	purchasable_from = NONE
 
 /datum/uplink_item/special/autosurgeon
-	name = "Syndicate Autosurgeon"
-	desc = "A multi-use autosurgeon for implanting whatever you want into yourself. Rip that station apart and make it part of you."
+	name = "辛迪加自动手术仪"
+	desc = "一个多功能的自动手术仪可以给你植入任何义体."
 	item = /obj/item/autosurgeon/syndicate
 	cost = 5
 

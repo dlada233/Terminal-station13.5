@@ -1,15 +1,13 @@
 /datum/uplink_category/contractor
-	name = "Contractor"
+	name = "契约特工"
 	weight = 10
 
 /datum/uplink_item/bundles_tc/contract_kit
-	name = "Contract Kit"
-	desc = "The Syndicate have offered you the chance to become a contractor, take on kidnapping contracts for TC \
-		and cash payouts. Upon purchase, you'll be granted your own contract uplink embedded within the supplied \
-		tablet computer. Additionally, you'll be granted standard contractor gear to help with your mission - \
-		comes supplied with the tablet, specialised space suit, chameleon jumpsuit and mask, agent card, \
-		specialised contractor baton, and three randomly selected low cost items. \
-		Can include otherwise unobtainable items."
+	name = "契约特工包"
+	desc = "辛迪加向你提供了一份契约，辛迪加愿意提供Tc或者现金来向你换取一些活着的目标人物，通俗意义上来讲，就是绑架. \
+		它们将发送给你契约特工专用的上行链路，就在你现在使用的这台PDA或电脑上. \
+		此外，辛迪加还将提供一套标准的契约特工装备来帮助你完成绑架工作，包括新PDA、太空服、变色龙制服和面具、特工卡、\
+		契约特工专用的绑架电棍和三种随机的低价值道具，其中可能包括一些平日里无法获得的道具."
 	item = /obj/item/storage/box/syndicate/contract_kit
 	category = /datum/uplink_category/contractor
 	cost = 20
@@ -33,9 +31,9 @@
 	return ..()
 
 /datum/uplink_item/contractor/reroll
-	name = "Contract Reroll"
-	desc = "Request a reroll of your current contract list. Will generate a new target, \
-		payment, and dropoff for the contracts you currently have available."
+	name = "契约重置"
+	desc = "也许你对你当前的契约不是很满意，购买此项可以请求对你当前的契约清单进行重置. \
+		重置后你的契约会有新的目标、付款和交付条件."
 	item = /obj/effect/gibspawner/generic
 	limited_stock = 2
 	cost = 0
@@ -62,46 +60,40 @@
 	return source //for log icon
 
 /datum/uplink_item/contractor/pinpointer
-	name = "Contractor Pinpointer"
-	desc = "A pinpointer that finds targets even without active suit sensors. \
-		Due to taking advantage of an exploit within the system, it can't pinpoint \
-		to the same accuracy as the traditional models. \
-		Becomes permanently locked to the user that first activates it."
+	name = "契约指针"
+	desc = "即使目标身上没有激活传感器，也可以寻找到其位置的指针，由于原理上利用了系统的漏洞，所以它无法向一般指针那样精确定位，此外，它会永久锁定第一次激活它的用户."
 	item = /obj/item/pinpointer/crew/contractor
 	limited_stock = 2
 	cost = 1
 
 /datum/uplink_item/contractor/extraction_kit
-	name = "Fulton Extraction Kit"
-	desc = "For getting your target across the station to those difficult dropoffs. \
-		Place the beacon somewhere secure, and link the pack. \
-		Activating the pack on your target will send them over to the beacon - \
-		make sure they're not just going to run away though!"
+	name = "富尔顿回收包"
+	desc = "这里有一个富尔顿背包和一个富尔顿信标，要想利用起来，你需要先将信标部署到一个安全、隐秘的位置，然后使用背包连接到该信标；\
+		接着你就可以在你想要转移的目标身上挂上富尔顿背包，背包将把他转移到信标位置，并且目标在落地后也将瘫痪一段时间，而这个包也可以多次使用."
 	item = /obj/item/storage/box/contractor/fulton_extraction
 	limited_stock = 1
 	cost = 1
 
 /datum/uplink_item/contractor/partner
-	name = "Reinforcements"
-	desc = "Upon purchase we'll contact available units in the area. Should there be an agent free, \
-		we'll send them down to assist you immediately. If no units are free, we give a full refund."
+	name = "增援"
+	desc = "购买后，我们会联系该地区的可用特工，如果特工有空，我们会立刻派遣；如果没有空闲的特工，我们也会全额退款."
 	item = /obj/effect/gibspawner/generic
 	limited_stock = 1
 	cost = 2
 
 /datum/uplink_item/contractor/partner/spawn_item(spawn_path, mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
-	to_chat(user, span_notice("The uplink vibrates quietly, connecting to nearby agents..."))
+	to_chat(user, span_notice("上行链路悄悄地振动，连接到附近的特工..."))
 	var/list/candidates = SSpolling.poll_ghost_candidates(
-		question = "Do you want to play as the Contractor Support Unit for [user.real_name]?",
+		question = "您愿意扮演契约特工的增援人员[user.real_name]吗?",
 		check_jobban = ROLE_TRAITOR,
 		role = ROLE_TRAITOR,
 		poll_time = 10 SECONDS,
 		ignore_category = POLL_IGNORE_CONTRACTOR_SUPPORT,
 		pic_source = /obj/item/modular_computer/pda/syndicate_contract_uplink,
-		role_name_text = "contractor support unit",
+		role_name_text = "契约特工增援人员",
 	)
 	if(!LAZYLEN(candidates))
-		to_chat(user, span_notice("No available agents at this time, please try again later."))
+		to_chat(user, span_notice("目前没有空闲的特工，请稍后再试."))
 		limited_stock++
 		return //bobux no icon
 	var/mob/dead/observer/selected_player = pick(candidates)

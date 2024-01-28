@@ -1,6 +1,6 @@
 //All bundles and telecrystals
 /datum/uplink_category/bundle
-	name = "Bundles"
+	name = "捆绑包"
 	weight = 10
 
 /datum/uplink_item/bundles_tc
@@ -9,8 +9,8 @@
 	cant_discount = TRUE
 
 /datum/uplink_item/bundles_tc/random
-	name = "Random Item"
-	desc = "Picking this will purchase a random item. Useful if you have some TC to spare or if you haven't decided on a strategy yet."
+	name = "随机物品"
+	desc = "选择这个将购买一个随机物品，如果你有一些多余的TC或者你还没有思路，这不失为一种选择."
 	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
 	cost = 0
 	cost_override_string = "Varies"
@@ -32,8 +32,8 @@
 		handler.purchase_item(user, uplink_item)
 
 /datum/uplink_item/bundles_tc/telecrystal
-	name = "1 Raw Telecrystal"
-	desc = "A telecrystal in its rawest and purest form; can be utilized on active uplinks to increase their telecrystal count."
+	name = "1个Telecrystal"
+	desc = "将上行链路中Tc提取出来，你可以随时将其重新添加回去."
 	item = /obj/item/stack/telecrystal
 	cost = 1
 	// Don't add telecrystals to the purchase_log since
@@ -41,44 +41,44 @@
 	purchase_log_vis = FALSE
 
 /datum/uplink_item/bundles_tc/telecrystal/five
-	name = "5 Raw Telecrystals"
-	desc = "Five telecrystals in their rawest and purest form; can be utilized on active uplinks to increase their telecrystal count."
+	name = "5个Telecrystals"
+	desc = "将上行链路中Tc提取出来，你可以随时将其重新添加回去."
 	item = /obj/item/stack/telecrystal/five
 	cost = 5
 
 /datum/uplink_item/bundles_tc/telecrystal/twenty
-	name = "20 Raw Telecrystals"
-	desc = "Twenty telecrystals in their rawest and purest form; can be utilized on active uplinks to increase their telecrystal count."
+	name = "20个Telecrystals"
+	desc = "将上行链路中Tc提取出来，你可以随时将其重新添加回去."
 	item = /obj/item/stack/telecrystal/twenty
 	cost = 20
 
 /datum/uplink_item/bundles_tc/bundle_a
-	name = "Syndi-kit Tactical"
-	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
-			These items are collectively worth more than 25 telecrystals, but you do not know which specialization \
-			you will receive. May contain discontinued and/or exotic items. \
-			The Syndicate will only provide one Syndi-Kit per agent."
+	name = "辛迪加战术捆绑包"
+	desc = "辛迪加捆绑包，也称辛迪包, 是一个里面塞入了固定物品组合的普通盒子. \
+			盒子内的物品总价值超过了25Tc，其组合也有一定的意义， \
+			但很可惜你不能选择使用何种组合，并且每个上行链路只能购买一次. \
+			除此之外，盒子里的物品有些是已经淘汰了的或过时的产品."
 	item = /obj/item/storage/box/syndicate/bundle_a
 	cost = 20
 	stock_key = UPLINK_SHARED_STOCK_KITS
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/bundles_tc/bundle_b
-	name = "Syndi-kit Special"
-	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
-			In Syndi-kit Special, you will receive items used by famous syndicate agents of the past. \
-			Collectively worth more than 25 telecrystals, the syndicate loves a good throwback. \
-			The Syndicate will only provide one Syndi-Kit per agent."
+	name = "辛迪加特别捆绑包"
+	desc = "辛迪加捆绑包，也称辛迪包, 是一个里面塞入了固定物品组合的普通盒子. \
+			在特别版的盒子里，你会收到过去著名辛迪加特工使用过的物品组合，\
+			各种物品总价值将超过25Tc. \
+			此外，每个辛迪加只能购买一次辛迪包."
 	item = /obj/item/storage/box/syndicate/bundle_b
 	cost = 20
 	stock_key = UPLINK_SHARED_STOCK_KITS
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/bundles_tc/surplus
-	name = "Syndicate Surplus Crate"
-	desc = "A dusty crate from the back of the Syndicate warehouse delivered directly to you via Supply Pod. \
-			If the rumors are true, it will fill it's contents based on your current reputation. Get on that grind. \
-			Contents are sorted to always be worth 30 TC. The Syndicate will only provide one surplus item per agent."
+	name = "辛迪加板条箱"
+	desc = "从辛迪加仓库后面挑出一个满是灰尘的板条箱，通过补给舱直接砸给你. \
+			你听说它会根据你的声誉来决定它的内容，但总价值仍是30Tc. \
+			除此之外，每个上行链路只能买一次辛迪加板条箱."
 	item = /obj/structure/closet/crate // will be replaced in purchase()
 	cost = 20
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
@@ -140,11 +140,11 @@
 	return source //For log icon
 
 /datum/uplink_item/bundles_tc/surplus/united
-	name = "United Surplus Crate"
-	desc = "A shiny and large crate to be delivered directly to you via Supply Pod. It has an advanced locking mechanism with an anti-tampering protocol. \
-			It is recommended that you only attempt to open it by having another agent purchase a Surplus Crate Key. Unite and fight. \
-			Rumored to contain a valuable assortment of items based on your current reputation, but you never know. Contents are sorted to always be worth 80 TC. \
-			The Syndicate will only provide one surplus item per agent."
+	name = "合作板条箱"
+	desc = "一个闪亮的板条箱将装在补给仓里砸向你，它有一个先进的锁定系统与反篡改协议. \
+			想要打开它，建议使用另一台上行链路，购买‘合作板条箱钥匙’来打开它. \
+			这通常意味着你需要找到另一名持有上行链路的特工并与之合作，一旦你们做到了，这个板条箱里将有总计价值80TC的物品. \
+			此外，每个上行链路只能购买一次该物品."
 	cost = 20
 	item = /obj/structure/closet/crate/secure/syndicrate
 	stock_key = UPLINK_SHARED_STOCK_SURPLUS
@@ -164,10 +164,10 @@
 		surplus_crate.unlock_contents += uplink_item.item
 
 /datum/uplink_item/bundles_tc/surplus_key
-	name = "United Surplus Crate Key"
-	desc = "This inconscpicous device is actually a key that can open any United Surplus Crate. It can only be used once. \
-			Though initially designed to encourage cooperation, agents quickly discovered that you can turn the key to the crate by yourself.  \
-			The Syndicate will only provide one surplus item per agent."
+	name = "合作板条箱钥匙"
+	desc = "这个看似毫无意义的物品实际上是一把钥匙，可以打开任何一个合作板条箱，它也被设定为只能使用一次. \
+			虽然最初的设计是为了鼓励合作，但特工们很快发现，有方法可以只靠自己打开板条箱.  \
+			此外，每个上行链路只能购买一次该物品."
 	cost = 20
 	item = /obj/item/syndicrate_key
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
