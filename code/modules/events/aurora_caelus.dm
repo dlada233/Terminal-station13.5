@@ -18,9 +18,9 @@
 	end_when = 80
 
 /datum/round_event/aurora_caelus/announce()
-	priority_announce("[station_name()]: 一团无害的离子云正在接近你的空间站，并在撞击后耗尽能量。Nanotrasen已经批准让所有员工享受一段惬意的休闲时间以观赏这个罕见的事件。在这段时间里，星光明亮而柔和，宇宙在变换于静谧的绿色和蓝色之间变换。希望这场光影游戏能让你喜欢.",
+	priority_announce("[station_name()]: 一团无害的离子云正在接近你的空间站，并在撞击后耗尽能量。Nanotrasen已经批准让所有员工享受一段惬意的休闲时间以观赏这个罕见的事件。在这段时间里，星光明亮而柔和，宇宙在静谧的绿色和蓝色之间变换。希望这场光影游戏能让你喜欢.",
 	sound = 'sound/misc/notice2.ogg',
-	sender_override = "Nanotrasen Meteorology Division")
+	sender_override = "Nanotrasen气象部门")
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
 		if((M.client.prefs.read_preference(/datum/preference/toggle/sound_midi)) && is_station_level(M.z))
@@ -60,7 +60,7 @@
 	fade_kitchen()
 	priority_announce("极光事件即将结束，宇宙光照将逐渐恢复正常。请在结束后回到工作岗位，继续正常工作。祝您今天过得愉快，感谢一路陪伴.",
 	sound = 'sound/misc/notice2.ogg',
-	sender_override = "Nanotrasen Meteorology Division")
+	sender_override = "Nanotrasen气象部门")
 
 /datum/round_event/aurora_caelus/proc/fade_space(fade_in = FALSE)
 	set waitfor = FALSE
