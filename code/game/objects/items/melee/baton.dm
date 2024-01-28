@@ -1,7 +1,7 @@
 /obj/item/melee/baton
-	name = "police baton"
-	desc = "A wooden truncheon for beating criminal scum."
-	desc_controls = "Left click to stun, right click to harm."
+	name = "警棍"
+	desc = "用于击打罪犯的木制警棍."
+	desc_controls = "左键点击可使其昏迷, 右键点击可造成伤害."
 	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "classic_baton"
 	inhand_icon_state = "classic_baton"
@@ -43,28 +43,28 @@
 	var/chunky_finger_usable = FALSE
 
 	/// The context to show when the baton is active and targeting a living thing
-	var/context_living_target_active = "Stun"
+	var/context_living_target_active = "昏迷"
 
 	/// The context to show when the baton is active and targeting a living thing in combat mode
-	var/context_living_target_active_combat_mode = "Stun"
+	var/context_living_target_active_combat_mode = "昏迷"
 
 	/// The context to show when the baton is inactive and targeting a living thing
-	var/context_living_target_inactive = "Prod"
+	var/context_living_target_inactive = "戳击"
 
 	/// The context to show when the baton is inactive and targeting a living thing in combat mode
-	var/context_living_target_inactive_combat_mode = "Attack"
+	var/context_living_target_inactive_combat_mode = "攻击"
 
 	/// The RMB context to show when the baton is active and targeting a living thing
-	var/context_living_rmb_active = "Attack"
+	var/context_living_rmb_active = "攻击"
 
 	/// The RMB context to show when the baton is inactive and targeting a living thing
-	var/context_living_rmb_inactive = "Attack"
+	var/context_living_rmb_inactive = "攻击"
 
 /obj/item/melee/baton/Initialize(mapload)
 	. = ..()
 	// Adding an extra break for the sake of presentation
 	if(stamina_damage != 0)
-		offensive_notes = "It takes [span_warning("[CEILING(100 / stamina_damage, 1)] stunning hit\s")] to stun an enemy."
+		offensive_notes = "需要 [span_warning("[CEILING(100 / stamina_damage, 1)] 次击晕打击\s")] 才能使敌人昏迷."
 
 	register_item_context()
 
@@ -109,7 +109,7 @@
 		return NONE
 
 	if (isobj(target))
-		context[SCREENTIP_CONTEXT_LMB] = "Attack"
+		context[SCREENTIP_CONTEXT_LMB] = "攻击"
 	else
 		if (active)
 			context[SCREENTIP_CONTEXT_RMB] = context_living_rmb_active
@@ -137,7 +137,7 @@
 	if(!chunky_finger_usable && ishuman(user))
 		var/mob/living/carbon/human/potential_chunky_finger_human = user
 		if(potential_chunky_finger_human.check_chunky_fingers() && user.is_holding(src) && !HAS_MIND_TRAIT(user, TRAIT_CHUNKYFINGERS_IGNORE_BATON))
-			balloon_alert(potential_chunky_finger_human, "fingers are too big!")
+			balloon_alert(potential_chunky_finger_human, "手指太大了!")
 			return BATON_ATTACK_DONE
 
 	if(!active || LAZYACCESS(modifiers, RIGHT_CLICK))
@@ -153,7 +153,7 @@
 		return BATON_ATTACK_DONE
 
 	if(HAS_TRAIT_FROM(target, TRAIT_IWASBATONED, REF(user))) //no doublebaton abuse anon!
-		to_chat(user, span_danger("You fumble and miss [target]!"))
+		to_chat(user, span_danger("你手忙脚乱, 没有击中 [target]!"))
 		return BATON_ATTACK_DONE
 
 	if(stun_animation)
@@ -172,10 +172,10 @@
 		desc = get_stun_description(target, user)
 
 	if(desc)
-		target.visible_message(desc["visible"], desc["local"])
+		target.visible_message(desc["全体"], desc["个人"])
 
 /obj/item/melee/baton/proc/check_parried(mob/living/carbon/human/human_target, mob/living/user)
-	if (human_target.check_block(src, 0, "[user]'s [name]", MELEE_ATTACK))
+	if (human_target.check_block(src, 0, "[user] 的 [name]", MELEE_ATTACK))
 		playsound(human_target, 'sound/weapons/genhit.ogg', 50, TRUE)
 		return TRUE
 	return FALSE
@@ -192,7 +192,7 @@
 		target.lastattackerckey = user.ckey
 		target.LAssailant = WEAKREF(user)
 		if(log_stun_attack)
-			log_combat(user, target, "stun attacked", src)
+			log_combat(user, target, "昏迷攻击", src)
 	if(baton_effect(target, user, modifiers) && user)
 		set_batoned(target, user, cooldown)
 
@@ -223,8 +223,8 @@
 /obj/item/melee/baton/proc/get_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] = span_danger("[user] knocks [target] down with [src]!")
-	.["local"] = span_userdanger("[user] knocks you down with [src]!")
+	.["全体"] = span_danger("[user] 用 [src] 击倒了 [target]!")
+	.["个人"] = span_userdanger("[user] 用 [src] 将你击倒了!")
 
 	return .
 
@@ -232,8 +232,8 @@
 /obj/item/melee/baton/proc/get_cyborg_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] = span_danger("[user] pulses [target]'s sensors with the baton!")
-	.["local"] = span_danger("You pulse [target]'s sensors with the baton!")
+	.["全体"] = span_danger("[user] 用警棍对 [target] 的传感器进行脉冲攻击!")
+	.["个人"] = span_danger("你用警棍对 [target] 的传感器进行脉冲攻击!")
 
 	return .
 
@@ -241,8 +241,8 @@
 /obj/item/melee/baton/proc/get_unga_dunga_cyborg_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] = span_danger("[user] tries to knock down [target] with [src], and predictably fails!") //look at this duuuuuude
-	.["local"] = span_userdanger("[user] tries to... knock you down with [src]?") //look at the top of his head!
+	.["全体"] = span_danger("[user] 试图用 [src] 击倒 [target], 毫不意外地失败了!") //look at this duuuuuude
+	.["个人"] = span_userdanger("[user] 试图用 [src] 将你击倒?") //look at the top of his head!
 
 	return .
 
@@ -264,7 +264,7 @@
 /obj/item/melee/baton/proc/clumsy_check(mob/living/user, mob/living/intented_target)
 	if(!active || !HAS_TRAIT(user, TRAIT_CLUMSY) || prob(50))
 		return FALSE
-	user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self over the head with [src]! What a doofus!"), span_userdanger("You accidentally hit yourself over the head with [src]!"))
+	user.visible_message(span_danger("[user] 不小心用 [src] 打到了自己的头! 真是个呆瓜!"), span_userdanger("你不小心用 [src] 打到了自己的头部!"))
 
 	if(iscyborg(user))
 		if(affect_cyborg)
@@ -288,28 +288,28 @@
 
 	user.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD, attacking_item = src)
 
-	log_combat(user, user, "accidentally stun attacked [user.p_them()]self due to their clumsiness", src)
+	log_combat(user, user, "太笨了! [user.p_them()]自己对自己使用了昏迷攻击", src)
 	if(stun_animation)
 		user.do_attack_animation(user)
 	return
 
 /obj/item/conversion_kit
-	name = "conversion kit"
-	desc = "A strange box containing wood working tools and an instruction paper to turn stun batons into something else."
+	name = "转换工具"
+	desc = "一个奇怪的盒子, 里面装着木工工具和一张把电棍变成别的东西的说明书."
 	icon = 'icons/obj/storage/box.dmi'
 	icon_state = "uk"
 	custom_price = PAYCHECK_COMMAND * 4.5
 
 /obj/item/melee/baton/telescopic
-	name = "telescopic baton"
-	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
+	name = "伸缩警棍"
+	desc = "一款紧凑而坚固的个人防卫武器. 折叠时可以隐藏起来."
 	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "telebaton"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	inhand_icon_state = null
-	attack_verb_continuous = list("hits", "pokes")
-	attack_verb_simple = list("hit", "poke")
+	attack_verb_continuous = list("打了打", "戳了戳")
+	attack_verb_simple = list("打了打", "戳了戳")
 	worn_icon_state = "tele_baton"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
@@ -334,8 +334,8 @@
 		hitsound_on = hitsound, \
 		w_class_on = WEIGHT_CLASS_NORMAL, \
 		clumsy_check = FALSE, \
-		attack_verb_continuous_on = list("smacks", "strikes", "cracks", "beats"), \
-		attack_verb_simple_on = list("smack", "strike", "crack", "beat"), \
+		attack_verb_continuous_on = list("猛击了", "打击了", "砸中了", "猛击了"), \
+		attack_verb_simple_on = list("猛击了", "打击了", "砸中了", "猛击了"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
@@ -343,7 +343,7 @@
 	var/mob/living/carbon/human/human_user = user
 	var/obj/item/organ/internal/brain/our_brain = human_user.get_organ_by_type(/obj/item/organ/internal/brain)
 
-	user.visible_message(span_suicide("[user] stuffs [src] up [user.p_their()] nose and presses the 'extend' button! It looks like [user.p_theyre()] trying to clear [user.p_their()] mind."))
+	user.visible_message(span_suicide("[user] 将 [src] 塞进自己的鼻子, 然后按下了'伸展'按钮! 看起来 [user.p_theyre()] 正在试图清理自己的思绪."))
 	if(active)
 		playsound(src, on_sound, 50, TRUE)
 		add_fingerprint(user)
@@ -370,13 +370,13 @@
 	src.active = active
 	inhand_icon_state = active ? on_inhand_icon_state : null // When inactive, there is no inhand icon_state.
 	if(user)
-		balloon_alert(user, active ? "extended" : "collapsed")
+		balloon_alert(user, active ? "伸展" : "折叠")
 	playsound(src, on_sound, 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/melee/baton/telescopic/contractor_baton
-	name = "contractor baton"
-	desc = "A compact, specialised baton assigned to Syndicate contractors. Applies light electrical shocks to targets."
+	name = "契约电棍"
+	desc = "一种专为契约特工设计的紧凑型特殊电棍, 可以对目标施加轻微电击."
 	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "contractor_baton"
 	worn_icon_state = "contractor_baton"
@@ -398,24 +398,24 @@
 	active_force = 16
 
 /obj/item/melee/baton/telescopic/contractor_baton/get_wait_description()
-	return span_danger("The baton is still charging!")
+	return span_danger("电棍仍在充电中!")
 
 /obj/item/melee/baton/telescopic/contractor_baton/additional_effects_non_cyborg(mob/living/target, mob/living/user)
 	target.set_jitter_if_lower(40 SECONDS)
 	target.set_stutter_if_lower(40 SECONDS)
 
 /obj/item/melee/baton/security
-	name = "stun baton"
-	desc = "A stun baton for incapacitating people with."
-	desc_controls = "Left click to stun, right click to harm."
+	name = "电棍"
+	desc = "用于使人失去行动能力的电棍."
+	desc_controls = "左键点击可使其昏迷, 右键点击可造成伤害."
 	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "stunbaton"
 	inhand_icon_state = "baton"
 	worn_icon_state = "baton"
 	force = 10
 	wound_bonus = 0
-	attack_verb_continuous = list("beats")
-	attack_verb_simple = list("beat")
+	attack_verb_continuous = list("猛击了")
+	attack_verb_simple = list("猛击了")
 	armor_type = /datum/armor/baton_security
 	throwforce = 7
 	force_say_chance = 50
@@ -426,7 +426,7 @@
 	on_stun_sound = 'sound/weapons/egloves.ogg'
 	on_stun_volume = 50
 	active = FALSE
-	context_living_rmb_active = "Harmful Stun"
+	context_living_rmb_active = "有伤害的昏迷攻击"
 
 	var/throw_stun_chance = 35
 	var/obj/item/stock_parts/cell/cell
@@ -444,7 +444,7 @@
 	. = ..()
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type, /obj/item/stock_parts/cell))
-			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
+			log_mapping("[src] 在 [AREACOORD(src)] 有一个无效的 preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
 	RegisterSignal(src, COMSIG_ATOM_ATTACKBY, PROC_REF(convert))
@@ -455,11 +455,11 @@
 
 /obj/item/melee/baton/security/suicide_act(mob/living/user)
 	if(cell?.charge && active)
-		user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 将还在激活的 [name] 放进了自己的嘴里! 看起来 [user.p_theyre()] 正在试图自杀!"))
 		attack(user, user)
 		return FIRELOSS
 	else
-		user.visible_message(span_suicide("[user] is shoving the [name] down their throat! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 将 [name] 塞进自己的喉咙里! 看起来 [user.p_theyre()] 正在试图自杀!"))
 		return OXYLOSS
 
 /obj/item/melee/baton/security/Destroy()
@@ -503,9 +503,9 @@
 /obj/item/melee/baton/security/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice("\The [src] is [round(cell.percent())]% charged.")
+		. += span_notice("\The [src] 已充 [round(cell.percent())]% 电量.")
 	else
-		. += span_warning("\The [src] does not have a power source installed.")
+		. += span_warning("\The [src] 没有安装电池.")
 
 /obj/item/melee/baton/security/screwdriver_act(mob/living/user, obj/item/tool)
 	if(tryremovecell(user))
@@ -516,15 +516,15 @@
 	if(istype(item, /obj/item/stock_parts/cell))
 		var/obj/item/stock_parts/cell/active_cell = item
 		if(cell)
-			to_chat(user, span_warning("[src] already has a cell!"))
+			to_chat(user, span_warning("[src] 已经安装了电池!"))
 		else
 			if(active_cell.maxcharge < cell_hit_cost)
-				to_chat(user, span_notice("[src] requires a higher capacity cell."))
+				to_chat(user, span_notice("[src] 需要更高容量的电池."))
 				return
 			if(!user.transferItemToLoc(item, src))
 				return
 			cell = item
-			to_chat(user, span_notice("You install a cell in [src]."))
+			to_chat(user, span_notice("你在 [src] 中安装了一个电池."))
 			update_appearance()
 	else
 		return ..()
@@ -532,21 +532,21 @@
 /obj/item/melee/baton/security/proc/tryremovecell(mob/user)
 	if(cell && can_remove_cell)
 		cell.forceMove(drop_location())
-		to_chat(user, span_notice("You remove the cell from [src]."))
+		to_chat(user, span_notice("你从 [src] 中移除了电池."))
 		return TRUE
 	return FALSE
 
 /obj/item/melee/baton/security/attack_self(mob/user)
 	if(cell?.charge >= cell_hit_cost)
 		active = !active
-		balloon_alert(user, "turned [active ? "on" : "off"]")
+		balloon_alert(user, "电源 [active ? "开启" : "关闭"]")
 		playsound(src, SFX_SPARKS, 75, TRUE, -1)
 	else
 		active = FALSE
 		if(!cell)
-			balloon_alert(user, "no power source!")
+			balloon_alert(user, "缺乏电源!")
 		else
-			balloon_alert(user, "out of charge!")
+			balloon_alert(user, "没电了!")
 	update_appearance()
 	add_fingerprint(user)
 
@@ -577,8 +577,8 @@
 		if(active && cooldown_check <= world.time && !check_parried(target, user))
 			finalize_baton_attack(target, user, modifiers, in_attack_chain = FALSE)
 	else if(!user.combat_mode)
-		target.visible_message(span_warning("[user] prods [target] with [src]. Luckily it was off."), \
-			span_warning("[user] prods you with [src]. Luckily it was off."))
+		target.visible_message(span_warning("[user] 用 [src] 戳了一下 [target]. 幸运的是它是关着的."), \
+			span_warning("[user] 用 [src] 戳了你一下. 幸运的是它是关着的."))
 		return BATON_ATTACK_DONE
 
 /obj/item/melee/baton/security/baton_effect(mob/living/target, mob/living/user, modifiers, stun_override)
@@ -607,25 +607,25 @@
 /obj/item/melee/baton/security/proc/apply_stun_effect_end(mob/living/target)
 	var/trait_check = HAS_TRAIT(target, TRAIT_BATON_RESISTANCE) //var since we check it in out to_chat as well as determine stun duration
 	if(!target.IsKnockdown())
-		to_chat(target, span_warning("Your muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
+		to_chat(target, span_warning("你的肌肉突然痉挛, 使你倒地不起[trait_check ? ", 幸运的是, 你的身体很快恢复了正常状态..." : "!"]"))
 
 	if(!trait_check)
 		target.Knockdown(knockdown_time)
 
 /obj/item/melee/baton/security/get_wait_description()
-	return span_danger("The baton is still charging!")
+	return span_danger("电棍仍在充电中!")
 
 /obj/item/melee/baton/security/get_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] = span_danger("[user] stuns [target] with [src]!")
-	.["local"] = span_userdanger("[user] stuns you with [src]!")
+	.["全体"] = span_danger("[user] 用 [src] 击晕了 [target]!")
+	.["个人"] = span_userdanger("[user] 用 [src] 击晕了你!")
 
 /obj/item/melee/baton/security/get_unga_dunga_cyborg_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] = span_danger("[user] tries to stun [target] with [src], and predictably fails!")
-	.["local"] = span_userdanger("[target] tries to... stun you with [src]?")
+	.["全体"] = span_danger("[user] 试图用 [src] 击倒 [target], 毫不意外地失败了!")
+	.["个人"] = span_userdanger("[user] 试图用 [src] 将你击倒?")
 
 /obj/item/melee/baton/security/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -657,9 +657,9 @@
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/security/cattleprod
-	name = "stunprod"
-	desc = "An improvised stun baton."
-	desc_controls = "Left click to stun, right click to harm."
+	name = "电棒"
+	desc = "一个临时制作的电棒."
+	desc_controls = "左键点击可使其昏迷, 右键点击可造成伤害."
 	icon = 'icons/obj/weapons/spear.dmi'
 	icon_state = "stunprod"
 	inhand_icon_state = "prod"
@@ -686,11 +686,11 @@
 		return ..()
 
 	if(!can_upgrade)
-		user.visible_message(span_warning("This prod is already improved!"))
+		user.visible_message(span_warning("这个电棒已经改进过了!"))
 		return ..()
 
 	if(cell)
-		user.visible_message(span_warning("You can't put the crystal onto the stunprod while it has a power cell installed!"))
+		user.visible_message(span_warning("你不能把水晶放在装有电池的电棒上!"))
 		return ..()
 
 	var/our_prod
@@ -704,10 +704,10 @@
 		our_crystal.use(1)
 		our_prod = /obj/item/melee/baton/security/cattleprod/telecrystalprod
 	else
-		to_chat(user, span_notice("You don't think the [item.name] will do anything to improve the [src]."))
+		to_chat(user, span_notice("你并不认为 [item.name] 能够改进 [src]."))
 		return ..()
 
-	to_chat(user, span_notice("You place the [item.name] firmly into the igniter."))
+	to_chat(user, span_notice("你把 [item.name] 牢牢地放在点火器上."))
 	remove_item_from_storage(user)
 	qdel(src)
 	var/obj/item/melee/baton/security/cattleprod/brand_new_prod = new our_prod(user.loc)
@@ -724,8 +724,8 @@
 	return ..()
 
 /obj/item/melee/baton/security/boomerang
-	name = "\improper OZtek Boomerang"
-	desc = "A device invented in 2486 for the great Space Emu War by the confederacy of Australicus, these high-tech boomerangs also work exceptionally well at stunning crewmembers. Just be careful to catch it when thrown!"
+	name = "OZtek回旋镖"
+	desc = "这些高科技回旋镖是2486年由澳大利亚联邦为太空鸸鹋大战发明的, 在击晕机组人员方面也非常出色. 就是扔出去的时候要小心接住!"
 	throw_speed = 1
 	icon = 'icons/obj/weapons/thrown.dmi'
 	icon_state = "boomerang"
@@ -754,8 +754,8 @@
 	preload_cell_type = /obj/item/stock_parts/cell/high
 
 /obj/item/melee/baton/security/cattleprod/teleprod
-	name = "teleprod"
-	desc = "A prod with a bluespace crystal on the end. The crystal doesn't look too fun to touch."
+	name = "传送棒"
+	desc = "末端有蓝色水晶的棒子. 这个水晶看起来不太好玩儿."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "teleprod"
 	inhand_icon_state = "teleprod"
@@ -775,8 +775,8 @@
 	do_teleport(target, get_turf(target), 15, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/item/melee/baton/security/cattleprod/telecrystalprod
-	name = "snatcherprod"
-	desc = "A prod with a telecrystal on the end. It sparks with a desire for theft and subversion."
+	name = "掠夺棒"
+	desc = "一种末端有传送水晶的棒子. 它激起了盗窃和颠覆的欲望."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "telecrystalprod"
 	inhand_icon_state = "telecrystalprod"
@@ -798,7 +798,7 @@
 	if(!user || !stuff_in_hand || !target.temporarilyRemoveItemFromInventory(stuff_in_hand))
 		return
 	if(user.put_in_inactive_hand(stuff_in_hand))
-		stuff_in_hand.loc.visible_message(span_warning("[stuff_in_hand] suddenly appears in [user]'s hand!"))
+		stuff_in_hand.loc.visible_message(span_warning("[stuff_in_hand] 突然出现在 [user] 的手里!"))
 	else
 		stuff_in_hand.forceMove(user.drop_location())
-		stuff_in_hand.loc.visible_message(span_warning("[stuff_in_hand] suddenly appears!"))
+		stuff_in_hand.loc.visible_message(span_warning("[stuff_in_hand] 突然出现!"))
