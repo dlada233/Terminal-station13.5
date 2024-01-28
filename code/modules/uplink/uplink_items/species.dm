@@ -1,5 +1,5 @@
 /datum/uplink_category/species
-	name = "Species Restricted"
+	name = "种族限制"
 	weight = 1
 
 /datum/uplink_item/species_restricted
@@ -7,9 +7,8 @@
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/species_restricted/moth_lantern
-	name = "Extra-Bright Lantern"
-	desc = "We heard that moths such as yourself really like lamps, so we decided to grant you early access to a prototype \
-	Syndicate brand \"Extra-Bright Lantern™\". Enjoy."
+	name = "极光灯笼"
+	desc = "我们听说像你这样的飞蛾真的很喜欢灯，所以我们决定提前给你一个原型产品：\"极光灯笼™\"，好好享受它吧."
 	cost = 2
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list(SPECIES_MOTH)

@@ -1,5 +1,5 @@
 /datum/uplink_category/stealthy
-	name = "Stealthy Weapons"
+	name = "隐匿武器"
 	weight = 8
 
 /datum/uplink_item/stealthy_weapons
@@ -7,63 +7,58 @@
 
 
 /datum/uplink_item/stealthy_weapons/dart_pistol
-	name = "Dart Pistol"
-	desc = "A miniaturized version of a normal syringe gun. It is very quiet when fired and can fit into any \
-			space a small item can."
+	name = "飞镖手枪"
+	desc = "普通注射枪的缩小版，它开火时非常安静，可以放在任何的小空间里."
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/stealthy_weapons/dehy_carp
-	name = "Dehydrated Space Carp"
-	desc = "Looks like a plush toy carp, but just add water and it becomes a real-life space carp! Activate in \
-			your hand before use so it knows not to kill you."
+	name = "脱水太空鲤鱼"
+	desc = "看起来像毛绒玩具鲤鱼，但只要加水，它就变成了活生生的太空鲤鱼!使用前在手上激活，这样它就会知道不该杀死你."
 	item = /obj/item/toy/plush/carpplushie/dehy_carp
 	cost = 1
 
 /datum/uplink_item/stealthy_weapons/edagger
-	name = "Energy Dagger"
-	desc = "A dagger made of energy that looks and functions as a pen when off."
+	name = "能量匕首"
+	desc = "一把由能量制成的匕首，平时被伪装成了一支笔."
 	item = /obj/item/pen/edagger
 	cost = 2
 
 /datum/uplink_item/stealthy_weapons/traitor_chem_bottle
-	name = "Poison Kit"
-	desc = "An assortment of deadly chemicals packed into a compact box. Comes with a syringe for more precise application."
+	name = "毒药包"
+	desc = "装在一个小盒子里的各种致命化学品，配有注射器."
 	item = /obj/item/storage/box/syndie_kit/chemical
 	cost = 6
 	surplus = 50
 
 /datum/uplink_item/stealthy_weapons/suppressor
-	name = "Suppressor"
-	desc = "This suppressor will silence the shots of the weapon it is attached to for increased stealth and superior ambushing capability. It is compatible with many small ballistic guns including the Makarov, Stechkin APS and C-20r, but not revolvers or energy guns."
+	name = "消音器"
+	desc = "这种消声器削减武器枪声，以获得优越的伏击能力，它与许多小型武器兼容，包括马卡洛夫，APS和C-20r，但不包括左轮手枪或能量枪."
 	item = /obj/item/suppressor
 	cost = 3
 	surplus = 10
 	purchasable_from = ~UPLINK_CLOWN_OPS
 
 /datum/uplink_item/stealthy_weapons/holster
-	name = "Syndicate Holster"
-	desc = "A useful little device that allows for inconspicuous carrying of guns using chameleon technology. It also allows for badass gun-spinning."
+	name = "辛迪加枪套"
+	desc = "一个有用的小装置，使用变色龙技术，可以不显眼地携带枪支，它还允许你转枪玩."
 	item = /obj/item/storage/belt/holster/chameleon
 	cost = 1
 
 /datum/uplink_item/stealthy_weapons/sleepy_pen
-	name = "Sleepy Pen"
-	desc = "A syringe disguised as a functional pen, filled with a potent mix of drugs, including a \
-			strong anesthetic and a chemical that prevents the target from speaking. \
-			The pen holds one dose of the mixture, and can be refilled with any chemicals. Note that before the target \
-			falls asleep, they will be able to move and act."
+	name = "昏睡笔"
+	desc = "一个伪装成笔的注射器，里面装满了强效的药物混合物，包括强麻醉剂和一种阻止目标说话的化学物质，\
+			这支笔可以容纳一剂混合物，并可以重新填充任何化学物质，请注意，在药效发作前，他们仍能移动和行动."
 	item = /obj/item/pen/sleepy
 	cost = 4
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 
 /datum/uplink_item/stealthy_weapons/origami_kit
-	name = "Boxed Origami Kit"
-	desc = "This box contains a guide on how to craft masterful works of origami, allowing you to transform normal pieces of paper into \
-			perfectly aerodynamic (and potentially lethal) paper airplanes."
+	name = "折纸工具"
+	desc = "这个盒子里有一本关于如何折出大师级作品的指南，，让你把普通的纸折成完美的空气动力学(和潜在致命性)纸飞机."
 	item = /obj/item/storage/box/syndie_kit/origami_bundle
 	cost = 4
 	surplus = 0
@@ -71,9 +66,8 @@
 
 
 /datum/uplink_item/stealthy_weapons/martialarts
-	name = "Martial Arts Scroll"
-	desc = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat \
-			and gain the ability to swat bullets from the air, but you will also refuse to use dishonorable ranged weaponry."
+	name = "武术卷轴"
+	desc = "这个卷轴包含了一种古代武术技巧的全部秘密，你的徒手格斗技巧将提神到能偏转子弹的程度，但你也将从此拒绝使用卑鄙的远程武器."
 	item = /obj/item/book/granter/martial/carp
 	progression_minimum = 30 MINUTES
 	cost = 17
@@ -81,23 +75,17 @@
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/stealthy_weapons/crossbow
-	name = "Miniature Energy Crossbow"
-	desc = "A short bow mounted across a tiller in miniature. \
-	Small enough to fit into a pocket or slip into a bag unnoticed. \
-	It will synthesize and fire bolts tipped with a debilitating \
-	toxin that will damage and disorient targets, causing them to \
-	slur as if inebriated. It can produce an infinite number \
-	of bolts, but takes time to automatically recharge after each shot."
+	name = "迷你能量弩"
+	desc = "这把短弩小的可以装进口袋或悄无声息地塞进包里，它会合成并发射带有衰弱毒素的弩箭，\
+	对目标造成伤害后使其迷失方向，使其像喝醉了一样模糊. 它可以产生无限数量的弩箭，但需要时间来充能."
 	item = /obj/item/gun/energy/recharge/ebow
 	cost = 10
 	surplus = 50
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/stealthy_weapons/contrabaton
-	name = "Contractor Baton"
-	desc = "A compact, specialised baton assigned to Syndicate contractors. Applies light electrical shocks to targets. \
-	These shocks are capable of affecting the inner circuitry of most robots as well, applying a short stun. \
-	Has the added benefit of affecting the vocal cords of your victim, causing them to slur as if inebriated."
+	name = "契约电棍"
+	desc = "一种专为契约特工设计的紧凑型特殊电棍, 可以对目标施加轻微电击造成短暂的昏迷，同时还能影响目标声带，使得他们像喝醉了一样口齿不清."
 	item = /obj/item/melee/baton/telescopic/contractor_baton
 	cost = 12
 	surplus = 50

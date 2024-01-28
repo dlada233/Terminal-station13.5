@@ -1,5 +1,5 @@
 /datum/uplink_category/ammo
-	name = "Ammunition"
+	name = "弹药"
 	weight = 7
 
 /datum/uplink_item/ammo
@@ -7,8 +7,8 @@
 	surplus = 40
 
 /datum/uplink_item/ammo/toydarts
-	name = "Box of Riot Darts"
-	desc = "A box of 40 Donksoft riot darts, for reloading any compatible foam dart magazine. Don't forget to share!"
+	name = "一盒防暴泡沫弹"
+	desc = "一盒40个Donksoft防暴泡沫弹，用于任何兼容的泡沫枪弹匣."
 	item = /obj/item/ammo_box/foambox/riot
 	cost = 2
 	surplus = 0
@@ -16,41 +16,41 @@
 	purchasable_from = ~UPLINK_NUKE_OPS
 
 /datum/uplink_item/ammo/pistol
-	name = "9mm Handgun Magazine"
-	desc = "An additional 8-round 9mm magazine, compatible with the Makarov pistol."
+	name = "9mm弹匣"
+	desc = "一个额外的8发的9毫米弹匣，与马卡洛夫手枪兼容."
 	item = /obj/item/ammo_box/magazine/m9mm
 	cost = 1
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 	illegal_tech = FALSE
 
 /datum/uplink_item/ammo/pistolap
-	name = "9mm Armour Piercing Magazine"
-	desc = "An additional 8-round 9mm magazine, compatible with the Makarov pistol. \
-			These rounds are less effective at injuring the target but penetrate protective gear."
+	name = "9mm穿甲弹匣"
+	desc = "一个额外的8发的9毫米弹匣，与马卡洛夫手枪兼容. \
+			这种子弹伤害肉体的效果较差，但能穿透护甲."
 	item = /obj/item/ammo_box/magazine/m9mm/ap
 	cost = 2
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/ammo/pistolhp
-	name = "9mm Hollow Point Magazine"
-	desc = "An additional 8-round 9mm magazine, compatible with the Makarov pistol. \
-			These rounds are more damaging but ineffective against armour."
+	name = "9mm空尖弹匣"
+	desc = "一个额外的8发的9毫米弹匣，与马卡洛夫手枪兼容. \
+			这种子弹对肉体杀伤力更强，但对装甲无效."
 	item = /obj/item/ammo_box/magazine/m9mm/hp
 	cost = 3
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/ammo/pistolfire
-	name = "9mm Incendiary Magazine"
-	desc = "An additional 8-round 9mm magazine, compatible with the Makarov pistol. \
-			Loaded with incendiary rounds which inflict little damage, but ignite the target."
+	name = "9mm燃烧弹匣"
+	desc = "一个额外的8发的9毫米弹匣，与马卡洛夫手枪兼容. \
+			这种子弹只能造成很小的伤害，但能点燃目标."
 	item = /obj/item/ammo_box/magazine/m9mm/fire
 	cost = 2
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/ammo/revolver
-	name = ".357 Speed Loader"
-	desc = "A speed loader that contains seven additional .357 Magnum rounds; usable with the Syndicate revolver. \
-			For when you really need a lot of things dead."
+	name = ".357快速装弹器"
+	desc = "一个装有7发.357马格南子弹的快速装弹器；可用于辛迪加左轮手枪. \
+			当你真的需要很东西死掉的时候使用."
 	item = /obj/item/ammo_box/a357
 	cost = 4
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //nukies get their own version
