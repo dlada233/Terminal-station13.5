@@ -7,8 +7,8 @@
 
 //Lipolicide - Impure Version
 /datum/reagent/impurity/ipecacide
-	name = "Ipecacide"
-	description = "An extremely gross substance that induces vomiting. It is produced when Lipolicide reactions are impure."
+	name = "Ipecacide-肚痛物质"
+	description = "引起呕吐的极其恶心的物质当断肠毒素反应不纯时产生."
 	ph = 7
 	liver_damage = 0
 
@@ -20,8 +20,8 @@
 
 //Formaldehyde - Impure Version
 /datum/reagent/impurity/methanol
-	name = "Methanol"
-	description = "A light, colourless liquid with a distinct smell. Ingestion can lead to blindness. It is a byproduct of organisms processing impure Formaldehyde."
+	name = "Methanol-甲醇"
+	description = "一种淡而无色的液体，有独特的气味，误食会导致失明，它是不纯甲醛的副产品."
 	reagent_state = LIQUID
 	color = "#aae7e4"
 	ph = 7
@@ -35,8 +35,8 @@
 
 //Chloral Hydrate - Impure Version
 /datum/reagent/impurity/chloralax
-	name = "Chloralax"
-	description = "An oily, colorless and slightly toxic liquid. It is produced when impure choral hydrate is broken down inside an organism."
+	name = "Chloralax-水合产物"
+	description = "一种油性、无色、微毒性液体，当不纯的水合氯醛在生物体内分解时产生."
 	reagent_state = LIQUID
 	color = "#387774"
 	ph = 7
@@ -49,8 +49,8 @@
 
 //Mindbreaker Toxin - Impure Version
 /datum/reagent/impurity/rosenol
-	name = "Rosenol"
-	description = "A strange, blue liquid that is produced during impure mindbreaker toxin reactions. Historically it has been abused to write poetry."
+	name = "Rosenol-蓝玫瑰油"
+	description = "一种奇怪的蓝色液体，在不纯净的毒素反应中产生."
 	reagent_state = LIQUID
 	color = "#0963ad"
 	ph = 7
@@ -64,6 +64,6 @@
 		return
 	if(SPT_PROB(4.0, seconds_per_tick))
 		owner.manual_emote("clicks with [owner.p_their()] tongue.")
-		owner.say("Noice.", forced = /datum/reagent/impurity/rosenol)
+		owner.say("吵.", forced = /datum/reagent/impurity/rosenol)
 	if(SPT_PROB(2.0, seconds_per_tick))
-		owner.say(pick("Ah! That was a mistake!", "Horrible.", "Watch out everybody, the potato is really hot.", "When I was six I ate a bag of plums.", "And if there is one thing I can't stand it's tomatoes.", "And if there is one thing I love it's tomatoes.", "We had a captain who was so strict, you weren't allowed to breathe in their station.", "The unrobust ones just used to keel over and die, you'd hear them going down behind you."), forced = /datum/reagent/impurity/rosenol)
+		owner.say(pick("啊这是个错误", "太恐怖了.", "大家小心，土豆很烫.", "我六岁的时候吃了一袋李子.", "要说有什么我不能忍受的，那就是西红柿.", "要说我喜欢什么，那就是西红柿.", "我们有一个非常严格的船长，你不允许在他的站点呼吸.", "那些不强壮的就会倒下死去，你会听到它们在你身后倒下的声音."), forced = /datum/reagent/impurity/rosenol)

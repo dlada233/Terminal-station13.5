@@ -4,8 +4,8 @@
 
 //Causes slight liver damage, and that's it.
 /datum/reagent/impurity
-	name = "Chemical Isomers"
-	description = "Impure chemical isomers made from inoptimal reactions. Causes mild liver damage"
+	name = "Chemical Isomers-化学同分异构体"
+	description = "由不理想的反应产生的不纯的化学异构体，引起轻度肝损伤"
 	//by default, it will stay hidden on splitting, but take the name of the source on inverting. Cannot be fractioned down either if the reagent is somehow isolated.
 	chemical_flags = REAGENT_SNEAKYNAME | REAGENT_DONOTSPLIT | REAGENT_CAN_BE_SYNTHESIZED //impure can be synthed, and is one of the only ways to get almost pure impure
 	ph = 3
@@ -29,8 +29,8 @@
 
 //Basically just so people don't forget to adjust metabolization_rate
 /datum/reagent/inverse
-	name = "Toxic Monomers"
-	description = "Inverse reagents are created when a reagent's purity is below it's inverse threshold. The are created either during ingestion - which will then replace their associated reagent, or some can be created during the reaction process."
+	name = "Toxic Monomers-有毒单体"
+	description = "当一种试剂的纯度低于它的逆阈值时，就会产生逆试剂；它们要么是在摄入过程中产生的，然后会取代它们的相关试剂，要么是在反应过程中产生的."
 	ph = 2
 	chemical_flags = REAGENT_SNEAKYNAME | REAGENT_DONOTSPLIT //Inverse generally cannot be synthed - they're difficult to get
 	//Mostly to be safe - but above flags will take care of this. Also prevents it from showing these on reagent lookups in the ui
@@ -47,12 +47,12 @@
 //Failed chems - generally use inverse if you want to use a impure subtype for it
 //technically not a impure chem, but it's here because it can only be made with a failed impure reaction
 /datum/reagent/consumable/failed_reaction
-	name = "Viscous Sludge"
-	description = "A off smelling sludge that's created when a reaction gets too impure."
+	name = "Viscous Sludge-粘性污泥"
+	description = "当反应太不纯时产生的一种难闻的污泥."
 	nutriment_factor = -1
 	quality = -1
 	ph = 1.5
-	taste_description = "an awful, strongly chemical taste"
+	taste_description = "一种可怕的、强烈的化学味道"
 	color = "#270d03"
 	glass_price = DRINK_PRICE_HIGH
 	fallback_icon = 'icons/obj/drinks/drink_effects.dmi'
@@ -61,8 +61,8 @@
 // Unique
 
 /datum/reagent/inverse/eigenswap
-	name = "Eigenswap"
-	description = "This reagent is known to swap the handedness of a patient."
+	name = "Eigenswap-特征转换剂"
+	description = "这种试剂可以改变对象的手性."
 	ph = 3.3
 	chemical_flags = REAGENT_DONOTSPLIT
 	tox_damage = 0
@@ -87,14 +87,14 @@
 * is processed on the dead.
 */
 /atom/movable/screen/alert/status_effect/freon/cryostylane
-	desc = "You're frozen inside of a protective ice cube! While inside, you can't do anything, but are immune to harm! You will be free when the chem runs out."
+	desc = "你被冻在冰块里了!在里面，你不能做任何事，并对伤害免疫!化学药品消耗完后，你将重新获得自由."
 
 /datum/reagent/inverse/cryostylane
-	name = "Cryogelidia"
-	description = "Freezes the live or dead patient in a cryostasis ice block."
+	name = "Cryogelidia-急冻液"
+	description = "将活着或死去的病人冷冻在冰块中."
 	reagent_state = LIQUID
 	color = "#03dbfc"
-	taste_description = "your tongue freezing, shortly followed by your thoughts. Brr!"
+	taste_description = "你的舌头冻结了，紧接着你的思想也冻结了!"
 	ph = 14
 	chemical_flags = REAGENT_DEAD_PROCESS | REAGENT_IGNORE_STASIS | REAGENT_DONOTSPLIT
 	metabolization_rate = 1 * REM
