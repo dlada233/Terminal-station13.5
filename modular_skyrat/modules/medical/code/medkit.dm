@@ -131,10 +131,8 @@
 
 // advanced tools, an RCD, chems, etc etc. dont give this one to the crew early in the round
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma/advanced
-	name = "advanced synth trauma kit"
-	desc = "An \"advanced\" \"surgical\" duffel bag containing <i>absolutely</i> everything you need to treat the worst and <i>best</i> of inorganic wounds. \
-	This one has extra tools and space for treatment of the ones even <i>worse</i> than the WORST of the worst! However, its highly specialized interior \
-	means it can ONLY hold synthetic repair tools."
+	name = "先进手术行李包"
+	desc = "一个先进的手术行李包，里面绝对有你所需要的一切."
 
 	storage_type = /datum/storage/duffel/synth_trauma_kit/advanced
 
