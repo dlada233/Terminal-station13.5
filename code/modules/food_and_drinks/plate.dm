@@ -1,6 +1,6 @@
 /obj/item/plate
-	name = "plate"
-	desc = "Holds food, powerful. Good for morale when you're not eating your spaghetti off of a desk."
+	name = "盘子"
+	desc = "装食物，且威力也不俗，当你决定不在桌子上吃意大利面时，对心情很有帮助。"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "plate"
 	w_class = WEIGHT_CLASS_BULKY //No backpack.
@@ -97,8 +97,8 @@
 	ItemRemovedFromPlate(moved_item)
 
 /obj/item/plate/large
-	name = "buffet plate"
-	desc = "A large plate made for the professional catering industry but also apppreciated by mukbangers and other persons of considerable size and heft."
+	name = "自助餐盘"
+	desc = "为专业餐饮业制造的大盘子."
 	icon_state = "plate_large"
 	max_items = 12
 	max_x_offset = 8
@@ -106,8 +106,8 @@
 	biggest_w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/plate/small
-	name = "appetizer plate"
-	desc = "A small plate, perfect for appetizers, desserts or trendy modern cusine."
+	name = "小餐盘"
+	desc = "一个小盘子，摆点开胃菜，甜点或时尚的现代美食."
 	icon_state = "plate_small"
 	max_items = 4
 	max_x_offset = 4
@@ -115,7 +115,7 @@
 	biggest_w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/plate_shard
-	name = "ceramic shard"
+	name = "餐盘碎片"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "plate_shard1"
 	base_icon_state = "plate_shard"

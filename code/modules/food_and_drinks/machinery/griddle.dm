@@ -1,6 +1,6 @@
 /obj/machinery/griddle
-	name = "griddle"
-	desc = "Because using pans is for pansies."
+	name = "煎锅"
+	desc = "因为只有三色堇才会用平底锅."
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "griddle1_off"
 	density = TRUE
@@ -56,7 +56,7 @@
 		AddToGrill(new_pancake)
 		if(griddled_objects.len >= max_items)
 			break
-	visible_message(span_notice("[exposing_reagent] begins to cook on [src]."))
+	visible_message(span_notice("[exposing_reagent]开始在[src]上被烹饪."))
 	return NONE
 
 /obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
@@ -66,7 +66,7 @@
 
 /obj/machinery/griddle/attackby(obj/item/I, mob/user, params)
 	if(griddled_objects.len >= max_items)
-		to_chat(user, span_notice("[src] can't fit more items!"))
+		to_chat(user, span_notice("[src]不能放下更多的东西!"))
 		return
 	var/list/modifiers = params2list(params)
 	//Center the icon where the user clicked.
@@ -76,7 +76,7 @@
 		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
 		I.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(world.icon_size/2), world.icon_size/2)
 		I.pixel_y = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(world.icon_size/2), world.icon_size/2)
-		to_chat(user, span_notice("You place [I] on [src]."))
+		to_chat(user, span_notice("你摆放[I]了在[src]上."))
 		AddToGrill(I, user)
 	else
 		return ..()
@@ -167,7 +167,7 @@
 		to_dump.pixel_y = to_dump.base_pixel_y + rand(-5, 5)
 		AddToGrill(to_dump, user)
 
-	to_chat(user, span_notice("You dump out [storage_source] onto [src]."))
+	to_chat(user, span_notice("你把[storage_source]倒到[src]上."))
 	return STORAGE_DUMP_HANDLED
 
 /obj/machinery/griddle/process(seconds_per_tick)
@@ -176,7 +176,7 @@
 			continue
 		griddled_item.fire_act(1000) //Hot hot hot!
 		if(prob(10))
-			visible_message(span_danger("[griddled_item] doesn't seem to be doing too great on the [src]!"))
+			visible_message(span_danger("[griddled_item]在[src]上似乎没法烹饪得很好!"))
 
 		use_power(active_power_usage)
 
@@ -189,8 +189,8 @@
 	return ..()
 
 /obj/machinery/griddle/stand
-	name = "griddle stand"
-	desc = "A more commercialized version of your traditional griddle. What happened to the good old days where people griddled with passion?"
+	name = "煎锅"
+	desc = "传统煎锅的商业化版本，过去人们激情澎湃的美好时光去哪了?"
 	variant = "stand"
 
 /obj/machinery/griddle/stand/update_overlays()

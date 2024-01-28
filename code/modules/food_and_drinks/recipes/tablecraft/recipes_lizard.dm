@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/tiziran_sausage
-	name = "Raw Tiziran blood sausage"
+	name = "生血肠"
 	reqs = list(
 		/obj/item/food/meat/rawcutlet = 1,
 		/obj/item/food/meat/rawbacon = 1,
@@ -10,7 +10,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/headcheese
-	name = "Raw headcheese"
+	name = "生脑酪块"
 	reqs = list(
 		/obj/item/food/meat/slab = 1,
 		/datum/reagent/consumable/salt = 10,
@@ -20,7 +20,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/shredded_lungs
-	name = "Crispy shredded lung stirfry"
+	name = "脆肺条"
 	reqs = list(
 		/obj/item/food/grown/carrot = 1,
 		/obj/item/food/grown/chili = 1,
@@ -36,7 +36,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/tsatsikh
-	name = "Tsatsikh"
+	name = "蜥碎肚"
 	reqs = list(
 		/obj/item/organ/internal/heart = 1,
 		/obj/item/organ/internal/liver = 1,
@@ -49,7 +49,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/liver_pate
-	name = "Liver pate"
+	name = "肝酱"
 	reqs = list(
 		/obj/item/organ/internal/liver = 1,
 		/obj/item/food/meat/rawcutlet = 1,
@@ -59,7 +59,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/moonfish_caviar
-	name = "Moonfish caviar paste"
+	name = "月鱼子酱"
 	reqs = list(
 		/obj/item/food/moonfish_eggs = 1,
 		/datum/reagent/consumable/salt = 2
@@ -68,7 +68,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/lizard_escargot
-	name = "Desert snail cocleas"
+	name = "沙漠蜗牛烩"
 	reqs = list(
 		/obj/item/food/canned/desert_snails = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -80,7 +80,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/fried_blood_sausage
-	name = "Fried blood sausage"
+	name = "炸血肠"
 	reqs = list(
 		/obj/item/food/raw_tiziran_sausage = 1,
 		/datum/reagent/consumable/korta_flour = 5,
@@ -90,7 +90,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/lizard_fries
-	name = "Loaded poms-franzisks"
+	name = "蜥式炸薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/meat/cutlet = 2,
@@ -100,7 +100,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/brain_pate
-	name = "Eyeball-and-brain pate"
+	name = "脑酱"
 	reqs = list(
 		/obj/item/organ/internal/brain = 1,
 		/obj/item/organ/internal/eyes = 1,
@@ -111,7 +111,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/crispy_headcheese
-	name = "Crispy breaded headcheese"
+	name = "炸脑块"
 	reqs = list(
 		/obj/item/food/headcheese_slice = 1,
 		/obj/item/food/breadslice/root = 1
@@ -120,7 +120,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/picoss_skewers
-	name = "Picoss skewers"
+	name = "岸边烧"
 	reqs = list(
 		/obj/item/food/fishmeat/armorfish = 2,
 		/obj/item/food/grown/onion = 1,
@@ -132,7 +132,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/nectar_larvae
-	name = "Nectar larvae"
+	name = "蜜汁腌虫"
 	reqs = list(
 		/obj/item/food/canned/larvae = 1,
 		/obj/item/food/grown/tomato = 1,
@@ -143,7 +143,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/mushroomy_stirfry
-	name = "Mushroomy Stirfry"
+	name = "菌子炒"
 	reqs = list(
 		/obj/item/food/steeped_mushrooms = 1,
 		/obj/item/food/grown/mushroom/plumphelmet = 1,
@@ -154,7 +154,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/moonfish_demiglace
-	name = "Moonfish demiglace"
+	name = "月鱼拼盘"
 	reqs = list(
 		/obj/item/food/grilled_moonfish = 1,
 		/obj/item/food/grown/potato = 1,
@@ -166,7 +166,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/lizard_surf_n_turf
-	name = "Zagosk surf n turf smorgasbord"
+	name = "沙滩蜥戏大餐"
 	reqs = list(
 		/obj/item/food/grilled_moonfish = 1,
 		/obj/item/food/kebab/picoss_skewers = 2,
@@ -177,7 +177,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/rootdough
-	name = "Rootdough"
+	name = "粗面团"
 	reqs = list(
 		/obj/item/food/grown/potato = 2,
 		/obj/item/food/egg = 1,
@@ -188,7 +188,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/rootdough2
-	name = "Rootdough"
+	name = "粗面团"
 	reqs = list(
 		/obj/item/food/grown/potato = 2,
 		/datum/reagent/consumable/soymilk = 15,
@@ -199,7 +199,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/snail_nizaya
-	name = "Desert snail nizaya"
+	name = "沙蜗牛汤团"
 	reqs = list(
 		/obj/item/food/canned/desert_snails = 1,
 		/obj/item/food/spaghetti/nizaya = 1,
@@ -210,7 +210,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/garlic_nizaya
-	name = "Garlic nizaya"
+	name = "蒜油汤团"
 	reqs = list(
 		/obj/item/food/spaghetti/nizaya = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -221,7 +221,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/demit_nizaya
-	name = "Demit nizaya"
+	name = "奶油汤团"
 	reqs = list(
 		/obj/item/food/spaghetti/nizaya = 1,
 		/obj/item/food/grown/carrot = 1,
@@ -234,7 +234,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/mushroom_nizaya
-	name = "Mushroom nizaya"
+	name = "菌子汤团"
 	reqs = list(
 		/obj/item/food/spaghetti/nizaya = 1,
 		/obj/item/food/steeped_mushrooms = 1,
@@ -245,7 +245,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/rustic_flatbread
-	name = "Rustic flatbread"
+	name = "乡村粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -256,7 +256,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/italic_flatbread
-	name = "Italic flatbread"
+	name = "传统粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -268,7 +268,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/imperial_flatbread
-	name = "Imperial flatbread"
+	name = "皇帝粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/liver_pate = 1,
@@ -279,7 +279,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/rawmeat_flatbread
-	name = "Meatlovers flatbread"
+	name = "大肉粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/meat/slab = 1
@@ -288,7 +288,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/stinging_flatbread
-	name = "Stinging flatbread"
+	name = "爽口粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/canned/larvae = 1,
@@ -298,7 +298,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/zmorgast_flatbread
-	name = "Zmorgast flatbread"
+	name = "夹心粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/cucumber = 2,
@@ -309,7 +309,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/fish_flatbread
-	name = "BBQ fish flatbread"
+	name = "烤鱼粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/fishmeat = 2,
@@ -319,7 +319,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/mushroom_flatbread
-	name = "Mushroom and tomato flatbread"
+	name = "番茄菌菇粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/obj/item/food/grown/tomato = 1,
@@ -330,7 +330,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/nutty_flatbread
-	name = "Nut paste flatbread"
+	name = "坚果粗饼"
 	reqs = list(
 		/obj/item/food/root_flatbread = 1,
 		/datum/reagent/consumable/korta_flour = 5,
@@ -340,7 +340,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/emperor_roll
-	name = "Emperor roll"
+	name = "皇帝卷"
 	reqs = list(
 		/obj/item/food/rootroll = 1,
 		/obj/item/food/liver_pate = 1,
@@ -351,7 +351,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/honey_sweetroll
-	name = "Honey sweetroll"
+	name = "蜂蜜甜卷"
 	reqs = list(
 		/obj/item/food/rootroll = 1,
 		/obj/item/food/grown/berries = 1,
@@ -362,7 +362,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/black_eggs
-	name = "Black scrambled eggs"
+	name = "黑炒蛋"
 	reqs = list(
 		/obj/item/food/egg = 2,
 		/datum/reagent/blood = 5,
@@ -372,7 +372,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/patzikula
-	name = "Patzikula"
+	name = "酱鸡蛋"
 	reqs = list(
 		/obj/item/food/grown/tomato = 2,
 		/obj/item/food/grown/onion = 1,
@@ -383,7 +383,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/korta_brittle
-	name = "Korta brittle slab"
+	name = "科塔尔坚果糖"
 	reqs = list(
 		/obj/item/food/grown/korta_nut = 2,
 		/obj/item/food/butterslice = 1,
@@ -395,7 +395,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/korta_ice
-	name = "Korta ice"
+	name = "科塔尔刨冰"
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,
@@ -406,7 +406,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/candied_mushrooms
-	name = "Candied mushrooms"
+	name = "菌菇糖"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/steeped_mushrooms = 1,
@@ -417,7 +417,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/sauerkraut
-	name = "Sauerkraut"
+	name = "蜥蜴泡菜"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 2,
 		/datum/reagent/consumable/salt = 10
@@ -426,7 +426,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/lizard_dumplings
-	name = "Tiziran dumplings"
+	name = "缇兹兰饺子"
 	reqs = list(
 		/obj/item/food/grown/potato = 1,
 		/datum/reagent/consumable/korta_flour = 5
@@ -435,7 +435,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/steeped_mushrooms
-	name = "Steeped mushrooms"
+	name = "浸渍菌菇"
 	reqs = list(
 		/obj/item/food/grown/ash_flora/seraka = 1,
 		/datum/reagent/lye = 5
@@ -444,7 +444,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/rootbreadpbj
-	name = "Peanut butter and jelly rootwich"
+	name = "花生果酱三明治"
 	reqs = list(
 		/obj/item/food/breadslice/root = 2,
 		/datum/reagent/consumable/peanut_butter = 5,
@@ -454,7 +454,7 @@
 	category = CAT_LIZARD
 
 /datum/crafting_recipe/food/rootbreadpbb
-	name = "Peanut butter and banana rootwich"
+	name = "花生果酱香蕉三明治"
 	reqs = list(
 		/obj/item/food/breadslice/root = 2,
 		/datum/reagent/consumable/peanut_butter = 5,

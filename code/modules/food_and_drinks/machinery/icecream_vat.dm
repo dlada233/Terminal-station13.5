@@ -1,8 +1,8 @@
 #define PREFILL_AMOUNT 5
 
 /obj/machinery/icecream_vat
-	name = "ice cream vat"
-	desc = "Ding-aling ding dong. Get your Nanotrasen-approved ice cream!"
+	name = "冰淇淋车"
+	desc = "Ding-aling ding dong. 拿好你的Nanotrasen认证冰淇淋!"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "icecream_vat"
 	density = TRUE
@@ -45,7 +45,7 @@
 			var/obj/item/food/icecream/cone = new cone_path
 			if(cone.ingredients)
 				cone_prototypes[cone_path] = cone
-				cone.ingredients_text = "(Ingredients: [reagent_paths_list_to_text(cone.ingredients)])"
+				cone.ingredients_text = "(材料: [reagent_paths_list_to_text(cone.ingredients)])"
 			else
 				qdel(cone)
 
@@ -128,11 +128,11 @@
 		product_types[make_type] += amount
 		var/obj/item/food/icecream/cone = cone_prototypes[make_type]
 		if(cone)
-			visible_message(span_info("[user] cooks up some [cone.name]s."))
+			visible_message(span_info("[user]煮了一些[cone.name]."))
 		else
-			visible_message(span_info("[user] whips up some [make_type] icecream."))
+			visible_message(span_info("[user]制作了一些[make_type]冰淇淋."))
 	else
-		to_chat(user, span_warning("You don't have the ingredients to make this!"))
+		to_chat(user, span_warning("你没有做这个的原料!"))
 
 /obj/machinery/icecream_vat/Topic(href, href_list)
 	if(..())
@@ -142,7 +142,7 @@
 		var/datum/ice_cream_flavour/flavour = GLOB.ice_cream_flavours[href_list["select"]]
 		if(!flavour || flavour.hidden) //Nice try, tex.
 			return
-		visible_message(span_notice("[user] sets [src] to dispense [href_list["select"]] flavoured ice cream."))
+		visible_message(span_notice("[user]设置[src]分配[href_list["select"]]口味冰淇淋."))
 		selected_flavour = flavour.name
 
 	if(href_list["cone"])
@@ -154,9 +154,9 @@
 			var/obj/item/food/icecream/cone = new cone_path(get_turf(src))
 			if(!user.put_in_hands(cone))
 				cone.forceMove(drop_location())
-			visible_message(span_info("[user] dispenses a crunchy [cone.name] from [src]."))
+			visible_message(span_info("[user]分配到一个脆脆的[cone.name]从[src]."))
 		else
-			to_chat(user, span_warning("There are no [initial(cone_path.name)]s left!"))
+			to_chat(user, span_warning("没有[initial(cone_path.name)]剩余!"))
 
 	if(href_list["make"])
 		var/datum/ice_cream_flavour/flavour = GLOB.ice_cream_flavours[href_list["make"]]

@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/cubancarp
-	name = "Cuban carp"
+	name = "古巴鲤鱼"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/obj/item/food/grown/chili = 1,
@@ -9,7 +9,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishandchips
-	name = "Fish and chips"
+	name = "炸鱼薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/fishmeat = 1
@@ -18,7 +18,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishfingers
-	name = "Fish fingers"
+	name = "鱼柳条"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/obj/item/food/bun = 1,
@@ -28,7 +28,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishfry
-	name = "Fish fry"
+	name = "炸鱼"
 	reqs = list(
 		/obj/item/food/grown/corn = 1,
 		/obj/item/food/grown/peas = 1,
@@ -38,7 +38,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/sashimi
-	name = "Sashimi"
+	name = "胜利刺身"
 	reqs = list(
 		/datum/reagent/consumable/soysauce = 5,
 		/obj/item/food/spidereggs = 1,
@@ -48,7 +48,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishtaco
-	name ="Fish taco"
+	name ="鱼肉塔可"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -59,7 +59,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/vegetariansushiroll
-	name ="Vegetarian sushi roll"
+	name ="素食寿司卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -70,7 +70,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/spicyfiletroll
-	name ="Spicy filet sushi roll"
+	name ="辣鱼寿司卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -82,7 +82,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/nigiri_sushi
-	name ="Nigiri sushi"
+	name ="手握寿司"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -93,7 +93,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/meat_poke
-	name ="Meat poke"
+	name ="肉波奇饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/seaweedsheet = 1,
@@ -108,7 +108,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fish_poke
-	name ="Fish poke"
+	name ="鱼波奇饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/seaweedsheet = 1,
@@ -123,7 +123,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/futomaki_sushi_roll
-	name ="Futomaki sushi roll"
+	name ="太卷寿司"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -135,7 +135,7 @@
 	category = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/philadelphia_sushi_roll
-	name ="Philadelphia sushi roll"
+	name ="费城卷"
 	reqs = list(
 		/obj/item/food/seaweedsheet = 1,
 		/obj/item/food/boiledrice = 1,

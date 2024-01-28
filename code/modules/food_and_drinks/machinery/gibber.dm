@@ -1,6 +1,6 @@
 /obj/machinery/gibber//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
-	name = "gibber"
-	desc = "The name isn't descriptive enough?"
+	name = "歌唱机"
+	desc = "这个名字不够描述?"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grinder"
 	density = TRUE
@@ -16,11 +16,8 @@
 /obj/machinery/gibber/Initialize(mapload)
 	. = ..()
 	if(prob(5))
-		name = "meat grinder"
-		desc = "Okay, if I... if I chop you up in a meat grinder, and the only thing that comes out, that's left of you, is your eyeball, \
-			you'r- you're PROBABLY DEAD! You're probably going to - not you, I'm just sayin', like, if you- if somebody were to, like, \
-			push you into a meat grinder, and, like, your- one of your finger bones is still intact, they're not gonna pick it up and go, \
-			Well see, yeah it wasn't deadly, it wasn't an instant kill move! You still got, like, this part of your finger left!"
+		name = "歌唱机"
+		desc = "好吧，如果我...如果我把你放在绞肉机里剁碎，只剩下你的眼球!你可能会——不是你，我只是说，如果你——如果有人把你推到绞肉机里，而你的一根指骨还完好无损，他们不会把它捡起来然后说，嗯，看，这不是致命的，这不是一个立即致命的举动!"
 	add_overlay("grjam")
 
 /obj/machinery/gibber/RefreshParts()
@@ -37,10 +34,10 @@
 /obj/machinery/gibber/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Outputting <b>[meat_produced]</b> meat slab(s) after <b>[gibtime*0.1]</b> seconds of processing.")
+		. += span_notice("状态显示: 将输出<b>[meat_produced]</b>块肉(s)在经过<b>[gibtime*0.1]</b>秒加工后.")
 		for(var/datum/stock_part/servo/servo in component_parts)
 			if(servo.tier >= 2)
-				. += span_notice("[src] has been upgraded to process inorganic materials.")
+				. += span_notice("[src]已经升级到可以处理无机材料了.")
 
 /obj/machinery/gibber/update_overlays()
 	. = ..()
@@ -72,36 +69,36 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, span_danger("It's locked and running."))
+		to_chat(user, span_danger("锁上了还在运行."))
 		return
 
 	if(!anchored)
-		to_chat(user, span_warning("[src] cannot be used unless bolted to the ground!"))
+		to_chat(user, span_warning("[src]不能使用，需要将其螺栓固定在地面上!"))
 		return
 
 	if(user.pulling && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(!iscarbon(L))
-			to_chat(user, span_warning("This item is not suitable for [src]!"))
+			to_chat(user, span_warning("该物品不适合[src]!"))
 			return
 		var/mob/living/carbon/C = L
 		if(C.buckled || C.has_buckled_mobs())
-			to_chat(user, span_warning("[C] is attached to something!"))
+			to_chat(user, span_warning("[C]是附属于某物的!"))
 			return
 
 		if(!ignore_clothing)
 			for(var/obj/item/I in C.held_items + C.get_equipped_items())
 				if(!HAS_TRAIT(I, TRAIT_NODROP))
-					to_chat(user, span_warning("Subject may not have abiotic items on!"))
+					to_chat(user, span_warning("对象可能没有非生物物品!"))
 					return
 
-		user.visible_message(span_danger("[user] starts to put [C] into [src]!"))
+		user.visible_message(span_danger("[user]开始将[C]放入[src]!"))
 
 		add_fingerprint(user)
 
 		if(do_after(user, gibtime, target = src))
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
-				user.visible_message(span_danger("[user] stuffs [C] into [src]!"))
+				user.visible_message(span_danger("[user]将[C]放入[src]!"))
 				C.forceMove(src)
 				set_occupant(C)
 				update_appearance()
@@ -127,7 +124,7 @@
 
 /obj/machinery/gibber/verb/eject()
 	set category = "Object"
-	set name = "Empty gibber"
+	set name = "空歌唱机"
 	set src in oview(1)
 	if (usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
 		return
@@ -145,11 +142,11 @@
 	if(operating)
 		return
 	if(!occupant)
-		audible_message(span_hear("You hear a loud metallic grinding sound."))
+		audible_message(span_hear("你听到一声巨大的金属摩擦声."))
 		return
 
 	use_power(active_power_usage)
-	audible_message(span_hear("You hear a loud squelchy grinding sound."))
+	audible_message(span_hear("你听到一声响亮的磨碎声."))
 	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	operating = TRUE
 	update_appearance()

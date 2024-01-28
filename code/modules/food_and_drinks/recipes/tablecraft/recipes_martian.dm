@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/kimchi
-	name = "Kimchi"
+	name = "韩国泡菜"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 1,
 		/obj/item/food/grown/chili = 1,
@@ -9,7 +9,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/inferno_kimchi
-	name = "Inferno kimchi"
+	name = "地狱辣泡菜"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 1,
 		/obj/item/food/grown/ghost_chili = 1,
@@ -19,7 +19,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/garlic_kimchi
-	name = "Garlic kimchi"
+	name = "蒜蓉泡菜"
 	reqs = list(
 		/obj/item/food/grown/cabbage = 1,
 		/obj/item/food/grown/chili = 1,
@@ -30,7 +30,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/surimi
-	name = "Surimi"
+	name = "鱼糜"
 	reqs = list(
 		/obj/item/food/fishmeat = 1,
 	)
@@ -38,7 +38,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/sambal
-	name = "Sambal"
+	name = "参巴辣椒酱"
 	reqs = list(
 		/obj/item/food/grown/chili = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -50,7 +50,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/katsu_fillet
-	name = "Katsu fillet"
+	name = "日式煎猪排"
 	reqs = list(
 		/obj/item/food/meat/rawcutlet = 1,
 		/obj/item/food/breadslice/reispan = 1,
@@ -59,7 +59,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/rice_dough
-	name = "Rice dough"
+	name = "米粉团"
 	reqs = list(
 		/datum/reagent/consumable/flour = 10,
 		/datum/reagent/consumable/rice = 10,
@@ -69,7 +69,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/hurricane_rice
-	name = "Hurricane fried rice"
+	name = "旋风炒饭"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/egg = 1,
@@ -83,7 +83,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/ikareis
-	name = "Ikareis"
+	name = "墨汁鱿鱼炒饭"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/canned/squid_ink = 1,
@@ -96,7 +96,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/hawaiian_fried_rice
-	name = "Hawaiian fried rice"
+	name = "夏威夷炒饭"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/chapslice = 1,
@@ -109,7 +109,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/ketchup_fried_rice
-	name = "Ketchup fried rice"
+	name = "番茄酱炒饭"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/onion_slice = 1,
@@ -123,7 +123,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/mediterranean_fried_rice
-	name = "Mediterranean fried rice"
+	name = "地中海炒饭"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/onion_slice = 1,
@@ -136,7 +136,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/egg_fried_rice
-	name = "Egg fried rice"
+	name = "蛋炒饭"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/egg = 1,
@@ -146,7 +146,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/bibimbap
-	name = "Bibimbap"
+	name = "石锅拌饭"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/grown/cucumber = 1,
@@ -159,7 +159,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/bulgogi_noodles
-	name = "Bulgogi noodles"
+	name = "烤肉拌面"
 	reqs = list(
 		/obj/item/food/spaghetti/boilednoodles = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -172,7 +172,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/yakisoba_katsu
-	name = "Yakisoba katsu"
+	name = "炸猪排炒面"
 	reqs = list(
 		/obj/item/food/spaghetti/boilednoodles = 1,
 		/obj/item/food/grown/cabbage = 1,
@@ -185,7 +185,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/martian_fried_noodles
-	name = "Martian fried noodles"
+	name = "火星炒面"
 	reqs = list(
 		/obj/item/food/spaghetti/boilednoodles = 1,
 		/obj/item/food/grown/peanut = 2,
@@ -199,7 +199,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/simple_fried_noodles
-	name = "Simple fried noodles"
+	name = "炒面"
 	reqs = list(
 		/obj/item/food/spaghetti/boilednoodles = 1,
 		/datum/reagent/consumable/soysauce = 3,
@@ -208,7 +208,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/setagaya_curry
-	name = "Setagaya curry"
+	name = "世田谷咖喱"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/grown/apple = 1,
@@ -253,7 +253,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/king_katsu_sandwich
-	name = "King Katsu sandwich"
+	name = "肉王三明治"
 	reqs = list(
 		/obj/item/food/breadslice/reispan = 2,
 		/obj/item/food/katsu_fillet = 1,
@@ -266,7 +266,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/marte_cubano_sandwich
-	name = "Marte Cubano sandwich"
+	name = "古巴三明治"
 	reqs = list(
 		/obj/item/food/breadslice/reispan = 2,
 		/obj/item/food/meat/bacon = 1,
@@ -277,7 +277,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/little_shiro_sandwich
-	name = "Little Shiro sandwich"
+	name = "Little Shiro三明治"
 	reqs = list(
 		/obj/item/food/breadslice/reispan = 2,
 		/obj/item/food/meat/cutlet = 1,
@@ -290,7 +290,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/croque_martienne
-	name = "Croque-Martienne sandwich"
+	name = "火腿起司三明治"
 	reqs = list(
 		/obj/item/food/breadslice/reispan = 2,
 		/obj/item/food/meat/cutlet = 1,
@@ -302,7 +302,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/prospect_sunrise
-	name = "Prospect Sunrise sandwich"
+	name = "日升三明治"
 	reqs = list(
 		/obj/item/food/breadslice/reispan = 2,
 		/obj/item/food/meat/bacon = 1,
@@ -314,7 +314,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/takoyaki
-	name = "Takoyaki"
+	name = "章鱼小丸子"
 	reqs = list(
 		/obj/item/food/fishmeat/octopus = 1,
 		/obj/item/food/onion_slice = 1,
@@ -325,7 +325,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/russian_takoyaki
-	name = "Russian takoyaki"
+	name = "俄罗斯章鱼小丸子"
 	reqs = list(
 		/obj/item/food/fishmeat/octopus = 1,
 		/obj/item/food/grown/ghost_chili = 1,
@@ -336,7 +336,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/tacoyaki
-	name = "Tacoyaki"
+	name = "墨西哥小丸子"
 	reqs = list(
 		/obj/item/food/meatball = 1,
 		/obj/item/food/grown/corn = 1,
@@ -348,7 +348,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/okonomiyaki
-	name = "Okonomiyaki"
+	name = "御好烧"
 	reqs = list(
 		/datum/reagent/consumable/martian_batter = 6,
 		/datum/reagent/consumable/worcestershire = 3,
@@ -360,7 +360,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/brat_kimchi
-	name = "Brat-kimchi"
+	name = "炸泡菜"
 	reqs = list(
 		/obj/item/food/sausage = 1,
 		/obj/item/food/kimchi = 1,
@@ -370,7 +370,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/tonkatsuwurst
-	name = "Tonkatsuwurst"
+	name = "东胜香肠"
 	reqs = list(
 		/obj/item/food/sausage = 1,
 		/obj/item/food/fries = 1,
@@ -381,7 +381,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/ti_hoeh_koe
-	name = "Ti hoeh koe"
+	name = "炸猪血糕"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/peanuts/salted = 1,
@@ -392,7 +392,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/kitzushi
-	name = "Kitzushi"
+	name = "辣稻荷寿司"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/tofu = 1,
@@ -415,7 +415,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/roti_john
-	name = "Roti John"
+	name = "约翰面包"
 	reqs = list(
 		/obj/item/food/baguette = 1,
 		/obj/item/food/raw_meatball = 1,
@@ -428,7 +428,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/izakaya_fries
-	name = "Izakaya fries"
+	name = "居酒屋薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/grown/herbs = 1,
@@ -462,7 +462,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/wild_duck_fries
-	name = "Wild duck fries"
+	name = "酱鸭薯条"
 	reqs = list(
 		/obj/item/food/izakaya_fries = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -472,7 +472,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/little_hawaii_hotdog
-	name = "Little Hawaii hotdog"
+	name = "小夏威夷热狗"
 	reqs = list(
 		/obj/item/food/hotdog = 1,
 		/obj/item/food/pineappleslice = 1,
@@ -483,7 +483,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/salt_chilli_fries
-	name = "Salt n' chilli fries"
+	name = "椒盐薯条"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/grown/chili = 1,
@@ -495,7 +495,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/steak_croquette
-	name = "Steak croquette"
+	name = "铁板鱿鱼触手"
 	reqs = list(
 		/obj/item/food/meat/steak = 1,
 		/obj/item/food/mashed_potatoes = 1,
@@ -505,7 +505,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/chapsilog
-	name = "Chapsilog"
+	name = "炸牛排"
 	reqs = list(
 		/obj/item/food/grilled_chapslice = 2,
 		/obj/item/food/friedegg = 1,
@@ -516,7 +516,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/chap_hash
-	name = "Chap hash"
+	name = "烤盘杂烩"
 	reqs = list(
 		/obj/item/food/chapslice = 2,
 		/obj/item/food/egg = 1,
@@ -528,7 +528,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/agedashi_tofu
-	name = "Agedashi tofu"
+	name = "日式炸豆腐"
 	reqs = list(
 		/obj/item/food/tofu = 1,
 		/obj/item/food/onion_slice = 1,
@@ -539,7 +539,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/po_kok_gai
-	name = "Po kok gai"
+	name = "椰子咖喱鸡"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/meat/slab/chicken = 1,
@@ -550,7 +550,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/huoxing_tofu
-	name = "Huoxing tofu"
+	name = "火星豆腐"
 	reqs = list(
 		/obj/item/food/tofu = 1,
 		/obj/item/food/raw_meatball = 1,
@@ -562,7 +562,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/feizhou_ji
-	name = "Fēizhōu jī"
+	name = "非洲鸡"
 	reqs = list(
 		/obj/item/food/meat/slab/chicken = 1,
 		/obj/item/food/grown/chili = 1,
@@ -573,7 +573,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/galinha_de_cabidela
-	name = "Galinha de cabidela"
+	name = "卡比德拉米饭"
 	reqs = list(
 		/obj/item/food/meat/slab/chicken = 1,
 		/obj/item/food/grown/tomato = 1,
@@ -584,7 +584,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/katsu_curry
-	name = "Katsu curry"
+	name = "猪排咖喱"
 	reqs = list(
 		/obj/item/food/katsu_fillet = 1,
 		/obj/item/food/boiledrice = 1,
@@ -594,7 +594,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/beef_bowl
-	name = "Beef bowl"
+	name = "牛肉丼"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 1,
 		/obj/item/food/onion_slice = 1,
@@ -605,7 +605,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/salt_chilli_bowl
-	name = "Salt n' chilli octopus bowl"
+	name = "辣鱿鱼丼"
 	reqs = list(
 		/obj/item/food/grilled_octopus = 1,
 		/obj/item/food/grown/chili = 1,
@@ -618,7 +618,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/kansai_bowl
-	name = "Kansai bowl"
+	name = "关西丼"
 	reqs = list(
 		/obj/item/food/kamaboko_slice = 2,
 		/obj/item/food/boiledegg = 1,
@@ -630,7 +630,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/eigamudo_curry
-	name = "Eigamudo curry"
+	name = "臭咖喱"
 	reqs = list(
 		/obj/item/food/grown/olive = 1,
 		/obj/item/food/kimchi = 1,
@@ -654,7 +654,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/peking_duck_crepes
-	name = "Peking duck crepes a l'orange"
+	name = "橙鸭可丽"
 	reqs = list(
 		/obj/item/food/pancakes = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -665,7 +665,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/vulgaris_spekkoek
-	name = "Vulgaris spekkoek"
+	name = "香兰千层糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/ambrosia/vulgaris = 1,
@@ -675,7 +675,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/pineapple_foster
-	name = "Pineapple foster"
+	name = "菠萝甜碗"
 	reqs = list(
 		/obj/item/food/pineappleslice = 1,
 		/datum/reagent/consumable/caramel = 2,
@@ -686,7 +686,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/pastel_de_nata
-	name = "Pastel de nata"
+	name = "奶油蛋糕"
 	reqs = list(
 		/obj/item/food/pastrybase = 1,
 		/obj/item/food/grown/vanillapod = 1,
@@ -697,7 +697,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/boh_loh_yah
-	name = "Boh loh yah"
+	name = "菠萝包"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/butterslice = 1,
@@ -707,7 +707,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/banana_fritter
-	name = "Banana fritter"
+	name = "香蕉油酥"
 	reqs = list(
 		/obj/item/food/grown/banana = 1,
 		/datum/reagent/consumable/martian_batter = 2
@@ -716,7 +716,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/pineapple_fritter
-	name = "Pineapple fritter"
+	name = "菠萝油酥"
 	reqs = list(
 		/obj/item/food/pineappleslice = 1,
 		/datum/reagent/consumable/martian_batter = 2
@@ -725,7 +725,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/kasei_dango
-	name = "Kasei dango"
+	name = "日式丸子"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/datum/reagent/consumable/sugar = 5,
@@ -737,7 +737,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/pb_ice_cream_mochi
-	name = "Peanut-butter ice cream mochi"
+	name = "花生酱冰淇淋麻糬"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 5,
 		/datum/reagent/consumable/rice = 5,
@@ -748,7 +748,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/frozen_pineapple_pop
-	name = "Frozen pineapple pop"
+	name = "冰菠萝糖"
 	reqs = list(
 		/obj/item/food/pineappleslice = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -758,7 +758,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/sea_salt_pop
-	name = "Sea-salt ice cream bar"
+	name = "海盐雪糕"
 	reqs = list(
 		/datum/reagent/consumable/cream = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -769,7 +769,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/berry_topsicle
-	name = "Berry topsicle"
+	name = "浆果豆腐冰棒"
 	reqs = list(
 		/obj/item/food/tofu = 1,
 		/datum/reagent/consumable/berryjuice = 5,
@@ -780,7 +780,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/banana_topsicle
-	name = "Banana topsicle"
+	name = "香蕉豆腐冰棒"
 	reqs = list(
 		/obj/item/food/tofu = 1,
 		/datum/reagent/consumable/banana = 5,
@@ -791,7 +791,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/berry_topsicle
-	name = "Pineapple topsicle"
+	name = "菠萝豆腐冰棒"
 	reqs = list(
 		/obj/item/food/tofu = 1,
 		/datum/reagent/consumable/pineapplejuice = 5,
@@ -802,7 +802,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/plasma_dog_supreme
-	name = "Plasma Dog Supreme"
+	name = "等离子至尊狗"
 	reqs = list(
 		/obj/item/food/hotdog = 1,
 		/obj/item/food/pineappleslice = 1,
@@ -813,7 +813,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/frickles
-	name = "Frickles"
+	name = "辣丸子"
 	reqs = list(
 		/obj/item/food/pickle = 1,
 		/datum/reagent/consumable/martian_batter = 2,
@@ -823,7 +823,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/raw_ballpark_pretzel
-	name = "Raw ballpark pretzel"
+	name = "生椒盐卷饼"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/datum/reagent/consumable/salt = 2,
@@ -832,7 +832,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/raw_ballpark_tsukune
-	name = "Raw ballpark tsukune"
+	name = "生鸡肉串"
 	reqs = list(
 		/obj/item/food/raw_meatball/chicken = 1,
 		/datum/reagent/consumable/nutriment/soup/teriyaki = 2,
@@ -842,7 +842,7 @@
 	category = CAT_MARTIAN
 
 /datum/crafting_recipe/food/sprout_bowl
-	name = "Sprout bowl"
+	name = "鱼芽丼"
 	reqs = list(
 		/obj/item/food/pickled_voltvine = 1,
 		/obj/item/food/fishmeat = 1,
