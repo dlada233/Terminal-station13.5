@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 
 /obj/machinery/computer/department_orders
 	name = "department order console"
-	desc = "Used to order supplies for a department. Crates ordered this way will be locked until they reach their destination."
+	desc = "使用部门账户进行订货的控制台，以这种方式订购的货物将使用部门余额并额外加一层锁以确保安全性."
 	icon_screen = "supply"
 	light_color = COLOR_BRIGHT_ORANGE
 	///reference to the order we've made UNTIL it gets sent on the supply shuttle. this is so heads can cancel it
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	//needs to come BEFORE preventing actions!
 	if(action == "override_order")
 		if(!(override_access in id_card.GetAccess()))
-			balloon_alert(usr, "requires head of staff access!")
+			balloon_alert(usr, "需要主管权限!")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 			return
 
@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 		return
 
 	if(!check_access(id_card))
-		balloon_alert(usr, "access denied!")
+		balloon_alert(usr, "权限不足!")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
 
@@ -142,8 +142,8 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	id = text2path(id) || id
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 	if(!pack)
-		say("Something went wrong!")
-		CRASH("requested supply pack id \"[id]\" not found!")
+		say("出了什么问题!")
+		CRASH("请求补给包的ID \"[id]\" 未找到!")
 	if((pack.hidden && !(obj_flags & EMAGGED)) || (pack.special && !pack.special_enabled) || pack.drop_pod_only || pack.goody)
 		return
 	var/name = "*None Provided*"
@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 
 	if(SSshuttle.supply.get_order_count(pack) == OVER_ORDER_LIMIT)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		say("ERROR: No more then [CARGO_MAX_ORDER] of any pack may be ordered at once")
+		say("ERROR: 单次订货数量不能超过[CARGO_MAX_ORDER].")
 		return
 
 	department_order = new(
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	SSshuttle.shopping_list += department_order
 	if(!already_signalled)
 		RegisterSignal(SSshuttle, COMSIG_SUPPLY_SHUTTLE_BUY, PROC_REF(finalize_department_order))
-	say("Order processed. Cargo will deliver the crate when it comes in on their shuttle. NOTICE: Heads of staff may override the order.")
+	say("订单已受理. 货仓将负责运输. 注意: 部门主管可以撤销这次订货命令.")
 	calculate_cooldown(pack.cost)
 
 ///signal when the supply shuttle begins to spawn orders. we forget the current order preventing it from being overridden (since it's already past the point of no return on undoing the order)
@@ -211,44 +211,44 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	if (GLOB.department_order_cooldowns[type] > world.time)
 		on_cooldown = TRUE
 	else if (on_cooldown)
-		radio?.talk_into(src, "Order cooldown has expired! A new order may now be placed!", radio_channel)
+		radio?.talk_into(src, "部门订货冷却时间结束！可以下达新的订单了！", radio_channel)
 		playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 		on_cooldown = FALSE
 
 	return TRUE
 
 /obj/machinery/computer/department_orders/service
-	name = "service order console"
+	name = "服务订货控制台"
 	circuit = /obj/item/circuitboard/computer/service_orders
 	department_delivery_areas = list(/area/station/hallway/secondary/service, /area/station/service/bar/atrium)
 	override_access = ACCESS_HOP
 	req_one_access = list(ACCESS_SERVICE)
-	dep_groups = list("Service", "Food & Hydroponics", "Livestock", "Costumes & Toys")
+	dep_groups = list("服务用品", "食品&农业", "活物", "服装&玩具")
 	radio_key_typepath = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
 
 /obj/machinery/computer/department_orders/engineering
-	name = "engineering order console"
+	name = "工程订货控制台"
 	circuit = /obj/item/circuitboard/computer/engineering_orders
 	department_delivery_areas = list(/area/station/engineering/main)
 	override_access = ACCESS_CE
 	req_one_access = REGION_ACCESS_ENGINEERING
-	dep_groups = list("Engineering", "Engine Construction", "Canisters & Materials")
+	dep_groups = list("工程用品", "工程建造", "储罐&材料")
 	radio_key_typepath = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 
 /obj/machinery/computer/department_orders/science
-	name = "science order console"
+	name = "科研订货控制台"
 	circuit = /obj/item/circuitboard/computer/science_orders
 	department_delivery_areas = list(/area/station/science/research)
 	override_access = ACCESS_RD
 	req_one_access = REGION_ACCESS_RESEARCH
-	dep_groups = list("Science", "Livestock", "Canisters & Materials")
+	dep_groups = list("科研用品", "活物", "储罐&材料")
 	radio_key_typepath = /obj/item/encryptionkey/headset_sci
 	radio_channel = RADIO_CHANNEL_SCIENCE
 
 /obj/machinery/computer/department_orders/security
-	name = "security order console"
+	name = "安保订货控制台"
 	circuit = /obj/item/circuitboard/computer/security_orders
 	department_delivery_areas = list(
 		/area/station/security/office,
@@ -257,12 +257,12 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	)
 	override_access = ACCESS_HOS
 	req_one_access = REGION_ACCESS_SECURITY
-	dep_groups = list("Security", "Armory")
+	dep_groups = list("安保用品", "军械")
 	radio_key_typepath = /obj/item/encryptionkey/headset_sec
 	radio_channel = RADIO_CHANNEL_SECURITY
 
 /obj/machinery/computer/department_orders/medical
-	name = "medical order console"
+	name = "医疗订货控制台"
 	circuit = /obj/item/circuitboard/computer/medical_orders
 	department_delivery_areas = list(
 		/area/station/medical/medbay/central,
@@ -272,6 +272,6 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	)
 	override_access = ACCESS_CMO
 	req_one_access = REGION_ACCESS_MEDBAY
-	dep_groups = list("Medical")
+	dep_groups = list("医疗用品")
 	radio_key_typepath = /obj/item/encryptionkey/headset_med
 	radio_channel = RADIO_CHANNEL_MEDICAL

@@ -1,9 +1,9 @@
 /datum/market_item/clothing
-	category = "Clothing"
+	category = "服装"
 
 /datum/market_item/clothing/ninja_mask
-	name = "Space Ninja Mask"
-	desc = "Apart from being acid, lava, fireproof and being hard to take off someone it does nothing special on it's own."
+	name = "太空忍者面具"
+	desc = "除了防火防酸防摘取, 它本身没有什么特别的."
 	item = /obj/item/clothing/mask/gas/ninja
 
 	price_min = CARGO_CRATE_VALUE
@@ -12,8 +12,8 @@
 	availability_prob = 40
 
 /datum/market_item/clothing/durathread_vest
-	name = "Durathread Vest"
-	desc = "Don't let them tell you this stuff is \"Like asbestos\" or \"Pulled from the market for safety concerns\". It could be the difference between a robusting and a retaliation."
+	name = "Durathread-皮革背心"
+	desc = "不要相信他们告诉你这些东西\"石棉材质\"或\"出于安全考虑而从市场上撤下\"."
 	item = /obj/item/clothing/suit/armor/vest/durathread
 
 	price_min = CARGO_CRATE_VALUE
@@ -22,8 +22,8 @@
 	availability_prob = 50
 
 /datum/market_item/clothing/durathread_helmet
-	name = "Durathread Helmet"
-	desc = "Customers ask why it's called a helmet when it's just made from armoured fabric and I always say the same thing: No refunds."
+	name = "Durathread-皮革头盔"
+	desc = "顾客问我为什么叫头盔，因为它只是由装甲织物制成的，而我总是说同样的话：不退款."
 	item = /obj/item/clothing/head/helmet/durathread
 
 	price_min = CARGO_CRATE_VALUE * 0.5
@@ -32,8 +32,8 @@
 	availability_prob = 50
 
 /datum/market_item/clothing/full_spacesuit_set
-	name = "\improper Nanotrasen Branded Spacesuit Box"
-	desc = "A few boxes of \"Old Style\" space suits fell off the back of a space truck."
+	name = "Nanotrasen牌太空服"
+	desc = "几箱\"老式\"太空服从一辆太空卡车的后面掉了下来."
 	item = /obj/item/storage/box
 
 	price_min = CARGO_CRATE_VALUE * 7.5
@@ -43,15 +43,15 @@
 
 /datum/market_item/clothing/full_spacesuit_set/spawn_item(loc)
 	var/obj/item/storage/box/B = ..()
-	B.name = "Spacesuit Box"
-	B.desc = "It has an NT logo on it."
+	B.name = "太空服盒"
+	B.desc = "上面有NTlogo."
 	new /obj/item/clothing/suit/space(B)
 	new /obj/item/clothing/head/helmet/space(B)
 	return B
 
 /datum/market_item/clothing/chameleon_hat
-	name = "Chameleon Hat"
-	desc = "Pick any hat you want with this Handy device. Not Quality Tested."
+	name = "变色龙帽"
+	desc = "这个方便的头戴设备可以伪装成任何你想要的帽子，没有经过质检."
 	item = /obj/item/clothing/head/chameleon/broken
 
 	price_min = CARGO_CRATE_VALUE * 0.5
@@ -60,8 +60,8 @@
 	availability_prob = 70
 
 /datum/market_item/clothing/rocket_boots
-	name = "Rocket Boots"
-	desc = "We found a pair of jump boots and overclocked the hell out of them. No liability for grevious harm to or with a body."
+	name = "火箭靴"
+	desc = "我们找到了一双跳跃靴，然后超频了一下，对用户身体造成的严重伤害不承担任何责任."
 	item = /obj/item/clothing/shoes/bhop/rocket
 
 	price_min = CARGO_CRATE_VALUE * 5
@@ -70,9 +70,9 @@
 	availability_prob = 40
 
 /datum/market_item/clothing/anti_sec_pin
-	name = "Subversive Pin"
-	desc = "Exclusive and fashionable red pin from a limited run, proclaiming your allegiance to enemies of the Nanotrasen corporation. \
-		Contains an RFID chip which interferes with common scanning equipment, to ensure that they know you are serious. Share them with your friends!"
+	name = "亡命胸针"
+	desc = "红色限量版时尚别针，向Nanotrasen的敌人宣示你的忠诚. \
+	内含RFID芯片可以干扰普通扫描设备, 来确保他们知道你是玩真的. 和你的朋友分享吧!"
 	item = /obj/item/clothing/accessory/anti_sec_pin
 
 	price_min = CARGO_CRATE_VALUE * 0.5

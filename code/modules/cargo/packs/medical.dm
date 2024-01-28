@@ -1,11 +1,11 @@
 /datum/supply_pack/medical
-	group = "Medical"
+	group = "医疗用品"
 	access_view = ACCESS_MEDICAL
 	crate_type = /obj/structure/closet/crate/medical/department
 
 /datum/supply_pack/medical/bloodpacks
-	name = "Blood Pack Variety Crate"
-	desc = "Contains ten different blood packs for reintroducing blood to patients."
+	name = "血袋补给包"
+	desc = "内含十种不同选型的血袋."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/reagent_containers/blood = 2,
 					/obj/item/reagent_containers/blood/a_plus,
@@ -17,34 +17,34 @@
 					/obj/item/reagent_containers/blood/lizard,
 					/obj/item/reagent_containers/blood/ethereal,
 				)
-	crate_name = "blood freezer"
+	crate_name = "血袋冷藏箱"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/medical/medipen_variety
-	name = "Medipen Variety-Pak"
-	desc = "Contains eight different medipens in three different varieties, \
-		to assist in quickly treating seriously injured patients."
+	name = "医用注射笔包"
+	desc = "内含三种医用注射笔，总共八种药物，\
+		以抢救受伤最严重的患者."
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(/obj/item/reagent_containers/hypospray/medipen = 2,
 					/obj/item/reagent_containers/hypospray/medipen/ekit = 3,
 					/obj/item/reagent_containers/hypospray/medipen/blood_loss = 3)
-	crate_name = "medipen crate"
+	crate_name = "医用注射笔箱"
 	crate_type = /obj/structure/closet/crate/medical
 
 /datum/supply_pack/medical/coroner_crate
-	name = "Autopsy Kit"
-	desc = "Contains an autopsy scanner, when you lose your own and really \
-		need to complete your dissection experiments."
+	name = "解剖工具包"
+	desc = "内含一个解剖扫描仪，\
+		当你弄丢了原来的而又真正需要进行解剖时."
 	cost = CARGO_CRATE_VALUE * 2.5
 	contains = list(
 		/obj/item/autopsy_scanner = 1,
 		/obj/item/storage/medkit/coroner = 1,
 	)
-	crate_name = "autopsy kit crate"
+	crate_name = "解剖工具包"
 
 /datum/supply_pack/medical/chemical
-	name = "Chemical Starter Kit Crate"
-	desc = "Contains thirteen different chemicals, for all the fun experiments you can make."
+	name = "化学入门套件"
+	desc = "包含十三种不同的化学物质，做你想做的所有化学实验."
 	cost = CARGO_CRATE_VALUE * 2.6
 	contains = list(/obj/item/reagent_containers/cup/bottle/hydrogen,
 					/obj/item/reagent_containers/cup/bottle/carbon,
@@ -63,27 +63,27 @@
 					/obj/item/reagent_containers/dropper,
 					/obj/item/storage/box/beakers,
 				)
-	crate_name = "chemical crate"
+	crate_name = "化学材料箱"
 
 /datum/supply_pack/medical/defibs
-	name = "Defibrillator Crate"
-	desc = "Contains two defibrillators for bringing the recently deceased back to life."
+	name = "除颤器补给包"
+	desc = "内含两台起死回生用的除颤器."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/defibrillator/loaded = 2)
-	crate_name = "defibrillator crate"
+	crate_name = "除颤器箱"
 	crate_type = /obj/structure/closet/crate/medical
 
 /datum/supply_pack/medical/iv_drip
-	name = "IV Drip Crate"
-	desc = "Contains a single IV drip for administering blood to patients."
+	name = "输液架"
+	desc = "内含输液架两台."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/machinery/iv_drip)
-	crate_name = "iv drip crate"
+	crate_name = "输液架箱"
 	crate_type = /obj/structure/closet/crate/medical
 
 /datum/supply_pack/medical/supplies
-	name = "Medical Supplies Crate"
-	desc = "Contains a random assortment of medical supplies. German doctor not included."
+	name = "医疗用品包"
+	desc = "内含各种各样的医疗用品，不包含一个训练有素的医生."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/reagent_containers/cup/bottle/multiver,
 					/obj/item/reagent_containers/cup/bottle/epinephrine,
@@ -110,7 +110,7 @@
 					/obj/item/vending_refill/medical,
 					/obj/item/vending_refill/drugs,
 				)
-	crate_name = "medical supplies crate"
+	crate_name = "医疗用品箱"
 	crate_type = /obj/structure/closet/crate/medical
 
 /datum/supply_pack/medical/supplies/fill(obj/structure/closet/crate/C)
@@ -119,41 +119,41 @@
 		new item(C)
 
 /datum/supply_pack/medical/experimentalmedicine
-	name = "Experimental Medicine Crate"
-	desc = "A crate containing the medication required for living with Hereditary Manifold Sickness, Sansufentanyl."
+	name = "实验药物包"
+	desc = "装有治疗多种遗传性疾病所需药物的箱子.Sansufentanyl-三舒芬太尼."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/storage/pill_bottle/sansufentanyl = 2)
-	crate_name = "experimental medicine crate"
+	crate_name = "实验药物箱"
 	crate_type = /obj/structure/closet/crate/medical
 
 /datum/supply_pack/medical/surgery
-	name = "Surgical Supplies Crate"
-	desc = "Do you want to perform surgery, but don't have one of those fancy \
-		shmancy degrees? Just get started with this crate containing a DeForest surgery tray, \
-		Sterilizine spray and collapsible roller bed."
+	name = "手术用品包"
+	desc = "你立志成为一名外科医生，但苦于没有无用的学位证明？\
+		从这里继续你的梦想！内含DeForest手术托盘, \
+		消毒喷雾和可折叠的滚轮床."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/obj/item/surgery_tray/full,
 		/obj/item/reagent_containers/medigel/sterilizine,
 		/obj/item/emergency_bed,
 	)
-	crate_name = "surgical supplies crate"
+	crate_name = "手术用品箱"
 
 /datum/supply_pack/medical/salglucanister
-	name = "Heavy-Duty Saline Canister"
-	desc = "Contains a bulk supply of saline-glucose condensed into a single canister that \
-		should last several days, with a large pump to fill containers with. Direct injection \
-		of saline should be left to medical professionals as the pump is capable of overdosing \
-		patients."
+	name = "大型生理盐水储罐"
+	desc = "含有大量的葡萄糖-盐溶液的\
+		能用好几天的液体罐，自带的泵被用来补充注射容器，\
+		但不要直接对着患者使用泵，\
+		可能导致患者注射过量."
 	cost = CARGO_CRATE_VALUE * 6
 	access = ACCESS_MEDICAL
 	contains = list(/obj/machinery/iv_drip/saline)
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/medical/virus
-	name = "Virus Crate"
-	desc = "Contains twelve different bottles of several viral samples for virology \
-		research. Also includes seven beakers and syringes. Balled-up jeans not included."
+	name = "病毒学用品箱"
+	desc = "内含十二瓶不同的病毒样本，用于病毒学研究，\
+		还包括七个烧杯和注射器."
 	cost = CARGO_CRATE_VALUE * 5
 	access = ACCESS_CMO
 	access_view = ACCESS_VIROLOGY
@@ -170,13 +170,13 @@
 					/obj/item/storage/box/beakers,
 					/obj/item/reagent_containers/cup/bottle/mutagen,
 				)
-	crate_name = "virus crate"
+	crate_name = "病毒学用品箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	dangerous = TRUE
 
 /datum/supply_pack/medical/cmoturtlenecks
-	name = "Chief Medical Officer Turtlenecks"
-	desc = "Contains the CMO's turtleneck and turtleneck skirt."
+	name = "CMO毛衣包"
+	desc = "内含CMO的毛衣和毛衣裙."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_CMO
 	contains = list(/obj/item/clothing/under/rank/medical/chief_medical_officer/turtleneck,
@@ -184,9 +184,9 @@
 				)
 
 /datum/supply_pack/medical/arm_implants
-	name = "Strong-Arm Implant Set"
-	desc = "A crate containing two implants, which can be surgically implanted to empower the strength of human arms. Warranty void if exposed to electromagnetic pulses."
+	name = "大力臂 植入物"
+	desc = "一个装有两个大力臂植入物的箱子，可以通过手术植入来增强人类手臂的力量，不过如果暴露在EMP环境下则会失灵."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/organ/internal/cyberimp/arm/muscle = 2)
-	crate_name = "Strong-Arm implant crate"
+	crate_name = "大力臂 植入物"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE

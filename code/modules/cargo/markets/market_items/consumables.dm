@@ -1,9 +1,9 @@
 /datum/market_item/consumable
-	category = "Consumables"
+	category = "消耗品"
 
 /datum/market_item/consumable/clown_tears
-	name = "Bottle of Clown's Tears"
-	desc = "Guaranteed fresh from Weepy Boggins Tragic Kitchen"
+	name = "一瓶小丑之泪"
+	desc = "从哭泣的博金斯悲剧厨房的保证的新鲜眼泪."
 	item = /obj/item/reagent_containers/cup/bottle/clownstears
 	stock = 1
 
@@ -12,8 +12,8 @@
 	availability_prob = 10
 
 /datum/market_item/consumable/donk_pocket_box
-	name = "Box of Donk Pockets"
-	desc = "A well packaged box containing the favourite snack of every spacefarer."
+	name = "一盒口袋饼"
+	desc = "一个包装精美的盒子，里面装着每个太空人最喜欢的零食."
 	item = /obj/item/storage/box/donkpockets
 
 	stock_min = 2
@@ -23,8 +23,8 @@
 	availability_prob = 80
 
 /datum/market_item/consumable/suspicious_pills
-	name = "Bottle of Suspicious Pills"
-	desc = "A random cocktail of luxury drugs that are sure to put a smile on your face!"
+	name = "一瓶可疑的药丸"
+	desc = "一种随机的随机豪华混合药物，一定会让你脸上露出笑容!"
 	item = /obj/item/storage/pill_bottle
 
 	stock_min = 2
@@ -42,8 +42,8 @@
 	return new pillbottle(loc)
 
 /datum/market_item/consumable/floor_pill
-	name = "Strange Pill"
-	desc = "The Russian Roulette of the Maintenance Tunnels."
+	name = "奇怪的药丸"
+	desc = "维修管道中的俄罗斯轮盘赌."
 	item = /obj/item/reagent_containers/pill/maintenance
 
 	stock_min = 5
@@ -53,8 +53,8 @@
 	availability_prob = 50
 
 /datum/market_item/consumable/pumpup
-	name = "Maintenance Pump-Up"
-	desc = "Resist any Baton stun with this handy device!"
+	name = "管道兴奋剂"
+	desc = "用这个抵抗任何警棍击晕."
 	item = /obj/item/reagent_containers/hypospray/medipen/pumpup
 
 	stock_max = 3

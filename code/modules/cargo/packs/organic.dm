@@ -1,27 +1,27 @@
 /datum/supply_pack/organic
-	group = "Food & Hydroponics"
+	group = "食品&农业"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/hydroponics
 	access_view = ACCESS_HYDROPONICS
 
 /datum/supply_pack/organic/hydroponics/beekeeping_suits
-	name = "Beekeeper Suit Crate"
-	desc = "Bee business booming? Better be benevolent and boost botany by \
-		bestowing bi-Beekeeper-suits! Contains two beekeeper suits and matching headwear."
+	name = "养蜂人套装包"
+	desc = "蜂蜜生意兴隆? 购买两套养蜂人套装来促进农业发展，\
+		包含两套养蜂人套装和配套的头带装备."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/utility/beekeeper_head,
 					/obj/item/clothing/suit/utility/beekeeper_suit,
 					/obj/item/clothing/head/utility/beekeeper_head,
 					/obj/item/clothing/suit/utility/beekeeper_suit,
 				)
-	crate_name = "beekeeper suits"
+	crate_name = "养蜂人套装箱"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
-	name = "Beekeeping Starter Crate"
-	desc = "BEES BEES BEES. Contains three honey frames, a beekeeper suit and helmet, \
-		flyswatter, bee house, and, of course, a pure-bred Nanotrasen-Standardized Queen Bee!"
+	name = "养蜂入门套件"
+	desc = "BEES BEES BEES，内含三个巢框，养蜂人套装和蜂房，\
+		当然！还有纯种的Nanotrasen蜂后!"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/structure/beebox/unwrenched,
 					/obj/item/honey_frame = 3,
@@ -30,12 +30,12 @@
 					/obj/item/clothing/suit/utility/beekeeper_suit,
 					/obj/item/melee/flyswatter,
 				)
-	crate_name = "beekeeping starter crate"
+	crate_name = "养蜂入门套件箱"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/randomized/chef
-	name = "Excellent Meat Crate"
-	desc = "The best cuts in the whole galaxy. Contains a random assortment of exotic meats."
+	name = "上等肉类进口"
+	desc = "全银河系最好的屠宰中心，这里有各种各样的异星肉."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/food/meat/slab/human/mutant/slime,
 					/obj/item/food/meat/slab/killertomato,
@@ -49,7 +49,7 @@
 					/obj/item/food/meat/slab/human,
 					/obj/item/food/meat/slab/grassfed,
 				)
-	crate_name = "food crate"
+	crate_name = "食材箱"
 
 /datum/supply_pack/organic/randomized/chef/fill(obj/structure/closet/crate/C)
 	for(var/i in 1 to 15)
@@ -57,9 +57,9 @@
 		new item(C)
 
 /datum/supply_pack/organic/exoticseeds
-	name = "Exotic Seeds Crate"
-	desc = "Any entrepreneuring botanist's dream. Contains twelve different seeds, \
-		including one replica-pod seed and two mystery seeds!"
+	name = "异星种子包"
+	desc = "任何上进的植物学家的梦想，\
+		包含十二种不同的种子，其中有复制豆荚和两包神秘种子!"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_HYDROPONICS
 	contains = list(
@@ -76,14 +76,14 @@
 		/obj/item/seeds/shrub,
 		/obj/item/seeds/random = 2,
 	)
-	crate_name = "exotic seeds crate"
+	crate_name = "异星种子箱"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/food
-	name = "Food Crate"
-	desc = "Get things cooking with this crate full of useful ingredients! \
-		Contains a dozen eggs, three bananas, and some flour, rice, milk, \
-		soymilk, salt, pepper, enzyme, sugar, and monkeymeat."
+	name = "食材包"
+	desc = "用这个装满有用食材的板条箱做饭吧!\
+		含有一打鸡蛋、三根香蕉和一些面粉、大米、牛奶和豆浆，\
+		以及盐、胡椒、发酵酶、糖和猴子肉."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/reagent_containers/condiment/flour,
 					/obj/item/reagent_containers/condiment/rice,
@@ -97,12 +97,12 @@
 					/obj/item/food/meat/slab/monkey,
 					/obj/item/food/grown/banana = 3,
 				)
-	crate_name = "food crate"
+	crate_name = "食材箱"
 
 /datum/supply_pack/organic/randomized/chef/fruits
-	name = "Fruit Crate"
-	desc = "Rich of vitamins. Contains a lime, orange, watermelon, apple, \
-		berries and a lime."
+	name = "水果进口"
+	desc = "富含维生素，含有酸橙、甘橙、西瓜、苹果、浆果和\
+		柠檬."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/food/grown/citrus/lime,
 					/obj/item/food/grown/citrus/orange,
@@ -111,16 +111,16 @@
 					/obj/item/food/grown/berries,
 					/obj/item/food/grown/citrus/lemon,
 				)
-	crate_name = "food crate"
+	crate_name = "食材箱"
 
 /datum/supply_pack/organic/cream_piee
-	name = "High-yield Clown-grade Cream Pie Crate"
-	desc = "Designed by Aussec's Advanced Warfare Research Division, \
-		these high-yield, Clown-grade cream pies are powered by a synergy \
-		of performance and efficiency. Guaranteed to provide maximum results."
+	name = "高产小丑级香蕉奶油派"
+	desc = "这些高产量的小丑级香蕉奶油派由Aussec高级战争研究部门设计而出，\
+		得到了性能和效率的上的双重保证，\
+		保证提供最大的效果."
 	cost = CARGO_CRATE_VALUE * 12
 	contains = list(/obj/item/storage/backpack/duffelbag/clown/cream_pie)
-	crate_name = "party equipment crate"
+	crate_name = "派对用品盒"
 	contraband = TRUE
 	access = ACCESS_THEATRE
 	access_view = ACCESS_THEATRE
@@ -128,10 +128,10 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/organic/hydroponics
-	name = "Hydroponics Crate"
-	desc = "Supplies for growing a great garden! Contains two bottles of ammonia, \
-		two Plant-B-Gone spray bottles, a hatchet, cultivator, plant analyzer, \
-		as well as a pair of leather gloves and a botanist's apron."
+	name = "水培用品包"
+	desc = "包含一个伟大花园所需的用品! 包含两瓶氨水, \
+		两瓶Plant-B-Gone喷雾, 一把斧头, 小耙子, 植物分析仪, \
+		还有一双皮手套和植物学家的围裙."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/reagent_containers/spray/plantbgone = 2,
 					/obj/item/reagent_containers/cup/bottle/ammonia = 2,
@@ -141,26 +141,26 @@
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron,
 				)
-	crate_name = "hydroponics crate"
+	crate_name = "水培用品箱"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/hydroponics/hydrotank
-	name = "Hydroponics Backpack Crate"
-	desc = "Bring on the flood with this high-capacity backpack crate. \
-		Contains 500 units of life-giving H2O."
+	name = "背式水箱"
+	desc = "上次用这个导致全村抗洪，\
+		内含500u的生命之水."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_HYDROPONICS
 	contains = list(/obj/item/watertank)
-	crate_name = "hydroponics backpack crate"
+	crate_name = "背式水箱补给箱"
 	crate_type = /obj/structure/closet/crate/secure/hydroponics
 
 /datum/supply_pack/organic/pizza
-	name = "Pizza Crate"
-	desc = "Why visit the kitchen when you can have five random pizzas in a fraction of the time? \
-			Best prices this side of the galaxy! All deliveries are guaranteed to be 99% anomaly-free."
+	name = "披萨快递"
+	desc = "当你能在几分钟内就得到五个披萨时，为什么还要去厨房呢？\
+			全银河最优惠价格! 所有交货99%无异常."
 	cost = CARGO_CRATE_VALUE * 10 // Best prices this side of the galaxy.
 	contains = list()
-	crate_name = "pizza crate"
+	crate_name = "披萨箱"
 
 	///Whether we've provided an infinite pizza box already this shift or not.
 	var/anomalous_box_provided = FALSE
@@ -238,24 +238,24 @@
 
 /// tells crew that an infinite pizza box exists, half of the time, based on a roll in the anamolous box proc
 /datum/supply_pack/organic/pizza/proc/anomalous_pizza_report()
-	print_command_report("[station_name()], our anomalous materials divison has reported a missing object that is highly likely to have been sent to your station during a routine cargo \
-	delivery. Please search all crates and manifests provided with the delivery and return the object if is located. The object resembles a standard <b>\[DATA EXPUNGED\]</b> and is to be \
-	considered <b>\[REDACTED\]</b> and returned at your leisure. Note that objects the anomaly produces are specifically attuned exactly to the individual opening the anomaly; regardless \
-	of species, the individual will find the object edible and it will taste great according to their personal definitions, which vary significantly based on person and species.")
+	print_command_report("[station_name()], 我们的异常材料部门报告了一起物品失踪事件，据调查很可能是在一次例行送货中误送至你站. \
+	请检查所有的板条箱与货运清单，如若找到异常对象还请送回. \
+	该异常对象被列为<b>\[数据删除\]</b>项目，并且具有<b>\[数据删除\]</b>特性. 请务必注意，异常对象与打开该异常的个体将精确谐调，\
+	该个体会认为异常对象是可食用的，并且很美味.")
 
 /datum/supply_pack/organic/potted_plants
-	name = "Potted Plants Crate"
-	desc = "Spruce up the station with these lovely plants! Contains a random \
-		assortment of five potted plants from Nanotrasen's potted plant research division. \
-		Warranty void if thrown."
+	name = "盆栽包"
+	desc = "用这些可爱的盆栽装饰你的太空站!\
+		包含来自Nanotrasen盆栽植物研究部的五种随机盆栽植物. \
+		请勿用来投掷."
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(/obj/item/kirbyplants/random = 5)
-	crate_name = "potted plants crate"
+	crate_name = "盆栽植物箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/organic/seeds
-	name = "Seeds Crate"
-	desc = "Big things have small beginnings. Contains fifteen different seeds."
+	name = "种子包"
+	desc = "大事业总是从小开头，包含十五种不同的种子."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/seeds/chili,
 					/obj/item/seeds/cotton,
@@ -274,13 +274,13 @@
 					/obj/item/seeds/sugarcane,
 					/obj/item/seeds/cucumber,
 				)
-	crate_name = "seeds crate"
+	crate_name = "种子箱"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/randomized/chef/vegetables
-	name = "Vegetables Crate"
-	desc = "Grown in vats. Contains a chili, corn, tomato, potato, carrot, \
-		chanterelle, onion, pumpkin, and cucumber."
+	name = "蔬菜包"
+	desc = "长在大棚里，包含辣椒、玉米、番茄、土豆、胡萝卜、 \
+		鸡油菌、洋葱、南瓜和黄瓜."
 	cost = CARGO_CRATE_VALUE * 1.8
 	contains = list(/obj/item/food/grown/chili,
 					/obj/item/food/grown/corn,
@@ -292,12 +292,12 @@
 					/obj/item/food/grown/pumpkin,
 					/obj/item/food/grown/cucumber,
 				)
-	crate_name = "food crate"
+	crate_name = "食材箱"
 
 /datum/supply_pack/organic/grill
-	name = "Grilling Starter Kit"
-	desc = "Hey dad I'm Hungry. Hi Hungry I'm THE NEW GRILLING STARTER KIT \
-		ONLY 5000 BUX GET NOW! Contains a grill and fuel."
+	name = "烧烤入门工具套件"
+	desc = "Hey dad I'm Hungry. Hi Hungry I'm 新来的烧烤入门套件，\
+		限量5000份，内含一个烧烤架和燃料."
 	cost = CARGO_CRATE_VALUE * 8
 	crate_type = /obj/structure/closet/crate
 	contains = list(
@@ -306,65 +306,65 @@
 		/obj/item/reagent_containers/cup/soda_cans/monkey_energy,
 		/obj/machinery/grill/unwrenched,
 	)
-	crate_name = "grilling starter kit crate"
+	crate_name = "烧烤入门工具套件"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/organic/grillfuel
-	name = "Grilling Fuel Kit"
-	desc = "Contains propane and propane accessories. \
-		(Note: doesn't contain any actual propane.)"
+	name = "烧烤燃料包"
+	desc = "内含丙烷和丙烷附件. \
+		(注:不含任何丙烷.)"
 	cost = CARGO_CRATE_VALUE * 4
 	crate_type = /obj/structure/closet/crate
 	contains = list(/obj/item/stack/sheet/mineral/coal/ten,
 					/obj/item/reagent_containers/cup/soda_cans/monkey_energy,
 				)
-	crate_name = "grilling fuel kit crate"
+	crate_name = "烧烤燃料箱"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/organic/tiziran_supply
-	name = "Tiziran Supply Box"
-	desc = "A packaged box of supplies from the heart of the Lizard Empire. \
-		Contains a selection of Tiziran ingredients and basic foods."
+	name = "缇兹兰食材进口"
+	desc = "进口自蜥蜴帝国中心的一箱物资. \
+		包含缇兹兰特色食材."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/box/tiziran_goods,
 					/obj/item/storage/box/tiziran_cans,
 					/obj/item/storage/box/tiziran_meats,
 				)
-	crate_name = "\improper Tiziran Supply box"
+	crate_name = "缇兹兰食材箱"
 	crate_type = /obj/structure/closet/crate/cardboard/tiziran
 
 /datum/supply_pack/organic/mothic_supply
-	name = "Mothic Supply Box"
-	desc = "A packaged box of surplus supplies from the Mothic Fleet. \
-		Contains a selection of Mothic ingredients and basic foods."
+	name = "蛾类食材进口"
+	desc = "进口自蛾子舰队的一箱物资. \
+		包含蛾类特色食材."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/box/mothic_goods,
 					/obj/item/storage/box/mothic_cans_sauces,
 					/obj/item/storage/box/mothic_rations,
 				)
-	crate_name = "\improper Mothic Supply box"
+	crate_name = "蛾类食材箱"
 	crate_type = /obj/structure/closet/crate/cardboard/mothic
 
 /datum/supply_pack/organic/syrup
-	name = "Coffee Syrups Box"
-	desc = "A packaged box of various syrups, perfect for making your delicious coffee even more diabetic."
+	name = "咖啡糖浆包"
+	desc = "一盒包装好的各种糖浆，让你的美味咖啡更加甜蜜."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/reagent_containers/cup/bottle/syrup_bottle/caramel,
 		/obj/item/reagent_containers/cup/bottle/syrup_bottle/liqueur,
 		/obj/item/reagent_containers/cup/bottle/syrup_bottle/korta_nectar,
 	)
-	crate_name = "coffee syrups box"
+	crate_name = "咖啡糖浆箱"
 	crate_type = /obj/structure/closet/crate/cardboard
 
 /datum/supply_pack/organic/syrup_contraband
 	contraband = TRUE
-	name = "Contraband Syrups Box"
-	desc = "A packaged box containing illegal coffee syrups. Possession of these carries a penalty established in the galactic penal code."
+	name = "违禁糖浆进口"
+	desc = "装有非法咖啡糖浆的包装盒，在太空法中，持有这些武器将被判重刑."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/obj/item/reagent_containers/cup/bottle/syrup_bottle/laughsyrup,
 		/obj/item/reagent_containers/cup/bottle/syrup_bottle/laughsyrup,
 	)
-	crate_name = "illegal syrups box"
+	crate_name = "非法糖浆箱"
 	crate_type = /obj/structure/closet/crate/cardboard

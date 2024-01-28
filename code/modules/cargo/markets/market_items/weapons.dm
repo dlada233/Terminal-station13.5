@@ -1,9 +1,9 @@
 /datum/market_item/weapon
-	category = "Weapons"
+	category = "武器"
 
 /datum/market_item/weapon/bear_trap
-	name = "Bear Trap"
-	desc = "Get the janitor back at his own game with this affordable prank kit."
+	name = "捕熊陷阱"
+	desc = "用这个经济实惠的陷阱工具让清洁工知道他活在什么样的游戏里."
 	item = /obj/item/restraints/legcuffs/beartrap
 
 	price_min = CARGO_CRATE_VALUE * 1.5
@@ -12,10 +12,10 @@
 	availability_prob = 40
 
 /datum/market_item/weapon/shotgun_dart
-	name = "Shotgun Dart"
-	desc = "These handy darts can be filled up with any chemical and be shot with a shotgun! \
-	Prank your friends by shooting them with laughter! \
-	Not recommended for comercial use."
+	name = "化学霰弹"
+	desc = "这些方便的霰弹可以装载任何化学物质，用霰弹枪射击! \
+	带着笑容向你的朋友恶作剧! \
+	不建议用于商业用途."
 	item = /obj/item/ammo_casing/shotgun/dart
 
 	price_min = CARGO_CRATE_VALUE * 0.05
@@ -25,8 +25,8 @@
 	availability_prob = 40
 
 /datum/market_item/weapon/bone_spear
-	name = "Bone Spear"
-	desc = "Authentic tribal spear, made from real bones! A steal at any price, especially if you're a caveman."
+	name = "骨矛"
+	desc = "正宗的部落长矛，百分百真大骨！值得任何价格，尤其你是穴居人的话."
 	item = /obj/item/spear/bonespear
 
 	price_min = CARGO_CRATE_VALUE
@@ -35,8 +35,8 @@
 	availability_prob = 60
 
 /datum/market_item/weapon/chainsaw
-	name = "Chainsaw"
-	desc = "A lumberjack's best friend, perfect for cutting trees or limbs efficiently."
+	name = "电锯"
+	desc = "是伐木工人最好的朋友，非常适合高效地砍伐树木和四肢."
 	item = /obj/item/chainsaw
 
 	price_min = CARGO_CRATE_VALUE * 1.75
@@ -45,7 +45,7 @@
 	availability_prob = 35
 
 /datum/market_item/weapon/switchblade
-	name = "Switchblade"
+	name = "弹簧刀"
 	desc = "Tunnel Snakes rule!"
 	item = /obj/item/switchblade
 
@@ -55,8 +55,8 @@
 	availability_prob = 45
 
 /datum/market_item/weapon/emp_grenade
-	name = "EMP Grenade"
-	desc = "Use this grenade for SHOCKING results!"
+	name = "EMP 手榴弹"
+	desc = "使用这个手榴弹做出一番惊天壮举."
 	item = /obj/item/grenade/empgrenade
 
 	price_min = CARGO_CRATE_VALUE * 0.5
@@ -65,8 +65,8 @@
 	availability_prob = 50
 
 /datum/market_item/weapon/fisher
-	name = "SC/FISHER Saboteur Handgun"
-	desc = "A self-recharging, compact pistol that disrupts flashlights and security cameras, if only temporarily. Also usable in melee."
+	name = "SC/FISHER 破坏者手枪"
+	desc = "这是一款可以自充电的小型手枪，可以暂时干扰手电筒和安保摄像头，也可以在近战中使用."
 	item = /obj/item/gun/energy/recharge/fisher
 
 	price_min = CARGO_CRATE_VALUE * 2

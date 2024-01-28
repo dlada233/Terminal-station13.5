@@ -2,23 +2,23 @@
 
 /datum/supply_pack/exploration
 	special = TRUE
-	group = "Outsourced"
+	group = "外来物"
 
 /datum/supply_pack/exploration/scrapyard
-	name = "Scrapyard Crate"
-	desc = "Outsourced crate containing various junk."
+	name = "废品箱"
+	desc = "包含各种废品的外来板条箱."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/relic,
 					/obj/item/broken_bottle,
 					/obj/item/pickaxe/rusted)
-	crate_name = "scrapyard crate"
+	crate_name = "废品箱"
 
 /datum/supply_pack/exploration/catering
-	name = "Catering Crate"
-	desc = "No cook? No problem! Food quality may vary depending on provider."
+	name = "餐饮箱"
+	desc = "没做饭？没问题！注意：食品质量因供应对象而异"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/food/sandwich = 5)
-	crate_name = "outsourced food crate"
+	crate_name = "外来餐饮箱"
 
 /datum/supply_pack/exploration/catering/fill(obj/structure/closet/crate/crate)
 	. = ..()
@@ -27,14 +27,14 @@
 
 	for(var/obj/item/food/food_item in crate)
 		// makes all of our items GROSS
-		food_item.name = "spoiled [food_item.name]"
+		food_item.name = "不可食用的[food_item.name]"
 		food_item.AddComponent(/datum/component/edible, foodtypes = GROSS)
 
 /datum/supply_pack/exploration/shrubbery
-	name = "Shrubbery Crate"
-	desc = "Crate full of hedge shrubs."
+	name = "灌木箱"
+	desc = "满是灌木的板条箱."
 	cost = CARGO_CRATE_VALUE * 5
-	crate_name = "shrubbery crate"
+	crate_name = "灌木箱"
 	var/shrub_amount = 8
 
 /datum/supply_pack/exploration/shrubbery/fill(obj/structure/closet/crate/C)

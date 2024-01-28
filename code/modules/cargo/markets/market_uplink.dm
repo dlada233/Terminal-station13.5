@@ -144,8 +144,8 @@
 			selected_item = null
 
 /obj/item/market_uplink/blackmarket
-	name = "\improper Black Market Uplink"
-	desc = "An illegal black market uplink. If command wanted you to have these, they wouldn't have made it so hard to get one."
+	name = "黑市上行链路"
+	desc = "非法的黑市上行链路."
 	icon = 'icons/obj/blackmarket.dmi'
 	icon_state = "uplink"
 	//The original black market uplink
@@ -153,7 +153,7 @@
 
 
 /datum/crafting_recipe/blackmarket_uplink
-	name = "Black Market Uplink"
+	name = "黑市上行链路"
 	result = /obj/item/market_uplink/blackmarket
 	time = 30
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_MULTITOOL)

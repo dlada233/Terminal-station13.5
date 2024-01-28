@@ -37,17 +37,17 @@
 		var/price = I.price + shipping[method]
 
 		if(!uplink.current_user)///There is no ID card on the user, or the ID card has no account
-			to_chat(user, span_warning("The uplink sparks, as it can't identify an ID card with a bank account on you."))
+			to_chat(user, span_warning("上行链路蹦出火花, 因为它无法识别到你的银行账户."))
 			return FALSE
 		var/balance = uplink?.current_user.account_balance
 
 		// I can't get the price of the item and shipping in a clean way to the UI, so I have to do this.
 		if(balance < price)
-			to_chat(user, span_warning("You don't have enough credits in [uplink] for [I] with [method] shipping."))
+			to_chat(user, span_warning("你没有足够的信用点在 [uplink]中以[method]方式购买[I]."))
 			return FALSE
 
 		if(I.buy(uplink, user, method))
-			uplink.current_user.adjust_money(-price, "Other: Third Party Transaction")
+			uplink.current_user.adjust_money(-price, "Other: 第三方交易")
 			if(ismob(user))
 				var/mob/m_user = user
 				m_user.playsound_local(get_turf(m_user), 'sound/machines/twobeep_high.ogg', 50, TRUE)
@@ -55,7 +55,7 @@
 		return FALSE
 
 /datum/market/blackmarket
-	name = "Black Market"
+	name = "黑市"
 	shipping = list(SHIPPING_METHOD_LTSRBT =50,
 					SHIPPING_METHOD_LAUNCH =10,
 					SHIPPING_METHOD_TELEPORT=75)

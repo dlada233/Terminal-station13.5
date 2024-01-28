@@ -1,9 +1,9 @@
 /datum/market_item/tool
-	category = "Tools"
+	category = "工具"
 
 /datum/market_item/tool/caravan_wrench
-	name = "Experimental Wrench"
-	desc = "The extra fast and handy wrench you always wanted!"
+	name = "实验性扳手"
+	desc = "是你一直想要的更快和更便捷的扳手."
 	item = /obj/item/wrench/caravan
 	stock = 1
 
@@ -12,8 +12,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/caravan_wirecutters
-	name = "Experimental Wirecutters"
-	desc = "The extra fast and handy wirecutters you always wanted!"
+	name = "实验性剪线钳"
+	desc = "是你一直想要的更块和更便捷的剪线钳."
 	item = /obj/item/wirecutters/caravan
 	stock = 1
 
@@ -22,8 +22,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/caravan_screwdriver
-	name = "Experimental Screwdriver"
-	desc = "The extra fast and handy screwdriver you always wanted!"
+	name = "实验性螺丝刀"
+	desc = "是你一直想要的更块和更便捷的螺丝刀."
 	item = /obj/item/screwdriver/caravan
 	stock = 1
 
@@ -32,8 +32,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/caravan_crowbar
-	name = "Experimental Crowbar"
-	desc = "The extra fast and handy crowbar you always wanted!"
+	name = "实验性撬棍"
+	desc = "是你一直想要的更块和更便捷的撬棍."
 	item = /obj/item/crowbar/red/caravan
 	stock = 1
 
@@ -42,8 +42,8 @@
 	availability_prob = 20
 
 /datum/market_item/tool/binoculars
-	name = "Binoculars"
-	desc = "Increase your sight by 150% with this handy Tool!"
+	name = "双筒望远镜"
+	desc = "用这个方便的工具增加你的视野150%."
 	item = /obj/item/binoculars
 	stock = 1
 
@@ -52,8 +52,8 @@
 	availability_prob = 30
 
 /datum/market_item/tool/riot_shield
-	name = "Riot Shield"
-	desc = "Protect yourself from an unexpected Riot at your local Police department!"
+	name = "防爆盾牌"
+	desc = "从条子暴动中保护自己."
 	item = /obj/item/shield/riot
 
 	price_min = CARGO_CRATE_VALUE * 2.25
@@ -62,8 +62,8 @@
 	availability_prob = 50
 
 /datum/market_item/tool/thermite_bottle
-	name = "Thermite Bottle"
-	desc = "30u of Thermite to assist in creating a quick access point or get away!"
+	name = "铝热剂瓶"
+	desc = "30u的铝热剂，帮助你快速切开一个入口."
 	item = /obj/item/reagent_containers/cup/bottle/thermite
 
 	price_min = CARGO_CRATE_VALUE * 2.5
@@ -72,8 +72,8 @@
 	availability_prob = 30
 
 /datum/market_item/tool/science_goggles
-	name = "Science Goggles"
-	desc = "These glasses scan the contents of containers and projects their contents to the user in an easy to read format."
+	name = "科研护目镜"
+	desc = "这些护目镜可以扫描容器的内容物并提供可视化数据."
 	item = /obj/item/clothing/glasses/science
 
 	price_min = CARGO_CRATE_VALUE * 0.75
@@ -86,10 +86,10 @@
  */
 /datum/market_item/tool/fake_scanner
 	name = "Clowny N-spect scanner"
-	desc = "This UPGRADED N-spect scanner can play FIVE HIGH-QUALITY SOUNDS (fork required for sound adjustment not included) and print reports \
-	LIGHTNING FAST (screwdriver necessary to activate maximum speed not included). We make no claims as to the usefulness of the reports printed by this. \
-	Any and all implied warranties are void if the device is touched, moved, kicked, thrown or modified with bananium sheets. Batteries included. \
-	Crowbar necessary to change batteries and adjust settings not included."
+	desc = "这款升级的N-spect扫描仪可以播放五种高质量的声音(不附赠声音调节所需叉子)和闪电般的打印速度(不附赠速度调节所需螺丝刀). \
+	我们不要求它发表的报告是否有用. \
+	如果设备被触摸、移动、踢、扔或用香蕉片改造，以上任何保证都将失效. \
+	附赠电池，但不附赠更换电池和调整设置所需的撬棍."
 	item = /obj/item/inspector/clown
 
 	price_min = CARGO_CRATE_VALUE * 1.15
@@ -98,8 +98,8 @@
 	availability_prob = 50
 
 /datum/market_item/tool/program_disk
-	name = "Bootleg Data Disk"
-	desc = "A data disk containing EXCLUSIVE and LIMITED modular programs. Legally, we're not allowed to tell you how we aquired them."
+	name = "盗版数据盘"
+	desc = "包含EXCLUSIVE和LIMITED模块程序的数据磁盘，从法律上讲，我不能告诉你我是怎么得到的."
 	item = /obj/item/computer_disk/black_market
 	price_min = CARGO_CRATE_VALUE * 0.75
 	price_max = CARGO_CRATE_VALUE * 2

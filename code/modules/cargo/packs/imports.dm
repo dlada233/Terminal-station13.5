@@ -7,83 +7,83 @@
  */
 
 /datum/supply_pack/imports
-	group = "Imports"
-	crate_name = "emergency crate"
+	group = "进口商品"
+	crate_name = "应急用品箱"
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/imports/foamforce
-	name = "Foam Force Crate"
-	desc = "Break out the big guns with eight Foam Force shotguns!"
+	name = "泡沫霰弹包"
+	desc = "用八支泡沫霰弹枪来击破大枪吧!"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/gun/ballistic/shotgun/toy = 8)
-	crate_name = "foam force crate"
+	crate_name = "泡沫霰弹箱"
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/imports/foamforce/bonus
-	name = "Foam Force Pistols Crate"
-	desc = "Psst.. hey bud... remember those old foam force pistols that got discontinued for being too cool? \
-		Well I got two of those right here with your name on em. I'll even throw in a spare mag for each, waddya say?"
+	name = "泡沫手枪包"
+	desc = "嘘..嗨嗨...还记得那些因为太酷而停产的老式泡沫手枪吗? \
+		我这里有两把，上面有你的名字，我还会给你一个备用弹匣呢，怎么说?"
 	contraband = TRUE
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/gun/ballistic/automatic/pistol/toy = 2,
 		/obj/item/ammo_box/magazine/toy/pistol = 2,
 	)
-	crate_name = "foam force crate"
+	crate_name = "泡沫手枪箱"
 
 /datum/supply_pack/imports/meatmeatmeatmeat // MEAT MEAT MEAT MEAT
-	name = "MEAT MEAT MEAT MEAT MEAT"
-	desc = "MEAT MEAT MEAT MEAT MEAT MEAT"
+	name = "肉 肉 肉 肉 肉"
+	desc = "肉 肉 肉 肉 肉 肉"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/storage/backpack/meat)
-	crate_name = "MEAT MEAT MEAT MEAT MEAT"
+	crate_name = "肉 肉 肉 肉 肉"
 	crate_type = /obj/structure/closet/crate/necropolis
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/duct_spider
-	name = "Duct Spider Crate"
-	desc = "Awww! Straight from the Australicus sector to your station's ventilation system!"
+	name = "管道蜘蛛包"
+	desc = "Awww!直接从闹大利亚到您的通风系统!"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/mob/living/basic/spider/maintenance)
-	crate_name = "duct spider crate"
+	crate_name = "管道蜘蛛箱"
 	crate_type = /obj/structure/closet/crate/critter
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/imports/duct_spider/dangerous
-	name = "Duct Spider Crate?"
-	desc = "Wait, is this the right crate? It has a frowny face, what does that mean?"
+	name = "管道蜘蛛包?"
+	desc = "等下, 是这个箱子吗? 上面有一张皱眉的脸，这是什么意思?"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/mob/living/basic/spider/giant/hunter)
 	contraband = TRUE
 
 /datum/supply_pack/imports/bamboo50
-	name = "50 Bamboo Cuttings"
-	desc = "You have no idea how many pandas we had to kill to get this bamboo."
+	name = "50条竹条"
+	desc = "你不知道我们杀了多少熊猫才得到这些竹子."
 	cost = CARGO_CRATE_VALUE * 15
 	contains = list(/obj/item/stack/sheet/mineral/bamboo/fifty)
-	crate_name = "bamboo cuttings crate"
+	crate_name = "50条竹条"
 
 /datum/supply_pack/imports/bananium
-	name = "A Single Sheet of Bananium"
-	desc = "Don't let the clown know that he can order this. It costs a fortune even for this much."
+	name = "一块蕉板"
+	desc = "别让那个小丑知道他可以订购这个."
 	cost = CARGO_CRATE_VALUE * 100
 	contains = list(/obj/item/stack/sheet/mineral/bananium)
-	crate_name = "bananium sheet crate"
+	crate_name = "蕉板箱"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/naturalbait
-	name = "Freshness Jars full of Natural Bait"
-	desc = "Homemade in the Spinward Sector."
+	name = "天然鱼饵罐头"
+	desc = "纯天然自制."
 	cost = 2000 //rock on
 	contains = list(/obj/item/storage/pill_bottle/naturalbait)
-	crate_name = "fishing bait crate"
+	crate_name = "鱼饵箱"
 
 /datum/supply_pack/imports/dumpstercorpse
-	name = "A....Dumpster?"
-	desc = "Why does it smell so bad...."
+	name = "....垃圾?"
+	desc = "为什么闻起来这么糟糕...."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/mob/living/carbon/human)
-	crate_name = "putrid dumpster"
+	crate_name = "腐烂的垃圾桶"
 	crate_type = /obj/structure/closet/crate/trashcart
 
 /datum/supply_pack/imports/dumpstercorpse/generate()
@@ -92,26 +92,26 @@
 	corpse.death()
 
 /datum/supply_pack/imports/dumpsterloot
-	name = "A....Dumpster"
-	desc = "I'm not sure why you bothered to buy this...and why does it cost so much?"
+	name = "....垃圾"
+	desc = "我不知道你为什么要买这个...为什么这么贵？"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/effect/spawner/random/maintenance/three,
 		/obj/effect/spawner/random/trash/garbage = 5,
 	)
-	crate_name = "putrid dumpster"
+	crate_name = "腐烂的垃圾桶"
 	crate_type = /obj/structure/closet/crate/trashcart
 
 /datum/supply_pack/imports/error
 	name = "NULL_ENTRY"
-	desc = "(*!&@#OKAY, OPERATIVE, WE SEE HOW MUCH MONEY YOU'RE FLAUNTING. FINE. HAVE THIS, AND GOOD LUCK PUTTING IT TOGETHER!#@*$"
+	desc = "(*!&@#行吧，特工，我们知道你在炫耀多少钱了，很好，有了这个，祝你好运!#@*$"
 	cost = CARGO_CRATE_VALUE * 100
 	hidden = TRUE
 	contains = list(/obj/item/book/granter/crafting_recipe/regal_condor)
 
 /datum/supply_pack/imports/mafia
-	name = "Cosa Nostra Starter Pack"
-	desc = "This crate contains everything you need to set up your own ethnicity-based racketeering operation."
+	name = "科萨·诺斯特拉入门包"
+	desc = "这个箱子包含了你建立自己的基于种族的敲诈勒索业务所需的一切."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list()
 	contraband = TRUE
@@ -126,10 +126,10 @@
 		new /obj/item/switchblade(our_crate)
 
 /datum/supply_pack/imports/blackmarket_telepad
-	name = "Black Market LTSRBT"
-	desc = "Need a faster and better way of transporting your illegal goods from and to the \
-		station? Fear not, the Long-To-Short-Range-Bluespace-Transceiver (LTSRBT for short) \
-		is here to help. Contains a LTSRBT circuit, two bluespace crystals, and one ansible."
+	name = "黑市 LTSRBT"
+	desc = "需要一种更快更好的方式将你的非法货物运送到站点吗? \
+		别担心, 长短距蓝空收发器(LTSRBT)可以帮到你，\
+		内含一个LTSRBT电路板，两个蓝空晶体和一个安塞波."
 	cost = CARGO_CRATE_VALUE * 20
 	contraband = TRUE
 	contains = list(
@@ -139,22 +139,22 @@
 	)
 
 /datum/supply_pack/imports/contraband
-	name = "'Contraband' Crate"
-	desc = "Psst.. bud... want some contraband? I can get you a poster, some nice cigs, dank, even some \
-		sponsored items...you know, the good stuff. Just keep it away from the cops, kay?"
+	name = "'违禁品'"
+	desc = "嘘.. 嘿...想要违禁品嘛? 我可以给你一张海报、几条好烟以及一些赞助项目...\
+		你懂的，好东西.别让条子看到了，好吗?"
 	contraband = TRUE
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(
 		/obj/effect/spawner/random/contraband = 5,
 	)
-	crate_name = "crate"
+	crate_name = "板条箱"
 
 /datum/supply_pack/imports/wt550
-	name = "Smuggled WT-550 Autorifle Crate"
-	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE CAN'T GET YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BUT, BY \
-		SMUGGLING THIS CRATE THROUGH A FEW OUTDATED CUSTOMS CHECKPOINTS, WE'VE THE NEXT BEST THING! \
-		SERVICE AUTORIFLES. DON'T WORRY, THE RUMORS ABOUT THE GUN MELTING YOU ARE JUST THAT! RUMORS! \
-		THESE THINGS WORK FINE! MIGHT BE SLIGHTLY DIRTY.!#@*$"
+	name = "走私 WT-550自动步枪"
+	desc = "(*!&@#好消息, 特工! 虽然我们没法直接给你最顶级的自动武器.\
+		但在走私时使用几个失效海关检查站，我们就有办法输送给你这些顶级武器了! \
+		WT-550自动步枪，别担心，这把枪会把你融化只是一个谣言! \
+		这东西很好用，只是有点脏罢了!#@*$"
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(
@@ -163,8 +163,8 @@
 	)
 
 /datum/supply_pack/imports/wt550ammo
-	name = "Smuggled WT-550 Ammo Crate"
-	desc = "(*!&@#OPERATIVE, YOU LIKE THAT WT-550? THEN WHY NOT EQUIP YOURSELF WITH SOME MORE AMMO!!#@*$"
+	name = "走私 WT-550弹药补给"
+	desc = "(*!&@#特工, 喜欢耍WT-550? 那为什么不戴上更多弹药!!#@*$"
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
@@ -172,13 +172,13 @@
 		/obj/item/ammo_box/magazine/wt550m9/wtap = 2,
 		/obj/item/ammo_box/magazine/wt550m9/wtic = 2,
 	)
-	crate_name = "emergency crate"
+	crate_name = "应急用品箱"
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/imports/shocktrooper
-	name = "Shocktrooper Crate"
-	desc = "(*!&@#WANT TO PUT THE FEAR OF DEATH INTO YOUR ENEMIES? THIS CRATE OF GOODIES CAN HELP MAKE THAT A REALITY. \
-		CONTAINS AN ARMOR VEST AND HELMET, A BOX OF FIVE EMP GRENADES, THREE SMOKEBOMBS, TWO GLUON GRENADES AND TWO FRAG GRENADES!#@*$"
+	name = "掷弹兵套装"
+	desc = "(*!&@#想让你的敌人陷入死亡的恐惧中嘛? 这一箱好东西可以帮助你实现这个愿望. \
+		包含一套护甲背心和头盔, 一盒五枚的EMP手榴弹, 三枚烟雾弹, 两枚胶子手榴弹和两枚破片手榴弹!#@*$"
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
@@ -191,9 +191,9 @@
 	)
 
 /datum/supply_pack/imports/specialops
-	name = "Special Ops Crate"
-	desc = "(*!&@#THE PIGS ON YOUR TAIL? MAYBE YOU CAN BUY SOME TIME WITH THIS CRATE! \
-		CONTAINS A CHAMELEON MASK, BELT AND JUMPSUIT, MIRAGE GRENADES AND AN AGENT CARD! AND A KNIFE!!#@*$"
+	name = "特工补给"
+	desc = "(*!&@#亡命天涯了? 也许这些补给能给你争取点时间! \
+		内含变色龙面具, 腰带和连体衣, 幻象手榴弹和一张特工卡! 还有一把刀!!#@*$"
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
@@ -242,19 +242,19 @@
 // SKYRAT EDIT REMOVAL END
 
 /datum/supply_pack/imports/moistnuggets
-	name = "Refurbished Sakhno Precision Rifle Crate"
-	desc = "Hello Comrade Operative. You need gun? You hate garbage we sell to station normally? \
-		Then we have the perfect weapon for you! Special price for good friends! \
-		We don't have enough spare ammo, so you'll have to pick up the weapon of \
-		dead comrade when you run out."
+	name = "翻新的 Sakhno栓动步枪"
+	desc = "你好，特工同志.你需要枪吗？你已经厌倦我们卖给站点的垃圾了吗？\
+		那我们为你准备了完美的武器！特别友情价！ \
+		但很不幸我们没有多余的弹药, 所以当你用光了所有弹药的时候，\
+		你必须捡起死去战友的武器."
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/gun/ballistic/rifle/boltaction = 6)
 
 /datum/supply_pack/imports/vehicle
-	name = "Biker Gang Kit" //TUNNEL SNAKES OWN THIS TOWN
-	desc = "TUNNEL SNAKES OWN THIS TOWN. Contains an unbranded All Terrain Vehicle, and a \
-		complete gang outfit -- consists of black gloves, a menacing skull bandanna, and a SWEET leather overcoat!"
+	name = "摩托帮套装" //TUNNEL SNAKES OWN THIS TOWN
+	desc = "隧道之蛇统治这个小镇，包含一辆无牌全地形车，\
+		和一套完整的帮派装备-黑色手套、头骨头巾和真皮大衣!"
 	cost = CARGO_CRATE_VALUE * 4
 	contraband = TRUE
 	contains = list(
@@ -265,54 +265,54 @@
 		/obj/item/clothing/head/soft,
 		/obj/item/clothing/mask/bandana/skull/black,
 	)//so you can properly #cargoniabikergang
-	crate_name = "biker kit"
+	crate_name = "摩托帮套装"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/imports/abandoned
-	name = "Abandoned Crate"
-	desc = "...wait, how did this get here?"
+	name = "被遗弃的板条箱"
+	desc = "...等等, 怎么弄到这个?"
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list()
 	crate_type = /obj/structure/closet/crate/secure/loot
-	crate_name = "abandoned crate"
+	crate_name = "被遗弃的板条箱"
 	contraband = TRUE
 	dangerous = TRUE //these are literally bombs so....
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/shambler_evil
-	name = "Shamber's Juice Eldritch Energy! Crate"
+	name = "Shamber的奇异果汁能量! 包"
 	desc = "~J'I'CE!~"
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list(/obj/item/reagent_containers/cup/soda_cans/shamblers/eldritch = 1)
-	crate_name = "illegal shambler's juice crate"
+	crate_name = "非法果汁箱"
 	contraband = TRUE
 
 /datum/supply_pack/imports/hide
-	name = "Animal Hide Crate"
-	desc = "Want to not bother slaughtering a bunch of innocent creatures? Here, have some animal pelts! \
-		Just don't ask where they came from..."
+	name = "动物皮草包"
+	desc = "不想亲自屠杀一群无辜的动物吗? 这里，有些动物皮草，\
+		只是不要问它们是从哪里来的..."
 	cost = CARGO_CRATE_VALUE * 30
 	contains = list(/obj/effect/spawner/random/animalhide = 5)
-	crate_name = "animal hide crate"
+	crate_name = "动物皮草箱"
 
 /datum/supply_pack/imports/dreadnog
-	name = "Dreadnog Carton Crate"
-	desc = "I have eggnog and I must soda."
+	name = "黯诺酒盒包"
+	desc = "我有一盒蛋诺酒，所以我必须加点苏打."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/reagent_containers/cup/glass/bottle/juice/dreadnog = 3)
-	crate_name = "dreadnog crate"
+	crate_name = "黯诺酒箱"
 
 /datum/supply_pack/imports/giant_wrench_parts
-	name = "Big Slappy parts"
-	desc = "Illegal Big Slappy parts. The fastest and statistically most dangerous wrench."
+	name = "大零件"
+	desc = "非法的大零件，最快也是最危险的扳手."
 	cost = CARGO_CRATE_VALUE * 22
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
-	crate_name = "unknown parts crate"
+	crate_name = "位置零件箱"
 
 /datum/supply_pack/imports/materials_market
-	name = "Galactic Materials Market Crate"
-	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
+	name = "银河系材料市场组装包"
+	desc = "内含组建银河系材料市场的电路板，Warning：投资失败的损失不在保险范围内."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/circuitboard/machine/materials_market = 1,
@@ -321,5 +321,5 @@
 		/obj/item/stock_parts/scanning_module = 1,
 		/obj/item/stock_parts/card_reader = 1
 	)
-	crate_name = "materials market crate"
+	crate_name = "材料市场箱"
 	crate_type = /obj/structure/closet/crate/cargo

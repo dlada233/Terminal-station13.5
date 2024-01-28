@@ -2,12 +2,12 @@
  * todo: make this a supply_pack/custom. Drop pog? ohoho yes. Would be VERY fun.
  */
 /datum/supply_pack/market_materials
-	name = "A Single Sheet of Bananium"
-	desc = "Going market price for this kind of sheet, by Australicus Industrial Mining."
+	name = "一块蕉板"
+	desc = "这类板材的现行市场价格."
 	cost = CARGO_CRATE_VALUE * 2
 	// contains = list(/obj/item/stack/sheet/mineral/bananium)
-	crate_name = "mineral stock sheet crate"
-	group = "Canisters & Materials"
+	crate_name = "材料板材像"
+	group = "储罐&材料"
 	/// What material we are trying to buy sheets of?
 	var/datum/material/material
 	/// How many sheets of the material we are trying to buy at once?
@@ -23,14 +23,14 @@
 	new material.sheet_type(C, amount)
 
 /datum/supply_pack/market_materials/iron
-	name = "Iron Sheets"
-	crate_name = "iron stock crate"
+	name = "铁板"
+	crate_name = "铁板箱"
 	material = /datum/material/iron
 MARKET_QUANTITY_HELPERS(/datum/supply_pack/market_materials/iron)
 
 
 /datum/supply_pack/market_materials/gold
-	name = "Gold Sheets"
-	crate_name = "gold stock crate"
+	name = "黄金"
+	crate_name = "黄金箱"
 	material = /datum/material/gold
 MARKET_QUANTITY_HELPERS(/datum/supply_pack/market_materials/gold)

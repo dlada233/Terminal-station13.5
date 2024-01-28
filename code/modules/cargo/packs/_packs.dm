@@ -102,19 +102,19 @@
  * This is for adding custom orders to the Cargo console (like order consoles)
  */
 /datum/supply_pack/custom
-	name = "mining order"
+	name = "矿业订单"
 	hidden = TRUE
 	crate_name = "shaft mining delivery crate"
 	access = list(ACCESS_MINING)
 
 /datum/supply_pack/custom/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Mining Order"
+	name = "[purchaser]矿业订单"
 	src.cost = cost
 	src.contains = contains
 
 /datum/supply_pack/custom/minerals
-	name = "materials order"
+	name = "材料订单"
 	crate_name = "galactic materials market delivery crate"
 	access = list()
 	crate_type = /obj/structure/closet/crate/cardboard

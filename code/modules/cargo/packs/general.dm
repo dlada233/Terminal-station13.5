@@ -1,10 +1,10 @@
 /datum/supply_pack/misc
-	group = "Miscellaneous Supplies"
+	group = "杂项用品"
 
 /datum/supply_pack/misc/artsupply
-	name = "Art Supplies"
-	desc = "Make some happy little accidents with a rapid pipe cleaner layer, \
-		three spraycans, and lots of crayons!"
+	name = "艺术用品包"
+	desc = "为生活提供多些艺趣, \
+		内含三个喷雾罐和各色蜡笔以及一个艺术工具箱!"
 	cost = CARGO_CRATE_VALUE * 1.8
 	contains = list(/obj/item/rcl,
 					/obj/item/storage/toolbox/artistic,
@@ -13,35 +13,35 @@
 					/obj/item/toy/crayon/white,
 					/obj/item/toy/crayon/rainbow,
 				)
-	crate_name = "art supply crate"
+	crate_name = "艺术用品箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/tattoo_kit
-	name = "Tattoo Kit"
-	desc = "A tattoo kit with some extra starting ink."
+	name = "纹身工具包"
+	desc = "一个纹身包，里面附带一些墨水."
 	cost = CARGO_CRATE_VALUE * 1.8
 	contains = list(
 		/obj/item/tattoo_kit,
 		/obj/item/toner = 2)
-	crate_name = "tattoo crate"
+	crate_name = "纹身工具箱"
 	crate_type = /obj/structure/closet/crate/wooden
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/misc/bicycle
-	name = "Bicycle"
-	desc = "Nanotrasen reminds all employees to never toy with powers outside their control."
+	name = "自行车"
+	desc = "Nanotrasen提醒员工们永远不要滥用职权."
 	cost = 1000000 //Special case, we don't want to make this in terms of crates because having bikes be a million credits is the whole meme.
 	contains = list(/obj/vehicle/ridden/bicycle)
-	crate_name = "bicycle crate"
+	crate_name = "自行车箱"
 	crate_type = /obj/structure/closet/crate/large
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/misc/bigband
-	name = "Big Band Instrument Collection"
-	desc = "Get your sad station movin' and groovin' with this fine collection! \
-		Contains nine different instruments!"
+	name = "名牌乐器收藏包"
+	desc = "让站点流淌在动人的乐曲中! \
+		内含九种乐器!"
 	cost = CARGO_CRATE_VALUE * 10
-	crate_name = "Big band musical instruments collection"
+	crate_name = "名牌乐器收藏箱"
 	contains = list(/obj/item/instrument/violin,
 					/obj/item/instrument/guitar,
 					/obj/item/instrument/glockenspiel,
@@ -55,8 +55,8 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/book_crate
-	name = "Book Crate"
-	desc = "Surplus from the Nanotrasen Archives, these seven books are sure to be good reads."
+	name = "书籍补给包"
+	desc = "来自Nanotrasen档案馆, 这七本肯定是很好的读物."
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_LIBRARY
 	contains = list(/obj/item/book/codex_gigas,
@@ -66,36 +66,36 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/commandkeys
-	name = "Command Encryption Key Crate"
-	desc = "A pack of encryption keys that give access to the command radio network. \
-		Nanotrasen reminds unauthorized employees not to eavesdrop in on secure communications channels, \
-		or at least to keep heckling of the command staff to a minimum."
+	name = "指挥密钥补给包"
+	desc = "一组加密密钥，用于访问指挥无线电频道. \
+		Nanotrasen提醒未授权的员工不要窃听指挥无线电频道, \
+		也要尽量减少对指挥人员的诘问."
 	access_view = ACCESS_COMMAND
 	access = ACCESS_COMMAND
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/encryptionkey/headset_com = 3)
 	crate_type = /obj/structure/closet/crate/secure/centcom
-	crate_name = "command encryption key crate"
+	crate_name = "指挥密钥补给包"
 
 /datum/supply_pack/misc/exploration_drone
-	name = "Exploration Drone"
-	desc = "A replacement long-range exploration drone."
+	name = "探险无人机"
+	desc = "可改装型远距探险无人机."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/exodrone)
-	crate_name = "exodrone crate"
+	crate_name = "探险无人机箱"
 
 /datum/supply_pack/misc/exploration_fuel
-	name = "Drone Fuel Pellet"
-	desc = "A fresh tank of exploration drone fuel."
+	name = "无人机燃料罐"
+	desc = "为探险无人机准备的燃料罐."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/fuel_pellet)
-	crate_name = "exodrone fuel crate"
+	crate_name = "探险无人机燃料箱"
 
 /datum/supply_pack/misc/paper
-	name = "Bureaucracy Crate"
-	desc = "High stacks of papers on your desk are a big problem - make it pea-sized with \
-		these bureaucratic supplies! Contains six pens, some camera film, hand labeler supplies, \
-		a paper bin, a carbon paper bin, three folders, a laser pointer, two clipboards and two stamps."
+	name = "文书用品包"
+	desc = "办公桌上堆积如山的文件是个大问题 - 使用文书用品将其归档整理，\
+		内含六支钢笔、一些照相胶卷、手持标签器、一个打印纸盒, 一个复写纸盒，\
+		三个文件夹、一支激光笔、两个剪贴板和两枚邮票."
 	cost = CARGO_CRATE_VALUE * 3.2
 	contains = list(/obj/structure/filingcabinet/chestdrawer/wheeled,
 					/obj/item/camera_film,
@@ -116,43 +116,43 @@
 					/obj/item/stamp/denied,
 					/obj/item/laser_pointer/purple,
 				)
-	crate_name = "bureaucracy crate"
+	crate_name = "文书用品箱"
 
 /datum/supply_pack/misc/fountainpens
-	name = "Calligraphy Crate"
-	desc = "Sign death warrants in style with these seven executive fountain pens."
+	name = "写字用品包"
+	desc = "用这七支行政钢笔签署死刑令."
 	cost = CARGO_CRATE_VALUE * 1.45
 	contains = list(/obj/item/storage/box/fountainpens)
 	crate_type = /obj/structure/closet/crate/wooden
-	crate_name = "calligraphy crate"
+	crate_name = "写字用品箱"
 
 /datum/supply_pack/misc/wrapping_paper
-	name = "Festive Wrapping Paper Crate"
-	desc = "Want to mail your loved ones gift-wrapped chocolates, stuffed animals, the Clown's severed head? \
-		You can do all that, with this crate full of wrapping paper."
+	name = "彩色包装纸包"
+	desc = "想要给你爱的人一份节日惊喜吗? \
+		节日风格的彩色包装纸可以帮助您."
 	cost = CARGO_CRATE_VALUE * 1.8
 	contains = list(/obj/item/stack/wrapping_paper)
 	crate_type = /obj/structure/closet/crate/wooden
-	crate_name = "festive wrapping paper crate"
+	crate_name = "彩色包装纸箱"
 
 
 /datum/supply_pack/misc/funeral
-	name = "Funeral Supply crate"
-	desc = "At the end of the day, someone's gonna want someone dead. Give them a proper send-off with these \
-		funeral supplies! Contains a coffin with burial garmets and flowers."
+	name = "殡葬用品包"
+	desc = "总有一天我们都会死，那时我们希望会有一场体面的送行，\
+		内含丧服与鲜花."
 	cost = CARGO_CRATE_VALUE * 1.6
 	access_view = ACCESS_CHAPEL_OFFICE
 	contains = list(/obj/item/clothing/under/misc/burial,
 					/obj/item/food/grown/harebell,
 					/obj/item/food/grown/poppy/geranium,
 				)
-	crate_name = "coffin"
+	crate_name = "棺材"
 	crate_type = /obj/structure/closet/crate/coffin
 
 /datum/supply_pack/misc/empty
-	name = "Empty Supplypod"
-	desc = "Presenting the New Nanotrasen-Brand Bluespace Supplypod! Transport cargo with grace and ease! \
-		Call today and we'll shoot over a demo unit for just 300 credits!"
+	name = "空补给仓"
+	desc = "展示全新的Nanotrasen牌蓝空补给仓! 运输货物优雅自如! \
+		今天订购我们将做出演示!"
 	cost = CARGO_CRATE_VALUE * 0.6 //Empty pod, so no crate refund
 	contains = list()
 	drop_pod_only = TRUE
@@ -163,9 +163,9 @@
 	return
 
 /datum/supply_pack/misc/religious_supplies
-	name = "Religious Supplies Crate"
-	desc = "Keep your local chaplain happy and well-supplied, lest they call down judgement upon your \
-		cargo bay. Contains two bottles of holywater, bibles, chaplain robes, and burial garmets."
+	name = "宗教用品包"
+	desc = "让你当地的牧师感到高兴和供应充足, 以免他们对你的货舱进行绝罚，\
+		内含两瓶圣水、圣经、牧师长袍和丧服."
 	cost = CARGO_CRATE_VALUE * 6 // it costs so much because the Space Church needs funding to build a cathedral
 	access_view = ACCESS_CHAPEL_OFFICE
 	contains = list(/obj/item/reagent_containers/cup/glass/bottle/holywater = 2,
@@ -173,46 +173,46 @@
 					/obj/item/clothing/suit/hooded/chaplain_hoodie = 2,
 					/obj/item/clothing/under/misc/burial = 2,
 				)
-	crate_name = "religious supplies crate"
+	crate_name = "宗教用品箱"
 
 /datum/supply_pack/misc/candles_bulk
-	name = "Candle Box Crate"
-	desc = "Keep your local chapel lit with three candle boxes!"
+	name = "蜡烛盒子包"
+	desc = "用三个蜡烛盒子点亮你当地的教堂!"
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(/obj/item/storage/fancy/candle_box = 3)
-	crate_name = "candle box crate"
+	crate_name = "蜡烛盒子箱"
 
 /datum/supply_pack/misc/toner
-	name = "Toner Crate"
-	desc = "Spent too much ink printing butt pictures? Fret not, with these six toner refills, \
-		you'll be printing butts 'till the cows come home!'"
+	name = "墨粉包"
+	desc = "花太多墨粉打印屁股图片呢? 补充了这六次墨粉, \
+		你会一直印屁股直到母牛回家!"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/toner = 6)
-	crate_name = "toner crate"
+	crate_name = "墨粉箱"
 
 /datum/supply_pack/misc/toner_large
-	name = "Toner Crate (Large)"
-	desc = "Tired of changing toner cartridges? These six extra heavy duty refills contain \
-		roughly five times as much toner as the base model!"
+	name = "墨粉包(大号)"
+	desc = "厌倦了更换墨盒? 这六个额外的大型墨粉盒容量是普通的约五倍 \
+		你能一直印到天荒地老!"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/toner/large = 6)
-	crate_name = "large toner crate"
+	crate_name = "大号墨粉箱"
 
 /datum/supply_pack/misc/training_toolbox
-	name = "Training Toolbox Crate"
-	desc = "Hone your combat abiltities with two AURUMILL-Brand Training Toolboxes! \
-		Guarenteed to count hits made against living beings!"
+	name = "训练工具箱包"
+	desc = "用AURUMILL品牌的训练工具箱磨砺你的战斗技术! \
+		保证能算出对活人的命中数!"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/training_toolbox = 2)
-	crate_name = "training toolbox crate"
+	crate_name = "训练工具箱补给箱"
 
 ///Special supply crate that generates random syndicate gear up to a determined TC value
 /datum/supply_pack/misc/syndicate
-	name = "Assorted Syndicate Gear"
-	desc = "Contains a random assortment of syndicate gear."
+	name = "各类辛迪加装备"
+	desc = "包含一个随机的辛迪加装备."
 	special = TRUE //Cannot be ordered via cargo
 	contains = list()
-	crate_name = "syndicate gear crate"
+	crate_name = "辛迪加装备箱"
 	crate_type = /obj/structure/closet/crate
 	///Total TC worth of contained uplink items
 	var/crate_value = 30
@@ -246,12 +246,12 @@
 	contents_uplink_type = uplink
 
 /datum/supply_pack/misc/papercutter
-	name = "Paper Cutters Crate"
-	desc = "Contains 3 office-grade paper cutters, equipped with sharp blades that can cut any paper into two thin slips.\
-		Comes with one replacement blade."
+	name = "裁纸用品包"
+	desc = "包含三个办公级裁纸刀，配有锋利的刀片，可以将任何纸张剪成两片薄片.\
+		附赠可更换刀片."
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(
 		/obj/item/papercutter = 3,
 		/obj/item/hatchet/cutterblade = 1,
 	)
-	crate_name = "paper cutters crate"
+	crate_name = "裁纸用品箱"

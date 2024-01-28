@@ -10,8 +10,8 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/machinery/ltsrbt
-	name = "Long-To-Short-Range-Bluespace-Transceiver"
-	desc = "The LTSRBT is a compact teleportation machine for receiving and sending items outside the station and inside the station.\nUsing teleportation frequencies stolen from NT it is near undetectable.\nEssential for any illegal market operations on NT stations.\n"
+	name = "LTSRBT 长短距蓝空收发器"
+	desc = "LTSRBT是一种紧凑的传送机器, 用于接收和发送站点内外的物品.\n使用从NT偷来的传送频率.\n对NT站点的地下市场运作至关重要.\n"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "exonet_node"
 	circuit = /obj/item/circuitboard/machine/ltsrbt

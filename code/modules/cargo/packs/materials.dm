@@ -1,74 +1,74 @@
 /datum/supply_pack/materials
-	group = "Canisters & Materials"
+	group = "储罐&材料"
 
 /datum/supply_pack/materials/cardboard50
-	name = "50 Cardboard Sheets"
-	desc = "Create a bunch of boxes."
+	name = "50块纸板"
+	desc = "搭建一个纸板城堡."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/cardboard/fifty)
-	crate_name = "cardboard sheets crate"
+	crate_name = "纸板箱"
 
 /datum/supply_pack/materials/license50
-	name = "50 Empty License Plates"
-	desc = "Create a bunch of license plates."
+	name = "50块空车牌"
+	desc = "打一堆车牌拿来卖."
 	cost = CARGO_CRATE_VALUE * 2  // 50 * 25 + 700 - 1000 = 950 credits profit
 	access_view = ACCESS_BRIG_ENTRANCE
 	contains = list(/obj/item/stack/license_plates/empty/fifty)
-	crate_name = "empty license plate crate"
+	crate_name = "空车牌箱"
 
 /datum/supply_pack/materials/plastic50
-	name = "50 Plastic Sheets"
-	desc = "Build a limitless amount of toys with fifty plastic sheets!"
+	name = "50块塑料板"
+	desc = "用50张塑料板制作无限数量的玩具!"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/plastic/fifty)
-	crate_name = "plastic sheets crate"
+	crate_name = "塑料板箱"
 
 /datum/supply_pack/materials/sandstone30
-	name = "30 Sandstone Blocks"
-	desc = "Neither sandy nor stoney, these thirty blocks will still get the job done."
+	name = "30块砂岩砖"
+	desc = "既不是沙土也不是石头，这三十块可以完成整个街区的装修工作."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/mineral/sandstone/thirty)
-	crate_name = "sandstone blocks crate"
+	crate_name = "砂岩转箱"
 
 /datum/supply_pack/materials/wood50
-	name = "50 Wood Planks"
-	desc = "Turn cargo's boring metal groundwork into beautiful \
-		panelled flooring and much more with fifty wooden planks!"
+	name = "50块木板"
+	desc = "把货仓无聊的金属地板改造成更有气质的\
+		木地板!"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/stack/sheet/mineral/wood/fifty)
-	crate_name = "wood planks crate"
+	crate_name = "木板箱"
 
 /datum/supply_pack/materials/foamtank
-	name = "Firefighting Foam Tank Crate"
-	desc = "Contains a tank of firefighting foam. Also known as \"plasmaman's bane.\""
+	name = "消防泡沫箱"
+	desc = "内含一水箱的消防泡沫，也被人称为\"等离子之祸.\""
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/structure/reagent_dispensers/foamtank)
-	crate_name = "foam tank crate"
+	crate_name = "消防泡沫箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/fueltank
-	name = "Fuel Tank Crate"
-	desc = "Contains a welding fuel tank. Caution, highly flammable."
+	name = "燃料箱"
+	desc = "包含一个焊接油箱，注意，高度易燃."
 	cost = CARGO_CRATE_VALUE * 1.6
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
-	crate_name = "fuel tank crate"
+	crate_name = "燃料箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/hightankfuel
-	name = "Large Fuel Tank Crate"
-	desc = "Contains a high-capacity fuel tank. Keep contents away from open flame."
+	name = "大型燃料箱"
+	desc = "包含一个高容量焊接油箱，远离明火."
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/structure/reagent_dispensers/fueltank/large)
-	crate_name = "high-capacity fuel tank crate"
+	crate_name = "高容量焊接油箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/watertank
-	name = "Water Tank Crate"
-	desc = "Contains a tank of dihydrogen monoxide... sounds dangerous."
+	name = "水箱"
+	desc = "一大箱被称为一氧化二氢的化学液体."
 	cost = CARGO_CRATE_VALUE * 1.2
 	contains = list(/obj/structure/reagent_dispensers/watertank)
-	crate_name = "water tank crate"
+	crate_name = "水箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/gas_canisters
@@ -89,12 +89,12 @@
 		if(!initial(gas.purchaseable))
 			continue
 		var/datum/supply_pack/materials/pack = new
-		pack.name = "[name] Canister"
-		pack.desc = "Contains a canister of [name]."
+		pack.name = "[name]储罐"
+		pack.desc = "内含[name]的储罐."
 		if(initial(gas.dangerous))
 			pack.access = ACCESS_ATMOSPHERICS
 			pack.access_view = ACCESS_ATMOSPHERICS
-		pack.crate_name = "[name] canister crate"
+		pack.crate_name = "[name]储罐箱"
 		pack.id = "[type]([name])"
 
 		pack.cost = cost + moleCount * initial(gas.base_value) * 1.6
