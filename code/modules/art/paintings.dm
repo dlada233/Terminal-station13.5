@@ -4,8 +4,8 @@
 ///////////
 
 /obj/structure/easel
-	name = "easel"
-	desc = "Only for the finest of art!"
+	name = "画架"
+	desc = "只为最优秀的艺术"
 	icon = 'icons/obj/art/artstuff.dmi'
 	icon_state = "easel"
 	density = TRUE
@@ -36,8 +36,8 @@
 		painting = null
 
 /obj/item/canvas
-	name = "canvas"
-	desc = "Draw out your soul on this canvas!"
+	name = "画布"
+	desc = "在画布上勾勒你的灵魂！"
 	icon = 'icons/obj/art/artstuff.dmi'
 	icon_state = "11x11"
 	flags_1 = UNPAINTABLE_1
@@ -360,17 +360,17 @@
 		return FALSE
 	if(new_name != painting_metadata.title && user.can_perform_action(src))
 		painting_metadata.title = new_name
-	switch(tgui_alert(user, "Do you want to sign it or remain anonymous?", "Sign painting?", list("Yes", "No", "Cancel")))
+	switch(tgui_alert(user, "在画作上署名或匿名?", "署名画作?", list("Yes", "No", "Cancel")))
 		if("Yes")
 			return TRUE
 		if("No")
-			painting_metadata.creator_name = "Anonymous"
+			painting_metadata.creator_name = "匿名"
 			return TRUE
 
 	return FALSE
 
 /obj/item/canvas/nineteen_nineteen
-	name = "canvas (19x19)"
+	name = "画布 (19x19)"
 	icon_state = "19x19"
 	width = 19
 	height = 19
@@ -379,7 +379,7 @@
 	framed_offset_y = 7
 
 /obj/item/canvas/twentythree_nineteen
-	name = "canvas (23x19)"
+	name = "画布 (23x19)"
 	icon_state = "23x19"
 	width = 23
 	height = 19
@@ -388,7 +388,7 @@
 	framed_offset_y = 7
 
 /obj/item/canvas/twentythree_twentythree
-	name = "canvas (23x23)"
+	name = "画布 (23x23)"
 	icon_state = "23x23"
 	width = 23
 	height = 23
@@ -397,8 +397,8 @@
 	framed_offset_y = 5
 
 /obj/item/canvas/twentyfour_twentyfour
-	name = "canvas (24x24) (AI Universal Standard)"
-	desc = "Besides being almost too large for a standard frame, the AI can accept these as a display from their internal database after you've hung it up."
+	name = "画布 (24x24) (AI通用尺寸)"
+	desc = "虽然这块画布的尺寸可能超出了标准画布，但将其挂好后，AI便能通过内部数据库来接收并显示这些作品。"
 	icon_state = "24x24"
 	width = 24
 	height = 24
@@ -407,8 +407,8 @@
 	framed_offset_y = 4
 
 /obj/item/canvas/thirtysix_twentyfour
-	name = "canvas (36x24)"
-	desc = "A very large canvas to draw out your soul on. You'll need a larger frame to put it on a wall."
+	name = "画布 (36x24)"
+	desc = "一块超大的画布，让你尽情挥洒灵感。你可能需要一个更大的画框来把它挂到墙上。"
 	icon_state = "24x24" //The vending spritesheet needs the icons to be 32x32. We'll set the actual icon on Initialize.
 	width = 36
 	height = 24
@@ -427,8 +427,8 @@
 	icon_state = "36x24"
 
 /obj/item/canvas/fortyfive_twentyseven
-	name = "canvas (45x27)"
-	desc = "The largest canvas available on the space market. You'll need a larger frame to put it on a wall."
+	name = "画布 (45x27)"
+	desc = "太空市场上能找到的最大的画布。你可能需要一个更大的画框来把它挂到墙上。"
 	icon_state = "24x24" //Ditto
 	width = 45
 	height = 27
@@ -447,8 +447,8 @@
 	icon_state = "45x27"
 
 /obj/item/wallframe/painting
-	name = "painting frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	name = "画框"
+	desc = "完美展现出你最难忘的惊悚回忆。"
 	icon = 'icons/obj/signs.dmi'
 	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
@@ -458,8 +458,8 @@
 	pixel_shift = 30
 
 /obj/structure/sign/painting
-	name = "Painting"
-	desc = "Art or \"Art\"? You decide."
+	name = "绘画"
+	desc = "艺术还是\"抽象\"? 由你决定。"
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "frame-empty"
 	base_icon_state = "frame"
@@ -642,8 +642,8 @@
 			grid[x][y] = I.GetPixel(x,h-y)
 
 /obj/item/wallframe/painting/large
-	name = "large painting frame"
-	desc = "The perfect showcase for your favorite deathtrap memories. Make sure you have enough space to mount this one to the wall."
+	name = "大画框"
+	desc = "完美展现出你最难忘的惊悚回忆。在挂到墙上前确保留有足够的空间。"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT*2)
 	icon_state = "frame-large-empty"
 	result_path = /obj/structure/sign/painting/large
@@ -775,8 +775,8 @@
 
 /// Simple painting utility.
 /obj/item/paint_palette
-	name = "paint palette"
-	desc = "paintbrush included"
+	name = "颜料调色板"
+	desc = "附带画刷。"
 	icon = 'icons/obj/art/artstuff.dmi'
 	icon_state = "palette"
 	lefthand_file = 'icons/mob/inhands/equipment/palette_lefthand.dmi'
