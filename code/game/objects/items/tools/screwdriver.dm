@@ -1,6 +1,6 @@
 /obj/item/screwdriver
 	name = "螺丝刀"
-	desc = "You can be totally screwy with this."
+	desc = "你可以被这玩意彻底拧疯搞烂."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_map"
 	inhand_icon_state = "screwdriver"
@@ -50,7 +50,7 @@
 	acid = 30
 
 /obj/item/screwdriver/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is stabbing [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在把[src]刺进[user.p_their()] [pick("太阳穴", "心脏")]!看上去[user.p_theyre()]试图自杀!"))
 	return BRUTELOSS
 
 /obj/item/screwdriver/Initialize(mapload)
@@ -62,7 +62,7 @@
 
 /obj/item/screwdriver/abductor
 	name = "外星螺丝刀"
-	desc = "An ultrasonic screwdriver."
+	desc = "超声波螺丝刀."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "screwdriver_a"
 	inhand_icon_state = "screwdriver_nuke"
@@ -138,15 +138,15 @@
 
 /obj/item/screwdriver/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_SCREWDRIVER)
-		user.visible_message(span_suicide("[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在把[src]放进[user.p_their()]太阳穴.看上去[user.p_theyre()]试图自杀!"))
 	else
-		user.visible_message(span_suicide("[user] is pressing [src] against [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在把[src]压进[user.p_their()]头部!看上去[user.p_theyre()]试图自杀!"))
 	playsound(loc, 'sound/items/drill_use.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
 /obj/item/screwdriver/cyborg
 	name = "全自动螺丝刀"
-	desc = "A powerful automated screwdriver, designed to be both precise and quick."
+	desc = "功能强大的自动螺丝刀，被设计得既精准又快速."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "screwdriver_cyborg"
 	hitsound = 'sound/items/drill_hit.ogg'

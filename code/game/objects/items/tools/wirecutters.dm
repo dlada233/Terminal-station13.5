@@ -1,6 +1,6 @@
 /obj/item/wirecutters
 	name = "剪线钳"
-	desc = "This cuts wires."
+	desc = "这个用来剪断电线."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_map"
 	worn_icon_state = "cutters"
@@ -59,13 +59,13 @@
 	return ..()
 
 /obj/item/wirecutters/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is cutting at [user.p_their()] arteries with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在用[src]剪断[user.p_their()]大动脉!看上去[user.p_theyre()]试图自杀!"))
 	playsound(loc, usesound, 50, TRUE, -1)
 	return BRUTELOSS
 
 /obj/item/wirecutters/abductor//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
 	name = "外星剪线钳"
-	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
+	desc = "极其锋利的剪线钳，由一种银绿色金属制成."
 	icon = 'icons/obj/antags/abductor.dmi'
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
 	icon_state = "cutters"
@@ -75,7 +75,7 @@
 
 /obj/item/wirecutters/cyborg
 	name = "动力剪线钳"
-	desc = "Cuts wires with the power of ELECTRICITY. Faster than normal wirecutters."
+	desc = "用电力相剪电线。比普通剪线钳更急."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "wirecutters_cyborg"
 	worn_icon_state = "cutters"
