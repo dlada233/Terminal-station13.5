@@ -207,10 +207,9 @@
 	name = "助手雕像"
 	desc = "一尊廉价砂岩制成的雕像，献给灰潮。"
 	icon_state = "assist"
-56+
 
 /obj/structure/statue/sandstone/venus //call me when we add marble i guess
-"纯洁少女之像"
+	name = "纯洁少女之像"
 	desc = "一尊历经岁月的大理石雕像。它一头长辫垂落脚踝，手握一个工具箱。朱庇特在上，这是你从未见过的绝美女性塑像，艺术家一定是一位真正的技艺大师。但令人惋惜的是，雕像的胳膊断了。"
 	icon = 'icons/obj/art/statuelarge.dmi'
 	icon_state = "venus"
