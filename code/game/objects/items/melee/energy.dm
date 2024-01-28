@@ -2,8 +2,8 @@
 	icon = 'icons/obj/weapons/transforming_energy.dmi'
 	max_integrity = 200
 	armor_type = /datum/armor/melee_energy
-	attack_verb_continuous = list("hits", "taps", "pokes")
-	attack_verb_simple = list("hit", "tap", "poke")
+	attack_verb_continuous = list("打了打", "敲了敲", "戳了戳")
+	attack_verb_simple = list("打了打", "敲了敲", "戳了戳")
 	resistance_flags = FIRE_PROOF
 	light_system = MOVABLE_LIGHT
 	light_range = 3
@@ -72,15 +72,15 @@
 		sharpness_on = active_sharpness, \
 		hitsound_on = active_hitsound, \
 		w_class_on = active_w_class, \
-		attack_verb_continuous_on = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts"), \
-		attack_verb_simple_on = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut"), \
+		attack_verb_continuous_on = list("攻击了", "砍中了", "刺中了", "切削了", "撕开了", "割裂了", "扯开了", "切碎了", "切中了"), \
+		attack_verb_simple_on = list("攻击了", "砍中了", "刺中了", "切削了", "撕开了", "割裂了", "扯开了", "切碎了", "切中了"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
 /obj/item/melee/energy/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku!"))
+	user.visible_message(span_suicide("[user] [pick("用 [src] 切开了胃", "倒在了 [src] 上")]! 看起来 [user.p_theyre()] 正在试图切腹自尽!"))
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/melee/energy/process(seconds_per_tick)
@@ -134,7 +134,7 @@
 
 	tool_behaviour = (active ? TOOL_SAW : NONE) //Lets energy weapons cut trees. Also lets them do bonecutting surgery, which is kinda metal!
 	if(user)
-		balloon_alert(user, "[name] [active ? "enabled":"disabled"]")
+		balloon_alert(user, "[name] [active ? "已激活":"未激活"]")
 	playsound(src, active ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 35, TRUE)
 	set_light_on(active)
 	update_appearance(UPDATE_ICON_STATE)
@@ -142,16 +142,16 @@
 
 /// Energy axe - extremely strong.
 /obj/item/melee/energy/axe
-	name = "energy axe"
-	desc = "An energized battle axe."
+	name = "能量斧"
+	desc = "充满电活力的战斧."
 	icon_state = "axe"
 	inhand_icon_state = "axe"
 	base_icon_state = "axe"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "chops", "cleaves", "tears", "lacerates", "cuts")
-	attack_verb_simple = list("attack", "chop", "cleave", "tear", "lacerate", "cut")
+	attack_verb_continuous = list("攻击了", "剁碎了", "劈开了", "撕开了", "割裂了", "切中了")
+	attack_verb_simple = list("攻击了", "剁碎了", "劈开了", "撕开了", "割裂了", "切中了")
 	force = 40
 	throwforce = 25
 	throw_speed = 3
@@ -178,13 +178,13 @@
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
 /obj/item/melee/energy/axe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swings [src] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 挥舞着 [src] 向着自己的头! 看起来 [user.p_theyre()] 正在试图自杀!"))
 	return (BRUTELOSS|FIRELOSS)
 
 /// Energy swords.
 /obj/item/melee/energy/sword
-	name = "energy sword"
-	desc = "May the force be within you."
+	name = "能量剑"
+	desc = "愿原力与你同在."
 	icon_state = "e_sword"
 	base_icon_state = "e_sword"
 	inhand_icon_state = "e_sword"
@@ -210,7 +210,7 @@
 	return ..()
 
 /obj/item/melee/energy/sword/cyborg
-	name = "cyborg energy sword"
+	name = "Cybrog能量剑"
 	sword_color_icon = "red"
 	/// The cell cost of hitting something.
 	var/hitcost = 50
@@ -222,7 +222,7 @@
 	var/obj/item/stock_parts/cell/our_cell = user.cell
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && !(our_cell.use(hitcost)))
 		attack_self(user)
-		to_chat(user, span_notice("It's out of charge!"))
+		to_chat(user, span_notice("它没电了!"))
 		return
 	return ..()
 
@@ -232,8 +232,8 @@
 	attack_self(user)
 
 /obj/item/melee/energy/sword/cyborg/saw //Used by medical Syndicate cyborgs
-	name = "energy saw"
-	desc = "For heavy duty cutting. It has a carbon-fiber blade in addition to a toggleable hard-light edge to dramatically increase sharpness."
+	name = "能量锯"
+	desc = "用于重型切割. 除了碳纤刀片, 它还有可切换的强光刀刃, 明显增加了尖锐度."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "esaw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
@@ -305,7 +305,7 @@
 
 /obj/item/melee/energy/sword/saber/multitool_act(mob/living/user, obj/item/tool)
 	if(hacked)
-		to_chat(user, span_warning("It's already fabulous!"))
+		to_chat(user, span_warning("这已经很好了!"))
 		return
 	hacked = TRUE
 	sword_color_icon = "rainbow"
@@ -313,7 +313,7 @@
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/item/melee/energy/sword/pirate
-	name = "energy cutlass"
+	name = "能量弯刀"
 	desc = "Arrrr matey."
 	icon_state = "e_cutlass"
 	inhand_icon_state = "e_cutlass"
@@ -324,15 +324,15 @@
 
 /// Energy blades, which are effectively perma-extended energy swords
 /obj/item/melee/energy/blade
-	name = "energy blade"
-	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
+	name = "能量叶刃"
+	desc = "叶片状的集中光束. 非常时尚新潮... 还有致命."
 	icon_state = "blade"
 	base_icon_state = "blade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/blade1.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击了", "砍中了", "刺中了", "切削了", "撕开了", "割裂了", "扯开了", "切碎了", "切中了")
+	attack_verb_simple = list("攻击了", "砍中了", "刺中了", "切削了", "撕开了", "割裂了", "扯开了", "切碎了", "切中了")
 	force = 30
 	throwforce = 1 // Throwing or dropping the item deletes it.
 	throw_speed = 3
@@ -360,8 +360,8 @@
 	return FALSE
 
 /obj/item/melee/energy/blade/hardlight
-	name = "hardlight blade"
-	desc = "An extremely sharp blade made out of hard light. Packs quite a punch."
+	name = "强光刃"
+	desc = "一种用强光制成的极其锋利的刀刃. 从外观上看起来十分具有冲击力."
 	icon_state = "lightblade"
 	inhand_icon_state = "lightblade"
 	base_icon_state = "lightblade"

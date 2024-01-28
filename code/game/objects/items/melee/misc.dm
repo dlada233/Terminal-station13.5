@@ -3,8 +3,8 @@
 	item_flags = NEEDS_PERMIT
 
 /obj/item/melee/chainofcommand
-	name = "chain of command"
-	desc = "A tool used by great men to placate the frothing masses."
+	name = "指挥之链"
+	desc = "伟人用来安抚口吐白沫的人们的工具."
 	icon = 'icons/obj/weapons/whip.dmi'
 	icon_state = "chain"
 	inhand_icon_state = "chain"
@@ -19,18 +19,18 @@
 	wound_bonus = 15
 	bare_wound_bonus = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("flogs", "whips", "lashes", "disciplines")
-	attack_verb_simple = list("flog", "whip", "lash", "discipline")
+	attack_verb_continuous = list("鞭笞了", "抽打了", "鞭打了", "调教了")
+	attack_verb_simple = list("鞭笞了", "抽打了", "鞭打了", "调教了")
 	hitsound = 'sound/weapons/chainhit.ogg'
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/melee/chainofcommand/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 用 [src] 勒住了自己! 看起来 [user.p_theyre()] 正在试图自杀!"))
 	return OXYLOSS
 
 /obj/item/melee/synthetic_arm_blade
-	name = "synthetic arm blade"
-	desc = "A grotesque blade that on closer inspection seems to be made out of synthetic flesh, it still feels like it would hurt very badly as a weapon."
+	name = "合成臂刃"
+	desc = "一把奇怪的刀刃, 仔细观察后可以感觉材质似乎是由合成肉构成, 但作为一把武器, 它仍会造成严重的伤害."
 	icon = 'icons/obj/weapons/changeling_items.dmi'
 	icon_state = "arm_blade"
 	inhand_icon_state = "arm_blade"
@@ -40,8 +40,8 @@
 	force = 20
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击了", "砍中了", "刺中了", "切削了", "撕开了", "割裂了", "扯开了", "切碎了", "切中了")
+	attack_verb_simple = list("攻击了", "砍中了", "刺中了", "切削了", "撕开了", "割裂了", "扯开了", "切碎了", "切中了")
 	sharpness = SHARP_EDGED
 
 /obj/item/melee/synthetic_arm_blade/Initialize(mapload)
@@ -53,8 +53,8 @@
 	//very imprecise
 
 /obj/item/melee/sabre
-	name = "officer's sabre" //SKYRAT EDIT - Buffed in modular_skyrat/modules/modular_weapons/code/melee.dm
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease." 
+	name = "军官佩剑" //SKYRAT EDIT - Buffed in modular_skyrat/modules/modular_weapons/code/melee.dm
+	desc = "一把优雅的武器, 它的单分子刀刃能够轻松地切割骨骼和肉体。."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "sabre"
 	inhand_icon_state = "sabre"
@@ -69,8 +69,8 @@
 	block_chance = 50
 	armour_penetration = 75
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = list("slashes", "cuts")
-	attack_verb_simple = list("slash", "cut")
+	attack_verb_continuous = list("砍中了", "切中了")
+	attack_verb_simple = list("砍中了", "切中了")
 	block_sound = 'sound/weapons/parry.ogg'
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
@@ -106,10 +106,10 @@
 /obj/item/melee/sabre/proc/bane_effects(element_owner, mob/living/carbon/human/baned_target)
 	SIGNAL_HANDLER
 	baned_target.visible_message(
-		span_warning("[src] tears through [baned_target] with unnatural ease!"),
-		span_userdanger("As [src] tears into your body, you feel the weight of authority collapse into your wounds!"),
+		span_warning("[src] 以不自然的方式轻松撕开了 [baned_target]!"),
+		span_userdanger("当 [src] 撕开进入你的身体时, 你能感受到权威的重量塌入你的伤口中!"),
 	)
-	INVOKE_ASYNC(baned_target, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream")
+	INVOKE_ASYNC(baned_target, TYPE_PROC_REF(/mob/living/carbon/human, emote), "尖叫")
 
 /obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK || attack_type == LEAP_ATTACK)
@@ -127,7 +127,7 @@
 		playsound(sabre, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is trying to cut off all [user.p_their()] limbs with [src]! it looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正试图用 [src] 砍掉所有的肢体! 看起来 [user.p_theyre()] 正在试图自杀!"))
 	var/i = 0
 	ADD_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 	if(iscarbon(user))
@@ -170,8 +170,8 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 
 /obj/item/melee/beesword
-	name = "The Stinger"
-	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
+	name = "毒刺"
+	desc = "取自一只巨大的蜜蜂, 在纯蜂蜜中包折了一千多次. 可以刺穿任何东西."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "beesword"
 	inhand_icon_state = "stinger"
@@ -186,8 +186,8 @@
 	attack_speed = CLICK_CD_RAPID
 	block_chance = 20
 	armour_penetration = 65
-	attack_verb_continuous = list("slashes", "stings", "prickles", "pokes")
-	attack_verb_simple = list("slash", "sting", "prickle", "poke")
+	attack_verb_continuous = list("砍中了", "叮咬了", "戳刺了", "戳了戳")
+	attack_verb_simple = list("砍中了", "叮咬了", "戳刺了", "戳了戳")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	block_sound = 'sound/weapons/parry.ogg'
 
@@ -205,13 +205,13 @@
 		carbon_target.reagents.add_reagent(/datum/reagent/toxin, 4)
 
 /obj/item/melee/beesword/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is stabbing [user.p_them()]self in the throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在用 [src] 刺伤自己的喉咙! 看起来 [user.p_theyre()] 正在试图自杀!"))
 	playsound(get_turf(src), hitsound, 75, TRUE, -1)
 	return TOXLOSS
 
 /obj/item/melee/supermatter_sword
-	name = "supermatter sword"
-	desc = "In a station full of bad ideas, this might just be the worst."
+	name = "超物质剑"
+	desc = "在一个满是馊主意的站点, 这可能是非常糟糕的."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "supermatter_sword_balanced"
 	inhand_icon_state = "supermatter_sword"
@@ -221,7 +221,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 0.001
 	armour_penetration = 1000
-	force_string = "INFINITE"
+	force_string = "无限"
 	item_flags = NEEDS_PERMIT|NO_BLOOD_ON_ITEM
 	var/obj/machinery/power/supermatter_crystal/shard
 	var/balanced = 1
@@ -232,7 +232,7 @@
 	qdel(shard.countdown)
 	shard.countdown = null
 	START_PROCESSING(SSobj, src)
-	visible_message(span_warning("[src] appears, balanced ever so perfectly on its hilt. This isn't ominous at all."))
+	visible_message(span_warning("[src] 出现了, 完美地平衡在剑柄上. 这一点丝毫不带有不祥之兆."))
 	RegisterSignal(src, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(eat_bullets))
 
 /obj/item/melee/supermatter_sword/process()
@@ -270,15 +270,15 @@
 
 /obj/item/melee/supermatter_sword/ex_act(severity, target)
 	visible_message(
-		span_danger("The blast wave smacks into [src] and rapidly flashes to ash."),
-		span_hear("You hear a loud crack as you are washed with a wave of heat.")
+		span_danger("爆炸冲击波猛然撞击 [src], 迅速将其瞬间化为灰烬."),
+		span_hear("你听到一声巨响, 同时被一股热浪所包围.")
 	)
 	consume_everything()
 	return TRUE
 
 /obj/item/melee/supermatter_sword/acid_act()
-	visible_message(span_danger("The acid smacks into [src] and rapidly flashes to ash."),\
-	span_hear("You hear a loud crack as you are washed with a wave of heat."))
+	visible_message(span_danger("酸液猛然撞击 [src], 迅速将其迅燃成灰."),\
+	span_hear("你听到一声巨响, 同时被一股热浪所包围."))
 	consume_everything()
 	return TRUE
 
@@ -286,15 +286,15 @@
 	SIGNAL_HANDLER
 
 	visible_message(
-		span_danger("[hitting_projectile] smacks into [source] and rapidly flashes to ash."),
+		span_danger("[hitting_projectile] 猛然撞击 [source], 迅速将其迅燃成灰."),
 		null,
-		span_hear("You hear a loud crack as you are washed with a wave of heat."),
+		span_hear("你听到一声巨响, 同时被一股热浪所包围."),
 	)
 	consume_everything(hitting_projectile)
 	return COMPONENT_BULLET_BLOCKED
 
 /obj/item/melee/supermatter_sword/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] touches [src]'s blade. It looks like [user.p_theyre()] tired of waiting for the radiation to kill [user.p_them()]!"))
+	user.visible_message(span_suicide("[user] 触摸了 [src] 的剑刃. 看起来 [user.p_theyre()] 已经厌倦了等待被辐射杀死!"))
 	user.dropItemToGround(src, TRUE)
 	shard.Bumped(user)
 
@@ -313,14 +313,14 @@
 		return
 	playsound(turf, 'sound/effects/supermatter.ogg', 50, TRUE)
 	turf.visible_message(
-		span_danger("[turf] smacks into [src] and rapidly flashes to ash."),
-		span_hear("You hear a loud crack as you are washed with a wave of heat."),
+		span_danger("[turf] 猛然撞击 [src], 迅速将其迅燃成灰."),
+		span_hear("你听到一声巨响, 同时被一股热浪所包围."),
 	)
 	shard.Bump(turf)
 
 /obj/item/melee/curator_whip
-	name = "curator's whip"
-	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
+	name = "馆长之鞭"
+	desc = "虽然有点古怪和过时, 但被它抽打还是会痛不欲生."
 	icon = 'icons/obj/weapons/whip.dmi'
 	icon_state = "whip"
 	inhand_icon_state = "chain"
@@ -331,8 +331,8 @@
 	force = 15
 	demolition_mod = 0.25
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("flogs", "whips", "lashes", "disciplines")
-	attack_verb_simple = list("flog", "whip", "lash", "discipline")
+	attack_verb_continuous = list("鞭笞了", "抽打了", "鞭打了", "调教了")
+	attack_verb_simple = list("鞭笞了", "抽打了", "鞭打了", "调教了")
 	hitsound = 'sound/weapons/whip.ogg'
 
 /obj/item/melee/curator_whip/afterattack(target, mob/user, proximity_flag)
@@ -340,11 +340,11 @@
 	if(ishuman(target) && proximity_flag)
 		var/mob/living/carbon/human/human_target = target
 		human_target.drop_all_held_items()
-		human_target.visible_message(span_danger("[user] disarms [human_target]!"), span_userdanger("[user] disarmed you!"))
+		human_target.visible_message(span_danger("[user] 解除了 [human_target] 的武装!"), span_userdanger("[user] 解除了你的武装!"))
 
 /obj/item/melee/roastingstick
-	name = "advanced roasting stick"
-	desc = "A telescopic roasting stick with a miniature shield generator designed to ensure entry into various high-tech shielded cooking ovens and firepits."
+	name = "高级烤肉棍"
+	desc = "一把伸缩式的烤肉棍, 内置微型护盾发生器, 设计用于确保能够进入各种带有屏蔽功能的高科技烹饪炉和火坑."
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "roastingstick"
 	inhand_icon_state = null
@@ -353,8 +353,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
 	force = 0
-	attack_verb_continuous = list("hits", "pokes")
-	attack_verb_simple = list("hit", "poke")
+	attack_verb_continuous = list("打了打", "戳了戳")
+	attack_verb_simple = list("打了打", "戳了戳")
 	/// The sausage attatched to our stick.
 	var/obj/item/food/sausage/held_sausage
 	/// Static list of things our roasting stick can interact with.
@@ -384,7 +384,7 @@
 	SIGNAL_HANDLER
 
 	if(held_sausage)
-		to_chat(user, span_warning("You can't retract [src] while [held_sausage] is attached!"))
+		to_chat(user, span_warning("当 [src] 上附着 [held_sausage] 时, 你无法收回 [src]!"))
 		return COMPONENT_BLOCK_TRANSFORM
 
 /*
@@ -395,9 +395,9 @@
 /obj/item/melee/roastingstick/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
-	inhand_icon_state = active ? "nullrod" : null
+	inhand_icon_state = active ? "空棍" : null
 	if(user)
-		balloon_alert(user, "[active ? "extended" : "collapsed"] [src]")
+		balloon_alert(user, "[active ? "伸展" : "折叠"] [src]")
 	playsound(src, 'sound/weapons/batonextend.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
@@ -405,15 +405,15 @@
 	..()
 	if (istype(target, /obj/item/food/sausage))
 		if (!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-			to_chat(user, span_warning("You must extend [src] to attach anything to it!"))
+			to_chat(user, span_warning("你必须将 [src] 伸展开来才能附着任何东西!"))
 			return
 		if (held_sausage)
-			to_chat(user, span_warning("[held_sausage] is already attached to [src]!"))
+			to_chat(user, span_warning("[held_sausage] 已经附着在 [src] 上了!"))
 			return
 		if (user.transferItemToLoc(target, src))
 			held_sausage = target
 		else
-			to_chat(user, span_warning("[target] doesn't seem to want to get on [src]!"))
+			to_chat(user, span_warning("[target] 似乎不想在 [src] 上面!"))
 	update_appearance()
 
 /obj/item/melee/roastingstick/attack_hand(mob/user, list/modifiers)
@@ -439,11 +439,11 @@
 	if (!is_type_in_typecache(target, ovens))
 		return
 	if (istype(target, /obj/singularity) && get_dist(user, target) < 10)
-		to_chat(user, span_notice("You send [held_sausage] towards [target]."))
+		to_chat(user, span_notice("你将 [held_sausage] 朝 [target] 扔去."))
 		playsound(src, 'sound/items/rped.ogg', 50, TRUE)
 		beam = user.Beam(target, icon_state = "rped_upgrade", time = 10 SECONDS)
 	else if (user.Adjacent(target))
-		to_chat(user, span_notice("You extend [src] towards [target]."))
+		to_chat(user, span_notice("你将 [src] 伸展到 [target]."))
 		playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, TRUE)
 	else
 		return
@@ -451,20 +451,20 @@
 
 /obj/item/melee/roastingstick/proc/finish_roasting(user, atom/target)
 	if(do_after(user, 100, target = user))
-		to_chat(user, span_notice("You finish roasting [held_sausage]."))
+		to_chat(user, span_notice("你完成了对 [held_sausage] 的烤制."))
 		playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
 		held_sausage.add_atom_colour(rgb(103, 63, 24), FIXED_COLOUR_PRIORITY)
-		held_sausage.name = "[target.name]-roasted [held_sausage.name]"
-		held_sausage.desc = "[held_sausage.desc] It has been cooked to perfection on \a [target]."
+		held_sausage.name = "[target.name]-烤制完成 [held_sausage.name]"
+		held_sausage.desc = "[held_sausage.desc] 它在\a [target] 上被烹饪得完美无瑕."
 		update_appearance()
 	else
 		QDEL_NULL(beam)
 		playsound(src, 'sound/weapons/batonextend.ogg', 50, TRUE)
-		to_chat(user, span_notice("You put [src] away."))
+		to_chat(user, span_notice("你收起 [src]."))
 
 /obj/item/melee/cleric_mace
-	name = "cleric mace"
-	desc = "The grandson of the club, yet the grandfather of the baseball bat. Most notably used by holy orders in days past."
+	name = "牧师权杖"
+	desc = "它是棍棒的后代, 也是棒球棒的前辈. 在过去的岁月里, 它被圣职团体广泛使用."
 	icon = 'icons/obj/weapons/cleric_mace.dmi'
 	icon_state = "default"
 	inhand_icon_state = "default"
@@ -485,10 +485,10 @@
 	block_chance = 10
 	block_sound = 'sound/weapons/genhit.ogg'
 	armour_penetration = 50
-	attack_verb_continuous = list("smacks", "strikes", "cracks", "beats")
-	attack_verb_simple = list("smack", "strike", "crack", "beat")
+	attack_verb_continuous = list("猛击了", "打击了", "砸中了", "猛击了")
+	attack_verb_simple = list("猛击了", "打击了", "砸中了", "猛击了")
 
-/obj/item/melee/cleric_mace/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/melee/cleric_mace/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK || attack_type == LEAP_ATTACK)
 		final_block_chance = 0 //Don't bring a...mace to a gunfight, and also you aren't going to really block someone full body tackling you with a mace
 	return ..()
