@@ -4,10 +4,10 @@
 	COOLDOWN_DECLARE(gbp_redeem_cooldown)
 
 /obj/item/gbp_punchcard
-	name = "Good Assistant Points punchcard"
-	desc = "The Good Assistant Points program is designed to supplement the income of otherwise unemployed or unpaid individuals on board Nanotrasen vessels and colonies.<br>\
-	Simply get your punchcard stamped by a Head of Staff to earn 100 credits per punch upon turn-in at a Good Assistant Point machine!<br>\
-	Maximum of six punches per any given card. Card replaced upon redemption of existing card. Do not lose your punchcard."
+	name = "杰出助手积分卡"
+	desc = "杰出助手积分计划旨在为Nanotrasen站点和殖民地上无业或无薪的人群提供额外的收入<br>\
+	只需让任意部门主管再您的积分卡上打孔，就可以到杰出助手积分兑换机处兑换，每次打孔可兑换100信用点！<br>\
+	每张积分卡最多可打孔六次，兑换现有积分卡时会自动发放新卡，所以请不要遗失您的积分卡."
 	icon = 'modular_skyrat/modules/cargo/icons/punchcard.dmi'
 	icon_state = "punchcard_0"
 	w_class = WEIGHT_CLASS_TINY
@@ -33,20 +33,20 @@
 			playsound(attacking_item, 'sound/items/boxcutter_activate.ogg', 100)
 			if(punches == max_punches)
 				playsound(src, 'sound/items/party_horn.ogg', 100)
-				say("Congratulations, you have finished your punchcard!")
+				say("恭喜，您已经完成了您的积分卡！")
 		else
 			balloon_alert(user, "no room!")
 
 /obj/item/gbp_puncher
-	name = "Good Assistant Points puncher"
-	desc = "A puncher for use with the Good Assistant Points system. Use it on a punchcard to punch a hole. Expect to be hassled for punches by assistants."
+	name = "杰出助手积分打孔机"
+	desc = "用于杰出助手积分系统的打孔机，在积分卡上使用就可以打孔了，有事业心的助手可能会纠缠你要求为它们的卡打孔."
 	icon = 'modular_skyrat/modules/cargo/icons/punchcard.dmi'
 	icon_state = "puncher"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/machinery/gbp_redemption
-	name = "Good Assistant Points Redemption Machine"
-	desc = "Turn your Good Assistant Points punchcards in here for a payout based on the amount of punches you have, and get a new card!"
+	name = "杰出助手积分兑换机"
+	desc = "在这里兑换你的杰出助手积分，根据打孔数量获得奖励，同时领取一张新积分卡!"
 	icon = 'modular_skyrat/modules/cargo/icons/punchcard.dmi'
 	icon_state = "gbp_machine"
 	density = TRUE
@@ -72,7 +72,7 @@
 		var/amount_to_reward = punchcard.punches * GBP_PUNCH_REWARD
 		if(!punchcard.punches)
 			playsound(src, 'sound/machines/scanbuzz.ogg', 100)
-			say("You can't redeem an unpunched card!")
+			say("你不能兑换一张未打孔的卡！")
 			return
 
 		var/obj/item/card/id/card_used
@@ -84,16 +84,16 @@
 			return
 
 		if(!COOLDOWN_FINISHED(card_used, gbp_redeem_cooldown))
-			balloon_alert(user, "cooldown! [DisplayTimeText(COOLDOWN_TIMELEFT(card_used, gbp_redeem_cooldown))]")
+			balloon_alert(user, "冷静点！ [DisplayTimeText(COOLDOWN_TIMELEFT(card_used, gbp_redeem_cooldown))]")
 			return
 
 		if(!card_used.registered_account || !istype(card_used.registered_account.account_job, /datum/job/assistant))
 			playsound(src, 'sound/machines/scanbuzz.ogg', 100)
-			say("You cannot redeem a punchcard without a valid assistant bank account!")
+			say("没有有效的助手银行账户，无法兑换积分卡！")
 			return
 
 		if(punchcard.punches < punchcard.max_punches)
-			if(tgui_alert(user, "You haven't finished the punchcard! Are you sure you want to redeem, starting the 15 minute timer?", "A real goof effort right here", list("No", "Yes")) != "Yes")
+			if(tgui_alert(user, "你还没有打满积分卡，你确定要兑换，并开始15分钟的兑换限制吗？", "这真是个愚蠢的举动", list("No", "Yes")) != "Yes")
 				return
 
 		if(!punchcard.punches) // check to see if someone left the dialog open to redeem a card twice
@@ -104,7 +104,7 @@
 		playsound(src, 'sound/machines/printer.ogg', 100)
 		card_used.registered_account.adjust_money(amount_to_reward, "GAP: [validated_punches] punches")
 		log_econ("[amount_to_reward] credits were rewarded to [card_used.registered_account.account_holder]'s account for redeeming a GAP card.")
-		say("Rewarded [amount_to_reward] to your account, and dispensed a ration pack! Thank you for being a Good Assistant! Please take your new punchcard.")
+		say("[amount_to_reward] 奖励已发放至您的账户, 并附赠您一个口粮包! 感谢您成为一名杰出助手! 请拿好您的新积分卡.")
 		COOLDOWN_START(card_used, gbp_redeem_cooldown, 12 MINUTES)
 		user.temporarilyRemoveItemFromInventory(punchcard)
 		qdel(punchcard)
@@ -117,7 +117,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/gbp_redemption
-	name = "Good Assistant Point Redemption Machine"
+	name = "杰出助手积分兑换机"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/gbp_redemption
 	req_components = list(
@@ -171,8 +171,8 @@
 	backpack_contents += list(/obj/item/gbp_punchcard/starting)
 
 /datum/design/board/gbp_machine
-	name = "Good Assistant Points Redemption Machine Board"
-	desc = "The circuit board for a Good Assistant Points Redemption Machine."
+	name = "杰出助手积分兑换机电路板"
+	desc = "用于杰出助手积分兑换机的电路板."
 	id = "gbp_machine"
 	build_path = /obj/item/circuitboard/machine/gbp_redemption
 	category = list(

@@ -3,8 +3,8 @@
 */
 
 /datum/supply_pack/goody/airsuppliesnitrogen
-	name = "Emergency Air Supplies (Nitrogen)"
-	desc = "A vox breathing mask and nitrogen tank."
+	name = "应急呼吸补给(Nitrogen-氮)"
+	desc = "内含Vox呼吸面罩与氮气瓶."
 	cost = PAYCHECK_CREW
 	contains = list(
 		/obj/item/tank/internals/nitrogen/belt,
@@ -12,8 +12,8 @@
 	)
 
 /datum/supply_pack/goody/airsuppliesoxygen
-	name = "Emergency Air Supplies (Oxygen)"
-	desc = "A breathing mask and emergency oxygen tank."
+	name = "应急呼吸补给(Oxygen-氧)"
+	desc = "内含呼吸面罩与氧气瓶."
 	cost = PAYCHECK_CREW
 	contains = list(
 		/obj/item/tank/internals/emergency_oxygen,
@@ -21,8 +21,8 @@
 	)
 
 /datum/supply_pack/goody/airsuppliesplasma
-	name = "Emergency Air Supplies (Plasma)"
-	desc = "A breathing mask and plasmaman plasma tank."
+	name = "应急呼吸补给(Plasma-等离子)"
+	desc = "内含呼吸面罩与等离子气瓶."
 	cost = PAYCHECK_CREW
 	contains = list(
 		/obj/item/tank/internals/plasmaman/belt,
@@ -34,8 +34,8 @@
 */
 
 /datum/supply_pack/goody/improvedrcd
-	name = "Improved RCD"
-	desc = "An upgraded RCD featuring superior material storage. Comes with complimentary frames and circuitry upgrades to boot!"
+	name = "Improved RCD 改进型"
+	desc = "改进后的RCD具有更优秀的材料储量，附赠框架和电路升级!"
 	cost = PAYCHECK_CREW * 38
 	contains = list(/obj/item/construction/rcd/improved)
 
@@ -44,35 +44,35 @@
 */
 
 /datum/supply_pack/goody/crayons
-	name = "Box of Crayons"
+	name = "蜡笔盒"
 	desc = "Colorful!"
 	cost = PAYCHECK_CREW * 2
 	contains = list(/obj/item/storage/crayons)
 
 /datum/supply_pack/goody/diamondring
-	name = "Diamond Ring"
-	desc = "Show them your love is like a diamond: unbreakable and everlasting. No refunds."
+	name = "钻戒"
+	desc = "表明你的爱就像钻石一般：牢不可破，天长地久. 拒绝退款."
 	cost = PAYCHECK_CREW * 50
 	contains = list(/obj/item/storage/fancy/ringbox/diamond)
-	crate_name = "diamond ring crate"
+	crate_name = "钻戒箱"
 
 /datum/supply_pack/goody/paperbin
-	name = "Paper Bin"
-	desc = "Pushing paperwork is always easier when you have paper to push!"
+	name = "打印纸盒"
+	desc = "让你的文书工作更加轻松！"
 	cost = PAYCHECK_CREW * 4
 	contains = list(/obj/item/paper_bin)
 
 /datum/supply_pack/goody/xenoarch_intern
-	name = "Xenoarchaeology Intern Skillchip"
-	desc = "A skillchip with all the information required to start dabbling in the fine art of interpreting xenoarchaeological finds. \
-			Does not come with actual xenoarchaeological tools, nor the ability to actually make anyone pay attention to one's \
-			attempts at intellectual posturing, nor any actual job experience as a curator."
+	name = "异星考古入门技能芯片"
+	desc = "一个包含所有必要信息的技能芯片，让你可以开始入门异星考古学. \
+			但不附赠考古工具, \
+			也不附赠图书馆长的专业工作经验."
 	cost = PAYCHECK_CREW * 35 // 1750 credit goody? do bounties
 	contains = list(/obj/item/skillchip/xenoarch_magnifier)
 
 /datum/supply_pack/goody/scratching_stone
-	name = "Scratching Stone"
-	desc = "A high-grade sharpening stone made of specialized alloys, meant to sharpen razor-claws. Unfortunately, this particular one has by far seen better days."
+	name = "磨刀石"
+	desc = "这是一块由特殊合金制成的高级磨刀石，用于磨剃刀般锋利的爪子，但不幸的是，昔日的辉煌已经无法从上面看到了."
 	cost = CARGO_CRATE_VALUE * 4 //800 credits
 	contains = list(/obj/item/scratching_stone)
 	contraband = TRUE
@@ -82,121 +82,121 @@
 */
 
 /datum/supply_pack/goody/carpet
-	name = "Classic Carpet Single-Pack"
-	desc = "Plasteel floor tiles getting on your nerves? This 50 units stack of extra soft carpet will tie any room together."
+	name = "经典地毯单品包"
+	desc = "厌烦了灰色地砖吗？这一捆包含50块特别柔软地毯的单品包将会使任何房间变得温馨."
 	cost = PAYCHECK_CREW * 3
 	contains = list(/obj/item/stack/tile/carpet/fifty)
 
 /datum/supply_pack/goody/carpet/black
-	name = "Black Carpet Single-Pack"
+	name = "黑色地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/black/fifty)
 
 /datum/supply_pack/goody/carpet/premium
-	name = "Royal Black Carpet Single-Pack"
-	desc = "Exotic carpets for all your decorating needs. This 50 unit stack of extra soft carpet will tie any room together."
+	name = "皇家黑地毯单品包"
+	desc = "为满足您所有的装饰需求，这一捆包含50块特别柔软地毯的单品包将使房间变得更加华丽."
 	cost = PAYCHECK_CREW * 3.5
 	contains = list(/obj/item/stack/tile/carpet/royalblack/fifty)
 
 /datum/supply_pack/goody/carpet/premium/royalblue
-	name = "Royal Blue Carpet Single-Pack"
+	name = "皇家蓝地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/royalblue/fifty)
 
 /datum/supply_pack/goody/carpet/premium/red
-	name = "Red Carpet Single-Pack"
+	name = "红色地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/red/fifty)
 
 /datum/supply_pack/goody/carpet/premium/purple
-	name = "Purple Carpet Single-Pack"
+	name = "紫色地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/purple/fifty)
 
 /datum/supply_pack/goody/carpet/premium/orange
-	name = "Orange Carpet Single-Pack"
+	name = "橙色地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/orange/fifty)
 
 /datum/supply_pack/goody/carpet/premium/green
-	name = "Green Carpet Single-Pack"
+	name = "绿色地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/green/fifty)
 
 /datum/supply_pack/goody/carpet/premium/cyan
-	name = "Cyan Carpet Single-Pack"
+	name = "青色地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/cyan/fifty)
 
 /datum/supply_pack/goody/carpet/premium/blue
-	name = "Blue Carpet Single-Pack"
+	name = "蓝色地毯单品包"
 	contains = list(/obj/item/stack/tile/carpet/blue/fifty)
 
 /*
 * NIF STUFF
 */
 /datum/supply_pack/goody/standard_nif
-	name = "Standard Type NIF"
-	desc = "Contains a single standard NIF by itself, surgery is required."
+	name = "Standard Type NIF 标准款"
+	desc = "内含一个标准款NIF，需要进行手术以使用."
 	cost = CARGO_CRATE_VALUE * 15
 	contains = list(
 		/obj/item/organ/internal/cyberimp/brain/nif/standard,
 	)
 
 /datum/supply_pack/goody/cheap_nif
-	name = "Econo-Deck Type NIF"
-	desc = "Contains a single Econo-Deck NIF by itself, surgery is required."
+	name = "Econo-Deck Type NIF 经济款"
+	desc = "内含一个经济款NIF，需要进行手术以使用."
 	cost = CARGO_CRATE_VALUE * 7.5
 	contains = list(
 		/obj/item/organ/internal/cyberimp/brain/nif/roleplay_model,
 	)
 
 /datum/supply_pack/goody/nif_repair_kit
-	name = "Cerulean NIF Regenerator"
-	desc = "Contains a single container of NIF repair fluid, good for up to 5 uses."
+	name = "Cerulean NIF 蔚蓝修复器"
+	desc = "内含装有NIF修复液的容器，可供最多5次使用."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/nif_repair_kit,
 	)
 
 /datum/supply_pack/goody/money_sense_nifsoft
-	name = "Automatic Appraisal NIFSoft"
-	desc = "Contains a single Automatic Appraisal NIFSoft uploader disk."
+	name = "NIF软件 Automatic Appraisal-自评估"
+	desc = "内含装有Automatic Appraisal-自评估的NIF软件磁盘."
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(
 		/obj/item/disk/nifsoft_uploader/money_sense,
 	)
 
 /datum/supply_pack/goody/shapeshifter_nifsoft
-	name = "Polymorph NIFSoft"
-	desc = "Contains a single Polymorph NIFSoft uploader disk."
+	name = "NIF软件 Polymorph-多形体"
+	desc = "内含装有Polymorph-多形体的NIF软件磁盘."
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(
 		/obj/item/disk/nifsoft_uploader/shapeshifter,
 	)
 
 /datum/supply_pack/goody/hivemind_nifsoft
-	name = "Hivemind NIFSoft"
-	desc = "Contains a single Hivemind NIFSoft uploader disk."
+	name = "NIF软件 Hivemind-蜂群"
+	desc = "内含装有Hivemind-蜂群的NIF软件磁盘."
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(
 		/obj/item/disk/nifsoft_uploader/hivemind,
 	)
 
 /datum/supply_pack/goody/summoner_nifsoft
-	name = "Grimoire Caeruleam NIFSoft"
-	desc = "Contains a single Grimoire Caeruleam NIFSoft uploader disk."
+	name = "NIF软件 Grimoire Caeruleam-蔚蓝咒书"
+	desc = "内含装有Grimoire Caeruleam-蔚蓝咒书的NIF软件磁盘."
 	cost = CARGO_CRATE_VALUE * 0.75
 	contains = list(
 		/obj/item/disk/nifsoft_uploader/summoner,
 	)
 
 /datum/supply_pack/goody/firstaid_pouch
-	name = "Mini-Medkit First Aid Pouch"
-	desc = "Contains a single surplus first-aid pouch, complete with pocket clip. Repackaged with station-standard medical supplies, \
-	but nothing's stopping you from repacking it yourself, though."
+	name = "便携型急救袋"
+	desc = "内含一个配有口袋夹的急救袋，默认填入太空站标准的医疗物品, \
+	但你也可以自行填入其他物品."
 	cost = PAYCHECK_CREW * 6
 	contains = list(
 		/obj/item/storage/pouch/medical/firstaid/loaded,
 	)
 
 /datum/supply_pack/goody/stabilizer_pouch
-	name = "Stabilizer First Aid Pouch"
-	desc = "Contains a single surplus first-aid pouch, complete with pocket clip. Repackaged with a wound stabilizing-focused loadout, \
-	but nothing's stopping you from repacking it yourself, though."
+	name = "抢救型急救袋"
+	desc = "内含一个配有口袋夹的急救袋，默认填入以稳定伤情为主的医疗物品, \
+	但你也可以自行填入其他物品."
 	cost = PAYCHECK_CREW * 6
 	contains = list(
 		/obj/item/storage/pouch/medical/firstaid/stabilizer,
