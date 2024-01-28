@@ -2,7 +2,7 @@
 #define WELDER_FUEL_BURN_INTERVAL 5
 /obj/item/weldingtool
 	name = "焊接工具"
-	desc = "A standard edition welder provided by Nanotrasen."
+	desc = "纳米传讯提供的标准焊机."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	inhand_icon_state = "welder"
@@ -107,7 +107,7 @@
 
 
 /obj/item/weldingtool/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]把[user.p_their()]每一个孔洞都焊死了!看上去[user.p_theyre()]试图自杀!"))
 	return FIRELOSS
 
 /obj/item/weldingtool/screwdriver_act(mob/living/user, obj/item/tool)
@@ -149,8 +149,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(user == attacked_humanoid)
-		user.visible_message(span_notice("[user] starts to fix some of the dents on [attacked_humanoid]'s [affecting.name]."),
-			span_notice("You start fixing some of the dents on [attacked_humanoid == user ? "your" : "[attacked_humanoid]'s"] [affecting.name]."))
+		user.visible_message(span_notice("[user]开始修复[attacked_humanoid]'s [affecting.name]上的一些凹痕."),
+			span_notice("你开始修复[attacked_humanoid == user ? "your" : "[attacked_humanoid]'s"] [affecting.name]上的一些凹痕."))
 		if(!do_after(user, self_delay, attacked_humanoid)) // SKYRAT EDIT CHANGE - ORIGINAL: if(!do_after(user, 5 SECONDS, attacked_humanoid))
 			return ITEM_INTERACT_BLOCKING
 	// SKYRAT EDIT ADDITION START
@@ -254,7 +254,7 @@
 // /Switches the welder on
 /obj/item/weldingtool/proc/switched_on(mob/user)
 	if(!status)
-		to_chat(user, span_warning("[src] can't be turned on while unsecured!"))
+		to_chat(user, span_warning("[src]不能在未拧紧油罐时打开!"))
 		return
 	set_welding(!welding)
 	if(welding)
@@ -296,26 +296,26 @@
 /// If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		to_chat(user, span_warning("[src] has to be on to complete this task!"))
+		to_chat(user, span_warning("[src]必须打开才能完成此任务!"))
 		return FALSE
 
 	if(get_fuel() >= amount)
 		return TRUE
 	else
-		to_chat(user, span_warning("You need more welding fuel to complete this task!"))
+		to_chat(user, span_warning("你需要更多的焊接燃料来完成这项任务!"))
 		return FALSE
 
 /// Ran when the welder is attacked by a screwdriver.
 /obj/item/weldingtool/proc/flamethrower_screwdriver(obj/item/tool, mob/user)
 	if(welding)
-		to_chat(user, span_warning("Turn it off first!"))
+		to_chat(user, span_warning("先关掉它!"))
 		return
 	status = !status
 	if(status)
-		to_chat(user, span_notice("You resecure [src] and close the fuel tank."))
+		to_chat(user, span_notice("你拧紧[src]并密封了油罐."))
 		reagents.flags &= ~(OPENCONTAINER)
 	else
-		to_chat(user, span_notice("[src] can now be attached, modified, and refuelled."))
+		to_chat(user, span_notice("[src]现在可以连接、改装和加油了."))
 		reagents.flags |= OPENCONTAINER
 	add_fingerprint(user)
 
@@ -329,10 +329,10 @@
 				user.transferItemToLoc(src, flamethrower_frame, TRUE)
 			flamethrower_frame.weldtool = src
 			add_fingerprint(user)
-			to_chat(user, span_notice("You add a rod to a welder, starting to build a flamethrower."))
+			to_chat(user, span_notice("你在焊机上加装一根铁杆，试图制造火焰喷射器."))
 			user.put_in_hands(flamethrower_frame)
 		else
-			to_chat(user, span_warning("You need one rod to start building a flamethrower!"))
+			to_chat(user, span_warning("你需要一根铁杆才能开始制造火焰喷射器!"))
 
 /obj/item/weldingtool/ignition_effect(atom/ignitable_atom, mob/user)
 	if(use_tool(ignitable_atom, user, 0))
@@ -345,7 +345,7 @@
 
 /obj/item/weldingtool/largetank
 	name = "工业用焊接工具"
-	desc = "A slightly larger welder with a larger tank."
+	desc = "一个稍大点的焊机附带一个更大的油箱."
 	icon_state = "indwelder"
 	max_fuel = 40
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.6)
@@ -358,7 +358,7 @@
 
 /obj/item/weldingtool/largetank/cyborg
 	name = "集成焊接工具"
-	desc = "An advanced welder designed to be used in robotic systems. Custom framework doubles the speed of welding."
+	desc = "一种设计用于机械系统的先进焊机。客制框架使焊接速度翻倍."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "indwelder_cyborg"
 	toolspeed = 0.5
@@ -371,7 +371,7 @@
 
 /obj/item/weldingtool/mini
 	name = "应急焊接工具"
-	desc = "A miniature welder used during emergencies."
+	desc = "紧急情况下使用的微型焊机."
 	icon_state = "miniwelder"
 	max_fuel = 10
 	w_class = WEIGHT_CLASS_TINY
@@ -386,7 +386,7 @@
 
 /obj/item/weldingtool/abductor
 	name = "外星焊接工具"
-	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
+	desc = "一种外星焊接工具。不知它使用的什么燃料，从来都不会耗尽."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "welder"
 	toolspeed = 0.1
@@ -402,7 +402,7 @@
 
 /obj/item/weldingtool/hugetank
 	name = "升级工业用焊接工具"
-	desc = "An upgraded welder based of the industrial welder."
+	desc = "基于工业焊机的升级型."
 	icon_state = "upindwelder"
 	inhand_icon_state = "upindwelder"
 	max_fuel = 80
@@ -410,7 +410,7 @@
 
 /obj/item/weldingtool/experimental
 	name = "实验性焊接工具"
-	desc = "An experimental welder capable of self-fuel generation and less harmful to the eyes."
+	desc = "一种能够自我充能且对眼睛危害较小的实验性焊机."
 	icon_state = "exwelder"
 	inhand_icon_state = "exwelder"
 	max_fuel = 40

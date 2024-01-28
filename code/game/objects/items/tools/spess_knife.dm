@@ -1,8 +1,8 @@
 #define NO_TOOL "fold"
 
 /obj/item/spess_knife
-	name = "spess knife"
-	desc = "Unleash the cosmic ingenuity at your fingertips. It seamlessly shifts forms, revealing hidden talents that might just save the day. Who knows what secrets lie within this celestial tool?"
+	name = "太空刀"
+	desc = "释放指尖的宇宙智慧.它无缝地转换了形态，揭示隐藏的天赋，这可能会挽救局面. 没人知道这个天外器械里藏有什么秘密."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "spess_knife"
 	worn_icon_state = "spess_knife"

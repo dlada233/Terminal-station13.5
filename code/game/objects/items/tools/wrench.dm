@@ -1,6 +1,6 @@
 /obj/item/wrench
 	name = "扳手"
-	desc = "A wrench with common uses. Can be found in your hand."
+	desc = "一种常用扳手。可以在你的手上找到."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench"
 	inhand_icon_state = "wrench"
@@ -33,13 +33,13 @@
 	AddElement(/datum/element/falling_hazard, damage = force, wound_bonus = wound_bonus, hardhat_safety = TRUE, crushes = FALSE, impact_sound = hitsound)
 
 /obj/item/wrench/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在用[src]活活把[user.p_them()]自己打到死!看上去[user.p_theyre()]试图自杀!"))
 	playsound(loc, 'sound/weapons/genhit.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
 /obj/item/wrench/abductor
 	name = "外星扳手"
-	desc = "A polarized wrench. It causes anything placed between the jaws to turn."
+	desc = "极性扳手。它会使夹在钳口之间的任何东西转动."
 	icon = 'icons/obj/antags/abductor.dmi'
 	belt_icon_state = "wrench_alien"
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
@@ -49,7 +49,7 @@
 
 /obj/item/wrench/medical
 	name = "医用扳手"
-	desc = "A medical wrench with common(medical?) uses. Can be found in your hand."
+	desc = "一种常用（医用？）的医用扳手。可以在你的手上找到."
 	icon_state = "wrench_medical"
 	inhand_icon_state = "wrench_medical"
 	force = 2 //MEDICAL
@@ -62,10 +62,10 @@
 /obj/item/wrench/medical/examine(mob/user)
 	. = ..()
 	if(suicider)
-		. += span_notice("For some reason, it reminds you of [suicider].")
+		. += span_notice("出于某些原因，它让你想起[suicider].")
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is praying to the medical wrench to take [user.p_their()] soul. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]祈祷医用扳手带走[user.p_their()]灵魂. 看起来[user.p_theyre()]试图自杀!"))
 	user.Stun(100, ignore_canstun = TRUE)// Stun stops them from wandering off
 	user.set_light_color(COLOR_VERY_SOFT_YELLOW)
 	user.set_light(2)
@@ -85,14 +85,14 @@
 
 /obj/item/wrench/cyborg
 	name = "液压扳手"
-	desc = "An advanced robotic wrench, powered by internal hydraulics. Twice as fast as the handheld version."
+	desc = "一种先进的机械扳手，由内部液压系统驱动.速度是手持版的两倍."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "wrench_cyborg"
 	toolspeed = 0.5
 
 /obj/item/wrench/combat
 	name = "格斗扳手"
-	desc = "It's like a normal wrench but edgier. Can be found on the battlefield."
+	desc = "和一把普通的扳手一样，但更锋利。可以在战场上找到."
 	icon_state = "wrench_combat"
 	inhand_icon_state = "wrench_combat"
 	belt_icon_state = "wrench_combat"
@@ -127,8 +127,8 @@
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/wrench/bolter
-	name = "bolter wrench"
-	desc = "A wrench designed to grab into airlock's bolting system and raise it regardless of the airlock's power status."
+	name = "门栓扳手"
+	desc = "一种设计用于抓取气闸门栓系统的扳手，并在不考虑气闸电源状态的情况下将其提升."
 	icon_state = "bolter_wrench"
 	inhand_icon_state = "bolter_wrench"
 	w_class = WEIGHT_CLASS_NORMAL

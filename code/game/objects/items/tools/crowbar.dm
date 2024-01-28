@@ -1,6 +1,6 @@
 /obj/item/crowbar
 	name = "口袋撬棍"
-	desc = "A small crowbar. This handy tool is useful for lots of things, such as prying floor tiles or opening unpowered doors."
+	desc = "一根小撬棍. 这把趁手的工具对做很多事情都很有用,比如撬开地砖或者无动力门."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
 	inhand_icon_state = "crowbar"
@@ -33,7 +33,7 @@
 	AddElement(/datum/element/falling_hazard, damage = force, wound_bonus = wound_bonus, hardhat_safety = TRUE, crushes = FALSE, impact_sound = hitsound)
 
 /obj/item/crowbar/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在用[src]活活把[user.p_them()]自己打到死!看上去[user.p_theyre()]试图自杀!"))
 	playsound(loc, 'sound/weapons/genhit.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -44,7 +44,7 @@
 
 /obj/item/crowbar/abductor
 	name = "外星撬棍"
-	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
+	desc = "一根坚硬轻巧的撬棍.它似乎不需要任何外力就能自己撬动."
 	icon = 'icons/obj/antags/abductor.dmi'
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
@@ -55,7 +55,7 @@
 
 /obj/item/crowbar/large
 	name = "大撬棍"
-	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big."
+	desc = "这是一把大撬棍. 它放不进你的口袋里，因为它很大."
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -67,12 +67,12 @@
 
 /obj/item/crowbar/large/emergency
 	name = "应急撬棍"
-	desc = "It's a bulky crowbar. It almost seems deliberately designed to not be able to fit inside of a backpack."
+	desc = "这是一把笨重的撬棍. 它似乎是被故意设计成不能放进背包里的."
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/crowbar/hammer
 	name = "羊角锤"
-	desc = "It's a heavy hammer with a pry bar on the back of its head. Nails aren't common in space, but this tool can still be used as a weapon or a crowbar."
+	desc = "这是一把一头上有撬棍的重锤. 钉子在太空中并不常见，但这种工具仍然可以用作武器或撬棍."
 	force = 11
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/obj/weapons/hammer.dmi'
@@ -90,14 +90,14 @@
 
 /obj/item/crowbar/large/heavy //from space ruin
 	name = "重型撬棍"
-	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big. It feels oddly heavy.."
+	desc = "这是一把大撬棍. 它放不进你的口袋里, 因为它很大.拿起来感觉异常地沉重..."
 	force = 20
 	icon_state = "crowbar_powergame"
 	inhand_icon_state = "crowbar_red"
 
 /obj/item/crowbar/large/old
-	name = "old crowbar"
-	desc = "It's an old crowbar. Much larger than the pocket sized ones, carrying a lot more heft. They don't make 'em like they used to."
+	name = "旧式撬棍"
+	desc = "这是一把老撬棍. 比那些口袋大小的要大得多, 也重得多. 他们不再像以前那样制造撬棍了."
 	throwforce = 10
 	throw_speed = 2
 
@@ -108,7 +108,7 @@
 
 /obj/item/crowbar/power
 	name = "救生颚"
-	desc = "A set of jaws of life, compressed through the magic of science."
+	desc = "一副被科学的魔力压缩的生命之颚."
 	icon_state = "jaws"
 	inhand_icon_state = "jawsoflife"
 	worn_icon_state = "jawsoflife"
@@ -161,7 +161,7 @@
 
 /obj/item/crowbar/power/syndicate
 	name = "辛迪加救生颚"
-	desc = "A pocket sized re-engineered copy of Nanotrasen's standard jaws of life. Can be used to force open airlocks in its crowbar configuration."
+	desc = "一个口袋大小的纳米传讯牌救生鄂的再设计复制品. 可以在它的撬棍模式下强行打开气闸."
 	icon_state = "jaws_syndie"
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 0.5
@@ -173,7 +173,7 @@
 
 /obj/item/crowbar/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_CROWBAR)
-		user.visible_message(span_suicide("[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在把[user.p_their()]头部放进[src],看上去[user.p_theyre()]试图自杀!"))
 		playsound(loc, 'sound/items/jaws_pry.ogg', 50, TRUE, -1)
 	else
 		user.visible_message(span_suicide("[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!"))
@@ -188,7 +188,7 @@
 
 /obj/item/crowbar/cyborg
 	name = "液压撬棍"
-	desc = "A hydraulic prying tool, simple but powerful."
+	desc = "液压撬具，构造简单但功能强大."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "crowbar_cyborg"
 	worn_icon_state = "crowbar"
@@ -198,7 +198,7 @@
 
 /obj/item/crowbar/mechremoval
 	name = "机甲拆卸工具"
-	desc = "A... really big crowbar. You're pretty sure it could pry open a mech, but it seems unwieldy otherwise."
+	desc = "一根…非常大的撬棍. 你很肯定它能撬开一台机甲, 但除此之外，它似乎很笨重."
 	icon_state = "mechremoval0"
 	base_icon_state = "mechremoval"
 	inhand_icon_state = null
@@ -231,14 +231,14 @@
 	if(!LAZYLEN(mech.occupants) || (LAZYLEN(mech.occupants) == 1 && mech.mecha_flags & SILICON_PILOT)) //if no occupants, or only an ai
 		mech.balloon_alert(user, "it's empty!")
 		return
-	user.log_message("tried to pry open [mech], located at [loc_name(mech)], which is currently occupied by [mech.occupants.Join(", ")].", LOG_ATTACK)
+	user.log_message("试图撬开[mech], located at [loc_name(mech)], which is currently occupied by [mech.occupants.Join(", ")].", LOG_ATTACK)
 	var/mech_dir = mech.dir
-	mech.balloon_alert(user, "prying open...")
+	mech.balloon_alert(user, "撬开中...")
 	playsound(mech, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 	if(!use_tool(mech, user, mech.enclosed ? 5 SECONDS : 3 SECONDS, volume = 0, extra_checks = CALLBACK(src, PROC_REF(extra_checks), mech, mech_dir)))
-		mech.balloon_alert(user, "interrupted!")
+		mech.balloon_alert(user, "中断!")
 		return
-	user.log_message("pried open [mech], located at [loc_name(mech)], which is currently occupied by [mech.occupants.Join(", ")].", LOG_ATTACK)
+	user.log_message("已撬开[mech], located at [loc_name(mech)], which is currently occupied by [mech.occupants.Join(", ")].", LOG_ATTACK)
 	for(var/mob/living/occupant as anything in mech.occupants)
 		if(isAI(occupant))
 			continue
