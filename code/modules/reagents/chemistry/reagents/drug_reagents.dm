@@ -9,8 +9,8 @@
 		affected_mob.clear_mood_event("[type]_high")
 
 /datum/reagent/drug/space_drugs
-	name = "Space Drugs"
-	description = "An illegal chemical compound used as drug."
+	name = "Space Drugs-太空毒品"
+	description = "用作毒品的非法化合物."
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose_threshold = 30
 	ph = 9
@@ -27,7 +27,7 @@
 
 /datum/reagent/drug/space_drugs/overdose_start(mob/living/affected_mob)
 	. = ..()
-	to_chat(affected_mob, span_userdanger("You start tripping hard!"))
+	to_chat(affected_mob, span_userdanger("你绊倒了!"))
 	affected_mob.add_mood_event("[type]_overdose", /datum/mood_event/overdose, name)
 
 /datum/reagent/drug/space_drugs/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
@@ -37,8 +37,8 @@
 		affected_mob.adjust_hallucinations(10 SECONDS)
 
 /datum/reagent/drug/cannabis
-	name = "Cannabis"
-	description = "A psychoactive drug from the Cannabis plant used for recreational purposes."
+	name = "Cannabis-大麻素"
+	description = "从大麻植物中提取的一种精神药物，用于娱乐目的."
 	color = "#059033"
 	overdose_threshold = INFINITY
 	ph = 6
@@ -49,24 +49,24 @@
 	. = ..()
 	affected_mob.apply_status_effect(/datum/status_effect/stoned)
 	if(SPT_PROB(1, seconds_per_tick))
-		var/smoke_message = pick("You feel relaxed.","You feel calmed.","Your mouth feels dry.","You could use some water.","Your heart beats quickly.","You feel clumsy.","You crave junk food.","You notice you've been moving more slowly.")
+		var/smoke_message = pick("你感到放松.","你感到平静.","你觉得口干.","你可以喝点水.","你的心跳很快.","你感到笨拙.","你渴望垃圾食品.","你注意到你的动作变慢了.")
 		to_chat(affected_mob, "<span class='notice'>[smoke_message]</span>")
 	if(SPT_PROB(2, seconds_per_tick))
 		affected_mob.emote(pick("smile","laugh","giggle"))
 	affected_mob.adjust_nutrition(-0.15 * REM * seconds_per_tick) //munchies
 	if(SPT_PROB(4, seconds_per_tick) && affected_mob.body_position == LYING_DOWN && !affected_mob.IsSleeping()) //chance to fall asleep if lying down
-		to_chat(affected_mob, "<span class='warning'>You doze off...</span>")
+		to_chat(affected_mob, "<span class='warning'>你打瞌睡了...</span>")
 		affected_mob.Sleeping(10 SECONDS)
 	if(SPT_PROB(4, seconds_per_tick) && affected_mob.buckled && affected_mob.body_position != LYING_DOWN && !affected_mob.IsParalyzed()) //chance to be couchlocked if sitting
-		to_chat(affected_mob, "<span class='warning'>It's too comfy to move...</span>")
+		to_chat(affected_mob, "<span class='warning'>太舒服了，动都动不了...</span>")
 		affected_mob.Paralyze(10 SECONDS)
 
 /datum/reagent/drug/nicotine
-	name = "Nicotine"
-	description = "Slightly reduces stun times. If overdosed it will deal toxin and oxygen damage."
+	name = "Nicotine-尼古丁"
+	description = "轻微减少眩晕时间，如果服用过量，会造成毒素和氧气损伤."
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
-	taste_description = "smoke"
+	taste_description = "烟"
 	trippy = FALSE
 	overdose_threshold = 15
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
@@ -82,7 +82,7 @@
 /datum/reagent/drug/nicotine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	if(SPT_PROB(0.5, seconds_per_tick))
-		var/smoke_message = pick("You feel relaxed.", "You feel calmed.","You feel alert.","You feel rugged.")
+		var/smoke_message = pick("你感到放松.", "你感到平静.","你感到警觉.","你觉得很粗糙.")
 		to_chat(affected_mob, span_notice("[smoke_message]"))
 	affected_mob.add_mood_event("smoked", /datum/mood_event/smoked)
 	affected_mob.remove_status_effect(/datum/status_effect/jitter)
@@ -102,8 +102,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/krokodil
-	name = "Krokodil"
-	description = "Cools and calms you down. If overdosed it will deal significant Brain and Toxin damage."
+	name = "Krokodil-二氢脱氧吗啡"
+	description = "让你冷静下来，如果过量服用，会对大脑造成严重损害，还会产生毒素."
 	reagent_state = LIQUID
 	color = "#0064B4"
 	overdose_threshold = 20
@@ -114,13 +114,13 @@
 
 /datum/reagent/drug/krokodil/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	var/high_message = pick("You feel calm.", "You feel collected.", "You feel like you need to relax.")
+	var/high_message = pick("你感到平静.", "你感到镇定.", "你觉得你需要放松.")
 	if(SPT_PROB(2.5, seconds_per_tick))
 		to_chat(affected_mob, span_notice("[high_message]"))
 	affected_mob.add_mood_event("smacked out", /datum/mood_event/narcotic_heavy)
 	if(current_cycle == 36 && creation_purity <= 0.6)
 		if(!istype(affected_mob.dna.species, /datum/species/human/krokodil_addict))
-			to_chat(affected_mob, span_userdanger("Your skin falls off easily!"))
+			to_chat(affected_mob, span_userdanger("你的毛发很容易脱落!"))
 			var/mob/living/carbon/human/affected_human = affected_mob
 			affected_human.set_facial_hairstyle("Shaved", update = FALSE)
 			affected_human.set_hairstyle("Bald", update = FALSE)
@@ -137,8 +137,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/methamphetamine
-	name = "Methamphetamine"
-	description = "Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
+	name = "Methamphetamine-冰毒"
+	description = "减少晕眩时间约300%，加速使用者，并允许使用者快速恢复耐力，同时造成少量脑损伤；如果服用过量，受试者将随机移动，随机大笑，掉落物品，并遭受毒素和脑损伤；如果上瘾，受试者会不断地颤抖和流口水，然后变得头晕，失去运动控制，最终遭受严重的毒素损害."
 	reagent_state = LIQUID
 	color = "#78C8FA" //best case scenario is the "default", gets muddled depending on purity
 	overdose_threshold = 20
@@ -172,7 +172,7 @@
 
 /datum/reagent/drug/methamphetamine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	var/high_message = pick("You feel hyper.", "You feel like you need to go faster.", "You feel like you can run the world.")
+	var/high_message = pick("你感到亢奋.", "你觉得你需要更快一点.", "你觉得你可以掌控世界.")
 	if(SPT_PROB(2.5, seconds_per_tick))
 		to_chat(affected_mob, span_notice("[high_message]"))
 	affected_mob.add_mood_event("tweaking", /datum/mood_event/stimulant_medium)
@@ -198,7 +198,7 @@
 	if(SPT_PROB(10, seconds_per_tick))
 		affected_mob.emote("laugh")
 	if(SPT_PROB(18, seconds_per_tick))
-		affected_mob.visible_message(span_danger("[affected_mob]'s hands flip out and flail everywhere!"))
+		affected_mob.visible_message(span_danger("[affected_mob]的手翻了出来到处乱挥!"))
 		affected_mob.drop_all_held_items()
 	var/need_mob_update
 	need_mob_update = affected_mob.adjustToxLoss(1 * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
@@ -207,12 +207,12 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/bath_salts
-	name = "Bath Salts"
-	description = "Makes you impervious to stuns and grants a stamina regeneration buff, but you will be a nearly uncontrollable tramp-bearded raving lunatic."
+	name = "Bath Salts-浴盐"
+	description = "使你不受昏迷影响，并获得耐力恢复buff，但你将成为一个几乎无法控制的流浪汉疯子."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
 	overdose_threshold = 20
-	taste_description = "salt" // because they're bathsalts?
+	taste_description = "盐" // because they're bathsalts?
 	addiction_types = list(/datum/addiction/stimulants = 25)  //8 per 2 seconds
 	var/datum/brain_trauma/special/psychotic_brawling/bath_salts/rage
 	ph = 8.2
@@ -234,7 +234,7 @@
 
 /datum/reagent/drug/bath_salts/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
+	var/high_message = pick("你感到精神振奋.", "你感到一切就绪.", "你觉得你可以把它推到极限.")
 	if(SPT_PROB(2.5, seconds_per_tick))
 		to_chat(affected_mob, span_notice("[high_message]"))
 	affected_mob.add_mood_event("salted", /datum/mood_event/stimulant_heavy)
@@ -260,8 +260,8 @@
 		affected_mob.drop_all_held_items()
 
 /datum/reagent/drug/aranesp
-	name = "Aranesp"
-	description = "Amps you up, gets you going, and rapidly restores stamina damage. Side effects include breathlessness and toxicity."
+	name = "Aranesp-阿拉内普"
+	description = "让你振作起来，让你继续前进，并迅速恢复耐力伤害，副作用包括呼吸困难和中毒."
 	reagent_state = LIQUID
 	color = "#78FFF0"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -269,7 +269,7 @@
 
 /datum/reagent/drug/aranesp/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
+	var/high_message = pick("你感到精神振奋.", "你感到一切就绪.", "你觉得你可以把它推到极限.")
 	if(SPT_PROB(2.5, seconds_per_tick))
 		to_chat(affected_mob, span_notice("[high_message]"))
 	var/need_mob_update
@@ -282,8 +282,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/happiness
-	name = "Happiness"
-	description = "Fills you with ecstasic numbness and causes minor brain damage. Highly addictive. If overdosed causes sudden mood swings."
+	name = "Happiness-快活剂"
+	description = "让你产生迷魂药般的麻木感并造成轻微的脑损伤，很容易上瘾，如果过量服用会导致突然的情绪波动."
 	reagent_state = LIQUID
 	color = "#EE35FF"
 	overdose_threshold = 20
@@ -327,8 +327,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/pumpup
-	name = "Pump-Up"
-	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."
+	name = "Pump-Up-涌力"
+	description = "挑战世界!一种见效快、效果强的毒品，能让你的承受能力达到极限."
 	reagent_state = LIQUID
 	color = "#e38e44"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -353,7 +353,7 @@
 	affected_mob.set_jitter_if_lower(10 SECONDS * REM * seconds_per_tick)
 
 	if(SPT_PROB(2.5, seconds_per_tick))
-		to_chat(affected_mob, span_notice("[pick("Go! Go! GO!", "You feel ready...", "You feel invincible...")]"))
+		to_chat(affected_mob, span_notice("[pick("Go! Go! GO!", "你感到一切就绪...", "你觉得自己无敌...")]"))
 	if(SPT_PROB(7.5, seconds_per_tick))
 		affected_mob.losebreath++
 		affected_mob.adjustToxLoss(2, updating_health = FALSE, required_biotype = affected_biotype)
@@ -361,7 +361,7 @@
 
 /datum/reagent/drug/pumpup/overdose_start(mob/living/affected_mob)
 	. = ..()
-	to_chat(affected_mob, span_userdanger("You can't stop shaking, your heart beats faster and faster..."))
+	to_chat(affected_mob, span_userdanger("你不停地颤抖，心跳越来越快..."))
 
 /datum/reagent/drug/pumpup/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
@@ -381,7 +381,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/maint
-	name = "Maintenance Drugs"
+	name = "Maintenance Drugs-管道毒品"
 	chemical_flags = NONE
 
 /datum/reagent/drug/maint/on_mob_metabolize(mob/living/affected_mob)
@@ -396,8 +396,8 @@
 		metabolization_rate *= 0.8
 
 /datum/reagent/drug/maint/powder
-	name = "Maintenance Powder"
-	description = "An unknown powder that you most likely gotten from an assistant, a bored chemist... or cooked yourself. It is a refined form of tar that enhances your mental ability, making you learn stuff a lot faster."
+	name = "Maintenance Powder-管道粉"
+	description = "一种不知名的粉末，很可能是助手、无聊的化学家...或者自己煮的；它是一种精炼的焦油，可以提高你的智力，让你更快地学习东西."
 	reagent_state = SOLID
 	color = "#ffffff"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -424,8 +424,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/maint/sludge
-	name = "Maintenance Sludge"
-	description = "An unknown sludge that you most likely gotten from an assistant, a bored chemist... or cooked yourself. Half refined, it fills your body with itself, making it more resistant to wounds, but causes toxins to accumulate."
+	name = "Maintenance Sludge-管道泥"
+	description = "你很可能从一个助手、一个无聊的化学家那里得到一堆不知名的污泥...或者自己煮的；它只提炼了一半，使你更能抵抗伤口，但也会导致毒素积累."
 	reagent_state = LIQUID
 	color = "#203d2c"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -461,8 +461,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/maint/tar
-	name = "Maintenance Tar"
-	description = "An unknown tar that you most likely gotten from an assistant, a bored chemist... or cooked yourself. Raw tar, straight from the floor. It can help you with escaping bad situations at the cost of liver damage."
+	name = "Maintenance Tar-管道油"
+	description = "一个不知名的焦油，你很可能从一个助手，一个无聊的化学家那里得到...或者自己煮的，像是生沥青，直接从地板上取下来的，它可以帮助你以肝损伤为代价逃离糟糕的情况."
 	reagent_state = LIQUID
 	color = "#000000"
 	overdose_threshold = 30
@@ -488,11 +488,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/mushroomhallucinogen
-	name = "Mushroom Hallucinogen"
-	description = "A strong hallucinogenic drug derived from certain species of mushroom."
+	name = "Mushroom Hallucinogen-蘑菇致幻剂"
+	description = "从某种蘑菇中提取的强效致幻剂."
 	color = "#E700E7" // rgb: 231, 0, 231
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
-	taste_description = "mushroom"
+	taste_description = "蘑菇"
 	ph = 11
 	overdose_threshold = 30
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -561,19 +561,19 @@
 
 /datum/reagent/drug/blastoff
 	name = "bLaStOoF"
-	description = "A drug for the hardcore party crowd said to enhance ones abilities on the dance floor.\nMost old heads refuse to touch this stuff, perhaps because memories of the luna discoteque incident are seared into their brains."
+	description = "这是一种专为参加疯狂派对的人准备的药物，据说可以提高他们在舞池中的舞技，大多数老年人都对这东西感到恐惧，也许是因为月球迪斯科舞厅事件在他们的大脑中烙下了不可磨灭的印记."
 	reagent_state = LIQUID
 	color = "#9015a9"
-	taste_description = "holodisk cleaner"
+	taste_description = "清洁剂"
 	ph = 5
 	overdose_threshold = 30
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	addiction_types = list(/datum/addiction/hallucinogens = 15)
 	///How many flips have we done so far?
 	var/flip_count = 0
-	///How many spin have we done so far?
+	///How many 旋转 have we done so far?
 	var/spin_count = 0
-	///How many flips for a super flip?
+	///How many flips for a super 翻转?
 	var/super_flip_requirement = 3
 
 /datum/reagent/drug/blastoff/on_mob_metabolize(mob/living/dancer)
@@ -640,7 +640,7 @@
 	if(SPT_PROB(BLASTOFF_DANCE_MOVE_CHANCE_PER_UNIT * volume, seconds_per_tick))
 		dancer.emote("spin")
 
-///This proc listens to the flip signal and throws the mob every third flip
+///This proc listens to the 翻转 signal and throws the mob every third 翻转
 /datum/reagent/drug/blastoff/proc/on_flip()
 	SIGNAL_HANDLER
 
@@ -652,12 +652,12 @@
 	if(flip_count < BLASTOFF_DANCE_MOVES_PER_SUPER_MOVE)
 		return
 	flip_count = 0
-	var/atom/throw_target = get_edge_target_turf(dancer, dancer.dir)  //Do a super flip
+	var/atom/throw_target = get_edge_target_turf(dancer, dancer.dir)  //Do a super 翻转
 	dancer.SpinAnimation(speed = 3, loops = 3)
-	dancer.visible_message(span_notice("[dancer] does an extravagant flip!"), span_nicegreen("You do an extravagant flip!"))
+	dancer.visible_message(span_notice("[dancer]做了一个夸张的翻跟头!"), span_nicegreen("你做了一个夸张的翻跟头!"))
 	dancer.throw_at(throw_target, range = 6, speed = overdosed ? 4 : 1)
 
-///This proc listens to the spin signal and throws the mob every third spin
+///This proc listens to the 旋转 signal and throws the mob every third 旋转
 /datum/reagent/drug/blastoff/proc/on_spin()
 	SIGNAL_HANDLER
 
@@ -668,8 +668,8 @@
 	spin_count++
 	if(spin_count < BLASTOFF_DANCE_MOVES_PER_SUPER_MOVE)
 		return
-	spin_count = 0 //Do a super spin.
-	dancer.visible_message(span_danger("[dancer] spins around violently!"), span_danger("You spin around violently!"))
+	spin_count = 0 //Do a super 旋转.
+	dancer.visible_message(span_danger("[dancer]剧烈旋转!"), span_danger("你剧烈旋转!"))
 	dancer.spin(30, 2)
 	if(dancer.disgust < 40)
 		dancer.adjust_disgust(10)
@@ -677,7 +677,7 @@
 		return
 	var/dancer_turf = get_turf(dancer)
 	var/atom/movable/dance_partner = dancer.pulledby
-	dance_partner.visible_message(span_danger("[dance_partner] tries to hold onto [dancer], but is thrown back!"), span_danger("You try to hold onto [dancer], but you are thrown back!"), null, COMBAT_MESSAGE_RANGE)
+	dance_partner.visible_message(span_danger("[dance_partner]试图抓住[dancer]，但被甩了回来!"), span_danger("你试图抓住[dancer]，但你被甩了回来!"), null, COMBAT_MESSAGE_RANGE)
 	var/throwtarget = get_edge_target_turf(dancer_turf, get_dir(dancer_turf, get_step_away(dance_partner, dancer_turf)))
 	if(overdosed)
 		dance_partner.throw_at(target = throwtarget, range = 7, speed = 4)
@@ -685,8 +685,8 @@
 		dance_partner.throw_at(target = throwtarget, range = 4, speed = 1) //superspeed
 
 /datum/reagent/drug/saturnx
-	name = "Saturn-X"
-	description = "This compound was first discovered during the infancy of cloaking technology and at the time thought to be a promising candidate agent. It was withdrawn for consideration after the researchers discovered a slew of associated safety issues including thought disorders and hepatoxicity."
+	name = "Saturn-X-土星X"
+	description = "这种化合物最初是在隐形技术的初期发现的，当时被认为是一种很有前途的候选药剂；但在研究人员发现了包括思维障碍和肝毒性在内的一系列相关安全问题后，该药物被撤回考虑."
 	reagent_state = SOLID
 	taste_description = "metallic bitterness"
 	color = "#638b9b"
@@ -704,7 +704,7 @@
 /datum/reagent/drug/saturnx/on_mob_metabolize(mob/living/invisible_man)
 	. = ..()
 	playsound(invisible_man, 'sound/chemistry/saturnx_fade.ogg', 40)
-	to_chat(invisible_man, span_nicegreen("You feel pins and needles all over your skin as your body suddenly becomes transparent!"))
+	to_chat(invisible_man, span_nicegreen("当你的身体突然变得透明时，你感到皮肤上到处都是针!"))
 	addtimer(CALLBACK(src, PROC_REF(turn_man_invisible), invisible_man), 10) //just a quick delay to synch up the sound.
 	if(!invisible_man.hud_used)
 		return
@@ -757,7 +757,7 @@
 		invisible_man.add_to_all_human_data_huds() //Is this safe, what do you think, Floyd?
 		invisible_man.remove_traits(list(TRAIT_INVISIBLE_MAN, TRAIT_HIDE_EXTERNAL_ORGANS, TRAIT_NO_BLOOD_OVERLAY), type)
 
-		to_chat(invisible_man, span_notice("As you sober up, opacity once again returns to your body meats."))
+		to_chat(invisible_man, span_notice("色彩再次回到你的身体."))
 
 	invisible_man.update_body()
 	invisible_man.sound_environment_override = NONE
@@ -779,18 +779,18 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/saturnx/stable
-	name = "Stabilized Saturn-X"
-	description = "A chemical extract originating from the Saturn-X compound, stabilized and safer for tactical use. After the recipe was discovered, it was planned to be put into mass production, but the program fell apart after its lead disappeared and was never seen again."
+	name = "Stabilized Saturn-X-稳定土星X"
+	description = "一种源自土星x化合物的化学提取物，稳定且更安全的战术版；配方被发现后，原计划大规模生产，但负责人消失后，该计划破裂，再也没有出现过."
 	metabolization_rate = 0.15 * REAGENTS_METABOLISM
 	overdose_threshold = 50
 	addiction_types = list(/datum/addiction/maintenance_drugs = 35)
 
 /datum/reagent/drug/kronkaine
-	name = "Kronkaine"
-	description = "A highly illegal stimulant from the edge of the galaxy.\nIt is said the average kronkaine addict causes as much criminal damage as five stick up men, two rascals and one proferssional cambringo hustler combined."
+	name = "Kronkaine-可卡因"
+	description = "一种来自银河系边缘的非法兴奋剂，据说，平均一个可卡因成瘾者造成的犯罪损失相当于5个抢劫犯、2个流氓和1个职业毒品贩子的总和."
 	reagent_state = SOLID
 	color = "#FAFAFA"
-	taste_description = "numbing bitterness"
+	taste_description = "麻木痛苦"
 	ph = 8
 	overdose_threshold = 20
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
@@ -837,12 +837,12 @@
 		. = UPDATE_MOB_HEALTH
 	kronkaine_fiend.set_jitter_if_lower(20 SECONDS * REM * seconds_per_tick)
 	if(SPT_PROB(10, seconds_per_tick))
-		to_chat(kronkaine_fiend, span_danger(pick("You feel like your heart is going to explode!", "Your ears are ringing!", "You sweat like a pig!", "You clench your jaw and grind your teeth.", "You feel prickles of pain in your chest.")))
+		to_chat(kronkaine_fiend, span_danger(pick("你感觉你的心脏要爆炸了!", "你的耳朵在响!", "你汗流浃背!", "你咬紧牙关，磨牙.", "你感到胸口刺痛.")))
 
 ///dirty kronkaine, aka gore. far worse overdose effects.
 /datum/reagent/drug/kronkaine/gore
-	name = "Gore"
-	description = "Dirty Kronkaine. You have to be pretty dumb to take this. Don't. Overdose."
+	name = "Gore-戈尔"
+	description = "干克卡因，你一定很蠢才会接受这个."
 	color = "#ffbebe" // kronkaine but with some red
 	ph = 4
 	chemical_flags = NONE
@@ -850,7 +850,7 @@
 /datum/reagent/drug/kronkaine/gore/overdose_start(mob/living/gored)
 	. = ..()
 	gored.visible_message(
-		span_danger("[gored] explodes in a shower of gore!"),
+		span_danger("[gored]在血淋淋中爆炸!"),
 		span_userdanger("GORE! GORE! GORE! YOU'RE GORE! TOO MUCH GORE! YOU'RE GORE! GORE! IT'S OVER! GORE! GORE! YOU'RE GORE! TOO MUCH G-"),
 	)
 	new /obj/structure/bouncy_castle(gored.loc, gored)

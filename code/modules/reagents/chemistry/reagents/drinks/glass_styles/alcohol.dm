@@ -1,205 +1,205 @@
 /datum/glass_style/drinking_glass/beer
 	required_drink_type = /datum/reagent/consumable/ethanol/beer
-	name = "glass of beer"
-	desc = "A freezing pint of beer."
+	name = "啤酒"
+	desc = "一杯冰凉的啤酒."
 	icon_state = "beerglass"
 
 /datum/glass_style/drinking_glass/beer/light
 	required_drink_type = /datum/reagent/consumable/ethanol/beer/light
-	name = "glass of light beer"
-	desc = "A freezing pint of watery light beer."
+	name = "淡啤酒"
+	desc = "一杯掺了水的冰凉的啤酒."
 
 /datum/glass_style/drinking_glass/beer/light
 	required_drink_type = /datum/reagent/consumable/ethanol/beer/maltliquor
-	name = "glass of malt liquor"
-	desc = "A freezing pint of malt liquor."
+	name = "麦芽酒"
+	desc = "一杯冰凉的麦芽酒."
 
 /datum/glass_style/drinking_glass/beer/green
 	required_drink_type = /datum/reagent/consumable/ethanol/beer/green
-	name = "glass of green beer"
-	desc = "A freezing pint of green beer. Festive."
+	name = "生啤酒"
+	desc = "一杯冰凉的生啤酒."
 	icon_state = "greenbeerglass"
 
 /datum/glass_style/drinking_glass/kahlua
 	required_drink_type = /datum/reagent/consumable/ethanol/kahlua
-	name = "glass of RR coffee liquor"
-	desc = "DAMN, THIS THING LOOKS ROBUST!"
+	name = "RR咖啡酒"
+	desc = "该死，这东西看起来很结实!"
 	icon_state ="kahluaglass"
 
 /datum/glass_style/drinking_glass/whiskey
 	required_drink_type = /datum/reagent/consumable/ethanol/whiskey
-	name = "glass of whiskey"
-	desc = "The silky, smokey whiskey goodness inside the glass makes the drink look very classy."
+	name = "威士忌"
+	desc = "杯中柔滑、烟熏的威士忌让这杯酒看起来很有品位."
 	icon_state = "whiskeyglass"
 
 /datum/glass_style/drinking_glass/whiskey/kong
 	required_drink_type = /datum/reagent/consumable/ethanol/whiskey/kong
-	name = "glass of Kong"
-	desc = "Makes You Go Ape!&#174;"
+	name = "空"
+	desc = "让你疯狂!&#174;"
 
 /datum/glass_style/drinking_glass/whiskey/candycorn
 	required_drink_type = /datum/reagent/consumable/ethanol/whiskey/candycorn
-	name = "glass of candy corn liquor"
-	desc = "Good for your Imagination."
+	name = "玉米糖酒"
+	desc = "有利于你的想象力."
 
 /datum/glass_style/drinking_glass/thirteenloko
 	required_drink_type = /datum/reagent/consumable/ethanol/thirteenloko
-	name = "glass of Thirteen Loko"
-	desc = "This is a glass of Thirteen Loko, it appears to be of the highest quality. The drink, not the glass."
+	name = "十三洛克"
+	desc = "这是13号Loko，它的质量是最高的."
 	icon_state = "thirteen_loko_glass"
 
 /datum/glass_style/drinking_glass/vodka
 	required_drink_type = /datum/reagent/consumable/ethanol/vodka
-	name = "glass of vodka"
-	desc = "The glass contain wodka. Xynta."
+	name = "伏特加"
+	desc = "一杯伏特加"
 	icon_state = "ginvodkaglass"
 
 /datum/glass_style/drinking_glass/gin
 	required_drink_type = /datum/reagent/consumable/ethanol/gin
-	name = "glass of gin"
-	desc = "A crystal clear glass of Griffeater gin."
+	name = "金酒"
+	desc = "或者琴酒、杜松子酒什么都好."
 	icon_state = "ginvodkaglass"
 
 /datum/glass_style/drinking_glass/rum
 	required_drink_type = /datum/reagent/consumable/ethanol/rum
-	name = "glass of rum"
-	desc = "Now you want to pray for a pirate suit, don't you?"
+	name = "朗姆酒"
+	desc = "现在你想祈祷有一件海盗服，是吗?"
 	icon_state = "rumglass"
 
 /datum/glass_style/drinking_glass/tequila
 	required_drink_type = /datum/reagent/consumable/ethanol/tequila
-	name = "glass of tequila"
-	desc = "Now all that's missing is the weird colored shades!"
+	name = "龙舌兰酒"
+	desc = "现在只差奇怪的颜色了!"
 	icon_state = "tequilaglass"
 
 /datum/glass_style/drinking_glass/vermouth
 	required_drink_type = /datum/reagent/consumable/ethanol/vermouth
-	name = "glass of vermouth"
-	desc = "You wonder why you're even drinking this straight."
+	name = "味美思"
+	desc = "你想知道为什么你要喝这杯纯酒."
 	icon_state = "vermouthglass"
 
 /datum/glass_style/drinking_glass/wine
 	required_drink_type = /datum/reagent/consumable/ethanol/wine
-	name = "glass of wine"
-	desc = "A very classy looking drink."
+	name = "红酒"
+	desc = "一种看起来很高雅的饮料."
 	icon_state = "wineglass"
 
 /datum/glass_style/drinking_glass/grappa
 	required_drink_type = /datum/reagent/consumable/ethanol/grappa
-	name = "glass of grappa"
-	desc = "A fine drink originally made to prevent waste by using the leftovers from winemaking."
+	name = "格拉巴酒"
+	desc = "一种最初用来防止浪费的上等饮料，也叫果渣白兰地."
 	icon_state = "grappa"
 
 /datum/glass_style/drinking_glass/amaretto
 	required_drink_type = /datum/reagent/consumable/ethanol/amaretto
-	name = "glass of amaretto"
-	desc = "A sweet and syrupy looking drink."
+	name = "杏仁酒"
+	desc = "一种看起来像糖浆的甜饮料."
 	icon_state = "amarettoglass"
 /datum/glass_style/drinking_glass/cognac
 	required_drink_type = /datum/reagent/consumable/ethanol/cognac
-	name = "glass of cognac"
-	desc = "Damn, you feel like some kind of French aristocrat just by holding this."
+	name = "干邑白兰地"
+	desc = "妈的，你拿着这个就觉得自己像个法国贵族."
 	icon_state = "cognacglass"
 
 /datum/glass_style/drinking_glass/absinthe
 	required_drink_type = /datum/reagent/consumable/ethanol/absinthe
-	name = "glass of absinthe"
-	desc = "It's as strong as it smells."
+	name = "苦艾酒"
+	desc = "它的味道和它的气味一样浓烈."
 	icon_state = "absinthe"
 
 /datum/glass_style/drinking_glass/hooch
 	required_drink_type = /datum/reagent/consumable/ethanol/hooch
-	name = "glass of ale"
-	desc = "A freezing pint of delicious Ale."
+	name = "爱尔啤酒"
+	desc = "一杯冰凉的爱尔啤酒."
 	icon_state = "aleglass"
 
 /datum/glass_style/drinking_glass/goldschlager
 	required_drink_type = /datum/reagent/consumable/ethanol/goldschlager
-	name = "glass of goldschlager"
-	desc = "100% proof that teen girls will drink anything with gold in it."
+	name = "金杜松子酒"
+	desc = "百分百证明了少女们会喝任何含黄金的东西."
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "goldschlagerglass"
 
 /datum/glass_style/drinking_glass/patron
 	required_drink_type = /datum/reagent/consumable/ethanol/patron
-	name = "glass of patron"
-	desc = "Drinking patron in the bar, with all the subpar ladies."
+	name = "Patron-主顾"
+	desc = "在酒吧里喝酒，和一群低级的女人在一起."
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "patronglass"
 
 /datum/glass_style/drinking_glass/sake
 	required_drink_type = /datum/reagent/consumable/ethanol/sake
-	name = "cup of sake"
-	desc = "A traditional cup of sake."
+	name = "清酒"
+	desc = "一杯传统的清酒."
 	icon_state = "sakecup"
 
 /datum/glass_style/drinking_glass/fernet
 	required_drink_type = /datum/reagent/consumable/ethanol/fernet
-	name = "glass of fernet"
-	desc = "A glass of pure Fernet. Only an absolute madman would drink this alone." //Hi Kevum
+	name = "Fernet-菲奈特"
+	desc = "纯粹的菲奈特，只有疯子才会一个人喝这个." //Hi Kevum
 
 /datum/glass_style/drinking_glass/fruit_wine
 	required_drink_type = /datum/reagent/consumable/ethanol/fruit_wine
-	// This should really be dynamic like "glass of pineapple wine" or something
+	// This should really be dynamic like "pineapple wine" or something
 	// but seeing as fruit wine half doesn't work already I'm not inclined to add support for that now
-	name = "glass of fruit wine"
-	desc = "A wine made from grown plants."
+	name = "Fruit wine-果酒"
+	desc = "用植物酿造的酒."
 
 /datum/glass_style/drinking_glass/champagne
 	required_drink_type = /datum/reagent/consumable/ethanol/champagne
-	name = "Champagne"
+	name = "香槟"
 	desc = "The flute clearly displays the slowly rising bubbles."
 	icon_state = "champagne_glass"
 
 /datum/glass_style/drinking_glass/pruno
 	required_drink_type = /datum/reagent/consumable/ethanol/pruno
-	name = "glass of pruno"
-	desc = "Fermented prison wine made from fruit, sugar, and despair. Security loves to confiscate this, which is the only kind thing Security has ever done."
+	name = "pruno-监狱酒"
+	desc = "由水果、糖和绝望制成的发酵监狱酒，狱警喜欢没收这个，这也是狱警做过的唯一一件好事."
 	icon_state = "glass_orange"
 
 /datum/glass_style/drinking_glass/navy_rum
 	required_drink_type = /datum/reagent/consumable/ethanol/navy_rum
-	name = "glass of navy rum"
-	desc = "Splice the mainbrace, and God save the King."
+	name = "海军朗姆酒"
+	desc = "把支柱接好，上帝保佑国王."
 	icon_state = "ginvodkaglass"
 
 /datum/glass_style/drinking_glass/curacao
 	required_drink_type = /datum/reagent/consumable/ethanol/curacao
-	name = "glass of curaçao"
+	name = "柑香酒"
 	desc = "It's blue, da ba dee."
 	icon_state = "curacao"
 
 /datum/glass_style/drinking_glass/bitters
 	required_drink_type = /datum/reagent/consumable/ethanol/bitters
-	name = "glass of bitters"
-	desc = "Typically you'd want to mix this with something- but you do you."
+	name = "苦精"
+	desc = "通常你会想把它和别的东西混在一起."
 	icon_state = "bitters"
 
 /datum/glass_style/drinking_glass/coconut_rum
 	required_drink_type = /datum/reagent/consumable/ethanol/coconut_rum
-	name = "glass of coconut rum"
+	name = "coconut rum"
 	desc = "Breathe in and relax, you're on vacation until this glass is empty."
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "ginvodkaglass"
 
 /datum/glass_style/drinking_glass/yuyake
 	required_drink_type = /datum/reagent/consumable/ethanol/yuyake
-	name = "glass of yūyake"
+	name = "yūyake"
 	desc = "It's the saccharine essence of the 70s in a glass... the 1970s, that is!"
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "glass_red"
 
 /datum/glass_style/drinking_glass/shochu
 	required_drink_type = /datum/reagent/consumable/ethanol/shochu
-	name = "glass of shochu"
-	desc = "A glass of strong rice wine."
+	name = "shochu"
+	desc = "A strong rice wine."
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "ginvodkaglass"
 
 /datum/glass_style/drinking_glass/rice_beer
 	required_drink_type = /datum/reagent/consumable/ethanol/rice_beer
-	name = "glass of rice beer"
-	desc = "A glass of fine, light rice beer. Best enjoyed cold."
+	name = "rice beer"
+	desc = "A fine, light rice beer. Best enjoyed cold."
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "rice_beer"
 

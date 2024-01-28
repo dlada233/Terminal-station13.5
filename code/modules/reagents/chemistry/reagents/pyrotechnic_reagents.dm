@@ -1,11 +1,11 @@
 
 /datum/reagent/thermite
-	name = "Thermite"
-	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
+	name = "Thermite-铝热剂"
+	description = "产生一种称为铝热反应的铝热剂，可以用来熔墙."
 	reagent_state = SOLID
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	color = "#550000"
-	taste_description = "sweet tasting metal"
+	taste_description = "带甜味的金属"
 
 /datum/reagent/thermite/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
@@ -18,18 +18,18 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/nitroglycerin
-	name = "Nitroglycerin"
-	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
+	name = "Nitroglycerin-硝化甘油"
+	description = "硝化甘油是一种重质、无色、油性、爆炸性液体."
 	color = "#808080" // rgb: 128, 128, 128
-	taste_description = "oil"
+	taste_description = "油"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/stabilizing_agent
-	name = "Stabilizing Agent"
-	description = "Keeps unstable chemicals stable. This does not work on everything."
+	name = "Stabilizing Agent-稳定剂"
+	description = "使不稳定的化学物质保持稳定，这并不适用于所有情况."
 	reagent_state = LIQUID
 	color = "#FFFF00"
-	taste_description = "metal"
+	taste_description = "金属"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 //It has stable IN THE NAME. IT WAS MADE FOR THIS MOMENT.
@@ -37,12 +37,12 @@
 	mytray.myseed?.adjust_instability(-round(volume))
 
 /datum/reagent/clf3
-	name = "Chlorine Trifluoride"
-	description = "Makes a temporary 3x3 fireball when it comes into existence, so be careful when mixing. ClF3 applied to a surface burns things that wouldn't otherwise burn, sometimes through the very floors of the station and exposing it to the vacuum of space."
+	name = "Chlorine Trifluoride-三氟化氯"
+	description = "会形成一个临时的3×3的火球，所以搅拌时要小心。ClF3应用于表面会燃烧原本不会燃烧的东西，有时会烧穿空间站的地板，使其暴露在太空的真空中."
 	reagent_state = LIQUID
 	color = "#FFC8C8"
 	metabolization_rate = 10 * REAGENTS_METABOLISM
-	taste_description = "burning"
+	taste_description = "灼烧感"
 	penetrates_skin = NONE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -76,28 +76,28 @@
 		new /obj/effect/hotspot(exposed_mob.loc)
 
 /datum/reagent/sorium
-	name = "Sorium"
-	description = "Sends everything flying from the detonation point."
+	name = "Sorium-银藻"
+	description = "引爆点的所有东西都会飞离."
 	reagent_state = LIQUID
 	color = "#5A64C8"
-	taste_description = "air and bitterness"
+	taste_description = "苦"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/liquid_dark_matter
-	name = "Liquid Dark Matter"
-	description = "Sucks everything into the detonation point."
+	name = "Liquid Dark Matter-液体暗物质"
+	description = "把所有东西都吸进引爆点."
 	reagent_state = LIQUID
 	color = "#210021"
-	taste_description = "compressed bitterness"
+	taste_description = "苦"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/gunpowder
-	name = "Gunpowder"
-	description = "Explodes. Violently."
+	name = "Gunpowder-火药"
+	description = "爆炸."
 	reagent_state = LIQUID
 	color = "#000000"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
-	taste_description = "salt"
+	taste_description = "咸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/gunpowder/on_new(data)
@@ -122,50 +122,50 @@
 
 /datum/reagent/rdx
 	name = "RDX"
-	description = "Military grade explosive"
+	description = "军用级炸药"
 	reagent_state = SOLID
 	color = "#FFFFFF"
-	taste_description = "salt"
+	taste_description = "咸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/tatp
 	name = "TaTP"
-	description = "Suicide grade explosive"
+	description = "自杀级炸药"
 	reagent_state = SOLID
 	color = "#FFFFFF"
-	taste_description = "death"
+	taste_description = "死亡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/flash_powder
-	name = "Flash Powder"
-	description = "Makes a very bright flash."
+	name = "Flash Powder-闪光粉"
+	description = "发出非常明亮的闪光."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
-	taste_description = "salt"
+	taste_description = "咸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/smoke_powder
-	name = "Smoke Powder"
-	description = "Makes a large cloud of smoke that can carry reagents."
+	name = "Smoke Powder-烟粉"
+	description = "产生一大片烟雾，可以掺杂其他化学试剂."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
-	taste_description = "smoke"
+	taste_description = "烟"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/sonic_powder
-	name = "Sonic Powder"
-	description = "Makes a deafening noise."
+	name = "Sonic Powder-声波粉"
+	description = "发出震耳欲聋的声音。."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
-	taste_description = "loud noises"
+	taste_description = "巨大噪音"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/phlogiston
-	name = "Phlogiston"
-	description = "Catches you on fire and makes you ignite."
+	name = "Phlogiston-燃素"
+	description = "点燃你，点燃你."
 	reagent_state = LIQUID
 	color = "#FA00AF"
-	taste_description = "burning"
+	taste_description = "灼烧感"
 	self_consuming = TRUE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -183,11 +183,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/napalm
-	name = "Napalm"
-	description = "Very flammable."
+	name = "Napalm-凝固汽油"
+	description = "非常易燃."
 	reagent_state = LIQUID
 	color = "#FA00AF"
-	taste_description = "burning"
+	taste_description = "灼烧感"
 	self_consuming = TRUE
 	penetrates_skin = NONE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -213,12 +213,12 @@
 #define CRYO_SPEED_CONSTANT 0.1
 
 /datum/reagent/cryostylane
-	name = "Cryostylane"
-	description = "Induces a cryostasis like state in a patient's organs, preventing them from decaying while dead. Slows down surgery while in a patient however. When reacted with oxygen, it will slowly consume it and reduce a container's temperature to 0K. Also damages slime simplemobs when 5u is sprayed."
+	name = "Cryostylane-冰甾烷"
+	description = "在病人的器官中诱导一种类似冷冻的状态，防止他们死后腐烂，但是也会减慢手术速度；当与氧气反应时，它会慢慢消耗氧气，并将容器的温度降低到0℃；当5u被喷射时也会伤害史莱姆."
 	color = "#0000DC"
 	ph = 8.6
 	metabolization_rate = 0.05 * REAGENTS_METABOLISM
-	taste_description = "icey bitterness"
+	taste_description = "苦"
 	purity = REAGENT_STANDARD_PURITY
 	self_consuming = TRUE
 	inverse_chem_val = 0.5
@@ -268,11 +268,11 @@
 #undef CRYO_SPEED_CONSTANT
 
 /datum/reagent/pyrosium
-	name = "Pyrosium"
-	description = "Comes into existence at 20K. As long as there is sufficient oxygen for it to react with, Pyrosium slowly heats all other reagents in the container."
+	name = "Pyrosium-增热液"
+	description = "在20K出现,只要有足够的氧气与之反应，就会慢慢加热容器中的所有其他试剂."
 	color = "#64FAC8"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	taste_description = "bitterness"
+	taste_description = "苦"
 	self_consuming = TRUE
 	burning_temperature = null
 	burning_volume = 0.05
@@ -294,12 +294,12 @@
 	burning_temperature = null
 
 /datum/reagent/teslium //Teslium. Causes periodic shocks, and makes shocks against the target much more effective.
-	name = "Teslium"
-	description = "An unstable, electrically-charged metallic slurry. Periodically electrocutes its victim, and makes electrocutions against them more deadly. Excessively heating teslium results in dangerous destabilization. Do not allow to come into contact with water."
+	name = "Teslium-电击液"
+	description = "一种不稳定的、带电的金属浆，定期电击受害者，并使电击对他们更致命，过度加热铯会导致危险的不稳定，不要让它与水接触."
 	reagent_state = LIQUID
 	color = "#20324D" //RGB: 32, 50, 77
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	taste_description = "charged metal"
+	taste_description = "通电金属"
 	self_consuming = TRUE
 	var/shock_timer = 0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -309,7 +309,7 @@
 	shock_timer++
 	if(shock_timer >= rand(5, 30)) //Random shocks are wildly unpredictable
 		shock_timer = 0
-		affected_mob.electrocute_act(rand(5, 20), "Teslium in their body", 1, SHOCK_NOGLOVES) //SHOCK_NOGLOVES because it's caused from INSIDE of you
+		affected_mob.electrocute_act(rand(5, 20), "电击液在你的身体里", 1, SHOCK_NOGLOVES) //SHOCK_NOGLOVES because it's caused from INSIDE of you
 		playsound(affected_mob, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /datum/reagent/teslium/on_mob_metabolize(mob/living/carbon/human/affected_mob)
@@ -325,11 +325,11 @@
 	affected_mob.physiology.siemens_coeff *= 0.5
 
 /datum/reagent/teslium/energized_jelly
-	name = "Energized Jelly"
-	description = "Electrically-charged jelly. Boosts jellypeople's nervous system, but only shocks other lifeforms."
+	name = "Energized Jelly-带电胶"
+	description = "带电胶，增强史莱姆的神经系统，但只会刺激其他生物."
 	reagent_state = LIQUID
 	color = "#CAFF43"
-	taste_description = "jelly"
+	taste_description = "胶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/teslium/energized_jelly/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
@@ -344,11 +344,11 @@
 		slime_species.extract_cooldown = max(slime_species.extract_cooldown - (2 SECONDS * REM * seconds_per_tick), 0)
 
 /datum/reagent/firefighting_foam
-	name = "Firefighting Foam"
-	description = "A historical fire suppressant. Originally believed to simply displace oxygen to starve fires, it actually interferes with the combustion reaction itself. Vastly superior to the cheap water-based extinguishers found on NT vessels."
+	name = "Firefighting Foam-消防泡沫"
+	description = "历史中的灭火剂，起初人们认为它只是消耗氧气来抑制火焰，但实际上它会干扰燃烧反应本身，大大优于在NT容器里的廉价水基灭火器."
 	reagent_state = LIQUID
 	color = "#A6FAFF55"
-	taste_description = "the inside of a fire extinguisher"
+	taste_description = "灭火器"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/firefighting_foam/expose_turf(turf/open/exposed_turf, reac_volume)
