@@ -1,8 +1,8 @@
 //CONTAINS: Evidence bags
 
 /obj/item/evidencebag
-	name = "evidence bag"
-	desc = "An empty evidence bag."
+	name = "证物袋"
+	desc = "空的证物袋."
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "evidenceobj"
 	inhand_icon_state = ""
@@ -31,27 +31,27 @@
 		return
 
 	if(loc.atom_storage && I.atom_storage)
-		to_chat(user, span_warning("No matter what way you try, you can't get [I] to fit inside [src]."))
+		to_chat(user, span_warning("不管你怎么试，你都没法把[I]放到[src]里面."))
 		return TRUE //begone infinite storage ghosts, begone from me
 
 	if(HAS_TRAIT(I, TRAIT_NO_STORAGE_INSERT))
-		to_chat(user, span_warning("No matter what way you try, you can't get [I] to fit inside [src]."))
+		to_chat(user, span_warning("不管你怎么试，你都没法把[I]放到[src]里面."))
 		return TRUE
 
 	if(istype(I, /obj/item/evidencebag))
-		to_chat(user, span_warning("You find putting an evidence bag in another evidence bag to be slightly absurd."))
+		to_chat(user, span_warning("你觉得把一个证物袋放进另一个证物袋的做法有点荒谬."))
 		return TRUE //now this is podracing
 
 	if(loc in I.get_all_contents()) // fixes tg #39452, evidence bags could store their own location, causing I to be stored in the bag while being present inworld still, and able to be teleported when removed.
-		to_chat(user, span_warning("You find putting [I] in [src] while it's still inside it quite difficult!"))
+		to_chat(user, span_warning("你会发现，当[I]还在[src]里面的时候，把[I]放到[src]里面是非常困难的!"))
 		return
 
 	if(I.w_class > WEIGHT_CLASS_NORMAL)
-		to_chat(user, span_warning("[I] won't fit in [src]!"))
+		to_chat(user, span_warning("[I]不能装进[src]!"))
 		return
 
 	if(contents.len)
-		to_chat(user, span_warning("[src] already has something inside it!"))
+		to_chat(user, span_warning("[src]已经装了东西了!"))
 		return
 
 	if(!isturf(I.loc)) //If it isn't on the floor. Do some checks to see if it's in our hands or a box. Otherwise give up.
@@ -63,8 +63,8 @@
 	if(QDELETED(I))
 		return
 
-	user.visible_message(span_notice("[user] puts [I] into [src]."), span_notice("You put [I] inside [src]."),\
-	span_hear("You hear a rustle as someone puts something into a plastic bag."))
+	user.visible_message(span_notice("[user]把[I]放进[src]."), span_notice("你把[I]放进[src]."),\
+	span_hear("你听到有人把东西放进塑料袋的沙沙声."))
 
 	icon_state = "evidence"
 
@@ -76,7 +76,7 @@
 	add_overlay(in_evidence)
 	add_overlay("evidence") //should look nicer for transparent stuff. not really that important, but hey.
 
-	desc = "An evidence bag containing [I]. [I.desc]"
+	desc = "一个包含[I]的证物袋. [I.desc]"
 	I.forceMove(src)
 	w_class = I.w_class
 	return 1
@@ -84,22 +84,22 @@
 /obj/item/evidencebag/attack_self(mob/user)
 	if(contents.len)
 		var/obj/item/I = contents[1]
-		user.visible_message(span_notice("[user] takes [I] out of [src]."), span_notice("You take [I] out of [src]."),\
-		span_hear("You hear someone rustle around in a plastic bag, and remove something."))
+		user.visible_message(span_notice("[user]从[src]拿出[I]."), span_notice("[user]从[src]拿出[I]"),\
+		span_hear("你听到有人捣鼓塑料袋的声音，似乎是从里面拿走了一些东西."))
 		cut_overlays() //remove the overlays
 		user.put_in_hands(I)
 		w_class = WEIGHT_CLASS_TINY
 		icon_state = "evidenceobj"
-		desc = "An empty evidence bag."
+		desc = "一个空的证据袋."
 
 	else
-		to_chat(user, span_notice("[src] is empty."))
+		to_chat(user, span_notice("[src]是空的."))
 		icon_state = "evidenceobj"
 	return
 
 /obj/item/storage/box/evidence
-	name = "evidence bag box"
-	desc = "A box claiming to contain evidence bags."
+	name = "证据带盒"
+	desc = "一个装着证物袋的盒子."
 
 /obj/item/storage/box/evidence/PopulateContents()
 	for(var/i in 1 to 6)
