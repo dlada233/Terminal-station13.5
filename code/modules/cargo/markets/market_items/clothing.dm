@@ -12,7 +12,7 @@
 	availability_prob = 40
 
 /datum/market_item/clothing/durathread_vest
-	name = "Durathread-皮革背心"
+	name = "Durathread-杜拉棉背心"
 	desc = "不要相信他们告诉你这些东西\"石棉材质\"或\"出于安全考虑而从市场上撤下\"."
 	item = /obj/item/clothing/suit/armor/vest/durathread
 
@@ -22,7 +22,7 @@
 	availability_prob = 50
 
 /datum/market_item/clothing/durathread_helmet
-	name = "Durathread-皮革头盔"
+	name = "Durathread-杜拉棉头盔"
 	desc = "顾客问我为什么叫头盔，因为它只是由装甲织物制成的，而我总是说同样的话：不退款."
 	item = /obj/item/clothing/head/helmet/durathread
 
