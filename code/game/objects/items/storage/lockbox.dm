@@ -41,32 +41,32 @@
 			else
 				icon_state = icon_closed
 
-			balloon_alert(user, locked ? "locked" : "unlocked")
+			balloon_alert(user, locked ? "已上锁" : "已解锁")
 			return
 
 		else
-			balloon_alert(user, "access denied!")
+			balloon_alert(user, "权限不足!")
 			return
 	if(!locked)
 		return ..()
 	else
-		balloon_alert(user, "locked!")
+		balloon_alert(user, "已上锁!")
 
 /obj/item/storage/lockbox/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!broken)
 		broken = TRUE
 		atom_storage.locked = STORAGE_NOT_LOCKED
 		icon_state = src.icon_broken
-		balloon_alert(user, "lock destroyed")
+		balloon_alert(user, "锁已损坏")
 		if (emag_card && user)
-			user.visible_message(span_warning("[user] swipes [emag_card] over [src], breaking it!"))
+			user.visible_message(span_warning("[user]在[src]上刷[emag_card]，破坏了锁!"))
 		return TRUE
 	return FALSE
 
 /obj/item/storage/lockbox/examine(mob/user)
 	. = ..()
 	if(broken)
-		. += span_notice("It appears to be broken.")
+		. += span_notice("它似乎坏了.")
 
 /obj/item/storage/lockbox/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -79,7 +79,7 @@
 	update_appearance()
 
 /obj/item/storage/lockbox/loyalty
-	name = "lockbox of mindshield implants"
+	name = "心盾植入物锁箱"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/PopulateContents()
@@ -88,16 +88,16 @@
 	new /obj/item/implanter/mindshield(src)
 
 /obj/item/storage/lockbox/clusterbang
-	name = "lockbox of clusterbangs"
-	desc = "You have a bad feeling about opening this."
+	name = "爆弹锁箱"
+	desc = "你对打开这个有不好的预感."
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/clusterbang/PopulateContents()
 	new /obj/item/grenade/clusterbuster(src)
 
 /obj/item/storage/lockbox/medal
-	name = "medal box"
-	desc = "A locked box used to store medals of honor."
+	name = "奖章盒"
+	desc = "一个上锁的盒子，用来存放荣誉勋章."
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "medalbox+l"
 	inhand_icon_state = "syringe_kit"
@@ -119,7 +119,7 @@
 /obj/item/storage/lockbox/medal/examine(mob/user)
 	. = ..()
 	if(!atom_storage.locked)
-		. += span_notice("Alt-click to [open ? "close":"open"] it.")
+		. += span_notice("Alt加左键[open ? "关闭":"打开"]它.")
 
 /obj/item/storage/lockbox/medal/AltClick(mob/user)
 	if(!user.can_perform_action(src))
@@ -170,8 +170,8 @@
 		. += medalicon
 
 /obj/item/storage/lockbox/medal/hop
-	name = "Head of Personnel medal box"
-	desc = "A locked box used to store medals to be given to those exhibiting excellence in management."
+	name = "人事主任奖章盒"
+	desc = "一个上锁的盒子，用来存放奖状，颁发给管理优秀的人."
 	req_access = list(ACCESS_HOP)
 
 /obj/item/storage/lockbox/medal/hop/PopulateContents()
@@ -180,13 +180,13 @@
 	new /obj/item/clothing/accessory/medal/gold/ordom(src)
 
 /obj/item/storage/lockbox/medal/sec
-	name = "security medal box"
-	desc = "A locked box used to store medals to be given to members of the security department."
+	name = "安保奖章盒"
+	desc = "一个上锁的盒子，用来存放给安保部门成员的奖章."
 	req_access = list(ACCESS_HOS)
 
 /obj/item/storage/lockbox/medal/med
-	name = "medical medal box"
-	desc = "A locked box used to store medals to be given to members of the medical department."
+	name = "医疗奖章盒"
+	desc = "一个上锁的盒子，用来存放给医疗部门成员的奖章."
 	req_access = list(ACCESS_CMO)
 
 /obj/item/storage/lockbox/medal/med/PopulateContents()
@@ -200,24 +200,24 @@
 		new /obj/item/clothing/accessory/medal/silver/security(src)
 
 /obj/item/storage/lockbox/medal/cargo
-	name = "cargo award box"
-	desc = "A locked box used to store awards to be given to members of the cargo department."
+	name = "货仓奖品盒"
+	desc = "一个上锁的箱子，用来存放发给货运部员工的奖品."
 	req_access = list(ACCESS_QM)
 
 /obj/item/storage/lockbox/medal/cargo/PopulateContents()
 		new /obj/item/clothing/accessory/medal/ribbon/cargo(src)
 
 /obj/item/storage/lockbox/medal/service
-	name = "service award box"
-	desc = "A locked box used to store awards to be given to members of the service department."
+	name = "服务奖品盒"
+	desc = "一个上锁的箱子，用来存放发给货运部员工的奖品."
 	req_access = list(ACCESS_HOP)
 
 /obj/item/storage/lockbox/medal/service/PopulateContents()
 		new /obj/item/clothing/accessory/medal/silver/excellence(src)
 
 /obj/item/storage/lockbox/medal/sci
-	name = "science medal box"
-	desc = "A locked box used to store medals to be given to members of the science department."
+	name = "科研奖章盒"
+	desc = "一个上锁的盒子，用来存放颁发给科研部门成员的奖章."
 	req_access = list(ACCESS_RD)
 
 /obj/item/storage/lockbox/medal/sci/PopulateContents()
@@ -225,8 +225,8 @@
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 
 /obj/item/storage/lockbox/medal/engineering
-	name = "engineering medal box"
-	desc = "A locked box used to store awards to be given to members of the engineering department."
+	name = "工程奖章盒"
+	desc = "一个上锁的盒子，用来存放给工程部成员的奖励."
 	req_access = list(ACCESS_CE)
 
 /obj/item/storage/lockbox/medal/engineering/PopulateContents()
@@ -235,8 +235,8 @@
 	new /obj/item/clothing/accessory/medal/silver/elder_atmosian(src)
 
 /obj/item/storage/lockbox/order
-	name = "order lockbox"
-	desc = "A box used to secure small cargo orders from being looted by those who didn't order it. Yeah, cargo tech, that means you."
+	name = "购物小锁箱"
+	desc = "一个箱子，用来保证小货物不被没有下单的人抢走，对，货仓技工，就是你."
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "secure"
 	icon_broken = "secure+b"
@@ -268,7 +268,7 @@
 		add_fingerprint(user)
 
 	if((id_card.registered_account != buyer_account) && !(department_purchase && (id_card.registered_account?.account_job?.paycheck_department) == (department_account.department_id))) //SKYRAT EDIT
-		balloon_alert(user, "incorrect bank account!")
+		balloon_alert(user, "错误的银行账户!")
 		return
 
 	if(privacy_lock)
@@ -276,8 +276,8 @@
 	else
 		atom_storage.locked = STORAGE_FULLY_LOCKED
 	privacy_lock = atom_storage.locked
-	user.visible_message(span_notice("[user] [privacy_lock ? "" : "un"]locks [src]'s privacy lock."),
-					span_notice("You [privacy_lock ? "" : "un"]lock [src]'s privacy lock."))
+	user.visible_message(span_notice("[user] [privacy_lock ? "锁上" : "解锁"][src]的私人锁."),
+					span_notice("你[privacy_lock ? "锁上" : "解锁"][src]的私人锁."))
 
 ///screentips for lockboxes
 /obj/item/storage/lockbox/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -287,5 +287,5 @@
 		return NONE
 	if(!held_item.GetID())
 		return NONE
-	context[SCREENTIP_CONTEXT_LMB] = atom_storage.locked ? "Unlock with ID" : "Lock with ID"
+	context[SCREENTIP_CONTEXT_LMB] = atom_storage.locked ? "用ID卡解锁" : "用ID卡上锁"
 	return CONTEXTUAL_SCREENTIP_SET

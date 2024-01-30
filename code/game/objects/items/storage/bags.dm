@@ -32,8 +32,8 @@
 //          Trash bag
 // -----------------------------
 /obj/item/storage/bag/trash
-	name = "trash bag"
-	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
+	name = "垃圾袋"
+	desc = "这是一种重型黑色聚合物，该扔垃圾了!"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "trashbag"
 	inhand_icon_state = "trashbag"
@@ -62,13 +62,13 @@
 	// Otherwise, we're gonna dump into the dest object
 	var/turf/dump_onto = get_turf(dest_object)
 	user.visible_message(
-		span_notice("[user] dumps the contents of [src] all out on \the [dump_onto]"),
-		span_notice("The remaining trash in \the [src] falls out onto \the [dump_onto]"),
+		span_notice("[user]将[src]的内容物全都倒进了[dump_onto]中"),
+		span_notice("[src]的剩余垃圾落在了[dump_onto]中"),
 	)
 	source.remove_all(dump_onto)
 
 /obj/item/storage/bag/trash/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] puts [src] over [user.p_their()] head and starts chomping at the insides! Disgusting!"))
+	user.visible_message(span_suicide("[user]把[src]套到头上然后开始啃里面的东西! 恶心!"))
 	playsound(loc, 'sound/items/eatfood.ogg', 50, TRUE, -1)
 	return TOXLOSS
 
@@ -97,8 +97,8 @@
 	update_icon_state()
 
 /obj/item/storage/bag/trash/bluespace
-	name = "trash bag of holding"
-	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	name = "蓝空垃圾袋"
+	desc = "最新、最便捷的储存工具，一个能装下大量垃圾的垃圾袋."
 	icon_state = "bluetrashbag"
 	inhand_icon_state = "bluetrashbag"
 	item_flags = NO_MAT_REDEMPTION
@@ -188,15 +188,15 @@
 
 		COOLDOWN_START(src, ore_bag_balloon_cooldown, ORE_BAG_BALOON_COOLDOWN)
 		if (box)
-			balloon_alert(user, "scoops ore into box")
+			balloon_alert(user, "把矿石送进盒子里")
 			user.visible_message(
-				span_notice("[user] offloads the ores beneath [user.p_them()] into [box]."),
+				span_notice("[user]卸下矿石到[box]."),
 				ignored_mobs = user
 			)
 		else
-			balloon_alert(user, "scoops ore into bag")
+			balloon_alert(user, "把矿石送进包里")
 			user.visible_message(
-				span_notice("[user] scoops up the ores beneath [user.p_them()]."),
+				span_notice("[user]铲起了脚下的矿石."),
 				ignored_mobs = user
 			)
 
@@ -314,7 +314,7 @@
 
 /obj/item/storage/bag/books
 	name = "书包"
-	desc = "A bag for books."
+	desc = "装书的包."
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "bookbag"
 	worn_icon_state = "bookbag"
@@ -335,11 +335,11 @@
  * Trays - Agouri
  */
 /obj/item/storage/bag/tray
-	name = "serving tray"
+	name = "托盘"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "tray"
 	worn_icon_state = "tray"
-	desc = "A metal tray to lay food on."
+	desc = "放食物的金属托盘."
 	force = 5
 	throwforce = 10
 	throw_speed = 3
@@ -419,7 +419,7 @@
 	update_appearance()
 
 /obj/item/storage/bag/tray/cafeteria
-	name = "cafeteria tray"
+	name = "自助餐厅托盘"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "foodtray"
 	desc = "A cheap metal tray to pile today's meal onto."
@@ -543,8 +543,8 @@
 		))
 
 /obj/item/storage/bag/harpoon_quiver
-	name = "harpoon quiver"
-	desc = "A quiver for holding harpoons."
+	name = "鱼叉箭袋"
+	desc = "用来装鱼叉的箭袋."
 	icon = 'icons/obj/weapons/bows/quivers.dmi'
 	icon_state = "quiver"
 	inhand_icon_state = null

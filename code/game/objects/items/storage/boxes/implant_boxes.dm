@@ -1,6 +1,6 @@
 /obj/item/storage/box/trackimp
 	name = "跟踪植入物盒"
-	desc = "Box full of scum-bag tracking utensils."
+	desc = "一盒人渣追踪工具."
 	icon_state = "secbox"
 	illustration = "implant"
 
@@ -15,7 +15,7 @@
 
 /obj/item/storage/box/minertracker
 	name = "追踪植入物盒"
-	desc = "For finding those who have died on the accursed lavaworld."
+	desc = "找到那些死在熔岩世界的人."
 	illustration = "implant"
 
 /obj/item/storage/box/minertracker/PopulateContents()
@@ -30,7 +30,7 @@
 
 /obj/item/storage/box/chemimp
 	name = "化学植入物盒"
-	desc = "Box of stuff used to implant chemicals."
+	desc = "一盒用来植入化学物质的东西."
 	illustration = "implant"
 
 /obj/item/storage/box/chemimp/PopulateContents()
@@ -42,8 +42,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/exileimp
-	name = "boxed exile implant kit"
-	desc = "Box of exile implants. It has a picture of a clown being booted through the Gateway."
+	name = "流放植入物盒"
+	desc = "流放植入物的盒子，上面有一张小丑被踢进星门的照片."
 	illustration = "implant"
 
 /obj/item/storage/box/exileimp/PopulateContents()
@@ -55,9 +55,9 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/beaconimp
-	name = "boxed beacon implant kit"
-	desc = "Contains a set of beacon implants. There's a warning label on the side warning to always check the safety of your teleport destination, \
-		accompanied by a cheery drawing of a security officer saying 'look before you leap!'"
+	name = "信标植入物盒"
+	desc = "包含一组信标植入物。侧面有一个警告标签，警告你要经常检查你的传送目的地是否安全， \
+		并附有安保的漫画形象，上面写着'三思而后行!'"
 	illustration = "implant"
 
 /obj/item/storage/box/beaconimp/PopulateContents()
@@ -69,8 +69,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/teleport_blocker
-	name = "boxed bluespace grounding implant kit"
-	desc = "Box of bluespace grounding implants. There's a drawing on the side -- A figure wearing some intimidating robes, frowning and shedding a single tear."
+	name = "蓝空绝缘植入物"
+	desc = "蓝空绝缘植入物盒子，侧面有一幅画一个人穿着吓人的长袍，皱着眉头，流着一滴眼泪."
 	illustration = "implant"
 
 /obj/item/storage/box/teleport_blocker/PopulateContents()

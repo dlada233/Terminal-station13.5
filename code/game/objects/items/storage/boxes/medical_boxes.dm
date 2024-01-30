@@ -20,7 +20,7 @@
 
 /obj/item/storage/box/medipens
 	name = "医疗笔盒"
-	desc = "A box full of epinephrine MediPens."
+	desc = "一盒肾上腺素医用注射笔."
 	illustration = "epipen"
 
 /obj/item/storage/box/medipens/PopulateContents()
@@ -28,8 +28,8 @@
 		new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/medipens/utility
-	name = "stimpack value kit"
-	desc = "A box with several stimpack medipens for the economical miner."
+	name = "实用医疗盒"
+	desc = "为节俭的矿工准备的装有几支应急药品的盒子."
 	illustration = "epipen"
 
 /obj/item/storage/box/medipens/utility/PopulateContents()
@@ -66,7 +66,7 @@
 
 /obj/item/storage/box/medigels
 	name = "医用凝胶盒"
-	desc = "A box full of medical gel applicators, with unscrewable caps and precision spray heads."
+	desc = "一个装满医用凝胶的盒子."
 	illustration = "medgel"
 
 /obj/item/storage/box/medigels/PopulateContents()
@@ -75,7 +75,7 @@
 
 /obj/item/storage/box/injectors
 	name = "DNA注射器盒"
-	desc = "This box contains injectors, it seems."
+	desc = "这个盒子里好像装着注射器."
 	illustration = "dna"
 
 /obj/item/storage/box/injectors/PopulateContents()
@@ -87,7 +87,7 @@
 
 /obj/item/storage/box/bodybags
 	name = "尸体袋"
-	desc = "The label indicates that it contains body bags."
+	desc = "标签上显示里面有尸体袋."
 	illustration = "bodybags"
 
 /obj/item/storage/box/bodybags/PopulateContents()
@@ -97,7 +97,7 @@
 
 /obj/item/storage/box/pillbottles
 	name = "药瓶"
-	desc = "It has pictures of pill bottles on its front."
+	desc = "它的正面有药瓶的图片."
 	illustration = "pillbox"
 
 /obj/item/storage/box/pillbottles/PopulateContents()
@@ -113,8 +113,8 @@
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/box/evilmeds
-	name = "box of premium medicine"
-	desc = "Contains a large number of beakers filled with premium medical supplies. Straight from Interdyne Pharmaceutics!"
+	name = "优质药品盒"
+	desc = "包含大量的烧杯，装满了优质的医疗用品，进口自Interdyne制药公司!"
 	icon_state = "syndiebox"
 	illustration = "beaker"
 
@@ -132,7 +132,7 @@
 
 /obj/item/storage/box/bandages
 	name = "绷带盒"
-	desc = "A box of DeForest brand gel bandages designed to treat blunt-force trauma."
+	desc = "一盒DeForest牌凝胶绷带专为治疗创伤而设计."
 	icon = 'icons/obj/storage/box.dmi' // SKYRAT EDIT CHANGE
 	icon_state = "brutebox"
 	base_icon_state = "brutebox"

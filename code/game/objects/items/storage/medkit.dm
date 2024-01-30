@@ -10,7 +10,7 @@
  */
 /obj/item/storage/medkit
 	name = "医疗包"
-	desc = "It's an emergency medical kit for those serious boo-boos."
+	desc = "这是给那些严重的问题准备的急救箱."
 	icon = 'icons/obj/storage/medkit.dmi'
 	icon_state = "medkit"
 	inhand_icon_state = "medkit"
@@ -82,10 +82,10 @@
 
 /obj/item/storage/medkit/regular
 	icon_state = "medkit"
-	desc = "A first aid kit with the ability to heal common types of injuries."
+	desc = "一个能够治愈常见伤害的急救箱."
 
 /obj/item/storage/medkit/regular/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins giving [user.p_them()]self aids with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]用[src]给你做了什么! 这是一种自杀行为!"))
 	return BRUTELOSS
 
 /obj/item/storage/medkit/regular/PopulateContents()
@@ -122,7 +122,7 @@
 	name = "手术医疗箱"
 	icon_state = "medkit_surgery"
 	inhand_icon_state = "medkit"
-	desc = "A high capacity aid kit for doctors, full of medical supplies and basic surgical equipment."
+	desc = "医生的高容量急救箱，装满医疗用品和基本手术设备."
 
 /obj/item/storage/medkit/surgery/Initialize(mapload)
 	. = ..()
@@ -149,7 +149,7 @@
 
 /obj/item/storage/medkit/ancient
 	icon_state = "oldfirstaid"
-	desc = "A first aid kit with the ability to heal common types of injuries."
+	desc = "一个能够治愈常见伤害的急救箱."
 
 /obj/item/storage/medkit/ancient/PopulateContents()
 	if(empty)
@@ -161,18 +161,18 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/ancient/heirloom
-	desc = "A first aid kit with the ability to heal common types of injuries. You start thinking of the good old days just by looking at it."
+	desc = "一个能够治愈常见伤害的急救箱，只要看着它，你就会开始想起过去的美好时光."
 	empty = TRUE // long since been ransacked by hungry powergaming assistants breaking into med storage
 
 /obj/item/storage/medkit/fire
 	name = "烧伤医疗箱"
-	desc = "A specialized medical kit for when the ordnance lab <i>-spontaneously-</i> burns down."
+	desc = "特制的医疗箱为军械实验室<i>-意外地-</i>烧毁使使用."
 	icon_state = "medkit_burn"
 	inhand_icon_state = "medkit-ointment"
 	damagetype_healed = BURN
 
 /obj/item/storage/medkit/fire/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins rubbing \the [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to start a fire!"))
+	user.visible_message(span_suicide("[user]开始用[src]摩擦自己! 看起来是要生火!"))
 	return FIRELOSS
 
 /obj/item/storage/medkit/fire/PopulateContents()
@@ -187,13 +187,13 @@
 
 /obj/item/storage/medkit/toxin
 	name = "毒素医疗箱"
-	desc = "Used to treat toxic blood content and radiation poisoning."
+	desc = "用于治疗血液中的毒素和辐射中毒."
 	icon_state = "medkit_toxin"
 	inhand_icon_state = "medkit-toxin"
 	damagetype_healed = TOX
 
 /obj/item/storage/medkit/toxin/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins licking the lead paint off \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始舔[src]的含铅油漆! 这是一种自杀行为."))
 	return TOXLOSS
 
 
@@ -211,13 +211,13 @@
 
 /obj/item/storage/medkit/o2
 	name = "窒息医疗箱"
-	desc = "A box full of oxygen goodies."
+	desc = "一个装满氧气的盒子."
 	icon_state = "medkit_o2"
 	inhand_icon_state = "medkit-o2"
 	damagetype_healed = OXY
 
 /obj/item/storage/medkit/o2/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins hitting [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始用[src]攻击自己的脖子! 这是一种自杀行为."))
 	return OXYLOSS
 
 /obj/item/storage/medkit/o2/PopulateContents()
@@ -232,13 +232,13 @@
 
 /obj/item/storage/medkit/brute
 	name = "创伤医疗箱"
-	desc = "A first aid kit for when you get toolboxed."
+	desc = "一个急救箱，当你需要工具箱的时候."
 	icon_state = "medkit_brute"
 	inhand_icon_state = "medkit-brute"
 	damagetype_healed = BRUTE
 
 /obj/item/storage/medkit/brute/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins beating [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始用[src]打自己的头! 这是一种自杀行为."))
 	return BRUTELOSS
 
 /obj/item/storage/medkit/brute/PopulateContents()
@@ -255,7 +255,7 @@
 
 /obj/item/storage/medkit/advanced
 	name = "先进急救箱"
-	desc = "An advanced kit to help deal with advanced wounds."
+	desc = "一个先进的工具来帮助处理严重的伤口."
 	icon_state = "medkit_advanced"
 	inhand_icon_state = "medkit-rad"
 	custom_premium_price = PAYCHECK_COMMAND * 6
@@ -272,8 +272,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/tactical
-	name = "combat medical kit"
-	desc = "I hope you've got insurance."
+	name = "战斗医疗箱"
+	desc = "我希望你有保险."
 	icon_state = "medkit_tactical"
 	inhand_icon_state = "medkit-tactical"
 	damagetype_healed = HEAL_ALL_DAMAGE
@@ -306,8 +306,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/tactical/premium
-	name = "premium combat medical kit"
-	desc = "May or may not contain traces of lead."
+	name = "先进战斗医疗箱"
+	desc = "可能含有或不含有微量铅."
 	grind_results = list(/datum/reagent/lead = 10)
 
 /obj/item/storage/medkit/tactical/premium/Initialize(mapload)
@@ -344,7 +344,7 @@
 
 /obj/item/storage/medkit/coroner
 	name = "紧凑型验尸医疗箱"
-	desc = "A smaller medical kit designed primarily for assisting in dissecting the deceased, rather than treating the living."
+	desc = "一种较小的医疗箱，主要用于帮助解剖死者，而不是治疗生者."
 	icon = 'icons/obj/storage/medkit.dmi'
 	icon_state = "compact_coronerkit"
 	inhand_icon_state = "coronerkit"
@@ -387,7 +387,7 @@
 
 	//Making a medibot!
 	if(contents.len >= 1)
-		balloon_alert(user, "items inside!")
+		balloon_alert(user, "内有物品!")
 		return
 
 	///if you add a new one don't forget to update /datum/crafting_recipe/medbot/on_craft_completion()
@@ -417,7 +417,7 @@
 
 /obj/item/storage/pill_bottle
 	name = "药瓶"
-	desc = "It's an airtight container for storing medication."
+	desc = "这是一个储存药物的密闭容器."
 	icon_state = "pill_canister"
 	icon = 'icons/obj/medical/chemical.dmi'
 	inhand_icon_state = "contsolid"
@@ -435,7 +435,7 @@
 	))
 
 /obj/item/storage/pill_bottle/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is trying to get the cap off [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]试图打开[src]的盖子! 这是一种自杀行为."))
 	return TOXLOSS
 
 /obj/item/storage/pill_bottle/multiver
@@ -454,7 +454,7 @@
 
 /obj/item/storage/pill_bottle/epinephrine
 	name = "epinephrine-肾上腺素药瓶"
-	desc = "Contains pills used to stabilize patients."
+	desc = "含有稳定病人的药片."
 
 /obj/item/storage/pill_bottle/epinephrine/PopulateContents()
 	for(var/i in 1 to 7)
@@ -502,7 +502,7 @@
 
 //Contains 4 pills instead of 7, and 5u pills instead of 50u (50u pills heal 250 brain damage, 5u pills heal 25)
 /obj/item/storage/pill_bottle/mannitol/braintumor
-	desc = "Contains diluted pills used to treat brain tumor symptoms. Take one when feeling lightheaded."
+	desc = "含有用于治疗脑肿瘤症状的稀释药片，头晕时吃一片."
 
 /obj/item/storage/pill_bottle/mannitol/braintumor/PopulateContents()
 	for(var/i in 1 to 4)
@@ -510,7 +510,7 @@
 
 /obj/item/storage/pill_bottle/stimulant
 	name = "stimulant-兴奋剂药瓶"
-	desc = "Guaranteed to give you that extra burst of energy during a long shift!"
+	desc = "保证在长时间的轮班中给你额外的能量爆发!"
 
 /obj/item/storage/pill_bottle/stimulant/PopulateContents()
 	for(var/i in 1 to 5)
@@ -518,7 +518,7 @@
 
 /obj/item/storage/pill_bottle/sansufentanyl
 	name = "实验药丸瓶"
-	desc = "由Interdyne Pharmaceuticals开发，其中药物用于治疗多种遗传性疾病."
+	desc = "由Interdyne制药公司开发，其中药物用于治疗多种遗传性疾病."
 
 /obj/item/storage/pill_bottle/sansufentanyl/PopulateContents()
 	for(var/i in 1 to 6)
@@ -526,7 +526,7 @@
 
 /obj/item/storage/pill_bottle/mining
 	name = "贴片瓶"
-	desc = "Contains patches used to treat brute and burn damage."
+	desc = "包含用于处理创伤和烧伤的补丁."
 
 /obj/item/storage/pill_bottle/mining/PopulateContents()
 	new /obj/item/reagent_containers/pill/patch/aiuri(src)
@@ -583,21 +583,21 @@
 
 
 /obj/item/storage/pill_bottle/neurine
-	name = "bottle of neurine pills"
-	desc = "Contains pills to treat non-severe mental traumas."
+	name = "neurine-神经碱药瓶"
+	desc = "含有治疗非严重精神创伤的药片."
 
 /obj/item/storage/pill_bottle/neurine/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/neurine(src)
 
 /obj/item/storage/pill_bottle/maintenance_pill
-	name = "bottle of maintenance pills"
-	desc = "An old pill bottle. It smells musty."
+	name = "维护管道药瓶"
+	desc = "一个旧药瓶，闻起来有霉味."
 
 /obj/item/storage/pill_bottle/maintenance_pill/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/pill/P = locate() in src
-	name = "bottle of [P.name]s"
+	name = "[P.name]药瓶"
 
 /obj/item/storage/pill_bottle/maintenance_pill/PopulateContents()
 	for(var/i in 1 to rand(1,7))
@@ -609,40 +609,40 @@
 
 ///////////////////////////////////////// Psychologist inventory pillbottles
 /obj/item/storage/pill_bottle/happinesspsych
-	name = "happiness pills"
-	desc = "Contains pills used as a last resort means to temporarily stabilize depression and anxiety. WARNING: side effects may include slurred speech, drooling, and severe addiction."
+	name = "快乐药丸"
+	desc = "含有药片，作为最后的手段，暂时稳定抑郁和焦虑；警告:副作用可能包括口齿不清、流口水和严重上瘾."
 
 /obj/item/storage/pill_bottle/happinesspsych/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/happinesspsych(src)
 
 /obj/item/storage/pill_bottle/lsdpsych
-	name = "mindbreaker toxin pills"
-	desc = "!FOR THERAPEUTIC USE ONLY! Contains pills used to alleviate the symptoms of Reality Dissociation Syndrome."
+	name = "销魂毒素药丸"
+	desc = "!仅供治疗使用! 内含减轻现实分离综合症的药片."
 
 /obj/item/storage/pill_bottle/lsdpsych/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/lsdpsych(src)
 
 /obj/item/storage/pill_bottle/paxpsych
-	name = "pax pills"
-	desc = "Contains pills used to temporarily pacify patients that are deemed a harm to themselves or others."
+	name = "重熙药丸"
+	desc = "含有用于暂时安抚对自己或他人造成伤害的患者的药丸，暂时消除他们的暴力倾向."
 
 /obj/item/storage/pill_bottle/paxpsych/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/paxpsych(src)
 
 /obj/item/storage/pill_bottle/naturalbait
-	name = "freshness jar"
-	desc = "Full of natural fish bait."
+	name = "新鲜的罐子"
+	desc = "全是天然鱼饵."
 
 /obj/item/storage/pill_bottle/naturalbait/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/food/bait/natural(src)
 
 /obj/item/storage/pill_bottle/ondansetron
-	name = "ondansetron patches"
-	desc = "A bottle containing patches of ondansetron, a drug used to treat nausea and vomiting. May cause drowsiness."
+	name = "枢复宁贴片"
+	desc = "一种装有昂丹司琼片的瓶子，一种用于治疗恶心和呕吐的药物，可能引起嗜睡."
 
 /obj/item/storage/pill_bottle/ondansetron/PopulateContents()
 	for(var/i in 1 to 5)
@@ -650,8 +650,8 @@
 
 /// A box which takes in coolant and uses it to preserve organs and body parts
 /obj/item/storage/organbox
-	name = "organ transport box"
-	desc = "An advanced box with an cooling mechanism that uses cryostylane or other cold reagents to keep the organs or bodyparts inside preserved."
+	name = "器官运送箱"
+	desc = "一种先进的装有冷却装置的冷藏箱，使用冰甾烷或其他冷试剂来保存里面的器官或身体部位."
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "organbox"
 	base_icon_state = "organbox"
@@ -716,7 +716,7 @@
 		var/obj/item/reagent_containers/RC = I
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transferred_by = user)
 		if(units)
-			balloon_alert(user, "[units]u transferred")
+			balloon_alert(user, "[units]u 已转移")
 			return
 	if(istype(I, /obj/item/plunger))
 		balloon_alert(user, "plunging...")
@@ -730,14 +730,14 @@
 	if(HAS_TRAIT(user, TRAIT_RESISTCOLD)) //if they're immune to cold, just do the box suicide
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 		if(myhead)
-			user.visible_message(span_suicide("[user] puts [user.p_their()] head into \the [src] and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!"))
+			user.visible_message(span_suicide("[user]把头放进[src]并试图关上! 这是一种自杀行为."))
 			myhead.dismember()
 			myhead.forceMove(src) //force your enemies to kill themselves with your head collection box!
 			playsound(user, "desecration-01.ogg", 50, TRUE, -1)
 			return BRUTELOSS
-		user.visible_message(span_suicide("[user] is beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]用[src]攻击自己! 这是一种自杀行为."))
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] is putting [user.p_their()] head inside the [src], it looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]把头放进[src], 这是一种自杀行为."))
 	user.adjust_bodytemperature(-300)
 	user.apply_status_effect(/datum/status_effect/freon)
 	return FIRELOSS
@@ -750,8 +750,8 @@
 	reagents.add_reagent(/datum/reagent/cryostylane, reagents.maximum_volume)
 
 /obj/item/storage/test_tube_rack
-	name = "test tube rack"
-	desc = "A wooden rack for storing test tubes."
+	name = "试管架"
+	desc = "存放试管的木架."
 	icon_state = "rack"
 	base_icon_state = "rack"
 	icon = 'icons/obj/medical/chemical.dmi'

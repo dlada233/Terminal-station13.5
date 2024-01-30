@@ -2,7 +2,7 @@
 
 /obj/item/storage/box/gloves
 	name = "乳胶手套盒"
-	desc = "Contains sterile latex gloves."
+	desc = "内含无菌乳胶手套."
 	illustration = "latex"
 
 /obj/item/storage/box/gloves/PopulateContents()
@@ -11,7 +11,7 @@
 
 /obj/item/storage/box/masks
 	name = "无菌口罩盒"
-	desc = "This box contains sterile medical masks."
+	desc = "这个盒子里装有无菌医用口罩."
 	illustration = "sterile"
 
 /obj/item/storage/box/masks/PopulateContents()
@@ -20,7 +20,7 @@
 
 /obj/item/storage/box/rxglasses
 	name = "眼镜盒"
-	desc = "This box contains nerd glasses."
+	desc = "这个盒子里装的是近视眼镜."
 	illustration = "glasses"
 
 /obj/item/storage/box/rxglasses/PopulateContents()
@@ -39,7 +39,7 @@
 
 /obj/item/storage/box/fakesyndiesuit
 	name = "太空套装盒"
-	desc = "A sleek, sturdy box used to hold replica spacesuits."
+	desc = "一个光滑、结实的盒子，用来装太空服的复制品."
 	icon_state = "syndiebox"
 	illustration = "syndiesuit"
 
@@ -54,7 +54,7 @@
 
 /obj/item/storage/box/deputy
 	name = "警用袖章盒"
-	desc = "To be issued to those authorized to act as deputy of security."
+	desc = "发给代理安保人员."
 	icon_state = "secbox"
 	illustration = "depband"
 
@@ -127,7 +127,7 @@
 	new /obj/item/storage/backpack/saddlepack(src)
 
 /obj/item/storage/box/holy
-	name = "Templar Kit"
+	name = "圣骑士装备"
 	/// This item is used to generate a preview image for this set.
 	/// It could be any item, doesn't even necessarily need to be something in the kit
 	var/obj/item/typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/templar
@@ -137,7 +137,7 @@
 	new /obj/item/clothing/suit/chaplainsuit/armor/templar(src)
 
 /obj/item/storage/box/holy/clock
-	name = "Forgotten kit"
+	name = "被遗忘的装备"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/clock
 
 /obj/item/storage/box/holy/clock/PopulateContents()
@@ -145,7 +145,7 @@
 	new /obj/item/clothing/suit/chaplainsuit/armor/clock(src)
 
 /obj/item/storage/box/holy/student
-	name = "Profane Scholar Kit"
+	name = "亵渎学者装备"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/studentuni
 
 /obj/item/storage/box/holy/student/PopulateContents()
@@ -161,7 +161,7 @@
 	new /obj/item/clothing/head/helmet/chaplain/ancient(src)
 
 /obj/item/storage/box/holy/witchhunter
-	name = "Witchhunter Kit"
+	name = "猎巫人装备"
 	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/witchhunter
 
 /obj/item/storage/box/holy/witchhunter/PopulateContents()
@@ -177,7 +177,7 @@
 	new /obj/item/clothing/head/helmet/chaplain/adept(src)
 
 /obj/item/storage/box/holy/follower
-	name = "Followers of the Chaplain Kit"
+	name = "牧师追随者装备"
 	typepath_for_preview = /obj/item/clothing/suit/hooded/chaplain_hoodie/leader
 
 /obj/item/storage/box/holy/follower/PopulateContents()
@@ -188,7 +188,7 @@
 	new /obj/item/clothing/suit/hooded/chaplain_hoodie/leader(src)
 
 /obj/item/storage/box/holy/divine_archer
-	name = "Divine Archer Kit"
+	name = "圣弓骑士装备"
 	typepath_for_preview = /obj/item/clothing/suit/hooded/chaplain_hoodie/divine_archer
 
 /obj/item/storage/box/holy/divine_archer/PopulateContents()

@@ -8,35 +8,35 @@
 
 /obj/item/storage/bag/garment/captain
 	name = "舰长衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the captain."
+	desc = "用来存放多余衣服和鞋子的包，这是舰长的."
 
 /obj/item/storage/bag/garment/hos
-	name = "HOS衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the head of security."
+	name = "HOS-安保首长衣袋"
+	desc = "用来存放多余衣服和鞋子的包，这是安保首长的."
 
 /obj/item/storage/bag/garment/warden
 	name = "典狱长衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the warden."
+	desc = "用来存放多余衣服和鞋子的包，这是典狱长的."
 
 /obj/item/storage/bag/garment/hop
-	name = "HOP衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the head of personnel."
+	name = "HOP-人事主任衣袋"
+	desc = "用来存放多余衣服和鞋子的包，这是人事主任的."
 
 /obj/item/storage/bag/garment/research_director
-	name = "RD衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the research director."
+	name = "RD-研究主管衣袋"
+	desc = "用来存放多余衣服和鞋子的包，这是研究主管的."
 
 /obj/item/storage/bag/garment/chief_medical
-	name = "CMO衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the chief medical officer."
+	name = "CMO-首席医疗官衣袋"
+	desc = "用来存放多余衣服和鞋子的包，这是首席医疗官的."
 
 /obj/item/storage/bag/garment/engineering_chief
-	name = "CE衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the chief engineer."
+	name = "CE-工程师长衣袋"
+	desc = "用来存放多余衣服和鞋子的包，这是工程师长的."
 
 /obj/item/storage/bag/garment/quartermaster
-	name = "QM衣袋"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the quartermaster."
+	name = "QM-军需官衣袋"
+	desc = "用来存放多余衣服和鞋子的包，这是军需官的."
 
 /obj/item/storage/bag/garment/Initialize(mapload)
 	. = ..()

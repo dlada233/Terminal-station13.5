@@ -1,6 +1,6 @@
 /obj/item/storage/wallet
-	name = "wallet"
-	desc = "It can hold a few small and personal things."
+	name = "钱包"
+	desc = "它可以装一些小的私人物品."
 	icon_state = "wallet"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
@@ -122,19 +122,19 @@
 
 /obj/item/storage/wallet/get_examine_string(mob/user, thats = FALSE)
 	if(front_id)
-		return "[icon2html(get_cached_flat_icon(), user)] [thats? "That's ":""][get_examine_name(user)]" //displays all overlays in chat
+		return "[icon2html(get_cached_flat_icon(), user)] [thats? "这是":""][get_examine_name(user)]" //displays all overlays in chat
 	return ..()
 
 /obj/item/storage/wallet/proc/update_label()
 	if(front_id)
-		name = "wallet displaying [front_id]"
+		name = "显示着[front_id]的钱包"
 	else
-		name = "wallet"
+		name = "钱包"
 
 /obj/item/storage/wallet/examine()
 	. = ..()
 	if(front_id)
-		. += span_notice("Alt-click to remove the id.")
+		. += span_notice("Alt加左键来移除ID卡.")
 
 /obj/item/storage/wallet/get_id_examine_strings(mob/user)
 	. = ..()
@@ -179,7 +179,7 @@
 
 ///Used by the toilet fish source.
 /obj/item/storage/wallet/money
-	desc = "It can hold a few small and personal things. This one reeks of toilet water."
+	desc = "它可以装一些小的私人物品，一股花露水的味道."
 
 /obj/item/storage/wallet/money/PopulateContents()
 	for(var/iteration in 1 to pick(3, 4))
