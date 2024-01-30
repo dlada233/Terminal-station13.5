@@ -42,7 +42,7 @@
 		. += latches
 
 /obj/item/storage/toolbox/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] robusts [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]用[src]猛击自己! 这是一种自杀行为."))
 	return BRUTELOSS
 
 /obj/item/storage/toolbox/emergency
@@ -94,8 +94,8 @@
 	has_soul = TRUE
 
 /obj/item/storage/toolbox/mechanical/old/heirloom
-	name = "toolbox" //this will be named "X family toolbox"
-	desc = "It's seen better days."
+	name = "工具箱" //this will be named "X family toolbox"
+	desc = "它曾有过辉煌的日子."
 	force = 5
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -107,8 +107,8 @@
 	return
 
 /obj/item/storage/toolbox/mechanical/old/clean // the assistant traitor toolbox, damage scales with TC inside
-	name = "toolbox"
-	desc = "An old, blue toolbox, it looks robust."
+	name = "工具箱"
+	desc = "一个旧的蓝色工具箱，看起来很结实."
 	icon_state = "oldtoolboxclean"
 	inhand_icon_state = "toolbox_blue"
 	has_latches = FALSE
@@ -169,7 +169,7 @@
 	throwforce = 18
 	material_flags = NONE
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A toolbox manufactured by the Syndicate containing extra tactical tools. Made of more robust materials than the average toolbox." // Skyrat edit
+	special_desc = "辛迪加制造的工具箱，里面有额外的战术工具；用比一般工具箱更坚固的材料制成." // Skyrat edit
 
 /obj/item/storage/toolbox/syndicate/Initialize(mapload)
 	. = ..()
@@ -185,7 +185,7 @@
 	new /obj/item/clothing/gloves/combat(src)
 
 /obj/item/storage/toolbox/drone
-	name = "mechanical toolbox"
+	name = "机械工具箱"
 	icon_state = "blue"
 	inhand_icon_state = "toolbox_blue"
 	material_flags = NONE
@@ -202,7 +202,7 @@
 
 /obj/item/storage/toolbox/artistic
 	name = "艺术工具箱"
-	desc = "A toolbox painted bright green. Why anyone would store art supplies in a toolbox is beyond you, but it has plenty of extra space."
+	desc = "一个漆成亮绿色的工具箱，你不明白为什么有人能把美术用品放在工具箱里，但它有足够的额外空间."
 	icon_state = "green"
 	inhand_icon_state = "artistic_toolbox"
 	w_class = WEIGHT_CLASS_GIGANTIC //Holds more than a regular toolbox!
@@ -227,8 +227,8 @@
 	new /obj/item/stack/pipe_cleaner_coil/brown(src)
 
 /obj/item/storage/toolbox/ammobox
-	name = "ammo canister"
-	desc = "A metal canister designed to hold ammunition"
+	name = "弹药筒"
+	desc = "设计用来装弹药的金属筒."
 	icon_state = "ammobox"
 	inhand_icon_state = "ammobox"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -244,25 +244,25 @@
 			new ammo_to_spawn(src)
 
 /obj/item/storage/toolbox/ammobox/strilka310
-	name = ".310 Strilka ammo box (Surplus?)"
-	desc = "It contains a few clips. Goddamn, this thing smells awful. \
-		Has this been sitting in a warehouse for the last several centuries?"
+	name = ".310 Strilka 弹药箱 (存货?)"
+	desc = "它包含几个弹匣. 啊, 闻起来真糟糕. \
+		这东西在仓库里放了几个世纪了吗?"
 	ammo_to_spawn = /obj/item/ammo_box/strilka310
 
 /obj/item/storage/toolbox/ammobox/strilka310/surplus
 	ammo_to_spawn = /obj/item/ammo_box/strilka310/surplus
 
 /obj/item/storage/toolbox/ammobox/wt550m9
-	name = "4.6x30mm ammo box"
+	name = "4.6x30mm 弹药箱"
 	ammo_to_spawn = /obj/item/ammo_box/magazine/wt550m9
 
 /obj/item/storage/toolbox/ammobox/wt550m9ap
-	name = "4.6x30mm AP ammo box"
+	name = "4.6x30mm AP 弹药箱"
 	ammo_to_spawn = /obj/item/ammo_box/magazine/wt550m9/wtap
 
 /obj/item/storage/toolbox/maint_kit
 	name = "枪械维护包"
-	desc = "It contains some gun maintenance supplies"
+	desc = "里面有一些枪支维修用品."
 	icon_state = "maint_kit"
 	inhand_icon_state = "ammobox"
 	has_latches = FALSE
@@ -288,7 +288,7 @@
 	if(!is_type_in_list(src, allowed_toolbox) && (type != /obj/item/storage/toolbox))
 		return
 	if(contents.len >= 1)
-		balloon_alert(user, "not empty!")
+		balloon_alert(user, "不是空的!")
 		return
 	if(T.use(10))
 		var/obj/item/bot_assembly/floorbot/B = new
@@ -317,8 +317,8 @@
 	custom_materials = list(/datum/material/hauntium = SMALL_MATERIAL_AMOUNT*5)
 
 /obj/item/storage/toolbox/guncase
-	name = "gun case"
-	desc = "A weapon's case. Has a blood-red 'S' stamped on the cover."
+	name = "枪箱"
+	desc = "一个武器箱，封面上有一个血红色的“S”."
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "infiltrator_case"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -331,7 +331,7 @@
 /obj/item/storage/toolbox/guncase/Initialize(mapload)
 	. = ..()
 	atom_storage.max_specific_storage = WEIGHT_CLASS_BULKY
-	atom_storage.max_total_storage = 7 //enough to hold ONE bulky gun and the ammo boxes
+	atom_storage.max_total_storage = 7 //enough to hold ONE bulky gun and the 弹药箱es
 	atom_storage.max_slots = 4
 
 /obj/item/storage/toolbox/guncase/PopulateContents()
@@ -340,22 +340,22 @@
 		new extra_to_spawn (src)
 
 /obj/item/storage/toolbox/guncase/bulldog
-	name = "bulldog gun case"
+	name = "斗牛犬枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/shotgun/bulldog
 	extra_to_spawn = /obj/item/ammo_box/magazine/m12g
 
 /obj/item/storage/toolbox/guncase/c20r
-	name = "c-20r gun case"
+	name = "c-20r 枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/c20r
 	extra_to_spawn = /obj/item/ammo_box/magazine/smgm45
 
 /obj/item/storage/toolbox/guncase/clandestine
-	name = "clandestine gun case"
+	name = "秘密枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/clandestine
 	extra_to_spawn = /obj/item/ammo_box/magazine/m10mm
 
 /obj/item/storage/toolbox/guncase/m90gl
-	name = "m-90gl gun case"
+	name = "m-90gl 枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/m90
 	extra_to_spawn = /obj/item/ammo_box/magazine/m223
 
@@ -366,7 +366,7 @@
 	new /obj/item/ammo_box/a40mm/rubber (src)
 
 /obj/item/storage/toolbox/guncase/rocketlauncher
-	name = "rocket launcher gun case"
+	name = "火箭发射器箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/rocketlauncher
 	extra_to_spawn = /obj/item/ammo_box/rocket
 
@@ -375,12 +375,12 @@
 	new extra_to_spawn (src)
 
 /obj/item/storage/toolbox/guncase/revolver
-	name = "revolver gun case"
+	name = "左轮枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/revolver/syndicate/nuclear
 	extra_to_spawn = /obj/item/ammo_box/a357
 
 /obj/item/storage/toolbox/guncase/sword_and_board
-	name = "energy sword and shield weapon case"
+	name = "激光剑盾武器箱"
 	weapon_to_spawn = /obj/item/melee/energy/sword
 	extra_to_spawn = /obj/item/shield/energy
 
@@ -390,7 +390,7 @@
 	new /obj/item/clothing/head/costume/knight (src)
 
 /obj/item/storage/toolbox/guncase/cqc
-	name = "\improper CQC equipment case"
+	name = "CQC装备箱"
 	weapon_to_spawn = /obj/item/book/granter/martial/cqc
 	extra_to_spawn = /obj/item/storage/box/syndie_kit/imp_stealth
 
@@ -401,14 +401,14 @@
 	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src)
 
 /obj/item/clothing/head/costume/snakeeater
-	name = "strange bandana"
-	desc = "A bandana. It seems to have a little carp embroidered on the inside, as well as the kanji '魚'."
+	name = "奇怪的头巾"
+	desc = "一个头巾. 上面绣了一条小鲤鱼, 还有汉字 '魚'."
 	icon_state = "snake_eater"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/costume/knight
-	name = "fake medieval helmet"
-	desc = "A classic metal helmet. Though, this one seems to be very obviously fake..."
+	name = "玩具中世纪头盔"
+	desc = "一个经典的金属头盔，不过，这个看起来很明显是假的..."
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "knight_green"
@@ -418,7 +418,7 @@
 	dog_fashion = null
 
 /obj/item/storage/toolbox/guncase/doublesword
-	name = "double-bladed energy sword weapon case"
+	name = "双刃激光武器箱"
 	weapon_to_spawn = /obj/item/dualsaber
 	extra_to_spawn = /obj/item/soap/syndie
 
@@ -436,22 +436,22 @@
 	new /obj/item/clothing/under/rank/prisoner/nosensor (src)
 
 /obj/item/storage/toolbox/guncase/soviet
-	name = "ancient gun case"
-	desc = "A weapon's case. Has the symbol of the Third Soviet Union stamped on the side."
+	name = "古代枪箱"
+	desc = "一个武器箱，侧面有第三苏联的标志."
 	icon_state = "sakhno_case"
 	inhand_icon_state = "sakhno_case"
 	weapon_to_spawn = /obj/effect/spawner/random/sakhno
 	extra_to_spawn = /obj/effect/spawner/random/sakhno/ammo
 
 /obj/item/storage/toolbox/guncase/soviet/plastikov
-	name = "ancient surplus gun case"
-	desc = "A gun case. Has the symbol of the Third Soviet Union stamped on the side."
+	name = "古代盈余枪箱"
+	desc = "一个武器箱，侧面有第三苏联的标志."
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/plastikov
 	extra_to_spawn = /obj/item/food/rationpack //sorry comrade, cannot get you more ammo, here, have lunch
 
 /obj/item/storage/toolbox/guncase/monkeycase
-	name = "monkey gun case"
-	desc = "Everything a monkey needs to truly go ape-shit. There's a paw-shaped hand scanner lock on the front of the case."
+	name = "猴子枪箱"
+	desc = "所有猴子需要的东西，箱子前面有个爪子锁。"
 
 /obj/item/storage/toolbox/guncase/monkeycase/Initialize(mapload)
 	. = ..()
@@ -477,10 +477,10 @@
 
 	if(is_simian(user))
 		atom_storage.locked = STORAGE_NOT_LOCKED
-		to_chat(user, span_notice("You place your paw on the paw scanner, and hear a soft click as [src] unlocks!"))
+		to_chat(user, span_notice("你把你的爪子放在爪子扫描器上，听到[src]解锁的一声轻响!"))
 		playsound(src, 'sound/items/click.ogg', 25, TRUE)
 		return TRUE
-	to_chat(user, span_warning("You put your hand on the hand scanner, and it rejects it with an angry chimpanzee screech!"))
+	to_chat(user, span_warning("你把你的手放在手扫描仪上，它用愤怒的黑猩猩尖叫拒绝你!"))
 	playsound(src, "sound/creatures/monkey/monkey_screech_[rand(1,7)].ogg", 75, TRUE)
 	return FALSE
 

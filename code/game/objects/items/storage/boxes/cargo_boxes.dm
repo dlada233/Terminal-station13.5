@@ -1,8 +1,8 @@
 // This file contains all boxes used by the Cargo department and its purpose on the station.
 
 /obj/item/storage/box/shipping
-	name = "box of shipping supplies"
-	desc = "Contains several scanners and labelers for shipping things. Wrapping Paper not included."
+	name = "运输用品盒"
+	desc = "包含几个扫描仪和标签机等货仓用品，不包括包装纸。"
 	illustration = "shipping"
 
 /obj/item/storage/box/shipping/PopulateContents()

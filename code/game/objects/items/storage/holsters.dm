@@ -1,7 +1,7 @@
 
 /obj/item/storage/belt/holster
-	name = "shoulder holster"
-	desc = "A rather plain but still cool looking holster that can hold a handgun."
+	name = "肩挂式枪套"
+	desc = "一个相当普通但仍然很酷的皮套，可以装手枪."
 	icon_state = "holster"
 	inhand_icon_state = "holster"
 	worn_icon_state = "holster"
@@ -35,8 +35,8 @@
 	))
 
 /obj/item/storage/belt/holster/energy
-	name = "energy shoulder holsters"
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Designed to hold energy weaponry."
+	name = "肩挂式能量枪套"
+	desc = "一对相当普通的肩套，里面有一些绝缘衬垫，用来装能量武器."
 
 /obj/item/storage/belt/holster/energy/Initialize(mapload)
 	. = ..()
@@ -54,8 +54,8 @@
 	))
 
 /obj/item/storage/belt/holster/energy/thermal
-	name = "thermal shoulder holsters"
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Meant to hold a twinned pair of thermal pistols, but can fit several kinds of energy handguns as well."
+	name = "肩挂式热敏枪套"
+	desc = "一对相当普通的肩套，里面有一些绝缘衬垫，用来装一对热敏手枪，但也可以装好几种能量手枪."
 
 /obj/item/storage/belt/holster/energy/thermal/PopulateContents()
 	generate_items_inside(list(
@@ -64,7 +64,7 @@
 	),src)
 
 /obj/item/storage/belt/holster/energy/disabler
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Designed to hold energy weaponry. A production stamp indicates that it was shipped with a disabler."
+	desc = "一对相当普通的肩套，里面有一些绝缘衬垫，用来装能量武器，生产戳记表明它是与镇暴用品一起发送的."
 
 /obj/item/storage/belt/holster/energy/disabler/PopulateContents()
 	generate_items_inside(list(
@@ -72,7 +72,7 @@
 	),src)
 
 /obj/item/storage/belt/holster/energy/smoothbore
-	desc = "A rather plain pair of shoulder holsters with a bit of insulated padding inside. Designed to hold energy weaponry. Seems it was meant to fit two smoothbores."
+	desc = "一对相当普通的肩套，里面有一些绝缘衬垫，用来装能量武器，看来是用来装两个无膛线枪的."
 
 /obj/item/storage/belt/holster/energy/smoothbore/PopulateContents()
 	generate_items_inside(list(
@@ -80,8 +80,8 @@
 	),src)
 
 /obj/item/storage/belt/holster/detective
-	name = "detective's holster"
-	desc = "A holster able to carry handguns and some ammo. WARNING: Badasses only."
+	name = "侦探枪套"
+	desc = "能装手枪和一些弹药的枪套。警告:仅限坏蛋."
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/belt/holster/detective/Initialize(mapload)
@@ -116,8 +116,8 @@
 	), src)
 
 /obj/item/storage/belt/holster/detective/full/ert
-	name = "marine's holster"
-	desc = "Wearing this makes you feel badass, but you suspect it's just a repainted detective's holster from the NT surplus."
+	name = "陆战队枪套"
+	desc = "戴着这个让你觉得自己很厉害，但你怀疑这只是一个从NT盈余中重新涂漆的侦探枪套."
 	icon_state = "syndicate_holster"
 	inhand_icon_state = "syndicate_holster"
 	worn_icon_state = "syndicate_holster"
@@ -129,8 +129,8 @@
 	),src)
 
 /obj/item/storage/belt/holster/chameleon
-	name = "syndicate holster"
-	desc = "A hip holster that uses chameleon technology to disguise itself, due to the added chameleon tech, it cannot be mounted onto armor."
+	name = "辛迪加枪套"
+	desc = "一个使用变色龙技术来伪装自己的枪套，由于增加了变色龙技术，它不能安装在盔甲上."
 	icon_state = "syndicate_holster"
 	inhand_icon_state = "syndicate_holster"
 	worn_icon_state = "syndicate_holster"
@@ -164,8 +164,8 @@
 	atom_storage.silent = TRUE
 
 /obj/item/storage/belt/holster/nukie
-	name = "operative holster"
-	desc = "A deep shoulder holster capable of holding almost any form of firearm and its ammo."
+	name = "特工枪套"
+	desc = "一种能装任何武器及其弹药的深肩枪套."
 	icon_state = "syndicate_holster"
 	inhand_icon_state = "syndicate_holster"
 	worn_icon_state = "syndicate_holster"
@@ -186,7 +186,7 @@
 	))
 
 /obj/item/storage/belt/holster/nukie/cowboy
-	desc = "A deep shoulder holster capable of holding almost any form of small firearm and its ammo. This one's specialized for handguns."
+	desc = "一种深肩枪套，几乎可以装下任何形式的小型火器及其弹药这个是专门为手枪设计的."
 
 /obj/item/storage/belt/holster/nukie/cowboy/Initialize(mapload)
 	. = ..()

@@ -95,7 +95,7 @@
 // Syndie survival box
 /obj/item/storage/box/survival/syndie
 	name = "特战求生盒"
-	desc = "A box with the essentials of your operation. This one is labelled to contain an extended-capacity tank and a handy guide on survival."
+	desc = "一个盒子装着你的求生用品，这个标签上印着有大容量的气瓶和方便的生存小贴士."
 	icon_state = "syndiebox"
 	illustration = "extendedtank"
 	mask_type = /obj/item/clothing/mask/gas/syndicate
@@ -111,7 +111,7 @@
 
 /obj/item/storage/box/survival/centcom
 	name = "快反求生盒"
-	desc = "A box with the bare essentials of ensuring the survival of your team. This one is labelled to contain a double tank."
+	desc = "一个装着确保你的团队生存的基本用品的盒子。这个标签上写着双罐气瓶."
 	illustration = "extendedtank"
 	internal_type = /obj/item/tank/internals/emergency_oxygen/double
 
@@ -141,7 +141,7 @@
 
 /obj/item/storage/box/mime
 	name = "看不见的盒子"
-	desc = "Unfortunately not large enough to trap the mime."
+	desc = "不幸的是，它不够大，无法捕获默剧演员."
 	foldable_result = null
 	icon_state = "box"
 	inhand_icon_state = null
@@ -165,7 +165,7 @@
 	foldable_result = null
 
 /obj/item/storage/box/hug/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] clamps the box of hugs on [user.p_their()] jugular! Guess it wasn't such a hugbox after all.."))
+	user.visible_message(span_suicide("[user]夹紧抱抱盒在脖颈上!我猜它根本就不是一个抱抱盒.."))
 	return BRUTELOSS
 
 /obj/item/storage/box/hug/attack_self(mob/user)
@@ -181,13 +181,13 @@
 // clown box, we also use this for the honk bot assembly
 /obj/item/storage/box/clown
 	name = "小丑盒"
-	desc = "A colorful cardboard box for the clown"
+	desc = "给小丑的彩色盒子"
 	illustration = "clown"
 
 /obj/item/storage/box/clown/attackby(obj/item/I, mob/user, params)
 	if((istype(I, /obj/item/bodypart/arm/left/robot)) || (istype(I, /obj/item/bodypart/arm/right/robot)))
 		if(contents.len) //prevent accidently deleting contents
-			balloon_alert(user, "items inside!")
+			balloon_alert(user, "内有物品!")
 			return
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
@@ -200,11 +200,11 @@
 		return ..()
 
 /obj/item/storage/box/clown/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] opens [src] and gets consumed by [p_them()]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]打开[src]，并被[p_them()]消耗! 这是一种自杀行为!"))
 	playsound(user, 'sound/misc/scary_horn.ogg', 70, vary = TRUE)
 	forceMove(user.drop_location())
 	var/obj/item/clothing/head/mob_holder/consumed = new(src, user)
-	consumed.desc = "It's [user.real_name]! It looks like [user.p_they()] committed suicide!"
+	consumed.desc = "[user.real_name]! 看起来是自杀了!"
 	return OXYLOSS
 
 // Special stuff for medical hugboxes.
@@ -216,7 +216,7 @@
 //Clown survival box
 /obj/item/storage/box/survival/hug
 	name = "抱抱盒"
-	desc = "A special box for sensitive people."
+	desc = "多愁善感人群专用的盒子."
 	icon_state = "hugbox"
 	illustration = "heart"
 	foldable_result = null
@@ -241,19 +241,19 @@
 
 //Duplicated suicide/attack self procs, since the survival boxes are a subtype of box/survival
 /obj/item/storage/box/survival/hug/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] clamps the box of hugs on [user.p_their()] jugular! Guess it wasn't such a hugbox after all.."))
+	user.visible_message(span_suicide("[user]夹紧抱抱盒在脖颈上!我猜它根本就不是一个抱抱盒.."))
 	return BRUTELOSS
 
 /obj/item/storage/box/survival/hug/attack_self(mob/user)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, SFX_RUSTLE, 50, vary=TRUE, extrarange=-5)
-	user.visible_message(span_notice("[user] hugs [src]."),span_notice("You hug [src]."))
+	user.visible_message(span_notice("[user]拥抱了[src]."),span_notice("你拥抱了[src]."))
 
 /obj/item/storage/box/hug/plushes
-	name = "tactical cuddle kit"
-	desc = "A lovely little box filled with soft, cute plushies, perfect for calming down people who have just suffered a traumatic event. Legend has it there's a special part of hell \
-	for Medical Officers who just take the box for themselves."
+	name = "战术抱抱套件"
+	desc = "一个可爱的小盒子，里面装满了柔软可爱的毛绒玩具，非常适合让刚刚遭受危险事件的人平静下来，\
+	传说地狱里有一个特别的地方给那些拿走盒子只为自己的医务人员."
 
 /obj/item/storage/box/hug/plushes/PopulateContents()
 	for(var/i in 1 to 7)
@@ -270,8 +270,8 @@
 	new /obj/item/t_scanner/adv_mining_scanner(src)
 
 /obj/item/storage/box/miner_modkits
-	name = "miner modkit/trophy box"
-	desc = "Contains every modkit and trophy in the game."
+	name = "矿工模块/奖杯盒"
+	desc = "包含游戏中所有的采矿模块和奖杯."
 
 /obj/item/storage/box/miner_modkits/Initialize(mapload)
 	. = ..()
@@ -286,8 +286,8 @@
 			new modkit(src)
 
 /obj/item/storage/box/skillchips
-	name = "box of skillchips"
-	desc = "Contains one copy of every skillchip"
+	name = "技能芯片盒"
+	desc = "内含所有技能芯片的副本"
 
 /obj/item/storage/box/skillchips/PopulateContents()
 	var/list/skillchips = subtypesof(/obj/item/skillchip)
@@ -296,16 +296,16 @@
 		new skillchip(src)
 
 /obj/item/storage/box/skillchips/science
-	name = "box of science job skillchips"
-	desc = "Contains spares of every science job skillchip."
+	name = "科研技能芯片盒"
+	desc = "包含所有科研技能芯片的副本."
 
 /obj/item/storage/box/skillchips/science/PopulateContents()
 	new/obj/item/skillchip/job/roboticist(src)
 	new/obj/item/skillchip/job/roboticist(src)
 
 /obj/item/storage/box/skillchips/engineering
-	name = "box of engineering job skillchips"
-	desc = "Contains spares of every engineering job skillchip."
+	name = "工程技能芯片盒"
+	desc = "包含所有工程技能芯片的副本."
 
 /obj/item/storage/box/skillchips/engineering/PopulateContents()
 	new/obj/item/skillchip/job/engineer(src)

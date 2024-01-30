@@ -2,7 +2,7 @@
 
 /obj/item/storage/box/metalfoam
 	name = "金属泡沫手榴弹盒"
-	desc = "To be used to rapidly seal hull breaches."
+	desc = "用于快速密封船体裂口."
 	illustration = "grenade"
 
 /obj/item/storage/box/metalfoam/PopulateContents()
@@ -10,8 +10,8 @@
 		new /obj/item/grenade/chem_grenade/metalfoam(src)
 
 /obj/item/storage/box/smart_metal_foam
-	name = "box of smart metal foam grenades"
-	desc = "Used to rapidly seal hull breaches. This variety conforms to the walls of its area."
+	name = "智能金属泡沫手榴弹盒"
+	desc = "用于快速密封船体裂口，智能金属使得它会自适应该地区的墙壁类型。"
 	illustration = "grenade"
 
 /obj/item/storage/box/smart_metal_foam/PopulateContents()
@@ -19,7 +19,7 @@
 		new/obj/item/grenade/chem_grenade/smart_metal_foam(src)
 
 /obj/item/storage/box/material
-	name = "box of materials"
+	name = "材料盒"
 	illustration = "implant"
 
 /obj/item/storage/box/material/Initialize(mapload)
@@ -54,7 +54,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/debugtools
-	name = "box of debug tools"
+	name = "调试工具箱"
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/debugtools/Initialize(mapload)
@@ -84,16 +84,16 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/plastic
-	name = "plastic box"
-	desc = "It's a solid, plastic shell box."
+	name = "塑料盒"
+	desc = "它是一个坚固的塑料盒."
 	icon_state = "plasticbox"
 	foldable_result = null
 	illustration = "writing"
 	custom_materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT) //You lose most if recycled.
 
 /obj/item/storage/box/emergencytank
-	name = "emergency oxygen tank box"
-	desc = "A box of emergency oxygen tanks."
+	name = "应急氧气瓶盒"
+	desc = "一盒应急氧气瓶."
 	illustration = "emergencytank"
 
 /obj/item/storage/box/emergencytank/PopulateContents()
@@ -102,8 +102,8 @@
 		new /obj/item/tank/internals/emergency_oxygen(src) //in case anyone ever wants to do anything with spawning them, apart from crafting the box
 
 /obj/item/storage/box/engitank
-	name = "extended-capacity emergency oxygen tank box"
-	desc = "A box of extended-capacity emergency oxygen tanks."
+	name = "大容量应急氧气瓶盒"
+	desc = "一盒大容量应急氧气瓶."
 	illustration = "extendedtank"
 
 /obj/item/storage/box/engitank/PopulateContents()

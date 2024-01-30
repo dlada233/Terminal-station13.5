@@ -3,7 +3,7 @@
 
 /obj/item/storage/box/drinkingglasses
 	name = "玻璃杯盒"
-	desc = "It has a picture of drinking glasses on it."
+	desc = "它上面有酒杯的图案."
 	illustration = "drinkglass"
 
 /obj/item/storage/box/drinkingglasses/PopulateContents()
@@ -11,7 +11,7 @@
 		new /obj/item/reagent_containers/cup/glass/drinkingglass(src)
 /obj/item/storage/box/cups
 	name = "纸杯盒"
-	desc = "It has pictures of paper cups on the front."
+	desc = "它的正面印有纸杯的图案."
 	illustration = "cup"
 
 /obj/item/storage/box/cups/PopulateContents()
@@ -21,7 +21,7 @@
 //Some spare PDAs in a box
 /obj/item/storage/box/pdas
 	name = "备用PDA盒"
-	desc = "A box of spare PDA microcomputers."
+	desc = "一盒备用的PDA微型计算机."
 	illustration = "pda"
 
 /obj/item/storage/box/pdas/PopulateContents()
@@ -30,7 +30,7 @@
 
 /obj/item/storage/box/ids
 	name = "备用ID盒"
-	desc = "Has so many empty IDs."
+	desc = "有那么多空ID卡."
 	illustration = "id"
 
 /obj/item/storage/box/ids/PopulateContents()
@@ -38,7 +38,7 @@
 		new /obj/item/card/id/advanced(src)
 /obj/item/storage/box/silver_ids
 	name = "备用银ID盒"
-	desc = "Shiny IDs for important people."
+	desc = "银ID发给那些重要的人."
 	illustration = "id"
 
 /obj/item/storage/box/silver_ids/PopulateContents()
@@ -47,7 +47,7 @@
 
 /obj/item/storage/box/mousetraps
 	name = "Pest-B-Gon老鼠夹盒"
-	desc = "<span class='alert'>Keep out of reach of children.</span>"
+	desc = "<span class='alert'>远离儿童.</span>"
 	illustration = "mousetrap"
 
 /obj/item/storage/box/mousetraps/PopulateContents()
@@ -55,8 +55,8 @@
 		new /obj/item/assembly/mousetrap(src)
 
 /obj/item/storage/box/snappops
-	name = "snap pop box"
-	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children."
+	name = "摔炮盒"
+	desc = "八个有趣的摔炮!8岁及以下儿童请勿使用."
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "spbox"
 	illustration = ""
@@ -72,7 +72,7 @@
 
 /obj/item/storage/box/matches
 	name = "火柴盒"
-	desc = "A small box of Almost But Not Quite Plasma Premium Matches."
+	desc = "一小盒高级火柴."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "matchbox"
 	inhand_icon_state = "zippo"
@@ -114,7 +114,7 @@
 
 /obj/item/storage/box/lights
 	name = "备用灯泡盒"
-	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
+	desc = "为了防止破碎，盒子的内部加装了缓冲海绵，所以只能装下灯管和灯泡."
 	inhand_icon_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
@@ -159,8 +159,8 @@
 		new /obj/item/pen/fountain(src)
 
 /obj/item/storage/box/dishdrive
-	name = "DIY Dish Drive 包"
-	desc = "Contains everything you need to build your own Dish Drive!"
+	name = "DIY 吸盘机包"
+	desc = "包含你建立自己的吸盘机需要的一切!"
 	custom_premium_price = PAYCHECK_CREW * 3
 
 /obj/item/storage/box/dishdrive/PopulateContents()
@@ -178,7 +178,7 @@
 
 /obj/item/storage/box/actionfigure
 	name = "人偶盒"
-	desc = "The latest set of collectable action figures."
+	desc = "最新一套可收藏的人偶."
 	icon_state = "box"
 
 /obj/item/storage/box/actionfigure/PopulateContents()
@@ -188,7 +188,7 @@
 
 /obj/item/storage/box/tail_pin
 	name = "把尾巴钉在柯基尾巴上包"
-	desc = "For ages 10 and up. ...Why is this even on a space station? Aren't you a little old for babby games?" //Intentional typo.
+	desc = "仅限10岁及以上....为什么这个会出现在空间站上?你玩婴儿游戏是不是有点老了?" //Intentional typo.
 	custom_price = PAYCHECK_COMMAND * 1.25
 
 /obj/item/storage/box/tail_pin/PopulateContents()
@@ -197,16 +197,16 @@
 		new /obj/item/tail_pin(src)
 
 /obj/item/storage/box/party_poppers
-	name = "box of party poppers"
-	desc = "Turn any event into a celebration and ensure the janitor stays busy."
+	name = "派对礼花盒"
+	desc = "把任何活动都变成庆祝活动，让清洁工保持忙碌."
 
 /obj/item/storage/box/party_poppers/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/spray/chemsprayer/party(src)
 
 /obj/item/storage/box/stickers
-	name = "box of stickers"
-	desc = "A box full of random stickers. Do give to the clown."
+	name = "贴纸盒"
+	desc = "一个装满随机贴纸的盒子，给小丑用用看."
 
 /obj/item/storage/box/stickers/proc/generate_non_contraband_stickers_list()
 	. = list()
@@ -223,8 +223,8 @@
 		new type(src)
 
 /obj/item/storage/box/stickers/googly
-	name = "box of googly eye stickers"
-	desc = "Turn anything and everything into something vaguely alive!"
+	name = "眼睛贴纸盒"
+	desc = "把任何东西都变成有生命的东西!"
 
 /obj/item/storage/box/stickers/googly/PopulateContents()
 	for(var/i in 1 to 6)

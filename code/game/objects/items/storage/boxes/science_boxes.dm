@@ -2,7 +2,7 @@
 
 /obj/item/storage/box/swab
 	name = "微生物拭子盒"
-	desc = "Contains a number of sterile swabs for collecting microbiological samples."
+	desc = "包含一些无菌拭子，用于收集微生物样本."
 	illustration = "swab"
 
 /obj/item/storage/box/swab/PopulateContents()
@@ -11,7 +11,7 @@
 
 /obj/item/storage/box/petridish
 	name = "培养皿盒"
-	desc = "This box purports to contain a number of high rim petridishes."
+	desc = "这个盒子包含了一些培养皿容器."
 	illustration = "petridish"
 
 /obj/item/storage/box/petridish/PopulateContents()
@@ -19,13 +19,13 @@
 		new /obj/item/petri_dish(src)
 
 /obj/item/storage/box/plumbing
-	name = "box of plumbing supplies"
-	desc = "Contains a small supply of pipes, water recyclers, and iron to connect to the rest of the station."
+	name = "水利用品箱"
+	desc = "包含少量的管道供应，水循环器和连接到其他部分的铁."
 
 //Disk boxes
 
 /obj/item/storage/box/disks
-	name = "diskette box"
+	name = "磁盘盒"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks/PopulateContents()
@@ -50,12 +50,12 @@
 		new cube_type(src)
 
 /obj/item/storage/box/monkeycubes/syndicate
-	desc = "Waffle Co. brand monkey cubes. Just add water and a dash of subterfuge!"
+	desc = "Waffle公司的猴子方块，只要加水就行了!"
 	cube_type = /obj/item/food/monkeycube/syndicate
 
 /obj/item/storage/box/gorillacubes
 	name = "大猩猩方块盒"
-	desc = "Waffle Co. brand gorilla cubes. Do not taunt."
+	desc = "Waffle公司的大猩猩方块，不要随便加水."
 	icon_state = "monkeycubebox"
 	illustration = null
 
@@ -69,8 +69,8 @@
 		new /obj/item/food/monkeycube/gorilla(src)
 
 /obj/item/storage/box/stockparts/basic //for ruins where it's a bad idea to give access to an autolathe/protolathe, but still want to make stock parts accessible
-	name = "配件盒"
-	desc = "Contains a variety of basic stock parts."
+	name = "零件盒"
+	desc = "包含各种基本机器零件."
 
 /obj/item/storage/box/stockparts/basic/PopulateContents()
 	var/static/items_inside = list(
@@ -83,8 +83,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/stockparts/deluxe
-	name = "豪华配件盒"
-	desc = "Contains a variety of deluxe stock parts."
+	name = "豪华零件盒"
+	desc = "包含各种豪华机器零件."
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/stockparts/deluxe/PopulateContents()
@@ -98,8 +98,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/rndboards
-	name = "\proper the liberator's legacy"
-	desc = "A box containing a gift for worthy golems."
+	name = "\proper 解放者的遗产"
+	desc = "一个盒子，里面装着给傀儡们的礼物."
 	illustration = "scicircuit"
 
 /obj/item/storage/box/rndboards/PopulateContents()
@@ -109,7 +109,7 @@
 	new /obj/item/circuitboard/computer/rdconsole(src)
 
 /obj/item/storage/box/stabilized //every single stabilized extract from xenobiology
-	name = "box of stabilized extracts"
+	name = "稳定提取物盒"
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/stabilized/Initialize(mapload)

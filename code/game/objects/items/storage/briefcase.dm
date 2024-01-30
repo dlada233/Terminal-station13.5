@@ -1,6 +1,6 @@
 /obj/item/storage/briefcase
 	name = "公文包"
-	desc = "It's made of AUTHENTIC faux-leather and has a price-tag still attached. Its owner must be a real professional."
+	desc = "它是用真正的人造革做的，还贴着价签；它的主人一定是真正的专业人士."
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "briefcase"
 	inhand_icon_state = "briefcase"
@@ -12,8 +12,8 @@
 	throw_speed = 2
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb_continuous = list("bashes", "batters", "bludgeons", "thrashes", "whacks")
-	attack_verb_simple = list("bash", "batter", "bludgeon", "thrash", "whack")
+	attack_verb_continuous = list("猛击", "打击", "敲打", "痛打", "重打")
+	attack_verb_simple = list("猛击", "打击", "敲打", "痛打", "重打")
 	resistance_flags = FLAMMABLE
 	max_integrity = 150
 	var/folder_path = /obj/item/folder //this is the path of the folder that gets spawned in New()
@@ -47,21 +47,21 @@
 		if(istype(potentially_paper, /obj/item/paper) || istype(potentially_paper, /obj/item/paperplane))
 			papers_found += potentially_paper
 	if(!papers_found.len || !item_loc)
-		user.visible_message(span_suicide("[user] bashes [user.p_them()]self in the head with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]用[src]猛敲自己的头! 这是一种自杀行为!"))
 		return BRUTELOSS
 
-	user.visible_message(span_suicide("[user] opens [src] and all of [user.p_their()] papers fly out!"))
+	user.visible_message(span_suicide("[user]打开了[src]，所有的纸都飞了出来!"))
 	for(var/obj/item/paper as anything in papers_found)	//Throws the papers in a random direction
 		var/turf/turf_to_throw_at = prob(20) ? item_loc : get_ranged_target_turf(item_loc, pick(GLOB.alldirs))
 		paper.throw_at(turf_to_throw_at, 2)
 
 	stoplag(1 SECONDS)
-	user.say("ARGGHH, HOW WILL I GET THIS WORK DONE NOW?!!")
-	user.visible_message(span_suicide("[user] looks overwhelmed with paperwork! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.say("啊，我现在要怎么完成这项工作?!!")
+	user.visible_message(span_suicide("[user]看起来被文书工作压得喘不过气来! 看起来马上压得要自杀了!"))
 	return OXYLOSS
 
 /obj/item/storage/briefcase/sniper
-	desc = "Its label reads \"genuine hardened Captain leather\", but suspiciously has no other tags or branding. Smells like L'Air du Temps."
+	desc = "它的标签上写着\"正宗的硬化船长皮革\"，但可疑的是没有其他标签或品牌，闻起来像“空气之春”."
 	force = 10
 
 /obj/item/storage/briefcase/sniper/PopulateContents()
@@ -79,7 +79,7 @@
  */
 /obj/item/storage/briefcase/secure
 	name = "安全公文包"
-	desc = "A large briefcase with a digital locking system."
+	desc = "一个装有数字锁系统的大公文包."
 	icon_state = "secure"
 	base_icon_state = "secure"
 	inhand_icon_state = "sec-case"
