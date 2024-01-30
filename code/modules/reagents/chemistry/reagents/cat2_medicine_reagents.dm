@@ -183,7 +183,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/c2/aiuri
-	name = "Aiuri-艾乌里"
+	name = "Aiuri-艾尤里"
 	description = "用于治疗烧伤，会对眼造成伤害."
 	reagent_state = LIQUID
 	color = "#8C93FF"
@@ -258,7 +258,7 @@
 #define CONVERMOL_RATIO 5 //# Oxygen damage to result in 1 tox
 
 /datum/reagent/medicine/c2/convermol
-	name = "Convermol-康维莫尔"
+	name = "Convermol-肯尔莫"
 	description = "治愈窒息症状，同时产生较少的有毒副产物，两者都与药物暴露和当前缺氧程度有关，过量服用会导致有毒副产物."
 	reagent_state = LIQUID
 	color = "#FF6464"

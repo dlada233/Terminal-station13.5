@@ -310,7 +310,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/mindbreaker
-	name = "Mindbreaker Toxin-心智毒素"
+	name = "Mindbreaker Toxin-失智毒素"
 	description = "强效致幻剂，这可不是闹着玩的，对一些精神病人来说，它抵消了他们的症状，把他们固定在现实中."
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0

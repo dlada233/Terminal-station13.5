@@ -1484,7 +1484,7 @@
 	affected_mob.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 
 /datum/reagent/medicine/modafinil
-	name = "Modafinil-莫达芬尼"
+	name = "Modafinil-莫达非尼"
 	description = "持久的睡眠抑制剂，非常轻微地减少昏迷和击倒时间，过量服用会产生可怕的副作用，并造成致命的窒息，如果不及时处理，会使你失去意识."
 	reagent_state = LIQUID
 	color = "#BEF7D8" // palish blue white
@@ -1557,7 +1557,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/psicodine
-	name = "Psicodine-赛可定"
+	name = "Psicodine-定神素"
 	description = "抑制焦虑和其他各种形式的精神痛苦，过量服用会导致幻觉和轻微的毒素损伤."
 	reagent_state = LIQUID
 	color = "#07E79E"

@@ -2535,7 +2535,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/pax
-	name = "Pax-重熙"
+	name = "Pax-和平素"
 	description = "一种无色液体，能抑制其体内的暴力."
 	color = "#AAAAAA55"
 	taste_description = "water"
@@ -2575,8 +2575,8 @@
 			changeling.adjust_chemicals(-4 * REM * seconds_per_tick) //SKYRAT EDIT - BZ-BUFF-VS-LING - ORIGINAL: changeling.adjust_chemicals(-2 * REM * seconds_per_tick)
 
 /datum/reagent/pax/peaceborg
-	name = "Synthpax-合成重熙"
-	description = "一种无色液体，能抑制其体内的暴力，合成比普通Pax便宜，但药效消失得更快."
+	name = "Synthpax-合成和平素"
+	description = "一种无色液体，能抑制其体内的暴力，合成比普通和平素便宜，但药效消失得更快."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 
