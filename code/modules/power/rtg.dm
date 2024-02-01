@@ -2,8 +2,8 @@
 // Simple power generator that would replace "magic SMES" on various derelicts.
 
 /obj/machinery/power/rtg
-	name = "radioisotope thermoelectric generator"
-	desc = "A simple nuclear power generator, used in small outposts to reliably provide power for decades."
+	name = "RTG-放射性同位素热电发电机"
+	desc = "一种简单的核动力发电机，用于小型前哨，可以可靠地提供几十年的电力."
 	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "rtg"
 	density = TRUE
@@ -36,7 +36,7 @@
 /obj/machinery/power/rtg/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Power generation now at <b>[power_gen*0.001]</b>kW.")
+		. += span_notice("状态读数: 发电机正生产<b>[power_gen*0.001]</b>kW.")
 
 /obj/machinery/power/rtg/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-open", initial(icon_state), I))
@@ -46,7 +46,7 @@
 	return ..()
 
 /obj/machinery/power/rtg/advanced
-	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."
+	desc = "先进的RTG能够减缓同位素衰变，增加功率输出，但减少了寿命，它使用等离子体燃料的辐射收集器来进一步提高输出."
 	power_gen = 1250 // 2500 on T1, 10000 on T4.
 	circuit = /obj/item/circuitboard/machine/rtg/advanced
 
@@ -54,10 +54,10 @@
 // Provides a lot of power, but tends to explode when mistreated.
 
 /obj/machinery/power/rtg/abductor
-	name = "Void Core"
+	name = "虚空核心"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "core"
-	desc = "An alien power source that produces energy seemingly out of nowhere."
+	desc = "一种外星能源，能凭空产生能量."
 	circuit = /obj/item/circuitboard/machine/abductor/core
 	power_gen = 20000 // 280 000 at T1, 400 000 at T4. Starts at T4.
 	can_buckle = FALSE
@@ -68,8 +68,8 @@
 	if(going_kaboom)
 		return
 	going_kaboom = TRUE
-	visible_message(span_danger("\The [src] lets out a shower of sparks as it starts to lose stability!"),\
-		span_hear("You hear a loud electrical crack!"))
+	visible_message(span_danger("[src]开始失去稳定，放出一阵火花!"),\
+		span_hear("你听到一声巨大的电裂声!"))
 	playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
 	tesla_zap(source = src, zap_range = 5, power = power_gen * 20)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), src, 2, 3, 4, null, 8), 10 SECONDS) // Not a normal explosion.
@@ -110,8 +110,8 @@
 	return
 
 /obj/machinery/power/rtg/lavaland
-	name = "Lava powered RTG"
-	desc = "This device only works when exposed to the toxic fumes of Lavaland"
+	name = "拉瓦兰RTG"
+	desc = "这个装置只有在接触拉瓦兰的有毒气体时才能工作."
 	circuit = null
 	power_gen = 1500
 	anchored = TRUE
@@ -137,24 +137,24 @@
 	power_gen = initial(power_gen)
 
 /obj/machinery/power/rtg/old_station
-	name = "Old RTG"
-	desc = "A very old RTG, it seems on the verge of being destroyed"
+	name = "老式RTG"
+	desc = "一个非常古老的RTG，它似乎处于被摧毁的边缘"
 	circuit = null
 	power_gen = 750
 	anchored = TRUE
 
 /obj/machinery/power/rtg/old_station/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-open", initial(icon_state), I))
-		to_chat(user,span_warning("You feel it crumbling under your hands!"))
+		to_chat(user,span_warning("你感到它在你的手中破碎!"))
 		return
 	else if(default_deconstruction_crowbar(I, user = user))
 		return
 	return ..()
 
 /obj/machinery/power/rtg/old_station/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel, custom_deconstruct, mob/user)
-	to_chat(user,span_warning("It's starting to fall off!"))
+	to_chat(user,span_warning("它开始脱落了!"))
 	if(!do_after(user, 3 SECONDS, src))
 		return TRUE
-	to_chat(user,span_notice("You feel like you made a mistake"))
+	to_chat(user,span_notice("你觉得自己犯了个错误"))
 	new /obj/effect/decal/cleanable/ash/large(loc)
 	qdel(src)
