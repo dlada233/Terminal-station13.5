@@ -4,8 +4,8 @@
 #define PANEL_EDGE_Z_OFFSET (PANEL_Z_OFFSET - 2)
 
 /obj/machinery/power/solar
-	name = "solar panel"
-	desc = "A solar panel. Generates electricity when in contact with sunlight."
+	name = "太阳能板"
+	desc = "太阳能电池板，与太阳光接触时产生电能."
 	icon = 'icons/obj/machines/solar.dmi'
 	icon_state = "sp_base"
 	density = TRUE
@@ -93,10 +93,10 @@
 
 /obj/machinery/power/solar/crowbar_act(mob/user, obj/item/I)
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-	user.visible_message(span_notice("[user] begins to take the glass off [src]."), span_notice("You begin to take the glass off [src]..."))
+	user.visible_message(span_notice("[user]开始拆下[src]的玻璃."), span_notice("你开始拆下[src]的玻璃..."))
 	if(I.use_tool(src, user, 50))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] takes the glass off [src]."), span_notice("You take the glass off [src]."))
+		user.visible_message(span_notice("[user]拆下了[src]的玻璃."), span_notice("你拆下了[src]的玻璃."))
 		deconstruct(TRUE)
 	return TRUE
 
@@ -267,8 +267,8 @@
 //
 
 /obj/item/solar_assembly
-	name = "solar panel assembly"
-	desc = "A solar panel assembly kit, allows constructions of a solar panel, or with a tracking circuit board, a solar tracker."
+	name = "太阳能电池板组件"
+	desc = "太阳能电池板组装套件，里面有太阳能板、追踪终端电路板和太阳追踪器."
 	icon = 'icons/obj/machines/solar.dmi'
 	icon_state = "sp_base"
 	inhand_icon_state = "electropack"
@@ -312,35 +312,35 @@
 /obj/item/solar_assembly/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && isturf(loc))
 		if(isinspace())
-			to_chat(user, span_warning("You can't secure [src] here."))
+			to_chat(user, span_warning("你不能把[src]固定在这."))
 			return
 		set_anchored(!anchored)
 		user.visible_message(
-			span_notice("[user] [anchored ? null : "un"]wrenches the solar assembly [anchored ? "into place" : null]."),
-			span_notice("You [anchored ? null : "un"]wrench the solar assembly [anchored ? "into place" : null]."),
+			span_notice("[user] [anchored ? "拧紧" : "拧松"]太阳能组件的螺栓[anchored ? "在这个地方" : null]."),
+			span_notice("你[anchored ? "拧紧" : "拧松"]太阳能组件的螺栓[anchored ? "在这个地方" : null]."),
 		)
 		W.play_tool_sound(src, 75)
 		return TRUE
 
 	if(istype(W, /obj/item/stack/sheet/glass) || istype(W, /obj/item/stack/sheet/rglass))
 		if(!anchored)
-			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
+			to_chat(user, span_warning("在添加玻璃之前，你需要固定好组件."))
 			return
 		var/turf/solarturf = get_turf(src)
 		if(locate(/obj/machinery/power/solar) in solarturf)
-			to_chat(user, span_warning("A solar panel is already assembled here."))
+			to_chat(user, span_warning("太阳能电池板已经在这里组装好了."))
 			return
 		var/obj/item/stack/sheet/S = W
 		if(S.use(2))
 			glass_type = W.type
 			playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-			user.visible_message(span_notice("[user] places the glass on the solar assembly."), span_notice("You place the glass on the solar assembly."))
+			user.visible_message(span_notice("[user]把玻璃安装在太阳能组件上."), span_notice("你把玻璃安装在太阳能组件上."))
 			if(tracker)
 				new /obj/machinery/power/tracker(get_turf(src), src)
 			else
 				new /obj/machinery/power/solar(get_turf(src), src)
 		else
-			to_chat(user, span_warning("You need two sheets of glass to put them into a solar panel!"))
+			to_chat(user, span_warning("你需要两块玻璃才能完整安装太阳能板!"))
 			return
 		return TRUE
 
@@ -351,14 +351,14 @@
 			tracker = TRUE
 			update_appearance()
 			qdel(W)
-			user.visible_message(span_notice("[user] inserts the electronics into the solar assembly."), span_notice("You insert the electronics into the solar assembly."))
+			user.visible_message(span_notice("[user]将电子元件插入太阳能组件."), span_notice("你把电子元件插入太阳能组件."))
 			return TRUE
 	else
 		if(W.tool_behaviour == TOOL_CROWBAR)
 			new /obj/item/electronics/tracker(src.loc)
 			tracker = FALSE
 			update_appearance()
-			user.visible_message(span_notice("[user] takes out the electronics from the solar assembly."), span_notice("You take out the electronics from the solar assembly."))
+			user.visible_message(span_notice("[user]从太阳能组件中取出电子元件."), span_notice("你把太阳能组件上的电子元件拿出来."))
 			return TRUE
 	return ..()
 
@@ -367,8 +367,8 @@
 //
 
 /obj/machinery/power/solar_control
-	name = "solar panel control"
-	desc = "A controller for solar panel arrays."
+	name = "太阳能控制电路板"
+	desc = "太阳能电池板阵列控制电路板."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
@@ -526,7 +526,7 @@
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(I.use_tool(src, user, 20, volume=50))
 			if (src.machine_stat & BROKEN)
-				to_chat(user, span_notice("The broken glass falls out."))
+				to_chat(user, span_notice("碎玻璃掉了出来."))
 				var/obj/structure/frame/computer/A = new /obj/structure/frame/computer( src.loc )
 				new /obj/item/shard( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new /obj/item/circuitboard/computer/solar_control( A )
@@ -538,7 +538,7 @@
 				A.set_anchored(TRUE)
 				qdel(src)
 			else
-				to_chat(user, span_notice("You disconnect the monitor."))
+				to_chat(user, span_notice("断开显示器."))
 				var/obj/structure/frame/computer/A = new /obj/structure/frame/computer( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new /obj/item/circuitboard/computer/solar_control( A )
 				for (var/obj/C in src)
@@ -600,8 +600,8 @@
 //
 
 /obj/item/paper/guides/jobs/engi/solars
-	name = "paper- 'Going green! Setup your own solar array instructions.'"
-	default_raw_text = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or plasma! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
+	name = "指南- '走向新能源！安装太阳能阵列的说明书.'"
+	default_raw_text = "<h1>欢迎</h1><p>即使在太空，我们也热爱着自然. 有了这些组件，你可以不使用任何化石燃料或等离子体生产电力！你也可以不用承担使用奇点能源所带来的安全风险！以下是你要如何建立你自己的太阳能电池阵列.</p><p>先把太阳能组件放到电缆线上用扳手拧紧来安装太阳能板，然后添加玻璃或加固玻璃安装玻璃面板，这样就完成了一个太阳能板的建设.</p><p>现在，在成功建设了19个这样的太阳能板后，你得创建一个太阳能追踪器来校准角度，还是安装一个太阳能组件，不过这次在安装玻璃前，插入追踪装置；最后一部，你需要拿起太阳能控制电路板组装一台用电缆连接到太阳能阵列的太阳能控制终端，在里面你可以向太阳能阵列发送指令，比如自动调整角度.</p><p>这就是全部了，祝你环保!</p>"
 
 #undef SOLAR_GEN_RATE
 #undef OCCLUSION_DISTANCE

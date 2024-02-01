@@ -8,8 +8,8 @@
  * Batteries.
  */
 /obj/item/stock_parts/cell
-	name = "power cell"
-	desc = "A rechargeable electrochemical power cell."
+	name = "电池"
+	desc = "可充电的电池."
 	icon = 'icons/obj/machines/cell_charger.dmi'
 	icon_state = "cell"
 	inhand_icon_state = "cell"
@@ -57,7 +57,7 @@
 	if(empty)
 		charge = 0
 	if(ratingdesc)
-		desc += " This one has a rating of [display_energy(maxcharge)][prob(10) ? ", and you should not swallow it" : ""]." //joke works better if it's not on every cell
+		desc += " 这个的功率是[display_energy(maxcharge)][prob(10) ? ", 你不应该吞下去" : ""]." //joke works better if it's not on every cell
 	update_appearance()
 
 	RegisterSignal(src, COMSIG_ITEM_MAGICALLY_CHARGED, PROC_REF(on_magic_charge))
@@ -164,19 +164,19 @@
 	. = ..()
 	// SKYRAT EDIT ADDITION
 	if(ratingdesc && !microfusion_readout)
-		. += "This one has a rating of [display_energy(maxcharge)], and you should not swallow it."
+		. += "这个的额定是[display_energy(maxcharge)], 你不应该吞下去."
 	// SKYRAT EDIT END
 	if(rigged)
-		. += span_danger("This power cell seems to be faulty!")
+		. += span_danger("这个电池好像有毛病!")
 	// SKYRAT EDIT ADDITION
 	else if(microfusion_readout)
-		. += "The charge meter reads [charge]/[maxcharge] MF."
+		. += "电荷计读数为 [charge]/[maxcharge] MF."
 	// SKYRAT EDIT END
 	else
-		. += "The charge meter reads [CEILING(percent(), 0.1)]%." //so it doesn't say 0% charge when the overlay indicates it still has charge
+		. += "电荷计读数为 [CEILING(percent(), 0.1)]%." //so it doesn't say 0% charge when the overlay indicates it still has charge
 
 /obj/item/stock_parts/cell/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is licking the electrodes of [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正在舔[src]的电极! 这是一种自杀行为!"))
 	return FIRELOSS
 
 /obj/item/stock_parts/cell/proc/on_reagent_change(datum/reagents/holder, ...)
@@ -247,22 +247,22 @@
 			if((stomach.drain_time > world.time) || !stomach)
 				return
 			if(charge < CELL_POWER_DRAIN)
-				to_chat(H, span_warning("[src] doesn't have enough power!"))
+				to_chat(H, span_warning("[src]没有足够的电量!"))
 				return
 			if(stomach.crystal_charge > charge_limit)
-				to_chat(H, span_warning("Your charge is full!"))
+				to_chat(H, span_warning("你的充能已满!"))
 				return
-			to_chat(H, span_notice("You begin clumsily channeling power from [src] into your body."))
+			to_chat(H, span_notice("你开始笨拙地将电能从[src]导入你的身体."))
 			stomach.drain_time = world.time + CELL_DRAIN_TIME
 			if(do_after(user, CELL_DRAIN_TIME, target = src))
 				if((charge < CELL_POWER_DRAIN) || (stomach.crystal_charge > charge_limit))
 					return
 				if(istype(stomach))
-					to_chat(H, span_notice("You receive some charge from [src], wasting some in the process."))
+					to_chat(H, span_notice("你从[src]得到一些电力，在这个过程中浪费了一些。"))
 					stomach.adjust_charge(CELL_POWER_GAIN)
 					charge -= CELL_POWER_DRAIN //you waste way more than you receive, so that ethereals cant just steal one cell and forget about hunger
 				else
-					to_chat(H, span_warning("You can't receive charge from [src]!"))
+					to_chat(H, span_warning("你不能从[src]充能!"))
 			return
 
 
@@ -287,8 +287,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/cell/crap
-	name = "\improper Nanotrasen brand rechargeable AA battery"
-	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
+	name = "Nanotrasen牌可充AA电池"
+	desc = "你无法超越等离子." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = STANDARD_CELL_CHARGE * 0.5
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.4)
 
@@ -296,19 +296,19 @@
 	empty = TRUE
 
 /obj/item/stock_parts/cell/upgraded
-	name = "upgraded power cell"
-	desc = "A power cell with a slightly higher capacity than normal!"
+	name = "升级电池"
+	desc = "一个比普通电池容量稍高的先进电池!"
 	maxcharge = STANDARD_CELL_CHARGE * 2.5
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.5)
 	chargerate = STANDARD_CELL_CHARGE
 
 /obj/item/stock_parts/cell/upgraded/plus
-	name = "upgraded power cell+"
-	desc = "A power cell with an even higher capacity than the base model!"
+	name = "升级电池+"
+	desc = "比基本型号容量更高的先进电池!"
 	maxcharge = STANDARD_CELL_CHARGE * 5
 
 /obj/item/stock_parts/cell/secborg
-	name = "security borg rechargeable D battery"
+	name = "安保赛博可充D电池"
 	maxcharge = STANDARD_CELL_CHARGE * 0.6
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.4)
 
@@ -316,35 +316,35 @@
 	empty = TRUE
 
 /obj/item/stock_parts/cell/mini_egun
-	name = "miniature energy gun power cell"
+	name = "微型能量枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 0.6
 
 /obj/item/stock_parts/cell/hos_gun
-	name = "X-01 multiphase energy gun power cell"
+	name = "X-01微型能量枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 1.2
 
 /obj/item/stock_parts/cell/pulse //200 pulse shots
-	name = "pulse rifle power cell"
+	name = "脉冲步枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 40
 	chargerate = STANDARD_CELL_CHARGE * 1.5
 
 /obj/item/stock_parts/cell/pulse/carbine //25 pulse shots
-	name = "pulse carbine power cell"
+	name = "脉冲卡宾枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 5
 
 /obj/item/stock_parts/cell/pulse/pistol //10 pulse shots
-	name = "pulse pistol power cell"
+	name = "脉冲手枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 2
 
 /obj/item/stock_parts/cell/ninja
-	name = "black power cell"
+	name = "黑电池"
 	icon_state = "bscell"
 	maxcharge = STANDARD_CELL_CHARGE * 10
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.6)
 	chargerate = STANDARD_CELL_CHARGE * 2
 
 /obj/item/stock_parts/cell/high
-	name = "high-capacity power cell"
+	name = "大功率电池"
 	icon_state = "hcell"
 	maxcharge = STANDARD_CELL_CHARGE * 10
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.6)
@@ -354,7 +354,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/cell/super
-	name = "super-capacity power cell"
+	name = "高功率电池"
 	icon_state = "scell"
 	maxcharge = STANDARD_CELL_CHARGE * 20
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT * 3)
@@ -364,7 +364,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/cell/hyper
-	name = "hyper-capacity power cell"
+	name = "超功率电池"
 	icon_state = "hpcell"
 	maxcharge = STANDARD_CELL_CHARGE * 30
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT * 4)
@@ -374,8 +374,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/cell/bluespace
-	name = "bluespace power cell"
-	desc = "A rechargeable transdimensional power cell."
+	name = "蓝空电池"
+	desc = "一种可充电的跨维电池."
 	icon_state = "bscell"
 	maxcharge = STANDARD_CELL_CHARGE * 40
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*6)
@@ -385,7 +385,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/cell/infinite
-	name = "infinite-capacity power cell"
+	name = "极功率电池"
 	icon_state = "icell"
 	maxcharge = INFINITY //little disappointing if you examine it and it's not huge
 	custom_materials = list(/datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT)
@@ -396,8 +396,8 @@
 	return TRUE
 
 /obj/item/stock_parts/cell/infinite/abductor
-	name = "void core"
-	desc = "An alien power cell that produces energy seemingly out of nowhere."
+	name = "虚空核心"
+	desc = "一种外星能量电池，能凭空产生能量."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "cell"
 	maxcharge = STANDARD_CELL_CHARGE * 50
@@ -408,8 +408,8 @@
 	return ..()
 
 /obj/item/stock_parts/cell/potato
-	name = "potato battery"
-	desc = "A rechargeable starch based power cell."
+	name = "土豆电池"
+	desc = "一种可充电的淀粉基电池."
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "potato"
 	charge = 100
@@ -421,8 +421,8 @@
 	custom_premium_price = PAYCHECK_CREW
 
 /obj/item/stock_parts/cell/emproof
-	name = "\improper EMP-proof cell"
-	desc = "An EMP-proof cell."
+	name = "抗电磁脉冲电池"
+	desc = "一种抗电磁脉冲电池."
 	maxcharge = STANDARD_CELL_CHARGE * 0.5
 
 /obj/item/stock_parts/cell/emproof/Initialize(mapload)
@@ -436,8 +436,8 @@
 	return
 
 /obj/item/stock_parts/cell/emproof/slime
-	name = "EMP-proof slime core"
-	desc = "A yellow slime core infused with plasma. Its organic nature makes it immune to EMPs."
+	name = "抗电磁脉冲史莱姆核心"
+	desc = "注入等离子体的黄色史莱姆核心，它的有机性质使它对电磁脉冲免疫."
 	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "yellow slime extract"
 	custom_materials = null
@@ -446,8 +446,8 @@
 	connector_type = "slimecore"
 
 /obj/item/stock_parts/cell/beam_rifle
-	name = "beam rifle capacitor"
-	desc = "A high powered capacitor that can provide huge amounts of energy in an instant."
+	name = "光束步枪电容器"
+	desc = "一种能在瞬间提供大量能量的高功率电容器."
 	maxcharge = STANDARD_CELL_CHARGE * 50
 	chargerate = STANDARD_CELL_CHARGE * 5 //Extremely energy intensive
 
@@ -461,8 +461,8 @@
 	charge = clamp((charge-(10000/severity)),0,maxcharge)
 
 /obj/item/stock_parts/cell/emergency_light
-	name = "miniature power cell"
-	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
+	name = "微型电池"
+	desc = "一个很小的能量电池，容量很低；用于照明装置，在停电时为其供电."
 	maxcharge = STANDARD_CELL_CHARGE * 0.12 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT*0.2)
 	w_class = WEIGHT_CLASS_TINY
@@ -475,8 +475,8 @@
 			charge = 0 //For naturally depowered areas, we start with no power
 
 /obj/item/stock_parts/cell/crystal_cell
-	name = "crystal power cell"
-	desc = "A very high power cell made from crystallized plasma"
+	name = "晶体电池"
+	desc = "由结晶等离子体制成的高功率电池"
 	icon_state = "crystal_cell"
 	maxcharge = STANDARD_CELL_CHARGE * 50
 	chargerate = 0
