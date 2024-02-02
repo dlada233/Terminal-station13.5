@@ -49,9 +49,9 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 
 	if(sm.damage_archived - sm.damage > SUPERMATTER_FAST_HEALING_RATE && sm.damage_archived >= sm.emergency_point) // Fast healing, engineers probably have it all sorted
 		if(sm.should_alert_common()) // We alert common once per cooldown period, otherwise alert engineering
-			sm.radio.talk_into(sm,"Crystalline hyperstructure returning to safe operating parameters. Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
+			sm.radio.talk_into(sm,"晶体超结构恢复到安全运行界限. 完整性: [round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
 		else
-			sm.radio.talk_into(sm,"Crystalline hyperstructure returning to safe operating parameters. Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
+			sm.radio.talk_into(sm,"晶体超结构恢复到安全运行界限. 完整性: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
 		playsound(sm, 'sound/machines/terminal_alert.ogg', 75)
 		return FALSE
 
@@ -74,13 +74,13 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 			playsound(sm, 'sound/machines/terminal_alert.ogg', 75)
 
 	if(sm.damage >= sm.emergency_point) // In emergency
-		sm.radio.talk_into(sm, "CRYSTAL DELAMINATION IMMINENT! Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
+		sm.radio.talk_into(sm, "晶体分层迫在眉睫! 完整性: [round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
 		sm.lastwarning = REALTIMEOFDAY - (SUPERMATTER_WARNING_DELAY / 2) // Cut the time to next announcement in half.
 	else if(sm.damage_archived > sm.damage) // Healing, in warning
-		sm.radio.talk_into(sm,"Crystalline hyperstructure returning to safe operating parameters. Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
+		sm.radio.talk_into(sm,"晶体超结构恢复到安全运行界限. 完整性: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
 		return FALSE
 	else // Taking damage, in warning
-		sm.radio.talk_into(sm, "Danger! Crystal hyperstructure integrity faltering! Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
+		sm.radio.talk_into(sm, "危险! 晶体超结构完整性动摇! 完整性: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
 
 	SEND_SIGNAL(sm, COMSIG_SUPERMATTER_DELAM_ALARM)
 	return TRUE
@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 /// First message is start of count down, second message is quitting of count down (if sm healed), third is 5 second intervals
 /datum/sm_delam/proc/count_down_messages(obj/machinery/power/supermatter_crystal/sm)
 	var/list/messages = list()
-	messages += "CRYSTAL DELAMINATION IMMINENT. The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
-	messages += "Crystalline hyperstructure returning to safe operating parameters. Failsafe has been disengaged."
-	messages += "remain before causality stabilization."
+	messages += "晶体分层迫在眉睫，超物质已达到临界完整性失效阶段，紧急诱发扰动场已启动."
+	messages += "晶体超结构恢复到安全运行界限，自动保险系统已自动关闭."
+	messages += "在诱发稳定前保持."
 	return messages

@@ -15,8 +15,8 @@
 GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal
-	name = "supermatter crystal"
-	desc = "A strangely translucent and iridescent crystal."
+	name = "超物质晶体"
+	desc = "一种奇怪的半透明的虹彩水晶."
 	icon = 'icons/obj/machines/engine/supermatter.dmi'
 	density = TRUE
 	anchored = TRUE
@@ -252,15 +252,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/immune = HAS_MIND_TRAIT(user, TRAIT_MADNESS_IMMUNE)
 	if(isliving(user))
 		if (!immune && (get_dist(user, src) < SM_HALLUCINATION_RANGE(internal_energy)))
-			. += span_danger("You get headaches just from looking at it.")
+			. += span_danger("你一看到它就犯头疼.")
 		var/mob/living/living_user = user
 		if (HAS_TRAIT(user, TRAIT_REMOTE_TASTING))
-			to_chat(user, span_warning("The taste is overwhelming and indescribable!"))
+			to_chat(user, span_warning("压倒性的味道难以形容!"))
 			living_user.electrocute_act(shock_damage = 15, source = src, flags = SHOCK_KNOCKDOWN | SHOCK_NOGLOVES)
-			. += span_notice("It could use a little more Sodium Chloride...")
+			. += span_notice("可以多加点氯化钠...")
 
 	if(holiday_lights)
-		. += span_notice("Radiating both festive cheer and actual radiation, it has a dazzling spectacle lights wrapped lovingly around the base transforming it from a potential doomsday device into a cosmic yuletide centerpiece.")
+		. += span_notice("它既散发着节日的欢乐，又散发着实际的辐射，令人眼花缭乱的奇观灯亲切地包裹在周围，把它从一个潜在的世界末日装置变成了一个宇宙圣诞节的中心.")
 
 	. += delamination_strategy.examine(src)
 	return .
@@ -276,7 +276,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(isclosedturf(local_turf))
 		var/turf/did_it_melt = local_turf.Melt()
 		if(!isclosedturf(did_it_melt)) //In case some joker finds way to place these on indestructible walls
-			visible_message(span_warning("[src] melts through [local_turf]!"))
+			visible_message(span_warning("[src]融化穿透[local_turf]!"))
 		return
 
 	// PART 2: GAS PROCESSING
@@ -451,7 +451,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		high_energy_bonus = (zap_transmission + additional_zap_bonus) * zap_power_multiplier - zap_transmission
 		var/list/zap_factor_si_derived_data = siunit_isolated(high_energy_bonus, "W", 2)
 		data["zap_transmission_factors"] += list(list(
-			"name" = "High Energy Bonus",
+			"name" = "High Energy Bonus-高能增益",
 			"amount" = zap_factor_si_derived_data[SI_COEFFICIENT],
 			"unit" = zap_factor_si_derived_data[SI_UNIT],
 		))
@@ -560,9 +560,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, final_countdown) // SKYRAT EDIT ADDITION - DELAM_SCRAM
 	notify_ghosts(
-		"[src] has begun the delamination process!",
+		"[src]已经开始进入分层过程了!",
 		source = src,
-		header = "Meltdown Incoming",
+		header = "即将融毁",
 	)
 
 	var/datum/sm_delam/last_delamination_strategy = delamination_strategy
@@ -581,8 +581,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		delamination_countdown_time = SUPERMATTER_SLIVER_REMOVED_COUNTDOWN_TIME
 		radio.talk_into(
 			src,
-			"WARNING: Projected time until full crystal delamination significantly lower than expected. \
-			Please inspect crystal for structural abnormalities or sabotage!",
+			"警报: 晶体完全分层的所剩时间明显低于一般标准时间. \
+			请检查晶体是否有结构异常或损坏!",
 			emergency_channel,
 			list(SPAN_COMMAND)
 			)
@@ -734,7 +734,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(activation_logged || disable_power_change)
 		return
 	if(!who)
-		CRASH("Supermatter activated by an unknown source")
+		CRASH("由未知来源激活的超物质")
 
 	if(istext(who))
 		investigate_log("has been powered for the first time by [who][how ? " with [how]" : ""].", INVESTIGATE_ENGINE)
@@ -1064,7 +1064,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /// Adds the hat flavor text when examined
 /obj/machinery/power/supermatter_crystal/proc/holiday_hat_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_info("There's a santa hat placed atop it. How it got there without being dusted is a mystery.")
+	examine_list += span_info("上面放着一顶圣诞老人帽，它是如何在没有化成灰尘的情况下放到那里的呢.")
 
 #undef BIKE
 #undef COIL

@@ -34,9 +34,9 @@
 			continue
 		victim.playsound_local(victim_turf, 'sound/magic/charge.ogg')
 		if(victim.z == 0) //victim is inside an object, this is to maintain an old bug turned feature with lockers n shit i guess. tg issue #69687
-			to_chat(victim, span_boldannounce("You hold onto \the [victim.loc] as hard as you can, as reality distorts around you. You feel safe."))
+			to_chat(victim, span_boldannounce("你紧抓着[victim.loc]不放, 你周围的现实正不断扭曲. 你感到安全."))
 			continue
-		to_chat(victim, span_boldannounce("You feel reality distort for a moment..."))
+		to_chat(victim, span_boldannounce("你觉得现实扭曲了一会儿..."))
 		if (isliving(victim))
 			var/mob/living/living_victim = victim
 			living_victim.add_mood_event("delam", /datum/mood_event/delam)
@@ -132,17 +132,17 @@
 	// say goodbye to that shuttle of yours
 	if(SSshuttle.emergency.mode != SHUTTLE_ESCAPE)
 		priority_announce(
-			text = "Fatal error occurred in emergency shuttle uplink during transit. Unable to reestablish connection.",
-			title = "Shuttle Failure",
+			text = "紧急撤离船在运输过程中发生致命错误，无法重新建立连接.",
+			title = "撤离指令失败",
 			sound = ANNOUNCER_SHUTTLE, // SKYRAT EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/misc/announce_dig.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "应急撤离线路",
 			color_override = "grey",
 		)
 	else
 	// except if you are on it already, then you are safe c:
-		minor_announce("ERROR: Corruption detected in navigation protocols. Connection with Transponder #XCC-P5831-ES13 lost. \
-				Backup exit route protocol decrypted. Calibrating route...",
-			"Emergency Shuttle", TRUE) // wait out until the rift on the station gets destroyed and the final message plays
+		minor_announce("错误: 在导航协议中检测到损坏. 与应答器#XCC-P5831-ES13的连接丢失. \
+				备份退出路由协议解密. 校准路线...",
+			"应急撤离船", TRUE) // wait out until the rift on the station gets destroyed and the final message plays
 		var/list/mobs = mobs_in_area_type(list(/area/shuttle/escape))
 		for(var/mob/living/mob as anything in mobs) // emulate mob/living/lateShuttleMove() behaviour
 			if(mob.buckled)
@@ -155,7 +155,7 @@
 	for(var/mob/player as anything in GLOB.player_list)
 		if(!isdead(player))
 			var/mob/living/living_player = player
-			to_chat(player, span_boldannounce("Everything around you is resonating with a powerful energy. This can't be good."))
+			to_chat(player, span_boldannounce("你周围的一切都与一种强大的能量产生了共鸣，这不可能是好事."))
 			living_player.add_mood_event("cascade", /datum/mood_event/cascade)
 		SEND_SOUND(player, 'sound/magic/charge.ogg')
 
@@ -172,38 +172,38 @@
 /// Spawn an evacuation rift for people to go through.
 /datum/sm_delam/proc/effect_evac_rift_start()
 	var/obj/cascade_portal/rift = new /obj/cascade_portal(get_turf(pick(GLOB.generic_event_spawns)))
-	priority_announce("We have been hit by a sector-wide electromagnetic pulse. All of our systems are heavily damaged, including those \
-		required for shuttle navigation. We can only reasonably conclude that a supermatter cascade is occurring on or near your station.\n\n\
-		Evacuation is no longer possible by conventional means; however, we managed to open a rift near the [get_area_name(rift)]. \
-		All personnel are hereby required to enter the rift by any means available.\n\n\
-		[Gibberish("Retrieval of survivors will be conducted upon recovery of necessary facilities.", FALSE, 5)] \
-		[Gibberish("Good luck--", FALSE, 25)]")
+	priority_announce("我们被覆盖整个区域的电磁脉冲袭击了. 所有的系统都严重受损, 包括撤离船导航系统. \
+		我们只能推断出在你的空间站上或附近正在发生超物质串联.\n\n\
+		通过传统方式撤离疏散已不具备可能性; 但我们设法在[get_area_name(rift)]附近打开了一个裂隙. \
+		特此要求所有人员以任何可能的方式进入裂隙.\n\n\
+		[Gibberish("在必要的系统设备恢复后，将进行救援工作.", FALSE, 5)] \
+		[Gibberish("祝你好运--", FALSE, 25)]")
 	return rift
 
 /// Announce the destruction of the rift and end the round.
 /datum/sm_delam/proc/effect_evac_rift_end()
-	priority_announce("[Gibberish("The rift has been destroyed, we can no longer help you.", FALSE, 5)]")
+	priority_announce("[Gibberish("裂缝已经被摧毁了，我们不再能进行援助.", FALSE, 5)]")
 
 	sleep(25 SECONDS)
 
-	priority_announce("Reports indicate formation of crystalline seeds following resonance shift event. \
-		Rapid expansion of crystal mass proportional to rising gravitational force. \
-		Matter collapse due to gravitational pull foreseeable.",
-		"Nanotrasen Star Observation Association")
+	priority_announce("报告指出晶体种子的形成是在共振移位事件之后. \
+		晶体质量的迅速膨胀与重力效应的上升成正比. \
+		在可预见的引力作用下，物质坍缩将发生.",
+		"Nanotrasen观星协会")
 
 	sleep(25 SECONDS)
 
-	priority_announce("[Gibberish("All attempts at evacuation have now ceased, and all assets have been retrieved from your sector.\n \
-		To the remaining survivors of [station_name()], farewell.", FALSE, 5)]")
+	priority_announce("[Gibberish("所有的撤离尝试现在终止, 所有资产已经从你区域被回收.\n \
+		致[station_name()]上的剩余幸存者, 再见.", FALSE, 5)]")
 
 	if(SSshuttle.emergency.mode == SHUTTLE_ESCAPE)
 		// special message for hijacks
-		var/shuttle_msg = "Navigation protocol set to [SSshuttle.emergency.is_hijacked() ? "\[ERROR\]" : "backup route"]. \
-			Reorienting bluespace vessel to exit vector. ETA 15 seconds."
+		var/shuttle_msg = "导航协议设置为[SSshuttle.emergency.is_hijacked() ? "\[错误\]" : "备用路线"]. \
+			重新定向蓝空飞船到出口航路. ETA 15 秒."
 		// garble the special message
 		if(SSshuttle.emergency.is_hijacked())
 			shuttle_msg = Gibberish(shuttle_msg, TRUE, 15)
-		minor_announce(shuttle_msg, "Emergency Shuttle", TRUE)
+		minor_announce(shuttle_msg, "应急撤离船", TRUE)
 		SSshuttle.emergency.setTimer(15 SECONDS)
 		return
 
