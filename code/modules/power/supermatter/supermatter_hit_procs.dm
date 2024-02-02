@@ -32,7 +32,7 @@
 		// This isn't clean and we are repeating [/obj/machinery/power/supermatter_crystal/proc/calculate_damage], sorry for this.
 		var/damage_to_be = damage + external_damage_immediate * clamp((emergency_point - damage) / emergency_point, 0, 1)
 		if(damage_to_be > danger_point)
-			visible_message(span_notice("[src] compresses under stress, resisting further impacts!"))
+			visible_message(span_notice("[src]在压力下压缩, 抵抗进一步冲击!"))
 		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 
 	qdel(projectile)
@@ -48,7 +48,7 @@
 		if(!is_valid_z_level(get_turf(hearing_mob), sm_turf))
 			continue
 		SEND_SOUND(hearing_mob, 'sound/effects/supermatter.ogg') //everyone goan know bout this
-		to_chat(hearing_mob, span_boldannounce("A horrible screeching fills your ears, and a wave of dread washes over you..."))
+		to_chat(hearing_mob, span_boldannounce("可怖的尖啸声充满你的耳朵，恐惧的浪潮席卷而来..."))
 	qdel(src)
 	return gain
 
@@ -56,7 +56,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/jedi = user
-	to_chat(jedi, span_userdanger("That was a really dense idea."))
+	to_chat(jedi, span_userdanger("这真是一个深奥的想法."))
 	jedi.investigate_log("had [jedi.p_their()] brain dusted by touching [src] with telekinesis.", INVESTIGATE_DEATHS)
 	jedi.ghostize()
 	var/obj/item/organ/internal/brain/rip_u = locate(/obj/item/organ/internal/brain) in jedi.organs
@@ -68,39 +68,39 @@
 /obj/machinery/power/supermatter_crystal/attackby(obj/item/item, mob/user, params)
 	if(istype(item, /obj/item/scalpel/supermatter))
 		var/obj/item/scalpel/supermatter/scalpel = item
-		to_chat(user, span_notice("You carefully begin to scrape \the [src] with \the [scalpel]..."))
+		to_chat(user, span_notice("你小心翼翼地开始用[scalpel]刮[src]..."))
 		if(!scalpel.use_tool(src, user, 60, volume=100))
 			return
 		if (scalpel.usesLeft)
-			to_chat(user, span_danger("You extract a sliver from \the [src]. \The [src] begins to react violently!"))
+			to_chat(user, span_danger("你从[src]中提取出了碎片. [src]开始剧烈反应!"))
 			new /obj/item/nuke_core/supermatter_sliver(src.drop_location())
 			supermatter_sliver_removed = TRUE
 			external_power_trickle += 800
 			log_activation(who = user, how = scalpel)
 			scalpel.usesLeft--
 			if (!scalpel.usesLeft)
-				to_chat(user, span_notice("A tiny piece of \the [scalpel] falls off, rendering it useless!"))
+				to_chat(user, span_notice("[scalpel]上的一些物质脱落了, 现在它失去了作用!"))
 		else
-			to_chat(user, span_warning("You fail to extract a sliver from \The [src]! \the [scalpel] isn't sharp enough anymore."))
+			to_chat(user, span_warning("你从[src]里提取碎片失败了! [scalpel]已经不够锋利了."))
 		return
 
 	if(istype(item, /obj/item/destabilizing_crystal))
 		var/obj/item/destabilizing_crystal/destabilizing_crystal = item
 
 		if(!is_main_engine)
-			to_chat(user, span_warning("You can't use \the [destabilizing_crystal] on \a [name]."))
+			to_chat(user, span_warning("你不能使用[destabilizing_crystal]在[name]上."))
 			return
 
 		if(get_integrity_percent() < SUPERMATTER_CASCADE_PERCENT)
-			to_chat(user, span_warning("You can only apply \the [destabilizing_crystal] to \a [name] that is at least [SUPERMATTER_CASCADE_PERCENT]% intact."))
+			to_chat(user, span_warning("你只能应用[destabilizing_crystal]在[name]上，且是在至少有[SUPERMATTER_CASCADE_PERCENT]%完整度的情况下."))
 			return
 
-		to_chat(user, span_warning("You begin to attach \the [destabilizing_crystal] to \the [src]..."))
+		to_chat(user, span_warning("你开始连接[destabilizing_crystal]到[src]..."))
 		if(do_after(user, 3 SECONDS, src))
 			message_admins("[ADMIN_LOOKUPFLW(user)] attached [destabilizing_crystal] to the supermatter at [ADMIN_VERBOSEJMP(src)].")
 			user.log_message("attached [destabilizing_crystal] to the supermatter", LOG_GAME)
 			user.investigate_log("attached [destabilizing_crystal] to a supermatter crystal.", INVESTIGATE_ENGINE)
-			to_chat(user, span_danger("\The [destabilizing_crystal] snaps onto \the [src]."))
+			to_chat(user, span_danger("[destabilizing_crystal]紧贴[src]."))
 			set_delam(SM_DELAM_PRIO_IN_GAME, /datum/sm_delam/cascade)
 			external_damage_immediate += 10
 			external_power_trickle += 500

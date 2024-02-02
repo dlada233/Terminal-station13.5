@@ -1,6 +1,6 @@
 /obj/crystal_mass
-	name = "crystal mass"
-	desc = "You see this massive crystal mass looming towards you, cracking and screeching at every seemingly random movement."
+	name = "结晶状物"
+	desc = "你看到这个巨大的水晶团块向你逼近，在每一个看似随机的运动中破裂和尖啸."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "crystal_cascade_1"
 	layer = AREA_LAYER
@@ -59,11 +59,11 @@
 
 	for(var/atom/movable/checked_atom as anything in next_turf)
 		if(isliving(checked_atom))
-			sm_comp.dust_mob(src, checked_atom, span_danger("\The [src] lunges out on [checked_atom], touching [checked_atom.p_them()]... \
-					[checked_atom.p_their()] body begins to shine with a brilliant light before crystallizing from the inside out and joining \the [src]!"),
-				span_userdanger("The crystal mass lunges on you and hits you in the chest. As your vision is filled with a blinding light, you think to yourself \"Damn it.\""))
+			sm_comp.dust_mob(src, checked_atom, span_danger("[src]突进到[checked_atom], 触摸到了[checked_atom.p_them()]... \
+					[checked_atom.p_their()]身体发出耀眼的光芒，然后由内到外的结晶化并与[src]融合!"),
+				span_userdanger("晶体块向你突进过来，击中了你的胸部，你的视野立刻就充满了炫目的光芒，你对自己说\"麻了.\""))
 		else if(istype(checked_atom, /obj/cascade_portal))
-			checked_atom.visible_message(span_userdanger("\The [checked_atom] screeches and closes away as it is hit by \a [src]! Too late!"))
+			checked_atom.visible_message(span_userdanger("[checked_atom]在被[src]击中时发出尖啸并关闭! 太晚了!"))
 			playsound(get_turf(checked_atom), 'sound/magic/charge.ogg', 50, TRUE)
 			playsound(get_turf(checked_atom), 'sound/effects/supermatter.ogg', 50, TRUE)
 			qdel(checked_atom)
@@ -77,9 +77,9 @@
 	SIGNAL_HANDLER
 
 	visible_message(
-		span_warning("[hitting_projectile] flies into [src] with a loud crack, before rapidly flashing into ash."),
+		span_warning("[hitting_projectile]伴随着一声巨响飞进[src]，然后迅速化成了灰烬."),
 		null,
-		span_hear("You hear a loud crack as you are washed with a wave of heat."),
+		span_hear("当你被一股热浪冲刷时，你听到一声巨响."),
 	)
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
@@ -93,7 +93,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/jedi = user
-	to_chat(jedi, span_userdanger("That was a really dense idea."))
+	to_chat(jedi, span_userdanger("这真是一个深奥的想法."))
 	jedi.ghostize()
 	var/obj/item/organ/internal/brain/rip_u = locate(/obj/item/organ/internal/brain) in jedi.organs
 	if(rip_u)
@@ -107,8 +107,8 @@
 	return ..()
 
 /obj/cascade_portal
-	name = "Bluespace Rift"
-	desc = "Your mind begins to spin as it tries to comprehend what it sees."
+	name = "蓝空裂痕"
+	desc = "当你试图理解所看到的东西时，你的大脑感到天旋地转."
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "reality"
 	anchored = TRUE
@@ -151,11 +151,11 @@
  */
 /obj/cascade_portal/proc/consume(atom/movable/consumed_object)
 	if(isliving(consumed_object))
-		consumed_object.visible_message(span_danger("\The [consumed_object] walks into \the [src]... \
-			A blinding light covers [consumed_object.p_their()] body before disappearing completely!"),
-			span_userdanger("You walk into \the [src] as your body is washed with a powerful blue light. \
-				You contemplate about this decision before landing face first onto the cold, hard floor."),
-			span_hear("You hear a loud crack as a distortion passes through you."))
+		consumed_object.visible_message(span_danger("[consumed_object]走入了[src]... \
+			在炫目的闪光后，其身体彻底的消失了!"),
+			span_userdanger("随着你走入[src]，你的身体被强大的蓝光冲刷殆尽. \
+				在脸朝下落在冰冷的地板上前，你还能重新思考刚刚的所作所为."),
+			span_hear("你听到一声巨响，一股扭曲的气流穿过你的身体."))
 
 		var/list/arrival_turfs = get_area_turfs(/area/centcom/central_command_areas/evacuation)
 		var/turf/arrival_turf
@@ -174,7 +174,7 @@
 		new /obj/effect/particle_effect/sparks(consumed_object)
 		playsound(consumed_object, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	else if(isitem(consumed_object))
-		consumed_object.visible_message(span_danger("\The [consumed_object] smacks into \the [src] and disappears out of sight."), null,
-			span_hear("You hear a loud crack as a small distortion passes through you."))
+		consumed_object.visible_message(span_danger("[consumed_object]撞上了[src]，然后消失在了视野内."), null,
+			span_hear("当一个小的扭曲穿过你的身体时，你听到一声巨响."))
 
 		qdel(consumed_object)
