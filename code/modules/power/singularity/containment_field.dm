@@ -1,8 +1,8 @@
 
 
 /obj/machinery/field/containment
-	name = "containment field"
-	desc = "An energy field."
+	name = "抑制场"
+	desc = "一个能量场."
 	icon = 'icons/obj/machines/engine/singularity.dmi' // SKYRAT EDIT CHANGE - ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "Contain_F"
 	density = FALSE
@@ -71,7 +71,7 @@
 		qdel(src)
 		return
 	if(ismegafauna(user))
-		user.visible_message(span_warning("[user] glows fiercely as the containment field flickers out!"))
+		user.visible_message(span_warning("当抑制场闪烁时，[user]发出刺眼的光芒!"))
 		field_gen_1.calc_power(INFINITY) //rip that 'containment' field
 		user.adjustHealth(-user.obj_damage)
 	else
@@ -144,9 +144,9 @@
 		if(prob(20))
 			user.Stun(40)
 		user.take_overall_damage(burn = shock_damage)
-		user.visible_message(span_danger("[user.name] is shocked by the [src.name]!"), \
-		span_userdanger("Energy pulse detected, system damaged!"), \
-		span_hear("You hear an electrical crack."))
+		user.visible_message(span_danger("[user.name]被[src.name]电击了!"), \
+		span_userdanger("检测到能量脉冲, 系统受损!"), \
+		span_hear("你听到一声电裂声."))
 
 	user.updatehealth()
 	bump_field(user)
@@ -161,7 +161,7 @@
 	do_sparks(5, TRUE, considered_atom.loc)
 	var/atom/target = get_edge_target_turf(considered_atom, get_dir(src, get_step_away(considered_atom, src)))
 	if(isliving(considered_atom))
-		to_chat(considered_atom, span_userdanger("The field repels you with tremendous force!"))
+		to_chat(considered_atom, span_userdanger("磁场以巨大的力量排斥你!"))
 	playsound(src, 'sound/effects/gravhit.ogg', 50, TRUE)
 	considered_atom.throw_at(target, 200, 4)
 	addtimer(CALLBACK(src, PROC_REF(clear_shock)), 5)
