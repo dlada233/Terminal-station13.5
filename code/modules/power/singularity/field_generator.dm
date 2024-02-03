@@ -24,8 +24,8 @@ no power level overlay is currently in the overlays list.
 #define FG_WELDED 2
 
 /obj/machinery/field/generator
-	name = "field generator"
-	desc = "A large thermal battery that projects a high amount of energy when powered."
+	name = "力场投影仪"
+	desc = "通电时能产生大量能量."
 	icon = 'icons/obj/machines/field_generator.dmi' //ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "Field_Gen"
 	anchored = FALSE
@@ -87,18 +87,18 @@ no power level overlay is currently in the overlays list.
 
 /obj/machinery/field/generator/interact(mob/user)
 	if(state != FG_WELDED)
-		to_chat(user, span_warning("[src] needs to be firmly secured to the floor first!"))
+		to_chat(user, span_warning("[src]首先需要牢固地固定在地板上!"))
 		return
 	if(get_dist(src, user) > 1)//Need to actually touch the thing to turn it on
 		return
 	if(active >= FG_CHARGING)
-		to_chat(user, span_warning("You are unable to turn off [src] once it is online!"))
+		to_chat(user, span_warning("你不能在[src]还在线时关闭!"))
 		return TRUE
 
 	user.visible_message(
-		span_notice("[user] turns on [src]."),
-		span_notice("You turn on [src]."),
-		span_hear("You hear heavy droning."))
+		span_notice("[user]开启[src]."),
+		span_notice("你开启了[src]."),
+		span_hear("你听到沉重的嗡嗡声."))
 	turn_on()
 	investigate_log("activated by [key_name(user)].", INVESTIGATE_ENGINE)
 
@@ -115,12 +115,12 @@ no power level overlay is currently in the overlays list.
 /obj/machinery/field/generator/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, span_warning("Turn \the [src] off first!"))
+			to_chat(user, span_warning("先关上[src]!"))
 		return FAILED_UNFASTEN
 
 	else if(state == FG_WELDED)
 		if(!silent)
-			to_chat(user, span_warning("[src] is welded to the floor!"))
+			to_chat(user, span_warning("[src]被焊接到地板上!"))
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -133,34 +133,34 @@ no power level overlay is currently in the overlays list.
 /obj/machinery/field/generator/welder_act(mob/living/user, obj/item/welder)
 	. = ..()
 	if(active)
-		to_chat(user, span_warning("[src] needs to be off!"))
+		to_chat(user, span_warning("[src]需要关闭!"))
 		return TRUE
 
 	switch(state)
 		if(FG_UNSECURED)
-			to_chat(user, span_warning("[src] needs to be wrenched to the floor!"))
+			to_chat(user, span_warning("[src]需要用扳手固定在地板上!"))
 
 		if(FG_SECURED)
 			if(!welder.tool_start_check(user, amount=1))
 				return TRUE
 			user.visible_message(
-				span_notice("[user] starts to weld [src] to the floor."),
-				span_notice("You start to weld \the [src] to the floor..."),
-				span_hear("You hear welding."))
+				span_notice("[user]开始焊接[src]到地板上."),
+				span_notice("你开始焊接[src]到地板上..."),
+				span_hear("你听到焊接声."))
 			if(welder.use_tool(src, user, 20, volume=50) && state == FG_SECURED)
 				state = FG_WELDED
-				to_chat(user, span_notice("You weld the field generator to the floor."))
+				to_chat(user, span_notice("你焊接力场投影仪到地板上."))
 
 		if(FG_WELDED)
 			if(!welder.tool_start_check(user, amount=1))
 				return TRUE
 			user.visible_message(
-				span_notice("[user] starts to cut [src] free from the floor."),
-				span_notice("You start to cut \the [src] free from the floor..."),
-				span_hear("You hear welding."))
+				span_notice("[user] 开始从地板上切割开[src]."),
+				span_notice("你开始从地板上切割开[src]..."),
+				span_hear("你听到焊接声."))
 			if(welder.use_tool(src, user, 20, volume=50) && state == FG_WELDED)
 				state = FG_SECURED
-				to_chat(user, span_notice("You cut \the [src] free from the floor."))
+				to_chat(user, span_notice("你从地板上切割开了[src]."))
 
 	return TRUE
 
@@ -168,7 +168,7 @@ no power level overlay is currently in the overlays list.
 /obj/machinery/field/generator/attack_animal(mob/living/simple_animal/user, list/modifiers)
 	if(user.environment_smash == ENVIRONMENT_SMASH_RWALLS && active == FG_OFFLINE && state != FG_UNSECURED)
 		set_anchored(FALSE)
-		user.visible_message(span_warning("[user] rips [src] free from its moorings!"))
+		user.visible_message(span_warning("[user]从系泊上撕开[src]!"))
 	else
 		..()
 	if(!anchored)
@@ -240,7 +240,7 @@ no power level overlay is currently in the overlays list.
 		check_power_level()
 		return TRUE
 	else
-		visible_message(span_danger("The [name] shuts down!"), span_hear("You hear something shutting down."))
+		visible_message(span_danger("[name]断线!"), span_hear("你听到有东西断线了."))
 		turn_off()
 		investigate_log("ran out of power and DEACTIVATED.", INVESTIGATE_ENGINE)
 		power = 0

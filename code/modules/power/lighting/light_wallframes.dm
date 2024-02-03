@@ -1,13 +1,13 @@
 /obj/item/wallframe/light_fixture
-	name = "light fixture frame"
-	desc = "Used for building lights."
+	name = "灯具框架"
+	desc = "用于建筑照明."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
 	result_path = /obj/structure/light_construct
 	wall_external = TRUE
 
 /obj/item/wallframe/light_fixture/small
-	name = "small light fixture frame"
+	name = "小型灯具框架"
 	icon_state = "bulb-construct-item"
 	result_path = /obj/structure/light_construct/small
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT)
@@ -17,6 +17,6 @@
 		return
 	var/area/local_area = get_area(user)
 	if(!local_area.static_lighting)
-		to_chat(user, span_warning("You cannot place [src] in this area!"))
+		to_chat(user, span_warning("你无法放置[src]到这个区域!"))
 		return
 	return TRUE
