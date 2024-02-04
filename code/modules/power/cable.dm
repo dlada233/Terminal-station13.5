@@ -12,8 +12,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 // Definitions
 ////////////////////////////////
 /obj/structure/cable
-	name = "power cable"
-	desc = "A flexible, superconducting insulated cable for heavy-duty power transfer."
+	name = "电缆"
+	desc = "一种灵活的超导绝缘电缆，用于电力传输."
 	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi'
 	icon_state = "l2-1-2-4-8-node"
 	color = CABLE_HEX_COLOR_YELLOW
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
 		if (shock(user, 50))
 			return
-		user.visible_message(span_notice("[user] cuts the cable."), span_notice("You cut the cable."))
+		user.visible_message(span_notice("[user]剪断了电缆."), span_notice("你剪断了电缆."))
 		investigate_log("was cut by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
 		deconstruct()
 		return
@@ -197,9 +197,9 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 /obj/structure/cable/proc/get_power_info()
 	if(powernet?.avail > 0)
-		return span_danger("Total power: [display_power(powernet.avail)]\nLoad: [display_power(powernet.load)]\nExcess power: [display_power(surplus())]")
+		return span_danger("总电力: [display_power(powernet.avail)]\n负载: [display_power(powernet.load)]\n余电: [display_power(surplus())]")
 	else
-		return span_danger("The cable is not powered.")
+		return span_danger("线缆未通电.")
 
 
 // Items usable on a cable :
@@ -419,7 +419,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 #define CABLE_RESTRAINTS_COST 15
 
 /obj/item/stack/cable_coil
-	name = "cable coil"
+	name = "电线"
 	custom_price = PAYCHECK_LOWER * 0.8
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
 	icon = 'icons/obj/stack_objects.dmi'
@@ -433,7 +433,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/cable_coil // This is here to let its children merge between themselves
 	color = CABLE_HEX_COLOR_YELLOW
-	desc = "A coil of insulated power cable."
+	desc = "一圈绝缘的电线."
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
@@ -441,9 +441,9 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	mats_per_unit = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*0.1, /datum/material/glass=SMALL_MATERIAL_AMOUNT*0.1)
 	obj_flags = CONDUCTS_ELECTRICITY
 	slot_flags = ITEM_SLOT_BELT
-	attack_verb_continuous = list("whips", "lashes", "disciplines", "flogs")
-	attack_verb_simple = list("whip", "lash", "discipline", "flog")
-	singular_name = "cable piece"
+	attack_verb_continuous = list("抽打", "鞭打", "惩戒", "鞭笞")
+	attack_verb_simple = list("抽打", "鞭打", "惩戒", "鞭笞")
+	singular_name = "电线"
 	full_w_class = WEIGHT_CLASS_SMALL
 	grind_results = list(/datum/reagent/copper = 2) //2 copper per cable in the coil
 	usesound = 'sound/items/deconstruct.ogg'
@@ -464,15 +464,15 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 /obj/item/stack/cable_coil/examine(mob/user)
 	. = ..()
-	. += "<b>Use it in hand</b> to change the layer you are placing on, amongst other things."
+	. += "<b>拿在手中使用</b>来更改电缆层设置，或其他事情."
 
 /obj/item/stack/cable_coil/update_name()
 	. = ..()
-	name = "cable [(amount < 3) ? "piece" : "coil"]"
+	name = "电线[(amount < 3) ? "" : "圈"]"
 
 /obj/item/stack/cable_coil/update_desc()
 	. = ..()
-	desc = "A [(amount < 3) ? "piece" : "coil"] of insulated power cable."
+	desc = "[(amount < 3) ? "" : "一圈"]绝缘电线."
 
 /obj/item/stack/cable_coil/proc/set_cable_color(new_color)
 	color = GLOB.cable_colors[new_color]
@@ -488,16 +488,16 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 /obj/item/stack/cable_coil/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in get_turf(user))
-		user.visible_message(span_suicide("[user] is making a noose with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在用[src]制作上吊绳! 看起来是准备尝试自杀!"))
 	else
-		user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]尝试用[src]勒死自己! 这是一种自杀行为!"))
 	return OXYLOSS
 
 /obj/item/stack/cable_coil/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("做这件事的你还不够灵活!"))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
@@ -512,50 +512,50 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	restraints_icon.color = color
 
 	var/list/radial_menu = list(
-	"Layer 1" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-red"),
-	"Layer 2" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-yellow"),
-	"Layer 3" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-blue"),
-	"Multilayer cable hub" = image(icon = 'icons/obj/pipes_n_cables/structures.dmi', icon_state = "cable_bridge"),
-	"Multi Z layer cable hub" = image(icon = 'icons/obj/pipes_n_cables/structures.dmi', icon_state = "cablerelay-broken-cable"),
-	"Cable restraints" = restraints_icon
+	"电缆层-Layer 1" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-red"),
+	"电缆层-Layer 2" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-yellow"),
+	"电缆层-Layer 3" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-blue"),
+	"多层电缆集线器" = image(icon = 'icons/obj/pipes_n_cables/structures.dmi', icon_state = "cable_bridge"),
+	"垂直电缆集线器" = image(icon = 'icons/obj/pipes_n_cables/structures.dmi', icon_state = "cablerelay-broken-cable"),
+	"束线带" = restraints_icon
 	)
 
 	var/layer_result = show_radial_menu(user, src, radial_menu, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(layer_result)
-		if("Layer 1")
+		if("电缆层-Layer 1")
 			set_cable_color(CABLE_COLOR_RED)
 			target_type = /obj/structure/cable/layer1
 			target_layer = CABLE_LAYER_1
 			novariants = FALSE
-		if("Layer 2")
+		if("电缆层-Layer 2")
 			set_cable_color(CABLE_COLOR_YELLOW)
 			target_type = /obj/structure/cable
 			target_layer = CABLE_LAYER_2
 			novariants = FALSE
-		if("Layer 3")
+		if("电缆层-Layer 3")
 			set_cable_color(CABLE_COLOR_BLUE)
 			target_type = /obj/structure/cable/layer3
 			target_layer = CABLE_LAYER_3
 			novariants = FALSE
-		if("Multilayer cable hub")
-			name = "multilayer cable hub"
-			desc = "A multilayer cable hub."
+		if("多层电缆集线器")
+			name = "多层电缆集线器"
+			desc = "多层电缆集线器."
 			icon_state = "cable_bridge"
 			set_cable_color(CABLE_COLOR_WHITE)
 			target_type = /obj/structure/cable/multilayer
 			target_layer = CABLE_LAYER_2
 			novariants = TRUE
-		if("Multi Z layer cable hub")
-			name = "multi z layer cable hub"
-			desc = "A multi-z layer cable hub."
+		if("垂直电缆集线器")
+			name = "垂直电缆集线器"
+			desc = "垂直电缆集线器."
 			icon_state = "cablerelay-broken-cable"
 			set_cable_color(CABLE_COLOR_WHITE)
 			target_type = /obj/structure/cable/multilayer/multiz
 			target_layer = CABLE_LAYER_2
 			novariants = TRUE
-		if("Cable restraints")
+		if("束线带")
 			if (amount >= CABLE_RESTRAINTS_COST)
 				if(use(CABLE_RESTRAINTS_COST))
 					var/obj/item/restraints/handcuffs/cable/restraints = new(null, cable_color)
@@ -574,7 +574,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 	if(affecting && IS_ROBOTIC_LIMB(affecting))
 		if(user == H)
-			user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.name]."), span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
+			user.visible_message(span_notice("[user]开始[H] [affecting.name]中的一些电线."), span_notice("你开始修理[H == user ? "你" : "[H]"] [affecting.name]中的一些电线."))
 			/* SKYRAT EDIT START - ORIGINAL:
 			if(!do_after(user, 50, H))
 				return
@@ -584,7 +584,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 			return
 		// SKYRAT EDIT CHANGE END
 		if(item_heal_robotic(H, user, 0, 15))
-			user.visible_message(span_green("[user] fixes some of the wires in to [H]'s [affecting.name]."), span_green("You fix some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name].")) // SKYRAT EDIT ADD
+			user.visible_message(span_green("[user]修理了[H] [affecting.name]中的一些电线."), span_green("你修理了[H == user ? "你" : "[H]"] [affecting.name]中的一些电线.")) // SKYRAT EDIT ADD
 			use(1)
 		return
 	else
@@ -600,20 +600,20 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		return
 
 	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE || !T.can_have_cabling())
-		to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
+		to_chat(user, span_warning("你只能在底板或脚手架上铺设电缆!"))
 		return
 
 	if(get_amount() < 1) // Out of cable
-		to_chat(user, span_warning("There is no cable left!"))
+		to_chat(user, span_warning("没有电线了!"))
 		return
 
 	if(get_dist(T,user) > 1) // Too far
-		to_chat(user, span_warning("You can't lay cable at a place that far away!"))
+		to_chat(user, span_warning("你没法在那么远的地方铺设电缆!"))
 		return
 
 	for(var/obj/structure/cable/C in T)
 		if(C.cable_layer & target_layer)
-			to_chat(user, span_warning("There's already a cable at that position!"))
+			to_chat(user, span_warning("那个位置已经有电缆了!"))
 			return
 
 	var/obj/structure/cable/C = new target_type(T)
@@ -657,8 +657,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 ///multilayer cable to connect different layers
 /obj/structure/cable/multilayer
-	name = "multilayer cable hub"
-	desc = "A flexible, superconducting insulated multilayer hub for heavy-duty multilayer power transfer."
+	name = "多层电缆集线器"
+	desc = "用于多层电力传输的柔性超导绝缘多层集线器."
 	icon = 'icons/obj/pipes_n_cables/structures.dmi'
 	icon_state = "cable_bridge"
 	cable_layer = CABLE_LAYER_2
@@ -701,9 +701,9 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 /obj/structure/cable/multilayer/examine(mob/user)
 	. += ..()
-	. += span_notice("L1:[cable_layer & CABLE_LAYER_1 ? "Connect" : "Disconnect"].")
-	. += span_notice("L2:[cable_layer & CABLE_LAYER_2 ? "Connect" : "Disconnect"].")
-	. += span_notice("L3:[cable_layer & CABLE_LAYER_3 ? "Connect" : "Disconnect"].")
+	. += span_notice("L1:[cable_layer & CABLE_LAYER_1 ? "连接" : "断开"].")
+	. += span_notice("L2:[cable_layer & CABLE_LAYER_2 ? "连接" : "断开"].")
+	. += span_notice("L3:[cable_layer & CABLE_LAYER_3 ? "连接" : "断开"].")
 
 GLOBAL_LIST(hub_radial_layer_list)
 
@@ -715,9 +715,9 @@ GLOBAL_LIST(hub_radial_layer_list)
 		return
 	if(!GLOB.hub_radial_layer_list)
 		GLOB.hub_radial_layer_list = list(
-			"Layer 1" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-red"),
-			"Layer 2" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-yellow"),
-			"Layer 3" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-blue")
+			"电缆层-Layer 1" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-red"),
+			"电缆层-Layer 2" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-yellow"),
+			"电缆层-Layer 3" = image(icon = 'icons/hud/radial.dmi', icon_state = "coil-blue")
 			)
 
 	var/layer_result = show_radial_menu(user, src, GLOB.hub_radial_layer_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
@@ -725,15 +725,15 @@ GLOBAL_LIST(hub_radial_layer_list)
 		return
 	var/CL
 	switch(layer_result)
-		if("Layer 1")
+		if("电缆层-Layer 1")
 			CL = CABLE_LAYER_1
-			to_chat(user, span_warning("You toggle L1 connection."))
-		if("Layer 2")
+			to_chat(user, span_warning("你改变L1的连线状态."))
+		if("电缆层-Layer 2")
 			CL = CABLE_LAYER_2
-			to_chat(user, span_warning("You toggle L2 connection."))
-		if("Layer 3")
+			to_chat(user, span_warning("你改变L2的连线状态."))
+		if("电缆层-Layer 3")
 			CL = CABLE_LAYER_3
-			to_chat(user, span_warning("You toggle L3 connection."))
+			to_chat(user, span_warning("你改变L3的连线状态."))
 
 	cut_cable_from_powernet(FALSE)
 
@@ -749,7 +749,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 	if(!istype(user))
 		return FALSE
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("做这件事的你还不够灵活!"))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
@@ -764,7 +764,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 	auto_propagate_cut_cable(src) // update the powernets
 
 /obj/structure/cable/multilayer/CtrlClick(mob/living/user)
-	to_chat(user, span_warning("You push the reset button."))
+	to_chat(user, span_warning("你按下复位按钮."))
 	addtimer(CALLBACK(src, PROC_REF(Reload)), 10, TIMER_UNIQUE) //spam protect
 
 // This is a mapping aid. In order for this to be placed on a map and function, all three layers need to have their nodes active

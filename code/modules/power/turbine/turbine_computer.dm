@@ -1,6 +1,6 @@
 /obj/machinery/computer/turbine_computer
-	name = "gas turbine control computer"
-	desc = "A computer to remotely control a gas turbine."
+	name = "燃气涡轮机控制终端"
+	desc = "一台远程控制燃气涡轮机的计算机."
 	icon_screen = "turbinecomp"
 	icon_keyboard = "tech_key"
 	circuit = /obj/item/circuitboard/computer/turbine_computer
@@ -29,15 +29,15 @@
 /obj/machinery/computer/turbine_computer/multitool_act(mob/living/user, obj/item/tool)
 	var/obj/item/multitool/multitool = tool
 	if(!istype(multitool.buffer, /obj/machinery/power/turbine/core_rotor))
-		to_chat(user, span_notice("Wrong machine type in [multitool] buffer..."))
+		to_chat(user, span_notice("[multitool]储存缓冲区中的机器类型错误..."))
 		return
 	if(turbine_core)
-		to_chat(user, span_notice("Changing [src] bluespace network..."))
+		to_chat(user, span_notice("更改[src]蓝空网络..."))
 	if(!do_after(user, 0.2 SECONDS, src))
 		return
 	playsound(get_turf(user), 'sound/machines/click.ogg', 10, TRUE)
 	register_machine(multitool.buffer)
-	to_chat(user, span_notice("You link [src] to the console in [multitool]'s buffer."))
+	to_chat(user, span_notice("你链接[src]到[multitool]储存缓冲区中的控制台."))
 	return TRUE
 
 /obj/machinery/computer/turbine_computer/proc/register_machine(machine)
