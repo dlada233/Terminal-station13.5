@@ -41,7 +41,7 @@
 
 /obj/item/turbine_parts/examine(mob/user)
 	. = ..()
-	. += "This is a tier [current_tier] turbine part, rated for [max_rpm] rpm and [max_temperature] K."
+	. += "这是一台[current_tier]级涡轮机部件，额定功率为 [max_rpm]rpm 与 [max_temperature]K."
 	var/upgrade_material_name_amount
 	switch(current_tier)
 		if(TURBINE_PART_TIER_ONE)
@@ -52,9 +52,9 @@
 			upgrade_material_name_amount = "[fourth_tier_material_amount] [initial(fourth_tier_material.name)] sheets"
 
 	if(upgrade_material_name_amount)
-		. += "Can be upgraded with [upgrade_material_name_amount]."
+		. += "可以用[upgrade_material_name_amount]升级."
 	else
-		. += "Is already at max tier."
+		. += "这台已经满级了."
 
 /obj/item/turbine_parts/attackby(obj/item/attacking_item, mob/user, params)
 	if(current_tier >= max_tier)
@@ -94,22 +94,22 @@
 	return ..()
 
 /obj/item/turbine_parts/compressor
-	name = "compressor part"
-	desc = "Install in a turbine engine compressor to increase its performance"
+	name = "增压器配件"
+	desc = "安装在涡轮发动机的增压器部，以提高其性能."
 	icon_state = "compressor_part"
 	part_efficiency = 0.25
 	part_efficiency_increase_amount = 0.2
 
 /obj/item/turbine_parts/rotor
-	name = "rotor part"
-	desc = "Install in a turbine engine rotor to increase its performance"
+	name = "转子配件"
+	desc = "安装在涡轮发动机的转子部，以提高其性能."
 	icon_state = "rotor_part"
 	part_efficiency = 0.25
 	part_efficiency_increase_amount = 0.2
 
 /obj/item/turbine_parts/stator
-	name = "stator part"
-	desc = "Install in a turbine engine turbine to increase its performance"
+	name = "定子配件"
+	desc = "安装在涡轮发动机的定子部，以提高其性能."
 	icon_state = "stator_part"
 	part_efficiency = 0.85
 	part_efficiency_increase_amount = 0.015

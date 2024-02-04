@@ -2,7 +2,7 @@
 #define TESLA_COIL_THRESHOLD 32000
 
 /obj/machinery/power/energy_accumulator/tesla_coil
-	name = "tesla coil"
+	name = "特斯拉线圈"
 	desc = "For the union!"
 	icon = 'icons/obj/machines/engine/tesla_coil.dmi'
 	icon_state = "coil0"
@@ -39,7 +39,7 @@
 
 /obj/machinery/power/energy_accumulator/tesla_coil/cable_layer_change_checks(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, "unanchor first!")
+		balloon_alert(user, "先解除固定!")
 		return FALSE
 	return TRUE
 
@@ -55,11 +55,11 @@
 /obj/machinery/power/energy_accumulator/tesla_coil/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>" + \
-		  "Power generation at <b>[input_power_multiplier*100]%</b>.<br>" + \
-			"Shock interval at <b>[zap_cooldown*0.1]</b> seconds.<br>" + \
-			"Stored <b>[display_joules(get_stored_joules())]</b>.<br>" + \
-			"Processing <b>[display_power(get_power_output())]</b>.")
+		. += span_notice("状态显示读数:<br>" + \
+		  "发电量 <b>[input_power_multiplier*100]%</b>.<br>" + \
+			"电击间隔 at <b>[zap_cooldown*0.1]</b> 秒.<br>" + \
+			"储存 <b>[display_joules(get_stored_joules())]</b>.<br>" + \
+			"处理中 <b>[display_power(get_power_output())]</b>.")
 
 /obj/machinery/power/energy_accumulator/tesla_coil/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
 	. = ..()
@@ -120,8 +120,8 @@
 	zap_buckle_check(power)
 
 /obj/machinery/power/energy_accumulator/grounding_rod
-	name = "grounding rod"
-	desc = "Keeps an area from being fried by Edison's Bane."
+	name = "避雷针"
+	desc = "防止区域被爱迪生的发明炸开."
 	icon = 'icons/obj/machines/engine/tesla_coil.dmi'
 	icon_state = "grounding_rod0"
 	anchored = FALSE
@@ -138,9 +138,9 @@
 /obj/machinery/power/energy_accumulator/grounding_rod/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>" + \
-		  "Recently grounded <b>[display_joules(get_stored_joules())]</b>.<br>" + \
-			"This energy would sustainably release <b>[display_power(get_power_output())]</b>.")
+		. += span_notice("状态显示读数:<br>" + \
+		  "最近引雷 <b>[display_joules(get_stored_joules())]</b>.<br>" + \
+			"能量将持续释放 <b>[display_power(get_power_output())]</b>.")
 
 /obj/machinery/power/energy_accumulator/grounding_rod/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
 	. = ..()
