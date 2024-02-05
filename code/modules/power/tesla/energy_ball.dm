@@ -12,8 +12,8 @@
 
 /// The Tesla engine
 /obj/energy_ball
-	name = "energy ball"
-	desc = "An energy ball."
+	name = "能量球"
+	desc = "一个能量球."
 	icon = 'icons/obj/machines/engine/energy_ball.dmi'
 	icon_state = "energy_ball"
 	anchored = TRUE

@@ -50,10 +50,10 @@
 	. = ..()
 	if(can_change_cable_layer)
 		if(!QDELETED(powernet))
-			. += span_notice("It's operating on the [lowertext(GLOB.cable_layer_to_name["[cable_layer]"])].")
+			. += span_notice("它运行在[lowertext(GLOB.cable_layer_to_name["[cable_layer]"])].")
 		else
-			. += span_warning("It's disconnected from the [lowertext(GLOB.cable_layer_to_name["[cable_layer]"])].")
-		. += span_notice("It's power line can be changed with a [EXAMINE_HINT("multitool")].")
+			. += span_warning("它与[lowertext(GLOB.cable_layer_to_name["[cable_layer]"])]断开了连接.")
+		. += span_notice("它的电力连线可以由[EXAMINE_HINT("多功能工具")]更改.")
 
 ///does the required checks to see if this machinery layer can be changed
 /obj/machinery/power/proc/cable_layer_change_checks(mob/living/user, obj/item/tool)
@@ -63,12 +63,12 @@
 	if(!can_change_cable_layer || !cable_layer_change_checks(user, tool))
 		return
 
-	var/choice = tgui_input_list(user, "Select Power Line For Operation", "Select Cable Layer", GLOB.cable_name_to_layer)
+	var/choice = tgui_input_list(user, "选择运行时的电力连线", "选择电缆层", GLOB.cable_name_to_layer)
 	if(isnull(choice))
 		return
 
 	cable_layer = GLOB.cable_name_to_layer[choice]
-	balloon_alert(user, "now operating on the [choice]")
+	balloon_alert(user, "现在运行在了[choice]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/multitool_act_secondary(mob/living/user, obj/item/tool)

@@ -3,8 +3,8 @@
 // TODO: Split everything into easy to manage procs.
 
 /obj/item/detective_scanner
-	name = "forensic scanner"
-	desc = "Used to remotely scan objects and biomass for DNA and fingerprints. Can print a report of the findings."
+	name = "取证扫描仪"
+	desc = "用于远程扫描物体和生物以获取DNA和指纹，可以打印调查结果的报告."
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "forensicnew"
 	w_class = WEIGHT_CLASS_SMALL
@@ -24,7 +24,7 @@
 	actions_types = list(/datum/action/item_action/display_detective_scan_results)
 
 /datum/action/item_action/display_detective_scan_results
-	name = "Display Forensic Scanner Results"
+	name = "显示取证结果"
 
 /datum/action/item_action/display_detective_scan_results/Trigger(trigger_flags)
 	var/obj/item/detective_scanner/scanner = target
@@ -33,13 +33,13 @@
 
 /obj/item/detective_scanner/attack_self(mob/user)
 	if(!LAZYLEN(log))
-		balloon_alert(user, "no logs!")
+		balloon_alert(user, "无日志!")
 		return
 	if(scanner_busy)
-		balloon_alert(user, "scanner busy!")
+		balloon_alert(user, "扫描仪繁忙!")
 		return
 	scanner_busy = TRUE
-	balloon_alert(user, "printing report...")
+	balloon_alert(user, "打印报告中...")
 	addtimer(CALLBACK(src, PROC_REF(safe_print_report)), 10 SECONDS)
 
 /**
@@ -58,10 +58,10 @@
 	//This could be a global count like sec and med record printouts. See GLOB.manifest.generalPrintCount AKA datacore.dm
 	var/frNum = ++forensicPrintCount
 
-	report_paper.name = "FR-[frNum] 'Forensic Record'"
-	var/report_text = "<center><B>Forensic Record - (FR-[frNum])</B></center><HR><BR>"
+	report_paper.name = "FR-[frNum] '取证报告'"
+	var/report_text = "<center><B>取证记录 - (FR-[frNum])</B></center><HR><BR>"
 	report_text += jointext(log, "<BR>")
-	report_text += "<HR><B>Notes:</B><BR>"
+	report_text += "<HR><B>说明:</B><BR>"
 
 	report_paper.add_raw_text(report_text)
 	report_paper.update_appearance()
@@ -69,7 +69,7 @@
 	if(ismob(loc))
 		var/mob/printer = loc
 		printer.put_in_hands(report_paper)
-		balloon_alert(printer, "logs cleared")
+		balloon_alert(printer, "日志已清除")
 
 	// Clear the logs
 	log = list()
@@ -93,7 +93,7 @@
 	if(scanner_busy)
 		return
 	if(!scan(user, atom_to_scan)) // this should only return FALSE if a runtime occurs during the scan proc, so ideally never
-		balloon_alert(user, "scanner error!") // but in case it does, we 'error' instead of just bricking the scanner
+		balloon_alert(user, "扫描仪错误!") // but in case it does, we 'error' instead of just bricking the scanner
 	scanner_busy = FALSE
 
 /**
@@ -110,10 +110,10 @@
 
 
 	user.visible_message(
-		span_notice("\The [user] points the [src.name] at \the [scanned_atom] and performs a forensic scan."),
+		span_notice("[user]将[src.name]指向[scanned_atom]并执行取证扫描."),
 		ignored_mobs = user
 	)
-	to_chat(user, span_notice("You scan \the [scanned_atom]. The scanner is now analysing the results..."))
+	to_chat(user, span_notice("扫描[scanned_atom]，扫描仪正在分析结果."))
 
 
 	// GATHER INFORMATION
@@ -141,7 +141,7 @@
 		// Only get reagents from non-mobs.
 		for(var/datum/reagent/present_reagent as anything in scanned_atom.reagents?.reagent_list)
 			LAZYADD(det_data[DETSCAN_CATEGORY_DRINK], \
-				"Reagent: <font color='red'>[present_reagent.name]</font> Volume: <font color='red'>[present_reagent.volume]</font>")
+				"试剂: <font color='red'>[present_reagent.name]</font> 体积: <font color='red'>[present_reagent.volume]</font>")
 
 			// Get blood data from the blood reagent.
 			if(!istype(present_reagent, /datum/reagent/blood))
@@ -169,7 +169,7 @@
 
 	for(var/bloodtype in blood)
 		LAZYADD(det_data[DETSCAN_CATEGORY_BLOOD], \
-		"Type: <font color='red'>[blood[bloodtype]]</font> DNA (UE): <font color='red'>[bloodtype]</font>")
+		"血型: <font color='red'>[blood[bloodtype]]</font> DNA (UE): <font color='red'>[bloodtype]</font>")
 
 	// sends it off to be modified by the items
 	SEND_SIGNAL(scanned_atom, COMSIG_DETECTIVE_SCANNED, user, det_data)
@@ -196,12 +196,12 @@
 		holder = src.loc
 
 	if(!found_something)
-		add_log("<I># No forensic traces found #</I>", 0) // Don't display this to the holder user
+		add_log("<I># 没有发现取证痕迹 #</I>", 0) // Don't display this to the holder user
 		if(holder)
-			to_chat(holder, span_warning("Unable to locate any fingerprints, materials, fibers, or blood on \the [target_name]!"))
+			to_chat(holder, span_warning("在[target_name]上找不到指纹、材料、纤维或血迹!"))
 	else
 		if(holder)
-			to_chat(holder, span_notice("You finish scanning \the [target_name]."))
+			to_chat(holder, span_notice("你结束了对[target_name]的扫描."))
 
 	add_log("---------------------------------------------------------", 0)
 	return TRUE
@@ -213,7 +213,7 @@
 			to_chat(logger, msg)
 		log += "&nbsp;&nbsp;[msg]"
 	else
-		CRASH("[src] [REF(src)] is adding a log when it was never put in scanning mode!")
+		CRASH("[src] [REF(src)]在扫描模式外添加日志!")
 
 /proc/get_timestamp()
 	return time2text(world.time + 432000, ":ss")
@@ -223,29 +223,29 @@
 	if(!user.can_perform_action(src))
 		return
 	if(!LAZYLEN(log))
-		balloon_alert(user, "no logs!")
+		balloon_alert(user, "无日志!")
 		return
 	if(scanner_busy)
-		balloon_alert(user, "scanner busy!")
+		balloon_alert(user, "扫描仪繁忙!")
 		return
-	balloon_alert(user, "deleting logs...")
+	balloon_alert(user, "删除日志...")
 	if(do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, "logs cleared")
+		balloon_alert(user, "日志已清除")
 		log = list()
 
 /obj/item/detective_scanner/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(log) && !scanner_busy)
-		. += span_notice("Alt-click to clear scanner logs.")
+		. += span_notice("Alt加左键清除日志.")
 
 /obj/item/detective_scanner/proc/display_detective_scan_results(mob/living/user)
 	// No need for can-use checks since the action button should do proper checks
 	if(!LAZYLEN(log))
-		balloon_alert(user, "no logs!")
+		balloon_alert(user, "无日志!")
 		return
 	if(scanner_busy)
-		balloon_alert(user, "scanner busy!")
+		balloon_alert(user, "扫描仪繁忙!")
 		return
-	to_chat(user, span_notice("<B>Scanner Report</B>"))
+	to_chat(user, span_notice("<B>扫描仪报告</B>"))
 	for(var/iterLog in log)
 		to_chat(user, iterLog)

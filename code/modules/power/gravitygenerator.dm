@@ -20,8 +20,8 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 //
 
 /obj/machinery/gravity_generator
-	name = "gravitational generator"
-	desc = "A device which produces a graviton field when set up."
+	name = "重力发生器"
+	desc = "一种装置，在启动时产生重力场。"
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	density = TRUE
 	move_resist = INFINITY
@@ -163,12 +163,12 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	setup_parts()
 	if(on)
 		enable()
-		center_part.add_overlay("activated")
+		center_part.add_overlay("已启动")
 
 	add_to_nebula_shielding(src, /datum/station_trait/nebula/hostile/radiation, PROC_REF(get_radioactive_nebula_shielding))
 
 /obj/machinery/gravity_generator/main/Destroy() // If we somehow get deleted, remove all of our other parts.
-	investigate_log("was destroyed!", INVESTIGATE_GRAVITY)
+	investigate_log("被破坏了!", INVESTIGATE_GRAVITY)
 	disable()
 	QDEL_NULL(soundloop)
 	QDEL_NULL(center_part)
@@ -225,13 +225,13 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		return
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
-			. += span_notice("The entire frame is barely holding together, the <b>screws</b> need to be refastened.")
+			. += span_notice("整个框架几乎没有固定在一起，<b>螺丝</b>需要重新紧固.")
 		if(GRAV_NEEDS_WELDING)
-			. += span_notice("There's lots of broken seals on the framework, it could use some <b>welding</b>.")
+			. += span_notice("框架上有很多破损的密封件, 需要进行<b>焊接</b>.")
 		if(GRAV_NEEDS_PLASTEEL)
-			. += span_notice("Some of this damaged plating needs full replacement. <b>10 plasteel</> should be enough.")
+			. += span_notice("有些损坏的镀层需要全部更换. <b>10个塑钢</>应该就够了.")
 		if(GRAV_NEEDS_WRENCH)
-			. += span_notice("The new plating just needs to be <b>bolted</b> into place now.")
+			. += span_notice("现在只需要拧紧<b>螺栓</b>重新固定即可.")
 
 // Fixing the gravity generator.
 /obj/machinery/gravity_generator/main/attackby(obj/item/weapon, mob/user, params)
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		switch(broken_state)
 			if(GRAV_NEEDS_SCREWDRIVER)
 				if(weapon.tool_behaviour == TOOL_SCREWDRIVER)
-					to_chat(user, span_notice("You secure the screws of the framework."))
+					to_chat(user, span_notice("你固定好框架螺丝."))
 					weapon.play_tool_sound(src)
 					broken_state++
 					update_appearance()
@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 			if(GRAV_NEEDS_WELDING)
 				if(weapon.tool_behaviour == TOOL_WELDER)
 					if(weapon.use_tool(src, user, 0, volume=50))
-						to_chat(user, span_notice("You mend the damaged framework."))
+						to_chat(user, span_notice("你修补损坏的框架."))
 						broken_state++
 						update_appearance()
 					return
@@ -256,16 +256,16 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 					var/obj/item/stack/sheet/plasteel/PS = weapon
 					if(PS.get_amount() >= 10)
 						PS.use(10)
-						to_chat(user, span_notice("You add the plating to the framework."))
+						to_chat(user, span_notice("将电镀添加到框架中."))
 						playsound(src.loc, 'sound/machines/click.ogg', 75, TRUE)
 						broken_state++
 						update_appearance()
 					else
-						to_chat(user, span_warning("You need 10 sheets of plasteel!"))
+						to_chat(user, span_warning("你需要10张塑钢!"))
 					return
 			if(GRAV_NEEDS_WRENCH)
 				if(weapon.tool_behaviour == TOOL_WRENCH)
-					to_chat(user, span_notice("You secure the plating to the framework."))
+					to_chat(user, span_notice("你把面板固定在框架上."))
 					weapon.play_tool_sound(src)
 					set_fix()
 					return
@@ -305,7 +305,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/power_change()
 	. = ..()
 	if(SSticker.current_state == GAME_STATE_PLAYING)
-		investigate_log("has [machine_stat & NOPOWER ? "lost" : "regained"] power.", INVESTIGATE_GRAVITY)
+		investigate_log("已经[machine_stat & NOPOWER ? "失去" : "恢复"]电力.", INVESTIGATE_GRAVITY)
 	set_power()
 
 /obj/machinery/gravity_generator/main/get_status()
@@ -323,7 +323,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 	charging_state = new_state ? POWER_UP : POWER_DOWN // Startup sequence animation.
 	if(SSticker.current_state == GAME_STATE_PLAYING)
-		investigate_log("is now [charging_state == POWER_UP ? "charging" : "discharging"].", INVESTIGATE_GRAVITY)
+		investigate_log("现在[charging_state == POWER_UP ? "充能中" : "失能中"].", INVESTIGATE_GRAVITY)
 	update_appearance()
 
 /obj/machinery/gravity_generator/main/proc/enable()
@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 	if (!old_gravity)
 		if(SSticker.current_state == GAME_STATE_PLAYING)
-			investigate_log("was brought online and is now producing gravity for this level.", INVESTIGATE_GRAVITY)
+			investigate_log("已经上线，现在正在为这一层产生重力.", INVESTIGATE_GRAVITY)
 			message_admins("The gravity generator was brought online [ADMIN_VERBOSEJMP(src)]")
 		shake_everyone()
 
@@ -355,7 +355,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 	if (old_gravity)
 		if(SSticker.current_state == GAME_STATE_PLAYING)
-			investigate_log("was brought offline and there is now no gravity for this level.", INVESTIGATE_GRAVITY)
+			investigate_log("被下线了，现在这一层没有重力了.", INVESTIGATE_GRAVITY)
 			message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_VERBOSEJMP(src)]")
 		shake_everyone()
 
@@ -423,9 +423,9 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	if(!SSmapping.level_has_any_trait(z, ZTRAIT_STATION)) // SHUT THE FUCK UP ABANDONED STATIONS, I DON'T CARE
 		return
 	if(on)
-		priority_announce("A gravity generator has successfully restarted its graviton field, artificial gravity is online.", "Gravity Generator", ANNOUNCER_GRAVGENON)
+		priority_announce("重力发生器已经成功地重新启动了它的重力场，人工重力已经上线.", "重力发生器", ANNOUNCER_GRAVGENON)
 	else
-		priority_announce("A gravity generator has lost its graviton field integrity ballast, artificial gravity is offline.", "Gravity Generator", ANNOUNCER_GRAVGENOFF)
+		priority_announce("重力发生器失去了其重力场完整的镇流器，人工重力脱机.", "重力发生器", ANNOUNCER_GRAVGENOFF)
 	//SKYRAT EDIT END
 
 /obj/machinery/gravity_generator/main/proc/gravity_in_level()
@@ -492,19 +492,17 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 /// Gravity generator instruction guide
 /obj/item/paper/guides/jobs/engi/gravity_gen
-	name = "paper- 'Generate your own gravity!'"
-	default_raw_text = {"<h1>Gravity Generator Instructions For Dummies</h1>
-	<p>Surprisingly, gravity isn't that hard to make! All you have to do is inject deadly radioactive minerals into a ball of
-	energy and you have yourself gravity! You can turn the machine on or off when required.
-	The generator produces a very harmful amount of gravity when enabled, so don't stay close for too long.</p>
+	name = "paper- '生成你的重力!'"
+	default_raw_text = {"<h1>重力发生器傻瓜说明书</h1>
+	<p>令人惊讶的是，引力并不难制造!你所要做的就是把致命的放射性矿物质注入一个能量球，你就有了重力!你可以根据需要打开或关闭机器.
+	发电机在启动时会产生强而有害的重力，所以不要在附近停留太久.</p>
 	<br>
-	<h3>It blew up!</h3>
-	<p>Don't panic! The gravity generator was designed to be easily repaired. If, somehow, the sturdy framework did not survive then
-	please proceed to panic; otherwise follow these steps.</p><ol>
-	<li>Secure the screws of the framework with a screwdriver.</li>
-	<li>Mend the damaged framework with a welding tool.</li>
-	<li>Add additional plasteel plating.</li>
-	<li>Secure the additional plating with a wrench.</li></ol>"}
+	<h3>现在它爆炸了怎么办!</h3>
+	<p>别慌!重力发生器设计得很容易修理。如果，不知何故，坚固的框架没有幸存下来，请继续恐慌；否则，请遵循以下步骤.</p><ol>
+	<li>用螺丝刀拧紧固定框架的螺丝.</li>
+	<li>用焊接工具修补损坏的框架.</li>
+	<li>添加额外的塑钢电镀.</li>
+	<li>用扳手固定额外的面板.</li></ol>"}
 
 #undef POWER_IDLE
 #undef POWER_UP

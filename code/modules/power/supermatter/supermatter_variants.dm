@@ -11,8 +11,8 @@
 
 /// Shard SM.
 /obj/machinery/power/supermatter_crystal/shard
-	name = "supermatter shard"
-	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure."
+	name = "超物质碎片"
+	desc = "一种奇怪的半透明和虹色晶体，看起来像它曾经是一个更大结构的一部分."
 	base_icon_state = "sm_shard"
 	icon_state = "sm_shard"
 	anchored = FALSE
@@ -23,7 +23,7 @@
 
 /// Shard SM with it's processing disabled.
 /obj/machinery/power/supermatter_crystal/shard/hugbox
-	name = "anchored supermatter shard"
+	name = "锚定的超物质碎片"
 	disable_damage = TRUE
 	disable_gas =  TRUE
 	disable_power_change = TRUE
@@ -33,7 +33,7 @@
 
 /// Shard SM designated as the main engine.
 /obj/machinery/power/supermatter_crystal/shard/engine
-	name = "anchored supermatter shard"
+	name = "锚定的超物质碎片"
 	is_main_engine = TRUE
 	anchored = TRUE
 	moveable = FALSE

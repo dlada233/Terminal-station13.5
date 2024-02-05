@@ -15,8 +15,8 @@
 #define SMES_INPUT_ATTEMPT 9
 
 /obj/machinery/power/smes
-	name = "power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	name = "电源存储单元"
+	desc = "一种高容量超导磁能存储装置."
 	icon_state = "smes"
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -43,7 +43,7 @@
 /obj/machinery/power/smes/examine(user)
 	. = ..()
 	if(!terminal)
-		. += span_warning("This SMES has no power terminal!")
+		. += span_warning("这太SMES没有电源端口!")
 
 /obj/machinery/power/smes/Initialize(mapload)
 	. = ..()
@@ -82,7 +82,7 @@
 
 /obj/machinery/power/smes/cable_layer_change_checks(mob/living/user, obj/item/tool)
 	if(!QDELETED(terminal))
-		balloon_alert(user, "cut the terminal first!")
+		balloon_alert(user, "先剪掉电源端口!")
 		return FALSE
 	return TRUE
 
@@ -100,10 +100,10 @@
 			if(term && term.dir == REVERSE_DIR(dir))
 				terminal = term
 				terminal.master = src
-				to_chat(user, span_notice("Terminal found."))
+				to_chat(user, span_notice("已找到端口."))
 				break
 		if(!terminal)
-			to_chat(user, span_alert("No power terminal found."))
+			to_chat(user, span_alert("无电源端口."))
 			return
 		set_machine_stat(machine_stat & ~BROKEN)
 		update_appearance()
@@ -116,32 +116,32 @@
 			return
 
 		if(terminal) //is there already a terminal ?
-			to_chat(user, span_warning("This SMES already has a power terminal!"))
+			to_chat(user, span_warning("这个SMES已经有了一个电源端口!"))
 			return
 
 		if(!panel_open) //is the panel open ?
-			to_chat(user, span_warning("You must open the maintenance panel first!"))
+			to_chat(user, span_warning("你必须先打开维护面板!"))
 			return
 
 		var/turf/T = get_turf(user)
 		if (T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE) //can we get to the underfloor?
-			to_chat(user, span_warning("You must first remove the floor plating!"))
+			to_chat(user, span_warning("你必须先将地板拆开!"))
 			return
 
 
 		var/obj/item/stack/cable_coil/C = I
 		if(C.get_amount() < 10)
-			to_chat(user, span_warning("You need more wires!"))
+			to_chat(user, span_warning("你需要更多的电线!"))
 			return
 
 		var/terminal_cable_layer
 		if(LAZYACCESS(params2list(params), RIGHT_CLICK))
-			var/choice = tgui_input_list(user, "Select Power Input Cable Layer", "Select Cable Layer", GLOB.cable_name_to_layer)
+			var/choice = tgui_input_list(user, "选择电源输入的电缆层", "选择电缆层", GLOB.cable_name_to_layer)
 			if(isnull(choice))
 				return
 			terminal_cable_layer = GLOB.cable_name_to_layer[choice]
 
-		to_chat(user, span_notice("You start building the power terminal..."))
+		to_chat(user, span_notice("你开始构建电源端口..."))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 
 		if(do_after(user, 20, target = src))
@@ -153,8 +153,8 @@
 				return
 			if(!terminal)
 				C.use(10)
-				user.visible_message(span_notice("[user.name] builds a power terminal."),\
-					span_notice("You build the power terminal."))
+				user.visible_message(span_notice("[user.name]构建了一条电源端口."),\
+					span_notice("你构建了一条电源端口."))
 
 				//build the terminal and link it to the network
 				make_terminal(T, terminal_cable_layer)
@@ -184,7 +184,7 @@
 
 /obj/machinery/power/smes/default_deconstruction_crowbar(obj/item/crowbar/C)
 	if(istype(C) && terminal)
-		to_chat(usr, span_warning("You must first remove the power terminal!"))
+		to_chat(usr, span_warning("你必须先拆除电源端口!"))
 		return FALSE
 
 	return ..()
@@ -404,7 +404,7 @@
 				log_smes(usr)
 
 /obj/machinery/power/smes/proc/log_smes(mob/user)
-	investigate_log("Input/Output: [input_level]/[output_level] | Charge: [charge] | Output-mode: [output_attempt?"ON":"OFF"] | Input-mode: [input_attempt?"AUTO":"OFF"] by [user ? key_name(user) : "outside forces"]", INVESTIGATE_ENGINE)
+	investigate_log("输入/输出: [input_level]/[output_level] | 电量 [charge] | 输出模式: [output_attempt?"ON":"OFF"] | 输入模式: [input_attempt?"AUTO":"OFF"] by [user ? key_name(user) : "外部力量"]", INVESTIGATE_ENGINE)
 
 
 /obj/machinery/power/smes/emp_act(severity)
@@ -428,8 +428,8 @@
 	output_level = 90000
 
 /obj/machinery/power/smes/magical
-	name = "magical power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
+	name = "魔法电力储存单元"
+	desc = "一种高容量超导磁能存储装置，神奇地产生能量."
 
 /obj/machinery/power/smes/magical/process()
 	capacity = INFINITY

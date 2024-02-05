@@ -1,6 +1,6 @@
 /obj/structure/light_construct
-	name = "light fixture frame"
-	desc = "A light fixture under construction."
+	name = "灯具框架"
+	desc = "正在建造的灯具."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
@@ -45,23 +45,23 @@
 	. = ..()
 	switch(stage)
 		if(LIGHT_CONSTRUCT_EMPTY)
-			. += "It's an empty frame."
+			. += "它是一个空框架."
 		if(LIGHT_CONSTRUCT_WIRED)
-			. += "It's wired."
+			. += "它已经连线."
 		if(LIGHT_CONSTRUCT_CLOSED)
-			. += "The casing is closed."
+			. += "套管已关闭."
 	if(cell_connectors)
 		if(cell)
-			. += "You see [cell] inside the casing."
+			. += "你看到[cell]在套管里."
 		else
-			. += "The casing has no power cell for backup power."
+			. += "没有备用电池在套管里."
 	else
-		. += span_danger("This casing doesn't support power cells for backup power.")
+		. += span_danger("这个套管不支持备用电池.")
 
 /obj/structure/light_construct/attack_hand(mob/user, list/modifiers)
 	if(!cell)
 		return
-	user.visible_message(span_notice("[user] removes [cell] from [src]!"), span_notice("You remove [cell]."))
+	user.visible_message(span_notice("[user]从[src]移除[cell]!"), span_notice("你移除[cell]."))
 	user.put_in_hands(cell)
 	cell.update_appearance()
 	cell = null
@@ -70,7 +70,7 @@
 /obj/structure/light_construct/attack_tk(mob/user)
 	if(!cell)
 		return
-	to_chat(user, span_notice("You telekinetically remove [cell]."))
+	to_chat(user, span_notice("你用灵能移走了[cell]."))
 	var/obj/item/stock_parts/cell/cell_reference = cell
 	cell = null
 	cell_reference.forceMove(drop_location())
@@ -80,37 +80,37 @@
 	add_fingerprint(user)
 	if(istype(tool, /obj/item/stock_parts/cell))
 		if(!cell_connectors)
-			to_chat(user, span_warning("This [name] can't support a power cell!"))
+			to_chat(user, span_warning("这个[name]不支持电池!"))
 			return
 		if(HAS_TRAIT(tool, TRAIT_NODROP))
-			to_chat(user, span_warning("[tool] is stuck to your hand!"))
+			to_chat(user, span_warning("[tool]粘在了你的手上!"))
 			return
 		if(cell)
-			to_chat(user, span_warning("There is a power cell already installed!"))
+			to_chat(user, span_warning("已经安装了一个电池!"))
 			return
 		if(user.temporarilyRemoveItemFromInventory(tool))
-			user.visible_message(span_notice("[user] hooks up [tool] to [src]."), \
-			span_notice("You add [tool] to [src]."))
+			user.visible_message(span_notice("[user]将[tool]连接到[src]."), \
+			span_notice("你添加[tool]到[src]."))
 			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 			tool.forceMove(src)
 			cell = tool
 			add_fingerprint(user)
 			return
 	if(istype(tool, /obj/item/light))
-		to_chat(user, span_warning("This [name] isn't finished being setup!"))
+		to_chat(user, span_warning("这个[name]还没有完成设置!"))
 		return
 
 	switch(stage)
 		if(LIGHT_CONSTRUCT_EMPTY)
 			if(tool.tool_behaviour == TOOL_WRENCH)
 				if(cell)
-					to_chat(user, span_warning("You have to remove the cell first!"))
+					to_chat(user, span_warning("你得先移除电池!"))
 					return
-				to_chat(user, span_notice("You begin deconstructing [src]..."))
+				to_chat(user, span_notice("你开始拆解[src]..."))
 				if (tool.use_tool(src, user, 30, volume=50))
 					new /obj/item/stack/sheet/iron(drop_location(), sheets_refunded)
-					user.visible_message(span_notice("[user.name] deconstructs [src]."), \
-						span_notice("You deconstruct [src]."), span_hear("You hear a ratchet."))
+					user.visible_message(span_notice("[user.name]拆解[src]."), \
+						span_notice("你拆解[src]."), span_hear("你听到棘轮声."))
 					playsound(src, 'sound/items/deconstruct.ogg', 75, TRUE)
 					qdel(src)
 				return
@@ -120,28 +120,28 @@
 				if(coil.use(1))
 					icon_state = "[fixture_type]-construct-stage2"
 					stage = LIGHT_CONSTRUCT_WIRED
-					user.visible_message(span_notice("[user.name] adds wires to [src]."), \
-						span_notice("You add wires to [src]."))
+					user.visible_message(span_notice("[user.name]添加到电线到[src]."), \
+						span_notice("你添加到电线到[src]."))
 				else
-					to_chat(user, span_warning("You need one length of cable to wire [src]!"))
+					to_chat(user, span_warning("你需要一根足够长的电线来连接[src]!"))
 				return
 		if(LIGHT_CONSTRUCT_WIRED)
 			if(tool.tool_behaviour == TOOL_WRENCH)
-				to_chat(usr, span_warning("You have to remove the wires first!"))
+				to_chat(usr, span_warning("你得先移除电线!"))
 				return
 
 			if(tool.tool_behaviour == TOOL_WIRECUTTER)
 				stage = LIGHT_CONSTRUCT_EMPTY
 				icon_state = "[fixture_type]-construct-stage1"
 				new /obj/item/stack/cable_coil(drop_location(), 1, "red")
-				user.visible_message(span_notice("[user.name] removes the wiring from [src]."), \
-					span_notice("You remove the wiring from [src]."), span_hear("You hear clicking."))
+				user.visible_message(span_notice("[user.name]从[src]移除电线."), \
+					span_notice("你从[src]中移除电线."), span_hear("你听到咔哒声."))
 				tool.play_tool_sound(src, 100)
 				return
 
 			if(tool.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message(span_notice("[user.name] closes [src]'s casing."), \
-					span_notice("You close [src]'s casing."), span_hear("You hear screwing."))
+				user.visible_message(span_notice("[user.name]关上[src]的套管."), \
+					span_notice("你关上[src]的套管."), span_hear("你听到了螺丝刀的声音."))
 				tool.play_tool_sound(src, 75)
 				switch(fixture_type)
 					if("tube")
@@ -168,7 +168,7 @@
 	qdel(src)
 
 /obj/structure/light_construct/small
-	name = "small light fixture frame"
+	name = "小型灯具框架"
 	icon_state = "bulb-construct-stage1"
 	fixture_type = "bulb"
 	sheets_refunded = 1

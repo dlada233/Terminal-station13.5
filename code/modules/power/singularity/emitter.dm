@@ -1,6 +1,6 @@
 /obj/machinery/power/emitter
-	name = "emitter"
-	desc = "A heavy-duty industrial laser, often used in containment fields and power generation."
+	name = "发射器"
+	desc = "重型工业激光发射器，用于安全抑制领域和发电领域."
 	icon = 'icons/obj/machines/engine/singularity.dmi' //SKYRAT EDIT CHANGE - ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "emitter"
 	base_icon_state = "emitter"
@@ -79,7 +79,7 @@
 
 /obj/machinery/power/emitter/cable_layer_change_checks(mob/living/user, obj/item/tool)
 	if(welded)
-		balloon_alert(user, "unweld first!")
+		balloon_alert(user, "未焊接!")
 		return FALSE
 	return TRUE
 
@@ -108,22 +108,22 @@
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
 	if(welded)
-		. += span_info("It's moored firmly to the floor. You can unsecure its moorings with a <b>welder</b>.")
+		. += span_info("它牢牢地固定在地板上. 你需要用<b>焊枪</b>来解除它的固定.")
 	else if(anchored)
-		. += span_info("It's currently anchored to the floor. You can secure its moorings with a <b>welder</b>, or remove it with a <b>wrench</b>.")
+		. += span_info("它现在被固定在地板上. 你可以使用<b>焊枪</b>牢牢地固定它，或使用<b>扳手</b>进一步拆卸.")
 	else
-		. += span_info("It's not anchored to the floor. You can secure it in place with a <b>wrench</b>.")
+		. += span_info("它没有固定在地板上. 你可以使用<b>扳手</b>固定它.")
 
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
 	if(!active)
-		. += span_notice("Its status display is currently turned off.")
+		. += span_notice("状态显示为关.")
 	else if(!powered)
-		. += span_notice("Its status display is glowing faintly.")
+		. += span_notice("状态显示微弱地发光.")
 	else
-		. += span_notice("Its status display reads: Emitting one beam between <b>[DisplayTimeText(minimum_fire_delay)]</b> and <b>[DisplayTimeText(maximum_fire_delay)]</b>.")
-		. += span_notice("Power consumption at <b>[display_power(active_power_usage)]</b>.")
+		. += span_notice("状态显示读数: 在<b>[DisplayTimeText(minimum_fire_delay)]</b>和<b>[DisplayTimeText(maximum_fire_delay)]之间发射</b>.")
+		. += span_notice("功耗为<b>[display_power(active_power_usage)]</b>.")
 
 /obj/machinery/power/emitter/should_have_node()
 	return welded
@@ -147,13 +147,13 @@
 /obj/machinery/power/emitter/interact(mob/user)
 	add_fingerprint(user)
 	if(!welded)
-		to_chat(user, span_warning("[src] needs to be firmly secured to the floor first!"))
+		to_chat(user, span_warning("[src]需要先牢牢地固定在地板上!"))
 		return FALSE
 	if(!powernet)
-		to_chat(user, span_warning("\The [src] isn't connected to a wire!"))
+		to_chat(user, span_warning("[src]没有连接到电线上!"))
 		return FALSE
 	if(locked || !allow_switch_interact)
-		to_chat(user, span_warning("The controls are locked!"))
+		to_chat(user, span_warning("控制已经被锁定了!"))
 		return FALSE
 
 	if(active)
@@ -163,7 +163,7 @@
 		shot_number = 0
 		fire_delay = maximum_fire_delay
 
-	to_chat(user, span_notice("You turn [active ? "on" : "off"] [src]."))
+	to_chat(user, span_notice("你切换[src]到[active ? "开枪" : "关闭"]."))
 	message_admins("[src] turned [active ? "ON" : "OFF"] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
 	log_game("[src] turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
 	investigate_log("turned [active ? "ON" : "OFF"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINE)
@@ -250,12 +250,12 @@
 /obj/machinery/power/emitter/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, span_warning("Turn \the [src] off first!"))
+			to_chat(user, span_warning("先打开[src]!"))
 		return FAILED_UNFASTEN
 
 	else if(welded)
 		if(!silent)
-			to_chat(user, span_warning("[src] is welded to the floor!"))
+			to_chat(user, span_warning("[src]被焊在了地板上!"))
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -268,35 +268,35 @@
 /obj/machinery/power/emitter/welder_act(mob/living/user, obj/item/item)
 	..()
 	if(active)
-		to_chat(user, span_warning("Turn [src] off first!"))
+		to_chat(user, span_warning("先关上[src]!"))
 		return TRUE
 
 	if(welded)
 		if(!item.tool_start_check(user, amount=1))
 			return TRUE
-		user.visible_message(span_notice("[user.name] starts to cut the [name] free from the floor."), \
-			span_notice("You start to cut [src] free from the floor..."), \
-			span_hear("You hear welding."))
+		user.visible_message(span_notice("[user.name]开始从地板上切割开[name]."), \
+			span_notice("你开始从地板上切割开[src]..."), \
+			span_hear("你听到焊接声."))
 		if(!item.use_tool(src, user, 20, 1, 50))
 			return FALSE
 		welded = FALSE
-		to_chat(user, span_notice("You cut [src] free from the floor."))
+		to_chat(user, span_notice("你从地板上切割开[src]."))
 		disconnect_from_network()
 		update_cable_icons_on_turf(get_turf(src))
 		return TRUE
 
 	if(!anchored)
-		to_chat(user, span_warning("[src] needs to be wrenched to the floor!"))
+		to_chat(user, span_warning("[src]需要用扳手固定在地板上!"))
 		return TRUE
 	if(!item.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice("[user.name] starts to weld the [name] to the floor."), \
-		span_notice("You start to weld [src] to the floor..."), \
-		span_hear("You hear welding."))
+	user.visible_message(span_notice("[user.name]开始把[name]焊接到地板上."), \
+		span_notice("你开始把[src]焊接到地板上..."), \
+		span_hear("你焊接到地板上."))
 	if(!item.use_tool(src, user, 20, 1, 50))
 		return FALSE
 	welded = TRUE
-	to_chat(user, span_notice("You weld [src] to the floor."))
+	to_chat(user, span_notice("你把[src]焊接到地板上."))
 	connect_to_network()
 	update_cable_icons_on_turf(get_turf(src))
 	return TRUE
@@ -316,16 +316,16 @@
 /// Attempt to toggle the controls lock of the emitter
 /obj/machinery/power/emitter/proc/togglelock(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("The lock seems to be broken!"))
+		to_chat(user, span_warning("锁定看起来已经坏了!"))
 		return
 	if(!allowed(user))
-		to_chat(user, span_danger("Access denied."))
+		to_chat(user, span_danger("拒绝访问."))
 		return
 	if(!active)
-		to_chat(user, span_warning("The controls can only be locked when \the [src] is online!"))
+		to_chat(user, span_warning("[src]的控制只能在上线时锁定!"))
 		return
 	locked = !locked
-	to_chat(user, span_notice("You [src.locked ? "lock" : "unlock"] the controls."))
+	to_chat(user, span_notice("你[src.locked ? "锁定" : "解锁"]了控制."))
 
 /obj/machinery/power/emitter/attackby(obj/item/item, mob/user, params)
 	if(item.GetID())
@@ -382,12 +382,12 @@
 		return FALSE
 	locked = FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id lock shorted out")
+	balloon_alert(user, "ID锁短路")
 	return TRUE
 
 
 /obj/machinery/power/emitter/prototype
-	name = "Prototype Emitter"
+	name = "原型发射器"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "protoemitter"
 	base_icon_state = "protoemitter"
@@ -451,16 +451,16 @@
 	. = ..()
 
 /datum/action/innate/proto_emitter/firing
-	name = "Switch to Manual Firing"
-	desc = "The emitter will only fire on your command and at your designated target"
+	name = "切换到手动射击"
+	desc = "发射器只会在你的命令下向你指定的目标发射"
 	button_icon_state = "mech_zoom_on"
 
 /datum/action/innate/proto_emitter/firing/Activate()
 	if(proto_emitter.manual)
 		playsound(proto_emitter,'sound/mecha/mechmove01.ogg', 50, TRUE)
 		proto_emitter.manual = FALSE
-		name = "Switch to Manual Firing"
-		desc = "The emitter will only fire on your command and at your designated target"
+		name = "切换到手动射击"
+		desc = "发射器只会在你的命令下向你指定的目标发射"
 		button_icon_state = "mech_zoom_on"
 		for(var/obj/item/item in buckled_mob.held_items)
 			if(istype(item, /obj/item/turret_control))
@@ -468,8 +468,8 @@
 		build_all_button_icons()
 		return
 	playsound(proto_emitter,'sound/mecha/mechmove01.ogg', 50, TRUE)
-	name = "Switch to Automatic Firing"
-	desc = "Emitters will switch to periodic firing at your last target"
+	name = "切换到自动射击"
+	desc = "发射器将转向周期性射击你的最后一个目标"
 	button_icon_state = "mech_zoom_off"
 	proto_emitter.manual = TRUE
 	for(var/things in buckled_mob.held_items)
@@ -486,7 +486,7 @@
 
 
 /obj/item/turret_control
-	name = "turret controls"
+	name = "炮塔控制"
 	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
@@ -549,7 +549,7 @@
 		playsound(src,'sound/machines/buzz-sigh.ogg', 50, TRUE)
 
 /obj/machinery/power/emitter/ctf
-	name = "Energy Cannon"
+	name = "激光加农"
 	active = TRUE
 	active_power_usage = 0
 	idle_power_usage = 0

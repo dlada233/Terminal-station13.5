@@ -6,8 +6,8 @@
 // three different channels (lighting/equipment/environ) - may each be set to on, off, or auto
 
 /obj/machinery/power/apc
-	name = "area power controller"
-	desc = "A control terminal for the area's electrical systems."
+	name = "APC-区域电力控制器"
+	desc = "区域电力系统的控制终端."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "apc0"
 	use_power = NO_POWER_USE
@@ -209,14 +209,14 @@
 
 	var/static/list/hovering_mob_typechecks = list(
 		/mob/living/silicon = list(
-			SCREENTIP_CONTEXT_CTRL_LMB = "Toggle power",
-			SCREENTIP_CONTEXT_ALT_LMB = "Toggle equipment power",
-			SCREENTIP_CONTEXT_SHIFT_LMB = "Toggle lighting power",
-			SCREENTIP_CONTEXT_CTRL_SHIFT_LMB = "Toggle environment power",
+			SCREENTIP_CONTEXT_CTRL_LMB = "开关电源",
+			SCREENTIP_CONTEXT_ALT_LMB = "开关设备电源",
+			SCREENTIP_CONTEXT_SHIFT_LMB = "开关照明电源",
+			SCREENTIP_CONTEXT_CTRL_SHIFT_LMB = "开关环境电源",
 		)
 	)
 
-	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Toggle interface lock")
+	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "切换界面锁定")
 	AddElement(/datum/element/contextual_screentip_mob_typechecks, hovering_mob_typechecks)
 	find_and_hang_on_wall()
 
@@ -280,24 +280,24 @@
 	. = ..()
 	if(machine_stat & BROKEN)
 		if(opened != APC_COVER_REMOVED)
-			. += "The cover is broken and can probably be <i>pried</i> off with enough force."
+			. += "面板盖坏了，得用足够大的力把它<i>撬开</i>."
 			return
 		if(terminal && has_electronics)
-			. += "The cover is missing but can be replaced using a new frame."
+			. += "这个面板盖不见了，但可以用一个新框架替换."
 		return
 	if(opened)
 		if(has_electronics && terminal)
-			. += "The cover is [opened == APC_COVER_REMOVED?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
+			. += "面板盖已经被[opened == APC_COVER_REMOVED?"移除":"打开"]并且电池已[ cell ? "安装" : "失踪"]."
 		else
-			. += {"It's [ !terminal ? "not" : "" ] wired up.\n
-			The electronics are[!has_electronics?"n't":""] installed."}
+			. += {"它[ !terminal ? "没" : "已" ]连线.\n
+			电子零件[!has_electronics?"没":"已"]安装."}
 	else
 		if(machine_stat & MAINT)
-			. += "The cover is closed. Something is wrong with it. It doesn't work."
+			. += "面板盖已关闭. 它有点问题，没在工作."
 		else if(malfhack)
-			. += "The cover is broken. It may be hard to force it open."
+			. += "面板盖已损坏. 可能很难强行打开它."
 		else
-			. += "The cover is closed."
+			. += "面板盖已关闭."
 
 /obj/machinery/power/apc/deconstruct(disassembled = TRUE)
 	if(obj_flags & NO_DECONSTRUCTION)
@@ -307,7 +307,7 @@
 	if(opened != APC_COVER_REMOVED)
 		opened = APC_COVER_REMOVED
 		coverlocked = FALSE
-		visible_message(span_warning("The APC cover is knocked down!"))
+		visible_message(span_warning("APC的面板盖被敲掉了!"))
 		update_appearance()
 
 /obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
@@ -336,7 +336,7 @@
 
 		"powerChannels" = list(
 			list(
-				"title" = "Equipment",
+				"title" = "设备",
 				"powerLoad" = display_power(lastused_equip),
 				"status" = equipment,
 				"topicParams" = list(
@@ -346,7 +346,7 @@
 				)
 			),
 			list(
-				"title" = "Lighting",
+				"title" = "照明",
 				"powerLoad" = display_power(lastused_light),
 				"status" = lighting,
 				"topicParams" = list(
@@ -356,7 +356,7 @@
 				)
 			),
 			list(
-				"title" = "Environment",
+				"title" = "环境",
 				"powerLoad" = display_power(lastused_environ),
 				"status" = environ,
 				"topicParams" = list(
@@ -375,8 +375,8 @@
 	remote_control_user = remote_user
 	ui_interact(remote_user)
 	remote_user.log_message("remotely accessed [src].", LOG_GAME)
-	say("Remote access detected.[locked ? " Interface unlocked." : ""]")
-	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Connected to [src]."))
+	say("检测到远程访问.[locked ? " 面板盖已解锁." : ""]")
+	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)]已连接到[src]."))
 	if(locked)
 		playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
 		locked = FALSE
@@ -388,8 +388,8 @@
 	if(isnull(remote_control_user))
 		return
 	locked = TRUE
-	say("Remote access canceled. Interface locked.")
-	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Disconnected from [src]."))
+	say("远程访问取消. 面板盖已锁定.")
+	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)]与[src]断开连接."))
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 	update_appearance()
@@ -409,7 +409,7 @@
 		if("lock")
 			if(usr.has_unlimited_silicon_privilege)
 				if((obj_flags & EMAGGED) || (machine_stat & (BROKEN|MAINT)) || remote_control_user)
-					to_chat(usr, span_warning("The APC does not respond to the command!"))
+					to_chat(usr, span_warning("APC未响应命令!"))
 				else
 					locked = !locked
 					update_appearance()
@@ -736,6 +736,6 @@
 
 /*Power module, used for APC construction*/
 /obj/item/electronics/apc
-	name = "power control module"
+	name = "电力控制模块"
 	icon_state = "power_mod"
-	desc = "Heavy-duty switching circuits for power control."
+	desc = "用于功率控制的开关电路."
