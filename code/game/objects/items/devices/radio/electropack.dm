@@ -1,5 +1,5 @@
 /obj/item/electropack
-	name = "electropack"
+	name = "电击背包"
 	desc = "Dance my monkeys! DANCE!!!"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "electropack0"

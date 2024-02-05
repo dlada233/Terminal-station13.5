@@ -379,7 +379,7 @@
 		var/blood_id = carbontarget.get_blood_id()
 		if(blood_id)
 			if(carbontarget.is_bleeding())
-				render_list += "<span class='alert ml-1'><b>对象正流血!</b></span>\n"
+				render_list += "<span class='alert ml-1'><b>对象正在流血!</b></span>\n"
 			var/blood_percent = round((carbontarget.blood_volume / BLOOD_VOLUME_NORMAL) * 100)
 			var/blood_type = carbontarget.dna.blood_type
 			if(blood_id != /datum/reagent/blood) // special blood substance
