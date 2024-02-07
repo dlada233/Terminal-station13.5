@@ -1,5 +1,5 @@
 /obj/item/autosurgeon
-	name = "autosurgeon"
+	name = "全自动手术仪"
 	desc = "A device that automatically inserts an implant, skillchip or organ into the user without the hassle of extensive surgery. \
 		It has a slot to insert implants or organs and a screwdriver slot for removing accidentally added items."
 	icon = 'icons/obj/devices/tool.dmi'
@@ -137,7 +137,7 @@
 	return TRUE
 
 /obj/item/autosurgeon/medical_hud
-	name = "autosurgeon"
+	name = "全自动手术仪"
 	desc = "A single use autosurgeon that contains a medical heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
 	uses = 1
 	starting_organ = /obj/item/organ/internal/cyberimp/eyes/hud/medical

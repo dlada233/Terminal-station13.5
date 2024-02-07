@@ -1,10 +1,10 @@
 /datum/quirk/item_quirk/signer
-	name = "Signer"
-	desc = "You possess excellent communication skills in sign language."
+	name = "Signer-手语者"
+	desc = "你掌握优秀的手语沟通技术."
 	icon = FA_ICON_HANDS
 	value = 4
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
-	medical_record_text = "Patient can communicate with sign language."
+	medical_record_text = "患者可通过手语进行沟通."
 	mail_goodies = list(/obj/item/clothing/gloves/radio)
 
 /datum/quirk/item_quirk/signer/add_unique(client/client_source)

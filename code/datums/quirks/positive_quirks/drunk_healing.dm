@@ -1,11 +1,11 @@
 /datum/quirk/drunkhealing
-	name = "Drunken Resilience"
-	desc = "Nothing like a good drink to make you feel on top of the world. Whenever you're drunk, you slowly recover from injuries."
+	name = "Drunken Resilience-醉酒韧性"
+	desc = "没有什么比一杯好酒更能让你感到快乐的了。每当你喝醉了，就能慢慢恢复你的伤口。."
 	icon = FA_ICON_WINE_BOTTLE
 	value = 8
-	gain_text = span_notice("You feel like a drink would do you good.")
-	lose_text = span_danger("You no longer feel like drinking would ease your pain.")
-	medical_record_text = "Patient has unusually efficient liver metabolism and can slowly regenerate wounds by drinking alcoholic beverages."
+	gain_text = span_notice("你感到喝上一杯对你有益健康.")
+	lose_text = span_danger("你不再感到能靠酒精消去你的苦痛.")
+	medical_record_text = "患者的肝脏代谢功能异常高效，能通过饮酒来促进伤口缓慢再生."
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
 	mail_goodies = list(/obj/effect/spawner/random/food_or_drink/booze)
 

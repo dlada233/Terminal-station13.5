@@ -278,12 +278,12 @@
 	high_light_cutoff = list(0, 40, 50)
 
 /obj/item/organ/internal/eyes/zombie
-	name = "undead eyes"
+	name = "不死眼-undead eyes"
 	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
 	color_cutoffs = list(25, 35, 5)
 
 /obj/item/organ/internal/eyes/alien
-	name = "alien eyes"
+	name = "异星眼睛-alien eyes"
 	desc = "It turned out they had them after all!"
 	sight_flags = SEE_MOBS
 	color_cutoffs = list(25, 5, 42)
@@ -315,7 +315,7 @@
 ///Robotic
 
 /obj/item/organ/internal/eyes/robotic
-	name = "robotic eyes"
+	name = "机械眼-robotic eyes"
 	icon_state = "cybernetic_eyeballs"
 	desc = "Your vision is augmented."
 	organ_flags = ORGAN_ROBOTIC
@@ -331,7 +331,7 @@
 	owner.flash_act(visual = 1)
 
 /obj/item/organ/internal/eyes/robotic/basic
-	name = "basic robotic eyes"
+	name = "基础机械眼-basic robotic eyes"
 	desc = "A pair of basic cybernetic eyes that restore vision, but at some vulnerability to light."
 	eye_color_left = "5500ff"
 	eye_color_right = "5500ff"
@@ -348,8 +348,8 @@
 		owner.emote("scream")
 
 /obj/item/organ/internal/eyes/robotic/xray
-	name = "\improper X-ray eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	name = "\improper X光眼-X-ray eyes"
+	desc = "这对电子眼球会带给你X射线视觉.眨眼变得毫无意义."
 	eye_color_left = "000"
 	eye_color_right = "000"
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
@@ -363,8 +363,8 @@
 	REMOVE_TRAIT(eye_owner, TRAIT_XRAY_VISION, ORGAN_TRAIT)
 
 /obj/item/organ/internal/eyes/robotic/thermals
-	name = "thermal eyes"
-	desc = "These cybernetic eye implants will give you thermal vision. Vertical slit pupil included."
+	name = "热成像眼-thermal eyes"
+	desc = "这对电子眼球会带给你热视觉.带有缝状竖瞳."
 	eye_color_left = "FC0"
 	eye_color_right = "FC0"
 	// We're gonna downshift green and blue a bit so darkness looks yellow
@@ -373,7 +373,7 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/flashlight
-	name = "flashlight eyes"
+	name = "灯泡眼-flashlight eyes"
 	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
 	eye_color_left ="fee5a3"
 	eye_color_right ="fee5a3"
@@ -404,8 +404,8 @@
 
 // Welding shield implant
 /obj/item/organ/internal/eyes/robotic/shield
-	name = "shielded robotic eyes"
-	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
+	name = "机械屏障眼-shielded robotic eyes"
+	desc = "这些反应式微型屏障会保护你的眼睛免受焊光和闪光弹的伤害，并且不会减弱你的视力."
 	flash_protect = FLASH_PROTECTION_WELDER
 
 /obj/item/organ/internal/eyes/robotic/shield/emp_act(severity)
@@ -680,34 +680,34 @@
 #undef UPDATE_EYES_RIGHT
 
 /obj/item/organ/internal/eyes/moth
-	name = "moth eyes"
+	name = "蛾眼-moth eyes"
 	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-moth"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/moth
-	name = "robotic moth eyes"
+	name = "机械蛾眼-robotic moth eyes"
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-cybermoth"
 	desc = "Your vision is augmented. Much like actual moth eyes, very sensitive to bright lights."
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/basic/moth
-	name = "basic robotic moth eyes"
+	name = "基础机械蛾眼-basic robotic moth eyes"
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-cybermoth"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/xray/moth
-	name = "robotic eyes"
+	name = "X光机械蛾眼-robotic eyes"
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-cybermoth"
 	desc = "These cybernetic imitation moth eyes will give you X-ray vision. Blinking is futile. Much like actual moth eyes, very sensitive to bright lights."
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/shield/moth
-	name = "shielded robotic moth eyes"
+	name = "机械屏障蛾眼-shielded robotic moth eyes"
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-cybermoth"
 
@@ -720,7 +720,7 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/thermals/moth //we inherit flash weakness from thermals
-	name = "thermal moth eyes"
+	name = "热成像蛾眼-thermal moth eyes"
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-cybermoth"
 

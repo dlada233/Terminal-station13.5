@@ -48,7 +48,7 @@ export const LanguagesPage = (props) => {
   return (
     <Stack>
       <Stack.Item minWidth="33%">
-        <Section title="Available Languages">
+        <Section title="可掌握语言">
           <Stack vertical>
             {data.unselected_languages.map((val) => (
               <UnknownLanguage key={val.icon} language={val} />
@@ -59,18 +59,18 @@ export const LanguagesPage = (props) => {
       <Stack.Item minWidth="33%">
         <Section
           title={
-            'Points: ' +
+            '语言点数: ' +
             data.selected_languages.length +
             '/' +
             data.total_language_points
           }
         >
-          Here, you can purchase languages using a point buy system. Each
-          Language is worth 1 point.
+          你可以在此处通过语言点来掌握不同语言系统.每
+          种语言消耗1点.
         </Section>
       </Stack.Item>
       <Stack.Item minWidth="33%">
-        <Section title="Known Languages">
+        <Section title="已掌握语言">
           <Stack vertical>
             {data.selected_languages.map((val) => (
               <KnownLanguage key={val.icon} language={val} />

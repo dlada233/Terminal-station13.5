@@ -53,7 +53,7 @@ const CharacterControls = (props: {
           onClick={props.handleRotate}
           fontSize="22px"
           icon="undo"
-          tooltip="Rotate"
+          tooltip="旋转"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -63,7 +63,7 @@ const CharacterControls = (props: {
           onClick={props.handleOpenSpecies}
           fontSize="22px"
           icon="paw"
-          tooltip="Species"
+          tooltip="物种"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -83,7 +83,7 @@ const CharacterControls = (props: {
             onClick={props.handleLoadout}
             fontSize="22px"
             icon="suitcase"
-            tooltip="Show Loadout Menu"
+            tooltip="显示预设物品菜单"
             tooltipPosition="top"
           />
         </Stack.Item>
@@ -248,7 +248,7 @@ const GenderButton = (props: {
         }}
         fontSize="22px"
         icon={GENDERS[props.gender].icon}
-        tooltip="Gender"
+        tooltip="性别"
         tooltipPosition="top"
       />
     </Popper>

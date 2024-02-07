@@ -99,7 +99,7 @@ export const CharacterPreferenceWindow = (props) => {
   }
 
   return (
-    <Window title="Character Preferences" width={920} height={770}>
+    <Window title="角色预设" width={920} height={770}>
       <Window.Content scrollable>
         <Stack vertical fill>
           <Stack.Item>
@@ -116,7 +116,7 @@ export const CharacterPreferenceWindow = (props) => {
 
           {!data.content_unlocked && (
             <Stack.Item align="center">
-              Buy BYOND premium for more slots!
+              成为BYOND高级用户,获得更多角色预设槽位!
             </Stack.Item>
           )}
 
@@ -131,7 +131,7 @@ export const CharacterPreferenceWindow = (props) => {
                   setPage={setCurrentPage}
                   otherActivePages={[Page.Species]}
                 >
-                  Character
+                  角色
                 </PageButton>
               </Stack.Item>
 
@@ -145,7 +145,7 @@ export const CharacterPreferenceWindow = (props) => {
                     Fun fact: This isn't "Jobs" so that it intentionally
                     catches your eyes, because it's really important!
                   */}
-                  Occupations
+                  职业偏好
                 </PageButton>
               </Stack.Item>
               {
@@ -157,7 +157,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Limbs}
                   setPage={setCurrentPage}
                 >
-                  Augments+
+                  身体附件
                 </PageButton>
               </Stack.Item>
 
@@ -167,7 +167,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Languages}
                   setPage={setCurrentPage}
                 >
-                  Languages
+                  语言
                 </PageButton>
               </Stack.Item>
               {
@@ -179,7 +179,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Antags}
                   setPage={setCurrentPage}
                 >
-                  Antagonists
+                  反派
                 </PageButton>
               </Stack.Item>
 
@@ -189,7 +189,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Quirks}
                   setPage={setCurrentPage}
                 >
-                  Quirks
+                  特质
                 </PageButton>
               </Stack.Item>
             </Stack>

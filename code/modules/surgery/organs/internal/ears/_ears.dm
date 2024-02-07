@@ -1,5 +1,5 @@
 /obj/item/organ/internal/ears
-	name = "ears"
+	name = "耳朵-ears"
 	icon_state = "ears"
 	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
 	zone = BODY_ZONE_HEAD
@@ -10,10 +10,10 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
-	low_threshold_passed = "<span class='info'>Your ears begin to resonate with an internal ring sometimes.</span>"
-	now_failing = "<span class='warning'>You are unable to hear at all!</span>"
-	now_fixed = "<span class='info'>Noise slowly begins filling your ears once more.</span>"
-	low_threshold_cleared = "<span class='info'>The ringing in your ears has died down.</span>"
+	low_threshold_passed = "<span class='info'>你的耳朵有时随着内部的嗡嗡声共鸣起来.</span>"
+	now_failing = "<span class='warning'>你听不见任何声音!</span>"
+	now_fixed = "<span class='info'>噪音慢慢再次塞满你的耳朵.</span>"
+	low_threshold_cleared = "<span class='info'>耳鸣声消失了.</span>"
 
 	// `deaf` measures "ticks" of deafness. While > 0, the person is unable
 	// to hear anything.
@@ -61,7 +61,7 @@
 	damage_multiplier = 0
 
 /obj/item/organ/internal/ears/cat
-	name = "cat ears"
+	name = "猫耳-cat ears"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "kitty"
@@ -88,8 +88,8 @@
 //SKYRAT EDIT REMOVAL END
 
 /obj/item/organ/internal/ears/penguin
-	name = "penguin ears"
-	desc = "The source of a penguin's happy feet."
+	name = "企鹅耳-penguin ears"
+	desc = "企鹅们快乐舞步的源泉."
 
 /obj/item/organ/internal/ears/penguin/on_mob_insert(mob/living/carbon/human/ear_owner)
 	. = ..()
@@ -104,23 +104,23 @@
 		ear_owner.RemoveElement(/datum/element/waddling)
 
 /obj/item/organ/internal/ears/cybernetic
-	name = "basic cybernetic ears"
+	name = "初级电子耳-basic cybernetic ears"
 	icon_state = "ears-c"
 	desc = "A basic cybernetic organ designed to mimic the operation of ears."
 	damage_multiplier = 0.9
 	organ_flags = ORGAN_ROBOTIC
-	failing_desc = "seems to be broken."
+	failing_desc = "似乎坏掉了."
 
 /obj/item/organ/internal/ears/cybernetic/upgraded
-	name = "cybernetic ears"
+	name = "电子耳-cybernetic ears"
 	icon_state = "ears-c-u"
 	desc =  "An advanced cybernetic ear, surpassing the performance of organic ears."
 	damage_multiplier = 0.5
 
 /obj/item/organ/internal/ears/cybernetic/whisper
-	name = "whisper-sensitive cybernetic ears"
+	name = "微敏电子耳-whisper-sensitive cybernetic ears"
 	icon_state = "ears-c-u"
-	desc = "Allows the user to more easily hear whispers. The user becomes extra vulnerable to loud noises, however"
+	desc = "使用者可以更轻松地听到人们的低声耳语，但也会更加容易被巨大噪音伤害"
 	// Same sensitivity as felinid ears
 	damage_multiplier = 2
 
@@ -136,9 +136,9 @@
 
 // "X-ray ears" that let you hear through walls
 /obj/item/organ/internal/ears/cybernetic/xray
-	name = "wall-penetrating cybernetic ears"
+	name = "穿墙电子耳-wall-penetrating cybernetic ears"
 	icon_state = "ears-c-u"
-	desc = "Throguh the power of modern engineering, allows the user to hear speech through walls. The user becomes extra vulnerable to loud noises, however"
+	desc = "得益于现代工程技术，使用者可以透过墙壁听到人们的讲话声.但也会更加容易被巨大噪音伤害"
 	// Same sensitivity as felinid ears
 	damage_multiplier = 2
 

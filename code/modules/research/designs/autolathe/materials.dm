@@ -1,5 +1,5 @@
 /datum/design/iron
-	name = "Iron"
+	name = "铁-iron"
 	id = "iron"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
@@ -11,7 +11,7 @@
 	maxstack = 50
 
 /datum/design/rods
-	name = "Iron Rod"
+	name = "铁棒-Iron Rod"
 	id = "rods"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT)
@@ -23,7 +23,7 @@
 	maxstack = 50
 
 /datum/design/glass
-	name = "Glass"
+	name = "玻璃-Glass"
 	id = "glass"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
@@ -35,7 +35,7 @@
 	maxstack = 50
 
 /datum/design/rglass
-	name = "Reinforced Glass"
+	name = "强化玻璃-Reinforced Glass"
 	id = "rglass"
 	build_type = AUTOLATHE | SMELTER | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT)
@@ -48,7 +48,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/silver
-	name = "Silver"
+	name = "银-Silver"
 	id = "silver"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
@@ -60,7 +60,7 @@
 	maxstack = 50
 
 /datum/design/gold
-	name = "Gold"
+	name = "金-Gold"
 	id = "gold"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT)
@@ -72,7 +72,7 @@
 	maxstack = 50
 
 /datum/design/diamond
-	name = "Diamond"
+	name = "钻石-Diamond"
 	id = "diamond"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT)
@@ -84,7 +84,7 @@
 	maxstack = 50
 
 /datum/design/plasma
-	name = "Plasma"
+	name = "等离子-Plasma"
 	id = "plasma"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plasma = SHEET_MATERIAL_AMOUNT)
@@ -96,7 +96,7 @@
 	maxstack = 50
 
 /datum/design/uranium
-	name = "Uranium"
+	name = "铀-Uranium"
 	id = "uranium"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/uranium = SHEET_MATERIAL_AMOUNT)
@@ -108,7 +108,7 @@
 	maxstack = 50
 
 /datum/design/bananium
-	name = "Bananium"
+	name = "蕉矿-Bananium"
 	id = "bananium"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/bananium = SHEET_MATERIAL_AMOUNT)
@@ -120,7 +120,7 @@
 	maxstack = 50
 
 /datum/design/titanium
-	name = "Titanium"
+	name = "钛钢-Titanium"
 	id = "titanium"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT)
@@ -132,7 +132,7 @@
 	maxstack = 50
 
 /datum/design/plastic
-	name = "Plastic"
+	name = "塑料-Plastic"
 	id = "plastic"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT)

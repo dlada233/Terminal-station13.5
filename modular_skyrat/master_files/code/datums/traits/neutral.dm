@@ -11,11 +11,11 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 // SKYRAT NEUTRAL TRAITS
 /datum/quirk/excitable
-	name = "Excitable!"
-	desc = "Head patting makes your tail wag! You're very excitable! WAG WAG."
-	gain_text = span_notice("You crave for some headpats!")
-	lose_text = span_notice("You no longer care for headpats all that much.")
-	medical_record_text = "Patient seems to get excited easily."
+	name = "Excitable!-容易兴奋!"
+	desc = "摸摸头就会让你摇尾巴！好兴奋啊！摇尾巴摇尾巴."
+	gain_text = span_notice("你渴望有人摸摸你的头!")
+	lose_text = span_notice("你不再像以前那样渴望有人摸头了.")
+	medical_record_text = "病人似乎很容易兴奋."
 	value = 0
 	mob_trait = TRAIT_EXCITABLE
 	icon = FA_ICON_LAUGH_BEAM
@@ -31,21 +31,21 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	icon = FA_ICON_CIRCLE_EXCLAMATION
 
 /datum/quirk/personalspace
-	name = "Personal Space"
-	desc = "You'd rather people keep their hands off your rear end."
-	gain_text = span_notice("You'd like it if people kept their hands off your butt.")
-	lose_text = span_notice("You're less concerned about people touching your butt.")
+	name = "Personal Space-私人空间"
+	desc = "你不希望别人碰你的屁股."
+	gain_text = span_notice("你希望别人不要碰你的屁股.")
+	lose_text = span_notice("你不再那么介意别人碰你的屁股了.")
 	medical_record_text = "Patient demonstrates negative reactions to their posterior being touched."
 	value = 0
 	mob_trait = TRAIT_PERSONALSPACE
 	icon = FA_ICON_HAND_PAPER
 
 /datum/quirk/dnr
-	name = "Do Not Revive"
-	desc = "For whatever reason, you cannot be revived in any way."
-	gain_text = span_notice("Your spirit gets too scarred to accept revival.")
-	lose_text = span_notice("You can feel your soul healing again.")
-	medical_record_text = "Patient is a DNR, and cannot be revived in any way."
+	name = "Do Not Revive-请勿复活"
+	desc = "无论出于何种原因，你无法被复活."
+	gain_text = span_notice("你的灵魂伤痕累累，无法接受复活.")
+	lose_text = span_notice("你能感到你的灵魂恢复如初.")
+	medical_record_text = "该患者为 DNR (Do Not Resuscitate，禁止心肺复苏)，任何复活措施均无效."
 	value = 0
 	mob_trait = TRAIT_DNR
 	icon = FA_ICON_SKULL_CROSSBONES
@@ -93,11 +93,11 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 // uncontrollable laughter
 /datum/quirk/item_quirk/joker
-	name = "Pseudobulbar Affect"
-	desc = "At random intervals, you suffer uncontrollable bursts of laughter."
+	name = "Pseudobulbar Affect-假性延髓情感反应"
+	desc = "每隔一段时间，你会无法控制的哈哈大笑."
 	value = 0
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
-	medical_record_text = "Patient suffers with sudden and uncontrollable bursts of laughter."
+	medical_record_text = "患者会突然控制不住的哈哈大笑."
 	var/pcooldown = 0
 	var/pcooldown_time = 60 SECONDS
 	icon = FA_ICON_GRIN_TEARS
@@ -118,10 +118,10 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 				addtimer(CALLBACK(user, /mob/proc/emote, "laugh"), 10 SECONDS)
 
 /obj/item/paper/joker
-	name = "disability card"
+	name = "disability card-残疾证"
 	icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	icon_state = "joker"
-	desc = "Smile, though your heart is aching."
+	desc = "即使心痛，也微笑吧."
 	default_raw_text = "<i>\
 			<div style='border-style:solid;text-align:center;border-width:5px;margin: 20px;margin-bottom:0px'>\
 			<div style='margin-top:20px;margin-bottom:20px;font-size:150%;'>\
@@ -276,13 +276,13 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	icon = FA_ICON_FINGERPRINT
 
 /datum/quirk/overweight
-	name = "Overweight"
-	desc = "You weigh more than an average person at your size, you've gotten used to it by now."
-	gain_text = span_notice("Your body feels heavy.")
-	lose_text = span_notice("Your suddenly feel lighter!")
+	name = "Overweight-肥胖"
+	desc = "虽然你比同身高的人重，但你已经习惯了."
+	gain_text = span_notice("你感到身体很重.")
+	lose_text = span_notice("你突然感觉身体变得轻盈!")
 	value = 0
 	icon = FA_ICON_HAMBURGER // I'm very hungry. Give me the burger!
-	medical_record_text = "Patient weighs higher than average."
+	medical_record_text = "患者的体重高于平均值."
 	mob_trait = TRAIT_FAT
 
 /datum/quirk/overweight/add(client/client_source)
@@ -298,4 +298,4 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	. = ..()
 	if(HAS_TRAIT_FROM(parent_mob, TRAIT_FAT, QUIRK_TRAIT))
 		mood_change = 0 // They are probably used to it, no reason to be viscerally upset about it.
-		description = "<b>I'm fat.</b>"
+		description = "<b>我胖了.</b>"

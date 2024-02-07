@@ -2,7 +2,7 @@
 #define STOMACH_METABOLISM_CONSTANT 0.25
 
 /obj/item/organ/internal/stomach
-	name = "stomach"
+	name = "胃-stomach"
 	desc = "Onaka ga suite imasu."
 	icon_state = "stomach"
 	visual = FALSE
@@ -273,21 +273,21 @@
 	return ..()
 
 /obj/item/organ/internal/stomach/bone
-	name = "mass of bones"
-	desc = "You have no idea what this strange ball of bones does."
+	name = "骨囊-mass of bones"
+	desc = "这个怪异的骨囊让你一头雾水."
 	icon_state = "stomach-bone"
 	metabolism_efficiency = 0.025 //very bad
 	organ_traits = list(TRAIT_NOHUNGER)
 
 /obj/item/organ/internal/stomach/bone/plasmaman
-	name = "digestive crystal"
+	name = "消化晶体-digestive crystal"
 	desc = "A strange crystal that is responsible for metabolizing the unseen energy force that feeds plasmamen."
 	icon_state = "stomach-p"
 	metabolism_efficiency = 0.06
 	organ_traits = null
 
 /obj/item/organ/internal/stomach/cybernetic
-	name = "basic cybernetic stomach"
+	name = "初级电子胃-basic cybernetic stomach"
 	desc = "A basic device designed to mimic the functions of a human stomach"
 	failing_desc = "seems to be broken."
 	icon_state = "stomach-c"
@@ -307,8 +307,8 @@
 		organ_flags |= ORGAN_EMP //Starts organ faliure - gonna need replacing soon.
 
 /obj/item/organ/internal/stomach/cybernetic/tier2
-	name = "cybernetic stomach"
-	desc = "An electronic device designed to mimic the functions of a human stomach. Handles disgusting food a bit better."
+	name = "电子胃-cybernetic stomach"
+	desc = "一块模拟人体胃部功能的电子设备.能略微更好地处理恶心的食物."
 	icon_state = "stomach-c-u"
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	disgust_metabolism = 2
@@ -316,8 +316,8 @@
 	metabolism_efficiency = 0.07
 
 /obj/item/organ/internal/stomach/cybernetic/tier3
-	name = "upgraded cybernetic stomach"
-	desc = "An upgraded version of the cybernetic stomach, designed to improve further upon organic stomachs. Handles disgusting food very well."
+	name = "高级电子胃-upgraded cybernetic stomach"
+	desc = "电子胃的高级版本. 旨在进一步改善有机胃的功能，在处理恶心食物的方面表现很出色."
 	icon_state = "stomach-c-u2"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	disgust_metabolism = 3
@@ -325,8 +325,8 @@
 	metabolism_efficiency = 0.1
 
 /obj/item/organ/internal/stomach/cybernetic/surplus
-	name = "surplus prosthetic stomach"
-	desc = "A mechanical plastic oval that utilizes sulfuric acid instead of stomach acid. \
+	name = "盈余人工胃-surplus prosthetic stomach"
+	desc = "一块塑料制成的椭圆形机械装置，使用硫酸代替胃酸.脆弱不堪，且新陈代谢极其缓慢.完全无法抵御电磁脉冲的攻击. \
 		Very fragile, with painfully slow metabolism.\
 		Offers no protection against EMPs."
 	icon_state = "stomach-c-s"
