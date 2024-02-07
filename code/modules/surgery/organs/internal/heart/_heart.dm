@@ -1,5 +1,5 @@
 /obj/item/organ/internal/heart
-	name = "heart"
+	name = "心脏-heart"
 	desc = "I feel bad for the heartless bastard who lost this."
 	icon_state = "heart-on"
 	base_icon_state = "heart"
@@ -127,8 +127,8 @@
 	return owner_species.mutantheart
 
 /obj/item/organ/internal/heart/cursed
-	name = "cursed heart"
-	desc = "A heart that, when inserted, will force you to pump it manually."
+	name = "诅咒之心-cursed heart"
+	desc = "一颗心脏，植入后必须手动泵血."
 	icon_state = "cursedheart-off"
 	base_icon_state = "cursedheart"
 	decay_factor = 0
@@ -157,7 +157,7 @@
 	qdel(accursed.GetComponent(/datum/component/manual_heart))
 
 /obj/item/organ/internal/heart/cybernetic
-	name = "basic cybernetic heart"
+	name = "初级电子心-basic cybernetic heart"
 	desc = "A basic electronic device designed to mimic the functions of an organic human heart."
 	icon_state = "heart-c-on"
 	base_icon_state = "heart-c"
@@ -202,7 +202,7 @@
 	dose_available = FALSE
 
 /obj/item/organ/internal/heart/cybernetic/tier2
-	name = "cybernetic heart"
+	name = "电子心-cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma."
 	icon_state = "heart-c-u-on"
 	base_icon_state = "heart-c-u"
@@ -211,8 +211,8 @@
 	emp_vulnerability = 40
 
 /obj/item/organ/internal/heart/cybernetic/tier3
-	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma. This upgraded model can regenerate its dose after use."
+	name = "高级电子心-upgraded cybernetic heart"
+	desc = "一个设计用于模拟人体心脏功能的电子设备. 储存有应急肾上腺素，在面临严重创伤时自动启用. 这款升级型号会在使用后自动补充."
 	icon_state = "heart-c-u2-on"
 	base_icon_state = "heart-c-u2"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
@@ -224,9 +224,8 @@
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
 
 /obj/item/organ/internal/heart/cybernetic/surplus
-	name = "surplus prosthetic heart"
-	desc = "A fragile mockery of a human heart that resembles a water pump more than an actual heart. \
-		Offers no protection against EMPs."
+	name = "盈余人工心-surplus prosthetic heart"
+	desc = "这颗脆弱得可笑的仿生心脏更像是个水泵，而不是一颗真实的心脏.完全无法抵御电磁脉冲的攻击."
 	icon_state = "heart-c-s-on"
 	base_icon_state = "heart-c-s"
 	maxHealth = STANDARD_ORGAN_THRESHOLD*0.5
@@ -238,8 +237,8 @@
 	AddElement(/datum/element/dangerous_surgical_removal)
 
 /obj/item/organ/internal/heart/freedom
-	name = "heart of freedom"
-	desc = "This heart pumps with the passion to give... something freedom."
+	name = "自由之心-heart of freedom"
+	desc = "这颗心怀揣着给予一切自由的热情,不断跳动着."
 	organ_flags = ORGAN_ROBOTIC  //the power of freedom prevents heart attacks
 	/// The cooldown until the next time this heart can give the host an adrenaline boost.
 	COOLDOWN_DECLARE(adrenaline_cooldown)
@@ -248,7 +247,7 @@
 	. = ..()
 	if(owner.health < 5 && COOLDOWN_FINISHED(src, adrenaline_cooldown))
 		COOLDOWN_START(src, adrenaline_cooldown, rand(25 SECONDS, 1 MINUTES))
-		to_chat(owner, span_userdanger("You feel yourself dying, but you refuse to give up!"))
+		to_chat(owner, span_userdanger("你感觉到自己正在死去，但是你不甘认输!"))
 		owner.heal_overall_damage(brute = 15, burn = 15, required_bodytype = BODYTYPE_ORGANIC)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)

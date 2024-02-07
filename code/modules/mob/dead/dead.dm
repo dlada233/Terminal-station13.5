@@ -35,16 +35,16 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		return
 	var/time_remaining = SSticker.GetTimeLeft()
 	if(time_remaining > 0)
-		. += "Time To Start: [round(time_remaining/10)]s"
+		. += "回合开始: [round(time_remaining/10)]s"
 	else if(time_remaining == -10)
-		. += "Time To Start: DELAYED"
+		. += "回合开始: 已延迟"
 	else
-		. += "Time To Start: SOON"
+		. += "回合开始: 即将开始"
 
-	. += "Players: [LAZYLEN(GLOB.clients)]"
+	. += "玩家数: [LAZYLEN(GLOB.clients)]"
 	if(client.holder)
-		. += "Players Ready: [SSticker.totalPlayersReady]"
-		. += "Admins Ready: [SSticker.total_admins_ready] / [length(GLOB.admins)]"
+		. += "已准备人数: [SSticker.totalPlayersReady]"
+		. += "已准备管理员数: [SSticker.total_admins_ready] / [length(GLOB.admins)]"
 
 #define SERVER_HOPPER_TRAIT "server_hopper"
 

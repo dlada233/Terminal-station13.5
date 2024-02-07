@@ -1,12 +1,12 @@
 /datum/quirk/item_quirk/musician
-	name = "Musician"
-	desc = "You can tune handheld musical instruments to play melodies that clear certain negative effects and soothe the soul."
+	name = "Musician-音乐家"
+	desc = "你能调谐手中乐器，为听众演奏出旋律，抚平负面影响和抚慰心灵。."
 	icon = FA_ICON_GUITAR
 	value = 2
 	mob_trait = TRAIT_MUSICIAN
-	gain_text = span_notice("You know everything about musical instruments.")
-	lose_text = span_danger("You forget how musical instruments work.")
-	medical_record_text = "Patient brain scans show a highly-developed auditory pathway."
+	gain_text = span_notice("你对乐器无比通晓.")
+	lose_text = span_danger("你忘了如何弹奏乐器.")
+	medical_record_text = "脑部扫描显示患者的听觉通路高度发达."
 	mail_goodies = list(/obj/effect/spawner/random/entertainment/musical_instrument, /obj/item/instrument/piano_synth/headphones)
 
 /datum/quirk/item_quirk/musician/add_unique(client/client_source)

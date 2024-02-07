@@ -39,65 +39,65 @@
  */
 
 //No department
-#define JOB_ASSISTANT "Assistant-助手"
-#define JOB_PRISONER "Prisoner-囚犯"
+#define JOB_ASSISTANT "助手-Assistant"
+#define JOB_PRISONER "囚犯-Prisoner"
 //Command
-#define JOB_CAPTAIN "Captain-舰长"
-#define JOB_HEAD_OF_PERSONNEL "Head Of Personnel-人事部长"
-#define JOB_HEAD_OF_SECURITY "Head of Security-安保首长"
-#define JOB_RESEARCH_DIRECTOR "Research Director-研究主管"
-#define JOB_CHIEF_ENGINEER "Chief Engineer-工程师长"
-#define JOB_CHIEF_MEDICAL_OFFICER "Chief Medical Officer-首席医疗官"
-#define JOB_BRIDGE_ASSISTANT "Bridge Assistant-舰桥助手"
+#define JOB_CAPTAIN "舰长-Captain"
+#define JOB_HEAD_OF_PERSONNEL "人事部长-Head Of Personnel"
+#define JOB_HEAD_OF_SECURITY "安保部长-Head of Security"
+#define JOB_RESEARCH_DIRECTOR "研究主管-Research Director"
+#define JOB_CHIEF_ENGINEER "首席工程师-Chief Engineer"
+#define JOB_CHIEF_MEDICAL_OFFICER "首席医疗官-Chief Medical Officer"
+#define JOB_BRIDGE_ASSISTANT "舰桥助理-Bridge Assistant"
 //Silicon
 #define JOB_AI "AI"
-#define JOB_CYBORG "Cyborg"
-#define JOB_PERSONAL_AI "Personal AI"
+#define JOB_CYBORG "塞博-Cyborg"
+#define JOB_PERSONAL_AI "个人AI-Personal AI"
 //Security
-#define JOB_WARDEN "Warden-典狱官"
-#define JOB_DETECTIVE "Detective-侦探"
-#define JOB_SECURITY_OFFICER "Security Officer-警员"
-#define JOB_SECURITY_OFFICER_MEDICAL "Security Officer (Medical)"
-#define JOB_SECURITY_OFFICER_ENGINEERING "Security Officer (Engineering)"
-#define JOB_SECURITY_OFFICER_SCIENCE "Security Officer (Science)"
-#define JOB_SECURITY_OFFICER_SUPPLY "Security Officer (Cargo)"
-#define JOB_CORRECTIONS_OFFICER "Corrections Officer-狱警" // SKYRAT EDIT ADDITION
+#define JOB_WARDEN "典狱长-Warden"
+#define JOB_DETECTIVE "侦探-Detective"
+#define JOB_SECURITY_OFFICER "安全官-Security Officer"
+#define JOB_SECURITY_OFFICER_MEDICAL "安全官 (医疗)-Security Officer (Medical)"
+#define JOB_SECURITY_OFFICER_ENGINEERING "安全官 (工程)-Security Officer (Engineering)"
+#define JOB_SECURITY_OFFICER_SCIENCE "安全官 (科研)-Security Officer (Science)"
+#define JOB_SECURITY_OFFICER_SUPPLY "安全官 (货舱)-Security Officer (Cargo)"
+#define JOB_CORRECTIONS_OFFICER "狱警-Corrections Officer" // SKYRAT EDIT ADDITION
 //Engineering
-#define JOB_STATION_ENGINEER "Engineer-工程师"
-#define JOB_ATMOSPHERIC_TECHNICIAN "Atmospheric Technician-大气技工"
-#define JOB_ENGINEERING_GUARD "Engineering Guard-工程保全" // SKYRAT EDIT ADDITION
+#define JOB_STATION_ENGINEER "工程师-Engineer"
+#define JOB_ATMOSPHERIC_TECHNICIAN "大气技术员-Atmospheric Technician"
+#define JOB_ENGINEERING_GUARD "工程安保-Engineering Guard" // SKYRAT EDIT ADDITION
 //Medical
-#define JOB_CORONER "Coroner-验尸官"
-#define JOB_MEDICAL_DOCTOR "Medical Doctor-医生"
-#define JOB_PARAMEDIC "Paramedic-急救员"
-#define JOB_CHEMIST "Chemist-化学家"
-#define JOB_VIROLOGIST "Virologist-病毒学家"
-#define JOB_ORDERLY "Orderly-安全医官" // SKYRAT EDIT ADDITION
+#define JOB_CORONER "验尸官-Coroner"
+#define JOB_MEDICAL_DOCTOR "医生-Medical Doctor"
+#define JOB_PARAMEDIC "急救员-Paramedic"
+#define JOB_CHEMIST "化学家-Chemist"
+#define JOB_VIROLOGIST "病毒学家-Virologist"
+#define JOB_ORDERLY "护理员-Orderly" // SKYRAT EDIT ADDITION
 //Science
-#define JOB_SCIENTIST "Scientist-研究员"
-#define JOB_ROBOTICIST "Roboticist-机械学者"
-#define JOB_GENETICIST "Geneticist-基因学家"
-#define JOB_SCIENCE_GUARD "Science Guard-科研安保"
+#define JOB_SCIENTIST "科学家-Scientist"
+#define JOB_ROBOTICIST "机械学家-Roboticist"
+#define JOB_GENETICIST "基因学家-Geneticist"
+#define JOB_SCIENCE_GUARD "科研安保-Science Guard"
 //Supply
-#define JOB_QUARTERMASTER "Quartermaster-军需官"
-#define JOB_CARGO_TECHNICIAN "Cargo Technician-货仓技工"
-#define JOB_CARGO_GORILLA "Cargo Gorilla"
-#define JOB_SHAFT_MINER "Shaft Miner-竖井矿工"
-#define JOB_BITRUNNER "Bitrunner-比特矿工"
-#define JOB_CUSTOMS_AGENT "Customs Agent-海关" // SKYRAT EDIT ADDITION
+#define JOB_QUARTERMASTER "军需官-Quartermaster"
+#define JOB_CARGO_TECHNICIAN "货仓技工-Cargo Technician"
+#define JOB_CARGO_GORILLA "货舱大猩猩-Cargo Gorilla"
+#define JOB_SHAFT_MINER "竖井矿工-Shaft Miner"
+#define JOB_BITRUNNER "比特矿工-Bitrunner"
+#define JOB_CUSTOMS_AGENT "海关-Customs Agent" // SKYRAT EDIT ADDITION
 //Service
-#define JOB_BARTENDER "Bartender-酒保"
-#define JOB_BOTANIST "Botanist-植物学家"
-#define JOB_COOK "Cook-厨师"
-#define JOB_JANITOR "Janitor-清洁工"
-#define JOB_CLOWN "Clown-小丑"
-#define JOB_MIME "Mime-默剧演员"
-#define JOB_CURATOR "Curator-图书馆长"
-#define JOB_LAWYER "Lawyer-律师"
-#define JOB_CHAPLAIN "Chaplain-牧师"
-#define JOB_PSYCHOLOGIST "Psychologist-心理学家"
-#define JOB_BARBER "Barber-理发师" // SKYRAT EDIT ADDITION
-#define JOB_BOUNCER "Service Guard-民事安全员" // SKYRAT EDIT ADDITION
+#define JOB_BARTENDER "酒保-Bartender"
+#define JOB_BOTANIST "植物学家-Botanist"
+#define JOB_COOK "厨师-Cook"
+#define JOB_JANITOR "清洁工-Janitor"
+#define JOB_CLOWN "小丑-Clown"
+#define JOB_MIME "默剧演员-Mime"
+#define JOB_CURATOR "图书馆长-Curator"
+#define JOB_LAWYER "律师-Lawyer"
+#define JOB_CHAPLAIN "牧师-Chaplain"
+#define JOB_PSYCHOLOGIST "心理学家-Psychologist"
+#define JOB_BARBER "理发师-Barber" // SKYRAT EDIT ADDITION
+#define JOB_BOUNCER "服务安保-Service Guard" // SKYRAT EDIT ADDITION
 //ERTs
 #define JOB_ERT_DEATHSQUAD "Death Commando"
 #define JOB_ERT_COMMANDER "Emergency Response Team Commander"
@@ -108,10 +108,10 @@
 #define JOB_ERT_JANITOR "Janitorial Response Officer"
 #define JOB_ERT_CLOWN "Entertainment Response Officer"
 //CentCom
-#define JOB_CENTCOM "Central Command"
-#define JOB_CENTCOM_OFFICIAL "CentCom Official"
+#define JOB_CENTCOM "中央指挥部-Central Command"
+#define JOB_CENTCOM_OFFICIAL "中央指挥官员-CentCom Official"
 #define JOB_CENTCOM_ADMIRAL "Admiral"
-#define JOB_CENTCOM_COMMANDER "CentCom Commander"
+#define JOB_CENTCOM_COMMANDER "中央指挥司令-CentCom Commander"
 #define JOB_CENTCOM_VIP "VIP Guest"
 #define JOB_CENTCOM_BARTENDER "CentCom Bartender"
 #define JOB_CENTCOM_CUSTODIAN "Custodian"
@@ -121,8 +121,8 @@
 #define JOB_CENTCOM_SPECIAL_OFFICER "Special Ops Officer"
 #define JOB_CENTCOM_PRIVATE_SECURITY "Private Security Force"
 // SKYRAT EDIT ADDITION START
-#define JOB_BLUESHIELD "Blueshield"
-#define JOB_NT_REP "Nanotrasen Consultant"
+#define JOB_BLUESHIELD "蓝盾-Blueshield"
+#define JOB_NT_REP "纳米传讯顾问-Nanotrasen Consultant"
 // Nanotrasen Naval Command jobs
 #define JOB_NAVAL_ENSIGN "Ensign"
 #define JOB_NAVAL_LIEUTENANT "Lieutenant"
@@ -197,19 +197,19 @@
 #define DEPARTMENT_UNASSIGNED "No Department"
 
 #define DEPARTMENT_BITFLAG_SECURITY (1<<0)
-#define DEPARTMENT_SECURITY "Security-安保部"
+#define DEPARTMENT_SECURITY "Security"
 #define DEPARTMENT_BITFLAG_COMMAND (1<<1)
-#define DEPARTMENT_COMMAND "Command-指挥部"
+#define DEPARTMENT_COMMAND "Command"
 #define DEPARTMENT_BITFLAG_SERVICE (1<<2)
-#define DEPARTMENT_SERVICE "Service-服务部"
+#define DEPARTMENT_SERVICE "Service"
 #define DEPARTMENT_BITFLAG_CARGO (1<<3)
-#define DEPARTMENT_CARGO "Cargo-后勤部"
+#define DEPARTMENT_CARGO "Cargo"
 #define DEPARTMENT_BITFLAG_ENGINEERING (1<<4)
-#define DEPARTMENT_ENGINEERING "Engineering-工程部"
+#define DEPARTMENT_ENGINEERING "Engineering"
 #define DEPARTMENT_BITFLAG_SCIENCE (1<<5)
-#define DEPARTMENT_SCIENCE "Science-科研部"
+#define DEPARTMENT_SCIENCE "Science"
 #define DEPARTMENT_BITFLAG_MEDICAL (1<<6)
-#define DEPARTMENT_MEDICAL "Medical-医疗部"
+#define DEPARTMENT_MEDICAL "Medical"
 #define DEPARTMENT_BITFLAG_SILICON (1<<7)
 #define DEPARTMENT_SILICON "Silicon"
 #define DEPARTMENT_BITFLAG_ASSISTANT (1<<8)

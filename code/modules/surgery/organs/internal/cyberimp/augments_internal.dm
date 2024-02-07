@@ -1,6 +1,6 @@
 
 /obj/item/organ/internal/cyberimp
-	name = "cybernetic implant"
+	name = "电子植入物-cybernetic implant"
 	desc = "A state-of-the-art implant that improves a baseline's functionality."
 	visual = FALSE
 	organ_flags = ORGAN_ROBOTIC
@@ -20,8 +20,8 @@
 //[[[[BRAIN]]]]
 
 /obj/item/organ/internal/cyberimp/brain
-	name = "cybernetic brain implant"
-	desc = "Injectors of extra sub-routines for the brain."
+	name = "电子脑植入物-cybernetic brain implant"
+	desc = "注入给大脑的额外子程序."
 	icon_state = "brain_implant"
 	implant_overlay = "brain_implant_overlay"
 	zone = BODY_ZONE_HEAD
@@ -37,8 +37,8 @@
 
 
 /obj/item/organ/internal/cyberimp/brain/anti_drop
-	name = "anti-drop implant"
-	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
+	name = "防掉落植入物-anti-drop implant"
+	desc = "这个脑部电子植入物能够让你的手部肌肉强制收缩，以防止物品从手中掉落。抽动耳朵来切换."
 	var/active = FALSE
 	var/list/stored_items = list()
 	implant_color = "#DE7E00"
@@ -99,7 +99,7 @@
 	stored_items -= source
 
 /obj/item/organ/internal/cyberimp/brain/anti_stun
-	name = "CNS Rebooter implant"
+	name = "中枢神经重启植入物-CNS Rebooter implant"
 	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
 	implant_color = "#FFFF00"
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
@@ -148,8 +148,8 @@
 	zone = BODY_ZONE_PRECISE_MOUTH
 
 /obj/item/organ/internal/cyberimp/mouth/breathing_tube
-	name = "breathing tube implant"
-	desc = "This simple implant adds an internals connector to your back, allowing you to use internals without a mask and protecting you from being choked."
+	name = "呼吸管植入物-breathing tube implant"
+	desc = "这个简单的植入物在你的背部添加了一个呼吸配件连接器，可以让你在没有佩戴面罩的情况下使用呼吸配件并防止你窒息."
 	icon_state = "implant_mask"
 	slot = ORGAN_SLOT_BREATHING_TUBE
 	w_class = WEIGHT_CLASS_TINY
@@ -165,7 +165,7 @@
 //BOX O' IMPLANTS
 
 /obj/item/storage/box/cyber_implants
-	name = "boxed cybernetic implants"
+	name = "盒装电子植入物-boxed cybernetic implants"
 	desc = "A sleek, sturdy box."
 	icon_state = "cyber_implants"
 

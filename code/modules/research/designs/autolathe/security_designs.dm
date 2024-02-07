@@ -1,5 +1,5 @@
 /datum/design/beanbag_slug
-	name = "Beanbag Slug (Less Lethal)"
+	name = "豆袋弹 (低致命)-Beanbag Slug (Less Lethal)"
 	id = "beanbag_slug"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -11,7 +11,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/rubbershot
-	name = "Rubber Shot (Less Lethal)"
+	name = "橡胶霰弹 (低致命)-Rubber Shot (Less Lethal)"
 	id = "rubber_shot"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2)
@@ -23,7 +23,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38
-	name = "Speed Loader (.38) (Lethal)"
+	name = "快速装弹器(.38) (致命)-Loader (.38) (Lethal)"
 	id = "c38"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*10)
@@ -35,7 +35,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/recorder
-	name = "Universal Recorder"
+	name = "万用录音机-Universal Recorder"
 	id = "recorder"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.6, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.3)
@@ -47,7 +47,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/tape
-	name = "Universal Recorder Tape"
+	name = "万用录音机磁带-Universal Recorder Tape"
 	id = "tape"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.2, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.2)
@@ -59,7 +59,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/foam_dart
-	name = "Box of Foam Darts (Harmless)"
+	name = "泡沫飞镖盒 (无害)-Box of Foam Darts (Harmless)"
 	id = "foam_dart"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -71,7 +71,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/flamethrower
-	name = "Flamethrower (Lethal/Highly Destructive)"
+	name = "喷火器 (致命/破坏性高)-Flamethrower (Lethal/Highly Destructive)"
 	id = "flamethrower"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -83,7 +83,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/electropack
-	name = "Electropack"
+	name = "电击背包-Electropack"
 	id = "electropack"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*5, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT*2.5)
@@ -95,7 +95,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/handcuffs
-	name = "Handcuffs"
+	name = "手铐-Handcuffs"
 	id = "handcuffs"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -115,7 +115,7 @@
 	autolathe_exportable = FALSE
 
 /datum/design/receiver
-	name = "Modular Receiver"
+	name = "模块化机匣-Modular Receiver"
 	id = "receiver"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5)
@@ -127,7 +127,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/shotgun_dart
-	name = "Shotgun Dart (Lethal)"
+	name = "飞镖霰弹 (致命)-Shotgun Dart (Lethal)"
 	id = "shotgun_dart"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2)
@@ -139,7 +139,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/incendiary_slug
-	name = "Incendiary Slug (Lethal)"
+	name = "燃烧霰弹 (致命)-Incendiary Slug (Lethal)"
 	id = "incendiary_slug"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2)
@@ -151,7 +151,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/riot_dart
-	name = "Foam Riot Dart (Nonlethal)"
+	name = "泡沫镇暴飞镖 (非致命)-Foam Riot Dart (Nonlethal)"
 	id = "riot_dart"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT) //Discount for making individually - no box = less iron!
@@ -163,7 +163,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/riot_darts
-	name = "Foam Riot Dart Box (Nonlethal)"
+	name = "泡沫镇暴飞镖盒 (无害)-Foam Riot Dart Box (Nonlethal)"
 	id = "riot_darts"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*25) //Comes with 40 darts
@@ -175,7 +175,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/a357
-	name = ".357 Casing (VERY Lethal)"
+	name = ".357 子弹 (极致命)-.357 Casing (VERY Lethal)"
 	id = "a357"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2)
@@ -187,7 +187,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/strilka310_surplus
-	name = ".310 Surplus Bullet Casing (VERY Lethal)"
+	name = ".310 盈余子弹 (极致命)-.310 Surplus Bullet Casing (VERY Lethal)"
 	id = "strilka310_surplus"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2)
@@ -199,7 +199,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c10mm
-	name = "Ammo Box (10mm) (Lethal)"
+	name = "弹药箱(10毫米)(致命)-Ammo Box (10mm) (Lethal)"
 	id = "c10mm"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 300)
@@ -211,7 +211,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c45
-	name = "Ammo Box (.45) (Lethal)"
+	name = "弹药箱(.45)(致命)-Ammo Box (.45) (Lethal)"
 	id = "c45"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 300)
@@ -223,8 +223,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c9mm
-//	name = "Ammo Box (9mm)" //SKYRAT EDIT: Original
-	name = "Ammo Box (9x25mm Mk.12) (Lethal)" //SKYRAT EDIT: Calibre rename
+//	name = "弹药箱(9毫米)(致命)-Ammo Box (9mm)" //SKYRAT EDIT: Original
+	name = "弹药箱(9x25毫米 Mk.12)(致命)-Ammo Box (9x25mm Mk.12) (Lethal)" //SKYRAT EDIT: Calibre rename
 	id = "c9mm"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 300)
@@ -236,7 +236,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/telescreen_interrogation
-	name = "Interrogation Telescreen"
+	name = "审讯室电幕-Interrogation Telescreen"
 	id = "telescreen_interrogation"
 	build_type = PROTOLATHE
 	materials = list(
@@ -251,7 +251,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/telescreen_prison
-	name = "Prison Telescreen"
+	name = "牢房电幕-Prison Telescreen"
 	id = "telescreen_prison"
 	build_type = PROTOLATHE
 	materials = list(

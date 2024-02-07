@@ -1,6 +1,6 @@
 // Medical Designs
 /datum/design/pillbottle
-	name = "Pill Bottle"
+	name = "药瓶-Pill Bottle"
 	id = "pillbottle"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT*0.2, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -12,7 +12,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/stethoscope
-	name = "Stethoscope"
+	name = "听诊器-Stethoscope"
 	id = "stethoscope"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT)
@@ -24,7 +24,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/sticky_tape/surgical
-	name = "Surgical Tape"
+	name = "手术胶带-Surgical Tape"
 	id = "surgical_tape"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT*5)
@@ -37,7 +37,7 @@
 
 // Science Designs
 /datum/design/slime_scanner
-	name = "Slime Scanner"
+	name = "史莱姆扫描仪-Slime Scanner"
 	id = "slime_scanner"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
@@ -49,7 +49,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/petridish
-	name = "Petri Dish"
+	name = "培养皿-Petri Dish"
 	id = "petri_dish"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -61,7 +61,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/swab
-	name = "Sterile Swab"
+	name = "无菌拭子-Sterile Swab"
 	id = "swab"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT * 2)
@@ -73,7 +73,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/telescreen_research
-	name = "Research Telescreen"
+	name = "科研电幕-Research Telescreen"
 	id = "telescreen_research"
 	build_type = PROTOLATHE
 	materials = list(
@@ -88,7 +88,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/telescreen_ordnance
-	name = "Ordnance Telescreen"
+	name = "军械室电幕-Ordnance Telescreen"
 	id = "telescreen_ordnance"
 	build_type = PROTOLATHE
 	materials = list(
@@ -104,7 +104,7 @@
 
 // MedSci Designs
 /datum/design/syringe
-	name = "Syringe"
+	name = "注射器-Syringe"
 	id = "syringe"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.1, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.2)
@@ -116,7 +116,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/dropper
-	name = "Dropper"
+	name = "滴管-Dropper"
 	id = "dropper"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.1, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.3)
@@ -128,7 +128,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/blood_filter
-	name = "Blood Filter"
+	name = "血液过滤器-Blood Filter"
 	id = "blood_filter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
@@ -140,7 +140,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/scalpel
-	name = "Scalpel"
+	name = "手术刀-Scalpel"
 	id = "scalpel"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -152,7 +152,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/circular_saw
-	name = "Circular Saw"
+	name = "圆锯-Circular Saw"
 	id = "circular_saw"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3)
@@ -164,7 +164,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/bonesetter
-	name = "Bonesetter"
+	name = "接骨器-Bonesetter"
 	id = "bonesetter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 5,  /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25)
@@ -176,7 +176,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/surgicaldrill
-	name = "Surgical Drill"
+	name = "外科电钻-Surgical Drill"
 	id = "surgicaldrill"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3)
@@ -188,7 +188,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/retractor
-	name = "Retractor"
+	name = "牵开器-Retractor"
 	id = "retractor"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -200,7 +200,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/cautery
-	name = "Cautery"
+	name = "缝合器-Cautery"
 	id = "cautery"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 7.5)
@@ -212,7 +212,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/hemostat
-	name = "Hemostat"
+	name = "止血钳-Hemostat"
 	id = "hemostat"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25)

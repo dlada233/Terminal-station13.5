@@ -286,9 +286,9 @@ export const QuirksPage = (props) => {
 
           if (quirk.value > 0) {
             if (positiveQuirks >= maxPositiveQuirks) {
-              return "You can't have any more positive quirks!";
+              return "你无法再添加更多正面特质了!";
             } else if (balance + quirk.value > 0) {
-              return 'You need a negative quirk to balance this out!';
+              return '你需要一个负面特质来平衡特质点数!';
             }
           }
 

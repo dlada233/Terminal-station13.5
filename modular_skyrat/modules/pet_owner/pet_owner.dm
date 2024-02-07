@@ -1,13 +1,13 @@
 /datum/quirk/item_quirk/pet_owner
-	name = "Pet Owner"
-	desc = "You bring your pet to work with you so that it, too, can experience the dangers of station life."
+	name = "Pet Owner-宠物主"
+	desc = "你把宠物带上来一起工作，与你一起体验惊险刺激的空间站生活."
 	icon = FA_ICON_HORSE
 	value = 4
 	mob_trait = TRAIT_PET_OWNER
 	veteran_only = TRUE
-	gain_text = span_notice("You brought your pet with you to work.")
-	lose_text = span_danger("You feel lonely, as if leaving somebody behind...")
-	medical_record_text = "Patient mentions their fondness for their pet."
+	gain_text = span_notice("你带着你的宠物一起上班.")
+	lose_text = span_danger("你有一种怅然若失的感觉，仿佛什么东西被抛在了身后......")
+	medical_record_text = "患者提及了他们很喜欢他们的宠物."
 	mail_goodies = list(
 		/obj/item/clothing/neck/petcollar
 	)

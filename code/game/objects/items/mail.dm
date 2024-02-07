@@ -1,8 +1,8 @@
 /// Mail is tamper-evident and unresealable, postmarked by CentCom for an individual recepient.
 /obj/item/mail
-	name = "mail"
+	name = "邮件"
 	gender = NEUTER
-	desc = "An officially postmarked, tamper-evident parcel regulated by CentCom and made of high-quality materials."
+	desc = "由中央管制的，加盖中央指挥部防揭邮戳的包裹，由优质材料制成."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "mail_small"
 	inhand_icon_state = "paper"
@@ -45,7 +45,7 @@
 	var/static/list/department_colors
 
 /obj/item/mail/envelope
-	name = "envelope"
+	name = "信封"
 	icon_state = "mail_large"
 	goodie_count = 2
 	stamp_max = 2
@@ -131,10 +131,10 @@
 		// If the recipient's mind has gone, then anyone can open their mail
 		// whether a mind can actually be qdel'd is an exercise for the reader
 		if(recipient && recipient != user?.mind)
-			to_chat(user, span_notice("You can't open somebody else's mail! That's <em>illegal</em>!"))
+			to_chat(user, span_notice("你不能拆开别人的信封! 那是<em>违法</em>的!"))
 			return FALSE
 
-	balloon_alert(user, "unwrapping...")
+	balloon_alert(user, "拆开信封...")
 	if(!do_after(user, 1.5 SECONDS, target = user))
 		return FALSE
 	return TRUE
@@ -157,19 +157,19 @@
 	if(!postmarked)
 		. += span_info("This mail has no postmarking of any sort...")
 	else
-		. += span_notice("<i>You notice the postmarking on the front of the mail...</i>")
+		. += span_notice("<i>你注意到信件上正面的邮戳...</i>")
 	var/datum/mind/recipient = recipient_ref.resolve()
 	if(recipient)
 		. += span_info("[postmarked ? "Certified NT" : "Uncertfieid"] mail for [recipient].")
 	else if(postmarked)
-		. += span_info("Certified mail for [GLOB.station_name].")
+		. += span_info("给[GLOB.station_name]的已认证信件.")
 	else
 		. += span_info("This is a dead letter mail with no recipient.")
-	. += span_info("Distribute by hand or via destination tagger using the certified NT disposal system.")
+	. += span_info("手动派送，或使用目的地标记器通过纳米传讯认证的处置系统进行分发.")
 
 /// Accepts a mind to initialize goodies for a piece of mail.
 /obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient)
-	name = "[initial(name)] for [recipient.name] ([recipient.assigned_role.title])"
+	name = "[recipient.name] ([recipient.assigned_role.title]的[initial(name)])"
 	recipient_ref = WEAKREF(recipient)
 
 	var/mob/living/body = recipient.current
@@ -246,8 +246,8 @@
 
 /// Crate for mail from CentCom.
 /obj/structure/closet/crate/mail
-	name = "mail crate"
-	desc = "A certified post crate from CentCom."
+	name = "邮寄箱"
+	desc = "一个由中央司令部认证的邮件箱."
 	icon_state = "mail"
 	base_icon_state = "mail"
 	can_install_electronics = FALSE
@@ -310,8 +310,8 @@
 
 /// Crate for mail that automatically generates a lot of mail. Usually only normal mail, but on lowpop it may end up just being junk.
 /obj/structure/closet/crate/mail/full
-	name = "brimming mail crate"
-	desc = "A certified post crate from CentCom. Looks stuffed to the gills."
+	name = "满溢的邮寄箱"
+	desc = "一个由中央司令部认证的邮件箱，看起来被完全填满了."
 
 /obj/structure/closet/crate/mail/full/Initialize(mapload)
 	. = ..()
@@ -319,7 +319,7 @@
 
 ///Used in the mail strike shuttle loan event
 /obj/structure/closet/crate/mail/full/mail_strike
-	desc = "A post crate from somewhere else. It has no NT logo on it."
+	desc = "一个不知道从哪来的邮寄箱，上面没有印纳米传讯的标志."
 	postmarked = FALSE
 
 /obj/structure/closet/crate/mail/full/mail_strike/populate(amount)
@@ -338,8 +338,8 @@
 
 /// Mailbag.
 /obj/item/storage/bag/mail
-	name = "mail bag"
-	desc = "A bag for letters, envelopes, and other postage."
+	name = "邮袋"
+	desc = "装信件、信封和其他邮资的袋子."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "mailbag"
 	worn_icon_state = "mailbag"
@@ -358,7 +358,7 @@
 	))
 
 /obj/item/paper/fluff/junkmail_redpill
-	name = "smudged paper"
+	name = "充满褶皱的纸"
 	icon_state = "scrap"
 	show_written_words = FALSE
 	var/nuclear_option_odds = 0.1
@@ -379,7 +379,7 @@
 	nuclear_option_odds = 100
 
 /obj/item/paper/fluff/junkmail_generic
-	name = "important document"
+	name = "重要文件"
 	icon_state = "paper_words"
 	show_written_words = FALSE
 
@@ -397,7 +397,7 @@
 	goodie_count = 0
 
 /obj/item/mail/traitor/envelope
-	name = "envelope"
+	name = "信封"
 	icon_state = "mail_large"
 	stamp_max = 2
 	stamp_offset_y = 5
