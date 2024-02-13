@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
-	name = "laser gun"
-	desc = "A basic energy-based laser gun that fires concentrated beams of light which pass through glass and thin metal."
+	name = "激光枪"
+	desc = "一种以能量为基础的激光枪，它发射出集中的光束，可以穿过玻璃和薄金属."
 	icon_state = "laser"
 	inhand_icon_state = "laser"
 	w_class = WEIGHT_CLASS_BULKY
@@ -22,22 +22,22 @@
 	)
 
 /obj/item/gun/energy/laser/practice
-	name = "practice laser gun"
-	desc = "A modified version of the basic laser gun, this one fires less concentrated energy bolts designed for target practice."
+	name = "练习激光枪"
+	desc = "一种基本激光枪的改进版本，这种枪发射弱能量光束，专为打靶练习而设计."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice)
 	clumsy_check = FALSE
 	item_flags = NONE
 	gun_flags = NOT_A_REAL_GUN
 
 /obj/item/gun/energy/laser/retro
-	name ="retro laser gun"
+	name ="复古激光枪"
 	icon_state = "retro"
-	desc = "An older model of the basic lasergun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
+	desc = "一种老式的基本激光枪，已经不再被纳米的部队使用. 它的优点在于致命、易维护，使其成为海盗和其他不法分子的最爱."
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/carbine
-	name = "laser carbine"
-	desc = "A modified laser gun which can shoot far faster, but each shot is far less damaging."
+	name = "激光卡宾枪"
+	desc = "一种改进型激光枪，射击速度快得多，但每次射击的威力也小得多."
 	icon_state = "laser_carbine"
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/carbine)
 
@@ -46,32 +46,32 @@
 	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS, allow_akimbo = FALSE)
 
 /obj/item/gun/energy/laser/carbine/practice
-	name = "practice laser carbine"
-	desc = "A modified version of the laser carbine, this one fires even less concentrated energy bolts designed for target practice."
+	name = "练习激光卡宾枪"
+	desc = "这是激光卡宾枪的改进版本，它发射弱能量光束，专为打靶设计."
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/carbine/practice)
 	clumsy_check = FALSE
 	item_flags = NONE
 	gun_flags = NOT_A_REAL_GUN
 
 /obj/item/gun/energy/laser/retro/old
-	name ="laser gun"
+	name ="激光枪"
 	icon_state = "retro"
-	desc = "First generation lasergun, developed by Nanotrasen. Suffers from ammo issues but its unique ability to recharge its ammo without the need of a magazine helps compensate. You really hope someone has developed a better lasergun while you were in cryo."
+	desc = "由Nanotrasen公司开发的第一代激光枪，饱受弹药问题的困扰，但它的独特能力是可以在自充能. 你真的希望有人在你被冷冻期间发明了更好的激光枪."
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/old)
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/hellgun
-	name ="hellfire laser gun"
-	desc = "A relic of a weapon, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds it caused, and was quietly discontinued once it began to affect NT's reputation."
+	name ="地狱火激光枪"
+	desc = "在NT开始在其激光武器上安装调节器之前的产物，因其造成的可怕烧伤而臭名昭著，也因这种可怕的杀伤力遭到舆论指责并最终停产."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
 
 /obj/item/gun/energy/laser/captain
-	name = "antique laser gun"
+	name = "古董激光枪"
 	icon_state = "caplaser"
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_icon_state = null
-	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
+	desc = "这是一把古董激光枪，由顶尖工艺雕琢而成，还用了真皮与镀铬装饰，可达到能量峰值也意味着它也拥有不俗的威力.枪身上似乎还刻有将爆炸的十三号空间站图像."
 	force = 10
 	ammo_x_offset = 3
 	selfcharge = 1
@@ -80,33 +80,33 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
 
 /obj/item/gun/energy/laser/captain/scattershot
-	name = "scatter shot laser rifle"
+	name = "先进散射激光枪"
 	icon_state = "lasercannon"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "laser"
-	desc = "An industrial-grade heavy-duty laser rifle with a modified laser lens to scatter its shot into multiple smaller lasers. The inner-core can self-charge for theoretically infinite use."
+	desc = "一种工业级重型激光步枪，带有一个改进的激光透镜，可以将射击分散成多个更小的激光束，并且还有自充电功能."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
 	shaded_charge = FALSE
 
 /obj/item/gun/energy/laser/cyborg
 	can_charge = FALSE
-	desc = "An energy-based laser gun that draws power from the cyborg's internal energy cell directly. So this is what freedom looks like?"
+	desc = "一种基于能量的激光枪，可以依靠赛博格的内部电池供能，这就是自由的样子?"
 	use_cyborg_cell = TRUE
 
 /obj/item/gun/energy/laser/cyborg/emp_act()
 	return
 
 /obj/item/gun/energy/laser/scatter
-	name = "scatter laser gun"
-	desc = "A laser gun equipped with a refraction kit that spreads bolts."
+	name = "散射激光枪"
+	desc = "配备了散射装置的激光枪."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/laser/scatter/shotty
-	name = "energy shotgun"
+	name = "激光霰弹枪"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "cshotgun"
 	inhand_icon_state = "shotgun"
-	desc = "A combat shotgun gutted and refitted with an internal laser system. Can switch between taser and scattered disabler shots."
+	desc = "一把战斗霰弹枪，改装上了内部激光系统，可以在泰瑟枪和散射镇暴枪两种模式间切换."
 	shaded_charge = 0
 	pin = /obj/item/firing_pin/implant/mindshield
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler, /obj/item/ammo_casing/energy/electrode)
@@ -115,8 +115,8 @@
 ///Laser Cannon
 
 /obj/item/gun/energy/lasercannon
-	name = "accelerator laser cannon"
-	desc = "An advanced laser cannon that does more damage the farther away the target is."
+	name = "加速激光加农炮"
+	desc = "一种先进的激光炮，目标越远，伤害越大."
 	icon_state = "lasercannon"
 	inhand_icon_state = "laser"
 	worn_icon_state = null
@@ -134,7 +134,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/projectile/beam/laser/accelerator
-	name = "accelerator laser"
+	name = "加速激光"
 	icon_state = "scatterlaser"
 	range = 255
 	damage = 6
@@ -147,8 +147,8 @@
 ///X-ray gun
 
 /obj/item/gun/energy/xray
-	name = "\improper X-ray laser gun"
-	desc = "A high-power laser gun capable of expelling concentrated X-ray blasts that pass through multiple soft targets and heavier materials."
+	name = "X射线枪"
+	desc = "一种高功率激光枪，能够射出集中的X射线，可穿透多个软硬目标."
 	icon_state = "xray"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = null
@@ -157,9 +157,9 @@
 ////////Laser Tag////////////////////
 
 /obj/item/gun/energy/laser/bluetag
-	name = "laser tag gun"
+	name = "玩具激光枪"
 	icon_state = "bluetag"
-	desc = "A retro laser gun modified to fire harmless blue beams of light. Sound effects included!"
+	desc = "可以发射无害蓝色激光的复古激光枪!"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag)
 	item_flags = NONE
 	clumsy_check = FALSE
@@ -172,9 +172,9 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag/hitscan)
 
 /obj/item/gun/energy/laser/redtag
-	name = "laser tag gun"
+	name = "玩具激光枪"
 	icon_state = "redtag"
-	desc = "A retro laser gun modified to fire harmless beams red of light. Sound effects included!"
+	desc = "可以发射无害红色激光的复古激光枪!"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag)
 	item_flags = NONE
 	clumsy_check = FALSE
@@ -189,8 +189,8 @@
 //Inferno and Cryo Pistols
 
 /obj/item/gun/energy/laser/thermal //the common parent of these guns, it just shoots hard bullets, somoene might like that?
-	name = "nanite pistol"
-	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit globs of angry robots into the bad guys."
+	name = "纳米手枪"
+	desc = "一门改装过的手枪，配备了退役的攻击性纳米机器人，把愤怒的机器人喷到坏人身上吧."
 	icon_state = "infernopistol"
 	inhand_icon_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite)
@@ -215,16 +215,14 @@
 		overlay_y = 9)
 
 /obj/item/gun/energy/laser/thermal/inferno //the magma gun
-	name = "inferno pistol"
-	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit globs of molten angry robots into the bad guys. \
-		While it doesn't manipulate temperature in and of itself, it does cause an violent eruption in anyone who is severely cold."
+	name = "热熔手枪"
+	desc = "一把改装过的手枪，配备了退役的攻击性纳米机器人，把愤怒的机器人喷到坏人身上吧.虽然本身不会控制温度，但确实能让一个严重受冻的人发生剧烈爆炸."
 	icon_state = "infernopistol"
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite/inferno)
 
 /obj/item/gun/energy/laser/thermal/cryo //the ice gun
-	name = "cryo pistol"
-	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit shards of frozen angry robots into the bad guys. \
-		While it doesn't manipulate temperature in and of itself, it does cause an internal explosion in anyone who is severely hot."
+	name = "冷冻手枪"
+	desc = "一把改装过的手枪，配备了退役的攻击性纳米机器人，把愤怒的机器人喷到坏人身上吧.虽然本身不会控制温度，但确实能让一个严重受热的人发生剧烈爆炸."
 	icon_state = "cryopistol"
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite/cryo)
 
@@ -235,6 +233,6 @@
 	payment_amount = 20
 
 /obj/item/gun/energy/laser/luxurypaywall
-	name = "luxurious laser gun"
-	desc = "A laser gun modified to cost 20 credits to fire. Point towards poor people."
+	name = "奢华激光枪"
+	desc = "需要20信用点才能发射的激光枪，用来向穷人射击."
 	pin = /obj/item/firing_pin/paywall/luxury

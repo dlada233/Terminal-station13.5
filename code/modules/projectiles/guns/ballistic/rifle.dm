@@ -40,13 +40,9 @@
 ///////////////////////
 
 /obj/item/gun/ballistic/rifle/boltaction
-	name = "\improper Sakhno Precision Rifle"
-	desc = "A Sakhno Precision Rifle, a bolt action weapon that was (and certainly still is) popular with \
-		frontiersmen, cargo runners, private security forces, explorers, and other unsavoury types. This particular \
-		pattern of the rifle dates back all the way to 2440."
-	sawn_desc = "A sawn-off Sakhno Precision Rifle, popularly known as an \"Obrez\". \
-		There was probably a reason it wasn't manufactured this short to begin with. \
-		Despite the terrible nature of the modification, the weapon seems otherwise in good condition."
+	name = "萨赫诺精确步枪"
+	desc = "萨赫诺精确步枪，一种栓动式步枪，一直以来受到拓荒者、货仓技工、私人安保武装、探险家及其他恶人的欢迎. 这种特殊的步枪可以追溯到2440年."
+	sawn_desc = "锯短的萨赫诺精确步枪，俗称‘步兵式’，没有一开始就这么设计可能是有原因的，虽然改造方式很粗野，但武器看起来依然状况良好."
 
 	icon_state = "sakhno"
 	inhand_icon_state = "sakhno"
@@ -83,7 +79,7 @@
 				unjam_chance = 10
 			else
 				unjam_chance += 10
-				balloon_alert(user, "jammed!")
+				balloon_alert(user, "卡壳!")
 				playsound(user,'sound/weapons/jammed.ogg', 75, TRUE)
 				return FALSE
 	..()
@@ -99,17 +95,17 @@
 
 /obj/item/gun/ballistic/rifle/boltaction/attackby(obj/item/item, mob/user, params)
 	if(!bolt_locked && !istype(item, /obj/item/knife))
-		balloon_alert(user, "bolt closed!")
+		balloon_alert(user, "枪栓闭合!")
 		return
 
 	. = ..()
 
 	if(istype(item, /obj/item/gun_maintenance_supplies))
 		if(!can_jam)
-			balloon_alert(user, "can't jam!")
+			balloon_alert(user, "无法卡壳!")
 			return
 		if(do_after(user, 10 SECONDS, target = src))
-			user.visible_message(span_notice("[user] finishes maintaining [src]."))
+			user.visible_message(span_notice("[user]完成了维护[src]."))
 			jamming_chance = initial(jamming_chance)
 			qdel(item)
 
@@ -120,8 +116,8 @@
 		. = TRUE
 
 /obj/item/gun/ballistic/rifle/boltaction/harpoon
-	name = "ballistic harpoon gun"
-	desc = "A weapon favored by carp hunters, but just as infamously employed by agents of the Animal Rights Consortium against human aggressors. Because it's ironic."
+	name = "弹道鱼叉枪"
+	desc = "这是鲤鱼猎人喜欢的武器，但动物权利联盟的特工们为了讽刺也曾用它来对付人类."
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "speargun"
 	inhand_icon_state = "speargun"
@@ -133,33 +129,24 @@
 	SET_BASE_PIXEL(0, 0)
 
 /obj/item/gun/ballistic/rifle/boltaction/surplus
-	name = "\improper Sakhno M2442 Army"
-	desc = "A modification of the Sakhno Precision Rifle, \"Sakhno M2442 Army\" is stamped into the side. \
-		It is unknown what army this pattern of rifle was made for or if it was ever even used by an army \
-		of any sort. What you can discern, however, is that its previous owner did not treat the weapon well. \
-		For some reason, there's moisture all through the internals."
-	sawn_desc = "A sawn-off Sakhno Precision Rifle, popularly known as an \"Obrez\". \
-		\"Sakhno M2442 Army\" is stamped into the side of it. \
-		There was probably a reason it wasn't manufactured this short to begin with. \
-		Cutting the weapon down seems to have not helped with the moisture problem."
+	name = "萨赫诺-M2442军用式"
+	desc = "萨赫诺精确步枪的改型，\"Sakhno M2442 Army\"被印在了枪身上. \
+		目前尚不知道哪支军队设计制造这种型号的萨赫诺步枪，也不知道它被那支军队使用过. \
+		但你依然可以看出，前任主人并没有很细心的保养这把武器，内部都是潮湿的."
+	sawn_desc = "锯短的Sakhno-萨赫诺精确步枪，俗称‘步兵式’，没有一开始就这么设计可能是有原因的. \
+		\"Sakhno M2442 Army\"被印在了枪身上，虽然改造方式很粗野，但武器看起来依然状况良好."
 	icon_state = "sakhno_tactifucked"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/surplus
 	can_jam = TRUE
 
 /obj/item/gun/ballistic/rifle/boltaction/prime
-	name = "\improper Sakhno-Zhihao Sporting Rifle"
-	desc = "An upgrade and modernisation of the original Sakhno rifle, made with such wonders as \
-		modern materials, a scope, and other impressive technological advancements that, to be honest, \
-		were already around when the original weapon was designed. Surprisingly for a rifle of this type, \
-		the scope actually has magnification, rather than being decorative."
+	name = "萨赫诺-桎梏运动步枪"
+	desc = "原始萨赫诺步枪的现代化升级，使用了现代材料重铸，并加装了瞄准镜等其他的先进技术.."
 	icon_state = "zhihao"
 	inhand_icon_state = "zhihao"
 	worn_icon_state = "zhihao"
 	can_be_sawn_off = TRUE
-	sawn_desc = "A sawn-off Sakhno-Zhihao Sporting Rifle... Doing this was a sin, I hope you're happy. \
-		You are now probably one of the few people in the universe to ever hold an \"Obrez Moderna\". \
-		All you had to do was take an allen wrench to the stock to take it off. But no, you just had to \
-		go for the saw."
+	sawn_desc = "锯短的萨赫诺-桎梏运动步枪...就这么锯短它是一种罪过，但只要你开心就好. 你现在是全宇宙为数不多的拥有\"现代步兵式\"的人了."
 
 /obj/item/gun/ballistic/rifle/boltaction/prime/Initialize(mapload)
 	. = ..()
@@ -168,12 +155,11 @@
 /obj/item/gun/ballistic/rifle/boltaction/prime/sawoff(mob/user)
 	. = ..()
 	if(.)
-		name = "\improper Obrez Moderna" // wear it loud and proud
+		name = "萨赫诺现代步兵式" // wear it loud and proud
 
 /obj/item/gun/ballistic/rifle/rebarxbow
-	name = "Heated Rebar Crossbow"
-	desc = "Made from an inducer, iron rods, and some wire, this crossbow fires sharpened iron rods, made from the plentiful iron rods found stationwide. \
-			Only holds one rod in the magazine - you can craft the crossbow with a crowbar to try and force a second rod in, but risks a misfire, or worse..."
+	name = "热熔钢筋弩"
+	desc = "这把弩由无线充电器、铁棒和电线做成，它发射的是磨尖的铁棒，一般来讲弹匣中只能容纳一发，但你若要用撬棍也可以强行塞入第二根铁棒，不过得小心失火或更糟事情发生..."
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "rebarxbow"
 	inhand_icon_state = "rebarxbow"
@@ -187,9 +173,9 @@
 	internal_magazine = TRUE
 	can_modify_ammo = FALSE
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_SUITSTORE
-	bolt_wording = "bowstring"
-	magazine_wording = "rod"
-	cartridge_wording = "rod"
+	bolt_wording = "弩弦"
+	magazine_wording = "铁棒"
+	cartridge_wording = "铁棒"
 	misfire_probability = 25
 	weapon_weight = WEAPON_HEAVY
 	initial_caliber = CALIBER_REBAR
@@ -204,7 +190,7 @@
 	if (bolt_locked)
 		drop_bolt(user)
 		return
-	balloon_alert(user, "bowstring loosened")
+	balloon_alert(user, "弩弦松开")
 	playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	handle_chamber(empty_chamber =  FALSE, from_firing = FALSE, chamber_next_round = FALSE)
 	bolt_locked = TRUE
@@ -214,7 +200,7 @@
 	if(!do_after(user, draw_time, target = src))
 		return
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
-	balloon_alert(user, "bowstring drawn")
+	balloon_alert(user, "弩弦拉开")
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
@@ -226,20 +212,19 @@
 
 /obj/item/gun/ballistic/rifle/rebarxbow/examine(mob/user)
 	. = ..()
-	. += "The crossbow is [bolt_locked ? "not ready" : "ready"] to fire."
+	. += "十字弩[bolt_locked ? "没准备好" : "准备好了"]开火."
 
 /obj/item/gun/ballistic/rifle/rebarxbow/forced
-	name = "Stressed Rebar Crossbow"
-	desc = "Some idiot decided that they would risk shooting themselves in the face if it meant they could have a bit more ammo in this crossbow. Hopefully, it was worth it."
+	name = "重压钢筋弩"
+	desc = "一些白痴决定冒着朝自己脸上开枪的风险做出了这个弩，这意味着他们可以在这个弩里多一点弹药，希望这是值得的."
 	// Feel free to add a recipe to allow you to change it back if you would like, I just wasn't sure if you could have two recipes for the same thing.
 	can_misfire = TRUE
 	misfire_probability = 25
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/force
 
 /obj/item/gun/ballistic/rifle/rebarxbow/syndie
-	name = "Syndicate Rebar Crossbow"
-	desc = "The syndicate liked the bootleg rebar crossbow NT engineers made, so they showed what it could be if properly developed. \
-			Holds three shots without a chance of exploding, and features a built in scope. Normally uses special syndicate jagged iron bars, but can be wrenched to shoot inferior normal ones."
+	name = "辛迪加钢筋弩"
+	desc = "辛迪加很喜欢纳米工程师制造的钢筋弩，所以他们展示了如果充分开发的话，它可以是什么样子的；拥有三发弹匣，内置瞄准镜，还发射特殊的辛迪加锯齿铁棒，当然也可以射击正常铁棒."
 	icon_state = "rebarxbowsyndie"
 	inhand_icon_state = "rebarxbowsyndie"
 	worn_icon_state = "rebarxbowsyndie"
@@ -256,8 +241,8 @@
 	AddComponent(/datum/component/scope, range_modifier = 2) //enough range to at least be useful for stealth
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun
-	name = "pipegun"
-	desc = "An excellent weapon for flushing out tunnel rats and enemy assistants, but its rifling leaves much to be desired."
+	name = "管道枪"
+	desc = "这种出色的武器可以消灭地道里的老鼠和敌对助手，但它的膛线还有很多地方需要改进."
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "musket"
 	inhand_icon_state = "musket"
@@ -285,8 +270,8 @@
 	do_sparks(1, TRUE, src)
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime
-	name = "regal pipegun"
-	desc = "Older, territorial assistants typically possess more valuable loot."
+	name = "帝王管道枪"
+	desc = "年长的助手领主通常拥有更有价值的战利品."
 	icon_state = "musket_prime"
 	inhand_icon_state = "musket_prime"
 	worn_icon_state = "musket_prime"
@@ -296,8 +281,8 @@
 /// MAGICAL BOLT ACTIONS + ARCANE BARRAGE? ///
 
 /obj/item/gun/ballistic/rifle/enchanted
-	name = "enchanted bolt action rifle"
-	desc = "Careful not to lose your head."
+	name = "附魔栓动步枪"
+	desc = "小心别丢了脑袋."
 	icon_state = "enchanted_rifle"
 	inhand_icon_state = "enchanted_rifle"
 	worn_icon_state = "enchanted_rifle"
@@ -336,10 +321,9 @@
 // SNIPER //
 
 /obj/item/gun/ballistic/rifle/sniper_rifle
-	name = "anti-materiel sniper rifle"
-	desc = "A boltaction anti-materiel rifle, utilizing .50 BMG cartridges. While technically outdated in modern arms markets, it still works exceptionally well as \
-		an anti-personnel rifle. In particular, the employment of modern armored MODsuits utilizing advanced armor plating has given this weapon a new home on the battlefield. \
-		It is also able to be suppressed....somehow."
+	name = "反器材狙击步枪"
+	desc = "栓动式反器材狙击步枪，使用.50 BMG子弹. 虽然在技术上它已经过时了，但作为一种大口径步枪，它的性能仍然非常好. \
+		在模块服全面列装的今天，这种穿甲武器在战场上更是有了新的职责，然而这种穿甲效率也并非百分之一百..."
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "sniper"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -369,7 +353,7 @@
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/examine(mob/user)
 	. = ..()
-	. += span_warning("<b>It seems to have a warning label:</b> Do NOT, under any circumstances, attempt to 'quickscope' with this rifle.")
+	. += span_warning("<b>它似乎有一个警告标签:</b> 不要，在任何情况下，试图用这支步枪'快速瞄准'.")
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/Initialize(mapload)
 	. = ..()
@@ -383,8 +367,6 @@
 		playsound(src, 'sound/machines/eject.ogg', 50, TRUE)
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/syndicate
-	desc = "A boltaction anti-materiel rifle, utilizing .50 BMG cartridges. While technically outdated in modern arms markets, it still works exceptionally well as \
-		an anti-personnel rifle. In particular, the employment of modern armored MODsuits utilizing advanced armor plating has given this weapon a new home on the battlefield. \
-		It is also able to be suppressed....somehow. This one seems to have a little picture of someone in a blood-red MODsuit stenciled on it, pointing at a green floppy disk. \
-		Who knows what that might mean."
+	desc = "栓动式反器材狙击步枪，使用.50 BMG子弹. 虽然在技术上它已经过时了，但作为一种大口径步枪，它的性能仍然非常好. \
+		在模块服全面列装的今天，这种穿甲武器在战场上更是有了新的职责，然而这种穿甲效率也并非百分之一百...这把枪似乎印有一个穿着血红色模块服小人指着绿色软盘，什么意思啊？"
 	pin = /obj/item/firing_pin/implant/pindicate

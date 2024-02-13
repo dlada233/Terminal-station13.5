@@ -31,8 +31,8 @@
 	return TRUE
 
 /obj/item/gun/magic/staff/change
-	name = "staff of change"
-	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
+	name = "变化法杖"
+	desc = "能射出耀眼能量使目标变形."
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/change
 	icon_state = "staffofchange"
@@ -49,8 +49,8 @@
 /obj/item/gun/magic/staff/change/pickup(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>You don't feel strong enough to properly wield this staff!</span>"))
-		balloon_alert(user, "you feel weak holding this staff")
+		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>你觉得自己不够强大，无法驾驭这支法杖!</span>"))
+		balloon_alert(user, "拿着这根法杖你觉得很虚弱")
 
 /obj/item/gun/magic/staff/change/on_intruder_use(mob/living/user, atom/target)
 	user.dropItemToGround(src, TRUE)
@@ -59,11 +59,11 @@
 	if(!new_body)
 		return
 
-	balloon_alert(new_body, "wabbajack, wabbajack!")
+	balloon_alert(new_body, "瓦巴杰克，瓦巴杰克!")
 
 /obj/item/gun/magic/staff/animate
-	name = "staff of animation"
-	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
+	name = "活力法杖"
+	desc = "能射出生命之力的神器，能让被它击中的物体复活！但不会影响机器."
 	fire_sound = 'sound/magic/staff_animation.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/animate
 	icon_state = "staffofanimation"
@@ -71,8 +71,8 @@
 	school = SCHOOL_EVOCATION
 
 /obj/item/gun/magic/staff/healing
-	name = "staff of healing"
-	desc = "An artefact that spits bolts of restoring magic which can remove ailments of all kinds and even raise the dead."
+	name = "治愈法杖"
+	desc = "能射出恢复魔法的神器，可以治愈各种疾病，甚至起死回生."
 	fire_sound = 'sound/magic/staff_healing.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	icon_state = "staffofhealing"
@@ -84,13 +84,13 @@
 /obj/item/gun/magic/staff/healing/pickup(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>The staff feels weaker as you touch it</span>"))
-		user.balloon_alert(user, "the staff feels weaker as you touch it")
+		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>当你触摸它时，它的能量变弱了</span>"))
+		user.balloon_alert(user, "魔杖能量在你触摸到的瞬间变弱了")
 
 /obj/item/gun/magic/staff/healing/examine(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		. += span_notice("On the handle you notice a beautiful engraving in High Spaceman, \"Thou shalt not crosseth thy beams.\"")
+		. += span_notice("手柄上雕刻着美丽的高挑太空人形象，\"光柱不可相交.\"")
 
 /obj/item/gun/magic/staff/healing/Initialize(mapload)
 	. = ..()
@@ -118,8 +118,8 @@
 	return
 
 /obj/item/gun/magic/staff/chaos
-	name = "staff of chaos"
-	desc = "An artefact that spits bolts of chaotic magic that can potentially do anything."
+	name = "混乱法杖"
+	desc = "能释放出混乱魔法的神器，可以做到任何事."
 	fire_sound = 'sound/magic/staff_chaos.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/chaos
 	icon_state = "staffofchaos"
@@ -161,12 +161,12 @@
 
 /obj/item/gun/magic/staff/chaos/on_intruder_use(mob/living/user)
 	if(!user.can_cast_magic()) // Don't let people with antimagic use the staff of chaos.
-		balloon_alert(user, "the staff refuses to fire!")
+		balloon_alert(user, "法杖拒绝开火!")
 		return FALSE
 
 	if(prob(95)) // You have a 5% chance of hitting yourself when using the staff of chaos.
 		return TRUE
-	balloon_alert(user, "chaos!")
+	balloon_alert(user, "混沌!")
 	user.dropItemToGround(src, TRUE)
 	process_fire(user, user, FALSE)
 	return FALSE
@@ -177,8 +177,8 @@
  * Also can be used by everyone, because why not.
  */
 /obj/item/gun/magic/staff/chaos/true_wabbajack
-	name = "\proper Wabbajack"
-	desc = "If there is some deity out there, they've definitely skipped their psych appointment before creating this."
+	name = "瓦巴杰克"
+	desc = "如果真有神灵，他们在创造这个之前肯定没有经过心理咨询."
 	icon_state = "the_wabbajack"
 	inhand_icon_state = "the_wabbajack"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //fuck you
@@ -212,8 +212,8 @@
 	) //if you ever try to expand this list, avoid adding bullets/energy projectiles, this ain't supposed to be a gun... unless it's funny
 
 /obj/item/gun/magic/staff/door
-	name = "staff of door creation"
-	desc = "An artefact that spits bolts of transformative magic that can create doors in walls."
+	name = "造门法杖"
+	desc = "能释放变形魔法的神器，可以在墙上造出门来."
 	fire_sound = 'sound/magic/staff_door.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/door
 	icon_state = "staffofdoor"
@@ -224,7 +224,7 @@
 	school = SCHOOL_TRANSMUTATION
 
 /obj/item/gun/magic/staff/honk
-	name = "staff of the honkmother"
+	name = "小丑之母法杖"
 	desc = "Honk."
 	fire_sound = 'sound/items/airhorn.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/honk
@@ -235,8 +235,8 @@
 	school = SCHOOL_EVOCATION
 
 /obj/item/gun/magic/staff/spellblade
-	name = "spellblade"
-	desc = "A deadly combination of laziness and bloodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword."
+	name = "魔刃"
+	desc = "怠惰与嗜血的致命结合，这把剑可以让使用者毫不费力地肢解敌人."
 	fire_sound = 'sound/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/spellblade
 	icon_state = "spellblade"
@@ -267,8 +267,8 @@
 	return ..()
 
 /obj/item/gun/magic/staff/locker
-	name = "staff of the locker"
-	desc = "An artefact that expells encapsulating bolts, for incapacitating thy enemy."
+	name = "秘法锁柜法杖"
+	desc = "能射出秘法锁柜的神器，使你的敌人丧失行为能力."
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/locker
 	icon_state = "locker"
@@ -281,8 +281,8 @@
 //yes, they don't have sounds. they're admin staves, and their projectiles will play the chaos bolt sound anyway so why bother?
 
 /obj/item/gun/magic/staff/flying
-	name = "staff of flying"
-	desc = "An artefact that spits bolts of graceful magic that can make something fly."
+	name = "飞行术法杖"
+	desc = "能释放出优雅魔法的神器，能让东西飞出去."
 	fire_sound = 'sound/magic/staff_healing.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/flying
 	icon_state = "staffofflight"
@@ -291,8 +291,8 @@
 	school = SCHOOL_EVOCATION
 
 /obj/item/gun/magic/staff/babel
-	name = "staff of babel"
-	desc = "An artefact that spits bolts of confusion magic that can make something depressed and incoherent."
+	name = "巴别法杖"
+	desc = "能释放出混乱魔法的神器，能让人绝望，语无伦次."
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/babel
 	icon_state = "staffofbabel"
@@ -301,8 +301,8 @@
 	school = SCHOOL_FORBIDDEN //evil
 
 /obj/item/gun/magic/staff/necropotence
-	name = "staff of necropotence"
-	desc = "An artefact that spits bolts of death magic that can repurpose the soul."
+	name = "亡灵法杖"
+	desc = "能释放死亡魔法的神器可以改变灵魂的归途."
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/necropotence
 	icon_state = "staffofnecropotence"
@@ -311,8 +311,8 @@
 	school = SCHOOL_NECROMANCY //REALLY evil
 
 /obj/item/gun/magic/staff/wipe
-	name = "staff of possession"
-	desc = "An artefact that spits bolts of mind-unlocking magic that can let ghosts invade the victim's mind."
+	name = "附体法杖"
+	desc = "能释放出灵魂解锁魔法的神器，能让灵魂侵入目标的身心."
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/wipe
 	icon_state = "staffofwipe"

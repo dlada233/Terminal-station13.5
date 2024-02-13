@@ -1,6 +1,6 @@
 /obj/item/gun/energy/e_gun
-	name = "energy gun"
-	desc = "A basic hybrid energy gun with two settings: disable and kill."
+	name = "激光枪"
+	desc = "一种基本的多用途能量枪，有两种模式：镇暴和杀伤."
 	icon_state = "energy"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = null //so the human update icon uses the icon_state instead.
@@ -29,8 +29,8 @@
 		overlay_y = 10)
 
 /obj/item/gun/energy/e_gun/mini
-	name = "miniature energy gun"
-	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
+	name = "微型激光枪"
+	desc = "手枪大小的能量枪，内置手电筒，它有两种模式：镇暴和杀伤."
 	icon_state = "mini"
 	inhand_icon_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
@@ -50,22 +50,22 @@
 		overlay_y = 13)
 
 /obj/item/gun/energy/e_gun/stun
-	name = "tactical energy gun"
-	desc = "Military issue energy gun, is able to fire stun rounds."
+	name = "战术激光枪"
+	desc = "军事用途的激光器，可以发射眩晕弹."
 	icon_state = "energytac"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/e_gun/old
-	name = "prototype energy gun"
-	desc = "NT-P:01 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command."
+	name = "原型激光枪"
+	desc = "NT-P:01原型能量枪，激光步枪早期发展阶段的产物，它具有多用途的能量透镜，允许枪改变子弹模式."
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)
 
 /obj/item/gun/energy/e_gun/mini/practice_phaser
-	name = "practice phaser"
-	desc = "A modified version of the basic phaser gun, this one fires less concentrated energy bolts designed for target practice."
+	name = "练习相移激光枪"
+	desc = "一种基本相移激光枪的改进版本，这种枪发射的能量不太集中，专为打靶练习设计."
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/practice)
 	icon_state = "decloner"
 	//You have no icons for energy types, you're a decloner
@@ -73,8 +73,8 @@
 	gun_flags = NOT_A_REAL_GUN
 
 /obj/item/gun/energy/e_gun/hos
-	name = "\improper X-01 MultiPhase Energy Gun"
-	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
+	name = "X-01多相激光枪"
+	desc = "这是一个古董激光枪的现代复制品，这把枪有几个独特的射击模式，缺点是没有自充电的能力."
 	icon_state = "hoslaser"
 	cell_type = /obj/item/stock_parts/cell/hos_gun
 	w_class = WEIGHT_CLASS_NORMAL
@@ -85,8 +85,8 @@
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 
 /obj/item/gun/energy/e_gun/dragnet
-	name = "\improper DRAGnet"
-	desc = "The \"Dynamic Rapid-Apprehension of the Guilty\" net is a revolution in law enforcement technology."
+	name = "网枪-DRAGnet"
+	desc = "全称\"Dynamic Rapid-Apprehension of the Guilty-动态快速逮捕罪犯\"网枪，它的出现是执法技术史上的一次革命."
 	icon_state = "dragnet"
 	inhand_icon_state = "dragnet"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -100,13 +100,13 @@
 	return
 
 /obj/item/gun/energy/e_gun/dragnet/snare
-	name = "Energy Snare Launcher"
-	desc = "Fires an energy snare that slows the target down."
+	name = "能量圈套发射器"
+	desc = "发射能量圈套使目标减速."
 	ammo_type = list(/obj/item/ammo_casing/energy/trap)
 
 /obj/item/gun/energy/e_gun/turret
-	name = "hybrid turret gun"
-	desc = "A heavy hybrid energy cannon with two settings: Stun and kill."
+	name = "混合炮塔枪"
+	desc = "重型混合能量加农炮，有两种发射模式：击晕和杀伤."
 	icon_state = "turretlaser"
 	inhand_icon_state = "turretlaser"
 	slot_flags = null
@@ -120,8 +120,8 @@
 	return
 
 /obj/item/gun/energy/e_gun/nuclear //SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
-	name = "advanced energy gun"
-	desc = "An energy gun with an experimental miniaturized nuclear reactor that automatically charges the internal power cell."
+	name = "先进激光枪"
+	desc = "一种装有有实验性微型核反应堆的能量枪，可以自动为内部电池充电."
 	icon_state = "nucgun"
 	inhand_icon_state = "nucgun"
 	charge_delay = 10
@@ -150,12 +150,12 @@
 			if(0 to 200)
 				fail_tick += (2*(fail_chance))
 				M.adjustFireLoss(3)
-				to_chat(M, span_userdanger("Your [name] feels warmer."))
+				to_chat(M, span_userdanger("你的[name]摸起来有点暖和."))
 			if(201 to INFINITY)
 				SSobj.processing.Remove(src)
 				M.adjustFireLoss(10)
 				reactor_overloaded = TRUE
-				to_chat(M, span_userdanger("Your [name]'s reactor overloads!"))
+				to_chat(M, span_userdanger("你的[name]的反应堆过载了!"))
 
 /obj/item/gun/energy/e_gun/nuclear/emp_act(severity)
 	. = ..()

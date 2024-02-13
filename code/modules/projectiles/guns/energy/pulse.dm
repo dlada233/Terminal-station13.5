@@ -1,6 +1,6 @@
 /obj/item/gun/energy/pulse
-	name = "pulse rifle"
-	desc = "A heavy-duty, multifaceted energy rifle with three modes. Preferred by front-line combat personnel."
+	name = "脉冲步枪"
+	desc = "一个重型的、有三种模式的能量步枪，前线作战人员的首选."
 	icon_state = "pulse"
 	inhand_icon_state = null
 	worn_icon_state = null
@@ -27,17 +27,17 @@
 	log_game("A pulse rifle prize has been created at [AREACOORD(T)]")
 
 	notify_ghosts(
-		"Someone won a pulse rifle as a prize!",
+		"有人赢得了一把脉冲步枪作为奖励!",
 		source = src,
-		header = "Pulse rifle prize",
+		header = "脉冲步枪奖",
 	)
 
 /obj/item/gun/energy/pulse/loyalpin
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/carbine
-	name = "pulse carbine"
-	desc = "A compact variant of the pulse rifle with less firepower but easier storage."
+	name = "脉冲卡宾枪"
+	desc = "脉冲步枪的紧凑型，火力更少，但更易携带."
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "pulse_carbine"
@@ -59,18 +59,18 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/destroyer
-	name = "pulse destroyer"
-	desc = "A heavy-duty energy rifle built for pure destruction."
+	name = "脉冲毁灭者"
+	desc = "一种为纯粹的毁灭而制造的重型能量步枪."
 	worn_icon_state = "pulse"
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse)
 
 /obj/item/gun/energy/pulse/destroyer/attack_self(mob/living/user)
-	to_chat(user, span_danger("[src.name] has three settings, and they are all DESTROY."))
+	to_chat(user, span_danger("[src.name]有三种模式，它们全都叫毁灭模式！"))
 
 /obj/item/gun/energy/pulse/pistol
-	name = "pulse pistol"
-	desc = "A pulse rifle in an easily concealed handgun package with low capacity."
+	name = "脉冲手枪"
+	desc = "低容量的脉冲手枪."
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	icon_state = "pulse_pistol"
@@ -82,8 +82,8 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/pistol/m1911
-	name = "\improper M1911-P"
-	desc = "A compact pulse core in a classic handgun frame for Nanotrasen officers. It's not the size of the gun, it's the size of the hole it puts through people."
+	name = "M1911-P"
+	desc = "微型的脉冲核心装在经典的手枪外壳中，一般供纳米官员使用，关键不在于枪的大小，而在于它能把人穿出多大的洞."
 	icon_state = "m1911"
 	inhand_icon_state = "gun"
 	cell_type = /obj/item/stock_parts/cell/infinite

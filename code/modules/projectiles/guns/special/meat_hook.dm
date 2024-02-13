@@ -3,8 +3,8 @@
 
 /// Meat Hook
 /obj/item/gun/magic/hook
-	name = "meat hook"
-	desc = "Mid or feed."
+	name = "肉钩"
+	desc = "吃或被吃."
 	ammo_type = /obj/item/ammo_casing/magic/hook
 	icon_state = "hook"
 	inhand_icon_state = "hook"
@@ -19,7 +19,7 @@
 	antimagic_flags = NONE
 
 /obj/item/gun/magic/hook/shoot_with_empty_chamber(mob/living/user)
-	balloon_alert(user, "not ready yet!")
+	balloon_alert(user, "还没准备好!")
 
 /obj/item/gun/magic/hook/can_trigger_gun(mob/living/user, akimbo_usage) // This isn't really a gun, so it shouldn't be checking for TRAIT_NOGUNS, a firing pin (pinless), or a trigger guard (guardless)
 	if(akimbo_usage)
@@ -31,24 +31,24 @@
 /obj/item/gun/magic/hook/suicide_act(mob/living/user)
 	var/obj/item/bodypart/head/removable = user.get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(removable))
-		user.visible_message(span_suicide("[user] stuffs the chain of the [src] down the hole where their head should be! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]将[src]的链条塞到了头中! 这是一种自杀行为!"))
 		return OXYLOSS
 
 	playsound(get_turf(src), fire_sound, 50, TRUE, -1)
-	user.visible_message(span_suicide("[user] is using the [src] on their [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]在头上使用了[src]! 这是一种自杀行为!"))
 	playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 70)
 	removable.dismember(silent = FALSE)
 	return BRUTELOSS
 
 /obj/item/ammo_casing/magic/hook
-	name = "hook"
-	desc = "A hook."
+	name = "钩子"
+	desc = "钩子."
 	projectile_type = /obj/projectile/hook
 	caliber = CALIBER_HOOK
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect
 
 /obj/projectile/hook
-	name = "hook"
+	name = "钩子"
 	icon_state = "hook"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	pass_flags = PASSTABLE
@@ -77,7 +77,7 @@
 	if(victim.anchored || HAS_TRAIT_FROM(victim, TRAIT_HOOKED, REF(firer)))
 		return
 
-	victim.visible_message(span_danger("[victim] is snagged by [firer]'s hook!"))
+	victim.visible_message(span_danger("[victim]被[firer]的钩子钩中了!"))
 
 	var/datum/hook_and_move/puller = new
 	puller.begin_pulling(firer, victim, get_turf(firer))
@@ -207,7 +207,7 @@
 
 //just a nerfed version of the real thing for the bounty hunters.
 /obj/item/gun/magic/hook/bounty
-	name = "hook"
+	name = "钩子"
 	ammo_type = /obj/item/ammo_casing/magic/hook/bounty
 
 /obj/item/ammo_casing/magic/hook/bounty
@@ -219,7 +219,7 @@
 
 /// Debug hook for fun (AKA admin abuse). doesn't do any more damage or anything just lets you wildfire it.
 /obj/item/gun/magic/hook/debug
-	name = "super meat hook"
+	name = "超级肉钩"
 	max_charges = 100
 	recharge_rate = 1
 

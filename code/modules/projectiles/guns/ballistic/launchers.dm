@@ -2,8 +2,8 @@
 //Put handheld rocket launchers here if someone ever decides to make something so hilarious ~Paprika
 
 /obj/item/gun/ballistic/revolver/grenadelauncher//this is only used for underbarrel grenade launchers at the moment, but admins can still spawn it if they feel like being assholes
-	desc = "A break-operated grenade launcher."
-	name = "grenade launcher"
+	desc = "一种简易榴弹发射器."
+	name = "榴弹发射器"
 	icon_state = "dshotgun_sawn"
 	inhand_icon_state = "gun"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/grenadelauncher
@@ -21,8 +21,8 @@
 		chamber_round()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/cyborg
-	desc = "A 6-shot grenade launcher."
-	name = "multi grenade launcher"
+	desc = "六连装榴弹发射器."
+	name = "多管榴弹发射器"
 	icon = 'icons/mob/mecha_equipment.dmi'
 	icon_state = "mecha_grenadelnchr"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/grenademulti
@@ -32,8 +32,8 @@
 	return
 
 /obj/item/gun/ballistic/automatic/gyropistol
-	name = "gyrojet pistol"
-	desc = "A prototype pistol designed to fire self propelled rockets."
+	name = "火箭手枪"
+	desc = "一种设计用来发射火箭的原型手枪."
 	icon_state = "gyropistol"
 	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m75
@@ -42,9 +42,9 @@
 	casing_ejector = FALSE
 
 /obj/item/gun/ballistic/rocketlauncher
-	name = "\improper PML-9"
-	desc = "A reusable rocket propelled grenade launcher. The words \"NT this way\" and an arrow have been written near the barrel. \
-	A sticker near the cheek rest reads, \"ENSURE AREA BEHIND IS CLEAR BEFORE FIRING\""
+	name = "PML-9"
+	desc = "一种可重复使用的火箭推进器. 枪管附近写有\"请看纳米狗\"的字样与箭头涂鸦. \
+	在靠近观瞄具的附近还有一段提示标签，写着\"开火前确保后方无人\""
 	icon_state = "rocketlauncher"
 	inhand_icon_state = "rocketlauncher"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/rocketlauncher
@@ -73,8 +73,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/rocketlauncher/nobackblast
-	name = "flameless PML-11"
-	desc = "A reusable rocket propelled grenade launcher. This one has been fitted with a special coolant loop to avoid embarassing teamkill 'accidents' from backblast."
+	name = "无焰PML-11"
+	desc = "一种可重复使用的火箭推进器，这一个已经配备了一个特殊的冷却回路，以避免尴尬的友军伤害."
 	backblast = FALSE
 
 /obj/item/gun/ballistic/rocketlauncher/afterattack()
@@ -85,8 +85,8 @@
 	return //too difficult to remove the rocket with TK
 
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
-	user.visible_message(span_warning("[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!"), \
-		span_userdanger("You aim [src] at the ground to perform a bisnasty rocket jump..."))
+	user.visible_message(span_warning("[user]用[src]瞄准地面! 看起来试图表演一个经典的火箭跳!"), \
+		span_userdanger("你用[src]瞄准地面看起像是在表演火箭跳一样..."))
 	if(can_shoot())
 		ADD_TRAIT(user, TRAIT_NO_TRANSFORM, REF(src))
 		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, TRUE, 5)
@@ -103,7 +103,7 @@
 		sleep(0.5 SECONDS)
 		shoot_with_empty_chamber(user)
 		sleep(2 SECONDS)
-		user.visible_message(span_warning("[user] looks about the room realizing [user.p_theyre()] still there. [user.p_They()] proceed to shove [src] down their throat and choke [user.p_them()]self with it!"), \
-			span_userdanger("You look around after realizing you're still here, then proceed to choke yourself to death with [src]!"))
+		user.visible_message(span_warning("[user]环顾四周，发现自己还在此地. 于是决定使用[src]让自己窒息而死!"), \
+			span_userdanger("你环顾四周，发现自己还在此地. 于是决定使用[src]让自己窒息而死!"))
 		sleep(2 SECONDS)
 		return OXYLOSS

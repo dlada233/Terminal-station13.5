@@ -35,7 +35,7 @@
 	var/mob/living/A = get_duelist(gun_A)
 	var/mob/living/B = get_duelist(gun_B)
 	if(!A || !B)
-		message_duelists(span_warning("To begin the duel, both participants need to be holding paired dueling pistols."))
+		message_duelists(span_warning("决斗开始时，双方必须都手持配对的决斗手枪."))
 		return
 	begin()
 
@@ -45,7 +45,7 @@
 	fired.Cut()
 	countdown_step = countdown_length
 
-	message_duelists(span_notice("Set your gun setting and move [required_distance] steps away from your opponent."))
+	message_duelists(span_notice("调整你的枪械设置并移动[required_distance]步远离你的对手."))
 
 	START_PROCESSING(SSobj,src)
 
@@ -67,7 +67,7 @@
 	return G == gun_A ? gun_B : gun_A
 
 /datum/duel/proc/end()
-	message_duelists(span_notice("Duel finished. Re-engaging safety."))
+	message_duelists(span_notice("决斗结束. 复位保险."))
 	STOP_PROCESSING(SSobj,src)
 	state = DUEL_IDLE
 
@@ -94,17 +94,17 @@
 
 
 /datum/duel/proc/back_to_prep()
-	message_duelists(span_notice("Positions invalid. Please move to valid positions exactly [required_distance] steps away from each other to continue."))
+	message_duelists(span_notice("无效的位置，请移动到距离彼此正好[required_distance]步远的有效位置来继续决斗."))
 	state = DUEL_PREPARATION
 	confirmations.Cut()
 	countdown_step = countdown_length
 
 /datum/duel/proc/confirm_positioning()
-	message_duelists(span_notice("Position confirmed. Confirm readiness by pulling the trigger once."))
+	message_duelists(span_notice("位置确认，扣动扳机一次确认准备就绪."))
 	state = DUEL_READY
 
 /datum/duel/proc/confirm_ready()
-	message_duelists(span_notice("Readiness confirmed. Starting countdown. Commence firing at zero mark."))
+	message_duelists(span_notice("准备确认，开始倒计时，数到0时开始射击."))
 	state = DUEL_COUNTDOWN
 
 /datum/duel/proc/countdown_step()
@@ -146,8 +146,8 @@
 	qdel(src)
 
 /obj/item/gun/energy/dueling
-	name = "dueling pistol"
-	desc = "High-tech dueling pistol. Launches chaff and projectile according to preset settings."
+	name = "决斗手枪"
+	desc = "高科技决斗手枪，根据枪械设置发射弹丸."
 	icon_state = "dueling_pistol"
 	inhand_icon_state = "gun"
 	ammo_x_offset = 2
@@ -171,7 +171,7 @@
 
 		if(!check_valid_duel(user, FALSE) && !other_gun.check_valid_duel(user, FALSE))
 			var/datum/duel/D = new(src, other_gun)
-			to_chat(user,span_notice("Pairing established. Pairing code: [D.pairing_code]"))
+			to_chat(user,span_notice("配对已建立. 配对代码: [D.pairing_code]"))
 			return
 
 	return ..()
@@ -179,9 +179,9 @@
 /obj/item/gun/energy/dueling/examine_more(mob/user)
 	. = ..()
 	if(check_valid_duel(user, FALSE))
-		. += "The pairing code is: [duel.pairing_code]"
+		. += "配对代码是: [duel.pairing_code]"
 	else
-		. += "[src] is currently unpaired."
+		. += "[src]当前未配对."
 
 /obj/item/gun/energy/dueling/proc/setting_iconstate()
 	switch(setting)
@@ -211,7 +211,7 @@
 			setting = DUEL_SETTING_C
 		if(DUEL_SETTING_C)
 			setting = DUEL_SETTING_A
-	to_chat(user,span_notice("You switch [src] setting to [setting] mode."))
+	to_chat(user,span_notice("你将[src]切换到[setting]模式."))
 	update_appearance()
 
 /obj/item/gun/energy/dueling/update_overlays()
@@ -237,7 +237,7 @@
 		if(DUEL_READY)
 			return .
 		else
-			to_chat(user,span_warning("[src] is locked. Wait for FIRE signal before shooting."))
+			to_chat(user,span_warning("[src]被锁定，请等待开火信号."))
 			return FALSE
 
 /obj/item/gun/energy/dueling/proc/is_duelist(mob/living/L)
@@ -252,10 +252,10 @@
 		return
 	if(duel.state == DUEL_READY)
 		duel.confirmations[src] = TRUE
-		to_chat(user,span_notice("You confirm your readiness."))
+		to_chat(user,span_notice("你确认你准备好了."))
 		return
 	else if(!is_duelist(target)) //I kinda want to leave this out just to see someone shoot a bystander or missing.
-		to_chat(user,span_warning("[src] safety system prevents shooting anyone but your designated opponent."))
+		to_chat(user,span_warning("[src]安全系统防止射击指定对手以外的任何人."))
 		return
 	else
 		duel.fired[src] = TRUE
@@ -269,7 +269,7 @@
 /obj/item/gun/energy/dueling/proc/check_valid_duel(mob/living/user, do_warn)
 	if(!duel)
 		if(do_warn)
-			to_chat(user,span_warning("[src] is currently unpaired."))
+			to_chat(user,span_warning("[src]当前未配对."))
 		return FALSE
 	return TRUE
 
@@ -353,8 +353,8 @@
 
 //Storage case.
 /obj/item/storage/lockbox/dueling
-	name = "dueling pistol case"
-	desc = "Let's solve this like gentlespacemen."
+	name = "决斗手枪箱"
+	desc = "让我们像绅士一样解决这个问题."
 	icon_state = "medalbox+l"
 	inhand_icon_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'

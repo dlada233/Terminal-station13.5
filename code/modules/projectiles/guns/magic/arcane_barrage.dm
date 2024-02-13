@@ -1,6 +1,6 @@
 /obj/item/gun/magic/wand/arcane_barrage
-	name = "arcane barrage"
-	desc = "Pew Pew Pew."
+	name = "奥术飞弹"
+	desc = "biu~biu~biu~."
 	fire_sound = 'sound/weapons/emitter.ogg'
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "arcane_barrage"

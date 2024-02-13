@@ -2,7 +2,7 @@
 /obj/item/gun/energy/recharge
 	icon_state = "kineticgun"
 	base_icon_state = "kineticgun"
-	desc = "A self recharging gun. Holds one shot at a time."
+	desc = "自动充电的枪，一次只能容纳一发."
 	automatic_charge_overlays = FALSE
 	cell_type = /obj/item/stock_parts/cell/emproof
 	/// If set to something, instead of an overlay, sets the icon_state directly.
@@ -86,7 +86,7 @@
 	if(!suppressed && recharge_sound)
 		playsound(src.loc, recharge_sound, 60, TRUE)
 	else
-		to_chat(loc, span_warning("[src] silently charges up."))
+		to_chat(loc, span_warning("[src]默默地充电."))
 	update_appearance()
 
 /obj/item/gun/energy/recharge/update_overlays()
@@ -100,8 +100,8 @@
 		icon_state = no_charge_state
 
 /obj/item/gun/energy/recharge/ebow
-	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists."
+	name = "迷你能量弩"
+	desc = "这是辛迪加潜行专家喜欢的武器."
 	icon_state = "crossbow"
 	base_icon_state = "crossbow"
 	inhand_icon_state = "crossbow"
@@ -118,16 +118,16 @@
 	knife_y_offset = 12
 
 /obj/item/gun/energy/recharge/ebow/halloween
-	name = "candy corn crossbow"
-	desc = "A weapon favored by Syndicate trick-or-treaters."
+	name = "玉米糖弩"
+	desc = "辛迪加玩不给糖就捣蛋的人喜欢的武器."
 	icon_state = "crossbow_halloween"
 	base_icon_state = "crossbow_halloween"
 	no_charge_state = "crossbow_halloween_empty"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
 
 /obj/item/gun/energy/recharge/ebow/large
-	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology."
+	name = "能量弩"
+	desc = "使用辛迪加技术的逆向工程武器."
 	icon_state = "crossbowlarge"
 	base_icon_state = "crossbowlarge"
 	no_charge_state = "crossbowlarge_empty"
@@ -138,9 +138,9 @@
 
 /// A silly gun that does literally zero damage, but disrupts electrical sources of light, like flashlights.
 /obj/item/gun/energy/recharge/fisher
-	name = "\improper SC/FISHER disruptor"
-	desc = "A self-recharging, permanently suppressed, and very haphazardly modified accelerator handgun that does literally nothing to anything except light fixtures and cameras. \
-	Can fire twice before requiring a recharge, with bolts passing through machinery, but demands precision."
+	name = "SC/FISHER 干扰者"
+	desc = "一个自充电的，经过非常随意的改造后的动能加速器手枪，除了瘫痪灯具和摄像头，它什么都做不了. \
+	每两次射击进行一次充能，在精准射击的情况下可以穿透机械."
 	icon_state = "fisher"
 	base_icon_state = "fisher"
 	dry_fire_sound_volume = 10
@@ -152,9 +152,9 @@
 
 /obj/item/gun/energy/recharge/fisher/examine_more(mob/user)
 	. = ..()
-	. += span_notice("The SC/FISHER is an illegally-modified kinetic accelerator cut down and refit into a disassembled miniature energy gun chassis, with its pressure chamber \
-	attenuated to launch kinetic bolts that <b>disrupt flashlights and cameras, if only temporarily</b>. This effect also works on <b>cyborg headlamps<b>, and works longer in melee.<br><br>\
-	While some would argue that this is a really terrible design choice, others argue that it is very funny to be able to shoot at light sources. Caveat emptor.")
+	. += span_notice("SC/FISHER 是一种非法改装的动能加速器，被锯短并改装成了一个小型激光枪壳，原本的压力室被削弱，发射出的动能爆破只能<b>暂时瘫痪灯具和摄像头</b>. \
+	该效果同样对<b>赛博格头灯<b>有用, 并在近距离时持续效果更长.<br><br>\
+	虽然有些人觉得这是很糟糕的设计，但有些人显然能从破坏照明资源中获得快乐，望购者自慎.")
 
 /obj/item/gun/energy/recharge/fisher/afterattack(atom/target, mob/living/user, flag, params)
 	// you should just shoot them, but in case you can't/wont

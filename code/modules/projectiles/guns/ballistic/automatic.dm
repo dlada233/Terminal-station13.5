@@ -35,19 +35,19 @@
 	if(!select)
 		burst_size = 1
 		fire_delay = 0
-		balloon_alert(user, "switched to semi-automatic")
+		balloon_alert(user, "切换到半自动模式")
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
-		balloon_alert(user, "switched to [burst_size]-round burst")
+		balloon_alert(user, "切换到[burst_size]连发模式")
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 	update_item_action_buttons()
 
 /obj/item/gun/ballistic/automatic/proto
-	name = "\improper Nanotrasen Saber SMG"
-	desc = "A prototype full-auto 9mm submachine gun, designated 'SABR'. Has a threaded barrel for suppressors."
+	name = "纳米剑兵冲锋枪"
+	desc = "一种原型全自动9毫米冲锋枪，代号“SABR”，带有有装消音器的螺纹枪管."
 	icon_state = "saber"
 	burst_size = 1
 	actions_types = list()
@@ -66,8 +66,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/automatic/c20r
-	name = "\improper C-20r SMG"
-	desc = "A bullpup three-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	name = "C-20r冲锋枪"
+	desc = "三连发的.45冲锋枪，代号C-20r，还有“斯卡伯勒武器”的印章."
 	icon_state = "c20r"
 	inhand_icon_state = "c20r"
 	selector_switch_icon = TRUE
@@ -95,12 +95,8 @@
 	update_appearance()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "\improper WT-550 Autorifle"
-	desc = "Recalled by Nanotrasen due to public backlash around heat distribution resulting in unintended discombobulation. \
-		This outcry was fabricated through various Syndicate-backed misinformation operations to force Nanotrasen to abandon \
-		its ballistics weapon program, cornering them into the energy weapons market. Most often found today in the hands of pirates, \
-		underfunded security personnel, cargo technicians, theoritical physicists and gang bangers out on the rim. \
-		Light-weight and fully automatic. Uses 4.6x30mm rounds."
+	name = "WT-550自动步枪"
+	desc = "这把重量轻、全自动的武器发射4.6x30毫米子弹，大多被海盗、资金不足的安保人员、货仓技工、理论物理学家和帮派分子使用. 辛迪加曾蓄意煽动，引发了公众对于纳米热武器的强烈抗议，使得纳米最终不得不转向能量武器市场."
 	icon_state = "wt550"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "arg"
@@ -121,8 +117,8 @@
 	AddComponent(/datum/component/automatic_fire, 0.3 SECONDS)
 
 /obj/item/gun/ballistic/automatic/plastikov
-	name = "\improper PP-95 SMG"
-	desc = "An ancient 9mm submachine gun pattern updated and simplified to lower costs, though perhaps simplified too much."
+	name = "PP-95冲锋枪"
+	desc = "一种古老的9毫米冲锋枪模式，为了降低成本进行了简化，尽管可能简化得太多了."
 	icon_state = "plastikov"
 	inhand_icon_state = "plastikov"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/plastikov9mm
@@ -136,8 +132,8 @@
 	fire_sound = 'sound/weapons/gun/smg/shot_alt.ogg'
 
 /obj/item/gun/ballistic/automatic/mini_uzi
-	name = "\improper Type U3 Uzi"
-	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
+	name = "U3型乌兹冲锋枪"
+	desc = "一种轻便的乌兹冲锋枪，使用9毫米子弹."
 	icon_state = "miniuzi"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 2
@@ -151,15 +147,15 @@
  * Roughly 9 damage per bullet every 0.2 seconds, equaling out to downing an opponent in a bit over a second, if they have no armor.
  */
 /obj/item/gun/ballistic/automatic/mini_uzi/chimpgun
-	name = "\improper MONK-10"
-	desc = "Developed by Syndicate monkeys, for syndicate Monkeys. Despite the name, this weapon resembles an Uzi significantly more than a MAC-10. Uses 9mm rounds. There's a label on the other side of the gun that says \"Do what comes natural.\""
+	name = "猿-10"
+	desc = "由辛迪加猴子开发，供辛迪加猴子使用. 除了名字，这把武器更像是一把乌兹冲锋枪. 发射9毫米子弹. 墙身上写着一段标语\"顺其自然.\""
 	projectile_damage_multiplier = 0.4
 	projectile_wound_bonus = -25
 	pin = /obj/item/firing_pin/monkey
 
 /obj/item/gun/ballistic/automatic/m90
-	name = "\improper M-90gl Carbine"
-	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher."
+	name = "M-90gl卡宾枪"
+	desc = "三连发的5.56口径卡宾枪，代号M-90gl，枪管附加下挂榴弹发射器."
 	desc_controls = "Right-click to use grenade launcher."
 	icon_state = "m90"
 	w_class = WEIGHT_CLASS_BULKY
@@ -214,8 +210,8 @@
 			. += "[initial(icon_state)]_burst"
 
 /obj/item/gun/ballistic/automatic/tommygun
-	name = "\improper Thompson SMG"
-	desc = "Based on the classic 'Chicago Typewriter'."
+	name = "汤姆逊冲锋枪"
+	desc = "俗称'芝加哥打字机'."
 	icon_state = "tommygun"
 	inhand_icon_state = "shotgun"
 	selector_switch_icon = TRUE
@@ -241,8 +237,8 @@
  * Roughly 9 damage per bullet every 0.2 seconds, equaling out to downing an opponent in a bit over a second, if they have no armor.
  */
 /obj/item/gun/ballistic/automatic/tommygun/chimpgun
-	name = "\improper Typewriter"
-	desc = "It was the best of times, it was the BLURST of times!? You stupid monkeys!"
+	name = "打字机"
+	desc = "这是最好的时代，也是最混乱的时代!?你这蠢猴子!"
 	fire_delay = 2
 	rof = 0.2 SECONDS
 	projectile_damage_multiplier = 0.4
@@ -250,8 +246,8 @@
 	pin = /obj/item/firing_pin/monkey
 
 /obj/item/gun/ballistic/automatic/ar
-	name = "\improper NT-ARG 'Boarder'"
-	desc = "A robust assault rifle used by Nanotrasen fighting forces."
+	name = "NT-ARG '先登者'"
+	desc = "纳米作战部队使用的一种突击步枪."
 	icon_state = "arg"
 	inhand_icon_state = "arg"
 	slot_flags = 0
@@ -263,8 +259,8 @@
 // L6 SAW //
 
 /obj/item/gun/ballistic/automatic/l6_saw
-	name = "\improper L6 SAW"
-	desc = "A heavily modified 7mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	name = "L6 SAW轻机枪"
+	desc = "彻底改装过的7毫米轻机枪，命名为'L6 SAW'. 墙身底部刻有'Aussec Armoury - 2531'字样."
 	icon_state = "l6"
 	inhand_icon_state = "l6closedmag"
 	base_icon_state = "l6"
@@ -297,16 +293,16 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/examine(mob/user)
 	. = ..()
-	. += "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover."
+	. += "<b>Alt加左键</b>来[cover_open ? "关上" : "打开"]防尘盖."
 	if(cover_open && magazine)
-		. += span_notice("It seems like you could use an <b>empty hand</b> to remove the magazine.")
+		. += span_notice("看起来你可以<b>空手</b>取出弹匣.")
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/AltClick(mob/user)
 	if(!user.can_perform_action(src))
 		return
 	cover_open = !cover_open
-	balloon_alert(user, "cover [cover_open ? "opened" : "closed"]")
+	balloon_alert(user, "防尘盖[cover_open ? "已打开" : "已闭合"]")
 	playsound(src, 'sound/weapons/gun/l6/l6_door.ogg', 60, TRUE)
 	update_appearance()
 
@@ -323,7 +319,7 @@
 	. |= AFTERATTACK_PROCESSED_ITEM
 
 	if(cover_open)
-		balloon_alert(user, "close the cover!")
+		balloon_alert(user, "关上防尘盖!")
 		return
 	else
 		. |= ..()
@@ -335,21 +331,21 @@
 		..()
 		return
 	if (!cover_open)
-		balloon_alert(user, "open the cover!")
+		balloon_alert(user, "打开防尘盖!")
 		return
 	..()
 
 /obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, params)
 	if(!cover_open && istype(A, accepted_magazine_type))
-		balloon_alert(user, "open the cover!")
+		balloon_alert(user, "打开防尘盖!")
 		return
 	..()
 
 // Old Semi-Auto Rifle //
 
 /obj/item/gun/ballistic/automatic/surplus
-	name = "Surplus Rifle"
-	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
+	name = "旧式步枪"
+	desc = "无数过时的实弹步枪之一，但仍有一些威力，使用10毫米子弹，笨重的枪身让你无法单手射击."
 	icon_state = "surplus"
 	worn_icon_state = null
 	weapon_weight = WEAPON_HEAVY
@@ -366,8 +362,8 @@
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "laser rifle"
-	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
+	name = "激光步枪"
+	desc = "虽然有时被嘲笑能量武器的火力相对较弱，但可充电弹药带来的后勤优势是无可比拟的."
 	icon_state = "oldrifle"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "arg"

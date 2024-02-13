@@ -84,11 +84,11 @@
 	///Whether the gun has an internal magazine or a detatchable one. Overridden by BOLT_TYPE_NO_BOLT.
 	var/internal_magazine = FALSE
 	///Phrasing of the bolt in examine and notification messages; ex: bolt, slide, etc.
-	var/bolt_wording = "bolt"
+	var/bolt_wording = "枪栓"
 	///Phrasing of the magazine in examine and notification messages; ex: magazine, box, etx
-	var/magazine_wording = "magazine"
+	var/magazine_wording = "弹匣"
 	///Phrasing of the cartridge in examine and notification messages; ex: bullet, shell, dart, etc.
-	var/cartridge_wording = "bullet"
+	var/cartridge_wording = "子弹"
 	///length between individual racks
 	var/rack_delay = 5
 	///time of the most recent rack, used for cooldown purposes
@@ -294,11 +294,11 @@
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked) //If it's an open bolt, racking again would do nothing
 			if (user)
-				balloon_alert(user, "[bolt_wording] already cocked!")
+				balloon_alert(user, "[bolt_wording]已经拉开了!")
 			return
 		bolt_locked = FALSE
 	if (user)
-		balloon_alert(user, "[bolt_wording] racked")
+		balloon_alert(user, "[bolt_wording]已拉开")
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
@@ -311,7 +311,7 @@
 /obj/item/gun/ballistic/proc/drop_bolt(mob/user = null)
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
 	if (user)
-		balloon_alert(user, "[bolt_wording] dropped")
+		balloon_alert(user, "[bolt_wording]闭合")
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
@@ -319,12 +319,12 @@
 ///Handles all the logic needed for magazine insertion
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
 	if(!istype(AM, accepted_magazine_type))
-		balloon_alert(user, "[AM.name] doesn't fit!")
+		balloon_alert(user, "[AM.name]不匹配!")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
 		if (display_message)
-			balloon_alert(user, "[magazine_wording] loaded")
+			balloon_alert(user, "[magazine_wording]已装填")
 		if (magazine.ammo_count())
 			playsound(src, load_sound, load_sound_volume, load_sound_vary)
 		else
@@ -334,7 +334,7 @@
 		update_appearance()
 		return TRUE
 	else
-		to_chat(user, span_warning("You cannot seem to get [src] out of your hands!"))
+		to_chat(user, span_warning("你似乎无法把[src]从你的手中拿出来!"))
 		return FALSE
 
 ///Handles all the logic of magazine ejection, if tac_load is set that magazine will be tacloaded in the place of the old eject
@@ -349,16 +349,16 @@
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
-			balloon_alert(user, "[magazine_wording] swapped")
+			balloon_alert(user, "更换[magazine_wording]")
 		else
-			to_chat(user, span_warning("You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing."))
+			to_chat(user, span_warning("你扔掉了旧[magazine_wording]，但新弹匣装不上. 多么尴尬."))
 			magazine = null
 	else
 		magazine = null
 	user.put_in_hands(old_mag)
 	old_mag.update_appearance()
 	if (display_message)
-		balloon_alert(user, "[magazine_wording] unloaded")
+		balloon_alert(user, "[magazine_wording]已卸载")
 	update_appearance()
 
 
@@ -381,7 +381,7 @@
 			if (tac_reloads)
 				eject_magazine(user, FALSE, AM)
 			else
-				balloon_alert(user, "already loaded!")
+				balloon_alert(user, "已装填!")
 		return
 	if (isammocasing(A) || istype(A, /obj/item/ammo_box))
 		if (must_hold_to_load && !check_if_held(user))
@@ -405,16 +405,16 @@
 	if(istype(A, /obj/item/suppressor))
 		var/obj/item/suppressor/S = A
 		if(!can_suppress)
-			balloon_alert(user, "[S.name] doesn't fit!")
+			balloon_alert(user, "[S.name]不匹配!")
 			return
 		if(!user.is_holding(src))
-			balloon_alert(user, "not in hand!")
+			balloon_alert(user, "不在手中!")
 			return
 		if(suppressed)
-			balloon_alert(user, "already has a supressor!")
+			balloon_alert(user, "已经有一个消音器了!")
 			return
 		if(user.transferItemToLoc(A, src))
-			balloon_alert(user, "[S.name] attached")
+			balloon_alert(user, "[S.name]已连接")
 			install_suppressor(A)
 			return
 	if (can_be_sawn_off)
@@ -436,7 +436,7 @@
 	if(magazine && chambered.loaded_projectile && can_misfire && misfire_probability > 0)
 		if(prob(misfire_probability))
 			if(blow_up(user))
-				to_chat(user, span_userdanger("[src] misfires!"))
+				to_chat(user, span_userdanger("[src]走火了!"))
 
 	if (sawn_off)
 		bonus_spread += SAWN_OFF_ACC_PENALTY
@@ -472,7 +472,7 @@
 			var/obj/item/suppressor/S = suppressed
 			if(!user.is_holding(src))
 				return ..()
-			balloon_alert(user, "[S.name] removed")
+			balloon_alert(user, "[S.name]已移除")
 			user.put_in_hands(S)
 			clear_suppressor()
 
@@ -521,12 +521,12 @@
 			if(T && is_station_level(T.z))
 				SSblackbox.record_feedback("tally", "station_mess_created", 1, CB.name)
 		if (num_unloaded)
-			balloon_alert(user, "[num_unloaded] [cartridge_wording]\s unloaded")
+			balloon_alert(user, "[num_unloaded] [cartridge_wording]已卸载")
 			SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD) // SKYRAT EDIT ADDITION - this is normally handled by eject_magazine() but internal magazines are a special case
 			playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
 			update_appearance()
 		else
-			balloon_alert(user, "it's empty!")
+			balloon_alert(user, "它是空的!")
 		return
 	if(bolt_type == BOLT_TYPE_LOCKING && bolt_locked)
 		drop_bolt(user)
@@ -541,18 +541,18 @@
 /obj/item/gun/ballistic/examine(mob/user)
 	. = ..()
 	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
-	. += "It has [get_ammo(count_chambered)] round\s remaining."
+	. += "它还有[get_ammo(count_chambered)]发剩余."
 
 	if (!chambered && !hidden_chambered)
-		. += "It does not seem to have a round chambered."
+		. += "它似乎没有圆弹膛."
 	if (bolt_locked)
-		. += "The [bolt_wording] is locked back and needs to be released before firing or de-fouling."
+		. += "[bolt_wording]已闭锁，若要开火或清洁枪管需要先拉开."
 	if (suppressed)
-		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
+		. += "它有一个附加的消音器，用<b>Alt加左键</b>移除."
 	if(can_misfire)
-		. += span_danger("You get the feeling this might explode if you fire it....")
+		. += span_danger("你会有一种感觉，如果你开火，它可能会炸膛....")
 		if(misfire_probability > 0)
-			. += span_danger("Given the state of the gun, there is a [misfire_probability]% chance it'll misfire.")
+			. += span_danger("根据枪的状态，它有[misfire_probability]%的几率会走火.")
 
 ///Gets the number of bullets in the gun
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
@@ -578,12 +578,12 @@
 /obj/item/gun/ballistic/suicide_act(mob/living/user)
 	var/obj/item/organ/internal/brain/B = user.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if (B && chambered && chambered.loaded_projectile && can_trigger_gun(user) && chambered.loaded_projectile.damage > 0)
-		user.visible_message(span_suicide("[user] is putting the barrel of [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]试图把[src]的枪管放进自己的嘴里. 看起是要尝试自杀!"))
 		sleep(2.5 SECONDS)
 		if(user.is_holding(src))
 			var/turf/T = get_turf(user)
 			process_fire(user, user, FALSE, null, BODY_ZONE_HEAD)
-			user.visible_message(span_suicide("[user] blows [user.p_their()] brain[user.p_s()] out with [src]!"))
+			user.visible_message(span_suicide("[user]用[src]把自己的大脑射爆了!"))
 			var/turf/target = get_ranged_target_turf(user, REVERSE_DIR(user.dir), BRAINS_BLOWN_THROW_RANGE)
 			B.Remove(user)
 			B.forceMove(T)
@@ -591,10 +591,10 @@
 			B.throw_at(target, BRAINS_BLOWN_THROW_RANGE, BRAINS_BLOWN_THROW_SPEED, callback=gibspawner)
 			return BRUTELOSS
 		else
-			user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+			user.visible_message(span_suicide("[user]惊慌失措并开始感到窒息!"))
 			return OXYLOSS
 	else
-		user.visible_message(span_suicide("[user] is pretending to blow [user.p_their()] brain[user.p_s()] out with [src]! It looks like [user.p_theyre()] trying to commit suicide!</b>"))
+		user.visible_message(span_suicide("[user]正在用[src]假装把自己的大脑射爆! 看起来是要尝试自杀!</b>"))
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return OXYLOSS
 
@@ -612,26 +612,26 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	if(!saw.get_sharpness() || (!is_type_in_typecache(saw, GLOB.gun_saw_types) && saw.tool_behaviour != TOOL_SAW)) //needs to be sharp. Otherwise turned off eswords can cut this.
 		return
 	if(sawn_off)
-		balloon_alert(user, "it's already shortened!")
+		balloon_alert(user, "已经锯短了!")
 		return
 	if(bayonet)
-		balloon_alert(user, "[bayonet.name] must be removed!")
+		balloon_alert(user, "[bayonet.name]必须被移除!")
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_notice("[user] begins to shorten [src]."), span_notice("You begin to shorten [src]..."))
+	user.visible_message(span_notice("[user]开始锯短[src]."), span_notice("你开始锯短[src]..."))
 
 	//if there's any live ammo inside the gun, makes it go off
 	if(blow_up(user))
-		user.visible_message(span_danger("[src] goes off!"), span_danger("[src] goes off in your face!"))
+		user.visible_message(span_danger("[src]爆裂开来!"), span_danger("[src]在你的脸上爆裂开来!"))
 		return
 
 	if(do_after(user, 30, target = src))
 		if(sawn_off)
 			return
-		user.visible_message(span_notice("[user] shortens [src]!"), span_notice("You shorten [src]."))
+		user.visible_message(span_notice("[user]锯短了[src]!"), span_notice("你锯短了[src]."))
 		sawn_off = TRUE
 		if(handle_modifications)
-			name = "sawn-off [src.name]"
+			name = "锯短的[src.name]"
 			desc = sawn_desc
 			w_class = WEIGHT_CLASS_NORMAL
 			//The file might not have a "gun" icon, let's prepare for this
@@ -649,22 +649,22 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 
 /obj/item/gun/ballistic/proc/guncleaning(mob/user, obj/item/A)
 	if(misfire_probability == 0)
-		balloon_alert(user, "it's already clean!")
+		balloon_alert(user, "它已经是干净了!")
 		return
 
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_notice("[user] begins to cleaning [src]."), span_notice("You begin to clean the internals of [src]."))
+	user.visible_message(span_notice("[user]开始清理[src]."), span_notice("你开始清理[src]的内部组件."))
 
 	if(do_after(user, 100, target = src))
 		var/original_misfire_value = initial(misfire_probability)
 		if(misfire_probability > original_misfire_value)
 			misfire_probability = original_misfire_value
-			user.visible_message(span_notice("[user] cleans [src] of any fouling."), span_notice("You clean [src], removing any fouling, preventing misfire."))
+			user.visible_message(span_notice("[user]清除了[src]上的任何灰尘."), span_notice("你清理了[src]，移除了任何污垢灰尘，走火的概率大大降低了."))
 			return TRUE
 
 /obj/item/gun/ballistic/wrench_act(mob/living/user, obj/item/I)
 	if(!user.is_holding(src))
-		to_chat(user, span_notice("You need to hold [src] to modify it."))
+		to_chat(user, span_notice("你需要拿着[src]来改造它."))
 		return TRUE
 
 	if(!can_modify_ammo)
@@ -672,20 +672,20 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 
 	if(bolt_type == BOLT_TYPE_STANDARD)
 		if(get_ammo())
-			to_chat(user, span_notice("You can't get at the internals while the gun has a bullet in it!"))
+			to_chat(user, span_notice("你不能在枪里有子弹时对枪械内部进行操作!"))
 			return
 
 		else if(!bolt_locked)
-			to_chat(user, span_notice("You can't get at the internals while the bolt is down!"))
+			to_chat(user, span_notice("你不能在枪栓闭合时对枪械内部进行操作!"))
 			return
 
-	to_chat(user, span_notice("You begin to tinker with [src]..."))
+	to_chat(user, span_notice("你开始修补[src]..."))
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 3 SECONDS))
 		return TRUE
 
 	if(blow_up(user))
-		user.visible_message(span_danger("[src] goes off!"), span_danger("[src] goes off in your face!"))
+		user.visible_message(span_danger("[src]炸开了!"), span_danger("[src]在你的脸上炸开了!"))
 		return
 
 	if(magazine.caliber == initial_caliber)
@@ -693,13 +693,13 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		if(alternative_ammo_misfires)
 			can_misfire = TRUE
 		fire_sound = alternative_fire_sound
-		to_chat(user, span_notice("You modify [src]. Now it will fire [alternative_caliber] rounds."))
+		to_chat(user, span_notice("你改装了[src]. 现在它将能发射[alternative_caliber]."))
 	else
 		magazine.caliber = initial_caliber
 		if(alternative_ammo_misfires)
 			can_misfire = FALSE
 		fire_sound = initial_fire_sound
-		to_chat(user, span_notice("You reset [src]. Now it will fire [initial_caliber] rounds."))
+		to_chat(user, span_notice("你还原了[src]. 现在它将能发射[initial_caliber]."))
 
 
 ///used for sawing guns, causes the gun to fire without the input of the user
@@ -722,8 +722,8 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	update_appearance()
 
 /obj/item/suppressor
-	name = "suppressor"
-	desc = "A syndicate small-arms suppressor for maximum espionage."
+	name = "消音器"
+	desc = "辛迪加的消音器，有助于间谍事业."
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY

@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser/musket
-	name = "laser musket"
-	desc = "A hand-crafted laser weapon, it has a hand crank on the side to charge it up."
+	name = "激光滑膛枪"
+	desc = "这是一种手工制作的激光武器，它的侧面有一个手动曲柄来给它充电."
 	icon_state = "musket"
 	inhand_icon_state = "musket"
 	worn_icon_state = "las_musket"
@@ -24,12 +24,12 @@
 	)
 
 /obj/item/gun/energy/laser/musket/update_icon_state()
-	inhand_icon_state = "[initial(inhand_icon_state)][(get_charge_ratio() == 4 ? "charged" : "")]"
+	inhand_icon_state = "[initial(inhand_icon_state)][(get_charge_ratio() == 4 ? "已充能" : "")]"
 	return ..()
 
 /obj/item/gun/energy/laser/musket/prime
-	name = "heroic laser musket"
-	desc = "A well-engineered, hand-charged laser weapon. Its capacitors hum with potential."
+	name = "英雄激光滑膛枪"
+	desc = "一种精心设计、手动充电的激光武器，它的电容器积满了电压."
 	icon_state = "musket_prime"
 	inhand_icon_state = "musket_prime"
 	worn_icon_state = "las_musket_prime"
@@ -37,8 +37,8 @@
 
 
 /obj/item/gun/energy/disabler/smoothbore
-	name = "smoothbore disabler"
-	desc = "A hand-crafted disabler, using a hard knock on an energy cell to fire the stunner laser. A lack of proper focusing means it has no accuracy whatsoever."
+	name = "滑膛镇暴枪"
+	desc = "一种手工制作的镇暴枪，通过对能量电池的冲压来发射镇暴光束，但缺乏聚焦系统也意味着它没有任何准确性."
 	icon_state = "smoothbore"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smoothbore)
 	shaded_charge = 1
@@ -65,9 +65,8 @@
 	) //i swear 1812 being the overlay numbers was accidental
 
 /obj/item/gun/energy/disabler/smoothbore/prime //much stronger than the other prime variants, so dont just put this in as maint loot
-	name = "elite smoothbore disabler"
-	desc = "An enhancement version of the smoothbore disabler pistol. Improved optics and cell type result in good accuracy and the ability to fire twice. \
-	The disabler bolts also don't dissipate upon impact with armor, unlike the previous model."
+	name = "精英滑膛镇暴枪"
+	desc = "滑膛镇暴枪的增强版，改进了光学和电池设计，拥有了良好的精度和二次发射的能力."
 	icon_state = "smoothbore_prime"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smoothbore/prime)
 	charge_sections = 2
