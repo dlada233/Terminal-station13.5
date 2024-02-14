@@ -26,8 +26,8 @@
 	return
 
 /obj/item/gun/energy/disabler
-	name = "disabler"
-	desc = "A self-defense weapon that exhausts organic targets, weakening them until they collapse."
+	name = "镇暴光枪"
+	desc = "这是一种自卫武器，持续命中将耗尽有机目标的耐力直至倒地."
 	icon_state = "disabler"
 	inhand_icon_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler)
@@ -41,8 +41,8 @@
 		overlay_y = 10)
 
 /obj/item/gun/energy/disabler/smg
-	name = "disabler smg"
-	desc = "An automatic disabler variant, as opposed to the conventional model, boasts a higher ammunition capacity at the cost of slightly reduced beam effectiveness."
+	name = "镇暴冲锋枪"
+	desc = "一种镇暴光枪改型，以略微降低光束效能为代价，换来了拥有更高的弹药容量和更快的射速."
 	icon_state = "disabler_smg"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smg)
 	shaded_charge = 1
@@ -61,8 +61,8 @@
 	)
 
 /obj/item/gun/energy/disabler/cyborg
-	name = "cyborg disabler"
-	desc = "An integrated disabler that draws from a cyborg's power cell. This weapon contains a limiter to prevent the cyborg's power cell from overheating."
+	name = "赛博格镇暴光枪"
+	desc = "用赛博格电池供电的镇暴光枪，上面装有热传感器防止内部电池过热."
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 

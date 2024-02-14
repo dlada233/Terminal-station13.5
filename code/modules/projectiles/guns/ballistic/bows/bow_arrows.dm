@@ -1,7 +1,7 @@
 ///base arrow
 /obj/item/ammo_casing/arrow
-	name = "arrow"
-	desc = "Stabby Stabman!"
+	name = "弓箭"
+	desc = "锐利的箭，锐利的眼!"
 	icon = 'icons/obj/weapons/bows/arrows.dmi'
 	icon_state = "arrow"
 	base_icon_state = "arrow"
@@ -25,8 +25,8 @@
 
 ///base arrow projectile
 /obj/projectile/bullet/arrow
-	name = "arrow"
-	desc = "Ow! Get it out of me!"
+	name = "弓箭"
+	desc = "噢!快把它弄出来!"
 	icon = 'icons/obj/weapons/bows/arrows.dmi'
 	icon_state = "arrow_projectile"
 	damage = 50
@@ -46,8 +46,8 @@
 
 /// holy arrows
 /obj/item/ammo_casing/arrow/holy
-	name = "holy arrow"
-	desc = "A holy diver seeking its target."
+	name = "神圣箭"
+	desc = "神圣的疾行者寻找它的目标."
 	icon_state = "holy_arrow"
 	inhand_icon_state = "holy_arrow"
 	base_icon_state = "holy_arrow"
@@ -55,8 +55,8 @@
 
 /// holy arrow projectile
 /obj/projectile/bullet/arrow/holy
-	name = "holy arrow"
-	desc = "Here it comes, cultist scum!"
+	name = "神圣箭"
+	desc = "你要战那便战吧！异端渣滓！"
 	icon_state = "holy_arrow_projectile"
 	damage = 20 //still a lot but this is roundstart gear so far less
 	embedding = list(
@@ -77,14 +77,14 @@
 /// special pyre sect arrow
 /// in the future, this needs a special sprite, but bows don't support non-hardcoded arrow sprites
 /obj/item/ammo_casing/arrow/holy/blazing
-	name = "blazing star arrow"
-	desc = "A holy diver seeking its target, blessed with fire. Will ignite on hit, destroying the arrow. But if you hit an already ignited target...?"
+	name = "飞火流星箭"
+	desc = "神圣的疾行者寻找它的目标赐予灼热的火焰，当命中时摧毁自身并点燃目标，但如果你击中一个已经点燃的目标呢...?"// 答案是爆炸
 	projectile_type = /obj/projectile/bullet/arrow/blazing
 	reusable = FALSE
 
 /obj/projectile/bullet/arrow/blazing
-	name = "blazing arrow"
-	desc = "THE UNMATCHED POWER OF THE SUN"
+	name = "飞火箭"
+	desc = "代表太阳审判你!"
 	icon_state = "holy_arrow_projectile"
 	damage = 20
 	embedding = null
@@ -95,9 +95,9 @@
 		return
 	var/mob/living/carbon/human/human_target = target
 	if(!human_target.on_fire)
-		to_chat(human_target, span_danger("[src] explodes into flames which quickly envelop you!"))
+		to_chat(human_target, span_danger("[src]在火焰中爆炸，并且又点燃了你!"))
 		human_target.adjust_fire_stacks(2)
 		human_target.ignite_mob()
 		return
-	to_chat(human_target, span_danger("[src] reacts with the flames on y-"))
+	to_chat(human_target, span_danger("[src]与你身上的火焰反yin-"))
 	explosion(src, light_impact_range = 1, flame_range = 2) //ow

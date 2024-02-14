@@ -9,9 +9,9 @@
 #define AIMING_BEAM_ANGLE_CHANGE_THRESHOLD 0.1
 
 /obj/item/gun/energy/beam_rifle
-	name = "particle acceleration rifle"
-	desc = "An energy-based anti material marksman rifle that uses highly charged particle beams moving at extreme velocities to decimate whatever is unfortunate enough to be targeted by one."
-	desc_controls = "Hold down left click while scoped to aim, when weapon is fully aimed (Tracer goes from red to green as it charges), release to fire. Moving while aiming or changing where you're pointing at while aiming will delay the aiming process depending on how much you changed."
+	name = "粒子加速步枪"
+	desc = "一种以能量为基础的反器材精确步枪，它使用高电荷粒子束以极快的速度来摧毁任何不幸被它瞄准的东西."
+	desc_controls = "在按住左键瞄准，当武器完全瞄准时(指针从红色变为绿色)发射，在瞄准时移动或改变你指向的地方会延迟瞄准过程，取决于你的动作幅度."
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	icon_state = "esniper"
 	inhand_icon_state = null
@@ -109,13 +109,13 @@
 			zoom_lock = 0
 		switch(zoom_lock)
 			if(ZOOM_LOCK_AUTOZOOM_FREEMOVE)
-				to_chat(user, span_boldnotice("You switch [src]'s zooming processor to free directional."))
+				to_chat(user, span_boldnotice("你切换[src]的缩放镜为自由方向."))
 			if(ZOOM_LOCK_AUTOZOOM_ANGLELOCK)
-				to_chat(user, span_boldnotice("You switch [src]'s zooming processor to locked directional."))
+				to_chat(user, span_boldnotice("你切换[src]的缩放镜为锁定方向."))
 			if(ZOOM_LOCK_CENTER_VIEW)
-				to_chat(user, span_boldnotice("You switch [src]'s zooming processor to center mode."))
+				to_chat(user, span_boldnotice("你切换[src]的缩放镜为中心模式."))
 			if(ZOOM_LOCK_OFF)
-				to_chat(user, span_boldnotice("You disable [src]'s zooming system."))
+				to_chat(user, span_boldnotice("你关闭了[src]的缩放系统."))
 		reset_zooming()
 		return
 
@@ -157,7 +157,7 @@
 
 /obj/item/gun/energy/beam_rifle/attack_self(mob/user)
 	projectile_setting_pierce = !projectile_setting_pierce
-	balloon_alert(user, "switched to [projectile_setting_pierce ? "pierce":"impact"] mode")
+	balloon_alert(user, "切换到[projectile_setting_pierce ? "穿透":"冲击"]模式")
 	aiming_beam()
 
 /obj/item/gun/energy/beam_rifle/proc/update_slowdown()
@@ -469,7 +469,7 @@
 	new /obj/effect/temp_visual/explosion/fast(epicenter)
 	for(var/mob/living/L in range(aoe_mob_range, epicenter)) //handle aoe mob damage
 		L.adjustFireLoss(aoe_mob_damage)
-		to_chat(L, span_userdanger("\The [src] sears you!"))
+		to_chat(L, span_userdanger("[src]灼烧了你!"))
 	for(var/turf/T in RANGE_TURFS(aoe_fire_range, epicenter)) //handle aoe fire
 		if(prob(aoe_fire_chance))
 			new /obj/effect/hotspot(T)
@@ -551,7 +551,7 @@
 
 /obj/projectile/beam/beam_rifle/hitscan/aiming_beam
 	tracer_type = /obj/effect/projectile/tracer/tracer/aiming
-	name = "aiming beam"
+	name = "光束命中"
 	hitsound = null
 	hitsound_wall = null
 	damage = 0

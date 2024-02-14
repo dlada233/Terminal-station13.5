@@ -1,13 +1,13 @@
 
 ///basic bow, used for medieval sim
 /obj/item/gun/ballistic/bow/longbow
-	name = "longbow"
-	desc = "While pretty finely crafted, surely you can find something better to use in the current year."
+	name = "长弓"
+	desc = "虽然制作得很精致，但你肯定能在这年头找到更好用的东西."
 
 ///chaplain's divine archer bow
 /obj/item/gun/ballistic/bow/divine
-	name = "divine bow"
-	desc = "Holy armament to pierce the souls of sinners."
+	name = "神圣弓"
+	desc = "神圣的武器刺穿罪人的灵魂."
 	icon_state = "holybow"
 	inhand_icon_state = "holybow"
 	base_icon_state = "holybow"
@@ -17,16 +17,16 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/bow/holy
 
 /obj/item/ammo_box/magazine/internal/bow/holy
-	name = "divine bowstring"
+	name = "神圣弓弦"
 	ammo_type = /obj/item/ammo_casing/arrow/holy
 
 /obj/item/gun/ballistic/bow/divine/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY)
 	AddComponent(/datum/component/effect_remover, \
-		success_feedback = "You disrupt the magic of %THEEFFECT with %THEWEAPON.", \
-		success_forcesay = "BOW-GONE FOUL MAGIKS!!", \
-		tip_text = "Clear rune", \
+		success_feedback = "你用%THEWEAPON来破坏%THEEFFECT的魔法.", \
+		success_forcesay = "弓形魔咒!!", \
+		tip_text = "清晰的符文", \
 		on_clear_callback = CALLBACK(src, PROC_REF(on_cult_rune_removed)), \
 		effects_we_clear = list(/obj/effect/rune, /obj/effect/heretic_rune) \
 	)

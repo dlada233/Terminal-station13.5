@@ -97,21 +97,21 @@
 	if(!ammo_type.len)
 		return
 	var/obj/projectile/exam_proj
-	readout += "\nStandard models of this projectile weapon have [span_warning("[ammo_type.len] mode\s")]."
-	readout += "Our heroic interns have shown that one can theoretically stay standing after..."
+	readout += "\n这种投射武器的标准型号有[span_warning("[ammo_type.len]模式")]."
+	readout += "我们英勇的实习生已经证明，理论上一个人可以在..."
 	if(projectile_damage_multiplier <= 0)
-		readout += "a theoretically infinite number of shots on [span_warning("every")] mode due to esoteric or nonexistent offensive potential."
+		readout += "由于机密或不存在攻击潜力，理论上在[span_warning("任意")]模式下可以无限次射击，由于深奥的或不存在的进攻潜力."
 		return readout.Join("\n") // Sending over the singular string, rather than the whole list
 	for(var/obj/item/ammo_casing/energy/for_ammo as anything in ammo_type)
 		exam_proj = for_ammo.projectile_type
 		if(!ispath(exam_proj))
 			continue
 		if(initial(exam_proj.damage) > 0) // Don't divide by 0!!!!!
-			readout += "[span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * projectile_damage_multiplier) * for_ammo.pellets)] shot\s")] on [span_warning("[for_ammo.select_name]")] mode before collapsing from [initial(exam_proj.damage_type) == STAMINA ? "immense pain" : "their wounds"]."
+			readout += "[span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * projectile_damage_multiplier) * for_ammo.pellets)] 发")]在[span_warning("[for_ammo.select_name]")]模式，在从[initial(exam_proj.damage_type) == STAMINA ? "巨大痛苦" : "重伤"]中崩溃之前."
 			if(initial(exam_proj.stamina) > 0) // In case a projectile does damage AND stamina damage (Energy Crossbow)
-				readout += "[span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * projectile_damage_multiplier) * for_ammo.pellets)] shot\s")] on [span_warning("[for_ammo.select_name]")] mode before collapsing from immense pain."
+				readout += "[span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * projectile_damage_multiplier) * for_ammo.pellets)] 发")]在[span_warning("[for_ammo.select_name]")]模式，在从巨大痛苦中崩溃之前."
 		else
-			readout += "a theoretically infinite number of shots on [span_warning("[for_ammo.select_name]")] mode."
+			readout += "理论上在[span_warning("[for_ammo.select_name]")]模式下可以无限次射击."
 
 	return readout.Join("\n") // Sending over the singular string, rather than the whole list
 
@@ -208,7 +208,7 @@
 	fire_sound_volume = shot.fire_sound_volume //SKYRAT EDIT ADDITION
 	fire_delay = shot.delay
 	if (shot.select_name && user)
-		balloon_alert(user, "set to [shot.select_name]")
+		balloon_alert(user, "设置为[shot.select_name]")
 	chambered = null
 	recharge_newshot(TRUE)
 	update_appearance()
@@ -268,20 +268,20 @@
 
 /obj/item/gun/energy/suicide_act(mob/living/user)
 	if(istype(user) && can_shoot() && can_trigger_gun(user) && user.get_bodypart(BODY_ZONE_HEAD))
-		user.visible_message(span_suicide("[user] is putting the barrel of [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在把[src]的枪管放进自己的嘴里. 看起来是要自杀了!"))
 		sleep(2.5 SECONDS)
 		if(user.is_holding(src))
-			user.visible_message(span_suicide("[user] melts [user.p_their()] face off with [src]!"))
+			user.visible_message(span_suicide("[user]用[src]把自己的脸融烂了!"))
 			playsound(loc, fire_sound, 50, TRUE, -1)
 			var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 			cell.use(shot.e_cost)
 			update_appearance()
 			return FIRELOSS
 		else
-			user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+			user.visible_message(span_suicide("[user]惊慌失措，开始窒息!"))
 			return OXYLOSS
 	else
-		user.visible_message(span_suicide("[user] is pretending to melt [user.p_their()] face off with [src]! It looks like [user.p_theyre()] trying to commit suicide!</b>"))
+		user.visible_message(span_suicide("[user]正在假装把[src]的枪管放进自己的嘴里! 看起来是要自杀了!</b>"))
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return OXYLOSS
 
@@ -305,13 +305,13 @@
 		if(!loaded_projectile)
 			. = ""
 		else if(loaded_projectile.damage <= 0 || loaded_projectile.damage_type == STAMINA)
-			user.visible_message(span_danger("[user] tries to light [A.loc == user ? "[user.p_their()] [A.name]" : A] with [src], but it doesn't do anything. Dumbass."))
+			user.visible_message(span_danger("[user]尝试用[src]点燃[A.loc == user ? "自己的[A.name]" : A]，但它什么也没做到，笨蛋."))
 			playsound(user, E.fire_sound, 50, TRUE)
 			playsound(user, loaded_projectile.hitsound, 50, TRUE)
 			cell.use(E.e_cost)
 			. = ""
 		else if(loaded_projectile.damage_type != BURN)
-			user.visible_message(span_danger("[user] tries to light [A.loc == user ? "[user.p_their()] [A.name]" : A] with [src], but only succeeds in utterly destroying it. Dumbass."))
+			user.visible_message(span_danger("[user]尝试用[src]点燃[A.loc == user ? "自己的[A.name]" : A], 但只是成功地摧毁了它，笨蛋."))
 			playsound(user, E.fire_sound, 50, TRUE)
 			playsound(user, loaded_projectile.hitsound, 50, TRUE)
 			cell.use(E.e_cost)
@@ -321,7 +321,7 @@
 			playsound(user, E.fire_sound, 50, TRUE)
 			playsound(user, loaded_projectile.hitsound, 50, TRUE)
 			cell.use(E.e_cost)
-			. = span_danger("[user] casually lights [A.loc == user ? "[user.p_their()] [A.name]" : A] with [src]. Damn.")
+			. = span_danger("[user]用[src]偶然地点燃了[A.loc == user ? "自己的[A.name]" : A]. 唉.")
 
 /obj/item/gun/energy/proc/instant_recharge()
 	SIGNAL_HANDLER

@@ -1,6 +1,6 @@
 /obj/item/gun/medbeam
-	name = "Medical Beamgun"
-	desc = "Don't cross the streams!"
+	name = "医疗光束枪"
+	desc = "千万不要交叉光束!"
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronogun"
 	inhand_icon_state = "chronogun"
@@ -53,7 +53,7 @@
 	current_beam = null
 	active = FALSE //skip qdelling the beam again if we're doing this proc, because
 	if(isliving(loc))
-		to_chat(loc, span_warning("You lose control of the beam!"))
+		to_chat(loc, span_warning("你失去了对光束的控制!"))
 	LoseTarget()
 
 /obj/item/gun/medbeam/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -128,7 +128,7 @@
 			if(QDELETED(B))
 				continue
 			if(!B.owner)
-				stack_trace("beam without an owner! [B]")
+				stack_trace("光束缺少拥有者! [B]")
 				continue
 			if(B.owner.origin != current_beam.origin)
 				explosion(B.loc, heavy_impact_range = 3, light_impact_range = 5, flash_range = 8, explosion_cause = src)
@@ -157,7 +157,7 @@
 	return
 
 /obj/effect/ebeam/medical
-	name = "medical beam"
+	name = "医疗光束"
 
 //////////////////////////////Mech Version///////////////////////////////
 /obj/item/gun/medbeam/mech

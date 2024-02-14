@@ -1,6 +1,6 @@
 /obj/item/gun/grenadelauncher
-	name = "grenade launcher"
-	desc = "A terrible, terrible thing. It's really awful!"
+	name = "榴弹发射器"
+	desc = "一把非常非常可怕的东西，真的很糟糕!"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "riotgun"
 	inhand_icon_state = "riotgun"
@@ -14,7 +14,7 @@
 
 /obj/item/gun/grenadelauncher/examine(mob/user)
 	. = ..()
-	. += "[grenades.len] / [max_grenades] grenades loaded."
+	. += "[grenades.len] / [max_grenades] 发榴弹已装填."
 
 /obj/item/gun/grenadelauncher/apply_fantasy_bonuses(bonus)
 	. = ..()
@@ -33,16 +33,16 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			grenades += I
-			balloon_alert(user, "[grenades.len] / [max_grenades] grenades loaded")
+			balloon_alert(user, "[grenades.len] / [max_grenades] 发榴弹已装填")
 		else
-			balloon_alert(user, "it's already full!")
+			balloon_alert(user, "已经满了!")
 
 /obj/item/gun/grenadelauncher/can_shoot()
 	return grenades.len
 
 /obj/item/gun/grenadelauncher/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	user.visible_message(span_danger("[user] fired a grenade!"), \
-						span_danger("You fire the grenade launcher!"))
+	user.visible_message(span_danger("[user]发射了榴弹!"), \
+						span_danger("你用榴弹发射器开火了!"))
 	var/obj/item/grenade/F = grenades[1] //Now with less copypasta!
 	grenades -= F
 	F.forceMove(user.loc)

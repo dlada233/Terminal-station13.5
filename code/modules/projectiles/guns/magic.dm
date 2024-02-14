@@ -77,7 +77,7 @@
 		var/area/A = get_area(user)
 		if(istype(A, /area/centcom/wizard_station))
 			add_fingerprint(user)
-			to_chat(user, span_warning("You know better than to violate the security of The Den, best wait until you leave to use [src]."))
+			to_chat(user, span_warning("你知道不能破坏据点的安全，最好等到你离开后再使用[src]."))
 			return
 		else
 			no_den_usage = 0
@@ -129,10 +129,10 @@
 
 
 /obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	to_chat(user, span_warning("The [name] whizzles quietly."))
+	to_chat(user, span_warning("[name]悄声挥舞."))
 
 /obj/item/gun/magic/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is twisting [src] above [user.p_their()] head, releasing a magical blast! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]在自己的头上扭转[src], 释放出了魔法爆炸波！这是一种自杀行为！"))
 	playsound(loc, fire_sound, 50, TRUE, -1)
 	return FIRELOSS
 

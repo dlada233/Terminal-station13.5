@@ -1,6 +1,6 @@
 /obj/item/gun/energy/recharge/kinetic_accelerator
-	name = "proto-kinetic accelerator"
-	desc = "A self recharging, ranged mining tool that does increased damage in low pressure."
+	name = "原动能加速器"
+	desc = "一个自充电的远程采矿工具，在低压环境下会增加伤害."
 	icon_state = "kineticgun"
 	base_icon_state = "kineticgun"
 	inhand_icon_state = "kineticgun"
@@ -42,12 +42,12 @@
 
 	AddElement( \
 		/datum/element/contextual_screentip_bare_hands, \
-		rmb_text = "Detach a modkit", \
+		rmb_text = "拆下模块", \
 	)
 
 	var/static/list/tool_behaviors = list(
 		TOOL_CROWBAR = list(
-			SCREENTIP_CONTEXT_LMB = "Eject all modkits",
+			SCREENTIP_CONTEXT_LMB = "弹出所有模块",
 		),
 	)
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
@@ -66,22 +66,22 @@
 /obj/item/gun/energy/recharge/kinetic_accelerator/examine(mob/user)
 	. = ..()
 	if(max_mod_capacity)
-		. += "<b>[get_remaining_mod_capacity()]%</b> mod capacity remaining."
-		. += span_info("You can use a <b>crowbar</b> to remove all modules or <b>right-click</b> with an empty hand to remove a specific one.")
+		. += "剩余<b>[get_remaining_mod_capacity()]%</b>模块容量."
+		. += span_info("你可以使用<b>撬棍</b>来移除所有模块或空手<b>右键</b>来移除特定的模块.")
 		for(var/A in modkits)
 			var/obj/item/borg/upgrade/modkit/M = A
-			. += span_notice("There is \a [M] installed, using <b>[M.cost]%</b> capacity.")
+			. += span_notice("[M]已安装，占用<b>[M.cost]%</b>模块容量.")
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/crowbar_act(mob/living/user, obj/item/I)
 	. = TRUE
 	if(modkits.len)
-		to_chat(user, span_notice("You pry all the modifications out."))
+		to_chat(user, span_notice("你将所有的模块都撬了出来."))
 		I.play_tool_sound(src, 100)
 		for(var/a in modkits)
 			var/obj/item/borg/upgrade/modkit/M = a
 			M.forceMove(drop_location()) //uninstallation handled in Exited(), or /mob/living/silicon/robot/remove_from_upgrades() for borgs
 	else
-		to_chat(user, span_notice("There are no modifications currently installed."))
+		to_chat(user, span_notice("目前没有任何已安装的模块."))
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -176,7 +176,7 @@
 
 //Projectiles
 /obj/projectile/kinetic
-	name = "kinetic force"
+	name = "原动力"
 	icon_state = null
 	damage = 40
 	damage_type = BRUTE
@@ -201,7 +201,7 @@
 		for(var/obj/item/borg/upgrade/modkit/modkit in mods)
 			modkit.projectile_prehit(src, target, kinetic_gun)
 	if(!pressure_decrease_active && !lavaland_equipment_pressure_check(get_turf(target)))
-		name = "weakened [name]"
+		name = "脆弱的[name]"
 		damage = damage * pressure_decrease
 		pressure_decrease_active = TRUE
 
@@ -242,8 +242,8 @@
 
 //Modkits
 /obj/item/borg/upgrade/modkit
-	name = "kinetic accelerator modification kit"
-	desc = "An upgrade for kinetic accelerators."
+	name = "原动能加速器改装套件"
+	desc = "原动能加速器的升级模块."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
@@ -259,7 +259,7 @@
 
 /obj/item/borg/upgrade/modkit/examine(mob/user)
 	. = ..()
-	. += span_notice("Occupies <b>[cost]%</b> of mod capacity.")
+	. += span_notice("占用<b>[cost]%</b>模块容量.")
 
 /obj/item/borg/upgrade/modkit/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/gun/energy/recharge/kinetic_accelerator) && !issilicon(user))
@@ -277,10 +277,10 @@
 	. = TRUE
 	if(minebot_upgrade)
 		if(minebot_exclusive && !istype(KA.loc, /mob/living/basic/mining_drone))
-			to_chat(user, span_notice("The modkit you're trying to install is only rated for minebot use."))
+			to_chat(user, span_notice("该模块只适用于挖矿机器人."))
 			return FALSE
 	else if(istype(KA.loc, /mob/living/basic/mining_drone))
-		to_chat(user, span_notice("The modkit you're trying to install is not rated for minebot use."))
+		to_chat(user, span_notice("该模块不适用于挖矿机器人."))
 		return FALSE
 	if(denied_type)
 		var/number_of_denied = 0
@@ -295,13 +295,13 @@
 		if(.)
 			if(transfer_to_loc && !user.transferItemToLoc(src, KA))
 				return
-			to_chat(user, span_notice("You install the modkit."))
+			to_chat(user, span_notice("你安装模块."))
 			playsound(loc, 'sound/items/screwdriver.ogg', 100, TRUE)
 			KA.modkits += src
 		else
-			to_chat(user, span_notice("The modkit you're trying to install would conflict with an already installed modkit. Remove existing modkits first."))
+			to_chat(user, span_notice("该模块与现有模块冲突，先移除冲突模块."))
 	else
-		to_chat(user, span_notice("You don't have room(<b>[KA.get_remaining_mod_capacity()]%</b> remaining, [cost]% needed) to install this modkit. Use a crowbar or right click with an empty hand to remove existing modkits."))
+		to_chat(user, span_notice("你没有足够的容量(剩余容量<b>[KA.get_remaining_mod_capacity()]%</b>, 需要容量[cost]%)来安装模块. 使用撬棍或以空手右键来移除模块."))
 		. = FALSE
 
 /obj/item/borg/upgrade/modkit/deactivate(mob/living/silicon/robot/R, user = usr)
@@ -324,8 +324,8 @@
 
 //Range
 /obj/item/borg/upgrade/modkit/range
-	name = "range increase"
-	desc = "Increases the range of a kinetic accelerator when installed."
+	name = "射程提升模块"
+	desc = "增加动能加速器的射程."
 	modifier = 1
 	cost = 25
 
@@ -335,8 +335,8 @@
 
 //Damage
 /obj/item/borg/upgrade/modkit/damage
-	name = "damage increase"
-	desc = "Increases the damage of kinetic accelerator when installed."
+	name = "伤害增加模块"
+	desc = "增加动能加速器的伤害."
 	modifier = 10
 
 /obj/item/borg/upgrade/modkit/damage/modify_projectile(obj/projectile/kinetic/K)
@@ -345,8 +345,8 @@
 
 //Cooldown
 /obj/item/borg/upgrade/modkit/cooldown
-	name = "cooldown decrease"
-	desc = "Decreases the cooldown of a kinetic accelerator. Not rated for minebot use."
+	name = "冷却缩减模块"
+	desc = "减少动能加速器的冷却时间，不适合挖矿机器人使用."
 	modifier = 3.2
 	minebot_upgrade = FALSE
 
@@ -360,8 +360,8 @@
 	..()
 
 /obj/item/borg/upgrade/modkit/cooldown/minebot
-	name = "minebot cooldown decrease"
-	desc = "Decreases the cooldown of a kinetic accelerator. Only rated for minebot use."
+	name = "挖矿机器人冷却缩减模块"
+	desc = "减少动能加速器的冷却时间，仅供挖矿机器人使用."
 	icon_state = "door_electronics"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	denied_type = /obj/item/borg/upgrade/modkit/cooldown/minebot
@@ -396,7 +396,7 @@
 	stats_stolen = FALSE
 
 /obj/item/borg/upgrade/modkit/aoe/modify_projectile(obj/projectile/kinetic/K)
-	K.name = "kinetic explosion"
+	K.name = "动能爆破"
 
 /obj/item/borg/upgrade/modkit/aoe/projectile_strike(obj/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/recharge/kinetic_accelerator/KA)
 	if(stats_stolen)
@@ -411,35 +411,35 @@
 		for(var/mob/living/L in range(1, target_turf) - K.firer - target)
 			var/armor = L.run_armor_check(K.def_zone, K.armor_flag, "", "", K.armour_penetration)
 			L.apply_damage(K.damage*modifier, K.damage_type, K.def_zone, armor)
-			to_chat(L, span_userdanger("You're struck by a [K.name]!"))
+			to_chat(L, span_userdanger("你被[K.name]击中了!"))
 
 /obj/item/borg/upgrade/modkit/aoe/turfs
-	name = "mining explosion"
-	desc = "Causes the kinetic accelerator to destroy rock in an AoE."
+	name = "爆破采矿模块"
+	desc = "使动能加速器以范围攻击的方式采矿."
 	denied_type = /obj/item/borg/upgrade/modkit/aoe/turfs
 	turf_aoe = TRUE
 
 /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
-	name = "offensive mining explosion"
-	desc = "Causes the kinetic accelerator to destroy rock and damage mobs in an AoE."
+	name = "攻击性爆破采矿模块"
+	desc = "使动能加速器以范围攻击的方式采矿或战斗."
 	maximum_of_type = 3
 	modifier = 0.25
 
 /obj/item/borg/upgrade/modkit/aoe/mobs
-	name = "offensive explosion"
-	desc = "Causes the kinetic accelerator to damage mobs in an AoE."
+	name = "攻击性爆破模块"
+	desc = "使动能加速器以范围攻击的方式战斗."
 	modifier = 0.2
 
 //Minebot passthrough
 /obj/item/borg/upgrade/modkit/minebot_passthrough
-	name = "minebot passthrough"
-	desc = "Causes kinetic accelerator shots to pass through minebots."
+	name = "采矿机器人识别模块"
+	desc = "使动能加速器的射击可以穿过采矿机器人."
 	cost = 0
 
 //Tendril-unique modules
 /obj/item/borg/upgrade/modkit/cooldown/repeater
-	name = "rapid repeater"
-	desc = "Quarters the kinetic accelerator's cooldown on striking a living target, but greatly increases the base cooldown."
+	name = "快速重应模块"
+	desc = "将动能加速器攻击活体目标时的冷却时间缩短四分之一，但大大增加基础的冷却时间."
 	denied_type = /obj/item/borg/upgrade/modkit/cooldown/repeater
 	modifier = -14 //Makes the cooldown 3 seconds(with no cooldown mods) if you miss. Don't miss.
 	cost = 50
@@ -457,8 +457,8 @@
 		KA.attempt_reload(KA.recharge_time * 0.25) //If you hit, the cooldown drops to 0.75 seconds.
 
 /obj/item/borg/upgrade/modkit/lifesteal
-	name = "lifesteal crystal"
-	desc = "Causes kinetic accelerator shots to slightly heal the firer on striking a living target."
+	name = "生命偷取水晶"
+	desc = "使动能加速射击在击中活目标时轻微治疗射击者."
 	icon_state = "modkit_crystal"
 	modifier = 2.5 //Not a very effective method of healing.
 	cost = 20
@@ -473,8 +473,8 @@
 		L.heal_ordered_damage(modifier, damage_heal_order)
 
 /obj/item/borg/upgrade/modkit/resonator_blasts
-	name = "resonator blast"
-	desc = "Causes kinetic accelerator shots to leave and detonate resonator blasts."
+	name = "谐振器爆炸模块"
+	desc = "使动能加速器射出并引爆谐振器爆炸."
 	denied_type = /obj/item/borg/upgrade/modkit/resonator_blasts
 	cost = 30
 	modifier = 0.25 //A bonus 15 damage if you burst the field on a target, 60 if you lure them into it.
@@ -489,8 +489,8 @@
 		new /obj/effect/temp_visual/resonance(target_turf, K.firer, null, RESONATOR_MODE_MANUAL, 100) //manual detonate mode and will NOT spread
 
 /obj/item/borg/upgrade/modkit/bounty
-	name = "death syphon"
-	desc = "Killing or assisting in killing a creature permanently increases your damage against that type of creature."
+	name = "死亡虹吸模块"
+	desc = "杀死或协助杀死一个生物会永久增加你对该生物的伤害."
 	denied_type = /obj/item/borg/upgrade/modkit/bounty
 	modifier = 1.25
 	cost = 30
@@ -529,8 +529,8 @@
 
 //Indoors
 /obj/item/borg/upgrade/modkit/indoors
-	name = "decrease pressure penalty"
-	desc = "A syndicate modification kit that increases the damage a kinetic accelerator does in high pressure environments."
+	name = "压力适应模块"
+	desc = "一个辛迪加改装套件，增加了动能加速器在高压环境下的伤害."
 	modifier = 2
 	denied_type = /obj/item/borg/upgrade/modkit/indoors
 	maximum_of_type = 2
@@ -542,8 +542,8 @@
 
 //Trigger Guard
 /obj/item/borg/upgrade/modkit/trigger_guard
-	name = "modified trigger guard"
-	desc = "Allows creatures normally incapable of firing guns to operate the weapon when installed."
+	name = "改进型扳机"
+	desc = "允许通常不能发射枪支的生物在安装时也能操作武器."
 	cost = 20
 	denied_type = /obj/item/borg/upgrade/modkit/trigger_guard
 
@@ -560,8 +560,8 @@
 //Cosmetic
 
 /obj/item/borg/upgrade/modkit/chassis_mod
-	name = "super chassis"
-	desc = "Makes your KA yellow. All the fun of having a more powerful KA without actually having a more powerful KA."
+	name = "超级枪壳"
+	desc = "使你的KA变黄，假装拥有一个更强大的KA."
 	cost = 0
 	denied_type = /obj/item/borg/upgrade/modkit/chassis_mod
 	var/chassis_icon = "kineticgun_u"
@@ -587,14 +587,14 @@
 	..()
 
 /obj/item/borg/upgrade/modkit/chassis_mod/orange
-	name = "hyper chassis"
-	desc = "Makes your KA orange. All the fun of having explosive blasts without actually having explosive blasts."
+	name = "混合枪壳"
+	desc = "让你的KA变成橙色，假装进行爆破采矿."
 	chassis_icon = "kineticgun_h"
 	chassis_name = "hyper-kinetic accelerator"
 
 /obj/item/borg/upgrade/modkit/tracer
-	name = "white tracer bolts"
-	desc = "Causes kinetic accelerator bolts to have a white tracer trail and explosion."
+	name = "白色示踪光束模块"
+	desc = "使动力加速器的动能爆破有白色示踪痕迹."
 	cost = 0
 	denied_type = /obj/item/borg/upgrade/modkit/tracer
 	var/bolt_color = "#FFFFFF"
@@ -604,8 +604,8 @@
 	K.color = bolt_color
 
 /obj/item/borg/upgrade/modkit/tracer/adjustable
-	name = "adjustable tracer bolts"
-	desc = "Causes kinetic accelerator bolts to have an adjustable-colored tracer trail and explosion. Use in-hand to change color."
+	name = "可调整示踪爆破模块"
+	desc = "使动能加速器的动能爆破有可调整颜色，在手中使用来选定颜色."
 
 /obj/item/borg/upgrade/modkit/tracer/adjustable/interact(mob/user)
 	..()
@@ -614,5 +614,5 @@
 /obj/item/borg/upgrade/modkit/tracer/adjustable/proc/choose_bolt_color(mob/user)
 	set waitfor = FALSE
 
-	var/new_color = input(user,"","Choose Color",bolt_color) as color|null
+	var/new_color = input(user,"","选择颜色",bolt_color) as color|null
 	bolt_color = new_color || bolt_color

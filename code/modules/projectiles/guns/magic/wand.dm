@@ -22,7 +22,7 @@
 
 /obj/item/gun/magic/wand/examine(mob/user)
 	. = ..()
-	. += "Has [charges] charge\s remaining."
+	. += "拥有[charges]次充能."
 
 /obj/item/gun/magic/wand/update_icon_state()
 	icon_state = "[base_icon_state][charges ? null : "-drained"]"
@@ -42,7 +42,7 @@
 		if(no_den_usage)
 			var/area/A = get_area(user)
 			if(istype(A, /area/centcom/wizard_station))
-				to_chat(user, span_warning("You know better than to violate the security of The Den, best wait until you leave to use [src]."))
+				to_chat(user, span_warning("你知道不能破坏据点的安全，最好等到离开后再使用[src]."))
 				return
 			else
 				no_den_usage = 0
@@ -53,7 +53,7 @@
 
 
 /obj/item/gun/magic/wand/proc/zap_self(mob/living/user)
-	user.visible_message(span_danger("[user] zaps [user.p_them()]self with [src]."))
+	user.visible_message(span_danger("[user]用[src]攻击自己."))
 	playsound(user, fire_sound, 50, TRUE)
 	user.log_message("zapped [user.p_them()]self with a <b>[src]</b>", LOG_ATTACK)
 
@@ -63,8 +63,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/death
-	name = "wand of death"
-	desc = "This deadly wand overwhelms the victim's body with pure energy, slaying them without fail."
+	name = "死亡魔杖"
+	desc = "这支致命的魔杖用纯净的能量淹没受害者的身体，万无一失地杀死他们."
 	school = SCHOOL_NECROMANCY
 	fire_sound = 'sound/magic/wandodeath.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/death
@@ -76,21 +76,21 @@
 	..()
 	charges--
 	if(user.can_block_magic())
-		user.visible_message(span_warning("[src] has no effect on [user]!"))
+		user.visible_message(span_warning("[src]对[user]没有效果!"))
 		return
 	if(isliving(user))
 		var/mob/living/L = user
 		if(L.mob_biotypes & MOB_UNDEAD) //negative energy heals the undead
 			user.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE) // This heals suicides
-			to_chat(user, span_notice("You feel great!"))
+			to_chat(user, span_notice("你感觉很好!"))
 			return
-	to_chat(user, "<span class='warning'>You irradiate yourself with pure negative energy! \
-	[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You die...","Do you want your possessions identified?")]\
+	to_chat(user, "<span class='warning'>你用纯粹的负能量照射自己! \
+	[pick("不要走，不要去收集200魔域点.","你感觉你更擅长施法了.","你死了...","你想要确认自己的所有吗?")]\
 	</span>")
 	user.death(FALSE)
 
 /obj/item/gun/magic/wand/death/debug
-	desc = "In some obscure circles, this is known as the 'cloning tester's friend'."
+	desc = "在一些不知名的圈子里，这被称为“克隆测试者之友”."
 	max_charges = 500
 	variable_charges = FALSE
 	can_charge = TRUE
@@ -102,8 +102,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/resurrection
-	name = "wand of healing"
-	desc = "This wand uses healing magics to heal and revive. They are rarely utilized within the Wizard Federation for some reason."
+	name = "治愈魔杖"
+	desc = "这根魔杖使用治疗魔法来治疗和复活，由于某些原因，它们很少在巫师联合会中使用."
 	school = SCHOOL_RESTORATION
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	fire_sound = 'sound/magic/staff_healing.ogg'
@@ -115,22 +115,22 @@
 	..()
 	charges--
 	if(user.can_block_magic())
-		user.visible_message(span_warning("[src] has no effect on [user]!"))
+		user.visible_message(span_warning("[src]对[user]没有效果!"))
 		return
 	if(isliving(user))
 		var/mob/living/L = user
 		if(L.mob_biotypes & MOB_UNDEAD) //positive energy harms the undead
-			to_chat(user, "<span class='warning'>You irradiate yourself with pure positive energy! \
-			[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You die...","Do you want your possessions identified?")]\
+			to_chat(user, "<span class='warning'>你纯粹的正面能量照射自己! \
+			[pick("不要走，不要去收集200魔域点.","你感觉你更擅长施法了.","你死了...","你想要确认自己的所有吗?")]\
 			</span>")
 			user.investigate_log("has been killed by a bolt of resurrection.", INVESTIGATE_DEATHS)
 			user.death(FALSE)
 			return
 	user.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE) // This heals suicides
-	to_chat(user, span_notice("You feel great!"))
+	to_chat(user, span_notice("你感觉很好!"))
 
 /obj/item/gun/magic/wand/resurrection/debug //for testing
-	desc = "Is it possible for something to be even more powerful than regular magic? This wand is."
+	desc = "还有比普通魔法更强大的东西吗?这根魔杖就是."
 	max_charges = 500
 	variable_charges = FALSE
 	can_charge = TRUE
@@ -141,8 +141,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/polymorph
-	name = "wand of polymorph"
-	desc = "This wand is attuned to chaos and will radically alter the victim's form."
+	name = "变形魔杖"
+	desc = "这根魔杖与混沌相协调，将彻底改变目标的形态."
 	school = SCHOOL_TRANSMUTATION
 	ammo_type = /obj/item/ammo_casing/magic/change
 	icon_state = "polywand"
@@ -161,8 +161,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/teleport
-	name = "wand of teleportation"
-	desc = "This wand will wrench targets through space and time to move them somewhere else."
+	name = "传送魔杖"
+	desc = "这根魔杖会扭曲目标的空间和时间，把他们移到其他地方."
 	school = SCHOOL_TRANSLOCATION
 	ammo_type = /obj/item/ammo_casing/magic/teleport
 	fire_sound = 'sound/magic/wand_teleport.ogg'
@@ -180,8 +180,8 @@
 	..()
 
 /obj/item/gun/magic/wand/safety
-	name = "wand of safety"
-	desc = "This wand will use the lightest of bluespace currents to gently place the target somewhere safe."
+	name = "安全魔杖"
+	desc = "这个魔杖将使用最轻的蓝色空间电流将目标放置在安全的地方."
 	school = SCHOOL_TRANSLOCATION
 	ammo_type = /obj/item/ammo_casing/magic/safety
 	fire_sound = 'sound/magic/wand_teleport.ogg'
@@ -202,7 +202,7 @@
 	..()
 
 /obj/item/gun/magic/wand/safety/debug
-	desc = "This wand has 'find_safe_turf()' engraved into its blue wood. Perhaps it's a secret message?"
+	desc = "这根魔杖的蓝色木头上刻着'find_safe_turf()'，也许是一段密文?"
 	max_charges = 500
 	variable_charges = FALSE
 	can_charge = TRUE
@@ -214,8 +214,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/door
-	name = "wand of door creation"
-	desc = "This particular wand can create doors in any wall for the unscrupulous wizard who shuns teleportation magics."
+	name = "造门魔杖"
+	desc = "这种特殊的魔杖可以在任何墙壁上为那些不择手段的巫师创造大门."
 	school = SCHOOL_TRANSMUTATION
 	ammo_type = /obj/item/ammo_casing/magic/door
 	icon_state = "doorwand"
@@ -225,7 +225,7 @@
 	no_den_usage = 1
 
 /obj/item/gun/magic/wand/door/zap_self(mob/living/user)
-	to_chat(user, span_notice("You feel vaguely more open with your feelings."))
+	to_chat(user, span_notice("你隐约觉得自己的心情更开放了."))
 	charges--
 	..()
 
@@ -234,8 +234,8 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/fireball
-	name = "wand of fireball"
-	desc = "This wand shoots scorching balls of fire that explode into destructive flames."
+	name = "火球魔杖"
+	desc = "这根魔杖射出灼热的火球，然后爆炸成毁灭性的火焰."
 	school = SCHOOL_EVOCATION
 	fire_sound = 'sound/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/fireball
@@ -253,6 +253,6 @@
 /////////////////////////////////////
 
 /obj/item/gun/magic/wand/nothing
-	name = "wand of nothing"
-	desc = "It's not just a stick, it's a MAGIC stick?"
+	name = "空魔杖"
+	desc = "这不仅仅是一根棍子，它是一根魔法棒?"
 	ammo_type = /obj/item/ammo_casing/magic/nothing

@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/toy
-	name = "foam force SMG"
-	desc = "A prototype three-round burst toy submachine gun. Ages 8 and up."
+	name = "泡沫冲锋枪"
+	desc = "三连发的玩具冲锋枪，适合8岁及以上人群."
 	icon_state = "saber"
 	selector_switch_icon = TRUE
 	inhand_icon_state = "gun"
@@ -19,8 +19,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/automatic/pistol/toy
-	name = "foam force pistol"
-	desc = "A small, easily concealable toy handgun. Ages 8 and up."
+	name = "泡沫手枪"
+	desc = "一种小的，易隐蔽的玩具手枪，适合8岁及以上人群."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/toy/pistol
 	fire_sound = 'sound/items/syringeproj.ogg'
 	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
@@ -33,8 +33,8 @@
 	return ..()
 
 /obj/item/gun/ballistic/shotgun/toy
-	name = "foam force shotgun"
-	desc = "A toy shotgun with wood furniture and a four-shell capacity underneath. Ages 8 and up."
+	name = "泡沫霰弹枪"
+	desc = "一把玩具霰弹枪，木制枪托，容纳四发子弹，适合8岁及以上人群."
 	force = 0
 	throwforce = 0
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/toy
@@ -56,8 +56,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/shotgun/toy/crossbow
-	name = "foam force crossbow"
-	desc = "A weapon favored by many overactive children. Ages 8 and up."
+	name = "泡沫十字弩"
+	desc = "这是许多顽皮孩子喜欢的武器，适合8岁及以上人群."
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "foamcrossbow"
 	inhand_icon_state = "crossbow"
@@ -74,8 +74,8 @@
 	gun_flags = NONE
 
 /obj/item/gun/ballistic/automatic/c20r/toy //This is the syndicate variant with syndicate firing pin and riot darts.
-	name = "donksoft SMG"
-	desc = "A bullpup three-round burst toy SMG, designated 'C-20r'. Ages 8 and up."
+	name = "杜软冲锋枪"
+	desc = "三连发玩具冲锋枪，代号C-20r，适合8岁及以上人群."
 	can_suppress = TRUE
 	item_flags = NONE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/toy/smgm45
@@ -92,8 +92,8 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/toy/smgm45/riot
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy //This is the syndicate variant with syndicate firing pin and riot darts.
-	name = "donksoft LMG"
-	desc = "A heavily modified toy light machine gun, designated 'L6 SAW'. Ages 8 and up."
+	name = "杜软轻机枪"
+	desc = "玩具轻机枪，代号为“L6 SAW”，适合8岁及以上人群."
 	fire_sound = 'sound/items/syringeproj.ogg'
 	can_suppress = FALSE
 	item_flags = NONE

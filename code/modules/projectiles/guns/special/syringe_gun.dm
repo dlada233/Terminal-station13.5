@@ -1,6 +1,6 @@
 /obj/item/gun/syringe
-	name = "medical syringe gun"
-	desc = "A spring loaded gun designed to fit syringes, used to incapacitate unruly patients from a distance."
+	name = "医用注射器枪"
+	desc = "一种装有弹簧的枪，设计用于安装注射器，用于从远处使不守规矩的病人失去行动能力."
 	icon = 'icons/obj/weapons/guns/syringegun.dmi'
 	icon_state = "medicalsyringegun"
 	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
@@ -64,11 +64,11 @@
 
 /obj/item/gun/syringe/examine(mob/user)
 	. = ..()
-	. += "Can hold [max_syringes] syringe\s. Has [syringes.len] syringe\s remaining."
+	. += "可以装载[max_syringes]支注射器. 现有[syringes.len]支注射器."
 
 /obj/item/gun/syringe/attack_self(mob/living/user)
 	if(!syringes.len)
-		balloon_alert(user, "it's empty!")
+		balloon_alert(user, "它是空的!")
 		return FALSE
 
 	var/obj/item/reagent_containers/syringe/S = syringes[syringes.len]
@@ -78,27 +78,27 @@
 	user.put_in_hands(S)
 
 	syringes.Remove(S)
-	balloon_alert(user, "[S.name] unloaded")
+	balloon_alert(user, "[S.name]已卸载")
 	update_appearance()
 
 	return TRUE
 
 /obj/item/gun/syringe/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
 	if(istype(A, /obj/item/reagent_containers/syringe/bluespace))
-		balloon_alert(user, "[A.name] is too big!")
+		balloon_alert(user, "[A.name]太大了!")
 		return TRUE
 	if(istype(A, /obj/item/reagent_containers/syringe))
 		if(syringes.len < max_syringes)
 			if(!user.transferItemToLoc(A, src))
 				return FALSE
-			balloon_alert(user, "[A.name] loaded")
+			balloon_alert(user, "[A.name]已装填")
 			syringes += A
 			recharge_newshot()
 			update_appearance()
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else
-			balloon_alert(user, "it's already full!")
+			balloon_alert(user, "已经满了!")
 	return FALSE
 
 /obj/item/gun/syringe/update_overlays()
@@ -109,8 +109,8 @@
 	. += "[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]"
 
 /obj/item/gun/syringe/rapidsyringe
-	name = "compact rapid syringe gun"
-	desc = "A modification of the syringe gun design to be more compact and use a rotating cylinder to store up to six syringes."
+	name = "紧凑型快速注射枪"
+	desc = "注射器枪的改进版本，并使用一个旋转弹膛，以存储多达六个注射器."
 	icon_state = "rapidsyringegun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
@@ -126,8 +126,8 @@
 	force = 4
 
 /obj/item/gun/syringe/syndicate
-	name = "dart pistol"
-	desc = "A small spring-loaded sidearm that functions identically to a syringe gun."
+	name = "飞镖手枪"
+	desc = "一种装有弹簧的小武器，功能与注射枪相同."
 	icon_state = "dartsyringegun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
@@ -145,8 +145,8 @@
 	syringes = list(new /obj/item/reagent_containers/syringe())
 
 /obj/item/gun/syringe/dna
-	name = "modified compact syringe gun"
-	desc = "A syringe gun that has been modified to be compact and fit DNA injectors instead of normal syringes."
+	name = "改进型紧凑型注射枪"
+	desc = "一种被修改为紧凑型的注射器枪，能发射DNA注射器."
 	icon_state = "dnasyringegun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
@@ -168,24 +168,24 @@
 	if(istype(A, /obj/item/dnainjector))
 		var/obj/item/dnainjector/D = A
 		if(D.used)
-			balloon_alert(user, "[D.name] is used up!")
+			balloon_alert(user, "[D.name]用光了!")
 			return
 		if(syringes.len < max_syringes)
 			if(!user.transferItemToLoc(D, src))
 				return FALSE
-			balloon_alert(user, "[D.name] loaded")
+			balloon_alert(user, "[D.name]已装填")
 			syringes += D
 			recharge_newshot()
 			update_appearance()
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else
-			balloon_alert(user, "it's already full!")
+			balloon_alert(user, "它已经满了!")
 	return FALSE
 
 /obj/item/gun/syringe/blowgun
-	name = "blowgun"
-	desc = "Fire syringes at a short distance."
+	name = "吹箭筒"
+	desc = "近距离的注射枪."
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "blowgun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -204,7 +204,7 @@
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	visible_message(span_danger("[user] shoots the blowgun!"))
+	visible_message(span_danger("[user]发射了吹箭筒!"))
 
 	user.adjustStaminaLoss(20, updating_stamina = FALSE)
 	user.adjustOxyLoss(20)
