@@ -664,7 +664,7 @@
 /area/shuttle/abandoned/bridge)
 "bC" = (
 /obj/machinery/door/airlock/command{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,

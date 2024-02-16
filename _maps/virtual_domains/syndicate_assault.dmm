@@ -782,7 +782,7 @@
 /area/space)
 "HU" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -813,7 +813,7 @@
 "Ig" = (
 /obj/machinery/porta_turret/syndicate/energy{
 	dir = 4;
-	name = "Syndicate Ship Turret";
+	name = "辛迪加舰载炮塔";
 	on = 0;
 	shot_delay = 10
 	},
@@ -1088,7 +1088,7 @@
 "Vk" = (
 /obj/machinery/porta_turret/syndicate/energy{
 	dir = 4;
-	name = "Syndicate Ship Turret";
+	name = "辛迪加舰载炮塔";
 	on = 0;
 	shot_delay = 10
 	},
