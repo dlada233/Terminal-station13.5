@@ -140,7 +140,7 @@ export const NtosNetDownloader = (props) => {
             autoFocus
             height="23px"
             width="100%"
-            placeholder="Search program name..."
+            placeholder="搜索程序名称..."
             fluid
             value={searchItem}
             onInput={(e, value) => {

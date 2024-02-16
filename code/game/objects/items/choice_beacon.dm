@@ -1,6 +1,6 @@
 /obj/item/choice_beacon
-	name = "choice beacon"
-	desc = "Hey, why are you viewing this?!! Please let CentCom know about this odd occurrence."
+	name = "选择信标"
+	desc = "嘿，为啥你在看这玩意？！请快点让中央指挥部了解这个怪事."
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "gangtool-blue"
 	inhand_icon_state = "radio"
@@ -11,7 +11,7 @@
 	/// Used in the deployment message - What company is sending the equipment, flavor
 	var/company_source = "Central Command"
 	/// Used inthe deployment message - What is the company saying with their message, flavor
-	var/company_message = span_bold("Item request received. Your package is inbound, please stand back from the landing site.")
+	var/company_message = span_bold("物品请求已收到。您的货物即将送达，请远离着陆点.")
 
 /obj/item/choice_beacon/interact(mob/user)
 	. = ..()
@@ -98,7 +98,7 @@
 
 /obj/item/choice_beacon/ingredient
 	name = "原料投送信标"
-	desc = "生成一盒食材来帮助你开始烹饪."
+	desc = "召唤一盒食材来开启你的烹饪之旅."
 	icon_state = "sb_delivery"
 	inhand_icon_state = "sb_delivery"
 	company_source = "Sophronia Broadcasting"
@@ -113,8 +113,8 @@
 	return ingredient_options
 
 /obj/item/choice_beacon/hero
-	name = "英灵投送信标"
-	desc = "召唤过去的英雄来保护未来."
+	name = "英雄信标"
+	desc = "召唤旧日英雄来保护未来."
 	icon_state = "sb_delivery"
 	inhand_icon_state = "sb_delivery"
 	company_source = "Sophronia Broadcasting"
@@ -129,11 +129,11 @@
 	return hero_item_list
 
 /obj/item/choice_beacon/augments
-	name = "义体投送信标"
-	desc = "投送一些义体，可以使用3次!"
+	name = "增强植入物信标"
+	desc = "投送一些增强植入物，可以使用3次!"
 	uses = 3
 	company_source = "S.E.L.F."
-	company_message = span_bold("订单状态: 已收到. 包裹状态: 已发货. Notes: 为最佳体验, 使用 supplied Interdyne-brand autosurgeons-补给的Interdyne-brand自动手术器来改变植入物状态.")
+	company_message = span_bold("订单状态: 已收到. 包裹状态: 已发货. Notes: 为最佳体验, 使用 supplied Interdyne-brand autosurgeons-补给的Interdyne-brand全自动手术仪来改变植入物状态.")
 
 /obj/item/choice_beacon/augments/generate_display_names()
 	var/static/list/augment_list
@@ -159,11 +159,11 @@
 	playsound(src, 'sound/weapons/emitter2.ogg', 50, extrarange = SILENCED_SOUND_EXTRARANGE)
 
 /obj/item/choice_beacon/holy
-	name = "圣武投送信标"
-	desc = "投送牧师们的神圣武器."
+	name = "圣武军备信标"
+	desc = "根据星际宗教保护协会 (I.C.R.A.) 的规定，召唤一套标准牧师军备."
 	icon_state = "icra_delivery"
 	inhand_icon_state = "icra_delivery"
-	company_source = "星际宗教联合会"
+	company_source = "星际宗教保护协会"
 	company_message = span_bold("一个选择已被做下.")
 
 /obj/item/choice_beacon/holy/can_use_beacon(mob/living/user)

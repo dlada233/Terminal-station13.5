@@ -9,8 +9,8 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 ))
 
 /obj/machinery/computer/department_orders
-	name = "department order console"
-	desc = "使用部门账户进行订货的控制台，以这种方式订购的货物将使用部门余额并额外加一层锁以确保安全性."
+	name = "部门订购控制台"
+	desc = "使用部门账户进行订货的控制台，以这种方式订购的板条箱将会保持上锁状态，直到抵达目的地才能解锁."
 	icon_screen = "supply"
 	light_color = COLOR_BRIGHT_ORANGE
 	///reference to the order we've made UNTIL it gets sent on the supply shuttle. this is so heads can cancel it
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 			if(GLOB.areas_by_type[delivery_area_type])
 				return
 		//every area fallback didn't exist on this map so throw a mapping error and set some generic area that uuuh please exist okay
-		log_mapping("[src] has no valid areas to deliver to on this map, add some more fallback areas to its \"department_delivery_areas\" var.")
+		log_mapping("[src]无法在地图上找到任何有效的送货区域,请在其\"department_delivery_areas\"变量中添加更多备用区域.")
 		department_delivery_areas = list(/area/station/hallway/primary/central) //if this doesn't exist like honestly fuck your map man
 
 /obj/machinery/computer/department_orders/Destroy()
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	//needs to come BEFORE preventing actions!
 	if(action == "override_order")
 		if(!(override_access in id_card.GetAccess()))
-			balloon_alert(usr, "需要主管权限!")
+			balloon_alert(usr, "需要部长级权限!")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 			return
 
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	SSshuttle.shopping_list += department_order
 	if(!already_signalled)
 		RegisterSignal(SSshuttle, COMSIG_SUPPLY_SHUTTLE_BUY, PROC_REF(finalize_department_order))
-	say("订单已受理. 货仓将负责运输. 注意: 部门主管可以撤销这次订货命令.")
+	say("订单已受理.货仓将负责运输.注意:部门主管可以撤销这次订货命令.")
 	calculate_cooldown(pack.cost)
 
 ///signal when the supply shuttle begins to spawn orders. we forget the current order preventing it from being overridden (since it's already past the point of no return on undoing the order)
@@ -233,7 +233,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	department_delivery_areas = list(/area/station/engineering/main)
 	override_access = ACCESS_CE
 	req_one_access = REGION_ACCESS_ENGINEERING
-	dep_groups = list("工程用品", "工程建造", "储罐&材料")
+	dep_groups = list("工程用品", "工程建造", "气罐&材料")
 	radio_key_typepath = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	department_delivery_areas = list(/area/station/science/research)
 	override_access = ACCESS_RD
 	req_one_access = REGION_ACCESS_RESEARCH
-	dep_groups = list("科研用品", "活物", "储罐&材料")
+	dep_groups = list("科研用品", "活物", "气罐&材料")
 	radio_key_typepath = /obj/item/encryptionkey/headset_sci
 	radio_channel = RADIO_CHANNEL_SCIENCE
 

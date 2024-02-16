@@ -72,7 +72,7 @@
 #define JOB_PARAMEDIC "急救员-Paramedic"
 #define JOB_CHEMIST "化学家-Chemist"
 #define JOB_VIROLOGIST "病毒学家-Virologist"
-#define JOB_ORDERLY "护理员-Orderly" // SKYRAT EDIT ADDITION
+#define JOB_ORDERLY "医护员-Orderly" // SKYRAT EDIT ADDITION
 //Science
 #define JOB_SCIENTIST "科学家-Scientist"
 #define JOB_ROBOTICIST "机械学家-Roboticist"

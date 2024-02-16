@@ -284,14 +284,14 @@
 
 /obj/item/storage/box/syndie_kit/rebarxbowsyndie
 	name = "钢筋弩盒"
-	desc = "特色是还有弹药的制作说明."
+	desc = "这个盒子特色是有弹药的制作说明."
 
 /obj/item/storage/box/syndie_kit/rebarxbowsyndie/PopulateContents()
 	new /obj/item/book/granter/crafting_recipe/dusting/rebarxbowsyndie_ammo(src)
 	new /obj/item/gun/ballistic/rifle/rebarxbow/syndie(src)
 
 /obj/item/storage/box/syndie_kit/origami_bundle
-	name = "折纸盒"
+	name = "折纸套件盒"
 	desc = "一个装满了精心设计的纸飞机的盒子和一本关于\"折纸艺术\"的手册."
 
 /obj/item/storage/box/syndie_kit/origami_bundle/PopulateContents()
@@ -300,7 +300,7 @@
 		new /obj/item/paper(src)
 
 /obj/item/storage/box/syndie_kit/imp_freedom
-	name = "自由植入物盒"
+	name = "'自由'植入物盒"
 
 /obj/item/storage/box/syndie_kit/imp_freedom/PopulateContents()
 	new /obj/item/implanter/freedom(src)
@@ -312,57 +312,57 @@
 	new /obj/item/implanter/explosive(src)
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb
-	name = "高爆炸弹植入物盒"
+	name = "'高爆炸弹'植入物盒"
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb/PopulateContents()
 	new /obj/item/implanter/explosive_macro(src)
 
 /obj/item/storage/box/syndie_kit/imp_deniability
-	name = "战术延爆植入物盒"
+	name = "战术延爆'植入物盒"
 
 /obj/item/storage/box/syndie_kit/imp_deniability/PopulateContents()
 	new /obj/item/implanter/tactical_deniability(src)
 
 /obj/item/storage/box/syndie_kit/imp_uplink
-	name = "上行链路植入物盒"
+	name = "'上行链路'植入物盒"
 
 /obj/item/storage/box/syndie_kit/imp_uplink/PopulateContents()
 	new /obj/item/implanter/uplink(src)
 
 /obj/item/storage/box/syndie_kit/bioterror
-	name = "生化恐袭注射器盒"
+	name = "'生化武器'注射盒"
 
 /obj/item/storage/box/syndie_kit/bioterror/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/syringe/bioterror(src)
 
 /obj/item/storage/box/syndie_kit/clownpins
-	name = "超级搞笑的撞针盒"
+	name = "超滑稽撞针盒"
 
 /obj/item/storage/box/syndie_kit/clownpins/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/firing_pin/clown/ultra(src)
 
 /obj/item/storage/box/syndie_kit/imp_storage
-	name = "储存植入物盒"
+	name = "'储存'植入物盒"
 
 /obj/item/storage/box/syndie_kit/imp_storage/PopulateContents()
 	new /obj/item/implanter/storage(src)
 
 /obj/item/storage/box/syndie_kit/imp_stealth
-	name = "隐形植入物盒"
+	name = "'隐形'植入物盒"
 
 /obj/item/storage/box/syndie_kit/imp_stealth/PopulateContents()
 	new /obj/item/implanter/stealth(src)
 
 /obj/item/storage/box/syndie_kit/imp_radio
-	name = "辛迪加无线电植入物盒"
+	name = "'辛迪加无线电'植入物盒"
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/space
-	name = "太空服盒"
+	name = "盒装太空服"
 
 /obj/item/storage/box/syndie_kit/space/Initialize(mapload)
 	. = ..()
@@ -376,7 +376,7 @@
 	new spess_helmet(src) // 4 TC for the space gear
 
 /obj/item/storage/box/syndie_kit/emp
-	name = "EMP包"
+	name = "电磁脉冲套件"
 
 /obj/item/storage/box/syndie_kit/emp/PopulateContents()
 	for(var/i in 1 to 5)
@@ -416,7 +416,7 @@
 
 /obj/item/storage/box/syndie_kit/nuke
 	name = "核芯提取盒"
-	desc = "一个盒子，里面装有能从大多数纳米传讯核弹中提取钚芯的设备和说明."
+	desc = "一个盒子，里面装有能从大多数纳米传讯核弹中提取钚芯的装备和使用说明."
 
 /obj/item/storage/box/syndie_kit/nuke/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
@@ -425,7 +425,7 @@
 
 /obj/item/storage/box/syndie_kit/supermatter
 	name = "超物质银提取盒"
-	desc = "装有能提取微量超物质的设备和说明的盒子."
+	desc = "一个盒子,装有能提取超物质银的装备和使用说明."
 
 /obj/item/storage/box/syndie_kit/supermatter/PopulateContents()
 	new /obj/item/scalpel/supermatter(src)
@@ -444,7 +444,7 @@
 	new /obj/item/reagent_containers/cup/bottle/tuberculosiscure(src)
 
 /obj/item/storage/box/syndie_kit/chameleon
-	name = "变色龙包"
+	name = "变色龙套件"
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
 	new /obj/item/clothing/under/chameleon(src)
@@ -539,7 +539,7 @@
 
 /obj/item/storage/box/syndie_kit/bee_grenades
 	name = "杀人蜂手榴弹盒"
-	desc = "一个光滑、结实的盒子，里面传来嗡嗡的声音，哦哦."
+	desc = "一个光滑、结实的盒子，里面传来嗡嗡的声音，啊哦."
 
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
@@ -575,7 +575,7 @@
 /// Surplus Ammo Box
 
 /obj/item/storage/box/syndie_kit/sniper_surplus
-	name = "批发的.50 BMG 弹匣盒"
+	name = "盈余.50 BMG 弹匣盒"
 	desc = "一个装满剩余点.50 BMG弹匣的劣质盒子，没有那么大的威力."
 
 /obj/item/storage/box/syndie_kit/sniper_surplus/PopulateContents()
@@ -602,8 +602,8 @@
 		new /obj/item/assembly/signaler(src)
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle
-	name = "丧钟植入物盒"
-	desc = "包含八个相连的丧钟植入物."
+	name = "'丧钟'植入物盒"
+	desc = "包含八个相连的'丧钟'植入物."
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle/PopulateContents()
 	new /obj/item/implanter(src)
@@ -672,7 +672,7 @@
 	// Pretty much all of it is a bad deal for reinforcements or yourself as they already have similar or good-enough alternatives.
 
 /obj/item/implanter/induction_implant
-	name = "植入物 (核特工)"
+	name = "植入器 (核特工)"
 	desc = "无菌自动植入注射器，你可以在侧面看到一个很小的小贴纸写着:‘不是洗脑装置’."
 	imp_type = /obj/item/implant/nuclear_operative
 
@@ -682,11 +682,11 @@
 	implant_color = "r"
 
 /obj/item/implant/nuclear_operative/get_data()
-	var/dat = {"<b>植入规范:</b><BR>
-				<b>姓名:</b> 可疑的植入物<BR>
-				<b>保质期:</b> UNKNOWN <BR>
-				<b>植入物细节:</b> <BR>
-				<b>功能:</b> 奇怪的植入物似乎能抵抗任何扫描."}
+	var/dat = {"<b>植入规格:</b><BR>
+				<b>名称:</b> 可疑的植入物<BR>
+				<b>使用寿命:</b> 未知 <BR>
+				<b>植入物详情:</b> <BR>
+				<b>功能:</b> 奇怪的植入物,似乎能抵抗任何扫描."}
 	return dat
 
 /obj/item/implant/nuclear_operative/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
@@ -765,7 +765,7 @@
 	), src)
 
 /obj/item/storage/box/syndicate/contract_kit
-	name = "契约套装"
+	name = "契约套件"
 	desc = "供应给辛迪加契约特工."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"

@@ -29,7 +29,7 @@
 
 /datum/supply_pack/misc/bicycle
 	name = "自行车"
-	desc = "Nanotrasen提醒员工们永远不要滥用职权."
+	desc = "纳米传讯提醒员工们永远不要滥用职权."
 	cost = 1000000 //Special case, we don't want to make this in terms of crates because having bikes be a million credits is the whole meme.
 	contains = list(/obj/vehicle/ridden/bicycle)
 	crate_name = "自行车箱"
@@ -37,7 +37,7 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/misc/bigband
-	name = "名牌乐器收藏包"
+	name = "名牌乐器收藏品"
 	desc = "让站点流淌在动人的乐曲中! \
 		内含九种乐器!"
 	cost = CARGO_CRATE_VALUE * 10
@@ -66,23 +66,23 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/commandkeys
-	name = "指挥密钥补给包"
+	name = "指挥频道密匙"
 	desc = "一组加密密钥，用于访问指挥无线电频道. \
-		Nanotrasen提醒未授权的员工不要窃听指挥无线电频道, \
+		纳米传讯提醒未授权的员工不要窃听指挥无线电频道, \
 		也要尽量减少对指挥人员的诘问."
 	access_view = ACCESS_COMMAND
 	access = ACCESS_COMMAND
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/encryptionkey/headset_com = 3)
 	crate_type = /obj/structure/closet/crate/secure/centcom
-	crate_name = "指挥密钥补给包"
+	crate_name = "指挥频道密匙箱"
 
 /datum/supply_pack/misc/exploration_drone
-	name = "探险无人机"
-	desc = "可改装型远距探险无人机."
+	name = "勘探无人机"
+	desc = "可改装型远距勘探无人机."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/exodrone)
-	crate_name = "探险无人机箱"
+	crate_name = "勘探无人机箱"
 
 /datum/supply_pack/misc/exploration_fuel
 	name = "无人机燃料罐"
@@ -119,7 +119,7 @@
 	crate_name = "文书用品箱"
 
 /datum/supply_pack/misc/fountainpens
-	name = "写字用品包"
+	name = "书法用品"
 	desc = "用这七支行政钢笔签署死刑令."
 	cost = CARGO_CRATE_VALUE * 1.45
 	contains = list(/obj/item/storage/box/fountainpens)
@@ -127,7 +127,7 @@
 	crate_name = "写字用品箱"
 
 /datum/supply_pack/misc/wrapping_paper
-	name = "彩色包装纸包"
+	name = "彩色包装纸"
 	desc = "想要给你爱的人一份节日惊喜吗? \
 		节日风格的彩色包装纸可以帮助您."
 	cost = CARGO_CRATE_VALUE * 1.8
@@ -176,7 +176,7 @@
 	crate_name = "宗教用品箱"
 
 /datum/supply_pack/misc/candles_bulk
-	name = "蜡烛盒子包"
+	name = "蜡烛盒子"
 	desc = "用三个蜡烛盒子点亮你当地的教堂!"
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(/obj/item/storage/fancy/candle_box = 3)
@@ -184,22 +184,22 @@
 
 /datum/supply_pack/misc/toner
 	name = "墨粉包"
-	desc = "花太多墨粉打印屁股图片呢? 补充了这六次墨粉, \
+	desc = "花太多墨粉打印屁股图片呢? 补充了这六盒墨粉, \
 		你会一直印屁股直到母牛回家!"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/toner = 6)
 	crate_name = "墨粉箱"
 
 /datum/supply_pack/misc/toner_large
-	name = "墨粉包(大号)"
-	desc = "厌倦了更换墨盒? 这六个额外的大型墨粉盒容量是普通的约五倍 \
+	name = "墨粉(大号)"
+	desc = "厌倦了更换墨盒? 这六盒额外的大型墨粉盒容量是普通的约五倍 \
 		你能一直印到天荒地老!"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/toner/large = 6)
 	crate_name = "大号墨粉箱"
 
 /datum/supply_pack/misc/training_toolbox
-	name = "训练工具箱包"
+	name = "训练工具箱"
 	desc = "用AURUMILL品牌的训练工具箱磨砺你的战斗技术! \
 		保证能算出对活人的命中数!"
 	cost = CARGO_CRATE_VALUE * 2

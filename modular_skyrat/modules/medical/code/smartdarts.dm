@@ -1,7 +1,7 @@
 //The SmartDarts themselves
 /obj/item/reagent_containers/syringe/smartdart
 	name = "智能镖"
-	desc = "允许远程注射化学品到目标上."
+	desc = "能让使用者安全地远程注射化学物质，不会伤害患者."
 	volume = 10
 	icon = 'modular_skyrat/modules/medical/icons/obj/smartdarts.dmi'
 	icon_state = "dart_0"
@@ -11,7 +11,7 @@
 //Code that handles the base interactions involving smartdarts
 /obj/item/reagent_containers/syringe/smartdart/afterattack(atom/target, mob/user, proximity)
 	if(isliving(target))
-		to_chat(user, span_warning("The [src] is unable to manually inject chemicals."))
+		to_chat(user, span_warning("[src]不支持手动注射化学物质."))
 	return
 //A majority of this code is from the original syringes.dm file.
 /obj/item/reagent_containers/syringe/smartdart/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
@@ -19,30 +19,30 @@
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 	if(reagents.total_volume >= reagents.maximum_volume)
-		to_chat(user, span_notice("[src] is full."))
+		to_chat(user, span_notice("[src]已经满了."))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 	if(isliving(target))
-		to_chat(user, span_warning("The [src] is unable to take blood."))
+		to_chat(user, span_warning("[src]不支持抽血操作."))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty!"))
+		to_chat(user, span_warning("[target]已经空了!"))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 	if(!target.is_drawable(user))
-		to_chat(user, span_warning("You cannot directly remove reagents from [target]!"))
+		to_chat(user, span_warning("无法直接从[target]中移除试剂!"))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user) // transfer from, transfer to - who cares?
-	to_chat(user, span_notice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
+	to_chat(user, span_notice("你将[trans]单位的溶液注入到[src] .目前[target]中含有[reagents.total_volume]单位."))
 
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 //The base smartdartgun
 /obj/item/gun/syringe/smartdart
 	name = "医用飞镖枪"
-	desc = "调整版的医用注射器枪，只允许智能镖被装入腔室."
+	desc = "经过改装的医疗注射枪，只能装填智能镖."
 	w_class = WEIGHT_CLASS_NORMAL //I might need to look into changing this later depending on feedback
 	icon = 'modular_skyrat/modules/medical/icons/obj/dartguns.dmi'
 	icon_state = "smartdartgun"
@@ -60,14 +60,14 @@
 	if(istype(container, /obj/item/reagent_containers/syringe/smartdart))
 		..()
 	else
-		to_chat(user, span_notice("The [container] is unable to fit inside of the [src]! Try using a <b>SmartDart</b> instead."))
+		to_chat(user, span_notice("[container]无法装进[src]!请尝试使用<b>智能镖</b>."))
 		return FALSE
 
 /obj/item/gun/syringe/smartdart/examine(mob/user)
 	. = ..()
 
 	for(var/obj/item/reagent_containers/syringe/dart as anything in syringes)
-		. += "There is a [dart] loaded."
+		. += "里面已装有[dart]."
 
 //Smartdart projectiles
 /obj/item/ammo_casing/syringegun/dart
@@ -75,7 +75,7 @@
 	projectile_type = /obj/projectile/bullet/dart/syringe/dart
 
 /obj/projectile/bullet/dart/syringe/dart
-	name = "SmartDart"
+	name = "智能镖"
 	damage = 0
 	//A list used to store to store the allergns of the target, so that it can be compared with later.
 	var/list/allergy_list = list()
@@ -103,8 +103,8 @@
 	if(!injectee.can_inject(target_zone = def_zone, injection_flags = inject_flags)) // if the syringe is blocked
 		blocked = 100
 	if(blocked == 100)
-		target.visible_message(span_danger("\The [src] is deflected!"),
-							span_userdanger("You are protected against \the [src]!"))
+		target.visible_message(span_danger("\The [src]被弹开了!"),
+							span_userdanger("你防护住了 \the [src]!"))
 		return
 
 	//Checks for allergies, and saves allergies to a list if they are present
@@ -149,9 +149,9 @@
 		else
 			injectee.reagents.add_reagent(meds.type, inject_amount, null, chemical_temp, meds.purity)
 
-	injectee.visible_message(span_notice("[src] embeds itself into [injectee]"), span_notice("You feel a small prick as [src] embeds itself into you."))
+	injectee.visible_message(span_notice("[src]嵌进了[injectee]体内"), span_notice("你感觉到一阵轻微刺痛，[src]嵌入了你的体内."))
 	if(prevention_used) //Used to signal that allergens were not injected into the target mob.
-		injectee.visible_message(span_notice("[src] lets out a short beep."), span_notice("You hear a short beep from [src]."))
+		injectee.visible_message(span_notice("[src]发出一声短促的蜂鸣声."), span_notice("你听到[src]发出一声短促的蜂鸣声."))
 		playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 	return BULLET_ACT_HIT
 

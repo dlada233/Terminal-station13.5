@@ -1,6 +1,6 @@
 /obj/item/boxcutter
-	name = "开箱刀"
-	desc = "用于切开箱子，或者喉咙."
+	name = "美工刀"
+	desc = "用于切开箱子，或者切开喉咙."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "boxcutter"
 	inhand_icon_state = "boxcutter"

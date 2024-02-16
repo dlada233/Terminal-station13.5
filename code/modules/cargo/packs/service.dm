@@ -26,7 +26,7 @@
 
 /datum/supply_pack/service/janitor
 	name = "清洁用品"
-	desc = "用以对抗无尽的脏乱! 内含三个桶、地滑标志和清洁手榴弹以及多种清洁工具."
+	desc = "用以对抗无尽的脏乱! 内含三个桶、地滑标志和清洁手榴弹，以及一把拖把、扫把，清洁喷雾瓶、抹布和垃圾袋."
 	cost = CARGO_CRATE_VALUE * 2
 	access_view = ACCESS_JANITOR
 	contains = list(/obj/item/reagent_containers/cup/bucket = 3,
@@ -41,8 +41,8 @@
 	crate_name = "清洁用品箱"
 
 /datum/supply_pack/service/janitor/janicart
-	name = "清洁车与防滑鞋"
-	desc = "防滑鞋能使你不受路面湿滑影响而滑到，清洁车可以帮助你存放工具与水."
+	name = "清洁推车与防滑鞋"
+	desc = "任何称职的清洁工都离不开这套家伙！无论你的鞋码多大，这双防滑鞋都能保你不受路面湿滑影响而滑到.套装还包含一辆清洁推车."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/structure/mop_bucket/janitorialcart,
 					/obj/item/clothing/shoes/galoshes,
@@ -51,12 +51,12 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/janitor/janitank
-	name = "清洁背式水箱"
+	name = "背式清洁水箱"
 	desc = "清洁工也要有重型装备."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_JANITOR
 	contains = list(/obj/item/watertank/janitor)
-	crate_name = "清洁背式水箱"
+	crate_name = "背式清洁水箱箱"
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/service/mule
@@ -68,7 +68,7 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/party
-	name = "排队用品"
+	name = "派对用品"
 	desc = "今天我们欢聚在这里，就是为了欢聚在这里."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/storage/box/drinkingglasses,
@@ -86,7 +86,7 @@
 					/obj/item/flashlight/glowstick/yellow,
 					/obj/item/flashlight/glowstick/pink,
 				)
-	crate_name = "排队用品箱"
+	crate_name = "派对用品箱"
 
 /datum/supply_pack/service/carpet
 	name = "优质地毯组合"
@@ -99,7 +99,7 @@
 
 /datum/supply_pack/service/carpet_exotic
 	name = "异国地毯组合"
-	desc = "华丽的异国地毯，里面竟然有整整100块，还有8种不同的种类."
+	desc = "来自太空俄罗斯的异国地毯，满足你所有装修需求.包含100片地毯，8种不同花纹图案."
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/obj/item/stack/tile/carpet/blue/fifty = 2,
 					/obj/item/stack/tile/carpet/cyan/fifty = 2,
@@ -115,7 +115,7 @@
 
 /datum/supply_pack/service/carpet_neon
 	name = "霓虹地毯组合"
-	desc = "带有磷光衬里的简单橡胶垫，包含120块，13种颜色的变体，限量发行中."
+	desc = "带有磷光衬里的简单橡胶垫，总共包含120块，13种颜色的变体，限量发行中."
 	cost = CARGO_CRATE_VALUE * 15
 	contains = list(/obj/item/stack/tile/carpet/neon/simple/white/sixty = 2,
 					/obj/item/stack/tile/carpet/neon/simple/black/sixty = 2,
@@ -135,15 +135,15 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/service/lightbulbs
-	name = "灯泡补给"
-	desc = "愿圣光庇护着你."
+	name = "替换灯泡补给"
+	desc = "愿以太之光照耀空间站！或者，至少让42支灯管和21颗灯泡的光芒为你指引方向."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/storage/box/lights/mixed = 3)
-	crate_name = "灯泡箱"
+	crate_name = "替换灯泡箱"
 
 /datum/supply_pack/service/minerkit
 	name = "竖井矿工入门包"
-	desc = "矿工都死下面了？想要孤僻更贴近自然的工作？这里面有成为一个矿工所有需要的装备."
+	desc = "矿工都死下面了？助手想要体验站外生活？这套入门包有将普通船员成为一个采矿猛兽所有需要的装备,包含了介子护目镜、先进矿物扫描仪、矿用耳机、矿石袋、防毒面具、一套探险者套装及矿工ID升级."
 	cost = CARGO_CRATE_VALUE * 4
 	access = ACCESS_QM
 	access_view = ACCESS_MINING_STATION
@@ -161,7 +161,7 @@
 
 /datum/supply_pack/service/wedding
 	name = "婚礼用品"
-	desc = "内含婚纱、西服与鲜花美酒，现在只缺一个司仪了."
+	desc = "内含婚纱、西服、一条腰封、一袭头纱、三束鲜花与香槟美酒，现在只缺一个司仪了."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/under/dress/wedding_dress,
 					/obj/item/clothing/under/suit/tuxedo,
@@ -177,7 +177,7 @@
 /// Box of 7 grey IDs.
 /datum/supply_pack/service/greyidbox
 	name = "空白普通ID卡补给包"
-	desc = "一盒七张的空白普通ID卡."
+	desc = "一盒共七张的空白普通ID卡."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/box/ids)
 	crate_name = "普通ID卡箱"
@@ -185,7 +185,7 @@
 /// Single silver ID.
 /datum/supply_pack/service/silverid
 	name = "空白银ID卡补给包"
-	desc = "银色ID卡往往只给主管级别的人物持有，能在上面分配更多的权限."
+	desc = "忘记聘请部长了吗？使用这张高价值ID卡招募你自己的部门主管，它能够以钱包大小的形式容纳高级访问权限."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/card/id/advanced/silver)
 	crate_name = "银ID卡箱"
@@ -199,8 +199,8 @@
 
 /datum/supply_pack/service/randomized/donkpockets
 	name = "多味口袋饼组合"
-	desc = "Donk Co-杜客公司最受欢迎的产品，\
-		现在订购随机获得四种口味."
+	desc = "Donk Co-杜克公司最受欢迎的产品，\
+		现在订购即可随机获得四种口味."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy,
 					/obj/item/storage/box/donkpockets/donkpocketteriyaki,
@@ -217,14 +217,14 @@
 		new item(C)
 
 /datum/supply_pack/service/randomized/ready_donk
-	name = "杜客快捷餐组合包"
-	desc = "包含三种随机口味的Donk快捷餐."
+	name = "杜克快餐组合包"
+	desc = "包含三种随机口味的Donk快餐."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/food/ready_donk,
 					/obj/item/food/ready_donk/mac_n_cheese,
 					/obj/item/food/ready_donk/donkhiladas,
 				)
-	crate_name = "\improper 杜客快捷餐箱"
+	crate_name = "\improper 杜客快餐箱"
 	crate_type = /obj/structure/closet/crate/freezer/food
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
@@ -235,7 +235,7 @@
 
 /datum/supply_pack/service/coffeekit
 	name = "咖啡用品组合"
-	desc = "一个完整的组合包，可用于建立你自己的咖啡馆，很不幸咖啡机由于某些原因则没有包括在内."
+	desc = "一个完整的组合包，可用于建立你自己的咖啡馆，由于某些原因，咖啡机不包含在内."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/storage/box/coffeepack/robusta,
@@ -276,8 +276,8 @@
 
 /// Spare bar sign wallmount
 /datum/supply_pack/service/bar_sign
-	name = "吧牌"
-	desc = "一个完美的吧牌，能展示出绚烂多彩的图案以招揽顾客."
+	name = "酒吧招牌替换套件"
+	desc = "这款招牌替换套件非常适合吸引顾客到您的酒吧、酒馆、旅馆、夜总会甚至咖啡馆！."
 	cost = CARGO_CRATE_VALUE * 14
 	contains = list(/obj/item/wallframe/barsign/all_access)
 	crate_name = "吧牌箱"

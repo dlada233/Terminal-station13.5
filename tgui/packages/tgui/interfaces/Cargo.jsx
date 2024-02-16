@@ -48,7 +48,7 @@ export const CargoContent = (props) => {
             selected={tab === 'catalog'}
             onClick={() => setTab('catalog')}
           >
-            Catalog
+            商品分类
           </Tabs.Tab>
           <Tabs.Tab
             icon="envelope"
@@ -56,14 +56,14 @@ export const CargoContent = (props) => {
             selected={tab === 'requests'}
             onClick={() => setTab('requests')}
           >
-            Requests ({requests.length})
+            订购请求 ({requests.length})
           </Tabs.Tab>
           <Tabs.Tab
             icon="clipboard-list"
             selected={tab === 'company_import_window'}
             onClick={() => act('company_import_window')}
           >
-            Company Imports
+            公司进口
           </Tabs.Tab>
           {!requestonly && (
             <>
@@ -73,14 +73,14 @@ export const CargoContent = (props) => {
                 selected={tab === 'cart'}
                 onClick={() => setTab('cart')}
               >
-                Checkout ({cart_length})
+                商品结账 ({cart_length})
               </Tabs.Tab>
               <Tabs.Tab
                 icon="question"
                 selected={tab === 'help'}
                 onClick={() => setTab('help')}
               >
-                Help
+                帮助
               </Tabs.Tab>
             </>
           )}
@@ -211,7 +211,7 @@ export const CargoCatalog = (props) => {
             <CargoCartButtons />
             <Button.Checkbox
               ml={2}
-              content="Buy Privately"
+              content="私人购买"
               checked={self_paid}
               onClick={() => act('toggleprivate')}
             />
@@ -388,9 +388,9 @@ const CargoCartButtons = (props) => {
   return (
     <>
       <Box inline mx={1}>
-        {cart.length === 0 && 'Cart is empty'}
-        {cart.length === 1 && '1 item'}
-        {cart.length >= 2 && cart.length + ' items'}{' '}
+        {cart.length === 0 && '购物车空空如也'}
+        {cart.length === 1 && '1 件物品'}
+        {cart.length >= 2 && cart.length + ' 件物品'}{' '}
         {total > 0 && `(${formatMoney(total)} cr)`}
       </Box>
       {!requestonly && !!can_send && !!can_approve_requests && (
@@ -513,63 +513,55 @@ const CargoHelp = (props) => {
   return (
     <>
       <Section title="Department Orders">
-        Each department on the station will order crates from their own personal
-        consoles. These orders are ENTIRELY FREE! They do not come out of
-        cargo&apos;s budget, and rather put the consoles on cooldown. So
-        here&apos;s where you come in: The ordered crates will show up on your
-        supply console, and you need to deliver the crates to the orderers.
-        You&apos;ll actually be paid the full value of the department crate on
-        delivery if the crate was not tampered with, making the system a good
-        source of income.
+        空间站内的各个部门可以用他们的部门订购控制台来订货.这些订单完全免费!不会使用货舱&apos;的部门经费,而是使部门订购控制台进入冷却时间.
+        接下来就是你的出场时间了:订单将会出现在你的供应控制台里,之后你需要将送达的货物送到订购者手上.
+        只要运送的板条箱没有被篡改，你会在送货时获得其全额价值的金额，这使得该系统成为一个不错的赚钱途径.
         <br />
         <b>
-          Examine a department order crate to get specific details about where
-          the crate needs to go.
+        检查部门订购的板条箱以获取需要货物送达的具体位置.
         </b>
       </Section>
-      <Section title="MULEbots">
-        MULEbots are slow but loyal delivery bots that will get crates delivered
-        with minimal technician effort required. It is slow, though, and can be
-        tampered with while en route.
+      <Section title="MULE 骡机器人">
+        MULE 骡机器人虽然速度慢，但非常可靠，只需少量操作即可完成货物运送，但运输途中可能会被人干扰.
         <br />
-        <b>Setting up a MULEbot is easy:</b>
+        <b>机器人操作简单，轻松上手:</b>
         <br />
-        <b>1.</b> Drag the crate you want to deliver next to the MULEbot.
+        <b>1.</b> 把要运送的板条箱拖到骡子机器人旁边.
         <br />
-        <b>2.</b> Drag the crate on top of MULEbot. It should load on.
+        <b>2.</b> 把板条箱拖到MULE 骡机器人上.它会装载在上面.
         <br />
-        <b>3.</b> Open your PDA.
+        <b>3.</b> 打开你的PDA,打开<i>机器监管员</i>.
         <br />
-        <b>4.</b> Click <i>Delivery Bot Control</i>.<br />
-        <b>5.</b> Click <i>Scan for Active Bots</i>.<br />
-        <b>6.</b> Choose your MULE.
+        <b>4.</b> 找到你的MULE 骡机器人.
         <br />
-        <b>7.</b> Click on <i>Destination: (set)</i>.<br />
-        <b>8.</b> Choose a destination and click OK.
+        <b>5.</b> 点击<i>设置停泊处</i>.
         <br />
-        <b>9.</b> Click <i>Proceed</i>.
+        <b>7.</b> 选择<i>对应停泊处</i>.
+        <br />
+        <b>8.</b> 点击<i>设置目的地</i>.
+        <br />
+        <b>9.</b> 选择<i>目的地</i>.
+        <br />
+        <b>9.</b> 点击 <i>前往目的地</i>.
       </Section>
-      <Section title="Disposals Delivery System">
-        In addition to MULEs and hand-deliveries, you can also make use of the
-        disposals mailing system. Note that a break in the disposal piping could
-        cause your package to be lost (this hardly ever happens), so this is not
-        always the most secure ways to deliver something. You can wrap up a
-        piece of paper and mail it the same way if you (or someone at the desk)
-        wants to mail a letter.
+      <Section title="处置运输系统">
+        除了使用MULE 骡机器人或送货上门外,你还可以使用处置邮递系统.
+        请注意，处理管道破裂可能会导致你的包裹丢失（这种情况很少发生）,因此这不是最安全的递送方式
+        如果你（或前台的其他工作人员）想寄一封信，可以用一张包裹纸包起来，然后用同样的方式寄出。.
         <br />
-        <b>Using the Disposals Delivery System is even easier:</b>
+        <b>处置运输系统操作简单，轻松上手:</b>
         <br />
-        <b>1.</b> Wrap your item/crate in packaging paper.
+        <b>1.</b> 将物品/箱子用包装纸包起来.
         <br />
-        <b>2.</b> Use the destinations tagger to choose where to send it.
+        <b>2.</b> 使用目的地标记器选择发送地点.
         <br />
-        <b>3.</b> Tag the package.
+        <b>3.</b> 给包裹贴上标签.
         <br />
-        <b>4.</b> Stick it on the conveyor and let the system handle it.
+        <b>4.</b> 将其放在传送带上，让运输系统来处理.
         <br />
       </Section>
       <NoticeBox textAlign="center" info mb={0}>
-        Pondering something not included here? When in doubt, ask the QM!
+      遇到困惑的问题?问一问军需官!
       </NoticeBox>
     </>
   );

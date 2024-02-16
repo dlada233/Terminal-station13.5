@@ -1,9 +1,9 @@
 /datum/computer_file/program/shipping
-	filename = "shipping"
-	filedesc = "GrandArk出口小帮手"
+	filename = "宏舟出口器"
+	filedesc = "宏舟出口器"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "shipping"
-	extended_desc = "一个集成印花/扫描的应用程序，使设备能够打印便于扫描和运输的条形码."
+	extended_desc = "一个集成印花/扫描一体的应用程序，使设备能够打印便于扫描和运输的条形码."
 	size = 6
 	tgui_id = "NtosShipping"
 	program_icon = "tags"
@@ -42,7 +42,7 @@
 		if("resetid")
 			payments_acc = null
 		if("setsplit")
-			var/potential_cut = input("您想在registered card-登记卡上支付多少钱?","利润率([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
+			var/potential_cut = input("您想在登记卡上支付多少钱?","利润率([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
 			cut_multiplier = potential_cut ? clamp(round(potential_cut/100, cut_min), cut_min, cut_max) : initial(cut_multiplier)
 		if("print")
 			if(computer.stored_paper <= 0)

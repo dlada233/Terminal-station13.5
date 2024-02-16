@@ -1,12 +1,12 @@
 #define DEFAULT_MAP_SIZE 15
 
 /datum/computer_file/program/secureye
-	filename = "secureye"
-	filedesc = "SecurEye-天眼"
+	filename = "天眼"
+	filedesc = "天眼"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	ui_header = "borg_mon.gif"
 	program_open_overlay = "generic"
-	extended_desc = "允许你连接到一般摄像头网络."
+	extended_desc = "该程序允许访问标准安全摄像头网络."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	download_access = list(ACCESS_SECURITY)
 	can_run_on_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP

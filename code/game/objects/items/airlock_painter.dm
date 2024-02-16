@@ -1,7 +1,7 @@
 /obj/item/airlock_painter
-	name = "airlock painter"
-	desc = "An advanced autopainter preprogrammed with several paintjobs for airlocks. Use it on an airlock during or after construction to change the paintjob."
-	desc_controls = "Alt-Click to remove the ink cartridge."
+	name = "气闸涂手"
+	desc = "先进的自动喷漆器，预制了几种气闸的喷漆样式，建造气闸的过程中或完成建造后，在气闸上使用来改变气闸样式，Alt-左键来取出墨盒."
+	desc_controls = "Alt-左键以取出墨盒."
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "paint_sprayer"
 	inhand_icon_state = "paint_sprayer"
@@ -64,10 +64,10 @@
 //because you're expecting user input.
 /obj/item/airlock_painter/proc/can_use(mob/user)
 	if(!ink)
-		balloon_alert(user, "no cartridge!")
+		balloon_alert(user, "未填装墨盒!")
 		return FALSE
 	else if(ink.charges < 1)
-		balloon_alert(user, "out of ink!")
+		balloon_alert(user, "墨盒耗尽!")
 		return FALSE
 	else
 		return TRUE
@@ -158,8 +158,8 @@
 
 /obj/item/airlock_painter/decal
 	name = "decal painter"
-	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed."
-	desc_controls = "Alt-Click to remove the ink cartridge."
+	desc = "气闸涂手，进行了重编程，使这款除了可以在气闸上面喷涂以外，也同样可以在地板上喷出图案来，拆除地板时图案会消失，Alt+点击来取出墨盒."
+	desc_controls = "Alt-左键以取出墨盒.."
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "decal_sprayer"
 	inhand_icon_state = "decal_sprayer"
@@ -381,8 +381,8 @@
 
 /obj/item/airlock_painter/decal/tile
 	name = "tile sprayer"
-	desc = "An airlock painter, reprogramed to use a different style of paint in order to spray colors on floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed."
-	desc_controls = "Alt-Click to remove the ink cartridge."
+	desc = "气闸涂手，进行了重编程，使这款除了可以在气闸上面喷涂以外，也同样可以在地板上喷出图案来，拆除地板时图案会消失."
+	desc_controls = "Alt-左键以取出墨盒."
 	icon_state = "tile_sprayer"
 	stored_dir = 2
 	stored_color = "#D4D4D432"

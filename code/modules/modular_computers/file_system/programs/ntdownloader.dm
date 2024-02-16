@@ -1,8 +1,8 @@
 /datum/computer_file/program/ntnetdownload
-	filename = "ntsoftwarehub"
-	filedesc = "NT Software Hub-NT应用市场"
+	filename = "NT软件中心"
+	filedesc = "NT软件中心"
 	program_open_overlay = "generic"
-	extended_desc = "该程序允许设备从NT官方应用市场下载软件."
+	extended_desc = "该程序允许设备从NT官方软件中心下载软件."
 	undeletable = TRUE
 	size = 4
 	program_flags = PROGRAM_REQUIRES_NTNET

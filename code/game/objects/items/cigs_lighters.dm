@@ -17,7 +17,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 ///////////
 /obj/item/match
 	name = "火柴"
-	desc = "简易的火柴点燃精致的香烟."
+	desc = "简易的火柴，点燃精致的香烟."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "match_unlit"
 	w_class = WEIGHT_CLASS_TINY
@@ -54,8 +54,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	force = 3
 	hitsound = 'sound/items/welder.ogg'
 	inhand_icon_state = "cigon"
-	name = "燃烧的[initial(name)]"
-	desc = "[initial(name)]，这个点燃了."
+	name = "点燃的[initial(name)]"
+	desc = "一根[initial(name)]，这根已经点燃了."
 	attack_verb_continuous = string_list(list("灼烧", "火燎"))
 	attack_verb_simple = string_list(list("灼烧", "火燎"))
 	START_PROCESSING(SSobj, src)
@@ -72,7 +72,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "match_burnt"
 	inhand_icon_state = "cigoff"
 	name = "燃尽的[initial(name)]"
-	desc = "[initial(name)]，这个曾经有个一段辉煌的时间."
+	desc = "一根[initial(name)]，这根曾经有一段辉煌的时间."
 	attack_verb_continuous = string_list(list("拍"))
 	attack_verb_simple = string_list(list("拍"))
 	STOP_PROCESSING(SSobj, src)
@@ -90,8 +90,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if(lit && M.ignite_mob())
-		message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(M)] on fire with [src] at [AREACOORD(user)]")
-		user.log_message("set [key_name(M)] on fire with [src]", LOG_ATTACK)
+		message_admins("[ADMIN_LOOKUPFLW(user)]在[AREACOORD(user)]用[src]点燃了[key_name_admin(M)]")
+		user.log_message("用[src]点燃了[key_name(M)]", LOG_ATTACK)
 
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
 	if(!lit || !cig || user.combat_mode)
@@ -116,7 +116,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/match/firebrand
 	name = "火把"
-	desc = "一个未点燃的火把，为什么不干脆叫棍子呢？"
+	desc = "一个未点燃的火把，为什么不干脆直接叫棍子呢？"
 	smoketime = 40 SECONDS
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/carbon = 2)
@@ -129,8 +129,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //FINE SMOKABLES//
 //////////////////
 /obj/item/clothing/mask/cigarette
-	name = "cigarette-香烟"
-	desc = "一卷烟草和尼古丁."
+	name = "香烟"
+	desc = "用烟草和尼古丁卷成的纸卷."
 	icon_state = "cigoff"
 	inhand_icon_state = "cigon" //gets overriden during intialize(), just have it for unit test sanity.
 	throw_speed = 0.5
@@ -138,7 +138,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	body_parts_covered = null
 	grind_results = list()
 	heat = 1000
-	throw_verb = "弹开"
+	throw_verb = "轻弹"
 	/// Whether this cigarette has been lit.
 	var/lit = FALSE
 	/// Whether this cigarette should start lit.
@@ -208,7 +208,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	source.apply_status_effect(/datum/status_effect/choke, src, lit, choke_forever ? -1 : rand(25 SECONDS, choke_time_max))
 
 /obj/item/clothing/mask/cigarette/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user]狂抽[src]!马上就抽到肺癌."))
+	user.visible_message(span_suicide("[user]狂抽[src]!看起来想早日得肺癌."))
 	return (TOXLOSS|OXYLOSS)
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
@@ -413,7 +413,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!istype(M))
 		return ..()
 	if(M.on_fire && !lit)
-		light(span_notice("[user]用燃烧的[M]点燃了自己的[src]，真是好狠啊."))
+		light(span_notice("[user]用燃烧的[M]点燃了自己的[src]，真是个铁骨硬汉."))
 		return
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
 	if(!lit || !cig || user.combat_mode)
@@ -435,28 +435,28 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 jay
 // Cigarette brands.
 /obj/item/clothing/mask/cigarette/space_cigarette
-	desc = "可以在任何地方抽的Space-太空牌香烟."
+	desc = "一根\"太空牌\"香烟——让你想在哪抽就在哪抽！."
 	list_reagents = list(/datum/reagent/drug/nicotine = 9, /datum/reagent/oxygen = 9)
 	smoketime = 4 MINUTES // space cigs have a shorter burn time than normal cigs
 	smoke_all = TRUE // so that it doesn't runout of oxygen while being smoked in space
 
 /obj/item/clothing/mask/cigarette/dromedary
-	desc = "DromedaryCo-丹峰牌香烟. 与普遍的看法相反，它不含Calomel-甘汞，但据报道有水一样的味道."
+	desc = "一根\"单峰骆驼\"牌香烟，与流行的观点相反，它并不含甘汞，但是有一股水味."
 	list_reagents = list(/datum/reagent/drug/nicotine = 13, /datum/reagent/water = 5) //camel has water
 
 /obj/item/clothing/mask/cigarette/uplift
-	desc = "Uplift Smooth-平滑上升牌香烟，气味清新."
+	desc = "一根\"平滑上升\"牌香烟，气味清新."
 	list_reagents = list(/datum/reagent/drug/nicotine = 13, /datum/reagent/consumable/menthol = 5)
 
 /obj/item/clothing/mask/cigarette/robust
-	desc = "Robust-强健牌香烟."
+	desc = "一根\"强健\"牌香烟."
 
 /obj/item/clothing/mask/cigarette/robustgold
-	desc = "Robust Gold-金强健牌香烟."
+	desc = "一根金版\"强健\"牌香烟."
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/gold = 3) // Just enough to taste a hint of expensive metal.
 
 /obj/item/clothing/mask/cigarette/carp
-	desc = "Carp Classic-经典鲤鱼牌香烟，在包装侧面写有说明表示其不含Carpotoxin-鲤鱼毒."
+	desc = "一根经典鲤鱼牌香烟，在包装侧面写有说明表示其不含鲤鱼毒."
 
 /obj/item/clothing/mask/cigarette/carp/Initialize(mapload)
 	. = ..()
@@ -465,7 +465,7 @@ jay
 	reagents?.add_reagent(/datum/reagent/toxin/carpotoxin , 3) // They lied
 
 /obj/item/clothing/mask/cigarette/syndicate
-	desc = "不知名品牌的香烟."
+	desc = "一根未知品牌的香烟."
 	chem_volume = 60
 	smoketime = 2 MINUTES
 	smoke_all = TRUE
@@ -473,20 +473,20 @@ jay
 	list_reagents = list(/datum/reagent/drug/nicotine = 10, /datum/reagent/medicine/omnizine = 15)
 
 /obj/item/clothing/mask/cigarette/shadyjims
-	desc = "Shady Jim's Super Slims牌香烟"
+	desc = "一根\"阴暗吉姆\"超细香烟"
 	lung_harm = 1.5
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/toxin/lipolicide = 4, /datum/reagent/ammonia = 2, /datum/reagent/toxin/plantbgone = 1, /datum/reagent/toxin = 1.5)
 
 /obj/item/clothing/mask/cigarette/xeno
-	desc = "Xeno Filtered-异筛牌香烟."
+	desc = "一根\"异滤牌\"香烟."
 	lung_harm = 2
 	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
 
 // Rollies.
 
 /obj/item/clothing/mask/cigarette/rollie
-	name = "rollie-手卷香烟"
-	desc = "用薄纸包裹的一卷干燥的烟草."
+	name = "手卷香烟"
+	desc = "一卷用薄纸包裹的干燥烟草."
 	icon_state = "spliffoff"
 	icon_on = "spliffon"
 	icon_off = "spliffoff"
@@ -558,7 +558,7 @@ jay
 
 /obj/item/clothing/mask/cigarette/candy
 	name = "Little Timmy牌糖果香烟" // \improper
-	desc = "全年龄可抽*! 不含任何尼古丁，健康风险可以在烟头上看到."
+	desc = "全年龄可抽*! 不含任何尼古丁，健康风险可以在烟头上查阅."
 	smoketime = 2 MINUTES
 	icon_state = "candyoff"
 	icon_on = "candyon"
@@ -571,13 +571,13 @@ jay
 	choke_time_max = 70 SECONDS // This shit really is deadly
 
 /obj/item/clothing/mask/cigarette/candy/nicotine
-	desc = "全年龄可抽*! 不含任何尼古丁，健康风险可以在烟头上看到."
+	desc = "全年龄可抽*! 不含任何尼古丁，健康风险可以在烟头上查阅."
 	type_butt = /obj/item/food/candy_trash/nicotine
 	list_reagents = list(/datum/reagent/consumable/sugar = 20, /datum/reagent/drug/nicotine = 20) //oh no!
 	smoke_all = TRUE //timmy's not getting out of this one
 
 /obj/item/cigbutt/roach
-	name = "roach-烟头"
+	name = "烟头"
 	desc = "一支脏兮兮的旧烟头，对不吸烟的人来说，就是用过的烟卷."
 	icon_state = "roach"
 
@@ -591,8 +591,8 @@ jay
 // CIGARS //
 ////////////
 /obj/item/clothing/mask/cigarette/cigar
-	name = "premium cigar-优质雪茄"
-	desc = "一卷棕色的烟草和...嗯，不是很确定，这东西实在是太大了."
+	name = "优质雪茄"
+	desc = "一卷棕色的烟草和...嗯，或许是吧，这根也太大了."
 	icon_state = "cigaroff"
 	icon_on = "cigaron"
 	icon_off = "cigaroff" //make sure to add positional sprites in icons/obj/cigarettes.dmi if you add more.
@@ -607,8 +607,8 @@ jay
 	choke_time_max = 40 SECONDS
 
 /obj/item/clothing/mask/cigarette/cigar/cohiba
-	name = "Cohiba Robusto cigar-高斯巴强力雪茄" // \improper
-	desc = "有了它，你对雪茄的要求剩不了太多了."
+	name = "高斯巴强健雪茄" // \improper
+	desc = "有了它，你对雪茄便别无所求."
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
 	icon_off = "cigar2off"
@@ -617,7 +617,7 @@ jay
 	list_reagents = list(/datum/reagent/drug/nicotine = 40)
 
 /obj/item/clothing/mask/cigarette/cigar/havana
-	name = "premium Havanian cigar-优质哈瓦那雪茄"
+	name = "优质哈瓦那雪茄"
 	desc = "只为顶级中的顶级."
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
@@ -627,7 +627,7 @@ jay
 	list_reagents = list(/datum/reagent/drug/nicotine = 45)
 
 /obj/item/cigbutt
-	name = "cigarette butt-烟头"
+	name = "烟蒂"
 	desc = "一个脏兮兮的旧烟头."
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "cigbutt"
@@ -636,8 +636,8 @@ jay
 	grind_results = list(/datum/reagent/carbon = 2)
 
 /obj/item/cigbutt/cigarbutt
-	name = "cigar butt-烟头"
-	desc = "一个脏兮兮的旧烟头."
+	name = "雪茄蒂"
+	desc = "一个脏兮兮的旧雪茄蒂."
 	icon_state = "cigarbutt"
 
 /////////////////
@@ -692,7 +692,7 @@ jay
 		to_chat(user, span_warning("已经填入东西了!"))
 		return
 	if(!HAS_TRAIT(to_smoke, TRAIT_DRIED))
-		to_chat(user, span_warning("必须先将其弄干!"))
+		to_chat(user, span_warning("必须先把它弄干!"))
 		return
 
 	to_chat(user, span_notice("你把[to_smoke]填入[src]."))
@@ -718,7 +718,7 @@ jay
 
 /obj/item/clothing/mask/cigarette/pipe/cobpipe
 	name = "玉米烟斗"
-	desc = "对此，麦克阿瑟将军评论到..."
+	desc = "最初在乡下农夫间流行，至今仍受太空世代青睐的经典尼古丁输送系统.“对此，麦克阿瑟将军评论到...”"
 	icon_state = "cobpipeoff"
 	icon_on = "cobpipeon"  //Note - these are in masks.dmi
 	icon_off = "cobpipeoff"
@@ -730,7 +730,7 @@ jay
 /////////
 /obj/item/lighter
 	name = "Zippo打火机" // \improper
-	desc = "The zippo."
+	desc = "Zippo."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "zippo"
 	inhand_icon_state = "zippo"
@@ -793,7 +793,7 @@ jay
 		playsound(src, 'sound/items/welder.ogg', 50, TRUE)
 		return FIRELOSS
 	else
-		user.visible_message(span_suicide("[user]用[src]拍自己!这是一种自残行为!"))
+		user.visible_message(span_suicide("[user]用[src]拍自己!这是一种自杀行为!"))
 		return BRUTELOSS
 
 /obj/item/lighter/update_icon_state()
@@ -928,7 +928,7 @@ jay
 		"透明",
 		"长条",
 		"哑光",
-		"zoppo" //u cant stoppo th zoppo
+		"祖宝" //u cant stoppo th zoppo
 		)
 
 	/// The color of the lighter.
@@ -971,7 +971,7 @@ jay
 
 /obj/item/lighter/slime
 	name = "史莱姆zippo"
-	desc = "由史莱姆和工业科技制成的打火机, 其火焰温度比一般的热得多."
+	desc = "史莱姆和工业科技制成的打火机, 其火焰温度比一般的热得多."
 	icon_state = "slighter"
 	heat = 3000 //Blue flame!
 	light_color = LIGHT_COLOR_CYAN
@@ -979,13 +979,13 @@ jay
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/medicine/pyroxadone = 5)
 
 /obj/item/lighter/skull
-	name = "badass zippo-骷髅火机"
-	desc = "一个绝对够狠的zippo打火机, 看看这个头骨造型"
+	name = "骷髅zippo"
+	desc = "一个绝对够酷的zippo打火机, 看看这个头骨造型"
 	overlay_state = "skull"
 
 /obj/item/lighter/mime
-	name = "pale zippo-苍白zippo"
-	desc = "纯粹的表演精神可以代替燃料来点燃香烟."
+	name = "苍白zippo"
+	desc = "无需燃料，只需纯粹的表演精神即可点燃香烟."
 	icon_state = "mlighter" //These ones don't show a flame.
 	light_color = LIGHT_COLOR_HALOGEN
 	heat = 0 //I swear it's a real lighter dude you just can't see the flame dude I promise
@@ -999,8 +999,8 @@ jay
 	. = span_infoplain("[user]将[name]举到[A]前, 奇迹般地燃了起来!")
 
 /obj/item/lighter/bright
-	name = "illuminative zippo-强光zippo"
-	desc = "当你点燃它时, 它会产生难以置信的明亮化学反应, 点燃时避免直视就好."
+	name = "炫光zippo"
+	desc = "当你点燃它时, 它会产生刺眼得难以置信的化学反应, 点燃时请勿直视."
 	icon_state = "slighter"
 	light_color = LIGHT_COLOR_ELECTRIC_CYAN
 	overlay_state = "bright"
@@ -1035,7 +1035,7 @@ jay
 //ROLLING//
 ///////////
 /obj/item/rollingpaper
-	name = "rolling paper-卷烟纸"
+	name = "卷烟纸"
 	desc = "用来制作精选香烟的薄纸."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig_paper"
@@ -1051,7 +1051,7 @@ jay
 ///////////////
 /obj/item/clothing/mask/vape
 	name = "电子烟" // improper
-	desc = "一种优雅而精致的电子烟, 适合纯真的人，警告标签上写着 \"警告: 请勿填入易燃物质.\""//<<< i'd vape to that.
+	desc = "一款优雅有格调的电子烟，为端庄优雅的绅士设计，上面的标签写着 \"警告: 请勿填充可燃物.\".“适合纯真的人”"//<<< i'd vape to that.
 	icon = 'icons/obj/clothing/masks.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi' //SKYRAT EDIT: ADDITION
 	icon_state = "vape"
@@ -1120,7 +1120,7 @@ jay
 			set_greyscale(new_config = /datum/greyscale_config/vape/open_low)
 
 	if(screw && (obj_flags & EMAGGED))
-		to_chat(user, span_warning("[src]不能改装!"))
+		to_chat(user, span_warning("[src]无法改装!"))
 
 /obj/item/clothing/mask/vape/emag_act(mob/user, obj/item/card/emag/emag_card) // I WON'T REGRET WRITTING THIS, SURLY.
 

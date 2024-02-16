@@ -24,14 +24,14 @@ export const NtosGasAnalyzer = (props) => {
             textAlign="center"
             tooltip={
               atmozphereMode === 'click'
-                ? 'Right-click on objects while holding the tablet to scan them. Right-click on the tablet to scan the current location.'
-                : "The app will update it's gas mixture reading automatically."
+                ? '手持设备时右键物体可进行扫描.右键设备可扫描当前位置.'
+                : "应用程序会自动更新其气体混合物读数."
             }
             tooltipPosition="bottom"
           >
             {atmozphereMode === 'click'
-              ? 'Scanning tapped objects. Click to switch.'
-              : 'Scanning current location. Click to switch.'}
+              ? '扫描接触物品. 点击以切换.'
+              : '扫描当前位置. 点击以切换.'}
           </Button>
         )}
         <GasAnalyzerContent />

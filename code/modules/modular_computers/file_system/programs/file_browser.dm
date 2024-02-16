@@ -1,5 +1,5 @@
 /datum/computer_file/program/filemanager
-	filename = "filemanager"
+	filename = "文件管理器"
 	filedesc = "文件管理器"
 	extended_desc = "该程序允许管理文件."
 	program_open_overlay = "generic"

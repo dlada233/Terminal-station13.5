@@ -26,7 +26,7 @@ const STATE_MESSAGES = 'messages';
 const SWIPE_NEEDED = 'SWIPE_NEEDED';
 
 const EMAG_SHUTTLE_NOTICE =
-  'This shuttle is deemed significantly dangerous to the crew, and is only supplied by the Syndicate.';
+  '这艘穿梭机对船员极其危险，并且仅由辛迪加供货.';
 
 const sortShuttles = sortBy(
   (shuttle) => !shuttle.emagOnly,

@@ -11,7 +11,7 @@
 		new /obj/item/grenade/flashbang(src)
 
 /obj/item/storage/box/stingbangs
-	name = "毒刺手雷盒 (WARNING)"
+	name = "碎裂手榴弹盒 (WARNING)"
 	desc = "<B>警告: 极其危险，反复使用可能造成严重伤害甚至死亡.</B>"
 	icon_state = "secbox"
 	illustration = "flashbang"
@@ -115,7 +115,7 @@
 		new /obj/item/firing_pin/paywall(src)
 
 /obj/item/storage/box/lasertagpins
-	name = "激光玩具撞针盒"
+	name = "激光标记玩具撞针盒"
 	desc = "装满激光枪撞针的盒子，允许新开发的枪支玩激光大战."
 	illustration = "firingpin"
 
@@ -135,8 +135,8 @@
 		new /obj/item/restraints/handcuffs(src)
 
 /obj/item/storage/box/zipties
-	name = "束带绳盒"
-	desc = "一盒子束带绳."
+	name = "扎线带盒"
+	desc = "一盒扎线带."
 	icon_state = "secbox"
 	illustration = "handcuff"
 
@@ -155,7 +155,7 @@
 		new /obj/item/restraints/handcuffs/alien(src)
 
 /obj/item/storage/box/rubbershot
-	name = "霰弹盒(低致命 - 橡胶弹)"
+	name = "橡胶霰弹盒 (低致命)"
 	desc = "橡胶子弹，专为霰弹枪设计的."
 	icon_state = "rubbershot_box"
 	illustration = null
@@ -165,7 +165,7 @@
 		new /obj/item/ammo_casing/shotgun/rubbershot(src)
 
 /obj/item/storage/box/lethalshot
-	name = "霰弹盒(致命)"
+	name = "霰弹盒 (致命)"
 	desc = "致命的霰弹子弹."
 	icon_state = "lethalshot_box"
 	illustration = null
@@ -175,7 +175,7 @@
 		new /obj/item/ammo_casing/shotgun/buckshot(src)
 
 /obj/item/storage/box/beanbag
-	name = "霰弹盒(低致命 - 豆袋弹)"
+	name = "豆袋霰弹盒 (低致命)"
 	desc = "低致命的豆袋弹."
 	icon_state = "beanbagshot_box"
 	illustration = null
@@ -186,7 +186,7 @@
 
 /obj/item/storage/box/breacherslug
 	name = "破门霰弹盒"
-	desc = "被设计用于破门，对其他目标则收效甚微."
+	desc = "专门设计用于破门，对其他目标则威力甚微."
 	icon_state = "breacher_box"
 	illustration = null
 

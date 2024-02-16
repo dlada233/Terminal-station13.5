@@ -1,6 +1,6 @@
 /obj/item/crowbar
 	name = "口袋撬棍"
-	desc = "一根小撬棍. 这把趁手的工具对做很多事情都很有用,比如撬开地砖或者无动力门."
+	desc = "一根小撬棍.这把趁手的工具对做很多事情都很有用,比如撬开地砖或者无动力门."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
 	inhand_icon_state = "crowbar"
@@ -55,7 +55,7 @@
 
 /obj/item/crowbar/large
 	name = "大撬棍"
-	desc = "这是一把大撬棍. 它放不进你的口袋里，因为它很大."
+	desc = "这是一把大撬棍.它放不进你的口袋里，因为它太大了."
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -67,12 +67,12 @@
 
 /obj/item/crowbar/large/emergency
 	name = "应急撬棍"
-	desc = "这是一把笨重的撬棍. 它似乎是被故意设计成不能放进背包里的."
+	desc = "这是一把笨重的撬棍.它似乎是被故意设计成不能放进背包里的."
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/crowbar/hammer
 	name = "羊角锤"
-	desc = "这是一把一头上有撬棍的重锤. 钉子在太空中并不常见，但这种工具仍然可以用作武器或撬棍."
+	desc = "这是一把沉重的锤子，锤头另一侧带有撬棍。虽然钉子在太空中并不常见，但这把工具仍然可以用作武器或撬棍."
 	force = 11
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/obj/weapons/hammer.dmi'
@@ -90,14 +90,14 @@
 
 /obj/item/crowbar/large/heavy //from space ruin
 	name = "重型撬棍"
-	desc = "这是一把大撬棍. 它放不进你的口袋里, 因为它很大.拿起来感觉异常地沉重..."
+	desc = "这是一把大撬棍.它放不进你的口袋里,因为它很大.拿起来感觉异常地沉重..."
 	force = 20
 	icon_state = "crowbar_powergame"
 	inhand_icon_state = "crowbar_red"
 
 /obj/item/crowbar/large/old
 	name = "旧式撬棍"
-	desc = "这是一把老撬棍. 比那些口袋大小的要大得多, 也重得多. 他们不再像以前那样制造撬棍了."
+	desc = "这是一把老撬棍.比那些口袋大小的要大得多,也重得多.他们已经不再做这种结实耐用的工具了."
 	throwforce = 10
 	throw_speed = 2
 

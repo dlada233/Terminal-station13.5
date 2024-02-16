@@ -1,5 +1,5 @@
 /obj/item/implant/weapons_auth
-	name = "枪械认证植入物"
+	name = "'枪械认证'植入物"
 	desc = "让你可以使用你的枪."
 	icon_state = "auth"
 	actions_types = null
@@ -13,7 +13,7 @@
 	return dat
 
 /obj/item/implant/emp
-	name = "电磁脉冲植入物"
+	name = "'电磁脉冲'植入物"
 	desc = "触发一道电磁脉冲."
 	icon_state = "emp"
 	uses = 3
@@ -32,7 +32,7 @@
 	special_desc = "一个用于植入'电磁脉冲'植入物的辛迪加植入器" // Skyrat edit
 
 /obj/item/implant/radio
-	name = "无线电植入物"
+	name = "'无线电'植入物"
 	var/obj/item/radio/radio
 	var/radio_key
 	var/subspace_transmission = FALSE

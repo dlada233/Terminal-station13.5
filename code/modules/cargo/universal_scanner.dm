@@ -82,7 +82,7 @@
 				playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
 				to_chat(user, span_notice("[src]登记了ID卡，标记包装物品以创建条形码."))
 		else if(!potential_acc.registered_account)
-			to_chat(user, span_warning("这张ID卡没有账户."))
+			to_chat(user, span_warning("这张ID卡未注册账户."))
 			return
 	if(istype(attacking_item, /obj/item/paper))
 		if (!(paper_count >= max_paper_count))
@@ -90,9 +90,9 @@
 			qdel(attacking_item)
 			if (paper_count >= max_paper_count)
 				paper_count = max_paper_count
-				to_chat(user, span_notice("[src]的纸张库已满."))
+				to_chat(user, span_notice("[src]的纸库已满."))
 				return
-			to_chat(user, span_notice("你重新填充了[src]的纸张库, 当前剩下[paper_count]张."))
+			to_chat(user, span_notice("你重新填充了[src]的纸库, 当前剩下[paper_count]张."))
 		else
 			to_chat(user, span_notice("[src]的纸张库已满."))
 
@@ -126,7 +126,7 @@
 	. = ..()
 	if(scanning_mode == SCAN_SALES_TAG)
 		payments_acc = null
-		to_chat(user, span_notice("你清空了注册账户."))
+		to_chat(user, span_notice("你清除了注册账户."))
 
 /obj/item/universal_scanner/AltClick(mob/user)
 	. = ..()
@@ -145,7 +145,7 @@
 	if(scanning_mode == SCAN_SALES_TAG)
 		. += span_notice("销售利润分成当先设置为[round(cut_multiplier*100)]%. <b>Alt加左键</b>来更改.")
 		if(payments_acc)
-			. += span_notice("<b>Ctrl加左键</b>来清空注册账户.")
+			. += span_notice("<b>Ctrl加左键</b>来清除注册账户.")
 
 	if(scanning_mode == SCAN_PRICE_TAG)
 		. += span_notice("当前自定义价格被设置为[new_custom_price]cr. <b>右键</b>来更改.")
@@ -175,7 +175,7 @@
 	var/message = "已扫描[target]"
 	var/warning = FALSE
 	if(length(target.contents))
-		message = "已[target]及其内容."
+		message = "已扫描[target]及其内容."
 		if(price)
 			message += ", 总价值: <b>[price]</b>cr"
 		else
@@ -262,7 +262,7 @@
 
 /obj/item/barcode
 	name = "条形码"
-	desc = "一个小标签，和一个船员的银行账户有关，附在包装项目上，将包装项目的利润一部分分给该账户."
+	desc = "一个小标签，与船员的银行账户关联.用于附在包装项目上，将包装项目的一部分利润分给该账户."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "barcode"
 	w_class = WEIGHT_CLASS_TINY

@@ -127,7 +127,7 @@ export const JobSelection = (props) => {
               {
                 // SKYRAT EDIT ADDITION - Alert level on jobs menu
                 <NoticeBox color={data.alert_level.color}>
-                  The current alert level is: {data.alert_level.name}
+                  当前的警戒等级为: {data.alert_level.name}
                 </NoticeBox>
               }
               <span style={{ color: 'grey' }}>
@@ -136,8 +136,8 @@ export const JobSelection = (props) => {
               <Button
                 style={{ position: 'absolute', right: '1em' }}
                 onClick={() => act('select_job', { job: 'Random' })}
-                content="Random Job!"
-                tooltip="Roll target random job. You can re-roll or cancel your random job if you don't like it."
+                content="随机职位!"
+                tooltip="随机选择一个职位！如果不喜欢的话可以重新选择或取消."
               />
             </>
           }

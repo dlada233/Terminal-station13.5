@@ -1,9 +1,9 @@
 /datum/computer_file/program/ai_restorer
-	filename = "ai_restore"
-	filedesc = "AI Manager & Restorer-AI修复工具"
+	filename = "AI管理&复原"
+	filedesc = "AI管理&复原"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	program_open_overlay = "generic"
-	extended_desc = "固件修复工具，能够重建损坏的AI系统，需要通过智能插槽直接连接到AI."
+	extended_desc = "固件恢复包，能够复原损坏的AI系统.需要将英特利储存卡连接至插槽."
 	size = 12
 	can_run_on_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
 	download_access = list(ACCESS_RD)
@@ -18,14 +18,14 @@
 /datum/computer_file/program/ai_restorer/on_examine(obj/item/modular_computer/source, mob/user)
 	var/list/examine_text = list()
 	if(!stored_card)
-		examine_text += "有一个用于插入intelliCard-AI人格芯片的卡槽."
+		examine_text += "有一个用于插入英特利储存卡的卡槽."
 		return examine_text
 
 	if(computer.Adjacent(user))
-		examine_text += "有一个用于插入intelliCard-AI人格芯片的卡槽，当前里面有: [stored_card.name]"
+		examine_text += "有一个用于英特利储存卡，当前里面有: [stored_card.name]"
 	else
-		examine_text += "有一个用于插入intelliCard-AI人格芯片的卡槽，目前已经被占用了."
-	examine_text += span_info("Alt-click to eject the intelliCard.")
+		examine_text += "有一个用于插入英特利储存卡的卡槽，目前已经被占用了."
+	examine_text += span_info("Alt-左键取出英特利储存卡.")
 	return examine_text
 
 /datum/computer_file/program/ai_restorer/kill_program(mob/user)
@@ -70,19 +70,19 @@
 		return FALSE
 
 	stored_card = attacking_item
-	to_chat(user, span_notice("你插入[attacking_item]到[computer.name]上."))
+	to_chat(user, span_notice("你将[attacking_item]插入到[computer.name]上."))
 
 	return TRUE
 
 /datum/computer_file/program/ai_restorer/try_eject(mob/living/user, forced = FALSE)
 	if(!stored_card)
 		if(user)
-			to_chat(user, span_warning("[computer.name]内没有人格芯片."))
+			to_chat(user, span_warning("[computer.name]内英特利储存卡."))
 		return FALSE
 
 	if(restoring && !forced)
 		if(user)
-			to_chat(user, span_warning("在重建完成前，请不要取出卡片，以免发生安全故障..."))
+			to_chat(user, span_warning("重建完成前请勿取出储存卡，以免发生安全故障..."))
 		return FALSE
 
 	if(user && computer.Adjacent(user))
@@ -119,7 +119,7 @@
 	data["error"] = null
 
 	if(!stored_card)
-		data["error"] = "请插入intelliCard-人格芯片."
+		data["error"] = "请插入英特利储存卡."
 	else if(!stored_card.AI)
 		data["error"] = "未能定位到AI..."
 	else if(stored_card.flush)

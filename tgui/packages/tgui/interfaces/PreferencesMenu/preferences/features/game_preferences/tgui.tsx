@@ -3,7 +3,7 @@ import { CheckboxInput, FeatureToggle } from '../base';
 export const tgui_fancy: FeatureToggle = {
   name: '启用精致TGUI',
   category: 'UI',
-  description: '让TGUI更好看, 降低适配性.',
+  description: '让TGUI更好看, 降低兼容性.',
   component: CheckboxInput,
 };
 

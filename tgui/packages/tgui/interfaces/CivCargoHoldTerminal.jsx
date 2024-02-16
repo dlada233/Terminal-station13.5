@@ -49,7 +49,7 @@ export const CivCargoHoldTerminal = (props) => {
                   />
                   <Button
                     icon={'download'}
-                    content={'Eject ID'}
+                    content={'弹出ID卡'}
                     disabled={!id_inserted}
                     onClick={() => act('eject')}
                   />

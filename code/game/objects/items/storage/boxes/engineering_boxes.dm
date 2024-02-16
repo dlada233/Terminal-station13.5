@@ -102,8 +102,8 @@
 		new /obj/item/tank/internals/emergency_oxygen(src) //in case anyone ever wants to do anything with spawning them, apart from crafting the box
 
 /obj/item/storage/box/engitank
-	name = "大容量应急氧气瓶盒"
-	desc = "一盒大容量应急氧气瓶."
+	name = "扩容应急氧气瓶盒"
+	desc = "一盒扩容应急氧气瓶."
 	illustration = "extendedtank"
 
 /obj/item/storage/box/engitank/PopulateContents()

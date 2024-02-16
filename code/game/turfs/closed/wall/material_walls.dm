@@ -1,6 +1,6 @@
 /turf/closed/wall/material
-	name = "wall"
-	desc = "A huge chunk of material used to separate rooms."
+	name = "墙"
+	desc = "等离子体和钛构成的邪恶之墙."
 	icon = 'icons/turf/walls/material_wall.dmi'
 	icon_state = "material_wall-0"
 	base_icon_state = "material_wall"
@@ -22,5 +22,5 @@
 		new M.sheet_type(src, FLOOR(custom_materials[M] / SHEET_MATERIAL_AMOUNT, 1))
 
 /turf/closed/wall/material/mat_update_desc(mat)
-	desc = "A huge chunk of [mat] used to separate rooms."
+	desc = "一大块用来分隔房间的[mat]."
 

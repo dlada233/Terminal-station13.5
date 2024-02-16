@@ -415,7 +415,7 @@
 
 // Depressurizes the place... and free cult metal, I guess.
 /datum/crystal_warp_theme/lavaland
-	name = "lavaland"
+	name = "拉瓦兰"
 	floor = /turf/open/floor/fakebasalt
 	wall = /turf/closed/wall/mineral/cult
 	flora_and_fauna = list(/mob/living/basic/mining/goldgrub)

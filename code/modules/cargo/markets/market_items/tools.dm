@@ -43,7 +43,7 @@
 
 /datum/market_item/tool/binoculars
 	name = "双筒望远镜"
-	desc = "用这个方便的工具增加你的视野150%."
+	desc = "用这个方便的工具增加150%视野范围."
 	item = /obj/item/binoculars
 	stock = 1
 
@@ -85,7 +85,7 @@
  * # Fake N-spect scanner black market entry
  */
 /datum/market_item/tool/fake_scanner
-	name = "Clowny N-spect scanner"
+	name = "小丑型N-spect扫描仪"
 	desc = "这款升级的N-spect扫描仪可以播放五种高质量的声音(不附赠声音调节所需叉子)和闪电般的打印速度(不附赠速度调节所需螺丝刀). \
 	我们不要求它发表的报告是否有用. \
 	如果设备被触摸、移动、踢、扔或用香蕉片改造，以上任何保证都将失效. \

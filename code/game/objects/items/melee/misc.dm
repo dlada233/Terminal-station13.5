@@ -30,7 +30,7 @@
 
 /obj/item/melee/synthetic_arm_blade
 	name = "合成臂刃"
-	desc = "一把奇怪的刀刃, 仔细观察后可以感觉材质似乎是由合成肉构成, 但作为一把武器, 它仍会造成严重的伤害."
+	desc = "一把令人作呕的刀刃，近看材质像是由合成肉制成, 但作为一把武器, 它仍会造成严重的伤害."
 	icon = 'icons/obj/weapons/changeling_items.dmi'
 	icon_state = "arm_blade"
 	inhand_icon_state = "arm_blade"

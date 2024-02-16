@@ -114,25 +114,25 @@
 
 /obj/item/bodybag/environmental/nanotrasen
 	name = "精英环境防护袋"
-	desc = "一种被设计与抵御地外恶劣环境的可折叠加固袋，能够将里面的东西与外界因素完全隔离."
+	desc = "一种设计用于抵御地外恶劣环境的可折叠加固袋，能够将里面的东西与外界环境完全隔离."
 	icon_state = "ntenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/nanotrasen
 	resistance_flags = ACID_PROOF | FIRE_PROOF | FREEZE_PROOF | LAVA_PROOF
 
 /obj/item/bodybag/environmental/prisoner
 	name = "囚犯运输袋"
-	desc = "这款环境防护袋是专门用于在危险环境下运输囚犯而设计的."
+	desc = "用于在危险环境中运送囚犯，这款可折叠的环境保护袋拥有绑带来固定其乘员."
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "prisonerenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner
 
 /obj/item/bodybag/environmental/prisoner/pressurized
-	name = "加压的囚犯运输袋"
+	name = "加压型囚犯运输袋"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner/pressurized
 
 /obj/item/bodybag/environmental/prisoner/syndicate
 	name = "辛迪加囚犯运输袋"
-	desc = "这种特殊的环境防护袋改良自Nanotrasen版本的，曾在几起著名的绑架案中使用，主要功能是让受害者保持昏迷状态，直到他们被送到指定地点."
+	desc = "纳米传讯的环境保护袋的改良版，用于多起高调绑架案，旨在让其受害者保持昏迷，活着和固定，直到被运输至所需位置."
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "syndieenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner/pressurized/syndicate

@@ -1,5 +1,5 @@
 /datum/supply_pack/materials
-	group = "储罐&材料"
+	group = "气罐&材料"
 
 /datum/supply_pack/materials/cardboard50
 	name = "50块纸板"
@@ -18,7 +18,7 @@
 
 /datum/supply_pack/materials/plastic50
 	name = "50块塑料板"
-	desc = "用50张塑料板制作无限数量的玩具!"
+	desc = "用50张塑料板制作无穷无尽的玩具!"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/plastic/fifty)
 	crate_name = "塑料板箱"
@@ -32,7 +32,7 @@
 
 /datum/supply_pack/materials/wood50
 	name = "50块木板"
-	desc = "把货仓无聊的金属地板改造成更有气质的\
+	desc = "把货仓无聊的金属地板改造成更有格调的\
 		木地板!"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/stack/sheet/mineral/wood/fifty)
@@ -40,7 +40,7 @@
 
 /datum/supply_pack/materials/foamtank
 	name = "消防泡沫箱"
-	desc = "内含一水箱的消防泡沫，也被人称为\"等离子之祸.\""
+	desc = "内含一水箱的消防泡沫，也被人称为\"等离子克星.\""
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/structure/reagent_dispensers/foamtank)
 	crate_name = "消防泡沫箱"
@@ -65,7 +65,7 @@
 
 /datum/supply_pack/materials/watertank
 	name = "水箱"
-	desc = "一大箱被称为一氧化二氢的化学液体."
+	desc = "一大箱被称为一氧化二氢的化学液体，听起来很危险."
 	cost = CARGO_CRATE_VALUE * 1.2
 	contains = list(/obj/structure/reagent_dispensers/watertank)
 	crate_name = "水箱"
@@ -89,12 +89,12 @@
 		if(!initial(gas.purchaseable))
 			continue
 		var/datum/supply_pack/materials/pack = new
-		pack.name = "[name]储罐"
-		pack.desc = "内含[name]的储罐."
+		pack.name = "[name]气罐"
+		pack.desc = "内含[name]的气罐."
 		if(initial(gas.dangerous))
 			pack.access = ACCESS_ATMOSPHERICS
 			pack.access_view = ACCESS_ATMOSPHERICS
-		pack.crate_name = "[name]储罐箱"
+		pack.crate_name = "[name]气罐箱"
 		pack.id = "[type]([name])"
 
 		pack.cost = cost + moleCount * initial(gas.base_value) * 1.6
