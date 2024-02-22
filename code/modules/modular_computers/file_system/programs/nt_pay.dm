@@ -21,7 +21,7 @@
 	switch(action)
 		if("Transaction")
 			if(IS_DEPARTMENTAL_ACCOUNT(current_user))
-				return to_chat(usr, span_notice("该卡不支持提现."))
+				return to_chat(usr, span_notice("应用无法从该卡中提款."))
 
 			token = params["令牌"]
 			money_to_send = params["数额"]

@@ -82,7 +82,7 @@
 				playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
 				to_chat(user, span_notice("[src]登记了ID卡，标记包装物品以创建条形码."))
 		else if(!potential_acc.registered_account)
-			to_chat(user, span_warning("这张ID卡未注册账户."))
+			to_chat(user, span_warning("这张ID卡没有账户."))
 			return
 	if(istype(attacking_item, /obj/item/paper))
 		if (!(paper_count >= max_paper_count))

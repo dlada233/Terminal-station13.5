@@ -25,7 +25,7 @@
 		examine_text += "有一个用于英特利储存卡，当前里面有: [stored_card.name]"
 	else
 		examine_text += "有一个用于插入英特利储存卡的卡槽，目前已经被占用了."
-	examine_text += span_info("Alt-左键取出英特利储存卡.")
+	examine_text += span_info("Alt+左键取出英特利储存卡.")
 	return examine_text
 
 /datum/computer_file/program/ai_restorer/kill_program(mob/user)

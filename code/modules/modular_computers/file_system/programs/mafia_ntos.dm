@@ -1,8 +1,8 @@
 /datum/computer_file/program/mafia
-	filename = "黑手党狼人杀"
-	filedesc = "黑手党狼人杀"
+	filename = "mafia"
+	filedesc = "狼人杀"
 	program_open_overlay = "mafia"
-	extended_desc = "让你的计算机可以玩著名游戏黑手党狼人杀."
+	extended_desc = "让你的计算机可以玩著名游戏狼人杀."
 	downloader_category = PROGRAM_CATEGORY_GAMES
 	size = 6
 	tgui_id = "NtosMafiaPanel"
@@ -62,7 +62,7 @@
 	ui_header = "mafia.gif"
 	if(game.get_role_player(computer))
 		alert_pending = TRUE
-		computer.alert_call(src, "黑手党游戏开始了!")
+		computer.alert_call(src, "游戏开始了!")
 
 ///Called when a game of Mafia ends, deletes its ui header.
 /datum/computer_file/program/mafia/proc/on_game_end(datum/mafia_controller/game)

@@ -1,6 +1,6 @@
 /datum/computer_file/program/robotact
-	filename = "博格助手"
-	filedesc = "博格助手"
+	filename = "robotact"
+	filedesc = "罗大师"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	extended_desc = "一个内置的应用程序，用于赛博机器人的自我管理和诊断."
 	ui_header = "robotact.gif" //DEBUG -- new icon before PR

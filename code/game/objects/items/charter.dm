@@ -31,7 +31,7 @@
 		to_chat(user, span_warning("船员已经进入工作状态了，现在重命名[name_type]可能不太好."))
 		return
 	if(response_timer_id)
-		to_chat(user, span_warning("还在等待公司高层批准你更名申请."))
+		to_chat(user, span_warning("还在等待公司高层批准你的改名申请."))
 		return
 
 	var/new_name = tgui_input_text(user, "你想给[station_name()]重新取名吗？ \

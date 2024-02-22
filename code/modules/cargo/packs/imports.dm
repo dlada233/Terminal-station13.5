@@ -126,7 +126,7 @@
 		new /obj/item/switchblade(our_crate)
 
 /datum/supply_pack/imports/blackmarket_telepad
-	name = "黑市 LTSRBT装置"
+	name = "黑市 LTSRBT"
 	desc = "需要一种更快更好的方式将你的非法货物运送到站点吗? \
 		别担心, 长短距蓝空收发器(LTSRBT)可以帮到你，\
 		内含一个LTSRBT电路板，两个蓝空晶体和一个安塞波."
@@ -242,10 +242,10 @@
 // SKYRAT EDIT REMOVAL END
 
 /datum/supply_pack/imports/moistnuggets
-	name = "翻新型Sakhno栓动步枪"
+	name = "翻新的萨赫诺栓动步枪"
 	desc = "你好，特工同志.你需要枪吗？你已经厌倦我们卖给站点的垃圾了吗？\
 		那我们为你准备了完美的武器！特别友情价！ \
-		但很不幸我们没有多余的弹药, 所以当你用光了所有弹药的时候，\
+		但很不幸我们没有多余的弹药, 所以当你打光了所有弹药的时候，\
 		你必须捡起死去战友的武器."
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 6
@@ -269,12 +269,12 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/imports/abandoned
-	name = "被遗弃的板条箱"
+	name = "遗弃的板条箱"
 	desc = "...等等, 怎么弄到这个?"
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list()
 	crate_type = /obj/structure/closet/crate/secure/loot
-	crate_name = "被遗弃的板条箱"
+	crate_name = "遗弃的板条箱"
 	contraband = TRUE
 	dangerous = TRUE //these are literally bombs so....
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE

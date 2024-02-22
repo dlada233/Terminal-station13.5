@@ -3,7 +3,7 @@
 
 /obj/item/gun/medbeam/afad
 	name = "AFAD 自动急救枪"
-	desc = "常见于医疗包中，AFAD是一款用于修复擦伤和瘀伤的革命性设备，绝对不是传说中的医疗光束山寨品，底部的标签提醒：请勿穿过医疗射线."
+	desc = "AFAD是一款用于修复擦伤和瘀伤的革命性设备，常见于医疗包中，绝对不是传说中的医疗光束山寨品. 底部标签写着提醒：请勿交叉多条医疗光束."
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronogun"
 	inhand_icon_state = "chronogun"

@@ -3,7 +3,7 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/emergency/bio
-	name = "生物应急补给"
+	name = "应急生物防化补给"
 	desc = "这个箱子里有两套完整的生物防护服，可以保护你免受病毒的侵害."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/bio_hood = 2,
@@ -15,7 +15,7 @@
 	crate_name = "生物防化服箱"
 
 /datum/supply_pack/emergency/equipment
-	name = "机器人应急补给"
+	name = "应急机器人补给"
 	desc = "发生了爆炸事件? 这些补给可以让你快速修补站点和救助人们，\
 		这些补给可以让你快速修补站点和治疗人们，\
 		内含两个地板机器人、两个医疗机器人、五个氧气面罩和五个氧气瓶."
@@ -30,7 +30,7 @@
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/emergency/bomb
-	name = "爆炸应急补给"
+	name = "应急爆炸补给"
 	desc = "科研部已经疯了？在气阀门后传来了哔哔声？现在就买！成为拯救站点的拆弹英雄！\
 		里面有一件防爆服和配套头盔、防毒面具和拆弹工具."
 	cost = CARGO_CRATE_VALUE * 2
@@ -44,7 +44,7 @@
 	crate_name = "防爆服箱"
 
 /datum/supply_pack/emergency/firefighting
-	name = "消防应急补给"
+	name = "应急消防补给"
 	desc = "只有你才能拯救站点于火海之中，\
 		搭配两套消防服、防毒面具、手电筒、大氧气瓶、灭火器和安全帽!"
 	cost = CARGO_CRATE_VALUE * 2

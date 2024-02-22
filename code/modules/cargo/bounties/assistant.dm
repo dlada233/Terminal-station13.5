@@ -198,8 +198,8 @@
 	wanted_types = list(/obj/item/pneumatic_cannon/ghetto = TRUE)
 
 /datum/bounty/item/assistant/improvised_shells
-	name = "简易霰弹枪弹壳"
-	description = "预算削減对我们的安保部门打击很大。你能运送一些简易霰弹枪弹壳过来吗."
+	name = "简易霰弹"
+	description = "预算削減对我们的安保部门打击很大。你能运送一些简易霰弹过来吗."
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item/ammo_casing/shotgun/improvised = TRUE)

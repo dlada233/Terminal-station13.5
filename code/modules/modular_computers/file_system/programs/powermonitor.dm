@@ -2,7 +2,7 @@
 
 /datum/computer_file/program/power_monitor
 	filename = "ampcheck"
-	filedesc = "AmpCheck-电查器"
+	filedesc = "电查器"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	program_open_overlay = "power_monitor"
 	extended_desc = "该程序与遍布站点的传感器相连接，可提供有关电力系统的信息"

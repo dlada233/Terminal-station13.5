@@ -33,7 +33,7 @@
 
 /datum/market_item/clothing/full_spacesuit_set
 	name = "纳米传讯牌太空服"
-	desc = "几箱\"老式\"太空服从太空卡车上掉了下来."
+	desc = "几箱\"老式\"太空服从一辆太空卡车上掉了下来."
 	item = /obj/item/storage/box
 
 	price_min = CARGO_CRATE_VALUE * 7.5
@@ -61,7 +61,7 @@
 
 /datum/market_item/clothing/rocket_boots
 	name = "火箭靴"
-	desc = "我们找到了一双跳跃靴，然后超频了一下，不承担任何用户因此而造成身体严重伤害的责任."
+	desc = "我们找到了一双跳跃靴，然后超频了一下. 不承担任何用户因此而造成身体严重伤害的责任."
 	item = /obj/item/clothing/shoes/bhop/rocket
 
 	price_min = CARGO_CRATE_VALUE * 5

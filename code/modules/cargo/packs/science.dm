@@ -117,7 +117,7 @@
 
 /datum/supply_pack/science/rped
 	name = "RPED快捷零件更换器"
-	desc = "需要重建ORM，但科研部被炸弹试验炸没了?下单这个，这是纳米传讯能给你最先进的配件."
+	desc = "需要重建ORM，但科研部被炸弹试验炸没了?快下单这个，这是纳米传讯能给你最先进的配件."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/part_replacer/cargo)
 	crate_name = "RPED箱"
@@ -153,7 +153,7 @@
 	crate_name = "猴子心灵增幅头盔箱"
 
 /datum/supply_pack/science/cytology
-	name = "细胞学仪器包"
+	name = "细胞学器具包"
 	desc = "外星生物收容失效，异种实验室样本尽毁？? \
 		这里提供了继续进一步研究所需的全套用品, \
 		包含一个显微镜，活组织采样器，两个培养皿，一盒拭子和一个管道工具."
@@ -169,7 +169,7 @@
 
 /datum/supply_pack/science/mod_core
 	name = "模块核心"
-	desc = "模块核心是用于组装模块服的必要零件，一次购买获得三个模块核心."
+	desc = "用于组装模块服的必要零件，一次购买获得三个模块核心."
 	cost = CARGO_CRATE_VALUE * 3
 	access = ACCESS_ROBOTICS
 	access_view = ACCESS_ROBOTICS

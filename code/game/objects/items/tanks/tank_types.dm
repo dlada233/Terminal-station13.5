@@ -16,7 +16,7 @@
 
 /obj/item/tank/internals/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-左键拧开输气阀门.")
+	. += span_notice("Alt+左键拧开输气阀门.")
 
 /*
  * Oxygen

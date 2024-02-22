@@ -60,11 +60,11 @@
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/service/mule
-	name = "MULE骡子"
+	name = "MULE 骡机器人"
 	desc = "被称为MULE骡子的机器人可以自动配送货物至指定地点."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/mob/living/simple_animal/bot/mulebot)
-	crate_name = "\improper MULE骡子箱"
+	crate_name = "\improper MULE 骡机器人箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/party
@@ -217,14 +217,14 @@
 		new item(C)
 
 /datum/supply_pack/service/randomized/ready_donk
-	name = "杜克快餐组合包"
-	desc = "包含三种随机口味的Donk快餐."
+	name = "杜客快捷餐组合包"
+	desc = "包含三种随机口味的杜客快捷餐."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/food/ready_donk,
 					/obj/item/food/ready_donk/mac_n_cheese,
 					/obj/item/food/ready_donk/donkhiladas,
 				)
-	crate_name = "\improper 杜客快餐箱"
+	crate_name = "\improper 杜客快捷餐箱"
 	crate_type = /obj/structure/closet/crate/freezer/food
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 

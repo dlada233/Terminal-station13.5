@@ -34,7 +34,7 @@
 
 /datum/supply_pack/costumes_toys/formalwear
 	name = "正装合集"
-	desc = "你会喜欢你的样子的，我保证，包含一堆花哨的衣服."
+	desc = "你会喜欢你的样子的，我保证. 包含一堆花哨的衣服."
 	cost = CARGO_CRATE_VALUE * 4 //Lots of very expensive items. You gotta pay up to look good!
 	contains = list(/obj/item/clothing/under/dress/tango,
 					/obj/item/clothing/under/misc/assistantformal = 2,
@@ -64,7 +64,7 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/clownpin
-	name = "搞笑胸针集"
+	name = "搞笑胸针合集"
 	desc = "抱歉了我的钱包，但我真的很需要它们."
 	cost = CARGO_CRATE_VALUE * 10
 	contraband = TRUE
@@ -133,7 +133,7 @@
 					/obj/item/clothing/suit/hooded/carp_costume,
 					/obj/item/clothing/suit/hooded/bee_costume,
 				)
-	crate_name = "原始动物服箱"
+	crate_name = "原始动物服装箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/costume

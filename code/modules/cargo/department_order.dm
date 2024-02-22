@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	SSshuttle.shopping_list += department_order
 	if(!already_signalled)
 		RegisterSignal(SSshuttle, COMSIG_SUPPLY_SHUTTLE_BUY, PROC_REF(finalize_department_order))
-	say("订单已受理.货仓将负责运输.注意:部门主管可以撤销这次订货命令.")
+	say("订单已受理.货仓将负责运输. 注意:部长可以撤销这次订货命令.")
 	calculate_cooldown(pack.cost)
 
 ///signal when the supply shuttle begins to spawn orders. we forget the current order preventing it from being overridden (since it's already past the point of no return on undoing the order)
@@ -233,7 +233,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	department_delivery_areas = list(/area/station/engineering/main)
 	override_access = ACCESS_CE
 	req_one_access = REGION_ACCESS_ENGINEERING
-	dep_groups = list("工程用品", "工程建造", "气罐&材料")
+	dep_groups = list("工程用品", "工程建造", "储罐&材料")
 	radio_key_typepath = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(department_order_cooldowns, list(
 	department_delivery_areas = list(/area/station/science/research)
 	override_access = ACCESS_RD
 	req_one_access = REGION_ACCESS_RESEARCH
-	dep_groups = list("科研用品", "活物", "气罐&材料")
+	dep_groups = list("科研用品", "活物", "储罐&材料")
 	radio_key_typepath = /obj/item/encryptionkey/headset_sci
 	radio_channel = RADIO_CHANNEL_SCIENCE
 

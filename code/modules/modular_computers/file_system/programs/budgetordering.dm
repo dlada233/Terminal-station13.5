@@ -1,6 +1,6 @@
 /datum/computer_file/program/budgetorders
-	filename = "订货软件"
-	filedesc = "NT IRN"
+	filename = "orderapp"
+	filedesc = "NT 采购平台"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "request"
 	extended_desc = "使用部门预算进行供应采购的纳米传讯网络接口."
@@ -17,9 +17,9 @@
 	///Can this console approve purchase requests?
 	var/can_approve_requests = FALSE
 	///What do we say when the shuttle moves with living beings on it.
-	var/safety_warning = "出于安全需要及道德因素，自动补给船上禁止运送活体生物、人体遗骸、核武器、邮件、未送达订单箱、辛迪加炸弹、回归信标、不稳定物质、传真机以及任何包含人工智能的机器."
+	var/safety_warning = "出于安全与道德因素，货运穿梭机上禁止运送活体生物、人体遗骸、机密核武器、邮件、未送达的部门订购箱、辛迪加炸弹、追踪信标、不稳定物质、传真机以及任何包含人工智能的机器."
 	///If you're being raided by pirates, what do you tell the crew?
-	var/blockade_warning = "检测到蓝空不稳定.穿梭机无法航行.."
+	var/blockade_warning = "检测到蓝空不稳定，穿梭机无法航行."
 	///The name of the shuttle template being used as the cargo shuttle. 'cargo' is default and contains critical code. Don't change this unless you know what you're doing.
 	var/cargo_shuttle = "cargo"
 	///The docking port called when returning to the station.
@@ -242,7 +242,7 @@
 
 			if(pack.goody && !self_paid)
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-				computer.say("ERROR: 小型货物仅限私人账户订购.")
+				computer.say("ERROR: 小商品仅限私人账户订购.")
 				return
 
 			if(SSshuttle.supply.get_order_count(pack) == OVER_ORDER_LIMIT)

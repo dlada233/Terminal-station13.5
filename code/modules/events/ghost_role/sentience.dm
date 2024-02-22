@@ -42,11 +42,11 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 	var/data = pick("远程传感器扫描结果", "我们的复杂概率模型", "我们的全知全能", "你站的无线电通信流量", "探测到的能量辐射", "\[数据删除\]")
 	var/pets = pick("动物/机械", "机械/动物", "宠物", "低等动物", "脆弱生命", "\[数据删除\]")
-	var/strength = pick("人类", "高", "蜥蜴人", "安保", "指挥", "小丑", "低", "非常低", "\[数据删除\]")
+	var/strength = pick("人类", "高", "蜥蜴人", "安保", "指挥", "小丑", "低", "极低", "\[数据删除\]")
 
-	sentience_report += "根据[data]，我们认为空间站的 [one][pets] 已经发展出了[strength]级智能，并具备沟通能力."
+	sentience_report += "根据[data]，我们认为 [one][pets] 已经发展出了[strength]级智能，并具备沟通能力."
 
-	priority_announce(sentience_report,"[command_name()] 中等优先级更新")
+	priority_announce(sentience_report,"[command_name()] 中等优先级事项")
 
 /datum/round_event/ghost_role/sentience/spawn_role()
 	var/list/mob/dead/observer/candidates

@@ -321,7 +321,7 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/organic/tiziran_supply
-	name = "缇兹兰供给包"
+	name = "缇兹兰食材进口"
 	desc = "进口自蜥蜴帝国中心的一箱物资. \
 		包含缇兹兰特色食材."
 	cost = CARGO_CRATE_VALUE * 3
@@ -333,7 +333,7 @@
 	crate_type = /obj/structure/closet/crate/cardboard/tiziran
 
 /datum/supply_pack/organic/mothic_supply
-	name = "蛾类供给包"
+	name = "蛾类食材进口"
 	desc = "进口自蛾族舰队的一箱物资. \
 		包含蛾类特色食材."
 	cost = CARGO_CRATE_VALUE * 3

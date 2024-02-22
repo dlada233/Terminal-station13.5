@@ -213,7 +213,7 @@
 /// Bitflag for Command ID card accesses. See COMMAND_ACCESS.
 #define ACCESS_FLAG_COMMAND (1 << 1)
 /// Displayed name for Private Command ID card accesses.
-#define ACCESS_FLAG_PRV_COMMAND_NAME "指挥个人"
+#define ACCESS_FLAG_PRV_COMMAND_NAME "指挥私人"
 /// Bitflag for Private Command ID card accesses. See PRIVATE_COMMAND_ACCESS.
 #define ACCESS_FLAG_PRV_COMMAND (1 << 2)
 /// Displayed name for Captain ID card accesses.

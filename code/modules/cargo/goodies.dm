@@ -1,7 +1,7 @@
 
 /datum/supply_pack/goody
 	access = NONE
-	group = "小型货物"
+	group = "小商品"
 	goody = TRUE
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
@@ -13,34 +13,34 @@
 
 /datum/supply_pack/goody/dumdum38
 	name = "快速装弹器(.38 达姆弹)"
-	desc = "包含一个满装的.38 达姆弹快速装弹器,对软目标伤害巨大."
+	desc = "包含一个装满.38 达姆弹的快速装弹器,对软目标威力巨大."
 	cost = PAYCHECK_CREW * 2
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/c38/dumdum)
 
 /datum/supply_pack/goody/match38
 	name = "快速装弹器(.38 竞赛弹)"
-	desc = "包含一个满装的.38 竞赛弹快速装弹器,用来炫耀花式射击的完美选择."
+	desc = "包含一个装满.38 竞赛弹的快速装弹器,用来炫耀花式射击的完美选择."
 	cost = PAYCHECK_CREW * 2
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/c38/match)
 
 /datum/supply_pack/goody/rubber
-	name = "快速装弹器(.38)"
-	desc = "包含一个满装的.38 子弹快速装弹器,当你想让子弹往四面八方反弹."
+	name = "快速装弹器(.38 橡胶弹)"
+	desc = "包含一个装满.38 橡胶弹的快速装弹器,你想体验子弹往四面八方跳弹时."
 	cost = PAYCHECK_CREW * 1.5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/c38/match/bouncy)
 
 /datum/supply_pack/goody/mars_single
 	name = "柯尔特警探特装左轮单品包"
-	desc = "安保部长没收了你的枪和徽章？没问题！只要支付一笔荒谬的税费，你就能再次拥有致命火力———一把.38 左轮手枪!"
+	desc = "安保部长没收了你的枪和徽章？没问题！只要支付一笔荒谬的税费，你就能再次拥有致命火力———把.38 左轮手枪!"
 	cost = PAYCHECK_CREW * 40 //they really mean a premium here
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/revolver/c38/detective)
 
 /datum/supply_pack/goody/stingbang
-	name = "碎裂弹单品包"
+	name = "碎裂手榴弹单品包"
 	desc = "Contains one \"stingbang\" grenade, perfect for playing meanhearted pranks."
 	cost = PAYCHECK_COMMAND * 2.5
 	access_view = ACCESS_WEAPONS
@@ -299,6 +299,6 @@
 
 /datum/supply_pack/goody/climbing_hook
 	name = "登山钩"
-	desc = "一个相对便宜的进口登山钩，仅适用于行星类空间站的攀岩环境."
+	desc = "一个相对便宜的进口登山钩，仅适用于行星类型空间站的攀岩环境."
 	cost = PAYCHECK_CREW * 5
 	contains = list(/obj/item/climbing_hook)

@@ -36,7 +36,7 @@
 /datum/supply_pack/security/forensics
 	name = "取证用品包"
 	desc = "用于帮助侦探紧跟罪犯踪迹调查案件，使真相水落石出的用品包，\
-		里面有一个取证扫描仪、六袋证据袋、相机、录音机、白色蜡笔,\
+		里面有一个取证扫描仪、六袋证据袋、相机、录音机、白色蜡笔，\
 		当然还有一顶软呢帽."
 	cost = CARGO_CRATE_VALUE * 2.5
 	access_view = ACCESS_MORGUE
@@ -66,7 +66,7 @@
 
 /datum/supply_pack/security/securitybarriers
 	name = "安保屏障手雷"
-	desc = "用四枚安保屏障阻挡‘人流’."
+	desc = "用四枚安保屏障阻挡‘浪潮’."
 	access_view = ACCESS_BRIG
 	contains = list(/obj/item/grenade/barrier = 4)
 	cost = CARGO_CRATE_VALUE * 2
@@ -130,8 +130,8 @@
 
 /datum/supply_pack/security/justiceinbound
 	name = "罪恶克星套装"
-	desc = "是我，出类拔萃，万里挑一的正义化身，罪恶的克星. \
-		Nanotrasen安保皇冠上的明珠，精锐中的精锐中的精锐. \
+	desc = "是我，出类拔萃、万里挑一的正义化身，罪恶的克星. \
+		纳米传讯安保皇冠上的明珠，精锐中的精锐中的精锐. \
 		头盔界的潮流引领者， \
 		天地间的宠儿...."
 	cost = CARGO_CRATE_VALUE * 6 //justice comes at a price. An expensive, noisy price.
@@ -224,7 +224,7 @@
 		单次购买配送两把SC-2."
 	cost = CARGO_CRATE_VALUE * 18
 	contains = list(/obj/item/gun/energy/e_gun = 2)
-	crate_name = "SC-2激光枪箱"
+	crate_name = "SC-2 激光枪箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/laser_carbine
@@ -240,7 +240,7 @@
 	desc = "发射镇暴光束且射速极快的SMG，缺点是威力较低."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/gun/energy/disabler/smg = 3)
-	crate_name = "镇暴SMG箱"
+	crate_name = "镇暴型SMG箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/exileimp
@@ -269,11 +269,11 @@
 	desc = "保护植入者免受洗脑、催眠等精神控制手段的植入物."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/storage/lockbox/loyalty)
-	crate_name = "心盾植入物箱"
+	crate_name = "'心盾'植入物箱"
 
 /datum/supply_pack/security/armory/trackingimp
 	name = "'追踪'植入物"
-	desc = "四个'追踪'植入物和.38 追踪弹."
+	desc = "四个'追踪'植入物和.38 追踪弹快速装弹器."
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(/obj/item/storage/box/trackimp,
 					/obj/item/ammo_box/c38/trac = 3,
@@ -283,7 +283,7 @@
 /datum/supply_pack/security/armory/laserarmor
 	name = "反射背心"
 	desc = "反射背心由高反光材料制成，\
-		可以将激光的能量减弱一半以上，并有很大概率完全反射激光，\
+		可以将激光的能量漫射一半以上，并有很大概率完全反射激光，\
 		单次购买配送两件."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/clothing/suit/armor/laserproof = 2)
@@ -328,12 +328,12 @@
 	crate_name = "swat装备箱"
 
 /datum/supply_pack/security/armory/thermal
-	name = "热能手枪箱"
+	name = "热力双枪箱"
 	desc = "包含两套枪套,每套枪套内含两把实验性热能手枪,\
 		弹药使用纳米技术."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/storage/belt/holster/energy/thermal = 2)
-	crate_name = "热能双枪箱"
+	crate_name = "热力双枪箱"
 
 /datum/supply_pack/security/sunglasses
 	name = "太阳镜"

@@ -284,7 +284,7 @@
 
 /obj/item/storage/box/syndie_kit/rebarxbowsyndie
 	name = "钢筋弩盒"
-	desc = "这个盒子特色是有弹药的制作说明."
+	desc = "附带弹药制作说明书."
 
 /obj/item/storage/box/syndie_kit/rebarxbowsyndie/PopulateContents()
 	new /obj/item/book/granter/crafting_recipe/dusting/rebarxbowsyndie_ammo(src)
@@ -337,7 +337,7 @@
 		new /obj/item/reagent_containers/syringe/bioterror(src)
 
 /obj/item/storage/box/syndie_kit/clownpins
-	name = "超滑稽撞针盒"
+	name = "超级搞笑撞针盒"
 
 /obj/item/storage/box/syndie_kit/clownpins/PopulateContents()
 	for(var/i in 1 to 7)
@@ -416,7 +416,7 @@
 
 /obj/item/storage/box/syndie_kit/nuke
 	name = "核芯提取盒"
-	desc = "一个盒子，里面装有能从大多数纳米传讯核弹中提取钚芯的装备和使用说明."
+	desc = "一个盒子，里面装有能从大多数纳米传讯核弹中提取钚芯的装备和操作说明."
 
 /obj/item/storage/box/syndie_kit/nuke/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
@@ -424,8 +424,8 @@
 	new /obj/item/paper/guides/antag/nuke_instructions(src)
 
 /obj/item/storage/box/syndie_kit/supermatter
-	name = "超物质银提取盒"
-	desc = "一个盒子,装有能提取超物质银的装备和使用说明."
+	name = "超物质碎片提取盒"
+	desc = "一个盒子,装有能提取超物质碎片的设备及操作说明."
 
 /obj/item/storage/box/syndie_kit/supermatter/PopulateContents()
 	new /obj/item/scalpel/supermatter(src)
@@ -575,8 +575,8 @@
 /// Surplus Ammo Box
 
 /obj/item/storage/box/syndie_kit/sniper_surplus
-	name = "盈余.50 BMG 弹匣盒"
-	desc = "一个装满剩余点.50 BMG弹匣的劣质盒子，没有那么大的威力."
+	name = "批发的.50 BMG 弹匣盒"
+	desc = "一个装满批发.50 BMG弹匣的劣质盒子，威力没那么大了."
 
 /obj/item/storage/box/syndie_kit/sniper_surplus/PopulateContents()
 	for(var/i in 1 to 7)
@@ -765,7 +765,7 @@
 	), src)
 
 /obj/item/storage/box/syndicate/contract_kit
-	name = "契约套件"
+	name = "契约套装"
 	desc = "供应给辛迪加契约特工."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"

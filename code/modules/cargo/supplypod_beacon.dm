@@ -1,6 +1,6 @@
 /obj/item/supplypod_beacon
 	name = "补给舱信标"
-	desc = "一个可以连接到特快供应控制台，进行补给舱精确投送的装置.Alt 键+点击以取消连接."
+	desc = "一个可以连接到特快供应控制台，进行补给舱精确投送的装置. Alt+左键以取消连接."
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "supplypod_beacon"
 	inhand_icon_state = "radio"
@@ -57,9 +57,9 @@
 	. = ..()
 	. += span_notice("它看起来有几个锚定栓.")
 	if(!express_console)
-		. += span_notice("[src] 当前未连接到特快供应控制台.")
+		. += span_notice("[src]当前未连接到特快供应控制台.")
 	else
-		. += span_notice("Alt-左键可解除将其从特快供应控制台的连接.")
+		. += span_notice("Alt+左键可解除将其从特快供应控制台的连接.")
 
 /obj/item/supplypod_beacon/Destroy()
 	if(express_console)

@@ -116,7 +116,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/match/firebrand
 	name = "火把"
-	desc = "一个未点燃的火把，为什么不干脆直接叫棍子呢？"
+	desc = "一个未点燃的火把，为什么不干脆叫棍子呢？"
 	smoketime = 40 SECONDS
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/carbon = 2)
@@ -413,7 +413,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!istype(M))
 		return ..()
 	if(M.on_fire && !lit)
-		light(span_notice("[user]用燃烧的[M]点燃了自己的[src]，真是个铁骨硬汉."))
+		light(span_notice("[user]用燃烧的[M]点燃了自己的[src]，真是好狠啊."))
 		return
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
 	if(!lit || !cig || user.combat_mode)
@@ -441,7 +441,7 @@ jay
 	smoke_all = TRUE // so that it doesn't runout of oxygen while being smoked in space
 
 /obj/item/clothing/mask/cigarette/dromedary
-	desc = "一根\"单峰骆驼\"牌香烟，与流行的观点相反，它并不含甘汞，但是有一股水味."
+	desc = "一根\"单峰骆驼\"牌香烟，与流行的观点相反，它不含甘汞，但是有一股水味."
 	list_reagents = list(/datum/reagent/drug/nicotine = 13, /datum/reagent/water = 5) //camel has water
 
 /obj/item/clothing/mask/cigarette/uplift
@@ -592,7 +592,7 @@ jay
 ////////////
 /obj/item/clothing/mask/cigarette/cigar
 	name = "优质雪茄"
-	desc = "一卷棕色的烟草和...嗯，或许是吧，这根也太大了."
+	desc = "一卷棕色的烟草和...嗯，一些你不是很确定的东西，这根也太大了."
 	icon_state = "cigaroff"
 	icon_on = "cigaron"
 	icon_off = "cigaroff" //make sure to add positional sprites in icons/obj/cigarettes.dmi if you add more.
@@ -980,7 +980,7 @@ jay
 
 /obj/item/lighter/skull
 	name = "骷髅zippo"
-	desc = "一个绝对够酷的zippo打火机, 看看这个头骨造型"
+	desc = "一个绝对够狠的zippo打火机, 看看这个头骨造型"
 	overlay_state = "skull"
 
 /obj/item/lighter/mime
