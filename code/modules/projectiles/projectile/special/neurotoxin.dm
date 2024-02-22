@@ -1,5 +1,5 @@
 /obj/projectile/neurotoxin
-	name = "neurotoxin spit"
+	name = "神经毒素吐息"
 	icon_state = "neurotoxin"
 	damage = 65
 	damage_type = STAMINA

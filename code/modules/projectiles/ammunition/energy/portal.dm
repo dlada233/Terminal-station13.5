@@ -3,14 +3,14 @@
 	e_cost = 0 // Can't use the macro
 	harmful = FALSE
 	fire_sound = 'sound/weapons/pulse3.ogg'
-	select_name = "blue"
+	select_name = "蓝色"
 	//Weakref to the gun that shot us
 	var/datum/weakref/gun
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/blue
 
 /obj/item/ammo_casing/energy/wormhole/orange
 	projectile_type = /obj/projectile/beam/wormhole/orange
-	select_name = "orange"
+	select_name = "橙色"
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/red
 
 /obj/item/ammo_casing/energy/wormhole/Initialize(mapload, obj/item/gun/energy/wormhole_projector/wh)

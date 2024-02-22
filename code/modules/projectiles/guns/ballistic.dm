@@ -298,7 +298,7 @@
 			return
 		bolt_locked = FALSE
 	if (user)
-		balloon_alert(user, "[bolt_wording]已拉开")
+		balloon_alert(user, "拉动[bolt_wording]")
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
@@ -544,9 +544,9 @@
 	. += "它还有[get_ammo(count_chambered)]发剩余."
 
 	if (!chambered && !hidden_chambered)
-		. += "它似乎没有圆弹膛."
+		. += "枪膛里没有子弹."
 	if (bolt_locked)
-		. += "[bolt_wording]已闭锁，若要开火或清洁枪管需要先拉开."
+		. += "[bolt_wording]已拉开，若要开火或清洁枪管需要先闭合."
 	if (suppressed)
 		. += "它有一个附加的消音器，用<b>Alt加左键</b>移除."
 	if(can_misfire)

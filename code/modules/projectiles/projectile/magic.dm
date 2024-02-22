@@ -1,5 +1,5 @@
 /obj/projectile/magic
-	name = "bolt"
+	name = "法术"
 	icon_state = "energy"
 	damage = 0 // MOST magic projectiles pass the "not a hostile projectile" test, despite many having negative effects
 	damage_type = OXY
@@ -16,7 +16,7 @@
 	if(isliving(target))
 		var/mob/living/victim = target
 		if(victim.can_block_magic(antimagic_flags, antimagic_charge_cost))
-			visible_message(span_warning("[src] fizzles on contact with [victim]!"))
+			visible_message(span_warning("[src]与[victim]接触后失效!"))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 	if(istype(target, /obj/machinery/hydroponics)) // even plants can block antimagic
@@ -24,11 +24,11 @@
 		if(!plant_tray.myseed)
 			return
 		if(plant_tray.myseed.get_gene(/datum/plant_gene/trait/anti_magic))
-			visible_message(span_warning("[src] fizzles on contact with [plant_tray]!"))
+			visible_message(span_warning("[src]与[plant_tray]接触后失效!"))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 /obj/projectile/magic/death
-	name = "bolt of death"
+	name = "死亡术"
 	icon_state = "pulse1_bl"
 
 /obj/projectile/magic/death/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -39,11 +39,11 @@
 		if(victim.mob_biotypes & MOB_UNDEAD) //negative energy heals the undead
 			if(victim.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)) // This heals suicides
 				victim.grab_ghost(force = TRUE)
-				to_chat(victim, span_notice("You rise with a start, you're undead!!!"))
+				to_chat(victim, span_notice("你猛然苏醒，你是一名不死者!!!"))
 			else if(victim.stat != DEAD)
-				to_chat(victim, span_notice("You feel great!"))
+				to_chat(victim, span_notice("你感觉很好!"))
 			return
-		victim.investigate_log("has been killed by a bolt of death.", INVESTIGATE_DEATHS)
+		victim.investigate_log("被死亡术所杀.", INVESTIGATE_DEATHS)
 		victim.death()
 
 	if(istype(target, /obj/machinery/hydroponics))
@@ -54,7 +54,7 @@
 		plant_tray.plantdies()
 
 /obj/projectile/magic/resurrection
-	name = "bolt of resurrection"
+	name = "复活术"
 	icon_state = "ion"
 
 /obj/projectile/magic/resurrection/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -64,14 +64,14 @@
 		var/mob/living/victim = target
 
 		if(victim.mob_biotypes & MOB_UNDEAD) //positive energy harms the undead
-			victim.investigate_log("has been killed by a bolt of life.", INVESTIGATE_DEATHS)
+			victim.investigate_log("被复活术所杀.", INVESTIGATE_DEATHS)
 			victim.death()
 			return
 
 		if(victim.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)) // This heals suicides
-			to_chat(victim, span_notice("You rise with a start, you're alive!!!"))
+			to_chat(victim, span_notice("你猛然苏醒，你复活了!!!"))
 		else if(victim.stat != DEAD)
-			to_chat(victim, span_notice("You feel great!"))
+			to_chat(victim, span_notice("你感觉很好!"))
 
 	if(istype(target, /obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/plant_tray = target
@@ -80,7 +80,7 @@
 		plant_tray.set_plant_health(plant_tray.myseed.endurance, forced = TRUE)
 
 /obj/projectile/magic/teleport
-	name = "bolt of teleportation"
+	name = "传送术"
 	icon_state = "bluespace"
 	var/inner_tele_radius = 0
 	var/outer_tele_radius = 6
@@ -101,7 +101,7 @@
 				smoke.start()
 
 /obj/projectile/magic/safety
-	name = "bolt of safety"
+	name = "安全术"
 	icon_state = "bluespace"
 
 /obj/projectile/magic/safety/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -119,7 +119,7 @@
 			smoke.start()
 
 /obj/projectile/magic/door
-	name = "bolt of door creation"
+	name = "造门术"
 	icon_state = "energy"
 	var/list/door_types = list(/obj/structure/mineral_door/wood, /obj/structure/mineral_door/iron, /obj/structure/mineral_door/silver, /obj/structure/mineral_door/gold, /obj/structure/mineral_door/uranium, /obj/structure/mineral_door/sandstone, /obj/structure/mineral_door/transparent/plasma, /obj/structure/mineral_door/transparent/diamond)
 
@@ -145,7 +145,7 @@
 	D.open()
 
 /obj/projectile/magic/change
-	name = "bolt of change"
+	name = "变化术"
 	icon_state = "ice_1"
 	damage_type = BURN
 	/// If set, this projectile will only do a certain wabbajack effect
@@ -167,7 +167,7 @@
 		plant_tray.polymorph()
 
 /obj/projectile/magic/animate
-	name = "bolt of animation"
+	name = "活力术"
 	icon_state = "red_1"
 	damage_type = BURN
 
@@ -182,7 +182,7 @@
 			if(P.petrified_mob)
 				var/mob/living/L = P.petrified_mob
 				var/mob/living/basic/statue/S = new(P.loc, owner)
-				S.name = "statue of [L.name]"
+				S.name = "[L.name]雕像"
 				if(owner)
 					S.faction = list("[REF(owner)]")
 				S.icon = P.icon
@@ -193,7 +193,7 @@
 				if(L.mind)
 					L.mind.transfer_to(S)
 					if(owner)
-						to_chat(S, span_userdanger("You are an animate statue. You cannot move when monitored, but are nearly invincible and deadly when unobserved! Do not harm [owner], your creator."))
+						to_chat(S, span_userdanger("你是一个有生命的雕像，在被监视时不可移动，但在不被监视时几乎是无敌和致命的! 不得伤害你的创造者[owner]."))
 				P.forceMove(S)
 				return
 		else
@@ -210,21 +210,21 @@
 			C.ChangeOwner(owner)
 
 /obj/projectile/magic/spellblade
-	name = "blade energy"
+	name = "能量刃"
 	icon_state = "lavastaff"
 	damage = 15
 	damage_type = BURN
 	dismemberment = 50
 
 /obj/projectile/magic/arcane_barrage
-	name = "arcane bolt"
+	name = "秘术"
 	icon_state = "arcane_barrage"
 	damage = 20
 	damage_type = BURN
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/projectile/magic/locker
-	name = "locker bolt"
+	name = "锁柜术"
 	icon_state = "locker"
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
@@ -310,7 +310,7 @@
 	qdel(src)
 
 /obj/projectile/magic/flying
-	name = "bolt of flying"
+	name = "飞行术"
 	icon_state = "flight"
 
 /obj/projectile/magic/flying/on_hit(mob/living/target, blocked = 0, pierce_hit)
@@ -320,7 +320,7 @@
 		target.throw_at(throw_target, 200, 4)
 
 /obj/projectile/magic/bounty
-	name = "bolt of bounty"
+	name = "赏金术"
 	icon_state = "bounty"
 
 /obj/projectile/magic/bounty/on_hit(mob/living/target, blocked = 0, pierce_hit)
@@ -329,7 +329,7 @@
 		target.apply_status_effect(/datum/status_effect/bounty, firer)
 
 /obj/projectile/magic/antimagic
-	name = "bolt of antimagic"
+	name = "反魔法术"
 	icon_state = "antimagic"
 
 /obj/projectile/magic/antimagic/on_hit(mob/living/target, blocked = 0, pierce_hit)
@@ -338,7 +338,7 @@
 		target.apply_status_effect(/datum/status_effect/song/antimagic)
 
 /obj/projectile/magic/fetch
-	name = "bolt of fetching"
+	name = "吸引术"
 	icon_state = "fetch"
 
 /obj/projectile/magic/fetch/on_hit(mob/living/target, blocked = 0, pierce_hit)
@@ -348,7 +348,7 @@
 		target.throw_at(throw_target, 200, 4)
 
 /obj/projectile/magic/babel
-	name = "bolt of babel"
+	name = "巴别术"
 	icon_state = "babel"
 
 /obj/projectile/magic/babel/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
@@ -358,7 +358,7 @@
 			target.add_mood_event("curse_of_babel", /datum/mood_event/tower_of_babel)
 
 /obj/projectile/magic/necropotence
-	name = "bolt of necropotence"
+	name = "亡灵术"
 	icon_state = "necropotence"
 
 /obj/projectile/magic/necropotence/on_hit(mob/living/target, blocked = 0, pierce_hit)
@@ -375,7 +375,7 @@
 	qdel(tap)
 
 /obj/projectile/magic/wipe
-	name = "bolt of possession"
+	name = "附身术"
 	icon_state = "wipe"
 
 /obj/projectile/magic/wipe/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
@@ -383,29 +383,29 @@
 	if(iscarbon(target))
 		for(var/x in target.get_traumas())//checks to see if the victim is already going through possession
 			if(istype(x, /datum/brain_trauma/special/imaginary_friend/trapped_owner))
-				target.visible_message(span_warning("[src] vanishes on contact with [target]!"))
+				target.visible_message(span_warning("[src]在与[target]接触时消失了!"))
 				return BULLET_ACT_BLOCK
-		to_chat(target, span_warning("Your mind has been opened to possession!"))
+		to_chat(target, span_warning("你的心灵可以被轻而易举的占领!"))
 		possession_test(target)
 		return BULLET_ACT_HIT
 
 /obj/projectile/magic/wipe/proc/possession_test(mob/living/carbon/target)
 	var/datum/brain_trauma/special/imaginary_friend/trapped_owner/trauma = target.gain_trauma(/datum/brain_trauma/special/imaginary_friend/trapped_owner)
-	var/poll_message = "Do you want to play as [target.real_name]?"
+	var/poll_message = "你希望扮演[target.real_name]吗?"
 	if(target.mind)
-		poll_message = "[poll_message] Job:[target.mind.assigned_role.title]."
+		poll_message = "[poll_message] 职业:[target.mind.assigned_role.title]."
 	if(target.mind && target.mind.special_role)
-		poll_message = "[poll_message] Status:[target.mind.special_role]."
+		poll_message = "[poll_message] 状态:[target.mind.special_role]."
 	else if(target.mind)
 		var/datum/antagonist/A = target.mind.has_antag_datum(/datum/antagonist/)
 		if(A)
-			poll_message = "[poll_message] Status:[A.name]."
+			poll_message = "[poll_message] 状态:[A.name]."
 	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob(poll_message, check_jobban = ROLE_PAI, poll_time = 10 SECONDS, target_mob = target, pic_source = target, role_name_text = "bolt of possession")
 	if(target.stat == DEAD)//boo.
 		return
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/ghost = pick(candidates)
-		to_chat(target, span_boldnotice("You have been noticed by a ghost and it has possessed you!"))
+		to_chat(target, span_boldnotice("你被一个灵魂盯上并附身了!"))
 		var/oldkey = target.key
 		target.ghostize(FALSE)
 		target.key = ghost.key
@@ -414,7 +414,7 @@
 		trauma.friend.Show()
 		trauma.friend_initialized = TRUE
 	else
-		to_chat(target, span_notice("Your mind has managed to go unnoticed in the spirit world."))
+		to_chat(target, span_notice("你的心灵不再引起灵魂界的注意."))
 		qdel(trauma)
 
 /// Gives magic projectiles an area of effect radius that will bump into any nearby mobs
@@ -474,7 +474,7 @@
 	QDEL_IN(trail, trail_lifespan)
 
 /obj/projectile/magic/aoe/lightning
-	name = "lightning bolt"
+	name = "雷霆术"
 	icon_state = "tesla_projectile" //Better sprites are REALLY needed and appreciated!~
 	damage = 15
 	damage_type = BURN
@@ -508,7 +508,7 @@
 	zap_flags = ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE | ZAP_LOW_POWER_GEN
 
 /obj/projectile/magic/fireball
-	name = "bolt of fireball"
+	name = "火球术"
 	icon_state = "fireball"
 	damage = 10
 	damage_type = BRUTE
@@ -544,7 +544,7 @@
 	)
 
 /obj/projectile/magic/aoe/magic_missile
-	name = "magic missile"
+	name = "魔法飞弹"
 	icon_state = "magicm"
 	range = 100
 	speed = 1
@@ -563,7 +563,7 @@
 	range = 10
 
 /obj/projectile/magic/aoe/juggernaut
-	name = "Gauntlet Echo"
+	name = "死斗回音"
 	icon_state = "cultfist"
 	alpha = 180
 	damage = 30
@@ -594,18 +594,18 @@
 //still magic related, but a different path
 
 /obj/projectile/temp/chill
-	name = "bolt of chills"
+	name = "冷冻术"
 	icon_state = "ice_2"
 	damage_type = BURN
 	armour_penetration = 100
 	temperature = -200 // Cools you down greatly per hit
 
 /obj/projectile/magic/nothing
-	name = "bolt of nothing"
+	name = "空之术"
 
 /obj/projectile/magic/spellcard
-	name = "enchanted card"
-	desc = "A piece of paper enchanted to give it extreme durability and stiffness, along with a very hot burn to anyone unfortunate enough to get hit by a charged one."
+	name = "魔法卡片"
+	desc = "一张纸被施了魔法，使它具有极高的耐用性和硬度，同时充能后还会给任何不幸被击中的人带来非常热的灼伤."
 	icon_state = "spellcard"
 	damage_type = BURN
 	damage = 2

@@ -1,8 +1,8 @@
 // .310 Strilka (Sakhno Rifle)
 
 /obj/item/ammo_casing/strilka310
-	name = ".310 Strilka bullet casing"
-	desc = "A .310 Strilka bullet casing. Casing is a bit of a fib, there is no case, its just a block of red powder."
+	name = ".310子弹"
+	desc = "一颗.310子弹. 外壳只是谎言，压根就没有外壳，有的只是红色的火药."
 	icon_state = "310-casing"
 	caliber = CALIBER_STRILKA310
 	projectile_type = /obj/projectile/bullet/strilka310
@@ -13,8 +13,8 @@
 	AddElement(/datum/element/caseless)
 
 /obj/item/ammo_casing/strilka310/surplus
-	name = ".310 Strilka surplus bullet casing"
-	desc = "A surplus .310 Strilka bullet casing. Casing is a bit of a fib, there is no case, its just a block of red powder. Damp red powder at that."
+	name = ".310廉价子弹"
+	desc = "一颗.310子弹. 外壳只是谎言，压根就没有外壳，有的只是红色的火药，甚至还有些潮湿了."
 	projectile_type = /obj/projectile/bullet/strilka310/surplus
 
 /obj/item/ammo_casing/strilka310/enchanted
@@ -23,14 +23,14 @@
 // .223 (M-90gl Carbine)
 
 /obj/item/ammo_casing/a223
-	name = ".223 bullet casing"
-	desc = "A .223 bullet casing."
+	name = ".223子弹"
+	desc = "一颗.223子弹."
 	caliber = CALIBER_A223
 	projectile_type = /obj/projectile/bullet/a223
 
 /obj/item/ammo_casing/a223/phasic
-	name = ".223 phasic bullet casing"
-	desc = "A .223 phasic bullet casing."
+	name = ".223相位弹"
+	desc = "一颗.223相位子弹."
 	projectile_type = /obj/projectile/bullet/a223/phasic
 
 /obj/item/ammo_casing/a223/weak
@@ -39,20 +39,20 @@
 // 40mm (Grenade Launcher)
 
 /obj/item/ammo_casing/a40mm
-	name = "40mm HE shell"
-	desc = "A cased high explosive grenade that can only be activated once fired out of a grenade launcher."
+	name = "40mm HE 榴弹"
+	desc = "一颗高爆榴弹，只有用榴弹发射器发射出去后才会引爆."
 	caliber = CALIBER_40MM
 	icon_state = "40mmHE"
 	projectile_type = /obj/projectile/bullet/a40mm
 
 /obj/item/ammo_casing/a40mm/rubber
-	name = "40mm rubber shell"
-	desc = "A cased rubber slug. The big brother of the beanbag slug, this thing will knock someone out in one. Doesn't do so great against anyone in armor."
+	name = "40mm 橡胶榴弹"
+	desc = "一颗一下就能把人击晕的橡胶榴弹，是豆袋弹的大哥，对抗装甲目标时则没那么管用."
 	projectile_type = /obj/projectile/bullet/shotgun_beanbag/a40mm
 
 /obj/item/ammo_casing/rebar
-	name = "sharpened iron rod"
-	desc = "A Sharpened Iron rod. It's Pointy!"
+	name = "磨尖铁棒"
+	desc = "一根磨尖的铁棒，尖锐且锋利!"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_sharp"
 	base_icon_state = "rod_sharp"
@@ -67,8 +67,8 @@
 	icon_state = "[base_icon_state]"
 
 /obj/item/ammo_casing/rebar/syndie
-	name = "Jagged iron rod"
-	desc = "An Iron rod, with notches cut into it. You really dont want this stuck in you."
+	name = "锯齿铁棒"
+	desc = "一根锯齿铁棒，排布着锯齿状的切口. 你真的不想被它刺进身体."
 	caliber = CALIBER_REBAR_SYNDIE
 	icon_state = "rod_jagged"
 	base_icon_state = "rod_jagged"

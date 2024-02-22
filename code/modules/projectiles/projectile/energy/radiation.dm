@@ -1,5 +1,5 @@
 /obj/projectile/energy/radiation
-	name = "radiation beam"
+	name = "放射束"
 	icon_state = "declone"
 	damage = 20
 	damage_type = TOX

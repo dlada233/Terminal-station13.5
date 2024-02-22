@@ -1,5 +1,5 @@
 /obj/projectile/temp
-	name = "freeze beam"
+	name = "冷冻光束"
 	icon_state = "ice_2"
 	damage = 0
 	damage_type = BURN
@@ -25,12 +25,12 @@
 		L.adjust_bodytemperature((1 - blocked) * temperature)
 
 /obj/projectile/temp/hot
-	name = "heat beam"
+	name = "热熔光束"
 	icon_state = "lava"
 	temperature = 100 // Raise the body temp by 100 points
 
 /obj/projectile/temp/cryo
-	name = "cryo beam"
+	name = "冷冻光束"
 	range = 3
 	temperature = -240 // Single slow shot reduces temp greatly
 

@@ -1,7 +1,7 @@
 // Honker
 
 /obj/projectile/bullet/honker
-	name = "banana"
+	name = "香蕉"
 	damage = 0
 	movement_type = FLYING
 	projectile_piercing = ALL
@@ -43,7 +43,7 @@
 
 /// Marksman Shot
 /obj/projectile/bullet/marksman
-	name = "marksman nanoshot"
+	name = "神射手纳米级射击"
 	hitscan = TRUE
 	damage = 30
 	tracer_type = /obj/effect/projectile/tracer/solar
@@ -77,7 +77,7 @@
 
 /// Marksman Coin
 /obj/projectile/bullet/coin
-	name = "marksman coin"
+	name = "神射手硬币"
 	icon_state = "coinshot"
 	pixel_speed_multiplier = 0.333
 	speed = 1

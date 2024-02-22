@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/rocket
-	name = "\improper PM-9HE"
-	desc = "An 84mm High Explosive rocket. Fire at people and pray."
+	name = "PM-9HE"
+	desc = "一枚84毫米高爆火箭弹，只需祈祷并向人群发射."
 	caliber = CALIBER_84MM
 	icon_state = "srm-8"
 	base_icon_state = "srm-8"
@@ -15,19 +15,19 @@
 	icon_state = "[base_icon_state]"
 
 /obj/item/ammo_casing/rocket/heap
-	name = "\improper PM-9HEAP"
-	desc = "An 84mm High Explosive All Purpose rocket. For when you just need something to not exist anymore."
+	name = "PM-9HEAP"
+	desc = "一枚84毫米高爆通用火箭弹，当你只是想让某物消失时."
 	icon_state = "84mm-heap"
 	base_icon_state = "84mm-heap"
 	projectile_type = /obj/projectile/bullet/rocket/heap
 
 /obj/item/ammo_casing/rocket/weak
-	name = "\improper PM-9HE Low-Yield"
-	desc = "An 84mm High Explosive rocket. This one isn't quite as devastating."
+	name = "PM-9HE低当量"
+	desc = "一枚84毫米高爆火箭弹，这一枚威力没那么大."
 	projectile_type = /obj/projectile/bullet/rocket/weak
 
 /obj/item/ammo_casing/a75
-	desc = "A .75 bullet casing."
+	desc = "一颗.75子弹."
 	caliber = CALIBER_75
 	icon_state = "s-casing-live"
 	base_icon_state = "s-casing-live"

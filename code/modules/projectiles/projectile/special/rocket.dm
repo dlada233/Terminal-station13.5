@@ -1,5 +1,5 @@
 /obj/projectile/bullet/gyro
-	name ="explosive bolt"
+	name ="爆炸炮弹"
 	icon_state= "bolter"
 	damage = 50
 	embedding = null
@@ -12,7 +12,7 @@
 
 /// PM9 standard HE rocket
 /obj/projectile/bullet/rocket
-	name = "\improper HE rocket"
+	name = "HE 火箭弹"
 	desc = "Boom."
 	icon_state= "missile"
 	damage = 50
@@ -30,7 +30,7 @@
 	if(isliving(target) && prob(1) && random_crits_enabled)
 		var/mob/living/gibbed_dude = target
 		if(gibbed_dude.stat < HARD_CRIT)
-			gibbed_dude.say("Is that a fucking ro-", forced = "hit by rocket")
+			gibbed_dude.say("是踏马的火-", forced = "被火箭击中")
 			random_crit_gib = TRUE
 	..()
 
@@ -57,8 +57,8 @@ among other potential differences. This granularity is helpful for things like t
 
 /// PM9 HEAP rocket - the anti-anything missile you always craved.
 /obj/projectile/bullet/rocket/heap
-	name = "\improper HEAP rocket"
-	desc = "I am become death."
+	name = "HEAP 火箭弹"
+	desc = "我即是死亡."
 	icon_state = "84mm-heap"
 	damage = 80
 	armour_penetration = 100
@@ -70,8 +70,8 @@ among other potential differences. This granularity is helpful for things like t
 
 /// PM9 weak rocket - just kind of a failure
 /obj/projectile/bullet/rocket/weak
-	name = "low-yield rocket"
-	desc = "Boom, but less so."
+	name = "低当量火箭弹"
+	desc = "Boom了但又不是很Boom."
 	damage = 30
 
 /obj/projectile/bullet/rocket/weak/do_boom(atom/target, blocked=0)
@@ -86,8 +86,8 @@ among other potential differences. This granularity is helpful for things like t
 * Explodes when it hits literally anything.
 */
 /obj/projectile/bullet/rocket/srm
-	name = "short range missile"
-	desc = "Today's not your day, pal."
+	name = "近程导弹"
+	desc = "今天不是你的好日子，伙计."
 
 /** PEP-6 Missile - Used by the PEP-6 Exosuit missile rack.
 * Employed by Roboticists out of spite to put down enemy hereteks, mechanized nuclear operatives, the janitor's hot rod,
@@ -99,7 +99,7 @@ among other potential differences. This granularity is helpful for things like t
 * Does NOT explode if it hits any random mob, or any random object. Only if it is a subtype of one of the above valid atoms.
 */
 /obj/projectile/bullet/rocket/pep
-	name = "precise explosive missile"
+	name = "精确高爆导弹"
 	desc = "Human friendly, metal unfriendly."
 	damage = 30
 	anti_armour_damage = 80 //Doesn't (probably) kill borgs in one shot, but it will hurt
@@ -120,8 +120,8 @@ among other potential differences. This granularity is helpful for things like t
 		new /obj/item/broken_missile(get_turf(src), 1)
 
 /obj/item/broken_missile
-	name = "broken missile"
-	desc = "A missile that did not detonate. The tail has snapped and it is in no way fit to be used again."
+	name = "损坏导弹"
+	desc = "一枚没有引爆的导弹，尾翼已经断了，再也不能用了."
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "missile_broken"
 	w_class = WEIGHT_CLASS_TINY

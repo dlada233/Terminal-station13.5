@@ -20,7 +20,7 @@
 	semi_auto = FALSE
 	internal_magazine = TRUE
 	casing_ejector = FALSE
-	bolt_wording = "上弹"
+	bolt_wording = "枪栓"
 	cartridge_wording = "霰弹"
 	tac_reloads = FALSE
 	weapon_weight = WEAPON_HEAVY

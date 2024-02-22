@@ -1,6 +1,6 @@
 /obj/item/ammo_box/a357
-	name = "speed loader (.357)"
-	desc = "Designed to quickly reload revolvers."
+	name = "快速装弹器(.357)"
+	desc = "设计用于快速填装左轮手枪."
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 7
@@ -10,28 +10,26 @@
 	ammo_band_color = null
 
 /obj/item/ammo_box/a357/match
-	name = "speed loader (.357 Match)"
-	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	name = "快速装弹器(.357 竞赛弹)"
+	desc = "设计用于快速填装左轮手枪. 这些子弹是在非常严格的公差范围内制造出来的，使它们很容易用来进行特技射击."
 	ammo_type = /obj/item/ammo_casing/a357/match
 	ammo_band_color = "#77828a"
 
 /obj/item/ammo_box/a357/phasic
-	name = "speed loader (.357 Phasic)"
-	desc = "Designed to quickly reload revolvers. Holds phasic ammo, also known as 'Ghost Lead', allowing it to pass through non-organic material."
+	name = "快速装弹器(.357 相位弹)"
+	desc = "设计用于快速填装左轮手枪. 这些子弹是由一种名为“幽灵铅”的实验合金制成的，这种合金几乎可以穿透任何非有机材料."
 	ammo_type = /obj/item/ammo_casing/a357/phasic
 	ammo_band_color = "#693a6a"
 
 /obj/item/ammo_box/a357/heartseeker
-	name = "speed loader (.357 Heartseeker)"
-	desc = "Designed to quickly reload revolvers. Holds heartseeker ammo, which veers into targets with exceptional precision using \
-		an unknown method. It apparently predicts movement using neural pulses in the brain, but that's less marketable. \
-		As seen in the hit NTFlik horror-space western film, Forget-Me-Not! Brought to you by Roseus Galactic!"
+	name = "快速装弹器(.357 寻心弹)"
+	desc = "设计用于快速填装左轮手枪. 装有寻心弹，能以未知的方式精确地瞄准目标，据说是通过脑内神经脉冲来预测运动的! "
 	ammo_type = /obj/item/ammo_casing/a357/heartseeker
 	ammo_band_color = "#a91e1e"
 
 /obj/item/ammo_box/c38
-	name = "speed loader (.38)"
-	desc = "Designed to quickly reload revolvers."
+	name = "快速装弹器(.38)"
+	desc = "设计用于快速填装左轮手枪."
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
 	max_ammo = 6
@@ -41,72 +39,72 @@
 	ammo_band_color = null
 
 /obj/item/ammo_box/c38/trac
-	name = "speed loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
+	name = "快速装弹器(.38 TRAC)"
+	desc = "设计用于快速填装左轮手枪. TRAC会在目标体内植入追踪装置."
 	ammo_type = /obj/item/ammo_casing/c38/trac
 	ammo_band_color = "#7b6383"
 
 /obj/item/ammo_box/c38/match
-	name = "speed loader (.38 Match)"
-	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	name = "快速装弹器(.38 竞赛弹)"
+	desc = "设计用于快速填装左轮手枪. 这些子弹是在非常严格的公差范围内制造出来的，使它们很容易用来进行特技射击."
 	ammo_type = /obj/item/ammo_casing/c38/match
 	ammo_band_color = "#77828a"
 
 /obj/item/ammo_box/c38/match/bouncy
-	name = "speed loader (.38 Rubber)"
-	desc = "Designed to quickly reload revolvers. These rounds are incredibly bouncy and MOSTLY nonlethal, making them great to show off trickshots with."
+	name = "快速装弹器(.38 橡胶弹)"
+	desc = "设计用于快速填装左轮手枪. 这些子弹具有令人难以置信的弹性，并且几乎是非致命的，使它们很容易用来进行特技射击."
 	ammo_type = /obj/item/ammo_casing/c38/match/bouncy
 	ammo_band_color = "#556696"
 
 /obj/item/ammo_box/c38/dumdum
-	name = "speed loader (.38 DumDum)"
-	desc = "Designed to quickly reload revolvers. These rounds expand on impact, allowing them to shred the target and cause massive bleeding. Very weak against armor and distant targets."
+	name = "快速装弹器(.38 达姆弹)"
+	desc = "设计用于快速填装左轮手枪. 这些子弹在射入人体时扩张或破裂，对目标造成恐怖的撕裂伤和大出血，但在对抗装甲和远距离目标时威力骤减."
 	ammo_type = /obj/item/ammo_casing/c38/dumdum
 	ammo_band_color = "#969578"
 
 /obj/item/ammo_box/c38/hotshot
-	name = "speed loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
+	name = "快速装弹器(.38 热射弹)"
+	desc = "设计用于快速填装左轮手枪. 热射弹含有易燃装药."
 	ammo_type = /obj/item/ammo_casing/c38/hotshot
 	ammo_band_color = "#805a57"
 
 /obj/item/ammo_box/c38/iceblox
-	name = "speed loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
+	name = "快速装弹器(.38 冰霜弹)"
+	desc = "设计用于快速填装左轮手枪. 冰霜弹含有可致低温的化学装药."
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
 	ammo_band_color = "#658e94"
 
 /obj/item/ammo_box/c9mm
-	name = "ammo box (9mm)"
+	name = "弹药盒(9mm)"
 	icon_state = "9mmbox"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 30
 
 /obj/item/ammo_box/c10mm
-	name = "ammo box (10mm)"
+	name = "弹药盒(10mm)"
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/c10mm
 	max_ammo = 20
 
 /obj/item/ammo_box/c45
-	name = "ammo box (.45)"
+	name = "弹药盒(.45)"
 	icon_state = "45box"
 	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 20
 
 /obj/item/ammo_box/a40mm
-	name = "ammo box (40mm grenades)"
+	name = "弹药盒(40mm榴弹)"
 	icon_state = "40mm"
 	ammo_type = /obj/item/ammo_casing/a40mm
 	max_ammo = 4
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
 /obj/item/ammo_box/a40mm/rubber
-	name = "ammo box (40mm rubber slug)"
+	name = "弹药盒(40mm橡胶弹)"
 	ammo_type = /obj/item/ammo_casing/a40mm/rubber
 
 /obj/item/ammo_box/rocket
-	name = "rocket bouquet (84mm HE)"
+	name = "火箭弹束(84mm HE)"
 	icon_state = "rocketbundle"
 	ammo_type = /obj/item/ammo_casing/rocket
 	max_ammo = 3
@@ -116,8 +114,8 @@
 	return FALSE
 
 /obj/item/ammo_box/strilka310
-	name = "stripper clip (.310 Strilka)"
-	desc = "A stripper clip."
+	name = "填弹条(.310 Strilka)"
+	desc = "一条填弹条."
 	icon_state = "310_strip"
 	ammo_type = /obj/item/ammo_casing/strilka310
 	max_ammo = 5
@@ -125,17 +123,17 @@
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
 /obj/item/ammo_box/strilka310/surplus
-	name = "stripper clip (.310 Surplus)"
+	name = "填弹条(.310 廉价版)"
 	ammo_type = /obj/item/ammo_casing/strilka310/surplus
 
 /obj/item/ammo_box/n762
-	name = "ammo box (7.62x38mmR)"
+	name = "弹药盒(7.62x38mmR)"
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/n762
 	max_ammo = 14
 
 /obj/item/ammo_box/foambox
-	name = "ammo box (Foam Darts)"
+	name = "弹药盒(泡沫弹)"
 	icon = 'icons/obj/weapons/guns/toy.dmi'
 	icon_state = "foambox"
 	ammo_type = /obj/item/ammo_casing/foam_dart

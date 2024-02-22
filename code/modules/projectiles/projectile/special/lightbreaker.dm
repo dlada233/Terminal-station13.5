@@ -1,5 +1,5 @@
 /obj/projectile/energy/fisher
-	name = "attenuated kinetic force"
+	name = "衰减动能"
 	alpha = 0
 	damage = 0
 	damage_type = BRUTE
@@ -27,7 +27,7 @@
 		if(SEND_SIGNAL(thingy, COMSIG_HIT_BY_SABOTEUR, disrupt_duration) & COMSIG_SABOTEUR_SUCCESS)
 			lights_flickered++
 	if(lights_flickered)
-		to_chat(target, span_warning("Your light [lights_flickered > 1 ? "sources flick" : "source flicks"] off."))
+		to_chat(target, span_warning("你的光源[lights_flickered > 1 ? "忽隐忽现地" : "忽隐忽现地"]熄灭了."))
 
 /obj/projectile/energy/fisher/melee
 	range = 1

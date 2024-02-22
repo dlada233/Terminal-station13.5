@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/m10mm
-	name = "pistol magazine (10mm)"
-	desc = "A gun magazine."
+	name = "手枪弹匣 (10mm)"
+	desc = "一把枪的弹匣."
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
 	ammo_type = /obj/item/ammo_casing/c10mm
@@ -10,28 +10,28 @@
 	multiple_sprite_use_base = TRUE
 
 /obj/item/ammo_box/magazine/m10mm/fire
-	name = "pistol magazine (10mm incendiary)"
+	name = "手枪弹匣 (10mm燃烧弹)"
 	icon_state = "9x19pI"
 	base_icon_state = "9x19pI"
-	desc = "A 10mm pistol magazine. Loaded with rounds which ignite the target."
+	desc = "10毫米手枪弹匣. 装着可以点燃目标的燃烧弹."
 	ammo_type = /obj/item/ammo_casing/c10mm/fire
 
 /obj/item/ammo_box/magazine/m10mm/hp
-	name = "pistol magazine (10mm HP)"
+	name = "手枪弹匣 (10mm HP)"
 	icon_state = "9x19pH"
 	base_icon_state = "9x19pH"
-	desc= "A 10mm pistol magazine. Loaded with hollow-point rounds, extremely effective against unarmored targets, but nearly useless against protective clothing."
+	desc= "10毫米手枪弹匣. 装着空尖弹，对无甲目标非常有效，对护甲则乏力."
 	ammo_type = /obj/item/ammo_casing/c10mm/hp
 
 /obj/item/ammo_box/magazine/m10mm/ap
-	name = "pistol magazine (10mm AP)"
+	name = "手枪弹匣 (10mm AP)"
 	icon_state = "9x19pA"
 	base_icon_state = "9x19pA"
-	desc= "A 10mm pistol magazine. Loaded with rounds which penetrate armour, but are less effective against normal targets."
+	desc= "10毫米手枪弹匣. 装着穿甲弹，对护甲具有相当强的穿透力，对无甲目标则乏力."
 	ammo_type = /obj/item/ammo_casing/c10mm/ap
 
 /obj/item/ammo_box/magazine/m45
-	name = "handgun magazine (.45)"
+	name = "手枪弹匣 (.45)"
 	icon_state = "45-8"
 	base_icon_state = "45"
 	ammo_type = /obj/item/ammo_casing/c45
@@ -41,7 +41,7 @@
 	multiple_sprite_use_base = TRUE
 
 /obj/item/ammo_box/magazine/m9mm
-	name = "pistol magazine (9mm)"
+	name = "手枪弹匣 (9mm)"
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
 	ammo_type = /obj/item/ammo_casing/c9mm
@@ -51,28 +51,28 @@
 	multiple_sprite_use_base = TRUE
 
 /obj/item/ammo_box/magazine/m9mm/fire
-	name = "pistol magazine (9mm incendiary)"
+	name = "手枪弹匣 (9mm燃烧弹)"
 	icon_state = "9x19pI"
 	base_icon_state = "9x19pI"
-	desc = "A gun magazine. Loaded with rounds which ignite the target."
+	desc = "9mm手枪弹匣. 装着可以点燃目标的燃烧弹."
 	ammo_type = /obj/item/ammo_casing/c9mm/fire
 
 /obj/item/ammo_box/magazine/m9mm/hp
-	name = "pistol magazine (9mm HP)"
+	name = "手枪弹匣 (9mm HP)"
 	icon_state = "9x19pH"
 	base_icon_state = "9x19pH"
-	desc= "A gun magazine. Loaded with hollow-point rounds, extremely effective against unarmored targets, but nearly useless against protective clothing."
+	desc= "9mm手枪弹匣. 装着空尖弹，对无甲目标非常有效，对护甲则乏力."
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
 
 /obj/item/ammo_box/magazine/m9mm/ap
-	name = "pistol magazine (9mm AP)"
+	name = "手枪弹匣 (9mm AP)"
 	icon_state = "9x19pA"
 	base_icon_state = "9x19pA"
-	desc= "A gun magazine. Loaded with rounds which penetrate armour, but are less effective against normal targets."
+	desc= "9mm手枪弹匣. 装着穿甲弹，对护甲具有相当强的穿透力，对无甲目标则乏力."
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
 
 /obj/item/ammo_box/magazine/m9mm_aps
-	name = "stechkin pistol magazine (9mm)"
+	name = "斯捷奇金手枪弹匣 (9mm)"
 	icon_state = "9mmaps-15"
 	base_icon_state = "9mmaps"
 	ammo_type = /obj/item/ammo_casing/c9mm
@@ -84,22 +84,22 @@
 	icon_state = "[base_icon_state]-[round(ammo_count(), 5)]"
 
 /obj/item/ammo_box/magazine/m9mm_aps/fire
-	name = "stechkin pistol magazine (9mm incendiary)"
+	name = "斯捷奇金手枪弹匣 (9mm incendiary)"
 	ammo_type = /obj/item/ammo_casing/c9mm/fire
 	max_ammo = 15
 
 /obj/item/ammo_box/magazine/m9mm_aps/hp
-	name = "stechkin pistol magazine (9mm HP)"
+	name = "斯捷奇金手枪弹匣 (9mm HP)"
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
 	max_ammo = 15
 
 /obj/item/ammo_box/magazine/m9mm_aps/ap
-	name = "stechkin pistol magazine (9mm AP)"
+	name = "斯捷奇金手枪弹匣 (9mm AP)"
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
 	max_ammo = 15
 
 /obj/item/ammo_box/magazine/m50
-	name = "handgun magazine (.50ae)"
+	name = "手枪弹匣 (.50ae)"
 	icon_state = "50ae"
 	ammo_type = /obj/item/ammo_casing/a50ae
 	caliber = CALIBER_50AE
@@ -107,7 +107,7 @@
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
 /obj/item/ammo_box/magazine/r10mm
-	name = "regal condor magazine (10mm Reaper)"
+	name = "皇家之鹰弹匣 (10mm死神弹)"
 	icon_state = "r10mm-8"
 	base_icon_state = "r10mm"
 	ammo_type = /obj/item/ammo_casing/c10mm/reaper

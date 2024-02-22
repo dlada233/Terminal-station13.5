@@ -1,7 +1,7 @@
 // .223 (M-90gl Carbine)
 
 /obj/projectile/bullet/a223
-	name = ".223 bullet"
+	name = ".223子弹"
 	damage = 35
 	armour_penetration = 30
 	wound_bonus = -40
@@ -10,7 +10,7 @@
 	damage = 20
 
 /obj/projectile/bullet/a223/phasic
-	name = ".223 phasic bullet"
+	name = ".223相位弹"
 	icon_state = "gaussphase"
 	damage = 30
 	armour_penetration = 100
@@ -19,26 +19,26 @@
 // .310 Strilka (Sakhno Rifle)
 
 /obj/projectile/bullet/strilka310
-	name = ".310 Strilka bullet"
+	name = ".310子弹"
 	damage = 60
 	armour_penetration = 10
 	wound_bonus = -45
 	wound_falloff_tile = 0
 
 /obj/projectile/bullet/strilka310/surplus
-	name = ".310 Strilka surplus bullet"
+	name = ".310廉价子弹"
 	weak_against_armour = TRUE //this is specifically more important for fighting carbons than fighting noncarbons. Against a simple mob, this is still a full force bullet
 	armour_penetration = 0
 
 /obj/projectile/bullet/strilka310/enchanted
-	name = "enchanted .310 bullet"
+	name = ".310附魔子弹"
 	damage = 20
 	stamina = 80
 
 // Harpoons (Harpoon Gun)
 
 /obj/projectile/bullet/harpoon
-	name = "harpoon"
+	name = "鱼叉"
 	icon_state = "gauss"
 	damage = 60
 	armour_penetration = 50
@@ -50,7 +50,7 @@
 
 // Rebar (Rebar Crossbow)
 /obj/projectile/bullet/rebar
-	name = "rebar"
+	name = "钢筋"
 	icon_state = "rebar"
 	damage = 30
 	speed = 0.4
@@ -64,7 +64,7 @@
 	shrapnel_type = /obj/item/stack/rods
 
 /obj/projectile/bullet/rebarsyndie
-	name = "rebar"
+	name = "钢筋"
 	icon_state = "rebar"
 	damage = 35
 	speed = 0.4

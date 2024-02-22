@@ -1,22 +1,22 @@
 /obj/projectile/bullet/shotgun_slug
-	name = "12g shotgun slug"
+	name = "12g霰弹"
 	icon_state = "pellet"
 	damage = 50
 	sharpness = SHARP_POINTY
 	wound_bonus = 0
 
 /obj/projectile/bullet/shotgun_slug/executioner
-	name = "executioner slug" // admin only, can dismember limbs
+	name = "处决弹" // admin only, can dismember limbs
 	sharpness = SHARP_EDGED
 	wound_bonus = 80
 
 /obj/projectile/bullet/shotgun_slug/pulverizer
-	name = "pulverizer slug" // admin only, can crush bones
+	name = "粉碎弹" // admin only, can crush bones
 	sharpness = NONE
 	wound_bonus = 80
 
 /obj/projectile/bullet/shotgun_beanbag
-	name = "beanbag slug"
+	name = "豆袋弹"
 	icon_state = "pellet"
 	damage = 10
 	stamina = 55
@@ -25,7 +25,7 @@
 	embedding = null
 
 /obj/projectile/bullet/shotgun_beanbag/a40mm
-	name = "rubber slug"
+	name = "橡胶弹"
 	icon_state = "cannonball"
 	damage = 20
 	stamina = 160 //BONK
@@ -33,21 +33,21 @@
 	weak_against_armour = TRUE
 
 /obj/projectile/bullet/incendiary/shotgun
-	name = "incendiary slug"
+	name = "燃烧弹"
 	icon_state = "pellet"
 	damage = 20
 
 /obj/projectile/bullet/incendiary/shotgun/no_trail
-	name = "precision incendiary slug"
+	name = "点燃弹"
 	damage = 35
 	leaves_fire_trail = FALSE
 
 /obj/projectile/bullet/incendiary/shotgun/dragonsbreath
-	name = "dragonsbreath pellet"
+	name = "龙息弹"
 	damage = 5
 
 /obj/projectile/bullet/shotgun_stunslug
-	name = "stunslug"
+	name = "泰瑟弹"
 	damage = 5
 	paralyze = 100
 	stutter = 10 SECONDS
@@ -58,7 +58,7 @@
 	embedding = null
 
 /obj/projectile/bullet/shotgun_frag12
-	name ="frag12 slug"
+	name ="碎片弹丸"
 	icon_state = "pellet"
 	damage = 15
 	paralyze = 10
@@ -73,14 +73,14 @@
 	damage_falloff_tile = -0.45
 
 /obj/projectile/bullet/pellet/shotgun_buckshot
-	name = "buckshot pellet"
+	name = "鹿弹丸"
 	damage = 7.5
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
 
 /obj/projectile/bullet/pellet/shotgun_rubbershot
-	name = "rubber shot pellet"
+	name = "橡胶弹丸"
 	damage = 3
 	stamina = 11
 	sharpness = NONE
@@ -103,7 +103,7 @@
 	. = ..()
 
 /obj/projectile/bullet/pellet/shotgun_incapacitate
-	name = "incapacitating pellet"
+	name = "失能弹丸"
 	damage = 1
 	stamina = 6
 	embedding = null
@@ -130,8 +130,8 @@
 //Breaching Ammo
 
 /obj/projectile/bullet/shotgun_breaching
-	name = "12g breaching round"
-	desc = "A breaching round designed to destroy airlocks and windows with only a few shots. Ineffective against other targets."
+	name = "12g破门弹"
+	desc = "一种穿甲弹，几发就能摧毁气闸和窗户，对其他目标则无效."
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	damage = 5 //does shit damage to everything except doors and windows
 	demolition_mod = 200 //one shot to break a window or grille, or two shots to breach an airlock door
