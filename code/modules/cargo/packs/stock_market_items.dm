@@ -7,7 +7,7 @@
 	cost = CARGO_CRATE_VALUE * 2
 	// contains = list(/obj/item/stack/sheet/mineral/bananium)
 	crate_name = "材料板材箱"
-	group = "气罐&材料"
+	group = "储罐&材料"
 	/// What material we are trying to buy sheets of?
 	var/datum/material/material
 	/// How many sheets of the material we are trying to buy at once?

@@ -1,5 +1,5 @@
 /datum/supply_pack/materials
-	group = "气罐&材料"
+	group = "储罐&材料"
 
 /datum/supply_pack/materials/cardboard50
 	name = "50块纸板"

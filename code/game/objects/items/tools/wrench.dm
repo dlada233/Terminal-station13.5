@@ -65,7 +65,7 @@
 		. += span_notice("出于某些原因，它让你想起[suicider].")
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user]祈祷医用扳手带走[user.p_their()]灵魂. 看起来[user.p_theyre()]试图自杀!"))
+	user.visible_message(span_suicide("[user]祈祷医用扳手带走他的灵魂. 看起来他在试图自杀!"))
 	user.Stun(100, ignore_canstun = TRUE)// Stun stops them from wandering off
 	user.set_light_color(COLOR_VERY_SOFT_YELLOW)
 	user.set_light(2)

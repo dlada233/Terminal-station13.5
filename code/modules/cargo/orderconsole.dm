@@ -13,7 +13,7 @@
 	var/can_approve_requests = TRUE
 	var/contraband = FALSE
 	var/self_paid = FALSE
-	var/safety_warning = "出于安全需要及道德因素，自动补给船上禁止运送活体生物、人体遗骸、核武器、邮件、未送达订单箱、辛迪加炸弹、回归信标、不稳定物质、传真机以及任何包含人工智能的机器."
+	var/safety_warning = "出于安全与道德因素，货运穿梭机上禁止运送活体生物、人体遗骸、机密核武器、邮件、未送达的部门订购箱、辛迪加炸弹、追踪信标、不稳定物质、传真机以及任何包含人工智能的机器."
 	var/blockade_warning = "检测到蓝空不稳定.穿梭机无法航行."
 	/// radio used by the console to send messages on supply channel
 	var/obj/item/radio/headset/radio
@@ -238,13 +238,13 @@
 
 	if(pack.goody && !self_paid)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		say("ERROR: 小型货物仅限私人账户订购.")
+		say("错误: 小商品仅限私人账户订购.")
 		return
 
 	var/similar_count = SSshuttle.supply.get_order_count(pack)
 	if(similar_count == OVER_ORDER_LIMIT)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		say("ERROR:单次订购数量不得超过[CARGO_MAX_ORDER]")
+		say("错误: 单次订购数量不得超过[CARGO_MAX_ORDER]")
 		return
 
 	amount = clamp(amount, 1, CARGO_MAX_ORDER - similar_count)

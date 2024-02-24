@@ -242,12 +242,12 @@
 
 			if(pack.goody && !self_paid)
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-				computer.say("ERROR: 小商品仅限私人账户订购.")
+				computer.say("错误: 小商品仅限私人账户订购.")
 				return
 
 			if(SSshuttle.supply.get_order_count(pack) == OVER_ORDER_LIMIT)
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-				computer.say("ERROR: 单次订货数量不得超过[CARGO_MAX_ORDER].")
+				computer.say("错误: 单次订货数量不得超过[CARGO_MAX_ORDER].")
 				return
 
 			if(!requestonly && !self_paid && ishuman(usr) && !account)
