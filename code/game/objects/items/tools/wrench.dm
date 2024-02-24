@@ -39,7 +39,7 @@
 
 /obj/item/wrench/abductor
 	name = "外星扳手"
-	desc = "极性扳手。它会使夹在钳口之间的任何东西转动."
+	desc = "极化扳手。它会使夹在钳口之间的任何东西转动."
 	icon = 'icons/obj/antags/abductor.dmi'
 	belt_icon_state = "wrench_alien"
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
@@ -65,7 +65,7 @@
 		. += span_notice("出于某些原因，它让你想起[suicider].")
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user]祈祷医用扳手带走[user.p_their()]灵魂. 看起来[user.p_theyre()]试图自杀!"))
+	user.visible_message(span_suicide("[user]祈祷医用扳手带走他的灵魂. 看起来他在试图自杀!"))
 	user.Stun(100, ignore_canstun = TRUE)// Stun stops them from wandering off
 	user.set_light_color(COLOR_VERY_SOFT_YELLOW)
 	user.set_light(2)
@@ -85,14 +85,14 @@
 
 /obj/item/wrench/cyborg
 	name = "液压扳手"
-	desc = "一种先进的机械扳手，由内部液压系统驱动.速度是手持版的两倍."
+	desc = "一种先进的机械扳手，由内部液压驱动.速度是手持版的两倍."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "wrench_cyborg"
 	toolspeed = 0.5
 
 /obj/item/wrench/combat
 	name = "格斗扳手"
-	desc = "和一把普通的扳手一样，但更锋利。可以在战场上找到."
+	desc = "和普通的扳手类似，但更加锋利。可以在战场上找到."
 	icon_state = "wrench_combat"
 	inhand_icon_state = "wrench_combat"
 	belt_icon_state = "wrench_combat"

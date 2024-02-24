@@ -1,6 +1,6 @@
 /obj/machinery/computer/cargo
-	name = "supply console"
-	desc = "Used to order supplies, approve requests, and control the shuttle."
+	name = "供应控制台"
+	desc = "用来订购物资，批准请求，控制穿梭机."
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
 	light_color = COLOR_BRIGHT_ORANGE
@@ -13,10 +13,8 @@
 	var/can_approve_requests = TRUE
 	var/contraband = FALSE
 	var/self_paid = FALSE
-	var/safety_warning = "For safety and ethical reasons, the automated supply shuttle cannot transport live organisms, \
-		human remains, classified nuclear weaponry, mail, undelivered departmental order crates, syndicate bombs, \
-		homing beacons, unstable eigenstates, fax machines, or machinery housing any form of artificial intelligence."
-	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
+	var/safety_warning = "出于安全与道德因素，货运穿梭机上禁止运送活体生物、人体遗骸、机密核武器、邮件、未送达的部门订购箱、辛迪加炸弹、追踪信标、不稳定物质、传真机以及任何包含人工智能的机器."
+	var/blockade_warning = "检测到蓝空不稳定.穿梭机无法航行."
 	/// radio used by the console to send messages on supply channel
 	var/obj/item/radio/headset/radio
 	/// var that tracks message cooldown
@@ -38,8 +36,8 @@
 	var/interface_type = "Cargo"
 
 /obj/machinery/computer/cargo/request
-	name = "supply request console"
-	desc = "Used to request supplies from cargo."
+	name = "供应请求控制台"
+	desc = "用来向货舱请求物资."
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
 	can_send = FALSE
@@ -67,8 +65,8 @@
 		return FALSE
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning("[user] swipes [emag_card] through [src]!"))
-		to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
+			user.visible_message(span_warning("[user]在[src]上刷了[emag_card]!"))
+		to_chat(user, span_notice("你调整了[src]的路由和接收频谱,解锁了特供物资和违禁品."))
 
 	obj_flags |= EMAGGED
 	contraband = TRUE
@@ -106,7 +104,7 @@
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
 	data["can_send"] = can_send
 	data["can_approve_requests"] = can_approve_requests
-	var/message = "Remember to stamp and send back the supply manifests."
+	var/message = "记得盖上邮票并寄回货单."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
 	if(SSshuttle.supply_blocked)
@@ -215,18 +213,18 @@
 		var/mob/living/living_user = user
 		var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
 		if(!istype(id_card))
-			say("No ID card detected.")
+			say("未检测到ID卡.")
 			return
 		if(IS_DEPARTMENTAL_CARD(id_card))
-			say("The [src] rejects [id_card].")
+			say("[id_card]不能用于购物.")
 			return
 		account = id_card.registered_account
 		if(!istype(account))
-			say("Invalid bank account.")
+			say("无效银行账户.")
 			return
 		var/list/access = id_card.GetAccess()
 		if(pack.access_view && !(pack.access_view in access))
-			say("[id_card] lacks the requisite access for this purchase.")
+			say("[id_card]缺少订购所需权限.")
 			return
 
 	// The list we are operating on right now
@@ -234,19 +232,19 @@
 	var/reason = ""
 	if(requestonly && !self_paid)
 		working_list = SSshuttle.request_list
-		reason = tgui_input_text(user, "Reason", name)
+		reason = tgui_input_text(user, "理由", name)
 		if(isnull(reason))
 			return
 
 	if(pack.goody && !self_paid)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		say("ERROR: Small crates may only be purchased by private accounts.")
+		say("错误: 小商品仅限私人账户订购.")
 		return
 
 	var/similar_count = SSshuttle.supply.get_order_count(pack)
 	if(similar_count == OVER_ORDER_LIMIT)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		say("ERROR: No more then [CARGO_MAX_ORDER] of any pack may be ordered at once")
+		say("错误: 单次订购数量不得超过[CARGO_MAX_ORDER]")
 		return
 
 	amount = clamp(amount, 1, CARGO_MAX_ORDER - similar_count)
@@ -254,7 +252,7 @@
 		var/obj/item/coupon/applied_coupon
 		for(var/obj/item/coupon/coupon_check in loaded_coupons)
 			if(pack.type == coupon_check.discounted_pack)
-				say("Coupon found! [round(coupon_check.discount_pct_off * 100)]% off applied!")
+				say("检测到优惠券，已为您的订单优惠[round(coupon_check.discount_pct_off * 100)]% !")
 				coupon_check.moveToNullspace()
 				applied_coupon = coupon_check
 				break
@@ -272,9 +270,9 @@
 		working_list += order
 
 	if(self_paid)
-		say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
+		say("订单已处理。费用将从[account.account_holder]的银行账户中扣除.")
 	if(requestonly && message_cooldown < world.time)
-		var/message = amount == 1 ? "A new order has been requested." : "[amount] order has been requested."
+		var/message = amount == 1 ? "有新的订单请求." : "有[amount]件新的订单请求."
 		radio.talk_into(src, message, RADIO_CHANNEL_SUPPLY)
 		message_cooldown = world.time + 30 SECONDS
 	. = TRUE
@@ -288,10 +286,10 @@
 		if(order.id != id)
 			continue
 		if(order.department_destination)
-			say("Only the department that ordered this item may cancel it.")
+			say("只有订购该物品的部门才能取消订单.")
 			return FALSE
 		if(order.applied_coupon)
-			say("Coupon refunded.")
+			say("优惠券已退回.")
 			order.applied_coupon.forceMove(get_turf(src))
 		SSshuttle.shopping_list -= order
 		qdel(order)
@@ -324,36 +322,36 @@
 
 			if(SSshuttle.supply.getDockedId() == docking_home)
 				SSshuttle.moveShuttle(cargo_shuttle, docking_away, TRUE)
-				say("The supply shuttle is departing.")
-				ui.user.investigate_log("sent the supply shuttle away.", INVESTIGATE_CARGO)
+				say("货运穿梭机即将出发.")
+				ui.user.investigate_log("货运穿梭机已派遣.", INVESTIGATE_CARGO)
 			else
 				//create the paper from the SSshuttle.shopping_list
 				if(length(SSshuttle.shopping_list))
 					var/obj/item/paper/requisition_paper = new(get_turf(src))
-					requisition_paper.name = "requisition form - [station_time_timestamp()]"
-					var/requisition_text = "<h2>[station_name()] Supply Requisition</h2>"
+					requisition_paper.name = "申请表 - [station_time_timestamp()]"
+					var/requisition_text = "<h2>[station_name()]货运申请</h2>"
 					requisition_text += "<hr/>"
-					requisition_text += "Time of Order: [station_time_timestamp()]<br/><br/>"
+					requisition_text += "订购时间: [station_time_timestamp()]<br/><br/>"
 					for(var/datum/supply_order/order as anything in SSshuttle.shopping_list)
 						requisition_text += "<b>[order.pack.name]</b></br>"
-						requisition_text += "- Order ID: [order.id]</br>"
+						requisition_text += "- 订单 ID: [order.id]</br>"
 						var/restrictions = SSid_access.get_access_desc(order.pack.access)
 						if(restrictions)
-							requisition_text += "- Access Restrictions: [restrictions]</br>"
-						requisition_text += "- Ordered by: [order.orderer] ([order.orderer_rank])</br>"
+							requisition_text += "- 访问限制: [restrictions]</br>"
+						requisition_text += "- 订购人: [order.orderer] ([order.orderer_rank])</br>"
 						var/paying_account = order.paying_account
 						if(paying_account)
-							requisition_text += "- Paid Privately by: [order.paying_account.account_holder]<br/>"
+							requisition_text += "- 私人订购付款: [order.paying_account.account_holder]<br/>"
 						var/reason = order.reason
 						if(reason)
-							requisition_text += "- Reason Given: [reason]</br>"
+							requisition_text += "- 订购理由: [reason]</br>"
 						requisition_text += "</br></br>"
 					requisition_paper.add_raw_text(requisition_text)
 					requisition_paper.color = "#9ef5ff"
 					requisition_paper.update_appearance()
 
-				ui.user.investigate_log("called the supply shuttle.", INVESTIGATE_CARGO)
-				say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(600)] minutes.")
+				ui.user.investigate_log("呼叫货运穿梭机.", INVESTIGATE_CARGO)
+				say("已呼叫货运穿梭机,将在[SSshuttle.supply.timeLeft(600)]分钟内抵达.")
 				SSshuttle.moveShuttle(cargo_shuttle, docking_home, TRUE)
 
 			. = TRUE
@@ -371,9 +369,9 @@
 				return
 			else
 				SSshuttle.shuttle_loan.loan_shuttle()
-				say("The supply shuttle has been loaned to CentCom.")
-				ui.user.investigate_log("accepted a shuttle loan event.", INVESTIGATE_CARGO)
-				ui.user.log_message("accepted a shuttle loan event.", LOG_GAME)
+				say("货运穿梭机已借给中央指挥部使用.")
+				ui.user.investigate_log("已接受穿梭机租借项目.", INVESTIGATE_CARGO)
+				ui.user.log_message("已接受穿梭机租借项目.", LOG_GAME)
 				. = TRUE
 		if("add")
 			return add_item(ui.user, params["id"])

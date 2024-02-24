@@ -38,10 +38,10 @@
 	config_entry_value = "空间站仍然面临毁灭，所有船员必须服从所有来自部门主管及安保人员的指示，任何违反命令的行为都将受到最高至当初处决的惩罚，这不是演习."
 
 /datum/config_entry/string/alert_epsilon_upto
-	config_entry_value = "Central Command-中央司令部已下令对空间站实行Epsilon级安全策略，所有合同被视为终止."
+	config_entry_value = "Central Command-中央指挥部已下令对空间站实行Epsilon级安全策略，所有合同被视为终止."
 
 /datum/config_entry/string/alert_epsilon_downto
-	config_entry_value = "Central Command-中央司令部已下令对空间站实行Epsilon级安全策略，所有合同被视为终止."
+	config_entry_value = "Central Command-中央指挥部已下令对空间站实行Epsilon级安全策略，所有合同被视为终止."
 
 /datum/config_entry/string/alert_gamma
 	config_entry_value = "Solar Federation-太阳系联邦已经发布伽马级警报，这个星系整面临着ZK级现实失效场景，安全部队被授权使用一切火力以化乱为治，不遵循紧急程序者将受到处决惩罚，这不是演习."

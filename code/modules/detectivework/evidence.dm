@@ -98,7 +98,7 @@
 	return
 
 /obj/item/storage/box/evidence
-	name = "证据带盒"
+	name = "证物袋盒"
 	desc = "一个装着证物袋的盒子."
 
 /obj/item/storage/box/evidence/PopulateContents()

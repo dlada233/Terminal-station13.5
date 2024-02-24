@@ -10237,7 +10237,7 @@
 "bXx" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-west"
@@ -14672,7 +14672,7 @@
 /area/station/hallway/primary/port)
 "cKI" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
@@ -17089,7 +17089,7 @@
 "djv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-west"
@@ -19769,7 +19769,7 @@
 "dJY" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -31914,7 +31914,7 @@
 /area/station/maintenance/xenobio_disposals)
 "gbj" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_lavaland"
 	},
 /turf/open/floor/iron/dark/smooth_large/airless,
@@ -51663,7 +51663,7 @@
 "jRh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-west"
@@ -64285,7 +64285,7 @@
 /area/station/maintenance/abandon_holding_cell)
 "mmc" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_2_lavaland"
 	},
 /turf/open/floor/iron/dark/smooth_large/airless,
@@ -75004,7 +75004,7 @@
 /area/station/security/prison/shower)
 "oox" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance";
+	name = "太阳能维护气闸";
 	space_dir = 2
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -77321,7 +77321,7 @@
 /area/station/hallway/secondary/exit)
 "oLg" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
@@ -79533,7 +79533,7 @@
 "pio" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-east"
@@ -80030,7 +80030,7 @@
 "pnd" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-east"
@@ -80412,7 +80412,7 @@
 /area/station/maintenance/solars/starboard/aft)
 "pru" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_3_lavaland"
 	},
 /turf/open/space/basic,
@@ -87130,7 +87130,7 @@
 	},
 /obj/machinery/requests_console/directional/south{
 	department = "Bridge";
-	name = "Bridge Requests Console";
+	name = "舰桥请求控制台";
 	pixel_y = -37
 	},
 /obj/effect/mapping_helpers/requests_console/announcement,
@@ -90302,7 +90302,7 @@
 "rjb" = (
 /obj/docking_port/stationary/random{
 	dir = 2;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_4_lavaland"
 	},
 /turf/open/space/basic,
@@ -91589,7 +91589,7 @@
 "ruX" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-east"
@@ -100936,7 +100936,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance";
+	name = "太阳能维护气闸";
 	space_dir = 2
 	},
 /obj/structure/cable,
@@ -103417,7 +103417,7 @@
 /area/station/engineering/atmos/hfr_room)
 "tIl" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance";
+	name = "太阳能维护气闸";
 	space_dir = 2
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -113927,7 +113927,7 @@
 "vHg" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-west"
@@ -124454,7 +124454,7 @@
 "xGQ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-east"

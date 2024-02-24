@@ -1,9 +1,9 @@
 /datum/computer_file/program/signal_commander
-	filename = "signaler"
-	filedesc = "SignalCommander-信号司令"
+	filename = "信号器"
+	filedesc = "信号司令"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "signal"
-	extended_desc = "允许用户给对应的设备在对应的频道上发送信号."
+	extended_desc = "一个通过适当硬件来发送自定义信号的内置频率软件."
 	size = 2
 	tgui_id = "NtosSignaler"
 	program_icon = "satellite-dish"

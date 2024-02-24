@@ -1,5 +1,5 @@
 /datum/design/experi_scanner
-	name = "实验扫描仪"
+	name = "Experimental Scanner-实验扫描仪"
 	desc = "用于各种扫描实验的实验扫描仪."
 	id = "experi_scanner"
 	build_type = PROTOLATHE | AWAY_LATHE

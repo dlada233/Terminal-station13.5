@@ -852,7 +852,7 @@
 "dL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,

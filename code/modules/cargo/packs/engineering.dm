@@ -3,17 +3,17 @@
 	crate_type = /obj/structure/closet/crate/engineering
 
 /datum/supply_pack/engineering/shieldgen
-	name = "破裂护盾投影仪补给包"
-	desc = "船体又破裂了？别说了，更多的Nanotrasen破裂护盾投影仪！\
+	name = "防破裂护罩投影仪"
+	desc = "船体又破裂了？别说了，拿上这些纳米传讯防破裂护罩投影仪！\
 		使用力场技术把空气留住而封闭空间，内含两台护盾投影仪."
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_ENGINE_EQUIP
 	contains = list(/obj/machinery/shieldgen = 2)
-	crate_name = "破裂护盾投影仪箱"
+	crate_name = "防破裂护罩投影仪箱"
 
 /datum/supply_pack/engineering/ripley
-	name = "APLU MK-I 套件包"
-	desc = "一个让用户亲自动手组装 ALPU MK-I \"雷普利\" 的套件包,\
+	name = "APLU MK-I 套件"
+	desc = "一套让用户亲自动手组装 ALPU MK-I \"雷普利\" 的套件,\
 		一种用于起重、装载重型工程设备和其他站点任务的机甲，不附赠电池."
 	cost = CARGO_CRATE_VALUE * 10
 	access_view = ACCESS_ROBOTICS
@@ -34,7 +34,7 @@
 	crate_type = /obj/structure/closet/crate/science/robo
 
 /datum/supply_pack/engineering/conveyor
-	name = "传送带套件包"
+	name = "传送带套件"
 	desc = "内含三十条传送带以及控制拉杆.\
 		如有任何问题，请阅读附赠的说明书."
 	cost = CARGO_CRATE_VALUE * 3.5
@@ -56,7 +56,7 @@
 					/obj/item/clothing/head/utility/hardhat = 3,
 					/obj/item/clothing/glasses/meson/engine = 2,
 				)
-	crate_name = "工程装备补给箱"
+	crate_name = "工程装备箱"
 
 /datum/supply_pack/engineering/powergamermitts
 	name = "绝缘手套补给包"
@@ -69,7 +69,7 @@
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engineering/inducers
-	name = "NT-75无线充电器补给包"
+	name = "NT-75 无线充电器补给包"
 	desc = "没有充电器了? 没关系, 有了NT-75 EPI, 你在任何地方为任何规格的\
 		电池设备充电, 内含两把无线充电器."
 	cost = CARGO_CRATE_VALUE * 4
@@ -98,7 +98,7 @@
 /datum/supply_pack/engineering/shuttle_engine
 	name = "航天飞船引擎"
 	desc = "得益于先进的蓝空技术, \
-		我们的工程师成功地把整个航天飞船引擎装进了一个小小地箱子里."
+		我们的工程师成功地把整个航天飞船引擎装进了一个小箱子里."
 	cost = CARGO_CRATE_VALUE * 6
 	access = ACCESS_CE
 	access_view = ACCESS_CE
@@ -108,7 +108,7 @@
 	special = TRUE
 
 /datum/supply_pack/engineering/tools
-	name = "工具箱补给包"
+	name = "工具箱"
 	desc = "任何强健的太空人都离不开他们可靠的工具箱.\
 		内含三个电气工具箱和三个机械工具箱."
 	access_view = ACCESS_ENGINE_EQUIP
@@ -119,7 +119,7 @@
 	crate_name = "工具箱补给箱"
 
 /datum/supply_pack/engineering/portapump
-	name = "便携气泵补给包"
+	name = "便携气泵"
 	desc = "又有人把船体的气放出去了吗? 我们可以帮到您, \
 		内含两台便携气泵."
 	cost = CARGO_CRATE_VALUE * 4.5
@@ -129,7 +129,7 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 
 /datum/supply_pack/engineering/portascrubber
-	name = "便携虹吸器补给包"
+	name = "便携虹吸器"
 	desc = "用你自己的两台便携虹吸器清理讨厌的等离子泄露."
 	cost = CARGO_CRATE_VALUE * 4.5
 	access_view = ACCESS_ATMOSPHERICS
@@ -138,7 +138,7 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 
 /datum/supply_pack/engineering/hugescrubber
-	name = "大型便携虹吸器补给包"
+	name = "大型便携虹吸器"
 	desc = "大型的虹吸器为大型的大气灾难."
 	cost = CARGO_CRATE_VALUE * 7.5
 	access_view = ACCESS_ATMOSPHERICS
@@ -147,7 +147,7 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/engineering/space_heater
-	name = "太空加热器补给包"
+	name = "太空加热器"
 	desc = "一个双重用途的加热器/制冷机, 当问题太冷/太热时使用."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/machinery/space_heater)
@@ -155,9 +155,9 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 
 /datum/supply_pack/engineering/bsa
-	name = "Bluespace Artillery 蓝空大炮组件"
-	desc = "Nanotrasen海军司令部的骄傲, \
-		传说中的蓝空大炮是人类工程学的一项惊天壮举, 也是全面战争的决心证明, \
+	name = "Bluespace Artillery 蓝空巨炮组件"
+	desc = "Nanotrasen海军指挥部的骄傲, \
+		传说中的蓝空巨炮是人类工程学的一项惊天壮举, 也是全面战争的决心证明, \
 		想要架设它需要高度先进的研究资料."
 	cost = CARGO_CRATE_VALUE * 30
 	special = TRUE
@@ -184,34 +184,34 @@
 	crate_name= "DNA库组件箱"
 
 /datum/supply_pack/engineering/dna_probes
-	name = "DNA库用提取器"
-	desc = "内含五个DNA库用提取器."
+	name = "DNA库提取器"
+	desc = "内含五个DNA库提取器."
 	cost = CARGO_CRATE_VALUE * 6
 	special = TRUE
 	access_view = ACCESS_COMMAND
 	contains = list(/obj/item/dna_probe = 5)
-	crate_name= "DNA库用提取器箱"
+	crate_name= "DNA库提取器箱"
 
 
 /datum/supply_pack/engineering/shield_sat
-	name = "护盾卫星"
+	name = "护盾生成卫星"
 	desc = "用这些反陨石防御系统保护整个空间站安全, \
-		内含三颗护盾卫星."
+		内含三颗护盾生成卫星."
 	cost = CARGO_CRATE_VALUE * 6
 	special = TRUE
 	access_view = ACCESS_COMMAND
 	contains = list(/obj/machinery/satellite/meteor_shield = 3)
-	crate_name= "护盾卫星箱"
+	crate_name= "护盾生成卫星箱"
 
 
 /datum/supply_pack/engineering/shield_sat_control
-	name = "护盾卫星控制系统电路板"
+	name = "护盾系统控制台"
 	desc = "刻有护盾卫星控制系统的电路板."
 	cost = CARGO_CRATE_VALUE * 10
 	special = TRUE
 	access_view = ACCESS_COMMAND
 	contains = list(/obj/item/circuitboard/computer/sat_control)
-	crate_name= "护盾卫星控制系统电路板箱"
+	crate_name= "护盾系统控制台电路板箱"
 
 
 /// Engine Construction
@@ -222,34 +222,34 @@
 	crate_type = /obj/structure/closet/crate/engineering
 
 /datum/supply_pack/engine/emitter
-	name = "发射器补给包"
+	name = "发射器"
 	desc = "能在破坏板条箱锁和敌人的同时为力场投影仪提供能量.\
 		内含两台高功率能量发生器."
 	cost = CARGO_CRATE_VALUE * 7
 	access = ACCESS_CE
 	contains = list(/obj/machinery/power/emitter = 2)
-	crate_name = "发射器补给箱"
+	crate_name = "发射器箱"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
 /datum/supply_pack/engine/field_gen
-	name = "力场投影仪补给包"
+	name = "力场投影仪"
 	desc = "挡在在毁灭与苟活之间的唯一屏障，\
 		由发射器提供能量，内含两台力场投影仪."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/machinery/field/generator = 2)
-	crate_name = "力场投影仪补给箱"
+	crate_name = "力场投影仪箱"
 
 /datum/supply_pack/engine/grounding_rods
-	name = "避雷针补给包"
+	name = "避雷针"
 	desc = "四根接地避雷针用以承接特斯拉线圈的电击."
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/obj/machinery/power/energy_accumulator/grounding_rod = 4)
-	crate_name = "避雷针补给箱"
+	crate_name = "避雷针箱"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engine/solar
-	name = "太阳能板补给包"
+	name = "太阳能板"
 	desc = "用这堆先进太阳能板阵列来生产源源不断地清洁能源, \
 		内含二十一台太阳能板、一个太阳能控制电路板和一个跟踪插件, \
 		如有任何疑问，请翻阅所附说明书."
@@ -259,7 +259,7 @@
 					/obj/item/electronics/tracker,
 					/obj/item/paper/guides/jobs/engi/solars,
 				)
-	crate_name = "太阳能板补给箱"
+	crate_name = "太阳能板箱"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engine/supermatter_shard
@@ -274,12 +274,12 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/engine/tesla_coils
-	name = "特斯拉线圈补给包"
+	name = "特斯拉线圈"
 	desc = "无论是高压电刑，或者治疗网瘾，又或者只是第三次世界大战，\
 		这四台特斯拉线圈都包您满意!"
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(/obj/machinery/power/energy_accumulator/tesla_coil = 4)
-	crate_name = "特斯拉线圈补给箱"
+	crate_name = "特斯拉线圈"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engine/hypertorus_fusion_reactor
@@ -317,5 +317,5 @@
 		/obj/item/circuitboard/machine/radioactive_nebula_shielding = 5,
 		/obj/item/paper/fluff/radiation_nebula = 1,
 	)
-	crate_name = "放射性星云屏蔽系统(重要)"
+	crate_name = "放射性星云屏蔽系统(重要)箱"
 	crate_type = /obj/structure/closet/crate/engineering

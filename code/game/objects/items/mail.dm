@@ -247,7 +247,7 @@
 /// Crate for mail from CentCom.
 /obj/structure/closet/crate/mail
 	name = "邮寄箱"
-	desc = "一个由中央司令部认证的邮件箱."
+	desc = "一个由中央指挥部认证的邮件箱."
 	icon_state = "mail"
 	base_icon_state = "mail"
 	can_install_electronics = FALSE
@@ -311,7 +311,7 @@
 /// Crate for mail that automatically generates a lot of mail. Usually only normal mail, but on lowpop it may end up just being junk.
 /obj/structure/closet/crate/mail/full
 	name = "满溢的邮寄箱"
-	desc = "一个由中央司令部认证的邮件箱，看起来被完全填满了."
+	desc = "一个由中央指挥部认证的邮件箱，看起来被完全填满了."
 
 /obj/structure/closet/crate/mail/full/Initialize(mapload)
 	. = ..()

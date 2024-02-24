@@ -18,7 +18,7 @@
 /area/shuttle/abandoned/bridge)
 "bV" = (
 /obj/machinery/door/airlock/command{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/airlock/cutaiwire,

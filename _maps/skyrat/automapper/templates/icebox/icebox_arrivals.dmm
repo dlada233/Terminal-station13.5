@@ -386,7 +386,7 @@
 "nL" = (
 /obj/docking_port/stationary/random/icemoon{
 	dir = 8;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_lavaland"
 	},
 /turf/open/misc/asteroid/snow/icemoon,
@@ -776,7 +776,7 @@
 /obj/docking_port/stationary/random/icemoon{
 	dir = 8;
 	shuttle_id = "pod_lavaland";
-	name = "lavaland"
+	name = "拉瓦兰"
 	},
 /turf/open/misc/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors/nospawn)

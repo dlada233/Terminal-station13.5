@@ -25,7 +25,7 @@ export const NtosFileManager = (props) => {
           />
         </Section>
         {usbconnected && (
-          <Section title="Data Disk">
+          <Section title="数据盘">
             <FileTable
               usbmode
               files={usbfiles}
@@ -60,9 +60,9 @@ const FileTable = (props) => {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell>File</Table.Cell>
-        <Table.Cell collapsing>Type</Table.Cell>
-        <Table.Cell collapsing>Size</Table.Cell>
+        <Table.Cell>文件</Table.Cell>
+        <Table.Cell collapsing>类型</Table.Cell>
+        <Table.Cell collapsing>大小</Table.Cell>
       </Table.Row>
       {files.map((file) => (
         <Table.Row key={file.name} className="candystripe">
@@ -72,7 +72,7 @@ const FileTable = (props) => {
                 fluid
                 content={file.name}
                 currentValue={file.name}
-                tooltip="Rename"
+                tooltip="重命名"
                 onCommit={(e, value) => onRename(file.name, value)}
               />
             ) : (
@@ -96,20 +96,20 @@ const FileTable = (props) => {
                   icon="trash"
                   confirmIcon="times"
                   confirmContent=""
-                  tooltip="Delete"
+                  tooltip="删除"
                   onClick={() => onDelete(file.name)}
                 />
                 {!!usbconnected &&
                   (usbmode ? (
                     <Button
                       icon="download"
-                      tooltip="Download"
+                      tooltip="下载"
                       onClick={() => onUpload(file.name)}
                     />
                   ) : (
                     <Button
                       icon="upload"
-                      tooltip="Upload"
+                      tooltip="上传"
                       onClick={() => onUpload(file.name)}
                     />
                   ))}

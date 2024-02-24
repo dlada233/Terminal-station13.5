@@ -130,7 +130,7 @@
 		return TRUE
 	if(ismob(user.pulling) && PROCESSOR_SELECT_RECIPE(user.pulling))
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning("你需要更紧的握住才能做到!"))
+			to_chat(user, span_warning("你需要更进一步的抓握才能做到!"))
 			return
 		var/mob/living/pushed_mob = user.pulling
 		visible_message(span_warning("[user]把[pushed_mob]扔进了[src]!"))
@@ -188,7 +188,7 @@
 
 /obj/machinery/processor/slime
 	name = "史莱姆加工机"
-	desc = "一个贴着科学部门专用标签的工业加工机，操作时，手不要接触进料口."
+	desc = "一个贴着科学部门专用标签的工业加工机，操作时，请勿将手靠近进料口."
 	circuit = /obj/item/circuitboard/machine/processor/slime
 
 /obj/machinery/processor/slime/adjust_item_drop_location(atom/movable/atom_to_drop)

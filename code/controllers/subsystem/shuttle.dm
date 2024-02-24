@@ -166,13 +166,13 @@ SUBSYSTEM_DEF(shuttle)
 		//Adds access requirements to the end of each description.
 		if(pack.access && pack.access_view)
 			if(pack.access == pack.access_view)
-				pack.desc += " Requires [SSid_access.get_access_desc(pack.access)] access to open or purchase."
+				pack.desc += " 需要 [SSid_access.get_access_desc(pack.access)] 才能打开或购买."
 			else
-				pack.desc += " Requires [SSid_access.get_access_desc(pack.access)] access to open, or [SSid_access.get_access_desc(pack.access_view)] access to purchase."
+				pack.desc += " 需要 [SSid_access.get_access_desc(pack.access)] 才能打开, 或 [SSid_access.get_access_desc(pack.access_view)] 才能订购."
 		else if(pack.access)
-			pack.desc += " Requires [SSid_access.get_access_desc(pack.access)] access to open."
+			pack.desc += " 需要 [SSid_access.get_access_desc(pack.access)] 才能打开."
 		else if(pack.access_view)
-			pack.desc += " Requires [SSid_access.get_access_desc(pack.access_view)] access to purchase."
+			pack.desc += " 需要 [SSid_access.get_access_desc(pack.access_view)] 才能订购."
 
 		supply_packs[pack.id] = pack
 

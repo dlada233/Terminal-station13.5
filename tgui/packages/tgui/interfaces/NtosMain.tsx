@@ -25,7 +25,7 @@ export const NtosMain = (props) => {
     <NtosWindow
       title={
         (PC_device_theme === 'syndicate' && 'Syndix Main Menu') ||
-        'NtOS Main Menu'
+        'NtOS 主菜单'
       }
       width={400}
       height={500}
@@ -68,7 +68,7 @@ export const NtosMain = (props) => {
           </Section>
         )}
         <Section
-          title="Details"
+          title="详细"
           buttons={
             <>
               {!!has_light && (
@@ -86,14 +86,14 @@ export const NtosMain = (props) => {
               )}
               <Button
                 icon="eject"
-                content="Eject ID"
+                content="弹出ID卡"
                 disabled={!proposed_login.IDInserted}
                 onClick={() => act('PC_Eject_Disk', { name: 'ID' })}
               />
               {!!show_imprint && (
                 <Button
                   icon="dna"
-                  content="Imprint ID"
+                  content="刻入ID"
                   disabled={
                     !proposed_login.IDName ||
                     (proposed_login.IDName === login.IDName &&
@@ -107,7 +107,7 @@ export const NtosMain = (props) => {
         >
           <Table>
             <Table.Row>
-              ID Name:{' '}
+              ID 名称:{' '}
               {show_imprint
                 ? login.IDName +
                   ' ' +
@@ -117,7 +117,7 @@ export const NtosMain = (props) => {
                 : proposed_login.IDName ?? ''}
             </Table.Row>
             <Table.Row>
-              Assignment:{' '}
+              职务:{' '}
               {show_imprint
                 ? login.IDJob +
                   ' ' +
@@ -135,7 +135,7 @@ export const NtosMain = (props) => {
                     fluid
                     icon="eject"
                     color="transparent"
-                    content="Eject pAI"
+                    content="弹出个人人工智能"
                     onClick={() =>
                       act('PC_Pai_Interact', {
                         option: 'eject',
@@ -177,7 +177,7 @@ const ProgramsTable = (props) => {
   );
 
   return (
-    <Section title="Programs">
+    <Section title="程序">
       <Table>
         {filtered_programs.map((program) => (
           <Table.Row key={program.name}>
@@ -199,7 +199,7 @@ const ProgramsTable = (props) => {
                 <Button
                   color="transparent"
                   icon="times"
-                  tooltip="Close program"
+                  tooltip="关闭程序"
                   tooltipPosition="left"
                   onClick={() =>
                     act('PC_killprogram', {

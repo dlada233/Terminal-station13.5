@@ -80,14 +80,14 @@ export const NtosCardContent = (props) => {
       </Stack>
       {!!has_id && !!authenticatedUser && (
         <Section
-          title="Templates"
+          title="模板"
           mt={1}
           buttons={
             <Button
               icon="question-circle"
               tooltip={
-                'Will attempt to apply all access for the template to the ID card.\n' +
-                'Does not use wildcards unless the template specifies them.'
+                '此操作将尝试将模板中包含的所有权限添加到 ID 卡上.\n' +
+                '自定义权限不会被添加，除非模板本身已应用.'
               }
               tooltipPosition="left"
             />
@@ -111,8 +111,8 @@ export const NtosCardContent = (props) => {
                 showBasic={!!showBasic}
                 extraButtons={
                   <Button.Confirm
-                    content="Terminate Employment"
-                    confirmContent="Fire Employee?"
+                    content="终止雇佣关系"
+                    confirmContent="确定要解雇该员工吗?"
                     color="bad"
                     onClick={() => act('PRG_terminate')}
                   />
@@ -139,7 +139,7 @@ const IdCardPage = (props) => {
 
   return (
     <Section
-      title={authenticatedUser ? 'Modify ID' : 'Login'}
+      title={authenticatedUser ? '修改 ID' : '登录'}
       buttons={
         <>
           <Button
@@ -150,7 +150,7 @@ const IdCardPage = (props) => {
           />
           <Button
             icon={authenticatedUser ? 'sign-out-alt' : 'sign-in-alt'}
-            content={authenticatedUser ? 'Log Out' : 'Log In'}
+            content={authenticatedUser ? '登出' : '登录'}
             color={authenticatedUser ? 'bad' : 'good'}
             onClick={() => {
               act(authenticatedUser ? 'PRG_logout' : 'PRG_authenticate');
@@ -171,13 +171,13 @@ const IdCardPage = (props) => {
           </Button>
         </Stack.Item>
         <Stack.Item width="100%" mt={1} ml={0}>
-          Login: {authenticatedUser || '-----'}
+          登录: {authenticatedUser || '-----'}
         </Stack.Item>
       </Stack>
       {!!(has_id && authenticatedUser) && (
         <>
           <Stack mt={1}>
-            <Stack.Item align="center">Details:</Stack.Item>
+            <Stack.Item align="center">详细:</Stack.Item>
             <Stack.Item grow={1} mr={1} ml={1}>
               <Input
                 width="100%"
@@ -204,7 +204,7 @@ const IdCardPage = (props) => {
             </Stack.Item>
           </Stack>
           <Stack>
-            <Stack.Item align="center">Assignment:</Stack.Item>
+            <Stack.Item align="center">职务:</Stack.Item>
             <Stack.Item grow={1} ml={1}>
               <Input
                 fluid
@@ -239,7 +239,7 @@ const TemplateDropdown = (props) => {
       <Stack.Item grow>
         <Dropdown
           width="100%"
-          displayText={'Select a template...'}
+          displayText={'选择一项模板...'}
           options={templateKeys.map((path) => {
             return templates[path];
           })}

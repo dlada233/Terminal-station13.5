@@ -10,8 +10,8 @@
  * They are free to print them out as they please.
  */
 /datum/computer_file/program/portrait_printer
-	filename = "PortraitPrinter"
-	filedesc = "Marlowe Treeby's 艺术银河"
+	filename = "画像打印机"
+	filedesc = "Marlowe Treeby的艺术银河"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "dummy"
 	extended_desc = "该程序连接到一个名为Spinward Sector的艺术社区网站，用于观看和打印艺术作品."
@@ -65,7 +65,7 @@
 
 /datum/computer_file/program/portrait_printer/proc/print_painting(selected_painting)
 	if(computer.stored_paper < CANVAS_PAPER_COST)
-		to_chat(usr, span_notice("Printing error: 你至少需要[CANVAS_PAPER_COST]张纸来打印画布."))
+		to_chat(usr, span_notice("打印 error: 你至少需要[CANVAS_PAPER_COST]张纸来打印画布."))
 		return
 	computer.stored_paper -= CANVAS_PAPER_COST
 
@@ -90,11 +90,11 @@
 	printed_canvas.generated_icon = art_icon
 	printed_canvas.icon_generated = TRUE
 	printed_canvas.finalized = TRUE
-	printed_canvas.name = "painting - [chosen_portrait.title]"
+	printed_canvas.name = "画作 - [chosen_portrait.title]"
 	///this is a copy of something that is already in the database- it should not be able to be saved.
 	printed_canvas.no_save = TRUE
 	printed_canvas.update_icon()
-	to_chat(usr, span_notice("您已成功打印[chosen_portrait.title]至新画布上."))
+	to_chat(usr, span_notice("您已成功将[chosen_portrait.title]打印至新画布上."))
 	playsound(computer.physical, 'sound/items/poster_being_created.ogg', 100, TRUE)
 
 #undef CANVAS_PAPER_COST

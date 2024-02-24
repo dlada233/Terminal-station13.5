@@ -1,6 +1,6 @@
 /datum/computer_file/program/card_mod
-	filename = "plexagonidwriter"
-	filedesc = "Plexagon-迭角权限管理工具"
+	filename = "迭角形ID编辑器"
+	filedesc = "迭角形权限管理器"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "id"
 	extended_desc = "该程序可用于管理员工ID卡的访问权限."
@@ -66,7 +66,7 @@
 	if(length(region_access))
 		minor = TRUE
 		valid_access |= SSid_access.get_region_access_list(region_access)
-		authenticated_card = "[auth_card.name] \[有限访问\]"
+		authenticated_card = "[auth_card.name] \[访问受限\]"
 		update_static_data(user)
 		return TRUE
 

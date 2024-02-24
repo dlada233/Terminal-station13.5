@@ -1,8 +1,8 @@
 /datum/computer_file/program/robotact
 	filename = "robotact"
-	filedesc = "RoboTact-罗大师"
+	filedesc = "罗大师"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
-	extended_desc = "一个内置的应用程序，用于Cyborg的自我管理和诊断."
+	extended_desc = "一个内置的应用程序，用于赛博机器人的自我管理和诊断."
 	ui_header = "robotact.gif" //DEBUG -- new icon before PR
 	program_open_overlay = "command"
 	program_flags = NONE
@@ -14,7 +14,7 @@
 
 /datum/computer_file/program/robotact/on_start(mob/living/user)
 	if(!istype(computer, /obj/item/modular_computer/pda/silicon))
-		to_chat(user, span_warning("警告闪烁在[computer]上: 设备不兼容."))
+		to_chat(user, span_warning("[computer]闪过一条警告：设备不兼容."))
 		return FALSE
 	. = ..()
 	if(.)
@@ -94,9 +94,9 @@
 				cyborg.locked = FALSE
 				cyborg.update_icons()
 				if(cyborg.emagged)
-					cyborg.logevent("底盘盖已 [cyborg.locked ? "engaged-闭锁" : "released-开放"]") //"The cover interface glitches out for a split second"
+					cyborg.logevent("底盘盖已 [cyborg.locked ? "锁定" : "解锁"]") //"The cover interface glitches out for a split second"
 				else
-					cyborg.logevent("底盘盖已 [cyborg.locked ? "engaged-闭锁" : "relesaed-开放"]")
+					cyborg.logevent("底盘盖已 [cyborg.locked ? "锁定" : "解锁"]")
 
 		if("lawchannel")
 			cyborg.set_autosay()
@@ -107,7 +107,7 @@
 		if("alertPower")
 			if(cyborg.stat == CONSCIOUS)
 				if(!cyborg.cell || !cyborg.cell.charge)
-					cyborg.visible_message(span_notice("[span_name("[cyborg]")]上的电源警示灯急促闪烁."), \
+					cyborg.visible_message(span_notice("[span_name("[cyborg]")]的电源警示灯急促闪烁."), \
 						"你将在低功率模式下运行.")
 					playsound(cyborg, 'sound/machines/buzz-two.ogg', 50, FALSE)
 

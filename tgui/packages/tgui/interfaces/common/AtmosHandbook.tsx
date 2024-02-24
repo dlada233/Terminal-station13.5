@@ -92,7 +92,7 @@ const GasHandbook = (props) => {
     <Section
       title={
         <GasSearchBar
-          title={relevantGas ? 'Gas: ' + relevantGas.name : 'Gas Lookup'}
+          title={relevantGas ? 'Gas: ' + relevantGas.name : '气体查找'}
           onChange={(keyword) =>
             setActiveGasId(
               gasInfo.find((gas) =>
@@ -150,7 +150,7 @@ const ReactionHandbook = (props) => {
           title={
             relevantReaction
               ? 'Reaction: ' + relevantReaction.name
-              : 'Reaction Lookup'
+              : '反应查找'
           }
           onChange={(keyword) =>
             setActiveReactionId(

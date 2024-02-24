@@ -13,7 +13,7 @@
 
 /datum/supply_pack/goody/airsuppliesoxygen
 	name = "应急呼吸补给(Oxygen-氧)"
-	desc = "内含呼吸面罩与氧气瓶."
+	desc = "内含呼吸面罩与应急氧气瓶."
 	cost = PAYCHECK_CREW
 	contains = list(
 		/obj/item/tank/internals/emergency_oxygen,
@@ -34,7 +34,7 @@
 */
 
 /datum/supply_pack/goody/improvedrcd
-	name = "Improved RCD 改进型"
+	name = "改进型 RCD"
 	desc = "改进后的RCD具有更优秀的材料储量，附赠框架和电路升级!"
 	cost = PAYCHECK_CREW * 38
 	contains = list(/obj/item/construction/rcd/improved)
@@ -65,7 +65,7 @@
 /datum/supply_pack/goody/xenoarch_intern
 	name = "异星考古入门技能芯片"
 	desc = "一个包含所有必要信息的技能芯片，让你可以开始入门异星考古学. \
-			但不附赠考古工具, \
+			不附赠考古工具, \
 			也不附赠图书馆长的专业工作经验."
 	cost = PAYCHECK_CREW * 35 // 1750 credit goody? do bounties
 	contains = list(/obj/item/skillchip/xenoarch_magnifier)
@@ -186,7 +186,7 @@
 
 /datum/supply_pack/goody/firstaid_pouch
 	name = "便携型急救袋"
-	desc = "内含一个配有口袋夹的急救袋，默认填入太空站标准的医疗物品, \
+	desc = "内含一个配有口袋夹的急救袋，默认填入太空站标准的医疗物品,\
 	但你也可以自行填入其他物品."
 	cost = PAYCHECK_CREW * 6
 	contains = list(
@@ -195,7 +195,7 @@
 
 /datum/supply_pack/goody/stabilizer_pouch
 	name = "抢救型急救袋"
-	desc = "内含一个配有口袋夹的急救袋，默认填入以稳定伤情为主的医疗物品, \
+	desc = "内含一个配有口袋夹的急救袋，默认填入以稳定伤情为主的医疗物品,\
 	但你也可以自行填入其他物品."
 	cost = PAYCHECK_CREW * 6
 	contains = list(

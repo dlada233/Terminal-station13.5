@@ -1,6 +1,6 @@
 /datum/computer_file/program/newscaster
-	filename = "newscasterapp"
-	filedesc = "Newscaster-新闻网"
+	filename = "新闻网"
+	filedesc = "新闻网"
 	download_access = list(ACCESS_LIBRARY)
 	downloader_category = PROGRAM_CATEGORY_GAMES
 	program_open_overlay = "bountyboard"

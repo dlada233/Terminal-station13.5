@@ -5,9 +5,9 @@
 
 /obj/item/gbp_punchcard
 	name = "杰出助手积分卡"
-	desc = "杰出助手积分计划旨在为Nanotrasen站点和殖民地上无业或无薪的人群提供额外的收入<br>\
-	只需让任意部门主管再您的积分卡上打孔，就可以到杰出助手积分兑换机处兑换，每次打孔可兑换100信用点！<br>\
-	每张积分卡最多可打孔六次，兑换现有积分卡时会自动发放新卡，所以请不要遗失您的积分卡."
+	desc = "杰出助手积分计划旨在为纳米传讯站点和殖民地上无业或无薪的人群提供额外的收入<br>\
+	只需让任意部门主管在你的积分卡上打孔，就可以到杰出助手积分兑换机处进行兑换，每次打孔可兑换100信用点！<br>\
+	每张积分卡最多可打孔六次，兑换现有积分卡时会自动发放新卡，所以请不要遗失你的积分卡."
 	icon = 'modular_skyrat/modules/cargo/icons/punchcard.dmi'
 	icon_state = "punchcard_0"
 	w_class = WEIGHT_CLASS_TINY
@@ -93,7 +93,7 @@
 			return
 
 		if(punchcard.punches < punchcard.max_punches)
-			if(tgui_alert(user, "你还没有打满积分卡，你确定要兑换，并开始15分钟的兑换限制吗？", "这真是个愚蠢的举动", list("No", "Yes")) != "Yes")
+			if(tgui_alert(user, "你还没有打满积分卡，你确定要兑换并开始15分钟的兑换冷却计时吗？", "这真是个愚蠢的举动", list("No", "Yes")) != "Yes")
 				return
 
 		if(!punchcard.punches) // check to see if someone left the dialog open to redeem a card twice

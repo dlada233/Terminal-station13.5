@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 #define CRATE_TAX 700
 
 /obj/docking_port/mobile/supply
-	name = "supply shuttle"
+	name = "货运穿梭机"
 	shuttle_id = "cargo"
 	callTime = 600
 
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return
 
 	for(var/atom/thing_sent_home as anything in stuff_sent_home)
-		investigate_log("Blacklisted item found on in-transit Cargo Shuttle: [thing_sent_home] ([thing_sent_home.type])", INVESTIGATE_CARGO)
+		investigate_log("Blacklisted item found on in-transit Cargo   [thing_sent_home] ([thing_sent_home.type])", INVESTIGATE_CARGO)
 
 	message_admins("Blacklisted item found on in-transit Cargo Shuttle. See cargo logs for more details.")
 	SSshuttle.centcom_message = "Contraband found on Cargo Shuttle. This has been returned via drop pod."

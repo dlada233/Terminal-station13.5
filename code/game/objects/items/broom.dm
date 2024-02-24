@@ -2,7 +2,7 @@
 #define BROOM_PUSH_LIMIT 20
 
 /obj/item/pushbroom
-	name = "push broom-扫帚"
+	name = "长柄扫帚"
 	desc = "这是我的扫帚! 可以两只手拿以推着垃圾走，它还有一个可伸缩的把手以节省空间."
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "broom0"
@@ -98,7 +98,7 @@
 
 
 /obj/item/pushbroom/cyborg
-	name = "cyborg 扫帚"
+	name = "赛博型扫帚"
 
 /obj/item/pushbroom/cyborg/Initialize(mapload)
 	. = ..()

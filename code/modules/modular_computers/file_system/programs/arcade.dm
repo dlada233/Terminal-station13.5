@@ -1,6 +1,6 @@
 /datum/computer_file/program/arcade
-	filename = "dsarcade"
-	filedesc = "Donksoft Micro Arcade-杜软小街机"
+	filename = "杜软小街机"
+	filedesc = "杜软小街机"
 	program_open_overlay = "arcade"
 	extended_desc = "经典游戏'Outbomb Cuban Pete-轰炸古巴皮特'的移动端移植, 具有令人兴奋的画面和不寒而栗的剧情."
 	downloader_category = PROGRAM_CATEGORY_GAMES
@@ -18,14 +18,14 @@
 	var/player_mp = 10
 	var/ticket_count = 0
 	///Shows what text is shown on the app, usually showing the log of combat actions taken by the player.
-	var/heads_up = "Nanotrasen说, 赢者通吃."
-	var/boss_name = "Cuban Pete-古巴皮特的任务目标"
+	var/heads_up = "纳米传讯说, 赢者通吃."
+	var/boss_name = "古巴皮特的任务目标"
 	///Determines which boss image to use on the UI.
 	var/boss_id = 1
 
 ///Lazy version of the arade that can be found in maintenance disks
 /datum/computer_file/program/arcade/eazy
-	filename = "dsarcadeez"
+	filename = "杜软游戏"
 	filedesc = "Donksoft Micro Arcade Ez-杜软小街机无敌版"
 	filetype = "MNT"
 	program_flags = PROGRAM_UNIQUE_COPY

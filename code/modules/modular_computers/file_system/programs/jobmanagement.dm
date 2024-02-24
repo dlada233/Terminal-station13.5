@@ -2,11 +2,11 @@
 GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /datum/computer_file/program/job_management
-	filename = "plexagoncore"
-	filedesc = "Plexagon-迭角人力核心"
+	filename = "迭角形核心"
+	filedesc = "迭角形人力核心"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "id"
-	extended_desc = "用于管理工作岗位的程序."
+	extended_desc = "用于查看与更变工作岗位数量的程序."
 	download_access = list(ACCESS_COMMAND)
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 4
@@ -101,7 +101,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				if(length(SSjob.prioritized_jobs) < 5)
 					SSjob.prioritized_jobs += j
 				else
-					computer.say("Error: CentCom雇佣协议限制优先级超过5个职业.")
+					computer.say("Error: 中央指挥部雇佣协议限制，最多只能优先调度 5 种职位.")
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 

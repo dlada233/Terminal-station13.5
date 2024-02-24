@@ -26,7 +26,7 @@ export const bypass_deadmin_in_centcom: FeatureToggle = {
   name: '作为Centcom时保留管理员',
   category: 'ADMIN',
   description:
-    '作为Centcom官员时是否保留管理员身份.',
+    '作为Centcom人员时是否保留管理员身份.',
   component: CheckboxInput,
 };
 

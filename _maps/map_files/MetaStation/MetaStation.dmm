@@ -611,7 +611,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
@@ -808,7 +808,7 @@
 /area/station/science/xenobiology/hallway)
 "apT" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -3042,7 +3042,7 @@
 "bcT" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -6545,7 +6545,7 @@
 "ctN" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -9233,7 +9233,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -17290,7 +17290,7 @@
 /area/station/science/ordnance/bomb)
 "grI" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
@@ -18475,7 +18475,7 @@
 "gNy" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -21266,7 +21266,7 @@
 "hQv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-right"
@@ -22890,7 +22890,7 @@
 /area/station/engineering/supermatter/room)
 "isc" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_2_lavaland"
 	},
 /turf/open/space,
@@ -23873,7 +23873,7 @@
 /area/station/hallway/secondary/command)
 "iJm" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -25218,7 +25218,7 @@
 "jdZ" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_3_lavaland"
 	},
 /turf/open/space,
@@ -25772,7 +25772,7 @@
 "jnl" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
@@ -27305,7 +27305,7 @@
 "jMY" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "bridge-left"
@@ -29220,7 +29220,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/poddoor/shutters/window{
 	id = "gateshutter";
-	name = "Gateway Access Shutter"
+	name = "星门通道百叶帘"
 	},
 /turf/open/floor/iron,
 /area/station/command/gateway)
@@ -30600,7 +30600,7 @@
 "kWV" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -33203,7 +33203,7 @@
 /area/station/medical/pharmacy)
 "lXG" = (
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -34861,7 +34861,7 @@
 "mBT" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -39015,7 +39015,7 @@
 "nXK" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_4_lavaland"
 	},
 /turf/open/space/basic,
@@ -47598,7 +47598,7 @@
 /area/station/hallway/primary/port)
 "qZV" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -49978,7 +49978,7 @@
 /area/station/science/xenobiology)
 "rRB" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -53884,7 +53884,7 @@
 /area/station/maintenance/port/aft)
 "tkr" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_lavaland"
 	},
 /turf/open/space,
@@ -53892,7 +53892,7 @@
 "tkE" = (
 /obj/machinery/requests_console/directional/east{
 	department = "Bridge";
-	name = "Bridge Requests Console"
+	name = "舰桥请求控制台"
 	},
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,
@@ -58618,7 +58618,7 @@
 /area/station/security/evidence)
 "uRa" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
@@ -59839,7 +59839,7 @@
 /area/station/science/robotics/lab)
 "vlZ" = (
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -60014,7 +60014,7 @@
 "vpg" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -62289,7 +62289,7 @@
 /area/station/service/hydroponics)
 "waB" = (
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8

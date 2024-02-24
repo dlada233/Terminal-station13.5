@@ -43,8 +43,8 @@
 
 //Station blueprints!!!
 /obj/item/areaeditor/blueprints
-	name = "station blueprints"
-	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
+	name = "空间站蓝图"
+	desc = "空间站的蓝图，上面有一个 \"机密\" 印章和一些咖啡渍."
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "blueprints"
 	fluffnotice = "Property of Nanotrasen. For heads of staff only. Store in high-secure storage."
@@ -206,8 +206,8 @@
 //Blueprint Subtypes
 
 /obj/item/areaeditor/blueprints/cyborg
-	name = "station schematics"
-	desc = "A digital copy of the station blueprints stored in your memory."
+	name = "空间站投影图"
+	desc = "存储在你内存中的数字版空间站蓝图."
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "blueprints"
 	fluffnotice = "Intellectual Property of Nanotrasen. For use in engineering cyborgs only. Wipe from memory upon departure from the station."

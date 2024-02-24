@@ -148,7 +148,7 @@
 		var/reason_from = "Transfer: To [account_holder]"
 
 		if(IS_DEPARTMENTAL_ACCOUNT(from))
-			reason_to = "Nanotrasen: Salary"
+			reason_to = "纳米传讯: 薪水"
 			reason_from = ""
 
 		if(transfer_reason)
