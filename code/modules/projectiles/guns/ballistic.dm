@@ -298,7 +298,7 @@
 			return
 		bolt_locked = FALSE
 	if (user)
-		balloon_alert(user, "拉动[bolt_wording]")
+		balloon_alert(user, "拉开[bolt_wording]")
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
