@@ -5,7 +5,7 @@
 /datum/techweb_node/base
 	id = "base"
 	starting_node = TRUE
-	display_name = "Basic Research Technology"
+	display_name = "基础科研科技"
 	description = "NT default research technologies."
 	// Default research tech, prevents bricking
 	design_ids = list(
@@ -143,7 +143,7 @@
 /datum/techweb_node/mmi
 	id = "mmi"
 	starting_node = TRUE
-	display_name = "Man Machine Interface"
+	display_name = "人机接口"
 	description = "A slightly Frankensteinian device that allows human brains to interface natively with software APIs."
 	design_ids = list(
 		"mmi",
@@ -152,7 +152,7 @@
 /datum/techweb_node/cyborg
 	id = "cyborg"
 	starting_node = TRUE
-	display_name = "Cyborg Construction"
+	display_name = "赛博建造"
 	description = "Sapient robots with preloaded tool modules and programmable laws."
 	design_ids = list(
 		"borg_chest",
@@ -173,7 +173,7 @@
 /datum/techweb_node/mech
 	id = "mecha"
 	starting_node = TRUE
-	display_name = "Mechanical Exosuits"
+	display_name = "机械外骨骼"
 	description = "Mechanized exosuits that are several magnitudes stronger and more powerful than the average human."
 	design_ids = list(
 		"mech_recharger",
@@ -198,7 +198,7 @@
 /datum/techweb_node/mod_basic
 	id = "mod"
 	starting_node = TRUE
-	display_name = "Basic Modular Suits"
+	display_name = "基础模块服"
 	description = "Specialized back mounted power suits with various different modules."
 	design_ids = list(
 		"mod_boots",
@@ -221,7 +221,7 @@
 /datum/techweb_node/mech_tools
 	id = "mech_tools"
 	starting_node = TRUE
-	display_name = "Basic Exosuit Equipment"
+	display_name = "基础机甲装配"
 	description = "Various tools fit for basic mech units"
 	design_ids = list(
 		"mech_drill",
@@ -232,7 +232,7 @@
 /datum/techweb_node/basic_tools
 	id = "basic_tools"
 	starting_node = TRUE
-	display_name = "Basic Tools"
+	display_name = "基础工具"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
 	design_ids = list(
 		"airlock_painter",
@@ -271,7 +271,7 @@
 /datum/techweb_node/basic_medical
 	id = "basic_medical"
 	starting_node = TRUE
-	display_name = "Basic Medical Equipment"
+	display_name = "基础医疗设备"
 	description = "Basic medical tools and equipment."
 	design_ids = list(
 		"beaker",
@@ -315,7 +315,7 @@
 /datum/techweb_node/basic_circuitry
 	id = "basic_circuitry"
 	starting_node = TRUE
-	display_name = "Basic Integrated Circuits"
+	display_name = "基础集成电路"
 	description = "Research on how to fully exploit the power of integrated circuits"
 	design_ids = list(
 		"circuit_multitool",
@@ -400,7 +400,7 @@
 
 /datum/techweb_node/biotech
 	id = "biotech"
-	display_name = "Biological Technology"
+	display_name = "生物科技"
 	description = "What makes us tick." //the MC, silly!
 	prereq_ids = list("base")
 	design_ids = list(
@@ -428,7 +428,7 @@
 
 /datum/techweb_node/adv_biotech
 	id = "adv_biotech"
-	display_name = "Advanced Biotechnology"
+	display_name = "先进生物学"
 	description = "Advanced Biotechnology"
 	prereq_ids = list("biotech")
 	design_ids = list(
@@ -451,7 +451,7 @@
 
 /datum/techweb_node/xenoorgan_biotech
 	id = "xenoorgan_bio"
-	display_name = "Xeno-organ Biology"
+	display_name = "异星生物器官"
 	description = "Plasmaman, Ethereals, Lizardpeople... What makes our non-human crewmembers tick?"
 	prereq_ids = list("adv_biotech")
 	design_ids = list(
@@ -469,7 +469,7 @@
 
 /datum/techweb_node/morphological_theory
 	id = "morphological_theory"
-	display_name = "Anomalous Morphology"
+	display_name = "异常形态学"
 	description = "Use poorly understood energies to change your body."
 	prereq_ids = list("adv_biotech", "anomaly_research")
 	design_ids = list("polymorph_belt")
@@ -480,7 +480,7 @@
 
 /datum/techweb_node/bio_process
 	id = "bio_process"
-	display_name = "Biological Processing"
+	display_name = "生物加工"
 	description = "From slimes to kitchens."
 	prereq_ids = list("biotech")
 	design_ids = list(
@@ -506,7 +506,7 @@
 
 /datum/techweb_node/imp_wt_surgery
 	id = "imp_wt_surgery"
-	display_name = "Improved Wound-Tending Surgery"
+	display_name = "改进伤口护理手术"
 	description = "Who would have known being more gentle with a hemostat decreases patient pain?"
 	prereq_ids = list("biotech")
 	design_ids = list(
@@ -517,7 +517,7 @@
 
 /datum/techweb_node/oldstation_surgery
 	id = "oldstation_surgery"
-	display_name = "Experimental Dissection"
+	display_name = "实验性解剖"
 	description = "Grants access to experimental dissections, which allows generation of research points."
 	design_ids = list(
 		"surgery_oldstation_dissection",
@@ -528,7 +528,7 @@
 
 /datum/techweb_node/adv_surgery
 	id = "adv_surgery"
-	display_name = "Advanced Surgery"
+	display_name = "先进外科手术"
 	description = "When simple medicine doesn't cut it."
 	prereq_ids = list("imp_wt_surgery")
 	design_ids = list(
@@ -542,7 +542,7 @@
 
 /datum/techweb_node/exp_surgery
 	id = "exp_surgery"
-	display_name = "Experimental Surgery"
+	display_name = "实验性手术"
 	description = "When evolution isn't fast enough."
 	prereq_ids = list("adv_surgery")
 	design_ids = list(
@@ -563,7 +563,7 @@
 
 /datum/techweb_node/alien_surgery
 	id = "alien_surgery"
-	display_name = "Alien Surgery"
+	display_name = "异星手术"
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
 	design_ids = list(
@@ -577,7 +577,7 @@
 
 /datum/techweb_node/datatheory //Computer science
 	id = "datatheory"
-	display_name = "Data Theory"
+	display_name = "数据理论"
 	description = "Big Data, in space!"
 	prereq_ids = list("base")
 	design_ids = list(
@@ -591,7 +591,7 @@
 
 /datum/techweb_node/engineering
 	id = "engineering"
-	display_name = "Industrial Engineering"
+	display_name = "工业化工程"
 	description = "A refresher course on modern engineering technology."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -648,7 +648,7 @@
 
 /datum/techweb_node/adv_engi
 	id = "adv_engi"
-	display_name = "Advanced Engineering"
+	display_name = "先进工程学"
 	description = "Pushing the boundaries of physics, one chainsaw-fist at a time."
 	prereq_ids = list("engineering", "emp_basic")
 	design_ids = list(
@@ -677,7 +677,7 @@
 
 /datum/techweb_node/anomaly
 	id = "anomaly_research"
-	display_name = "Anomaly Research"
+	display_name = "异常科技"
 	description = "Unlock the potential of the mysterious anomalies that appear on station."
 	prereq_ids = list("adv_engi", "practical_bluespace")
 	design_ids = list(
@@ -688,7 +688,7 @@
 
 /datum/techweb_node/high_efficiency
 	id = "high_efficiency"
-	display_name = "High Efficiency Parts"
+	display_name = "高效率组件"
 	description = "Finely-tooled manufacturing techniques allowing for picometer-perfect precision levels."
 	prereq_ids = list("engineering", "datatheory")
 	design_ids = list(
@@ -700,7 +700,7 @@
 
 /datum/techweb_node/adv_power
 	id = "adv_power"
-	display_name = "Advanced Power Manipulation"
+	display_name = "先进电力科技"
 	description = "How to get more zap."
 	prereq_ids = list("engineering")
 	design_ids = list(
@@ -724,7 +724,7 @@
 /////////////////////////Bluespace tech/////////////////////////
 /datum/techweb_node/bluespace_basic //Bluespace-memery
 	id = "bluespace_basic"
-	display_name = "Basic Bluespace Theory"
+	display_name = "基础蓝空学说"
 	description = "Basic studies into the mysterious alternate dimension known as bluespace."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -737,7 +737,7 @@
 
 /datum/techweb_node/bluespace_travel
 	id = "bluespace_travel"
-	display_name = "Bluespace Travel"
+	display_name = "蓝空传送科技"
 	description = "Application of Bluespace for static teleportation technology."
 	prereq_ids = list("practical_bluespace")
 	design_ids = list(
@@ -754,7 +754,7 @@
 
 /datum/techweb_node/micro_bluespace
 	id = "micro_bluespace"
-	display_name = "Miniaturized Bluespace Research"
+	display_name = "微型蓝空技术"
 	description = "Extreme reduction in space required for bluespace engines, leading to portable bluespace technology."
 	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
 	design_ids = list(
@@ -773,7 +773,7 @@
 
 /datum/techweb_node/advanced_bluespace
 	id = "bluespace_storage"
-	display_name = "Advanced Bluespace Storage"
+	display_name = "先进蓝空存储"
 	description = "With the use of bluespace we can create even more advanced storage devices than we could have ever done"
 	prereq_ids = list("micro_bluespace", "janitor")
 	design_ids = list(
@@ -783,7 +783,7 @@
 
 /datum/techweb_node/practical_bluespace
 	id = "practical_bluespace"
-	display_name = "Applied Bluespace Research"
+	display_name = "蓝空设备科技"
 	description = "Using bluespace to make things faster and better."
 	prereq_ids = list("bluespace_basic", "engineering")
 	design_ids = list(
@@ -802,7 +802,7 @@
 
 /datum/techweb_node/bluespace_power
 	id = "bluespace_power"
-	display_name = "Bluespace Power Technology"
+	display_name = "蓝空电力科技"
 	description = "Even more powerful.. power!"
 	prereq_ids = list("adv_power", "practical_bluespace")
 	design_ids = list(
@@ -814,7 +814,7 @@
 
 /datum/techweb_node/unregulated_bluespace
 	id = "unregulated_bluespace"
-	display_name = "Unregulated Bluespace Research"
+	display_name = "非监管蓝空研究"
 	description = "Bluespace technology using unstable or unbalanced procedures, prone to damaging the fabric of bluespace. Outlawed by galactic conventions."
 	prereq_ids = list("bluespace_travel", "syndicate_basic")
 	design_ids = list(
@@ -826,7 +826,7 @@
 /////////////////////////plasma tech/////////////////////////
 /datum/techweb_node/basic_plasma
 	id = "basic_plasma"
-	display_name = "Basic Plasma Research"
+	display_name = "基础等离子科技"
 	description = "Research into the mysterious and dangerous substance, plasma."
 	prereq_ids = list("engineering")
 	design_ids = list(
@@ -836,7 +836,7 @@
 
 /datum/techweb_node/adv_plasma
 	id = "adv_plasma"
-	display_name = "Advanced Plasma Research"
+	display_name = "先进等离子科技"
 	description = "Research on how to fully exploit the power of plasma."
 	prereq_ids = list("basic_plasma")
 	design_ids = list(
@@ -848,7 +848,7 @@
 
 /datum/techweb_node/adv_shells
 	id = "adv_shells"
-	display_name = "Advanced Shell Research"
+	display_name = "高级壳体研究"
 	description = "Grants access to more complicated shell designs."
 	prereq_ids = list("basic_circuitry", "engineering")
 	design_ids = list(
@@ -869,7 +869,7 @@
 
 /datum/techweb_node/bci_shells
 	id = "bci_shells"
-	display_name = "Brain-Computer Interfaces"
+	display_name = "脑机接口"
 	description = "Grants access to biocompatable shell designs and components."
 	prereq_ids = list("adv_shells")
 	design_ids = list(
@@ -888,7 +888,7 @@
 
 /datum/techweb_node/movable_shells_tech
 	id = "movable_shells"
-	display_name = "Movable Shell Research"
+	display_name = "可移动壳体研究"
 	description = "Grants access to movable shells."
 	prereq_ids = list("adv_shells", "robotics")
 	design_ids = list(
@@ -900,7 +900,7 @@
 
 /datum/techweb_node/server_shell_tech
 	id = "server_shell"
-	display_name = "Server Technology Research"
+	display_name = "服务器科技"
 	description = "Grants access to a server shell that has a very high capacity for components."
 	prereq_ids = list("adv_shells", "computer_data_disks")
 	design_ids = list(
@@ -911,7 +911,7 @@
 /////////////////////////robotics tech/////////////////////////
 /datum/techweb_node/robotics
 	id = "robotics"
-	display_name = "Basic Robotics Research"
+	display_name = "基础机械学"
 	description = "Programmable machines that make our lives lazier."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -923,7 +923,7 @@
 
 /datum/techweb_node/adv_robotics
 	id = "adv_robotics"
-	display_name = "Advanced Robotics Research"
+	display_name = "先进机械学"
 	description = "Advanced synthetic neural networks and synaptic pathways allows for extraordinary leaps in cybernetic intelligence and interfacing."
 	prereq_ids = list("robotics")
 	design_ids = list(
@@ -937,7 +937,7 @@
 
 /datum/techweb_node/adv_bots
 	id = "adv_bots"
-	display_name = "Advanced Bots Research"
+	display_name = "先进机器人"
 	description = "Grants access to a special launchpad designed for bots."
 	prereq_ids = list("robotics")
 	design_ids = list(
@@ -948,7 +948,7 @@
 
 /datum/techweb_node/exodrone_tech
 	id = "exodrone"
-	display_name = "Exploration Drone Research"
+	display_name = "探索无人机"
 	description = "Technology for exploring far away locations."
 	prereq_ids = list("robotics")
 	design_ids = list(
@@ -961,7 +961,7 @@
 
 /datum/techweb_node/neural_programming
 	id = "neural_programming"
-	display_name = "Neural Programming"
+	display_name = "神经程序"
 	description = "Study into networks of processing units that mimic our brains."
 	prereq_ids = list("biotech", "datatheory")
 	design_ids = list(
@@ -971,7 +971,7 @@
 
 /datum/techweb_node/cyborg_upg_util
 	id = "cyborg_upg_util"
-	display_name = "Cyborg Upgrades: Utility"
+	display_name = "赛博升级件: 多功能"
 	description = "Utility upgrades for cyborgs."
 	prereq_ids = list("adv_robotics")
 	design_ids = list(
@@ -992,7 +992,7 @@
 
 /datum/techweb_node/cyborg_upg_serv
 	id = "cyborg_upg_serv"
-	display_name = "Cyborg Upgrades: Service"
+	display_name = "赛博升级件: 服务"
 	description = "Service upgrades for cyborgs."
 	prereq_ids = list("adv_robotics")
 	design_ids = list(
@@ -1007,7 +1007,7 @@
 
 /datum/techweb_node/cyborg_upg_engiminer
 	id = "cyborg_upg_engiminer"
-	display_name = "Cyborg Upgrades: Engineering & Mining"
+	display_name = "赛博升级件: 工程&采矿"
 	description = "Engineering and Mining upgrades for cyborgs."
 	prereq_ids = list("adv_engi", "basic_mining")
 	design_ids = list(
@@ -1023,7 +1023,7 @@
 
 /datum/techweb_node/cyborg_upg_med
 	id = "cyborg_upg_med"
-	display_name = "Cyborg Upgrades: Medical"
+	display_name = "赛博升级件: 医学"
 	description = "Medical upgrades for cyborgs."
 	prereq_ids = list("adv_biotech")
 	design_ids = list(
@@ -1038,7 +1038,7 @@
 
 /datum/techweb_node/ai_basic
 	id = "ai_basic"
-	display_name = "Artificial Intelligence"
+	display_name = "人工智能"
 	description = "AI unit research."
 	prereq_ids = list("adv_robotics")
 	design_ids = list(
@@ -1067,7 +1067,7 @@
 
 /datum/techweb_node/ai_adv
 	id = "ai_adv"
-	display_name = "Advanced Artificial Intelligence"
+	display_name = "先进人工智能"
 	description = "State of the art lawsets to be used for AI research."
 	prereq_ids = list("ai_basic")
 	design_ids = list(
@@ -1103,7 +1103,7 @@
 /////////////////////////EMP tech/////////////////////////
 /datum/techweb_node/emp_basic //EMP tech for some reason
 	id = "emp_basic"
-	display_name = "Electromagnetic Theory"
+	display_name = "电磁理论"
 	description = "Study into usage of frequencies in the electromagnetic spectrum."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -1123,7 +1123,7 @@
 
 /datum/techweb_node/emp_adv
 	id = "emp_adv"
-	display_name = "Advanced Electromagnetic Theory"
+	display_name = "高级电磁理论"
 	description = "Determining whether reversing the polarity will actually help in a given situation."
 	prereq_ids = list("emp_basic")
 	design_ids = list(
@@ -1134,7 +1134,7 @@
 
 /datum/techweb_node/emp_super
 	id = "emp_super"
-	display_name = "Quantum Electromagnetic Technology" //bs
+	display_name = "量子电磁科技" //bs
 	description = "Even better electromagnetic technology."
 	prereq_ids = list("emp_adv")
 	design_ids = list(
@@ -1149,7 +1149,7 @@
 /////////////////////////Clown tech/////////////////////////
 /datum/techweb_node/clown
 	id = "clown"
-	display_name = "Clown Technology"
+	display_name = "小丑科技"
 	description = "Honk?!"
 	prereq_ids = list("base")
 	design_ids = list(
@@ -1177,7 +1177,7 @@
 ////////////////////////Computer tech////////////////////////
 /datum/techweb_node/comptech
 	id = "comptech"
-	display_name = "Computer Consoles"
+	display_name = "计算机控制台"
 	description = "Computers and how they work."
 	prereq_ids = list("datatheory")
 	design_ids = list(
@@ -1196,7 +1196,7 @@
 
 /datum/techweb_node/data_disks
 	id = "computer_data_disks"
-	display_name = "Computer Data Disks"
+	display_name = "计算机数据盘"
 	description = "Data disks used for storing modular computer stuff."
 	prereq_ids = list("comptech")
 	design_ids = list(
@@ -1208,7 +1208,7 @@
 
 /datum/techweb_node/computer_board_gaming
 	id = "computer_board_gaming"
-	display_name = "Arcade Games"
+	display_name = "街机游戏"
 	description = "For the slackers on the station."
 	prereq_ids = list("comptech")
 	design_ids = list(
@@ -1221,7 +1221,7 @@
 
 /datum/techweb_node/comp_recordkeeping
 	id = "comp_recordkeeping"
-	display_name = "Computerized Recordkeeping"
+	display_name = "档案存储科技"
 	description = "Organized record databases and how they're used."
 	prereq_ids = list("comptech")
 	design_ids = list(
@@ -1236,7 +1236,7 @@
 
 /datum/techweb_node/telecomms
 	id = "telecomms"
-	display_name = "Telecommunications Technology"
+	display_name = "通讯科技"
 	description = "Subspace transmission technology for near-instant communications devices."
 	prereq_ids = list("comptech", "bluespace_basic")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
@@ -1265,7 +1265,7 @@
 
 /datum/techweb_node/tram
 	id = "tram"
-	display_name = "Tram Technology"
+	display_name = "电车科技"
 	description = "Technology for linear induction transportation systems."
 	prereq_ids = list("telecomms")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
@@ -1278,7 +1278,7 @@
 
 /datum/techweb_node/integrated_hud
 	id = "integrated_HUDs"
-	display_name = "Integrated HUDs"
+	display_name = "综合HUD"
 	description = "The usefulness of computerized records, projected straight onto your eyepiece!"
 	prereq_ids = list("comp_recordkeeping", "emp_basic")
 	design_ids = list(
@@ -1291,7 +1291,7 @@
 
 /datum/techweb_node/nvg_tech
 	id = "NVGtech"
-	display_name = "Night Vision Technology"
+	display_name = "夜视科技"
 	description = "Allows seeing in the dark without actual light!"
 	prereq_ids = list("integrated_HUDs", "adv_engi", "emp_adv")
 	design_ids = list(
@@ -1307,7 +1307,7 @@
 ////////////////////////Medical////////////////////////
 /datum/techweb_node/genetics
 	id = "genetics"
-	display_name = "Genetic Engineering"
+	display_name = "基因工程"
 	description = "We have the technology to change him."
 	prereq_ids = list("biotech")
 	design_ids = list(
@@ -1320,7 +1320,7 @@
 
 /datum/techweb_node/cryotech
 	id = "cryotech"
-	display_name = "Cryostasis Technology"
+	display_name = "冷冻科技"
 	description = "Smart freezing of objects to preserve them!"
 	prereq_ids = list("adv_engi", "biotech")
 	design_ids = list(
@@ -1333,7 +1333,7 @@
 
 /datum/techweb_node/subdermal_implants
 	id = "subdermal_implants"
-	display_name = "Subdermal Implants"
+	display_name = "皮下植入物"
 	description = "Electronic implants buried beneath the skin."
 	prereq_ids = list("biotech")
 	design_ids = list(
@@ -1348,7 +1348,7 @@
 
 /datum/techweb_node/cyber_organs
 	id = "cyber_organs"
-	display_name = "Cybernetic Organs"
+	display_name = "电子器官"
 	description = "We have the technology to rebuild him."
 	prereq_ids = list("biotech")
 	design_ids = list(
@@ -1369,7 +1369,7 @@
 
 /datum/techweb_node/cyber_organs_upgraded
 	id = "cyber_organs_upgraded"
-	display_name = "Upgraded Cybernetic Organs"
+	display_name = "先进电子器官"
 	description = "We have the technology to upgrade him."
 	prereq_ids = list("adv_biotech", "cyber_organs")
 	design_ids = list(
@@ -1393,7 +1393,7 @@
 
 /datum/techweb_node/cyber_implants
 	id = "cyber_implants"
-	display_name = "Cybernetic Implants"
+	display_name = "电子植入物"
 	description = "Electronic implants that improve humans."
 	prereq_ids = list("adv_biotech", "datatheory")
 	design_ids = list(
@@ -1412,7 +1412,7 @@
 
 /datum/techweb_node/adv_cyber_implants
 	id = "adv_cyber_implants"
-	display_name = "Advanced Cybernetic Implants"
+	display_name = "先进电子植入物"
 	description = "Upgraded and more powerful cybernetic implants."
 	prereq_ids = list("neural_programming", "cyber_implants","integrated_HUDs")
 	design_ids = list(
@@ -1430,7 +1430,7 @@
 
 /datum/techweb_node/combat_cyber_implants
 	id = "combat_cyber_implants"
-	display_name = "Combat Cybernetic Implants"
+	display_name = "战斗电子植入物"
 	description = "Military grade combat implants to improve performance."
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
 	design_ids = list(
@@ -1453,7 +1453,7 @@
 
 /datum/techweb_node/basic_mining
 	id = "basic_mining"
-	display_name = "Mining Technology"
+	display_name = "采矿科技"
 	description = "Better than Efficiency V."
 	prereq_ids = list("engineering", "basic_plasma")
 	design_ids = list(
@@ -1477,7 +1477,7 @@
 
 /datum/techweb_node/adv_mining
 	id = "adv_mining"
-	display_name = "Advanced Mining Technology"
+	display_name = "先进采矿科技"
 	description = "Efficiency Level 127" //dumb mc references
 	prereq_ids = list("basic_mining", "adv_power", "adv_plasma")
 	design_ids = list(
@@ -1491,7 +1491,7 @@
 
 /datum/techweb_node/janitor
 	id = "janitor"
-	display_name = "Advanced Sanitation Technology"
+	display_name = "先进清洁设备科技"
 	description = "Clean things better, faster, stronger, and harder!"
 	prereq_ids = list("adv_engi")
 	design_ids = list(
@@ -1510,7 +1510,7 @@
 
 /datum/techweb_node/botany
 	id = "botany"
-	display_name = "Botanical Engineering"
+	display_name = "植物学"
 	description = "Botanical tools"
 	prereq_ids = list("biotech")
 	design_ids = list(
@@ -1528,7 +1528,7 @@
 
 /datum/techweb_node/fishing
 	id = "fishing"
-	display_name = "Fishing Technology"
+	display_name = "钓鱼科技"
 	description = "Cutting edge fishing advancements."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -1541,7 +1541,7 @@
 
 /datum/techweb_node/exp_tools
 	id = "exp_tools"
-	display_name = "Experimental Tools"
+	display_name = "实验性工具"
 	description = "Highly advanced tools."
 	prereq_ids = list("adv_engi")
 	design_ids = list(
@@ -1559,7 +1559,7 @@
 
 /datum/techweb_node/sec_basic
 	id = "sec_basic"
-	display_name = "Basic Security Equipment"
+	display_name = "基础安保设备"
 	description = "Standard equipment used by security."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -1574,7 +1574,7 @@
 
 /datum/techweb_node/rcd_upgrade
 	id = "rcd_upgrade"
-	display_name = "Rapid Device Upgrade Designs"
+	display_name = "快捷装置升级磁盘"
 	description = "Unlocks new designs that improve rapid devices."
 	prereq_ids = list("adv_engi")
 	design_ids = list(
@@ -1589,7 +1589,7 @@
 
 /datum/techweb_node/adv_rcd_upgrade
 	id = "adv_rcd_upgrade"
-	display_name = "Advanced RCD Designs Upgrade"
+	display_name = "先进RCD升级磁盘"
 	description = "Unlocks new RCD designs."
 	design_ids = list(
 		"rcd_upgrade_silo_link",
@@ -1604,7 +1604,7 @@
 /////////////////////////weaponry tech/////////////////////////
 /datum/techweb_node/weaponry
 	id = "weaponry"
-	display_name = "Weapon Development Technology"
+	display_name = "军械科技"
 	description = "Our researchers have found new ways to weaponize just about everything now."
 	prereq_ids = list("engineering")
 	design_ids = list(
@@ -1617,7 +1617,7 @@
 
 /datum/techweb_node/adv_weaponry
 	id = "adv_weaponry"
-	display_name = "Advanced Weapon Development Technology"
+	display_name = "先进军械科技"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
 	design_ids = list(
@@ -1627,7 +1627,7 @@
 
 /datum/techweb_node/electric_weapons
 	id = "electronic_weapons"
-	display_name = "Electric Weapons"
+	display_name = "电磁武器"
 	description = "Weapons using electric technology"
 	prereq_ids = list("weaponry", "adv_power"  , "emp_basic")
 	design_ids = list(
@@ -1638,7 +1638,7 @@
 
 /datum/techweb_node/radioactive_weapons
 	id = "radioactive_weapons"
-	display_name = "Radioactive Weaponry"
+	display_name = "放射性武器"
 	description = "Weapons using radioactive technology."
 	prereq_ids = list("adv_engi", "adv_weaponry")
 	design_ids = list(
@@ -1648,7 +1648,7 @@
 
 /datum/techweb_node/beam_weapons
 	id = "beam_weapons"
-	display_name = "Beam Weaponry"
+	display_name = "基础光束武器"
 	description = "Various basic beam weapons"
 	prereq_ids = list("adv_weaponry")
 	design_ids = list(
@@ -1659,7 +1659,7 @@
 
 /datum/techweb_node/adv_beam_weapons
 	id = "adv_beam_weapons"
-	display_name = "Advanced Beam Weaponry"
+	display_name = "先进光束武器"
 	description = "Various advanced beam weapons"
 	prereq_ids = list("beam_weapons")
 	design_ids = list(
@@ -1669,7 +1669,7 @@
 
 /datum/techweb_node/explosive_weapons
 	id = "explosive_weapons"
-	display_name = "Explosive & Pyrotechnical Weaponry"
+	display_name = "先进手榴弹壳"
 	description = "If the light stuff just won't do it."
 	prereq_ids = list("adv_weaponry")
 	design_ids = list(
@@ -1681,7 +1681,7 @@
 
 /datum/techweb_node/exotic_ammo
 	id = "exotic_ammo"
-	display_name = "Exotic Ammunition"
+	display_name = "异物弹药"
 	description = "They won't know what hit em."
 	prereq_ids = list("weaponry")
 	design_ids = list(
@@ -1693,7 +1693,7 @@
 
 /datum/techweb_node/gravity_gun
 	id = "gravity_gun"
-	display_name = "One-point Bluespace-gravitational Manipulator"
+	display_name = "单点蓝空重力操纵"
 	description = "Fancy wording for gravity gun."
 	prereq_ids = list("adv_weaponry", "bluespace_travel")
 	design_ids = list(
@@ -1706,7 +1706,7 @@
 
 /datum/techweb_node/mod_advanced
 	id = "mod_advanced"
-	display_name = "Advanced Modular Suits"
+	display_name = "先进模块"
 	description = "More advanced modules, to improve modular suits."
 	prereq_ids = list("robotics")
 	design_ids = list(
@@ -1722,7 +1722,7 @@
 
 /datum/techweb_node/mod_engineering
 	id = "mod_engineering"
-	display_name = "Engineering Modular Suits"
+	display_name = "工程模组"
 	description = "Engineering suits, for powered engineers."
 	prereq_ids = list("mod_advanced", "engineering")
 	design_ids = list(
@@ -1738,7 +1738,7 @@
 
 /datum/techweb_node/mod_advanced_engineering
 	id = "mod_advanced_engineering"
-	display_name = "Advanced Engineering Modular Suits"
+	display_name = "先进工程模组"
 	description = "Advanced Engineering suits, for advanced powered engineers."
 	prereq_ids = list("mod_engineering", "adv_engi")
 	design_ids = list(
@@ -1758,7 +1758,7 @@
 
 /datum/techweb_node/mod_medical
 	id = "mod_medical"
-	display_name = "Medical Modular Suits"
+	display_name = "医疗模块"
 	description = "Medical suits for quick rescue purposes."
 	prereq_ids = list("mod_advanced", "biotech")
 	design_ids = list(
@@ -1775,7 +1775,7 @@
 
 /datum/techweb_node/mod_advanced_medical
 	id = "mod_advanced_medical"
-	display_name = "Advanced Medical Modular Suits"
+	display_name = "先进医疗模块"
 	description = "Advanced medical suits for quicker rescue purposes."
 	prereq_ids = list("mod_medical", "adv_biotech")
 	design_ids = list(
@@ -1788,7 +1788,7 @@
 
 /datum/techweb_node/mod_security
 	id = "mod_security"
-	display_name = "Security Modular Suits"
+	display_name = "安保模块"
 	description = "Security suits for space crime handling."
 	prereq_ids = list("mod_advanced", "sec_basic")
 	design_ids = list(
@@ -1806,7 +1806,7 @@
 
 /datum/techweb_node/mod_entertainment
 	id = "mod_entertainment"
-	display_name = "Entertainment Modular Suits"
+	display_name = "娱乐性模块"
 	description = "Powered suits for protection against low-humor environments."
 	prereq_ids = list("mod_advanced", "clown")
 	design_ids = list(
@@ -1819,7 +1819,7 @@
 
 /datum/techweb_node/mod_anomaly
 	id = "mod_anomaly"
-	display_name = "Anomalock Modular Suits"
+	display_name = "异常模块"
 	description = "Modules for modular suits that require anomaly cores to function."
 	prereq_ids = list("mod_advanced", "anomaly_research")
 	design_ids = list(
@@ -1830,7 +1830,7 @@
 
 /datum/techweb_node/mod_anomaly_engi
 	id = "mod_anomaly_engi"
-	display_name = "Engineering Anomalock Modular Suits"
+	display_name = "异常工程模块"
 	description = "Advanced modules for modular suits, using anomaly cores to become even better engineers."
 	prereq_ids = list("mod_advanced_engineering", "mod_anomaly")
 	design_ids = list(
@@ -1841,7 +1841,7 @@
 ////////////////////////mech technology////////////////////////
 /datum/techweb_node/adv_mecha
 	id = "adv_mecha"
-	display_name = "Advanced Exosuits"
+	display_name = "先进外骨骼机甲"
 	description = "For when you just aren't Gundam enough."
 	prereq_ids = list("adv_robotics")
 	design_ids = list(
@@ -1852,7 +1852,7 @@
 
 /datum/techweb_node/odysseus
 	id = "mecha_odysseus"
-	display_name = "EXOSUIT: Odysseus"
+	display_name = "机甲: 奥德修斯"
 	description = "Odysseus exosuit designs"
 	prereq_ids = list("base")
 	design_ids = list(
@@ -1870,7 +1870,7 @@
 
 /datum/techweb_node/clarke
 	id = "mecha_clarke"
-	display_name = "EXOSUIT: Clarke"
+	display_name = "机甲: 克拉克"
 	description = "Clarke exosuit designs"
 	prereq_ids = list("engineering")
 	design_ids = list(
@@ -1886,7 +1886,7 @@
 
 /datum/techweb_node/paddy
 	id = "mech_paddy"
-	display_name = "EXOSUIT: APLU \"Paddy\""
+	display_name = "机甲: APLU \"帕迪\""
 	description = "Paddy exosuit designs"
 	prereq_ids = list("adv_mecha", "adv_mecha_armor")
 	design_ids = list(
@@ -1898,7 +1898,7 @@
 
 /datum/techweb_node/gygax
 	id = "mech_gygax"
-	display_name = "EXOSUIT: Gygax"
+	display_name = "机甲: 吉加斯"
 	description = "Gygax exosuit designs"
 	prereq_ids = list("adv_mecha", "adv_mecha_armor")
 	design_ids = list(
@@ -1919,7 +1919,7 @@
 
 /datum/techweb_node/durand
 	id = "mech_durand"
-	display_name = "EXOSUIT: Durand"
+	display_name = "机甲: 杜兰德"
 	description = "Durand exosuit designs"
 	prereq_ids = list("adv_mecha", "adv_mecha_armor")
 	design_ids = list(
@@ -1940,7 +1940,7 @@
 
 /datum/techweb_node/phazon
 	id = "mecha_phazon"
-	display_name = "EXOSUIT: Phazon"
+	display_name = "机甲: 法宗"
 	description = "Phazon exosuit designs"
 	prereq_ids = list("adv_mecha", "adv_mecha_armor" , "micro_bluespace")
 	design_ids = list(
@@ -1961,7 +1961,7 @@
 
 /datum/techweb_node/savannah_ivanov
 	id = "mecha_savannah_ivanov"
-	display_name = "EXOSUIT: Savannah-Ivanov"
+	display_name = "机甲: 萨凡纳-伊万诺夫"
 	description = "Savannah-Ivanov exosuit designs"
 	prereq_ids = list("adv_mecha", "weaponry", "exp_tools")
 	design_ids = list(
@@ -1982,7 +1982,7 @@
 
 /datum/techweb_node/adv_mecha_tools
 	id = "adv_mecha_tools"
-	display_name = "Advanced Exosuit Equipment"
+	display_name = "先进机甲装配"
 	description = "Tools for high level mech suits"
 	prereq_ids = list("adv_mecha")
 	design_ids = list(
@@ -1992,7 +1992,7 @@
 
 /datum/techweb_node/med_mech_tools
 	id = "med_mech_tools"
-	display_name = "Medical Exosuit Equipment"
+	display_name = "医学机甲装配"
 	description = "Tools for high level mech suits"
 	prereq_ids = list("adv_biotech")
 	design_ids = list(
@@ -2004,7 +2004,7 @@
 
 /datum/techweb_node/mech_armor
 	id = "adv_mecha_armor"
-	display_name = "Exosuit Heavy Armor Research"
+	display_name = "机甲重型外装甲"
 	description = "Recreating heavy armor with new rapid fabrication techniques."
 	prereq_ids = list("adv_mecha", "bluespace_power")
 	design_ids = list(
@@ -2017,7 +2017,7 @@
 
 /datum/techweb_node/mech_scattershot
 	id = "mecha_tools"
-	display_name = "Exosuit Weapon (LBX AC 10 \"Scattershot\")"
+	display_name = "机甲军械 (LBX AC 10\"激光炮\")"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_mecha")
 	design_ids = list(
@@ -2028,7 +2028,7 @@
 
 /datum/techweb_node/mech_carbine
 	id = "mech_carbine"
-	display_name = "Exosuit Weapon (FNX-99 \"Hades\" Carbine)"
+	display_name = "机甲军械 (FNX-99 \"地狱\"卡宾枪)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("exotic_ammo")
 	design_ids = list(
@@ -2039,7 +2039,7 @@
 
 /datum/techweb_node/mech_ion
 	id = "mmech_ion"
-	display_name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
+	display_name = "机甲军械 (MKIV 重型离子加农)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("electronic_weapons", "emp_adv")
 	design_ids = list(
@@ -2049,7 +2049,7 @@
 
 /datum/techweb_node/mech_tesla
 	id = "mech_tesla"
-	display_name = "Exosuit Weapon (MKI Tesla Cannon)"
+	display_name = "机甲军械 (MKI 特斯拉加农)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("electronic_weapons", "adv_power")
 	design_ids = list(
@@ -2059,7 +2059,7 @@
 
 /datum/techweb_node/mech_laser
 	id = "mech_laser"
-	display_name = "Exosuit Weapon (CH-PS \"Immolator\" Laser)"
+	display_name = "机甲军械 (CH-PS \"献祭者\"镭射)"
 	description = "A basic piece of mech weaponry"
 	prereq_ids = list("beam_weapons")
 	design_ids = list(
@@ -2069,7 +2069,7 @@
 
 /datum/techweb_node/mech_laser_heavy
 	id = "mech_laser_heavy"
-	display_name = "Exosuit Weapon (CH-LC \"Solaris\" Laser Cannon)"
+	display_name = "机甲军械 (CH-LC\"索拉里\"激光加农)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_beam_weapons")
 	design_ids = list(
@@ -2079,7 +2079,7 @@
 
 /datum/techweb_node/mech_disabler
 	id = "mech_disabler"
-	display_name = "Exosuit Weapon (CH-DS \"Peacemaker\" Mounted Disabler)"
+	display_name = "机甲军械 (CH-DS\"和平捍卫者\"机载镇暴光枪)"
 	description = "A basic piece of mech weaponry"
 	prereq_ids = list("adv_mecha")
 	design_ids = list(
@@ -2089,7 +2089,7 @@
 
 /datum/techweb_node/mech_grenade_launcher
 	id = "mech_grenade_launcher"
-	display_name = "Exosuit Weapon (SGL-6 Grenade Launcher)"
+	display_name = "机甲军械 (SGL-6 榴弹发射器)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("explosive_weapons")
 	design_ids = list(
@@ -2100,7 +2100,7 @@
 
 /datum/techweb_node/mech_missile_rack
 	id = "mech_missile_rack"
-	display_name = "Exosuit Weapon (BRM-6 Missile Rack)"
+	display_name = "机甲军械 (BRM-6 导弹束)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("explosive_weapons")
 	design_ids = list(
@@ -2111,7 +2111,7 @@
 
 /datum/techweb_node/clusterbang_launcher
 	id = "clusterbang_launcher"
-	display_name = "Exosuit Module (SOB-3 Clusterbang Launcher)"
+	display_name = "机甲模块 (SOB-3 闪光束投掷器)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("explosive_weapons")
 	design_ids = list(
@@ -2122,7 +2122,7 @@
 
 /datum/techweb_node/mech_teleporter
 	id = "mech_teleporter"
-	display_name = "Exosuit Module (Teleporter Module)"
+	display_name = "机甲模块 (传送器模块)"
 	description = "An advanced piece of mech Equipment"
 	prereq_ids = list("micro_bluespace")
 	design_ids = list(
@@ -2132,7 +2132,7 @@
 
 /datum/techweb_node/mech_wormhole_gen
 	id = "mech_wormhole_gen"
-	display_name = "Exosuit Module (Localized Wormhole Generator)"
+	display_name = "机甲模块 (局域性虫洞生成器)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("bluespace_travel")
 	design_ids = list(
@@ -2142,7 +2142,7 @@
 
 /datum/techweb_node/mech_lmg
 	id = "mech_lmg"
-	display_name = "Exosuit Weapon (\"Ultra AC 2\" LMG)"
+	display_name = "机甲军械 (AC-2 轻机枪)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("adv_mecha")
 	design_ids = list(
@@ -2153,7 +2153,7 @@
 
 /datum/techweb_node/mech_diamond_drill
 	id = "mech_diamond_drill"
-	display_name = "Exosuit Diamond Drill"
+	display_name = "机甲钻石钻机"
 	description = "A diamond drill fit for a large exosuit"
 	prereq_ids = list("adv_mining")
 	design_ids = list(
@@ -2164,7 +2164,7 @@
 ////////////////////////Alien technology////////////////////////
 /datum/techweb_node/alientech //AYYYYYYYYLMAOO tech
 	id = "alientech"
-	display_name = "Alien Technology"
+	display_name = "外星科技"
 	description = "Things used by the greys."
 	prereq_ids = list("biotech","engineering")
 	required_items_to_unlock = list(
@@ -2198,7 +2198,7 @@
 
 /datum/techweb_node/alien_bio
 	id = "alien_bio"
-	display_name = "Alien Biological Tools"
+	display_name = "外星生物工具"
 	description = "Advanced biological tools."
 	prereq_ids = list("alientech", "adv_biotech")
 	design_ids = list(
@@ -2236,7 +2236,7 @@
 
 /datum/techweb_node/alien_engi
 	id = "alien_engi"
-	display_name = "Alien Engineering"
+	display_name = "外星工程"
 	description = "Alien engineering tools"
 	prereq_ids = list("alientech", "adv_engi")
 
@@ -2267,7 +2267,7 @@
 
 /datum/techweb_node/syndicate_basic
 	id = "syndicate_basic"
-	display_name = "Illegal Technology"
+	display_name = "违禁科技"
 	description = "Dangerous research used to create dangerous objects."
 	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
 	design_ids = list(
@@ -2312,7 +2312,7 @@
 ////////////////////////B.E.P.I.S. Locked Techs////////////////////////
 /datum/techweb_node/light_apps
 	id = "light_apps"
-	display_name = "Illumination Applications"
+	display_name = "照明应用科技"
 	description = "Applications of lighting and vision technology not originally thought to be commercially viable."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -2325,7 +2325,7 @@
 
 /datum/techweb_node/extreme_office
 	id = "extreme_office"
-	display_name = "Advanced Office Applications"
+	display_name = "高级办公用品"
 	description = "Some of our smartest lab guys got together on a Friday and improved our office efficiency by 350%. Here's how."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -2338,7 +2338,7 @@
 
 /datum/techweb_node/spec_eng
 	id = "spec_eng"
-	display_name = "Specialized Engineering"
+	display_name = "特种工程"
 	description = "Conventional wisdom has deemed these engineering products 'technically' safe, but far too dangerous to traditionally condone."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -2351,7 +2351,7 @@
 
 /datum/techweb_node/aus_security
 	id = "aus_security"
-	display_name = "Australicus Security Protocols"
+	display_name = "澳洲安保协议"
 	description = "It is said that security in the Australicus sector is tight, so we took some pointers from their equipment. Thankfully, our sector lacks any signs of these, 'dropbears'."
 	prereq_ids = list("base")
 	design_ids = list(
@@ -2364,9 +2364,9 @@
 
 /datum/techweb_node/interrogation
 	id = "interrogation"
-	display_name = "Enhanced Interrogation Technology"
-	description = "By cross-referencing several declassified documents from past dictatorial regimes, we were able to develop an incredibly effective interrogation device. \
-	Ethical concerns about loss of free will do not apply to criminals, according to galactic law."
+	display_name = "强化审讯技术"
+	description = "通过交叉分析多个历史独裁政权的解密文件，我们成功研发出了高效的审讯设备. \
+	根据太空法，关于罪犯失去自由意志的问题不纳入伦理考量."
 	prereq_ids = list("base")
 	design_ids = list(
 		"hypnochair",
@@ -2377,7 +2377,7 @@
 
 /datum/techweb_node/sticky_advanced
 	id = "sticky_advanced"
-	display_name = "Advanced Sticky Technology"
+	display_name = "先进粘附技术"
 	description = "Taking a good joke too far? Nonsense!"
 	design_ids = list(
 		"pointy_tape",
@@ -2389,7 +2389,7 @@
 
 /datum/techweb_node/tackle_advanced
 	id = "tackle_advanced"
-	display_name = "Advanced Grapple Technology"
+	display_name = "先进抓握技术"
 	description = "Nanotrasen would like to remind its researching staff that it is never acceptable to \"glomp\" your coworkers, and further \"scientific trials\" on the subject \
 	will no longer be accepted in its academic journals."
 	design_ids = list(
@@ -2402,7 +2402,7 @@
 
 /datum/techweb_node/mod_experimental
 	id = "mod_experimental"
-	display_name = "Experimental Modular Suits"
+	display_name = "实验性模块"
 	description = "Applications of experimentality when creating MODsuits have created these..."
 	prereq_ids = list("base")
 	design_ids = list(

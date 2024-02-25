@@ -3,7 +3,7 @@
 
 /datum/techweb_node/adv_vision
 	id = "adv_vision"
-	display_name = "Combat Cybernetic Eyes"
+	display_name = "战斗电子眼"
 	description = "Military grade combat implants to improve vision."
 	prereq_ids = list("combat_cyber_implants", "alien_bio")
 	design_ids = list(
@@ -16,7 +16,7 @@
 
 /datum/techweb_node/borg_shapeshifter
 	id = "borg_shapeshifter"
-	display_name = "Illegal Cyborg Addition"
+	display_name = "违禁赛博附加件"
 	description = "Some sort of experimental tool that was once used by an rival company."
 	prereq_ids = list("syndicate_basic")
 	design_ids = list("borg_shapeshifter_module")
