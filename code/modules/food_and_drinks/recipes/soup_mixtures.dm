@@ -647,7 +647,7 @@
 
 // Tomato-eyeball soup
 /datum/reagent/consumable/nutriment/soup/eyeball
-	name = "Eyeball soup眼球汤"
+	name = "Eyeball soup-眼球汤"
 	description = "它回头看着你..."
 	data = list("番茄" = 1, "蠕动" = 1)
 	color = "#FF1C1C"

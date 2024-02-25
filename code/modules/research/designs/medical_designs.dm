@@ -462,7 +462,7 @@
 
 /datum/design/cyberimp_diagnostic_hud
 	name = "Diagnostic HUD Implant-诊断HUD植入物"
-	desc = "这对电子眼会在你视野内的一切上显示诊断HUD.转动眼球来控制.."
+	desc = "这对电子眼会在你视野内的一切上显示诊断HUD.转动眼球来控制."
 	id = "ci-diaghud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 50

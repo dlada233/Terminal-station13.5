@@ -97,7 +97,7 @@
 	return instruments
 
 /obj/item/choice_beacon/ingredient
-	name = "原料投送信标"
+	name = "食材投送信标"
 	desc = "召唤一盒食材来开启你的烹饪之旅."
 	icon_state = "sb_delivery"
 	inhand_icon_state = "sb_delivery"
@@ -133,7 +133,7 @@
 	desc = "投送一些增强植入物，可以使用3次!"
 	uses = 3
 	company_source = "S.E.L.F."
-	company_message = span_bold("订单状态: 已收到. 包裹状态: 已发货. Notes: 为最佳体验, 使用 supplied Interdyne-brand autosurgeons-补给的Interdyne-brand全自动手术仪来改变植入物状态.")
+	company_message = span_bold("订单状态: 已收到. 包裹状态: 已发货. 注意: 为获得最佳体验, 使用补给的Interdyne牌全自动手术仪来改变植入物状态.")
 
 /obj/item/choice_beacon/augments/generate_display_names()
 	var/static/list/augment_list

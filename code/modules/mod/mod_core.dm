@@ -1,6 +1,6 @@
 /obj/item/mod/core
-	name = "MOD core"
-	desc = "A non-functional MOD core. Inform the admins if you see this."
+	name = "模块核心"
+	desc = "一个没法运转的模块核心.看到这个物品请通知管理员."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "mod-core"
 	inhand_icon_state = "electronic"
@@ -45,10 +45,10 @@
 	mod.wearer.clear_alert(ALERT_MODSUIT_CHARGE)
 
 /obj/item/mod/core/infinite
-	name = "MOD infinite core"
+	name = "模块无限核心"
 	icon_state = "mod-core-infinite"
-	desc = "A fusion core using the rare Fixium to sustain enough energy for the lifetime of the MOD's user. \
-		This might be because of the slowly killing poison inside, but those are just rumors."
+	desc = "采用了稀有矿物 Fixium 的聚变核心，可为模块使用者提供用之不竭的能源. \
+		传言称其内部有致命的慢性毒素，但尚未有人验证过."
 
 /obj/item/mod/core/infinite/charge_source()
 	return src
@@ -69,13 +69,10 @@
 	return TRUE
 
 /obj/item/mod/core/standard
-	name = "MOD standard core"
+	name = "标准模块核心"
 	icon_state = "mod-core-standard"
-	desc = "Growing in the most lush, fertile areas of the planet Sprout, there is a crystal known as the Heartbloom. \
-		These rare, organic piezoelectric crystals are of incredible cultural significance to the artist castes of the \
-		Ethereals, owing to their appearance; which is exactly similar to that of an Ethereal's heart.\n\
-		Which one you have in your suit is unclear, but either way, \
-		it's been repurposed to be an internal power source for a Modular Outerwear Device."
+	desc = "在Sprout星球上郁郁葱葱、最肥沃的地区，有着一种名为「心之花」的晶体。这些稀有的有机压电晶体外形与 Ethereal 族的心脏极为相似，因此对于 Ethereal 族艺术家阶层来说有着极其重要的文化意义。.\n\
+	你的模块服中用的是哪一颗显然无人知晓，但无论如何，它都被改造成了模块服的内部能量源."
 	/// Installed cell.
 	var/obj/item/stock_parts/cell/cell
 
@@ -283,7 +280,7 @@
 #define PLASMA_CORE_SHEET_CHARGE 2000
 
 /obj/item/mod/core/plasma
-	name = "MOD plasma core"
+	name = "等离子模块核心"
 	icon_state = "mod-core-plasma"
 	desc = "Nanotrasen's attempt at capitalizing on their plasma research. These plasma cores are refueled \
 		through plasma fuel, allowing for easy continued use by their mining squads."

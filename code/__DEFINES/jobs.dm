@@ -45,7 +45,7 @@
 #define JOB_CAPTAIN "舰长-Captain"
 #define JOB_HEAD_OF_PERSONNEL "人事部长-Head Of Personnel"
 #define JOB_HEAD_OF_SECURITY "安保部长-Head of Security"
-#define JOB_RESEARCH_DIRECTOR "研究主管-Research Director"
+#define JOB_RESEARCH_DIRECTOR "科研主管-Research Director"
 #define JOB_CHIEF_ENGINEER "首席工程师-Chief Engineer"
 #define JOB_CHIEF_MEDICAL_OFFICER "首席医疗官-Chief Medical Officer"
 #define JOB_BRIDGE_ASSISTANT "舰桥助理-Bridge Assistant"

@@ -12,7 +12,7 @@ export const Electropack = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="电源">
               <Button
                 icon={power ? 'power-off' : 'times'}
                 content={power ? 'On' : 'Off'}
@@ -21,11 +21,11 @@ export const Electropack = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Frequency"
+              label="频率"
               buttons={
                 <Button
                   icon="sync"
-                  content="Reset"
+                  content="重置"
                   onClick={() =>
                     act('reset', {
                       reset: 'freq',
@@ -52,11 +52,11 @@ export const Electropack = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Code"
+              label="信号"
               buttons={
                 <Button
                   icon="sync"
-                  content="Reset"
+                  content="重置"
                   onClick={() =>
                     act('reset', {
                       reset: 'code',

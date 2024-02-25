@@ -7,7 +7,7 @@
 
 /datum/computer_file/program/maintenance/spectre_meter
 	filename = "spectre_meter"
-	filedesc = "Spectre-Meter-探灵"
+	filedesc = "探灵"
 	power_cell_use = PROGRAM_BASIC_CELL_USE * 2
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	extended_desc = "用来探测附近光谱存在的程序，结合相机拍摄灵异图片."

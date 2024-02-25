@@ -2,7 +2,7 @@
 
 /datum/ntnet_conversation
 	///The title of the conversation, seen in the UI.
-	var/title = "Untitled Conversation"
+	var/title = "未命名聊天"
 	//If a channel is strong, it cannot be renamed or deleted.
 	var/strong = FALSE
 	///The password to join a channel, set by an Administrator.
@@ -113,15 +113,15 @@
 
 /datum/ntnet_conversation/proc/changeop(datum/computer_file/program/chatclient/newop, silent = FALSE)
 	if(!istype(newop))
-		CRASH("[src]尝试添加[newop]为operator-管理员失败, 因其不是本频道用户.")
+		CRASH("[src]尝试添加[newop]为管理员失败, 因其不是本频道用户.")
 	channel_operator = newop
 	if(!silent)
-		add_status_message("频道管理员-operator转移到[newop.username].")
+		add_status_message("频道管理员转移到[newop.username].")
 
 /datum/ntnet_conversation/proc/change_title(newtitle, datum/computer_file/program/chatclient/renamer)
 	if((channel_operator != renamer) || strong) // Not Authorised or channel cannot be editted
 		return FALSE
-	add_status_message("[renamer.username]更改了频道名[title]为[newtitle]")
+	add_status_message("[renamer.username]将频道名[title]更改为[newtitle]")
 	title = newtitle
 
 #undef MAX_CHANNELS

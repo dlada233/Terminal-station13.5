@@ -1,6 +1,6 @@
 
 /obj/item/organ/internal/cyberimp
-	name = "电子植入物-cybernetic implant"
+	name = "cybernetic implant-电子植入物"
 	desc = "A state-of-the-art implant that improves a baseline's functionality."
 	visual = FALSE
 	organ_flags = ORGAN_ROBOTIC
@@ -20,7 +20,7 @@
 //[[[[BRAIN]]]]
 
 /obj/item/organ/internal/cyberimp/brain
-	name = "电子脑植入物-cybernetic brain implant"
+	name = "cybernetic brain implant-电子脑植入物"
 	desc = "注入给大脑的额外子程序."
 	icon_state = "brain_implant"
 	implant_overlay = "brain_implant_overlay"
@@ -37,7 +37,7 @@
 
 
 /obj/item/organ/internal/cyberimp/brain/anti_drop
-	name = "防掉落植入物-anti-drop implant"
+	name = "anti-drop implant-防掉落植入物"
 	desc = "这个脑部电子植入物能够让你的手部肌肉强制收缩，以防止物品从手中掉落。抽动耳朵来切换."
 	var/active = FALSE
 	var/list/stored_items = list()
@@ -99,7 +99,7 @@
 	stored_items -= source
 
 /obj/item/organ/internal/cyberimp/brain/anti_stun
-	name = "中枢神经重启植入物-CNS Rebooter implant"
+	name = "CNS Rebooter implant-中枢神经重启植入物"
 	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
 	implant_color = "#FFFF00"
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
@@ -148,7 +148,7 @@
 	zone = BODY_ZONE_PRECISE_MOUTH
 
 /obj/item/organ/internal/cyberimp/mouth/breathing_tube
-	name = "呼吸管植入物-breathing tube implant"
+	name = "breathing tube implant-呼吸管植入物"
 	desc = "这个简单的植入物在你的背部添加了一个呼吸配件连接器，可以让你在没有佩戴面罩的情况下使用呼吸配件并防止你窒息."
 	icon_state = "implant_mask"
 	slot = ORGAN_SLOT_BREATHING_TUBE
@@ -165,7 +165,7 @@
 //BOX O' IMPLANTS
 
 /obj/item/storage/box/cyber_implants
-	name = "盒装电子植入物-boxed cybernetic implants"
+	name = "boxed cybernetic implants-盒装电子植入物"
 	desc = "A sleek, sturdy box."
 	icon_state = "cyber_implants"
 

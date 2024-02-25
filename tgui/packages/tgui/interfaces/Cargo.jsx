@@ -125,7 +125,7 @@ const CargoStatus = (props) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Shuttle">
+        <LabeledList.Item label="穿梭机">
           {(docked && !requestonly && can_send && (
             <Button
               color={(grocery && 'orange') || 'green'}
@@ -141,12 +141,12 @@ const CargoStatus = (props) => {
           )) ||
             location}
         </LabeledList.Item>
-        <LabeledList.Item label="CentCom Message">{message}</LabeledList.Item>
+        <LabeledList.Item label="中央指挥部信息">{message}</LabeledList.Item>
         {!!loan && !requestonly && (
           <LabeledList.Item label="Loan">
             {(!loan_dispatched && (
               <Button
-                content="Loan Shuttle"
+                content="租借穿梭机"
                 disabled={!(away && docked)}
                 onClick={() => act('loan')}
               />
@@ -325,7 +325,7 @@ const CargoRequests = (props) => {
         !requestonly && (
           <Button
             icon="times"
-            content="Clear"
+            content="清除"
             color="transparent"
             onClick={() => act('denyall')}
           />
@@ -397,7 +397,7 @@ const CargoCartButtons = (props) => {
         <Button
           icon="times"
           color="transparent"
-          content="Clear"
+          content="清除"
           onClick={() => act('clear')}
         />
       )}
@@ -437,7 +437,7 @@ const CargoCart = (props) => {
   return (
     <Section fill>
       <CartHeader />
-      {cart.length === 0 && <Box color="label">Nothing in cart</Box>}
+      {cart.length === 0 && <Box color="label">购物车空空如也</Box>}
       {cart.length > 0 && (
         <Table>
           {cart.map((entry) => (
@@ -499,7 +499,7 @@ const CargoCart = (props) => {
                 lineHeight: '28px',
                 padding: '0 12px',
               }}
-              content="Confirm the order"
+              content="确认订购"
               onClick={() => act('send')}
             />
           )) || <Box opacity={0.5}>Shuttle in {location}.</Box>}
@@ -512,13 +512,13 @@ const CargoCart = (props) => {
 const CargoHelp = (props) => {
   return (
     <>
-      <Section title="Department Orders">
-        空间站内的各个部门可以用他们的部门订购控制台来订货.这些订单完全免费!不会使用货舱&apos;的部门经费,而是使部门订购控制台进入冷却时间.
-        接下来就是你的出场时间了:订单将会出现在你的供应控制台里,之后你需要将送达的货物送到订购者手上.
+      <Section title="部门订购">
+        空间站内的各个部门可以用他们的部门订购控制台来订货. 这些订单完全免费!会使部门订购控制台进入冷却时间，不会使用货舱的部门经费.
+        接下来就是你的出场时间了: 订单将会出现在你的供应控制台里,之后你需要将送达的货物送到订购者手上.
         只要运送的板条箱没有被篡改，你会在送货时获得其全额价值的金额，这使得该系统成为一个不错的赚钱途径.
         <br />
         <b>
-        检查部门订购的板条箱以获取需要货物送达的具体位置.
+        检查部门订购的板条箱以获取货物需要送达的具体位置.
         </b>
       </Section>
       <Section title="MULE 骡机器人">
@@ -528,9 +528,9 @@ const CargoHelp = (props) => {
         <br />
         <b>1.</b> 把要运送的板条箱拖到骡子机器人旁边.
         <br />
-        <b>2.</b> 把板条箱拖到MULE 骡机器人上.它会装载在上面.
+        <b>2.</b> 把板条箱拖到MULE 骡机器人上. 它会装载在上面.
         <br />
-        <b>3.</b> 打开你的PDA,打开<i>机器监管员</i>.
+        <b>3.</b> 打开你的PDA，打开<i>机器监管员</i>.
         <br />
         <b>4.</b> 找到你的MULE 骡机器人.
         <br />
@@ -542,11 +542,11 @@ const CargoHelp = (props) => {
         <br />
         <b>9.</b> 选择<i>目的地</i>.
         <br />
-        <b>9.</b> 点击 <i>前往目的地</i>.
+        <b>10.</b> 点击 <i>前往目的地</i>.
       </Section>
       <Section title="处置运输系统">
-        除了使用MULE 骡机器人或送货上门外,你还可以使用处置邮递系统.
-        请注意，处理管道破裂可能会导致你的包裹丢失（这种情况很少发生）,因此这不是最安全的递送方式
+        除了使用MULE 骡机器人或送货上门外，你还可以使用处置邮递系统.
+        请注意，处理管道破裂可能会导致你的包裹丢失（这种情况很少发生），因此这不是最安全的递送方式
         如果你（或前台的其他工作人员）想寄一封信，可以用一张包裹纸包起来，然后用同样的方式寄出。.
         <br />
         <b>处置运输系统操作简单，轻松上手:</b>
@@ -561,7 +561,7 @@ const CargoHelp = (props) => {
         <br />
       </Section>
       <NoticeBox textAlign="center" info mb={0}>
-      遇到困惑的问题?问一问军需官!
+      遇到困惑的问题？问一问军需官!
       </NoticeBox>
     </>
   );

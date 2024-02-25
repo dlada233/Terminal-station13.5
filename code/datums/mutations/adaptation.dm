@@ -1,9 +1,9 @@
 /datum/mutation/human/temperature_adaptation
-	name = "Temperature Adaptation"
-	desc = "A strange mutation that renders the host immune to damage from extreme temperatures. Does not protect from vacuums."
+	name = "温度适应性"
+	desc = "一种奇怪的变异，使宿主免受极端温度的损伤，但无法抵御真空环境."
 	quality = POSITIVE
 	difficulty = 16
-	text_gain_indication = "<span class='notice'>Your body feels warm!</span>"
+	text_gain_indication = "<span class='notice'>你感觉身体很暖!</span>"
 	instability = 25
 	conflicts = list(/datum/mutation/human/pressure_adaptation)
 
@@ -26,11 +26,11 @@
 	owner.remove_traits(list(TRAIT_RESISTCOLD, TRAIT_RESISTHEAT), GENETIC_MUTATION)
 
 /datum/mutation/human/pressure_adaptation
-	name = "Pressure Adaptation"
-	desc = "A strange mutation that renders the host immune to damage from both low and high pressure environments. Does not protect from temperature, including the cold of space."
+	name = "压力适应性"
+	desc = "一种奇怪的变异，使宿主免受高压和低压环境的损伤，但无法抵御极端温度，包括了太空的超低温."
 	quality = POSITIVE
 	difficulty = 16
-	text_gain_indication = "<span class='notice'>Your body feels numb!</span>"
+	text_gain_indication = "<span class='notice'>你感觉身体变得麻木!</span>"
 	instability = 25
 	conflicts = list(/datum/mutation/human/temperature_adaptation)
 

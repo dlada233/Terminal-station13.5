@@ -27,11 +27,11 @@ export const DnaConsole = (props) => {
   const { consoleMode } = data.view;
 
   return (
-    <Window title="DNA Console" width={539} height={710}>
+    <Window title="DNA 控制器" width={539} height={710}>
       {!!isPulsing && (
         <Dimmer fontSize="14px" textAlign="center">
           <Icon mr={1} name="spinner" spin />
-          Pulse in progress...
+          正在脉冲...
           <Box mt={1} />
           {timeToPulse}s
         </Dimmer>
@@ -75,7 +75,7 @@ const DnaConsoleCommands = (props) => {
 
   return (
     <Section
-      title="DNA Console"
+      title="DNA 控制台"
       buttons={
         !isInjectorReady && (
           <Box lineHeight="20px" color="label">
@@ -87,7 +87,7 @@ const DnaConsoleCommands = (props) => {
       <LabeledList>
         <LabeledList.Item label="Mode">
           <Button
-            content="Storage"
+            content="存储"
             selected={consoleMode === CONSOLE_MODE_STORAGE}
             onClick={() =>
               act('set_view', {
@@ -96,7 +96,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="Sequencer"
+            content="序列"
             disabled={!data.isViableSubject}
             selected={consoleMode === CONSOLE_MODE_SEQUENCER}
             onClick={() =>
@@ -106,7 +106,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="Enzymes"
+            content="酶"
             selected={consoleMode === CONSOLE_MODE_ENZYMES}
             onClick={() =>
               act('set_view', {
@@ -115,7 +115,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="Features"
+            content="特征"
             selected={consoleMode === CONSOLE_MODE_FEATURES}
             onClick={() =>
               act('set_view', {
@@ -125,10 +125,10 @@ const DnaConsoleCommands = (props) => {
           />
         </LabeledList.Item>
         {!!hasDisk && (
-          <LabeledList.Item label="Disk">
+          <LabeledList.Item label="磁盘">
             <Button
               icon="eject"
-              content="Eject"
+              content="弹出"
               onClick={() => {
                 act('eject_disk');
                 act('set_view', {

@@ -123,7 +123,7 @@ export const MODsuit = (props) => {
       width={600}
       height={600}
       theme={ui_theme}
-      title="MOD Interface Panel"
+      title="模块服交互面板"
     >
       <Window.Content scrollable={!interface_break}>
         <MODsuitContent />
@@ -248,7 +248,7 @@ const ConfigurePinEntry = (props) => {
       }
       icon="thumbtack"
       selected={value}
-      tooltip="Pin"
+      tooltip="固定"
       tooltipPosition="left"
     />
   );
@@ -320,24 +320,24 @@ const ConfigureScreen = (props) => {
 const moduleTypeAction = (param) => {
   switch (param) {
     case 1:
-      return 'Use';
+      return '使用';
     case 2:
-      return 'Toggle';
+      return '切换';
     case 3:
-      return 'Select';
+      return '选择';
   }
 };
 
 const radiationLevels = (param) => {
   switch (param) {
     case 1:
-      return 'Low';
+      return '低水平';
     case 2:
-      return 'Medium';
+      return '中水平';
     case 3:
-      return 'High';
+      return '高水平';
     case 4:
-      return 'Extreme';
+      return '极端水平';
   }
 };
 
@@ -363,15 +363,15 @@ const SuitStatusSection = (props) => {
   const status = malfunctioning
     ? 'Malfunctioning'
     : active
-      ? 'Active'
-      : 'Inactive';
+      ? '启动'
+      : '未启动';
   const charge_percent = Math.round(
     (100 * cell_charge_current) / cell_charge_max,
   );
 
   return (
     <Section
-      title="Suit Status"
+      title="模块服状态"
       fill
       buttons={
         <Button
@@ -383,7 +383,7 @@ const SuitStatusSection = (props) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Charge">
+        <LabeledList.Item label="电量">
           <ProgressBar
             value={cell_charge_current / cell_charge_max}
             ranges={{
@@ -412,11 +412,11 @@ const SuitStatusSection = (props) => {
                     )} (${charge_percent}%)`}
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="ID Lock">
+        <LabeledList.Item label="ID 锁">
           <Button
             icon={locked ? 'lock' : 'lock-open'}
             color={locked ? 'good' : 'default'}
-            content={locked ? 'Locked' : 'Unlocked'}
+            content={locked ? '锁定' : '解锁'}
             onClick={() => act('lock')}
           />
         </LabeledList.Item>
@@ -429,8 +429,8 @@ const SuitStatusSection = (props) => {
             content={
               link_freq
                 ? link_call
-                  ? 'Calling (' + link_call + ')'
-                  : 'Call (' + link_id + ')'
+                  ? '通话中 (' + link_call + ')'
+                  : '呼叫 (' + link_id + ')'
                 : 'Frequency Unset'
             }
             onClick={() => act('call')}
@@ -447,11 +447,11 @@ const SuitStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {!!ai_name && (
-          <LabeledList.Item label="pAI Control">
+          <LabeledList.Item label="个人人工智能 控制">
             {has_pai && (
               <Button
                 icon="eject"
-                content="Eject pAI"
+                content="弹出个人人工智能"
                 disabled={is_ai}
                 onClick={() => act('eject_pai')}
               />
@@ -480,21 +480,21 @@ const HardwareSection = (props) => {
   return (
     <Section title="Hardware" style={{ textTransform: 'capitalize' }}>
       <LabeledList>
-        <LabeledList.Item label="AI Assistant">
-          {ai_name || 'No AI Detected'}
+        <LabeledList.Item label="AI 助理">
+          {ai_name || '未检测到AI'}
         </LabeledList.Item>
-        <LabeledList.Item label="Core">
-          {core_name || 'No Core Detected'}
+        <LabeledList.Item label="核心">
+          {core_name || '未检测到核心'}
         </LabeledList.Item>
-        <LabeledList.Item label="Control Unit">{control}</LabeledList.Item>
-        <LabeledList.Item label="Helmet">{helmet || 'None'}</LabeledList.Item>
-        <LabeledList.Item label="Chestplate">
-          {chestplate || 'None'}
+        <LabeledList.Item label="控制单元">{control}</LabeledList.Item>
+        <LabeledList.Item label="头盔">{helmet || '无'}</LabeledList.Item>
+        <LabeledList.Item label="胸板">
+          {chestplate || '无'}
         </LabeledList.Item>
-        <LabeledList.Item label="Gauntlets">
-          {gauntlets || 'None'}
+        <LabeledList.Item label="手套">
+          {gauntlets || '无'}
         </LabeledList.Item>
-        <LabeledList.Item label="Boots">{boots || 'None'}</LabeledList.Item>
+        <LabeledList.Item label="靴">{boots || '无'}</LabeledList.Item>
       </LabeledList>
     </Section>
   );
@@ -520,11 +520,11 @@ const UserStatusSection = (props) => {
     viruses,
   } = data.module_custom_status;
   return (
-    <Section title="User Status" fill>
+    <Section title="使用者状态" fill>
       {!active && <LockedModule />}
       <LabeledList>
         {health !== undefined && (
-          <LabeledList.Item label="Health">
+          <LabeledList.Item label="健康状态">
             <ProgressBar
               value={active ? health / health_max : 0}
               ranges={{
@@ -538,7 +538,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_brute !== undefined && (
-          <LabeledList.Item label="Brute Damage">
+          <LabeledList.Item label="创伤">
             <ProgressBar
               value={active ? loss_brute / health_max : 0}
               ranges={{
@@ -552,7 +552,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_fire !== undefined && (
-          <LabeledList.Item label="Burn Damage">
+          <LabeledList.Item label="烧伤">
             <ProgressBar
               value={active ? loss_fire / health_max : 0}
               ranges={{
@@ -566,7 +566,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_oxy !== undefined && (
-          <LabeledList.Item label="Oxy Damage">
+          <LabeledList.Item label="窒息">
             <ProgressBar
               value={active ? loss_oxy / health_max : 0}
               ranges={{
@@ -580,7 +580,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_tox !== undefined && (
-          <LabeledList.Item label="Tox Damage">
+          <LabeledList.Item label="毒素">
             <ProgressBar
               value={active ? loss_tox / health_max : 0}
               ranges={{
@@ -594,7 +594,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {background_radiation_level !== undefined && (
-          <LabeledList.Item label="Radiation">
+          <LabeledList.Item label="辐射">
             {!active ? (
               'Unknown'
             ) : is_user_irradiated ? (
@@ -618,12 +618,12 @@ const UserStatusSection = (props) => {
             {`${active ? Math.round(nutrition) : 0}`}
           </LabeledList.Item>
         )}
-        <LabeledList.Item label="Name">{user_name}</LabeledList.Item>
-        <LabeledList.Item label="Assignment">
+        <LabeledList.Item label="名称">{user_name}</LabeledList.Item>
+        <LabeledList.Item label="职务">
           {user_assignment}
         </LabeledList.Item>
         {dna_unique_identity !== undefined && (
-          <LabeledList.Item label="Fingerprints">
+          <LabeledList.Item label="指纹">
             <Box
               style={{
                 wordBreak: 'break-all',
@@ -678,22 +678,22 @@ const ModuleSection = (props) => {
 
   return (
     <Section
-      title="Modules"
+      title="模块"
       fill
       buttons={`${complexity} of ${complexity_max} complexity used`}
     >
       {!module_info.length ? (
-        <NoticeBox>No Modules Detected</NoticeBox>
+        <NoticeBox>未检测到模块</NoticeBox>
       ) : (
         <Table>
           <Table.Row header>
-            <Table.Cell colspan={3}>Actions</Table.Cell>
-            <Table.Cell>Name</Table.Cell>
+            <Table.Cell colspan={3}>操作</Table.Cell>
+            <Table.Cell>名称</Table.Cell>
             <Table.Cell width={1} textAlign="center">
               <Button
                 color="transparent"
                 icon="plug"
-                tooltip="Idle Power Cost"
+                tooltip="待机电力损耗"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -701,7 +701,7 @@ const ModuleSection = (props) => {
               <Button
                 color="transparent"
                 icon="lightbulb"
-                tooltip="Active Power Cost"
+                tooltip="激活功率损耗"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -709,7 +709,7 @@ const ModuleSection = (props) => {
               <Button
                 color="transparent"
                 icon="bolt"
-                tooltip="Use Power Cost"
+                tooltip="启动功率损耗"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -750,7 +750,7 @@ const ModuleSection = (props) => {
                     }
                     icon="cog"
                     selected={configureState === module.ref}
-                    tooltip="Configure"
+                    tooltip="配置"
                     tooltipPosition="left"
                     disabled={module.configuration_data.length === 0}
                   />
@@ -760,7 +760,7 @@ const ModuleSection = (props) => {
                     onClick={() => act('pin', { ref: module.ref })}
                     icon="thumbtack"
                     selected={module.pinned}
-                    tooltip="Pin"
+                    tooltip="固定"
                     tooltipPosition="left"
                     disabled={!module.module_type}
                   />

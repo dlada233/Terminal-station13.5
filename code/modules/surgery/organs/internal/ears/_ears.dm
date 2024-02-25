@@ -1,5 +1,5 @@
 /obj/item/organ/internal/ears
-	name = "耳朵-ears"
+	name = "ears-耳朵"
 	icon_state = "ears"
 	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
 	zone = BODY_ZONE_HEAD
@@ -61,7 +61,7 @@
 	damage_multiplier = 0
 
 /obj/item/organ/internal/ears/cat
-	name = "猫耳-cat ears"
+	name = "cat ears-猫耳"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "kitty"
@@ -88,7 +88,7 @@
 //SKYRAT EDIT REMOVAL END
 
 /obj/item/organ/internal/ears/penguin
-	name = "企鹅耳-penguin ears"
+	name = "penguin ears-企鹅耳"
 	desc = "企鹅们快乐舞步的源泉."
 
 /obj/item/organ/internal/ears/penguin/on_mob_insert(mob/living/carbon/human/ear_owner)
@@ -104,7 +104,7 @@
 		ear_owner.RemoveElement(/datum/element/waddling)
 
 /obj/item/organ/internal/ears/cybernetic
-	name = "初级电子耳-basic cybernetic ears"
+	name = "basic cybernetic ears-初级电子耳"
 	icon_state = "ears-c"
 	desc = "A basic cybernetic organ designed to mimic the operation of ears."
 	damage_multiplier = 0.9
@@ -112,13 +112,13 @@
 	failing_desc = "似乎坏掉了."
 
 /obj/item/organ/internal/ears/cybernetic/upgraded
-	name = "电子耳-cybernetic ears"
+	name = "cybernetic ears-电子耳"
 	icon_state = "ears-c-u"
 	desc =  "An advanced cybernetic ear, surpassing the performance of organic ears."
 	damage_multiplier = 0.5
 
 /obj/item/organ/internal/ears/cybernetic/whisper
-	name = "微敏电子耳-whisper-sensitive cybernetic ears"
+	name = "whisper-sensitive cybernetic ears-微敏电子耳"
 	icon_state = "ears-c-u"
 	desc = "使用者可以更轻松地听到人们的低声耳语，但也会更加容易被巨大噪音伤害"
 	// Same sensitivity as felinid ears
@@ -136,7 +136,7 @@
 
 // "X-ray ears" that let you hear through walls
 /obj/item/organ/internal/ears/cybernetic/xray
-	name = "穿墙电子耳-wall-penetrating cybernetic ears"
+	name = "wall-penetrating cybernetic ears-穿墙电子耳"
 	icon_state = "ears-c-u"
 	desc = "得益于现代工程技术，使用者可以透过墙壁听到人们的讲话声.但也会更加容易被巨大噪音伤害"
 	// Same sensitivity as felinid ears

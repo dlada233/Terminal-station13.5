@@ -6,10 +6,10 @@ export const GeneticMakeupInfo = (props) => {
   return (
     <Section title="Enzyme Information">
       <LabeledList>
-        <LabeledList.Item label="Name">
+        <LabeledList.Item label="名称">
           {makeup.name || 'None'}
         </LabeledList.Item>
-        <LabeledList.Item label="Blood Type">
+        <LabeledList.Item label="血型">
           {makeup.blood_type || 'None'}
         </LabeledList.Item>
         <LabeledList.Item label="Unique Enzyme">

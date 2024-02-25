@@ -1,11 +1,11 @@
 /datum/mutation/human/firebreath
-	name = "Fire Breath"
-	desc = "An ancient mutation that gives lizards breath of fire."
+	name = "火焰吐息"
+	desc = "一种古老的基因突变，赋予蜥蜴人喷吐火焰的能力."
 	quality = POSITIVE
 	difficulty = 12
 	locked = TRUE
-	text_gain_indication = "<span class='notice'>Your throat is burning!</span>"
-	text_lose_indication = "<span class='notice'>Your throat is cooling down.</span>"
+	text_gain_indication = "<span class='notice'>你的喉间变得炙热起来!</span>"
+	text_lose_indication = "<span class='notice'>你的喉咙逐渐冷却下来.</span>"
 	power_path = /datum/action/cooldown/spell/cone/staggered/fire_breath
 	instability = 30
 	energy_coeff = 1
@@ -26,8 +26,8 @@
 	to_modify.self_throw_range += 1 // the breath throws the user back more
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath
-	name = "Fire Breath"
-	desc = "You breathe a cone of fire directly in front of you."
+	name = "火焰吐息"
+	desc = "你喷出一道锥形火焰，直击前方."
 	button_icon_state = "fireball0"
 	sound = 'sound/magic/demon_dies.ogg' //horrifying lizard noises
 
@@ -56,7 +56,7 @@
 
 	our_lizard.adjust_fire_stacks(cone_levels)
 	our_lizard.ignite_mob()
-	to_chat(our_lizard, span_warning("Something in front of your mouth catches fire!"))
+	to_chat(our_lizard, span_warning("你嘴巴前面的东西着火了!"))
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath/after_cast(atom/cast_on)
 	. = ..()

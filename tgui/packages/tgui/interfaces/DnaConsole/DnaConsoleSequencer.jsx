@@ -169,7 +169,7 @@ export const DnaConsoleSequencer = (props) => {
       <Stack mb={1}>
         <Stack.Item width={(mutations.length <= 8 && '154px') || '174px'}>
           <Section
-            title="Sequences"
+            title="序列"
             height="214px"
             overflowY={mutations.length > 8 && 'scroll'}
           >
@@ -191,7 +191,7 @@ export const DnaConsoleSequencer = (props) => {
           </Section>
         </Stack.Item>
         <Stack.Item grow={1} basis={0}>
-          <Section title="Sequence Info" minHeight="100%">
+          <Section title="序列信息" minHeight="100%">
             <MutationInfo mutation={mutation} />
           </Section>
         </Stack.Item>
@@ -212,7 +212,7 @@ export const DnaConsoleSequencer = (props) => {
           </Section>
         )) || (
           <Section
-            title="Genome Sequencer™"
+            title="基因测序仪™"
             buttons={
               (!isJokerReady && (
                 <Box lineHeight="20px" color="label">
@@ -225,7 +225,7 @@ export const DnaConsoleSequencer = (props) => {
                     Click on a gene to reveal it.
                   </Box>
                   <Button
-                    content="Cancel Joker"
+                    content="取消小丑牌"
                     onClick={() =>
                       act('set_view', {
                         jokerActive: '',
@@ -237,7 +237,7 @@ export const DnaConsoleSequencer = (props) => {
                 <Button
                   icon="crown"
                   color="purple"
-                  content="Use Joker"
+                  content="使用小丑牌"
                   onClick={() =>
                     act('set_view', {
                       jokerActive: '1',

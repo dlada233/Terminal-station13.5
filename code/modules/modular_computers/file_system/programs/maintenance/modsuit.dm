@@ -1,6 +1,6 @@
 /datum/computer_file/program/maintenance/modsuit_control
 	filename = "modsuit_control"
-	filedesc = "MODsuit Control-模块服控制"
+	filedesc = "模块服控制"
 	program_open_overlay = "modsuit_control"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	extended_desc = "该程序允许用户将MODsuit连接到它上，从而实现远程控制."
@@ -24,7 +24,7 @@
 		unsync_modsuit()
 	controlled_suit = attacking_item
 	RegisterSignal(controlled_suit, COMSIG_QDELETING, PROC_REF(unsync_modsuit))
-	user.balloon_alert(user, "suit updated")
+	user.balloon_alert(user, "模块服更新")
 	return TRUE
 
 /datum/computer_file/program/maintenance/modsuit_control/proc/unsync_modsuit(atom/source)

@@ -1,9 +1,9 @@
 /datum/mutation/human/telepathy
-	name = "Telepathy"
-	desc = "A rare mutation that allows the user to telepathically communicate to others."
+	name = "心灵感应"
+	desc = "一种罕见的基因变异，可以让使用者与他人进行心灵交流."
 	quality = POSITIVE
-	text_gain_indication = "<span class='notice'>You can hear your own voice echoing in your mind!</span>"
-	text_lose_indication = "<span class='notice'>You don't hear your mind echo anymore.</span>"
+	text_gain_indication = "<span class='notice'>你可以在脑海中听到自己的声音回响!</span>"
+	text_lose_indication = "<span class='notice'>脑海中的回声逐渐消逝.</span>"
 	difficulty = 12
 	power_path = /datum/action/cooldown/spell/list_target/telepathy
 	instability = 10
