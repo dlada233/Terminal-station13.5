@@ -1,5 +1,5 @@
 /obj/item/ammo_box/magazine/internal/boltaction
-	name = "bolt action rifle internal magazine"
+	name = "栓动步枪内部弹匣"
 	desc = "Oh god, this shouldn't be here"
 	ammo_type = /obj/item/ammo_casing/strilka310
 	caliber = CALIBER_STRILKA310
@@ -10,13 +10,13 @@
 	ammo_type = /obj/item/ammo_casing/strilka310/surplus
 
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun
-	name = "pipegun internal magazine"
+	name = "管道枪内部弹匣"
 	caliber = CALIBER_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun/improvised
 	max_ammo = 1
 
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun/prime
-	name = "regal pipegun internal magazine"
+	name = "帝王管道枪内部弹匣"
 	max_ammo = 3
 
 /obj/item/ammo_box/magazine/internal/enchanted
@@ -30,13 +30,13 @@
 	ammo_type = /obj/item/ammo_casing/harpoon
 
 /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/normal
-	name = "single round magazine"
+	name = "单发弹匣"
 	max_ammo = 1
 	caliber = CALIBER_REBAR
 	ammo_type = /obj/item/ammo_casing/rebar
 
 /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/force
-	name = "two round magazine"
+	name = "双发弹匣"
 	max_ammo = 2
 	caliber = CALIBER_REBAR_FORCED
 	ammo_type = /obj/item/ammo_casing/rebar

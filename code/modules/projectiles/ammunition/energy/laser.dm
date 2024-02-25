@@ -1,33 +1,33 @@
 /obj/item/ammo_casing/energy/laser
 	projectile_type = /obj/projectile/beam/laser
 	e_cost = LASER_SHOTS(12, STANDARD_CELL_CHARGE)
-	select_name = "kill"
+	select_name = "杀戮"
 
 /obj/item/ammo_casing/energy/laser/hellfire
 	projectile_type = /obj/projectile/beam/laser/hellfire
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
-	select_name = "maim"
+	select_name = "致残"
 
 /obj/item/ammo_casing/energy/lasergun
 	projectile_type = /obj/projectile/beam/laser
 	e_cost = LASER_SHOTS(16, STANDARD_CELL_CHARGE)
-	select_name = "kill"
+	select_name = "杀戮"
 
 /obj/item/ammo_casing/energy/lasergun/carbine
 	projectile_type = /obj/projectile/beam/laser/carbine
 	e_cost = LASER_SHOTS(40, STANDARD_CELL_CHARGE)
-	select_name = "kill"
+	select_name = "杀戮"
 	fire_sound = 'sound/weapons/laser2.ogg'
 
 /obj/item/ammo_casing/energy/lasergun/carbine/practice
 	projectile_type = /obj/projectile/beam/laser/carbine/practice
-	select_name = "practice"
+	select_name = "练习"
 	harmful = FALSE
 
 /obj/item/ammo_casing/energy/lasergun/old
 	projectile_type = /obj/projectile/beam/laser
 	e_cost = LASER_SHOTS(5, STANDARD_CELL_CHARGE)
-	select_name = "kill"
+	select_name = "杀戮"
 
 /obj/item/ammo_casing/energy/laser/hos
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE * 1.2)
@@ -41,7 +41,7 @@
 
 /obj/item/ammo_casing/energy/laser/practice
 	projectile_type = /obj/projectile/beam/practice
-	select_name = "practice"
+	select_name = "练习"
 	harmful = FALSE
 
 /obj/item/ammo_casing/energy/chameleon
@@ -71,7 +71,7 @@
 	projectile_type = /obj/projectile/beam/scatter
 	pellets = 5
 	variance = 25
-	select_name = "scatter"
+	select_name = "散射"
 
 /obj/item/ammo_casing/energy/laser/scatter/disabler
 	projectile_type = /obj/projectile/beam/disabler
@@ -82,19 +82,19 @@
 
 /obj/item/ammo_casing/energy/laser/heavy
 	projectile_type = /obj/projectile/beam/laser/heavylaser
-	select_name = "anti-vehicle"
+	select_name = "反装甲"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/ammo_casing/energy/laser/pulse
 	projectile_type = /obj/projectile/beam/pulse
 	e_cost = LASER_SHOTS(200, STANDARD_CELL_CHARGE * 40)
-	select_name = "DESTROY"
+	select_name = "毁灭"
 	fire_sound = 'sound/weapons/pulse.ogg'
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/blue
 
 /obj/item/ammo_casing/energy/laser/bluetag
 	projectile_type = /obj/projectile/beam/lasertag/bluetag
-	select_name = "bluetag"
+	select_name = "蓝标"
 	harmful = FALSE
 
 /obj/item/ammo_casing/energy/laser/bluetag/hitscan
@@ -102,7 +102,7 @@
 
 /obj/item/ammo_casing/energy/laser/redtag
 	projectile_type = /obj/projectile/beam/lasertag/redtag
-	select_name = "redtag"
+	select_name = "红标"
 	harmful = FALSE
 
 /obj/item/ammo_casing/energy/laser/redtag/hitscan
@@ -119,29 +119,29 @@
 	fire_sound = 'sound/weapons/laser.ogg'
 
 /obj/item/ammo_casing/energy/laser/minigun
-	select_name = "kill"
+	select_name = "杀戮"
 	projectile_type = /obj/projectile/beam/weak/penetrator
 	variance = 0.8
 
 /obj/item/ammo_casing/energy/nanite
 	projectile_type = /obj/projectile/bullet/c10mm //henk
-	select_name = "bullet"
+	select_name = "实弹"
 	e_cost = LASER_SHOTS(8, STANDARD_CELL_CHARGE)
 	fire_sound = 'sound/weapons/thermalpistol.ogg'
 
 /obj/item/ammo_casing/energy/nanite/inferno
 	projectile_type = /obj/projectile/energy/inferno
-	select_name = "inferno"
+	select_name = "热熔"
 
 /obj/item/ammo_casing/energy/nanite/cryo
 	projectile_type = /obj/projectile/energy/cryo
-	select_name = "cryo"
+	select_name = "冷冻"
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/blue
 
 ///not exactly an energy ammo casing, but it's used by the laser gatling.
 /obj/item/ammo_casing/laser
-	name = "laser casing"
-	desc = "You shouldn't be seeing this."
+	name = "激光"
+	desc = "你不应该看到这段话."
 	caliber = CALIBER_LASER
 	icon_state = "s-casing-live"
 	base_icon_state = "s-casing-live"

@@ -1,8 +1,8 @@
 // Shotgun
 
 /obj/item/ammo_casing/shotgun
-	name = "shotgun slug"
-	desc = "A 12 gauge lead slug."
+	name = "霰弹"
+	desc = "一颗12g霰弹子弹."
 	icon_state = "blshell"
 	worn_icon_state = "shell"
 	caliber = CALIBER_SHOTGUN
@@ -10,74 +10,72 @@
 	projectile_type = /obj/projectile/bullet/shotgun_slug
 
 /obj/item/ammo_casing/shotgun/executioner
-	name = "executioner slug"
-	desc = "A 12 gauge lead slug purpose built to annihilate flesh on impact."
+	name = "处决弹"
+	desc = "一颗12g口径的铅弹，命中活体时能摧毁血肉."
 	icon_state = "stunshell"
 	projectile_type = /obj/projectile/bullet/shotgun_slug/executioner
 
 /obj/item/ammo_casing/shotgun/pulverizer
-	name = "pulverizer slug"
-	desc = "A 12 gauge lead slug purpose built to annihilate bones on impact."
+	name = "粉碎弹"
+	desc = "一颗12g口径的铅弹，命中活体时能粉碎骨骼."
 	icon_state = "stunshell"
 	projectile_type = /obj/projectile/bullet/shotgun_slug/pulverizer
 
 /obj/item/ammo_casing/shotgun/beanbag
-	name = "beanbag slug"
-	desc = "A weak beanbag slug for riot control."
+	name = "豆袋弹"
+	desc = "用于镇暴的低致命霰弹."
 	icon_state = "bshell"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2.5)
 	projectile_type = /obj/projectile/bullet/shotgun_beanbag
 	harmful = FALSE //SKYRAT EDIT ADDITION
 
 /obj/item/ammo_casing/shotgun/incendiary
-	name = "incendiary slug"
-	desc = "An incendiary-coated shotgun slug."
+	name = "燃烧弹"
+	desc = "一颗有易燃化学涂装的霰弹."
 	icon_state = "ishell"
 	projectile_type = /obj/projectile/bullet/incendiary/shotgun
 
 /obj/item/ammo_casing/shotgun/incendiary/no_trail
-	name = "precision incendiary slug"
-	desc = "An incendiary-coated shotgun slug, specially treated to only ignite on impact."
+	name = "点燃弹"
+	desc = "一颗有易燃化学涂装的霰弹. 经过了特殊处理，将只在命中时点燃目标."
 	projectile_type = /obj/projectile/bullet/incendiary/shotgun/no_trail
 
 /obj/item/ammo_casing/shotgun/dragonsbreath
-	name = "dragonsbreath shell"
-	desc = "A shotgun shell which fires a spread of incendiary pellets."
+	name = "龙息弹"
+	desc = "一颗能发射喷射出大量燃烧弹丸的霰弹子弹."
 	icon_state = "ishell2"
 	projectile_type = /obj/projectile/bullet/incendiary/shotgun/dragonsbreath
 	pellets = 4
 	variance = 35
 
 /obj/item/ammo_casing/shotgun/stunslug
-	name = "taser slug"
-	desc = "A stunning taser slug."
+	name = "泰瑟弹"
+	desc = "一颗能将人电晕的霰弹子弹."
 	icon_state = "stunshell"
 	projectile_type = /obj/projectile/bullet/shotgun_stunslug
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2.5)
 
 /obj/item/ammo_casing/shotgun/meteorslug
-	name = "meteorslug shell"
-	desc = "A shotgun shell rigged with CMC technology, which launches a massive slug when fired."
+	name = "流星弹"
+	desc = "一颗采用CMC技术的霰弹子弹，能发射出巨大的子弹."
 	icon_state = "mshell"
 	projectile_type = /obj/projectile/bullet/cannonball/meteorslug
 
-/obj/item/ammo_casing/shotgun/pulseslug
-	name = "pulse slug"
-	desc = "A delicate device which can be loaded into a shotgun. The primer acts as a button which triggers the gain medium and fires a powerful \
-	energy blast. While the heat and power drain limit it to one use, it can still allow an operator to engage targets that ballistic ammunition \
-	would have difficulty with."
+/obj/item/ammo_casing/shotgun/pulseslug // 经过游戏实测，与描述无误
+	name = "脉冲弹"
+	desc = "一颗霰弹外形的精密装置. 底火被改造成了一个触发增益介质的按钮，按下后引发一次性的能量射击. 它的设计用途是针对那些实弹难以攻击到的目标."
 	icon_state = "pshell"
 	projectile_type = /obj/projectile/beam/pulse/shotgun
 
 /obj/item/ammo_casing/shotgun/frag12
-	name = "FRAG-12 slug"
-	desc = "A high explosive breaching round for a 12 gauge shotgun."
+	name = "FRAG-12霰弹"
+	desc = "一颗12g的高爆霰弹子弹."
 	icon_state = "heshell"
 	projectile_type = /obj/projectile/bullet/shotgun_frag12
 
 /obj/item/ammo_casing/shotgun/buckshot
-	name = "buckshot shell"
-	desc = "A 12 gauge buckshot shell."
+	name = "鹿弹"
+	desc = "一颗12g鹿弹."
 	icon_state = "gshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
@@ -87,17 +85,17 @@
 	projectile_type = null
 
 /obj/item/ammo_casing/shotgun/rubbershot
-	name = "rubber shot"
-	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
+	name = "橡胶弹"
+	desc = "一颗装满了橡胶弹丸的霰弹子弹，可使远处的人群丧失行动能力."
 	icon_state = "rshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
 	variance = 20
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)
 
-/obj/item/ammo_casing/shotgun/incapacitate
-	name = "custom incapacitating shot"
-	desc = "A shotgun casing filled with... something. used to incapacitate targets."
+/obj/item/ammo_casing/shotgun/incapacitate // 该项下的文本不会在游戏内显示，物品另有名称与描述
+	name = "自定义失能霰弹"
+	desc = "这颗霰弹里装满了...东西. 用于使目标失能."
 	icon_state = "bountyshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_incapacitate
 	pellets = 12//double the pellets, but half the stun power of each, which makes this best for just dumping right in someone's face.
@@ -105,8 +103,8 @@
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)
 
 /obj/item/ammo_casing/shotgun/improvised
-	name = "improvised shell"
-	desc = "A homemade shotgun casing filled with crushed glass, used to commmit vandalism and property damage."
+	name = "自制霰弹"
+	desc = "一颗自制的霰弹子弹，里面装满了碎玻璃，它制造出来的用途就是破坏公共财产."
 	icon_state = "improvshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_improvised
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2, /datum/material/glass=SMALL_MATERIAL_AMOUNT*1)
@@ -114,17 +112,16 @@
 	variance = 30
 
 /obj/item/ammo_casing/shotgun/ion
-	name = "ion shell"
-	desc = "An advanced shotgun shell which uses a subspace ansible crystal to produce an effect similar to a standard ion rifle. \
-	The unique properties of the crystal split the pulse into a spread of individually weaker bolts."
+	name = "离子弹"
+	desc = "一颗先进的霰弹，使用子空间安塞波晶体产生类似于标准离子步枪射击的效果，晶体的独特特性又将离子脉冲分裂成一系列小股脉冲以达到霰弹的效果."
 	icon_state = "ionshell"
 	projectile_type = /obj/projectile/ion/weak
 	pellets = 4
 	variance = 35
 
 /obj/item/ammo_casing/shotgun/scatterlaser
-	name = "scatter laser shell"
-	desc = "An advanced shotgun shell that uses a micro laser to replicate the effects of a scatter laser weapon in a ballistic package."
+	name = "散射激光弹"
+	desc = "一颗先进的霰弹，使用微型激光来复制散射激光武器的效果."
 	icon_state = "lshell"
 	projectile_type = /obj/projectile/beam/scatter
 	pellets = 6
@@ -134,14 +131,14 @@
 	. = ..()
 	if(isnull(loaded_projectile) || !prob(40/severity))
 		return
-	name = "malfunctioning laser shell"
-	desc = "An advanced shotgun shell that uses a micro laser to replicate the effects of a scatter laser weapon in a ballistic package. The capacitor powering this assembly appears to be smoking."
+	name = "故障散射激光弹"
+	desc = "一颗先进的霰弹，使用微型激光来复制散射激光武器的效果，但这颗里用于供电的电容器似乎在冒烟."
 	projectile_type = /obj/projectile/beam/scatter/pathetic
 	loaded_projectile = new projectile_type(src)
 
 /obj/item/ammo_casing/shotgun/techshell
-	name = "unloaded technological shell"
-	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
+	name = "空载科技弹"
+	desc = "一颗高科技的霰弹，可以装载各种材料，产生各种独特效果."
 	icon_state = "cshell"
 	projectile_type = null
 
@@ -156,8 +153,8 @@
 	)
 
 /obj/item/ammo_casing/shotgun/dart
-	name = "shotgun dart"
-	desc = "A dart for use in shotguns. Can be injected with up to 15 units of any chemical."
+	name = "霰弹镖"
+	desc = "用于霰弹枪的飞镖，里面可以装载多达15u的任意化学物质."
 	icon_state = "cshell"
 	projectile_type = /obj/projectile/bullet/dart
 	var/reagent_amount = 15
@@ -170,7 +167,7 @@
 	return
 
 /obj/item/ammo_casing/shotgun/dart/bioterror
-	desc = "An improved shotgun dart filled with deadly toxins. Can be injected with up to 30 units of any chemical."
+	desc = "改良后的霰弹镖，里面充满了致命的毒素，可以装载多达30u的任意化学物质."
 	reagent_amount = 30
 
 /obj/item/ammo_casing/shotgun/dart/bioterror/Initialize(mapload)
@@ -182,8 +179,8 @@
 	reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 6)
 
 /obj/item/ammo_casing/shotgun/breacher
-	name = "breaching slug"
-	desc = "A 12 gauge anti-material slug. Great for breaching airlocks and windows, quickly and efficiently."
+	name = "破门弹"
+	desc = "一颗12g的反器材弹，非常适合快速破门和破窗."
 	icon_state = "breacher"
 	projectile_type = /obj/projectile/bullet/shotgun_breaching
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)

@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/energy
-	name = "energy weapon lens"
-	desc = "The part of the gun that makes the laser go pew."
+	name = "能量武器透镜"
+	desc = "枪中使激光发射的部分."
 	caliber = ENERGY
 	projectile_type = /obj/projectile/energy
 	slot_flags = null

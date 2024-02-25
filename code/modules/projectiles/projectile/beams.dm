@@ -1,5 +1,5 @@
 /obj/projectile/beam
-	name = "laser"
+	name = "激光"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 22 // SKYRAT EDIT: 20
@@ -34,13 +34,13 @@
 	damage = 10
 
 /obj/projectile/beam/laser/carbine/practice
-	name = "practice laser"
+	name = "练习激光"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
 	damage = 0
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/projectile/beam/laser/hellfire
-	name = "hellfire laser"
+	name = "地狱火激光"
 	wound_bonus = 0
 	damage = 30
 	speed = 0.6 // higher power = faster, that's how light works right
@@ -50,7 +50,7 @@
 	transform *= 2
 
 /obj/projectile/beam/laser/heavylaser
-	name = "heavy laser"
+	name = "重激光"
 	icon_state = "heavylaser"
 	damage = 40
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
@@ -66,7 +66,7 @@
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 
 /obj/projectile/beam/laser/musket
-	name = "low-power laser"
+	name = "低能激光"
 	icon_state = "laser_musket"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	damage = 25
@@ -75,7 +75,7 @@
 	weak_against_armour = TRUE
 
 /obj/projectile/beam/laser/musket/prime
-	name = "mid-power laser"
+	name = "中能激光"
 	damage = 30
 	stamina = 45
 	weak_against_armour = FALSE
@@ -87,11 +87,11 @@
 	armour_penetration = 50
 
 /obj/projectile/beam/practice
-	name = "practice laser"
+	name = "练习激光"
 	damage = 0
 
 /obj/projectile/beam/scatter
-	name = "laser pellet"
+	name = "激光粒子"
 	icon_state = "scatterlaser"
 	damage = 7.5
 	wound_bonus = 5
@@ -100,7 +100,7 @@
 	wound_falloff_tile = -2.5
 
 /obj/projectile/beam/scatter/pathetic
-	name = "extremely weak laser pellet"
+	name = "极弱的激光粒子"
 	damage = 1
 	wound_bonus = 0
 	damage_falloff_tile = -0.1
@@ -109,7 +109,7 @@
 	hitsound_wall = 'sound/items/bikehorn.ogg'
 
 /obj/projectile/beam/xray
-	name = "\improper X-ray beam"
+	name = "X射线束"
 	icon_state = "xray"
 	damage = 15
 	range = 15
@@ -123,7 +123,7 @@
 	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/projectile/beam/disabler
-	name = "disabler beam"
+	name = "镇暴光束"
 	icon_state = "omnilaser"
 	damage = 30
 	damage_type = STAMINA
@@ -139,16 +139,16 @@
 	damage = 15
 
 /obj/projectile/beam/disabler/smoothbore
-	name = "unfocused disabler beam"
+	name = "未聚焦的镇暴光束"
 	weak_against_armour = TRUE
 
 /obj/projectile/beam/disabler/smoothbore/prime
-	name = "focused disabler beam"
+	name = "聚焦的镇暴光束"
 	weak_against_armour = FALSE
 	damage = 35 //slight increase in damage just for the hell of it
 
 /obj/projectile/beam/pulse
-	name = "pulse"
+	name = "脉冲"
 	icon_state = "u_laser"
 	damage = 50
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -170,7 +170,7 @@
 	damage = 30
 
 /obj/projectile/beam/pulse/heavy
-	name = "heavy pulse laser"
+	name = "重脉冲激光"
 	icon_state = "pulse1_bl"
 	projectile_piercing = ALL
 	var/pierce_hits = 2
@@ -182,7 +182,7 @@
 	..()
 
 /obj/projectile/beam/emitter
-	name = "emitter beam"
+	name = "发射器激光"
 	icon_state = "emitter"
 	damage = 30
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
@@ -210,7 +210,7 @@
 	impact_light_color_override = COLOR_LIME
 
 /obj/projectile/beam/lasertag
-	name = "laser tag beam"
+	name = "标记激光"
 	icon_state = "omnilaser"
 	hitsound = null
 	damage = 0
@@ -251,7 +251,7 @@
 
 //a shrink ray that shrinks stuff, which grows back after a short while.
 /obj/projectile/beam/shrink
-	name = "shrink ray"
+	name = "缩小射线"
 	icon_state = "blue_laser"
 	hitsound = 'sound/weapons/shrink_hit.ogg'
 	damage = 0

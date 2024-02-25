@@ -1,32 +1,32 @@
 /obj/item/ammo_box/magazine/m7mm
-	name = "box magazine (7mm)"
+	name = "弹药盒 (7mm)"
 	icon_state = "a7mm-50"
 	ammo_type = /obj/item/ammo_casing/m7mm
 	caliber = CALIBER_A7MM
 	max_ammo = 50
 
 /obj/item/ammo_box/magazine/m7mm/hollow
-	name = "box magazine (Hollow-Point 7mm)"
+	name = "弹药盒 (7mm空尖弹)"
 	ammo_type = /obj/item/ammo_casing/m7mm/hollow
 
 /obj/item/ammo_box/magazine/m7mm/ap
-	name = "box magazine (Armor Penetrating 7mm)"
+	name = "弹药盒 (7mm穿甲弹)"
 	ammo_type = /obj/item/ammo_casing/m7mm/ap
 
 /obj/item/ammo_box/magazine/m7mm/incen
-	name = "box magazine (Incendiary 7mm)"
+	name = "弹药盒 (7mm燃烧弹)"
 	ammo_type = /obj/item/ammo_casing/m7mm/incen
 
 /obj/item/ammo_box/magazine/m7mm/match
-	name = "box magazine (Match 7mm)"
+	name = "弹药盒 (7mm竞赛弹)"
 	ammo_type = /obj/item/ammo_casing/m7mm/match
 
 /obj/item/ammo_box/magazine/m7mm/bouncy
-	name = "box magazine (Rubber 7mm)"
+	name = "弹药盒 (7mm橡胶弹)"
 	ammo_type = /obj/item/ammo_casing/m7mm/bouncy
 
 /obj/item/ammo_box/magazine/m7mm/bouncy/hicap
-	name = "hi-cap box magazine (Rubber 7mm)"
+	name = "高容量弹药盒 (7mm橡胶弹)"
 	max_ammo = 150
 
 /obj/item/ammo_box/magazine/m7mm/update_icon_state()

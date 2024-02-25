@@ -21,7 +21,7 @@
 	lock_back_sound = 'sound/weapons/gun/pistol/lock_small.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/drop_small.ogg'
 	fire_sound_volume = 90
-	bolt_wording = "滑动"
+	bolt_wording = "枪栓"
 	suppressor_x_offset = 10
 	suppressor_y_offset = -1
 

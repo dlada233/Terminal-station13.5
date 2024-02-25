@@ -1,14 +1,14 @@
 /obj/item/firing_pin
-	name = "electronic firing pin"
-	desc = "A small authentication device, to be inserted into a firearm receiver to allow operation. NT safety regulations require all new designs to incorporate one."
+	name = "电子撞针"
+	desc = "微型的开火认证装置，插入火器来规定它的操作对象；纳米安全法规要求所有的新枪械都设计为必须安装撞针才能开火."
 	icon = 'icons/obj/devices/gunmod.dmi'
 	icon_state = "firing_pin"
 	inhand_icon_state = "pen"
 	worn_icon_state = "pen"
 	obj_flags = CONDUCTS_ELECTRICITY
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb_continuous = list("pokes")
-	attack_verb_simple = list("poke")
+	attack_verb_continuous = list("戳")
+	attack_verb_simple = list("戳")
 	var/fail_message = "invalid user!"
 	/// Explode when user check is failed.
 	var/selfdestruct = FALSE
@@ -44,11 +44,11 @@
 					return .
 				if(gun_insert(user, targeted_gun))
 					if(old_pin)
-						balloon_alert(user, "swapped firing pin")
+						balloon_alert(user, "已更换撞针")
 					else
-						balloon_alert(user, "inserted firing pin")
+						balloon_alert(user, "已安装撞针")
 			else
-				to_chat(user, span_notice("This firearm already has a firing pin installed."))
+				to_chat(user, span_notice("这把枪已经安装了撞针."))
 
 			return .
 
@@ -56,7 +56,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "authentication checks overridden")
+	balloon_alert(user, "身份验证遭到覆写")
 	return TRUE
 
 /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
@@ -78,22 +78,22 @@
 		balloon_alert(user, fail_message)
 	if(selfdestruct)
 		if(user)
-			user.show_message("[span_danger("SELF-DESTRUCTING...")]<br>", MSG_VISUAL)
-			to_chat(user, span_userdanger("[gun] explodes!"))
+			user.show_message("[span_danger("自动销毁...")]<br>", MSG_VISUAL)
+			to_chat(user, span_userdanger("[gun]爆炸了!"))
 		explosion(src, devastation_range = -1, light_impact_range = 2, flash_range = 3)
 		if(gun)
 			qdel(gun)
 
 
 /obj/item/firing_pin/magic
-	name = "magic crystal shard"
-	desc = "A small enchanted shard which allows magical weapons to fire."
+	name = "魔法水晶碎片"
+	desc = "小魔法水晶碎片，可以让魔法武器开火."
 
 
 // Test pin, works only near firing range.
 /obj/item/firing_pin/test_range
-	name = "test-range firing pin"
-	desc = "This safety firing pin allows weapons to be fired within proximity to a firing range."
+	name = "靶场撞针"
+	desc = "该安全撞针限制武器只在靶场范围内开火."
 	fail_message = "test range check failed!"
 	pin_hot_swappable = TRUE
 
@@ -107,8 +107,8 @@
 
 // Implant pin, checks for implant
 /obj/item/firing_pin/implant
-	name = "implant-keyed firing pin"
-	desc = "This is a security firing pin which only authorizes users who are implanted with a certain device."
+	name = "植入键撞针"
+	desc = "该安保撞针限制武器只能被拥有特定植入物的人使用."
 	fail_message = "implant check failed!"
 	var/obj/item/implant/req_implant = null
 
@@ -120,13 +120,13 @@
 	return FALSE
 
 /obj/item/firing_pin/implant/mindshield
-	name = "mindshield firing pin"
-	desc = "This Security firing pin authorizes the weapon for only mindshield-implanted users."
+	name = "心盾撞针"
+	desc = "该安保撞针限制武器只能被拥有心盾植入物的人使用."
 	icon_state = "firing_pin_loyalty"
 	req_implant = /obj/item/implant/mindshield
 
 /obj/item/firing_pin/implant/pindicate
-	name = "syndicate firing pin"
+	name = "辛迪加撞针"
 	icon_state = "firing_pin_pindi"
 	req_implant = /obj/item/implant/weapons_auth
 
@@ -135,8 +135,8 @@
 // Honk pin, clown's joke item.
 // Can replace other pins. Replace a pin in cap's laser for extra fun!
 /obj/item/firing_pin/clown
-	name = "hilarious firing pin"
-	desc = "Advanced clowntech that can convert any firearm into a far more useful object."
+	name = "搞笑撞针"
+	desc = "先进的小丑技术将武器们变得更加实用."
 	color = "#FFFF00"
 	fail_message = "honk!"
 	force_replace = TRUE
@@ -148,7 +148,7 @@
 // Ultra-honk pin, clown's deadly joke item.
 // A gun with ultra-honk pin is useful for clown and useless for everyone else.
 /obj/item/firing_pin/clown/ultra
-	name = "ultra hilarious firing pin"
+	name = "超级搞笑撞针"
 
 /obj/item/firing_pin/clown/ultra/pin_auth(mob/living/user)
 	playsound(src.loc, 'sound/items/bikehorn.ogg', 50, TRUE)
@@ -176,16 +176,16 @@
 
 // Now two times deadlier!
 /obj/item/firing_pin/clown/ultra/selfdestruct
-	name = "super ultra hilarious firing pin"
-	desc = "Advanced clowntech that can convert any firearm into a far more useful object. It has a small nitrobananium charge on it."
+	name = "超级超级搞笑撞针"
+	desc = "先进的小丑技术将武器们变得更加实用，它带了一个小小的硝基香蕉电荷."
 	selfdestruct = TRUE
 
 
 // DNA-keyed pin.
 // When you want to keep your toys for yourself.
 /obj/item/firing_pin/dna
-	name = "DNA-keyed firing pin"
-	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link."
+	name = "DNA键撞针"
+	desc = "该撞针限制武器只能被特定DNA人物使用，安装武器后的第一次发射以建立DNA链接."
 	icon_state = "firing_pin_dna"
 	fail_message = "dna check failed!"
 	var/unique_enzymes = null
@@ -196,7 +196,7 @@
 		var/mob/living/carbon/M = target
 		if(M.dna && M.dna.unique_enzymes)
 			unique_enzymes = M.dna.unique_enzymes
-			balloon_alert(user, "dna lock set")
+			balloon_alert(user, "DNA锁设置")
 
 /obj/item/firing_pin/dna/pin_auth(mob/living/carbon/user)
 	if(user && user.dna && user.dna.unique_enzymes)
@@ -208,19 +208,19 @@
 	if(!unique_enzymes)
 		if(user && user.dna && user.dna.unique_enzymes)
 			unique_enzymes = user.dna.unique_enzymes
-			balloon_alert(user, "dna lock set")
+			balloon_alert(user, "DNA锁设置")
 	else
 		..()
 
 /obj/item/firing_pin/dna/dredd
-	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link. It has a small explosive charge on it."
+	desc = "该撞针限制武器只能被特定DNA人物使用，安装武器后的第一次发射以建立DNA链接，有一个微型的炸药安装在这支撞针上."
 	selfdestruct = TRUE
 
 // Paywall pin, brought to you by ARMA 3 DLC.
 // Checks if the user has a valid bank account on an ID and if so attempts to extract a one-time payment to authorize use of the gun. Otherwise fails to shoot.
 /obj/item/firing_pin/paywall
-	name = "paywall firing pin"
-	desc = "A firing pin with a built-in configurable paywall."
+	name = "付费撞针"
+	desc = "该撞针使武器开火时从使用者的银行账户中扣款，付款方式可事前自定义设置."
 	color = "#FFD700"
 	fail_message = ""
 	///list of account IDs which have accepted the license prompt. If this is the multi-payment pin, then this means they accepted the waiver that each shot will cost them money
@@ -236,25 +236,25 @@
 
 /obj/item/firing_pin/paywall/attack_self(mob/user)
 	multi_payment = !multi_payment
-	to_chat(user, span_notice("You set the pin to [( multi_payment ) ? "process payment for every shot" : "one-time license payment"]."))
+	to_chat(user, span_notice("你将撞针设置为 [( multi_payment ) ? "每次发射扣款" : "一次性许可证扣款"]."))
 
 /obj/item/firing_pin/paywall/examine(mob/user)
 	. = ..()
 	if(pin_owner)
-		. += span_notice("This firing pin is currently authorized to pay into the account of [pin_owner.account_holder].")
+		. += span_notice("该撞针由[pin_owner.account_holder]的银行账户授权支付.")
 
 /obj/item/firing_pin/paywall/gun_insert(mob/living/user, obj/item/gun/G)
 	if(!pin_owner)
-		to_chat(user, span_warning("ERROR: Please swipe valid identification card before installing firing pin!"))
+		to_chat(user, span_warning("错误: 安装撞针前，请先刷有效身份证件!"))
 		user.put_in_hands(src)
 		return FALSE
 	gun = G
 	forceMove(gun)
 	gun.pin = src
 	if(multi_payment)
-		gun.desc += span_notice(" This [gun.name] has a per-shot cost of [payment_amount] credit[( payment_amount > 1 ) ? "s" : ""].")
+		gun.desc += span_notice(" [gun.name]每次开火将消费[payment_amount]信用点[( payment_amount > 1 ) ? "" : ""].")
 		return TRUE
-	gun.desc += span_notice(" This [gun.name] has a license permit cost of [payment_amount] credit[( payment_amount > 1 ) ? "s" : ""].")
+	gun.desc += span_notice(" [gun.name]的许可证费用为[payment_amount]信用点[( payment_amount > 1 ) ? "" : ""].")
 	return TRUE
 
 
@@ -266,25 +266,25 @@
 	if(isidcard(M))
 		var/obj/item/card/id/id = M
 		if(!id.registered_account)
-			to_chat(user, span_warning("ERROR: Identification card lacks registered bank account!"))
+			to_chat(user, span_warning("错误: 该身份证件没有绑定的银行账户!"))
 			return
 		if(id.registered_account != pin_owner && owned)
-			to_chat(user, span_warning("ERROR: This firing pin has already been authorized!"))
+			to_chat(user, span_warning("错误: 该撞针已经被授权支付了!"))
 			return
 		if(id.registered_account == pin_owner)
-			to_chat(user, span_notice("You unlink the card from the firing pin."))
+			to_chat(user, span_notice("你把证件从撞针上解绑."))
 			gun_owners -= user.get_bank_account()
 			pin_owner = null
 			owned = FALSE
 			return
-		var/transaction_amount = tgui_input_number(user, "Insert valid deposit amount for gun purchase", "Money Deposit")
+		var/transaction_amount = tgui_input_number(user, "填写用于枪支购买的有效预付款", "预付款")
 		if(!transaction_amount || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 			return
 		pin_owner = id.registered_account
 		owned = TRUE
 		payment_amount = transaction_amount
 		gun_owners += user.get_bank_account()
-		to_chat(user, span_notice("You link the card to the firing pin."))
+		to_chat(user, span_notice("你将证件连接到撞针."))
 
 /obj/item/firing_pin/paywall/pin_auth(mob/living/user)
 	if(!istype(user))//nice try commie
@@ -294,20 +294,20 @@
 		if(multi_payment && credit_card_details)
 			if(!gun.can_shoot())
 				return TRUE //So you don't get charged for attempting to fire an empty gun.
-			if(credit_card_details.adjust_money(-payment_amount, "Firing Pin: Gun Rent"))
+			if(credit_card_details.adjust_money(-payment_amount, "撞针: 枪租"))
 				if(pin_owner)
-					pin_owner.adjust_money(payment_amount, "Firing Pin: Payout For Gun Rent")
+					pin_owner.adjust_money(payment_amount, "撞针: 支付枪租")
 				return TRUE
-			to_chat(user, span_warning("ERROR: User balance insufficent for successful transaction!"))
+			to_chat(user, span_warning("错误: 用户余额不足，交易无法进行!"))
 			return FALSE
 		return TRUE
 	if(!credit_card_details)
-		to_chat(user, span_warning("ERROR: User has no valid bank account to subtract neccesary funds from!"))
+		to_chat(user, span_warning("错误: 用户没有有效的银行账户来支付金额!"))
 		return FALSE
 	if(active_prompt_user == user)
 		return FALSE
 	active_prompt_user = user
-	var/license_request = tgui_alert(user, "Do you wish to pay [payment_amount] credit[( payment_amount > 1 ) ? "s" : ""] for [( multi_payment ) ? "each shot of [gun.name]" : "usage license of [gun.name]"]?", "Weapon Purchase", list("Yes", "No"), 15 SECONDS)
+	var/license_request = tgui_alert(user, "对于[( multi_payment ) ? "[gun.name]的每次设计" : "[gun.name]的使用许可证"]，你希望支付多少[payment_amount]信用点[( payment_amount > 1 ) ? "" : ""]?", "武器购买", list("Yes", "No"), 15 SECONDS)
 	if(!user.can_perform_action(src))
 		active_prompt_user = null
 		return FALSE
@@ -315,28 +315,28 @@
 		if("Yes")
 			if(multi_payment)
 				gun_owners += credit_card_details
-				to_chat(user, span_notice("Gun rental terms agreed to, have a secure day!"))
+				to_chat(user, span_notice("枪械租赁条款成立，祝你今日平安!"))
 
-			else if(credit_card_details.adjust_money(-payment_amount, "Firing Pin: Gun License"))
+			else if(credit_card_details.adjust_money(-payment_amount, "撞针: 枪械许可证"))
 				if(pin_owner)
-					pin_owner.adjust_money(payment_amount, "Firing Pin: Gun License Bought")
+					pin_owner.adjust_money(payment_amount, "撞针: 购买枪械许可证")
 				gun_owners += credit_card_details
-				to_chat(user, span_notice("Gun license purchased, have a secure day!"))
+				to_chat(user, span_notice("枪械许可证已购买，祝你今日平安!"))
 
 			else
-				to_chat(user, span_warning("ERROR: User balance insufficent for successful transaction!"))
+				to_chat(user, span_warning("错误: 用户余额不足，交易无法进行!"))
 
 		if("No", null)
-			to_chat(user, span_warning("ERROR: User has declined to purchase gun license!"))
+			to_chat(user, span_warning("错误: 用户已拒绝购买枪支许可证"))
 	active_prompt_user = null
 	return FALSE //we return false here so you don't click initially to fire, get the prompt, accept the prompt, and THEN the gun
 
 // Explorer Firing Pin- Prevents use on station Z-Level, so it's justifiable to give Explorers guns that don't suck.
 /obj/item/firing_pin/explorer
-	name = "outback firing pin"
-	desc = "A firing pin used by the austrailian defense force, retrofit to prevent weapon discharge on the station."
+	name = "内陆撞针"
+	desc = "澳大利亚国防军使用的一种撞针，限制武器无法在太空站范围内开火."
 	icon_state = "firing_pin_explorer"
-	fail_message = "cannot fire while on station, mate!"
+	fail_message = "在站里不能开火，伙计!"
 
 // This checks that the user isn't on the station Z-level.
 /obj/item/firing_pin/explorer/pin_auth(mob/living/user)
@@ -347,8 +347,8 @@
 
 // Laser tag pins
 /obj/item/firing_pin/tag
-	name = "laser tag firing pin"
-	desc = "A recreational firing pin, used in laser tag units to ensure users have their vests on."
+	name = "激光大战撞针"
+	desc = "休闲游戏激光大战所用激光枪的撞针，确保使用者穿着对应的游戏背心."
 	fail_message = "suit check failed!"
 	var/obj/item/clothing/suit/suit_requirement = null
 	var/tagcolor = ""
@@ -358,25 +358,25 @@
 		var/mob/living/carbon/human/M = user
 		if(istype(M.wear_suit, suit_requirement))
 			return TRUE
-	to_chat(user, span_warning("You need to be wearing [tagcolor] laser tag armor!"))
+	to_chat(user, span_warning("你需要穿戴对应的[tagcolor]激光标靶背心!"))
 	return FALSE
 
 /obj/item/firing_pin/tag/red
-	name = "red laser tag firing pin"
+	name = "红色信号激光撞针"
 	icon_state = "firing_pin_red"
 	suit_requirement = /obj/item/clothing/suit/redtag
-	tagcolor = "red"
+	tagcolor = "红色"
 
 /obj/item/firing_pin/tag/blue
-	name = "blue laser tag firing pin"
+	name = "蓝色信号激光撞针"
 	icon_state = "firing_pin_blue"
 	suit_requirement = /obj/item/clothing/suit/bluetag
-	tagcolor = "blue"
+	tagcolor = "蓝色"
 
 /obj/item/firing_pin/monkey
-	name = "monkeylock firing pin"
-	desc = "This firing pin prevents non-monkeys from firing a gun."
-	fail_message = "not a monkey!"
+	name = "猿锁撞针"
+	desc = "该撞针限制武器只能由猴子使用."
+	fail_message = "非我猴类!"
 
 /obj/item/firing_pin/monkey/pin_auth(mob/living/user)
 	if(!is_simian(user))

@@ -1,8 +1,8 @@
 // .357 (Syndie Revolver)
 
 /obj/item/ammo_casing/a357
-	name = ".357 bullet casing"
-	desc = "A .357 bullet casing."
+	name = ".357子弹"
+	desc = "一颗.357子弹."
 	caliber = CALIBER_357
 	projectile_type = /obj/projectile/bullet/a357
 
@@ -10,61 +10,61 @@
 	projectile_type = null
 
 /obj/item/ammo_casing/a357/match
-	name = ".357 match bullet casing"
-	desc = "A .357 bullet casing, manufactured to exceedingly high standards."
+	name = ".357竞赛弹"
+	desc = "一颗.357子弹，是在非常严格的公差范围内制造出来的."
 	projectile_type = /obj/projectile/bullet/a357/match
 
 /obj/item/ammo_casing/a357/phasic
-	name = ".357 phasic bullet casing"
+	name = ".357相位弹"
 	projectile_type = /obj/projectile/bullet/a357/phasic
 
 /obj/item/ammo_casing/a357/heartseeker
-	name = ".357 heartseeker bullet casing"
+	name = ".357寻心弹"
 	projectile_type = /obj/projectile/bullet/a357/heartseeker
 
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/ammo_casing/n762
-	name = "7.62x38mmR bullet casing"
-	desc = "A 7.62x38mmR bullet casing."
+	name = "7.62x38mmR弹"
+	desc = "一颗7.62x38mmR子弹."
 	caliber = CALIBER_N762
 	projectile_type = /obj/projectile/bullet/n762
 
 // .38 (Detective's Gun)
 
 /obj/item/ammo_casing/c38
-	name = ".38 bullet casing"
-	desc = "A .38 bullet casing."
+	name = ".38弹"
+	desc = "一颗.38子弹."
 	caliber = CALIBER_38
 	projectile_type = /obj/projectile/bullet/c38
 
 /obj/item/ammo_casing/c38/trac
-	name = ".38 TRAC bullet casing"
-	desc = "A .38 \"TRAC\" bullet casing."
+	name = ".38 TRAC弹"
+	desc = "一颗.38 \"TRAC\"子弹."
 	projectile_type = /obj/projectile/bullet/c38/trac
 
 /obj/item/ammo_casing/c38/match
-	name = ".38 Match bullet casing"
-	desc = "A .38 bullet casing, manufactured to exceedingly high standards."
+	name = ".38竞赛弹"
+	desc = "一颗.38子弹，是在非常严格的公差范围内制造出来的."
 	projectile_type = /obj/projectile/bullet/c38/match
 
 /obj/item/ammo_casing/c38/match/bouncy
-	name = ".38 Rubber bullet casing"
-	desc = "A .38 rubber bullet casing, manufactured to exceedingly bouncy standards."
+	name = ".38橡胶弹"
+	desc = "一颗.38橡胶弹，是在非常宽松的公差范围内制造出来的."
 	projectile_type = /obj/projectile/bullet/c38/match/bouncy
 	harmful = FALSE //SKYRAT EDIT ADDITION
 
 /obj/item/ammo_casing/c38/dumdum
-	name = ".38 DumDum bullet casing"
-	desc = "A .38 DumDum bullet casing."
+	name = ".38达姆弹"
+	desc = "一颗.38达姆弹."
 	projectile_type = /obj/projectile/bullet/c38/dumdum
 
 /obj/item/ammo_casing/c38/hotshot
-	name = ".38 Hot Shot bullet casing"
-	desc = "A .38 Hot Shot bullet casing."
+	name = ".38热射弹"
+	desc = "一颗.38热射子弹."
 	projectile_type = /obj/projectile/bullet/c38/hotshot
 
 /obj/item/ammo_casing/c38/iceblox
-	name = ".38 Iceblox bullet casing"
-	desc = "A .38 Iceblox bullet casing."
+	name = ".38冰霜弹"
+	desc = "一颗.38冰霜子弹."
 	projectile_type = /obj/projectile/bullet/c38/iceblox

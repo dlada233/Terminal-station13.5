@@ -1,5 +1,5 @@
 /obj/projectile/energy/electrode
-	name = "electrode"
+	name = "电极"
 	icon_state = "spark"
 	color = "#FFFF00"
 	stamina = 80 // SKYRAT EDIT CHANGE

@@ -1,6 +1,6 @@
 /obj/projectile/bullet/foam_dart
-	name = "foam dart"
-	desc = "I hope you're wearing eye protection."
+	name = "泡沫弹"
+	desc = "我希望你带了护目镜."
 	damage = 0 // It's a damn toy.
 	damage_type = OXY
 	icon = 'icons/obj/weapons/guns/toy.dmi'
@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/projectile/bullet/foam_dart/riot
-	name = "riot foam dart"
+	name = "镇暴泡沫弹"
 	icon_state = "foamdart_riot_proj"
 	base_icon_state = "foamdart_riot"
 	stamina = 25

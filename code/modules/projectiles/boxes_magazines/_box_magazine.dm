@@ -68,8 +68,8 @@
 	var/list/readout = list()
 
 	if(caliber && max_ammo) // Text references a 'magazine' as only magazines generally have the caliber variable initialized
-		readout += "Up to [span_warning("[max_ammo] [caliber] [casing_phrasing]s")] can be found within this magazine. \
-		\nAccidentally discharging any of these projectiles may void your insurance contract."
+		readout += "该弹匣中最多可装[span_warning("[max_ammo]发[caliber] [casing_phrasing]")]. \
+		\n意外发射子弹将导致保险合同失效."
 
 	var/obj/item/ammo_casing/mag_ammo = get_round(TRUE)
 
@@ -160,7 +160,7 @@
 
 	if(num_loaded)
 		if(!silent)
-			to_chat(user, span_notice("You load [num_loaded > 1 ? "[num_loaded] [casing_phrasing]s" : "a [casing_phrasing]"] into \the [src]!"))
+			to_chat(user, span_notice("你填装[num_loaded > 1 ? "[num_loaded]发[casing_phrasing]" : "一发[casing_phrasing]"]进[src]!"))
 			playsound(src, 'sound/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
 		update_appearance()
 
@@ -175,7 +175,7 @@
 	if(!user.is_holding(src) || !user.put_in_hands(A)) //incase they're using TK
 		A.bounce_away(FALSE, NONE)
 	playsound(src, 'sound/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
-	to_chat(user, span_notice("You remove a [casing_phrasing] from [src]!"))
+	to_chat(user, span_notice("你从[src]移除了一发[casing_phrasing]!"))
 	update_appearance()
 
 /obj/item/ammo_box/examine(mob/user)
@@ -185,13 +185,13 @@
 		return
 	// this is kind of awkward phrasing, but it's the top/ready ammo in the box
 	// intended for people who have like three mislabeled magazines
-	. += span_notice("The [top_round] is ready in [src].")
+	. += span_notice("[top_round]在[src]里准备发射.")
 
 
 /obj/item/ammo_box/update_desc(updates)
 	. = ..()
 	var/shells_left = LAZYLEN(stored_ammo)
-	desc = "[initial(desc)] There [(shells_left == 1) ? "is" : "are"] [shells_left] [casing_phrasing]\s left!"
+	desc = "[initial(desc)] 这里面还有[(shells_left == 1) ? "有" : "有"][shells_left]发[casing_phrasing]!"
 
 /obj/item/ammo_box/update_icon_state()
 	var/shells_left = LAZYLEN(stored_ammo)
