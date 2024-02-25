@@ -3,7 +3,7 @@
 #define INFLAMATION_ADVANCEMENT_PROB 2
 
 /obj/item/organ/internal/appendix
-	name = "appendix"
+	name = "appendix-阑尾"
 	icon_state = "appendix"
 	base_icon_state = "appendix"
 	visual = FALSE

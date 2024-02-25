@@ -1,6 +1,6 @@
 /datum/computer_file/program/maintenance/phys_scanner
 	filename = "phys_scanner"
-	filedesc = "Physical Scanner-扫描"
+	filedesc = "物理扫描"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	extended_desc = "该程序允许平板电脑扫描物理对象并显示数据."
 	size = 2

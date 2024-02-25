@@ -1,5 +1,5 @@
 /obj/item/organ/internal/heart
-	name = "心脏-heart"
+	name = "heart-心脏"
 	desc = "I feel bad for the heartless bastard who lost this."
 	icon_state = "heart-on"
 	base_icon_state = "heart"
@@ -127,7 +127,7 @@
 	return owner_species.mutantheart
 
 /obj/item/organ/internal/heart/cursed
-	name = "诅咒之心-cursed heart"
+	name = "cursed heart-诅咒之心"
 	desc = "一颗心脏，植入后必须手动泵血."
 	icon_state = "cursedheart-off"
 	base_icon_state = "cursedheart"
@@ -157,7 +157,7 @@
 	qdel(accursed.GetComponent(/datum/component/manual_heart))
 
 /obj/item/organ/internal/heart/cybernetic
-	name = "初级电子心-basic cybernetic heart"
+	name = "basic cybernetic heart-初级电子心"
 	desc = "A basic electronic device designed to mimic the functions of an organic human heart."
 	icon_state = "heart-c-on"
 	base_icon_state = "heart-c"
@@ -202,7 +202,7 @@
 	dose_available = FALSE
 
 /obj/item/organ/internal/heart/cybernetic/tier2
-	name = "电子心-cybernetic heart"
+	name = "cybernetic heart-电子心"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma."
 	icon_state = "heart-c-u-on"
 	base_icon_state = "heart-c-u"
@@ -211,7 +211,7 @@
 	emp_vulnerability = 40
 
 /obj/item/organ/internal/heart/cybernetic/tier3
-	name = "高级电子心-upgraded cybernetic heart"
+	name = "upgraded cybernetic heart-高级电子心"
 	desc = "一个设计用于模拟人体心脏功能的电子设备. 储存有应急肾上腺素，在面临严重创伤时自动启用. 这款升级型号会在使用后自动补充."
 	icon_state = "heart-c-u2-on"
 	base_icon_state = "heart-c-u2"
@@ -224,8 +224,8 @@
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
 
 /obj/item/organ/internal/heart/cybernetic/surplus
-	name = "盈余人工心-surplus prosthetic heart"
-	desc = "这颗脆弱得可笑的仿生心脏更像是个水泵，而不是一颗真实的心脏.完全无法抵御电磁脉冲的攻击."
+	name = "surplus prosthetic heart-廉价人工心脏"
+	desc = "这颗脆弱得可笑的仿生心脏更像是个水泵，而不是一颗真的心脏.完全无法抵御电磁脉冲的攻击."
 	icon_state = "heart-c-s-on"
 	base_icon_state = "heart-c-s"
 	maxHealth = STANDARD_ORGAN_THRESHOLD*0.5
@@ -237,7 +237,7 @@
 	AddElement(/datum/element/dangerous_surgical_removal)
 
 /obj/item/organ/internal/heart/freedom
-	name = "自由之心-heart of freedom"
+	name = "heart of freedom-自由之心"
 	desc = "这颗心怀揣着给予一切自由的热情,不断跳动着."
 	organ_flags = ORGAN_ROBOTIC  //the power of freedom prevents heart attacks
 	/// The cooldown until the next time this heart can give the host an adrenaline boost.

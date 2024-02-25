@@ -1,5 +1,5 @@
 /obj/item/organ/internal/cyberimp/eyes
-	name = "电子眼植入物-cybernetic eye implant"
+	name = "cybernetic eye implant-电子眼植入物"
 	desc = "用于眼睛的植入物"
 	icon_state = "eye_implant"
 	implant_overlay = "eye_implant_overlay"
@@ -9,7 +9,7 @@
 
 // HUD implants
 /obj/item/organ/internal/cyberimp/eyes/hud
-	name = "HUD植入物-HUD implant"
+	name = "HUD implant-HUD植入物"
 	desc = "These cybernetic eyes will display a HUD over everything you see. Maybe."
 	slot = ORGAN_SLOT_HUD
 	actions_types = list(/datum/action/item_action/toggle_hud)
@@ -52,23 +52,23 @@
 	toggled_on = FALSE
 
 /obj/item/organ/internal/cyberimp/eyes/hud/medical
-	name = "医疗HUD植入物-Medical HUD implant"
+	name = "Medical HUD implant-医疗HUD植入物"
 	desc = "这对电子眼会在你视野内的一切活物上显示医疗HUD.转动眼球来控制."
 	HUD_type = DATA_HUD_MEDICAL_ADVANCED
 	HUD_trait = TRAIT_MEDICAL_HUD
 
 /obj/item/organ/internal/cyberimp/eyes/hud/security
-	name = "安保HUD植入物-Security HUD implant"
+	name = "Security HUD implant安保HUD植入物"
 	desc = "这对电子眼会在你视野内的一切东西上显示安保HUD.转动眼球来控制."
 	HUD_type = DATA_HUD_SECURITY_ADVANCED
 	HUD_trait = TRAIT_SECURITY_HUD
 
 /obj/item/organ/internal/cyberimp/eyes/hud/diagnostic
-	name = "诊断HUD植入物-Diagnostic HUD implant"
-	desc = "这对电子眼会在你视野内的一切机械上显示诊断HUD.转动眼球来控制.."
+	name = "Diagnostic HUD implant-诊断HUD植入物"
+	desc = "这对电子眼会在你视野内的一切机械上显示诊断HUD.转动眼球来控制."
 	HUD_type = DATA_HUD_DIAGNOSTIC_ADVANCED
 
 /obj/item/organ/internal/cyberimp/eyes/hud/security/syndicate
-	name = "违禁安保HUD植入物-Contraband Security HUD Implant"
+	name = "Contraband Security HUD Implant-违禁安保HUD植入物"
 	desc = "赛博森工业出品的安保HUD植入物.这些不合法的电子眼植入物会在你视野内的一切东西上显示安保HUD."
 	organ_flags = ORGAN_ROBOTIC | ORGAN_HIDDEN

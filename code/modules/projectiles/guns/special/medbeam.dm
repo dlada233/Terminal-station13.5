@@ -1,6 +1,6 @@
 /obj/item/gun/medbeam
 	name = "医疗光束枪"
-	desc = "千万不要交叉光束!"
+	desc = "千万不要让光束交叉!"
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronogun"
 	inhand_icon_state = "chronogun"

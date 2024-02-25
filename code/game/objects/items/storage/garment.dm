@@ -1,5 +1,5 @@
 /obj/item/storage/bag/garment
-	name = "garment bag"
+	name = "衣袋"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "garment_bag"
 	desc = "A bag for storing extra clothes and shoes."
@@ -11,31 +11,31 @@
 	desc = "用来存放多余衣服和鞋子的包，这是舰长的."
 
 /obj/item/storage/bag/garment/hos
-	name = "HOS-安保首长衣袋"
-	desc = "用来存放多余衣服和鞋子的包，这是安保首长的."
+	name = "安保部长衣袋"
+	desc = "用来存放多余衣服和鞋子的包，这是安保部长的."
 
 /obj/item/storage/bag/garment/warden
 	name = "典狱长衣袋"
 	desc = "用来存放多余衣服和鞋子的包，这是典狱长的."
 
 /obj/item/storage/bag/garment/hop
-	name = "HOP-人事主任衣袋"
+	name = "人事部长衣袋"
 	desc = "用来存放多余衣服和鞋子的包，这是人事主任的."
 
 /obj/item/storage/bag/garment/research_director
-	name = "RD-研究主管衣袋"
+	name = "科研主管衣袋"
 	desc = "用来存放多余衣服和鞋子的包，这是研究主管的."
 
 /obj/item/storage/bag/garment/chief_medical
-	name = "CMO-首席医疗官衣袋"
+	name = "首席医疗官衣袋"
 	desc = "用来存放多余衣服和鞋子的包，这是首席医疗官的."
 
 /obj/item/storage/bag/garment/engineering_chief
-	name = "CE-工程师长衣袋"
+	name = "首席工程师衣袋"
 	desc = "用来存放多余衣服和鞋子的包，这是工程师长的."
 
 /obj/item/storage/bag/garment/quartermaster
-	name = "QM-军需官衣袋"
+	name = "军需官衣袋"
 	desc = "用来存放多余衣服和鞋子的包，这是军需官的."
 
 /obj/item/storage/bag/garment/Initialize(mapload)

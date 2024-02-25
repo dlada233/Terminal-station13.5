@@ -13,7 +13,7 @@
 
 // ===== ENGINEERING CONSOLE =====
 /obj/machinery/modular_computer/preset/engineering
-	name = "engineering console"
+	name = "工程控制台"
 	desc = "A stationary computer. This one comes preloaded with engineering programs."
 	starting_programs = list(
 		/datum/computer_file/program/power_monitor,
@@ -23,7 +23,7 @@
 
 // ===== RESEARCH CONSOLE =====
 /obj/machinery/modular_computer/preset/research
-	name = "research director's console"
+	name = "科研主管控制台"
 	desc = "A stationary computer. This one comes preloaded with research programs."
 	starting_programs = list(
 		/datum/computer_file/program/ntnetmonitor,
@@ -35,7 +35,7 @@
 
 // ===== COMMAND CONSOLE =====
 /obj/machinery/modular_computer/preset/command
-	name = "command console"
+	name = "指挥控制台"
 	desc = "A stationary computer. This one comes preloaded with command programs."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
@@ -44,8 +44,8 @@
 
 // ===== IDENTIFICATION CONSOLE =====
 /obj/machinery/modular_computer/preset/id
-	name = "identification console"
-	desc = "A stationary computer. This one comes preloaded with identification modification programs."
+	name = "身份识别控制台"
+	desc = "一台固定式计算机.这台预装了身份修改程序."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 		/datum/computer_file/program/card_mod,
@@ -63,7 +63,7 @@
 
 // ===== CIVILIAN CONSOLE =====
 /obj/machinery/modular_computer/preset/civilian
-	name = "civilian console"
+	name = "民用控制台"
 	desc = "A stationary computer. This one comes preloaded with generic programs."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
@@ -72,15 +72,15 @@
 
 // curator
 /obj/machinery/modular_computer/preset/curator
-	name = "curator console"
-	desc = "A stationary computer. This one comes preloaded with art programs."
+	name = "馆长控制台"
+	desc = "一台固定式计算机。这台计算机预装了文学及艺术程序."
 	starting_programs = list(
 		/datum/computer_file/program/portrait_printer,
 	)
 
 // ===== CARGO CHAT CONSOLES =====
 /obj/machinery/modular_computer/preset/cargochat
-	name = "cargo chatroom console"
+	name = "货仓聊天室控制台"
 	desc = "A stationary computer. This one comes preloaded with a chatroom for your cargo requests."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
@@ -96,25 +96,25 @@
 	cpu.active_program = chatprogram
 
 /obj/machinery/modular_computer/preset/cargochat/service
-	console_department = "Service"
+	console_department = "服务部"
 
 /obj/machinery/modular_computer/preset/cargochat/engineering
-	console_department = "Engineering"
+	console_department = "工程部"
 
 /obj/machinery/modular_computer/preset/cargochat/science
-	console_department = "Science"
+	console_department = "科研部"
 
 /obj/machinery/modular_computer/preset/cargochat/security
-	console_department = "Security"
+	console_department = "安保部"
 
 /obj/machinery/modular_computer/preset/cargochat/medical
-	console_department = "Medical"
+	console_department = "医疗部"
 
 
 //ONE PER MAP PLEASE, IT MAKES A CARGOBUS FOR EACH ONE OF THESE
 /obj/machinery/modular_computer/preset/cargochat/cargo
-	console_department = "Cargo"
-	name = "department chatroom console"
+	console_department = "货仓"
+	name = "部门聊天室控制台"
 	desc = "A stationary computer. This one comes preloaded with a chatroom for incoming cargo requests. You may moderate it from this computer."
 
 /obj/machinery/modular_computer/preset/cargochat/cargo/LateInitialize()

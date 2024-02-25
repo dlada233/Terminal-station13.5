@@ -1,6 +1,6 @@
 /datum/computer_file/program/maintenance/camera
 	filename = "camera_app"
-	filedesc = "camera-相机"
+	filedesc = "相机"
 	program_open_overlay = "camera"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	extended_desc = "This program allows the taking of pictures."

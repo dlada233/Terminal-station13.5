@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		<script language="JavaScript">
 			var ready_int = 0;
 			var ready_mark = document.getElementById("ready");
-			var ready_marks = \[ "<span class='unchecked'>☒</span> READY", "<span class='checked'>☑</span> READY" \];
+			var ready_marks = \[ "<span class='unchecked'>☒</span> 准备", "<span class='checked'>☑</span> 准备" \];
 			function toggle_ready(setReady) {
 				if(setReady) {
 					ready_int = setReady;
@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 			}
 			var antag_int = 0;
 			var antag_mark = document.getElementById("be_antag");
-			var antag_marks = \[ "<span class='unchecked'>☒</span> BE ANTAGONIST", "<span class='checked'>☑</span> BE ANTAGONIST" \];
+			var antag_marks = \[ "<span class='unchecked'>☒</span> 想当反派", "<span class='checked'>☑</span> 想当反派" \];
 			function toggle_antag(setAntag) {
 				if(setAntag) {
 					antag_int = setAntag;
