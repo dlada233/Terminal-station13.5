@@ -1,8 +1,8 @@
 /datum/mutation/human/void
-	name = "Void Magnet"
-	desc = "A rare genome that attracts odd forces not usually observed."
+	name = "虚空磁体"
+	desc = "一种罕见的基因组，吸引着通常无法被观察到的奇怪力量."
 	quality = MINOR_NEGATIVE //upsides and downsides
-	text_gain_indication = span_notice("You feel a heavy, dull force just beyond the walls watching you.")
+	text_gain_indication = span_notice("你感觉到一股沉重、迟钝的力量在墙外注视着你.")
 	instability = 30
 	power_path = /datum/action/cooldown/spell/void/cursed
 	energy_coeff = 1
@@ -19,8 +19,8 @@
 
 /// The base "void invocation" action. No side effects.
 /datum/action/cooldown/spell/void
-	name = "Invoke Void"
-	desc = "Pulls you into a pocket of the void temporarily, making you invincible."
+	name = "召唤虚空"
+	desc = "将你暂时拉入虚空口袋，让你无敌."
 	button_icon_state = "void_magnet"
 
 	school = SCHOOL_EVOCATION
@@ -40,8 +40,8 @@
 
 /// The cursed "void invocation" action, that has a chance of casting itself on its owner randomly on life ticks.
 /datum/action/cooldown/spell/void/cursed
-	name = "Convoke Void" //magic the gathering joke here
-	desc = "A rare genome that attracts odd forces not usually observed. May sometimes pull you in randomly."
+	name = "虚空召唤" //magic the gathering joke here
+	desc = "一种罕见的基因组，会吸引通常无法观察到的奇怪力量，有时会突然把你拉入虚空."
 	/// A multiplier applied to the probability of the curse appearing every life tick
 	var/curse_probability_modifier = 1
 

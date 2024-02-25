@@ -48,7 +48,7 @@
 #define PREV_GENE 2
 
 /obj/machinery/computer/scan_consolenew
-	name = "DNA 控制终端"
+	name = "DNA 控制台"
 	desc = "From here you can research mysteries of the DNA!"
 	icon_screen = "dna"
 	icon_keyboard = "med_key"
@@ -176,7 +176,7 @@
 			eject_disk(user)
 		// Set the new diskette.
 		diskette = item
-		to_chat(user, span_notice("You insert [item]."))
+		to_chat(user, span_notice("你插入了[item]."))
 		return
 
 	// Recycle non-activator used injectors
@@ -189,19 +189,19 @@
 					var/c_typepath = generate_chromosome()
 					var/obj/item/chromosome/CM = new c_typepath (src)
 					stored_chromosomes += CM
-					to_chat(user,span_notice("[capitalize(CM.name)] added to storage."))
+					to_chat(user,span_notice("[capitalize(CM.name)]已添加到存储."))
 				else
 					to_chat(user, span_notice("There was not enough genetic data to extract a viable chromosome."))
 			if(activator.crispr_charge)
 				crispr_charges++
 				to_chat(user, span_notice("CRISPR charge added."))
 			qdel(item)
-			to_chat(user,span_notice("Recycled [item]."))
+			to_chat(user,span_notice("回收 [item]."))
 			return
 		else
 			//recycle unused activators
 			qdel(item)
-			to_chat(user, span_notice("Recycled unused [item]."))
+			to_chat(user, span_notice("回收未使用的 [item]."))
 			return
 	return ..()
 
@@ -822,7 +822,7 @@
 			// Activators are also called "research" injectors and are used to create
 			//  chromosomes by recycling at the DNA Console
 			if(is_activator)
-				I.name = "[HM.name] activator"
+				I.name = "[HM.name] 活化器"
 				I.research = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's genetic damage generation
@@ -832,7 +832,7 @@
 				else
 					injector_ready = world.time + INJECTOR_TIMEOUT
 			else
-				I.name = "[HM.name] mutator"
+				I.name = "[HM.name] 突变子"
 				I.doitanyway = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's genetic damage generation
@@ -1054,7 +1054,7 @@
 
 			var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(result_path)
 			stored_research.discovered_mutations += result_path
-			say("Successfully mutated [HM.name].")
+			say("成功突变 [HM.name].")
 			if(connected_scanner)
 				connected_scanner.use_power(connected_scanner.active_power_usage)
 			else
@@ -1074,13 +1074,13 @@
 
 			// GUARD CHECK - Make sure the disk is not full.
 			if(LAZYLEN(diskette.mutations) >= diskette.max_mutations)
-				to_chat(usr,span_warning("Disk storage is full."))
+				to_chat(usr,span_warning("磁盘储存已满."))
 				return
 
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("Disk is set to read only mode."))
+				to_chat(usr,span_warning("磁盘设置为只读模式."))
 				return
 
 			// GUARD CHECK - We're running a research-type operation. If, for some
@@ -1110,7 +1110,7 @@
 
 			// If we got a new type, add it to our storage
 			diskette.mutations += new result_path()
-			to_chat(usr, span_boldnotice("Success! New mutation has been added to the disk."))
+			to_chat(usr, span_boldnotice("操作成功! 新的突变已添加至磁盘."))
 
 			// If it's already discovered, end here. Otherwise, add it to the list of
 			//  discovered mutations
@@ -1120,7 +1120,7 @@
 
 			var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(result_path)
 			stored_research.discovered_mutations += result_path
-			say("Successfully mutated [HM.name].")
+			say("成功突变 [HM.name].")
 			if(connected_scanner)
 				connected_scanner.use_power(connected_scanner.active_power_usage)
 			else
@@ -1554,7 +1554,7 @@
 
 			// Force apply any mutations, this is functionality similar to mutators
 			I.doitanyway = TRUE
-			I.name = "Advanced [inj_name] injector"
+			I.name = "高级 [inj_name] 注射器"
 
 			// If there's an operational connected scanner, we can use its upgrades
 			//  to improve our injector's genetic damage generation
@@ -2140,7 +2140,7 @@
 	if(stored_research && !(path in stored_research.discovered_mutations))
 		var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(path)
 		stored_research.discovered_mutations += path
-		say("Successfully discovered [HM.name].")
+		say("成功发现 [HM.name].")
 		return TRUE
 
 	return FALSE
