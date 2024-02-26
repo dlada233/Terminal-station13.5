@@ -1,6 +1,6 @@
 /datum/computer_file/program/status
 	filename = "statusdisplay"
-	filedesc = "Status Display-状态显示板"
+	filedesc = "状态显示板"
 	program_icon = "signal"
 	program_open_overlay = "generic"
 	size = 1

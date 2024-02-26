@@ -1,10 +1,10 @@
 
 /datum/computer_file/program/robocontrol
 	filename = "botkeeper"
-	filedesc = "BotKeeper-机器监管"
+	filedesc = "机器监管员"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	program_open_overlay = "robot"
-	extended_desc = "一种远程遥控器，用于向没有知觉的机器人发出基本指令."
+	extended_desc = "一种远程遥控软件，用于向非智能机器人发送基本指令."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 6
 	tgui_id = "NtosRoboControl"
@@ -15,10 +15,10 @@
 	var/list/current_access = list()
 	///List of all ping types you can annoy drones with.
 	var/static/list/drone_ping_types = list(
-		"Low",
-		"Medium",
-		"High",
-		"Critical",
+		"低",
+		"中",
+		"高",
+		"紧急",
 	)
 
 /datum/computer_file/program/robocontrol/ui_data(mob/user)
@@ -139,7 +139,7 @@
 			var/area/current_area = get_area(current_user)
 			if(!current_area || QDELETED(current_user))
 				return
-			var/msg = span_boldnotice("NON-DRONE PING: [current_user.name]: [params["ping_type"]] priority alert in [current_area.name]!")
+			var/msg = span_boldnotice("NON-无人机 标记: [current_user.name]: 位于[current_area.name] [params["ping_type"]]优先级!")
 			_alert_drones(msg, TRUE, current_user)
 			to_chat(current_user, msg)
 			playsound(src, 'sound/machines/terminal_success.ogg', 15, TRUE)

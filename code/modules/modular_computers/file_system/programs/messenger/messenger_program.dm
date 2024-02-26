@@ -7,7 +7,7 @@
 
 /datum/computer_file/program/messenger
 	filename = "nt_messenger"
-	filedesc = "Direct Messenger-短信"
+	filedesc = "短信"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "command"
 	extended_desc = "该程序允许设备与其他模块化设备进行传统通讯."

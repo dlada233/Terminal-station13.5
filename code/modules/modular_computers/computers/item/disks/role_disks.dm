@@ -18,8 +18,8 @@
 		add_file(program_type)
 
 /obj/item/computer_disk/command/captain
-	name = "captain data disk"
-	desc = "Removable disk used to download essential Captain tablet apps."
+	name = "舰长数据磁盘"
+	desc = "储存有舰长需要的各种应用程序的磁盘."
 	icon_state = "datadisk10"
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
@@ -27,38 +27,38 @@
 	)
 
 /obj/item/computer_disk/command/cmo
-	name = "chief medical officer data disk"
-	desc = "Removable disk used to download essential CMO tablet apps."
+	name = "首席医疗官数据磁盘"
+	desc = "储存有首席医疗官需要的各种应用程序的磁盘."
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 	)
 
 /obj/item/computer_disk/command/rd
-	name = "research director data disk"
-	desc = "Removable disk used to download essential RD tablet apps."
+	name = "科研主管数据磁盘"
+	desc = "储存有科研主管需要的各种应用程序的磁盘."
 	starting_programs = list(
 		/datum/computer_file/program/signal_commander,
 	)
 
 /obj/item/computer_disk/command/hos
-	name = "head of security data disk"
-	desc = "Removable disk used to download essential HoS tablet apps."
+	name = "安保部长数据磁盘"
+	desc = "储存有安保部长需要的各种应用程序的磁盘."
 	icon_state = "datadisk9"
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 	)
 
 /obj/item/computer_disk/command/hop
-	name = "head of personnel data disk"
-	desc = "Removable disk used to download essential HoP tablet apps."
+	name = "人事部长数据磁盘"
+	desc = "储存有人事部长需要的各种应用程序的磁盘."
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/job_management,
 	)
 
 /obj/item/computer_disk/command/ce
-	name = "chief engineer data disk"
-	desc = "Removable disk used to download essential CE tablet apps."
+	name = "首席工程师数据磁盘"
+	desc = "储存有首席工程师需要的各种应用程序的磁盘."
 	starting_programs = list(
 		/datum/computer_file/program/supermatter_monitor,
 		/datum/computer_file/program/atmosscan,
@@ -69,8 +69,8 @@
  * Security
  */
 /obj/item/computer_disk/security
-	name = "security officer data disk"
-	desc = "Removable disk used to download security-related tablet apps."
+	name = "安全官数据磁盘"
+	desc = "储存有安全官需要的各种应用程序的磁盘."
 	icon_state = "datadisk9"
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
@@ -81,8 +81,8 @@
  * Medical
  */
 /obj/item/computer_disk/medical
-	name = "medical doctor data disk"
-	desc = "Removable disk used to download medical-related tablet apps."
+	name = "医生数据磁盘"
+	desc = "储存有医生需要的各种应用程序的磁盘."
 	icon_state = "datadisk7"
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
@@ -92,8 +92,8 @@
  * Supply
  */
 /obj/item/computer_disk/quartermaster
-	name = "cargo data disk"
-	desc = "Removable disk used to download cargo-related tablet apps."
+	name = "货仓数据磁盘"
+	desc = "储存有货仓工作需要的各种应用程序的磁盘."
 	icon_state = "cargodisk"
 	starting_programs = list(
 		/datum/computer_file/program/shipping,
@@ -104,8 +104,8 @@
  * Science
  */
 /obj/item/computer_disk/ordnance
-	name = "ordnance data disk"
-	desc = "Removable disk used to download ordnance-related tablet apps."
+	name = "军械数据磁盘"
+	desc = "储存有军械室工作需要的各种应用程序的磁盘."
 	icon_state = "datadisk5"
 	starting_programs = list(
 		/datum/computer_file/program/signal_commander,
@@ -116,13 +116,13 @@
  * Engineering
  */
 /obj/item/computer_disk/engineering
-	name = "engineering data disk"
-	desc = "Removable disk used to download engineering-related tablet apps."
+	name = "工程数据磁盘"
+	desc = "储存有工程工作需要的各种应用程序的磁盘."
 	icon_state = "datadisk6"
 	starting_programs = list(
 		/datum/computer_file/program/alarm_monitor,
 		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/supermatter_monitor,
-		
+
 	)
 

@@ -2,10 +2,10 @@
 
 /datum/computer_file/program/power_monitor
 	filename = "ampcheck"
-	filedesc = "AmpCheck-电察器"
+	filedesc = "电查器"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	program_open_overlay = "power_monitor"
-	extended_desc = "该程序连接到遍布站点的传感器，以提供有关电气系统的信息"
+	extended_desc = "该程序与遍布站点的传感器相连接，可提供有关电力系统的信息"
 	ui_header = "power_norm.gif"
 	download_access = list(ACCESS_ENGINEERING)
 	can_run_on_flags = PROGRAM_CONSOLE
@@ -27,8 +27,8 @@
 /datum/computer_file/program/power_monitor/on_start(mob/living/user)
 	. = ..(user)
 	search()
-	history["supply"] = list()
-	history["demand"] = list()
+	history["供应"] = list()
+	history["需求"] = list()
 
 
 /datum/computer_file/program/power_monitor/process_tick(seconds_per_tick)

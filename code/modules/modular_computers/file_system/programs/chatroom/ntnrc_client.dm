@@ -6,7 +6,7 @@
 
 /datum/computer_file/program/chatclient
 	filename = "ntnrc_client"
-	filedesc = "Chat Client-网络聊天室"
+	filedesc = "网络聊天室"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "command"
 	extended_desc = "该程序允许用户在NTNRC网络中进行网络聊天."

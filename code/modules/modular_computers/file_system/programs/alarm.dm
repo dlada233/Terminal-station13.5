@@ -1,10 +1,10 @@
 /datum/computer_file/program/alarm_monitor
 	filename = "alarmmonitor"
-	filedesc = "Canary-金丝雀"
+	filedesc = "站铃"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	ui_header = "alarm_green.gif"
 	program_open_overlay = "alert-green"
-	extended_desc = "该程序为站点警报系统提供了可视化界面."
+	extended_desc = "该程序为空间站警报系统提供可视化界面."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 4
 	tgui_id = "NtosStationAlertConsole"

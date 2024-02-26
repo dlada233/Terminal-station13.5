@@ -104,10 +104,10 @@
 
 	data["removable_media"] = list()
 	if(inserted_disk)
-		data["removable_media"] += "Eject Disk"
+		data["removable_media"] += "取出磁盘"
 	var/datum/computer_file/program/ai_restorer/airestore_app = locate() in stored_files
 	if(airestore_app?.stored_card)
-		data["removable_media"] += "intelliCard"
+		data["removable_media"] += "英特利储存卡"
 
 	data["programs"] = list()
 	for(var/datum/computer_file/program/program in stored_files)
@@ -131,7 +131,7 @@
 	if(ishuman(usr) && !allow_chunky)
 		var/mob/living/carbon/human/human_user = usr
 		if(human_user.check_chunky_fingers())
-			balloon_alert(human_user, "fingers are too big!")
+			balloon_alert(human_user, "手指太大了!")
 			return TRUE
 
 	switch(action)
@@ -157,7 +157,7 @@
 				return
 
 			killed_program.kill_program(usr)
-			to_chat(usr, span_notice("Program [killed_program.filename].[killed_program.filetype] with PID [rand(100,999)] has been killed."))
+			to_chat(usr, span_notice("程序[killed_program.filename]、[killed_program.filetype]与PID[rand(100,999)]被杀死."))
 			return TRUE
 
 		if("PC_runprogram")
@@ -172,11 +172,11 @@
 			var/mob/user = usr
 			var/new_color
 			while(!new_color)
-				new_color = input(user, "Choose a new color for [src]'s flashlight.", "Light Color",light_color) as color|null
+				new_color = input(user, "为[src]的手电筒选择一个新的灯光颜色.", "灯光颜色",light_color) as color|null
 				if(!new_color)
 					return
 				if(is_color_dark(new_color, 50) ) //Colors too dark are rejected
-					to_chat(user, span_warning("That color is too dark! Choose a lighter one."))
+					to_chat(user, span_warning("这个颜色太深了！请选择浅色."))
 					new_color = null
 			set_flashlight_color(new_color)
 			return TRUE
@@ -185,7 +185,7 @@
 			var/param = params["name"]
 			var/mob/user = usr
 			switch(param)
-				if("Eject Disk")
+				if("取出磁盘")
 					if(!inserted_disk)
 						return
 
@@ -194,7 +194,7 @@
 					playsound(src, 'sound/machines/card_slide.ogg', 50)
 					return TRUE
 
-				if("intelliCard")
+				if("英特利储存卡")
 					var/datum/computer_file/program/ai_restorer/airestore_app = locate() in stored_files
 					if(!airestore_app)
 						return

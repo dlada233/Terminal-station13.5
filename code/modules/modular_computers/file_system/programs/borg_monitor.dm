@@ -1,10 +1,10 @@
 /datum/computer_file/program/borg_monitor
 	filename = "siliconnect"
-	filedesc = "SiliConnect-硅基链"
+	filedesc = "硅链"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	ui_header = "borg_mon.gif"
 	program_open_overlay = "generic"
-	extended_desc = "该程序允许用户远程监控站点Cyborg."
+	extended_desc = "该程序允许远程监管空间站赛博."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	download_access = list(ACCESS_ROBOTICS)
 	size = 5
@@ -48,7 +48,7 @@
 	var/turf/here = get_turf(computer)
 	var/turf/there = get_turf(DL_source)
 	if(!here.Adjacent(there))//If someone walked away, cancel the download
-		to_chat(DL_source, span_danger("日志上传失败：一般连接错误"))//Let the borg know the upload stopped
+		to_chat(DL_source, span_danger("日志上传失败：通用连接错误"))//Let the borg know the upload stopped
 		DL_source = null
 		DL_progress = -1
 		return
@@ -115,7 +115,7 @@
 				return TRUE
 			if(R.stat == DEAD) //Dead borgs will listen to you no longer
 				to_chat(usr, span_warning("Error -- 无法打开单元:[R]的链接"))
-			var/message = tgui_input_text(usr, "给cyborg发送消息", "发送消息")
+			var/message = tgui_input_text(usr, "给赛博发送消息", "发送消息")
 			if(!message)
 				return TRUE
 			to_chat(R, "<br><br>[span_notice("消息来自[ID] -- \"[message]\"")]<br>")
@@ -125,7 +125,7 @@
 			if(R.connected_ai)
 				to_chat(R.connected_ai, "<br><br>[span_notice("消息从[ID]至[R] -- \"[message]\"")]<br>")
 				SEND_SOUND(R.connected_ai, 'sound/machines/twobeep_high.ogg')
-			usr.log_talk(message, LOG_PDA, tag="Cyborg监控程序: ID name \"[ID]\" to [R]")
+			usr.log_talk(message, LOG_PDA, tag="赛博监控程序: ID 名称 \"[ID]\" to [R]")
 			return TRUE
 
 ///This proc is used to determin if a borg should be shown in the list (based on the borg's scrambledcodes var). Syndicate version overrides this to show only syndicate borgs.
@@ -147,11 +147,11 @@
 
 /datum/computer_file/program/borg_monitor/syndicate
 	filename = "roboverlord"
-	filedesc = "Roboverlord-硅基链"
+	filedesc = "Roboverlord-硅链"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	ui_header = "borg_mon.gif"
 	program_open_overlay = "generic"
-	extended_desc = "该程序允许用户远程监控任务中的Cyborg."
+	extended_desc = "该程序允许远程监管空间站赛博."
 	program_flags = PROGRAM_ON_SYNDINET_STORE
 	download_access = list()
 

@@ -4,7 +4,7 @@
 ///A program that enables the user to redeem randomly generated coupons for several cargo packs (mostly goodies).
 /datum/computer_file/program/coupon
 	filename = "couponmaster"
-	filedesc = "Coupon Master-折扣大师"
+	filedesc = "折扣大师"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	extended_desc = "能够接收货物折扣的程序，在兑换完之后可以用PDA将其打印出来."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
@@ -72,7 +72,7 @@
 				"恭喜!",
 				"Bye Bye~.",
 			)
-			user_id.registered_account.bank_card_talk("折扣码[code]赎回. [pick(goodbye)]", TRUE)
+			user_id.registered_account.bank_card_talk("折扣码[code]已兑换. [pick(goodbye)]", TRUE)
 			//Well, guess you're redeeming something else too.
 			if(prob(40) && computer.used_capacity < computer.max_capacity)
 				var/datum/computer_file/warez = new()

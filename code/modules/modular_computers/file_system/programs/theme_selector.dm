@@ -1,7 +1,7 @@
 /datum/computer_file/program/themeify
 	filename = "themeify"
 	filedesc = "主题"
-	extended_desc = "改程序允许您配置您设备的主题."
+	extended_desc = "该程序允许您配置您设备的主题."
 	program_open_overlay = "generic"
 	undeletable = TRUE
 	size = 0
