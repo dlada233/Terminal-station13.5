@@ -34,19 +34,19 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	minimum_required = 1
 	role_name = "random animal"
 	var/animals = 1
-	var/one = "one"
+	var/one = "某个"
 	fakeable = TRUE
 
 /datum/round_event/ghost_role/sentience/announce(fake)
 	var/sentience_report = ""
 
-	var/data = pick("远程监测系统给出的结果", "我们的复杂概率模型", "我们的惊世智慧", "你方无线电通讯流量", "可监测的能源排放", "\[数据删除\]")
+	var/data = pick("远程传感器扫描结果", "我们的复杂概率模型", "我们的全知全能", "你站的无线电通信流量", "探测到的能量辐射", "\[数据删除\]")
 	var/pets = pick("动物/机械", "机械/动物", "宠物", "低等动物", "脆弱生命", "\[数据删除\]")
-	var/strength = pick("人类", "高", "蜥蜴人", "安保", "指挥", "小丑", "低", "非常低", "\[数据删除\]")
+	var/strength = pick("人类", "高", "蜥蜴人", "安保", "指挥", "小丑", "低", "极低", "\[数据删除\]")
 
-	sentience_report += "根据[data]，我们认定 [one]  [pets] 已经发展出了 [strength] 等级智能，并能够参与通讯."
+	sentience_report += "根据[data]，我们认为 [one][pets] 已经发展出了[strength]级智能，并具备沟通能力."
 
-	priority_announce(sentience_report,"[command_name()] 穿来信息")
+	priority_announce(sentience_report,"[command_name()] 中等优先级事项")
 
 /datum/round_event/ghost_role/sentience/spawn_role()
 	var/list/mob/dead/observer/candidates

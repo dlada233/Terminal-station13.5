@@ -51,7 +51,7 @@ export const hair_gradient_color: Feature<string> = {
 };
 
 export const feature_human_ears: FeatureChoiced = {
-  name: '耳',
+  name: '耳朵',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -60,7 +60,7 @@ export const feature_human_ears: FeatureChoiced = {
 };
 
 export const feature_human_tail: FeatureChoiced = {
-  name: '尾',
+  name: '尾巴',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -87,7 +87,7 @@ export const feature_lizard_spines: FeatureChoiced = {
 };
 
 export const feature_lizard_tail: FeatureChoiced = {
-  name: '尾',
+  name: '尾巴',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {

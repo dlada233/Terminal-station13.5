@@ -37,7 +37,7 @@ export const Markings = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
     <Stack fill vertical>
-      <Stack.Item>Markings:</Stack.Item>
+      <Stack.Item>身体标记:</Stack.Item>
       {props.limb.markings.markings_list.map((marking, index) => (
         <Stack.Item key={marking.marking_id}>
           <Stack fill>
@@ -136,7 +136,7 @@ export const AugmentationPage = (props) => {
           <Stack fill vertical>
             <Stack.Item>
               <Stack fill>
-                <Stack.Item>Augumentation:</Stack.Item>
+                <Stack.Item>增强物:</Stack.Item>
                 <Stack.Item grow>
                   <Dropdown
                     width="100%"
@@ -221,7 +221,7 @@ export const LimbsPage = (props) => {
   return (
     <Stack minHeight="100%">
       <Stack.Item minWidth="33%" minHeight="100%">
-        <Section fill scrollable title="Markings" height="197%">
+        <Section fill scrollable title="身体标记" height="197%">
           <div>
             <Dropdown
               width="100%"
@@ -238,7 +238,7 @@ export const LimbsPage = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item minWidth="33%">
-        <Section title="Character Preview" fill align="center" height="197%">
+        <Section title="角色预览" fill align="center" height="197%">
           <CharacterPreview
             id={data.character_preview_view}
             height="25%"
@@ -250,7 +250,7 @@ export const LimbsPage = (props) => {
               marginTop: '3em',
             }}
           >
-            <Section title="Quirk Points Balance" />
+            <Section title="点数平衡" />
           </Box>
 
           <Box
@@ -269,14 +269,14 @@ export const LimbsPage = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item minWidth="33%">
-        <Section fill title="Organs" height="87%">
+        <Section fill title="器官" height="87%">
           <Stack fill vertical>
             {data.organs_data.map((val) => (
               <OrganPage key={val.slot} organ={val} data={data} />
             ))}
           </Stack>
         </Section>
-        <Section fill scrollable title="Augmentations" height="107%">
+        <Section fill scrollable title="增强物" height="107%">
           {data.limbs_data.map((val) => (
             <AugmentationPage key={val.slot} limb={val} data={data} />
           ))}

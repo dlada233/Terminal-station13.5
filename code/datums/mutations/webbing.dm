@@ -1,9 +1,9 @@
 //spider webs
 /datum/mutation/human/webbing
-	name = "Webbing Production"
-	desc = "Allows the user to lay webbing, and travel through it."
+	name = "吐丝"
+	desc = "允许使用者吐丝，并通过吐出的丝网进行移动."
 	quality = POSITIVE
-	text_gain_indication = "<span class='notice'>Your skin feels webby.</span>"
+	text_gain_indication = "<span class='notice'>你的皮肤感觉有点像蜘蛛网.</span>"
 	instability = 15
 	power_path = /datum/action/cooldown/mob_cooldown/lay_web/genetic
 	energy_coeff = 1

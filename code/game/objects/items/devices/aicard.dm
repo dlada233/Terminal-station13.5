@@ -1,5 +1,5 @@
 /obj/item/aicard
-	name = "intelliCard-AI人格芯片"
+	name = "英特利储存卡"
 	desc = "存储AI人格的设备，专利申请中..."
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "aicard" // aicard-full
@@ -26,14 +26,14 @@
 	return ..()
 
 /obj/item/aicard/aitater
-	name = "intelliTater"
-	desc = "A stylish upgrade (?) to the intelliCard."
+	name = "英特利马铃薯"
+	desc = "英特利储存卡的时髦升级(?)."
 	icon_state = "aitater"
 	base_icon_state = "aitater"
 
 /obj/item/aicard/aispook
-	name = "intelliLantern"
-	desc = "A spoOoOoky upgrade to the intelliCard."
+	name = "英特利提灯"
+	desc = "一个对英特利储存卡的奇———怪的升级."
 	icon_state = "aispook"
 	base_icon_state = "aispook"
 

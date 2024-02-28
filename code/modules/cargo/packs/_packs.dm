@@ -104,7 +104,7 @@
 /datum/supply_pack/custom
 	name = "矿业订单"
 	hidden = TRUE
-	crate_name = "shaft mining delivery crate"
+	crate_name = "竖井矿业递送箱"
 	access = list(ACCESS_MINING)
 
 /datum/supply_pack/custom/New(purchaser, cost, list/contains)
@@ -115,13 +115,13 @@
 
 /datum/supply_pack/custom/minerals
 	name = "材料订单"
-	crate_name = "galactic materials market delivery crate"
+	crate_name = "银河系材料市场递送箱"
 	access = list()
 	crate_type = /obj/structure/closet/crate/cardboard
 
 /datum/supply_pack/custom/minerals/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Materials Order"
+	name = "[purchaser]的材料订单"
 	src.cost = cost
 	src.contains = contains
 

@@ -2,9 +2,9 @@
 	var/name
 
 /datum/mutation/human
-	name = "mutation"
+	name = "突变"
 	/// Description of the mutation
-	var/desc = "A mutation."
+	var/desc = "一个突变."
 	/// Is this mutation currently locked?
 	var/locked
 	/// Quality of the mutation

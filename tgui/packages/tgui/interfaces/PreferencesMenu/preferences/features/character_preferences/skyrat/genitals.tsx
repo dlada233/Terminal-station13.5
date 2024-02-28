@@ -194,7 +194,7 @@ export const feature_anus: Feature<string> = {
 };
 
 export const body_size: FeatureNumeric = {
-  name: 'Body Size',
+  name: '身体大小',
   component: FeatureNumberInput,
 };
 

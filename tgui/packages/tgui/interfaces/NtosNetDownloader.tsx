@@ -94,13 +94,13 @@ export const NtosNetDownloader = (props) => {
         {!!error && (
           <NoticeBox>
             <Box mb={1}>{error}</Box>
-            <Button content="Reset" onClick={() => act('PRG_reseterror')} />
+            <Button content="重置" onClick={() => act('PRG_reseterror')} />
           </NoticeBox>
         )}
         <Section>
           <LabeledList>
             <LabeledList.Item
-              label="Hard drive"
+              label="硬盘容量"
               buttons={
                 (!!downloading && (
                   <Button
@@ -140,7 +140,7 @@ export const NtosNetDownloader = (props) => {
             autoFocus
             height="23px"
             width="100%"
-            placeholder="Search program name..."
+            placeholder="搜索程序名称..."
             fluid
             value={searchItem}
             onInput={(e, value) => {
@@ -219,7 +219,7 @@ const Program = (props) => {
                 <Button
                   bold
                   icon="download"
-                  content="Download"
+                  content="下载"
                   disabled={downloading}
                   tooltipPosition="left"
                   tooltip={!!downloading && 'Awaiting download completion...'}
@@ -242,12 +242,12 @@ const Program = (props) => {
                 }
                 content={
                   program.installed
-                    ? 'Installed'
+                    ? '已安装'
                     : !program.compatible
-                      ? 'Incompatible'
+                      ? '不兼容'
                       : !program.access
-                        ? 'No Access'
-                        : 'No Space'
+                        ? '无权限'
+                        : '没有空间'
                 }
               />
             )}

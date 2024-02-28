@@ -1,6 +1,6 @@
 /obj/item/supplypod_beacon
-	name = "Supply Pod Beacon"
-	desc = "A device that can be linked to an Express Supply Console for precision supply pod deliveries."
+	name = "补给舱信标"
+	desc = "一个可以连接到特快供应控制台，进行补给舱精确投送的装置. Alt+左键以取消连接."
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "supplypod_beacon"
 	inhand_icon_state = "radio"
@@ -55,11 +55,11 @@
 
 /obj/item/supplypod_beacon/examine(user)
 	. = ..()
-	. += span_notice("It looks like it has a few anchoring bolts.")
+	. += span_notice("它看起来有几个锚定栓.")
 	if(!express_console)
-		. += span_notice("[src] is not currently linked to an Express Supply console.")
+		. += span_notice("[src]当前未连接到特快供应控制台.")
 	else
-		. += span_notice("Alt-click to unlink it from the Express Supply console.")
+		. += span_notice("Alt+左键可解除将其从特快供应控制台的连接.")
 
 /obj/item/supplypod_beacon/Destroy()
 	if(express_console)
@@ -88,7 +88,7 @@
 	update_status(SP_LINKED)
 	if (express_console.usingBeacon)
 		update_status(SP_READY)
-	to_chat(user, span_notice("[src] linked to [C]."))
+	to_chat(user, span_notice("[src]连接到[C]."))
 
 /obj/item/supplypod_beacon/AltClick(mob/user)
 	if (!user.can_perform_action(src, ALLOW_SILICON_REACH))
@@ -96,12 +96,12 @@
 	if (express_console)
 		unlink_console()
 	else
-		to_chat(user, span_alert("There is no linked console."))
+		to_chat(user, span_alert("当前没有可用控制台."))
 
 /obj/item/supplypod_beacon/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/pen)) //give a tag that is visible from the linked express console
 		return ..()
-	var/new_beacon_name = tgui_input_text(user, "What would you like the tag to be?", "Beacon Tag", max_length = MAX_NAME_LEN)
+	var/new_beacon_name = tgui_input_text(user, "你想要设置什么标签?", "信标标签", max_length = MAX_NAME_LEN)
 	if(isnull(new_beacon_name))
 		return
 	if(!user.can_perform_action(src))

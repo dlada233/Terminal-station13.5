@@ -2917,7 +2917,7 @@
 "aJC" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_3_lavaland"
 	},
 /turf/open/space,
@@ -10796,7 +10796,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -28270,7 +28270,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -30597,7 +30597,7 @@
 "hBu" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_4_lavaland"
 	},
 /turf/open/space,
@@ -30721,7 +30721,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -48148,7 +48148,7 @@
 /area/station/maintenance/port/aft)
 "lUo" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_lavaland"
 	},
 /turf/open/space/basic,
@@ -56408,7 +56408,7 @@
 /area/station/medical/paramedic)
 "odd" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_2_lavaland"
 	},
 /turf/open/space,
@@ -74103,7 +74103,7 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/requests_console/directional/south{
 	department = "Bridge";
-	name = "Bridge Requests Console"
+	name = "舰桥请求控制台"
 	},
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,

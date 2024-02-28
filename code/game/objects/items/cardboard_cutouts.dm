@@ -1,7 +1,7 @@
 //Cardboard cutouts! They're man-shaped and can be colored with a crayon to look like a human in a certain outfit, although it's limited, discolored, and obvious to more than a cursory glance.
 /obj/item/cardboard_cutout
-	name = "cardboard cutout"
-	desc = "A vaguely humanoid cardboard cutout. It's completely blank."
+	name = "纸板模型"
+	desc = "一个人形轮廓的纸板模型，没有任何图案."
 	icon = 'icons/obj/art/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	w_class = WEIGHT_CLASS_BULKY
@@ -30,7 +30,7 @@
 
 		cutout = get_cardboard_cutout_instance(cutout_subtype)
 
-	ASSERT(!isnull(cutout), "No cutout found with name [starting_cutout]")
+	ASSERT(!isnull(cutout), "找不到[starting_cutout]的纸板模型")
 
 	cutout.apply(src)
 
@@ -44,7 +44,7 @@
 
 /obj/item/cardboard_cutout/proc/push_over()
 	appearance = initial(appearance)
-	desc = "[initial(desc)] It's been pushed over."
+	desc = "[initial(desc)]已经被推倒了."
 	icon_state = "cutout_pushed_over"
 	remove_atom_colour(FIXED_COLOUR_PRIORITY)
 	pushed_over = TRUE
@@ -52,7 +52,7 @@
 /obj/item/cardboard_cutout/attack_self(mob/living/user)
 	if(!pushed_over)
 		return
-	to_chat(user, span_notice("You right [src]."))
+	to_chat(user, span_notice("你扶正[src]."))
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state) //This resets a cutout to its blank state - this is intentional to allow for resetting
@@ -194,84 +194,84 @@
 	cutouts.desc = applied_desc
 
 /datum/cardboard_cutout/assistant
-	name = "Assistant"
-	applied_name = "John Greytide"
-	applied_desc = "A cardboard cutout of an assistant."
+	name = "助手"
+	applied_name = "约翰 灰潮"
+	applied_desc = "一个助手的纸板模型."
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/generic_assistant
 
 /datum/cardboard_cutout/assistant/get_name()
 	return "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
 
 /datum/cardboard_cutout/clown
-	name = "Clown"
+	name = "小丑"
 	applied_name = "HONK"
-	applied_desc = "A cardboard cutout of a clown. You get the feeling that it should be in a corner."
+	applied_desc = "一个小丑的纸板模型，你觉得这个应该放置在角落里."
 	outfit = /datum/outfit/job/clown
 
 /datum/cardboard_cutout/clown/get_name()
 	return pick(GLOB.clown_names)
 
 /datum/cardboard_cutout/mime
-	name = "Mime"
+	name = "默剧"
 	applied_name = "..."
-	applied_desc = "...(A cardboard cutout of a mime.)"
+	applied_desc = "...(一个默剧的纸板模型.)"
 	outfit = /datum/outfit/job/mime
 
 /datum/cardboard_cutout/mime/get_name()
 	return pick(GLOB.mime_names)
 
 /datum/cardboard_cutout/traitor
-	name = "Traitor"
+	name = "叛徒"
 	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a traitor."
+	applied_desc = "一个叛徒的纸板模型."
 	outfit = /datum/outfit/traitor_cutout
 
 /datum/cardboard_cutout/traitor/get_name()
 	return pick("Unknown", "Captain")
 
 /datum/cardboard_cutout/nuclear_operative
-	name = "Nuclear Operative"
+	name = "核行动队员"
 	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a nuclear operative."
+	applied_desc = "一个核行动队员的纸板模型."
 	outfit = /datum/outfit/syndicate/full
 
 /datum/cardboard_cutout/nuclear_operative/get_name()
 	return pick("Unknown", "COMMS", "Telecomms", "AI", "stealthy op", "STEALTH", "sneakybeaky", "MEDIC", "Medic")
 
 /datum/cardboard_cutout/cultist
-	name = "Cultist"
+	name = "血教徒"
 	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a cultist."
+	applied_desc = "一个血教徒的纸板模型."
 	outfit = /datum/outfit/cult_cutout
 
 /datum/cardboard_cutout/revolutionary
-	name = "Revolutionary"
+	name = "革命者"
 	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a revolutionary."
+	applied_desc = "一个革命者的纸板模型."
 	outfit = /datum/outfit/rev_cutout
 
 /datum/cardboard_cutout/wizard
-	name = "Wizard"
-	applied_name = "wizard"
-	applied_desc = "A cardboard cutout of a wizard."
+	name = "巫师"
+	applied_name = "巫师"
+	applied_desc = "一个巫师的纸板模型."
 	outfit = /datum/outfit/wizard/bookless
 
 /datum/cardboard_cutout/wizard/get_name()
 	return "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 
 /datum/cardboard_cutout/nightmare
-	name = "Nightmare"
-	applied_name = "nightmare"
-	applied_desc = "A cardboard cutout of a nightmare."
+	name = "梦魇"
+	applied_name = "梦魇"
+	applied_desc = "一个梦魇的纸板模型."
 	species = /datum/species/shadow/nightmare
 
 /datum/cardboard_cutout/nightmare/get_name()
 	return pick(GLOB.nightmare_names)
 
 /datum/cardboard_cutout/xenomorph
-	name = "Xenomorph"
-	applied_name = "alien hunter"
-	applied_desc = "A cardboard cutout of a xenomorph."
+	name = "异形"
+	applied_name = "异形猎手"
+	applied_desc = "一个异形的纸板模型."
 	direct_icon = 'icons/mob/nonhuman-player/alien.dmi'
 	direct_icon_state = "alienh"
 
@@ -279,9 +279,9 @@
 	return applied_name + " ([rand(1, 999)])"
 
 /datum/cardboard_cutout/xenomorph_maid
-	name = "Xenomorph Maid"
-	applied_name = "lusty xenomorph maid"
-	applied_desc = "A cardboard cutout of a xenomorph maid."
+	name = "异形女仆"
+	applied_name = "元气满满的异形女仆"
+	applied_desc = "一个异形女仆的纸板模型."
 	direct_icon = 'icons/mob/nonhuman-player/alien.dmi'
 	direct_icon_state = "maid"
 
@@ -289,9 +289,9 @@
 	return applied_name + " ([rand(1, 999)])"
 
 /datum/cardboard_cutout/ash_walker
-	name = "Ash Walker"
-	applied_name = "lizard"
-	applied_desc = "A cardboard cutout of an ash walker."
+	name = "灰烬行者"
+	applied_name = "蜥蜴"
+	applied_desc = "一个灰烬行者的纸板模型."
 	species = /datum/species/lizard/ashwalker
 	outfit = /datum/outfit/ashwalker/spear
 
@@ -308,28 +308,28 @@
 	return pick(GLOB.commando_names)
 
 /datum/cardboard_cutout/ian
-	name = "Ian"
-	applied_name = "Ian"
-	applied_desc = "A cardboard cutout of the HoP's beloved corgi."
+	name = "伊恩"
+	applied_name = "伊恩"
+	applied_desc = "一个HoP心爱的柯基的纸板模型."
 	direct_icon = 'icons/mob/simple/pets.dmi'
 	direct_icon_state = "corgi"
 
 /datum/cardboard_cutout/slaughter_demon
-	name = "Slaughter Demon"
-	applied_name = "slaughter demon"
-	applied_desc = "A cardboard cutout of a slaughter demon."
+	name = "屠戮恶魔"
+	applied_name = "屠戮恶魔"
+	applied_desc = "一个屠戮恶魔的纸板模型."
 	direct_icon = 'icons/mob/simple/mob.dmi'
 	direct_icon_state = "daemon"
 
 /datum/cardboard_cutout/laughter_demon
-	name = "Laughter Demon"
-	applied_name = "laughter demon"
-	applied_desc = "A cardboard cutout of a laughter demon."
+	name = "诡笑恶魔"
+	applied_name = "诡笑恶魔"
+	applied_desc = "一个欢笑恶魔的纸板模型."
 	direct_icon = 'icons/mob/simple/mob.dmi'
 	direct_icon_state = "bowmon"
 
 /datum/cardboard_cutout/security_officer
-	name = "Private Security Officer"
-	applied_name = "Private Security Officer"
-	applied_desc = "A cardboard cutout of a private security officer."
+	name = "私人安全官"
+	applied_name = "私人安全官"
+	applied_desc = "一个私人安全官的纸板模型."
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/nanotrasensoldier

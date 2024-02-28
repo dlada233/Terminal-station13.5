@@ -2,8 +2,7 @@
 	name = "空间站宪章"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "charter"
-	desc = "上任站点的委任状 \
-		委托对象管理该站及周围区域."
+	desc = "一份官方文件，赋予舰长对空间站及其周边空间的治理权."
 	var/used = FALSE
 	var/name_type = "station"
 
@@ -32,7 +31,7 @@
 		to_chat(user, span_warning("船员已经进入工作状态了，现在重命名[name_type]可能不太好."))
 		return
 	if(response_timer_id)
-		to_chat(user, span_warning("还在等待公司高层批准你改名的申请."))
+		to_chat(user, span_warning("还在等待公司高层批准你的改名申请."))
 		return
 
 	var/new_name = tgui_input_text(user, "你想给[station_name()]重新取名吗？ \
@@ -84,8 +83,8 @@
 	minor_announce("[ureal_name] 已将站点更名为 [html_decode(station_name())]", "舰长诏曰") //decode station_name to avoid minor_announce double encode
 	log_game("[ukey] has renamed the station as [station_name()].")
 
-	name = "[station_name()]大宪章"
-	desc = "一份官方文件 \
+	name = "[station_name()]的空间站宪章"
+	desc = "一份官方文件, \
 		将[station_name()]以及周围区域的治理委托给舰长[uname]."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
@@ -97,14 +96,14 @@
 
 
 /obj/item/station_charter/banner
-	name = "\improper Nanotrasen 旗帜"
+	name = "\improper 纳米传讯旗帜"
 	icon = 'icons/obj/banner.dmi'
 	name_type = "planet"
 	icon_state = "banner"
 	inhand_icon_state = "banner"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
-	desc = "A cunning device used to claim ownership of celestial bodies."
+	desc = "一个用来认领天体所有权的狡猾装置."
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
 
@@ -113,7 +112,7 @@
 	minor_announce("[ureal_name]将[name_type]改名为[html_decode(station_name())]", "舰长诏曰") //decode station_name to avoid minor_announce double encode
 	log_game("[ukey] has renamed the [name_type] as [station_name()].")
 	name = "[station_name()]之旗"
-	desc = "旗帜上有Nanotrasen-纳米的官方图章, 表明[station_name()]已经被[uname]以公司名义管理."
+	desc = "旗帜上有Nanotrasen-纳米传讯的官方图章, 表明[station_name()]已经由舰长[uname]以纳米传讯公司名义管理."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE

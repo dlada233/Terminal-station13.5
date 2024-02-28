@@ -1,11 +1,11 @@
 /datum/quirk/bilingual
-	name = "Bilingual"
-	desc = "Over the years you've picked up an extra language!"
+	name = "Bilingual-双语"
+	desc = "经过多年努力，你掌握了另一门语言!"
 	icon = FA_ICON_GLOBE
 	value = 4
-	gain_text = span_notice("Some of the words of the people around you certainly aren't common. Good thing you studied for this.")
-	lose_text = span_notice("You seem to have forgotten your second language.")
-	medical_record_text = "Patient speaks multiple languages."
+	gain_text = span_notice("周围船员交流用词相当的生僻，幸好你事先做了功课.")
+	lose_text = span_notice("你似乎忘记了你的第二语言.")
+	medical_record_text = "患者使用多种语言."
 	mail_goodies = list(/obj/item/taperecorder, /obj/item/clothing/head/frenchberet, /obj/item/clothing/mask/fakemoustache/italian)
 
 /datum/quirk_constant_data/bilingual

@@ -4990,7 +4990,7 @@
 "bln" = (
 /obj/docking_port/stationary/random{
 	dir = 2;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_lavaland"
 	},
 /obj/effect/turf_decal/stripes/line,
@@ -14980,7 +14980,7 @@
 "dSa" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
@@ -14989,7 +14989,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge_blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -17895,7 +17895,7 @@
 /area/station/cargo/miningdock)
 "eFe" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -25697,7 +25697,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge_glass";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/plating,
 /area/station/command/bridge)
@@ -27196,7 +27196,7 @@
 /area/station/hallway/floor3/aft)
 "hhw" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/decal/cleanable/dirt,
@@ -27224,7 +27224,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/window{
 	id = "stationawaygate";
-	name = "Gateway Access Shutters"
+	name = "星门通道百叶帘s"
 	},
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -33862,7 +33862,7 @@
 	},
 /obj/machinery/requests_console/directional/east{
 	department = "Bridge";
-	name = "Bridge Requests Console"
+	name = "舰桥请求控制台"
 	},
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,
@@ -34473,7 +34473,7 @@
 "jcS" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
@@ -34482,7 +34482,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge_blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -48528,7 +48528,7 @@
 "mEY" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
@@ -50101,7 +50101,7 @@
 /area/station/hallway/floor2/fore)
 "mZj" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -50759,7 +50759,7 @@
 /area/station/ai_monitored/security/armory)
 "nho" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/structure/barricade/wooden/crude,
@@ -62164,7 +62164,7 @@
 "qkz" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
@@ -63929,7 +63929,7 @@
 /area/station/service/chapel/funeral)
 "qFv" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/structure/barricade/wooden/crude,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -74204,7 +74204,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/window{
 	id = "stationawaygate";
-	name = "Gateway Access Shutters"
+	name = "星门通道百叶帘s"
 	},
 /obj/machinery/door/firedoor/heavy,
 /obj/structure/disposalpipe/segment,
@@ -81266,7 +81266,7 @@
 /area/station/hallway/floor1/fore)
 "vnp" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
@@ -84797,7 +84797,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/window{
 	id = "stationawaygate";
-	name = "Gateway Access Shutters"
+	name = "星门通道百叶帘s"
 	},
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,

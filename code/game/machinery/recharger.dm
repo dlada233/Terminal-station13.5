@@ -1,5 +1,5 @@
 /obj/machinery/recharger
-	name = "recharger-武器充电器"
+	name = "武器充电器"
 	icon = 'icons/obj/machines/sec.dmi'
 	icon_state = "recharger"
 	base_icon_state = "recharger"

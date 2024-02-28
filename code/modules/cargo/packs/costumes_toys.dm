@@ -2,7 +2,7 @@
 	group = "服装&玩具"
 
 /datum/supply_pack/costumes_toys/randomised
-	name = "帽子合集"
+	name = "收藏版帽子合集"
 	desc = "用三个独特的极具收藏价值的帽子彰显你的地位."
 	cost = CARGO_CRATE_VALUE * 40
 	var/num_contained = 3 //number of items picked to be contained in a randomised crate
@@ -33,8 +33,8 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/costumes_toys/formalwear
-	name = "衣服合集"
-	desc = "你会喜欢你的样子的，我保证，包含一堆花哨的衣服."
+	name = "正装合集"
+	desc = "你会喜欢你的样子的，我保证. 包含一堆花哨的衣服."
 	cost = CARGO_CRATE_VALUE * 4 //Lots of very expensive items. You gotta pay up to look good!
 	contains = list(/obj/item/clothing/under/dress/tango,
 					/obj/item/clothing/under/misc/assistantformal = 2,
@@ -60,7 +60,7 @@
 					/obj/item/clothing/under/suit/tan,
 					/obj/item/lipstick/random,
 				)
-	crate_name = "衣服合集箱"
+	crate_name = "正装合集箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/clownpin
@@ -74,7 +74,7 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/costumes_toys/lasertag
-	name = "激光大战包"
+	name = "激光标记大战包"
 	desc = "泡沫弹是男孩的玩具，而激光大战才是男人的游戏，内含红色套装，蓝色套装\
 		各三套，还有匹配的头盔和激光枪."
 	cost = CARGO_CRATE_VALUE * 2
@@ -85,10 +85,10 @@
 					/obj/item/clothing/head/helmet/redtaghelm = 3,
 					/obj/item/clothing/head/helmet/bluetaghelm = 3,
 				)
-	crate_name = "激光大战箱"
+	crate_name = "激光标记大战箱"
 
 /datum/supply_pack/costumes_toys/knucklebones
-	name = "抓骨游戏包"
+	name = "掷羊拐游戏包"
 	desc = "一个绝不是邪教发明的有趣骰子游戏，咨询当地牧师，了解获准的宗教活动. \
 		内含十八个D6骰子，一个白色蜡笔，以及游戏说明书."
 	cost = CARGO_CRATE_VALUE * 2
@@ -96,7 +96,7 @@
 					/obj/item/paper/guides/knucklebone,
 					/obj/item/toy/crayon/white,
 				)
-	crate_name = "抓骨游戏箱"
+	crate_name = "掷羊拐游戏箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/lasertag/pins
@@ -105,10 +105,10 @@
 	cost = CARGO_CRATE_VALUE * 3.5
 	contraband = TRUE
 	contains = list(/obj/item/storage/box/lasertagpins)
-	crate_name = "激光大战箱"
+	crate_name = "激光标记大战箱"
 
 /datum/supply_pack/costumes_toys/mech_suits
-	name = "机甲驾驶服补给箱"
+	name = "机甲驾驶服装包"
 	desc = "给那些要驾驶大型机器人的人穿的，一箱四件!"
 	cost = CARGO_CRATE_VALUE * 3 //state-of-the-art technology doesn't come cheap
 	contains = list(/obj/item/clothing/under/costume/mech_suit = 4)
@@ -116,7 +116,7 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/costume_original
-	name = "动物森友会服装补给箱"
+	name = "原始动物服装包"
 	desc = "用这些服装来重演莎士比亚的戏剧，包含八种不同的服装!"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/costume/snowman,
@@ -133,13 +133,13 @@
 					/obj/item/clothing/suit/hooded/carp_costume,
 					/obj/item/clothing/suit/hooded/bee_costume,
 				)
-	crate_name = "动物森友会服装箱"
+	crate_name = "原始动物服装箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/costume
 	name = "艺人服装包"
 	desc = "为全空间站的艺人们提供服装，\
-		所有物品均有Nanotrasen认证！\
+		所有物品均经纳米传讯认证！\
 		内含全套小丑和默剧演员服装，还有一个自行车喇叭和一瓶nothing."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_THEATRE
@@ -170,7 +170,7 @@
 	name = "玩具补给包"
 	desc = "臭玩街机的谁在乎实力? 跳过游戏阶段\
 		直接购买通关奖励！内含五个随机的街机玩具，\
-		如果拿去捉弄科研主管，则保修无效."
+		如果拿去捉弄科研主管则保修无效."
 	cost = CARGO_CRATE_VALUE * 8 // or play the arcade machines ya lazy bum
 	num_contained = 5
 	contains = list()
@@ -189,7 +189,7 @@
 /datum/supply_pack/costumes_toys/wizard
 	name = "巫师服装包"
 	desc = "假装加入了巫师联盟!\
-		Nanotrasen温馨提醒：真正加入巫师联盟将强制辞退员工."
+		纳米传讯温馨提醒：真正加入巫师联盟将强制辞退员工."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/staff,
 					/obj/item/clothing/suit/wizrobe/fake,
@@ -207,7 +207,7 @@
 
 /datum/supply_pack/costumes_toys/trekkie
 	name = "《星际迷航》服装包"
-	desc = "穿上十二件Nanotrasen连身服的废弃草案\
+	desc = "穿上十二件纳米传讯连身服的废弃草案\
 		设计理念来自20世纪晚期的地球！\
 		虽然由于侵犯了版权，不能作为官方连体衣使用，\
 		但只要打上‘废案’就能合法出售了."

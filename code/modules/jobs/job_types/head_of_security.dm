@@ -41,7 +41,7 @@
 
 
 /datum/job/head_of_security/get_captaincy_announcement(mob/living/captain)
-	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于人员短缺,任命新抵达的[captain.real_name]为新任代理舰长"
 
 
 /datum/outfit/job/hos

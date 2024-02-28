@@ -1002,7 +1002,7 @@
 "Uy" = (
 /obj/docking_port/stationary/random{
 	shuttle_id = "pod_lavaland";
-	name = "lavaland"
+	name = "拉瓦兰"
 	},
 /turf/open/space/basic,
 /area/space)

@@ -9,7 +9,7 @@
 	program_icon = "satellite-dish"
 	can_run_on_flags = PROGRAM_PDA | PROGRAM_LAPTOP
 	///What is the saved signal frequency?
-	var/signal_frequency = FREQ_SIGNALER
+	var/signal_frequenFrequencycy = FREQ_SIGNALER
 	/// What is the saved signal code?
 	var/signal_code = DEFAULT_SIGNALER_CODE
 	/// Radio connection datum used by signalers.

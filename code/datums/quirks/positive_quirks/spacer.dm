@@ -2,16 +2,16 @@
 #define LAST_STATE_SPACE "in_space"
 
 /datum/quirk/spacer_born
-	name = "Spacer"
-	desc = "You were born in space, and have never known the comfort of a planet's gravity. Your body has adapted to this. \
-		You are more comfortable in zero and artifical gravity and are more resistant to the effects of space, \
-		but travelling to a planet's surface for an extended period of time will make you feel sick."
-	gain_text = span_notice("You feel at home in space.")
-	lose_text = span_danger("You feel homesick.")
+	name = "Spacer-太空族"
+	desc = "你出生于太空，从未体验过行星引力的舒适.你的身体已经适应了无重力环境. \
+		零重力和人造重力对你来说更为舒适，对太空环境的影响也更具抵抗力, \
+		然而，在行星表面长时间停留会让你感到不适."
+	gain_text = span_notice("你在太空中感到舒适自在.")
+	lose_text = span_danger("你思念着你的家园.")
 	icon = FA_ICON_USER_ASTRONAUT
 	value = 7
 	quirk_flags = QUIRK_CHANGES_APPEARANCE //SKYRAT EDIT CHANGE - ORIGINAL: quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
-	medical_record_text = "Patient is well-adapted to non-terrestrial environments."
+	medical_record_text = "患者对非地球环境适应良好."
 	mail_goodies = list(
 		/obj/item/storage/pill_bottle/ondansetron,
 		/obj/item/reagent_containers/pill/gravitum,

@@ -1,11 +1,11 @@
 /datum/job/ai
 	title = JOB_AI
-	description = "Assist the crew, follow your laws, coordinate your cyborgs."
+	description = "协助船员，遵守你的法令，协调你的赛博机器人."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "your laws"
+	supervisors = "你的法令"
 	spawn_type = /mob/living/silicon/ai
 	req_admin_notify = TRUE
 	minimal_player_age = 30
@@ -45,14 +45,14 @@
 			continue
 		sync_target.notify_ai(AI_NOTIFICATION_CYBORG_DISCONNECTED)
 		sync_target.set_connected_ai(ai_spawn)
-		log_combat(ai_spawn, sync_target, "synced cyborg [ADMIN_LOOKUP(sync_target)] to [ADMIN_LOOKUP(ai_spawn)] (AI spawn syncage)")
+		log_combat(ai_spawn, sync_target, "赛博[ADMIN_LOOKUP(sync_target)]同步至[ADMIN_LOOKUP(ai_spawn)] (AI spawn syncage)")
 		if(sync_target.shell)
 			sync_target.undeploy()
 			sync_target.notify_ai(AI_NOTIFICATION_AI_SHELL)
 		else
 			sync_target.notify_ai(TRUE)
-		sync_target.visible_message(span_notice("[sync_target] gently chimes."), span_notice("LawSync protocol engaged."))
-		log_combat(ai_spawn, sync_target, "forcibly synced cyborg laws via spawning in")
+		sync_target.visible_message(span_notice("[sync_target]轻柔地发出鸣响声."), span_notice("法令同步协议启动."))
+		log_combat(ai_spawn, sync_target, "通过生成过程强制同步赛博法令")
 		sync_target.lawsync()
 		sync_target.lawupdate = TRUE
 		sync_target.show_laws()
@@ -80,7 +80,7 @@
 	else if(length(secondary_spawn_points))
 		chosen_spawn_point = pick(secondary_spawn_points)
 	else
-		CRASH("Failed to find any AI spawn points.")
+		CRASH("无法找到任何可用 AI 生成点.")
 	chosen_spawn_point.used = TRUE
 	return chosen_spawn_point
 
@@ -111,11 +111,11 @@
 /datum/job/ai/announce_job(mob/living/joining_mob)
 	. = ..()
 	if(SSticker.HasRoundStarted())
-		minor_announce("[joining_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(joining_mob)].")
+		minor_announce("[joining_mob]已下载到位于[AREACOORD(joining_mob)]的蓝空网络 AI 核心.")
 
 
 /datum/job/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)
 
 /datum/job/ai/get_radio_information()
-	return "<b>Prefix your message with :b to speak with cyborgs and other AIs.</b>"
+	return "<b>在输入框开头加上“:b”前缀来与其他 AI 和赛博进行交流.</b>"

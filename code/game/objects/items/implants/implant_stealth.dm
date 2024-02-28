@@ -1,18 +1,18 @@
 /obj/item/implant/stealth
-	name = "隐形植入物"
-	desc = "Allows you to be hidden in plain sight."
+	name = "潜行植入物"
+	desc = "允许你在醒目的地方隐藏."
 	actions_types = list(/datum/action/item_action/agent_box)
 
 /obj/item/implanter/stealth
-	name = "implanter" // Skyrat edit , was originaly implanter (stealth)
+	name = "植入器" // Skyrat edit , was originaly implanter (stealth)
 	imp_type = /obj/item/implant/stealth
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a stealth implant" // Skyrat edit
+	special_desc = "一个用于植入'潜行'植入物的辛迪加植入器." // Skyrat edit
 
 //Box Object
 
 /obj/structure/closet/cardboard/agent
-	name = "inconspicious box"
+	name = "不可疑的盒子"
 	desc = "It's so normal that you didn't notice it before."
 	icon_state = "agentbox"
 	max_integrity = 1 // "This dumb box shouldn't take more than one hit to make it vanish."

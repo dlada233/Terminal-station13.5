@@ -1,5 +1,5 @@
 /datum/computer_file/program/themeify
-	filename = "themeify"
+	filename = "主题"
 	filedesc = "主题"
 	extended_desc = "该程序允许您配置您设备的主题."
 	program_open_overlay = "generic"

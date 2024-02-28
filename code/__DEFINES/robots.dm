@@ -153,45 +153,45 @@ DEFINE_BITFIELD(bot_access_flags, list(
 
 // General Bot modes //
 /// Idle
-#define BOT_IDLE "Idle"
+#define BOT_IDLE "待命"
 /// Found target, hunting
-#define BOT_HUNT "In Pursuit"
+#define BOT_HUNT "追逐中"
 /// Start patrol
-#define BOT_START_PATROL "Beginning Patrol"
+#define BOT_START_PATROL "开始巡航"
 /// Patrolling
-#define BOT_PATROL "Patrolling"
+#define BOT_PATROL "巡航中"
 /// Summoned to a location
-#define BOT_SUMMON "Summoned by PDA"
+#define BOT_SUMMON "前往PDA召唤处"
 /// Responding to a call from the AI
-#define BOT_RESPONDING "Proceeding to AI waypoint"
+#define BOT_RESPONDING "前往AI路径点"
 /// Currently moving
-#define BOT_MOVING "Moving"
+#define BOT_MOVING "移动中"
 
 // Unique modes //
 /// Secbot - At target, preparing to arrest
-#define BOT_PREP_ARREST "Preparing to Arrest"
+#define BOT_PREP_ARREST "准备进行逮捕"
 /// Secbot - Arresting target
-#define BOT_ARREST "Arresting"
+#define BOT_ARREST "逮捕中"
 /// Cleanbot - Cleaning
-#define BOT_CLEANING "Cleaning"
+#define BOT_CLEANING "清洁中"
 /// Hygienebot - Cleaning unhygienic humans
-#define BOT_SHOWERSTANCE "Chasing filth"
+#define BOT_SHOWERSTANCE "追寻污渍"
 /// Floorbots - Repairing hull breaches
-#define BOT_REPAIRING "Repairing"
+#define BOT_REPAIRING "修复中"
 /// Medibots - Healing people
-#define BOT_HEALING "Healing"
+#define BOT_HEALING "治疗中"
 /// MULEbot - Moving to deliver
-#define BOT_DELIVER "Navigating to Delivery Location"
+#define BOT_DELIVER "导航到送货地点"
 /// MULEbot - Returning to home
-#define BOT_GO_HOME "Proceeding to work site"
+#define BOT_GO_HOME "前往工作地点"
 /// MULEbot - Blocked
-#define BOT_BLOCKED "No Route"
+#define BOT_BLOCKED "无可用路径"
 /// MULEbot - Computing navigation
-#define BOT_NAV "Unable to reach destination"
+#define BOT_NAV "无法到达目的地"
 /// MULEbot - Waiting for nav computation
-#define BOT_WAIT_FOR_NAV "Calculating navigation path"
+#define BOT_WAIT_FOR_NAV "计算导航路线中"
 /// MULEbot - No destination beacon found (or no route)
-#define BOT_NO_ROUTE "Navigating to Home"
+#define BOT_NO_ROUTE "导航到停泊处"
 
 //Secbot and ED209 judgement criteria bitflag values
 #define JUDGE_EMAGGED (1<<0)

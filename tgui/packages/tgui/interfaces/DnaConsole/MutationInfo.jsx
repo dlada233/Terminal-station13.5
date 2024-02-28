@@ -45,8 +45,8 @@ const ChromosomeInfo = (props) => {
           disabled={mutation.ValidStoredChromos.length === 0}
           selected={
             mutation.ValidStoredChromos.length === 0
-              ? 'No Suitable Chromosomes'
-              : 'Select a chromosome'
+              ? '无适合染色体'
+              : '选择染色体'
           }
           onSelected={(e) =>
             act('apply_chromo', {
@@ -83,7 +83,7 @@ const MutationCombiner = (props) => {
       width="240px"
       options={mutations.map((mutation) => mutation.Name)}
       disabled={mutations.length === 0}
-      selected="Combine mutations"
+      selected="混合突变"
       onSelected={(value) =>
         act(`combine_${source.Source}`, {
           firstref: brefFromName(value),
@@ -109,12 +109,12 @@ export const MutationInfo = (props) => {
   const mutationStorage = data.storage.console ?? [];
   const advInjectors = data.storage.injector ?? [];
   if (!mutation) {
-    return <Box color="label">Nothing to show.</Box>;
+    return <Box color="label">无内容.</Box>;
   }
   if (mutation.Source === 'occupant' && !mutation.Discovered) {
     return (
       <LabeledList>
-        <LabeledList.Item label="Name">{mutation.Alias}</LabeledList.Item>
+        <LabeledList.Item label="名称">{mutation.Alias}</LabeledList.Item>
       </LabeledList>
     );
   }
@@ -129,15 +129,15 @@ export const MutationInfo = (props) => {
   return (
     <>
       <LabeledList>
-        <LabeledList.Item label="Name">
+        <LabeledList.Item label="名称">
           <Box inline color={MUT_COLORS[mutation.Quality]}>
             {mutation.Name}
           </Box>
         </LabeledList.Item>
-        <LabeledList.Item label="Description">
+        <LabeledList.Item label="描述">
           {mutation.Description}
         </LabeledList.Item>
-        <LabeledList.Item label="Instability">
+        <LabeledList.Item label="不稳定性">
           {mutation.Instability}
         </LabeledList.Item>
       </LabeledList>
@@ -163,7 +163,7 @@ export const MutationInfo = (props) => {
                   width="240px"
                   options={advInjectors.map((injector) => injector.name)}
                   disabled={advInjectors.length === 0 || !mutation.Active}
-                  selected="Add to advanced injector"
+                  selected="添加至高级注射器"
                   onSelected={(value) =>
                     act('add_advinj_mut', {
                       mutref: mutation.ByondRef,
@@ -187,7 +187,7 @@ export const MutationInfo = (props) => {
                         })
                       }
                     >
-                      Print Activator
+                      打印活化器
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
@@ -202,7 +202,7 @@ export const MutationInfo = (props) => {
                         })
                       }
                     >
-                      Print Mutator
+                      打印突变子
                     </Button>
                   </Stack.Item>
                   <Stack.Item>

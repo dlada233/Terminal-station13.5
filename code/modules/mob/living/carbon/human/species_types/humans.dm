@@ -1,5 +1,5 @@
 /datum/species/human
-	name = "\improper Human"
+	name = "\improper 人类"
 	id = SPECIES_HUMAN
 	inherent_traits = list(
 		TRAIT_USES_SKINTONES,
@@ -35,27 +35,27 @@
 	)
 
 /datum/species/human/get_species_description()
-	return "Humans are the dominant species in the known galaxy. \
-		Their kind extend from old Earth to the edges of known space."
+	return "人类是已知银河系中的主导物种. \
+		他们的足迹从古老的地球延伸到已知宇宙的边缘."
 
 /datum/species/human/get_species_lore()
 	return list(
-		"These primate-descended creatures, originating from the mostly harmless Earth, \
-		have long-since outgrown their home and semi-benign designation. \
-		The space age has taken humans out of their solar system and into the galaxy-at-large.",
+		"这些灵长类动物起源于基本无害的地球, \
+		如今早已跨越他们的家园，褪去原先温顺的形象. \
+		太空时代将人类带出太阳系，迈向了整个银河系.",
 
-		"In traditional human fashion, this near-record pace from terra firma to the final frontier spat \
-		in the face of other races they now shared a stage with. \
-		This included the lizards - if anyone was offended by these upstarts, it was certainly lizardkind.",
+		"人类惯有的傲慢再次显现,他们从泰拉陆地扩张到最终边界的步伐几乎打破纪录 \
+		,但也冒犯了与其共享舞台的其他种族. \
+		其中包括了蜥蜴族 - 如果说谁对这些暴发户感到不满,那肯定非蜥蜴人莫属.",
 
-		"Humanity never managed to find the kind of peace to fully unite under one banner like other species. \
-		The pencil and paper pushing of the UN bureaucrat lives on in the mosaic that is TerraGov; \
-		a composite of the nation-states that still live on in human society.",
+		"人类从未像其他物种那样,拥有完全团结于同一面旗帜下的和平, \
+		联合国官僚们的繁文缛节在“泰拉政府”, \
+		这个人类社会中由不同国家拼凑而成的体系中延续至今.",
 
-		"The human spirit of opportunity and enterprise continues on in its peak form: \
-		the hypercorporation. Acting outside of TerraGov's influence, literally and figuratively, \
-		hypercorporations buy the senate votes they need and establish territory far past the Earth Government's reach. \
-		In hypercorporation territory company policy is law, giving new meaning to \"employee termination\".",
+		"人类的逐利和进取精神达到了顶峰,催生出了新的形态: \
+		超级公司.这些庞然大物游离于泰拉政府之外,字面上和实际上都脱离了地球政府的管控, \
+		金钱买下所需的参议院选票,并在远离泰拉政府掌控的土地上建立领地. \
+		在超级公司的领地上,公司条例即法律,这赋予了\"雇佣终止\"全新含义.",
 	)
 
 /datum/species/human/create_pref_unique_perks()
@@ -65,17 +65,16 @@
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "robot",
-			SPECIES_PERK_NAME = "Asimov Superiority",
-			SPECIES_PERK_DESC = "The AI and their cyborgs are, by default, subservient only \
-				to humans. As a human, silicons are required to both protect and obey you.",
+			SPECIES_PERK_NAME = "阿西莫夫优越性",
+			SPECIES_PERK_DESC = "人工智能和塞博在默认情况下仅服从于人类.作为人类,硅基造物必须保护并服从于你.",
 		))
 
 	if(CONFIG_GET(flag/enforce_human_authority))
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bullhorn",
-			SPECIES_PERK_NAME = "Chain of Command",
-			SPECIES_PERK_DESC = "Nanotrasen only recognizes humans for command roles, such as Captain.",
+			SPECIES_PERK_NAME = "指挥链",
+			SPECIES_PERK_DESC = "纳米传讯仅允许人类担任指挥人员,例如舰长.",
 		))
 
 	return to_add

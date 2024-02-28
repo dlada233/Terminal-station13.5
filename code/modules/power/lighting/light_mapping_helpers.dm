@@ -61,7 +61,7 @@
 	fire_brightness = 4.5
 	bulb_colour = "#FFD6AA"
 	fire_colour = "#bd3f46"
-	desc = "A small lighting fixture."
+	desc = "一种小型照明装置."
 	light_type = /obj/item/light/bulb
 
 /obj/machinery/light/small/broken

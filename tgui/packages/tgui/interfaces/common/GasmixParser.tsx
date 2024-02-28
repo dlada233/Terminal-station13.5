@@ -39,7 +39,7 @@ export const GasmixParser = (props: GasmixParserProps) => {
 
   return !total_moles ? (
     <Box nowrap italic mb="10px">
-      {'No Gas Detected!'}
+      {'未检测到气体!'}
     </Box>
   ) : (
     <LabeledList {...rest}>
@@ -64,11 +64,11 @@ export const GasmixParser = (props: GasmixParserProps) => {
         label={
           temperatureOnClick ? (
             <Button
-              content={'Temperature'}
+              content={'温度'}
               onClick={() => temperatureOnClick()}
             />
           ) : (
-            'Temperature'
+            '温度'
           )
         }
       >
@@ -77,9 +77,9 @@ export const GasmixParser = (props: GasmixParserProps) => {
       <LabeledList.Item
         label={
           volumeOnClick ? (
-            <Button content={'Volume'} onClick={() => volumeOnClick()} />
+            <Button content={'体积'} onClick={() => volumeOnClick()} />
           ) : (
-            'Volume'
+            '体积'
           )
         }
       >
@@ -88,9 +88,9 @@ export const GasmixParser = (props: GasmixParserProps) => {
       <LabeledList.Item
         label={
           pressureOnClick ? (
-            <Button content={'Pressure'} onClick={() => pressureOnClick()} />
+            <Button content={'压强'} onClick={() => pressureOnClick()} />
           ) : (
-            'Pressure'
+            '压强'
           )
         }
       >
@@ -115,7 +115,7 @@ export const GasmixParser = (props: GasmixParserProps) => {
           </LabeledList.Item>
         ))
       ) : (
-        <LabeledList.Item label="Gas Reactions">
+        <LabeledList.Item label="气体反应">
           {reactions.length
             ? reactions.map((reaction, index) =>
                 reactionOnClick ? (
@@ -129,7 +129,7 @@ export const GasmixParser = (props: GasmixParserProps) => {
                   <div key={reaction[1]}>{reaction[1]}</div>
                 ),
               )
-            : 'No reactions detected'}
+            : '未检测到气体反应'}
         </LabeledList.Item>
       )}
     </LabeledList>

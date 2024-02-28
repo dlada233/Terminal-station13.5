@@ -3330,7 +3330,7 @@
 /area/shuttle/abandoned/bar)
 "Gf" = (
 /obj/machinery/door/airlock/command{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
@@ -4995,7 +4995,7 @@
 /area/shuttle/abandoned/engine)
 "VQ" = (
 /obj/machinery/door/airlock/command{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,

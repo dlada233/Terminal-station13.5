@@ -32,7 +32,7 @@ export const SignalerContent = (props) => {
   return (
     <Section>
       <Stack>
-        <Stack.Item color="label">Frequency:</Stack.Item>
+        <Stack.Item color="label">频率:</Stack.Item>
         <Stack.Item>
           <NumberInput
             animate
@@ -55,7 +55,7 @@ export const SignalerContent = (props) => {
           <Button
             ml={1.3}
             icon="sync"
-            content="Reset"
+            content="重置"
             onClick={() =>
               act('reset', {
                 reset: 'freq',
@@ -66,7 +66,7 @@ export const SignalerContent = (props) => {
       </Stack>
       <Stack mt={0.6}>
         <Stack.Item pr={5.3} color="label">
-          Code:
+          代码:
         </Stack.Item>
         <Stack.Item>
           <NumberInput
@@ -88,7 +88,7 @@ export const SignalerContent = (props) => {
           <Button
             ml={1.3}
             icon="sync"
-            content="Reset"
+            content="重置"
             onClick={() =>
               act('reset', {
                 reset: 'code',
@@ -104,7 +104,7 @@ export const SignalerContent = (props) => {
             fluid
             tooltip={cooldown && `Cooldown: ${cooldown * 0.1} seconds`}
             icon="arrow-up"
-            content="Send Signal"
+            content="发送信号"
             textAlign="center"
             onClick={() => act('signal')}
           />

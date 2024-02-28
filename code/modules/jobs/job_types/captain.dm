@@ -1,14 +1,12 @@
 /datum/job/captain
 	title = JOB_CAPTAIN
-	description = "Be responsible for the station, manage your Heads of Staff, \
-		keep the crew alive, be prepared to do anything and everything or die \
-		horribly trying."
+	description = "肩负空间站的全部责任，管理你麾下的部门主管，保障全体船员安全，做好未雨绸缪的准备，否则你可能会惨烈牺牲."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	department_head = list("CentCom")
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Nanotrasen officials and Space Law"
+	supervisors = "纳米传讯官员和太空法"
 	req_admin_notify = 1
 	minimal_player_age = 14
 	exp_requirements = 180
@@ -50,14 +48,14 @@
 
 
 /datum/job/captain/get_captaincy_announcement(mob/living/captain)
-	return "Captain [captain.real_name] on deck!"
+	return "舰长 [captain.real_name] 已抵达!"
 
 /datum/job/captain/get_radio_information()
 	. = ..()
-	. += "\nYou have access to all radio channels, but they are not automatically tuned. Check your radio for more information."
+	. += "\n你可以访问空间站所有的部门频道，但需要手动切换.检查耳机物品说明以了解更多信息."
 
 /datum/outfit/job/captain
-	name = "Captain"
+	name = "舰长"
 	jobtype = /datum/job/captain
 
 	id = /obj/item/card/id/advanced/gold
@@ -117,7 +115,7 @@
 	celestial_charter.name_type = special_charter
 
 /datum/outfit/job/captain/mod
-	name = "Captain (MODsuit)"
+	name = "舰长 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/magnate

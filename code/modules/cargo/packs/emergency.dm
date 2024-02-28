@@ -3,7 +3,7 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/emergency/bio
-	name = "应急生物补给"
+	name = "应急生物防化补给"
 	desc = "这个箱子里有两套完整的生物防护服，可以保护你免受病毒的侵害."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/bio_hood = 2,
@@ -12,7 +12,7 @@
 					/obj/item/reagent_containers/syringe/antiviral = 2,
 					/obj/item/clothing/gloves/latex/nitrile = 2,
 				)
-	crate_name = "防化补给箱"
+	crate_name = "生物防化服箱"
 
 /datum/supply_pack/emergency/equipment
 	name = "应急机器人补给"
@@ -67,7 +67,7 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 
 /datum/supply_pack/emergency/internals
-	name = "应急呼吸补给"
+	name = "呼吸配件应急补给"
 	desc = "掌握你的生命能量，控制你的呼吸，最终你就学会了波纹呼吸法，\
 		内含三个呼吸面罩、三个应急氧气瓶和三个大气瓶." // IS THAT A
 	cost = CARGO_CRATE_VALUE * 2
@@ -76,7 +76,7 @@
 					/obj/item/tank/internals/emergency_oxygen = 3,
 					/obj/item/tank/internals/oxygen = 3,
 				)
-	crate_name = "呼吸用品箱"
+	crate_name = "呼吸配件箱"
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/emergency/metalfoam
@@ -95,12 +95,12 @@
 	contains = list(/obj/item/clothing/suit/space/eva/plasmaman = 2,
 					/obj/item/clothing/head/helmet/space/plasmaman = 2,
 				)
-	crate_name = "等离子人EVA服装箱"
+	crate_name = "等离子人EVA套装箱"
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/emergency/plasmaman
 	name = "等离子人补给包"
-	desc = "用这两套等离子人用装备让其活下来. \
+	desc = "用这两套等离子人装备让这些等离子人活下来. \
 		每份包含一套等离子连体衣、手套、呼吸瓶和头盔."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/under/plasmaman = 2,
@@ -112,7 +112,7 @@
 
 /datum/supply_pack/emergency/radiation
 	name = "辐射防护箱"
-	desc = "用两套防辐射服在核事故与超物质引擎故障中活下来.\
+	desc = "靠这两套防辐射服在核事故与超物质引擎故障中活下来.\
 		每份包含一个头盔、套装和盖革计数器，我们还附赠一瓶伏特加和一些杯子，\
 		这都是出于我们对客户剩余寿命方面的关怀."
 	cost = CARGO_CRATE_VALUE * 2
@@ -139,9 +139,9 @@
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/emergency/weedcontrol
-	name = "应急除草补给"
+	name = "除草应急补给"
 	desc = "将入侵植物拒之门外，内含一把镰刀，一双皮手套，一个防毒面具，还有两枚除草化学手榴弹. \
-		若违法用途，则保修无效."
+		若违法用途则保修无效."
 	cost = CARGO_CRATE_VALUE * 2.5
 	access = ACCESS_HYDROPONICS
 	contains = list(/obj/item/scythe,
@@ -155,7 +155,7 @@
 /datum/supply_pack/emergency/mothic_rations
 	name = "蛾类应急口粮补给"
 	desc = "船员挨饿? 厨师罢工?\
-		这些来自蛾子人舰队的多余口粮包可供购买，内含三盒，每盒三包."
+		这些来自蛾族舰队的多余口粮包可供购买，内含三盒，每盒三包."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/box/mothic_rations = 3)
 	crate_name = "应急口粮箱"

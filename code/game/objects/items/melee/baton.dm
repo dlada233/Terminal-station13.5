@@ -64,7 +64,7 @@
 	. = ..()
 	// Adding an extra break for the sake of presentation
 	if(stamina_damage != 0)
-		offensive_notes = "需要 [span_warning("[CEILING(100 / stamina_damage, 1)] 次击晕打击\s")] 才能使敌人昏迷."
+		offensive_notes = "需要 [span_warning("[CEILING(100 / stamina_damage, 1)] 次击晕打击")] 才能使敌人昏迷."
 
 	register_item_context()
 

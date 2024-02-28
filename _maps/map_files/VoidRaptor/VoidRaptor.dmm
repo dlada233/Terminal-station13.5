@@ -1108,7 +1108,7 @@
 "aqy" = (
 /obj/docking_port/stationary/random{
 	dir = 2;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_3_lavaland"
 	},
 /turf/open/space,
@@ -8707,7 +8707,7 @@
 /area/station/service/chapel)
 "cGr" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge";
+	name = "舰桥";
 	req_access = list("command")
 	},
 /obj/machinery/door/firedoor,
@@ -8716,7 +8716,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -9150,7 +9150,7 @@
 /area/station/cargo/storage)
 "cLN" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_2_lavaland"
 	},
 /turf/open/space,
@@ -16110,7 +16110,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -20465,7 +20465,7 @@
 /area/station/service/chapel)
 "fXl" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_lavaland"
 	},
 /turf/open/space,
@@ -23424,7 +23424,7 @@
 /area/station/engineering/supermatter/room)
 "gMQ" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_4_lavaland"
 	},
 /turf/open/space,
@@ -25345,7 +25345,7 @@
 /area/station/service/janitor)
 "hok" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge";
+	name = "舰桥";
 	req_access = list("command")
 	},
 /obj/machinery/door/firedoor,
@@ -25354,7 +25354,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
@@ -25369,7 +25369,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/catwalk_floor,
@@ -25709,7 +25709,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/poddoor/shutters/window{
 	id = "gateshutter";
-	name = "Gateway Access Shutter"
+	name = "星门通道百叶帘"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/stripes/line{
@@ -28991,7 +28991,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/poddoor/shutters/window{
 	id = "gateshutter";
-	name = "Gateway Access Shutter"
+	name = "星门通道百叶帘"
 	},
 /obj/machinery/button/door/directional/south{
 	id = "gateshutter";
@@ -62936,7 +62936,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/catwalk_floor,
@@ -65537,7 +65537,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge";
+	name = "舰桥";
 	req_access = list("command")
 	},
 /obj/machinery/door/firedoor,
@@ -66814,7 +66814,7 @@
 /area/station/maintenance/solars/port/fore)
 "sFN" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge";
+	name = "舰桥";
 	req_access = list("command")
 	},
 /obj/machinery/door/firedoor,
@@ -73048,7 +73048,7 @@
 /obj/structure/table/reinforced/rglass,
 /obj/machinery/requests_console/directional/east{
 	department = "Bridge";
-	name = "Bridge Requests Console"
+	name = "舰桥请求控制台"
 	},
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,

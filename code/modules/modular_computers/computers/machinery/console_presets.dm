@@ -44,6 +44,7 @@
 
 // ===== IDENTIFICATION CONSOLE =====
 /obj/machinery/modular_computer/preset/id
+
 	name = "人事电脑"
 	desc = "一台固定式计算机，预装了人事业务相关程序."
 	starting_programs = list(

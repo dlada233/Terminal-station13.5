@@ -30,13 +30,13 @@
 #define PROGRAM_RUNS_WITHOUT_POWER (1<<5)
 
 //Program categories
-#define PROGRAM_CATEGORY_DEVICE "Device Tools"
-#define PROGRAM_CATEGORY_EQUIPMENT "Equipment"
-#define PROGRAM_CATEGORY_GAMES "Games"
-#define PROGRAM_CATEGORY_SECURITY "Security & Records"
-#define PROGRAM_CATEGORY_ENGINEERING "Engineering"
-#define PROGRAM_CATEGORY_SUPPLY "Supply"
-#define PROGRAM_CATEGORY_SCIENCE "Science"
+#define PROGRAM_CATEGORY_DEVICE "系统工具"
+#define PROGRAM_CATEGORY_EQUIPMENT "设备软件"
+#define PROGRAM_CATEGORY_GAMES "娱乐软件"
+#define PROGRAM_CATEGORY_SECURITY "安保&记录"
+#define PROGRAM_CATEGORY_ENGINEERING "工程软件"
+#define PROGRAM_CATEGORY_SUPPLY "货物交易"
+#define PROGRAM_CATEGORY_SCIENCE "科研软件"
 
 ///The default amount a program should take in cell use.
 #define PROGRAM_BASIC_CELL_USE 15
@@ -103,14 +103,14 @@
 
 //Defines for the names of all the themes
 #define PDA_THEME_NTOS_NAME "NtOS"
-#define PDA_THEME_DARK_MODE_NAME "NtOS Dark Mode"
-#define PDA_THEME_RETRO_NAME "Retro"
-#define PDA_THEME_SYNTH_NAME "Synth"
-#define PDA_THEME_TERMINAL_NAME "Terminal"
-#define SYNDICATE_THEME_NAME "Syndicate"
-#define CAT_THEME_NAME "Cat"
-#define LIGHT_THEME_NAME "NtOS Light Mode"
-#define ELDRITCH_THEME_NAME "Eldritch"
+#define PDA_THEME_DARK_MODE_NAME "NtOS 暗色主题"
+#define PDA_THEME_RETRO_NAME "复古"
+#define PDA_THEME_SYNTH_NAME "合成器"
+#define PDA_THEME_TERMINAL_NAME "终端机"
+#define SYNDICATE_THEME_NAME "辛迪加"
+#define CAT_THEME_NAME "猫咪"
+#define LIGHT_THEME_NAME "NtOS 亮色主题"
+#define ELDRITCH_THEME_NAME "怪异"
 
 ///List of PDA themes that are accessible to everyone by default.
 GLOBAL_LIST_INIT(default_pda_themes, list(

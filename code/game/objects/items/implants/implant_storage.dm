@@ -1,5 +1,5 @@
 /obj/item/implant/storage
-	name = "储存植入物"
+	name = "'储存'植入物"
 	desc = "使用者将在体内获得一个由蓝空技术制成的储藏空间，可以储存两件大型物品."
 	icon_state = "storage"
 	implant_color = "r"
@@ -40,7 +40,7 @@
 	return ..()
 
 /obj/item/implanter/storage
-	name = "implanter" // Skyrat edit , original was implanter (storage)
+	name = "植入器" // Skyrat edit , original was implanter (storage)
 	imp_type = /obj/item/implant/storage
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a storage implant" // Skyrat edit
+	special_desc = "一个用于植入'储存'植入物的辛迪加植入器" // Skyrat edit

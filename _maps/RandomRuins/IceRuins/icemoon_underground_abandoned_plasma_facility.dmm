@@ -863,7 +863,7 @@
 /area/ruin/plasma_facility/commons)
 "nz" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating/icemoon,
@@ -2668,7 +2668,7 @@
 "VS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/hatch{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /turf/open/floor/plating,
 /area/ruin/plasma_facility/operations)

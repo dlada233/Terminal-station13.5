@@ -1,10 +1,10 @@
 ///Telekinesis lets you interact with objects from range, and gives you a light blue halo around your head.
 /datum/mutation/human/telekinesis
-	name = "Telekinesis"
-	desc = "A strange mutation that allows the holder to interact with objects through thought."
+	name = "心灵遥感"
+	desc = "一种奇怪的基因变异，可以让携带者通过意念与物体互动."
 	quality = POSITIVE
 	difficulty = 18
-	text_gain_indication = "<span class='notice'>You feel smarter!</span>"
+	text_gain_indication = "<span class='notice'>你感觉更聪明了!</span>"
 	limb_req = BODY_ZONE_HEAD
 	instability = 30
 	///Typecache of atoms that TK shouldn't interact with

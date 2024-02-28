@@ -4,7 +4,7 @@
 #define MAX_TOXIN_LIVER_DAMAGE 2 //the max damage the liver can receive per second (~1 min at max damage will destroy liver)
 
 /obj/item/organ/internal/liver
-	name = "liver"
+	name = "肝-liver"
 	desc = "Pairing suggestion: chianti and fava beans."
 	icon_state = "liver"
 	visual = FALSE
@@ -236,14 +236,14 @@
 
 // alien livers can ignore up to 15u of toxins, but they take x3 liver damage
 /obj/item/organ/internal/liver/alien
-	name = "alien liver" // doesnt matter for actual aliens because they dont take toxin damage
+	name = "异星肝-alien liver" // doesnt matter for actual aliens because they dont take toxin damage
 	desc = "A liver that used to belong to a killer alien, who knows what it used to eat."
 	icon_state = "liver-x" // Same sprite as fly-person liver.
 	liver_resistance = 0.333 * LIVER_DEFAULT_TOX_RESISTANCE // -66%
 	toxTolerance = 15 // complete toxin immunity like xenos have would be too powerful
 
 /obj/item/organ/internal/liver/cybernetic
-	name = "basic cybernetic liver"
+	name = "初级电子肝-basic cybernetic liver"
 	desc = "A very basic device designed to mimic the functions of a human liver. Handles toxins slightly worse than an organic liver."
 	failing_desc = "seems to be broken."
 	icon_state = "liver-c"
@@ -264,7 +264,7 @@
 		organ_flags |= ORGAN_EMP //Starts organ faliure - gonna need replacing soon.
 
 /obj/item/organ/internal/liver/cybernetic/tier2
-	name = "cybernetic liver"
+	name = "电子肝-cybernetic liver"
 	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins slightly better than an organic liver."
 	icon_state = "liver-c-u"
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
@@ -273,8 +273,8 @@
 	emp_vulnerability = 40
 
 /obj/item/organ/internal/liver/cybernetic/tier3
-	name = "upgraded cybernetic liver"
-	desc = "An upgraded version of the cybernetic liver, designed to improve further upon organic livers. It is resistant to alcohol poisoning and is very robust at filtering toxins."
+	name = "高级电子肝-upgraded cybernetic liver"
+	desc = "一个升级版本的电子肝，旨在进一步改善有机肝脏的功能.能抵抗酒精中毒，过滤毒素的能力也很强."
 	icon_state = "liver-c-u2"
 	alcohol_tolerance = ALCOHOL_RATE * 0.2
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
@@ -283,11 +283,8 @@
 	emp_vulnerability = 20
 
 /obj/item/organ/internal/liver/cybernetic/surplus
-	name = "surplus prosthetic liver"
-	desc = "A very cheap prosthetic liver, mass produced for low-functioning alcoholics... It looks more like a water filter than \
-		an actual liver. \
-		Very fragile, absolutely terrible at filtering toxins and substantially weak to alcohol. \
-		Offers no protection against EMPs."
+	name = "盈余人工肝-surplus prosthetic liver"
+	desc = "一种非常便宜的人工肝脏，大量生产用于肝功能低下的酗酒者……它看起来更像一个过滤器，而不是真正的肝脏.非常脆弱，排毒能力极差，而且对酒精非常耐受性低.完全无法抵御电磁脉冲的攻击."
 	icon_state = "liver-c-s"
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.35
 	alcohol_tolerance = ALCOHOL_RATE * 2 // can barely handle alcohol

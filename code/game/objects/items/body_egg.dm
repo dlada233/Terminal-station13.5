@@ -1,6 +1,6 @@
 /obj/item/organ/internal/body_egg
-	name = "body egg"
-	desc = "All slimy and yuck."
+	name = "尸体蛋"
+	desc = "黏糊又恶心."
 	icon_state = "innards"
 	visual = TRUE
 	zone = BODY_ZONE_CHEST
@@ -8,7 +8,7 @@
 
 /obj/item/organ/internal/body_egg/on_find(mob/living/finder)
 	..()
-	to_chat(finder, span_warning("You found an unknown alien organism in [owner]'s [zone]!"))
+	to_chat(finder, span_warning("你在[owner]的[zone]中发现了一个未知外星生命体!"))
 
 /obj/item/organ/internal/body_egg/Initialize(mapload)
 	. = ..()
