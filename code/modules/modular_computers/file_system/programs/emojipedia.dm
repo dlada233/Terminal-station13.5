@@ -1,6 +1,6 @@
 /// A tablet app that lets anyone see all the valid emoji they can send via a PDA message (and even OOC!)
 /datum/computer_file/program/emojipedia
-	filename = "表情百科全书"
+	filename = "emojipedia"
 	filedesc = "表情百科全书"
 	downloader_category = PROGRAM_CATEGORY_DEVICE // we want everyone to be able to access this application, since everyone can send emoji via PDA messages
 	program_open_overlay = "generic"

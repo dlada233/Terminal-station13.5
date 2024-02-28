@@ -10,8 +10,8 @@
  * They are free to print them out as they please.
  */
 /datum/computer_file/program/portrait_printer
-	filename = "画像打印机"
-	filedesc = "Marlowe Treeby的艺术银河"
+	filename = "PortraitPrinter"
+	filedesc = "艺术银河"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "dummy"
 	extended_desc = "该程序连接到一个名为Spinward Sector的艺术社区网站，用于观看和打印艺术作品."

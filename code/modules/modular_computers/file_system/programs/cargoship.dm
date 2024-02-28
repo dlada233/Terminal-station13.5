@@ -1,5 +1,5 @@
 /datum/computer_file/program/shipping
-	filename = "宏舟出口器"
+	filename = "shipping"
 	filedesc = "宏舟出口器"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "shipping"

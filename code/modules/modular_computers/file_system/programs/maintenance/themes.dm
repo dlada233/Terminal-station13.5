@@ -1,5 +1,5 @@
 /datum/computer_file/program/maintenance/theme
-	filename = "主题大全"
+	filename = "theme"
 	filedesc = "主题大全"
 	extended_desc = "装载了一个操作界面主题，您可以添加到PDA中并在主题应用程序中切换主题."
 	size = 2

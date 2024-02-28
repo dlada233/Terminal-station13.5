@@ -3,7 +3,7 @@
 
 ///A program that enables the user to redeem randomly generated coupons for several cargo packs (mostly goodies).
 /datum/computer_file/program/coupon
-	filename = "折扣大师"
+	filename = "couponmaster"
 	filedesc = "折扣大师"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	extended_desc = "能够接收货物折扣的程序，在兑换完之后可以用PDA将其打印出来."

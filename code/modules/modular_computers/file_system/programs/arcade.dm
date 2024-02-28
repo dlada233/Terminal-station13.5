@@ -1,5 +1,5 @@
 /datum/computer_file/program/arcade
-	filename = "杜软小街机"
+	filename = "dsarcade"
 	filedesc = "杜软小街机"
 	program_open_overlay = "arcade"
 	extended_desc = "经典游戏'Outbomb Cuban Pete-轰炸古巴皮特'的移动端移植, 具有令人兴奋的画面和不寒而栗的剧情."

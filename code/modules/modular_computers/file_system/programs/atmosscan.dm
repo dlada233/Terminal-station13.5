@@ -4,7 +4,7 @@
 #define ATMOZPHERE_SCAN_CLICK "click"
 
 /datum/computer_file/program/atmosscan
-	filename = "大气扫描"
+	filename = "atmosscan"
 	filedesc = "大气扫描"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	program_open_overlay = "air"

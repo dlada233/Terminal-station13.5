@@ -61,7 +61,7 @@
 
 /obj/machinery/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!cpu)
-		balloon_alert(user, "turn it on first!")
+		balloon_alert(user, "请先开机!")
 		return FALSE
 	return cpu.emag_act(user)
 

@@ -1,6 +1,6 @@
 /datum/computer_file/program/science
 	filename = "experi_track"
-	filedesc = "Nanotrasen Science Hub"
+	filedesc = "纳米科研中心"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	program_open_overlay = "research"
 	extended_desc = "连接到内部科研服务器，以协助空间站的科研工作."

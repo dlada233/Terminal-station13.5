@@ -1,5 +1,5 @@
 /datum/computer_file/program/ai_restorer
-	filename = "AI管理&复原"
+	filename = "ai_restore"
 	filedesc = "AI管理&复原"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	program_open_overlay = "generic"

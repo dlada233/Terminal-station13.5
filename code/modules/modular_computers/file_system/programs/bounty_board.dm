@@ -1,5 +1,5 @@
 /datum/computer_file/program/bounty_board
-	filename = "赏金板"
+	filename = "bountyboard"
 	filedesc = "赏金悬赏请求网络"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "bountyboard"

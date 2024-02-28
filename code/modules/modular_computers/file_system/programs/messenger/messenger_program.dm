@@ -6,7 +6,7 @@
 #define PDA_MESSAGE_TIMESTAMP_FORMAT "hh:mm"
 
 /datum/computer_file/program/messenger
-	filename = "短信"
+	filename = "nt_messenger"
 	filedesc = "短信"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "command"

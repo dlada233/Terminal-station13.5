@@ -1,6 +1,6 @@
 /obj/item/modular_computer/laptop
-	name = "laptop"
-	desc = "A portable laptop computer."
+	name = "笔记本电脑"
+	desc = "便携式笔记本电脑."
 
 	icon = 'icons/obj/modular_laptop.dmi'
 	icon_state = "laptop-closed"
@@ -25,7 +25,7 @@
 /obj/item/modular_computer/laptop/examine(mob/user)
 	. = ..()
 	if(screen_on)
-		. += span_notice("Alt-click to close it.")
+		. += span_notice("Alt加左键合上笔记本电脑.")
 
 /obj/item/modular_computer/laptop/Initialize(mapload)
 	. = ..()
@@ -52,8 +52,8 @@
 		return ..()
 
 /obj/item/modular_computer/laptop/verb/open_computer()
-	set name = "Toggle Open"
-	set category = "Object"
+	set name = "打开"
+	set category = "物品"
 	set src in view(1)
 
 	try_toggle_open(usr)
@@ -102,12 +102,12 @@
 
 /obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user=null)
 	if(screen_on)
-		to_chat(user, span_notice("You close \the [src]."))
+		to_chat(user, span_notice("你关上[src]."))
 		slowdown = initial(slowdown)
 		w_class = initial(w_class)
 		drag_slowdown = initial(drag_slowdown)
 	else
-		to_chat(user, span_notice("You open \the [src]."))
+		to_chat(user, span_notice("你打开[src]."))
 		slowdown = slowdown_open
 		w_class = w_class_open
 		drag_slowdown = slowdown_open
@@ -120,7 +120,7 @@
 	update_appearance()
 
 /obj/item/modular_computer/laptop/get_messenger_ending()
-	return "Sent from my UNIX Laptop"
+	return "来自我的UNIX笔记本电脑"
 
 // Laptop frame, starts empty and closed.
 /obj/item/modular_computer/laptop/buildable

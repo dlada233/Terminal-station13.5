@@ -1,5 +1,5 @@
 /datum/computer_file/program/crew_manifest
-	filename = "迭角形船员名单"
+	filename = "plexagoncrew"
 	filedesc = "迭角形船员名单"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_open_overlay = "id"

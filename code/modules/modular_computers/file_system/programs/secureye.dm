@@ -1,7 +1,7 @@
 #define DEFAULT_MAP_SIZE 15
 
 /datum/computer_file/program/secureye
-	filename = "天眼"
+	filename = "secureye"
 	filedesc = "天眼"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	ui_header = "borg_mon.gif"

@@ -1,5 +1,5 @@
 /datum/computer_file/program/newscaster
-	filename = "新闻网"
+	filename = "newscasterapp"
 	filedesc = "新闻网"
 	download_access = list(ACCESS_LIBRARY)
 	downloader_category = PROGRAM_CATEGORY_GAMES

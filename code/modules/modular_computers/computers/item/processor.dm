@@ -1,8 +1,8 @@
 // Held by /obj/machinery/modular_computer to reduce amount of copy-pasted code.
 //TODO: REFACTOR THIS SPAGHETTI CODE
 /obj/item/modular_computer/processor
-	name = "processing unit"
-	desc = "An advanced computer." //modular PCs examine us
+	name = "处理单元"
+	desc = "一台先进的计算机." //modular PCs examine us
 	icon = null
 	icon_state = null
 	icon_state_unpowered = null
@@ -55,4 +55,4 @@
 	qdel(machinery_computer)
 
 /obj/item/modular_computer/processor/get_messenger_ending()
-	return "Sent from my Desktop"
+	return "来自我的桌面"

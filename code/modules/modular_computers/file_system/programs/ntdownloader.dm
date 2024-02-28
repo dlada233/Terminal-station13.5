@@ -1,5 +1,5 @@
 /datum/computer_file/program/ntnetdownload
-	filename = "NT软件中心"
+	filename = "ntsoftwarehub"
 	filedesc = "NT软件中心"
 	program_open_overlay = "generic"
 	extended_desc = "该程序允许设备从NT官方软件中心下载软件."

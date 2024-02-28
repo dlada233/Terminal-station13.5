@@ -1,6 +1,6 @@
 /datum/computer_file/program/ntnetmonitor
 	filename = "wirecarp"
-	filedesc = "WireCarp-网络鲤鱼"
+	filedesc = "网络鲤鱼"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_open_overlay = "comm_monitor"
 	extended_desc = "该程序监视全站的NTNet网络，提供对日志系统的访问，并允许配置更改."

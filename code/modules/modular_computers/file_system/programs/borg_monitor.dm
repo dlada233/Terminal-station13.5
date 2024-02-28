@@ -1,5 +1,5 @@
 /datum/computer_file/program/borg_monitor
-	filename = "硅链"
+	filename = "siliconnect"
 	filedesc = "硅链"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	ui_header = "borg_mon.gif"

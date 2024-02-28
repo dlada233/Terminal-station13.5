@@ -1,5 +1,5 @@
 /datum/computer_file/program/scipaper_program
-	filename = "nt边界"
+	filename = "ntfrontier"
 	filedesc = "NT边界"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	extended_desc = "用于科学论文发表及搜索的软件."

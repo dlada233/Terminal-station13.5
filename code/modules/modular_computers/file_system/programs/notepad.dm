@@ -1,5 +1,5 @@
 /datum/computer_file/program/notepad
-	filename = "记事本"
+	filename = "notepad"
 	filedesc = "记事本"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"

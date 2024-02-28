@@ -2,7 +2,7 @@
 GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /datum/computer_file/program/job_management
-	filename = "迭角形核心"
+	filename = "plexagoncore"
 	filedesc = "迭角形人力核心"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "id"

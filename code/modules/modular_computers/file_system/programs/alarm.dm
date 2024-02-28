@@ -1,5 +1,5 @@
 /datum/computer_file/program/alarm_monitor
-	filename = "站铃"
+	filename = "alarmmonitor"
 	filedesc = "站铃"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	ui_header = "alarm_green.gif"

@@ -1,6 +1,6 @@
 /obj/item/computer_disk
-	name = "data disk"
-	desc = "Removable disk used to store data."
+	name = "数据磁盘"
+	desc = "用于储存数据的可移动磁盘."
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "datadisk6"
 	w_class = WEIGHT_CLASS_TINY
@@ -51,12 +51,12 @@
 	return TRUE
 
 /obj/item/computer_disk/advanced
-	name = "advanced data disk"
+	name = "先进数据磁盘"
 	icon_state = "datadisk5"
 	max_capacity = 64
 
 /obj/item/computer_disk/super
-	name = "super data disk"
-	desc = "Removable disk used to store large amounts of data."
+	name = "超级数据磁盘"
+	desc = "用于储存大量数据的可移动磁盘."
 	icon_state = "datadisk3"
 	max_capacity = 256

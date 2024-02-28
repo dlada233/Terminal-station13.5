@@ -1,5 +1,5 @@
 /datum/computer_file/program/card_mod
-	filename = "迭角形ID编辑器"
+	filename = "plexagonidwriter"
 	filedesc = "迭角形权限管理器"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "id"

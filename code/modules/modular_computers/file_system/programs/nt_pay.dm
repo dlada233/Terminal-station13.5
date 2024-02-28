@@ -1,5 +1,5 @@
 /datum/computer_file/program/nt_pay
-	filename = "纳米支付"
+	filename = "ntpay"
 	filedesc = "纳米支付"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"
