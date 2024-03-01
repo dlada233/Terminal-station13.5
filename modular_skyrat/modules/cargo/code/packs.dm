@@ -117,7 +117,7 @@
 
 /datum/supply_pack/medical/medigun
 	name = "CWM-479 医疗枪"
-	desc = "内含一把VeyMedical CWM-479 型医疗枪，不附赠药囊."
+	desc = "内含一把VeyMedical CWM-479 型医疗枪，不附赠药匣."
 	cost = CARGO_CRATE_VALUE * 30
 	access = ACCESS_MEDICAL
 	contains = list(/obj/item/storage/briefcase/medicalgunset/standard)
@@ -125,7 +125,7 @@
 
 /datum/supply_pack/medical/medicells
 	name = "药囊补给箱"
-	desc = "内含T1的医疗枪药囊."
+	desc = "内含T1的医疗枪药匣."
 	cost = CARGO_CRATE_VALUE * 5
 	access = ACCESS_MEDICAL
 	contains = list(
@@ -133,7 +133,7 @@
 		/obj/item/weaponcell/medical/burn,
 		/obj/item/weaponcell/medical/toxin,
 	)
-	crate_name = "药囊补给箱"
+	crate_name = "药匣补给箱"
 
 /*
 *	SECURITY
