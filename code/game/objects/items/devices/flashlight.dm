@@ -4,8 +4,8 @@
 #define ALREADY_LIT 3
 
 /obj/item/flashlight
-	name = "flashlight"
-	desc = "A hand-held emergency light."
+	name = "手提电筒"
+	desc = "手持式应急灯."
 	custom_price = PAYCHECK_CREW
 	icon = 'icons/obj/lighting.dmi'
 	dir = WEST
@@ -286,8 +286,8 @@
 	return COMSIG_SABOTEUR_SUCCESS
 
 /obj/item/flashlight/pen
-	name = "penlight"
-	desc = "A pen-sized light, used by medical staff. It can also be used to create a hologram to alert people of incoming medical assistance."
+	name = "笔形电筒"
+	desc = "钢笔大小的灯，供医务人员使用，还可以用来生成全息影像，提醒人们即将到来的医疗援助."
 	dir = EAST
 	icon_state = "penlight"
 	inhand_icon_state = ""
@@ -319,7 +319,7 @@
 // see: [/datum/wound/burn/flesh/proc/uv()]
 /obj/item/flashlight/pen/paramedic
 	name = "paramedic penlight"
-	desc = "A high-powered UV penlight intended to help stave off infection in the field on serious burned patients. Probably really bad to look into."
+	desc = "高功率紫外线笔灯，旨在帮助严重烧伤患者预防感染. 请勿直视."
 	icon_state = "penlight_surgical"
 	light_color = LIGHT_COLOR_PURPLE
 	/// Our current UV cooldown
@@ -330,8 +330,8 @@
 	var/uv_power = 1
 
 /obj/effect/temp_visual/medical_holosign
-	name = "medical holosign"
-	desc = "A small holographic glow that indicates a medic is coming to treat a patient."
+	name = "医疗全息信号"
+	desc = "小型全息投影，提示医护人员即将前来救助病人."
 	icon_state = "medi_holo"
 	duration = 30
 
@@ -342,8 +342,8 @@
 		visible_message(span_danger("[creator] created a medical hologram!"))
 
 /obj/item/flashlight/seclite
-	name = "seclite"
-	desc = "A robust flashlight used by security."
+	name = "战术手电"
+	desc = "安保部配给的坚固手电筒."
 	dir = EAST
 	icon_state = "seclite"
 	inhand_icon_state = "seclite"
@@ -356,8 +356,8 @@
 
 // the desk lamps are a bit special
 /obj/item/flashlight/lamp
-	name = "desk lamp"
-	desc = "A desk lamp with an adjustable mount."
+	name = "台灯"
+	desc = "一个可调节底座的台灯."
 	icon_state = "lamp"
 	inhand_icon_state = "lamp"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -373,23 +373,23 @@
 
 // green-shaded desk lamp
 /obj/item/flashlight/lamp/green
-	desc = "A classic green-shaded desk lamp."
+	desc = "一个经典的绿色台灯."
 	icon_state = "lampgreen"
 	inhand_icon_state = "lampgreen"
 	light_color = LIGHT_COLOR_TUNGSTEN
 
 //Bananalamp
 /obj/item/flashlight/lamp/bananalamp
-	name = "banana lamp"
-	desc = "Only a clown would think to make a ghetto banana-shaped lamp. Even has a goofy pullstring."
+	name = "香蕉灯"
+	desc = "只有小丑才会想出制造这种廉价的香蕉形台灯. 它甚至有个愚蠢的拉绳开关."
 	icon_state = "bananalamp"
 	inhand_icon_state = null
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 
 // FLARES
 /obj/item/flashlight/flare
-	name = "flare"
-	desc = "A red Nanotrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	name = "信号弹"
+	desc = "一根纳米传讯供给的红色信号弹. 侧面印有使用说明：'拉绳即可点燃'."
 	light_range = 7 // Pretty bright.
 	icon_state = "flare"
 	inhand_icon_state = "flare"
@@ -434,8 +434,8 @@
 		return ..()
 
 	if(light_on && victim.ignite_mob())
-		message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(victim)] on fire with [src] at [AREACOORD(user)]")
-		user.log_message("set [key_name(victim)] on fire with [src]", LOG_ATTACK)
+		message_admins("[ADMIN_LOOKUPFLW(user)]在[AREACOORD(user)]用[src]点燃了[key_name_admin(victim)]")
+		user.log_message("用[src]点燃了[key_name(victim)]", LOG_ATTACK)
 
 	return ..()
 
@@ -444,9 +444,9 @@
 		return FALSE
 	. = ..()
 
-	name = "lit [initial(name)]"
-	attack_verb_continuous = string_list(list("burns", "singes"))
-	attack_verb_simple = string_list(list("burn", "singe"))
+	name = "点燃的[initial(name)]"
+	attack_verb_continuous = string_list(list("烧了", "烫了"))
+	attack_verb_simple = string_list(list("烧了", "烫了"))
 	hitsound = 'sound/items/welder.ogg'
 	force = on_damage
 	damtype = BURN
@@ -487,11 +487,11 @@
 /obj/item/flashlight/flare/proc/ignition(mob/user)
 	if(!fuel)
 		if(user)
-			balloon_alert(user, "out of fuel!")
+			balloon_alert(user, "燃料用尽了!")
 		return NO_FUEL
 	if(light_on)
 		if(user)
-			balloon_alert(user, "already lit!")
+			balloon_alert(user, "已经点燃!")
 		return ALREADY_LIT
 	if(!toggle_light())
 		return FAILURE
@@ -507,15 +507,14 @@
 
 /obj/item/flashlight/flare/attack_self(mob/user)
 	if(ignition(user) == SUCCESS)
-		user.visible_message(span_notice("[user] lights \the [src]."), span_notice("You light \the [initial(src.name)]!"))
+		user.visible_message(span_notice("[user] 点燃了 \the [src]."), span_notice("你点燃了 \the [initial(src.name)]!"))
 
 /obj/item/flashlight/flare/get_temperature()
 	return light_on * heat
 
 /obj/item/flashlight/flare/candle
-	name = "red candle"
-	desc = "In Greek myth, Prometheus stole fire from the Gods and gave it to \
-		humankind. The jewelry he kept for himself."
+	name = "红蜡烛"
+	desc = "在希腊神话中，普罗米修斯从众神那里偷走了火，并把火赋予了人类. 这根红色蜡烛是他为自己保留的珍宝之一."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	inhand_icon_state = "candle"
@@ -594,11 +593,11 @@
 			return SUCCESS
 		if(ALREADY_LIT)
 			if(!silent)
-				balloon_alert(user, "already lit!")
+				balloon_alert(user, "已经点燃了!")
 			return ALREADY_LIT
 		if(NO_FUEL)
 			if(!silent)
-				balloon_alert(user, "out of fuel!")
+				balloon_alert(user, "烧光了!")
 			return NO_FUEL
 
 /// allows lighting an unlit candle from some fire source by left clicking the candle with the source
@@ -621,22 +620,22 @@
 /obj/item/flashlight/flare/candle/attack_self(mob/user)
 	if(light_on && (fuel != INFINITY || !can_be_extinguished)) // can't extinguish eternal candles
 		turn_off()
-		user.visible_message(span_notice("[user] snuffs [src]."))
+		user.visible_message(span_notice("[user] 熄灭了 [src]."))
 
 /obj/item/flashlight/flare/candle/process(seconds_per_tick)
 	. = ..()
 	check_wax_level()
 
 /obj/item/flashlight/flare/candle/infinite
-	name = "eternal candle"
+	name = "永恒蜡烛"
 	fuel = INFINITY
 	randomize_fuel = FALSE
 	can_be_extinguished = FALSE
 	start_on = TRUE
 
 /obj/item/flashlight/flare/torch
-	name = "torch"
-	desc = "A torch fashioned from some leaves and a log."
+	name = "火把"
+	desc = "用树叶和圆木做成的火把."
 	light_range = 4
 	icon_state = "torch"
 	inhand_icon_state = "torch"
@@ -649,37 +648,37 @@
 	can_be_extinguished = TRUE
 
 /obj/item/flashlight/lantern
-	name = "lantern"
+	name = "提灯"
 	icon_state = "lantern"
 	inhand_icon_state = "lantern"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	desc = "A mining lantern."
+	desc = "一盏矿用提灯."
 	light_range = 6 // luminosity when on
 	light_system = MOVABLE_LIGHT
 
 /obj/item/flashlight/lantern/heirloom_moth
-	name = "old lantern"
-	desc = "An old lantern that has seen plenty of use."
+	name = "老旧提灯"
+	desc = "一盏用了很久的老提灯."
 	light_range = 4
 
 /obj/item/flashlight/lantern/syndicate
-	name = "suspicious lantern"
-	desc = "A suspicious looking lantern."
+	name = "可疑的提灯"
+	desc = "一盏看上去很可疑的提灯."
 	icon_state = "syndilantern"
 	inhand_icon_state = "syndilantern"
 	light_range = 10
 
 /obj/item/flashlight/lantern/jade
-	name = "jade lantern"
-	desc = "An ornate, green lantern."
+	name = "玉提灯"
+	desc = "一盏华丽的绿色提灯."
 	color = LIGHT_COLOR_GREEN
 	light_color = LIGHT_COLOR_GREEN
 
 /obj/item/flashlight/slime
 	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "Extract from a yellow slime. It emits a strong light when squeezed."
+	name = "发光的史莱姆提取物"
+	desc = "从黄色史莱姆中提取，挤压时发出强光."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "slime"
 	inhand_icon_state = null
@@ -691,7 +690,7 @@
 
 /obj/item/flashlight/emp
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // SKYRAT EDIT
-	special_desc = "This flashlight is equipped with a miniature EMP generator." //SKYRAT EDIT
+	special_desc = "这个手电筒装有一个微型电磁脉冲发生器." //SKYRAT EDIT
 	var/emp_max_charges = 4
 	var/emp_cur_charges = 4
 	var/charge_timer = 0
@@ -734,22 +733,22 @@
 								span_userdanger("[user] blinks \the [src] at you."))
 		else
 			A.visible_message(span_danger("[user] blinks \the [src] at \the [A]."))
-		to_chat(user, span_notice("\The [src] now has [emp_cur_charges] charge\s."))
+		to_chat(user, span_notice("\The [src] 还剩[emp_cur_charges] 次使用次数."))
 		A.emp_act(EMP_HEAVY)
 	else
-		to_chat(user, span_warning("\The [src] needs time to recharge!"))
+		to_chat(user, span_warning("\The [src] 需要时间充电!"))
 	return
 
 /obj/item/flashlight/emp/debug //for testing emp_act()
-	name = "debug EMP flashlight"
+	name = "debug 电磁脉冲手电筒"
 	emp_max_charges = 100
 	emp_cur_charges = 100
 
 // Glowsticks, in the uncomfortable range of similar to flares,
 // but not similar enough to make it worth a refactor
 /obj/item/flashlight/glowstick
-	name = "glowstick"
-	desc = "A military-grade glowstick."
+	name = "荧光棒"
+	desc = "军用荧光棒."
 	custom_price = PAYCHECK_LOWER
 	w_class = WEIGHT_CLASS_SMALL
 	light_range = 4
@@ -809,15 +808,15 @@
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 	if(fuel <= 0)
-		balloon_alert(user, "glowstick is spent!")
+		balloon_alert(user, "荧光棒耗尽了!")
 		return
 	if(light_on)
-		balloon_alert(user, "already lit!")
+		balloon_alert(user, "已经点亮了!")
 		return
 
 	. = ..()
 	if(.)
-		user.visible_message(span_notice("[user] cracks and shakes [src]."), span_notice("You crack and shake [src], turning it on!"))
+		user.visible_message(span_notice("[user]弯折并摇晃[src]."), span_notice("你弯折并摇晃[src], 点亮了荧光棒!"))
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/glowstick/suicide_act(mob/living/carbon/human/user)
@@ -833,32 +832,32 @@
 	return FIRELOSS
 
 /obj/item/flashlight/glowstick/red
-	name = "red glowstick"
+	name = "红色荧光棒"
 	color = COLOR_SOFT_RED
 
 /obj/item/flashlight/glowstick/blue
-	name = "blue glowstick"
+	name = "蓝色荧光棒"
 	color = LIGHT_COLOR_BLUE
 
 /obj/item/flashlight/glowstick/cyan
-	name = "cyan glowstick"
+	name = "青色荧光棒"
 	color = LIGHT_COLOR_CYAN
 
 /obj/item/flashlight/glowstick/orange
-	name = "orange glowstick"
+	name = "橘色荧光棒"
 	color = LIGHT_COLOR_ORANGE
 
 /obj/item/flashlight/glowstick/yellow
-	name = "yellow glowstick"
+	name = "黄色荧光棒"
 	color = LIGHT_COLOR_DIM_YELLOW
 
 /obj/item/flashlight/glowstick/pink
-	name = "pink glowstick"
+	name = "粉色荧光棒"
 	color = LIGHT_COLOR_PINK
 
 /obj/item/flashlight/spotlight //invisible lighting source
-	name = "disco light"
-	desc = "Groovy..."
+	name = "迪斯科灯"
+	desc = "棒极了..."
 	icon_state = null
 	light_system = MOVABLE_LIGHT
 	light_range = 4
@@ -884,8 +883,8 @@
 		set_light_color(_light_color)
 
 /obj/item/flashlight/flashdark
-	name = "flashdark"
-	desc = "A strange device manufactured with mysterious elements that somehow emits darkness. Or maybe it just sucks in light? Nobody knows for sure."
+	name = "闪暗灯"
+	desc = "一种用神秘元素制造的奇怪装置，以某种方式发出黑暗，或者它只是在吸收光线？没人知道."
 	icon_state = "flashdark"
 	inhand_icon_state = "flashdark"
 	light_system = STATIC_LIGHT //The overlay light component is not yet ready to produce darkness.
@@ -905,8 +904,8 @@
 
 //type and subtypes spawned and used to give some eyes lights,
 /obj/item/flashlight/eyelight
-	name = "eyelight"
-	desc = "This shouldn't exist outside of someone's head, how are you seeing this?"
+	name = "眼灯"
+	desc = "你是怎么发现这个不该存在于脑外的东西的？"
 	light_system = MOVABLE_LIGHT
 	light_range = 15
 	light_power = 1
