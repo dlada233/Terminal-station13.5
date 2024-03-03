@@ -124,7 +124,7 @@
 	crate_name = "CWM-479 医疗枪补给箱"
 
 /datum/supply_pack/medical/medicells
-	name = "药囊补给箱"
+	name = "药匣补给箱"
 	desc = "内含T1的医疗枪药匣."
 	cost = CARGO_CRATE_VALUE * 5
 	access = ACCESS_MEDICAL
