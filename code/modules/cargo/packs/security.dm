@@ -273,7 +273,7 @@
 
 /datum/supply_pack/security/armory/trackingimp
 	name = "'追踪'植入物"
-	desc = "四个'追踪'植入物和.38 追踪弹快速装弹器."
+	desc = "四个'追踪'植入物和.38 TRAC弹快速装弹器."
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(/obj/item/storage/box/trackimp,
 					/obj/item/ammo_box/c38/trac = 3,
