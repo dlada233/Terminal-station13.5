@@ -1,6 +1,6 @@
 /obj/machinery/abductor/experiment
-	name = "experimentation machine"
-	desc = "A large man-sized tube sporting a complex array of surgical machinery."
+	name = "实验机器"
+	desc = "可容纳一个人的大型机器，拥有复杂的手术配置."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "experiment-open"
 	density = FALSE
@@ -10,7 +10,7 @@
 	var/list/history
 	var/list/abductee_minds
 	/// Machine feedback message
-	var/flash = "Awaiting subject."
+	var/flash = "等待对象."
 	var/obj/machinery/abductor/console/console
 	var/message_cooldown = 0
 	var/breakout_time = 450
@@ -44,19 +44,19 @@
 		return
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
-		to_chat(user, span_warning("[src]'s door won't budge!"))
+		to_chat(user, span_warning("[src]的门移不动!"))
 
 /obj/machinery/abductor/experiment/container_resist_act(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看到[user]在踢[src]的门!"), \
+		span_notice("你背靠[src]开始把门推开... (这大约需要[DisplayTimeText(breakout_time)].)"), \
+		span_hear("你听到来自[src]的金属嘎吱声."))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功从[src]中逃脱了!"), \
+			span_notice("你成功从[src]中逃脱了!"))
 		open_machine()
 
 /obj/machinery/abductor/experiment/ui_status(mob/user)
@@ -123,37 +123,37 @@
 		stack_trace("Abductor '[name]' called /proc/experiment with unexpected occupant ([occupant])")
 
 	if(!ishuman(occupant)) //We shouldn't be processing anything other than humans
-		return "Not a humanoid!"
+		return "不是人类!"
 
 	var/datum/antagonist/abductor/user_abductor = user.mind.has_antag_datum(/datum/antagonist/abductor)
 	if(!user_abductor)
-		return "Authorization failure. Contact mothership immediately."
+		return "授权失败，立刻联系母舰."
 
 	var/point_reward = 0
 	if(!occupant)
-		return "Invalid or missing specimen."
+		return "无效或缺失样本."
 	if(occupant in history)
-		return "Specimen already in database."
+		return "样本已在数据库中."
 	if(occupant.stat == DEAD)
-		say("Specimen deceased - please provide fresh sample.")
-		return "Specimen deceased."
+		say("样本已死亡 - 请提供新鲜样本.")
+		return "样本已死亡."
 	var/obj/item/organ/internal/heart/gland/GlandTest = locate() in occupant.organs
 	if(!GlandTest)
-		say("Experimental dissection not detected!")
-		return "No glands detected!"
+		say("未检测到实验性解剖手术!")
+		return "未检测到腺体!"
 	if(occupant.mind != null && occupant.ckey != null)
 		LAZYINITLIST(abductee_minds)
 		LAZYADD(history, occupant)
 		LAZYADD(abductee_minds, occupant.mind)
-		say("Processing specimen...")
+		say("样本处理中...")
 		sleep(0.5 SECONDS)
 		switch(text2num(type))
 			if(1)
-				to_chat(occupant, span_warning("You feel violated."))
+				to_chat(occupant, span_warning("你感觉被侵犯了."))
 			if(2)
-				to_chat(occupant, span_warning("You feel yourself being sliced apart and put back together."))
+				to_chat(occupant, span_warning("你感到自己被肢解，又被重新组装起来了."))
 			if(3)
-				to_chat(occupant, span_warning("You feel intensely watched."))
+				to_chat(occupant, span_warning("你感到被密切注视着."))
 		sleep(0.5 SECONDS)
 		user_abductor.team.abductees += occupant.mind
 		occupant.mind.add_antag_datum(/datum/antagonist/abductee)
@@ -167,15 +167,15 @@
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
 			points += point_reward
 			credits += point_reward
-			return "Experiment successful! [point_reward] new data-points collected."
+			return "实验成功! [point_reward]新数据点已收集."
 		else
 			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
-			return "Experiment failed! No replacement organ detected."
+			return "实验失败! 未检测到移植器官."
 	else
-		say("Brain activity nonexistent - disposing sample...")
+		say("大脑活动停止 - 处置样本...")
 		open_machine()
 		send_back(occupant)
-		return "Specimen braindead - disposed."
+		return "样本脑死亡 - 已处置."
 
 /**
  * send_back: Sends a mob back to a selected teleport location if safe

@@ -1,5 +1,5 @@
 /obj/item/organ/internal/heart/gland/egg
-	abductor_hint = "roe/enzymatic synthesizer. The abductee will periodically lay eggs filled with random reagents."
+	abductor_hint = "鱼籽/酶合成器. 被劫持者将定期产下充满随机试剂的卵."
 	cooldown_low = 300
 	cooldown_high = 400
 	uses = -1

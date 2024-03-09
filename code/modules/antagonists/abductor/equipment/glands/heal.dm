@@ -1,7 +1,7 @@
 #define REJECTION_VOMIT_FLAGS (MOB_VOMIT_BLOOD | MOB_VOMIT_STUN | MOB_VOMIT_KNOCKDOWN | MOB_VOMIT_FORCE)
 
 /obj/item/organ/internal/heart/gland/heal
-	abductor_hint = "organic replicator. Forcibly ejects damaged and robotic organs from the abductee and regenerates them. Additionally, forcibly removes reagents (via vomit) from the abductee if they have moderate toxin damage or poison within the bloodstream, and regenerates blood to a healthy threshold if too low. The abductee will also reject implants such as mindshields."
+	abductor_hint = "有机复制器，强制性地将受损的和电子器官从被绑架者身体中排出，并对其空位进行再生；此外，如果被绑架有中等毒素损伤或血液中含有毒素，它会通过呕吐的方式强制性地移除试剂，并在血含量过低时再生血液到健康阈值；此外被绑架者也会排斥诸如心灵护盾之类的植入物."
 	cooldown_low = 200
 	cooldown_high = 400
 	uses = -1
@@ -70,7 +70,7 @@
 		return
 	if(owner.blood_volume < BLOOD_VOLUME_OKAY)
 		owner.blood_volume = BLOOD_VOLUME_NORMAL
-		to_chat(owner, span_warning("You feel your blood pulsing within you."))
+		to_chat(owner, span_warning("你感到血液在体内脉动."))
 		return
 
 	var/obj/item/bodypart/chest/chest = owner.get_bodypart(BODY_ZONE_CHEST)
@@ -79,13 +79,13 @@
 		return
 
 /obj/item/organ/internal/heart/gland/heal/proc/reject_implant(obj/item/implant/implant)
-	owner.visible_message(span_warning("[owner] vomits up a tiny mangled implant!"), span_userdanger("You suddenly vomit up a tiny mangled implant!"))
+	owner.visible_message(span_warning("[owner]吐出了一个损坏的微型植入物!"), span_userdanger("你突然吐出了一个损坏的微型植入物!"))
 	owner.vomit(REJECTION_VOMIT_FLAGS, lost_nutrition = 0)
 	implant.removed(owner)
 	qdel(implant)
 
 /obj/item/organ/internal/heart/gland/heal/proc/reject_cyberimp(obj/item/organ/internal/cyberimp/implant)
-	owner.visible_message(span_warning("[owner] vomits up his [implant.name]!"), span_userdanger("You suddenly vomit up your [implant.name]!"))
+	owner.visible_message(span_warning("[owner]吐出了自己的[implant.name]!"), span_userdanger("你突然吐出了自己的[implant.name]!"))
 	owner.vomit(REJECTION_VOMIT_FLAGS, lost_nutrition = 0)
 	implant.Remove(owner)
 	implant.forceMove(owner.drop_location())
@@ -95,9 +95,9 @@
 		owner.vomit(REJECTION_VOMIT_FLAGS, lost_nutrition = 0)
 		appendix.Remove(owner)
 		appendix.forceMove(owner.drop_location())
-		owner.visible_message(span_warning("[owner] vomits up his [appendix.name]!"), span_userdanger("You suddenly vomit up your [appendix.name]!"))
+		owner.visible_message(span_warning("[owner]吐出了自己的[appendix.name]!"), span_userdanger("你突然吐出了自己的[appendix.name]!"))
 	else
-		to_chat(owner, span_warning("You feel a weird rumble in your bowels..."))
+		to_chat(owner, span_warning("你感觉到脾胃处有一种奇怪的隆隆声..."))
 
 	var/appendix_type = /obj/item/organ/internal/appendix
 	if(owner?.dna?.species?.mutantappendix)
@@ -107,12 +107,12 @@
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_liver(obj/item/organ/internal/liver/liver)
 	if(liver)
-		owner.visible_message(span_warning("[owner] vomits up his [liver.name]!"), span_userdanger("You suddenly vomit up your [liver.name]!"))
+		owner.visible_message(span_warning("[owner]吐出了自己的[liver.name]!"), span_userdanger("你突然吐出了自己的[liver.name]!"))
 		owner.vomit(REJECTION_VOMIT_FLAGS, lost_nutrition = 0)
 		liver.Remove(owner)
 		liver.forceMove(owner.drop_location())
 	else
-		to_chat(owner, span_warning("You feel a weird rumble in your bowels..."))
+		to_chat(owner, span_warning("你感觉到脾胃处有一种奇怪的隆隆声..."))
 
 	var/liver_type = /obj/item/organ/internal/liver
 	if(owner?.dna?.species?.mutantliver)
@@ -122,12 +122,12 @@
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_lungs(obj/item/organ/internal/lungs/lungs)
 	if(lungs)
-		owner.visible_message(span_warning("[owner] vomits up his [lungs.name]!"), span_userdanger("You suddenly vomit up your [lungs.name]!"))
+		owner.visible_message(span_warning("[owner]吐出了自己的[lungs.name]!"), span_userdanger("你突然吐出了自己的[lungs.name]!"))
 		owner.vomit(REJECTION_VOMIT_FLAGS, lost_nutrition = 0)
 		lungs.Remove(owner)
 		lungs.forceMove(owner.drop_location())
 	else
-		to_chat(owner, span_warning("You feel a weird rumble inside your chest..."))
+		to_chat(owner, span_warning("你感觉到胸膛里有一种奇怪的隆隆声..."))
 
 	var/lung_type = /obj/item/organ/internal/lungs
 	if(owner.dna.species && owner.dna.species.mutantlungs)
@@ -137,12 +137,12 @@
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_stomach(obj/item/organ/internal/stomach/stomach)
 	if(stomach)
-		owner.visible_message(span_warning("[owner] vomits up his [stomach.name]!"), span_userdanger("You suddenly vomit up your [stomach.name]!"))
+		owner.visible_message(span_warning("[owner]吐出了自己的[stomach.name]!"), span_userdanger("你突然吐出了自己的[stomach.name]!"))
 		owner.vomit(REJECTION_VOMIT_FLAGS, lost_nutrition = 0)
 		stomach.Remove(owner)
 		stomach.forceMove(owner.drop_location())
 	else
-		to_chat(owner, span_warning("You feel a weird rumble in your bowels..."))
+		to_chat(owner, span_warning("你感觉到脾胃处有一种奇怪的隆隆声..."))
 
 	var/stomach_type = /obj/item/organ/internal/stomach
 	if(owner?.dna?.species?.mutantstomach)
@@ -152,12 +152,12 @@
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_eyes(obj/item/organ/internal/eyes/eyes)
 	if(eyes)
-		owner.visible_message(span_warning("[owner]'s [eyes.name] fall out of their sockets!"), span_userdanger("Your [eyes.name] fall out of their sockets!"))
+		owner.visible_message(span_warning("[owner]的[eyes.name]从眼眶里掉出!"), span_userdanger("你的[eyes.name]从眼眶里掉出!"))
 		playsound(owner, 'sound/effects/splat.ogg', 50, TRUE)
 		eyes.Remove(owner)
 		eyes.forceMove(owner.drop_location())
 	else
-		to_chat(owner, span_warning("You feel a weird rumble behind your eye sockets..."))
+		to_chat(owner, span_warning("你感到眼眶后面有一种奇怪的隆隆声..."))
 
 	addtimer(CALLBACK(src, PROC_REF(finish_replace_eyes)), rand(100, 200))
 
@@ -167,27 +167,27 @@
 		eye_type = owner.dna.species.mutanteyes
 	var/obj/item/organ/internal/eyes/new_eyes = new eye_type()
 	new_eyes.Insert(owner)
-	owner.visible_message(span_warning("A pair of new eyes suddenly inflates into [owner]'s eye sockets!"), span_userdanger("A pair of new eyes suddenly inflates into your eye sockets!"))
+	owner.visible_message(span_warning("一双新的眼睛突然从[owner]的眼眶里长了出来!"), span_userdanger("一双新的眼睛从你的眼眶里长了出来！"))
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_limb(body_zone, obj/item/bodypart/limb)
 	if(limb)
-		owner.visible_message(span_warning("[owner]'s [limb.plaintext_zone] suddenly detaches from [owner.p_their()] body!"), span_userdanger("Your [limb.plaintext_zone] suddenly detaches from your body!"))
+		owner.visible_message(span_warning("[owner]的[limb.plaintext_zone]突然脱落!"), span_userdanger("你的[limb.plaintext_zone]突然脱落!"))
 		playsound(owner, SFX_DESECRATION, 50, TRUE, -1)
 		limb.drop_limb()
 	else
-		to_chat(owner, span_warning("You feel a weird tingle in your [parse_zone(body_zone)]... even if you don't have one."))
+		to_chat(owner, span_warning("你感到[parse_zone(body_zone)]有一种奇怪的刺痛感...即使你缺失它也依然如此."))
 
 	addtimer(CALLBACK(src, PROC_REF(finish_replace_limb), body_zone), rand(150, 300))
 
 /obj/item/organ/internal/heart/gland/heal/proc/finish_replace_limb(body_zone)
-	owner.visible_message(span_warning("With a loud snap, [owner]'s [parse_zone(body_zone)] rapidly grows back from [owner.p_their()] body!"),
-	span_userdanger("With a loud snap, your [parse_zone(body_zone)] rapidly grows back from your body!"),
-	span_warning("Your hear a loud snap."))
+	owner.visible_message(span_warning("伴随着一声巨响，[owner]的[parse_zone(body_zone)]迅速从他们的身体重新生长出来!"),
+	span_userdanger("伴随着一声巨响，你的[parse_zone(body_zone)]迅速从你的身体重新生长出来!"),
+	span_warning("你听到一声巨响."))
 	playsound(owner, 'sound/magic/demon_consume.ogg', 50, TRUE)
 	owner.regenerate_limb(body_zone)
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_blood()
-	owner.visible_message(span_warning("[owner] starts vomiting huge amounts of blood!"), span_userdanger("You suddenly start vomiting huge amounts of blood!"))
+	owner.visible_message(span_warning("[owner]开始口吐大量鲜血!"), span_userdanger("你突然开始口吐大量鲜血!"))
 	keep_replacing_blood()
 
 /obj/item/organ/internal/heart/gland/heal/proc/keep_replacing_blood()
@@ -211,14 +211,14 @@
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_chest(obj/item/bodypart/chest/chest)
 	if(!IS_ORGANIC_LIMB(chest))
-		owner.visible_message(span_warning("[owner]'s [chest.name] rapidly expels its mechanical components, replacing them with flesh!"), span_userdanger("Your [chest.name] rapidly expels its mechanical components, replacing them with flesh!"))
+		owner.visible_message(span_warning("[owner]的[chest.name]迅速排出其机械组件，代之以有机组织!"), span_userdanger("你的[chest.name]迅速排出其机械组件，代之以有机组织!"))
 		playsound(owner, 'sound/magic/clockwork/anima_fragment_attack.ogg', 50, TRUE)
 		var/list/dirs = GLOB.alldirs.Copy()
 		for(var/i in 1 to 3)
 			var/obj/effect/decal/cleanable/robot_debris/debris = new(get_turf(owner))
 			debris.streak(dirs)
 	else
-		owner.visible_message(span_warning("[owner]'s [chest.name] sheds off its damaged flesh, rapidly replacing it!"), span_warning("Your [chest.name] sheds off its damaged flesh, rapidly replacing it!"))
+		owner.visible_message(span_warning("[owner]的[chest.name]脱去了受损的肉体，迅速代之以新!"), span_warning("你的[chest.name]脱去了受损的肉体，迅速代之以新!"))
 		playsound(owner, 'sound/effects/splat.ogg', 50, TRUE)
 		var/list/dirs = GLOB.alldirs.Copy()
 		for(var/i in 1 to 3)
