@@ -1,6 +1,6 @@
 /datum/antagonist/blob
-	name = "\improper 真菌体"
-	roundend_category = "真菌体"
+	name = "\improper Blob"
+	roundend_category = "blobs"
 	antagpanel_category = ANTAG_GROUP_BIOHAZARDS
 	show_to_ghosts = TRUE
 	show_in_antagpanel = FALSE
@@ -19,7 +19,7 @@
 	if(isovermind(owner.current)) //embarrasing if not
 		var/mob/camera/blob/overmind = owner.current
 		if(!overmind.victory_in_progress) //if it won this doesn't really matter
-			var/point_report = "<br><b>[owner.name]</b>在其所生长的高度层上占领了[overmind.max_count]块地块."
+			var/point_report = "<br><b>[owner.name]</b> took over [overmind.max_count] tiles at the height of its growth."
 			return basic_report+point_report
 	return basic_report
 
@@ -27,7 +27,7 @@
 	. = ..()
 	owner.announce_objectives()
 	if(!isovermind(owner.current))
-		to_chat(owner.current, span_notice("使用出芽能力来放置你的真菌体核心，建议放置在人迹罕至的位置，因为所有船员都不会无视并放过你的."))
+		to_chat(owner.current, span_notice("Use the pop ability to place your blob core! It is recommended you do this away from anyone else, as you'll be taking on the entire crew!"))
 	else
 		has_already_popped = TRUE
 
@@ -89,8 +89,8 @@
 
 //Non-overminds get this on blob antag assignment
 /datum/action/innate/blobpop
-	name = "出芽"
-	desc = "释放真菌体!"
+	name = "Pop"
+	desc = "Unleash the blob!"
 	button_icon = 'icons/mob/nonhuman-player/blob.dmi'
 	button_icon_state = "blob"
 
@@ -101,7 +101,7 @@
 	. = ..()
 	if(owner)
 		addtimer(CALLBACK(src, PROC_REF(Activate), TRUE), autoplace_time, TIMER_UNIQUE|TIMER_OVERRIDE)
-		to_chat(owner, span_boldannounce("你将在[DisplayTimeText(autoplace_time)]内自动出芽并放置真菌体核心."))
+		to_chat(owner, span_boldannounce("You will automatically pop and place your blob core in [DisplayTimeText(autoplace_time)]."))
 
 /datum/action/innate/blobpop/Activate(timer_activated = FALSE)
 	var/mob/living/old_body = owner
@@ -116,11 +116,11 @@
 	. = TRUE
 	var/turf/target_turf = get_turf(owner)
 	if(target_turf.density)
-		to_chat(owner, span_warning("该地点太密集了，不适合放置真菌体核心!"))
+		to_chat(owner, span_warning("This spot is too dense to place a blob core on!"))
 		. = FALSE
 	var/area/target_area = get_area(target_turf)
 	if(isspaceturf(target_turf) || !(target_area?.area_flags & BLOBS_ALLOWED) || !is_station_level(target_turf.z))
-		to_chat(owner, span_warning("你无法放置真菌体核心在这里!"))
+		to_chat(owner, span_warning("You cannot place your core here!"))
 		. = FALSE
 
 	var/placement_override = BLOB_FORCE_PLACEMENT
@@ -128,7 +128,7 @@
 		if(!timer_activated)
 			return
 		placement_override = BLOB_RANDOM_PLACEMENT
-		to_chat(owner, span_warning("因当前位置是一个无效的出芽起始点，你已经被移动到一个随机位置."))
+		to_chat(owner, span_warning("Because your current location is an invalid starting spot and you need to pop, you've been moved to a random location!"))
 
 	var/mob/camera/blob/blob_cam = new /mob/camera/blob(get_turf(old_body), blobtag.starting_points_human_blob)
 	owner.mind.transfer_to(blob_cam)
@@ -138,10 +138,10 @@
 	blobtag.has_already_popped = TRUE
 
 	notify_ghosts(
-		"真菌体在[get_area_name(blob_cam.blob_core)]处爆发",
+		"A Blob host has burst in [get_area_name(blob_cam.blob_core)]",
 		source = blob_cam.blob_core,
 		ghost_sound = 'sound/ambience/antag/blobalert.ogg',
-		header = "真菌体觉醒!",
+		header = "Blob Awakening!",
 		notify_volume = 75,
 	)
 
@@ -150,11 +150,11 @@
 	if(owner?.current)
 		var/mob/camera/blob/blob_cam = owner.current
 		if(istype(blob_cam))
-			. += "(进程: [length(blob_cam.blobs_legit)]/[blob_cam.blobwincount])"
+			. += "(Progress: [length(blob_cam.blobs_legit)]/[blob_cam.blobwincount])"
 
 /// A subtype of blob meant to represent the infective version.
 /datum/antagonist/blob/infection
-	name = "\improper 真菌感染"
+	name = "\improper Blob Infection"
 	show_in_antagpanel = TRUE
 	job_rank = ROLE_BLOB_INFECTION
 

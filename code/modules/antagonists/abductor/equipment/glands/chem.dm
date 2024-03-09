@@ -1,5 +1,5 @@
 /obj/item/organ/internal/heart/gland/chem
-	abductor_hint = "内生药囊. 被劫持者不断在其血液中产生随机的化学物质，还能快速恢复毒素损伤."
+	abductor_hint = "intrinsic pharma-provider. The abductee constantly produces random chemicals inside their bloodstream. They also quickly regenerate toxin damage."
 	cooldown_low = 50
 	cooldown_high = 50
 	uses = -1

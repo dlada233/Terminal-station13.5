@@ -1,8 +1,8 @@
 /obj/structure/blob/special/resource
-	name = "资源真菌体"
+	name = "resource blob"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blob_resource"
-	desc = "由轻微摆动着的细长卷须组成的尖塔."
+	desc = "A thin spire of slightly swaying tendrils."
 	max_integrity = BLOB_RESOURCE_MAX_HP
 	point_return = BLOB_REFUND_RESOURCE_COST
 	resistance_flags = LAVA_PROOF
@@ -13,7 +13,7 @@
 	laser = 25
 
 /obj/structure/blob/special/resource/scannerreport()
-	return "陆陆续续地为真菌体提供资源，增加扩张速度."
+	return "Gradually supplies the blob with resources, increasing the rate of expansion."
 
 /obj/structure/blob/special/resource/creation_action()
 	if(overmind)
@@ -31,7 +31,7 @@
 	flick("blob_resource_glow", src)
 	if(overmind)
 		overmind.add_points(BLOB_RESOURCE_GATHER_AMOUNT)
-		balloon_alert(overmind, "+[BLOB_RESOURCE_GATHER_AMOUNT]点资源")
+		balloon_alert(overmind, "+[BLOB_RESOURCE_GATHER_AMOUNT] resource\s")
 		resource_delay = world.time + BLOB_RESOURCE_GATHER_DELAY + overmind.resource_blobs.len * BLOB_RESOURCE_GATHER_ADDED_DELAY //4 seconds plus a quarter second for each resource blob the overmind has
 	else
 		resource_delay = world.time + BLOB_RESOURCE_GATHER_DELAY

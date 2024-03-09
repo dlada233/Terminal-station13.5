@@ -11,13 +11,13 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 	/// Any long, blob-tile specific effects
 	var/effectdesc = null
 	/// Short descriptor of what the strain does damage-wise, generally seen in the reroll menu
-	var/analyzerdescdamage = "未知. 请汇报该bug至开发人员或向管理员求助."
+	var/analyzerdescdamage = "Unknown. Report this bug to a coder, or just adminhelp."
 	/// Short descriptor of what the strain does in general, generally seen in the reroll menu
 	var/analyzerdesceffect
 	/// Blobbernaut attack verb
-	var/blobbernaut_message = "猛击"
+	var/blobbernaut_message = "slams"
 	/// Message sent to any mob hit by the blob
-	var/message = "真菌体击中了你"
+	var/message = "The blob strikes you"
 	/// Gets added onto 'message' if the mob stuck is of type living
 	var/message_living = null
 	/// Stores world.time to figure out when to next give resources
@@ -100,8 +100,8 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 		blob_mob.maxHealth *= max_mob_health_multiplier
 		blob_mob.health *= max_mob_health_multiplier
 		blob_mob.update_icons() //If it's getting a new strain, tell it what it does!
-		to_chat(blob_mob, "你的真菌体核心类型现在为: <b><font color=\"[color]\">[name]</b></font>!")
-		to_chat(blob_mob, "<b><font color=\"[color]\">[name]</b></font>类型[shortdesc ? "[shortdesc]" : "[description]"]")
+		to_chat(blob_mob, "Your overmind's blob strain is now: <b><font color=\"[color]\">[name]</b></font>!")
+		to_chat(blob_mob, "The <b><font color=\"[color]\">[name]</b></font> strain [shortdesc ? "[shortdesc]" : "[description]"]")
 
 /datum/blobstrain/proc/on_lose()
 	if(overmind.blob_core)

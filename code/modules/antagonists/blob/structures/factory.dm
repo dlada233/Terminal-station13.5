@@ -1,8 +1,8 @@
 /obj/structure/blob/special/factory
-	name = "工厂真菌体"
+	name = "factory blob"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blob_factory"
-	desc = "浓密的卷须尖塔."
+	desc = "A thick spire of tendrils."
 	max_integrity = BLOB_FACTORY_MAX_HP
 	health_regen = BLOB_FACTORY_HP_REGEN
 	point_return = BLOB_REFUND_FACTORY_COST
@@ -24,8 +24,8 @@
 
 /obj/structure/blob/special/factory/scannerreport()
 	if(blobbernaut)
-		return "它当前正维持着一只真菌兽，使自身脆弱并无法生产真菌孢子."
-	return "每隔几秒将生产真菌孢子."
+		return "It is currently sustaining a blobbernaut, making it fragile and unable to produce blob spores."
+	return "Will produce a blob spore every few seconds."
 
 /obj/structure/blob/special/factory/creation_action()
 	if(overmind)
@@ -80,7 +80,7 @@
 		return
 
 	modify_max_integrity(initial(max_integrity) * 0.25) //factories that produced a blobbernaut have much lower health
-	visible_message(span_boldwarning("真菌兽从工厂真菌体中破墙而出!"))
+	visible_message(span_boldwarning("The blobbernaut [pick("rips", "tears", "shreds")] its way out of the factory blob!"))
 	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 	blobbernaut = new_naut

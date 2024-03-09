@@ -1,5 +1,5 @@
 /datum/antagonist/blob_minion
-	name = "\improper 真菌侍从"
+	name = "\improper Blob Minion"
 	antagpanel_category = ANTAG_GROUP_BIOHAZARDS
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
@@ -19,8 +19,8 @@
 	. = ..()
 	owner.announce_objectives()
 /datum/objective/blob_minion
-	name = "保护真菌体核心"
-	explanation_text = "不惜一切代价保护真菌体核心."
+	name = "protect the blob core"
+	explanation_text = "Protect the blob core at all costs."
 	var/datum/weakref/overmind
 
 /datum/objective/blob_minion/check_completion()

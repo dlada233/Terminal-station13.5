@@ -1,8 +1,8 @@
 /obj/structure/blob/special/core
-	name = "真菌体核心"
+	name = "blob core"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blank_blob"
-	desc = "一颗巨大并跳动着的黄色团块."
+	desc = "A huge, pulsating yellow mass."
 	max_integrity = BLOB_CORE_MAX_HP
 	armor_type = /datum/armor/special_core
 	explosion_block = 6
@@ -43,7 +43,7 @@
 	return ..()
 
 /obj/structure/blob/special/core/scannerreport()
-	return "指导真菌体的扩张."
+	return "Directs the blob's expansion, gradually expands, and sustains nearby blob spores and blobbernauts."
 
 /obj/structure/blob/special/core/update_overlays()
 	. = ..()

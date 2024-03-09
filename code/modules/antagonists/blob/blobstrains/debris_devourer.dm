@@ -2,14 +2,14 @@
 
 // Accumulates junk liberally
 /datum/blobstrain/debris_devourer
-	name = "碎件吞食者"
-	description = "将吞食的碎件射向目标，并在无碎件可用时造成低额创伤."
-	analyzerdescdamage = "造成低额创伤并有可能夺取近战武器."
-	analyzerdesceffect = "吞食空间站内的零散物品，在攻击或被攻击时释放它们."
+	name = "Debris Devourer"
+	description = "will launch accumulated debris into targets. Does very low brute damage without debris-launching."
+	analyzerdescdamage = "Does very low brute damage and may grab onto melee weapons."
+	analyzerdesceffect = "Devours loose items left on the station, and releases them when attacking or attacked."
 	color = "#8B1000"
 	complementary_color = "#00558B"
-	blobbernaut_message = "射击"
-	message = "真菌体向你射击"
+	blobbernaut_message = "blasts"
+	message = "The blob blasts you"
 
 
 /datum/blobstrain/debris_devourer/attack_living(mob/living/L, list/nearby_blobs)
@@ -48,16 +48,16 @@
 	. = ..()
 	var/obj/structure/blob/special/core/core = overmind.blob_core
 	if (isobserver(user))
-		. += span_notice("当前吸收的零碎物品能减伤[round(max(min(DEBRIS_DENSITY, 10),0))]点")
+		. += span_notice("Absorbed debris is currently reducing incoming damage by [round(max(min(DEBRIS_DENSITY, 10),0))]")
 	else
 		switch (round(max(min(DEBRIS_DENSITY, 10),0)))
 			if (0)
-				. += span_notice("当前没有吸收到足够的零碎物品来减伤.")
+				. += span_notice("There is not currently enough absorbed debris to reduce damage.")
 			if (1 to 3)
-				. += span_notice("吸收到的零碎物品能极小程度地降低伤害.") // these roughly correspond with force description strings
+				. += span_notice("Absorbed debris is currently reducing incoming damage by a very low amount.") // these roughly correspond with force description strings
 			if (4 to 7)
-				. += span_notice("吸收到的零碎物品能略微降低伤害.")
+				. += span_notice("Absorbed debris is currently reducing incoming damage by a low amount.")
 			if (8 to 10)
-				. += span_notice("吸收到的零碎物品能中等程度地降低伤害.")
+				. += span_notice("Absorbed debris is currently reducing incoming damage by a medium amount.")
 
 #undef DEBRIS_DENSITY

@@ -1,5 +1,5 @@
 /obj/item/organ/internal/heart/gland/quantum
-	abductor_hint = "量子去观测矩阵. 被劫持者周期性地与视野中的随机一个人建立量子连接，并在随后与其交换位置."
+	abductor_hint = "quantic de-observation matrix. Periodically links with a random person in view, then the abductee later swaps positions with that person."
 	cooldown_low = 150
 	cooldown_high = 150
 	uses = -1
@@ -25,24 +25,24 @@
 	var/turf/T = get_turf(owner)
 	do_teleport(owner, get_turf(entangled_mob), null, channel = TELEPORT_CHANNEL_QUANTUM)
 	do_teleport(entangled_mob, T, null, channel = TELEPORT_CHANNEL_QUANTUM)
-	to_chat(owner, span_warning("你突然发现自己在另一个地方!"))
-	to_chat(entangled_mob, span_warning("你突然发现自己在另一个地方!"))
+	to_chat(owner, span_warning("You suddenly find yourself somewhere else!"))
+	to_chat(entangled_mob, span_warning("You suddenly find yourself somewhere else!"))
 	if(!active_mind_control) //Do not reset entangled mob while mind control is active
 		entangled_mob = null
 
 /obj/item/organ/internal/heart/gland/quantum/mind_control(command, mob/living/user)
 	if(..())
 		if(entangled_mob && ishuman(entangled_mob) && (entangled_mob.stat < DEAD))
-			to_chat(entangled_mob, span_userdanger("你突然感到一种无法抗拒的冲动，不得不去执行一个命令..."))
+			to_chat(entangled_mob, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
 			to_chat(entangled_mob, span_mind_control("[command]"))
 			var/atom/movable/screen/alert/mind_control/mind_alert = entangled_mob.throw_alert(ALERT_MIND_CONTROL, /atom/movable/screen/alert/mind_control)
 			mind_alert.command = command
-			message_admins("[key_name(owner)]将劫持者心灵控制信息镜像发送给了[key_name(entangled_mob)]: [command]")
-			user.log_message("将劫持者心灵控制信息镜像发送给了[key_name(entangled_mob)]: [command]", LOG_GAME)
+			message_admins("[key_name(owner)] mirrored an abductor mind control message to [key_name(entangled_mob)]: [command]")
+			user.log_message("mirrored an abductor mind control message to [key_name(entangled_mob)]: [command]", LOG_GAME)
 			update_gland_hud()
 
 /obj/item/organ/internal/heart/gland/quantum/clear_mind_control()
 	if(active_mind_control)
-		to_chat(entangled_mob, span_userdanger("你感到冲动消退并完全忘记了之前的命令."))
+		to_chat(entangled_mob, span_userdanger("You feel the compulsion fade, and you completely forget about your previous orders."))
 		entangled_mob.clear_alert(ALERT_MIND_CONTROL)
 	..()

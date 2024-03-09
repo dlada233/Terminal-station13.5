@@ -1,10 +1,10 @@
 //does brute damage, shifts away when damaged
 /datum/blobstrain/reagent/shifting_fragments
-	name = "移位碎片"
-	description = "造成中等程度的创伤"
-	effectdesc = "被攻击时将使真菌体位移."
-	analyzerdescdamage = "造成中等程度的创伤."
-	analyzerdesceffect = "当受到攻击时，可能会远离攻击者."
+	name = "Shifting Fragments"
+	description = "will do medium brute damage."
+	effectdesc = "will also cause blob parts to shift away when attacked."
+	analyzerdescdamage = "Does medium brute damage."
+	analyzerdesceffect = "When attacked, may shift away from the attacker."
 	color = "#C8963C"
 	complementary_color = "#3C6EC8"
 	reagent = /datum/reagent/blob/shifting_fragments
@@ -28,7 +28,7 @@
 	return ..()
 
 /datum/reagent/blob/shifting_fragments
-	name = "移位碎片"
+	name = "Shifting Fragments"
 	color = "#C8963C"
 
 /datum/reagent/blob/shifting_fragments/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/overmind)

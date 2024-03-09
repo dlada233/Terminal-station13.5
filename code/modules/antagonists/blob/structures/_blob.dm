@@ -1,9 +1,9 @@
 //I will need to recode parts of this but I am way too tired atm //I don't know who left this comment but they never did come back
 /obj/structure/blob
-	name = "真菌体"
+	name = "blob"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	light_range = 2
-	desc = "卷须筑成的厚墙."
+	desc = "A thick wall of writhing tendrils."
 	density = TRUE
 	opacity = FALSE
 	anchored = TRUE
@@ -60,12 +60,12 @@
 		return .
 
 	if(istype(src, /obj/structure/blob/normal))
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "创建坚固真菌体"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Create strong blob"
 	if(istype(src, /obj/structure/blob/shield) && !istype(src, /obj/structure/blob/shield/reflective))
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "创建反光真菌体"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Create reflective blob"
 
 	if(point_return >= 0)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "移除真菌体"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove blob"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -200,7 +200,7 @@
 			if(Ablob.area_flags & BLOBS_ALLOWED) //Is this area allowed for winning as blob?
 				overmind.blobs_legit += B
 			else if(controller)
-				B.balloon_alert(overmind, "非空间站区域，不作数!")
+				B.balloon_alert(overmind, "off-station, won't count!")
 			B.update_appearance()
 			if(B.overmind && expand_reaction)
 				B.overmind.blobstrain.expand_reaction(src, B, T, controller)
@@ -244,13 +244,13 @@
 /obj/structure/blob/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
 		user.changeNext_move(CLICK_CD_MELEE)
-		to_chat(user, "<b>分析器发出哔哔声，然后报告:</b><br>")
+		to_chat(user, "<b>The analyzer beeps once, then reports:</b><br>")
 		SEND_SOUND(user, sound('sound/machines/ping.ogg'))
 		if(overmind)
-			to_chat(user, "<b>临界质量进展:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
+			to_chat(user, "<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
 			to_chat(user, chemeffectreport(user).Join("\n"))
 		else
-			to_chat(user, "<b>真菌体核心被消灭，临界质量不再可达.</b>")
+			to_chat(user, "<b>Blob core neutralized. Critical mass no longer attainable.</b>")
 		to_chat(user, typereport(user).Join("\n"))
 	else
 		return ..()
@@ -259,17 +259,17 @@
 	RETURN_TYPE(/list)
 	. = list()
 	if(overmind)
-		. += list("<b>材料: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font>[span_notice(".")]</b>",
-		"<b>材料效果:</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
-		"<b>材料性质:</b> [span_notice("[overmind.blobstrain.analyzerdesceffect || "N/A"]")]")
+		. += list("<b>Material: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font>[span_notice(".")]</b>",
+		"<b>Material Effects:</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
+		"<b>Material Properties:</b> [span_notice("[overmind.blobstrain.analyzerdesceffect || "N/A"]")]")
 	else
-		. += "<b>未探测到材料!</b>"
+		. += "<b>No Material Detected!</b>"
 
 /obj/structure/blob/proc/typereport(mob/user)
 	RETURN_TYPE(/list)
-	return list("<b>血型:</b> [span_notice("[uppertext(initial(name))]")]",
-							"<b>健康:</b> [span_notice("[atom_integrity]/[max_integrity]")]",
-							"<b>效果:</b> [span_notice("[scannerreport()]")]")
+	return list("<b>Blob Type:</b> [span_notice("[uppertext(initial(name))]")]",
+							"<b>Health:</b> [span_notice("[atom_integrity]/[max_integrity]")]",
+							"<b>Effects:</b> [span_notice("[scannerreport()]")]")
 
 
 /obj/structure/blob/attack_animal(mob/living/simple_animal/user, list/modifiers)
@@ -327,28 +327,28 @@
 	. = ..()
 	var/datum/atom_hud/hud_to_check = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	if(HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) || hud_to_check.hud_users[user])
-		. += "<b>你的HUD显示了一份详尽的报告...</b><br>"
+		. += "<b>Your HUD displays an extensive report...</b><br>"
 		if(overmind)
 			. += overmind.blobstrain.examine(user)
 		else
-			. += "<b>核心被消灭. 临界质量不再可达.</b>"
+			. += "<b>Core neutralized. Critical mass no longer attainable.</b>"
 		. += chemeffectreport(user)
 		. += typereport(user)
 	else
 		if((user == overmind || isobserver(user)) && overmind)
 			. += overmind.blobstrain.examine(user)
-		. += "它似乎是由[get_chem_name()]组成的."
+		. += "It seems to be made of [get_chem_name()]."
 
 /obj/structure/blob/proc/scannerreport()
-	return "通用真菌体，看起来有人忘记覆盖进程了，请向管理员求助."
+	return "A generic blob. Looks like someone forgot to override this proc, adminhelp this."
 
 /obj/structure/blob/proc/get_chem_name()
 	if(overmind)
 		return overmind.blobstrain.name
-	return "某种有机组织"
+	return "some kind of organic tissue"
 
 /obj/structure/blob/normal
-	name = "普通真菌体"
+	name = "normal blob"
 	icon_state = "blob"
 	light_range = 0
 	max_integrity = BLOB_REGULAR_MAX_HP
@@ -362,21 +362,21 @@
 
 /obj/structure/blob/normal/scannerreport()
 	if(atom_integrity <= 15)
-		return "对创伤抗性较差."
+		return "Currently weak to brute damage."
 	return "N/A"
 
 /obj/structure/blob/normal/update_name()
 	. = ..()
-	name = "[(atom_integrity <= 15) ? "脆弱" : (overmind ? null : "死亡 ")][initial(name)]"
+	name = "[(atom_integrity <= 15) ? "fragile " : (overmind ? null : "dead ")][initial(name)]"
 
 /obj/structure/blob/normal/update_desc()
 	. = ..()
 	if(atom_integrity <= 15)
-		desc = "由微微颤动的卷须组成的薄格架."
+		desc = "A thin lattice of slightly twitching tendrils."
 	else if(overmind)
-		desc = "一堵由卷须筑成的厚墙."
+		desc = "A thick wall of writhing tendrils."
 	else
-		desc = "一堵由无生命的卷须组成的厚墙."
+		desc = "A thick wall of lifeless tendrils."
 
 /obj/structure/blob/normal/update_icon_state()
 	icon_state = "blob[(atom_integrity <= 15) ? "_damaged" : null]"
