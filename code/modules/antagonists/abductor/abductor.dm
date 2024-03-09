@@ -1,12 +1,12 @@
 /datum/antagonist/abductor
-	name = "\improper Abductor"
-	roundend_category = "abductors"
+	name = "\improper 劫持者"
+	roundend_category = "劫持者"
 	antagpanel_category = ANTAG_GROUP_ABDUCTORS
 	job_rank = ROLE_ABDUCTOR
 	antag_hud_name = "abductor"
 	show_in_antagpanel = FALSE //should only show subtypes
 	show_to_ghosts = TRUE
-	suicide_cry = "FOR THE MOTHERSHIP!!" // They can't even talk but y'know
+	suicide_cry = "为了母舰!!" // They can't even talk but y'know
 	var/datum/team/abductor_team/team
 	var/sub_role
 	var/outfit
@@ -42,24 +42,24 @@
 	return finish_preview_icon(final_icon)
 
 /datum/antagonist/abductor/agent
-	name = "\improper Abductor Agent"
-	sub_role = "Agent"
+	name = "\improper 劫持者特工"
+	sub_role = "特工"
 	outfit = /datum/outfit/abductor/agent
 	landmark_type = /obj/effect/landmark/abductor/agent
-	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
+	greet_text = "使用你的隐形技术和装备来使人类丧失行动能力，以便让科学家进行回收."
 	show_in_antagpanel = TRUE
 
 /datum/antagonist/abductor/scientist
-	name = "\improper Abductor Scientist"
-	sub_role = "Scientist"
+	name = "\improper 劫持者科学家"
+	sub_role = "科学家"
 	outfit = /datum/outfit/abductor/scientist
 	landmark_type = /obj/effect/landmark/abductor/scientist
-	greet_text = "Use your experimental console and surgical equipment to monitor your agent and experiment upon abducted humans."
+	greet_text = "使用你的实验终端来掩护你的特工，并对被劫持的人类进行手术实验."
 	show_in_antagpanel = TRUE
 	role_job = /datum/job/abductor_scientist
 
 /datum/antagonist/abductor/scientist/onemanteam
-	name = "\improper Abductor Solo"
+	name = "\improper 独狼劫持者"
 	outfit = /datum/outfit/abductor/scientist/onemanteam
 	role_job = /datum/job/abductor_solo
 
@@ -88,7 +88,7 @@
 
 /datum/antagonist/abductor/greet()
 	. = ..()
-	to_chat(owner.current, span_notice("With the help of your teammate, kidnap and experiment on station crew members!"))
+	to_chat(owner.current, span_notice("在队友的帮助下，劫持空间站人员并进行手术实验!"))
 	to_chat(owner.current, span_notice("[greet_text]"))
 	owner.announce_objectives()
 
@@ -122,8 +122,8 @@
 	var/list/current_teams = list()
 	for(var/datum/team/abductor_team/T in GLOB.antagonist_teams)
 		current_teams[T.name] = T
-	var/choice = input(admin,"Add to which team ?") as null|anything in (current_teams + "new team")
-	if (choice == "new team")
+	var/choice = input(admin,"增加给哪支队伍?") as null|anything in (current_teams + "新队伍")
+	if (choice == "新队伍")
 		team = new
 	else if(choice in current_teams)
 		team = current_teams[choice]
@@ -139,18 +139,18 @@
 
 /datum/antagonist/abductor/proc/admin_equip(mob/admin)
 	if(!ishuman(owner.current))
-		to_chat(admin, span_warning("This only works on humans!"))
+		to_chat(admin, span_warning("只对人类有用!"))
 		return
 	var/mob/living/carbon/human/H = owner.current
-	var/gear = tgui_alert(admin,"Agent or Scientist Gear", "Gear", list("Agent", "Scientist"))
+	var/gear = tgui_alert(admin,"特工或科学家装备", "装备", list("特工", "科学家"))
 	if(gear)
-		if(gear == "Agent")
+		if(gear == "特工")
 			H.equipOutfit(/datum/outfit/abductor/agent)
 		else
 			H.equipOutfit(/datum/outfit/abductor/scientist)
 
 /datum/team/abductor_team
-	member_name = "\improper Abductor"
+	member_name = "\improper 劫持者"
 	var/team_number
 	var/static/team_count = 1
 	///List of all brainwashed victims' minds
@@ -159,7 +159,7 @@
 /datum/team/abductor_team/New()
 	..()
 	team_number = team_count++
-	name = "Mothership [pick(GLOB.greek_letters)]" //TODO Ensure unique and actual alieny names
+	name = "母舰[pick(GLOB.greek_letters)]" //TODO Ensure unique and actual alieny names
 	//add_objective(new /datum/objective/experiment) //SKYRAT EDIT REMOVAL
 
 /datum/team/abductor_team/roundend_report()
@@ -170,11 +170,11 @@
 		if(!O.check_completion())
 			won = FALSE
 	if(won)
-		result += "<span class='greentext big'>[name] team fulfilled its mission!</span>"
+		result += "<span class='greentext big'>[name]完成了任务!</span>"
 	else
-		result += "<span class='redtext big'>[name] team failed its mission.</span>"
+		result += "<span class='redtext big'>[name]的任务失败了.</span>"
 
-	result += "<span class='header'>The abductors of [name] were:</span>"
+	result += "<span class='header'>[name]的劫持者有:</span>"
 	for(var/datum/mind/abductor_mind in members)
 		result += printplayer(abductor_mind)
 	result += printobjectives(objectives)
@@ -195,7 +195,7 @@
 	target_amount = 6
 
 /datum/objective/experiment/New()
-	explanation_text = "Experiment on [target_amount] humans."
+	explanation_text = "在[target_amount]个人类身上进行手术实验."
 
 /datum/objective/experiment/check_completion()
 	for(var/obj/machinery/abductor/experiment/E as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/abductor/experiment))

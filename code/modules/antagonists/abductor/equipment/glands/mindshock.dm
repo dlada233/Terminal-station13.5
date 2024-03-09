@@ -1,5 +1,5 @@
 /obj/item/organ/internal/heart/gland/mindshock
-	abductor_hint = "neural crosstalk uninhibitor. The abductee emits a disrupting psychic wave every so often. This will either stun, cause hallucinations or deal random brain damage to people nearby."
+	abductor_hint = "神经串流解抑器. 被劫持者时不时会释放扰乱的心灵波，附近的人可能会眩晕、产生幻觉，或者受到随机的脑部损伤."
 	cooldown_low = 40 SECONDS
 	cooldown_high = 70 SECONDS
 	uses = -1
@@ -9,22 +9,22 @@
 	var/list/mob/living/carbon/human/broadcasted_mobs = list()
 
 /obj/item/organ/internal/heart/gland/mindshock/activate()
-	to_chat(owner, span_notice("You get a headache."))
+	to_chat(owner, span_notice("你感到头疼."))
 
 	var/turf/owner_turf = get_turf(owner)
 	for(var/mob/living/carbon/target in orange(4,owner_turf))
 		if(target == owner)
 			continue
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			to_chat(target, span_notice("You hear a faint hum fill your ears, which quickly dies down."))
+			to_chat(target, span_notice("你听到耳边传来微弱的嗡鸣声，但很快就消失了."))
 			continue
 
 		switch(pick(1,3))
 			if(1)
-				to_chat(target, span_userdanger("You hear a loud buzz in your head, silencing your thoughts!"))
+				to_chat(target, span_userdanger("你听到头脑中一阵刺耳的嗡嗡声，将你的思绪彻底压制了！"))
 				target.Stun(50)
 			if(2)
-				to_chat(target, span_warning("You hear an annoying buzz in your head."))
+				to_chat(target, span_warning("你听到脑中一阵恼人的嗡嗡声."))
 				target.adjust_confusion(15 SECONDS)
 				target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 160)
 			if(3)
@@ -42,15 +42,15 @@
 			continue
 
 		if(HAS_TRAIT(target_human, TRAIT_MINDSHIELD))
-			to_chat(target_human, span_notice("You hear a low drone as something foreign attempts to enter your mind, but the noise fades after a few moments."))
+			to_chat(target_human, span_notice("你听到一阵低沉的嗡嗡声，仿佛有外物试图进入你的头脑，但这种噪音在几秒钟后便逐渐消失了."))
 			continue
 
 		broadcasted_mobs += target_human
-		to_chat(target_human, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
+		to_chat(target_human, span_userdanger("你突然感到一种无法抗拒的冲动，不得不去执行一个命令..."))
 		to_chat(target_human, span_mind_control("[command]"))
 
-		message_admins("[key_name(user)] broadcasted an abductor mind control message from [key_name(owner)] to [key_name(target_human)]: [command]")
-		user.log_message("broadcasted an abductor mind control message from [key_name(owner)] to [key_name(target_human)]: [command]", LOG_GAME)
+		message_admins("[key_name(user)]从[key_name(owner)]向[key_name(target_human)]广播了一个劫持者心灵控制信息: [command]")
+		user.log_message("[key_name(owner)]向[key_name(target_human)]广播了一个劫持者心灵控制信息: [command]", LOG_GAME)
 
 		var/atom/movable/screen/alert/mind_control/mind_alert = target_human.throw_alert(ALERT_MIND_CONTROL, /atom/movable/screen/alert/mind_control)
 		mind_alert.command = command
@@ -67,7 +67,7 @@
 		return FALSE
 	for(var/target_mob in broadcasted_mobs)
 		var/mob/living/carbon/human/target_human = target_mob
-		to_chat(target_human, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
+		to_chat(target_human, span_userdanger("你感觉到冲动逐渐消退并<b>完全忘记</b>了你之前的命令."))
 		target_human.clear_alert(ALERT_MIND_CONTROL)
 	active_mind_control = FALSE
 	return TRUE

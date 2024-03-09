@@ -8,7 +8,7 @@
 		return TRUE
 	if (istype(user) && HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING))
 		return TRUE
-	to_chat(user, span_warning("You can't figure out how this works!"))
+	to_chat(user, span_warning("你搞不懂它是怎么运作的!"))
 	return FALSE
 
 /obj/item/abductor/proc/ScientistCheck(mob/user)
@@ -16,17 +16,17 @@
 	var/sci_training = HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING)
 
 	if(training && !sci_training)
-		to_chat(user, span_warning("You're not trained to use this!"))
+		to_chat(user, span_warning("你没有接受过该物品的使用训练!"))
 		. = FALSE
 	else if(!training && !sci_training)
-		to_chat(user, span_warning("You can't figure how this works!"))
+		to_chat(user, span_warning("你搞不懂它是怎么运作的!"))
 		. = FALSE
 	else
 		. = TRUE
 
 /obj/item/abductor/gizmo
-	name = "science tool"
-	desc = "A dual-mode tool for retrieving specimens and scanning appearances. Scanning can be done through cameras."
+	name = "科研工具"
+	desc = "用于检索样本和扫描外观的双模式工具，扫描行动可以通过摄像头完成."
 	icon_state = "gizmo_scan"
 	inhand_icon_state = "silencer"
 	var/mode = GIZMO_SCAN
@@ -37,7 +37,7 @@
 	if(!ScientistCheck(user))
 		return
 	if(!console)
-		to_chat(user, span_warning("The device is not linked to console!"))
+		to_chat(user, span_warning("设备未连接到控制台!"))
 		return
 
 	if(mode == GIZMO_SCAN)
@@ -46,13 +46,13 @@
 	else
 		mode = GIZMO_SCAN
 		icon_state = "gizmo_scan"
-	to_chat(user, span_notice("You switch the device to [mode == GIZMO_SCAN? "SCAN": "MARK"] MODE"))
+	to_chat(user, span_notice("你切换设备到[mode == GIZMO_SCAN? "扫描": "标记"]模式"))
 
 /obj/item/abductor/gizmo/interact_with_atom(atom/interacting_with, mob/living/user)
 	if(!ScientistCheck(user))
 		return ITEM_INTERACT_SKIP_TO_ATTACK // So you slap them with it
 	if(!console)
-		to_chat(user, span_warning("The device is not linked to console!"))
+		to_chat(user, span_warning("设备未连接到控制台!"))
 		return ITEM_INTERACT_BLOCKING
 
 	switch(mode)
@@ -75,27 +75,27 @@
 /obj/item/abductor/gizmo/proc/scan(atom/target, mob/living/user)
 	if(ishuman(target))
 		console.AddSnapshot(target)
-		to_chat(user, span_notice("You scan [target] and add [target.p_them()] to the database."))
+		to_chat(user, span_notice("你扫描[target]信息并添加到数据库."))
 
 /obj/item/abductor/gizmo/proc/mark(atom/target, mob/living/user)
 	var/mob/living/marked = marked_target_weakref?.resolve()
 	if(marked == target)
-		to_chat(user, span_warning("This specimen is already marked!"))
+		to_chat(user, span_warning("该样本已经被标记了!"))
 		return
 	if(isabductor(target) || iscow(target))
 		marked_target_weakref = WEAKREF(target)
-		to_chat(user, span_notice("You mark [target] for future retrieval."))
+		to_chat(user, span_notice("你标记[target]以便将来检索."))
 	else
 		prepare(target,user)
 
 /obj/item/abductor/gizmo/proc/prepare(atom/target, mob/living/user)
 	if(get_dist(target,user)>1)
-		to_chat(user, span_warning("You need to be next to the specimen to prepare it for transport!"))
+		to_chat(user, span_warning("你需要在样本旁边来做运输准备!"))
 		return
-	to_chat(user, span_notice("You begin preparing [target] for transport..."))
+	to_chat(user, span_notice("你开始准备运输[target]..."))
 	if(do_after(user, 100, target = target))
 		marked_target_weakref = WEAKREF(target)
-		to_chat(user, span_notice("You finish preparing [target] for transport."))
+		to_chat(user, span_notice("你完成了[target]的运输准备."))
 
 /obj/item/abductor/gizmo/Destroy()
 	if(console)
@@ -105,8 +105,8 @@
 
 
 /obj/item/abductor/silencer
-	name = "abductor silencer"
-	desc = "A compact device used to shut down communications equipment."
+	name = "劫持者静默仪"
+	desc = "用于关闭通讯设备的小型装置."
 	icon_state = "silencer"
 	inhand_icon_state = "gizmo"
 
@@ -136,7 +136,7 @@
 	for(human_target in view(2,targloc))
 		if(human_target == user)
 			continue
-		to_chat(user, span_notice("You silence [human_target]'s radio devices."))
+		to_chat(user, span_notice("你让[human_target]的无线电设备静默了."))
 		radio_off_mob(human_target)
 
 /obj/item/abductor/silencer/proc/radio_off_mob(mob/living/carbon/human/target)
@@ -148,9 +148,9 @@
 			radio.set_broadcasting(FALSE) //goddamned headset hacks
 
 /obj/item/abductor/mind_device
-	name = "mental interface device"
-	desc = "A dual-mode tool for directly communicating with sentient brains. It can be used to send a direct message to a target, \
-			or to send a command to a test subject with a charged gland."
+	name = "心灵接口仪"
+	desc = "一种可以直接与有知觉的大脑交流的双模式工具. 可用于向目标发送脑内消息，\
+			或向带有未耗尽次数的腺体的测试对象发送命令."
 	icon_state = "mind_device_message"
 	inhand_icon_state = "silencer"
 	var/mode = MIND_DEVICE_MESSAGE
@@ -165,7 +165,7 @@
 	else
 		mode = MIND_DEVICE_MESSAGE
 		icon_state = "mind_device_message"
-	to_chat(user, span_notice("You switch the device to [mode == MIND_DEVICE_MESSAGE? "TRANSMISSION": "COMMAND"] MODE"))
+	to_chat(user, span_notice("你切换设备到[mode == MIND_DEVICE_MESSAGE? "传讯": "命令"]模式"))
 
 /obj/item/abductor/mind_device/afterattack(atom/target, mob/living/user, flag, params)
 	. = ..()
@@ -184,17 +184,17 @@
 		var/mob/living/carbon/carbon_target = target
 		var/obj/item/organ/internal/heart/gland/target_gland = carbon_target.get_organ_slot("heart")
 		if(!istype(target_gland))
-			to_chat(user, span_warning("Your target does not have an experimental gland!"))
+			to_chat(user, span_warning("你的目标没有实验性腺体!"))
 			return
 		if(!target_gland.mind_control_uses)
-			to_chat(user, span_warning("Your target's gland is spent!"))
+			to_chat(user, span_warning("你的目标体内的腺体已经耗尽了!"))
 			return
 		if(target_gland.active_mind_control)
-			to_chat(user, span_warning("Your target is already under a mind-controlling influence!"))
+			to_chat(user, span_warning("你的目标已经被精神控制了!"))
 			return
 
-		var/command = tgui_input_text(user, "Enter the command for your target to follow.\
-											Uses Left: [target_gland.mind_control_uses], Duration: [DisplayTimeText(target_gland.mind_control_duration)]", "Enter command")
+		var/command = tgui_input_text(user, "输入你对目标所下达的命令.\
+											次数剩余: [target_gland.mind_control_uses]，持续时间: [DisplayTimeText(target_gland.mind_control_duration)]", "下达命令")
 
 		if(!command)
 			return
@@ -206,43 +206,43 @@
 			return
 
 		if(carbon_target.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-			user.balloon_alert(user, "foiled!")
-			to_chat(user, span_warning("Your target seems to have some sort of mental blockage, preventing the message from being sent! It seems you've been foiled."))
+			user.balloon_alert(user, "被阻碍!")
+			to_chat(user, span_warning("你的目标似乎患有某种精神障碍，阻碍了消息的发送."))
 			return
 
 		target_gland.mind_control(command, user)
-		to_chat(user, span_notice("You send the command to your target."))
+		to_chat(user, span_notice("你对你的目标下达了命令."))
 
 /obj/item/abductor/mind_device/proc/mind_message(atom/target, mob/living/user)
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.stat == DEAD)
-			to_chat(user, span_warning("Your target is dead!"))
+			to_chat(user, span_warning("你的目标已经死了!"))
 			return
-		var/message = tgui_input_text(user, "Message to send to your target's brain", "Enter message")
+		var/message = tgui_input_text(user, "将消息发送到目标的大脑", "输入消息")
 		if(!message)
 			return
 		if(QDELETED(living_target) || living_target.stat == DEAD)
 			return
 
-		living_target.balloon_alert(living_target, "you hear a voice")
-		to_chat(living_target, span_hear("You hear a voice in your head saying: </span><span class='abductor'>[message]"))
-		to_chat(user, span_notice("You send the message to your target."))
-		log_directed_talk(user, living_target, message, LOG_SAY, "abductor whisper")
+		living_target.balloon_alert(living_target, "你听到一个声音")
+		to_chat(living_target, span_hear("一个声音在你的脑中响起: </span><span class='abductor'>[message]"))
+		to_chat(user, span_notice("你发送了消息给你的目标."))
+		log_directed_talk(user, living_target, message, LOG_SAY, "劫持者低语")
 
 
 /obj/item/firing_pin/abductor
-	name = "alien firing pin"
+	name = "外星撞针"
 	icon_state = "firing_pin_ayy"
-	desc = "This firing pin is slimy and warm; you can swear you feel it constantly trying to mentally probe you."
-	fail_message = "<span class='abductor'>Firing error, please contact Command.</span>"
+	desc = "这个撞针摸起来温暖而粘腻，你发誓你感觉到它在不断地在精神上探测你."
+	fail_message = "<span class='abductor'>撞针错误，请联系指挥部.</span>"
 
 /obj/item/firing_pin/abductor/pin_auth(mob/living/user)
 	. = isabductor(user)
 
 /obj/item/gun/energy/alien
-	name = "alien pistol"
-	desc = "A complicated gun that fires bursts of high-intensity radiation."
+	name = "外星手枪"
+	desc = "一把发射高强度辐射的复杂枪械."
 	ammo_type = list(/obj/item/ammo_casing/energy/radiation)
 	pin = /obj/item/firing_pin/abductor
 	icon_state = "alienpistol"
@@ -250,9 +250,9 @@
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/energy/shrink_ray
-	name = "shrink ray blaster"
-	desc = "This is a piece of frightening alien tech that enhances the magnetic pull of atoms in a localized space to temporarily make an object shrink. \
-			That or it's just space magic. Either way, it shrinks stuff."
+	name = "缩小射线炮"
+	desc = "这是一项可怕的外星技术，通过增加局部空间中原子的磁力，暂时使物体缩小. \
+			或者只是太空魔法，不管怎么样，它就是缩小了."
 	ammo_type = list(/obj/item/ammo_casing/energy/shrink)
 	pin = /obj/item/firing_pin/abductor
 	inhand_icon_state = "shrink_ray"
@@ -263,34 +263,34 @@
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL// variable-size trigger, get it? (abductors need this to be set so the gun is usable for them)
 
 /obj/item/paper/guides/antag/abductor
-	name = "Dissection Guide"
+	name = "解刨指南"
 	icon_state = "alienpaper_words"
 	show_written_words = FALSE
-	default_raw_text = {"<b>Dissection for Dummies</b><br>
+	default_raw_text = {"<b>傻瓜解刨指南</b><br>
 
 <br>
-1.Acquire fresh specimen.<br>
-2.Put the specimen on operating table.<br>
-3.Apply surgical drapes, preparing for experimental dissection.<br>
-4.Apply scalpel to specimen's torso.<br>
-5.Clamp bleeders on specimen's torso with a hemostat.<br>
-6.Retract skin of specimen's torso with a retractor.<br>
-7.Apply scalpel again to specimen's torso.<br>
-8.Search through the specimen's torso with your hands to remove any superfluous organs.<br>
-9.Insert replacement gland (Retrieve one from gland storage).<br>
-10.Consider dressing the specimen back to not disturb the habitat. <br>
-11.Put the specimen in the experiment machinery.<br>
-12.Choose one of the machine options. The target will be analyzed and teleported to the selected drop-off point.<br>
-13.You will receive one supply credit, and the subject will be counted towards your quota.<br>
+1.获取新鲜样本.<br>
+2.把样本放在手术台上.<br>
+3.铺上手术布，准备实验解刨手术.<br>
+4.在标本的躯干上使用手术刀.<br>
+5.用止血钳夹住标本躯干上的出血点.<br>
+6.用牵开器牵拉标本躯干的皮肤.<br>
+7.再次在样本的躯干上使用手术刀.<br>
+8.用你的手摸索样本的躯干，摘除多余的器官.<br>
+9.植入替换腺体(从器官储存库中取得).<br>
+10.考虑将样本捆绑起来，以免影响居所. <br>
+11.将样本放进实验机器里.<br>
+12.在机器内进行选择，目标最终将被分析并传送到选定的降落点.<br>
+13.你将获得一点补给点数，该对象也将记入你的指标.<br>
 <br>
-Congratulations! You are now trained for invasive xenobiology research!"}
+恭喜你！你现在已经完成了入侵式异种生物学研究的培训!"}
 
 /obj/item/paper/guides/antag/abductor/AltClick()
 	return //otherwise it would fold into a paperplane.
 
 /obj/item/melee/baton/abductor
-	name = "advanced baton"
-	desc = "A quad-mode baton used for incapacitation and restraining of specimens."
+	name = "先进电棍"
+	desc = "一把四模式的电棍，用于使样本丧失行动能力并加以束缚."
 
 	icon = 'icons/obj/antags/abductor.dmi'
 	lefthand_file = 'icons/mob/inhands/antag/abductor_lefthand.dmi'
@@ -325,13 +325,13 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	var/txt
 	switch(mode)
 		if(BATON_STUN)
-			txt = "stunning"
+			txt = "击晕"
 		if(BATON_SLEEP)
-			txt = "sleep inducement"
+			txt = "睡眠诱导"
 		if(BATON_CUFF)
-			txt = "restraining"
+			txt = "束缚"
 		if(BATON_PROBE)
-			txt = "probing"
+			txt = "探测"
 
 	var/is_stun_mode = mode == BATON_STUN
 	var/is_stun_or_sleep = mode == BATON_STUN || mode == BATON_SLEEP
@@ -341,7 +341,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	stun_animation = is_stun_or_sleep
 	on_stun_sound = is_stun_or_sleep ? 'sound/weapons/egloves.ogg' : null
 
-	to_chat(usr, span_notice("You switch the baton to [txt] mode."))
+	to_chat(usr, span_notice("你切换电棍到[txt]模式."))
 	update_appearance()
 
 /obj/item/melee/baton/abductor/update_icon_state()
@@ -368,8 +368,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 /obj/item/melee/baton/abductor/baton_effect(mob/living/target, mob/living/user, modifiers, stun_override)
 	switch (mode)
 		if(BATON_STUN)
-			target.visible_message(span_danger("[user] stuns [target] with [src]!"),
-				span_userdanger("[user] stuns you with [src]!"))
+			target.visible_message(span_danger("[user]用[src]击晕了[target]!"),
+				span_userdanger("[user]用[src]击晕了你!"))
 			target.set_jitter_if_lower(40 SECONDS)
 			target.set_confusion_if_lower(10 SECONDS)
 			target.set_stutter_if_lower(16 SECONDS)
@@ -396,25 +396,25 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	playsound(src, on_stun_sound, 50, TRUE, -1)
 	if(target.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
 		if(target.can_block_magic(MAGIC_RESISTANCE_MIND))
-			to_chat(user, span_warning("The specimen has some kind of mental protection that is interfering with the sleep inducement! It seems you've been foiled."))
-			target.visible_message(span_danger("[user] tried to induced sleep in [target] with [src], but is unsuccessful!"), \
-			span_userdanger("You feel a strange wave of heavy drowsiness wash over you!"))
+			to_chat(user, span_warning("该样本受到某种精神保护，你的睡眠诱导被阻碍了."))
+			target.visible_message(span_danger("[user]用[src]诱导[target]进入睡眠，但没有成功!"), \
+			span_userdanger("你感到一股奇怪的睡意涌上心头!"))
 			target.adjust_drowsiness(4 SECONDS)
 			return
-		target.visible_message(span_danger("[user] induces sleep in [target] with [src]!"), \
-		span_userdanger("You suddenly feel very drowsy!"))
+		target.visible_message(span_danger("[user]用[src]诱导[target]进入睡眠!"), \
+		span_userdanger("你突然感到困倦无比!"))
 		target.Sleeping(sleep_time)
-		log_combat(user, target, "put to sleep")
+		log_combat(user, target, "使入睡")
 	else
 		if(target.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-			to_chat(user, span_warning("The specimen has some kind of mental protection that is completely blocking our sleep inducement methods! It seems you've been foiled."))
-			target.visible_message(span_danger("[user] tried to induce sleep in [target] with [src], but is unsuccessful!"), \
-			span_userdanger("Any sense of drowsiness is quickly diminished!"))
+			to_chat(user, span_warning("该样本受到某种精神保护，你的睡眠诱导被完全阻止了."))
+			target.visible_message(span_danger("[user]用[src]诱导[target]进入睡眠，但没有成功!"), \
+			span_userdanger("困倦感迅速消退!"))
 			return
 		target.adjust_drowsiness(2 SECONDS)
-		to_chat(user, span_warning("Sleep inducement works fully only on stunned specimens! "))
-		target.visible_message(span_danger("[user] tried to induce sleep in [target] with [src]!"), \
-							span_userdanger("You suddenly feel drowsy!"))
+		to_chat(user, span_warning("睡眠诱导只对被击晕的样本有效! "))
+		target.visible_message(span_danger("[user]试图用[src]诱导[target]进入睡眠!"), \
+							span_userdanger("你突然感到昏昏欲睡!"))
 
 /obj/item/melee/baton/abductor/proc/CuffAttack(mob/living/victim, mob/living/user)
 	if(!iscarbon(victim))
@@ -423,46 +423,46 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	if(!carbon_victim.handcuffed)
 		if(carbon_victim.canBeHandcuffed())
 			playsound(src, 'sound/weapons/cablecuff.ogg', 30, TRUE, -2)
-			carbon_victim.visible_message(span_danger("[user] begins restraining [carbon_victim] with [src]!"), \
-									span_userdanger("[user] begins shaping an energy field around your hands!"))
+			carbon_victim.visible_message(span_danger("[user]开始用[src]束缚[carbon_victim]!"), \
+									span_userdanger("[user]开始在你的双手周围制造一个能量场!"))
 			if(do_after(user, time_to_cuff, carbon_victim) && carbon_victim.canBeHandcuffed())
 				if(!carbon_victim.handcuffed)
 					carbon_victim.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used(carbon_victim))
 					carbon_victim.update_handcuffed()
-					to_chat(user, span_notice("You restrain [carbon_victim]."))
-					log_combat(user, carbon_victim, "handcuffed")
+					to_chat(user, span_notice("你束缚了[carbon_victim]."))
+					log_combat(user, carbon_victim, "被铐上")
 			else
-				to_chat(user, span_warning("You fail to restrain [carbon_victim]."))
+				to_chat(user, span_warning("你没能束缚[carbon_victim]."))
 		else
-			to_chat(user, span_warning("[carbon_victim] doesn't have two hands..."))
+			to_chat(user, span_warning("[carbon_victim]没有两只手..."))
 
 /obj/item/melee/baton/abductor/proc/ProbeAttack(mob/living/victim, mob/living/user)
-	victim.visible_message(span_danger("[user] probes [victim] with [src]!"), \
-						span_userdanger("[user] probes you!"))
+	victim.visible_message(span_danger("[user]用[src]探测[victim]!"), \
+						span_userdanger("[user]探测了你!"))
 
-	var/species = span_warning("Unknown species")
-	var/helptext = span_warning("Species unsuitable for experiments.")
+	var/species = span_warning("未知物种")
+	var/helptext = span_warning("该物种不适合进行实验.")
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
 		species = span_notice("[human_victim.dna.species.name]")
 		if(human_victim.mind && human_victim.mind.has_antag_datum(/datum/antagonist/changeling))
-			species = span_warning("Changeling lifeform")
+			species = span_warning("化身灵生命形式")
 		var/obj/item/organ/internal/heart/gland/temp = locate() in human_victim.organs
 		if(temp)
-			helptext = span_warning("Experimental gland detected!")
+			helptext = span_warning("探测到实验性腺体!")
 		else
 			if (human_victim.get_organ_slot(ORGAN_SLOT_HEART))
-				helptext = span_notice("Subject suitable for experiments.")
+				helptext = span_notice("该对象适合进行实验.")
 			else
-				helptext = span_warning("Subject unsuitable for experiments.")
+				helptext = span_warning("该对象不适合进行实验.")
 
-	to_chat(user, "[span_notice("Probing result:")][species]")
+	to_chat(user, "[span_notice("探测结果:")][species]")
 	to_chat(user, "[helptext]")
 
 /obj/item/restraints/handcuffs/energy
-	name = "hard-light energy field"
-	desc = "A hard-light field restraining the hands."
+	name = "硬光能量场"
+	desc = "束缚双手的硬光能量场."
 	icon_state = "cuff" // Needs sprite
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
@@ -474,8 +474,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	item_flags = DROPDEL
 
 /obj/item/restraints/handcuffs/energy/used/dropped(mob/user)
-	user.visible_message(span_danger("[user]'s [name] breaks in a discharge of energy!"), \
-							span_userdanger("[user]'s [name] breaks in a discharge of energy!"))
+	user.visible_message(span_danger("[user]的[name]因溃能而断裂!"), \
+							span_userdanger("[user]的[name]因溃能而断裂!"))
 	var/datum/effect_system/spark_spread/sparks = new
 	sparks.set_up(4,0,user.loc)
 	sparks.start()
@@ -486,17 +486,17 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	if(AbductorCheck(user))
 		switch(mode)
 			if(BATON_STUN)
-				. += span_warning("The baton is in stun mode.")
+				. += span_warning("该电棍当前为击晕模式.")
 			if(BATON_SLEEP)
-				. += span_warning("The baton is in sleep inducement mode.")
+				. += span_warning("该电棍当前为睡眠诱导模式.")
 			if(BATON_CUFF)
-				. += span_warning("The baton is in restraining mode.")
+				. += span_warning("该电棍当前为束缚模式.")
 			if(BATON_PROBE)
-				. += span_warning("The baton is in probing mode.")
+				. += span_warning("该电棍当前为探测模式.")
 
 /obj/item/radio/headset/abductor
-	name = "alien headset"
-	desc = "An advanced alien headset designed to monitor communications of human space stations. Why does it have a microphone? No one knows."
+	name = "外星耳机"
+	desc = "一款先进的外星耳机，用于监听空间站的通讯，没人知道为什么还有麦克风功能."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "abductor_headset"
 	keyslot2 = /obj/item/encryptionkey/heads/captain
@@ -511,8 +511,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/abductor_machine_beacon
-	name = "machine beacon"
-	desc = "A beacon designed to instantly tele-construct abductor machinery."
+	name = "机器信标"
+	desc = "用来快速建造绑架机的信标."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "beacon"
 	w_class = WEIGHT_CLASS_TINY
@@ -520,7 +520,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 
 /obj/item/abductor_machine_beacon/attack_self(mob/user)
 	..()
-	user.visible_message(span_notice("[user] places down [src] and activates it."), span_notice("You place down [src] and activate it."))
+	user.visible_message(span_notice("[user]放置并激活了[src]."), span_notice("你放置并激活了[src]."))
 	user.dropItemToGround(src)
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(try_spawn_machine)), 30)
@@ -536,61 +536,60 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	if(viable)
 		playsound(src, 'sound/effects/phasein.ogg', 50, TRUE)
 		var/new_machine = new spawned_machine(loc)
-		visible_message(span_notice("[new_machine] warps on top of the beacon!"))
+		visible_message(span_notice("[new_machine]在信标上浮现!"))
 		qdel(src)
 	else
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 
 /obj/item/abductor_machine_beacon/chem_dispenser
-	name = "beacon - Reagent Synthesizer"
+	name = "信标 - 试剂合成器"
 	spawned_machine = /obj/machinery/chem_dispenser/abductor
 
 /obj/item/scalpel/alien
-	name = "alien scalpel"
-	desc = "It's a gleaming sharp knife made out of silvery-green metal."
+	name = "外星手术刀"
+	desc = "这是一把闪闪发光的尖刀，由银绿色的金属制成."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "scalpel_alien"
 	toolspeed = 0.25
 
 /obj/item/hemostat/alien
-	name = "alien hemostat"
-	desc = "You've never seen this before."
+	name = "外星止血钳"
+	desc = "是你从未见过的东西."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "hemostat_alien"
 	toolspeed = 0.25
 
 /obj/item/retractor/alien
-	name = "alien retractor"
-	desc = "You're not sure if you want the veil pulled back."
+	name = "外星牵开器"
+	desc = "你要牵开那面纱吗."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "retractor_alien"
 	toolspeed = 0.25
 
 /obj/item/circular_saw/alien
-	name = "alien saw"
-	desc = "Do the aliens also lose this, and need to find an alien hatchet?"
+	name = "外星骨锯"
+	desc = "外星人也要破开骨头吗，也许还需要找到一把外星斧头?"
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "saw_alien"
 	toolspeed = 0.25
 
 /obj/item/surgicaldrill/alien
-	name = "alien drill"
-	desc = "Maybe alien surgeons have finally found a use for the drill."
+	name = "外星骨钻"
+	desc = "也许外星大夫终于找到了钻头的用途."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "drill_alien"
 	toolspeed = 0.25
 
 /obj/item/cautery/alien
-	name = "alien cautery"
-	desc = "Why would bloodless aliens have a tool to stop bleeding? \
-		Unless..."
+	name = "外星缝合器"
+	desc = "为什么不流血的外星人会有止血工具？除非..."
 	icon = 'icons/obj/antags/abductor.dmi'
 	surgical_tray_overlay = "cautery_alien"
 	toolspeed = 0.25
 
 /obj/item/clothing/head/helmet/abductor
-	name = "agent headgear"
-	desc = "Abduct with style - spiky style. Prevents digital tracking."
+	name = "外星头盔"
+	desc = "以尖刺风格进行绑架，阻碍电子追踪手段."
 	icon_state = "alienhelmet"
 	inhand_icon_state = null
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -612,8 +611,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	return COMPONENT_CANT_TRACK
 
 /obj/item/abductor/alien_omnitool
-	name = "quizzandric interfacer"
-	desc = "Effectively just a Space Swiss Army Knife. Contains a multitude of integrated tools. Right-click it to switch which toolset is active."
+	name = "多功能接口"
+	desc = "实际上就是一把太空瑞士军刀，包含各种的集成工具，右键以切换工具集."
 	icon_state = "omnitool"
 	inhand_icon_state = "silencer"
 	toolspeed = 0.25
@@ -648,7 +647,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 
 /obj/item/abductor/alien_omnitool/examine()
 	. = ..()
-	. += " The mode is: [tool_behaviour]"
+	. += "当前模式为: [tool_behaviour]"
 
 /obj/item/abductor/alien_omnitool/attack_self(mob/user)
 	if(!user)
@@ -658,33 +657,33 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	if(!check_menu(user))
 		return
 	switch(tool_result)
-		if("Retractor")
+		if("牵开器")
 			tool_behaviour = TOOL_RETRACTOR
-		if("Hemostat")
+		if("止血钳")
 			tool_behaviour = TOOL_HEMOSTAT
-		if("Cautery")
+		if("缝合器")
 			tool_behaviour = TOOL_CAUTERY
-		if("Drill")
+		if("骨钻")
 			tool_behaviour = TOOL_DRILL
-		if("Scalpel")
+		if("手术刀")
 			tool_behaviour = TOOL_SCALPEL
-		if("Saw")
+		if("骨锯")
 			tool_behaviour = TOOL_SAW
-		if("Bonesetter")
+		if("接骨器")
 			tool_behaviour = TOOL_BONESET
-		if("Blood Filter")
+		if("血液过滤器")
 			tool_behaviour = TOOL_BLOODFILTER
-		if("Crowbar")
+		if("撬棍")
 			tool_behaviour = TOOL_CROWBAR
-		if("Multitool")
+		if("多功能工具")
 			tool_behaviour = TOOL_MULTITOOL
-		if("Screwdriver")
+		if("螺丝刀")
 			tool_behaviour = TOOL_SCREWDRIVER
-		if("Wirecutters")
+		if("剪线钳")
 			tool_behaviour = TOOL_WIRECUTTER
-		if("Wrench")
+		if("扳手")
 			tool_behaviour = TOOL_WRENCH
-		if("Welding Tool")
+		if("焊接工具")
 			tool_behaviour = TOOL_WELDER
 
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
@@ -706,27 +705,27 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 /obj/item/abductor/alien_omnitool/proc/set_toolset(mob/user)
 	if(active_toolset == TOOLSET_MEDICAL)
 		tool_list = list(
-			"Crowbar" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "crowbar"),
-			"Multitool" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "multitool"),
-			"Screwdriver" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "screwdriver_a"),
-			"Wirecutters" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "cutters"),
-			"Wrench" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "wrench"),
-			"Welding Tool" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "welder"),
+			"撬棍" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "crowbar"),
+			"多功能工具" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "multitool"),
+			"螺丝刀" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "screwdriver_a"),
+			"剪线钳" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "cutters"),
+			"扳手" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "wrench"),
+			"焊接工具" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "welder"),
 		)
 		active_toolset = TOOLSET_HACKING
 		if(user)
-			balloon_alert(user, "hacking toolset selected")
+			balloon_alert(user, "已选择入侵工具集")
 	else
 		tool_list = list(
-			"Retractor" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "retractor"),
-			"Hemostat" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "hemostat"),
-			"Cautery" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "cautery"),
-			"Drill" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "drill"),
-			"Scalpel" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "scalpel"),
-			"Saw" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "saw"),
-			"Bonesetter" = image(icon = 'icons/obj/medical/surgery_tools.dmi', icon_state = "bonesetter"),
-			"Blood Filter" = image(icon = 'icons/obj/medical/surgery_tools.dmi', icon_state = "bloodfilter"),
+			"牵开器" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "retractor"),
+			"止血钳" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "hemostat"),
+			"缝合器" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "cautery"),
+			"骨钻" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "drill"),
+			"手术刀" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "scalpel"),
+			"骨锯" = image(icon = 'icons/obj/antags/abductor.dmi', icon_state = "saw"),
+			"接骨器" = image(icon = 'icons/obj/medical/surgery_tools.dmi', icon_state = "bonesetter"),
+			"血液过滤器" = image(icon = 'icons/obj/medical/surgery_tools.dmi', icon_state = "bloodfilter"),
 		)
 		active_toolset = TOOLSET_MEDICAL
 		if(user)
-			balloon_alert(user, "medical toolset selected")
+			balloon_alert(user, "已选择医用工具集")
