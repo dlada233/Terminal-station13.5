@@ -32,7 +32,7 @@
 #define BULB_SHARDS_REQUIRED 4
 
 /obj/item/lightreplacer
-	name = "快捷灯泡替换工具"
+	name = "灯泡更换器"
 	desc = "自动替换灯泡的工具，将坏掉的灯泡填进去还能重新回收利用."
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "lightreplacer"
@@ -328,7 +328,7 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
 /obj/item/lightreplacer/blue
-	name = "蓝空快捷灯泡替换工具"
+	name = "蓝空灯泡更换器"
 	desc = "A modified light replacer that zaps lights into place. Refill with broken or working lightbulbs, or sheets of glass."
 	icon_state = "lightreplacer_blue"
 	bluespace_toggle = TRUE
