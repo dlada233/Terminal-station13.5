@@ -1,5 +1,5 @@
 /datum/outfit/abductor
-	name = "Abductor Basic"
+	name = "基本劫持者"
 	uniform = /obj/item/clothing/under/abductor
 	shoes = /obj/item/clothing/shoes/combat
 	back = /obj/item/storage/backpack
@@ -39,7 +39,7 @@
 		ayy_summon.Grant(user)
 
 /datum/outfit/abductor/agent
-	name = "Abductor Agent"
+	name = "劫持者特工"
 	head = /obj/item/clothing/head/helmet/abductor
 	suit = /obj/item/clothing/suit/armor/abductor/vest
 	suit_store = /obj/item/melee/baton/abductor
@@ -51,7 +51,7 @@
 		)
 
 /datum/outfit/abductor/scientist
-	name = "Abductor Scientist"
+	name = "劫持者科学家"
 
 	backpack_contents = list(
 		/obj/item/abductor/gizmo = 1
@@ -64,7 +64,7 @@
 		beamplant.implant(user)
 
 /datum/outfit/abductor/scientist/onemanteam
-	name = "Abductor Scientist (w/ agent gear)"
+	name = "劫持者科学家 (w/ 特工装备)"
 	head = /obj/item/clothing/head/helmet/abductor
 	suit = /obj/item/clothing/suit/armor/abductor/vest
 	suit_store = /obj/item/melee/baton/abductor

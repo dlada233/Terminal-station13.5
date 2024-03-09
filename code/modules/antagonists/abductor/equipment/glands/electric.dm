@@ -1,5 +1,5 @@
 /obj/item/organ/internal/heart/gland/electric
-	abductor_hint = "electron accumulator/discharger. The abductee becomes fully immune to electric shocks. Additionally, they will randomly discharge electric bolts."
+	abductor_hint = "电子积聚器/放电器，被绑架者对电击完全免疫，此外他们还会随机放出电光."
 	cooldown_low = 800
 	cooldown_high = 1200
 	icon_state = "species"
@@ -16,8 +16,8 @@
 	REMOVE_TRAIT(gland_owner, TRAIT_SHOCKIMMUNE, ABDUCTOR_GLAND_TRAIT)
 
 /obj/item/organ/internal/heart/gland/electric/activate()
-	owner.visible_message(span_danger("[owner]'s skin starts emitting electric arcs!"),\
-	span_warning("You feel electric energy building up inside you!"))
+	owner.visible_message(span_danger("[owner]的皮肤开始释放出电弧!"),\
+	span_warning("你感到体内开始积聚电能!"))
 	playsound(get_turf(owner), SFX_SPARKS, 100, TRUE, -1, SHORT_RANGE_SOUND_EXTRARANGE)
 	addtimer(CALLBACK(src, PROC_REF(zap)), rand(30, 100))
 
