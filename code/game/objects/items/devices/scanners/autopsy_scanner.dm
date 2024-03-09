@@ -85,7 +85,7 @@
 		if(HAS_TRAIT_FROM(scanned, TRAIT_HUSK, BURN))
 			autopsy_information += "重度烧伤.</br>"
 		else if (HAS_TRAIT_FROM(scanned, TRAIT_HUSK, CHANGELING_DRAIN))
-			autopsy_information += "干裂,常由化身灵引起.</br>"
+			autopsy_information += "干裂,常由化形引起.</br>"
 		else
 			autopsy_information += "未知成因.</br>"
 	else
