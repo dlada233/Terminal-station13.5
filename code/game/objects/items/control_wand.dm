@@ -9,7 +9,7 @@
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	icon = 'icons/obj/devices/remote.dmi'
 	name = "control wand"
-	desc = "远程控制气阀门的遥控器."
+	desc = "远程控制气闸门的遥控器."
 	w_class = WEIGHT_CLASS_TINY
 	var/mode = WAND_OPEN
 	var/region_access = REGION_GENERAL
@@ -68,7 +68,7 @@
 				door.close()
 		if (WAND_BOLT)
 			if (!istype(airlock))
-				target.balloon_alert(user, "Airlocks-气阀门专用!")
+				target.balloon_alert(user, "气闸门专用!")
 				return
 
 			if (airlock.locked)
@@ -77,7 +77,7 @@
 				airlock.bolt()
 		if (WAND_EMERGENCY)
 			if (!istype(airlock))
-				target.balloon_alert(user, "Airlocks-气阀门专用!")
+				target.balloon_alert(user, "气闸门专用!")
 				return
 
 			airlock.emergency = !airlock.emergency
@@ -111,7 +111,7 @@
 
 /obj/item/door_remote/quartermaster
 	name = "货仓大门遥控器"
-	desc = "远程控制气阀门的遥控器，这个还有金库门的权限."
+	desc = "远程控制气闸门的遥控器，这个还有金库门的权限."
 	icon_state = "gangtool-green"
 	region_access = REGION_SUPPLY
 
