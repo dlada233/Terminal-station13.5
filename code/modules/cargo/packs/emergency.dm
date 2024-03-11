@@ -31,7 +31,7 @@
 
 /datum/supply_pack/emergency/bomb
 	name = "应急爆炸补给"
-	desc = "科研部已经疯了？在气阀门后传来了哔哔声？现在就买！成为拯救站点的拆弹英雄！\
+	desc = "科研部已经疯了？在气闸门后传来了哔哔声？现在就买！成为拯救站点的拆弹英雄！\
 		里面有一件防爆服和配套头盔、防毒面具和拆弹工具."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/utility/bomb_hood,
