@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 			for(var/obj/machinery/door/airlock/D in in_area)
 				D.emergency = TRUE
 				D.update_icon(ALL, 0)
-	minor_announce("对维护和外部气阀门的进出限制已解除.", "注意！全站进入紧急状态！",1)
+	minor_announce("对维护和外部气闸门的进出限制已解除.", "注意！全站进入紧急状态！",1)
 	GLOB.emergency_access = TRUE
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("emergency maintenance access", "enabled"))
 
