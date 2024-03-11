@@ -185,7 +185,7 @@
 
 /datum/uplink_item/device_tools/emag
 	name = "加密定序器"
-	desc = "你可以叫它加密定序器、电磁卡或者EMAG，这张小卡片可以解锁电子设备中的各种隐藏功能、破坏预定功能以及骇入解锁(气阀门除外)."
+	desc = "你可以叫它加密定序器、电磁卡或者EMAG，这张小卡片可以解锁电子设备中的各种隐藏功能、破坏预定功能以及骇入解锁(气闸门除外)."
 	item = /obj/item/card/emag
 	cost = 4
 
