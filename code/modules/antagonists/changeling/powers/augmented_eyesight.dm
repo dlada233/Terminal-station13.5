@@ -2,11 +2,9 @@
 //Possible todo: make a custom message for directing a penlight/flashlight at the eyes - not sure what would display though.
 
 /datum/action/changeling/augmented_eyesight
-	name = "Augmented Eyesight"
-	desc = "Creates more light sensing rods in our eyes, allowing our vision to penetrate most blocking objects. \
-		Protects our vision from flashes while inactive."
-	helptext = "Grants us x-ray vision or flash protection. \
-		We will become a lot more vulnerable to flash-based devices while x-ray vision is active."
+	name = "视觉增强"
+	desc = "在我们的眼睛中产生更多的光敏视杆细胞，使我们的眼睛能看穿大多数的阻挡物体. 在未激活的状态下还能防闪光."
+	helptext = "给予我们X射线视觉或闪光保护. 注意激活X射线视觉时，我们不仅没有闪光保护还会对闪光更加脆弱."
 	button_icon_state = "augmented_eyesight"
 	chemical_cost = 0
 	dna_cost = 2
@@ -21,7 +19,7 @@
 	RegisterSignal(user, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(eye_removed))
 	if(!isnull(ling_eyes))
 		ling_eyes.flash_protect = FLASH_PROTECTION_WELDER //Adjust the user's eyes' flash protection
-		to_chat(user, span_changeling("We adjust our eyes to protect them from bright lights."))
+		to_chat(user, span_changeling("我们调整眼睛以保护它们免受强光的影响."))
 
 /datum/action/changeling/augmented_eyesight/sting_action(mob/living/carbon/user)
 	if(!istype(user))
@@ -29,7 +27,7 @@
 
 	var/obj/item/organ/internal/eyes/ling_eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(isnull(ling_eyes))
-		user.balloon_alert(user, "no eyes!")
+		user.balloon_alert(user, "没有眼睛!")
 		return FALSE
 
 	..()
@@ -38,13 +36,13 @@
 		active = FALSE
 		REMOVE_TRAIT(user, TRAIT_XRAY_VISION, REF(src))
 		ling_eyes.flash_protect = FLASH_PROTECTION_WELDER
-		to_chat(user, span_changeling("We adjust our eyes to protect them from bright lights."))
+		to_chat(user, span_changeling("我们调整眼睛以保护它们免受强光的影响."))
 
 	else
 		active = TRUE
 		ADD_TRAIT(user, TRAIT_XRAY_VISION, REF(src))
 		ling_eyes.flash_protect = FLASH_PROTECTION_SENSITIVE
-		to_chat(user, span_changeling("We adjust our eyes to sense prey through walls."))
+		to_chat(user, span_changeling("我们调整眼睛以透过墙壁观察猎物."))
 
 	user.update_sight()
 	return TRUE

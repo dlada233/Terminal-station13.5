@@ -4,9 +4,9 @@
 
 
 /datum/action/changeling/pheromone_receptors
-	name = "Pheromone Receptors"
-	desc = "We attune our senses to track other changelings by scent.  The closer they are, the easier we can find them."
-	helptext = "We will know the general direction of nearby changelings, with closer scents being stronger.  Our chemical generation is slowed while this is active."
+	name = "信息素受体"
+	desc = "我们通过调节嗅觉感官来追踪其他的化形，距离越近越容易找到它们."
+	helptext = "我们可以知晓附近化形的大致方位，距离越近，气味越强. 激活该能力将减缓化学物质的生成."
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "nose"
 	chemical_cost = 0 //Reduces regain rate while active.
@@ -24,11 +24,11 @@
 	..()
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(!receptors_active)
-		to_chat(user, span_warning("We search for the scent of any nearby changelings."))
+		to_chat(user, span_warning("我们探寻着附近化形的气味."))
 		changeling.chem_recharge_slowdown += 0.25
 		user.apply_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 	else
-		to_chat(user, span_notice("We stop searching for now."))
+		to_chat(user, span_notice("我们现在停止了探寻."))
 		changeling.chem_recharge_slowdown -= 0.25
 		user.remove_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 
@@ -63,8 +63,8 @@
 
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/changeling
-	name = "Pheromone Scent"
-	desc = "The nose always knows."
+	name = "信息素气味"
+	desc = "我们就相信鼻子的判断吧."
 
 #undef CHANGELING_PHEROMONE_MIN_DISTANCE
 #undef CHANGELING_PHEROMONE_MAX_DISTANCE

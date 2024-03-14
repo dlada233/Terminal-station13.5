@@ -1,7 +1,7 @@
 /datum/action/changeling/resonant_shriek
-	name = "Resonant Shriek"
-	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded. Costs 20 chemicals."
-	helptext = "Emits a high-frequency sound that confuses and deafens humans, blows out nearby lights and overloads cyborg sensors."
+	name = "惊声尖啸"
+	desc = "我们的肺与声带一齐运动，发出能使心智弱小的单位耳聋并困惑的噪音. 使用该能力将花费20点化学物质."
+	helptext = "发出一种高频率的声音，对人类造成困惑和耳聋，甚至能熄灭附近的灯光照明并使赛博传感器过载."
 	button_icon_state = "resonant_shriek"
 	chemical_cost = 20
 	dna_cost = 1
@@ -11,7 +11,7 @@
 /datum/action/changeling/resonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, "can't shriek in pipes!")
+		user.balloon_alert(user, "没法在管道里尖啸!")
 		return FALSE
 	for(var/mob/living/M in get_hearers_in_view(4, user))
 		if(iscarbon(M))
@@ -36,8 +36,8 @@
 	return TRUE
 
 /datum/action/changeling/dissonant_shriek
-	name = "Dissonant Shriek"
-	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Costs 20 chemicals."
+	name = "惊声尖啸"
+	desc = "我们调整声带，发出能使附近电子设备超载的高频率声音. 使用该能力将花费20点化学物质."
 	button_icon_state = "dissonant_shriek"
 	chemical_cost = 20
 	dna_cost = 1
@@ -45,7 +45,7 @@
 /datum/action/changeling/dissonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, "can't shriek in pipes!")
+		user.balloon_alert(user, "不能在管道里尖啸!")
 		return FALSE
 	empulse(get_turf(user), 2, 5, 1)
 	for(var/obj/machinery/light/L in range(5, usr))

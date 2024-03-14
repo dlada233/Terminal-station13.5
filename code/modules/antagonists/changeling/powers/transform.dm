@@ -1,6 +1,6 @@
 /datum/action/changeling/transform
-	name = "Transform"
-	desc = "We take on the appearance and voice of one we have absorbed. Costs 5 chemicals."
+	name = "变形"
+	desc = "我们通过变形来模仿所吸收到的对象的外表和声音. 花费5点化学物质."
 	button_icon_state = "transform"
 	chemical_cost = 5
 	dna_cost = CHANGELING_POWER_INNATE
@@ -8,100 +8,100 @@
 	req_human = TRUE
 
 /obj/item/clothing/glasses/changeling
-	name = "flesh"
+	name = "血肉"
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/glasses/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
 
 /obj/item/clothing/under/changeling
-	name = "flesh"
+	name = "血肉"
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/under/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
 
 /obj/item/clothing/suit/changeling
-	name = "flesh"
+	name = "血肉"
 	allowed = list(/obj/item/changeling)
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/suit/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
 
 /obj/item/clothing/head/changeling
-	name = "flesh"
+	name = "血肉"
 	icon_state = null
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/head/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
 
 /obj/item/clothing/shoes/changeling
-	name = "flesh"
+	name = "血肉"
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/shoes/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
 
 /obj/item/clothing/gloves/changeling
-	name = "flesh"
+	name = "血肉"
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/gloves/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
 
 /obj/item/clothing/mask/changeling
-	name = "flesh"
+	name = "血肉"
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
 
 /obj/item/changeling
-	name = "flesh"
+	name = "血肉"
 	slot_flags = ALL
 	item_flags = DROPDEL
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/changeling/attack_hand(mob/user, list/modifiers)
 	if(loc == user && user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling))
-		to_chat(user, span_notice("You reabsorb [src] into your body."))
+		to_chat(user, span_notice("你们将[src]吸收回自身."))
 		qdel(src)
 		return
 	. = ..()
@@ -130,7 +130,7 @@
 	return cached_flat_icon
 
 /obj/item/changeling/id/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(get_cached_flat_icon(), user)] [thats? "That's ":""][get_examine_name(user)]" //displays all overlays in chat
+	return "[icon2html(get_cached_flat_icon(), user)] [thats? "那是":""][get_examine_name(user)]" //displays all overlays in chat
 
 //Change our DNA to that of somebody we've absorbed.
 /datum/action/changeling/transform/sting_action(mob/living/carbon/human/user)
@@ -153,7 +153,7 @@
 	if(!istype(user))
 		return
 
-	var/list/disguises = list("Drop Flesh Disguise" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_drop"))
+	var/list/disguises = list("放弃血肉伪装" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_drop"))
 	for(var/datum/changeling_profile/current_profile as anything in stored_profiles)
 		var/datum/icon_snapshot/snap = current_profile.profile_snapshot
 		var/image/disguise_image = image(icon = snap.icon, icon_state = snap.icon_state)
@@ -164,7 +164,7 @@
 	if(!chosen_name)
 		return
 
-	if(chosen_name == "Drop Flesh Disguise")
+	if(chosen_name == "放弃血肉伪装")
 		for(var/slot in slot2type)
 			if(istype(user.vars[slot], slot2type[slot]))
 				qdel(user.vars[slot])

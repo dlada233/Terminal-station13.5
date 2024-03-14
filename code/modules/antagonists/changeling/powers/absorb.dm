@@ -1,6 +1,6 @@
 /datum/action/changeling/absorb_dna
-	name = "Absorb DNA"
-	desc = "Absorb the DNA of our victim. Requires us to strangle them."
+	name = "吸收DNA"
+	desc = "吸收被勒住目标的DNA."
 	button_icon_state = "absorb_dna"
 	chemical_cost = 0
 	dna_cost = CHANGELING_POWER_INNATE
@@ -13,14 +13,14 @@
 		return
 
 	if(is_absorbing)
-		owner.balloon_alert(owner, "already absorbing!")
+		owner.balloon_alert(owner, "已经在吸收!")
 		return
 
 	if(!owner.pulling || !iscarbon(owner.pulling))
-		owner.balloon_alert(owner, "needs grab!")
+		owner.balloon_alert(owner, "需要抓握!")
 		return
 	if(owner.grab_state <= GRAB_NECK)
-		owner.balloon_alert(owner, "needs tighter grip!")
+		owner.balloon_alert(owner, "需要更紧地抓握!")
 		return
 
 	var/mob/living/carbon/target = owner.pulling
@@ -38,8 +38,8 @@
 		return
 
 	SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "4"))
-	owner.visible_message(span_danger("[owner] sucks the fluids from [target]!"), span_notice("We have absorbed [target]."))
-	to_chat(target, span_userdanger("You are absorbed by the changeling!"))
+	owner.visible_message(span_danger("[owner]从[target]中吸取液体!"), span_notice("我们已经吸收了[target]."))
+	to_chat(target, span_userdanger("你被化形吸收了!"))
 
 	if(!changeling.has_profile_with_dna(target.dna))
 		changeling.add_new_profile(target)
@@ -60,7 +60,7 @@
 	changeling.can_respec = TRUE
 
 	if(target.stat != DEAD)
-		target.investigate_log("has died from being changeling absorbed.", INVESTIGATE_DEATHS)
+		target.investigate_log("因为被化形吸收而死.", INVESTIGATE_DEATHS)
 	target.death(FALSE)
 	target.Drain()
 	return TRUE
@@ -78,21 +78,21 @@
 	for(var/datum/antagonist/antagonist_datum as anything in suckedbrain.antag_datums)
 		var/list/all_objectives = antagonist_datum.objectives.Copy()
 		if(antagonist_datum.antag_memory)
-			changeling.antag_memory += "[target]'s antagonist memories: [antagonist_datum.antag_memory]."
+			changeling.antag_memory += "[target]的反派记忆: [antagonist_datum.antag_memory]."
 		if(!LAZYLEN(all_objectives))
 			continue
-		changeling.antag_memory += " Objectives:"
+		changeling.antag_memory += " 目标:"
 		var/obj_count = 1
 		for(var/datum/objective/objective as anything in all_objectives)
 			if(!objective) //nulls? in my objective list? it's more likely than you think.
 				continue
-			changeling.antag_memory += " Objective #[obj_count++]: [objective.explanation_text]."
+			changeling.antag_memory += " 目标 #[obj_count++]: [objective.explanation_text]."
 			var/list/datum/mind/other_owners = objective.get_owners() - suckedbrain
 			if(!other_owners.len)
 				continue
 			for(var/datum/mind/conspirator as anything in other_owners)
-				changeling.antag_memory += " Objective Conspirator: [conspirator.name]."
-	changeling.antag_memory += " That's all [target] had. "
+				changeling.antag_memory += " 目标同谋者: [conspirator.name]."
+	changeling.antag_memory += " 这就是[target]的全部记忆. "
 
 	//Some of target's recent speech, so the changeling can attempt to imitate them better.
 	//Recent as opposed to all because rounds tend to have a LOT of text.
@@ -100,18 +100,18 @@
 	var/list/recent_speech = target.copy_recent_speech()
 
 	if(recent_speech.len)
-		changeling.antag_memory += "<B>Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]!</B><br>"
-		to_chat(owner, span_boldnotice("Some of [target]'s speech patterns, we should study these to better impersonate [target.p_them()]!"))
+		changeling.antag_memory += "<B>一些[target]的说话方式，我们应该有所学习以便更好地模仿这个人!</B><br>"
+		to_chat(owner, span_boldnotice("一些[target]的说话方式，我们应该有所学习以便更好地模仿这个人!"))
 		for(var/spoken_memory in recent_speech)
 			changeling.antag_memory += "\"[spoken_memory]\"<br>"
 			to_chat(owner, span_notice("\"[spoken_memory]\""))
-		changeling.antag_memory += "<B>We have no more knowledge of [target]'s speech patterns.</B><br>"
-		to_chat(owner, span_boldnotice("We have no more knowledge of [target]'s speech patterns."))
+		changeling.antag_memory += "<B>可供学习的[target]说话方式就这么多了.</B><br>"
+		to_chat(owner, span_boldnotice("可供学习的[target]说话方式就这么多了."))
 
 
 	var/datum/antagonist/changeling/target_ling = target.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(target_ling)//If the target was a changeling, suck out their extra juice and objective points!
-		to_chat(owner, span_boldnotice("[target] was one of us. We have absorbed their power."))
+		to_chat(owner, span_boldnotice("[target]是我们的同类，我们已经吸收了它们的能力."))
 
 		// Gain half of their genetic points.
 		var/genetic_points_to_add = round(target_ling.total_genetic_points / 2)
@@ -136,17 +136,17 @@
 	for(var/absorbing_iteration in 1 to 3)
 		switch(absorbing_iteration)
 			if(1)
-				to_chat(owner, span_notice("This creature is compatible. We must hold still..."))
+				to_chat(owner, span_notice("与该生物兼容. 我们得保持住这个动作..."))
 			if(2)
-				owner.visible_message(span_warning("[owner] extends a proboscis!"), span_notice("We extend a proboscis."))
+				owner.visible_message(span_warning("[owner]伸出吸管!"), span_notice("我们伸出一根吸管."))
 			if(3)
-				owner.visible_message(span_danger("[owner] stabs [target] with the proboscis!"), span_notice("We stab [target] with the proboscis."))
-				to_chat(target, span_userdanger("You feel a sharp stabbing pain!"))
+				owner.visible_message(span_danger("[owner]将吸管插进[target]体内!"), span_notice("我们将吸管插进[target]体内."))
+				to_chat(target, span_userdanger("你感到一阵刺痛!"))
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[absorbing_iteration]"))
 		if(!do_after(owner, 15 SECONDS, target))
-			owner.balloon_alert(owner, "interrupted!")
+			owner.balloon_alert(owner, "被打断!")
 			is_absorbing = FALSE
 			return FALSE
 	return TRUE
