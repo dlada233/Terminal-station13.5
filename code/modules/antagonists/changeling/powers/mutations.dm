@@ -54,17 +54,17 @@
 		user.temporarilyRemoveItemFromInventory(hand_item, TRUE) //DROPDEL will delete the item
 		if(!silent)
 			playsound(user, 'sound/effects/blobattack.ogg', 30, TRUE)
-			user.visible_message(span_warning("With a sickening crunch, [user] reforms [user.p_their()] [weapon_name_simple] into an arm!"), span_notice("We assimilate the [weapon_name_simple] back into our body."), "<span class='italics>You hear organic matter ripping and tearing!</span>")
+			user.visible_message(span_warning("伴随着令人作呕的嘎吱声，[user]将自己的[weapon_name_simple]化成了一只手臂!"), span_notice("我们将[weapon_name_simple]收回我们的身体."), "<span class='italics>你听到有机物撕扯的声音!</span>")
 		user.update_held_items()
 		return TRUE
 
 /datum/action/changeling/weapon/sting_action(mob/living/carbon/user)
 	var/obj/item/held = user.get_active_held_item()
 	if(held && !user.dropItemToGround(held))
-		user.balloon_alert(user, "hand occupied!")
+		user.balloon_alert(user, "手部被占用!")
 		return
 	if(!istype(user))
-		user.balloon_alert(user, "wrong shape!")
+		user.balloon_alert(user, "形状错误!")
 		return
 	..()
 	var/limb_regen = 0
@@ -73,7 +73,7 @@
 	else
 		limb_regen = user.regenerate_limb(BODY_ZONE_L_ARM, 1)
 	if(limb_regen)
-		user.visible_message(span_warning("[user]'s missing arm reforms, making a loud, grotesque sound!"), span_userdanger("Your arm regrows, making a loud, crunchy sound and giving you great pain!"), span_hear("You hear organic matter ripping and tearing!"))
+		user.visible_message(span_warning("[user]丢失的手臂重新生长，发出一种响亮而怪异的声音!"), span_userdanger("伴随着巨大的痛苦你们的手臂重新长了出来，还发出了嘎吱嘎吱的声音！"), span_hear("你听到有机物撕扯的声音!"))
 		user.emote("scream")
 	var/obj/item/W = new weapon_type(user, silent)
 	user.put_in_hands(W)
@@ -126,7 +126,7 @@
 		return 1
 	var/mob/living/carbon/human/H = user
 	if(istype(H.wear_suit, suit_type) || istype(H.head, helmet_type))
-		H.visible_message(span_warning("[H] casts off [H.p_their()] [suit_name_simple]!"), span_warning("We cast off our [suit_name_simple]."), span_hear("You hear the organic matter ripping and tearing!"))
+		H.visible_message(span_warning("[H]褪下[suit_name_simple]!"), span_warning("我们褪下自己的[suit_name_simple]."), span_hear("你听到有机物撕扯的声音!"))
 		H.temporarilyRemoveItemFromInventory(H.head, TRUE) //The qdel on dropped() takes care of it
 		H.temporarilyRemoveItemFromInventory(H.wear_suit, TRUE)
 		H.update_worn_oversuit()
@@ -142,10 +142,10 @@
 
 /datum/action/changeling/suit/sting_action(mob/living/carbon/human/user)
 	if(!user.canUnEquip(user.wear_suit))
-		user.balloon_alert(user, "body occupied!")
+		user.balloon_alert(user, "身体部位被占用!")
 		return
 	if(!user.canUnEquip(user.head))
-		user.balloon_alert(user, "head occupied!")
+		user.balloon_alert(user, "头部被占用!")
 		return
 	..()
 	user.dropItemToGround(user.head)
@@ -164,19 +164,19 @@
 |***************ARM BLADE***************|
 \***************************************/
 /datum/action/changeling/weapon/arm_blade
-	name = "Arm Blade"
-	desc = "We reform one of our arms into a deadly blade. Costs 20 chemicals."
-	helptext = "We may retract our armblade in the same manner as we form it. Cannot be used while in lesser form."
+	name = "臂刃"
+	desc = "我们将一条手臂化成致命的利刃，消耗20点化学物质来变异出来."
+	helptext = "我们也可以随时收回臂刃，但在退形的情况下无法使用."
 	button_icon_state = "armblade"
 	chemical_cost = 20
 	dna_cost = 2
 	req_human = TRUE
 	weapon_type = /obj/item/melee/arm_blade
-	weapon_name_simple = "blade"
+	weapon_name_simple = "臂刃"
 
 /obj/item/melee/arm_blade
-	name = "arm blade"
-	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
+	name = "臂刃"
+	desc = "一把由骨头和血肉制成的怪异刀刃，能像热刀切黄油那样切人."
 	icon = 'icons/obj/weapons/changeling_items.dmi'
 	icon_state = "arm_blade"
 	inhand_icon_state = "arm_blade"
@@ -189,8 +189,8 @@
 	throw_range = 0
 	throw_speed = 0
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "劈向", "刺向", "削向", "砍向", "撕裂", "切向", "斩向", "斜斩")
+	attack_verb_simple = list("攻击", "劈向", "刺向", "削向", "砍向", "撕裂", "切向", "斩向", "斜斩")
 	sharpness = SHARP_EDGED
 	wound_bonus = 10
 	bare_wound_bonus = 10
@@ -202,7 +202,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc) && !silent)
-		loc.visible_message(span_warning("A grotesque blade forms around [loc.name]\'s arm!"), span_warning("Our arm twists and mutates, transforming it into a deadly blade."), span_hear("You hear organic matter ripping and tearing!"))
+		loc.visible_message(span_warning("[loc.name]的手臂周围长出了怪异刀刃!"), span_warning("我们的手臂扭曲变异，化成了致命的臂刃."), span_hear("你听到有机物撕扯的声音!"))
 	if(synthetic)
 		can_drop = TRUE
 	AddComponent(/datum/component/butchering, \
@@ -228,18 +228,18 @@
 		if((!opening.requiresID() || opening.allowed(user)) && opening.hasPower()) //This is to prevent stupid shit like hitting a door with an arm blade, the door opening because you have acces and still getting a "the airlocks motors resist our efforts to force it" message, power requirement is so this doesn't stop unpowered doors from being pried open if you have access
 			return
 		if(opening.locked)
-			opening.balloon_alert(user, "bolted!")
+			opening.balloon_alert(user, "被拴上了!")
 			return
 
 		if(opening.hasPower())
-			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the [opening] open."), \
-			span_hear("You hear a metal screeching sound."))
+			user.visible_message(span_warning("[user]将[src]插入气闸门中并强行起撬!"), span_warning("我们开始强行撬开[opening]."), \
+			span_hear("你听到金属扭曲带来的刺耳声音."))
 			playsound(opening, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 			if(!do_after(user, 10 SECONDS, target = opening))
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
-		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the [opening] to open."), \
-		span_hear("You hear a metal screeching sound."))
+		user.visible_message(span_warning("[user]用[src]强行撬开了气闸门!"), span_warning("我们强行撬开了[opening]."), \
+		span_hear("你听到金属扭曲带来的刺耳声音."))
 		opening.open(BYPASS_DOOR_CHECKS)
 
 /obj/item/melee/arm_blade/dropped(mob/user)
@@ -252,23 +252,23 @@
 \***************************************/
 
 /datum/action/changeling/weapon/tentacle
-	name = "Tentacle"
-	desc = "We ready a tentacle to grab items or victims with. Costs 10 chemicals."
-	helptext = "We can use it once to retrieve a distant item. If used on living creatures, the effect depends on our combat mode: \
-	In our neutral stance, we will simply drag them closer; if we try to shove, we will grab whatever they're holding in their active hand instead of them; \
-	in our combat stance, we will put the victim in our hold after catching them, and we will pull them in and stab them if we're also holding a sharp weapon. \
-	Cannot be used while in lesser form."
+	name = "触手"
+	desc = "我们进化出触手来远程抓取物品或猎物，花费10点化学物质来变异出来."
+	helptext = "我们可以用它来远距离抓取物体. 对生物的效果视我们自身是否处于战斗模式而不同: \
+	非战斗模式下，左键只会简单地将对象抓近；右键则会将抓取对象手中的物品； \
+	在战斗模式下，我们将对象抓近的同时保持抓取，并且若我们另一只手持有锐器，还将在抓近的同时刺向对象. \
+	此外无法在退形的情况下使用."
 	button_icon_state = "tentacle"
 	chemical_cost = 10
 	dna_cost = 2
 	req_human = TRUE
 	weapon_type = /obj/item/gun/magic/tentacle
-	weapon_name_simple = "tentacle"
+	weapon_name_simple = "触手"
 	silent = TRUE
 
 /obj/item/gun/magic/tentacle
-	name = "tentacle"
-	desc = "A fleshy tentacle that can stretch out and grab things or people."
+	name = "触手"
+	desc = "能伸长抓取远距离物体的肉质触手."
 	icon = 'icons/obj/weapons/changeling_items.dmi'
 	icon_state = "tentacle"
 	inhand_icon_state = "tentacle"
@@ -295,13 +295,13 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc))
 		if(!silent)
-			loc.visible_message(span_warning("[loc.name]\'s arm starts stretching inhumanly!"), span_warning("Our arm twists and mutates, transforming it into a tentacle."), span_hear("You hear organic matter ripping and tearing!"))
+			loc.visible_message(span_warning("[loc.name]的手臂开始非人地伸展!"), span_warning("你们的手臂扭曲变异，变成了触手."), span_hear("你听到有机物撕扯的声音!"))
 		else
-			to_chat(loc, span_notice("You prepare to extend a tentacle."))
+			to_chat(loc, span_notice("你准备长出触手."))
 
 
 /obj/item/gun/magic/tentacle/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	user.balloon_alert(user, "not ready!")
+	user.balloon_alert(user, "没准备好!")
 
 /obj/item/gun/magic/tentacle/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	var/obj/projectile/tentacle/tentacle_shot = chambered.loaded_projectile //Gets the actual projectile we will fire
@@ -311,12 +311,12 @@
 		qdel(src)
 
 /obj/item/gun/magic/tentacle/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] coils [src] tightly around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]把[src]紧紧地缠绕在自己的脖子上! 这是一种自杀行为!"))
 	return OXYLOSS
 
 /obj/item/ammo_casing/magic/tentacle
-	name = "tentacle"
-	desc = "A tentacle."
+	name = "触手"
+	desc = "一条触手."
 	projectile_type = /obj/projectile/tentacle
 	caliber = CALIBER_TENTACLE
 	firing_effect_type = null
@@ -331,7 +331,7 @@
 	return ..()
 
 /obj/projectile/tentacle
-	name = "tentacle"
+	name = "触手"
 	icon_state = "tentacle_end"
 	pass_flags = PASSTABLE
 	damage = 0
@@ -366,7 +366,7 @@
 		C.grippedby(H, instant = TRUE) //instant aggro grab
 		for(var/obj/item/I in H.held_items)
 			if(I.get_sharpness())
-				C.visible_message(span_danger("[H] impales [C] with [H.p_their()] [I.name]!"), span_userdanger("[H] impales you with [H.p_their()] [I.name]!"))
+				C.visible_message(span_danger("[H]用[I.name]刺穿了[C]!"), span_userdanger("[H]用[I.name]刺穿了你!"))
 				C.apply_damage(I.force, BRUTE, BODY_ZONE_CHEST, attacking_item = I)
 				H.do_item_attack_animation(C, used_item = I)
 				H.add_mob_blood(C)
@@ -387,7 +387,7 @@
 			return BULLET_ACT_BLOCK
 
 		var/mob/living/carbon/carbon_ling = ling
-		to_chat(carbon_ling, span_notice("You pull [catching] towards yourself."))
+		to_chat(carbon_ling, span_notice("你们将[catching]拉向自己."))
 		carbon_ling.throw_mode_on(THROW_MODE_TOGGLE)
 		catching.throw_at(
 			target = carbon_ling,
@@ -409,8 +409,8 @@
 
 	if(!iscarbon(victim) || !ishuman(ling) || !ling.combat_mode)
 		victim.visible_message(
-			span_danger("[victim] is grabbed by [ling]'s [src]]!"),
-			span_userdanger("\A [src] grabs you and pulls you towards [ling]!"),
+			span_danger("[victim]被[ling]的[src]抓住!"),
+			span_userdanger("一条[src]把你抓向[ling]!"),
 		)
 		victim.throw_at(
 			target = get_step_towards(ling, victim),
@@ -427,21 +427,21 @@
 		if(!isnull(stealing))
 			if(victim.dropItemToGround(stealing))
 				victim.visible_message(
-					span_danger("[stealing] is yanked off [victim]'s hand by [src]!"),
-					span_userdanger("\A [src] pulls [stealing] away from you!"),
+					span_danger("[victim]手中的[stealing]被[src]夺走了!"),
+					span_userdanger("你手中的[stealing]被[src]夺走了!"),
 				)
 				return on_hit(stealing) //grab the item as if you had hit it directly with the tentacle
 
-			to_chat(ling, span_warning("You can't seem to pry [stealing] off [victim]'s hands!"))
+			to_chat(ling, span_warning("你们无法将[stealing]从[victim]手中夺走!"))
 			return BULLET_ACT_BLOCK
 
-		to_chat(ling, span_danger("[victim] has nothing in hand to disarm!"))
+		to_chat(ling, span_danger("[victim]手中没有可缴械的物品!"))
 		return BULLET_ACT_HIT
 
 	if(ling.combat_mode)
 		victim.visible_message(
-			span_danger("[victim] is thrown towards [ling] by \a [src]!"),
-			span_userdanger("\A [src] grabs you and throws you towards [ling]!"),
+			span_danger("[victim]被一条[src]甩向[ling]!"),
+			span_userdanger("[src]抓住并将你甩向[ling]!"),
 		)
 		victim.throw_at(
 			target = get_step_towards(ling, victim),
@@ -465,9 +465,9 @@
 |****************SHIELD*****************|
 \***************************************/
 /datum/action/changeling/weapon/shield
-	name = "Organic Shield"
-	desc = "We reform one of our arms into a hard shield. Costs 20 chemicals."
-	helptext = "Organic tissue cannot resist damage forever; the shield will break after it is hit too much. The more genomes we absorb, the stronger it is. Cannot be used while in lesser form."
+	name = "有机盾牌"
+	desc = "我们把一条手臂改造成坚固的盾牌. 变异将花费20点化学物质."
+	helptext = "有机组织无法一直阻挡伤害，在被击中太多次之后会破裂，但通过吸收更多的基因组可以强化这面盾牌.此外无法在退形的情况下使用该能力."
 	button_icon_state = "organic_shield"
 	chemical_cost = 20
 	dna_cost = 1
@@ -486,8 +486,8 @@
 	return TRUE
 
 /obj/item/shield/changeling
-	name = "shield-like mass"
-	desc = "A mass of tough, boney tissue. You can still see the fingers as a twisted pattern in the shield."
+	name = "大盾块"
+	desc = "一团坚硬的骨组织，你甚至能看到手指的形状嵌在盾牌表面."
 	item_flags = ABSTRACT | DROPDEL
 	icon = 'icons/obj/weapons/changeling_items.dmi'
 	icon_state = "ling_shield"
@@ -501,13 +501,13 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc))
-		loc.visible_message(span_warning("The end of [loc.name]\'s hand inflates rapidly, forming a huge shield-like mass!"), span_warning("We inflate our hand into a strong shield."), span_hear("You hear organic matter ripping and tearing!"))
+		loc.visible_message(span_warning("[loc.name]的手臂末端迅速膨胀，形成巨大的盾状物体!"), span_warning("我们将手臂膨胀成一面坚固的盾牌."), span_hear("你听到有机物撕扯的声音!"))
 
-/obj/item/shield/changeling/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/changeling/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(remaining_uses < 1)
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
-			H.visible_message(span_warning("With a sickening crunch, [H] reforms [H.p_their()] shield into an arm!"), span_notice("We assimilate our shield into our body"), "<span class='italics>You hear organic matter ripping and tearing!</span>")
+			H.visible_message(span_warning("伴随着令人作呕的嘎吱声，[H]的手臂化成了一面盾牌!"), span_notice("我们将盾牌吸收回体内"), "<span class='italics>你听到有机物撕扯的声音!</span>")
 		qdel(src)
 		return 0
 	else
@@ -518,9 +518,9 @@
 |*****************ARMOR*****************|
 \***************************************/
 /datum/action/changeling/suit/armor
-	name = "Chitinous Armor"
-	desc = "We turn our skin into tough chitin to protect us from damage. Costs 20 chemicals."
-	helptext = "Upkeep of the armor requires a low expenditure of chemicals. The armor provides decent protection against brute force and energy weapons. Cannot be used in lesser form."
+	name = "几丁质护甲"
+	desc = "我们硬化皮肤成坚固的几丁质以保护自己，变异将花费20点化学物质."
+	helptext = "护甲对实体和能量武器均有很好的抗性，但维持护甲需要很少量的化学物质.此外退形状态下无法使用该能力."
 	button_icon_state = "chitinous_armor"
 	chemical_cost = 20
 	dna_cost = 1
@@ -529,12 +529,12 @@
 
 	suit_type = /obj/item/clothing/suit/armor/changeling
 	helmet_type = /obj/item/clothing/head/helmet/changeling
-	suit_name_simple = "armor"
-	helmet_name_simple = "helmet"
+	suit_name_simple = "护甲"
+	helmet_name_simple = "头盔"
 
 /obj/item/clothing/suit/armor/changeling
-	name = "chitinous mass"
-	desc = "A tough, hard covering of black chitin."
+	name = "几丁质团块"
+	desc = "坚硬的黑色几丁质覆盖物."
 	icon_state = "lingarmor"
 	inhand_icon_state = null
 	item_flags = DROPDEL
@@ -558,11 +558,11 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc))
-		loc.visible_message(span_warning("[loc.name]\'s flesh turns black, quickly transforming into a hard, chitinous mass!"), span_warning("We harden our flesh, creating a suit of armor!"), span_hear("You hear organic matter ripping and tearing!"))
+		loc.visible_message(span_warning("[loc.name]的皮肤变黑并硬化成了坚硬的几丁质团块!"), span_warning("我们硬化肉体，生长出了一套盔甲！"), span_hear("你听到有机物撕扯的声音!"))
 
 /obj/item/clothing/head/helmet/changeling
-	name = "chitinous mass"
-	desc = "A tough, hard covering of black chitin with transparent chitin in front."
+	name = "几丁质团块"
+	desc = "坚硬的黑色几丁质外壳包裹在侧后，面部则有透明的几丁质."
 	icon_state = "lingarmorhelmet"
 	inhand_icon_state = null
 	item_flags = DROPDEL

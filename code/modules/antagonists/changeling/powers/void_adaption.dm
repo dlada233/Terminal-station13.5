@@ -1,9 +1,7 @@
 /datum/action/changeling/void_adaption
-	name = "Void Adaption"
-	desc = "We prepare our cells to resist the hostile environment outside of the station. We may freely travel wherever we wish."
-	helptext = "This ability is passive, and will automatically protect you in situations of extreme cold or vacuum, \
-		as well as removing your need to breathe. While it is actively protecting you from temperature or pressure \
-		it reduces your chemical regeneration rate."
+	name = "太空适应"
+	desc = "我们调整细胞来抵御外太空的恶劣环境，我们可以自由地去我们想去的地方."
+	helptext = "这是一项被动技能，在极端寒冷或真空环境下保护你，也能消除你对氧气的需求. 但代价就是在保护效果发生时会降低你们的化学物质再生速度."
 	owner_has_control = FALSE
 	dna_cost = 2
 
@@ -23,7 +21,7 @@
 	remove_from.remove_traits(gain_traits, REF(src))
 	UnregisterSignal(remove_from, COMSIG_LIVING_LIFE)
 	if (currently_active)
-		on_removed_adaption(remove_from, "Our cells relax, despite the danger!")
+		on_removed_adaption(remove_from, "尽管处于危险，但我们的细胞还是松弛状态!")
 	return ..()
 
 /// Checks if we would be providing any useful benefit at present
@@ -43,20 +41,20 @@
 
 			var/affected_pressure = special_boy.calculate_affecting_pressure(environment.return_pressure())
 			if (affected_pressure < HAZARD_LOW_PRESSURE)
-				active_reasons += "vacuum"
+				active_reasons += "真空"
 
 		if (affected_temperature < vulnerable_temperature)
-			active_reasons += "cold"
+			active_reasons += "寒冷"
 
 	var/should_be_active = !!length(active_reasons)
 	if (currently_active == should_be_active)
 		return
 
 	if (!should_be_active)
-		on_removed_adaption(void_adapted, "Our cells relax in safer air.")
+		on_removed_adaption(void_adapted, "我们的细胞在安全的空气中松弛下来.")
 		return
 	var/datum/antagonist/changeling/changeling_data = void_adapted.mind?.has_antag_datum(/datum/antagonist/changeling)
-	to_chat(void_adapted, span_changeling("Our cells harden themselves against the [pick(active_reasons)]."))
+	to_chat(void_adapted, span_changeling("我们的细胞为抵御[pick(active_reasons)]而硬化起来."))
 	changeling_data?.chem_recharge_slowdown -= recharge_slowdown
 	currently_active = TRUE
 

@@ -1,6 +1,6 @@
 /datum/action/changeling/fakedeath
-	name = "Reviving Stasis"
-	desc = "We fall into a stasis, allowing us to regenerate and trick our enemies. Costs 15 chemicals."
+	name = "假死"
+	desc = "我们将陷入静滞状态，在此期间可以再生身体并欺骗敌人. 花费15点化学物质."
 	button_icon_state = "fake_death"
 	chemical_cost = 15
 	dna_cost = CHANGELING_POWER_INNATE
@@ -29,9 +29,9 @@
 	if(!enable_fakedeath(user, duration_modifier = death_duration_mod))
 		CRASH("Changeling revive failed to enter fakedeath when it should have been in a valid state to.")
 
-	to_chat(user, span_changeling("We begin our stasis, preparing energy to arise once more."))
+	to_chat(user, span_changeling("我们陷入静滞，并积蓄能量准备再起."))
 	if(death_duration_mod > 1)
-		to_chat(user, span_changeling(span_bold("Our body has sustained severe damage, and will take [death_duration_mod >= 5 ? "far ":""]longer to regenerate.")))
+		to_chat(user, span_changeling(span_bold("我们的身体受到了严重的伤害，将花费[death_duration_mod >= 5 ? "很 ":""]长时间来再生.")))
 	return TRUE
 
 /// Used to enable fakedeath and register relevant signals / start timers
@@ -83,7 +83,7 @@
 		return
 
 	source.cure_fakedeath(CHANGELING_TRAIT)
-	to_chat(source, span_changeling("We exit our stasis early."))
+	to_chat(source, span_changeling("我们提早结束了静滞状态."))
 
 /datum/action/changeling/fakedeath/proc/revive(mob/living/carbon/user)
 	if(!istype(user))
@@ -96,7 +96,7 @@
 	var/flags_to_heal = (HEAL_DAMAGE|HEAL_BODY|HEAL_STATUS|HEAL_CC_STATUS)
 	// but leave out limbs so we can do it specially
 	user.revive(flags_to_heal & ~HEAL_LIMBS)
-	to_chat(user, span_changeling("We have revived ourselves."))
+	to_chat(user, span_changeling("我们苏醒了."))
 
 	var/static/list/dont_regenerate = list(BODY_ZONE_HEAD) // headless changelings are funny
 	if(!length(user.get_missing_limbs() - dont_regenerate))
@@ -104,9 +104,9 @@
 
 	playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
 	user.visible_message(
-		span_warning("[user]'s missing limbs reform, making a loud, grotesque sound!"),
-		span_userdanger("Your limbs regrow, making a loud, crunchy sound and giving you great pain!"),
-		span_hear("You hear organic matter ripping and tearing!"),
+		span_warning("[user]失去的肢体重新生长出来，发出了一种响亮而怪异的声音!"),
+		span_userdanger("伴随着响亮的声音与剧痛，你们的肢体重新生长出来."),
+		span_hear("你听到有机物撕裂重组的声音!"),
 	)
 	user.emote("scream")
 	// Manually call this (outside of revive/fullheal) so we can pass our blacklist
@@ -122,7 +122,7 @@
 	if(!HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
 		return
 
-	to_chat(user, span_changeling("We are ready to revive."))
+	to_chat(user, span_changeling("我们已经准备好苏醒了."))
 	enable_revive(user)
 
 /datum/action/changeling/fakedeath/can_sting(mob/living/user)
@@ -133,7 +133,7 @@
 		return
 	//Confirmation for living changelings if they want to fake their death
 	if(user.stat != DEAD)
-		if(tgui_alert(user, "Are we sure we wish to fake our own death?", "Feign Death", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "你确定要进入假死状态吗？", "装死", list("Yes", "No")) != "Yes")
 			return
 		if(QDELETED(user) || QDELETED(src) || !can_enter_stasis(user))
 			return
@@ -142,17 +142,17 @@
 
 /datum/action/changeling/fakedeath/proc/can_enter_stasis(mob/living/user)
 	if(HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
-		user.balloon_alert(user, "already reviving!")
+		user.balloon_alert(user, "已经在苏醒了！")
 		return FALSE
 	return TRUE
 
 /datum/action/changeling/fakedeath/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	if(revive_ready)
-		name = "Revive"
-		desc = "We arise once more."
+		name = "苏醒"
+		desc = "我们再次苏醒."
 	else
-		name = "Reviving Stasis"
-		desc = "We fall into a stasis, allowing us to regenerate and trick our enemies."
+		name = "假死"
+		desc = "我们陷入静滞状态，在此期间可以再生身体并欺骗敌人."
 	return ..()
 
 /datum/action/changeling/fakedeath/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
