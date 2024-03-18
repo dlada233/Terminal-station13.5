@@ -7,8 +7,8 @@
  *
  */
 /obj/item/clothing/mask/gas/ninja
-	name = "ninja mask"
-	desc = "A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement."
+	name = "忍者面具"
+	desc = "贴身的纳米强化面罩，既是空气过滤器也是后现代时尚."
 	icon_state = "ninja"
 	inhand_icon_state = "sechailer"
 	strip_delay = 12 SECONDS
@@ -18,8 +18,8 @@
 	has_fov = FALSE
 
 /obj/item/clothing/under/syndicate/ninja
-	name = "ninja suit"
-	desc = "A nano-enhanced jumpsuit designed for maximum comfort and tacticality."
+	name = "忍者装"
+	desc = "纳米强化连身衣，兼顾了舒适性和战术性."
 	icon_state = "ninja_suit"
 	strip_delay = 12 SECONDS
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF

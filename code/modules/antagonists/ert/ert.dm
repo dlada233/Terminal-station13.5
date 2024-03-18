@@ -1,16 +1,16 @@
 //Both ERT and DS are handled by the same datums since they mostly differ in equipment in objective.
 /datum/team/ert
-	name = "Emergency Response Team"
+	name = "应急响应部队"
 	var/datum/objective/mission //main mission
 
 /datum/antagonist/ert
-	name = "Emergency Response Officer"
+	name = "应急响应军官"
 	can_elimination_hijack = ELIMINATION_PREVENT
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
 	antagpanel_category = ANTAG_GROUP_ERT
-	suicide_cry = "FOR NANOTRASEN!!"
+	suicide_cry = "为了纳米传讯!!"
 	count_against_dynamic_roll_chance = FALSE
 	// Not 'true' antags, this disables certain interactions that assume the owner is a baddie
 	antag_flags = FLAG_FAKE_ANTAG
@@ -18,7 +18,7 @@
 	var/leader = FALSE
 	var/datum/outfit/outfit = /datum/outfit/centcom/ert/security
 	var/datum/outfit/plasmaman_outfit = /datum/outfit/plasmaman/centcom_official
-	var/role = "Security Officer"
+	var/role = "安保人员"
 	var/list/name_source
 	var/random_names = TRUE
 	var/rip_and_tear = FALSE
@@ -49,7 +49,7 @@
 	owner.current.fully_replace_character_name(owner.current.real_name,"[role] [pick(name_source)]")
 
 /datum/antagonist/ert/official
-	name = "CentCom Official"
+	name = "中央指挥部官员"
 	show_name_in_check_antagonists = TRUE
 	var/datum/objective/mission
 	role = "Inspector"
@@ -59,9 +59,9 @@
 /datum/antagonist/ert/official/greet()
 	. = ..()
 	if (ert_team)
-		to_chat(owner, "<span class='warningplain'>Central Command is sending you to [station_name()] with the task: [ert_team.mission.explanation_text]</span>")
+		to_chat(owner, "<span class='warningplain'>中央指挥部向你指派了如下任务: [ert_team.mission.explanation_text]</span>")
 	else
-		to_chat(owner, "<span class='warningplain'>Central Command is sending you to [station_name()] with the task: [mission.explanation_text]</span>")
+		to_chat(owner, "<span class='warningplain'>中央指挥部向你指派了如下任务: [mission.explanation_text]</span>")
 
 /datum/antagonist/ert/official/forge_objectives()
 	if (ert_team)
@@ -70,7 +70,7 @@
 		return
 	var/datum/objective/missionobj = new ()
 	missionobj.owner = owner
-	missionobj.explanation_text = "Conduct a routine performance review of [station_name()] and its Captain."
+	missionobj.explanation_text = "对[station_name()]和其舰长进行例行绩效考核."
 	missionobj.completed = TRUE
 	mission = missionobj
 	objectives |= mission
@@ -81,21 +81,21 @@
 	outfit = /datum/outfit/centcom/ert/security/alert
 
 /datum/antagonist/ert/engineer
-	role = "Engineer"
+	role = "工程师"
 	outfit = /datum/outfit/centcom/ert/engineer
 
 /datum/antagonist/ert/engineer/red
 	outfit = /datum/outfit/centcom/ert/engineer/alert
 
 /datum/antagonist/ert/medic
-	role = "Medical Officer"
+	role = "医官"
 	outfit = /datum/outfit/centcom/ert/medic
 
 /datum/antagonist/ert/medic/red
 	outfit = /datum/outfit/centcom/ert/medic/alert
 
 /datum/antagonist/ert/commander
-	role = "Commander"
+	role = "指挥官"
 	outfit = /datum/outfit/centcom/ert/commander
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_commander
 
@@ -103,18 +103,18 @@
 	outfit = /datum/outfit/centcom/ert/commander/alert
 
 /datum/antagonist/ert/janitor
-	role = "Janitor"
+	role = "清洁工"
 	outfit = /datum/outfit/centcom/ert/janitor
 
 /datum/antagonist/ert/janitor/heavy
-	role = "Heavy Duty Janitor"
+	role = "重装清洁工"
 	outfit = /datum/outfit/centcom/ert/janitor/heavy
 
 /datum/antagonist/ert/deathsquad
-	name = "Deathsquad Trooper"
+	name = "行刑队士兵"
 	outfit = /datum/outfit/centcom/death_commando
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_commander
-	role = "Trooper"
+	role = "士兵"
 	rip_and_tear = TRUE
 
 /datum/antagonist/ert/deathsquad/New()
@@ -122,9 +122,9 @@
 	name_source = GLOB.commando_names
 
 /datum/antagonist/ert/deathsquad/leader
-	name = "Deathsquad Officer"
+	name = "行刑队军官"
 	outfit = /datum/outfit/centcom/death_commando
-	role = "Officer"
+	role = "军官"
 
 /datum/antagonist/ert/medic/inquisitor
 	outfit = /datum/outfit/centcom/ert/medic/inquisitor
@@ -141,7 +141,7 @@
 	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/chaplain
-	role = "Chaplain"
+	role = "牧师"
 	outfit = /datum/outfit/centcom/ert/chaplain
 
 /datum/antagonist/ert/chaplain/inquisitor
@@ -159,18 +159,18 @@
 	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/intern
-	name = "CentCom Intern"
+	name = "中央指挥部实习生"
 	outfit = /datum/outfit/centcom/centcom_intern
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_intern
 	random_names = FALSE
-	role = "Intern"
-	suicide_cry = "FOR MY INTERNSHIP!!"
+	role = "实习生"
+	suicide_cry = "为了实习证明!!"
 
 /datum/antagonist/ert/intern/leader
-	name = "CentCom Head Intern"
+	name = "中央指挥部实习生头子"
 	outfit = /datum/outfit/centcom/centcom_intern/leader
 	random_names = FALSE
-	role = "Head Intern"
+	role = "实习生头子"
 
 /datum/antagonist/ert/intern/unarmed
 	outfit = /datum/outfit/centcom/centcom_intern/unarmed
@@ -179,7 +179,7 @@
 	outfit = /datum/outfit/centcom/centcom_intern/leader/unarmed
 
 /datum/antagonist/ert/clown
-	role = "Clown"
+	role = "小丑"
 	outfit = /datum/outfit/centcom/ert/clown
 	plasmaman_outfit = /datum/outfit/plasmaman/party_comedian
 
@@ -188,26 +188,26 @@
 	name_source = GLOB.clown_names
 
 /datum/antagonist/ert/janitor/party
-	role = "Party Cleaning Service"
+	role = "派对清洁工"
 	outfit = /datum/outfit/centcom/ert/janitor/party
 	plasmaman_outfit = /datum/outfit/plasmaman/party_janitor
 
 /datum/antagonist/ert/security/party
-	role = "Party Bouncer"
+	role = "派对保镖"
 	outfit = /datum/outfit/centcom/ert/security/party
 	plasmaman_outfit = /datum/outfit/plasmaman/party_bouncer
 
 /datum/antagonist/ert/engineer/party
-	role = "Party Constructor"
+	role = "派对布置人员"
 	outfit = /datum/outfit/centcom/ert/engineer/party
 	plasmaman_outfit = /datum/outfit/plasmaman/party_constructor
 
 /datum/antagonist/ert/clown/party
-	role = "Party Comedian"
+	role = "派对喜剧演员"
 	outfit = /datum/outfit/centcom/ert/clown/party
 
 /datum/antagonist/ert/commander/party
-	role = "Party Coordinator"
+	role = "派对策划师"
 	outfit = /datum/outfit/centcom/ert/commander/party
 
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
@@ -215,15 +215,15 @@
 		ert_team = new_team
 
 /datum/antagonist/ert/bounty_armor
-	role = "Armored Bounty Hunter"
+	role = "重甲赏金猎人"
 	outfit = /datum/outfit/bountyarmor/ert
 
 /datum/antagonist/ert/bounty_hook
-	role = "Hookgun Bounty Hunter"
+	role = "钩枪赏金猎人"
 	outfit = /datum/outfit/bountyhook/ert
 
 /datum/antagonist/ert/bounty_synth
-	role = "Synthetic Bounty Hunter"
+	role = "合成赏金猎人"
 	outfit = /datum/outfit/bountysynth/ert
 
 /datum/antagonist/ert/forge_objectives()
@@ -244,45 +244,45 @@
 	if(!ert_team)
 		return
 
-	to_chat(owner, "<span class='warningplain'><B><font size=3 color=red>You are the [name].</font></B></span>")
+	to_chat(owner, "<span class='warningplain'><B><font size=3 color=red>你是[name].</font></B></span>")
 
-	var/missiondesc = "Your squad is being sent on a mission to [station_name()] by Nanotrasen's Security Division."
+	var/missiondesc = "纳米传讯安保部门派遣你的队伍前往[station_name()]执行任务，"
 	if(leader) //If Squad Leader
-		missiondesc += " Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready."
+		missiondesc += "你要带领你的队伍完成任务. 当队伍准备就绪就登上穿梭机"
 	else
-		missiondesc += " Follow orders given to you by your squad leader."
+		missiondesc += "你要服从队长的指挥."
 	if(!rip_and_tear)
-		missiondesc += " Avoid civilian casualties when possible."
+		missiondesc += " 尽可能避免平民伤亡."
 
-	missiondesc += "<span class='warningplain'><BR><B>Your Mission</B> : [ert_team.mission.explanation_text]</span>"
+	missiondesc += "<span class='warningplain'><BR><B>你的任务</B> : [ert_team.mission.explanation_text]</span>"
 	to_chat(owner,missiondesc)
 
 /datum/antagonist/ert/marine
-	name = "Marine Commander"
+	name = "陆战队指挥"
 	outfit = /datum/outfit/centcom/ert/marine
-	role = "Commander"
+	role = "指挥官"
 
 /datum/antagonist/ert/marine/security
-	name = "Marine Heavy"
+	name = "陆战队员"
 	outfit = /datum/outfit/centcom/ert/marine/security
-	role = "Trooper"
+	role = "士兵"
 
 /datum/antagonist/ert/marine/engineer
-	name = "Marine Engineer"
+	name = "陆战队工程师"
 	outfit = /datum/outfit/centcom/ert/marine/engineer
-	role = "Engineer"
+	role = "工兵"
 
 /datum/antagonist/ert/marine/medic
-	name = "Marine Medic"
+	name = "陆战队医疗兵"
 	outfit = /datum/outfit/centcom/ert/marine/medic
-	role = "Medical Officer"
+	role = "医疗兵"
 
 /datum/antagonist/ert/militia
-	name = "Frontier Militia"
+	name = "边境义勇兵"
 	outfit = /datum/outfit/centcom/militia
-	role = "Volunteer"
+	role = "义勇兵"
 
 /datum/antagonist/ert/militia/general
-	name = "Frontier Militia General"
+	name = "边境义勇兵将军"
 	outfit = /datum/outfit/centcom/militia/general
-	role = "General"
+	role = "将军"
