@@ -1,7 +1,7 @@
 
 /datum/antagonist/nukeop/clownop
 	name = ROLE_CLOWN_OPERATIVE
-	roundend_category = "clown operatives"
+	roundend_category = "小丑特工"
 	antagpanel_category = ANTAG_GROUP_CLOWNOPS
 	nukeop_outfit = /datum/outfit/syndicate/clownop
 	suicide_cry = "HAPPY BIRTHDAY!!"
@@ -13,8 +13,8 @@
 /datum/antagonist/nukeop/clownop/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.set_assigned_role(SSjob.GetJobType(/datum/job/clown_operative))
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has clown op'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has clown op'ed [key_name(new_owner)].")
+	message_admins("[key_name_admin(admin)]将[key_name_admin(new_owner)]设置为小丑特工.")
+	log_admin("[key_name(admin)]将[key_name(new_owner)]设置为小丑特工.")
 
 /datum/antagonist/nukeop/clownop/apply_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -34,14 +34,14 @@
 		ADD_TRAIT(liver, TRAIT_COMEDY_METABOLISM, CLOWNOP_TRAIT)
 
 /datum/antagonist/nukeop/leader/clownop/give_alias()
-	title = pick("Head Honker", "Slipmaster", "Clown King", "Honkbearer")
+	title = pick("丑子", "皂滑", "大王", "抱抱")
 	if(nuke_team?.syndicate_name)
 		owner.current.real_name = "[nuke_team.syndicate_name] [title]"
 	else
-		owner.current.real_name = "Syndicate [title]"
+		owner.current.real_name = "辛迪加 [title]"
 
 /datum/antagonist/nukeop/leader/clownop
-	name = "Clown Operative Leader"
+	name = "小丑特工队长"
 	roundend_category = "clown operatives"
 	antagpanel_category = ANTAG_GROUP_CLOWNOPS
 	nukeop_outfit = /datum/outfit/syndicate/clownop/leader
@@ -66,7 +66,7 @@
 		ADD_TRAIT(liver, TRAIT_COMEDY_METABOLISM, CLOWNOP_TRAIT)
 
 /datum/outfit/clown_operative
-	name = "Clown Operative (Preview only)"
+	name = "小丑特工 (仅供预览)"
 
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate/honkerative
 	uniform = /obj/item/clothing/under/syndicate
@@ -77,7 +77,7 @@
 	H.update_worn_back()
 
 /datum/outfit/clown_operative_elite
-	name = "Clown Operative (Elite, Preview only)"
+	name = "小丑特工 (精英，仅供预览)"
 
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate/honkerative
 	uniform = /obj/item/clothing/under/syndicate

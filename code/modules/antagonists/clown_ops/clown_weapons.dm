@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray/waterflower/lube
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist. A <i>slippery</i> twist."
+	name = "向汨葵"
+	desc = "一朵纯洁的向汨葵....‘日’字呢，‘日’变得有点<i>滑</i>."
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	inhand_icon_state = "sunflower"
@@ -13,8 +13,8 @@
 //COMBAT CLOWN SHOES
 //Clown shoes with combat stats and noslip. Of course they still squeak.
 /obj/item/clothing/shoes/clown_shoes/combat
-	name = "combat clown shoes"
-	desc = "advanced clown shoes that protect the wearer and render them nearly immune to slipping on their own peels. They also squeak at 100% capacity."
+	name = "战术小丑鞋"
+	desc = "先进的小丑鞋，在保护穿着者的同时确保他们不会被自己的香蕉皮滑到，当然走路时它也不会忘了吱吱做响."
 	clothing_traits = list(TRAIT_NO_SLIP_WATER)
 	slowdown = SHOES_SLOWDOWN
 	armor_type = /datum/armor/clown_shoes_combat
@@ -42,8 +42,8 @@
 
 //The super annoying version
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat
-	name = "mk-honk combat shoes"
-	desc = "The culmination of years of clown combat research, these shoes leave a trail of chaos in their wake. They will slowly recharge themselves over time, or can be manually charged with bananium."
+	name = "Mk-honk 战术鞋"
+	desc = "对小丑战术的多年研究的技术结晶，这双鞋只会留下混乱的足迹；它带有自充电供能，当然也能手动充电."
 	slowdown = SHOES_SLOWDOWN
 	armor_type = /datum/armor/banana_shoes_combat
 	strip_delay = 70
@@ -82,10 +82,10 @@
 //BANANIUM SWORD
 
 /obj/item/melee/energy/sword/bananium
-	name = "bananium sword"
+	name = "蕉光剑"
 	icon_state = "e_sword"
-	attack_verb_continuous = list("hits", "taps", "pokes")
-	attack_verb_simple = list("hit", "tap", "poke")
+	attack_verb_continuous = list("击打", "敲击", "戳击")
+	attack_verb_simple = list("击打", "敲击", "戳击")
 	force = 0
 	throwforce = 0
 	hitsound = null
@@ -100,8 +100,8 @@
 	AddComponent( \
 		/datum/component/transforming, \
 		throw_speed_on = 4, \
-		attack_verb_continuous_on = list("slips"), \
-		attack_verb_simple_on = list("slip"), \
+		attack_verb_continuous_on = list("滑倒"), \
+		attack_verb_simple_on = list("滑倒"), \
 		clumsy_check = FALSE, \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
@@ -134,7 +134,7 @@
 /obj/item/melee/energy/sword/bananium/attackby(obj/item/weapon, mob/living/user, params)
 	if(COOLDOWN_FINISHED(src, next_trombone_allowed) && istype(weapon, /obj/item/melee/energy/sword/bananium))
 		COOLDOWN_START(src, next_trombone_allowed, 5 SECONDS)
-		to_chat(user, span_warning("You slap the two swords together. Sadly, they do not seem to fit!"))
+		to_chat(user, span_warning("你将两把剑并在一起. 遗憾的是它们并不合适!"))
 		playsound(src, 'sound/misc/sadtrombone.ogg', 50)
 		return TRUE
 	return ..()
@@ -142,7 +142,7 @@
 /obj/item/melee/energy/sword/bananium/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku, but the blade slips off of [user.p_them()] harmlessly!"))
+	user.visible_message(span_suicide("[user]用[src][pick("在自己的腹部上比划", "在自己的腹部上比划")]! 看起来是要剖腹自尽，但刀只会从身上无害地滑下来!"))
 	var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 	slipper.Slip(src, user)
 	return SHAME
@@ -150,8 +150,8 @@
 //BANANIUM SHIELD
 
 /obj/item/shield/energy/bananium
-	name = "bananium energy shield"
-	desc = "A shield that stops most melee attacks, protects user from almost all energy projectiles, and can be thrown to slip opponents."
+	name = "香蕉能量盾"
+	desc = "一面可以阻挡大多数近战攻击以及能量投射物的盾牌，还能丢出去让对手滑倒."
 	icon_state = "bananaeshield"
 	inhand_icon_state = "bananaeshield"
 	throw_speed = 1
@@ -192,8 +192,8 @@
 //BOMBANANA
 
 /obj/item/seeds/banana/bombanana
-	name = "pack of bombanana seeds"
-	desc = "They're seeds that grow into bombanana trees. When grown, give to the clown."
+	name = "爆蕉种子"
+	desc = "成熟爆蕉树结出的种子，果实为小丑带来喜悦."
 	plantname = "Bombanana Tree"
 	product = /obj/item/food/grown/banana/bombanana
 
@@ -204,7 +204,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/grown/bananapeel/bombanana
-	desc = "A peel from a banana. Why is it beeping?"
+	desc = "一块香蕉皮，但是它为什么在哔哔响呢?"
 	seed = /obj/item/seeds/banana/bombanana
 	var/det_time = 50
 	var/obj/item/grenade/syndieminibomb/bomb
@@ -215,7 +215,7 @@
 	bomb = new /obj/item/grenade/syndieminibomb(src)
 	bomb.det_time = det_time
 	if(iscarbon(loc))
-		to_chat(loc, span_danger("[src] begins to beep."))
+		to_chat(loc, span_danger("[src]开始哔哔响."))
 	bomb.arm_grenade(loc, null, FALSE)
 
 /obj/item/grown/bananapeel/bombanana/Destroy()
@@ -223,7 +223,7 @@
 	QDEL_NULL(bomb)
 
 /obj/item/grown/bananapeel/bombanana/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is deliberately slipping on the [src.name]! It looks like \he's trying to commit suicide."))
+	user.visible_message(span_suicide("[user]故意被[src.name]滑到! 看起来是想要自杀."))
 	playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -1)
 	bomb.arm_grenade(user, 0, FALSE)
 	return BRUTELOSS
@@ -231,8 +231,8 @@
 //TEARSTACHE GRENADE
 
 /obj/item/grenade/chem_grenade/teargas/moustache
-	name = "tear-stache grenade"
-	desc = "A handsomely-attired teargas grenade."
+	name = "催须弹"
+	desc = "一枚浓密的催泪弹."
 	icon_state = "moustacheg"
 	clumsy_check = GRENADE_NONCLUMSY_FUMBLE
 
