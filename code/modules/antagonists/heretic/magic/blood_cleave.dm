@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/cleave
-	name = "Cleave"
-	desc = "Causes severe bleeding on a target and several targets around them."
+	name = "出血斩"
+	desc = "对目标及目标周围的人造成严重流血."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -31,8 +31,8 @@
 			continue
 		if(victim.can_block_magic(antimagic_flags))
 			victim.visible_message(
-				span_danger("[victim]'s flashes in a firey glow, but repels the blaze!"),
-				span_danger("Your body begins to flash a firey glow, but you are protected!!")
+				span_danger("[victim]只是闪烁出了些火光，抵抗了真正的邪焰!"),
+				span_danger("你的身体闪烁着火光，好在你受到了保护!")
 			)
 			continue
 
@@ -40,8 +40,8 @@
 			continue
 
 		victim.visible_message(
-			span_danger("[victim]'s veins are shredded from within as an unholy blaze erupts from [victim.p_their()] blood!"),
-			span_danger("Your veins burst from within and unholy flame erupts from your blood!")
+			span_danger("[victim]的血管从内部被撕裂，邪焰附着血液一齐喷出!"),
+			span_danger("你的血管从内部被撕裂，邪焰附着血液一齐喷出!")
 		)
 
 		var/obj/item/bodypart/bodypart = pick(victim.bodyparts)
@@ -54,7 +54,7 @@
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/cleave/long
-	name = "Lesser Cleave"
+	name = "次级出血斩"
 	cooldown_time = 60 SECONDS
 	wound_type = /datum/wound/slash/flesh/severe
 

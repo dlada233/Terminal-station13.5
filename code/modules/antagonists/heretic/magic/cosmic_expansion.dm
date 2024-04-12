@@ -1,7 +1,6 @@
 /datum/action/cooldown/spell/conjure/cosmic_expansion
-	name = "Cosmic Expansion"
-	desc = "This spell generates a 3x3 domain of cosmic fields. \
-		Creatures up to 7 tiles away will also receive a star mark."
+	name = "宇宙膨胀"
+	desc = "创造3x3的宇宙领域，对附近7格内生物施加星痕."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

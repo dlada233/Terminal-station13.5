@@ -44,7 +44,7 @@
 /datum/component/living_heart/proc/on_organ_removed(obj/item/organ/source, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
 
-	to_chat(old_owner, span_userdanger("As your living [source.name] leaves your body, you feel less connected to the Mansus!"))
+	to_chat(old_owner, span_userdanger("当你的活体之[source.name]离开你的时，你感到与漫宿的联系减弱了!"))
 	qdel(src)
 
 /**
@@ -66,8 +66,8 @@
  * Allows a heretic to track sacrifice targets.
  */
 /datum/action/cooldown/track_target
-	name = "Living Heartbeat"
-	desc = "LMB: Chose one of your sacrifice targets to track. RMB: Repeats last target you chose to track."
+	name = "活体之心"
+	desc = "左键: 选择一名献祭目标追踪. 右键: 重复上一次选择的目标追踪."
 	check_flags = AB_CHECK_CONSCIOUS
 	background_icon_state = "bg_heretic"
 	button_icon = 'icons/obj/antags/eldritch.dmi'
@@ -107,7 +107,7 @@
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(owner)
 	var/datum/heretic_knowledge/sac_knowledge = heretic_datum.get_knowledge(/datum/heretic_knowledge/hunt_and_sacrifice)
 	if(!LAZYLEN(heretic_datum.sac_targets))
-		owner.balloon_alert(owner, "no targets, visit a rune!")
+		owner.balloon_alert(owner, "无目标，检查符文!")
 		StartCooldown(1 SECONDS)
 		return TRUE
 
@@ -146,8 +146,7 @@
 
 	// Let them know how to sacrifice people if they're able to be sac'd
 	if(tracked_mob.stat == DEAD)
-		to_chat(owner, span_hierophant("[tracked_mob] is dead. Bring them to a transmutation rune \
-			and invoke \"[sac_knowledge.name]\" to sacrifice them!"))
+		to_chat(owner, span_hierophant("[tracked_mob]死了. 带其前往嬗变符文并进行\"[sac_knowledge.name]\"来将其献祭!"))
 
 	StartCooldown()
 	return TRUE
@@ -162,7 +161,7 @@
 
 /// Gets the balloon message for who we're tracking.
 /datum/action/cooldown/track_target/proc/get_balloon_message(mob/living/carbon/human/tracked_mob)
-	var/balloon_message = "error text!"
+	var/balloon_message = "文本错误!"
 	var/turf/their_turf = get_turf(tracked_mob)
 	var/turf/our_turf = get_turf(owner)
 	var/their_z = their_turf?.z
@@ -171,7 +170,7 @@
 	// One of us is in somewhere we shouldn't be
 	if(!our_z || !their_z)
 		// "Hell if I know"
-		balloon_message = "on another plane!"
+		balloon_message = "在另一层面!"
 
 	// They're not on the same z-level as us
 	else if(our_z != their_z)
@@ -180,24 +179,24 @@
 			// We're on a multi-z station
 			if(is_station_level(our_z))
 				if(our_z > their_z)
-					balloon_message = "below you!"
+					balloon_message = "在你下方!"
 				else
-					balloon_message = "above you!"
+					balloon_message = "在你上方!"
 			// We're off station, they're not
 			else
-				balloon_message = "on station!"
+				balloon_message = "在空间站上!"
 
 		// Mining
 		else if(is_mining_level(their_z))
-			balloon_message = "on lavaland!"
+			balloon_message = "在拉瓦兰上!"
 
 		// In the gateway
 		else if(is_away_level(their_z) || is_secret_level(their_z))
-			balloon_message = "beyond the gateway!"
+			balloon_message = "进入了星门!"
 
 		// They're somewhere we probably can't get too - sacrifice z-level, centcom, etc
 		else
-			balloon_message = "on another plane!"
+			balloon_message = "在另一层面上!"
 
 	// They're on the same z-level as us!
 	else
@@ -206,15 +205,15 @@
 
 		switch(dist)
 			if(0 to 15)
-				balloon_message = "very near, [dir2text(dir)]!"
+				balloon_message = "非常近，[dir2text(dir)]!"
 			if(16 to 31)
-				balloon_message = "near, [dir2text(dir)]!"
+				balloon_message = "接近，[dir2text(dir)]!"
 			if(32 to 127)
-				balloon_message = "far, [dir2text(dir)]!"
+				balloon_message = "较远，[dir2text(dir)]!"
 			else
-				balloon_message = "very far!"
+				balloon_message = "非常远!"
 
 	if(tracked_mob.stat == DEAD)
-		balloon_message = "they're dead, " + balloon_message
+		balloon_message = "已经死亡，" + balloon_message
 
 	return balloon_message

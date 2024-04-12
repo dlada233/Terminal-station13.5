@@ -1,8 +1,7 @@
 /datum/action/cooldown/spell/charged/beam/fire_blast
-	name = "Volcano Blast"
-	desc = "Charge up a blast of fire that chains between nearby targets, setting them ablaze. \
-		Targets already on fire will take priority. If the target fails to catch ablaze, or \
-		extinguishes themselves before it bounces, the chain will stop."
+	name = "热炎迸发"
+	desc = "充能发射一股火焰能量，在附近的目标间反复弹射并点燃，会优先瞄准已经燃烧的目标. \
+		点燃目标失败或在能量传递过程中目标扑灭了自身火焰会终止传递."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -37,8 +36,8 @@
 	// but likely will (due to them not catching on fire)
 	if(to_beam.can_block_magic(antimagic_flags))
 		to_beam.visible_message(
-			span_warning("[to_beam] absorbs the spell, remaining unharmed!"),
-			span_userdanger("You absorb the spell, remaining unharmed!"),
+			span_warning("[to_beam]吸收了咒语，毫发无伤!"),
+			span_userdanger("你吸收了咒语，毫发无伤!"),
 		)
 		// Apply status effect but with no overlay
 		to_beam.apply_status_effect(/datum/status_effect/fire_blasted)
@@ -142,7 +141,7 @@
 
 // The beam fireblast spits out, causes people to walk through it to be on fire
 /obj/effect/ebeam/fire
-	name = "fire beam"
+	name = "火焰能量"
 
 /obj/effect/ebeam/fire/Initialize(mapload)
 	. = ..()
@@ -173,7 +172,7 @@
 
 // Visual effect played when we hit the max bounces
 /obj/effect/temp_visual/fire_blast_bonus
-	name = "fire blast"
+	name = "热炎迸发"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "explosion"
 	duration = 1 SECONDS

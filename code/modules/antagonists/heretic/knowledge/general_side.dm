@@ -1,10 +1,9 @@
 // Some general sidepath options.
 
 /datum/heretic_knowledge/reroll_targets
-	name = "The Relentless Heartbeat"
-	desc = "Allows you transmute a harebell, a book, and a jumpsuit while standing over a rune \
-		to reroll your sacrifice targets."
-	gain_text = "The heart is the principle that continues and preserves."
+	name = "无情心音"
+	desc = "你可以将一朵风信子、一本书以及意见连身衣嬗变，以重新选取你的献祭目标."
+	gain_text = "心是长存与延续的准则."
 	required_atoms = list(
 		/obj/item/food/grown/harebell = 1,
 		/obj/item/book = 1,
@@ -20,7 +19,7 @@
 	// throw a fail to show the heretic that there's no point in rerolling
 	// if you don't have a heart to track the targets in the first place.
 	if(heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		loc.balloon_alert(user, "ritual failed, no living heart!")
+		loc.balloon_alert(user, "仪式失败，没有活体之心!")
 		return FALSE
 
 	return TRUE
@@ -35,7 +34,7 @@
 		CRASH("Heretic datum didn't have a hunt_and_sacrifice knowledge learned, what?")
 
 	if(!target_finder.obtain_targets(user, heretic_datum = heretic_datum))
-		loc.balloon_alert(user, "ritual failed, no targets found!")
+		loc.balloon_alert(user, "仪式失败，未找到目标!")
 		return FALSE
 
 	return TRUE

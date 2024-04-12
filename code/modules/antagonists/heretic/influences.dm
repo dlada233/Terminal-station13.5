@@ -24,7 +24,7 @@
 /datum/reality_smash_tracker/Destroy(force)
 	if(GLOB.reality_smash_track == src)
 		stack_trace("[type] was deleted. Heretics may no longer access any influences. Fix it, or call coder support.")
-		message_admins("The [type] was deleted. Heretics may no longer access any influences. Fix it, or call coder support.")
+		message_admins("[type]被删除了. 异端没法使用任何异响. 尝试修复或请求编码帮助.")
 	QDEL_LIST(smashes)
 	tracked_heretics.Cut()
 	return ..()
@@ -114,7 +114,7 @@
 	remove_from_smashes(heretic)
 
 /obj/effect/visible_heretic_influence
-	name = "pierced reality"
+	name = "刺破的现实"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "pierced_illusion"
 	anchored = TRUE
@@ -144,17 +144,17 @@
 		return
 
 	if(IS_HERETIC(user))
-		to_chat(user, span_boldwarning("You know better than to tempt forces out of your control!"))
+		to_chat(user, span_boldwarning("你知道最好不要尝试得到你无法控制的力量!"))
 		return TRUE
 
 	var/mob/living/carbon/human/human_user = user
 	var/obj/item/bodypart/their_poor_arm = human_user.get_active_hand()
 	if(prob(25))
-		to_chat(human_user, span_userdanger("An otherwordly presence tears and atomizes your [their_poor_arm.name] as you try to touch the hole in the very fabric of reality!"))
+		to_chat(human_user, span_userdanger("当你试图触碰现实结构的漏洞时，超自然的存在撕裂并分解了你的[their_poor_arm.name]!"))
 		their_poor_arm.dismember()
 		qdel(their_poor_arm)
 	else
-		to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails, trying to latch onto existance itself!"))
+		to_chat(human_user,span_danger("你从洞口缩回手，因为奇异的能量翻涌着，试图紧紧抓住存在的本身!"))
 	return TRUE
 
 /obj/effect/visible_heretic_influence/attack_tk(mob/user)
@@ -164,13 +164,13 @@
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(IS_HERETIC(user))
-		to_chat(user, span_boldwarning("You know better than to tempt forces out of your control!"))
+		to_chat(user, span_boldwarning("你知道最好不要尝试得到你无法控制的力量!"))
 		return
 
 	var/mob/living/carbon/human/human_user = user
 
 	// A very elaborate way to suicide
-	to_chat(human_user, span_userdanger("Eldritch energy lashes out, piercing your fragile mind, tearing it to pieces!"))
+	to_chat(human_user, span_userdanger("奇异的能量喷涌而出，刺破并撕碎了你脆弱的心智!"))
 	human_user.ghostize()
 	var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
 	if(head)
@@ -178,7 +178,7 @@
 		qdel(head)
 	else
 		human_user.gib(DROP_ALL_REMAINS)
-	human_user.investigate_log("has died from using telekinesis on a heretic influence.", INVESTIGATE_DEATHS)
+	human_user.investigate_log("死于对异教徒的异响使用心灵遥感.", INVESTIGATE_DEATHS)
 	var/datum/effect_system/reagents_explosion/explosion = new()
 	explosion.set_up(1, get_turf(human_user), TRUE, 0)
 	explosion.start(src)
@@ -189,12 +189,12 @@
 		return
 
 	var/mob/living/carbon/human/human_user = user
-	to_chat(human_user, span_userdanger("Your mind burns as you stare at the tear!"))
+	to_chat(human_user, span_userdanger("当你盯着裂缝时，你的思维燃烧了起来."))
 	human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
 	human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
 /obj/effect/heretic_influence
-	name = "reality smash"
+	name = "现实裂纹"
 	icon = 'icons/effects/eldritch.dmi'
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND|INTERACT_ATOM_NO_FINGERPRINT_INTERACT
@@ -246,7 +246,7 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(being_drained)
-		balloon_alert(user, "already being drained!")
+		balloon_alert(user, "已经被抽干了!")
 	else
 		INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 1)
 
@@ -275,15 +275,15 @@
 /obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain)
 
 	being_drained = TRUE
-	balloon_alert(user, "draining influence...")
+	balloon_alert(user, "抽取异响...")
 
 	if(!do_after(user, 10 SECONDS, src))
 		being_drained = FALSE
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断!")
 		return
 
 	// We don't need to set being_drained back since we delete after anyways
-	balloon_alert(user, "influence drained")
+	balloon_alert(user, "异响已抽取")
 
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
 	heretic_datum.knowledge_points += knowledge_to_gain
@@ -297,10 +297,10 @@
 /obj/effect/heretic_influence/proc/after_drain(mob/living/user)
 	if(user)
 		to_chat(user, span_hypnophrase(pick(strings(HERETIC_INFLUENCE_FILE, "drain_message"))))
-		to_chat(user, span_warning("[src] begins to fade into reality!"))
+		to_chat(user, span_warning("[src]开始淡出现实!"))
 
 	var/obj/effect/visible_heretic_influence/illusion = new /obj/effect/visible_heretic_influence(drop_location())
-	illusion.name = "\improper" + pick(strings(HERETIC_INFLUENCE_FILE, "drained")) + " " + format_text(name)
+	illusion.name = "\improper" + pick(strings(HERETIC_INFLUENCE_FILE, "干涸的")) + format_text(name)
 
 	GLOB.reality_smash_track.num_drained++
 	qdel(src)
@@ -328,6 +328,6 @@
  * Generates a random name for the influence.
  */
 /obj/effect/heretic_influence/proc/generate_name()
-	name = "\improper" + pick(strings(HERETIC_INFLUENCE_FILE, "prefix")) + " " + pick(strings(HERETIC_INFLUENCE_FILE, "postfix"))
+	name = "\improper" + pick(strings(HERETIC_INFLUENCE_FILE, "prefix")) + pick(strings(HERETIC_INFLUENCE_FILE, "postfix"))
 
 #undef NUM_INFLUENCES_PER_HERETIC

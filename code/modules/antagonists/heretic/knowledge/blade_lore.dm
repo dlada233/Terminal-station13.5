@@ -30,11 +30,11 @@
  * Maelstrom of Silver
  */
 /datum/heretic_knowledge/limited_amount/starting/base_blade
-	name = "The Cutting Edge"
-	desc = "Opens up the Path of Blades to you. \
-		Allows you to transmute a knife with two bars of silver or titanium to create a Sundered Blade. \
-		You can create up to five at a time."
-	gain_text = "Our great ancestors forged swords and practiced sparring on the eve of great battles."
+	name = "锋刃"
+	desc = "通往刀锋之路. \
+		你能将两根银条或钛钢条嬗变为一把刀，创造出碎裂之刃. \
+		同一时间只能创造五把出来."
+	gain_text = "我们伟大的祖先会在重大战役前夕锻造刀剑并练习格斗."
 	next_knowledge = list(/datum/heretic_knowledge/blade_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
@@ -45,10 +45,9 @@
 	route = PATH_BLADE
 
 /datum/heretic_knowledge/blade_grasp
-	name = "Grasp of the Blade"
-	desc = "Your Mansus Grasp will cause a short stun when used on someone lying down or facing away from you."
-	gain_text = "The story of the footsoldier has been told since antiquity. It is one of blood and valor, \
-		and is championed by sword, steel and silver."
+	name = "谋杀之握"
+	desc = "你的漫宿之握将使躺下和背对着你的人陷入短暂昏迷."
+	gain_text = "步兵的故事自古以来就流传着，它是勇气与鲜血的象征，由剑、钢与银所颂扬."
 	next_knowledge = list(/datum/heretic_knowledge/blade_dance)
 	cost = 1
 	route = PATH_BLADE
@@ -92,18 +91,17 @@
 	// We're officially behind them, apply effects
 	target.AdjustParalyzed(1.5 SECONDS)
 	target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
-	target.balloon_alert(source, "backstab!")
+	target.balloon_alert(source, "背袭!")
 	playsound(get_turf(target), 'sound/weapons/guillotine.ogg', 100, TRUE)
 
 /// The cooldown duration between trigers of blade dance
 #define BLADE_DANCE_COOLDOWN (20 SECONDS)
 
 /datum/heretic_knowledge/blade_dance
-	name = "Dance of the Brand"
-	desc = "Being attacked while wielding a Heretic Blade in either hand will deliver a riposte \
-		towards your attacker. This effect can only trigger once every 20 seconds."
-	gain_text = "The footsoldier was known to be a fearsome duelist. \
-		Their general quickly appointed them as their personal Champion."
+	name = "烙印刃舞"
+	desc = "在双手持握异端之刃的情况下被攻击时，将对攻击者进行反击，冷却时间20秒."
+	gain_text = "这名步兵是出了名的凶煞斗士. \
+		他的将军很快就任命他为自己的近身侍卫."
 	next_knowledge = list(
 		/datum/heretic_knowledge/limited_amount/risen_corpse,
 		/datum/heretic_knowledge/mark/blade_mark,
@@ -125,7 +123,7 @@
 	mob/living/carbon/human/source,
 	atom/movable/hitby,
 	damage = 0,
-	attack_text = "the attack",
+	attack_text = "攻击",
 	attack_type = MELEE_ATTACK,
 	armour_penetration = 0,
 	damage_type = BRUTE,
@@ -177,28 +175,26 @@
 
 /datum/heretic_knowledge/blade_dance/proc/counter_attack(mob/living/carbon/human/source, mob/living/target, obj/item/melee/sickly_blade/weapon, attack_text)
 	playsound(get_turf(source), 'sound/weapons/parry.ogg', 100, TRUE)
-	source.balloon_alert(source, "riposte used")
+	source.balloon_alert(source, "已反击")
 	source.visible_message(
-		span_warning("[source] leans into [attack_text] and delivers a sudden riposte back at [target]!"),
-		span_warning("You lean into [attack_text] and deliver a sudden riposte back at [target]!"),
-		span_hear("You hear a clink, followed by a stab."),
+		span_warning("[source]迎[attack_text]而上，向[target]发出突然的反击!"),
+		span_warning("你迎[attack_text]而上，向[target]发出突然的反击!"),
+		span_hear("你听到叮当一声，随后利刃划过."),
 	)
 	weapon.melee_attack_chain(source, target)
 
 /datum/heretic_knowledge/blade_dance/proc/reset_riposte(mob/living/carbon/human/source)
 	riposte_ready = TRUE
-	source.balloon_alert(source, "riposte ready")
+	source.balloon_alert(source, "反击就绪")
 
 #undef BLADE_DANCE_COOLDOWN
 
 /datum/heretic_knowledge/mark/blade_mark
-	name = "Mark of the Blade"
-	desc = "Your Mansus Grasp now applies the Mark of the Blade. While marked, \
-		the victim will be unable to leave their current room until it expires or is triggered. \
-		Triggering the mark will summon a knife that will orbit you for a short time. \
-		The knife will block any attack directed towards you, but is consumed on use."
-	gain_text = "His general wished to end the war, but the Champion knew there could be no life without death. \
-		He would slay the coward himself, and anyone who tried to run."
+	name = "刃痕"
+	desc = "你的漫宿之握将对目标施加刃痕，被施加的目标在刃痕过期或被触发前将无法离开他们当前所处的房间.\
+		触发刃痕将召唤出一把刀，它将在段时间内围绕你."
+	gain_text = "他的将军希望结束战争，但斗士知道没有死亡就没有生命. \
+		他会亲手杀掉懦夫，以及任何试图逃跑的人."
 	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/blade)
 	route = PATH_BLADE
 	mark_type = /datum/status_effect/eldritch/blade
@@ -208,7 +204,7 @@
 	if(istype(blade_mark))
 		var/area/to_lock_to = get_area(target)
 		blade_mark.locked_to = to_lock_to
-		to_chat(target, span_hypnophrase("An otherworldly force is compelling you to stay in [get_area_name(to_lock_to)]!"))
+		to_chat(target, span_hypnophrase("超自然的力量强迫你留在[get_area_name(to_lock_to)]!"))
 	return blade_mark
 
 /datum/heretic_knowledge/mark/blade_mark/trigger_mark(mob/living/source, mob/living/target)
@@ -222,11 +218,11 @@
 	route = PATH_BLADE
 
 /datum/heretic_knowledge/spell/realignment
-	name = "Realignment"
-	desc = "Grants you Realignment a spell that wil realign your body rapidly for a short period. \
-		During this process, you will rapidly regenerate stamina and quickly recover from stuns, however, you will be unable to attack. \
-		This spell can be cast in rapid succession, but doing so will increase the cooldown."
-	gain_text = "In the flurry of death, he found peace within himself. Despite insurmountable odds, he forged on."
+	name = "重铸"
+	desc = "赐予你重铸咒语，可以在短时间内重铸你的身体. \
+		在此过程中，你将迅速再生并从昏迷中恢复，但是你也无法攻击. \
+		这个咒语可以快速连续释放，但会增加冷却时间."
+	gain_text = "在死亡的狂宴中，他找到了内心的平静. 尽管九死一生，他还是坚持下来了."
 	next_knowledge = list(
 		/datum/heretic_knowledge/duel_stance,
 		/datum/heretic_knowledge/rifle,
@@ -239,12 +235,9 @@
 #define BLOOD_FLOW_PER_SEVEIRTY -1
 
 /datum/heretic_knowledge/duel_stance
-	name = "Stance of the Torn Champion"
-	desc = "Grants resilience to blood loss from wounds and immunity to having your limbs dismembered. \
-		Additionally, when damaged below 50% of your maximum health, \
-		you gain increased resistance to gaining wounds and resistance to batons."
-	gain_text = "In time, it was he who stood alone among the bodies of his former comrades, awash in blood, none of it his own. \
-		He was without rival, equal, or purpose."
+	name = "撕裂斗士的姿态"
+	desc = "赐予你对重伤失血的恢复力和免疫断肢，此外，当你的生命值低于最大生命一半时，你将获得更高的重伤抗性和警棍击晕的抗性."
+	gain_text = "最后，他独自站在昔日战友的尸体间，浑身是血，却无一滴是他自己流的. 他再无敌手."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/blade,
 		/datum/heretic_knowledge/reroll_targets,
@@ -276,7 +269,7 @@
 
 	var/obj/item/held_item = source.get_active_held_item()
 	if(in_duelist_stance)
-		examine_list += span_warning("[source] looks unnaturally poised[held_item?.force >= 15 ? " and ready to strike out":""].")
+		examine_list += span_warning("[source]显露出不自然的冷静，[held_item?.force >= 15 ? "并准备好了出招":""].")
 
 /datum/heretic_knowledge/duel_stance/proc/on_wound_gain(mob/living/source, datum/wound/gained_wound, obj/item/bodypart/limb)
 	SIGNAL_HANDLER
@@ -290,13 +283,13 @@
 	SIGNAL_HANDLER
 
 	if(in_duelist_stance && source.health > source.maxHealth * 0.5)
-		source.balloon_alert(source, "exited duelist stance")
+		source.balloon_alert(source, "退出决斗姿态")
 		in_duelist_stance = FALSE
 		source.remove_traits(list(TRAIT_HARDLY_WOUNDED, TRAIT_BATON_RESISTANCE), type)
 		return
 
 	if(!in_duelist_stance && source.health <= source.maxHealth * 0.5)
-		source.balloon_alert(source, "entered duelist stance")
+		source.balloon_alert(source, "进入决斗姿态")
 		in_duelist_stance = TRUE
 		source.add_traits(list(TRAIT_HARDLY_WOUNDED, TRAIT_BATON_RESISTANCE), type)
 		return
@@ -304,12 +297,10 @@
 #undef BLOOD_FLOW_PER_SEVEIRTY
 
 /datum/heretic_knowledge/blade_upgrade/blade
-	name = "Swift Blades"
-	desc = "Attacking someone with a Sundered Blade in both hands \
-		will now deliver a blow with both at once, dealing two attacks in rapid succession. \
-		The second blow will be slightly weaker."
-	gain_text = "I found him cleaved in twain, halves locked in a duel without end; \
-		a flurry of blades, neither hitting their mark, for the Champion was indomitable."
+	name = "裂刃连珠"
+	desc = "双手持握着碎裂之刃进行攻击会同时进行两次打击，第二次打击伤害稍弱."
+	gain_text = "我发现他被劈成两半，两半身体在进行一场无尽的决斗; \
+		刀光剑影间，谁都无法击中目标，因为这名斗士是不败的."
 	next_knowledge = list(/datum/heretic_knowledge/spell/furious_steel)
 	route = PATH_BLADE
 	/// How much force do we apply to the offhand?
@@ -367,13 +358,9 @@
 	blade.force = last_weapon_force
 
 /datum/heretic_knowledge/spell/furious_steel
-	name = "Furious Steel"
-	desc = "Grants you Furious Steel, a targeted spell. Using it will summon three \
-		orbiting blades around you. These blades will protect you from all attacks, \
-		but are consumed on use. Additionally, you can click to fire the blades \
-		at a target, dealing damage and causing bleeding."
-	gain_text = "Without thinking, I took the knife of a fallen soldier and threw with all my might. My aim was true! \
-		The Torn Champion smiled at their first taste of agony, and with a nod, their blades became my own."
+	name = "唤威钢"
+	desc = "赐予你威钢，一种指向性咒语. 施放后在你周围召唤三把旋转的刀刃，这些刀刃可以消耗自身保护你免受攻击. 也可以点击目标发射刀刃，造成伤害和流血."
+	gain_text = "我毫不犹豫地捡起倒下士兵的兵刃，全力投掷了出去. 准确命中！撕裂斗士对第一次尝到痛苦满意地微笑者，然后点了点头，他们的刃归我所用."
 	next_knowledge = list(
 		/datum/heretic_knowledge/summon/maid_in_mirror,
 		/datum/heretic_knowledge/ultimate/blade_final,
@@ -384,16 +371,15 @@
 	route = PATH_BLADE
 
 /datum/heretic_knowledge/ultimate/blade_final
-	name = "Maelstrom of Silver"
-	desc = "The ascension ritual of the Path of Blades. \
-		Bring 3 headless corpses to a transmutation rune to complete the ritual. \
-		When completed, you will be surrounded in a constant, regenerating orbit of blades. \
-		These blades will protect you from all attacks, but are consumed on use. \
-		Your Furious Steel spell will also have a shorter cooldown. \
-		Additionally, you become a master of combat, gaining full wound immunity and the ability to shrug off short stuns. \
-		Your Sundered Blades deal bonus damage and heal you on attack for a portion of the damage dealt."
-	gain_text = "The Torn Champion is freed! I will become the blade reunited, and with my greater ambition, \
-		I AM UNMATCHED! A STORM OF STEEL AND SILVER IS UPON US! WITNESS MY ASCENSION!"
+	name = "银光螺旋"
+	desc = "刀锋之路的飞升仪式. \
+		带三具无头尸体到嬗变符文前完成仪式. \
+		一旦完成，你将被不断再生的刀刃包裹，这些刀刃消耗自身保护你免受所有伤害. \
+		同时凛凛威钢的冷却时间缩短. \
+		此外，你将精通战斗技艺，获得对重伤的完全免疫和摆脱短暂昏迷的能力. \
+		你的碎裂之刃将造成额外伤害，并在攻击时根据你造成的伤害恢复自身."
+	gain_text = "撕裂斗士重获自由! 我将以吞天的野心化成合璧的刀剑，\
+		我无可匹敌! 钢与银的风暴袭来! 见证我的飞升!"
 	route = PATH_BLADE
 
 /datum/heretic_knowledge/ultimate/blade_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)
@@ -406,7 +392,7 @@
 /datum/heretic_knowledge/ultimate/blade_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "[generate_heretic_text()] Master of blades, the Torn Champion's disciple, [user.real_name] has ascended! Their steel is that which will cut reality in a maelstom of silver! [generate_heretic_text()]",
+		text = "[generate_heretic_text()]锋刃之主，撕裂斗士的信徒， [user.real_name]已经飞升! 现实将在钢铁与银光的螺旋中搅碎! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = ANNOUNCER_SPANOMALIES,
 		color_override = "pink",
@@ -417,9 +403,9 @@
 	user.apply_status_effect(/datum/status_effect/protective_blades/recharging, null, 8, 30, 0.25 SECONDS, 1 MINUTES)
 	user.add_stun_absorption(
 		source = name,
-		message = span_warning("%EFFECT_OWNER throws off the stun!"),
-		self_message = span_warning("You throw off the stun!"),
-		examine_message = span_hypnophrase("%EFFECT_OWNER_THEYRE standing stalwartly."),
+		message = span_warning("%EFFECT_OWNER 解除了昏迷!"),
+		self_message = span_warning("你解除了昏迷!"),
+		examine_message = span_hypnophrase("%EFFECT_OWNER_THEYRE 屹立不倒."),
 		// flashbangs are like 5-10 seoncds,
 		// a banana peel is ~5 seconds, depending on botany
 		// body throws and tackles are less than 5 seconds,

@@ -1,8 +1,7 @@
 // Given to heretic monsters.
 /datum/action/cooldown/spell/shapeshift/eldritch
-	name = "Shapechange"
-	desc = "A spell that allows you to take on the form of another creature, gaining their abilities. \
-		After making your choice, you will be unable to change to another."
+	name = "畸变"
+	desc = "使用后你可以选择变成另一种生物，只有一次选择机会."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 

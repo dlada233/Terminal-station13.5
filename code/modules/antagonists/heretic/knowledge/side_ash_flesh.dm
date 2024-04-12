@@ -1,9 +1,9 @@
 // Sidepaths for knowledge between Ash and Flesh.
 /datum/heretic_knowledge/medallion
-	name = "Ashen Eyes"
-	desc = "Allows you to transmute a pair of eyes, a candle, and a glass shard into an Eldritch Medallion. \
-		The Eldritch Medallion grants you thermal vision while worn, and also functions as a focus."
-	gain_text = "Piercing eyes guided them through the mundane. Neither darkness nor terror could stop them."
+	name = "余烬双眼"
+	desc = "你可以将一双眼睛、一根蜡烛和一块玻璃碎片嬗变成邪术勋章. \
+		佩戴邪术勋章可以给你热成像视觉，还能用做焦点."
+	gain_text = "锐利的目标引导他们穿越尘世，黑暗与恐怖都无法阻拦."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/ash_passage,
 		/datum/heretic_knowledge/limited_amount/flesh_ghoul,
@@ -18,11 +18,10 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/curse/paralysis
-	name = "Curse of Paralysis"
-	desc = "Allows you to transmute a hatchet and both a left and right leg to cast a curse of immobility on a crew member. \
-		While cursed, the victim will be unable to walk. You can additionally supply an item that a victim has touched \
-		or is covered in the victim's blood to empower the curse."
-	gain_text = "The flesh of humanity is weak. Make them bleed. Show them their fragility."
+	name = "麻痹诅咒"
+	desc = "你可以将一把短柄斧和一双包含左右的腿嬗变出对船员释放的麻痹诅咒，\
+		被诅咒的目标将无法行走. 你还可以提供受害者接触过的物品或者被受害者血液沾染的物品来强化诅咒."
+	gain_text = "人类的肉体有多脆弱？只要让血流出来就能知道."
 	next_knowledge = list(
 		/datum/heretic_knowledge/mad_mask,
 		/datum/heretic_knowledge/summon/raw_prophet,
@@ -40,10 +39,10 @@
 
 /datum/heretic_knowledge/curse/paralysis/curse(mob/living/carbon/human/chosen_mob, boosted = FALSE)
 	if(chosen_mob.usable_legs <= 0) // What're you gonna do, curse someone who already can't walk?
-		to_chat(chosen_mob, span_notice("You feel a slight pain for a moment, but it passes shortly. Odd."))
+		to_chat(chosen_mob, span_notice("你感到一阵轻微的疼痛，但很快就过去了. 真蹊跷."))
 		return
 
-	to_chat(chosen_mob, span_danger("You suddenly lose feeling in your leg[chosen_mob.usable_legs == 1 ? "":"s"]!"))
+	to_chat(chosen_mob, span_danger("你突然感觉不到你的腿了!"))
 	chosen_mob.add_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	return ..()
 
@@ -53,15 +52,14 @@
 
 	chosen_mob.remove_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	if(chosen_mob.usable_legs > 1)
-		to_chat(chosen_mob, span_green("You regain feeling in your leg[chosen_mob.usable_legs == 1 ? "":"s"]!"))
+		to_chat(chosen_mob, span_green("你的腿恢复了知觉!"))
 	return ..()
 
 /datum/heretic_knowledge/summon/ashy
-	name = "Ashen Ritual"
-	desc = "Allows you to transmute a head, a pile of ash, and a book to create an Ash Man. \
-		Ash Men have a short range jaunt and the ability to cause bleeding in foes at range. \
-		They also have the ability to create a ring of fire around themselves for a length of time."
-	gain_text = "I combined my principle of hunger with my desire for destruction. The Marshal knew my name, and the Nightwatcher gazed on."
+	name = "灰烬仪式"
+	desc = "你可以将一颗头颅、一堆灰尘和一本书嬗变成一名灰烬人. \
+		灰烬人能短距离传送和范围内对敌人造成流血，还可以在自身周围创造持续一段时间的火焰环."
+	gain_text = "我将饥渴的原理和毁灭的欲望结合在一起，元帅听见了，守夜人看到了."
 	next_knowledge = list(
 		/datum/heretic_knowledge/summon/stalker,
 		/datum/heretic_knowledge/spell/flame_birth,

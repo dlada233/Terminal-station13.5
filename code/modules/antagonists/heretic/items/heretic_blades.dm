@@ -1,7 +1,7 @@
 
 /obj/item/melee/sickly_blade
-	name = "\improper sickly blade"
-	desc = "A sickly green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
+	name = "\improper 病态弯刃"
+	desc = "一柄病态的绿色新月形弯刃，带有眼睛装饰，你感觉自己被监视了..."
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "eldritch_blade"
 	inhand_icon_state = "eldritch_blade"
@@ -20,13 +20,13 @@
 	demolition_mod = 0.8
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	armour_penetration = 35
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
+	attack_verb_continuous = list("攻击", "挥砍", "斩击", "切割", "刺击", "伤害", "横劈", "猛切", "划伤")
+	attack_verb_simple = list("攻击", "挥砍", "斩击", "切割", "刺击", "伤害", "横劈", "猛切", "划伤")
 	var/after_use_message = ""
 
 /obj/item/melee/sickly_blade/attack(mob/living/M, mob/living/user)
 	if(!IS_HERETIC_OR_MONSTER(user))
-		to_chat(user, span_danger("You feel a pulse of alien intellect lash out at your mind!"))
+		to_chat(user, span_danger("你感到异域的心愫冲击着你的思维."))
 		var/mob/living/carbon/human/human_user = user
 		human_user.AdjustParalyzed(5 SECONDS)
 		return TRUE
@@ -37,11 +37,11 @@
 	var/turf/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
 	if(IS_HERETIC_OR_MONSTER(user))
 		if(do_teleport(user, safe_turf, channel = TELEPORT_CHANNEL_MAGIC))
-			to_chat(user, span_warning("As you shatter [src], you feel a gust of energy flow through your body. [after_use_message]"))
+			to_chat(user, span_warning("当你粉碎[src]时，你感到一股能量流经你的身体. [after_use_message]"))
 		else
-			to_chat(user, span_warning("You shatter [src], but your plea goes unanswered."))
+			to_chat(user, span_warning("你粉碎了[src]，但请求没有被回应."))
 	else
-		to_chat(user,span_warning("You shatter [src]."))
+		to_chat(user,span_warning("你粉碎了[src]."))
 	playsound(src, SFX_SHATTER, 70, TRUE) //copied from the code for smashing a glass sheet onto the ground to turn it into a shard
 	qdel(src)
 
@@ -60,35 +60,35 @@
 	if(!IS_HERETIC_OR_MONSTER(user))
 		return
 
-	. += span_notice("You can shatter the blade to teleport to a random, (mostly) safe location by <b>activating it in-hand</b>.")
+	. += span_notice("<b>在手中使用刀刃<b>将粉碎刀刃并将你传送到一个随机、但安全(大多数情况下是的)的位置.")
 
 // Path of Rust's blade
 /obj/item/melee/sickly_blade/rust
-	name = "\improper rusted blade"
-	desc = "This crescent blade is decrepit, wasting to rust. \
-		Yet still it bites, ripping flesh and bone with jagged, rotten teeth."
+	name = "\improper 铁锈之刃"
+	desc = "这把新月形的刀刃破败不堪，正逐渐生锈腐化. \
+		然而它依然锋利异常，以锯齿般的腐朽牙齿撕裂着肉和骨头。."
 	icon_state = "rust_blade"
 	inhand_icon_state = "rust_blade"
-	after_use_message = "The Rusted Hills hear your call..."
+	after_use_message = "锈山听到了你的呼唤..."
 
 // Path of Ash's blade
 /obj/item/melee/sickly_blade/ash
-	name = "\improper ashen blade"
-	desc = "Molten and unwrought, a hunk of metal warped to cinders and slag. \
-		Unmade, it aspires to be more than it is, and shears soot-filled wounds with a blunt edge."
+	name = "\improper 灰烬之刃"
+	desc = "熔化而未加工的一块金属，扭曲成灰烬和熔渣. \
+		未成形的金属渴望超越自身，用钝刃割开布满煤烟的伤口."
 	icon_state = "ash_blade"
 	inhand_icon_state = "ash_blade"
-	after_use_message = "The Nightwatcher hears your call..."
+	after_use_message = "守夜人听到了你的呼唤..."
 	resistance_flags = FIRE_PROOF
 
 // Path of Flesh's blade
 /obj/item/melee/sickly_blade/flesh
-	name = "\improper bloody blade"
-	desc = "A crescent blade born from a fleshwarped creature. \
-		Keenly aware, it seeks to spread to others the suffering it has endured from its dreadful origins."
+	name = "\improper 血腥之刃"
+	desc = "一把由生物异变而成的新月刀刃. \
+		意识敏锐，试图将它从可怕的起源中所承受的痛苦传播给其他人."
 	icon_state = "flesh_blade"
 	inhand_icon_state = "flesh_blade"
-	after_use_message = "The Marshal hears your call..."
+	after_use_message = "元帅听到了你的呼唤..."
 
 /obj/item/melee/sickly_blade/flesh/Initialize(mapload)
 	. = ..()
@@ -103,45 +103,45 @@
 	AddComponent(
 		/datum/component/bloody_spreader,\
 		blood_left = INFINITY,\
-		blood_dna = list("Unknown DNA" = "X*"),\
+		blood_dna = list("未知DNA" = "X*"),\
 		diseases = null,\
 	)
 
 // Path of Void's blade
 /obj/item/melee/sickly_blade/void
-	name = "\improper void blade"
-	desc = "Devoid of any substance, this blade reflects nothingness. \
-		It is a real depiction of purity, and chaos that ensues after its implementation."
+	name = "\improper 虚无之刃"
+	desc = "毫无实质的存在，这把刀刃中反射出的只有空白. \
+		它是纯净的真实描绘，以及在实施后随之而来的混沌."
 	icon_state = "void_blade"
 	inhand_icon_state = "void_blade"
-	after_use_message = "The Aristocrat hears your call..."
+	after_use_message = "贵族听到了你的呼唤..."
 
 // Path of the Blade's... blade.
 // Opting for /dark instead of /blade to avoid "sickly_blade/blade".
 /obj/item/melee/sickly_blade/dark
-	name = "\improper sundered blade"
-	desc = "A galliant blade, sundered and torn. \
-		Furiously, the blade cuts. Silver scars bind it forever to its dark purpose."
+	name = "\improper 碎裂之刃"
+	desc = "一把刀刃，破碎却华美. \
+		刀刃躁动不安，银色的疤痕下深藏着阴暗的密谋."
 	icon_state = "dark_blade"
 	inhand_icon_state = "dark_blade"
-	after_use_message = "The Torn Champion hears your call..."
+	after_use_message = "撕裂斗士听到了你的呼唤..."
 
 // Path of Cosmos's blade
 /obj/item/melee/sickly_blade/cosmic
-	name = "\improper cosmic blade"
-	desc = "A mote of celestial resonance, shaped into a star-woven blade. \
-		An iridescent exile, carving radiant trails, desperately seeking unification."
+	name = "\improper 宇宙之刃"
+	desc = "一粒天体共鸣，织就星纹之刃. \
+		彩虹般的流亡者，刻出光阴的轨迹，苦寻万千的合一."
 	icon_state = "cosmic_blade"
 	inhand_icon_state = "cosmic_blade"
-	after_use_message = "The Stargazer hears your call..."
+	after_use_message = "观星者听到了你的呼唤..."
 
 // Path of Knock's blade
 /obj/item/melee/sickly_blade/lock
-	name = "\improper key blade"
-	desc = "A blade and a key, a key to what? \
-		What grand gates does it open?"
+	name = "\improper 钥匙之刃"
+	desc = "既是刃也是钥匙，但锁在何处?\
+		又是哪扇大门将要开启?"
 	icon_state = "key_blade"
 	inhand_icon_state = "key_blade"
-	after_use_message = "The Stewards hear your call..."
+	after_use_message = "管家听到了你的呼唤..."
 	tool_behaviour = TOOL_CROWBAR
 	toolspeed = 1.3

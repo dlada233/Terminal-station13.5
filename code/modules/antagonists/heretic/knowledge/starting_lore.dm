@@ -17,10 +17,9 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * The base heretic knowledge. Grants the Mansus Grasp spell.
  */
 /datum/heretic_knowledge/spell/basic
-	name = "Break of Dawn"
-	desc = "Starts your journey into the Mansus. \
-		Grants you the Mansus Grasp, a powerful and upgradable \
-		disabling spell that can be cast regardless of having a focus."
+	name = "启明"
+	desc = "开始你的漫宿之旅. \
+		赐予你漫宿之握，一种可升级的强大致残法术，无论你是否拥有焦点都可以释放."
 	spell_to_add = /datum/action/cooldown/spell/touch/mansus_grasp
 	cost = 0
 	route = PATH_START
@@ -36,11 +35,10 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * Also includes a ritual to turn their heart into a living heart.
  */
 /datum/heretic_knowledge/living_heart
-	name = "The Living Heart"
-	desc = "Grants you a Living Heart, allowing you to track sacrifice targets. \
-		Should you lose your heart, you can transmute a poppy and a pool of blood \
-		to awaken your heart into a Living Heart. If your heart is cybernetic, \
-		you will additionally require a usable organic heart in the transmutation."
+	name = "活体之心"
+	desc = "赐予你一颗活体之心，使你能够追踪献祭目标. \
+		如果你失去了活体之心，你可以用一摊血和一朵罂粟将你的心嬗变成活体之心 \
+		如果你的心是电子心，那你则需要额外一颗可用的有机心脏."
 	required_atoms = list(
 		/obj/effect/decal/cleanable/blood = 1,
 		/obj/item/food/grown/poppy = 1,
@@ -77,20 +75,19 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 			where_to_put_our_heart = look_for_backup
 			our_heretic.living_heart_organ_slot = backup_slot
 			required_organ_type = backup_organs[backup_slot]
-			to_chat(user, span_boldnotice("As your species does not have a heart, your Living Heart is located in your [look_for_backup.name]."))
+			to_chat(user, span_boldnotice("由于你的种族没有心脏，活体之心生成在了你的[look_for_backup.name]."))
 			break
 
 	if(where_to_put_our_heart)
 		where_to_put_our_heart.AddComponent(/datum/component/living_heart)
-		desc = "Grants you a Living Heart, tied to your [where_to_put_our_heart.name], \
-			allowing you to track sacrifice targets. \
-			Should you lose your [where_to_put_our_heart.name], you can transmute a poppy and a pool of blood \
-			to awaken your replacement [where_to_put_our_heart.name] into a Living Heart. \
-			If your [where_to_put_our_heart.name] is cybernetic, \
-			you will additionally require a usable organic [where_to_put_our_heart.name] in the transmutation."
+		desc = "赐予你一颗活体之心，与你的[where_to_put_our_heart.name]连在一起，\
+			使你能够追踪献祭目标. \
+			如果你失去了[where_to_put_our_heart.name]，你可以用一摊血和一朵罂粟将你的替代[where_to_put_our_heart.name]嬗变成活体之心. \
+			如果你的[where_to_put_our_heart.name]是电子或机械的，\
+			那你则需要额外一个可用的有机[where_to_put_our_heart.name]来进行嬗变."
 
 	else
-		to_chat(user, span_boldnotice("You don't have a heart, or any chest organs for that matter. You didn't get a Living Heart because of it."))
+		to_chat(user, span_boldnotice("你没有心脏，也没有任何胸部器官，因此你没法得到活体之心."))
 
 /datum/heretic_knowledge/living_heart/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	var/obj/item/organ/our_living_heart = user.get_organ_slot(our_heretic.living_heart_organ_slot)
@@ -108,13 +105,13 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	var/obj/item/organ/our_living_heart = user.get_organ_slot(our_heretic.living_heart_organ_slot)
 	// Obviously you need a heart in your chest to do a ritual on your... heart
 	if(!our_living_heart)
-		loc.balloon_alert(user, "ritual failed, you have no [our_heretic.living_heart_organ_slot]!") // "you have no heart!"
+		loc.balloon_alert(user, "仪式失败，你没有[our_heretic.living_heart_organ_slot]!") // "you have no heart!"
 		return FALSE
 	// For sanity's sake, check if they've got a heart -
 	// even though it's not invokable if you already have one,
 	// they may have gained one unexpectantly in between now and then
 	if(HAS_TRAIT(our_living_heart, TRAIT_LIVING_HEART))
-		loc.balloon_alert(user, "ritual failed, already have a living heart!")
+		loc.balloon_alert(user, "仪式失败，以及有了一颗活体之心!")
 		return FALSE
 
 	// By this point they are making a new heart
@@ -125,7 +122,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	// If their current heart is not organic / is synthetic, they need an organic replacement
 	// ...But if our organ-to-be-replaced is unremovable, we're screwed
 	if(our_living_heart.organ_flags & ORGAN_UNREMOVABLE)
-		loc.balloon_alert(user, "ritual failed, [our_heretic.living_heart_organ_slot] unremovable!") // "heart unremovable!"
+		loc.balloon_alert(user, "仪式失败，[our_heretic.living_heart_organ_slot]不可移除!") // "heart unremovable!"
 		return FALSE
 
 	// Otherwise, seek out a replacement in our atoms
@@ -138,7 +135,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 		selected_atoms += nearby_organ
 		return TRUE
 
-	loc.balloon_alert(user, "ritual failed, need a replacement [our_heretic.living_heart_organ_slot]!") // "need a replacement heart!"
+	loc.balloon_alert(user, "仪式失败，需要一颗替代[our_heretic.living_heart_organ_slot]!") // "need a replacement heart!"
 	return FALSE
 
 /datum/heretic_knowledge/living_heart/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -150,7 +147,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 		var/obj/item/organ/our_replacement_heart = locate(required_organ_type) in selected_atoms
 		if(our_replacement_heart)
 			// Throw our current heart out of our chest, violently
-			user.visible_message(span_boldwarning("[user]'s [our_new_heart.name] bursts suddenly out of [user.p_their()] chest!"))
+			user.visible_message(span_boldwarning("[user]的[our_new_heart.name]从胸膛中爆裂而出!"))
 			INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
 			user.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
 			// And put our organic heart in its place
@@ -173,7 +170,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	selected_atoms -= our_new_heart
 	// Make it the living heart
 	our_new_heart.AddComponent(/datum/component/living_heart)
-	to_chat(user, span_warning("You feel your [our_new_heart.name] begin pulse faster and faster as it awakens!"))
+	to_chat(user, span_warning("当它醒来时，你感到你的[our_new_heart.name]开始越跳越快!"))
 	playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
 	return TRUE
 
@@ -193,9 +190,9 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * They require a focus to cast advanced spells.
  */
 /datum/heretic_knowledge/amber_focus
-	name = "Amber Focus"
-	desc = "Allows you to transmute a sheet of glass and a pair of eyes to create an Amber Focus. \
-		A focus must be worn in order to cast more advanced spells."
+	name = "聚焦琥珀"
+	desc = "通过嬗变一块玻璃和一双眼睛来创造出聚焦琥珀. \
+		焦点对高级咒术来说不可缺少的."
 	required_atoms = list(
 		/obj/item/organ/internal/eyes = 1,
 		/obj/item/stack/sheet/glass = 1,
@@ -206,9 +203,8 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	route = PATH_START
 
 /datum/heretic_knowledge/spell/cloak_of_shadows
-	name = "Cloak of Shadow"
-	desc = "Grants you the spell Cloak of Shadow. This spell will completely conceal your identity in a purple smoke \
-		for three minutes, assisting you in keeping secrecy. Requires a focus to cast."
+	name = "黑雾隐"
+	desc = "赐予你黑雾隐. 让你的身份完全影藏在紫色的烟雾三分钟，用来保护你的秘密，需要焦点来施法."
 	spell_to_add = /datum/action/cooldown/spell/shadow_cloak
 	cost = 0
 	route = PATH_START
@@ -221,12 +217,11 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * Overall, it's a tradeoff between speed and stealth or power.
  */
 /datum/heretic_knowledge/codex_cicatrix
-	name = "Codex Cicatrix"
-	desc = "Allows you to transmute a book, any unique pen (anything but generic pens), and your pick from any carcass (animal or human), leather, or hide to create a Codex Cicatrix. \
-		The Codex Cicatrix can be used when draining influences to gain additional knowledge, but comes at greater risk of being noticed. \
-		It can also be used to draw and remove transmutation runes easier, and as a spell focus in a pinch."
-	gain_text = "The occult leaves fragments of knowledge and power anywhere and everywhere. The Codex Cicatrix is one such example. \
-		Within the leather-bound faces and age old pages, a path into the Mansus is revealed."
+	name = "疤痕法典"
+	desc = "你可以将一本书、一支特别的笔以及任何皮革或毛皮嬗变为疤痕法典. \
+		用疤痕法典抽取‘异响’可以获得额外的知识点，但也会更加容易暴露. 法典还可以更快捷地擦除和绘制嬗变符文，在紧要关头还能作为焦点使用."
+	gain_text = "疤痕法典是超自然存在向世间显露出的无数线索中的其中一角，无一不关系着秘密的知识与力量. \
+		在皮革的封皮和古旧的书页下，一条通往漫宿的道路时隐时现."
 	required_atoms = list(
 		/obj/item/book = 1,
 		/obj/item/pen = 1,
@@ -240,7 +235,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 
 /datum/heretic_knowledge/codex_cicatrix/parse_required_item(atom/item_path, number_of_things)
 	if(item_path == /obj/item/pen)
-		return "unique type of pen"
+		return "特别的笔"
 	return ..()
 
 /datum/heretic_knowledge/codex_cicatrix/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
@@ -261,7 +256,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	if(!body)
 		return
 	// A golem or an android doesn't have skin!
-	var/exterior_text = "skin"
+	var/exterior_text = "皮肤"
 	// If carbon, it's the limb. If not, it's the body.
 	var/ripped_thing = body
 
@@ -273,11 +268,11 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 		ripped_thing = bodypart
 		bodypart.receive_damage(25, sharpness = SHARP_EDGED)
 		if(!(bodypart.bodytype & BODYTYPE_ORGANIC))
-			exterior_text = "exterior"
+			exterior_text = "外皮"
 	else
 		// If it is not a carbon mob, we will just check biotypes and damage it directly.
 		if(body.mob_biotypes & (MOB_MINERAL|MOB_ROBOTIC))
-			exterior_text = "exterior"
+			exterior_text = "外皮"
 			body.apply_damage(25, BRUTE)
 
 	// Procure book for flavor text. This is why we call parent at the end.
@@ -286,5 +281,5 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 		stack_trace("Somehow, no book in codex cicatrix selected atoms! [english_list(selected_atoms)]")
 	playsound(body, 'sound/items/poster_ripped.ogg', 100, TRUE)
 	body.do_jitter_animation()
-	body.visible_message(span_danger("An awful ripping sound is heard as [ripped_thing]'s [exterior_text] is ripped straight out, wrapping around [le_book || "the book"], turning into an eldritch shade of blue!"))
+	body.visible_message(span_danger("[ripped_thing]的[exterior_text]伴随着可怕的撕裂声分崩离析，碎片缠扰着[le_book || ""]，发出一种古老而神秘的蓝色!"))
 	return ..()

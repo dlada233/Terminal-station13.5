@@ -1,7 +1,6 @@
 /datum/action/cooldown/spell/aoe/void_pull
-	name = "Void Pull"
-	desc = "Calls the void, damaging, knocking down, and stunning people nearby. \
-		Distant foes are also pulled closer to you (but not damaged)."
+	name = "虚空牵引"
+	desc = "呼唤虚空，伤害、击倒、昏迷附近的人，在远处的人也会被牵引而来（但不会造成伤害）."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

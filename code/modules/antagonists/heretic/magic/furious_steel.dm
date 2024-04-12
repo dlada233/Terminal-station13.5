@@ -1,8 +1,6 @@
 /datum/action/cooldown/spell/pointed/projectile/furious_steel
-	name = "Furious Steel"
-	desc = "Summon three silver blades which orbit you. \
-		While orbiting you, these blades will protect you from from attacks, but will be consumed on use. \
-		Additionally, you can click to fire the blades at a target, dealing damage and causing bleeding."
+	name = "唤威钢"
+	desc = "施放后在你周围召唤三把旋转的刀刃，这些刀刃可以消耗自身保护你免受攻击. 也可以点击目标发射刀刃，造成伤害和流血."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -16,8 +14,8 @@
 
 	spell_requirements = NONE
 
-	active_msg = "You summon forth three blades of furious silver."
-	deactive_msg = "You conceal the blades of furious silver."
+	active_msg = "你召唤出三把狂暴的利刃."
+	deactive_msg = "你收回狂暴的利刃."
 	cast_range = 20
 	projectile_type = /obj/projectile/floating_blade
 	projectile_amount = 3
@@ -97,7 +95,7 @@
 	on_deactivation()
 
 /obj/projectile/floating_blade
-	name = "blade"
+	name = "利刃"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "knife"
 	speed = 2
@@ -124,7 +122,7 @@
 				return PROJECTILE_PIERCE_PHASE
 
 		if(victim.can_block_magic(MAGIC_RESISTANCE))
-			visible_message(span_warning("[src] drops to the ground and melts on contact [victim]!"))
+			visible_message(span_warning("[src]在接触[victim]的瞬间掉到地上并融化了!"))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 	return ..()

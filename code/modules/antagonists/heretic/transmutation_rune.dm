@@ -1,7 +1,7 @@
 /// The heretic's rune, which they use to complete transmutation rituals.
 /obj/effect/heretic_rune
-	name = "transmutation rune"
-	desc = "A flowing circle of shapes and runes is etched into the floor, filled with a thick black tar-like fluid."
+	name = "嬗变符文"
+	desc = "地板上蚀刻着一圈流动的符文，里面充满了一种厚厚的黑色焦油状液体."
 	icon_state = ""
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
@@ -21,8 +21,8 @@
 	if(!IS_HERETIC(user))
 		return
 
-	. += span_notice("Allows you to transmute objects by invoking the rune after collecting the prerequisites overhead.")
-	. += span_notice("You can use your <i>Mansus Grasp</i> on the rune to remove it.")
+	. += span_notice("只要条件满足，就能通过嬗变符文对物品进行嬗变.")
+	. += span_notice("你可以对符文使用<i>漫宿之握</i>来移除符文.")
 
 /obj/effect/heretic_rune/attack_paw(mob/living/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -52,11 +52,11 @@
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
 	var/list/rituals = heretic_datum.get_rituals()
 	if(!length(rituals))
-		loc.balloon_alert(user, "no rituals available!")
+		loc.balloon_alert(user, "没有仪式可用!")
 		is_in_use = FALSE
 		return
 
-	var/chosen = tgui_input_list(user, "Chose a ritual to attempt.", "Chose a Ritual", rituals)
+	var/chosen = tgui_input_list(user, "选择进行的仪式.", "仪式选择", rituals)
 	if(!chosen || !istype(rituals[chosen], /datum/heretic_knowledge) || QDELETED(src) || QDELETED(user) || QDELETED(heretic_datum))
 		is_in_use = FALSE
 		return
@@ -158,9 +158,9 @@
 
 	if(length(what_are_we_missing))
 		// Let them know it screwed up
-		loc.balloon_alert(user, "ritual failed, missing components!")
+		loc.balloon_alert(user, "仪式失败，要素不足!")
 		// Then let them know what they're missing
-		to_chat(user, span_hierophant_warning("You are missing [english_list(what_are_we_missing)] in order to complete the ritual \"[ritual.name]\"."))
+		to_chat(user, span_hierophant_warning("距完成\"[ritual.name]\"尚需[english_list(what_are_we_missing)]."))
 		return FALSE
 
 	// If we made it here, the ritual had all necessary components, and we can try to cast it.
@@ -195,7 +195,7 @@
 	// No feedback is given on failure here -
 	// the ritual itself should handle it (providing specifics as to why it failed)
 	if(ritual_result)
-		loc.balloon_alert(user, "ritual complete")
+		loc.balloon_alert(user, "仪式完成")
 
 	return ritual_result
 

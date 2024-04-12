@@ -1,8 +1,7 @@
 /datum/action/cooldown/spell/aoe/fiery_rebirth
-	name = "Nightwatcher's Rebirth"
-	desc = "A spell that extinguishes you drains nearby heathens engulfed in flames of their life force, \
-		healing you for each victim drained. Those in critical condition \
-		will have the last of their vitality drained, killing them."
+	name = "守夜人的重生"
+	desc = "为自身灭火并疗伤，同时伤害周围着火的不信之人. \
+		每有一名受此影响的不信之人都会治疗你，陷入濒死的不信之人将立刻死亡"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -41,7 +40,7 @@
 
 	//This is essentially a death mark, use this to finish your opponent quicker.
 	if(CAN_SUCCUMB(victim))
-		victim.investigate_log("has been executed by fiery rebirth.", INVESTIGATE_DEATHS)
+		victim.investigate_log("被守夜人的重生处决了.", INVESTIGATE_DEATHS)
 		victim.death()
 	victim.apply_damage(20, BURN)
 

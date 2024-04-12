@@ -1,9 +1,8 @@
 /datum/action/cooldown/spell/caretaker
-	name = "Caretaker’s Last Refuge"
-	desc = "Shifts you into the Caretaker's Refuge, rendering you translucent and intangible. \
-		While in the Refuge your movement is unrestricted, but you cannot use your hands or cast any spells. \
-		You cannot enter the Refuge while near other sentient beings, \
-		and you can be removed from it upon contact with antimagical artifacts."
+	name = "看守人的最终避难所"
+	desc = "将你转移到看守人的最终避难所，就是将你变得半透明且无敌. \
+		避难期间你免疫减速，但也无法使用双手和咒语，以及无法伤害其他任何物体. \
+		此外，在附近存在有感知的生命时，你无法施展避难所技能，并且当你接触到反魔法造物时，你的避难状态会失效."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
@@ -31,7 +30,7 @@
 
 	for(var/mob/living/alive in orange(5, owner))
 		if(alive.stat != DEAD && alive.client)
-			owner.balloon_alert(owner, "other minds nearby!")
+			owner.balloon_alert(owner, "附近存在有感知的生命!")
 			return . | SPELL_CANCEL_CAST
 
 /datum/action/cooldown/spell/caretaker/cast(mob/living/cast_on)

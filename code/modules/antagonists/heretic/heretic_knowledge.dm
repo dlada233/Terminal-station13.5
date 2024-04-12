@@ -122,9 +122,9 @@
 /datum/heretic_knowledge/proc/parse_required_item(atom/item_path, number_of_things)
 	// If we need a human, there is a high likelihood we actually need a (dead) body
 	if(ispath(item_path, /mob/living/carbon/human))
-		return "bod[number_of_things > 1 ? "ies" : "y"]"
+		return "人类尸体"
 	if(ispath(item_path, /mob/living))
-		return "carcass[number_of_things > 1 ? "es" : ""] of any kind"
+		return "任意尸体"
 	return "[initial(item_path.name)]\s"
 
 /**
@@ -237,7 +237,7 @@
 			LAZYREMOVE(created_items, ref)
 
 	if(LAZYLEN(created_items) >= limit)
-		loc.balloon_alert(user, "ritual failed, at limit!")
+		loc.balloon_alert(user, "仪式失败，达到极限!")
 		return FALSE
 
 	return TRUE
@@ -440,7 +440,7 @@
 		// and also not run any z or dist checks, as a bonus for those going beyond
 		if(fingerprints[their_prints] || blood_samples[their_blood])
 			boosted_targets += human_to_check
-			potential_targets["[human_to_check.real_name] (Boosted)"] = human_to_check
+			potential_targets["[human_to_check.real_name] (增强)"] = human_to_check
 			continue
 
 		// No boost present, so we should be a little stricter moving forward
@@ -456,34 +456,34 @@
 
 		potential_targets[human_to_check.real_name] = human_to_check
 
-	var/chosen_mob = tgui_input_list(user, "Select the victim you wish to curse.", name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
+	var/chosen_mob = tgui_input_list(user, "选择你的诅咒目标.", name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
 	if(isnull(chosen_mob))
 		return FALSE
 
 	var/mob/living/carbon/human/to_curse = potential_targets[chosen_mob]
 	if(QDELETED(to_curse))
-		loc.balloon_alert(user, "ritual failed, invalid choice!")
+		loc.balloon_alert(user, "仪式失败，无效选项!")
 		return FALSE
 
 	// Yes, you COULD curse yourself, not sure why but you could
 	if(to_curse == user)
-		var/are_you_sure = tgui_alert(user, "Are you sure you want to curse yourself?", name, list("Yes", "No"))
+		var/are_you_sure = tgui_alert(user, "你确定要诅咒自己吗", name, list("Yes", "No"))
 		if(are_you_sure != "Yes")
 			return FALSE
 
 	var/boosted = (to_curse in boosted_targets)
 	var/turf/curse_turf = get_turf(to_curse)
 	if(!boosted && (!is_valid_z_level(curse_turf, loc) || get_dist(curse_turf, loc) > max_range * 1.5)) // Give a bit of leeway on max range for people moving around
-		loc.balloon_alert(user, "ritual failed, too far!")
+		loc.balloon_alert(user, "仪式失败，太远了!")
 		return FALSE
 
 	if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, charge_cost = 0))
-		to_chat(to_curse, span_warning("You feel a ghastly chill, but the feeling passes shortly."))
+		to_chat(to_curse, span_warning("你感到一阵可怕的寒意，但这种感觉很快就过去了."))
 		return TRUE
 
-	log_combat(user, to_curse, "cursed via heretic ritual", addition = "([boosted ? "Boosted" : ""] [name])")
+	log_combat(user, to_curse, "被异端仪式诅咒", addition = "([boosted ? "增强" : ""][name])")
 	curse(to_curse, boosted)
-	to_chat(user, span_hierophant("You cast a[boosted ? "n empowered":""] [name] upon [to_curse.real_name]."))
+	to_chat(user, span_hierophant("你对[to_curse.real_name]施加了[boosted ? "增强":""][name]."))
 
 	fingerprints = null
 	blood_samples = null
@@ -536,10 +536,10 @@
 	summoned.move_resist = MOVE_FORCE_OVERPOWERING
 	animate(summoned, 10 SECONDS, alpha = 155)
 
-	message_admins("A [summoned.name] is being summoned by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(summoned)].")
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("Do you want to play as a [summoned.name]?", check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, target_mob = summoned, ignore_category = poll_ignore_define, pic_source = summoned, role_name_text = summoned.name)
+	message_admins("一个[summoned.name]被[ADMIN_LOOKUPFLW(user)]在[ADMIN_COORDJMP(summoned)]上生成.")
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演一个[summoned.name]吗?", check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, target_mob = summoned, ignore_category = poll_ignore_define, pic_source = summoned, role_name_text = summoned.name)
 	if(!LAZYLEN(candidates))
-		loc.balloon_alert(user, "ritual failed, no ghosts!")
+		loc.balloon_alert(user, "仪式失败，无鬼魂!")
 		animate(summoned, 0.5 SECONDS, alpha = 0)
 		QDEL_IN(summoned, 0.6 SECONDS)
 		return FALSE
@@ -553,8 +553,8 @@
 	summoned.ghostize(FALSE)
 	summoned.key = picked_candidate.key
 
-	user.log_message("created a [summoned.name], controlled by [key_name(picked_candidate)].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a [summoned.name], [ADMIN_LOOKUPFLW(summoned)].")
+	user.log_message("创造了一个[summoned.name]，由[key_name(picked_candidate)]控制.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(user)]创造了一个[summoned.name], [ADMIN_LOOKUPFLW(summoned)].")
 
 	var/datum/antagonist/heretic_monster/heretic_monster = summoned.mind.add_antag_datum(/datum/antagonist/heretic_monster)
 	heretic_monster.set_owner(user.mind)
@@ -571,9 +571,9 @@
  * A subtype of knowledge that generates random ritual components.
  */
 /datum/heretic_knowledge/knowledge_ritual
-	name = "Ritual of Knowledge"
-	desc = "A randomly generated transmutation ritual that rewards knowledge points and can only be completed once."
-	gain_text = "Everything can be a key to unlocking the secrets behind the Gates. I must be wary and wise."
+	name = "知识仪式"
+	desc = "内容随机生成的嬗变仪式，完成后奖励知识点数，只能完成一次."
+	gain_text = "每件事都可能是通往大门背后秘密的钥匙. 我必须谨慎而明智."
 	abstract_parent_type = /datum/heretic_knowledge/knowledge_ritual
 	mutually_exclusive = TRUE
 	cost = 1
@@ -631,15 +631,15 @@
 
 	var/list/requirements_string = list()
 
-	to_chat(user, span_hierophant("The [name] requires the following:"))
+	to_chat(user, span_hierophant("[name]需要以下物品:"))
 	for(var/obj/item/path as anything in required_atoms)
 		var/amount_needed = required_atoms[path]
-		to_chat(user, span_hypnophrase("[amount_needed] [initial(path.name)]\s..."))
-		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]\s"
+		to_chat(user, span_hypnophrase("[amount_needed] [initial(path.name)]..."))
+		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]"
 
-	to_chat(user, span_hierophant("Completing it will reward you [KNOWLEDGE_RITUAL_POINTS] knowledge points. You can check the knowledge in your Researched Knowledge to be reminded."))
+	to_chat(user, span_hierophant("完成该仪式会奖励你[KNOWLEDGE_RITUAL_POINTS]点知识点数. 你可以随时在已研究知识面板中再次查看这些内容."))
 
-	desc = "Allows you to transmute [english_list(requirements_string)] for [KNOWLEDGE_RITUAL_POINTS] bonus knowledge points. This can only be completed once."
+	desc = "你可以将[english_list(requirements_string)]进行嬗变以获取[KNOWLEDGE_RITUAL_POINTS]点知识点数. 这个仪式只能完成一次."
 
 /datum/heretic_knowledge/knowledge_ritual/can_be_invoked(datum/antagonist/heretic/invoker)
 	return !was_completed
@@ -653,10 +653,10 @@
 	was_completed = TRUE
 
 	var/drain_message = pick(strings(HERETIC_INFLUENCE_FILE, "drain_message"))
-	to_chat(user, span_boldnotice("[name] completed!"))
+	to_chat(user, span_boldnotice("[name]已完成!"))
 	to_chat(user, span_hypnophrase(span_big("[drain_message]")))
-	desc += " (Completed!)"
-	log_heretic_knowledge("[key_name(user)] completed a [name] at [worldtime2text()].")
+	desc += " (已完成!)"
+	log_heretic_knowledge("[key_name(user)]完成了[name]在[worldtime2text()].")
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	return TRUE
 
@@ -678,9 +678,9 @@
 	for(var/datum/heretic_knowledge/knowledge as anything in flatten_list(our_heretic.researched_knowledge))
 		total_points += knowledge.cost
 
-	log_heretic_knowledge("[key_name(user)] gained knowledge of their final ritual at [worldtime2text()]. \
-		They have [length(our_heretic.researched_knowledge)] knowledge nodes researched, totalling [total_points] points \
-		and have sacrificed [our_heretic.total_sacrifices] people ([our_heretic.high_value_sacrifices] of which were high value)")
+	log_heretic_knowledge("[key_name(user)]获得了最终仪式的知识在[worldtime2text()]. \
+		此时已经研究了[length(our_heretic.researched_knowledge)]份知识，总计[total_points]点知识点数.\
+		以及已经献祭了[our_heretic.total_sacrifices]人(其中有[our_heretic.high_value_sacrifices]名高价值目标)")
 
 /datum/heretic_knowledge/ultimate/can_be_invoked(datum/antagonist/heretic/invoker)
 	if(invoker.ascended)
@@ -725,11 +725,11 @@
 		human_user.physiology.burn_mod *= 0.5
 
 	SSblackbox.record_feedback("tally", "heretic_ascended", 1, route)
-	log_heretic_knowledge("[key_name(user)] completed their final ritual at [worldtime2text()].")
+	log_heretic_knowledge("[key_name(user)]完成了最终仪式在[worldtime2text()].")
 	notify_ghosts(
-		"[user] has completed an ascension ritual!",
+		"[user]已经完成了飞升仪式!",
 		source = user,
-		header = "A Heretic is Ascending!",
+		header = "一名异教徒飞升!",
 	)
 	return TRUE
 

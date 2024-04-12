@@ -1,8 +1,7 @@
 /datum/action/cooldown/spell/shadow_cloak
-	name = "Cloak of Shadow"
-	desc = "Completely conceals your identity, but does not make you invisible.  Can be activated early to disable it. \
-		While cloaked, you move faster, but undergo actions much slower. \
-		Taking damage while cloaked may cause it to lift suddenly, causing negative effects. "
+	name = "黑雾隐"
+	desc = "用暗影黑雾包裹你自己，达到隐藏身份的效果，注意这不仅不会让你身躯隐形反而会让你看起来更显眼. \
+		冷却时间会根据你上一次的使用时间而改变. 在咒语持续期间，你的移速变快，但执行动作的速度会慢很多."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
@@ -65,8 +64,8 @@
 /datum/action/cooldown/spell/shadow_cloak/proc/cloak_mob(mob/living/cast_on)
 	playsound(cast_on, 'sound/chemistry/ahaha.ogg', 50, TRUE, -1, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 0.5)
 	cast_on.visible_message(
-		span_warning("[cast_on] disappears into the shadows!"),
-		span_notice("You disappear into the shadows, becoming unidentifiable."),
+		span_warning("[cast_on]消失在暗影中!"),
+		span_notice("你消失在暗影中，身份变得不可辨认."),
 	)
 
 	active_cloak = cast_on.apply_status_effect(/datum/status_effect/shadow_cloak)
@@ -83,8 +82,8 @@
 	playsound(cast_on, 'sound/effects/curseattack.ogg', 50)
 	if(show_message)
 		cast_on.visible_message(
-			span_warning("[cast_on] appears from the shadows!"),
-			span_notice("You appear from the shadows, identifiable once more."),
+			span_warning("[cast_on]从暗影中显形!"),
+			span_notice("你从暗影中显形，变得可以辨认."),
 		)
 
 	// Clear up the timer
@@ -98,8 +97,8 @@
 	var/mob/living/removed = source.owner
 	uncloak_mob(removed, show_message = FALSE)
 	removed.visible_message(
-		span_warning("[removed] is pulled from the shadows!"),
-		span_userdanger("You are pulled out of the shadows!"),
+		span_warning("[removed]被从暗影中抽了出来!"),
+		span_userdanger("你被从暗影中抽了出来"),
 	)
 
 	removed.Knockdown(0.5 SECONDS)
@@ -113,8 +112,8 @@
 
 	uncloak_mob(source, show_message = FALSE)
 	source.visible_message(
-		span_warning("[source] suddenly appears from the shadows!"),
-		span_userdanger("As you lose your focus, you are pulled out of the shadows!"),
+		span_warning("[source]突然从暗影中显形!"),
+		span_userdanger("因为你失去了焦点，身体被抽离出暗影!"),
 	)
 	StartCooldown(uncloak_time / 3)
 

@@ -1,10 +1,9 @@
 // Sidepaths for knowledge between Rust and Blade.
 /datum/heretic_knowledge/armor
-	name = "Armorer's Ritual"
-	desc = "Allows you to transmute a table and a gas mask to create Eldritch Armor. \
-		Eldritch Armor provides great protection while also acting as a focus when hooded."
-	gain_text = "The Rusted Hills welcomed the Blacksmith in their generosity. And the Blacksmith \
-		returned their generosity in kind."
+	name = "锻甲的仪式"
+	desc = "允许你将一张桌子和一副防毒面具嬗变成一套邪术盔甲. \
+		邪术盔甲能提供优越的防护性，在戴上兜帽时还会提供焦点."
+	gain_text = "锈山慷慨地欢迎铁匠，铁匠慷慨地回报锈山."
 	next_knowledge = list(
 		/datum/heretic_knowledge/rust_regen,
 		/datum/heretic_knowledge/blade_dance,
@@ -18,11 +17,11 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/crucible
-	name = "Mawed Crucible"
-	desc = "Allows you to transmute a portable water tank and a table to create a Mawed Crucible. \
-		The Mawed Crubile can brew powerful potions for combat and utility, but must be fed bodyparts and organs between uses."
-	gain_text = "This is pure agony. I wasn't able to summon the figure of the Aristocrat, \
-		but with the Priest's attention I stumbled upon a different recipe..."
+	name = "喰食坩埚"
+	desc = "你可以将一个水箱和一张桌子嬗变成喰食坩埚. \
+		喰食坩埚可以用来酿造强大的药水，但在多次使用之间必须投喂身体部位."
+	gain_text = "无法召唤贵族的身影为我带来了纯粹的苦楚.\
+		但在祭司的关注下，我偶然发现了一份不同的配方..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/duel_stance,
 		/datum/heretic_knowledge/spell/area_conversion,
@@ -36,15 +35,11 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/rifle
-	name = "Lionhunter's Rifle"
-	desc = "Allows you to transmute any ballistic weapon, such as a pipegun, with hide \
-		from any animal, a plank of wood, and a camera to create the Lionhunter's rifle. \
-		The Lionhunter's Rifle is a long ranged ballistic weapon with three shots. \
-		These shots function as normal, albeit weak high caliber mutitions when fired from \
-		close range or at inanimate objects. You can aim the rifle at distant foes, \
-		causing the shot to deal massively increased damage and hone in on them."
-	gain_text = "I met an old man in an anique shop who wielded a very unusual weapon. \
-		I could not purchase it at the time, but they showed me how they made it ages ago."
+	name = "猎狮人的步枪"
+	desc = "你可以将任意比如管道枪的弹道武器、任意兽皮、照相机和一块木板来嬗变出猎狮人的步枪. \
+		猎狮人的步枪弹容量三发，可以正常射击. 但要注意子弹伤害将会随着射击距离而变化，距离越远，伤害越高."
+	gain_text = "我在古董店遇到一位老人，挥舞着一把不同寻常的武器. \
+		虽然我当时买不起，但他们曾经为我展示过如何制作它."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/realignment,
 		/datum/heretic_knowledge/spell/rust_construction,
@@ -61,12 +56,10 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/rifle_ammo
-	name = "Lionhunter Rifle Ammunition (free)"
-	desc = "Allows you to transmute 3 ballistic ammo casings (used or unused) of any caliber, \
-		including shotgun shot, with any animal hide to create an extra clip of ammunition for the Lionhunter Rifle."
-	gain_text = "The weapon came with three rough iron balls, intended to be used as ammunition. \
-		They were very effective, for simple iron, but used up quickly. I soon ran out. \
-		No replacement munitions worked in their stead. It was peculiar in what it wanted."
+	name = "猎狮人的步枪子弹 (免费)"
+	desc = "你可以将包括霰弹枪在内的任意三颗子弹或弹壳与任意兽皮嬗变成一条猎狮人的步枪弹夹."
+	gain_text = "这把武器发射三颗粗铁球，致命且迅速.但我很快就打光了这些无可替代的弹药. \
+		这把枪想要的东西很特别."
 	required_atoms = list(
 		/obj/item/stack/sheet/animalhide = 1,
 		/obj/item/ammo_casing = 3,
@@ -97,9 +90,9 @@
 	return TRUE
 
 /datum/heretic_knowledge/spell/rust_charge
-	name = "Rust Charge"
-	desc = "A charge that must be started on a rusted tile and will destroy any rusted objects you come into contact with, will deal high damage to others and rust around you during the charge."
-	gain_text = "The hills sparkled now, as I neared them my mind began to wander. I quickly regained my resolve and pushed forward, this last leg would be the most treacherous."
+	name = "锈能冲锋"
+	desc = "冲锋必须在生锈的地块上开始，伤害并锈蚀冲锋范围内的东西，若接触到生锈物体还会直接将其摧毁."
+	gain_text = "山开始闪烁不定，思绪随着接近终点而开始游荡. 但我很快恢复了继续前进的决斗，最后的路途将愈加凶险."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/furious_steel,
 		/datum/heretic_knowledge/spell/entropic_plume,

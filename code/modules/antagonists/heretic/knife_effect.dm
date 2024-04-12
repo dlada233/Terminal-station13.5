@@ -1,6 +1,6 @@
 // "Floating ghost blade" effect for blade heretics
 /obj/effect/floating_blade
-	name = "knife"
+	name = "刀"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "knife"
 	layer = LOW_MOB_LAYER

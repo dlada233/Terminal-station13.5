@@ -1,11 +1,9 @@
 // Sidepaths for knowledge between Rust and Cosmos.
 
 /datum/heretic_knowledge/essence
-	name = "Priest's Ritual"
-	desc = "Allows you to transmute a tank of water and a glass shard into a Flask of Eldritch Essence. \
-		Eldritch water can be consumed for potent healing, or given to heathens for deadly poisoning."
-	gain_text = "This is an old recipe. The Owl whispered it to me. \
-		Created by the Priest - the Liquid that both was and is not."
+	name = "祭司的秘仪"
+	desc = "让你将水罐和一片玻璃嬗变成一瓶邪术精华，邪术精华液可以用来治疗自己，也可以用来毒死不信之人."
+	gain_text = "这是一份旧药谱. 猫头鹰悄悄对我说. 祭司创造的液体，不存在与过去与未来."
 	next_knowledge = list(
 		/datum/heretic_knowledge/rust_regen,
 		/datum/heretic_knowledge/spell/cosmic_runes,
@@ -19,9 +17,9 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/entropy_pulse
-	name = "Pulse of Entropy"
-	desc = "Allows you to transmute 20 irons and 2 garbage items to fill the surrounding vicinity of the rune with rust."
-	gain_text = "Reality begins to whisper to me. To give it its entropic end."
+	name = "脉冲熵"
+	desc = "你可以将20块铁和2个垃圾物品进行嬗变，让符文周围充满铁锈."
+	gain_text = "现实开始向我低语，以赋予它熵增的终结."
 	required_atoms = list(
 		/obj/item/stack/sheet/iron = 20,
 		/obj/item/trash = 2
@@ -41,11 +39,9 @@
 	return TRUE
 
 /datum/heretic_knowledge/curse/corrosion
-	name = "Curse of Corrosion"
-	desc = "Allows you to transmute wirecutters, a pool of vomit, and a heart to cast a curse of sickness on a crew member. \
-		While cursed, the victim will repeatedly vomit while their organs will take constant damage. You can additionally supply an item \
-		that a victim has touched or is covered in the victim's blood to empower the curse."
-	gain_text = "The body of humanity is temporary. Their weaknesses cannot be stopped, like iron falling to rust. Show them all."
+	name = "疫病诅咒"
+	desc = "你可以将剪线钳，一堆呕吐物和一颗心脏嬗变，来对船员施加疫病诅咒. 当被诅咒时，受害者将反复呕吐，器官持续受到伤害. 你还可以提供受害者接触过的物品或受害者的血覆盖的物品来增强诅咒."
+	gain_text = "血肉之躯终为土灰，生老病死人之所命. 展示光阴数载后的必然命运吧."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/area_conversion,
 		/datum/heretic_knowledge/spell/star_blast,
@@ -62,7 +58,7 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/curse/corrosion/curse(mob/living/carbon/human/chosen_mob, boosted = FALSE)
-	to_chat(chosen_mob, span_danger("You feel very ill..."))
+	to_chat(chosen_mob, span_danger("你感觉很不舒服..."))
 	chosen_mob.apply_status_effect(/datum/status_effect/corrosion_curse)
 	return ..()
 
@@ -71,14 +67,13 @@
 		return
 
 	chosen_mob.remove_status_effect(/datum/status_effect/corrosion_curse)
-	to_chat(chosen_mob, span_green("You start to feel better."))
+	to_chat(chosen_mob, span_green("你感觉好多了."))
 	return ..()
 
 /datum/heretic_knowledge/summon/rusty
-	name = "Rusted Ritual"
-	desc = "Allows you to transmute a pool of vomit, a book, and a head into a Rust Walker. \
-		Rust Walkers excel at spreading rust and are moderately strong in combat."
-	gain_text = "I combined my knowledge of creation with my desire for corruption. The Marshal knew my name, and the Rusted Hills echoed out."
+	name = "生锈秘仪"
+	desc = "你可以将一摊呕吐物，一本书和一颗头嬗变成铁锈漫步者. 铁锈漫步者擅长传播铁锈，战斗力也不俗."
+	gain_text = "我把创造的理论和腐败的渴望结合在一起，元帅听闻了我的名字，锈山回响不息."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/entropic_plume,
 		/datum/heretic_knowledge/spell/cosmic_expansion,

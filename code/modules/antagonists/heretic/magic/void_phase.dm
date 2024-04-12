@@ -1,8 +1,7 @@
 /datum/action/cooldown/spell/pointed/void_phase
-	name = "Void Phase"
-	desc = "Lets you blink to your pointed destination, causes 3x3 aoe damage bubble \
-		around your pointed destination and your current location. \
-		It has a minimum range of 3 tiles and a maximum range of 9 tiles."
+	name = "冥冥迷踪"
+	desc = "让你眨眼间就到达指定目的地，并对出发点和目的地周围都造成3x3范围伤害.\
+		可位移距离最短是3格，最长为9格."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -28,7 +27,7 @@
 		return
 
 	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) < min_cast_range)
-		cast_on.balloon_alert(owner, "too close!")
+		cast_on.balloon_alert(owner, "太近了!")
 		return . | SPELL_CANCEL_CAST
 
 /datum/action/cooldown/spell/pointed/void_phase/cast(atom/cast_on)

@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/cosmic_rune
-	name = "Cosmic Rune"
-	desc = "Creates a cosmic rune at your position, only two can exist at a time. Invoking one rune transports you to the other."
+	name = "宇宙符文"
+	desc = "在你脚下创造一个宇宙符文，同一时间最多存在两个. 站在上面激活符文会将你传送至另一个符文的位置."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -50,8 +50,8 @@
 
 /// A rune that allows you to teleport to the location of a linked rune.
 /obj/effect/cosmic_rune
-	name = "cosmic rune"
-	desc = "A strange rune, that can instantly transport people to another location."
+	name = "宇宙符文"
+	desc = "一个奇怪的符文，可以瞬间把人转移到另一个地方."
 	anchored = TRUE
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "cosmic_rune"
@@ -76,15 +76,15 @@
 	if(.)
 		return
 	if(!linked_rune)
-		balloon_alert(user, "no linked rune!")
+		balloon_alert(user, "没有另一个符文与之相连!")
 		fail_invoke()
 		return
 	if(!(user in get_turf(src)))
-		balloon_alert(user, "not close enough!")
+		balloon_alert(user, "不够靠近!")
 		fail_invoke()
 		return
 	if(user.has_status_effect(/datum/status_effect/star_mark))
-		balloon_alert(user, "blocked by star mark!")
+		balloon_alert(user, "被星痕阻碍!")
 		fail_invoke()
 		return
 	invoke(user)
@@ -108,7 +108,7 @@
 
 /// For if someone failed to invoke the rune
 /obj/effect/cosmic_rune/proc/fail_invoke()
-	visible_message(span_warning("The rune pulses with a small flash of purple light, then returns to normal."))
+	visible_message(span_warning("符文闪出微弱紫光，然后恢复了正常"))
 	var/oldcolor = rgb(255, 255, 255)
 	color = rgb(150, 50, 200)
 	animate(src, color = oldcolor, time = 5)
@@ -129,7 +129,7 @@
 	linked_rune = null
 
 /obj/effect/temp_visual/cosmic_rune_fade
-	name = "cosmic rune"
+	name = "宇宙符文"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "cosmic_rune_fade"
 	layer = SIGIL_LAYER
@@ -143,7 +143,7 @@
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cosmic", silicon_image)
 
 /obj/effect/temp_visual/rune_light
-	name = "cosmic rune"
+	name = "宇宙符文"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "cosmic_rune_light"
 	layer = SIGIL_LAYER

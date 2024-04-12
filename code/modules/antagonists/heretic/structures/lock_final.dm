@@ -1,6 +1,6 @@
 /obj/structure/lock_tear
 	name = "???"
-	desc = "It stares back. Theres no reason to remain. Run."
+	desc = "它在盯着我看，没有任何理由站着不动，快跑."
 	max_integrity = INFINITE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	icon = 'icons/obj/anomaly.dmi'
@@ -37,7 +37,7 @@
 
 /// Ask ghosts if they want to make some noise
 /obj/structure/lock_tear/proc/poll_ghosts()
-	var/list/candidates = SSpolling.poll_ghost_candidates("Would you like to be a random eldritch monster attacking the crew?", check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_HERETIC_MONSTER, pic_source = src, role_name_text = "eldritch monster")
+	var/list/candidates = SSpolling.poll_ghost_candidates("你想扮演一名邪恶怪物来攻击船员吗?", check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_HERETIC_MONSTER, pic_source = src, role_name_text = "邪恶怪物")
 	while(LAZYLEN(candidates))
 		var/mob/dead/observer/candidate = pick_n_take(candidates)
 		ghost_to_monster(candidate, should_ask = FALSE)
@@ -48,7 +48,7 @@
 	SIGNAL_HANDLER
 	var/turf/our_turf = get_turf(src)
 	playsound(our_turf, 'sound/magic/castsummon.ogg', vol = 100, vary = TRUE)
-	visible_message(span_boldwarning("The rip in space spasms and disappears!"))
+	visible_message(span_boldwarning("空间的裂缝抽搐然后消失了!"))
 	UnregisterSignal(former_master, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING)) // Just in case they die THEN delete
 	new /obj/effect/temp_visual/destabilising_tear(our_turf)
 	qdel(src)
@@ -63,12 +63,12 @@
 	. = ..()
 	if (!isobserver(user) || gathering_candidates)
 		return
-	. += span_notice("You can use this to enter the world as a foul monster.")
+	. += span_notice("你可以使用它来作为一个肮脏的怪物进入世界.")
 
 /// Turn a ghost into an 'orrible beast
 /obj/structure/lock_tear/proc/ghost_to_monster(mob/dead/observer/user, should_ask = TRUE)
 	if(should_ask)
-		var/ask = tgui_alert(user, "Become a monster?", "Ascended Rift", list("Yes", "No"))
+		var/ask = tgui_alert(user, "变成怪物?", "飞升裂隙", list("Yes", "No"))
 		if(ask != "Yes" || QDELETED(src) || QDELETED(user))
 			return FALSE
 	var/monster_type = pick(monster_types)
@@ -82,7 +82,7 @@
 		woohoo_free_antag.set_owner(ascendee)
 	var/datum/objective/kill_all_your_friends = new()
 	kill_all_your_friends.owner = monster.mind
-	kill_all_your_friends.explanation_text = "The station's crew must be culled."
+	kill_all_your_friends.explanation_text = "扑杀空间站船员."
 	kill_all_your_friends.completed = TRUE
 	woohoo_free_antag.objectives += kill_all_your_friends
 
@@ -95,7 +95,7 @@
 	return ..()
 
 /obj/effect/temp_visual/destabilising_tear
-	name = "destabilised tear"
+	name = "稳定裂隙"
 	icon = 'icons/obj/anomaly.dmi'
 	icon_state = "bhole3"
 	color = COLOR_VOID_PURPLE
