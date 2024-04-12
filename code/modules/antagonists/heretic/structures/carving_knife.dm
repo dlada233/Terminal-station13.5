@@ -1,8 +1,8 @@
 // The rune carver, a heretic knife that can draw rune traps.
 /obj/item/melee/rune_carver
-	name = "carving knife"
-	desc = "A small knife made of cold steel, pure and perfect. Its sharpness can carve into titanium itself - \
-		but only few can evoke the dangers that lurk beneath reality."
+	name = "雕刻刀"
+	desc = "一把由冷钢制成的小刀，纯净无暇. 它锋利到能雕刻钛金属 - \
+		但只有少数人能真正唤起潜藏在实在下的危险."
 	icon = 'icons/obj/antags/eldritch.dmi'
 	icon_state = "rune_carver"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -12,8 +12,8 @@
 	force = 10
 	throwforce = 20
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
+	attack_verb_continuous = list("攻击", "劈砍", "刺向", "切割", "捅向", "斩向")
+	attack_verb_simple = list("攻击", "劈砍", "刺向", "切割", "捅向", "斩向")
 	actions_types = list(/datum/action/item_action/rune_shatter)
 	embedding = list(
 		ignore_throwspeed_threshold = TRUE,
@@ -39,10 +39,10 @@
 	if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))
 		return
 
-	. += span_notice("<b>[length(current_runes)] / [max_rune_amt]</b> total carvings have been drawn.")
-	. += span_info("The following runes can be carved:")
+	. += span_notice("<b>[length(current_runes)] / [max_rune_amt]</b> 已雕刻总数.")
+	. += span_info("可雕刻以下刻印:")
 	for(var/obj/structure/trap/eldritch/trap as anything in subtypesof(/obj/structure/trap/eldritch))
-		var/potion_string = span_info("\tThe " + initial(trap.name) + " - " + initial(trap.carver_tip))
+		var/potion_string = span_info(initial(trap.name) + " - " + initial(trap.carver_tip))
 		. += potion_string
 
 /obj/item/melee/rune_carver/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -66,11 +66,11 @@
  */
 /obj/item/melee/rune_carver/proc/try_carve_rune(turf/open/target_turf, mob/user)
 	if(drawing)
-		target_turf.balloon_alert(user, "already carving!")
+		target_turf.balloon_alert(user, "已经在雕刻了!")
 		return
 
 	if(locate(/obj/structure/trap/eldritch) in range(1, target_turf))
-		target_turf.balloon_alert(user, "to close to another carving!")
+		target_turf.balloon_alert(user, "过于靠近另一处刻印!")
 		return
 
 	for(var/datum/weakref/rune_ref as anything in current_runes)
@@ -78,7 +78,7 @@
 			current_runes -= rune_ref
 
 	if(length(current_runes) >= max_rune_amt)
-		target_turf.balloon_alert(user, "too many carvings!")
+		target_turf.balloon_alert(user, "有太多刻印了!")
 		return
 
 	drawing = TRUE
@@ -113,19 +113,19 @@
 	if(!ispath(to_make, /obj/structure/trap/eldritch))
 		CRASH("[type] attempted to create a rune of incorrect type! (got: [to_make])")
 
-	target_turf.balloon_alert(user, "carving [picked_choice]...")
+	target_turf.balloon_alert(user, "雕刻[picked_choice]...")
 	user.playsound_local(target_turf, 'sound/items/sheath.ogg', 50, TRUE)
 	if(!do_after(user, 5 SECONDS, target = target_turf))
-		target_turf.balloon_alert(user, "interrupted!")
+		target_turf.balloon_alert(user, "被打断!")
 		return
 
-	target_turf.balloon_alert(user, "[picked_choice] carved")
+	target_turf.balloon_alert(user, "已雕刻[picked_choice]")
 	var/obj/structure/trap/eldritch/new_rune = new to_make(target_turf, user)
 	current_runes += WEAKREF(new_rune)
 
 /datum/action/item_action/rune_shatter
-	name = "Rune Break"
-	desc = "Destroys all runes carved by this blade."
+	name = "销毁符文"
+	desc = "摧毁这把刀刻出的所有符文."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon_state = "rune_break"
@@ -166,8 +166,8 @@
 
 // The actual rune traps the knife draws.
 /obj/structure/trap/eldritch
-	name = "elder carving"
-	desc = "Collection of unknown symbols, they remind you of days long gone..."
+	name = "古老刻印"
+	desc = "一系列未知的符号，让你想起了久远的时光..."
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	/// A tip displayed to heretics who examine the rune carver. Explains what the rune does.
 	var/carver_tip
@@ -191,32 +191,32 @@
 
 /obj/structure/trap/eldritch/attacked_by(obj/item/weapon, mob/living/user)
 	if(istype(weapon, /obj/item/melee/rune_carver) || istype(weapon, /obj/item/nullrod))
-		loc.balloon_alert(user, "carving dispelled")
+		loc.balloon_alert(user, "雕刻驱散")
 		playsound(src, 'sound/items/sheath.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 		qdel(src)
 
 	return ..()
 
 /obj/structure/trap/eldritch/alert
-	name = "alert carving"
+	name = "警戒刻印"
 	icon_state = "alert_rune"
 	alpha = 10
 	time_between_triggers = 5 SECONDS
 	sparks = FALSE
-	carver_tip = "A nearly invisible rune that, when stepped on, alerts the carver who triggered it and where."
+	carver_tip = "一个几乎不可见的符文，当它被踩到时，会对雕刻者通报触发者的身份与位置."
 
 /obj/structure/trap/eldritch/alert/trap_effect(mob/living/victim)
 	var/mob/living/real_owner = owner?.resolve()
 	if(real_owner)
-		to_chat(real_owner, span_userdanger("[victim.real_name] has stepped foot on the alert rune in [get_area(src)]!"))
+		to_chat(real_owner, span_userdanger("[victim.real_name]踩到了位于[get_area(src)]的警戒刻印!"))
 		real_owner.playsound_local(get_turf(real_owner), 'sound/magic/curse.ogg', 50, TRUE)
 
 /obj/structure/trap/eldritch/tentacle
-	name = "grasping carving"
+	name = "握力刻印"
 	icon_state = "tentacle_rune"
 	time_between_triggers = 45 SECONDS
 	charges = 1
-	carver_tip = "When stepped on, causes heavy damage leg damage and stuns the victim for 5 seconds. Has 1 charge."
+	carver_tip = "当它被踩到时，对触发者腿部造成严重的伤害并击昏五秒，有一次充能."
 
 /obj/structure/trap/eldritch/tentacle/trap_effect(mob/living/victim)
 	if(!iscarbon(victim))
@@ -228,11 +228,11 @@
 	playsound(src, 'sound/magic/demon_attack1.ogg', 75, TRUE)
 
 /obj/structure/trap/eldritch/mad
-	name = "mad carving"
+	name = "疯狂刻印"
 	icon_state = "madness_rune"
 	time_between_triggers = 20 SECONDS
 	charges = 2
-	carver_tip = "When stepped on, causes heavy stamina damage, blindness, and a variety of ailments to the victim. Has 2 charges."
+	carver_tip = "当它被踩到时，对触发者造成严重的耐力伤，施加失明和各种疾病. 有两次充能."
 
 /obj/structure/trap/eldritch/mad/trap_effect(mob/living/victim)
 	if(!iscarbon(victim))

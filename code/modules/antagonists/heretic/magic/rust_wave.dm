@@ -1,9 +1,7 @@
 // Shoots out in a wave-like, what rust heretics themselves get
 /datum/action/cooldown/spell/cone/staggered/entropic_plume
-	name = "Entropic Plume"
-	desc = "Spews forth a disorienting plume that causes enemies to strike each other, \
-		briefly blinds them (increasing with range) and poisons them (decreasing with range). \
-		Also spreads rust in the path of the plume."
+	name = "熵雾"
+	desc = "喷出一股令人混乱的烟雾，使敌人互相攻击，造成致盲（效果随距离增加）和中毒（效果随距离减少）. 同时也会锈蚀喷射范围内的物体."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -65,8 +63,8 @@
 
 // Shoots a straight line of rusty stuff ahead of the caster, what rust monsters get
 /datum/action/cooldown/spell/basic_projectile/rust_wave
-	name = "Patron's Reach"
-	desc = "Channels energy into your hands to release a wave of rust."
+	name = "神之致"
+	desc = "将能量传输至手中，释放出锈蚀之潮."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -82,7 +80,7 @@
 	projectile_type = /obj/projectile/magic/aoe/rust_wave
 
 /obj/projectile/magic/aoe/rust_wave
-	name = "Patron's Reach"
+	name = "神之致"
 	icon_state = "eldritch_projectile"
 	alpha = 180
 	damage = 30
@@ -111,7 +109,7 @@
 		T.rust_heretic_act()
 
 /datum/action/cooldown/spell/basic_projectile/rust_wave/short
-	name = "Lesser Patron's Reach"
+	name = "次级神之致"
 	projectile_type = /obj/projectile/magic/aoe/rust_wave/short
 
 /obj/projectile/magic/aoe/rust_wave/short

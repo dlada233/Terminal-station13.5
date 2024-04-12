@@ -1,7 +1,7 @@
 // The spooky "void" / "abyssal" / "madness" mask for heretics.
 /obj/item/clothing/mask/madness_mask
-	name = "Abyssal Mask"
-	desc = "A mask created from the suffering of existence. Looking down it's eyes, you notice something gazing back at you."
+	name = "深渊面罩"
+	desc = "一副由实在的痛苦创造出来的面罩，当你凝视它的双眼时，它也凝视着你."
 	icon_state = "mad_mask"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_SMALL
@@ -18,10 +18,10 @@
 /obj/item/clothing/mask/madness_mask/examine(mob/user)
 	. = ..()
 	if(IS_HERETIC_OR_MONSTER(user))
-		. += span_notice("Actively drains the sanity and stamina of nearby non-heretics when worn.")
-		. += span_notice("If forced onto the face of a non-heretic, they will be unable to remove it willingly.")
+		. += span_notice("佩戴时消耗附近非异教徒的理智和耐力.")
+		. += span_notice("如果强行给非异教徒带上，则他们无法主动取下来.")
 	else
-		. += span_danger("The eyes fill you with dread... You best avoid it.")
+		. += span_danger("面具的双眼让你恐惧...最好还是避开视线.")
 
 /obj/item/clothing/mask/madness_mask/equipped(mob/user, slot)
 	. = ..()
@@ -37,7 +37,7 @@
 		return
 
 	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
-	to_chat(user, span_userdanger("[src] clamps tightly to your face as you feel your soul draining away!"))
+	to_chat(user, span_userdanger("[src]紧紧地卡在你的脸上，你感到灵魂正在流失!"))
 
 /obj/item/clothing/mask/madness_mask/dropped(mob/M)
 	local_user = null

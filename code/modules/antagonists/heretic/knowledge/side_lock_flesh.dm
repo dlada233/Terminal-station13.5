@@ -1,11 +1,9 @@
 // Sidepaths for knowledge between Knock and Flesh.
 
 /datum/heretic_knowledge/spell/apetra_vulnera
-	name = "Apetra Vulnera"
-	desc = "Grants you Apetra Vulnera, a spell \
-		which causes heavy bleeding on all bodyparts of the victim that have more than 15 brute damage. \
-		Wounds a random limb if no limb is sufficiently damaged."
-	gain_text = "Flesh opens, and blood spills. My master seeks sacrifice, and I shall appease."
+	name = "皮开肉绽" // Apetra Vulnera 拉丁语
+	desc = "赐予你阿皮托符多拉，使目标的所有受创伤超过15点的身体部位大量出血，如果没有部位符合条件，则随机让一个部位重伤."
+	gain_text = "肉开了，血洒了. 我的主人要祭品，我要满足它."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/blood_siphon,
 		/datum/heretic_knowledge/void_cloak,
@@ -15,10 +13,9 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/spell/opening_blast
-	name = "Wave Of Desperation"
-	desc = "Grants you Wave Of Desparation, a spell which can only be cast while restrained. \
-		It removes your restraints, repels and knocks down adjacent people, and applies the Mansus Grasp to everything nearby."
-	gain_text = "My shackles undone in dark fury, their feeble bindings crumble before my power."
+	name = "绝望之潮"
+	desc = "赐予你绝望之潮，只能在被束缚的时候使用，它能解除你的束缚，同时击退并击倒附近的人并施加漫宿之握."
+	gain_text = "我的镣铐在暗的暴怒下瓦解，脆弱的束缚在我的力量前不值一提."
 	next_knowledge = list(
 		/datum/heretic_knowledge/summon/ashy,
 		/datum/heretic_knowledge/void_cloak,

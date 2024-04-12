@@ -1,7 +1,6 @@
 /datum/action/cooldown/spell/pointed/manse_link
-	name = "Manse Link"
-	desc = "This spell allows you to pierce through reality and connect minds to one another \
-		via your Mansus Link. All minds connected to your Mansus Link will be able to communicate discreetly across great distances."
+	name = "漫宿共联"
+	desc = "可以让你穿透现实，通过漫宿共联分享彼此的思维. 所有连接到你的漫宿共联的思维都可以远程进行秘密的交流."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -49,23 +48,23 @@
 /datum/action/cooldown/spell/pointed/manse_link/proc/do_linking(mob/living/linkee)
 	var/datum/component/mind_linker/linker = target
 	if(linkee.stat == DEAD)
-		to_chat(owner, span_warning("They're dead!"))
+		to_chat(owner, span_warning("他们已经死了!"))
 		return FALSE
 
-	to_chat(owner, span_notice("You begin linking [linkee]'s mind to yours..."))
-	to_chat(linkee, span_warning("You feel your mind being pulled somewhere... connected... intertwined with the very fabric of reality..."))
+	to_chat(owner, span_notice("你开始将[linkee]的思维与你共联..."))
+	to_chat(linkee, span_warning("你感到你思维被拖到了某个地方...被共联...与现实交织了在一起."))
 
 	if(!do_after(owner, link_time, linkee))
-		to_chat(owner, span_warning("You fail to link to [linkee]'s mind."))
-		to_chat(linkee, span_warning("The foreign presence leaves your mind."))
+		to_chat(owner, span_warning("你共联[linkee]的思维失败."))
+		to_chat(linkee, span_warning("异质的存在离开了你的思维."))
 		return FALSE
 
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(linkee))
 		return FALSE
 
 	if(!linker.link_mob(linkee))
-		to_chat(owner, span_warning("You can't seem to link to [linkee]'s mind."))
-		to_chat(linkee, span_warning("The foreign presence leaves your mind."))
+		to_chat(owner, span_warning("你无法与[linkee]的思维共联."))
+		to_chat(linkee, span_warning("异质的存在离开了你的思维."))
 		return FALSE
 
 	return TRUE

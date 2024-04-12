@@ -1,10 +1,10 @@
 // Eldritch armor. Looks cool, hood lets you cast heretic spells.
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
-	name = "ominous hood"
+	name = "不详兜帽"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "eldritch"
-	desc = "A torn, dust-caked hood. Strange eyes line the inside."
+	desc = "破旧、满是灰尘的兜帽，怪异的多眼排列在里面."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	flash_protect = FLASH_PROTECTION_WELDER
@@ -14,8 +14,8 @@
 	AddElement(/datum/element/heretic_focus)
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch
-	name = "ominous armor"
-	desc = "A ragged, dusty set of robes. Strange eyes line the inside."
+	name = "不详护甲"
+	desc = "一身破旧、满是灰尘的长袍，怪异的多眼排列在里面."
 	icon_state = "eldritch_armor"
 	inhand_icon_state = null
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
@@ -44,15 +44,14 @@
 		return
 
 	// Our hood gains the heretic_focus element.
-	. += span_notice("Allows you to cast heretic spells while the hood is up.")
+	. += span_notice("戴上兜帽时获得焦点.")
 
 // Void cloak. Turns invisible with the hood up, lets you hide stuff.
 /obj/item/clothing/head/hooded/cult_hoodie/void
-	name = "void hood"
+	name = "虚空兜帽"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
-	desc = "Black like tar, doesn't reflect any light. Runic symbols line the outside, \
-		with each flash you loose comprehension of what you are seeing."
+	desc = "黑如柏油，任何光都不被反射. 符文排列在外，每次闪烁你都会对失去对所见事物的理解."
 	icon_state = "void_cloak"
 	flags_inv = NONE
 	flags_cover = NONE
@@ -72,9 +71,8 @@
 	ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
 
 /obj/item/clothing/suit/hooded/cultrobes/void
-	name = "void cloak"
-	desc = "Black like tar, doesn't reflect any light. Runic symbols line the outside, \
-		with each flash you loose comprehension of what you are seeing."
+	name = "虚空斗篷"
+	desc = "黑如柏油，任何光都不被反射. 符文排列在外，每次闪烁你都会对失去对所见事物的理解."
 	icon_state = "void_cloak"
 	inhand_icon_state = null
 	allowed = list(/obj/item/melee/sickly_blade)
@@ -125,7 +123,7 @@
 		return
 
 	// Let examiners know this works as a focus only if the hood is down
-	. += span_notice("Allows you to cast heretic spells while the hood is down.")
+	. += span_notice("在兜帽放下时，你将获得焦点.")
 
 /obj/item/clothing/suit/hooded/cultrobes/void/on_hood_down(obj/item/clothing/head/hooded/hood)
 	make_visible()
@@ -138,7 +136,7 @@
 	if(IS_HERETIC_OR_MONSTER(wearer))
 		return TRUE
 
-	loc.balloon_alert(loc, "can't get the hood up!")
+	loc.balloon_alert(loc, "没法把兜帽戴上!")
 	return FALSE
 
 /obj/item/clothing/suit/hooded/cultrobes/void/on_hood_created(obj/item/clothing/head/hooded/hood)
@@ -152,8 +150,8 @@
 	RemoveElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))
-		loc.balloon_alert(loc, "cloak hidden")
-		loc.visible_message(span_notice("Light shifts around [loc], making the cloak around them invisible!"))
+		loc.balloon_alert(loc, "斗篷隐形")
+		loc.visible_message(span_notice("光游移在[loc]周身，使得斗篷变得不可见!"))
 
 /// Makes our cloak "visible" again.
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_visible()
@@ -162,5 +160,5 @@
 	AddElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))
-		loc.balloon_alert(loc, "cloak revealed")
-		loc.visible_message(span_notice("A kaleidoscope of colours collapses around [loc], a cloak appearing suddenly around their person!"))
+		loc.balloon_alert(loc, "斗篷显形")
+		loc.visible_message(span_notice("周围[loc]的光线万花筒般崩溃，穿着斗篷的人突然出现!"))

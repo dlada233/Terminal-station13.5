@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(heretic_sacrifice_landmarks)
 
 /// Lardmarks meant to designate where heretic sacrifices are sent.
 /obj/effect/landmark/heretic
-	name = "default heretic sacrifice landmark"
+	name = "默认异教徒献祭地标"
 	icon_state = "x"
 	/// What path this landmark is intended for.
 	var/for_heretic_path = PATH_START
@@ -19,37 +19,37 @@ GLOBAL_LIST_EMPTY(heretic_sacrifice_landmarks)
 	return ..()
 
 /obj/effect/landmark/heretic/ash
-	name = "ash heretic sacrifice landmark"
+	name = "灰烬异教徒献祭地标"
 	for_heretic_path = PATH_ASH
 
 /obj/effect/landmark/heretic/flesh
-	name = "flesh heretic sacrifice landmark"
+	name = "血肉异教徒献祭地标"
 	for_heretic_path = PATH_FLESH
 
 /obj/effect/landmark/heretic/void
-	name = "void heretic sacrifice landmark"
+	name = "虚无异教徒献祭地标"
 	for_heretic_path = PATH_VOID
 
 /obj/effect/landmark/heretic/rust
-	name = "rust heretic sacrifice landmark"
+	name = "铁锈异教徒献祭地标"
 	for_heretic_path = PATH_RUST
 
 /obj/effect/landmark/heretic/lock
-	name = "lock heretic sacrifice landmark"
+	name = "锁异教徒献祭地标"
 	for_heretic_path = PATH_LOCK
 
 // A fluff signpost object that doesn't teleport you somewhere when you touch it.
 /obj/structure/no_effect_signpost
-	name = "signpost"
-	desc = "Won't somebody give me a sign?"
+	name = "路标"
+	desc = "谁能给我点提示?"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "signpost"
 	anchored = TRUE
 	density = TRUE
 
 /obj/structure/no_effect_signpost/void
-	name = "signpost at the edge of the universe"
-	desc = "A direction in the directionless void."
+	name = "宇宙边缘的路标"
+	desc = "没有方向地指向虚空."
 	density = FALSE
 	/// Brightness of the signpost.
 	var/range = 2
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(heretic_sacrifice_landmarks)
 
 // Rooms for where heretic sacrifices send people.
 /area/centcom/heretic_sacrifice
-	name = "Mansus"
+	name = "漫宿"
 	icon_state = "heretic"
 	has_gravity = STANDARD_GRAVITY
 	ambience_index = AMBIENCE_SPOOKY
@@ -96,22 +96,22 @@ GLOBAL_LIST_EMPTY(heretic_sacrifice_landmarks)
 	return ..()
 
 /area/centcom/heretic_sacrifice/ash //also, the default
-	name = "Mansus Ash Gate"
+	name = "漫宿灰烬之门"
 
 /area/centcom/heretic_sacrifice/void
-	name = "Mansus Void Gate"
+	name = "漫宿虚空之门"
 	sound_environment = SOUND_ENVIRONMENT_UNDERWATER
 
 /area/centcom/heretic_sacrifice/flesh
-	name = "Mansus Flesh Gate"
+	name = "漫宿血肉之门"
 	sound_environment = SOUND_ENVIRONMENT_STONEROOM
 
 /area/centcom/heretic_sacrifice/rust
-	name = "Mansus Rust Gate"
+	name = "漫宿铁锈之门"
 	ambience_index = AMBIENCE_REEBE
 	sound_environment = SOUND_ENVIRONMENT_SEWER_PIPE
 
 /area/centcom/heretic_sacrifice/lock
-	name = "Mansus Lock Gate"
+	name = "漫宿锁之门"
 	ambience_index = AMBIENCE_DANGER
 	sound_environment = SOUND_ENVIRONMENT_PSYCHOTIC

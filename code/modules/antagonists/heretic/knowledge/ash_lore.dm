@@ -27,11 +27,11 @@
  * Ashlord's Rite
  */
 /datum/heretic_knowledge/limited_amount/starting/base_ash
-	name = "Nightwatcher's Secret"
-	desc = "Opens up the Path of Ash to you. \
-		Allows you to transmute a match and a knife into an Ashen Blade. \
-		You can only create five at a time." //SKYRAT EDIT two to five
-	gain_text = "The City Guard know their watch. If you ask them at night, they may tell you about the ashy lantern."
+	name = "守夜人的秘密"
+	desc = "通往灰烬之路. \
+		你将能把火柴和刀具嬗变为灰烬之刃. \
+		同一时间只能创造五把出来." //SKYRAT EDIT two to five
+	gain_text = "城市守卫知道它的守望，如果你在晚上问他们，他们可能会告诉你灰烬灯笼的事"
 	next_knowledge = list(/datum/heretic_knowledge/ashen_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
@@ -41,10 +41,9 @@
 	route = PATH_ASH
 
 /datum/heretic_knowledge/ashen_grasp
-	name = "Grasp of Ash"
-	desc = "Your Mansus Grasp will burn the eyes of the victim, causing damage and blindness."
-	gain_text = "The Nightwatcher was the first of them, his treason started it all. \
-		Their lantern, expired to ash - their watch, absent."
+	name = "掸灰之握"
+	desc = "你的漫宿之握将灼烧受害者眼睛，造成伤害和失明."
+	gain_text = "守夜人是第一个，他的背叛引发了这一切. 他的灯笼已经化为灰烬，随着表一并消失."
 	next_knowledge = list(/datum/heretic_knowledge/spell/ash_passage)
 	cost = 1
 	route = PATH_ASH
@@ -64,14 +63,14 @@
 	if(!target.get_organ_slot(ORGAN_SLOT_EYES))
 		return
 
-	to_chat(target, span_danger("A bright green light burns your eyes horrifically!"))
+	to_chat(target, span_danger("骤亮的绿色光芒可怕地灼伤了你的眼睛!"))
 	target.adjustOrganLoss(ORGAN_SLOT_EYES, 15)
 	target.set_eye_blur_if_lower(20 SECONDS)
 
 /datum/heretic_knowledge/spell/ash_passage
-	name = "Ashen Passage"
-	desc = "Grants you Ashen Passage, a silent but short range jaunt."
-	gain_text = "He knew how to walk between the planes."
+	name = "隐尘漫行"
+	desc = "赐予你隐尘漫行，一次消无声息的短距移动."
+	gain_text = "他知道如何穿行于位面间."
 	next_knowledge = list(
 		/datum/heretic_knowledge/mark/ash_mark,
 		/datum/heretic_knowledge/summon/fire_shark,
@@ -82,13 +81,11 @@
 	route = PATH_ASH
 
 /datum/heretic_knowledge/mark/ash_mark
-	name = "Mark of Ash"
-	desc = "Your Mansus Grasp now applies the Mark of Ash. The mark is triggered from an attack with your Ashen Blade. \
-		When triggered, the victim takes additional stamina and burn damage, and the mark is transferred to any nearby heathens. \
-		Damage dealt is decreased with each transfer."
-	gain_text = "He was a very particular man, always watching in the dead of night. \
-		But in spite of his duty, he regularly tranced through the Manse with his blazing lantern held high. \
-		He shone brightly in the darkness, until the blaze begin to die."
+	name = "余烬祷记"
+	desc = "你的漫宿之握将施加余烬祷记. 拥有余烬祷记的目标在被灰烬之刃攻击时会收到额外的耐力和烧伤，并且余烬祷记还将转移到附近的不信之人身上. 伤害会随着转移次数而衰减."
+	gain_text = "他是一个非常特别的人，总是在夜深人静的时候警觉地守望着. \
+		但尽管责任在身，他也常会高举燃烧的灯笼，出神地穿过旧宅间. \
+		他在黑暗中闪耀着明亮光芒，直到那熊熊火焰开始消逝."
 	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/ash)
 	route = PATH_ASH
 	mark_type = /datum/status_effect/eldritch/ash
@@ -109,11 +106,9 @@
 	route = PATH_ASH
 
 /datum/heretic_knowledge/spell/fire_blast
-	name = "Volcano Blast"
-	desc = "Grants you Volcano Blast, a spell that - after a short charge - fires off a beam of energy \
-		at a nearby enemy, setting them on fire and burning them. If they do not extinguish themselves, \
-		the beam will continue to another target."
-	gain_text = "No fire was hot enough to rekindle them. No fire was bright enough to save them. No fire is eternal."
+	name = "热炎迸发"
+	desc = "赐予你热炎迸发，一种咒语. 经过充能后向附近的敌人发射一束能量，使其烧伤并着火. 如果他们不自行扑灭，能量还将弹射到附近目标身上"
+	gain_text = "火之将熄，没有余温使其复燃，没有光芒化为救赎."
 	next_knowledge = list(/datum/heretic_knowledge/mad_mask)
 	spell_to_add = /datum/action/cooldown/spell/charged/beam/fire_blast
 	cost = 1
@@ -121,11 +116,11 @@
 
 
 /datum/heretic_knowledge/mad_mask
-	name = "Mask of Madness"
-	desc = "Allows you to transmute any mask, four candles, a stun baton, and a liver to create a Mask of Madness. \
-		The mask instills fear into heathens who witness it, causing stamina damage, hallucinations, and insanity. \
-		It can also be forced onto a heathen, to make them unable to take it off..."
-	gain_text = "The Nightwatcher was lost. That's what the Watch believed. Yet he walked the world, unnoticed by the masses."
+	name = "蒙尘面罩"
+	desc = "这狂人的假面可由任意面具、四根蜡烛、一根电棍以及一块肝脏创造出来. \
+		假面将恐惧灌输给任何看到它的不信之人，造成耐力损伤、幻觉和精神错乱. \
+		也可以将假面强行戴在不信之人脸上，他们无法脱下这幅假面..."
+	gain_text = "守夜人消失了，守卫们深信不疑. 然而前者在世间行走着，不被众生所察觉着."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/ash,
 		/datum/heretic_knowledge/reroll_targets,
@@ -143,10 +138,10 @@
 	route = PATH_ASH
 
 /datum/heretic_knowledge/blade_upgrade/ash
-	name = "Fiery Blade"
-	desc = "Your blade now lights enemies ablaze on attack."
-	gain_text = "He returned, blade in hand, he swung and swung as the ash fell from the skies. \
-		His city, the people he swore to watch... and watch he did, as they all burnt to cinders."
+	name = "劫火法刃"
+	desc = "你的刃将能够猛烈点燃敌人."
+	gain_text = "他回来时，手中有剑，挥舞时天空飘来灰烬. \
+		他的城市，他的人民，他守望着他们全部烧成灰烬."
 	next_knowledge = list(/datum/heretic_knowledge/spell/flame_birth)
 	route = PATH_ASH
 
@@ -158,12 +153,11 @@
 	target.ignite_mob()
 
 /datum/heretic_knowledge/spell/flame_birth
-	name = "Nightwatcher's Rebirth"
-	desc = "Grants you Nightwatcher's Rebirth, a spell that extinguishes you and \
-		burns all nearby heathens who are currently on fire, healing you for every victim afflicted. \
-		If any victims afflicted are in critical condition, they will also instantly die."
-	gain_text = "The fire was inescapable, and yet, life remained in his charred body. \
-		The Nightwatcher was a particular man, always watching."
+	name = "守夜人的重生"
+	desc = "赐予你守夜人的重生，为自身灭火并疗伤，同时伤害周围着火的不信之人的咒语. \
+		每有一名受此影响的不信之人都会治疗你，陷入濒死的不信之人将立刻死亡. "
+	gain_text = "火焰最终吞噬了一切，然而焦黑的残躯里仍有生命留存. \
+		守夜人是一个特别的人，总是在守望着."
 	next_knowledge = list(
 		/datum/heretic_knowledge/ultimate/ash_final,
 		/datum/heretic_knowledge/summon/ashy,
@@ -174,16 +168,16 @@
 	route = PATH_ASH
 
 /datum/heretic_knowledge/ultimate/ash_final
-	name = "Ashlord's Rite"
-	desc = "The ascension ritual of the Path of Ash. \
-		Bring 3 burning or husked corpses to a transmutation rune to complete the ritual. \
-		When completed, you become a harbinger of flames, gaining two abilites. \
-		Cascade, which causes a massive, growing ring of fire around you, \
-		and Oath of Flame, causing you to passively create a ring of flames as you walk. \
-		You will also become immune to flames, space, and similar environmental hazards."
-	gain_text = "The Watch is dead, the Nightwatcher burned with it. Yet his fire burns evermore, \
-		for the Nightwatcher brought forth the rite to mankind! His gaze continues, as now I am one with the flames, \
-		WITNESS MY ASCENSION, THE ASHY LANTERN BLAZES ONCE MORE!"
+	name = "灰烬之主的仪式"
+	desc = "灰烬之路的飞升仪式. \
+		将三具燃烧或烧干的尸体带到嬗变符文前以完成仪式. \
+		一旦完成，你将化身火焰使者，同时获得流火和火焰之誓两个技能. \
+		流火会在你周围产生一个巨大的，不断增长的火环；\
+		火焰之誓会让你在行走时被动地生成一个火环. \
+		此外，你对火焰、太空或类似的环境危害免疫."
+	gain_text = "守卫死了，守夜人也陨落火场. 然而他的火焰却永不熄灭，因为人类已经获此馈赠! \
+		我化身烈火，继续使他的目光洒满人间, \
+		见证我的飞升!灰烬的灯笼再次复燃!"
 	route = PATH_ASH
 	/// A static list of all traits we apply on ascension.
 	var/static/list/traits_to_apply = list(
@@ -210,7 +204,7 @@
 /datum/heretic_knowledge/ultimate/ash_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "[generate_heretic_text()] Fear the blaze, for the Ashlord, [user.real_name] has ascended! The flames shall consume all! [generate_heretic_text()]",
+		text = "[generate_heretic_text()]敬畏火焰，盗取火焰，[user.real_name]飞升了! 火焰将焚烧万物! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = ANNOUNCER_SPANOMALIES,
 		color_override = "pink",

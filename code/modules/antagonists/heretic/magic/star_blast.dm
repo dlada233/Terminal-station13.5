@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/projectile/star_blast
-	name = "Star Blast"
-	desc = "This spell fires a disk with cosmic energies at a target."
+	name = "聚变星体"
+	desc = "向目标发射带有宇宙能量的圆盘."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -14,8 +14,8 @@
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 
-	active_msg = "You prepare to cast your star blast!"
-	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."
+	active_msg = "你准备好发射聚变星体了!"
+	deactive_msg = "你暂时停止在手中搓宇宙能量..."
 	cast_range = 12
 	projectile_type = /obj/projectile/magic/star_ball
 

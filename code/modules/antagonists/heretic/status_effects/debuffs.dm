@@ -9,8 +9,8 @@
 	var/cooling_per_tick = -14
 
 /atom/movable/screen/alert/status_effect/void_chill
-	name = "Void Chill"
-	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before..."
+	name = "虚寒"
+	desc = "有什么东西从内到外地让你受冻，你从来没有感到如此寒冷..."
 	icon_state = "void_chill"
 
 /datum/status_effect/void_chill/on_apply()
@@ -45,7 +45,7 @@
 	tick_interval = 1 SECONDS
 
 /datum/status_effect/amok/on_apply(mob/living/afflicted)
-	to_chat(owner, span_boldwarning("You feel filled with a rage that is not your own!"))
+	to_chat(owner, span_boldwarning("一股不属于你的愤怒涌上心头!"))
 	return TRUE
 
 /datum/status_effect/amok/tick(seconds_between_ticks)
@@ -63,7 +63,7 @@
 		targets += potential_target
 
 	if(LAZYLEN(targets))
-		owner.log_message(" attacked someone due to the amok debuff.", LOG_ATTACK) //the following attack will log itself
+		owner.log_message("由于狂乱(amok)debuff攻击了某人.", LOG_ATTACK) //the following attack will log itself
 		owner.ClickOn(pick(targets))
 
 	owner.set_combat_mode(prev_combat_mode)
@@ -99,7 +99,7 @@
 	tick_interval = 1 SECONDS
 
 /datum/status_effect/corrosion_curse/on_apply()
-	to_chat(owner, span_userdanger("Your body starts to break apart!"))
+	to_chat(owner, span_userdanger("你的身体开始瓦解!"))
 	return TRUE
 
 /datum/status_effect/corrosion_curse/tick(seconds_between_ticks)
@@ -153,8 +153,8 @@
 	var/datum/weakref/spell_caster
 
 /atom/movable/screen/alert/status_effect/star_mark
-	name = "Star Mark"
-	desc = "A ring above your head prevents you from entering cosmic fields or teleporting through cosmic runes..."
+	name = "星痕"
+	desc = "你头顶的圆环不让你进入宇宙领域或使用宇宙符文..."
 	icon_state = "star_mark"
 
 /datum/status_effect/star_mark/on_creation(mob/living/new_owner, mob/living/new_spell_caster)
@@ -202,13 +202,13 @@
 	tick_interval = -1
 
 /atom/movable/screen/alert/status_effect/heretic_lastresort
-	name = "Last Resort"
-	desc = "Your head spins, heart pumping as fast as it can, losing the fight with the ground. Run to safety!"
+	name = "最终手段"
+	desc = "你头晕目眩，心脏极速跳动，堪堪维持着站立行动. 快跑到安全的地方!"
 	icon_state = "lastresort"
 
 /datum/status_effect/heretic_lastresort/on_apply()
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_STATUS_EFFECT(id))
-	to_chat(owner, span_userdanger("You are on the brink of losing consciousness, run!"))
+	to_chat(owner, span_userdanger("你快要失去意识了，快跑!"))
 	return TRUE
 
 /datum/status_effect/heretic_lastresort/on_remove()

@@ -9,21 +9,21 @@
 	var/turf/location
 
 /datum/status_effect/crucible_soul/on_apply()
-	to_chat(owner,span_notice("You phase through reality, nothing is out of bounds!"))
+	to_chat(owner,span_notice("你穿透现实，无所顾忌!"))
 	owner.alpha = 180
 	owner.pass_flags |= PASSCLOSEDTURF | PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE
 	location = get_turf(owner)
 	return TRUE
 
 /datum/status_effect/crucible_soul/on_remove()
-	to_chat(owner,span_notice("You regain your physicality, returning you to your original location..."))
+	to_chat(owner,span_notice("你恢复肉身，回到了你原来的位置..."))
 	owner.alpha = initial(owner.alpha)
 	owner.pass_flags &= ~(PASSCLOSEDTURF | PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE)
 	owner.forceMove(location)
 	location = null
 
 /datum/status_effect/crucible_soul/get_examine_text()
-	return span_notice("[owner.p_They()] [owner.p_do()]n't seem to be all here.")
+	return span_notice("它们不全在这里.")
 
 // DUSK AND DAWN
 /datum/status_effect/duskndawn
@@ -83,19 +83,18 @@
 
 
 /atom/movable/screen/alert/status_effect/crucible_soul
-	name = "Blessing of Crucible Soul"
-	desc = "You phased through reality. You are halfway to your final destination..."
+	name = "坩埚之灵的祝福"
+	desc = "你穿透现实. 距离最终的目的地只有一半路途了..."
 	icon_state = "crucible"
 
 /atom/movable/screen/alert/status_effect/duskndawn
-	name = "Blessing of Dusk and Dawn"
-	desc = "Many things hide beyond the horizon. With Owl's help I managed to slip past Sun's guard and Moon's watch."
+	name = "黄昏与黎明的祝福"
+	desc = "天地万物并不全在地平线的两侧，在猫头鹰的帮助下，我设法躲过了太阳的警卫与月亮的监视."
 	icon_state = "duskndawn"
 
 /atom/movable/screen/alert/status_effect/marshal
-	name = "Blessing of Wounded Soldier"
-	desc = "Some people seek power through redemption. One thing many people don't know is that battle \
-		is the ultimate redemption, and wounds let you bask in eternal glory."
+	name = "伤兵的祝福"
+	desc = "有些人在救赎中寻求力量. 而许多人不知道的一件事是，战斗即是终极的救赎，伤口会让你沐浴在永恒的荣耀中."
 	icon_state = "wounded_soldier"
 
 // BLADES
@@ -166,7 +165,7 @@
 	mob/living/carbon/human/source,
 	atom/movable/hitby,
 	damage = 0,
-	attack_text = "the attack",
+	attack_text = "攻击",
 	attack_type = MELEE_ATTACK,
 	armour_penetration = 0,
 	damage_type = BRUTE,
@@ -185,9 +184,9 @@
 
 	playsound(get_turf(source), 'sound/weapons/parry.ogg', 100, TRUE)
 	source.visible_message(
-		span_warning("[to_remove] orbiting [source] snaps in front of [attack_text], blocking it before vanishing!"),
-		span_warning("[to_remove] orbiting you snaps in front of [attack_text], blocking it before vanishing!"),
-		span_hear("You hear a clink."),
+		span_warning("环绕着[source]的[to_remove]消耗自身挡下了[attack_text]!"),
+		span_warning("环绕着你的[to_remove]消耗自身挡下了[attack_text]!"),
+		span_hear("你听到叮当一声."),
 	)
 
 	qdel(to_remove)
@@ -265,28 +264,28 @@
 	UnregisterSignal(owner, COMSIG_ATOM_HOLYATTACK)
 	UnregisterSignal(owner, COMSIG_CARBON_CUFF_ATTEMPTED)
 	owner.visible_message(
-		span_warning("The haze around [owner] disappears, leaving them materialized!"),
-		span_notice("You exit the refuge."),
+		span_warning("[owner]周围雾气消失，显露出了实体!"),
+		span_notice("你离开了避难所."),
 	)
 
 /datum/status_effect/caretaker_refuge/get_examine_text()
-	return span_warning("[owner.p_Theyre()] enveloped in an unholy haze!")
+	return span_warning("这个人笼罩在邪恶的雾气中!")
 
 /datum/status_effect/caretaker_refuge/proc/nullrod_handler(datum/source, obj/item/weapon)
 	SIGNAL_HANDLER
 	playsound(get_turf(owner), 'sound/effects/curse1.ogg', 80, TRUE)
-	owner.visible_message(span_warning("[weapon] repels the haze around [owner]!"))
+	owner.visible_message(span_warning("[weapon]驱散了[owner]周围的烟雾!"))
 	owner.remove_status_effect(type)
 
 /datum/status_effect/caretaker_refuge/proc/on_focus_lost()
 	SIGNAL_HANDLER
-	to_chat(owner, span_danger("Without a focus, your refuge weakens and dissipates!"))
+	to_chat(owner, span_danger("失去了焦点，你的避难所将弱化直至消散!"))
 	owner.remove_status_effect(type)
 
 /datum/status_effect/caretaker_refuge/proc/prevent_spell_usage(datum/source, datum/spell)
 	SIGNAL_HANDLER
 	if(!istype(spell, /datum/action/cooldown/spell/caretaker))
-		owner.balloon_alert(owner, "may not cast spells in refuge!")
+		owner.balloon_alert(owner, "不能在避难所内施法!")
 		return SPELL_CANCEL_CAST
 
 /datum/status_effect/caretaker_refuge/proc/prevent_cuff(datum/source, mob/attemptee)

@@ -1,7 +1,7 @@
 // Ye old forbidden book, the Codex Cicatrix.
 /obj/item/codex_cicatrix
-	name = "Codex Cicatrix"
-	desc = "This book describes the secrets of the veil between worlds."
+	name = "疤痕法典"
+	desc = "这本书讲述了那条世界间帷幕的秘密"
 	icon = 'icons/obj/antags/eldritch.dmi'
 	base_icon_state = "book"
 	icon_state = "book"
@@ -27,9 +27,9 @@
 	if(!IS_HERETIC(user))
 		return
 
-	. += span_notice("Can be used to tap influences for additional knowledge points.")
-	. += span_notice("Can also be used to draw or remove transmutation runes with ease.")
-	. += span_notice("Additionally, it can work as a focus for your spells in a pinch, though a more specialized relic is recommended, as this may get dropped in combat.")
+	. += span_notice("可以用来在异响上获取额外知识点.")
+	. += span_notice("可以用来轻松的绘制或擦除嬗变符文.")
+	. += span_notice("还可以用来在紧要关头充当焦点，不过还是推荐用专门的聚焦物品，因为在战斗中它可能会不幸脱手.")
 
 /obj/item/codex_cicatrix/attack_self(mob/user, modifiers)
 	. = ..()

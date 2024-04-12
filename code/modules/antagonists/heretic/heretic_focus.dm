@@ -34,7 +34,7 @@
 	if(!IS_HERETIC(user))
 		return
 
-	examine_list += span_notice("Allows you to cast advanced heretic spells when worn.")
+	examine_list += span_notice("穿戴后可以施放高级异教徒法术.")
 
 /**
  * Signal proc for [COMSIG_ITEM_EQUIPPED].

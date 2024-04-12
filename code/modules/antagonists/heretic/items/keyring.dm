@@ -1,6 +1,6 @@
 /obj/effect/lock_portal
-	name = "crack in reality"
-	desc = "A crack in space, impossibly deep and painful to the eyes. Definitely not safe."
+	name = "现实裂口"
+	desc = "空间中的裂口，深不见底，只是盯着就让眼睛疼痛万分，绝对的不安全."
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "realitycrack"
 	light_system = STATIC_LIGHT
@@ -62,7 +62,7 @@
 
 	if(!IS_HERETIC_OR_MONSTER(teleportee))
 		teleportee.apply_damage(20, BRUTE) //so they dont roll it like a jackpot machine to see if they can land in the armory
-		to_chat(teleportee, span_userdanger("You stumble through [src], battered by forces beyond your comprehension, landing anywhere but where you thought you were going."))
+		to_chat(teleportee, span_userdanger("你踉跄地穿过[src]，被超出你理解的力量所折磨，落到了预想之外的任何地方."))
 
 	INVOKE_ASYNC(src, PROC_REF(async_opendoor), doorstination)
 
@@ -101,19 +101,19 @@
 	. = ..()
 	if(!IS_HERETIC_OR_MONSTER(user))
 		return
-	. += span_hypnophrase("Enchanted by the Mansus!")
-	. += span_hypnophrase("Using an ID on this will consume it and allow you to copy its accesses.")
-	. += span_hypnophrase("<b>Using this in-hand</b> allows you to change its appearance.")
-	. += span_hypnophrase("<b>Using this on a pair of doors</b>, allows you to link them together. Entering one door will transport you to the other, while heathens are instead teleported to a random airlock.")
-	. += span_hypnophrase("<b>Ctrl-clicking the ID</b>, makes the ID make inverted portals instead, which teleport you onto a random airlock onstation, while heathens are teleported to the destination.")
+	. += span_hypnophrase("漫宿浸染!")
+	. += span_hypnophrase("你可以在上面消耗ID卡来复制权限到秘法卡上.")
+	. += span_hypnophrase("<b>在手中使用</b>可以改变卡的外貌.")
+	. += span_hypnophrase("<b>拿着卡对两扇不同的门尝试攻击</b>可以将这两扇门连通，你进入一扇门将传送到另一扇的位置，若不信之人使用则会被传送到随机的气闸门.")
+	. += span_hypnophrase("<b>Ctrl左键秘法卡</b>可以切换到反向传送门模式，此时用其连通的两扇门将随机传送你，而互相传送不信之人.")
 
 /obj/item/card/id/advanced/heretic/attack_self(mob/user)
 	. = ..()
 	if(!IS_HERETIC(user))
 		return
-	var/cardname = tgui_input_list(user, "Shapeshift into?", "Shapeshift", fused_ids)
+	var/cardname = tgui_input_list(user, "改变外貌", "改变外貌", fused_ids)
 	if(!cardname)
-		balloon_alert(user, "no options!")
+		balloon_alert(user, "无可选项!")
 		return ..()
 	var/obj/item/card/id/card = fused_ids[cardname]
 	shapeshift(card)
@@ -123,7 +123,7 @@
 	if(!IS_HERETIC(user))
 		return
 	inverted = !inverted
-	balloon_alert(user, "[inverted ? "now" : "no longer"] creating inverted rifts")
+	balloon_alert(user, "[inverted ? "开始" : "不再"]创造反向传送门")
 
 ///Changes our appearance to the passed ID card
 /obj/item/card/id/advanced/heretic/proc/shapeshift(obj/item/card/id/advanced/card)
@@ -150,10 +150,10 @@
 
 ///Creates a portal pair at door1 and door2, displays a balloon alert to user
 /obj/item/card/id/advanced/heretic/proc/make_portal(mob/user, obj/machinery/door/door1, obj/machinery/door/door2)
-	var/message = "linked"
+	var/message = "已连接"
 	if(portal_one || portal_two)
 		clear_portals()
-		message += ", previous cleared"
+		message += "，旧连接被清除"
 
 	portal_one = new(get_turf(door2), door2, inverted)
 	portal_two = new(get_turf(door1), door1, inverted)
@@ -188,12 +188,12 @@
 
 	if(reference_resolved)
 		make_portal(user, reference_resolved, target)
-		to_chat(user, span_notice("You use [src], to link [link] and [target] together."))
+		to_chat(user, span_notice("你使用[src]，将[link]和[target]连接到了一起."))
 		link = null
-		balloon_alert(user, "link 2/2")
+		balloon_alert(user, "连接 2/2")
 	else
 		link = WEAKREF(target)
-		balloon_alert(user, "link 1/2")
+		balloon_alert(user, "连接 1/2")
 
 /obj/item/card/id/advanced/heretic/Destroy()
 	QDEL_LIST_ASSOC(fused_ids)

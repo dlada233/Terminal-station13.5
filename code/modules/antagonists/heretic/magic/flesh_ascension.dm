@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/shapeshift/shed_human_form
-	name = "Shed form"
-	desc = "Shed your fragile form, become one with the arms, become one with the emperor. \
-		Causes heavy amounts of brain damage and sanity loss to nearby mortals."
+	name = "血肉飞升"
+	desc = "褪下脆弱的肉体，化躯体为武器，独醉于皇权之巅. \
+		只是变身就能对附近的凡人造成严重的脑损伤和理智丧失."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

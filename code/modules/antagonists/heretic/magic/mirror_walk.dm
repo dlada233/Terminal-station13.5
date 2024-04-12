@@ -1,8 +1,6 @@
 /datum/action/cooldown/spell/jaunt/mirror_walk
-	name = "Mirror Walk"
-	desc = "Allows you to traverse invisibly and freely across the station within the realm of the mirror. \
-		You can only enter and exit the realm of mirrors when nearby reflective surfaces and items, \
-		such as windows, mirrors, and reflective walls or equipment."
+	name = "镜中行"
+	desc = "只能在窗户、镜子、反光设备等具有反射面的物体附近使用，使用后进入镜面空间，隐形并不受任何阻碍的移动，再次使用来显形."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
@@ -39,12 +37,12 @@
 	var/turf/owner_turf = get_turf(owner)
 	if(!is_reflection_nearby(get_turf(owner_turf)))
 		if(feedback)
-			to_chat(owner, span_warning("There are no reflective surfaces nearby to [we_are_phasing ? "exit":"enter"] the mirror's realm here!"))
+			to_chat(owner, span_warning("附近没有反射表面来[we_are_phasing ? "退出":"进入"]镜面空间!"))
 		return FALSE
 
 	if(owner_turf.is_blocked_turf(exclude_mobs = TRUE))
 		if(feedback)
-			to_chat(owner, span_warning("Something is blocking you from [we_are_phasing ? "exiting":"entering"] the mirror's realm here!"))
+			to_chat(owner, span_warning("这里有什么东西阻碍了你[we_are_phasing ? "退出":"进入"]镜面空间!"))
 		return FALSE
 
 	return TRUE
@@ -59,18 +57,18 @@
 /datum/action/cooldown/spell/jaunt/mirror_walk/enter_jaunt(mob/living/jaunter, turf/loc_override)
 	var/atom/nearby_reflection = is_reflection_nearby(jaunter)
 	if(!nearby_reflection)
-		to_chat(jaunter, span_warning("There are no reflective surfaces nearby to enter the mirror's realm!"))
+		to_chat(jaunter, span_warning("附近没有反射面，无法进入镜面空间!"))
 		return
 
 	jaunter.Beam(nearby_reflection, icon_state = "light_beam", time = phase_out_time)
-	nearby_reflection.visible_message(span_warning("[nearby_reflection] begins to shimmer and shake slightly!"))
+	nearby_reflection.visible_message(span_warning("[nearby_reflection]开始微微晃动并闪烁!"))
 	if(!do_after(jaunter, phase_out_time, nearby_reflection, IGNORE_USER_LOC_CHANGE|IGNORE_INCAPACITATED))
 		return
 
 	playsound(jaunter, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
 	jaunter.visible_message(
-		span_boldwarning("[jaunter] phases out of reality, vanishing before your very eyes!"),
-		span_notice("You jump into the reflection coming off of [nearby_reflection], entering the mirror's realm."),
+		span_boldwarning("[jaunter]淡出现实，消失在了你的眼前!"),
+		span_notice("你跳进[nearby_reflection]的反射面中，来到了镜面空间."),
 	)
 
 	// Pass the turf of the nearby reflection to the parent call
@@ -85,17 +83,17 @@
 	var/turf/phase_turf = get_turf(unjaunter)
 	var/atom/nearby_reflection = is_reflection_nearby(phase_turf)
 	if(!nearby_reflection)
-		to_chat(unjaunter, span_warning("There are no reflective surfaces nearby to exit from the mirror's realm!"))
+		to_chat(unjaunter, span_warning("附近没有反射面来显形."))
 		return FALSE
 
 	// It would likely be a bad idea to teleport into an ai monitored area (ai sat)
 	var/area/phase_area = get_area(phase_turf)
 	if(istype(phase_area, /area/station/ai_monitored))
-		to_chat(unjaunter, span_warning("It's probably not a very wise idea to exit the mirror's realm here."))
+		to_chat(unjaunter, span_warning("在这里离开镜面空间可能不是一个明智的主意."))
 		return FALSE
 
 	nearby_reflection.Beam(phase_turf, icon_state = "light_beam", time = phase_in_time)
-	nearby_reflection.visible_message(span_warning("[nearby_reflection] begins to shimmer and shake slightly!"))
+	nearby_reflection.visible_message(span_warning("[nearby_reflection]开始微微晃动并闪烁!"))
 	if(!do_after(unjaunter, phase_in_time, nearby_reflection))
 		return FALSE
 
@@ -118,8 +116,8 @@
 	if (!nearby_reflection) // Should only be true if you're forced out somehow, like by having the spell removed
 		return
 	unjaunter.visible_message(
-		span_boldwarning("[unjaunter] phases into reality before your very eyes!"),
-		span_notice("You jump out of the reflection coming off of [nearby_reflection], exiting the mirror's realm."),
+		span_boldwarning("[unjaunter]在你的眼前显形!"),
+		span_notice("你跳出了[nearby_reflection]的反射面，离开了镜面空间."),
 	)
 
 /**
@@ -155,4 +153,4 @@
 	return null
 
 /obj/effect/dummy/phased_mob/mirror_walk
-	name = "reflection"
+	name = "镜像"

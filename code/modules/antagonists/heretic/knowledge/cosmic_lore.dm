@@ -27,11 +27,11 @@
  * Creators's Gift
  */
 /datum/heretic_knowledge/limited_amount/starting/base_cosmic
-	name = "Eternal Gate"
-	desc = "Opens up the Path of Cosmos to you. \
-		Allows you to transmute a sheet of plasma and a knife into an Cosmic Blade. \
-		You can only create two at a time."
-	gain_text = "A nebula appeared in the sky, its infernal birth shone upon me. This was the start of a great transcendence."
+	name = "永恒门扉"
+	desc = "通往宇宙之路. \
+		你可以将一块等离子和一把刀具嬗变成宇宙之刃. \
+		同一时间只能创造两把出来."
+	gain_text = "星云在天空中出现，地狱般地诞生场景向我扑来，这是一个伟大超然的开端."
 	next_knowledge = list(/datum/heretic_knowledge/cosmic_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
@@ -41,10 +41,9 @@
 	route = PATH_COSMIC
 
 /datum/heretic_knowledge/cosmic_grasp
-	name = "Grasp of Cosmos"
-	desc = "Your Mansus Grasp will give people a star mark (cosmic ring) and create a cosmic field where you stand."
-	gain_text = "Some stars dimmed, others' magnitude increased. \
-		With newfound strength I could channel the nebula's power into myself."
+	name = "星空之握"
+	desc = "你的漫宿之握将给目标施加星痕(宇宙圆环)并在你脚下创造一个宇宙领域."
+	gain_text = "一些恒星熄灭，一些恒星膨胀. 通过新的手段我可以将星云的力量引入自身."
 	next_knowledge = list(/datum/heretic_knowledge/spell/cosmic_runes)
 	cost = 1
 	route = PATH_COSMIC
@@ -59,17 +58,14 @@
 /datum/heretic_knowledge/cosmic_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	to_chat(target, span_danger("A cosmic ring appeared above your head!"))
+	to_chat(target, span_danger("宇宙圆环出现在你的头顶上!"))
 	target.apply_status_effect(/datum/status_effect/star_mark, source)
 	new /obj/effect/forcefield/cosmic_field(get_turf(source))
 
 /datum/heretic_knowledge/spell/cosmic_runes
-	name = "Cosmic Runes"
-	desc = "Grants you Cosmic Runes, a spell that creates two runes linked with eachother for easy teleportation. \
-		Only the entity activating the rune will get transported, and it can be used by anyone without a star mark. \
-		However, people with a star mark will get transported along with another person using the rune."
-	gain_text = "The distant stars crept into my dreams, roaring and screaming without reason. \
-		I spoke, and heard my own words echoed back."
+	name = "宇宙符文"
+	desc = "赐予你宇宙符文，这个咒语可以创造两个连接的传送符文，需要站在上面激活来传送. 被施加星痕生物无法激活该符文，但可以借由其他人的激活来传送."
+	gain_text = "遥远的星星爬进我的梦里，毫无理由地咆哮与尖叫. 我发出话语却只有回声传来."
 	next_knowledge = list(
 		/datum/heretic_knowledge/mark/cosmic_mark,
 		/datum/heretic_knowledge/essence,
@@ -80,12 +76,10 @@
 	route = PATH_COSMIC
 
 /datum/heretic_knowledge/mark/cosmic_mark
-	name = "Mark of Cosmos"
-	desc = "Your Mansus Grasp now applies the Mark of Cosmos. The mark is triggered from an attack with your Cosmic Blade. \
-		When triggered, the victim is returned to the location where the mark was originally applied to them. \
-		They will then be paralyzed for 2 seconds."
-	gain_text = "The Beast now whispered to me occasionally, only small tidbits of their circumstances. \
-		I can help them, I have to help them."
+	name = "门阈印记"
+	desc = "你的漫宿之握现在将施加门阈印记. 门阈印记在受到宇宙之刃攻击时触发. \
+		一旦被触发，受害者将会回到最初被打上印记的地方并瘫痪两秒."
+	gain_text = "野兽向我低语它们境况的片絮，我可以帮助它们，我必须帮助它们."
 	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/cosmic)
 	route = PATH_COSMIC
 	mark_type = /datum/status_effect/eldritch/cosmic
@@ -95,24 +89,19 @@
 	route = PATH_COSMIC
 
 /datum/heretic_knowledge/spell/star_touch
-	name = "Star Touch"
-	desc = "Grants you Star Touch, a spell which places a star mark upon your target \
-		and creates a cosmic field at your feet and to the turfs next to you. Targets which already have a star mark \
-		will be forced to sleep for 4 seconds. When the victim is hit it also creates a beam that \
-		deals a bit of fire damage and damages the cells. \
-		The beam lasts a minute, until the beam is obstructed or until a new target has been found."
-	gain_text = "After waking in a cold sweat I felt a palm on my scalp, a sigil burned onto me. \
-		My veins now emitted a strange purple glow, the Beast knows I will surpass its expectations."
+	name = "星之触"
+	desc = "赐予你星之触，一种咒语. 会在你的目标上施加星痕，并在你的脚下和旁边的地块上创造宇宙领域. \
+		若目标已经带有星痕则会被强制入眠四秒. 当目标被击中时还会产生连线，对目标造成烧伤和细胞伤，除非被阻挡或找到新目标，连线将持续存在一分钟，"
+	gain_text = "在一身冷汗中惊醒，我感到一只手掌按上了我的头皮，一个印记在我身上燃烧. 血管里发出奇异紫光，野兽知道我会比它们所期望的还要好."
 	next_knowledge = list(/datum/heretic_knowledge/spell/star_blast)
 	spell_to_add = /datum/action/cooldown/spell/touch/star_touch
 	cost = 1
 	route = PATH_COSMIC
 
 /datum/heretic_knowledge/spell/star_blast
-	name = "Star Blast"
-	desc = "Fires a projectile that moves very slowly and creates cosmic fields on impact. \
-		Anyone hit by the projectile will receive burn damage, a knockdown, and give people in a three tile range a star mark."
-	gain_text = "The Beast was behind me now at all times, with each sacrifice words of affirmation coursed through me."
+	name = "聚变星体"
+	desc = "发射一种移动非常缓慢的投射物，在撞击时产生宇宙领域，任何被该投射物击中的人都会被击倒并受到烧伤，并给周围三格内的人施加星痕."
+	gain_text = "野兽现在与我如影随形，每次献祭时都会送上肯定的话语."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/cosmic,
 		/datum/heretic_knowledge/reroll_targets,
@@ -124,14 +113,11 @@
 	route = PATH_COSMIC
 
 /datum/heretic_knowledge/blade_upgrade/cosmic
-	name = "Cosmic Blade"
-	desc = "Your blade now deals damage to people's organs through cosmic radiation. \
-		Your attacks will chain bonus damage to up to two previous victims. \
-		The combo is reset after two seconds without making an attack, \
-		or if you attack someone already marked. If you combo more than four attacks you will receive, \
-		a cosmic trail and increase your combo timer up to ten seconds."
-	gain_text = "The Beast took my blades in their hand, I kneeled and felt a sharp pain. \
-		The blades now glistened with fragmented power. I fell to the ground and wept at the beast's feet."
+	name = "寰宇之刃"
+	desc = "你的剑刃现在通过宇宙辐射直接对目标体内器官造成伤害. \
+		你的每一次攻击都将标记敌人，最多能标记两人，重复攻击会使标记失效，2秒内不攻击其他敌人也会使标记失效. \
+		当标记存在时，你攻击无标记的敌人将触发标记，对被标记者造成伤害. 当这种触发连续超过4次，那么你将获得宇宙轨迹，标记时间延长至10秒." // 标记，经测试疑似没有高连击奖励
+	gain_text = "野兽将我的刀刃握在手中，我跪下时感到一阵剧痛. 刀刃上闪着解离的力量. 我匍匐在地，在野兽的脚边哭泣."
 	next_knowledge = list(/datum/heretic_knowledge/spell/cosmic_expansion)
 	route = PATH_COSMIC
 	/// Storage for the second target.
@@ -221,10 +207,9 @@
 		combo_duration += increase_amount
 
 /datum/heretic_knowledge/spell/cosmic_expansion
-	name = "Cosmic Expansion"
-	desc = "Grants you Cosmic Expansion, a spell that creates a 3x3 area of cosmic fields around you. \
-		Nearby beings will also receive a star mark."
-	gain_text = "The ground now shook beneath me. The Beast inhabited me, and their voice was intoxicating."
+	name = "宇宙膨胀"
+	desc = "赐予你宇宙膨胀，一种能在你周围创造3x3的宇宙领域，使附近生物获得星痕的咒语."
+	gain_text =  "地面会在我脚下震动. 野兽寄居在我的体内，它们的声音令人陶醉."
 	next_knowledge = list(
 		/datum/heretic_knowledge/ultimate/cosmic_final,
 		/datum/heretic_knowledge/eldritch_coin,
@@ -235,19 +220,17 @@
 	route = PATH_COSMIC
 
 /datum/heretic_knowledge/ultimate/cosmic_final
-	name = "Creators's Gift"
-	desc = "The ascension ritual of the Path of Cosmos. \
-		Bring 3 corpses with bluespace dust in their body to a transmutation rune to complete the ritual. \
-		When completed, you become the owner of a Star Gazer. \
-		You will be able to command the Star Gazer with Alt+click. \
-		You can also give it commands through speech. \
-		The Star Gazer is a strong ally who can even break down reinforced walls. \
-		The Star Gazer has an aura that will heal you and damage opponents. \
-		Star Touch can now teleport you to the Star Gazer when activated in your hand."
-	gain_text = "The Beast held out its hand, I grabbed hold and they pulled me to them. Their body was towering, but it seemed so small and feeble after all their tales compiled in my head. \
-		I clung on to them, they would protect me, and I would protect it. \
-		I closed my eyes with my head laid against their form. I was safe. \
-		WITNESS MY ASCENSION!"
+	name = "造物主的馈赠"
+	desc = "宇宙之路的飞升仪式. \
+		带三具体内含有蓝空尘的尸体到嬗变符文以完成仪式. \
+		一旦完成，你将成为观星者的主人. \
+		你能通过Alt加左键来对观星者下达命令. \
+		你也可以用话语给他下达命令. \
+		观星者十分强力，甚至能破坏加固墙. \
+		它还附带一个能治疗你和伤害敌人的光环. \
+		此外天星照拂在手中激活时，能将你传送到观星者处."
+	gain_text = "野兽伸出手，我就握住它. 在故事的尽头，它们曾经高耸的身躯也看起来如此渺小脆弱.\
+		我们紧握不放，彼此互相保护. 我闭上双眼，只将头靠在它们身上. 我很安全. 见证我的飞升!"
 	route = PATH_COSMIC
 	/// A static list of command we can use with our mob.
 	var/static/list/star_gazer_commands = list(
@@ -267,7 +250,7 @@
 /datum/heretic_knowledge/ultimate/cosmic_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "[generate_heretic_text()] A Star Gazer has arrived into the station, [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]",
+		text = "[generate_heretic_text()] 观星者降临空间站， [user.real_name]飞升了! 站点终将回归群星怀抱! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = ANNOUNCER_SPANOMALIES,
 		color_override = "pink",

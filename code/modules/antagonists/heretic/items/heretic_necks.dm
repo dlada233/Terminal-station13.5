@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/heretic_focus
-	name = "Amber Focus"
-	desc = "An amber focusing glass that provides a link to the world beyond. The necklace seems to twitch, but only when you look at it from the corner of your eye."
+	name = "聚焦琥珀"
+	desc = "一块琥珀透镜，通向了世界之外. 用余光望去时，项链似乎在抽动."
 	icon_state = "eldritch_necklace"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF
@@ -10,8 +10,8 @@
 	AddElement(/datum/element/heretic_focus)
 
 /obj/item/clothing/neck/eldritch_amulet
-	name = "Warm Eldritch Medallion"
-	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulsing of a thousand others."
+	name = "温暖的邪术勋章"
+	desc = "一枚奇怪的奖章. 视线透过晶莹的表面，周遭的世界渐渐远去. 你看到了自己的心脏，同千万的其他心脏一齐脉动."
 	icon = 'icons/obj/antags/eldritch.dmi'
 	icon_state = "eye_medalion"
 	w_class = WEIGHT_CLASS_SMALL
@@ -39,14 +39,14 @@
 	user.update_sight()
 
 /obj/item/clothing/neck/eldritch_amulet/piercing
-	name = "Piercing Eldritch Medallion"
-	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into impossible shapes."
+	name = "冰冷的邪术勋章"
+	desc = "一枚奇怪的奖章. 视线透过晶莹的表面，光线折射出骇人的色谱，你看到自己在绵延不绝的镜子上的倒影，被扭曲成不可能的形状."
 	heretic_only_trait = TRAIT_XRAY_VISION
 
 // Cosmetic-only version
 /obj/item/clothing/neck/fake_heretic_amulet
-	name = "religious icon"
-	desc = "A strange medallion, which makes its wearer look like they're part of some cult."
+	name = "宗教符像"
+	desc = "一枚奇怪的奖章，让佩戴者看起来像是邪教成员."
 	icon = 'icons/obj/antags/eldritch.dmi'
 	icon_state = "eye_medalion"
 	w_class = WEIGHT_CLASS_SMALL

@@ -2,8 +2,8 @@
 
 /// Screen alert for the below status effect.
 /atom/movable/screen/alert/status_effect/unholy_determination
-	name = "Unholy Determination"
-	desc = "You appear in a unfamiliar room. The darkness begins to close in. Panic begins to set in. There is no time. Fight on, or die!"
+	name = "邪恶裁决"
+	desc = "你出现在了一个陌生的房间中，黑暗逼近，恐慌涌来. 没有时间了，战斗下去，不然只有死路一条! "
 	icon_state = "wounded"
 
 /// The buff given to people within the shadow realm to assist them in surviving.
@@ -34,12 +34,12 @@
 	// In softcrit you're, strong enough to stay up.
 	if(owner.health <= owner.crit_threshold && owner.health >= owner.hardcrit_threshold)
 		if(prob(5))
-			to_chat(owner, span_hypnophrase("Your body feels like giving up, but you fight on!"))
+			to_chat(owner, span_hypnophrase("身体感觉快垮了，但你还不想放弃!"))
 		healing_amount *= 2
 	// ...But reach hardcrit and you're done. You now die faster.
 	if (owner.health < owner.hardcrit_threshold)
 		if(prob(5))
-			to_chat(owner, span_big(span_hypnophrase("You can't hold on for much longer...")))
+			to_chat(owner, span_big(span_hypnophrase("你坚持不了多久...")))
 		healing_amount *= -0.5
 
 	if(owner.health > owner.crit_threshold && prob(4))

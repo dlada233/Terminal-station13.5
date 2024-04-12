@@ -1,8 +1,8 @@
 // Realignment. It's like Fleshmend but solely for stamina damage and stuns. Sec meta
 /datum/action/cooldown/spell/realignment
-	name = "Realignment"
-	desc = "Realign yourself, rapidly regenerating stamina and reducing any stuns or knockdowns. \
-		You cannot attack while realigning. Can be casted multiple times in short succession, but each cast lengthens the cooldown."
+	name = "重铸"
+	desc = "重铸自身，迅速恢复耐力，并从昏迷或击倒中恢复. \
+		重铸期间内你无法发动攻击. 该咒语可以短时间连续使用，但每次使用都会增加冷却时间."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/hud/implants.dmi'
@@ -24,7 +24,7 @@
 /datum/action/cooldown/spell/realignment/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.apply_status_effect(/datum/status_effect/realignment)
-	to_chat(cast_on, span_notice("We begin to realign ourselves."))
+	to_chat(cast_on, span_notice("我们开始重铸自身."))
 
 /datum/action/cooldown/spell/realignment/after_cast(atom/cast_on)
 	. = ..()
@@ -37,13 +37,13 @@
 /datum/action/cooldown/spell/realignment/get_spell_title()
 	switch(spell_level)
 		if(1, 2)
-			return "Hasty " // Hasty Realignment
+			return "急促" // Hasty Realignment
 		if(3, 4)
 			return "" // Realignment
 		if(5, 6, 7)
-			return "Slowed " // Slowed Realignment
+			return "缓慢" // Slowed Realignment
 		if(8, 9, 10)
-			return "Laborious " // Laborious Realignment (don't reach here)
+			return "费力" // Laborious Realignment (don't reach here)
 
 	return ""
 
@@ -55,7 +55,7 @@
 	tick_interval = 0.2 SECONDS
 
 /datum/status_effect/realignment/get_examine_text()
-	return span_notice("[owner.p_Theyre()] glowing a soft white.")
+	return span_notice("[owner.p_Theyre()]发出柔和的白光.")
 
 /datum/status_effect/realignment/on_apply()
 	ADD_TRAIT(owner, TRAIT_PACIFISM, id)
@@ -74,6 +74,6 @@
 	owner.AdjustAllImmobility(-0.5 SECONDS)
 
 /atom/movable/screen/alert/status_effect/realignment
-	name = "Realignment"
-	desc = "You're realignment yourself. You cannot attack, but are rapidly regenerating stamina."
+	name = "重铸"
+	desc = "你重铸自身，期间迅速恢复体力且无法攻击."
 	icon_state = "realignment"

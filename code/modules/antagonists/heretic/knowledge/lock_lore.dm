@@ -24,12 +24,12 @@
  * Unlock the Labyrinth
  */
 /datum/heretic_knowledge/limited_amount/starting/base_knock
-	name = "A Steward's Secret"
-	desc = "Opens up the Path of Lock to you. \
-		Allows you to transmute a knife and a crowbar into a Key Blade. \
-		You can only create two at a time and they function as fast crowbars. \
-		In addition, they can fit into utility belts."
-	gain_text = "The Locked Labyrinth leads to freedom. But only the trapped Stewards know the correct path."
+	name = "管家的秘密"
+	desc = "通往锁之路. \
+		你能将一把刀具和一根撬棍嬗变成一把钥匙之刃. \
+		同一时间只能创造两把出来，它们有和快速撬棍一样的功能. \
+		另外它们能被装进功能腰带里."
+	gain_text = "锁住的迷宫通向自由，但只有被困住的管家才知道正确的路径." // Stewards
 	next_knowledge = list(/datum/heretic_knowledge/lock_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
@@ -40,11 +40,11 @@
 	route = PATH_LOCK
 
 /datum/heretic_knowledge/lock_grasp
-	name = "Grasp of Lock"
-	desc = "Your mansus grasp allows you to access anything! Right click on an airlock or a locker to force it open. \
-		DNA locks on mechs will be removed, and any pilot will be ejected. Works on consoles. \
-		Makes a distinctive knocking sound on use."
-	gain_text = "Nothing may remain closed from my touch."
+	name = "转锁之握"
+	desc = "漫宿之握可以让你解锁任何东西! 右键气闸门或储物柜能将其强行打开. \
+		机甲的DNA锁也能移除，里面的机甲驾驶员会被弹出. 就算是终端计算机也能适用. \
+		在使用时会发出独特的开锁声."
+	gain_text = "没有什么能在我的触及之下保持闭锁."
 	next_knowledge = list(
 		/datum/heretic_knowledge/key_ring,
 		/datum/heretic_knowledge/medallion,
@@ -84,7 +84,7 @@
 	else if(istype(target, /obj/machinery/computer))
 		var/obj/machinery/computer/computer = target
 		computer.authenticated = TRUE
-		computer.balloon_alert(source, "unlocked")
+		computer.balloon_alert(source, "已解锁")
 
 	var/turf/target_turf = get_turf(target)
 	SEND_SIGNAL(target_turf, COMSIG_ATOM_MAGICALLY_UNLOCKED, src, source)
@@ -93,12 +93,12 @@
 	return COMPONENT_USE_HAND
 
 /datum/heretic_knowledge/key_ring
-	name = "Key Keeper’s Burden"
-	desc = "Allows you to transmute a wallet, an iron rod, and an ID card to create an Eldritch Card. \
-		It functions the same as an ID Card, but attacking it with an ID card fuses it and gains its access. \
-		You can use it in-hand to change its form to a card you fused. \
-		Does not preserve the card used in the ritual."
-	gain_text = "The Keeper sneered. \"These plastic rectangles are a mockery of keys, and I curse every door that desires them.\""
+	name = "看门人的职责"
+	desc = "你可以将一个钱包、一根铁棒和一张ID卡嬗变成一张秘法卡. \
+		它的功能与ID卡相同，但用普通ID卡攻击它，它会吸收该卡获得其访问权限. \
+		在手中使用秘法卡可以让其变为所吸收卡的形象. \
+		不保留仪式中所用卡."
+	gain_text = "守门人冷笑道. \"这长方的塑料片是钥匙的嘲弄，我诅咒每一扇想要钥匙的门.\"" // keeper
 	required_atoms = list(
 		/obj/item/storage/wallet = 1,
 		/obj/item/stack/rods = 1,
@@ -110,10 +110,10 @@
 	route = PATH_LOCK
 
 /datum/heretic_knowledge/limited_amount/concierge_rite // item that creates 3 max at a time heretic only barriers, probably should limit to 1 only, holy people can also pass
-	name = "Concierge's Rite"
-	desc = "Allows you to transmute a white crayon, a wooden plank, and a multitool to create a Labyrinth Handbook. \
-		It can materialize a barricade at range that only you and people resistant to magic can pass. 3 uses."
-	gain_text = "The Concierge scribbled my name into the Handbook. \"Welcome to your new home, fellow Steward.\""
+	name = "门房的仪式"
+	desc = "你可以将一根白色蜡笔、一块木板以及一个多功能工具来嬗变出一本迷宫手册. \
+		迷宫手册可以在一定距离内形成路障，只有你和对魔法抗性的人才能通过."
+	gain_text = "门房把我的名字潦草地写在手簿上. \"欢迎来到你的新家，老伙计.\"" // concierge
 	required_atoms = list(
 		/obj/item/toy/crayon/white = 1,
 		/obj/item/stack/sheet/mineral/wood = 1,
@@ -125,11 +125,11 @@
 	route = PATH_LOCK
 
 /datum/heretic_knowledge/mark/lock_mark
-	name = "Mark of Lock"
-	desc = "Your Mansus Grasp now applies the Mark of Lock. \
-		Attack a marked person to bar them from all passages for the duration of the mark. \
-		This will make it so that they have no access whatsoever, even public access doors will reject them."
-	gain_text = "The Gatekeeper was a corrupt Steward. She hindered her fellows for her own twisted amusement."
+	name = "门栓印记"
+	desc = "你的漫宿之握现在对目标施加门栓印记. \
+		攻击该目标，在门栓印记存在期间他们将无路可通. \
+		他们将没有任何权限，甚至是公共权限也会拒绝它们."
+	gain_text = "看守是个腐败的管家. 她为了自己扭曲的娱乐而锁住同伴." // Gatekeeper Steward
 	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/lock)
 	route = PATH_LOCK
 	mark_type = /datum/status_effect/eldritch/lock
@@ -139,10 +139,10 @@
 	route = PATH_LOCK
 
 /datum/heretic_knowledge/spell/burglar_finesse
-	name = "Burglar's Finesse"
-	desc = "Grants you Burglar's Finesse, a single-target spell \
-		that puts a random item from the victims backpack into your hand."
-	gain_text = "Consorting with Burglar spirits is frowned upon, but a Steward will always want to learn about new doors."
+	name = "夜盗妙术"
+	desc = "赐予你夜盗妙术，单个目标的指向性咒语. \
+		让你可以从目标包里随机偷取一件物品."
+	gain_text = "与夜盗之灵来往是不被允许的，但一个管家总是想要了解新的门." // Steward
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/apetra_vulnera,
 		/datum/heretic_knowledge/spell/opening_blast,
@@ -153,9 +153,9 @@
 	route = PATH_LOCK
 
 /datum/heretic_knowledge/blade_upgrade/flesh/lock //basically a chance-based weeping avulsion version of the former
-	name = "Opening Blade"
-	desc = "Your blade has a chance to cause a weeping avulsion on attack."
-	gain_text = "The Pilgrim-Surgeon was not an Steward. Nonetheless, its blades and sutures proved a match for their keys."
+	name = "豁口通刃"
+	desc = "你的钥匙之刃有一定概率对目标造成渗血撕裂伤." // weeping avulsion
+	gain_text = "流浪医师不是管家. 尽管如此，刀刃与缝合线也胜似它们的钥匙."// Pilgrim-Surgeon
 	next_knowledge = list(/datum/heretic_knowledge/spell/caretaker_refuge)
 	route = PATH_LOCK
 	wound_type = /datum/wound/slash/flesh/critical
@@ -166,28 +166,25 @@
 		return ..()
 
 /datum/heretic_knowledge/spell/caretaker_refuge
-	name = "Caretaker’s Last Refuge"
-	desc = "Gives you a spell that makes you transparent and not dense. Cannot be used near living sentient beings. \
-		While in refuge, you cannot use your hands or spells, and you are immune to slowdown. \
-		You are invincible but unable to harm anything. Cancelled by being hit with an anti-magic item."
-	gain_text = "Jealously, the Guard and the Hound hunted me. But I unlocked my form, and was but a haze, untouchable."
+	name = "看守人的最终避难所"
+	desc = "赐予你一个避难咒语，能让你变得透明且虚化，不能在有感知的生命体附近使用. \
+		在避难期间，你无敌且免疫减速，但你也无法使用双手和咒语，以及无法伤害其他任何物体. \
+		此外，被反魔法物体击中则避难解除."
+	gain_text = "卫兵与猎狗嫉妒地追捕着我，但我解锁了我的形体，变成了一团无法触及的迷雾."
 	next_knowledge = list(/datum/heretic_knowledge/ultimate/lock_final)
 	route = PATH_LOCK
 	spell_to_add = /datum/action/cooldown/spell/caretaker
 	cost = 1
 
 /datum/heretic_knowledge/ultimate/lock_final
-	name = "Unlock the Labyrinth"
-	desc = "The ascension ritual of the Path of Knock. \
-		Bring 3 corpses without organs in their torso to a transmutation rune to complete the ritual. \
-		When completed, you gain the ability to transform into empowered eldritch creatures \
-		and in addition, create a tear to the Labyrinth's heart; \
-		a tear in reality located at the site of this ritual. \
-		Eldritch creatures will endlessly pour from this rift \
-		who are bound to obey your instructions."
-	gain_text = "The Stewards guided me, and I guided them. \
-		My foes were the Locks and my blades were the Key! \
-		The Labyrinth will be Locked no more, and freedom will be ours! WITNESS US!"
+	name = "启封迷城"
+	desc = "锁之路的最终仪式. \
+		带三具躯干部位没有器官的尸体到嬗变符文处以完成仪式. \
+		一旦完成，你将获得变身成四只强大的邪恶生物的能力. 而你完成仪式的嬗变符文将打开一道连通迷宫心脏的裂口， \
+		无穷无尽的邪恶生物将从这道裂口中涌出，而且它们还会听从你的指示."
+	gain_text = "管家们为我引路，而我也带领它们. \
+		引剑向锁，钥匙就此天成! \
+		迷宫禁锁不再，自由终于来临! 见证我!"
 	required_atoms = list(/mob/living/carbon/human = 3)
 	route = PATH_LOCK
 
@@ -200,20 +197,20 @@
 		if(body.stat != DEAD)
 			continue
 		if(LAZYLEN(body.get_organs_for_zone(BODY_ZONE_CHEST)))
-			to_chat(user, span_hierophant_warning("[body] has organs in their chest."))
+			to_chat(user, span_hierophant_warning("[body]躯干部位有器官."))
 			continue
 
 		selected_atoms += body
 
 	if(!LAZYLEN(selected_atoms))
-		loc.balloon_alert(user, "ritual failed, not enough valid bodies!")
+		loc.balloon_alert(user, "仪式失败，符合条件的尸体不够!")
 		return FALSE
 	return TRUE
 
 /datum/heretic_knowledge/ultimate/lock_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "Delta-class dimensional anomaly detec[generate_heretic_text()] Reality rended, torn. Gates open, doors open, [user.real_name] has ascended! Fear the tide! [generate_heretic_text()]",
+		text = "检测到Delta级纬度异常，[generate_heretic_text()]现实崩坏，撕裂. 门开了，门开了， [user.real_name]已经飞升了! 畏惧迷城之潮! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = ANNOUNCER_SPANOMALIES,
 		color_override = "pink",

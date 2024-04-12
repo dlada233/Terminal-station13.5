@@ -4,14 +4,11 @@
 #define RISEN_MAX_HEALTH 125
 
 /datum/heretic_knowledge/limited_amount/risen_corpse
-	name = "Shattered Ritual"
-	desc = "Allows you to transmute a corpse with a soul, a pair of latex or nitrile gloves, and \
-		and any exosuit clothing (such as armor) to create a Shattered Risen. \
-		Shattered Risen are strong ghouls that have 125 health, but cannot hold items, \
-		instead having two brutal weapons for hands. You can only create one at a time."
-	gain_text = "I witnessed a cold, rending force drag this corpse back to near-life. \
-		When it moves, it crunches like broken glass. Its hands are no longer recognizable as human - \
-		each clenched fist contains a brutal nest of sharp bone-shards instead."
+	name = "破碎秘仪"
+	desc = "你可以将一具带有灵魂的尸体、一双乳胶或丁腈手套以及一件任意外衣（如盔甲）进行嬗变以创造一个破碎返生者\
+		破碎返生者是强大的食尸鬼，拥有125点生命值，自带两把残忍的武器，但无法拿取物品，同一时间也只能创造一只."
+	gain_text = "我目睹了一股冰冷破碎的力量将这具尸体拖回了返生的状态. \
+		当它行动时，就像碎玻璃一样嘎吱作响，它的手已经看不出人形了，掌心满是锋利的骨头碎片."
 	next_knowledge = list(
 		/datum/heretic_knowledge/cold_snap,
 		/datum/heretic_knowledge/blade_dance,
@@ -33,33 +30,33 @@
 		if(body.stat != DEAD)
 			continue
 		if(!IS_VALID_GHOUL_MOB(body) || HAS_TRAIT(body, TRAIT_HUSK))
-			to_chat(user, span_hierophant_warning("[body] is not in a valid state to be made into a ghoul."))
+			to_chat(user, span_hierophant_warning("[body]的状态无法被做成食尸鬼."))
 			continue
 		if(!body.mind)
-			to_chat(user, span_hierophant_warning("[body] is mindless and cannot be made into a ghoul."))
+			to_chat(user, span_hierophant_warning("[body]没有神智，不能被做成食尸鬼."))
 			continue
 		if(!body.client && !body.mind.get_ghost(ghosts_with_clients = TRUE))
-			to_chat(user, span_hierophant_warning("[body] is soulless and cannot be made into a ghoul."))
+			to_chat(user, span_hierophant_warning("[body]体内没有灵魂，不能被做成食尸鬼."))
 			continue
 
 		// We will only accept valid bodies with a mind, or with a ghost connected that used to control the body
 		selected_atoms += body
 		return TRUE
 
-	loc.balloon_alert(user, "ritual failed, no valid body!")
+	loc.balloon_alert(user, "仪式失败，尸体不可用!")
 	return FALSE
 
 /datum/heretic_knowledge/limited_amount/risen_corpse/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/mob/living/carbon/human/soon_to_be_ghoul = locate() in selected_atoms
 	if(QDELETED(soon_to_be_ghoul)) // No body? No ritual
 		stack_trace("[type] reached on_finished_recipe without a human in selected_atoms to make a ghoul out of.")
-		loc.balloon_alert(user, "ritual failed, no valid body!")
+		loc.balloon_alert(user, "仪式失败，尸体不可用!")
 		return FALSE
 
 	soon_to_be_ghoul.grab_ghost()
 	if(!soon_to_be_ghoul.mind || !soon_to_be_ghoul.client)
 		stack_trace("[type] reached on_finished_recipe without a minded / cliented human in selected_atoms to make a ghoul out of.")
-		loc.balloon_alert(user, "ritual failed, no valid body!")
+		loc.balloon_alert(user, "仪式失败，尸体不可用!")
 		return FALSE
 
 	selected_atoms -= soon_to_be_ghoul
@@ -68,9 +65,9 @@
 
 /// Make [victim] into a shattered risen ghoul.
 /datum/heretic_knowledge/limited_amount/risen_corpse/proc/make_risen(mob/living/user, mob/living/carbon/human/victim)
-	user.log_message("created a shattered risen out of [key_name(victim)].", LOG_GAME)
-	victim.log_message("became a shattered risen of [key_name(user)]'s.", LOG_VICTIM, log_globally = FALSE)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a shattered risen, [ADMIN_LOOKUPFLW(victim)].")
+	user.log_message("在[key_name(victim)]上创造了破碎返生者.", LOG_GAME)
+	victim.log_message("变成了在[key_name(user)]上创造的破碎返生者.", LOG_VICTIM, log_globally = FALSE)
+	message_admins("[ADMIN_LOOKUPFLW(user)]创造了一名破碎返生者，[ADMIN_LOOKUPFLW(victim)].")
 
 	victim.apply_status_effect(
 		/datum/status_effect/ghoul,
@@ -94,8 +91,8 @@
 
 /// The "hand" "weapon" used by shattered risen
 /obj/item/mutant_hand/shattered_risen
-	name = "bone-shards"
-	desc = "What once appeared to be a normal human fist, now holds a maulled nest of sharp bone-shards."
+	name = "碎骨"
+	desc = "曾经是正常的人类拳头，现在团聚着锋利的碎骨."
 	color = "#001aff"
 	hitsound = SFX_SHATTER
 	force = 16
@@ -121,12 +118,11 @@
 		icon_state = "[base_icon_state]_left"
 
 /datum/heretic_knowledge/rune_carver
-	name = "Carving Knife"
-	desc = "Allows you to transmute a knife, a shard of glass, and a piece of paper to create a Carving Knife. \
-		The Carving Knife allows you to etch difficult to see traps that trigger on heathens who walk overhead. \
-		Also makes for a handy throwing weapon."
-	gain_text = "Etched, carved... eternal. There is power hidden in everything. I can unveil it! \
-		I can carve the monolith to reveal the chains!"
+	name = "雕刻刀"
+	desc = "你可以将一把刀、一块玻璃碎片盒一张纸嬗变成一把雕刻刀. \
+		雕刻刀可以让你雕刻出难以被察觉的陷阱，不信之人一旦走上去就会触发. 另外这也是一把方便的投掷武器."
+	gain_text = "蚀刻，雕刻...永远地. 力量潜藏在万物之间. 我可以揭开它的面纱! \
+		我可以雕刻巨岩，揭露枷锁!"
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/void_phase,
 		/datum/heretic_knowledge/duel_stance,
@@ -141,12 +137,10 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/summon/maid_in_mirror
-	name = "Maid in the Mirror"
-	desc = "Allows you to transmute five sheets of titanium, a flash, a suit of armor, and a pair of lungs \
-		to create a Maid in the Mirror. Maid in the Mirrors are decent combatants that can become incorporeal by \
-		phasing in and out of the mirror realm, serving as powerful scouts and ambushers."
-	gain_text = "Within each reflection, lies a gateway into an unimaginable world of colors never seen and \
-		people never met. The ascent is glass, and the walls are knives. Each step is blood, if you do not have a guide."
+	name = "镜中少女"
+	desc = "你可以将五片钛、一个闪光灯、一套护甲和一块肺嬗变成一名镜中少女. \
+		镜中少女是优秀的战士，可以通过进出镜界而变得无形，擅长侦察与伏击."
+	gain_text = "每个反射面都泛出不存在的色彩，都是通往奇异世界的大门. 水晶玻璃铺成楼梯，利刃尖刀砌成墙壁，如若无人指引，步步下血池."
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/void_pull,
 		/datum/heretic_knowledge/spell/furious_steel,

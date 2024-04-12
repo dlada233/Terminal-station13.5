@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/rust_construction
-	name = "Rust Formation"
-	desc = "Transforms a rusted floor into a full wall of rust. Creating a wall underneath a mob will harm it."
+	name = "赭色宫"
+	desc = "在生锈的地板上升起一面锈墙，在敌人脚下使用还会造成伤害."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon_state = "shield"
@@ -10,8 +10,8 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 5 SECONDS
 
-	invocation = "Someone raises a wall of rust."
-	invocation_self_message = "You raise a wall of rust."
+	invocation = "有谁升起了一堵锈墙."
+	invocation_self_message = "你升起了一堵锈墙."
 	invocation_type = INVOCATION_EMOTE
 	spell_requirements = NONE
 
@@ -24,12 +24,12 @@
 /datum/action/cooldown/spell/pointed/rust_construction/is_valid_target(atom/cast_on)
 	if(!isfloorturf(cast_on))
 		if(isturf(cast_on) && owner)
-			cast_on.balloon_alert(owner, "not a floor!")
+			cast_on.balloon_alert(owner, "没有地板!")
 		return FALSE
 
 	if(!HAS_TRAIT(cast_on, TRAIT_RUSTY))
 		if(owner)
-			cast_on.balloon_alert(owner, "not rusted!")
+			cast_on.balloon_alert(owner, "没有锈蚀!")
 		return FALSE
 
 	return TRUE
@@ -39,20 +39,19 @@
 	if(!isliving(owner))
 		return
 
-	var/mob/living/living_owner = owner
-	invocation = span_danger("<b>[owner]</b> drags [owner.p_their()] hand[living_owner.usable_hands == 1 ? "":"s"] upwards as a wall of rust rises out of [cast_on]!")
-	invocation_self_message = span_notice("You drag [living_owner.usable_hands == 1 ? "a hand":"your hands"] upwards as a wall of rust rises out of [cast_on].")
+	invocation = span_danger("<b>[owner]</b>抬起手，一堵锈墙从[cast_on]中升起!")
+	invocation_self_message = span_notice("你抬起手，一堵锈墙从[cast_on]中升起.")
 
 /datum/action/cooldown/spell/pointed/rust_construction/cast(turf/open/cast_on)
 	. = ..()
-	var/rises_message = "rises out of [cast_on]"
+	var/rises_message = "从[cast_on]中升起"
 	var/turf/closed/wall/new_wall = cast_on.place_on_top(/turf/closed/wall)
 	if(!istype(new_wall))
 		return
 
 	playsound(new_wall, 'sound/effects/constructform.ogg', 50, TRUE)
 	new_wall.rust_heretic_act()
-	new_wall.name = "\improper enchanted [new_wall.name]"
+	new_wall.name = "\improper 附魔的[new_wall.name]"
 	new_wall.hardness = 10
 	new_wall.sheet_amount = 0
 	new_wall.girder_type = null
@@ -69,13 +68,13 @@
 		message_shown = TRUE
 		if(IS_HERETIC_OR_MONSTER(living_mob) || living_mob == owner)
 			living_mob.visible_message(
-				span_warning("\A [new_wall] [rises_message] and pushes along [living_mob]!"),
-				span_notice("\A [new_wall] [rises_message] beneath your feet and pushes you along!"),
+				span_warning("[new_wall][rises_message]并顶开了[living_mob]!"),
+				span_notice("[new_wall][rises_message]并顶开了你!"),
 			)
 		else
 			living_mob.visible_message(
-				span_warning("\A [new_wall] [rises_message] and slams into [living_mob]!"),
-				span_userdanger("\A [new_wall] [rises_message] beneath your feet and slams into you!"),
+				span_warning("[new_wall][rises_message]并撞飞了[living_mob]!"),
+				span_userdanger("[new_wall][rises_message]并撞飞了你!"),
 			)
 			living_mob.apply_damage(10, BRUTE, wound_bonus = 10)
 			living_mob.Knockdown(5 SECONDS)
