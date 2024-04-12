@@ -328,6 +328,6 @@
  * Generates a random name for the influence.
  */
 /obj/effect/heretic_influence/proc/generate_name()
-	name = "\improper" + pick(strings(HERETIC_INFLUENCE_FILE, "前缀")) + pick(strings(HERETIC_INFLUENCE_FILE, "后缀"))
+	name = "\improper" + pick(strings(HERETIC_INFLUENCE_FILE, "prefix")) + pick(strings(HERETIC_INFLUENCE_FILE, "postfix"))
 
 #undef NUM_INFLUENCES_PER_HERETIC
