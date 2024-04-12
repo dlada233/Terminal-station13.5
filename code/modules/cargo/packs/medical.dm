@@ -5,7 +5,7 @@
 
 /datum/supply_pack/medical/bloodpacks
 	name = "血袋补给包"
-	desc = "内含十种不同选型的血袋."
+	desc = "内含十种不同血型的血袋."
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/reagent_containers/blood = 2,
 					/obj/item/reagent_containers/blood/a_plus,
@@ -23,7 +23,7 @@
 /datum/supply_pack/medical/medipen_variety
 	name = "医用注射笔包"
 	desc = "内含三种医用注射笔，总共八种药物，\
-		以抢救受伤最严重的患者."
+		用于抢救生命危重的患者."
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(/obj/item/reagent_containers/hypospray/medipen = 2,
 					/obj/item/reagent_containers/hypospray/medipen/ekit = 3,
@@ -34,13 +34,13 @@
 /datum/supply_pack/medical/coroner_crate
 	name = "解剖工具包"
 	desc = "内含一个解剖扫描仪，\
-		当你弄丢了原来的而又真正需要进行解剖时."
+		当你弄丢了你自己的,又非常需要进行解剖时."
 	cost = CARGO_CRATE_VALUE * 2.5
 	contains = list(
 		/obj/item/autopsy_scanner = 1,
 		/obj/item/storage/medkit/coroner = 1,
 	)
-	crate_name = "解剖工具包"
+	crate_name = "解剖工具箱"
 
 /datum/supply_pack/medical/chemical
 	name = "化学入门套件"
@@ -67,7 +67,7 @@
 
 /datum/supply_pack/medical/defibs
 	name = "除颤器补给包"
-	desc = "内含两台起死回生用的除颤器."
+	desc = "两台给人起死回生的除颤器."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/defibrillator/loaded = 2)
 	crate_name = "除颤器箱"
@@ -83,7 +83,7 @@
 
 /datum/supply_pack/medical/supplies
 	name = "医疗用品包"
-	desc = "内含各种各样的医疗用品，不包含一个训练有素的医生."
+	desc = "内含各种随机医疗用品，不包含一个训练有素的医生."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/reagent_containers/cup/bottle/multiver,
 					/obj/item/reagent_containers/cup/bottle/epinephrine,
@@ -128,9 +128,9 @@
 
 /datum/supply_pack/medical/surgery
 	name = "手术用品包"
-	desc = "你立志成为一名外科医生，但苦于没有无用的学位证明？\
-		从这里继续你的梦想！内含DeForest手术托盘, \
-		消毒喷雾和可折叠的滚轮床."
+	desc = "你立志成为一名外科医生，但苦于没有花里胡哨的学位？\
+		那就从这个箱子开始你的梦想！内含DeForest 手术托盘, \
+		消毒喷雾和可折叠滚轮床."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/obj/item/surgery_tray/full,
@@ -141,19 +141,18 @@
 
 /datum/supply_pack/medical/salglucanister
 	name = "大型生理盐水储罐"
-	desc = "含有大量的葡萄糖-盐溶液的\
-		能用好几天的液体罐，自带的泵被用来补充注射容器，\
-		但不要直接对着患者使用泵，\
-		可能导致患者注射过量."
+	desc = "含有大量的葡萄糖-盐水溶液，能用好几天的液体罐，配有一个大型泵用于填充容器，\
+		不要直接用泵对着患者灌，\
+		可能导致患者用药过量."
 	cost = CARGO_CRATE_VALUE * 6
 	access = ACCESS_MEDICAL
 	contains = list(/obj/machinery/iv_drip/saline)
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/medical/virus
-	name = "病毒学用品箱"
+	name = "病毒学用品包"
 	desc = "内含十二瓶不同的病毒样本，用于病毒学研究，\
-		还包括七个烧杯和注射器."
+		附带七个烧杯和注射器."
 	cost = CARGO_CRATE_VALUE * 5
 	access = ACCESS_CMO
 	access_view = ACCESS_VIROLOGY
@@ -175,8 +174,8 @@
 	dangerous = TRUE
 
 /datum/supply_pack/medical/cmoturtlenecks
-	name = "CMO毛衣包"
-	desc = "内含CMO的毛衣和毛衣裙."
+	name = "CMO高领毛衣包"
+	desc = "内含CMO的高领毛衣和高领毛衣裙."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_CMO
 	contains = list(/obj/item/clothing/under/rank/medical/chief_medical_officer/turtleneck,
@@ -184,9 +183,9 @@
 				)
 
 /datum/supply_pack/medical/arm_implants
-	name = "大力臂 植入物"
-	desc = "一个装有两个大力臂植入物的箱子，可以通过手术植入来增强人类手臂的力量，不过如果暴露在EMP环境下则会失灵."
+	name = "强化臂植入物"
+	desc = "装有两个强化臂植入物的箱子，可以通过手术植入来增强人类手臂的力量.暴露于电磁脉冲后保修作废."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/organ/internal/cyberimp/arm/muscle = 2)
-	crate_name = "大力臂 植入物"
+	crate_name = "强化臂 植入物"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE

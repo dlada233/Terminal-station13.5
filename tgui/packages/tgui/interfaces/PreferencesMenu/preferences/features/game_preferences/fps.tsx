@@ -8,7 +8,7 @@ type FpsServerData = FeatureNumericData & {
 const FpsInput = (props: FeatureValueProps<number, number, FpsServerData>) => {
   const { handleSetValue, serverData } = props;
 
-  let recommened = `推荐的`;
+  let recommened = `推荐方案`;
   if (serverData) {
     recommened += ` (${serverData.recommended_fps})`;
   }

@@ -1,6 +1,6 @@
 /datum/computer_file/program/revelation
 	filename = "revelation"
-	filedesc = "Revelation-上启"
+	filedesc = "上启"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "hostile"
 	extended_desc = "这种病毒在执行时将摧毁磁盘驱动系统，并且具有伪装成无害程序的功能，一旦部署，它会在下次执行时摧毁系统."

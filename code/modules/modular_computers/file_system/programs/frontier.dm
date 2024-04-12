@@ -1,8 +1,8 @@
 /datum/computer_file/program/scipaper_program
 	filename = "ntfrontier"
-	filedesc = "NT Frontier-NT前沿"
+	filedesc = "NT边界"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
-	extended_desc = "科学论文发表及搜索软件."
+	extended_desc = "用于科学论文发表及搜索的软件."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 12
 	program_open_overlay = "research"

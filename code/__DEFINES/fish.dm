@@ -125,12 +125,12 @@
 #define FISH_RARITY_NOPE 0
 
 ///Aquarium fluid variables. The fish' required fluid has to match this, or it'll slowly die.
-#define AQUARIUM_FLUID_FRESHWATER "Freshwater"
-#define AQUARIUM_FLUID_SALTWATER "Saltwater"
-#define AQUARIUM_FLUID_SULPHWATEVER "Sulfuric Water"
-#define AQUARIUM_FLUID_AIR "Air"
-#define AQUARIUM_FLUID_ANADROMOUS "Adaptive to both Freshwater and Saltwater"
-#define AQUARIUM_FLUID_ANY_WATER "Adaptive to all kind of water"
+#define AQUARIUM_FLUID_FRESHWATER "淡水"
+#define AQUARIUM_FLUID_SALTWATER "海水"
+#define AQUARIUM_FLUID_SULPHWATEVER "硫磺水"
+#define AQUARIUM_FLUID_AIR "空气"
+#define AQUARIUM_FLUID_ANADROMOUS "广盐性鱼类"
+#define AQUARIUM_FLUID_ANY_WATER "全水域鱼类"
 
 ///Fluff. The name of the aquarium company shown in the fish catalog
-#define AQUARIUM_COMPANY "Aquatech Ltd."
+#define AQUARIUM_COMPANY "水族科技有限公司."

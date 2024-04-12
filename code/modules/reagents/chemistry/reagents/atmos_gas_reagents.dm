@@ -58,7 +58,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/hypernoblium
-	name = "Hyper-Noblium-超铔"
+	name = "Hyper-Noblium-超铌"
 	description = "一种抑制气体，可以阻止吸入者的气体反应."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
@@ -99,7 +99,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/nitrium_low_metabolization
-	name = "Nitrium-氮酸"
+	name = "Nitrium-亚硝基兴奋气"
 	description = "一种高活性气体，能让你感觉更快."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up

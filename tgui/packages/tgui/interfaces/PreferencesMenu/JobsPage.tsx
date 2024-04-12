@@ -125,7 +125,7 @@ const PriorityButtons = (props: {
       {isOverflow ? (
         <>
           <PriorityButton
-            name="Off"
+            name="关"
             modifier="off"
             color="light-grey"
             enabled={!priority}
@@ -133,7 +133,7 @@ const PriorityButtons = (props: {
           />
 
           <PriorityButton
-            name="On"
+            name="启用"
             color="green"
             enabled={!!priority}
             onClick={createSetPriority(JobPriority.High)}
@@ -142,7 +142,7 @@ const PriorityButtons = (props: {
       ) : (
         <>
           <PriorityButton
-            name="Off"
+            name="关"
             modifier="off"
             color="light-grey"
             enabled={!priority}
@@ -150,21 +150,21 @@ const PriorityButtons = (props: {
           />
 
           <PriorityButton
-            name="Low"
+            name="低"
             color="red"
             enabled={priority === JobPriority.Low}
             onClick={createSetPriority(JobPriority.Low)}
           />
 
           <PriorityButton
-            name="Medium"
+            name="中"
             color="yellow"
             enabled={priority === JobPriority.Medium}
             onClick={createSetPriority(JobPriority.Medium)}
           />
 
           <PriorityButton
-            name="High"
+            name="高"
             color="green"
             enabled={priority === JobPriority.High}
             onClick={createSetPriority(JobPriority.High)}

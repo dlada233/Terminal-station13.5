@@ -5,10 +5,10 @@
 
 /datum/computer_file/program/atmosscan
 	filename = "atmosscan"
-	filedesc = "AtmoZphere-气探"
+	filedesc = "大气扫描"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	program_open_overlay = "air"
-	extended_desc = "内置的微型传感器可以读出设备周围的大气状况."
+	extended_desc = "一个通过内置扫描传感器以读取周围大气信息的软件."
 	size = 4
 	tgui_id = "NtosGasAnalyzer"
 	program_icon = "thermometer-half"
@@ -61,7 +61,7 @@
 	switch (atmozphere_mode) //Null air wont cause errors, don't worry.
 		if(ATMOZPHERE_SCAN_ENV)
 			var/datum/gas_mixture/air = turf?.return_air()
-			data["gasmixes"] = list(gas_mixture_parser(air, "Location Reading"))
+			data["gasmixes"] = list(gas_mixture_parser(air, "位置读数"))
 		if(ATMOZPHERE_SCAN_CLICK)
 			LAZYINITLIST(last_gasmix_data)
 			data["gasmixes"] = last_gasmix_data
@@ -75,12 +75,12 @@
 				UnregisterSignal(computer, COMSIG_ITEM_ATTACK_SELF_SECONDARY)
 				return TRUE
 			if(!(computer.hardware_flag & PROGRAM_PDA))
-				computer.say("不兼容的扫描对象!")
+				computer.say("设备不兼容扫描物体!")
 				return FALSE
 			atmozphere_mode = ATMOZPHERE_SCAN_CLICK
 			RegisterSignal(computer, COMSIG_ITEM_ATTACK_SELF_SECONDARY, PROC_REF(turf_analyze))
 			var/turf/turf = get_turf(computer)
-			last_gasmix_data = list(gas_mixture_parser(turf?.return_air(), "Location Reading"))
+			last_gasmix_data = list(gas_mixture_parser(turf?.return_air(), "位置读数"))
 			return TRUE
 
 #undef ATMOZPHERE_SCAN_ENV

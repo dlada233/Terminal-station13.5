@@ -1944,7 +1944,7 @@
 
 /datum/design/modlink_scryer
 	name = "MODlink Scryer"
-	desc = "A neck-worn piece of gear that can call with another MODlink-compatible device."
+	desc = "颈环式 MODlink 通讯器，能够与附近兼容MODlink的设备建立语音连接."
 	id = "modlink_scryer"
 	build_type = MECHFAB
 	materials = list(
@@ -1961,7 +1961,7 @@
 //MODsuit modules
 
 /datum/design/module
-	name = "MOD Module"
+	name = "模块服 模块"
 	build_type = MECHFAB
 	construction_time = 1 SECONDS
 	materials = list(

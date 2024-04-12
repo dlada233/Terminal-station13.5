@@ -205,27 +205,27 @@
 	user.log_message("[change_description] to an ID card [(id_card.registered_name) ? "belonging to [id_card.registered_name]." : "with no registered name."]", LOG_GAME); \
 
 /// Displayed name for Common ID card accesses.
-#define ACCESS_FLAG_COMMON_NAME "Common"
+#define ACCESS_FLAG_COMMON_NAME "普通"
 /// Bitflag for Common ID card accesses. See COMMON_ACCESS.
 #define ACCESS_FLAG_COMMON (1 << 0)
 /// Displayed name for Command ID card accesses.
-#define ACCESS_FLAG_COMMAND_NAME "Command"
+#define ACCESS_FLAG_COMMAND_NAME "指挥"
 /// Bitflag for Command ID card accesses. See COMMAND_ACCESS.
 #define ACCESS_FLAG_COMMAND (1 << 1)
 /// Displayed name for Private Command ID card accesses.
-#define ACCESS_FLAG_PRV_COMMAND_NAME "Private Command"
+#define ACCESS_FLAG_PRV_COMMAND_NAME "指挥私人"
 /// Bitflag for Private Command ID card accesses. See PRIVATE_COMMAND_ACCESS.
 #define ACCESS_FLAG_PRV_COMMAND (1 << 2)
 /// Displayed name for Captain ID card accesses.
-#define ACCESS_FLAG_CAPTAIN_NAME "Captain"
+#define ACCESS_FLAG_CAPTAIN_NAME "舰长"
 /// Bitflag for Captain ID card accesses. See CAPTAIN_ACCESS.
 #define ACCESS_FLAG_CAPTAIN (1 << 3)
 /// Displayed name for Centcom ID card accesses.
-#define ACCESS_FLAG_CENTCOM_NAME "Centcom"
+#define ACCESS_FLAG_CENTCOM_NAME "中央指挥部"
 /// Bitflag for Centcom ID card accesses. See CENTCOM_ACCESS.
 #define ACCESS_FLAG_CENTCOM (1 << 4)
 /// Displayed name for Syndicate ID card accesses.
-#define ACCESS_FLAG_SYNDICATE_NAME "Syndicate"
+#define ACCESS_FLAG_SYNDICATE_NAME "辛迪加"
 /// Bitflag for Syndicate ID card accesses. See SYNDICATE_ACCESS.
 #define ACCESS_FLAG_SYNDICATE (1 << 5)
 /// Displayed name for Offstation/Ruin/Away Mission ID card accesses.
@@ -233,7 +233,7 @@
 /// Bitflag for Offstation/Ruin/Away Mission ID card accesses. See AWAY_ACCESS.
 #define ACCESS_FLAG_AWAY (1 << 6)
 /// Displayed name for Special accesses that ordinaryily shouldn't be on ID cards.
-#define ACCESS_FLAG_SPECIAL_NAME "Special"
+#define ACCESS_FLAG_SPECIAL_NAME "特殊"
 /// Bitflag for Special accesses that ordinaryily shouldn't be on ID cards. See CULT_ACCESS.
 #define ACCESS_FLAG_SPECIAL (1 << 7)
 

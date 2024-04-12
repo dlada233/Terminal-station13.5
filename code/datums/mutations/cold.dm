@@ -1,16 +1,16 @@
 /datum/mutation/human/geladikinesis
-	name = "Geladikinesis"
-	desc = "Allows the user to concentrate moisture and sub-zero forces into snow."
+	name = "冻凝操控"
+	desc = "允许使用者运用水分和冰冻之力来凝聚出雪花."
 	quality = POSITIVE
-	text_gain_indication = "<span class='notice'>Your hand feels cold.</span>"
+	text_gain_indication = "<span class='notice'>你的手感觉很冷.</span>"
 	instability = 10
 	difficulty = 10
 	synchronizer_coeff = 1
 	power_path = /datum/action/cooldown/spell/conjure_item/snow
 
 /datum/action/cooldown/spell/conjure_item/snow
-	name = "Create Snow"
-	desc = "Concentrates cryokinetic forces to create snow, useful for snow-like construction."
+	name = "造雪"
+	desc = "聚焦冰冻之力，创造雪花，适用于冰雪建筑."
 	button_icon_state = "snow"
 
 	cooldown_time = 5 SECONDS
@@ -21,8 +21,8 @@
 	delete_on_failure = FALSE
 
 /datum/mutation/human/cryokinesis
-	name = "Cryokinesis"
-	desc = "Draws negative energy from the sub-zero void to freeze surrounding temperatures at subject's will."
+	name = "冰冻操控"
+	desc = "从超低温的虚空汲取负能量，根据使用者意愿冻结周围环境."
 	quality = POSITIVE //upsides and downsides
 	text_gain_indication = "<span class='notice'>Your hand feels cold.</span>"
 	instability = 30
@@ -32,8 +32,8 @@
 	power_path = /datum/action/cooldown/spell/pointed/projectile/cryo
 
 /datum/action/cooldown/spell/pointed/projectile/cryo
-	name = "Cryobeam"
-	desc = "This power fires a frozen bolt at a target."
+	name = "冰冻光线"
+	desc = "发射一道冰冻射线攻击目标."
 	button_icon_state = "icebeam"
 	base_icon_state = "icebeam"
 	active_overlay_icon_state = "bg_spell_border_active_blue"
@@ -41,6 +41,6 @@
 	spell_requirements = NONE
 	antimagic_flags = NONE
 
-	active_msg = "You focus your cryokinesis!"
-	deactive_msg = "You relax."
+	active_msg = "你聚精会神地操控冰冻!"
+	deactive_msg = "你放松了控制."
 	projectile_type = /obj/projectile/temp/cryo

@@ -1,11 +1,11 @@
 //Hulk turns your skin green, makes you strong, and allows you to shrug off stun effect.
 /datum/mutation/human/hulk
-	name = "Hulk"
-	desc = "A poorly understood genome that causes the holder's muscles to expand, inhibit speech and gives the person a bad skin condition."
+	name = "浩克"
+	desc = "一种所知甚少的基因组，能够导致携带者的肌肉扩张，抑制言语，并使人的皮肤状况恶化."
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16
-	text_gain_indication = "<span class='notice'>Your muscles hurt!</span>"
+	text_gain_indication = "<span class='notice'>你感觉肌肉疼痛!</span>"
 	species_allowed = list(SPECIES_HUMAN) //no skeleton/lizard hulk
 	health_req = 25
 	instability = 40
@@ -46,13 +46,13 @@
 	if(world.time > (last_scream + scream_delay))
 		last_scream = world.time
 		INVOKE_ASYNC(src, PROC_REF(scream_attack), source)
-	log_combat(source, target, "punched", "hulk powers")
+	log_combat(source, target, "重击", "浩克之力")
 	source.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 	source.changeNext_move(CLICK_CD_MELEE)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/mutation/human/hulk/proc/scream_attack(mob/living/carbon/human/source)
-	source.say("WAAAAAAAAAAAAAAGH!", forced="hulk")
+	source.say("WAAAAAAAAAAAAAAGH!", forced="浩克")
 
 /**
  *Checks damage of a hulk's arm and applies bone wounds as necessary.
@@ -81,7 +81,7 @@
 /datum/mutation/human/hulk/on_life(seconds_per_tick, times_fired)
 	if(owner.health < owner.crit_threshold)
 		on_losing(owner)
-		to_chat(owner, span_danger("You suddenly feel very weak."))
+		to_chat(owner, span_danger("你突然感到很虚弱."))
 		qdel(src)
 
 /datum/mutation/human/hulk/on_losing(mob/living/carbon/human/owner)
@@ -131,7 +131,7 @@
 		var/mob/living/carbon/human/human_throwable = possible_throwable
 		//if(human_throwable.wear_suit && (human_throwable.wear_suit.flags_inv & HIDEJUMPSUIT)) // ORIGINAL
 		if(human_throwable.wear_suit && (human_throwable.wear_suit.flags_inv & HIDETAIL)) // SKYRAT EDIT CHANGE
-			to_chat(user, span_warning("You can't reach [human_throwable]'s tail through [human_throwable.p_their()] [human_throwable.wear_suit.name]!"))
+			to_chat(user, span_warning("你没办法隔着[human_throwable.wear_suit.name]抓住[human_throwable]的尾巴!"))
 			return
 
 	user.face_atom(clicked_atom)
@@ -145,23 +145,23 @@
 	yeeted_person.forceMove(the_hulk.loc)
 	yeeted_person.setDir(get_dir(yeeted_person, the_hulk))
 
-	log_combat(the_hulk, yeeted_person, "has started swinging by tail")
+	log_combat(the_hulk, yeeted_person, "开始抓住尾巴旋转")
 	yeeted_person.Stun(2 SECONDS)
-	yeeted_person.visible_message(span_danger("[the_hulk] starts grasping [yeeted_person] by the tail..."), \
-					span_userdanger("[the_hulk] begins grasping your tail!"), span_hear("You hear aggressive shuffling!"), null, the_hulk)
+	yeeted_person.visible_message(span_danger("[the_hulk]开始抓握[yeeted_person]的尾巴..."), \
+					span_userdanger("[the_hulk]尝试抓握你的尾巴!"), span_hear("你听到了侵略性的拖动声!"), null, the_hulk)
 	to_chat(the_hulk, span_danger("You start grasping [yeeted_person] by the tail..."))
 
 	if(!do_after(the_hulk, 2 SECONDS, yeeted_person))
-		yeeted_person.visible_message(span_danger("[yeeted_person] breaks free of [the_hulk]'s grasp!"), \
-					span_userdanger("You break free from [the_hulk]'s grasp!"), span_hear("You hear aggressive shuffling!"), null, the_hulk)
-		to_chat(the_hulk, span_danger("You lose your grasp on [yeeted_person]'s tail!"))
+		yeeted_person.visible_message(span_danger("[yeeted_person]挣脱了[the_hulk]的抓握!"), \
+					span_userdanger("你从[the_hulk]的抓握中挣脱出来!"), span_hear("你听到了侵略性的拖动声!"), null, the_hulk)
+		to_chat(the_hulk, span_danger("你失去了对[yeeted_person]尾巴的抓握!"))
 		return
 
 	// we're officially a-go!
 	yeeted_person.Paralyze(8 SECONDS)
-	yeeted_person.visible_message(span_danger("[the_hulk] starts spinning [yeeted_person] around by [yeeted_person.p_their()] tail!"), \
-					span_userdanger("[the_hulk] starts spinning you around by your tail!"), span_hear("You hear wooshing sounds!"), null, the_hulk)
-	to_chat(the_hulk, span_danger("You start spinning [yeeted_person] around by [yeeted_person.p_their()] tail!"))
+	yeeted_person.visible_message(span_danger("[the_hulk]开始抓住[yeeted_person]的尾巴转起圈来!"), \
+					span_userdanger("[the_hulk]开始抓着你的尾巴转圈!"), span_hear("你听到了呼啸的风声!"), null, the_hulk)
+	to_chat(the_hulk, span_danger("你开始抓住[yeeted_person]的尾巴转起圈来!"))
 	the_hulk.emote("scream")
 	yeeted_person.emote("scream")
 	swing_loop(the_hulk, yeeted_person, 0, original_dir)
@@ -177,7 +177,7 @@
 	if(!yeeted_person || !the_hulk || the_hulk.incapacitated())
 		return
 	if(get_dist(the_hulk, yeeted_person) > 1 || !isturf(the_hulk.loc) || !isturf(yeeted_person.loc))
-		to_chat(the_hulk, span_warning("You lose your grasp on [yeeted_person]!"))
+		to_chat(the_hulk, span_warning("你松开了对[yeeted_person]的抓握!"))
 		return
 
 	var/delay = 5
@@ -216,18 +216,18 @@
 
 		yeeted_person.adjustBruteLoss(step*0.5)
 		playsound(collateral_mob,'sound/weapons/punch1.ogg',50,TRUE)
-		log_combat(the_hulk, collateral_mob, "has smacked with tail swing victim")
-		log_combat(the_hulk, yeeted_person, "has smacked this person into someone while tail swinging") // i have no idea how to better word this
+		log_combat(the_hulk, collateral_mob, "甩飞了被抓住尾巴的人")
+		log_combat(the_hulk, yeeted_person, "被抓住尾巴甩飞的人砸向了另一个人") // i have no idea how to better word this
 
 		if(collateral_mob == the_hulk) // if the hulk moves wrong and crosses himself
-			the_hulk.visible_message(span_warning("[the_hulk] smacks [the_hulk.p_them()]self with [yeeted_person]!"), span_userdanger("You end up smacking [yeeted_person] into yourself!"), ignored_mobs = yeeted_person)
-			to_chat(yeeted_person, span_userdanger("[the_hulk] smacks you into [the_hulk.p_them()]self, turning you free!"))
+			the_hulk.visible_message(span_warning("[the_hulk]用[yeeted_person]撞到了自己!"), span_userdanger("你用[yeeted_person]撞到了自己!"), ignored_mobs = yeeted_person)
+			to_chat(yeeted_person, span_userdanger("[the_hulk]把你撞到了他自己身上，你摆脱了抓握!"))
 			the_hulk.adjustBruteLoss(step)
 			return
 
-		yeeted_person.visible_message(span_warning("[the_hulk] swings [yeeted_person] directly into [collateral_mob], sending [collateral_mob.p_them()] flying!"), \
-			span_userdanger("You're smacked into [collateral_mob]!"), ignored_mobs = collateral_mob)
-		to_chat(collateral_mob, span_userdanger("[the_hulk] swings [yeeted_person] directly into you, sending you flying!"))
+		yeeted_person.visible_message(span_warning("[the_hulk]把[yeeted_person]甩向[collateral_mob],把他们撞飞了!"), \
+			span_userdanger("你被甩向[collateral_mob]!"), ignored_mobs = collateral_mob)
+		to_chat(collateral_mob, span_userdanger("[the_hulk]把[yeeted_person]甩向了你, 把你撞飞了!"))
 
 		collateral_mob.adjustBruteLoss(step*0.5)
 		collateral_mob.throw_at(collat_throw_target, round(step * 0.25) + 1, round(step * 0.25) + 1)
@@ -238,8 +238,8 @@
 	if(step >= HULK_TAILTHROW_STEPS)
 		finish_swing(the_hulk, yeeted_person, original_dir)
 	else if(step < 0)
-		the_hulk.visible_message(span_danger("[the_hulk] loses [the_hulk.p_their()] momentum on [yeeted_person]!"), span_warning("You lose your momentum on swinging [yeeted_person]!"), ignored_mobs = yeeted_person)
-		to_chat(yeeted_person, span_userdanger("[the_hulk] loses [the_hulk.p_their()] momentum and lets go of you!"))
+		the_hulk.visible_message(span_danger("[the_hulk]失去了抓住[yeeted_person]的动力!"), span_warning("你失去了甩动[yeeted_person]的动力!"), ignored_mobs = yeeted_person)
+		to_chat(yeeted_person, span_userdanger("[the_hulk]失去了动力并让你逃脱了!"))
 	else
 		addtimer(CALLBACK(src, PROC_REF(swing_loop), the_hulk, yeeted_person, step, original_dir), delay)
 
@@ -248,14 +248,14 @@
 	if(!yeeted_person || !the_hulk || the_hulk.incapacitated())
 		return
 	if(get_dist(the_hulk, yeeted_person) > 1 || !isturf(the_hulk.loc) || !isturf(yeeted_person.loc))
-		to_chat(the_hulk, span_warning("You lose your grasp on [yeeted_person]!"))
+		to_chat(the_hulk, span_warning("你失去了对[yeeted_person]的抓握!"))
 		return
 
 	the_hulk.setDir(original_dir)
 	yeeted_person.forceMove(the_hulk.loc) // Maybe this will help with the wallthrowing bug.
-	yeeted_person.visible_message(span_danger("[the_hulk] throws [yeeted_person]!"), \
-					span_userdanger("You're thrown by [the_hulk]!"), span_hear("You hear aggressive shuffling and a loud thud!"), null, the_hulk)
-	to_chat(the_hulk, span_danger("You throw [yeeted_person]!"))
+	yeeted_person.visible_message(span_danger("[the_hulk]把[yeeted_person]扔了出去!"), \
+					span_userdanger("你被[the_hulk]扔出去了!"), span_hear("你听到侵略性的拖动声和砰的一声巨响!”!"), null, the_hulk)
+	to_chat(the_hulk, span_danger("你把[yeeted_person]扔了出去!"))
 	playsound(the_hulk.loc, SFX_SWING_HIT, 50, TRUE)
 	var/turf/T = get_edge_target_turf(the_hulk, the_hulk.dir)
 	if(!isturf(T))
@@ -263,7 +263,7 @@
 	if(!yeeted_person.stat)
 		yeeted_person.emote("scream")
 	yeeted_person.throw_at(T, 10, 6, the_hulk, TRUE, TRUE)
-	log_combat(the_hulk, yeeted_person, "has thrown by tail")
+	log_combat(the_hulk, yeeted_person, "被抓住尾巴扔出去了")
 
 /datum/mutation/human/hulk/wizardly
 	species_allowed = null //yes skeleton/lizard hulk - note that species that dont have skintone changing (like skellies) get custom handling

@@ -1,4 +1,4 @@
-## Skyrat 13 (/tg/station Downstream)
+## Terminal-station13 (/tg/station - Skyrat Downstream)
 
 [![CI Suite](https://github.com/Skyrat-SS13/Skyrat-tg/workflows/CI%20Suite/badge.svg)](https://github.com/Skyrat-SS13/Skyrat-tg/actions?query=workflow%3A%22CI+Suite%22)
 [![Percentage of issues still open](https://isitmaintained.com/badge/open/Skyrat-SS13/Skyrat-tg.svg)](https://isitmaintained.com/project/Skyrat-SS13/Skyrat-tg "Percentage of issues still open")
@@ -7,58 +7,34 @@
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-| Website                   | Link                                           |
+| 网页                   | 链接                                           |
 |---------------------------|------------------------------------------------|
-| Git / GitHub cheatsheet   | [https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833](https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833) |
-| Guide to Modularization   | [./modular_skyrat/readme.md](./modular_skyrat/readme.md)            |
-| Website                   | [https://www.tgstation13.org](https://www.tgstation13.org)          |
-| Code                      | [https://github.com/Skyrat-SS13/Skyrat-tg](https://github.com/Skyrat-SS13/Skyrat-tg)    |
-| Wiki                      | [https://wiki.skyrat13.space/index.php/Main_Page](https://wiki.skyrat13.space/index.php/Main_Page)   |
-| Codedocs                  | [https://skyrat-ss13.github.io/Skyrat-tg/](https://skyrat-ss13.github.io/Skyrat-tg/)       |
-| Skyrat 13 Discord         | [https://discord.com/invite/hGpZ4Z3](https://discord.com/invite/hGpZ4Z3) |
-| Coderbus Discord          | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)               |
+| TGwiki                    | [https://tgstation13.org/wiki/Main_Page](https://tgstation13.org/wiki/Main_Page)          |
+| Skyrat项目代码            | [https://github.com/Skyrat-SS13/Skyrat-tg](https://github.com/Skyrat-SS13/Skyrat-tg)    |
+| SkyratWiki                | [https://wiki.skyrat13.space/index.php/Main_Page](https://wiki.skyrat13.space/index.php/Main_Page)   |
 
-This is Skyrat's downstream fork of /tg/station created in byond.
 
-**Please note that this repository contains sexually explicit content and is not suitable for those under the age of 18.**
+这是byond引擎下，/tg/station下游分支skyrat的下游分支.
 
-Space Station 13 is a paranoia-laden round-based roleplaying game set against the backdrop of a nonsensical, metal death trap masquerading as a space station, with charming spritework designed to represent the sci-fi setting and its dangerous undertones. Have fun, and survive!
+十三号空间站是一款风格荒诞的角色扮演游戏，游戏设定在遥远的26世纪的一家公司的空间站内，在这里你将能够扮演空间站中的不同职业，从事自己感兴趣的工作，并最终意外又毫不意外地迎来毁灭.游戏内容极其丰富，在拥有几十种职业的情况下，每种职业的玩法都值得花费数十小时去探索.作为一款经典的老游戏，你也可以从中看到许多其他游戏的灵感来源.
 
-## Important note - TEST YOUR PULL REQUESTS
+## 下载后如何编译
 
-You are responsible for the testing of your content and providing proof of such in your pull request. You should not mark a pull request ready for review until you have actually tested it. If you require a separate client for testing, you can use a guest account by logging out of BYOND and connecting to your test server. Test merges are not for bug finding, they are for stress tests where local testing simply doesn't allow for this.
+在根目录下找到`BUILD.bat`，双击并等待运行结束（tgui编译完成即可）.
 
-## DEVELOPMENT FLOWCHART
+在根目录选找到tgstation.dme，双击运行后，从左上角菜单栏中找到Build选项并点击其下的Compile选项.
 
-![image](https://i.imgur.com/aJnE4WT.png)
+等待编译完成，在显示无错误后，根目录下生成tgstation.dmb，编译完成.
 
-[Modularisation Guide](./modular_skyrat/readme.md)
+## 编译后如何主持游戏
 
-## DOWNLOADING
+按下Windows键+R，输入%USERPROFILE%\Documents\BYOND，找到并打开cfg文件夹中的daemon.txt，将host-port后的数字改为端口号.（仅限想要搭建多人游戏服务器的时候需要做这一步）
 
-[Downloading](.github/guides/DOWNLOADING.md)
+在根目录选找到tgstation.dme，从左上角菜单栏中找到Build选项并点击其下的Host选项（或者打开byond安装文件夹中的dreamdaemon.exe，在底下的File中选中对应的dmb文件）.
 
-[Running on the server](.github/guides/RUNNING_A_SERVER.md)
+在新弹出的Dream Daemon窗口中，从左上角菜单栏中找到World选项并点击其下的Go选项.
 
-[Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
-
-## Compilation
-
-Find `BUILD.bat` here in the root folder of tgstation, and double click it to initiate the build. It consists of multiple steps and might take around 1-5 minutes to compile.
-
-**The long way**. Find `bin/build.cmd` in this folder, and double click it to initiate the build. It consists of multiple steps and might take around 1-5 minutes to compile. If it closes, it means it has finished its job. You can then [setup the server](.github/guides/RUNNING_A_SERVER.md) normally by opening `tgstation.dmb` in DreamDaemon.
-
-**Building tgstation in DreamMaker directly is deprecated and might produce errors**, such as `'tgui.bundle.js': cannot find file`.
-
-**[How to compile in VSCode and other build options](tools/build/README.md).**
-
-## Contributors
-
-[Guides for Contributors](.github/CONTRIBUTING.md)
-
-[/tg/station HACKMD account](https://hackmd.io/@tgstation) - Design documentation here
-
-[Interested in some starting lore?](https://github.com/tgstation/common_core)
+等待游戏加载完成，点击Join即可进入游戏.
 
 ## LICENSE
 

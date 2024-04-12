@@ -1,5 +1,5 @@
 /datum/outfit/ninja
-	name = "Space Ninja"
+	name = "太空忍者"
 	uniform = /obj/item/clothing/under/syndicate/ninja
 	glasses = /obj/item/clothing/glasses/night
 	mask = /obj/item/clothing/mask/gas/ninja
@@ -28,7 +28,7 @@
 	recall.set_weapon(weapon)
 
 /datum/outfit/ninja_preview
-	name = "Space Ninja (Preview only)"
+	name = "太空忍者 (仅供浏览)"
 
 	uniform = /obj/item/clothing/under/syndicate/ninja
 	back = /obj/item/mod/control/pre_equipped/empty/ninja

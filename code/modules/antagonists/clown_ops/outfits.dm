@@ -1,5 +1,5 @@
 /datum/outfit/syndicate/clownop
-	name = "Clown Operative - Basic"
+	name = "小丑特工 - 基础"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/clown_shoes/combat
 	mask = /obj/item/clothing/mask/gas/clown_hat
@@ -27,7 +27,7 @@
 	tc = 0
 
 /datum/outfit/syndicate/clownop/leader
-	name = "Clown Operative Leader - Basic"
+	name = "小丑特工队长 - 基础"
 	command_radio = TRUE
 
 	id_trim = /datum/id_trim/chameleon/operative/clown_leader

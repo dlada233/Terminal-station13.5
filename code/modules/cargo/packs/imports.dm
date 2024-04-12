@@ -42,7 +42,7 @@
 
 /datum/supply_pack/imports/duct_spider
 	name = "管道蜘蛛包"
-	desc = "Awww!直接从闹大利亚到您的通风系统!"
+	desc = "Awww!直接从闹大利亚闹到你的通风系统!"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/mob/living/basic/spider/maintenance)
 	crate_name = "管道蜘蛛箱"
@@ -65,7 +65,7 @@
 
 /datum/supply_pack/imports/bananium
 	name = "一块蕉板"
-	desc = "别让那个小丑知道他可以订购这个."
+	desc = "别让那个小丑知道可以订这个."
 	cost = CARGO_CRATE_VALUE * 100
 	contains = list(/obj/item/stack/sheet/mineral/bananium)
 	crate_name = "蕉板箱"
@@ -73,13 +73,13 @@
 
 /datum/supply_pack/imports/naturalbait
 	name = "天然鱼饵罐头"
-	desc = "纯天然自制."
+	desc = "手工纯天然."
 	cost = 2000 //rock on
 	contains = list(/obj/item/storage/pill_bottle/naturalbait)
 	crate_name = "鱼饵箱"
 
 /datum/supply_pack/imports/dumpstercorpse
-	name = "....垃圾?"
+	name = "一堆....垃圾?"
 	desc = "为什么闻起来这么糟糕...."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/mob/living/carbon/human)
@@ -92,7 +92,7 @@
 	corpse.death()
 
 /datum/supply_pack/imports/dumpsterloot
-	name = "....垃圾"
+	name = "一堆....垃圾"
 	desc = "我不知道你为什么要买这个...为什么这么贵？"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
@@ -104,14 +104,14 @@
 
 /datum/supply_pack/imports/error
 	name = "NULL_ENTRY"
-	desc = "(*!&@#行吧，特工，我们知道你在炫耀多少钱了，很好，有了这个，祝你好运!#@*$"
+	desc = "(*!&@#行了，特工，我们知道你在炫耀多少钱了.好吧,买这个，把它组装起来，祝你好运!#@*$"
 	cost = CARGO_CRATE_VALUE * 100
 	hidden = TRUE
 	contains = list(/obj/item/book/granter/crafting_recipe/regal_condor)
 
 /datum/supply_pack/imports/mafia
-	name = "科萨·诺斯特拉入门包"
-	desc = "这个箱子包含了你建立自己的基于种族的敲诈勒索业务所需的一切."
+	name = "黑手党入门包"
+	desc = "这个箱子包含了你建立基于自己的种族敲诈勒索业务所需的一切."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list()
 	contraband = TRUE
@@ -164,7 +164,7 @@
 
 /datum/supply_pack/imports/wt550ammo
 	name = "走私 WT-550弹药补给"
-	desc = "(*!&@#特工, 喜欢耍WT-550? 那为什么不戴上更多弹药!!#@*$"
+	desc = "(*!&@#特工, 喜欢耍WT-550? 那为什么不带上更多弹药!!#@*$"
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
@@ -242,10 +242,10 @@
 // SKYRAT EDIT REMOVAL END
 
 /datum/supply_pack/imports/moistnuggets
-	name = "翻新的 Sakhno栓动步枪"
+	name = "翻新的萨赫诺栓动步枪"
 	desc = "你好，特工同志.你需要枪吗？你已经厌倦我们卖给站点的垃圾了吗？\
 		那我们为你准备了完美的武器！特别友情价！ \
-		但很不幸我们没有多余的弹药, 所以当你用光了所有弹药的时候，\
+		但很不幸我们没有多余的弹药, 所以当你打光了所有弹药的时候，\
 		你必须捡起死去战友的武器."
 	hidden = TRUE
 	cost = CARGO_CRATE_VALUE * 6
@@ -269,12 +269,12 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/imports/abandoned
-	name = "被遗弃的板条箱"
+	name = "遗弃的板条箱"
 	desc = "...等等, 怎么弄到这个?"
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list()
 	crate_type = /obj/structure/closet/crate/secure/loot
-	crate_name = "被遗弃的板条箱"
+	crate_name = "遗弃的板条箱"
 	contraband = TRUE
 	dangerous = TRUE //these are literally bombs so....
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
@@ -303,16 +303,16 @@
 	crate_name = "黯诺酒箱"
 
 /datum/supply_pack/imports/giant_wrench_parts
-	name = "大零件"
-	desc = "非法的大零件，最快也是最危险的扳手."
+	name = "大拍扳"
+	desc = "非法的大拍扳，最快也是最危险的扳手."
 	cost = CARGO_CRATE_VALUE * 22
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
-	crate_name = "位置零件箱"
+	crate_name = "未知零件箱"
 
 /datum/supply_pack/imports/materials_market
 	name = "银河系材料市场组装包"
-	desc = "内含组建银河系材料市场的电路板，Warning：投资失败的损失不在保险范围内."
+	desc = "内含组建银河系材料市场的电路板，警告：投资失败的损失不在保险范围内."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/circuitboard/machine/materials_market = 1,

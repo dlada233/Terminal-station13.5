@@ -31,7 +31,7 @@ const GeneticMakeupBufferInfo = (props) => {
         Makeup Actions
       </Box>
       <LabeledList>
-        <LabeledList.Item label="Enzymes">
+        <LabeledList.Item label="酶">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
@@ -81,7 +81,7 @@ const GeneticMakeupBufferInfo = (props) => {
             {!isViableSubject && ' (Delayed)'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Features">
+        <LabeledList.Item label="特征">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
@@ -135,7 +135,7 @@ const GeneticMakeupBufferInfo = (props) => {
           <Button
             icon="save"
             disabled={!hasDisk || diskReadOnly}
-            content="Export To Disk"
+            content="上传至磁盘"
             onClick={() =>
               act('save_makeup_disk', {
                 index,
@@ -170,7 +170,7 @@ const GeneticMakeupBuffers = (props) => {
               <Button
                 mr={1}
                 disabled={!hasDisk || !diskHasMakeup}
-                content="Import from disk"
+                content="从磁盘下载"
                 onClick={() =>
                   act('load_makeup_disk', {
                     index: i,
@@ -288,7 +288,7 @@ const PulseSettings = (props) => {
   const { data, act } = useBackend();
   const { pulseStrength, pulseDuration } = data;
   return (
-    <Section title="Emitter Configuration" minHeight="100%">
+    <Section title="发射器 配置" minHeight="100%">
       <LabeledList>
         <LabeledList.Item label="Output level">
           <NumberInput
@@ -330,7 +330,7 @@ export const DnaConsoleEnzymes = (props) => {
   const { isScannerConnected } = data;
   const { subjectBlock, type, name } = props;
   if (!isScannerConnected) {
-    return <Section color="bad">DNA Scanner is not connected.</Section>;
+    return <Section color="bad">DNA 扫描仪未连接.</Section>;
   }
   return (
     <>

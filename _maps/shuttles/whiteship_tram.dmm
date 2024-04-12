@@ -753,7 +753,7 @@
 "do" = (
 /obj/effect/turf_decal/stripes/white/box,
 /obj/machinery/door/airlock/hatch{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{

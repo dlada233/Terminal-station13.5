@@ -1,7 +1,6 @@
 /datum/job/chief_engineer
 	title = JOB_CHIEF_ENGINEER
-	description = "Coordinate engineering, ensure equipment doesn't get stolen, \
-		make sure the Supermatter doesn't blow up, maintain telecommunications."
+	description = "统筹协调工程部门，确保设备不被盗窃，保证超物质不爆炸，负责维护电信系统."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list(JOB_CAPTAIN)
 	head_announce = list("Engineering")
@@ -54,11 +53,11 @@
 	spawned.add_mob_memory(/datum/memory/key/message_server_key, decrypt_key = GLOB.preset_station_message_server_key)
 
 /datum/job/chief_engineer/get_captaincy_announcement(mob/living/captain)
-	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于人员短缺,任命新抵达的[captain.real_name]为新任代理舰长"
 
 
 /datum/outfit/job/ce
-	name = "Chief Engineer"
+	name = "首席工程师"
 	jobtype = /datum/job/chief_engineer
 
 	id = /obj/item/card/id/advanced/silver
@@ -86,7 +85,7 @@
 	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/ce/mod
-	name = "Chief Engineer (MODsuit)"
+	name = "首席工程师 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/advanced

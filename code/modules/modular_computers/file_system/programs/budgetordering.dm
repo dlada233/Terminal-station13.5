@@ -1,9 +1,9 @@
 /datum/computer_file/program/budgetorders
 	filename = "orderapp"
-	filedesc = "NT IRN-采购平台"
+	filedesc = "NT 采购平台"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "request"
-	extended_desc = "使用部门预算进行供应采购的网络接口."
+	extended_desc = "使用部门预算进行供应采购的纳米传讯网络接口."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	can_run_on_flags = PROGRAM_LAPTOP | PROGRAM_PDA
 	size = 10
@@ -17,9 +17,9 @@
 	///Can this console approve purchase requests?
 	var/can_approve_requests = FALSE
 	///What do we say when the shuttle moves with living beings on it.
-	var/safety_warning = "出于安全与道德因素，自动货船不能运送活体生物、人类遗骸、秘密核武器、邮件、未交付的部门订货、辛迪加炸弹、归航信标、不稳定特征态或容纳任何形式人工智能的机器."
+	var/safety_warning = "出于安全与道德因素，货运穿梭机上禁止运送活体生物、人体遗骸、机密核武器、邮件、未送达的部门订购箱、辛迪加炸弹、追踪信标、不稳定物质、传真机以及任何包含人工智能的机器."
 	///If you're being raided by pirates, what do you tell the crew?
-	var/blockade_warning = "检测到蓝空不稳定，无法进行运输行为."
+	var/blockade_warning = "检测到蓝空不稳定，穿梭机无法航行."
 	///The name of the shuttle template being used as the cargo shuttle. 'cargo' is default and contains critical code. Don't change this unless you know what you're doing.
 	var/cargo_shuttle = "cargo"
 	///The docking port called when returning to the station.
@@ -175,11 +175,11 @@
 				return
 			if(SSshuttle.supply.getDockedId() == docking_home)
 				SSshuttle.moveShuttle(cargo_shuttle, docking_away, TRUE)
-				computer.say("货运飞船即将出发.")
-				usr.investigate_log("已发射货运飞船.", INVESTIGATE_CARGO)
+				computer.say("货运穿梭机即将出发.")
+				usr.investigate_log("货运穿梭机已派遣.", INVESTIGATE_CARGO)
 			else
-				usr.investigate_log("呼叫货运飞船.", INVESTIGATE_CARGO)
-				computer.say("货运飞船已呼叫并将[SSshuttle.supply.timeLeft(600)]分钟内到达.")
+				usr.investigate_log("呼叫货运穿梭机.", INVESTIGATE_CARGO)
+				computer.say("已呼叫货运穿梭机,将在[SSshuttle.supply.timeLeft(600)]分钟内抵达.")
 				SSshuttle.moveShuttle(cargo_shuttle, docking_home, TRUE)
 			. = TRUE
 		if("loan")
@@ -196,9 +196,9 @@
 				return
 			else
 				SSshuttle.shuttle_loan.loan_shuttle()
-				computer.say("货运飞船已租借给CentCom-中央司令部使用")
-				usr.investigate_log("已承担货船租借项目.", INVESTIGATE_CARGO)
-				usr.log_message("已承担货船租借项目.", LOG_GAME)
+				computer.say("货运穿梭机已租借给中央指挥部使用")
+				usr.investigate_log("已接受穿梭机租借项目.", INVESTIGATE_CARGO)
+				usr.log_message("已接受穿梭机租借项目.", LOG_GAME)
 				. = TRUE
 		if("add")
 			var/id = text2path(params["id"])
@@ -224,7 +224,7 @@
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/id/id_card = H.get_idcard(TRUE)
 				if(!istype(id_card))
-					computer.say("未检测到ID证件.")
+					computer.say("未检测到ID卡.")
 					return
 				if(IS_DEPARTMENTAL_CARD(id_card))
 					computer.say("[id_card]不能用于购物.")
@@ -242,12 +242,12 @@
 
 			if(pack.goody && !self_paid)
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-				computer.say("ERROR: 小型货物只能由私人账户购买.")
+				computer.say("错误: 小商品仅限私人账户订购.")
 				return
 
 			if(SSshuttle.supply.get_order_count(pack) == OVER_ORDER_LIMIT)
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-				computer.say("ERROR: 单次订货数量不得超过[CARGO_MAX_ORDER].")
+				computer.say("错误: 单次订货数量不得超过[CARGO_MAX_ORDER].")
 				return
 
 			if(!requestonly && !self_paid && ishuman(usr) && !account)
@@ -262,7 +262,7 @@
 			else
 				SSshuttle.shopping_list += SO
 				if(self_paid)
-					computer.say("订单已处理. 价钱将记在[account.account_holder]的银行账户上.")
+					computer.say("订单已处理. 费用将从[account.account_holder]的银行账户中扣除.")
 			. = TRUE
 		if("remove")
 			var/id = text2num(params["id"])

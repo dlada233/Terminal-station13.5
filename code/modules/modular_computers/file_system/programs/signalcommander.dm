@@ -1,15 +1,15 @@
 /datum/computer_file/program/signal_commander
 	filename = "signaler"
-	filedesc = "SignalCommander-信号司令"
+	filedesc = "信号司令"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "signal"
-	extended_desc = "允许用户给对应的设备在对应的频道上发送信号."
+	extended_desc = "一个通过适当硬件来发送自定义信号的内置频率软件."
 	size = 2
 	tgui_id = "NtosSignaler"
 	program_icon = "satellite-dish"
 	can_run_on_flags = PROGRAM_PDA | PROGRAM_LAPTOP
 	///What is the saved signal frequency?
-	var/signal_frequency = FREQ_SIGNALER
+	var/signal_frequenFrequencycy = FREQ_SIGNALER
 	/// What is the saved signal code?
 	var/signal_code = DEFAULT_SIGNALER_CODE
 	/// Radio connection datum used by signalers.

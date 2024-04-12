@@ -1,6 +1,6 @@
 /datum/computer_file/program/skill_tracker
 	filename = "skilltracker"
-	filedesc = "ExperTrak Skill Tracker-技能经理"
+	filedesc = "技能经理"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"
 	extended_desc = "扫描并查看你当前的工作技能."

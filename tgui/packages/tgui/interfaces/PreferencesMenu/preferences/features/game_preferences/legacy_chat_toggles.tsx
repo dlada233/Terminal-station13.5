@@ -64,7 +64,7 @@ export const chat_ghostwhisper: FeatureToggle = {
 };
 
 export const chat_login_logout: FeatureToggle = {
-  name: '接收上下线信息',
+  name: '接收玩家上下线信息',
   category: 'GHOST',
   description: '启用时将接收他人上线或下线时的信息.',
   component: CheckboxInput,

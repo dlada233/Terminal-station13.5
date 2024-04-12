@@ -1,9 +1,9 @@
 /datum/computer_file/program/bounty_board
 	filename = "bountyboard"
-	filedesc = "Bounty Board Request Network-委托告示板"
+	filedesc = "赏金悬赏请求网络"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "bountyboard"
-	extended_desc = "一个连接到赏金网络的平台，可以在整个站点发出物品请求，并可以在线支付."
+	extended_desc = "一个用于跨空间站发布悬赏的多平台网络中心，并可以在线支付."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 10
 	tgui_id = "NtosBountyBoard"

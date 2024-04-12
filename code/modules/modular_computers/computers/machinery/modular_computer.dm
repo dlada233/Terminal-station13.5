@@ -1,6 +1,6 @@
 // Modular Computer - A machinery that is mostly just a host to the Modular Computer item.
 /obj/machinery/modular_computer
-	name = "modular computer"
+	name = "模块化计算机"
 	desc = "You shouldn't see this. If you do, report it." //they should be examining the processor instead
 	icon = 'icons/obj/machines/modular_console.dmi'
 	icon_state = "console"
@@ -61,7 +61,7 @@
 
 /obj/machinery/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!cpu)
-		balloon_alert(user, "turn it on first!")
+		balloon_alert(user, "请先开机!")
 		return FALSE
 	return cpu.emag_act(user)
 

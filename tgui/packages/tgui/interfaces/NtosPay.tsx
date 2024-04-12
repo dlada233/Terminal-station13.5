@@ -90,21 +90,21 @@ const TransferSection = (props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Section title="Transfer Money">
+        <Section title="转账">
           <Box>
             <Tooltip
-              content="Enter the pay token of the account you want to transfer credits to."
+              content="输入转账收款方的支付令牌."
               position="top"
             >
               <Input
-                placeholder="Pay Token"
+                placeholder="支付令牌"
                 width="190px"
                 onChange={(e, value) => (token = value)}
               />
             </Tooltip>
           </Box>
           <Tooltip
-            content="Enter amount of credits to transfer."
+            content="输入转出信用点的数额."
             position="top"
           >
             <RestrictedInput
@@ -116,7 +116,7 @@ const TransferSection = (props) => {
             />
           </Tooltip>
           <Button
-            content="Send credits"
+            content="转出信用点"
             onClick={() =>
               act('Transaction', {
                 token: token,
@@ -127,15 +127,15 @@ const TransferSection = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Get Token" width="270px" height="98px">
+        <Section title="获取令牌" width="270px" height="98px">
           <Box>
             <Input
-              placeholder="Full name of account."
+              placeholder="户主全称."
               width="190px"
               onChange={(e, value) => (name_to_token = value)}
             />
             <Button
-              content="Get it"
+              content="获取"
               onClick={() =>
                 act('GetPayToken', {
                   wanted_name: name_to_token,
@@ -157,7 +157,7 @@ const TransactionHistory = (props) => {
   const { transaction_list = [] } = data;
 
   return (
-    <Section fill title="Transaction History">
+    <Section fill title="收支记录">
       <Section fill scrollable title={<TableHeaders />}>
         <Table>
           {transaction_list.map((log) => (

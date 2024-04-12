@@ -422,7 +422,7 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/hatch{
 	id_tag = "caravansyndicate3_bolt_bridge";
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8

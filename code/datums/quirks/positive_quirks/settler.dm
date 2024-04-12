@@ -1,15 +1,15 @@
 /datum/quirk/item_quirk/settler
-	name = "Settler"
-	desc = "You are from a lineage of the earliest space settlers! While your family's generational exposure to varying gravity \
-		has resulted in a ... smaller height than is typical for your species, you make up for it by being much better at outdoorsmanship and \
-		carrying heavy equipment. You also get along great with animals. However, you are a bit on the slow side due to your small legs."
-	gain_text = span_bold("You feel like the world is your oyster!")
-	lose_text = span_danger("You think you might stay home today.")
+	name = "Settler-开拓者"
+	desc = "你的血脉追溯至最早太空开拓者! 尽管你们家族几代人经受着不同重力的影响， \
+		导致身高... 普遍比同物种其他族群低， \
+		但你们在户外生存和搬运重物方面更胜一筹，并且善于与动物相处.然而，因为腿比较短，你的移动速度也稍慢"
+	gain_text = span_bold("整个世界都是你的舞台!")
+	lose_text = span_danger("你感觉今天应该待在家里.")
 	icon = FA_ICON_HOUSE
 	value = 4
 	mob_trait = TRAIT_SETTLER
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
-	medical_record_text = "Patient appears to be abnormally stout."
+	medical_record_text = "患者体格异常魁梧."
 	mail_goodies = list(
 		/obj/item/clothing/shoes/workboots/mining,
 		/obj/item/gps,

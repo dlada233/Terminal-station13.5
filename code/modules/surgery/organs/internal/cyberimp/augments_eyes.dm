@@ -1,6 +1,6 @@
 /obj/item/organ/internal/cyberimp/eyes
-	name = "cybernetic eye implant"
-	desc = "Implants for your eyes."
+	name = "cybernetic eye implant-电子眼植入物"
+	desc = "用于眼睛的植入物"
 	icon_state = "eye_implant"
 	implant_overlay = "eye_implant_overlay"
 	slot = ORGAN_SLOT_EYES
@@ -9,14 +9,14 @@
 
 // HUD implants
 /obj/item/organ/internal/cyberimp/eyes/hud
-	name = "HUD implant"
+	name = "HUD implant-HUD植入物"
 	desc = "These cybernetic eyes will display a HUD over everything you see. Maybe."
 	slot = ORGAN_SLOT_HUD
 	actions_types = list(/datum/action/item_action/toggle_hud)
 	var/HUD_type = 0
 	var/HUD_trait = null
 	/// Whether the HUD implant is on or off
-	var/toggled_on = TRUE 
+	var/toggled_on = TRUE
 
 
 /obj/item/organ/internal/cyberimp/eyes/hud/proc/toggle_hud(mob/living/carbon/eye_owner)
@@ -52,23 +52,23 @@
 	toggled_on = FALSE
 
 /obj/item/organ/internal/cyberimp/eyes/hud/medical
-	name = "Medical HUD implant"
-	desc = "These cybernetic eye implants will display a medical HUD over everything you see."
+	name = "Medical HUD implant-医疗HUD植入物"
+	desc = "这对电子眼会在你视野内的一切活物上显示医疗HUD.转动眼球来控制."
 	HUD_type = DATA_HUD_MEDICAL_ADVANCED
 	HUD_trait = TRAIT_MEDICAL_HUD
 
 /obj/item/organ/internal/cyberimp/eyes/hud/security
-	name = "Security HUD implant"
-	desc = "These cybernetic eye implants will display a security HUD over everything you see."
+	name = "Security HUD implant安保HUD植入物"
+	desc = "这对电子眼会在你视野内的一切东西上显示安保HUD.转动眼球来控制."
 	HUD_type = DATA_HUD_SECURITY_ADVANCED
 	HUD_trait = TRAIT_SECURITY_HUD
 
 /obj/item/organ/internal/cyberimp/eyes/hud/diagnostic
-	name = "Diagnostic HUD implant"
-	desc = "These cybernetic eye implants will display a diagnostic HUD over everything you see."
+	name = "Diagnostic HUD implant-诊断HUD植入物"
+	desc = "这对电子眼会在你视野内的一切机械上显示诊断HUD.转动眼球来控制."
 	HUD_type = DATA_HUD_DIAGNOSTIC_ADVANCED
 
 /obj/item/organ/internal/cyberimp/eyes/hud/security/syndicate
-	name = "Contraband Security HUD Implant"
-	desc = "A Cybersun Industries brand Security HUD Implant. These illicit cybernetic eye implants will display a security HUD over everything you see."
+	name = "Contraband Security HUD Implant-违禁安保HUD植入物"
+	desc = "赛博森工业出品的安保HUD植入物.这些不合法的电子眼植入物会在你视野内的一切东西上显示安保HUD."
 	organ_flags = ORGAN_ROBOTIC | ORGAN_HIDDEN

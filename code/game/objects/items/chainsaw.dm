@@ -1,8 +1,8 @@
 
 // CHAINSAW
 /obj/item/chainsaw
-	name = "chainsaw"
-	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
+	name = "电锯"
+	desc = "一种多功能电动工具。砍人和砍树的时候都很有用."
 	icon = 'icons/obj/weapons/chainsaw.dmi'
 	icon_state = "chainsaw_off"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
@@ -107,8 +107,8 @@
 	return FALSE
 
 /obj/item/chainsaw/mounted_chainsaw
-	name = "mounted chainsaw"
-	desc = "A chainsaw that has replaced your arm."
+	name = "植入式电锯"
+	desc = "一把电锯替换了你的手臂."
 	inhand_icon_state = "mounted_chainsaw"
 	item_flags = ABSTRACT | DROPDEL
 	throwforce = 0
@@ -142,4 +142,4 @@
 	)
 
 /datum/action/item_action/startchainsaw
-	name = "Pull The Starting Cord"
+	name = "拽启动线"

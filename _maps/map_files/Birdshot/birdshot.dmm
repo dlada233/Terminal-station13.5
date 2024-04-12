@@ -548,7 +548,7 @@
 /area/station/security)
 "akY" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/structure/cable,
@@ -1745,7 +1745,7 @@
 "aKJ" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -3356,7 +3356,7 @@
 /area/station/hallway/primary/aft)
 "brZ" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -4496,7 +4496,7 @@
 	cycle_id = "sci-entrance"
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plating,
@@ -5404,7 +5404,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
@@ -6034,7 +6034,7 @@
 	cycle_id = "sci-entrance"
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
 /turf/open/floor/plating,
@@ -6739,7 +6739,7 @@
 /area/station/maintenance/starboard/greater)
 "cFq" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
@@ -6890,7 +6890,7 @@
 "cHR" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -8612,7 +8612,7 @@
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "doQ" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/structure/disposalpipe/segment,
@@ -9535,7 +9535,7 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
@@ -10038,7 +10038,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -10575,7 +10575,7 @@
 /area/station/medical/psychology)
 "dYR" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/spawner/random/structure/barricade,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -10610,7 +10610,7 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/central)
@@ -11142,7 +11142,7 @@
 /area/space/nearstation)
 "eki" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
@@ -11287,7 +11287,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -11316,7 +11316,7 @@
 /area/station/hallway/secondary/entry)
 "emB" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
@@ -14311,7 +14311,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
@@ -16181,7 +16181,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "sci-entrance"
@@ -16659,7 +16659,7 @@
 	name = "Space Bridge"
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine/atmos)
@@ -17924,7 +17924,7 @@
 	name = "Space Bridge"
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
@@ -18429,7 +18429,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -19540,7 +19540,7 @@
 /area/station/engineering/main)
 "hdo" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -19559,13 +19559,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/any/command/general,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/command/bridge)
@@ -19677,12 +19677,12 @@
 /obj/machinery/door/poddoor/shutters/window{
 	dir = 4;
 	id = "gateshutter";
-	name = "Gateway Access Shutter"
+	name = "星门通道百叶帘"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/button/door/directional/south{
 	id = "gateshutter";
-	name = "Gateway Shutter"
+	name = "星门百叶帘"
 	},
 /turf/open/floor/iron/smooth_half{
 	dir = 1
@@ -19873,7 +19873,7 @@
 "hhl" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "sci-entrance"
@@ -20681,7 +20681,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -20981,7 +20981,7 @@
 /area/station/service/hydroponics)
 "hAu" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/structure/barricade/wooden,
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
@@ -21773,7 +21773,7 @@
 "hPW" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -21816,7 +21816,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
 /turf/open/floor/plating,
@@ -22004,7 +22004,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -22064,7 +22064,7 @@
 /area/station/service/bar)
 "hWU" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -23935,7 +23935,7 @@
 "iGp" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -24104,7 +24104,7 @@
 /area/station/command/heads_quarters/hop)
 "iJt" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
@@ -24435,7 +24435,7 @@
 "iOv" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -24645,7 +24645,7 @@
 "iTP" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -25217,7 +25217,7 @@
 "jct" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -25472,7 +25472,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -25780,7 +25780,7 @@
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/plating,
 /area/station/command/corporate_showroom)
@@ -26629,7 +26629,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -27475,7 +27475,7 @@
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/plating,
 /area/station/command/corporate_showroom)
@@ -27692,7 +27692,7 @@
 "jXi" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
@@ -28531,7 +28531,7 @@
 "kmd" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -28858,7 +28858,7 @@
 "krK" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -29092,7 +29092,7 @@
 "kvI" = (
 /obj/docking_port/stationary/random{
 	dir = 8;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_2_lavaland"
 	},
 /turf/open/space/basic,
@@ -29504,7 +29504,7 @@
 /area/station/maintenance/hallway/abandoned_recreation)
 "kEs" = (
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -29603,7 +29603,7 @@
 /area/station/cargo/sorting)
 "kFP" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -29684,7 +29684,7 @@
 	},
 /obj/machinery/requests_console/directional/east{
 	department = "Bridge";
-	name = "Bridge Requests Console"
+	name = "舰桥请求控制台"
 	},
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,
@@ -30075,7 +30075,7 @@
 "kOG" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/external{
-	name = "Solar Maintenance"
+	name = "太阳能维护气闸"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -30271,7 +30271,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -30750,7 +30750,7 @@
 "lca" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -31457,7 +31457,7 @@
 /area/station/maintenance/starboard/greater)
 "lko" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -32847,7 +32847,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
@@ -33271,7 +33271,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
@@ -33285,7 +33285,7 @@
 /area/station/security/checkpoint/escape)
 "lQZ" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -33698,7 +33698,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "sci-entrance"
@@ -34857,7 +34857,7 @@
 "mud" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -34892,7 +34892,7 @@
 /area/station/maintenance/department/medical/central)
 "muI" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -35604,7 +35604,7 @@
 "mGT" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
@@ -36007,7 +36007,7 @@
 "mNv" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
@@ -36345,7 +36345,7 @@
 "mUn" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/decal/cleanable/dirt,
@@ -37085,7 +37085,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/plating,
 /area/station/command/meeting_room)
@@ -37209,7 +37209,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /turf/open/floor/plating,
@@ -37429,7 +37429,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/plating,
@@ -38008,14 +38008,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/central)
 "nAc" = (
 /obj/docking_port/stationary/random{
 	dir = 2;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_lavaland"
 	},
 /turf/open/space/basic,
@@ -38584,7 +38584,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/plating,
 /area/station/command/meeting_room)
@@ -38766,7 +38766,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -38932,7 +38932,7 @@
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/plating,
 /area/station/command/bridge)
@@ -40087,7 +40087,7 @@
 "oom" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -40217,7 +40217,7 @@
 "oqI" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/machinery/duct,
@@ -40436,7 +40436,7 @@
 /area/station/maintenance/starboard/greater)
 "ouN" = (
 /obj/machinery/door/airlock/external/glass{
-	name = "Supply Door Airlock"
+	name = "货舱通外气闸"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -41298,7 +41298,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
@@ -41876,7 +41876,7 @@
 /area/station/maintenance/starboard/greater)
 "oWl" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /turf/open/floor/plating,
@@ -42032,7 +42032,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /turf/open/floor/plating,
@@ -42310,7 +42310,7 @@
 	cycle_id = "sci-entrance"
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
 /turf/open/floor/plating,
@@ -42537,7 +42537,7 @@
 "pil" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -43717,7 +43717,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -44167,7 +44167,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/plating,
 /area/station/command/bridge)
@@ -44346,7 +44346,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/command/general,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /turf/open/floor/iron/smooth_half{
 	dir = 1
@@ -44491,7 +44491,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/general,
 /obj/machinery/duct,
@@ -45951,7 +45951,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -45993,7 +45993,7 @@
 /area/station/hallway/primary/aft)
 "qkp" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/cable,
@@ -46809,7 +46809,7 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "qyY" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -48313,7 +48313,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /turf/open/floor/plating,
@@ -50926,7 +50926,7 @@
 "rNd" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plating,
@@ -51254,7 +51254,7 @@
 "rSj" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plating,
@@ -51949,7 +51949,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
@@ -51985,7 +51985,7 @@
 "sdQ" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
@@ -52083,7 +52083,7 @@
 /area/station/hallway/primary/central/fore)
 "sfL" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
@@ -52986,7 +52986,7 @@
 "svh" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
@@ -53267,7 +53267,7 @@
 "syb" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_4_lavaland"
 	},
 /turf/open/space/basic,
@@ -54118,7 +54118,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -54918,7 +54918,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /turf/open/floor/plating,
@@ -55086,7 +55086,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
@@ -56143,7 +56143,7 @@
 /area/station/hallway/primary/central/fore)
 "twN" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/structure/cable,
@@ -56206,7 +56206,7 @@
 "tyn" = (
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/barricade/wooden/crude,
@@ -56271,7 +56271,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
@@ -57114,7 +57114,7 @@
 "tNn" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -58484,7 +58484,7 @@
 "uiW" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
@@ -58920,7 +58920,7 @@
 /area/station/hallway/secondary/entry)
 "uru" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
 /turf/open/floor/plating,
@@ -59021,7 +59021,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
-	name = "Bridge Blast Door"
+	name = 舰桥防爆门
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -59563,7 +59563,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -59856,7 +59856,7 @@
 "uHF" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/supply/visible,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
@@ -60996,7 +60996,7 @@
 "vcC" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -61257,7 +61257,7 @@
 /area/station/hallway/secondary/dock)
 "vgz" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /turf/open/floor/plating,
@@ -61343,7 +61343,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -62502,7 +62502,7 @@
 "vzy" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -62617,7 +62617,7 @@
 /area/station/maintenance/port/lesser)
 "vAK" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -62849,7 +62849,7 @@
 "vFB" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plating,
@@ -62929,7 +62929,7 @@
 /area/station/service/chapel/office)
 "vGz" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/decal/cleanable/dirt,
@@ -63041,7 +63041,7 @@
 /area/station/service/chapel/office)
 "vIt" = (
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -64645,7 +64645,7 @@
 "whX" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -65601,7 +65601,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
 /turf/open/floor/iron/cafeteria,
@@ -66629,7 +66629,7 @@
 /area/station/maintenance/starboard/greater)
 "wNL" = (
 /obj/docking_port/stationary/random{
-	name = "lavaland";
+	name = "拉瓦兰";
 	shuttle_id = "pod_3_lavaland"
 	},
 /turf/open/space/basic,
@@ -67879,7 +67879,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{

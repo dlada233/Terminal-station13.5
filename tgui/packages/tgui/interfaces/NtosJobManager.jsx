@@ -18,7 +18,7 @@ export const NtosJobManagerContent = (props) => {
   if (!authed) {
     return (
       <NoticeBox>
-        Current ID does not have access permissions to change job slots.
+        当前ID无更改工作职位的所需权限.
       </NoticeBox>
     );
   }
@@ -33,8 +33,8 @@ export const NtosJobManagerContent = (props) => {
       )}
       <Table>
         <Table.Row header>
-          <Table.Cell>Prioritized</Table.Cell>
-          <Table.Cell>Slots</Table.Cell>
+          <Table.Cell>优先级</Table.Cell>
+          <Table.Cell>职位</Table.Cell>
         </Table.Row>
         {slots.map((slot) => (
           <Table.Row key={slot.title} className="candystripe">

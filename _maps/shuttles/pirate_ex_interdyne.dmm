@@ -45,7 +45,7 @@
 "ag" = (
 /obj/machinery/door/airlock/hatch{
 	id_tag = "piratebridgebolt";
-	name = "Bridge";
+	name = "舰桥";
 	req_access = null
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
@@ -679,7 +679,7 @@
 "yi" = (
 /obj/machinery/door/airlock/hatch{
 	id_tag = "piratebridgebolt";
-	name = "Bridge";
+	name = "舰桥";
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,

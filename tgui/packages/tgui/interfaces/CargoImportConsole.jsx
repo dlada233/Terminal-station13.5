@@ -28,7 +28,7 @@ export const CargoImportConsole = (props) => {
           <Stack>
             <Stack.Item grow fill>
               <Button.Checkbox
-                content="Buy Privately"
+                content="私人购买"
                 checked={self_paid}
                 onClick={() => act('toggleprivate')}
               />
@@ -122,7 +122,7 @@ export const CargoImportConsole = (props) => {
                             {!!cant_buy_restricted && !!item.restricted && (
                               <Stack.Item textColor={'red'}>
                                 {
-                                  'You cannot buy a restricted item from this console!'
+                                  '你无法通过此控制台购买限制物品!'
                                 }
                               </Stack.Item>
                             )}

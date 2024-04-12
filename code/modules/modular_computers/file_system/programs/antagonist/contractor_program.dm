@@ -1,6 +1,6 @@
 /datum/computer_file/program/contract_uplink
 	filename = "contractor uplink"
-	filedesc = "Contractor-契约上行"
+	filedesc = "契约上行"
 	extended_desc = "由辛迪加发布的标准软件，用于在现场处理重要合同."
 	program_open_overlay = "contractor-assign"
 	program_icon = "tasks"

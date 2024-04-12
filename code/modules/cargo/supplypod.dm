@@ -1,8 +1,8 @@
 //The "pod_landingzone" temp visual is created by anything that "launches" a supplypod. This is what animates the pod and makes the pod forcemove to the station.
 //------------------------------------SUPPLY POD-------------------------------------//
 /obj/structure/closet/supplypod
-	name = "supply pod" //Names and descriptions are normally created with the setStyle() proc during initialization, but we have these default values here as a failsafe
-	desc = "A Nanotrasen supply drop pod."
+	name = "补给舱" //Names and descriptions are normally created with the setStyle() proc during initialization, but we have these default values here as a failsafe
+	desc = "一个纳米传讯的补给空投舱."
 	icon = 'icons/obj/supplypods.dmi'
 	icon_state = "pod" //This is a common base sprite shared by a number of pods
 	pixel_x = SUPPLYPOD_X_OFFSET //2x2 sprite
@@ -71,8 +71,8 @@
 	explosionSize = list(0,0,0,0)
 
 /obj/structure/closet/supplypod/extractionpod
-	name = "Syndicate Extraction Pod"
-	desc = "A specalised, blood-red styled pod for extracting high-value targets out of active mission areas. <b>Targets must be manually stuffed inside the pod for proper delivery.</b>"
+	name = "辛迪加提取舱"
+	desc = "一款专用于从执行任务区域中撤出高价值项目的血红色特种吊舱.为了确保安全运送，需要手动将项目塞入舱内.</b>"
 	specialised = TRUE
 	style = STYLE_SYNDICATE
 	bluespace = TRUE
@@ -544,7 +544,7 @@
 	alpha = max(0, 255-(amount*20))
 
 /obj/effect/supplypod_rubble
-	name = "debris"
+	name = "残骸"
 	desc = "A small crater of rubble. Closer inspection reveals the debris to be made primarily of space-grade metal fragments. You're pretty sure that this will disperse before too long."
 	icon = 'icons/obj/supplypods.dmi'
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER // We want this to go right below the layer of supplypods and supplypod_rubble's forground.
@@ -594,8 +594,8 @@
 	animate(src, transform = matrix()*0.01, time = pod.delays[POD_TRANSIT]+pod.delays[POD_FALLING])
 
 /obj/effect/pod_landingzone //This is the object that forceMoves the supplypod to it's location
-	name = "Landing Zone Indicator"
-	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
+	name = "着陆区指示器"
+	desc = "指示某物着陆区域的全息投影，最好还是退后几步离远点."
 	icon = 'icons/obj/supplypods_32x32.dmi'
 	icon_state = "LZ"
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
@@ -609,7 +609,7 @@
 /obj/effect/pod_landingzone/Initialize(mapload, podParam, single_order = null, clientman)
 	. = ..()
 	if(!podParam)
-		stack_trace("Pod landingzone created with no pod")
+		stack_trace("未检测到着陆舱，无法创建着陆点")
 		return INITIALIZE_HINT_QDEL
 	if (ispath(podParam)) //We can pass either a path for a pod (as expressconsoles do), or a reference to an instantiated pod (as the centcom_podlauncher does)
 		podParam = new podParam() //If its just a path, instantiate it
@@ -702,8 +702,8 @@
 
 //------------------------------------UPGRADES-------------------------------------//
 /obj/item/disk/cargo/bluespace_pod //Disk that can be inserted into the Express Console to allow for Advanced Bluespace Pods
-	name = "Bluespace Drop Pod Upgrade"
-	desc = "This disk provides a firmware update to the Express Supply Console, granting the use of Nanotrasen's Bluespace Drop Pods to the supply department."
+	name = "蓝空空投舱升级"
+	desc = "这张磁盘为特快供应控制台提供了固件更新，让补给部门能够使用纳米传讯的蓝空空投舱."
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "cargodisk"
 	inhand_icon_state = "card-id"

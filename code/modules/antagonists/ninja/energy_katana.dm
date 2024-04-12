@@ -10,9 +10,9 @@
  *
  */
 /obj/item/energy_katana
-	name = "energy katana"
-	desc = "A katana infused with strong energy."
-	desc_controls = "Right-click to dash."
+	name = "能量武士刀"
+	desc = "充盈着强大能量的武士刀."
+	desc_controls = "右键以突袭."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "energy_katana"
 	inhand_icon_state = "energy_katana"
@@ -28,8 +28,8 @@
 	pickup_sound = 'sound/items/unsheath.ogg'
 	drop_sound = 'sound/items/sheath.ogg'
 	block_sound = 'sound/weapons/block_blade.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "横劈", "竖切", "斜斩", "撩剁", "平抹", "送刀向", "外旋至", "直刺")
+	attack_verb_simple = list("攻击", "横劈", "竖切", "斜斩", "撩剁", "平抹", "送刀向", "外旋至", "直刺")
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
 	max_integrity = 200

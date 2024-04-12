@@ -535,7 +535,7 @@
 "AM" = (
 /obj/effect/turf_decal/delivery/white,
 /obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+	name = "舰桥"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,

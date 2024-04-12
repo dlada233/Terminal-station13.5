@@ -25,8 +25,8 @@ export const NtosRoboControl = (props) => {
       <NtosWindow.Content scrollable>
         <Section title="Robot Control Console">
           <LabeledList>
-            <LabeledList.Item label="ID Card">{id_owner}</LabeledList.Item>
-            <LabeledList.Item label="Bots In Range">
+            <LabeledList.Item label="ID 卡">{id_owner}</LabeledList.Item>
+            <LabeledList.Item label="范围内的机器人">
               {data.botcount}
             </LabeledList.Item>
           </LabeledList>
@@ -39,7 +39,7 @@ export const NtosRoboControl = (props) => {
               selected={tab_main === 1}
               onClick={() => setTab_main(1)}
             >
-              Bots
+              机器人
             </Tabs.Tab>
             <Tabs.Tab
               icon="hammer"
@@ -47,7 +47,7 @@ export const NtosRoboControl = (props) => {
               selected={tab_main === 2}
               onClick={() => setTab_main(2)}
             >
-              Drones
+              无人机
             </Tabs.Tab>
           </Tabs>
         </Stack.Item>
@@ -55,7 +55,7 @@ export const NtosRoboControl = (props) => {
           <Stack.Item>
             <Section>
               <LabeledList>
-                <LabeledList.Item label="Bots in range">
+                <LabeledList.Item label="范围内的无人机">
                   {data.botcount}
                 </LabeledList.Item>
               </LabeledList>
@@ -70,17 +70,17 @@ export const NtosRoboControl = (props) => {
             <Section>
               <Button
                 icon="address-card"
-                tooltip="Grant/Remove Drone access to interact with machines and wires that would otherwise be deemed dangerous."
+                tooltip="允许/禁止无人机操作危险设备和电线."
                 content={
-                  droneaccess ? 'Grant Drone Access' : 'Revoke Drone Access'
+                  droneaccess ? '授予无人机操作权限' : '撤销无人机操作权限'
                 }
                 color={droneaccess ? 'good' : 'bad'}
                 onClick={() => act('changedroneaccess')}
               />
               <Dropdown
-                tooltip="Drone pings"
+                tooltip="无人机标记"
                 width="100%"
-                displayText={'Drone pings'}
+                displayText={'无人机标记'}
                 options={dronepingtypes}
                 onSelected={(value) => act('ping_drones', { ping_type: value })}
               />
@@ -115,7 +115,7 @@ export const RobotInfo = (props) => {
           <>
             <Button
               icon="play"
-              tooltip="Go to Destination."
+              tooltip="前往目的地"
               onClick={() =>
                 act('go', {
                   robot: mule.mule_ref,
@@ -124,7 +124,7 @@ export const RobotInfo = (props) => {
             />
             <Button
               icon="pause"
-              tooltip="Stop Moving."
+              tooltip="停止移动"
               onClick={() =>
                 act('stop', {
                   robot: mule.mule_ref,
@@ -133,7 +133,7 @@ export const RobotInfo = (props) => {
             />
             <Button
               icon="home"
-              tooltip="Travel Home."
+              tooltip="返回停泊处"
               tooltipPosition="bottom-start"
               onClick={() =>
                 act('home', {
@@ -148,19 +148,19 @@ export const RobotInfo = (props) => {
       <Stack>
         <Stack.Item grow={1} basis={0}>
           <LabeledList>
-            <LabeledList.Item label="Model">{robot.model}</LabeledList.Item>
-            <LabeledList.Item label="Location">{robot.locat}</LabeledList.Item>
-            <LabeledList.Item label="Status">{robot.mode}</LabeledList.Item>
+            <LabeledList.Item label="型号">{robot.model}</LabeledList.Item>
+            <LabeledList.Item label="位置">{robot.locat}</LabeledList.Item>
+            <LabeledList.Item label="状态">{robot.mode}</LabeledList.Item>
             {mule && (
               <>
-                <LabeledList.Item label="Loaded Cargo">
+                <LabeledList.Item label="搭载货物">
                   {data.load || 'N/A'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Home">{mule.home}</LabeledList.Item>
-                <LabeledList.Item label="Destination">
+                <LabeledList.Item label="停泊处">{mule.home}</LabeledList.Item>
+                <LabeledList.Item label="目的地">
                   {mule.dest || 'N/A'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Power">
+                <LabeledList.Item label="电力">
                   <ProgressBar
                     value={mule.power}
                     minValue={0}
@@ -181,7 +181,7 @@ export const RobotInfo = (props) => {
             <>
               <Button
                 fluid
-                content="Set Destination"
+                content="设置目的地"
                 onClick={() =>
                   act('destination', {
                     robot: mule.mule_ref,
@@ -190,7 +190,7 @@ export const RobotInfo = (props) => {
               />
               <Button
                 fluid
-                content="Set ID"
+                content="设置ID"
                 onClick={() =>
                   act('setid', {
                     robot: mule.mule_ref,
@@ -199,7 +199,7 @@ export const RobotInfo = (props) => {
               />
               <Button
                 fluid
-                content="Set Home"
+                content="设置停泊处"
                 onClick={() =>
                   act('sethome', {
                     robot: mule.mule_ref,
@@ -208,7 +208,7 @@ export const RobotInfo = (props) => {
               />
               <Button
                 fluid
-                content="Unload Cargo"
+                content="卸下货物"
                 onClick={() =>
                   act('unload', {
                     robot: mule.mule_ref,
@@ -217,7 +217,7 @@ export const RobotInfo = (props) => {
               />
               <Button.Checkbox
                 fluid
-                content="Auto Return"
+                content="自动返航"
                 checked={mule.autoReturn}
                 onClick={() =>
                   act('autoret', {
@@ -227,7 +227,7 @@ export const RobotInfo = (props) => {
               />
               <Button.Checkbox
                 fluid
-                content="Auto Pickup"
+                content="自动取货"
                 checked={mule.autoPickup}
                 onClick={() =>
                   act('autopick', {
@@ -237,7 +237,7 @@ export const RobotInfo = (props) => {
               />
               <Button.Checkbox
                 fluid
-                content="Delivery Report"
+                content="送达报告"
                 checked={mule.reportDelivery}
                 onClick={() =>
                   act('report', {
@@ -251,7 +251,7 @@ export const RobotInfo = (props) => {
             <>
               <Button
                 fluid
-                content="Stop Patrol"
+                content="停止巡航"
                 onClick={() =>
                   act('patroloff', {
                     robot: robot.bot_ref,
@@ -260,7 +260,7 @@ export const RobotInfo = (props) => {
               />
               <Button
                 fluid
-                content="Start Patrol"
+                content="开始巡航"
                 onClick={() =>
                   act('patrolon', {
                     robot: robot.bot_ref,
@@ -269,7 +269,7 @@ export const RobotInfo = (props) => {
               />
               <Button
                 fluid
-                content="Summon"
+                content="召唤"
                 onClick={() =>
                   act('summon', {
                     robot: robot.bot_ref,
@@ -278,7 +278,7 @@ export const RobotInfo = (props) => {
               />
               <Button
                 fluid
-                content="Eject PAi"
+                content="弹出个人人工智能"
                 onClick={() =>
                   act('ejectpai', {
                     robot: robot.bot_ref,
@@ -308,9 +308,9 @@ export const DroneInfo = (props) => {
       <Stack>
         <Stack.Item grow={1} basis={0}>
           <LabeledList>
-            <LabeledList.Item label="Status">
-              <Box color={drone.status ? 'bad' : 'good'}>
-                {drone.status ? 'Not Responding' : 'Nominal'}
+            <LabeledList.Item label="状态">
+              <Box color={drone.status ? '受损' : '良好'}>
+                {drone.status ? '无响应' : '正常'}
               </Box>
             </LabeledList.Item>
           </LabeledList>

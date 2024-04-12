@@ -5,8 +5,8 @@
 #define BOH_TEAR_GRAV_PULL 25
 
 /obj/boh_tear
-	name = "tear in the fabric of reality"
-	desc = "Your own comprehension of reality starts bending as you stare this."
+	name = "现实撕裂结构"
+	desc = "当你盯着这个时，你对现实的理解开始扭曲."
 	anchored = TRUE
 	appearance_flags = LONG_GLIDE
 	density = TRUE
@@ -41,7 +41,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/jedi = user
-	to_chat(jedi, span_userdanger("You don't feel like you are real anymore."))
+	to_chat(jedi, span_userdanger("你不再觉得自己是真实的了."))
 	jedi.dust_animation()
 	jedi.spawn_dust()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, attack_hand), jedi), 0.5 SECONDS)

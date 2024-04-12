@@ -14,7 +14,7 @@
 	)
 
 /obj/item/modular_computer/pda/heads/captain
-	name = "captain PDA"
+	name = "舰长PDA"
 	greyscale_config = /datum/greyscale_config/tablet/captain
 	greyscale_colors = "#2C7CB2#FF0000#FFFFFF#FFD55B"
 	inserted_item = /obj/item/pen/fountain/captain
@@ -30,7 +30,7 @@
 	return COMPONENT_TABLET_NO_DETONATE
 
 /obj/item/modular_computer/pda/heads/hop
-	name = "head of personnel PDA"
+	name = "人事部长PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#374f7e#a52f29#a52f29"
 	starting_programs = list(
@@ -44,7 +44,7 @@
 	)
 
 /obj/item/modular_computer/pda/heads/hos
-	name = "head of security PDA"
+	name = "安保部长PDA"
 	greyscale_config = /datum/greyscale_config/tablet/head
 	greyscale_colors = "#EA3232#0000CC"
 	inserted_item = /obj/item/pen/red/security
@@ -58,7 +58,7 @@
 	)
 
 /obj/item/modular_computer/pda/heads/ce
-	name = "chief engineer PDA"
+	name = "首席工程师PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#D99A2E#69DBF3#FAFAFA"
 	starting_programs = list(
@@ -73,7 +73,7 @@
 	)
 
 /obj/item/modular_computer/pda/heads/cmo
-	name = "chief medical officer PDA"
+	name = "首席医疗官PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#FAFAFA#000099#3F96CC"
 	starting_programs = list(
@@ -87,7 +87,7 @@
 	)
 
 /obj/item/modular_computer/pda/heads/rd
-	name = "research director PDA"
+	name = "科研主管PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#FAFAFA#000099#B347BC"
 	inserted_item = /obj/item/pen/fountain
@@ -102,7 +102,7 @@
 	)
 
 /obj/item/modular_computer/pda/heads/quartermaster
-	name = "quartermaster PDA"
+	name = "军需官PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#c4b787#18191e#8b4c31"
 	inserted_item = /obj/item/pen/survival
@@ -121,7 +121,7 @@
  */
 
 /obj/item/modular_computer/pda/security
-	name = "security PDA"
+	name = "安全官PDA"
 	greyscale_colors = "#EA3232#0000cc"
 	inserted_item = /obj/item/pen/red/security
 	starting_programs = list(
@@ -131,7 +131,7 @@
 	)
 
 /obj/item/modular_computer/pda/detective
-	name = "detective PDA"
+	name = "侦探PDA"
 	greyscale_colors = "#805A2F#990202"
 	inserted_item = /obj/item/pen/red/security
 	starting_programs = list(
@@ -141,7 +141,7 @@
 	)
 
 /obj/item/modular_computer/pda/warden
-	name = "warden PDA"
+	name = "典狱长PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#EA3232#0000CC#363636"
 	inserted_item = /obj/item/pen/red/security
@@ -156,7 +156,7 @@
  */
 
 /obj/item/modular_computer/pda/engineering
-	name = "engineering PDA"
+	name = "工程师PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#D99A2E#69DBF3#E3DF3D"
 	starting_programs = list(
@@ -166,7 +166,7 @@
 	)
 
 /obj/item/modular_computer/pda/atmos
-	name = "atmospherics PDA"
+	name = "大气技术员PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#EEDC43#00E5DA#727272"
 	starting_programs = list(
@@ -180,7 +180,7 @@
  */
 
 /obj/item/modular_computer/pda/science
-	name = "scientist PDA"
+	name = "科学家PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#000099#B347BC"
 	starting_programs = list(
@@ -190,7 +190,7 @@
 	)
 
 /obj/item/modular_computer/pda/roboticist
-	name = "roboticist PDA"
+	name = "机械学家PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#484848#0099CC#D94927"
 	starting_programs = list(
@@ -200,7 +200,7 @@
 	)
 
 /obj/item/modular_computer/pda/geneticist
-	name = "geneticist PDA"
+	name = "基因学家PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#FAFAFA#000099#0097CA"
 	starting_programs = list(
@@ -212,7 +212,7 @@
  */
 
 /obj/item/modular_computer/pda/medical
-	name = "medical PDA"
+	name = "医生PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#000099#3F96CC"
 	starting_programs = list(
@@ -221,7 +221,7 @@
 	)
 
 /obj/item/modular_computer/pda/medical/paramedic
-	name = "paramedic PDA"
+	name = "急救员PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#28334D#000099#3F96CC"
 	starting_programs = list(
@@ -230,7 +230,7 @@
 	)
 
 /obj/item/modular_computer/pda/viro
-	name = "virology PDA"
+	name = "病毒学家PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#FAFAFA#355FAC#57C451"
 	starting_programs = list(
@@ -239,12 +239,12 @@
 	)
 
 /obj/item/modular_computer/pda/chemist
-	name = "chemist PDA"
+	name = "化学家PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#355FAC#EA6400"
 
 /obj/item/modular_computer/pda/coroner
-	name = "coroner PDA"
+	name = "验尸官PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#000099#1f2026"
 	starting_programs = list(
@@ -257,7 +257,7 @@
  */
 
 /obj/item/modular_computer/pda/cargo
-	name = "cargo technician PDA"
+	name = "货仓技工PDA"
 	greyscale_colors = "#8b4c31#2c2e32"
 	stored_paper = 20
 	starting_programs = list(
@@ -267,7 +267,7 @@
 	)
 
 /obj/item/modular_computer/pda/shaftminer
-	name = "shaft miner PDA"
+	name = "竖井矿工PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#927444#8b4c31#4c202d"
 	starting_programs = list(
@@ -275,7 +275,7 @@
 	)
 
 /obj/item/modular_computer/pda/bitrunner
-	name = "bit runner PDA"
+	name = "比特矿工PDA"
 	greyscale_colors = "#D6B328#6BC906"
 	starting_programs = list(
 		/datum/computer_file/program/arcade,
@@ -287,7 +287,7 @@
  */
 
 /obj/item/modular_computer/pda/janitor
-	name = "janitor PDA"
+	name = "清洁工PDA"
 	greyscale_colors = "#933ea8#235AB2"
 	starting_programs = list(
 		/datum/computer_file/program/skill_tracker,
@@ -295,12 +295,12 @@
 	)
 
 /obj/item/modular_computer/pda/chaplain
-	name = "chaplain PDA"
+	name = "牧师PDA"
 	greyscale_config = /datum/greyscale_config/tablet/chaplain
 	greyscale_colors = "#333333#D11818"
 
 /obj/item/modular_computer/pda/lawyer
-	name = "lawyer PDA"
+	name = "律师PDA"
 	greyscale_colors = "#4C76C8#FFE243"
 	inserted_item = /obj/item/pen/fountain
 	starting_programs = list(
@@ -313,21 +313,21 @@
 		messenger_app.spam_mode = TRUE
 
 /obj/item/modular_computer/pda/botanist
-	name = "botanist PDA"
+	name = "植物学家PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#50E193#E26F41#71A7CA"
 
 /obj/item/modular_computer/pda/cook
-	name = "cook PDA"
+	name = "厨师PDA"
 	greyscale_colors = "#FAFAFA#A92323"
 
 /obj/item/modular_computer/pda/bar
-	name = "bartender PDA"
+	name = "酒保PDA"
 	greyscale_colors = "#333333#C7C7C7"
 	inserted_item = /obj/item/pen/fountain
 
 /obj/item/modular_computer/pda/clown
-	name = "clown PDA"
+	name = "小丑PDA"
 	inserted_disk = /obj/item/computer_disk/virus/clown
 	icon_state = "pda-clown"
 	greyscale_config = null
@@ -349,7 +349,7 @@
 /// Return true if our wearer is in a position to slip someone
 /obj/item/modular_computer/pda/clown/proc/try_slip(mob/living/slipper, mob/living/slippee)
 	if(!istype(slipper.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/clown_shoes))
-		to_chat(slipper,span_warning("[src] failed to slip anyone. Perhaps I shouldn't have abandoned my legacy..."))
+		to_chat(slipper,span_warning("[src]没能让任何人滑到，也许我不该放弃我的遗物..."))
 		return FALSE
 	return TRUE
 
@@ -365,10 +365,10 @@
 			playsound(src,'sound/machines/ping.ogg',30,TRUE)
 
 /obj/item/modular_computer/pda/clown/proc/after_sitcom_laugh(mob/victim)
-	victim.visible_message("[src] lets out a burst of laughter!")
+	victim.visible_message("[src]爆发出一阵欢笑!")
 
 /obj/item/modular_computer/pda/mime
-	name = "mime PDA"
+	name = "默剧PDA"
 	inserted_disk = /obj/item/computer_disk/virus/mime
 	greyscale_config = /datum/greyscale_config/tablet/mime
 	greyscale_colors = "#FAFAFA#EA3232"
@@ -384,8 +384,8 @@
 		msg.alert_silenced = TRUE
 
 /obj/item/modular_computer/pda/curator
-	name = "curator PDA"
-	desc = "A small experimental microcomputer."
+	name = "馆长PDA"
+	desc = "一台实验型微型计算机."
 	greyscale_config = null
 	greyscale_colors = null
 	icon_state = "pda-library"
@@ -404,7 +404,7 @@
 */ // SKYRAT EDIT REMOVAL END
 
 /obj/item/modular_computer/pda/psychologist
-	name = "psychologist PDA"
+	name = "心理学家PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#333333#000099#3F96CC"
 	starting_programs = list(
@@ -418,13 +418,13 @@
  */
 
 /obj/item/modular_computer/pda/assistant
-	name = "assistant PDA"
+	name = "助手PDA"
 	starting_programs = list(
 		/datum/computer_file/program/bounty_board,
 	)
 
 /obj/item/modular_computer/pda/bridge_assistant
-	name = "bridge assistant PDA"
+	name = "舰桥助手PDA"
 	greyscale_colors = "#374f7e#a92323"
 	starting_programs = list(
 		/datum/computer_file/program/crew_manifest,
@@ -436,7 +436,7 @@
  */
 
 /obj/item/modular_computer/pda/syndicate
-	name = "military PDA"
+	name = "军用PDA"
 	greyscale_colors = "#891417#80FF80"
 	saved_identification = "John Doe"
 	saved_job = "Citizen"
@@ -449,7 +449,7 @@
 		msg.invisible = TRUE
 
 /obj/item/modular_computer/pda/clear
-	name = "clear PDA"
+	name = "透明款PDA"
 	icon_state = "pda-clear"
 	greyscale_config = null
 	greyscale_colors = null
@@ -463,4 +463,4 @@
 			theme_app.imported_themes += theme_key
 
 /obj/item/modular_computer/pda/clear/get_messenger_ending()
-	return "Sent from my crystal PDA"
+	return "来自我的晶体PDA"

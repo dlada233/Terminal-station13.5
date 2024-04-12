@@ -69,7 +69,7 @@
 	else if(istype(action, /datum/action/item_action/jetpack_stabilization))
 		if(on)
 			configure_jetpack(!stabilize)
-			to_chat(user, span_notice("你开关稳定装置 [stabilize ? "on" : "off"]."))
+			to_chat(user, span_notice("你[stabilize ? "开启" : "关闭"]了稳定装置."))
 	else
 		toggle_internals(user)
 
@@ -135,13 +135,13 @@
 	if (!ishuman(user))
 		return
 	var/mob/living/carbon/human/suffocater = user
-	suffocater.say("纳尼！里面装的是二氧化碳！")
-	suffocater.visible_message(span_suicide("[user]不小心使自己窒息了!一定是因为没有仔细看喷气背包上写的说明."))
+	suffocater.say("该死！里面装的是二氧化碳！")
+	suffocater.visible_message(span_suicide("[user]不小心使自己窒息了!看起来有人没有仔细看喷气背包上写的说明."))
 	return OXYLOSS
 
 /obj/item/tank/jetpack/improvised
 	name = "简易喷气背包"
-	desc = "由俩个气瓶、一个灭火器和一些大气设备组成的喷气背包，看起来装不了很多东西."
+	desc = "由两个气瓶、一个灭火器和一些大气设备组成的喷气背包，看起来容纳不了太多气体."
 	icon_state = "jetpack-improvised"
 	inhand_icon_state = "jetpack-improvised"
 	worn_icon = null
@@ -162,13 +162,13 @@
 	return ..()
 
 /obj/item/tank/jetpack/void
-	name = "真空用喷气背包(O2)"
-	desc = "It works well in a void."
+	name = "真空用喷气背包 (氧气)"
+	desc = "适用于真空环境."
 	icon_state = "jetpack-void"
 	inhand_icon_state = "jetpack-void"
 
 /obj/item/tank/jetpack/oxygen
-	name = "喷气背包(O2)"
+	name = "喷气背包(氧气)"
 	desc = "在零重力空间中用作推进的压缩气体罐，请谨慎使用."
 	icon_state = "jetpack"
 	inhand_icon_state = "jetpack"
@@ -193,7 +193,7 @@
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
 
 /obj/item/tank/jetpack/oxygen/security
-	name = "安保喷气背包(O2)"
+	name = "安保喷气背包(氧气)"
 	desc = "安保部队在零重力地区用做推进装置的压缩氧气瓶."
 	icon_state = "jetpack-sec"
 	inhand_icon_state = "jetpack-sec"
@@ -201,7 +201,7 @@
 
 
 /obj/item/tank/jetpack/carbondioxide
-	name = "喷气背包(CO2)"
+	name = "喷气背包(二氧化碳)"
 	desc = "在零重力空间中用作推进的压缩气体罐，涂成黑色表明千万不要用于吸入."
 	icon_state = "jetpack-black"
 	inhand_icon_state = "jetpack-black"

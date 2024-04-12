@@ -1,5 +1,5 @@
 /datum/design/solar
-	name = "Solar Panel Frame"
+	name = "Solar Panel Frame-太阳能板框架"
 	id = "solar_panel"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.75, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -11,7 +11,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/sparker
-	name = "Sparker WallFrame"
+	name = "Sparker WallFrame-电火花器壁式框架"
 	id = "sparker"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
@@ -23,7 +23,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/tracker_electronics
-	name = "Solar Tracking Electronics"
+	name = "Solar Tracking Electronics-太阳能跟踪电路板"
 	id = "solar_tracker"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -35,7 +35,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/control
-	name = "Blast Door Controller"
+	name = "Blast Door Controller-防爆门控制器"
 	id = "blast"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -47,7 +47,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/ignition_control
-	name = "Ignition Switch Controller"
+	name = "Ignition Switch Controller-点火开关控制器"
 	id = "ignition"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.5)
@@ -59,7 +59,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/custom_vendor_refill
-	name = "Custom Vendor Refill"
+	name = "Custom Vendor Refill-自定义贩卖机装填"
 	id = "custom_vendor_refill"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT)
@@ -72,7 +72,7 @@
 
 
 /datum/design/miniature_power_cell
-	name = "Light Fixture Battery"
+	name = "Light Fixture Battery-灯管支架电池"
 	id = "miniature_power_cell"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*0.2)
@@ -84,7 +84,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/geiger
-	name = "Geiger Counter"
+	name = "Geiger Counter-盖革计数器"
 	id = "geigercounter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT*1.5)
@@ -96,7 +96,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/turret_control_frame
-	name = "Turret Control Frame"
+	name = "Turret Control Frame-炮塔控制装置框架"
 	id = "turret_control"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6)
@@ -108,7 +108,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/large_welding_tool
-	name = "Industrial Welding Tool"
+	name = "Industrial Welding Tool-工业用焊接工具"
 	id = "large_welding_tool"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.7, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.6)
@@ -120,7 +120,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/camera_assembly
-	name = "Camera Assembly"
+	name = "Camera Assembly-摄像头组件"
 	id = "camera_assembly"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*4, /datum/material/glass = SMALL_MATERIAL_AMOUNT*2.5)
@@ -132,7 +132,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/newscaster_frame
-	name = "Newscaster Frame"
+	name = "Newscaster Frame-新闻广播器框架"
 	id = "newscaster_frame"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7, /datum/material/glass = SHEET_MATERIAL_AMOUNT*4)
@@ -144,7 +144,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/status_display_frame
-	name = "Status Display Frame"
+	name = "Status Display Frame-状态显示器框架"
 	id = "status_display_frame"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7, /datum/material/glass = SHEET_MATERIAL_AMOUNT*4)
@@ -157,7 +157,7 @@
 
 
 /datum/design/intercom_frame
-	name = "Intercom Frame"
+	name = "Intercom Frame-对讲机框架"
 	id = "intercom_frame"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.75, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.25)
@@ -169,7 +169,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/earmuffs
-	name = "Earmuffs"
+	name = "Earmuffs-耳罩"
 	id = "earmuffs"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -181,7 +181,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/pipe_painter
-	name = "Pipe Painter"
+	name = "Pipe Painter-管道涂手"
 	id = "pipe_painter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT)
@@ -193,7 +193,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/airlock_painter
-	name = "Airlock Painter"
+	name = "Airlock Painter-气闸涂手"
 	id = "airlock_painter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -205,7 +205,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/airlock_painter/decal
-	name = "Decal Painter"
+	name = "Decal Painter-气闸涂手+"
 	id = "decal_painter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -217,7 +217,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/airlock_painter/decal/tile
-	name = "Tile Sprayer"
+	name = "Tile Sprayer-地板涂手"
 	id = "tile_sprayer"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -229,7 +229,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/apc_board
-	name = "APC Module"
+	name = "APC Module-APC模块"
 	id = "power_control"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -241,7 +241,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/airlock_board
-	name = "Airlock Electronics"
+	name = "Airlock Electronics-气闸电路板"
 	id = "airlock_board"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -253,7 +253,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/firelock_board
-	name = "Firelock Circuitry"
+	name = "Firelock Circuitry-防火闸电路板"
 	id = "firelock_board"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -265,7 +265,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/airalarm_electronics
-	name = "Air Alarm Electronics"
+	name = "Air Alarm Electronics-大气警报器电路板"
 	id = "airalarm_electronics"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -277,7 +277,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/firealarm_electronics
-	name = "Fire Alarm Electronics"
+	name = "Fire Alarm Electronics-火灾警报器电路板"
 	id = "firealarm_electronics"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -289,7 +289,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/trapdoor_electronics
-	name = "Trapdoor Controller Electronics"
+	name = "Trapdoor Controller Electronics-活板门控制器电路板"
 	id = "trapdoor_electronics"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -301,7 +301,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/extinguisher
-	name = "Fire Extinguisher"
+	name = "Fire Extinguisher-灭火器"
 	id = "extinguisher"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
@@ -313,7 +313,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/pocketfireextinguisher
-	name = "Pocket Fire Extinguisher"
+	name = "Pocket Fire Extinguisher-便携式灭火器"
 	id = "pocketfireextinguisher"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.4)
@@ -325,7 +325,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/requests_console
-	name = "Requests Console Frame"
+	name = "Requests Console Frame-请求控制台框架"
 	id = "requests_console"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7, /datum/material/glass = SHEET_MATERIAL_AMOUNT*4)
@@ -337,7 +337,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/light_switch_frame
-	name = "Light Switch Frame"
+	name = "Light Switch Frame-灯开关框架"
 	id = "light_switch_frame"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.75, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.25)
@@ -349,7 +349,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/telescreen_turbine
-	name = "Turbine Telescreen"
+	name = "Turbine Telescreen-涡轮机电幕"
 	id = "telescreen_turbine"
 	build_type = PROTOLATHE
 	materials = list(
@@ -364,7 +364,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/telescreen_engine
-	name = "Engine Telescreen"
+	name = "Engine Telescreen-工程电幕"
 	id = "telescreen_engine"
 	build_type = PROTOLATHE
 	materials = list(
@@ -379,7 +379,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/telescreen_auxbase
-	name = "Auxiliary Base Telescreen"
+	name = "Auxiliary Base Telescreen-辅助基地电幕"
 	id = "telescreen_auxbase"
 	build_type = PROTOLATHE
 	materials = list(
@@ -394,7 +394,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/tram_controller
-	name = "Tram Controller Cabinet"
+	name = "Tram Controller Cabinet-电车主控柜"
 	id = "tram_controller"
 	build_type = PROTOLATHE
 	materials = list(
@@ -412,7 +412,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/tram_display
-	name = "Tram Indicator Display"
+	name = "Tram Indicator Display-电车指示显示器"
 	id = "tram_display"
 	build_type = PROTOLATHE
 	materials = list(

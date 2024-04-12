@@ -1,7 +1,7 @@
 /datum/action/changeling/panacea
-	name = "Anatomic Panacea"
-	desc = "Expels impurifications from our form; curing diseases, removing parasites, sobering us, purging toxins and radiation, curing traumas and brain damage, and resetting our genetic code completely. Costs 20 chemicals."
-	helptext = "Can be used while unconscious."
+	name = "组织净化液"
+	desc = "为我们的形体排除任何杂质；治愈疾病、清除寄生虫、精神镇静、净化毒素与辐射，治疗创伤与脑损伤以及完全重置自身的遗传基因代码. 使用该能力消耗20点化学物质."
+	helptext = "可以在失去意识的情况下使用."
 	button_icon_state = "panacea"
 	chemical_cost = 20
 	dna_cost = 1
@@ -9,7 +9,7 @@
 
 //Heals the things that the other regenerative abilities don't.
 /datum/action/changeling/panacea/sting_action(mob/user)
-	to_chat(user, span_notice("We cleanse impurities from our form."))
+	to_chat(user, span_notice("我们清除身体内的杂质."))
 	..()
 	var/list/bad_organs = list(
 		user.get_organ_by_type(/obj/item/organ/internal/empowered_borer_egg), // SKYRAT EDIT ADDITION

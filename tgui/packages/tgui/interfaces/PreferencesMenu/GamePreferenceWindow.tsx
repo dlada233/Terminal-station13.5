@@ -32,7 +32,7 @@ export const GamePreferenceWindow = (props: {
   }
 
   return (
-    <Window title="Game Preferences" width={920} height={770}>
+    <Window title="游戏预设" width={920} height={770}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
@@ -43,7 +43,7 @@ export const GamePreferenceWindow = (props: {
                   page={GamePreferencesSelectedPage.Settings}
                   setPage={setCurrentPage}
                 >
-                  Settings
+                  游戏设置
                 </PageButton>
               </Stack.Item>
 
@@ -53,7 +53,7 @@ export const GamePreferenceWindow = (props: {
                   page={GamePreferencesSelectedPage.Keybindings}
                   setPage={setCurrentPage}
                 >
-                  Keybindings
+                  键位绑定
                 </PageButton>
               </Stack.Item>
             </Stack>

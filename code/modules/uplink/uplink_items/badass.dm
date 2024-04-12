@@ -81,7 +81,7 @@
 	item = /obj/item/storage/box/syndie_kit/chameleon/broken
 
 /datum/uplink_item/badass/costumes/centcom_official
-	name = "中央司令部官员服饰"
+	name = "中央指挥部官员服饰"
 	desc = "大摇大摆地要求\"检查\"船员们的核磁盘和武器，然后当被拒绝时就掏出全自动步枪射杀舰长. \
 			购买后不附赠加密密钥，也不附赠枪."
 	purchasable_from = ALL

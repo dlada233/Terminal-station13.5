@@ -54,8 +54,8 @@
 	))
 
 /obj/item/storage/belt/holster/energy/thermal
-	name = "肩挂式热敏枪套"
-	desc = "一对相当普通的肩套，里面有一些绝缘衬垫，用来装一对热敏手枪，但也可以装好几种能量手枪."
+	name = "肩挂式热能枪套"
+	desc = "一对相当普通的肩套，里面有一些绝缘衬垫，用来装一对热能手枪，但也可以装好几种能量手枪."
 
 /obj/item/storage/belt/holster/energy/thermal/PopulateContents()
 	generate_items_inside(list(
@@ -117,7 +117,7 @@
 
 /obj/item/storage/belt/holster/detective/full/ert
 	name = "陆战队枪套"
-	desc = "戴着这个让你觉得自己很厉害，但你怀疑这只是一个从NT盈余中重新涂漆的侦探枪套."
+	desc = "穿着这个让你觉得自己很厉害，但你怀疑这只是一个从NT的库存中重新涂漆的侦探枪套."
 	icon_state = "syndicate_holster"
 	inhand_icon_state = "syndicate_holster"
 	worn_icon_state = "syndicate_holster"
@@ -186,7 +186,7 @@
 	))
 
 /obj/item/storage/belt/holster/nukie/cowboy
-	desc = "一种深肩枪套，几乎可以装下任何形式的小型火器及其弹药这个是专门为手枪设计的."
+	desc = "一种深肩枪套，几乎可以装下任何形式的小型火器及其弹药.这个是专门为手枪设计的."
 
 /obj/item/storage/belt/holster/nukie/cowboy/Initialize(mapload)
 	. = ..()

@@ -2,7 +2,7 @@
 
 /datum/supply_pack/exploration
 	special = TRUE
-	group = "外来物"
+	group = "未知来源物"
 
 /datum/supply_pack/exploration/scrapyard
 	name = "废品箱"

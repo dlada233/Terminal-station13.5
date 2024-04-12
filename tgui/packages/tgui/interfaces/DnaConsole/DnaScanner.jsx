@@ -30,7 +30,7 @@ const DnaScannerButtons = (props) => {
   if (!isScannerConnected) {
     return (
       <Button
-        content="Connect Scanner"
+        content="连接扫描仪"
         onClick={() => act('connect_scanner')}
       />
     );
@@ -48,7 +48,7 @@ const DnaScannerButtons = (props) => {
           disabled={!isScrambleReady || isPulsing}
           onClick={() => act('scramble_dna')}
         >
-          Scramble DNA
+          重排 DNA
           {!isScrambleReady && ` (${scrambleSeconds}s)`}
         </Button>
       )}
@@ -57,12 +57,12 @@ const DnaScannerButtons = (props) => {
         icon={scannerLocked ? 'lock' : 'lock-open'}
         color={scannerLocked && 'bad'}
         disabled={scannerOpen}
-        content={scannerLocked ? 'Locked' : 'Unlocked'}
+        content={scannerLocked ? '已锁定' : '未锁定'}
         onClick={() => act('toggle_lock')}
       />
       <Button
         disabled={scannerLocked}
-        content={scannerOpen ? 'Close' : 'Open'}
+        content={scannerOpen ? '关闭' : '开启'}
         onClick={() => act('toggle_door')}
       />
     </>
@@ -130,12 +130,12 @@ const DnaScannerContent = (props) => {
   }
   return (
     <LabeledList>
-      <LabeledList.Item label="Status">
+      <LabeledList.Item label="状况">
         {subjectName}
         <Icon mx={1} color="label" name="long-arrow-alt-right" />
         <SubjectStatus status={subjectStatus} />
       </LabeledList.Item>
-      <LabeledList.Item label="Health">
+      <LabeledList.Item label="健康">
         <ProgressBar
           value={subjectHealth}
           minValue={0}
@@ -150,7 +150,7 @@ const DnaScannerContent = (props) => {
           {subjectHealth}%
         </ProgressBar>
       </LabeledList.Item>
-      <LabeledList.Item label="Genetic Damage">
+      <LabeledList.Item label="基因损伤">
         <ProgressBar
           value={subjectDamage}
           minValue={0}
@@ -171,7 +171,7 @@ const DnaScannerContent = (props) => {
 
 export const DnaScanner = (props) => {
   return (
-    <Section title="DNA Scanner" buttons={<DnaScannerButtons />}>
+    <Section title="DNA 扫描仪" buttons={<DnaScannerButtons />}>
       <DnaScannerContent />
     </Section>
   );

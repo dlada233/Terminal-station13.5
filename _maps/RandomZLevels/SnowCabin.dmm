@@ -2626,7 +2626,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance"
+	name = "维护管道"
 	},
 /turf/open/floor/plating,
 /area/awaymission/cabin)

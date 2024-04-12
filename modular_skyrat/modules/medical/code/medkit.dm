@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit
-	name = "synthetic treatment kit"
-	desc = "A \"surgical\" duffel bag containing everything you need to treat the worst and <i>best</i> of inorganic wounds."
+	name = "合成人维修行李包"
+	desc = "一个包含了处理所有无机损伤 (无论严重程度) 所需工具的 \"手术\" 行李包."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -34,9 +34,8 @@
 
 // a treatment kit with extra space and more tools/upgraded tools, like a crowbar, insuls, a reinforced plunger, a crowbar and wrench
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma
-	name = "synthetic trauma kit"
-	desc = "A \"surgical\" duffel bag containing everything you need to treat the worst and <i>best</i> of inorganic wounds. This one has extra tools and space \
-	for treatment of the WORST of the worst! However, it's highly specialized interior means it can ONLY hold synthetic repair tools."
+	name = "合成人创伤维修包"
+	desc = "一個\"手术\"行李包，内含处理所有无机损伤 (无论伤势多重) 所需的工具.这款特別版拥有更多空间和额外工具，可以处理<i>最严重</i>的损伤！但其高度专业化的内部结构只能放置合成修复工具."
 	storage_type = /datum/storage/duffel/synth_trauma_kit
 
 /datum/storage/duffel/synth_trauma_kit
@@ -131,8 +130,8 @@
 
 // advanced tools, an RCD, chems, etc etc. dont give this one to the crew early in the round
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma/advanced
-	name = "先进手术行李包"
-	desc = "一个先进的手术行李包，里面绝对有你所需要的一切."
+	name = "先进合成人创伤维修包"
+	desc = "一个先进的\"手术\"行李包，里面包含了处理所有无机损伤 (无论伤势多重) 所需的全部工具.这款拥有更多空间和额外工具，可以处理<i>最严重</i>的损伤！但其高度专业化的内部结构只能放置合成修复工具."
 
 	storage_type = /datum/storage/duffel/synth_trauma_kit/advanced
 

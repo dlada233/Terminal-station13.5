@@ -2,7 +2,7 @@
 #define WELDER_FUEL_BURN_INTERVAL 5
 /obj/item/weldingtool
 	name = "焊接工具"
-	desc = "纳米传讯提供的标准焊机."
+	desc = "纳米传讯供应的标准焊机."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	inhand_icon_state = "welder"
@@ -173,7 +173,7 @@
 			var/mob/living/attacked_mob = attacked_atom
 			if(attacked_mob.ignite_mob())
 				message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(attacked_mob)] on fire with [src] at [AREACOORD(user)]")
-				user.log_message("set [key_name(attacked_mob)] on fire with [src].", LOG_ATTACK)
+				user.log_message("用[src]灼烧了[key_name(attacked_mob)].", LOG_ATTACK)
 
 	if(!status && attacked_atom.is_refillable())
 		. |= AFTERATTACK_PROCESSED_ITEM
@@ -195,7 +195,7 @@
 			var/mob/living/attacked_mob = attacked_atom
 			if(attacked_mob.ignite_mob())
 				message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(attacked_mob)] on fire with [src] at [AREACOORD(user)].")
-				user.log_message("set [key_name(attacked_mob)] on fire with [src]", LOG_ATTACK)
+				user.log_message("用[src]灼烧了[key_name(attacked_mob)]", LOG_ATTACK)
 
 
 /obj/item/weldingtool/attack_self(mob/user)
@@ -284,7 +284,7 @@
 
 /obj/item/weldingtool/examine(mob/user)
 	. = ..()
-	. += "It contains [get_fuel()] unit\s of fuel out of [max_fuel]."
+	. += "工具目前有[get_fuel()] 单位燃料，最多可容纳 [max_fuel] 单位燃料."
 
 /obj/item/weldingtool/get_temperature()
 	return welding * heat
@@ -329,10 +329,10 @@
 				user.transferItemToLoc(src, flamethrower_frame, TRUE)
 			flamethrower_frame.weldtool = src
 			add_fingerprint(user)
-			to_chat(user, span_notice("你在焊机上加装一根铁杆，试图制造火焰喷射器."))
+			to_chat(user, span_notice("你在焊机上加装一根铁棒，试图制造火焰喷射器."))
 			user.put_in_hands(flamethrower_frame)
 		else
-			to_chat(user, span_warning("你需要一根铁杆才能开始制造火焰喷射器!"))
+			to_chat(user, span_warning("你需要一根铁棒才能开始制造火焰喷射器!"))
 
 /obj/item/weldingtool/ignition_effect(atom/ignitable_atom, mob/user)
 	if(use_tool(ignitable_atom, user, 0))
@@ -401,7 +401,7 @@
 	..()
 
 /obj/item/weldingtool/hugetank
-	name = "升级工业用焊接工具"
+	name = "高级工业用焊接工具"
 	desc = "基于工业焊机的升级型."
 	icon_state = "upindwelder"
 	inhand_icon_state = "upindwelder"

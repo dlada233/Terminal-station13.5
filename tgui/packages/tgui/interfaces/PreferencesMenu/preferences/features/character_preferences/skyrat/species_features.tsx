@@ -169,7 +169,7 @@ export const tail_toggle: FeatureToggle = {
 };
 
 export const feature_tail: Feature<string> = {
-  name: '尾选择',
+  name: '尾巴选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -264,12 +264,12 @@ export const ears_emissive: Feature<boolean[]> = {
 };
 
 export const wings_toggle: FeatureToggle = {
-  name: '翼',
+  name: '翅膀',
   component: CheckboxInput,
 };
 
 export const feature_wings: Feature<string> = {
-  name: '翼选择',
+  name: '翅膀选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -278,12 +278,12 @@ export const feature_wings: Feature<string> = {
 };
 
 export const wings_color: Feature<string[]> = {
-  name: '翼颜色',
+  name: '翅膀颜色',
   component: FeatureTriColorInput,
 };
 
 export const wings_emissive: Feature<boolean[]> = {
-  name: '翼自发光',
+  name: '翅膀自发光',
   description: 'Emissive parts glow in the dark.',
   component: FeatureTriBoolInput,
 };

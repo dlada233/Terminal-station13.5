@@ -133,7 +133,7 @@
 	ambient_buzz = 'sound/ambience/magma.ogg'
 
 /area/lavaland/surface
-	name = "Lavaland"
+	name = "拉瓦兰"
 	icon_state = "explored"
 	always_unpowered = TRUE
 	power_environ = FALSE

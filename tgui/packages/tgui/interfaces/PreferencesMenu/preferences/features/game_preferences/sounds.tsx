@@ -76,7 +76,7 @@ export const sound_lobby: FeatureToggle = {
 export const sound_midi: FeatureToggle = {
   name: '启用管理员音乐',
   category: 'SOUND',
-  description: '启用时管理员将能够播放音乐给你.',
+  description: '启用时管理员能够播放音乐给你.',
   component: CheckboxInput,
 };
 

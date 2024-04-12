@@ -1,32 +1,32 @@
 // SKYRAT GOOD TRAITS
 
 /datum/quirk/hard_soles
-	name = "Hardened Soles"
-	desc = "You're used to walking barefoot, and won't receive the negative effects of doing so."
+	name = "Hardened Soles-硬脚板"
+	desc = "你习惯了赤脚走路，而且不会受到负面影响."
 	value = 2
 	mob_trait = TRAIT_HARD_SOLES
-	gain_text = span_notice("The ground doesn't feel so rough on your feet anymore.")
-	lose_text = span_danger("You start feeling the ridges and imperfections on the ground.")
-	medical_record_text = "Patient's feet are more resilient against traction."
+	gain_text = span_notice("你感觉脚下的地面不那么粗糙了.")
+	lose_text = span_danger("你开始感觉到地面凸起和沟壑.")
+	medical_record_text = "患者的足部能更好地抵抗地面摩擦."
 	icon = FA_ICON_SHAPES
 
 /datum/quirk/linguist
-	name = "Linguist"
-	desc = "You're a student of numerous languages and come with an additional language point."
+	name = "Linguist-语言学家"
+	desc = "你是个精通多种语言的学者，拥有一个额外的语言点数."
 	value = 4
 	mob_trait = TRAIT_LINGUIST
-	gain_text = span_notice("Your brain seems more equipped to handle different modes of conversation.")
-	lose_text = span_danger("Your grasp of the finer points of Draconic idioms fades away.")
-	medical_record_text = "Patient demonstrates a high brain plasticity in regards to language learning."
+	gain_text = span_notice("你的大脑似乎更适合处理不同的对话模式.")
+	lose_text = span_danger("你对龙族俚语精妙之处的熟谙逐渐消失.")
+	medical_record_text = "患者的大脑在学习语言方面展现出高度的可塑性."
 	icon = FA_ICON_BOOK_ATLAS
 
 /datum/quirk/sharpclaws
-	name = "Sharp Claws"
-	desc = "Whether it's a hunter's inherent biology, or your stubborn refusal to clip your nails ahead of your Jiu-Jitsu classes, your unarmed attacks are sharper and will make people bleed."
+	name = "Sharp Claws-锐利尖爪"
+	desc = "不管是捕猎者与生俱来的生物学特征，还是你执意拒绝在上柔术课前修剪指甲，你的徒手攻击更加锋利，能够使敌人流血."
 	value = 2
-	gain_text = span_notice("Your palms hurt a bit from the sharpness of your nails.")
-	lose_text = span_danger("You feel a distinct emptiness as your nails dull; good luck scratching that itch.")
-	medical_record_text = "Patient ended up scratching through the examination table's cushions; recommended they look into clipping their claws."
+	gain_text = span_notice("你的手掌被锋利的指甲刮得隐隐作痛.")
+	lose_text = span_danger("你的指甲变钝了，你心里有点茫然若失；抓痒痒的时候祝你好运.")
+	medical_record_text = "患者抓破了检查台的垫子；建议患者修剪爪子."
 	icon = FA_ICON_HAND
 
 /datum/quirk/sharpclaws/add(client/client_source)
@@ -69,13 +69,13 @@
 		right_arm.unarmed_sharpness = initial(right_arm.unarmed_sharpness)
 
 /datum/quirk/water_breathing
-	name = "Water breathing"
-	desc = "You are able to breathe underwater!"
+	name = "Water breathing-水下呼吸"
+	desc = "你能在水底下呼吸!"
 	value = 2
 	mob_trait = TRAIT_WATER_BREATHING
-	gain_text = span_notice("You become acutely aware of the moisture in your lungs and in the air. It feels nice.")
-	lose_text = span_danger("You suddenly realize the moisture in your lungs feels <i>really weird</i>, and you almost choke on it!")
-	medical_record_text = "Patient possesses biology compatible with aquatic respiration."
+	gain_text = span_notice("你开始能敏锐地感知到肺部和空气中的湿气，挺舒服的.")
+	lose_text = span_danger("你突然感到肺部的水分<i>非常膈应</i>，你简直快要窒息了!")
+	medical_record_text = "患者拥有适应水下呼吸的生物学特征."
 	icon = FA_ICON_FISH
 
 // AdditionalEmotes *turf quirks

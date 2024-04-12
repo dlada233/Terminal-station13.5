@@ -13,8 +13,8 @@
 
 // ===== ENGINEERING CONSOLE =====
 /obj/machinery/modular_computer/preset/engineering
-	name = "engineering console"
-	desc = "A stationary computer. This one comes preloaded with engineering programs."
+	name = "工程电脑"
+	desc = "一台固定式计算机，预装了工程相关程序."
 	starting_programs = list(
 		/datum/computer_file/program/power_monitor,
 		/datum/computer_file/program/alarm_monitor,
@@ -23,8 +23,8 @@
 
 // ===== RESEARCH CONSOLE =====
 /obj/machinery/modular_computer/preset/research
-	name = "research director's console"
-	desc = "A stationary computer. This one comes preloaded with research programs."
+	name = "科研主管的电脑"
+	desc = "一台固定式计算机，预装了科研相关程序."
 	starting_programs = list(
 		/datum/computer_file/program/ntnetmonitor,
 		/datum/computer_file/program/chatclient,
@@ -35,8 +35,8 @@
 
 // ===== COMMAND CONSOLE =====
 /obj/machinery/modular_computer/preset/command
-	name = "command console"
-	desc = "A stationary computer. This one comes preloaded with command programs."
+	name = "指挥电脑"
+	desc = "一台固定式计算机，预装了指挥相关程序."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 		/datum/computer_file/program/card_mod,
@@ -44,8 +44,9 @@
 
 // ===== IDENTIFICATION CONSOLE =====
 /obj/machinery/modular_computer/preset/id
-	name = "identification console"
-	desc = "A stationary computer. This one comes preloaded with identification modification programs."
+
+	name = "人事电脑"
+	desc = "一台固定式计算机，预装了人事业务相关程序."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 		/datum/computer_file/program/card_mod,
@@ -54,7 +55,7 @@
 	)
 
 /obj/machinery/modular_computer/preset/id/centcom
-	desc = "A stationary computer. This one comes preloaded with CentCom identification modification programs."
+	desc = "一台固定式计算机，预装了中央指挥部人事业务相关程序."
 
 /obj/machinery/modular_computer/preset/id/centcom/Initialize(mapload)
 	. = ..()
@@ -63,8 +64,8 @@
 
 // ===== CIVILIAN CONSOLE =====
 /obj/machinery/modular_computer/preset/civilian
-	name = "civilian console"
-	desc = "A stationary computer. This one comes preloaded with generic programs."
+	name = "民用电脑"
+	desc = "一台固定式计算机，预装了各种通用程序."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 		/datum/computer_file/program/arcade,
@@ -72,16 +73,16 @@
 
 // curator
 /obj/machinery/modular_computer/preset/curator
-	name = "curator console"
-	desc = "A stationary computer. This one comes preloaded with art programs."
+	name = "馆长电脑"
+	desc = "一台固定式计算机，预装了文学及艺术相关程序."
 	starting_programs = list(
 		/datum/computer_file/program/portrait_printer,
 	)
 
 // ===== CARGO CHAT CONSOLES =====
 /obj/machinery/modular_computer/preset/cargochat
-	name = "cargo chatroom console"
-	desc = "A stationary computer. This one comes preloaded with a chatroom for your cargo requests."
+	name = "货仓联络终端"
+	desc = "一台固定式计算机，预装了连通货仓的通讯软件."
 	starting_programs = list(
 		/datum/computer_file/program/chatclient,
 	)
@@ -96,26 +97,26 @@
 	cpu.active_program = chatprogram
 
 /obj/machinery/modular_computer/preset/cargochat/service
-	console_department = "Service"
+	console_department = "服务部"
 
 /obj/machinery/modular_computer/preset/cargochat/engineering
-	console_department = "Engineering"
+	console_department = "工程部"
 
 /obj/machinery/modular_computer/preset/cargochat/science
-	console_department = "Science"
+	console_department = "科研部"
 
 /obj/machinery/modular_computer/preset/cargochat/security
-	console_department = "Security"
+	console_department = "安保部"
 
 /obj/machinery/modular_computer/preset/cargochat/medical
-	console_department = "Medical"
+	console_department = "医疗部"
 
 
 //ONE PER MAP PLEASE, IT MAKES A CARGOBUS FOR EACH ONE OF THESE
 /obj/machinery/modular_computer/preset/cargochat/cargo
-	console_department = "Cargo"
-	name = "department chatroom console"
-	desc = "A stationary computer. This one comes preloaded with a chatroom for incoming cargo requests. You may moderate it from this computer."
+	console_department = "货仓"
+	name = "货仓联络终端"
+	desc = "一台固定式计算机，预装了连通各部门的通讯软件，你可以在这台计算机上与订购者们联络沟通."
 
 /obj/machinery/modular_computer/preset/cargochat/cargo/LateInitialize()
 	. = ..()

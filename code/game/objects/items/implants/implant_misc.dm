@@ -1,6 +1,6 @@
 /obj/item/implant/weapons_auth
-	name = "持枪许可植入物"
-	desc = "Lets you shoot your guns."
+	name = "'枪械认证'植入物"
+	desc = "让你可以使用你的枪."
 	icon_state = "auth"
 	actions_types = null
 
@@ -13,8 +13,8 @@
 	return dat
 
 /obj/item/implant/emp
-	name = "emp implant"
-	desc = "Triggers an EMP."
+	name = "'电磁脉冲'植入物"
+	desc = "触发一道电磁脉冲."
 	icon_state = "emp"
 	uses = 3
 
@@ -26,13 +26,13 @@
 		qdel(src)
 
 /obj/item/implanter/emp
-	name = "implanter" // Skyrat edit, was implanter (EMP)
+	name = "植入器" // Skyrat edit, was implanter (EMP)
 	imp_type = /obj/item/implant/emp
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a EMP implant" // Skyrat edit
+	special_desc = "一个用于植入'电磁脉冲'植入物的辛迪加植入器" // Skyrat edit
 
 /obj/item/implant/radio
-	name = "无线电植入物"
+	name = "'无线电'植入物"
 	var/obj/item/radio/radio
 	var/radio_key
 	var/subspace_transmission = FALSE
@@ -50,7 +50,7 @@
 	radio = new(src)
 	// almost like an internal headset, but without the
 	// "must be in ears to hear" restriction.
-	radio.name = "internal radio"
+	radio.name = "内置无线电"
 	radio.subspace_transmission = subspace_transmission
 	radio.canhear_range = 0
 	if(radio_key)
@@ -65,12 +65,12 @@
 	radio_key = /obj/item/encryptionkey/headset_cargo
 
 /obj/item/implant/radio/syndicate
-	desc = "Are you there God? It's me, Syndicate Comms Agent."
+	desc = "-是你吗，上帝? -是我，辛迪加通讯监听员."
 	radio_key = /obj/item/encryptionkey/syndicate
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/slime
-	name = "slime radio"
+	name = "史莱姆无线电"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "adamantine_resonator"
 	radio_key = /obj/item/encryptionkey/headset_sci
@@ -84,12 +84,12 @@
 	return dat
 
 /obj/item/implanter/radio
-	name = "implanter (internal radio)"
+	name = "植入器(内置无线电)"
 	imp_type = /obj/item/implant/radio
 
 /obj/item/implanter/radio/syndicate
-	name = "implanter" // Skyrat edit , was originally implanter (internal syndicate radio)
+	name = "植入器" // Skyrat edit , was originally implanter (internal syndicate radio)
 	imp_type = /obj/item/implant/radio/syndicate
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a internal radio implant" // Skyrat edit
+	special_desc = "一个用于植入'内置无线电'植入物的辛迪加植入器" // Skyrat edit
 

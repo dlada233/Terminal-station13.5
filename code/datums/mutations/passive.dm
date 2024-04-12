@@ -1,6 +1,6 @@
 /datum/mutation/human/biotechcompat
-	name = "Biotech Compatibility"
-	desc = "Subject is more compatibile with biotechnology such as skillchips."
+	name = "生物技术兼容性"
+	desc = "实验对象与技能芯片等生物技术更加兼容."
 	quality = POSITIVE
 	instability = 5
 
@@ -13,12 +13,12 @@
 	return ..()
 
 /datum/mutation/human/clever
-	name = "Clever"
-	desc = "Causes the subject to feel just a little bit smarter. Most effective in specimens with low levels of intelligence."
+	name = "聪慧"
+	desc = "使受试者感觉稍微聪明一点。在智力水平低的样本中最有效."
 	quality = POSITIVE
 	instability = 20
-	text_gain_indication = "<span class='danger'>You feel a little bit smarter.</span>"
-	text_lose_indication = "<span class='danger'>Your mind feels a little bit foggy.</span>"
+	text_gain_indication = "<span class='danger'>你感觉更加智慧了一点.</span>"
+	text_lose_indication = "<span class='danger'>你的头脑像是蒙上了薄雾.</span>"
 
 /datum/mutation/human/clever/on_acquiring(mob/living/carbon/human/owner)
 	if(..())

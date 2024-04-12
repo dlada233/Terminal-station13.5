@@ -16,7 +16,7 @@
 
 /obj/item/tank/internals/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt加左键拧开输气阀门.")
+	. += span_notice("Alt+左键拧开输气阀门.")
 
 /*
  * Oxygen
@@ -184,7 +184,7 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/engi
-	name = "大容量应急氧气瓶"
+	name = "扩容应急氧气瓶"
 	icon_state = "emergency_engi"
 	inhand_icon_state = "emergency_engi_tank"
 	worn_icon_state = "emergency_engi"
@@ -196,7 +196,7 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/double
-	name = "应急氧气双瓶"
+	name = "双联应急氧气瓶"
 	icon_state = "emergency_double"
 	worn_icon_state = "emergency_engi"
 	tank_holder_icon_state = "holder_emergency_engi"

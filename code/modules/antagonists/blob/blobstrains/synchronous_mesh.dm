@@ -1,14 +1,14 @@
 //does brute damage, bonus damage for each nearby blob, and spreads damage out
 /datum/blobstrain/reagent/synchronous_mesh
-	name = "Synchronous Mesh"
-	description = "will do low brute damage, but each blob nearby attacks the target as well with stacking damage."
-	effectdesc = "will also spread damage between each blob near the attacked blob."
-	analyzerdescdamage = "Does low brute damage, increasing for each blob near the target."
-	analyzerdesceffect = "When attacked, spreads damage between all blobs near the attacked blob."
+	name = "同步网体"
+	description = "将造成低额创伤，但附近的每个真菌体将同步攻击目标并叠加伤害."
+	effectdesc = "受到伤害时，也会将伤害扩散至附近真菌体."
+	analyzerdescdamage = "造成低额创伤，但伤害会随着附近真菌体数量的增加而增加."
+	analyzerdesceffect = "受到伤害时，会将伤害传播至附近的真菌体."
 	color = "#65ADA2"
 	complementary_color = "#AD6570"
-	blobbernaut_message = "synchronously strikes"
-	message = "The blobs strike you"
+	blobbernaut_message = "同步攻击"
+	message = "真菌体击打了你"
 	reagent = /datum/reagent/blob/synchronous_mesh
 
 /datum/blobstrain/reagent/synchronous_mesh/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
@@ -26,8 +26,8 @@
 		return damage * 1.25
 
 /datum/reagent/blob/synchronous_mesh
-	name = "Synchronous Mesh"
-	taste_description = "toxic mold"
+	name = "同步网体"
+	taste_description = "有毒霉菌"
 	color = "#65ADA2"
 
 /datum/reagent/blob/synchronous_mesh/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/overmind)

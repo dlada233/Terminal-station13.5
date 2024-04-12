@@ -21,7 +21,7 @@
 /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	name = "养蜂入门套件"
 	desc = "BEES BEES BEES，内含三个巢框，养蜂人套装和蜂房，\
-		当然！还有纯种的Nanotrasen蜂后!"
+		当然！还有纯种的纳米传讯蜂后!"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/structure/beebox/unwrenched,
 					/obj/item/honey_frame = 3,
@@ -34,8 +34,8 @@
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/organic/randomized/chef
-	name = "上等肉类进口"
-	desc = "全银河系最好的屠宰中心，这里有各种各样的异星肉."
+	name = "上等肉品"
+	desc = "全银河系最好的屠宰中心，包含各种各样的异星肉."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/food/meat/slab/human/mutant/slime,
 					/obj/item/food/meat/slab/killertomato,
@@ -59,7 +59,7 @@
 /datum/supply_pack/organic/exoticseeds
 	name = "异星种子包"
 	desc = "任何上进的植物学家的梦想，\
-		包含十二种不同的种子，其中有复制豆荚和两包神秘种子!"
+		包含十二种不同的种子，其中有复制荚和两包神秘种子!"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_HYDROPONICS
 	contains = list(
@@ -81,9 +81,9 @@
 
 /datum/supply_pack/organic/food
 	name = "食材包"
-	desc = "用这个装满有用食材的板条箱做饭吧!\
+	desc = "用这个板条箱里满当当的实用食材来做顿饭吧!\
 		含有一打鸡蛋、三根香蕉和一些面粉、大米、牛奶和豆浆，\
-		以及盐、胡椒、发酵酶、糖和猴子肉."
+		以及盐、胡椒、发酵酶、糖还有猴子肉."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/reagent_containers/condiment/flour,
 					/obj/item/reagent_containers/condiment/rice,
@@ -100,8 +100,8 @@
 	crate_name = "食材箱"
 
 /datum/supply_pack/organic/randomized/chef/fruits
-	name = "水果进口"
-	desc = "富含维生素，含有酸橙、甘橙、西瓜、苹果、浆果和\
+	name = "水果采购"
+	desc = "富含维生素，包含酸橙、甘橙、西瓜、苹果、浆果和\
 		柠檬."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/food/grown/citrus/lime,
@@ -146,8 +146,7 @@
 
 /datum/supply_pack/organic/hydroponics/hydrotank
 	name = "背式水箱"
-	desc = "上次用这个导致全村抗洪，\
-		内含500u的生命之水."
+	desc = "水培高容量水箱背包，为空间站带来滚滚洪水.包含 500 单位生命之源 H2O."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_HYDROPONICS
 	contains = list(/obj/item/watertank)
@@ -205,7 +204,7 @@
 		return FALSE
 	new /obj/item/pizzabox/infinite(new_crate)
 	anomalous_box_provided = TRUE
-	log_game("An anomalous pizza box was provided in a pizza crate at during cargo delivery.")
+	log_game("货物运送期间，在披萨箱中发现了一个异常披萨盒.")
 	if(prob(50))
 		addtimer(CALLBACK(src, PROC_REF(anomalous_pizza_report)), rand(30 SECONDS, 180 SECONDS))
 		message_admins("An anomalous pizza box was provided in a pizza crate at during cargo delivery.")
@@ -246,7 +245,7 @@
 /datum/supply_pack/organic/potted_plants
 	name = "盆栽包"
 	desc = "用这些可爱的盆栽装饰你的太空站!\
-		包含来自Nanotrasen盆栽植物研究部的五种随机盆栽植物. \
+		包含来自纳米传讯盆栽植物研究部的五种随机盆栽植物. \
 		请勿用来投掷."
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(/obj/item/kirbyplants/random = 5)
@@ -306,7 +305,7 @@
 		/obj/item/reagent_containers/cup/soda_cans/monkey_energy,
 		/obj/machinery/grill/unwrenched,
 	)
-	crate_name = "烧烤入门工具套件"
+	crate_name = "烧烤入门工具箱"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/organic/grillfuel
@@ -335,7 +334,7 @@
 
 /datum/supply_pack/organic/mothic_supply
 	name = "蛾类食材进口"
-	desc = "进口自蛾子舰队的一箱物资. \
+	desc = "进口自蛾族舰队的一箱物资. \
 		包含蛾类特色食材."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/box/mothic_goods,

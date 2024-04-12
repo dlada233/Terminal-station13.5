@@ -1,5 +1,5 @@
 /obj/machinery/autolathe
-	name = "autolathe-全自动车床"
+	name = "全自动车床"
 	desc = "It produces items using iron, glass, plastic and maybe some more."
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "autolathe"

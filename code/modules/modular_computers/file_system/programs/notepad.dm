@@ -1,17 +1,17 @@
 /datum/computer_file/program/notepad
 	filename = "notepad"
-	filedesc = "Notepad-记事本"
+	filedesc = "记事本"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"
-	extended_desc = "记下对工作的必要事项."
+	extended_desc = "摘记任何你在空间站上的想法."
 	size = 2
 	tgui_id = "NtosNotepad"
 	program_icon = "book"
 	can_run_on_flags = PROGRAM_ALL
 
-	var/written_note = "祝贺您的站点升级到新的NtOS和基于Thinktronic的协作努力, \
-		为您带来自2467年以来最好的电子和软件!\n\
-		为了新员工，我们提供了以下事项:\n\
+	var/written_note = "祝贺您的站点升级并体验全新的NtOS & Thinktronic的联合协作技术, \
+		为您带来自2467年以来最好的电子和软件解决方案!\n\
+		为了方便您导航，我们提供了以下术语定义:\n\
 		Fore - 站体前端\n\
 		Aft - 站体后端\n\
 		Port - 站体左侧\n\

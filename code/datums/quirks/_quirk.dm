@@ -2,9 +2,9 @@
 //these are NOT "mob quirks" like GOTTAGOFAST, but exist as a medium to apply them and other different effects
 /datum/quirk
 	/// The name of the quirk
-	var/name = "Test Quirk"
+	var/name = "Test Quirk-测试用特质"
 	/// The description of the quirk
-	var/desc = "This is a test quirk."
+	var/desc = "这是一个测试用特质."
 	/// What the quirk is worth in preferences, zero = neutral / free
 	var/value = 0
 	/// Flags related to this quirk.
