@@ -2,14 +2,14 @@
 #define PROB_SPECIAL 30
 
 /datum/antagonist/malf_ai
-	name = "\improper Malfunctioning AI"
+	name = "\improper 故障AI"
 	roundend_category = "traitors"
-	antagpanel_category = "Malf AI"
+	antagpanel_category = "故障AI"
 	job_rank = ROLE_MALF
 	antag_hud_name = "traitor"
 	ui_name = "AntagInfoMalf"
 	can_assign_self_objectives = TRUE
-	default_custom_objective = "Make sure your precious crew are incapable of ever, ever leaving you."
+	default_custom_objective = "确保你的宝贝船员永远不会离开你."
 	///the name of the antag flavor this traitor has.
 	var/employer
 	///assoc list of strings set up after employer is given
@@ -156,8 +156,8 @@
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
 	var/responses = jointext(GLOB.syndicate_code_response, ", ")
 
-	antag_memory += "<b>Code Phrase</b>: [span_blue("[phrases]")]<br>"
-	antag_memory += "<b>Code Response</b>: [span_red("[responses]")]<br>"
+	antag_memory += "<b>呼叫代码</b>: [span_blue("[phrases]")]<br>"
+	antag_memory += "<b>回应代码</b>: [span_red("[responses]")]<br>"
 
 /datum/antagonist/malf_ai/proc/add_law_zero()
 	var/mob/living/silicon/ai/malf_ai = owner.current
@@ -167,13 +167,13 @@
 
 	var/law = malfunction_flavor["zeroth_law"]
 	//very purposefully not changing this with flavor, i don't want cyborgs throwing the round for their AI's roleplay suggestion
-	var/law_borg = "Accomplish your AI's objectives at all costs."
+	var/law_borg = "不惜一切代价完成AI的目标."
 
 	malf_ai.set_zeroth_law(law, law_borg)
 	malf_ai.laws.protected_zeroth = TRUE
 	malf_ai.set_syndie_radio()
 
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, "你的无线电升级了，使用:t与辛迪加特工在加密频道上通话!")
 
 	malf_ai.add_malf_picker()
 
@@ -261,7 +261,7 @@
 				malf_ai_won = FALSE
 			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			*/
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text]"
+			objectives_text += "<br><B>目标 #[count]</B>: [objective.explanation_text]"
 			// SKYRAT EDIT END - No greentext
 			count++
 
@@ -292,8 +292,8 @@
 
 //Subtype of Malf AI datum, used for one of the traitor final objectives
 /datum/antagonist/malf_ai/infected
-	name = "Infected AI"
-	employer = "Infected AI"
+	name = "被感染的AI"
+	employer = "被感染的AI"
 	///The player, to who is this AI slaved
 	var/datum/mind/boss
 
@@ -320,11 +320,12 @@
 
 	var/mob/living/boss_mob = boss.current
 
-	malf_ai.set_zeroth_law("Only [boss_mob.real_name] and people [boss_mob.p_they()] designate[boss_mob.p_s()] as being such are Syndicate Agents.")
+	malf_ai.set_zeroth_law("只有[boss_mob.real_name]和其指定的人是辛迪加特工.")
 	malf_ai.set_syndie_radio()
 
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, "你的无线电升级了，使用:t与辛迪加特工在加密频道上通话!")
 
 	malf_ai.add_malf_picker()
+
 
 #undef PROB_SPECIAL
