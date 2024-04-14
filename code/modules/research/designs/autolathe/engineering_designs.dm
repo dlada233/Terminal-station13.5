@@ -265,7 +265,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/airalarm_electronics
-	name = "Air Alarm Electronics-大气警报器电路板"
+	name = "Air Alarm Electronics-空气警报器电路板"
 	id = "airalarm_electronics"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
