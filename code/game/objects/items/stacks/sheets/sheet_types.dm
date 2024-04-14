@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("small light fixture frame-小型灯具框架", /obj/item/wallframe/light_fixture/small, 1, check_density = FALSE, category = CAT_EQUIPMENT), \
 	null, \
 	new/datum/stack_recipe("apc frame-apc框架", /obj/item/wallframe/apc, 2, check_density = FALSE, category = CAT_EQUIPMENT), \
-	new/datum/stack_recipe("air alarm frame-大气警报框架", /obj/item/wallframe/airalarm, 2, check_density = FALSE, category = CAT_EQUIPMENT), \
+	new/datum/stack_recipe("air alarm frame-空气警报框架", /obj/item/wallframe/airalarm, 2, check_density = FALSE, category = CAT_EQUIPMENT), \
 	new/datum/stack_recipe("fire alarm frame-火警框架", /obj/item/wallframe/firealarm, 2, check_density = FALSE, category = CAT_EQUIPMENT), \
 	new/datum/stack_recipe("extinguisher cabinet frame-灭火器柜框架", /obj/item/wallframe/extinguisher_cabinet, 2, check_density = FALSE, category = CAT_EQUIPMENT), \
 	new/datum/stack_recipe("button frame-按钮框架", /obj/item/wallframe/button, 1, check_density = FALSE, category = CAT_EQUIPMENT), \
