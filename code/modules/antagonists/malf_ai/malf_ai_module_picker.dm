@@ -1,6 +1,6 @@
 /// The datum and interface for the malf unlock menu, which lets them choose actions to unlock.
 /datum/module_picker
-	var/name = "Malfunction Modules Menu"
+	var/name = "故障模块菜单"
 	var/selected_cat
 	var/compact_mode = FALSE
 	var/processing_time = 50
@@ -119,8 +119,8 @@
 					AI.playsound_local(AI, AM.unlock_sound, 50, 0)
 			else //Adding uses to an existing module
 				action.uses += initial(action.uses)
-				action.desc = "[initial(action.desc)] It has [action.uses] use\s remaining."
+				action.desc = "[initial(action.desc)] 它还有[action.uses]次使用机会."
 				action.build_all_button_icons()
 	processing_time -= AM.cost
-	log_malf_upgrades("[key_name(AI)] purchased [AM.name]")
+	log_malf_upgrades("[key_name(AI)]购买了[AM.name]")
 	SSblackbox.record_feedback("nested tally", "malfunction_modules_bought", 1, list("[initial(AM.name)]", "[AM.cost]"))
