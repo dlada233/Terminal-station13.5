@@ -1,5 +1,5 @@
 /datum/outfit/syndicate
-	name = "Syndicate Operative - Basic"
+	name = "辛迪加核特工 - 基础"
 
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
@@ -23,19 +23,19 @@
 	id_trim = /datum/id_trim/chameleon/operative
 
 /datum/outfit/syndicate/plasmaman
-	name = "Syndicate Operative - Basic (Plasmaman)"
+	name = "辛迪加核特工 - 基本 (等离子人)"
 	head = /obj/item/clothing/head/helmet/space/plasmaman/syndie
 	uniform = /obj/item/clothing/under/plasmaman/syndicate
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 
 /datum/outfit/syndicate/leader
-	name = "Syndicate Leader - Basic"
+	name = "辛迪加核队队长 - 基本"
 	command_radio = TRUE
 
 	id_trim = /datum/id_trim/chameleon/operative/nuke_leader
 
 /datum/outfit/syndicate/leader/plasmaman
-	name = "Syndicate Leader - Basic (Plasmaman)"
+	name = "辛迪加核队队长 - 基本 (等离子人)"
 	head = /obj/item/clothing/head/helmet/space/plasmaman/syndie
 	uniform = /obj/item/clothing/under/plasmaman/syndicate
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
@@ -65,7 +65,7 @@
 	nukie.update_icons()
 
 /datum/outfit/syndicate/full
-	name = "Syndicate Operative - Full Kit"
+	name = "辛迪加核特工 - 全装"
 
 	glasses = /obj/item/clothing/glasses/night
 	mask = /obj/item/clothing/mask/gas/syndicate
@@ -80,7 +80,7 @@
 	)
 
 /datum/outfit/syndicate/full/plasmaman
-	name = "Syndicate Operative - Full Kit (Plasmaman)"
+	name = "辛迪加核特工 - 全装 (等离子人)"
 	back = /obj/item/mod/control/pre_equipped/nuclear/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/syndicate
 	r_pocket = /obj/item/tank/internals/plasmaman/belt/full
@@ -91,63 +91,63 @@
 	return ..()
 
 /datum/outfit/syndicate/reinforcement
-	name = "Syndicate Operative - Reinforcement"
+	name = "辛迪加核特工 - 增援部队"
 	tc = 0
 	backpack_contents = list(
 		/obj/item/gun/ballistic/automatic/plastikov = 1,
 		/obj/item/ammo_box/magazine/plastikov9mm = 2,
 	)
-	var/faction = "The Syndicate"
+	var/faction = "辛迪加"
 
 /datum/outfit/syndicate/reinforcement/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
-	to_chat(H, span_notice("You're an agent of [faction], sent to accompany the nuclear squad on their mission. \
-		Support your allies, and remember: Down with Nanotrasen."))
+	to_chat(H, span_notice("你是[faction]特工，被派来协助核小队执行任务. \
+		支援你的友军，以及牢记: 打倒纳米传讯."))
 
 /datum/outfit/syndicate/reinforcement/plasmaman
-	name = "Syndicate Operative - Reinforcement (Plasmaman)"
+	name = "辛迪加核特工 - 增援部队 (等离子人)"
 	head = /obj/item/clothing/head/helmet/space/plasmaman/syndie
 	uniform = /obj/item/clothing/under/plasmaman/syndicate
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 	tc = 0
 
 /datum/outfit/syndicate/reinforcement/gorlex
-	name = "Syndicate Operative - Gorlex Reinforcement"
+	name = "辛迪加特工 - Gorlex增援部队"
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	head = /obj/item/clothing/head/helmet/swat
 	neck = /obj/item/clothing/neck/large_scarf/syndie
 	glasses = /obj/item/clothing/glasses/cold
-	faction = "the Gorlex Marauders"
+	faction = "Gorlex掠夺者"
 
 /datum/outfit/syndicate/reinforcement/cybersun
-	name = "Syndicate Operative - Cybersun Reinforcement"
+	name = "辛迪加特工 - 赛博森增援部队"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/jacket/oversized
 	gloves = /obj/item/clothing/gloves/fingerless
 	glasses = /obj/item/clothing/glasses/sunglasses
 	mask = /obj/item/clothing/mask/cigarette/cigar
-	faction = "Cybersun Industries"
+	faction = "赛博森工业集团"
 
 /datum/outfit/syndicate/reinforcement/donk
-	name = "Syndicate Operative - Donk Reinforcement"
+	name = "辛迪加特工 - 杜客增援部队"
 	suit = /obj/item/clothing/suit/hazardvest
 	head = /obj/item/clothing/head/utility/hardhat/orange
 	shoes = /obj/item/clothing/shoes/workboots
 	glasses = /obj/item/clothing/glasses/meson
-	faction = "the Donk Corporation"
+	faction = "杜客公司"
 
 /datum/outfit/syndicate/reinforcement/waffle
-	name = "Syndicate Operative - Waffle Reinforcement"
+	name = "辛迪加特工 - 华夫增援部队"
 	uniform = /obj/item/clothing/under/syndicate/camo
 	suit = /obj/item/clothing/suit/armor/vest
 	head = /obj/item/clothing/head/helmet/blueshirt
 	glasses = /obj/item/clothing/glasses/welding/up
-	faction = "the Waffle Corporation"
+	faction = "华夫公司"
 
 /datum/outfit/syndicate/reinforcement/interdyne
-	name = "Syndicate Operative - Interdyne Reinforcement"
+	name = "辛迪加特工 - Interdyne增援部队"
 	uniform = /obj/item/clothing/under/syndicate/scrubs
 	suit = /obj/item/clothing/suit/toggle/labcoat/interdyne
 	head = /obj/item/clothing/head/beret/medical
@@ -155,10 +155,10 @@
 	neck = /obj/item/clothing/neck/stethoscope
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/breath/medical
-	faction = "Interdyne Pharmaceutics"
+	faction = "Interdyne制药公司"
 
 /datum/outfit/syndicate/reinforcement/mi13
-	name = "Syndicate Operative - MI13 Reinforcement"
+	name = "辛迪加特工 - MI13增援部队"
 	uniform = /obj/item/clothing/under/syndicate/sniper
 	shoes = /obj/item/clothing/shoes/laceup
 	glasses = /obj/item/clothing/glasses/sunglasses/big

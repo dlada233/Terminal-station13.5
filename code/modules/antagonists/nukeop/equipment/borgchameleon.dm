@@ -1,5 +1,5 @@
 /obj/item/borg_chameleon
-	name = "cyborg chameleon projector"
+	name = "赛博变色龙投影仪"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "shield0"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -48,29 +48,29 @@
 		if (isturf(user.loc))
 			toggle(user)
 		else
-			to_chat(user, span_warning("You can't use [src] while inside something!"))
+			to_chat(user, span_warning("在某物内部时，你不能使用[src]!"))
 	else
-		to_chat(user, span_warning("You need at least [activationCost] charge in your cell to use [src]!"))
+		to_chat(user, span_warning("你的电池至少需要[activationCost]电量来使用[src]!"))
 
 /obj/item/borg_chameleon/proc/toggle(mob/living/silicon/robot/user)
 	if(active)
 		playsound(src, 'sound/effects/pop.ogg', 100, TRUE, -6)
-		to_chat(user, span_notice("You deactivate \the [src]."))
+		to_chat(user, span_notice("你停用[src]."))
 		deactivate(user)
 	else
 		if(animation_playing)
-			to_chat(user, span_notice("\the [src] is recharging."))
+			to_chat(user, span_notice("[src]正在充能."))
 			return
 		animation_playing = TRUE
-		to_chat(user, span_notice("You activate \the [src]."))
+		to_chat(user, span_notice("你激活[src]."))
 		playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE, -6)
 		apply_wibbly_filters(user)
 		if (do_after(user, 50, target=user) && user.cell.use(activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
-			to_chat(user, span_notice("You are now disguised as the Nanotrasen engineering borg \"[friendlyName]\"."))
+			to_chat(user, span_notice("你现在伪装成了纳米工程赛博\"[friendlyName]\"."))
 			activate(user)
 		else
-			to_chat(user, span_warning("The chameleon field fizzles."))
+			to_chat(user, span_warning("变色龙场失效."))
 			do_sparks(3, FALSE, user)
 		remove_wibbly_filters(user)
 		animation_playing = FALSE
@@ -117,5 +117,5 @@
 /obj/item/borg_chameleon/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
 	if(active)
-		to_chat(user, span_danger("Your chameleon field deactivates."))
+		to_chat(user, span_danger("你的变色龙场失效了."))
 		deactivate(user)

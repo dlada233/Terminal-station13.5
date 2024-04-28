@@ -1,13 +1,13 @@
 /datum/antagonist/nukeop
 	name = ROLE_NUCLEAR_OPERATIVE
-	roundend_category = "syndicate operatives" //just in case
+	roundend_category = "辛迪加行动人员" //just in case
 	antagpanel_category = ANTAG_GROUP_SYNDICATE
 	job_rank = ROLE_OPERATIVE
 	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
 	hijack_speed = 2 //If you can't take out the station, take the shuttle instead.
-	suicide_cry = "FOR THE SYNDICATE!!"
+	suicide_cry = "辛迪加万岁!!"
 	/// Which nukie team are we on?
 	var/datum/team/nuclear/nuke_team
 	/// If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
@@ -54,7 +54,7 @@
 
 /datum/antagonist/nukeop/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0, use_reverb = FALSE)
-	to_chat(owner, span_big("You are a [nuke_team ? nuke_team.syndicate_name : "syndicate"] agent!"))
+	to_chat(owner, span_big("你是一名[nuke_team ? nuke_team.syndicate_name : "辛迪加"]特工!"))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/on_gain()
@@ -117,15 +117,15 @@
 		else
 			var/number = 1
 			number = nuke_team.members.Find(owner)
-			owner.current.real_name = "[nuke_team.syndicate_name] Operative #[number]"
+			owner.current.real_name = "[nuke_team.syndicate_name] 特工 #[number]"
 
 /datum/antagonist/nukeop/proc/memorize_code()
 	if(nuke_team && nuke_team.tracked_nuke && nuke_team.memorized_code)
-		antag_memory += "<B>[nuke_team.tracked_nuke] Code</B>: [nuke_team.memorized_code]<br>"
+		antag_memory += "<B>[nuke_team.tracked_nuke] 代码</B>: [nuke_team.memorized_code]<br>"
 		owner.add_memory(/datum/memory/key/nuke_code, nuclear_code = nuke_team.memorized_code)
-		to_chat(owner, "The nuclear authorization code is: <B>[nuke_team.memorized_code]</B>")
+		to_chat(owner, "核武授权代码: <B>[nuke_team.memorized_code]</B>")
 	else
-		to_chat(owner, "Unfortunately the syndicate was unable to provide you with nuclear authorization code.")
+		to_chat(owner, "不幸的是，集团无法向您提供核武授权代码.")
 
 /datum/antagonist/nukeop/forge_objectives()
 	if(nuke_team)
@@ -138,7 +138,7 @@
 	var/turf/destination = get_spawnpoint()
 	owner.current.forceMove(destination)
 	if(!owner.current.onSyndieBase())
-		message_admins("[ADMIN_LOOKUPFLW(owner.current)] is a NUKE OP and move_to_spawnpoint put them somewhere that isn't the syndie base, help please.")
+		message_admins("[ADMIN_LOOKUPFLW(owner.current)]是核队特工，但move_to_spawnpoint没有被放在辛迪加基地内，请提供帮助.")
 		stack_trace("Nuke op move_to_spawnpoint resulted in a location not on the syndicate base. (Was moved to: [destination])")
 
 /// Gets the position we spawn at
@@ -173,13 +173,13 @@
 /datum/antagonist/nukeop/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.set_assigned_role(SSjob.GetJobType(/datum/job/nuclear_operative))
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has nuke op'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has nuke op'ed [key_name(new_owner)].")
+	message_admins("[key_name_admin(admin)]使[key_name_admin(new_owner)]成为核队特工.")
+	log_admin("[key_name(admin)]使[key_name(new_owner)]成为核队特工.")
 
 /datum/antagonist/nukeop/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src, PROC_REF(admin_send_to_base))
-	.["Tell code"] = CALLBACK(src, PROC_REF(admin_tell_code))
+	.["送至基地"] = CALLBACK(src, PROC_REF(admin_send_to_base))
+	.["授予代码"] = CALLBACK(src, PROC_REF(admin_tell_code))
 
 /datum/antagonist/nukeop/proc/admin_send_to_base(mob/admin)
 	owner.current.forceMove(pick(GLOB.nukeop_start))
@@ -191,10 +191,10 @@
 			code = bombue.r_code
 			break
 	if (code)
-		antag_memory += "<B>Syndicate Nuclear Bomb Code</B>: [code]<br>"
-		to_chat(owner.current, "The nuclear authorization code is: <B>[code]</B>")
+		antag_memory += "<B>辛迪加核弹密码</B>: [code]<br>"
+		to_chat(owner.current, "核武授权代码: <B>[code]</B>")
 	else
-		to_chat(admin, span_danger("No valid nuke found!"))
+		to_chat(admin, span_danger("无可用核武!"))
 
 /datum/antagonist/nukeop/get_preview_icon()
 	if (!preview_outfit)
@@ -217,7 +217,7 @@
 	return finish_preview_icon(final_icon)
 
 /datum/outfit/nuclear_operative
-	name = "Nuclear Operative (Preview only)"
+	name = "核特工 (仅浏览)"
 
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate
 	uniform = /obj/item/clothing/under/syndicate
@@ -228,7 +228,7 @@
 	H.update_worn_back()
 
 /datum/outfit/nuclear_operative_elite
-	name = "Nuclear Operative (Elite, Preview only)"
+	name = "核特工 (精英，仅浏览)"
 
 	back = /obj/item/mod/control/pre_equipped/empty/elite
 	uniform = /obj/item/clothing/under/syndicate
@@ -244,7 +244,7 @@
 	H.update_held_items()
 
 /datum/antagonist/nukeop/leader
-	name = "Nuclear Operative Leader"
+	name = "核特工队长"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	always_new_team = TRUE
 	/// Randomly chosen honorific, for distinction
@@ -256,8 +256,8 @@
 	..()
 	if(nuke_team?.memorized_code)
 		var/obj/item/paper/nuke_code_paper = new
-		nuke_code_paper.add_raw_text("The nuclear authorization code is: <b>[nuke_team.memorized_code]</b>")
-		nuke_code_paper.name = "nuclear bomb code"
+		nuke_code_paper.add_raw_text("核武授权代码: <b>[nuke_team.memorized_code]</b>")
+		nuke_code_paper.name = "核弹密码"
 		var/mob/living/carbon/human/H = owner.current
 		if(!istype(H))
 			nuke_code_paper.forceMove(get_turf(H))
@@ -267,10 +267,10 @@
 
 /datum/antagonist/nukeop/leader/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0, use_reverb = FALSE)
-	to_chat(owner, "<span class='warningplain'><B>You are the Syndicate [title] for this mission. You are responsible for guiding the team and your ID is the only one who can open the launch bay doors.</B></span>")
-	to_chat(owner, "<span class='warningplain'><B>If you feel you are not up to this task, give your ID and radio to another operative.</B></span>")
+	to_chat(owner, "<span class='warningplain'><B>你是这次任务的辛迪加[title]. 你负责指挥团队，只有你的ID卡可以打开发射舱门.</B></span>")
+	to_chat(owner, "<span class='warningplain'><B>如果你觉得自己无法胜任，那么请将ID卡和无线电交予另一名特工.</B></span>")
 	if(!CONFIG_GET(flag/disable_warops))
-		to_chat(owner, "<span class='warningplain'><B>In your hand you will find a special item capable of triggering a greater challenge for your team. Examine it carefully and consult with your fellow operatives before activating it.</B></span>")
+		to_chat(owner, "<span class='warningplain'><B>你的手中有一件特殊物品，能让你们进行更难的挑战，在启动请仔细检查并询问同僚意见.</B></span>")
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/leader/on_gain()
@@ -289,7 +289,7 @@
 
 /datum/team/nuclear/proc/rename_team(new_name)
 	syndicate_name = new_name
-	name = "[syndicate_name] Team"
+	name = "[syndicate_name]队伍"
 	for(var/I in members)
 		var/datum/mind/synd_mind = I
 		var/mob/living/carbon/human/human_to_rename = synd_mind.current
@@ -301,7 +301,7 @@
 
 /datum/antagonist/nukeop/leader/proc/ask_name()
 	var/randomname = pick(GLOB.last_names)
-	var/newname = tgui_input_text(owner.current, "You are the nuclear operative [title]. Please choose a last name for your family.", "Name change", randomname, MAX_NAME_LEN)
+	var/newname = tgui_input_text(owner.current, "你是核特工[title]. 请为你的家族选择一个姓氏.", "改名", randomname, MAX_NAME_LEN)
 	if (!newname)
 		newname = randomname
 	else
@@ -312,7 +312,7 @@
 	return capitalize(newname)
 
 /datum/antagonist/nukeop/lone
-	name = "Lone Operative"
+	name = "独狼核特工"
 	always_new_team = TRUE
 	send_to_spawnpoint = FALSE //Handled by event
 	nukeop_outfit = /datum/outfit/syndicate/full
@@ -439,47 +439,47 @@
 
 /datum/team/nuclear/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='header'>[syndicate_name] Operatives:</span>"
+	parts += "<span class='header'>[syndicate_name]特工:</span>"
 
 	switch(get_result())
 		if(NUKE_RESULT_FLUKE)
-			parts += "<span class='redtext big'>Humiliating Syndicate Defeat</span>"
-			parts += "<B>The crew of [station_name()] gave [syndicate_name] operatives back their bomb! The syndicate base was destroyed!</B> Next time, don't lose the nuke!"
+			parts += "<span class='redtext big'>辛迪加耻辱大败</span>"
+			parts += "<B>[station_name()]的船员把炸弹扔回给了[syndicate_name]特工! 辛迪加基地被摧毁了!</B> 下次看好核弹吧!"
 		if(NUKE_RESULT_NUKE_WIN)
-			parts += "<span class='greentext big'>Syndicate Major Victory!</span>"
-			parts += "<B>[syndicate_name] operatives have destroyed [station_name()]!</B>"
+			parts += "<span class='greentext big'>辛迪加大胜利!</span>"
+			parts += "<B>[syndicate_name]特工摧毁了[station_name()]!</B>"
 		if(NUKE_RESULT_NOSURVIVORS)
-			parts += "<span class='neutraltext big'>Total Annihilation!</span>"
-			parts += "<B>[syndicate_name] operatives destroyed [station_name()] but did not leave the area in time and got caught in the explosion.</B> Next time, don't lose the disk!"
+			parts += "<span class='neutraltext big'>同归于尽!</span>"
+			parts += "<B>[syndicate_name]特工摧毁了[station_name()]，但未能及时撤离.</B> 下次看好磁盘吧!"
 		if(NUKE_RESULT_WRONG_STATION)
-			parts += "<span class='redtext big'>Crew Minor Victory!</span>"
-			parts += "<B>[syndicate_name] operatives secured the authentication disk but blew up something that wasn't [station_name()].</B> Next time, don't do that!"
+			parts += "<span class='redtext big'>船员大胜利!</span>"
+			parts += "<B>[syndicate_name]特工搞到了核磁盘但却没炸到[station_name()].</B> 下次注意吧!"
 		if(NUKE_RESULT_WRONG_STATION_DEAD)
-			parts += "<span class='redtext big'>[syndicate_name] operatives have earned Darwin Award!</span>"
-			parts += "<B>[syndicate_name] operatives blew up something that wasn't [station_name()] and got caught in the explosion.</B> Next time, don't do that!"
+			parts += "<span class='redtext big'>[syndicate_name]特工得到的达尔文奖!</span>"
+			parts += "<B>[syndicate_name]特工炸飞了自己却没炸到[station_name()].</B> 下次注意吧!"
 		if(NUKE_RESULT_HIJACK_DISK)
-			parts += "<span class='greentext big'>Syndicate Miniscule Victory!</span>"
-			parts += "<B>[syndicate_name] operatives failed to destroy [station_name()], but they managed to secure the disk and hijack the emergency shuttle, causing it to land on the syndicate base. Good job?</B>"
+			parts += "<span class='greentext big'>辛迪加小胜利!</span>"
+			parts += "<B>[syndicate_name]特工未能摧毁[station_name()]，但他们设法获取了核磁盘并劫持了撤离船，使其降落在辛迪加基地. 干得好?</B>"
 		if(NUKE_RESULT_HIJACK_NO_DISK)
-			parts += "<span class='greentext big'>Syndicate Insignificant Victory!</span>"
-			parts += "<B>[syndicate_name] operatives failed to destroy [station_name()] or secure the disk, but they managed to hijack the emergency shuttle, causing it to land on the syndicate base. Good job?</B>"
+			parts += "<span class='greentext big'>辛迪加迷你胜利!</span>"
+			parts += "<B>[syndicate_name]特工未能摧毁[station_name()]或获取核磁盘，但他们劫持了撤离船，使其降落在辛迪加基地. 干得好?</B>"
 		if(NUKE_RESULT_CREW_WIN_SYNDIES_DEAD)
-			parts += "<span class='redtext big'>Crew Major Victory!</span>"
-			parts += "<B>The Research Staff has saved the disk and killed the [syndicate_name] Operatives</B>"
+			parts += "<span class='redtext big'>船员大胜利!</span>"
+			parts += "<B>研究人员保住了核磁盘并杀死了[syndicate_name]特工</B>"
 		if(NUKE_RESULT_CREW_WIN)
-			parts += "<span class='redtext big'>Crew Major Victory!</span>"
-			parts += "<B>The Research Staff has saved the disk and stopped the [syndicate_name] Operatives!</B>"
+			parts += "<span class='redtext big'>船员大胜利!</span>"
+			parts += "<B>研究人员保住了核磁盘并拦住了[syndicate_name]特工!</B>"
 		if(NUKE_RESULT_DISK_LOST)
-			parts += "<span class='neutraltext big'>Neutral Victory!</span>"
-			parts += "<B>The Research Staff failed to secure the authentication disk but did manage to kill most of the [syndicate_name] Operatives!</B>"
+			parts += "<span class='neutraltext big'>平局!</span>"
+			parts += "<B>研究人员未能保住磁盘但杀死了大多数的[syndicate_name]特工!</B>"
 		if(NUKE_RESULT_DISK_STOLEN)
-			parts += "<span class='greentext big'>Syndicate Minor Victory!</span>"
-			parts += "<B>[syndicate_name] operatives survived the assault but did not achieve the destruction of [station_name()].</B> Next time, don't lose the disk!"
+			parts += "<span class='greentext big'>辛迪加小胜!</span>"
+			parts += "<B>[syndicate_name]在活着完成了袭击，但未能摧毁[station_name()].</B> 下次看好磁盘吧!"
 		else
-			parts += "<span class='neutraltext big'>Neutral Victory</span>"
-			parts += "<B>Mission aborted!</B>"
+			parts += "<span class='neutraltext big'>平局</span>"
+			parts += "<B>任务中止!</B>"
 
-	var/text = "<br><span class='header'>The syndicate operatives were:</span>"
+	var/text = "<br><span class='header'>辛迪加特工名单:</span>"
 	var/purchases = ""
 	var/TC_uses = 0
 	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
@@ -491,7 +491,7 @@
 			purchases += H.generate_render(show_key = FALSE)
 	text += printplayerlist(members)
 	text += "<br>"
-	text += "(Syndicates used [TC_uses] TC) [purchases]"
+	text += "(辛迪加消费了[TC_uses]TC) [purchases]"
 	if(TC_uses == 0 && GLOB.station_was_nuked && !are_all_operatives_dead())
 		text += "<BIG>[icon2html('icons/ui_icons/antags/badass.dmi', world, "badass")]</BIG>"
 
@@ -501,12 +501,12 @@
 
 /datum/team/nuclear/antag_listing_name()
 	if(syndicate_name)
-		return "[syndicate_name] Syndicates"
+		return "[syndicate_name]辛迪加"
 	else
-		return "Syndicates"
+		return "辛迪加"
 
 /datum/team/nuclear/antag_listing_entry()
-	var/disk_report = "<b>Nuclear Disk(s)</b><br>"
+	var/disk_report = "<b>核磁盘(s)</b><br>"
 	disk_report += "<table cellspacing=5>"
 	for(var/obj/item/disk/nuclear/N in SSpoints_of_interest.real_nuclear_disks)
 		disk_report += "<tr><td>[N.name], "
@@ -514,12 +514,12 @@
 		while(!isturf(disk_loc))
 			if(ismob(disk_loc))
 				var/mob/M = disk_loc
-				disk_report += "carried by <a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a> "
+				disk_report += "由<a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>携带 "
 			if(isobj(disk_loc))
 				var/obj/O = disk_loc
-				disk_report += "in \a [O.name] "
+				disk_report += "位于[O.name] "
 			disk_loc = disk_loc.loc
-		disk_report += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td><td><a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(N)]'>FLW</a></td></tr>"
+		disk_report += "位于[disk_loc.loc] ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td><td><a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(N)]'>FLW</a></td></tr>"
 	disk_report += "</table>"
 
 	var/post_report
@@ -532,26 +532,26 @@
 	var/force_war_button = ""
 
 	if(war_declared)
-		post_report += "<b>War declared.</b>"
-		force_war_button = "\[Force war\]"
+		post_report += "<b>已宣战.</b>"
+		force_war_button = "\[武力战争\]"
 	else
-		post_report += "<b>War not declared.</b>"
+		post_report += "<b>未宣战.</b>"
 		var/obj/item/nuclear_challenge/war_button = war_button_ref?.resolve()
 		if(war_button)
-			force_war_button = "<a href='?_src_=holder;[HrefToken()];force_war=[REF(war_button)]'>\[Force war\]</a>"
+			force_war_button = "<a href='?_src_=holder;[HrefToken()];force_war=[REF(war_button)]'>\[武力战争\]</a>"
 		else
-			force_war_button = "\[Cannot declare war, challenge button missing!\]"
+			force_war_button = "\[无法宣战，挑战按钮不见踪影!\]"
 
 	post_report += "\n[force_war_button]"
-	post_report += "\n<a href='?_src_=holder;[HrefToken()];give_reinforcement=[REF(src)]'>\[Send Reinforcement\]</a>"
+	post_report += "\n<a href='?_src_=holder;[HrefToken()];give_reinforcement=[REF(src)]'>\[输送增援部队\]</a>"
 
 	var/final_report = ..()
 	final_report += disk_report
 	final_report += post_report
 	return final_report
 
-#define SPAWN_AT_BASE "Nuke base"
-#define SPAWN_AT_INFILTRATOR "Infiltrator"
+#define SPAWN_AT_BASE "核基地"
+#define SPAWN_AT_INFILTRATOR "渗透者号"
 
 /datum/team/nuclear/proc/admin_spawn_reinforcement(mob/admin)
 	if(!check_rights_for(admin.client, R_ADMIN))
@@ -559,30 +559,30 @@
 
 	var/infil_or_nukebase = tgui_alert(
 		admin,
-		"Spawn them at the nuke base, or in the Infiltrator?",
-		"Where to reinforce?",
-		list(SPAWN_AT_BASE, SPAWN_AT_INFILTRATOR, "Cancel"),
+		"将他们送到核基地还是渗透者号里?",
+		"增援位置?",
+		list(SPAWN_AT_BASE, SPAWN_AT_INFILTRATOR, "取消"),
 	)
 
-	if(!infil_or_nukebase || infil_or_nukebase == "Cancel")
+	if(!infil_or_nukebase || infil_or_nukebase == "取消")
 		return
 
-	var/tc_to_spawn = tgui_input_number(admin, "How much TC to spawn with?", "TC", 0, 100)
+	var/tc_to_spawn = tgui_input_number(admin, "初始携带多少TC?", "TC", 0, 100)
 
 	var/list/nuke_candidates = SSpolling.poll_ghost_candidates(
-		"Do you want to play as an emergency syndicate reinforcement?",
+		"你想扮演辛迪加紧急增援部队吗?",
 		check_jobban = ROLE_OPERATIVE,
 		role = ROLE_OPERATIVE,
 		poll_time = 30 SECONDS,
 		ignore_category = POLL_IGNORE_SYNDICATE,
 		pic_source = /obj/structure/sign/poster/contraband/gorlex_recruitment,
-		role_name_text = "syndicate reinforcement",
+		role_name_text = "辛迪加增援部队",
 	)
 
 	nuke_candidates -= admin // may be easy to fat-finger say yes. so just don't
 
 	if(!length(nuke_candidates))
-		tgui_alert(admin, "No candidates found.", "Recruitment Shortage", list("OK"))
+		tgui_alert(admin, "找不到人选.", "人员短缺", list("OK"))
 		return
 
 
@@ -629,7 +629,7 @@
 	playsound(spawn_loc, SFX_SPARKS, 50, TRUE)
 	playsound(spawn_loc, 'sound/effects/phasein.ogg', 50, TRUE)
 
-	tgui_alert(admin, "Reinforcement spawned at [infil_or_nukebase] with [tc_to_spawn].", "Reinforcements have arrived", list("God speed"))
+	tgui_alert(admin, "增援部队携带着[tc_to_spawn]到达了[infil_or_nukebase]处.", "增援到达", list("祝好运"))
 
 #undef SPAWN_AT_BASE
 #undef SPAWN_AT_INFILTRATOR
