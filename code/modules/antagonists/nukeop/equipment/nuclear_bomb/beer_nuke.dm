@@ -1,7 +1,7 @@
 /// A fake nuke that actually contains beer.
 /obj/machinery/nuclearbomb/beer
-	name = "\improper Nanotrasen-brand nuclear fission explosive"
-	desc = "One of the more successful achievements of the Nanotrasen Corporate Warfare Division, their nuclear fission explosives are renowned for being cheap to produce and devastatingly effective. Signs explain that though this particular device has been decommissioned, every Nanotrasen station is equipped with an equivalent one, just in case. All Captains carefully guard the disk needed to detonate them - at least, the sign says they do. There seems to be a tap on the back."
+	name = "\improper 纳米传讯牌核裂变炸弹"
+	desc = "纳米传讯战争部的一个相当成功的成就就是他们的核裂变炸弹，以其成本低廉和威力巨大而闻名. 标签显示，虽然该设备已经退役，但每个纳米传讯空间站都配备了另一台类似的装置以防万一. 所有舰长都小心翼翼地保管着引爆它所需的磁盘-至少标签上这样讲."
 	proper_bomb = FALSE
 	/// The keg located within the beer nuke.
 	var/obj/structure/reagent_dispensers/beerkeg/keg
@@ -23,9 +23,9 @@
 /obj/machinery/nuclearbomb/beer/examine(mob/user)
 	. = ..()
 	if(keg.reagents.total_volume)
-		. += span_notice("It has [keg.reagents.total_volume] unit\s left.")
+		. += span_notice("它还有[keg.reagents.total_volume]单位剩余.")
 	else
-		. += span_danger("It's empty.")
+		. += span_danger("它是空的.")
 
 /obj/machinery/nuclearbomb/beer/attackby(obj/item/weapon, mob/user, params)
 	if(weapon.is_refillable())
@@ -33,7 +33,7 @@
 		return TRUE // pretend we handled the attack, too.
 
 	if(istype(weapon, /obj/item/nuke_core_container))
-		to_chat(user, span_notice("[src] has had its plutonium core removed as a part of being decommissioned."))
+		to_chat(user, span_notice("[src]因为退役已经拆除了钚芯."))
 		return TRUE
 
 	return ..()
@@ -48,7 +48,7 @@
 	if(is_station_level(bomb_location.z))
 		addtimer(CALLBACK(src, PROC_REF(really_actually_explode)), 11 SECONDS)
 	else
-		visible_message(span_notice("[src] fizzes ominously."))
+		visible_message(span_notice("[src]发出不详地嘶嘶声."))
 		addtimer(CALLBACK(src, PROC_REF(local_foam)), 11 SECONDS)
 
 /obj/machinery/nuclearbomb/beer/disarm_nuke(mob/disarmer)
@@ -70,7 +70,7 @@
 	//if it's always hooked in it'll override admin choices
 	RegisterSignal(overflow_control, COMSIG_CREATED_ROUND_EVENT, PROC_REF(on_created_round_event))
 	disarm_nuke()
-	overflow_control.run_event(event_cause = "a beer nuke")
+	overflow_control.run_event(event_cause = "一枚啤酒核弹")
 
 /// signal sent from overflow control when it fires an event
 /obj/machinery/nuclearbomb/beer/proc/on_created_round_event(datum/round_event_control/source_event_control, datum/round_event/scrubber_overflow/every_vent/created_event)

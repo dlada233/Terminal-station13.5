@@ -10,8 +10,8 @@
 
 // DAT FUKKEN DISK.
 /obj/item/disk/nuclear
-	name = "nuclear authentication disk"
-	desc = "Better keep this safe."
+	name = "核认证磁盘"
+	desc = "最好保管好这个."
 	icon_state = "nucleardisk"
 	max_integrity = 250
 	armor_type = /datum/armor/disk_nuclear
@@ -41,8 +41,8 @@
 	if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
 		loneop.weight = max(loneop.weight - 1, 0)
 		if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
-			message_admins("[src] is secured (currently in [ADMIN_VERBOSEJMP(new_turf)]). The weight of Lone Operative is now [loneop.weight].")
-		log_game("[src] being secured has reduced the weight of the Lone Operative event to [loneop.weight].")
+			message_admins("[src]被保管好了(当前在[ADMIN_VERBOSEJMP(new_turf)]). 当前独狼核特工权重为[loneop.weight].")
+		log_game("[src]被保管好了，独狼核特工权重降低至[loneop.weight].")
 
 /obj/item/disk/nuclear/proc/unsecured_process(last_move)
 	var/turf/new_turf = get_turf(src)
@@ -60,9 +60,9 @@
 			loneop.weight += 1
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
 				if(disk_comfort_level >= 2)
-					visible_message(span_notice("[src] sleeps soundly. Sleep tight, disky."))
-				message_admins("[src] is unsecured in [ADMIN_VERBOSEJMP(new_turf)]. The weight of Lone Operative is now [loneop.weight].")
-			log_game("[src] was left unsecured in [loc_name(new_turf)]. Weight of the Lone Operative event increased to [loneop.weight].")
+					visible_message(span_notice("[src]睡得很香. 晚安，小磁盘."))
+				message_admins("[src]不再被保管了在[ADMIN_VERBOSEJMP(new_turf)]. 独狼独狼核特工权重为[loneop.weight].")
+			log_game("[src]不再被保管了在[loc_name(new_turf)]. 独狼核特工权重增加至[loneop.weight].")
 
 /obj/item/disk/nuclear/examine(mob/user)
 	. = ..()
@@ -70,14 +70,14 @@
 		return
 
 	if(isobserver(user) || HAS_MIND_TRAIT(user, TRAIT_DISK_VERIFIER))
-		. += span_warning("The serial numbers on [src] are incorrect.")
+		. += span_warning("[src]的序列号不正确.")
 
 /*
  * You can't accidentally eat the nuke disk, bro
  */
 /obj/item/disk/nuclear/on_accidental_consumption(mob/living/carbon/M, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
-	M.visible_message(span_warning("[M] looks like [M.p_theyve()] just bitten into something important."), \
-						span_warning("Wait, is this the nuke disk?"))
+	M.visible_message(span_warning("[M]好像咬到了什么重要的东西."), \
+						span_warning("等等，这是核磁盘?"))
 
 	return discover_after
 
@@ -85,14 +85,14 @@
 	if(istype(weapon, /obj/item/claymore/highlander) && !fake)
 		var/obj/item/claymore/highlander/claymore = weapon
 		if(claymore.nuke_disk)
-			to_chat(user, span_notice("Wait... what?"))
+			to_chat(user, span_notice("等等...什么?"))
 			qdel(claymore.nuke_disk)
 			claymore.nuke_disk = null
 			return
 
 		user.visible_message(
-			span_warning("[user] captures [src]!"),
-			span_userdanger("You've got the disk! Defend it with your life!"),
+			span_warning("[user]夺取了[src]!"),
+			span_userdanger("你得到了磁盘!用生命去捍卫它!"),
 		)
 		forceMove(claymore)
 		claymore.nuke_disk = src
@@ -110,7 +110,7 @@
 
 /obj/item/disk/nuclear/proc/manual_suicide(mob/living/user)
 	user.remove_atom_colour(ADMIN_COLOUR_PRIORITY)
-	user.visible_message(span_suicide("[user] is destroyed by the nuclear blast!"))
+	user.visible_message(span_suicide("[user]被核爆摧毁了!"))
 	user.adjustOxyLoss(200)
 	user.death(FALSE)
 
@@ -118,5 +118,5 @@
 	fake = TRUE
 
 /obj/item/disk/nuclear/fake/obvious
-	name = "cheap plastic imitation of the nuclear authentication disk"
-	desc = "How anyone could mistake this for the real thing is beyond you."
+	name = "廉价塑料仿制核认证磁盘"
+	desc = "真搞不懂怎么会有人把这当成真的."
