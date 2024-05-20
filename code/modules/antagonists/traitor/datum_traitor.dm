@@ -279,7 +279,7 @@
 	. = ..()
 	var/mob/living/datum_owner = mob_override || owner.current
 
-	handle_clown_mutation(datum_owner, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	handle_clown_mutation(datum_owner, mob_override ? null : "你所受的训练让你克服了小丑的本性，你可以在不伤害自己的情况下使用武器.")
 	if(should_give_codewords)
 		datum_owner.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_phrase_regex, "blue", src)
 		datum_owner.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_response_regex, "red", src)

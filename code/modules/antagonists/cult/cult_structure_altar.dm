@@ -1,15 +1,15 @@
 /// Some defines for items the cult altar can create.
-#define ELDRITCH_WHETSTONE "Eldritch Whetstone"
-#define CONSTRUCT_SHELL "Construct Shell"
-#define UNHOLY_WATER "Flask of Unholy Water"
+#define ELDRITCH_WHETSTONE "血教灵魂石"
+#define CONSTRUCT_SHELL "建筑者躯壳"
+#define UNHOLY_WATER "邪水瓶"
 
 // Cult altar. Gives out consumable items.
 /obj/structure/destructible/cult/item_dispenser/altar
-	name = "altar"
-	desc = "A bloodstained altar dedicated to Nar'Sie."
-	cult_examine_tip = "Can be used to create eldritch whetstones, construct shells, and flasks of unholy water."
+	name = "祭坛"
+	desc = "用于供奉Nar'Sie的血腥祭坛."
+	cult_examine_tip = "可用于创建血教灵魂石，建筑者躯壳以及邪水瓶."
 	icon_state = "talismanaltar"
-	break_message = "<span class='warning'>The altar shatters, leaving only the wailing of the damned!</span>"
+	break_message = "<span class='warning'>祭坛破碎，只留下被诅咒者的哀号!</span>"
 
 /obj/structure/destructible/cult/item_dispenser/altar/setup_options()
 	var/static/list/altar_items = list(
@@ -30,7 +30,7 @@
 	options = altar_items
 
 /obj/structure/destructible/cult/item_dispenser/altar/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cultitalic("You kneel before [src] and your faith is rewarded with [spawned_item]!"))
+	to_chat(user, span_cultitalic("你跪在[src]前，你的信仰被回报以[spawned_item]!"))
 
 #undef ELDRITCH_WHETSTONE
 #undef CONSTRUCT_SHELL

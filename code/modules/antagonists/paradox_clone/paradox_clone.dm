@@ -1,11 +1,11 @@
 /datum/antagonist/paradox_clone
-	name = "\improper Paradox Clone"
-	roundend_category = "Paradox Clone"
+	name = "\improper 悖论克隆体"
+	roundend_category = "悖论克隆体"
 	job_rank = ROLE_PARADOX_CLONE
 	antagpanel_category = ANTAG_GROUP_PARADOX
 	antag_hud_name = "paradox_clone"
 	show_to_ghosts = TRUE
-	suicide_cry = "THERE CAN BE ONLY ONE!!"
+	suicide_cry = "只能有一个我!!"
 	preview_outfit = /datum/outfit/paradox_clone
 
 	///Weakref to the mind of the original, the clone's target.
@@ -73,10 +73,10 @@
 	original_mind.quick_copy_all_memories(owner)
 
 /datum/antagonist/paradox_clone/roundend_report_header()
-	return "<span class='header'>A paradox clone appeared on the station!</span><br>"
+	return "<span class='header'>一个悖论克隆体出现在空间站!</span><br>"
 
 /datum/outfit/paradox_clone
-	name = "Paradox Clone (Preview only)"
+	name = "悖论克隆体 (仅浏览)"
 
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
 	gloves = /obj/item/clothing/gloves/color/black
@@ -87,11 +87,11 @@
  * Similar to the original, but with a different flavortext.
  */
 /datum/objective/assassinate/paradox_clone
-	name = "clone assassinate"
+	name = "克隆暗杀"
 
 /datum/objective/assassinate/paradox_clone/update_explanation_text()
 	. = ..()
 	if(!target?.current)
-		explanation_text = "Free Objective"
+		explanation_text = "自由目标"
 		CRASH("WARNING! [ADMIN_LOOKUPFLW(owner)] paradox clone objectives forged without an original!")
-	explanation_text = "Murder and replace [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]. Remember, your mission is to blend in, do not kill anyone else unless you have to!"
+	explanation_text = "杀掉并取代[target.name]，[!target_role_type ? target.assigned_role.title : target.special_role]. 记住你的任务是融入正常社会中，不到万不得已不要杀人."

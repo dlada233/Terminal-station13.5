@@ -3,14 +3,14 @@
 #define NEGATIVE_ANSWER 2
 
 /datum/round_event_control/pirates
-	name = "Space Pirates"
+	name = "太空海盗"
 	typepath = /datum/round_event/pirates
 	weight = 10
 	max_occurrences = 1
 	min_players = 20
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_INVASION
-	description = "The crew will either pay up, or face a pirate assault."
+	description = "船员们要么付钱，要么被海盗袭击."
 	admin_setup = list(/datum/event_admin_setup/listed_options/pirates)
 	map_flags = EVENT_SPACE_ONLY
 
@@ -30,7 +30,7 @@
 	var/datum/pirate_gang/chosen_gang = pick_n_take(pirate_selection)
 	///If there was nothing to pull from our requested list, stop here.
 	if(!chosen_gang)
-		message_admins("Error attempting to run the space pirate event, as the given pirate gangs list was empty.")
+		message_admins("试图运行太空海盗事件时出错，因为给定的海盗团列表为空.")
 		return
 	//set payoff
 	var/payoff = 0
@@ -39,7 +39,7 @@
 		payoff = max(PAYOFF_MIN, FLOOR(account.account_balance * 0.80, 1000))
 	var/datum/comm_message/threat = chosen_gang.generate_message(payoff)
 	//send message
-	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())
+	priority_announce("传入子空间通讯. 在所有通讯终端上打开安全频道.", "信息传入", SSstation.announcer.get_rand_report_sound())
 	threat.answer_callback = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(pirates_answered), threat, chosen_gang, payoff, world.time)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(spawn_pirates), threat, chosen_gang), RESPONSE_MAX_TIME)
 	SScommunications.send_message(threat, unique = TRUE)
@@ -66,7 +66,7 @@
 	if(chosen_gang.paid_off)
 		return
 
-	var/list/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for a pirate crew of [chosen_gang.name]?", check_jobban = ROLE_TRAITOR, pic_source = /obj/item/claymore/cutlass, role_name_text = "pirate crew")
+	var/list/candidates = SSpolling.poll_ghost_candidates("你想成为[chosen_gang.name]的海盗吗?", check_jobban = ROLE_TRAITOR, pic_source = /obj/item/claymore/cutlass, role_name_text = "海盗")
 	shuffle_inplace(candidates)
 
 	var/template_key = "pirate_[chosen_gang.ship_template_id]"
@@ -88,22 +88,22 @@
 				var/mob/spawned_mob = spawner.create_from_ghost(our_candidate)
 				candidates -= our_candidate
 				notify_ghosts(
-					"The [chosen_gang.ship_name] has an object of interest: [spawned_mob]!",
+					"[chosen_gang.ship_name]感兴趣的对象: [spawned_mob]!",
 					source = spawned_mob,
 					header = "Pirates!",
 				)
 			else
 				notify_ghosts(
-					"The [chosen_gang.ship_name] has an object of interest: [spawner]!",
+					"[chosen_gang.ship_name]感兴趣的对象: [spawner]!",
 					source = spawner,
-					header = "Pirate Spawn Here!",
+					header = "海盗生成!",
 				)
 
 	priority_announce(chosen_gang.arrival_announcement, sender_override = chosen_gang.ship_name)
 
 /datum/event_admin_setup/listed_options/pirates
-	input_text = "Select Pirate Gang"
-	normal_run_option = "Random Pirate Gang"
+	input_text = "选择海盗团"
+	normal_run_option = "随机海盗团"
 
 /datum/event_admin_setup/listed_options/pirates/get_list()
 	return subtypesof(/datum/pirate_gang)

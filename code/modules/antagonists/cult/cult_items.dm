@@ -1,6 +1,6 @@
 /obj/item/tome
-	name = "arcane tome"
-	desc = "An old, dusty tome with frayed edges and a sinister-looking cover."
+	name = "神秘古书"
+	desc = "一本满是灰尘的旧书，边缘磨损，封面看起来也很邪恶."
 	icon = 'icons/obj/antags/cult/items.dmi'
 	icon_state ="tome"
 	throw_speed = 2
@@ -8,8 +8,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/melee/cultblade/dagger
-	name = "ritual dagger"
-	desc = "A strange dagger said to be used by sinister groups for \"preparing\" a corpse before sacrificing it to their dark gods."
+	name = "仪式匕首"
+	desc = "一把奇怪的匕首，据说被邪恶的团体用于 \"装点\" 尸体，然后把它献给他们的黑暗神祇."
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	inhand_icon_state = "cultdagger"
@@ -33,18 +33,18 @@
 	silicon_image.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_dagger", silicon_image)
 
-	var/examine_text = {"Allows the scribing of blood runes of the cult of Nar'Sie.
-Hitting a cult structure will unanchor or reanchor it. Cult Girders will be destroyed in a single blow.
-Can be used to scrape blood runes away, removing any trace of them.
-Striking another cultist with it will purge all holy water from them and transform it into unholy water.
-Striking a noncultist, however, will tear their flesh."}
+	var/examine_text = {"解锁抄写Nar'Sie崇拜的血符文.
+击打血教建筑可以将其固定或解除固定. 血教结构梁将在单次击打中被摧毁.
+可以用来刮掉血符文，清除任何痕迹.
+攻击教徒会清除他们身上所有的圣水成分，并将其变为邪水.
+攻击非教徒只会撕裂其血肉."}
 
 	AddComponent(/datum/component/cult_ritual_item, span_cult(examine_text))
 
-/obj/item/melee/cultblade/dagger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
-	var/block_message = "[owner] parries [attack_text] with [src]"
+/obj/item/melee/cultblade/dagger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+	var/block_message = "[owner]闪避了[src]的[attack_text]!"
 	if(owner.get_active_held_item() != src)
-		block_message = "[owner] parries [attack_text] with [src] in their offhand"
+		block_message = "[owner]闪避了[src]的[attack_text]!"
 
 	if(IS_CULTIST(owner) && prob(final_block_chance) && attack_type != PROJECTILE_ATTACK)
 		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
@@ -54,8 +54,8 @@ Striking a noncultist, however, will tear their flesh."}
 		return FALSE
 
 /obj/item/melee/cultblade
-	name = "eldritch longsword"
-	desc = "A sword humming with unholy energy. It glows with a dim red light."
+	name = "邪血长剑"
+	desc = "一把充满邪恶力量的长剑，发出微弱的红光."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "cultblade"
 	inhand_icon_state = "cultblade"
@@ -74,8 +74,8 @@ Striking a noncultist, however, will tear their flesh."}
 	bare_wound_bonus = 20
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	block_sound = 'sound/weapons/parry.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
+	attack_verb_continuous = list("攻击", "竖劈", "劈砍", "劈斩", "切斩", "猛砸", "挑刺")
+	attack_verb_simple = list("攻击", "竖劈", "劈砍", "劈斩", "切斩", "猛砸", "挑刺")
 
 /obj/item/melee/cultblade/Initialize(mapload)
 	. = ..()
@@ -84,10 +84,10 @@ Striking a noncultist, however, will tear their flesh."}
 	effectiveness = 100, \
 	)
 
-/obj/item/melee/cultblade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/melee/cultblade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(IS_CULTIST(owner) && prob(final_block_chance))
 		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
-		owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
+		owner.visible_message(span_danger("[owner]闪避了[src]的[attack_text]!"))
 		return TRUE
 	else
 		return FALSE
@@ -96,8 +96,8 @@ Striking a noncultist, however, will tear their flesh."}
 	if(!IS_CULTIST(user))
 		user.Paralyze(100)
 		user.dropItemToGround(src, TRUE)
-		user.visible_message(span_warning("A powerful force shoves [user] away from [target]!"), \
-				span_cultlarge("\"You shouldn't play with sharp things. You'll poke someone's eye out.\""))
+		user.visible_message(span_warning("一股强大的力量将[user]推离[target]!"), \
+				span_cultlarge("\"你不应该玩这么锐利的东西，你会把别人的眼睛戳出来的.\""))
 		if(ishuman(user))
 			var/mob/living/carbon/human/miscreant = user
 			miscreant.apply_damage(rand(force/2, force), BRUTE, pick(GLOB.arm_zones))
@@ -107,7 +107,7 @@ Striking a noncultist, however, will tear their flesh."}
 	..()
 
 /obj/item/melee/cultblade/ghost
-	name = "eldritch sword"
+	name = "邪血剑"
 	force = 19 //can't break normal airlocks
 	item_flags = NEEDS_PERMIT | DROPDEL
 	flags_1 = NONE
@@ -121,11 +121,11 @@ Striking a noncultist, however, will tear their flesh."}
 /obj/item/melee/cultblade/pickup(mob/living/user)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
+		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
 
 /datum/action/innate/dash/cult
-	name = "Rend the Veil"
-	desc = "Use the sword to shear open the flimsy fabric of this reality and teleport to your target."
+	name = "揭开帷幕"
+	desc = "用这把剑划开现实的脆弱结构，传送到你的目标位置."
 	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "phaseshift"
 	dash_sound = 'sound/magic/enter_blood.ogg'
@@ -141,8 +141,8 @@ Striking a noncultist, however, will tear their flesh."}
 		return FALSE
 
 /obj/item/restraints/legcuffs/bola/cult
-	name = "\improper Nar'Sien bola"
-	desc = "A strong bola, bound with dark magic that allows it to pass harmlessly through Nar'Sien cultists. Throw it to trip and slow your victim."
+	name = "\improper Nar'Sie流星索"
+	desc = "强大的流星索，用黑魔法绑在了一起，可以让它无害地穿过Nar'Sie教徒，扔出去来绊倒你的目标，拖慢他的速度."
 	icon_state = "bola_cult"
 	inhand_icon_state = "bola_cult"
 	breakouttime = 6 SECONDS
@@ -156,11 +156,11 @@ Striking a noncultist, however, will tear their flesh."}
 		return
 	var/mob/living/carbon/carbon_user = user
 	if(user.num_legs < 2 || carbon_user.legcuffed) //if they can't be ensnared, stun for the same time as it takes to breakout of bola
-		to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
+		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
 		user.dropItemToGround(src, TRUE)
 		user.Paralyze(CULT_BOLA_PICKUP_STUN)
 	else
-		to_chat(user, span_warning("The bola seems to take on a life of its own!"))
+		to_chat(user, span_warning("这条流星索好像有自己的生命!"))
 		ensnare(user)
 #undef CULT_BOLA_PICKUP_STUN
 
@@ -173,12 +173,12 @@ Striking a noncultist, however, will tear their flesh."}
 
 
 /obj/item/clothing/head/hooded/cult_hoodie
-	name = "ancient cultist hood"
+	name = "古代血教兜帽"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "culthood"
 	inhand_icon_state = "culthood"
-	desc = "A torn, dust-caked hood. Strange letters line the inside."
+	desc = "满是灰尘的破旧兜帽，里面排列着奇怪的字母."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEEARS
 	flags_cover = HEADCOVERSEYES
 	armor_type = /datum/armor/hooded_cult_hoodie
@@ -198,8 +198,8 @@ Striking a noncultist, however, will tear their flesh."}
 	acid = 10
 
 /obj/item/clothing/suit/hooded/cultrobes
-	name = "ancient cultist robes"
-	desc = "A ragged, dusty set of robes. Strange letters line the inside."
+	name = "古代血教长袍"
+	desc = "满是灰尘的破旧长袍，里面排列着奇怪的字母."
 	icon_state = "cultrobes"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
@@ -235,14 +235,14 @@ Striking a noncultist, however, will tear their flesh."}
 	acid = 10
 
 /obj/item/clothing/head/hooded/cult_hoodie/alt
-	name = "cultist hood"
-	desc = "An armored hood worn by the followers of Nar'Sie."
+	name = "血教兜帽"
+	desc = "Nar'Sie追随者所戴的一种带有装甲的兜帽."
 	icon_state = "cult_hoodalt"
 	inhand_icon_state = null
 
 /obj/item/clothing/suit/hooded/cultrobes/alt
-	name = "cultist robes"
-	desc = "An armored set of robes worn by the followers of Nar'Sie."
+	name = "血教长袍"
+	desc = "Nar'Sie追随者所戴的一种带有装甲的长袍."
 	icon_state = "cultrobesalt"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/alt
@@ -255,10 +255,10 @@ Striking a noncultist, however, will tear their flesh."}
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/head/wizard/magus
-	name = "magus helm"
+	name = "血法头盔"
 	icon_state = "magus"
 	inhand_icon_state = null
-	desc = "A helm worn by the followers of Nar'Sie."
+	desc = "Nar'Sie追随者所佩戴的头盔."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDEEYES|HIDESNOUT
 	armor_type = /datum/armor/wizard_magus
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
@@ -274,8 +274,8 @@ Striking a noncultist, however, will tear their flesh."}
 	acid = 10
 
 /obj/item/clothing/suit/magusred
-	name = "magus robes"
-	desc = "A set of armored robes worn by the followers of Nar'Sie."
+	name = "血法盔甲"
+	desc = "Nar'Sie追随者所穿戴的带甲长袍"
 	icon_state = "magusred"
 	icon = 'icons/obj/clothing/suits/wizard.dmi'
 	worn_icon = 'icons/mob/clothing/suits/wizard.dmi'
@@ -296,8 +296,8 @@ Striking a noncultist, however, will tear their flesh."}
 	acid = 10
 
 /obj/item/clothing/suit/hooded/cultrobes/hardened
-	name = "\improper Nar'Sien hardened armor"
-	desc = "A heavily-armored exosuit worn by warriors of the Nar'Sien cult. It can withstand hard vacuum."
+	name = "\improper Nar'Sie硬化甲"
+	desc = "Nar'Sie信徒中战士所穿戴的重甲，可以承受真空."
 	icon_state = "cult_armor"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_BULKY
@@ -321,8 +321,8 @@ Striking a noncultist, however, will tear their flesh."}
 	acid = 100
 
 /obj/item/clothing/head/hooded/cult_hoodie/hardened
-	name = "\improper Nar'Sien hardened helmet"
-	desc = "A heavily-armored helmet worn by warriors of the Nar'Sien cult. It can withstand hard vacuum."
+	name = "\improper Nar'Sie硬化盔"
+	desc = "Nar'Sie信徒中战士所穿戴的重盔，可以承受真空."
 	icon_state = "cult_helmet"
 	inhand_icon_state = null
 	armor_type = /datum/armor/cult_hoodie_hardened
@@ -345,8 +345,8 @@ Striking a noncultist, however, will tear their flesh."}
 	acid = 100
 
 /obj/item/sharpener/cult
-	name = "eldritch whetstone"
-	desc = "A block, empowered by dark magic. Sharp weapons will be enhanced when used on the stone."
+	name = "邪恶磨刀石"
+	desc = "一个被黑魔法附魔的方块，在磨刀石上使用锋利的武器来强化."
 	icon = 'icons/obj/antags/cult/items.dmi'
 	icon_state = "cult_sharpener"
 	uses = 1
@@ -359,8 +359,8 @@ Striking a noncultist, however, will tear their flesh."}
 	return ..()
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield
-	name = "empowered cultist armor"
-	desc = "Empowered armor which creates a powerful shield around the user."
+	name = "强化血教护甲"
+	desc = "能在使用者周围产生强力护盾的强化护甲."
 	icon_state = "cult_armor"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_BULKY
@@ -389,14 +389,14 @@ Striking a noncultist, however, will tear their flesh."}
 
 /// A proc for callback when the shield breaks, since cult robes are stupid and have different effects
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/proc/shield_damaged(mob/living/wearer, attack_text, new_current_charges)
-	wearer.visible_message(span_danger("[wearer]'s robes neutralize [attack_text] in a burst of blood-red sparks!"))
+	wearer.visible_message(span_danger("随着一阵血色火花，[wearer]的长袍中和了[attack_text]!"))
 	new /obj/effect/temp_visual/cult/sparks(get_turf(wearer))
 	if(new_current_charges == 0)
-		wearer.visible_message(span_danger("The runed shield around [wearer] suddenly disappears!"))
+		wearer.visible_message(span_danger("[wearer]周身的符文护盾突然消失了!"))
 
 /obj/item/clothing/head/hooded/cult_hoodie/cult_shield
-	name = "empowered cultist helmet"
-	desc = "Empowered helmet which creates a powerful shield around the user."
+	name = "强化血教头盔"
+	desc = "能在使用者周围产生强力护盾的强化头盔."
 	icon_state = "cult_hoodalt"
 	armor_type = /datum/armor/cult_hoodie_cult_shield
 
@@ -413,15 +413,15 @@ Striking a noncultist, however, will tear their flesh."}
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
-		to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
+		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_warning("一种强烈的恶心感压倒了你!"))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
 		user.Paralyze(100)
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker
-	name = "flagellant's robes"
-	desc = "Blood-soaked robes infused with dark magic; allows the user to move at inhuman speeds, but at the cost of increased damage. Provides an even greater speed boost if its hood is worn."
+	name = "苦修者长袍"
+	desc = "染血长袍中被注入了黑魔法; 允许穿戴者以非人的速度移动，但代价是受到的伤害增加. 如果戴上兜帽，则获得速度还会更快."
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor_type = /datum/armor/cultrobes_berserker
 	slowdown = -0.3 //the hood gives an additional -0.3 if you have it flipped up, for a total of -0.6
@@ -435,8 +435,8 @@ Striking a noncultist, however, will tear their flesh."}
 	bomb = -45
 
 /obj/item/clothing/head/hooded/cult_hoodie/berserkerhood
-	name = "flagellant's hood"
-	desc = "A blood-soaked hood infused with dark magic."
+	name = "苦修者兜帽"
+	desc = "染血兜帽中被注入了黑魔法."
 	armor_type = /datum/armor/cult_hoodie_berserkerhood
 	slowdown = -0.3
 
@@ -450,16 +450,16 @@ Striking a noncultist, however, will tear their flesh."}
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
-		to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
+		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_warning("一种强烈的恶心感压倒了你!"))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
 		user.Paralyze(100)
 
 /obj/item/clothing/glasses/hud/health/night/cultblind
-	desc = "May Nar'Sie guide you through the darkness and shield you from the light."
+	desc = "愿Nar'Sie指引你穿过黑暗，遮蔽光明."
 	flags_cover = GLASSESCOVERSEYES
-	name = "zealot's blindfold"
+	name = "狂热者眼罩"
 	icon_state = "blindfold"
 	inhand_icon_state = "blindfold"
 	flash_protect = FLASH_PROTECTION_WELDER
@@ -467,15 +467,15 @@ Striking a noncultist, however, will tear their flesh."}
 /obj/item/clothing/glasses/hud/health/night/cultblind/equipped(mob/living/user, slot)
 	..()
 	if(user.stat != DEAD && !IS_CULTIST(user) && (slot & ITEM_SLOT_EYES))
-		to_chat(user, span_cultlarge("\"You want to be blind, do you?\""))
+		to_chat(user, span_cultlarge("\"你希望失明吗?\""))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
 		user.Paralyze(100)
 		user.adjust_temp_blindness(60 SECONDS)
 
 /obj/item/reagent_containers/cup/beaker/unholywater
-	name = "flask of unholy water"
-	desc = "Toxic to nonbelievers; reinvigorating to the faithful - this flask may be sipped or thrown."
+	name = "邪水瓶"
+	desc = "对不信者有害. 可以让人重拾信仰 - 通过喝或者扔出去到目标身上."
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "unholyflask"
 	inhand_icon_state = "holyflask"
@@ -489,8 +489,8 @@ Striking a noncultist, however, will tear their flesh."}
 #define SHUTTLE_CURSE_OMFG_TIMESPAN (10 SECONDS)
 
 /obj/item/shuttle_curse
-	name = "cursed orb"
-	desc = "You peer within this smokey orb and glimpse terrible fates befalling the emergency escape shuttle. "
+	name = "诅咒之球"
+	desc = "你凝视着这颗烟雾弥漫的球体，瞥见了应急逃生穿梭机的可怕命运."
 	icon = 'icons/obj/antags/cult/items.dmi'
 	icon_state = "shuttlecurse"
 	///how many times has the shuttle been cursed so far?
@@ -504,14 +504,14 @@ Striking a noncultist, however, will tear their flesh."}
 	if(!IS_CULTIST(user))
 		user.dropItemToGround(src, TRUE)
 		user.Paralyze(100)
-		to_chat(user, span_warning("A powerful force shoves you away from [src]!"))
+		to_chat(user, span_warning("一股强大的力量将你推离[src]!"))
 		return
 	if(totalcurses >= MAX_SHUTTLE_CURSES)
-		to_chat(user, span_warning("You try to shatter the orb, but it remains as solid as a rock!"))
-		to_chat(user, span_danger(span_big("It seems that the blood cult has exhausted its ability to curse the emergency escape shuttle. It would be unwise to create more cursed orbs or to continue to try to shatter this one.")))
+		to_chat(user, span_warning("你试图打碎这颗球体，但它如岩石一样坚固!"))
+		to_chat(user, span_danger(span_big("看来血教已经耗尽了诅咒应急逃生穿梭机的能力，制造更多魔法球或者继续试图粉碎这个魔法球都是没有用的.")))
 		return
 	if(locate(/obj/narsie) in SSpoints_of_interest.narsies)
-		to_chat(user, span_warning("Nar'Sie is already on this plane, there is no delaying the end of all things."))
+		to_chat(user, span_warning("Nar'Sie已经在这架穿梭机上了，结局不会有延误."))
 		return
 
 	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
@@ -535,26 +535,26 @@ Striking a noncultist, however, will tear their flesh."}
 		if(surplus > 0)
 			SSshuttle.block_recall(surplus)
 		totalcurses++
-		to_chat(user, span_danger("You shatter the orb! A dark essence spirals into the air, then disappears."))
+		to_chat(user, span_danger("你粉碎了魔法球，黑暗的物质在上空盘旋，然后消失了."))
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 50, TRUE)
 
 		if(!remaining_curses)
 			remaining_curses = strings(CULT_SHUTTLE_CURSE, "curse_announce")
 
-		var/curse_message = pick_n_take(remaining_curses) || "Something has gone horrendously wrong..."
+		var/curse_message = pick_n_take(remaining_curses) || "有些事情出现了可怕的问题..."
 
-		curse_message += " The shuttle will be delayed by three minutes."
-		priority_announce("[curse_message]", "System Failure", 'sound/misc/notice1.ogg')
+		curse_message += " 穿梭机将晚点三分钟."
+		priority_announce("[curse_message]", "系统错误", 'sound/misc/notice1.ogg')
 		if(MAX_SHUTTLE_CURSES-totalcurses <= 0)
-			to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can no longer be cursed. It would be unwise to create more cursed orbs.")))
+			to_chat(user, span_danger(span_big("你感到应急逃生穿梭机已经不能再被诅咒了，制造更多的诅咒魔法球也没有用了.")))
 		else if(MAX_SHUTTLE_CURSES-totalcurses == 1)
-			to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can only be cursed one more time.")))
+			to_chat(user, span_danger(span_big("你感到应急逃生穿梭机只能再被诅咒一次了.")))
 		else
-			to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can only be cursed [MAX_SHUTTLE_CURSES-totalcurses] more times.")))
+			to_chat(user, span_danger(span_big("你感到应急逃生穿梭机只能再被诅咒[MAX_SHUTTLE_CURSES-totalcurses]次了.")))
 
 		if(totalcurses >= MAX_SHUTTLE_CURSES && (world.time < first_curse_time + SHUTTLE_CURSE_OMFG_TIMESPAN))
-			var/omfg_message = pick_list(CULT_SHUTTLE_CURSE, "omfg_announce") || "LEAVE US ALONE!"
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), omfg_message, "Priority Alert", 'sound/misc/announce_syndi.ogg', null, "Nanotrasen Department of Transportation: Central Command"), rand(2 SECONDS, 6 SECONDS))
+			var/omfg_message = pick_list(CULT_SHUTTLE_CURSE, "omfg_announce") || "别来烦我!"
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), omfg_message, "最高警报", 'sound/misc/announce_syndi.ogg', null, "纳米交通运输部: 中央指挥部"), rand(2 SECONDS, 6 SECONDS))
 			for(var/mob/iter_player as anything in GLOB.player_list)
 				if(IS_CULTIST(iter_player))
 					iter_player.client?.give_award(/datum/award/achievement/misc/cult_shuttle_omfg, iter_player)
@@ -564,8 +564,8 @@ Striking a noncultist, however, will tear their flesh."}
 #undef MAX_SHUTTLE_CURSES
 
 /obj/item/cult_shift
-	name = "veil shifter"
-	desc = "This relic instantly teleports you, and anything you're pulling, forward by a moderate distance."
+	name = "帷幕相移叉"
+	desc = "该遗物会瞬间将你和你拉着的任何东西向前传送一定距离."
 	icon = 'icons/obj/antags/cult/items.dmi'
 	icon_state ="shifter"
 	///How many uses does the item have before becoming inert
@@ -574,9 +574,9 @@ Striking a noncultist, however, will tear their flesh."}
 /obj/item/cult_shift/examine(mob/user)
 	. = ..()
 	if(uses)
-		. += span_cult("It has [uses] use\s remaining.")
+		. += span_cult("它还有[uses]次使用次数.")
 	else
-		. += span_cult("It seems drained.")
+		. += span_cult("它用尽次数了.")
 
 ///Handles teleporting the atom we're pulling along with us when using the shifter
 /obj/item/cult_shift/proc/handle_teleport_grab(turf/target_turf, mob/user)
@@ -588,12 +588,12 @@ Striking a noncultist, however, will tear their flesh."}
 
 /obj/item/cult_shift/attack_self(mob/user)
 	if(!uses || !iscarbon(user))
-		to_chat(user, span_warning("\The [src] is dull and unmoving in your hands."))
+		to_chat(user, span_warning("[src]在你的手中停滞不动."))
 		return
 	if(!IS_CULTIST(user))
 		user.dropItemToGround(src, TRUE)
 		step(src, pick(GLOB.alldirs))
-		to_chat(user, span_warning("\The [src] flickers out of your hands, your connection to this dimension is too strong!"))
+		to_chat(user, span_warning("[src]在你手中熄灭，你与这个维度的联系过于紧密!"))
 		return
 
 	//The user of the shifter
@@ -607,7 +607,7 @@ Striking a noncultist, however, will tear their flesh."}
 
 	if(!destination || !do_teleport(user_cultist, destination, channel = TELEPORT_CHANNEL_CULT))
 		playsound(src, 'sound/items/haunted/ghostitemattack.ogg', 100, TRUE)
-		balloon_alert(user, "teleport failed!")
+		balloon_alert(user, "传送失败!")
 		return
 
 	uses--
@@ -625,8 +625,8 @@ Striking a noncultist, however, will tear their flesh."}
 	playsound(destination, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /obj/item/flashlight/flare/culttorch
-	name = "void torch"
-	desc = "Used by veteran cultists to instantly transport items to their needful brethren."
+	name = "虚空火炬"
+	desc = "由资深的教徒使用，可以立刻将物品运送给他们需要的兄弟."
 	w_class = WEIGHT_CLASS_SMALL
 	light_range = 1
 	icon_state = "torch"
@@ -643,12 +643,12 @@ Striking a noncultist, however, will tear their flesh."}
 	if(!proximity)
 		return
 	if(!IS_CULTIST(user))
-		to_chat(user, "That doesn't seem to do anything useful.")
+		to_chat(user, "这似乎没什么用.")
 		return
 
 	if(!isitem(A))
 		..()
-		to_chat(user, span_warning("\The [src] can only transport items!"))
+		to_chat(user, span_warning("[src]只能传送物品!"))
 		return
 
 	. |= AFTERATTACK_PROCESSED_ITEM
@@ -657,35 +657,35 @@ Striking a noncultist, however, will tear their flesh."}
 	for(var/datum/mind/M as anything in get_antag_minds(/datum/antagonist/cult))
 		if(M.current && M.current.stat != DEAD)
 			cultists |= M.current
-	var/mob/living/cultist_to_receive = tgui_input_list(user, "Who do you wish to call to [src]?", "Followers of the Geometer", (cultists - user))
+	var/mob/living/cultist_to_receive = tgui_input_list(user, "你希望呼唤谁到[src]?", "几何血尊追随者", (cultists - user))
 	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
 		return
 	if(isnull(cultist_to_receive))
-		to_chat(user, "<span class='cult italic'>You require a destination!</span>")
-		log_game("[key_name(user)]'s Void torch failed - no target.")
+		to_chat(user, "<span class='cult italic'>你需要一个目的地!</span>")
+		log_game("[key_name(user)]的虚空火炬失败了 - 无目标.")
 		return
 	if(cultist_to_receive.stat == DEAD)
-		to_chat(user, "<span class='cult italic'>[cultist_to_receive] has died!</span>")
-		log_game("[key_name(user)]'s Void torch failed - target died.")
+		to_chat(user, "<span class='cult italic'>[cultist_to_receive]已经死了!</span>")
+		log_game("[key_name(user)]的虚空火炬失败了 - 目标死亡.")
 		return
 	if(!IS_CULTIST(cultist_to_receive))
-		to_chat(user, "<span class='cult italic'>[cultist_to_receive] is not a follower of the Geometer!</span>")
-		log_game("[key_name(user)]'s Void torch failed - target was deconverted.")
+		to_chat(user, "<span class='cult italic'>[cultist_to_receive]不是几何血尊追随者!</span>")
+		log_game("[key_name(user)]的虚空火炬失败了 - 目标信仰不同.")
 		return
 	if(A in user.get_all_contents())
-		to_chat(user, "<span class='cult italic'>[A] must be on a surface in order to teleport it!</span>")
+		to_chat(user, "<span class='cult italic'>[A]必须在一个表面上才能传送它!</span>")
 		return
-	to_chat(user, "<span class='cult italic'>You ignite [A] with \the [src], turning it to ash, but through the torch's flames you see that [A] has reached [cultist_to_receive]!</span>")
-	user.log_message("teleported [A] to [cultist_to_receive] with \the [src].", LOG_GAME)
+	to_chat(user, "<span class='cult italic'>你用[src]点燃了[A]，把它变成了灰烬，但透过火光，你看到了[A]已经到达了[cultist_to_receive]!</span>")
+	user.log_message("用[src]传送[A]到[cultist_to_receive].", LOG_GAME)
 	cultist_to_receive.put_in_hands(A)
 	charges--
-	to_chat(user, "\The [src] now has [charges] charge\s.")
+	to_chat(user, "[src]还能使用[charges]次.")
 	if(charges == 0)
 		qdel(src)
 
 /obj/item/melee/cultblade/halberd
-	name = "bloody halberd"
-	desc = "A halberd with a volatile axehead made from crystallized blood. It seems linked to its creator. And, admittedly, more of a poleaxe than a halberd."
+	name = "血戟"
+	desc = "一把不定型的戟，由凝结的血液构成，它似乎与其创造者有联系. 不得不说，与其说是戟，不如说是长柄战斧.."
 	icon = 'icons/obj/weapons/spear.dmi'
 	icon_state = "occultpoleaxe0"
 	base_icon_state = "occultpoleaxe"
@@ -697,8 +697,8 @@ Striking a noncultist, however, will tear their flesh."}
 	armour_penetration = 30
 	block_chance = 30
 	slot_flags = null
-	attack_verb_continuous = list("attacks", "slices", "shreds", "sunders", "lacerates", "cleaves")
-	attack_verb_simple = list("attack", "slice", "shred", "sunder", "lacerate", "cleave")
+	attack_verb_continuous = list("攻击", "切砍", "平勾", "横刺", "挑击", "劈刺")
+	attack_verb_simple = list("攻击", "切砍", "平勾", "横刺", "挑击", "劈刺")
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	block_sound = 'sound/weapons/parry.ogg'
@@ -732,10 +732,10 @@ Striking a noncultist, however, will tear their flesh."}
 
 		if(IS_CULTIST(target) && target.put_in_active_hand(src))
 			playsound(src, 'sound/weapons/throwtap.ogg', 50)
-			target.visible_message(span_warning("[target] catches [src] out of the air!"))
+			target.visible_message(span_warning("[target]接住了[src]!"))
 			return
 		if(target.can_block_magic() || IS_CULTIST(target))
-			target.visible_message(span_warning("[src] bounces off of [target], as if repelled by an unseen force!"))
+			target.visible_message(span_warning("[src]从[target]上弹开，似乎被一股看不见的力量所排斥!"))
 			return
 		if(!..())
 			target.Paralyze(50)
@@ -748,25 +748,25 @@ Striking a noncultist, however, will tear their flesh."}
 		if(!T)
 			T = get_turf(src)
 		if(T)
-			T.visible_message(span_warning("[src] shatters and melts back into blood!"))
+			T.visible_message(span_warning("[src]粉碎并融化成血!"))
 			new /obj/effect/temp_visual/cult/sparks(T)
 			new /obj/effect/decal/cleanable/blood/splatter(T)
 			playsound(T, 'sound/effects/glassbr3.ogg', 100)
 	qdel(src)
 
-/obj/item/melee/cultblade/halberd/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/melee/cultblade/halberd/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
 		final_block_chance *= 2
 	if(IS_CULTIST(owner) && prob(final_block_chance))
-		owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
+		owner.visible_message(span_danger("[owner]闪避了[src]的[attack_text]!"))
 		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
 		return TRUE
 	else
 		return FALSE
 
 /datum/action/innate/cult/halberd
-	name = "Bloody Bond"
-	desc = "Call the bloody halberd back to your hand!"
+	name = "鲜血纽带"
+	desc = "唤回那把血戟!"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
@@ -785,19 +785,19 @@ Striking a noncultist, however, will tear their flesh."}
 	var/halberd_location = get_turf(halberd)
 	var/owner_location = get_turf(owner)
 	if(get_dist(owner_location, halberd_location) > 10)
-		to_chat(owner,span_cult("The halberd is too far away!"))
+		to_chat(owner,span_cult("血戟离得太远了!"))
 	else
 		cooldown = world.time + 20
 		if(isliving(halberd.loc))
 			var/mob/living/current_owner = halberd.loc
 			current_owner.dropItemToGround(halberd)
-			current_owner.visible_message(span_warning("An unseen force pulls the bloody halberd from [current_owner]'s hands!"))
+			current_owner.visible_message(span_warning("一股看不见的力量从[current_owner]的手中夺走了血戟!"))
 		halberd.throw_at(owner, 10, 2, owner)
 
 
 /obj/item/gun/magic/wand/arcane_barrage/blood
-	name = "blood bolt barrage"
-	desc = "Blood for blood."
+	name = "血弹幕"
+	desc = "以牙还牙."
 	color = "#ff0000"
 	ammo_type =  /obj/item/ammo_casing/magic/arcane_barrage/blood
 	fire_sound = 'sound/magic/wand_teleport.ogg'
@@ -807,7 +807,7 @@ Striking a noncultist, however, will tear their flesh."}
 	firing_effect_type = /obj/effect/temp_visual/cult/sparks
 
 /obj/projectile/magic/arcane_barrage/blood
-	name = "blood bolt"
+	name = "血弹幕子弹"
 	icon_state = "mini_leaper"
 	nondirectional_sprite = TRUE
 	damage_type = BRUTE
@@ -838,8 +838,8 @@ Striking a noncultist, however, will tear their flesh."}
 	return PROJECTILE_DELETE_WITHOUT_HITTING
 
 /obj/item/blood_beam
-	name = "\improper magical aura"
-	desc = "Sinister looking aura that distorts the flow of reality around it."
+	name = "\improper 魔气"
+	desc = "扭曲了周围现实的魔气."
 	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/items/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/touchspell_righthand.dmi'
@@ -877,7 +877,7 @@ Striking a noncultist, however, will tear their flesh."}
 		var/obj/structure/emergency_shield/cult/weak/N = new(user.loc)
 		if(do_after(user, 9 SECONDS, target = user))
 			user.Paralyze(40)
-			to_chat(user, "<span class='cult italic'>You have exhausted the power of this spell!</span>")
+			to_chat(user, "<span class='cult italic'>你已经耗尽了这个法术的力量!</span>")
 		REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, CULT_TRAIT)
 		firing = FALSE
 		if(N)
@@ -950,11 +950,11 @@ Striking a noncultist, however, will tear their flesh."}
 
 
 /obj/effect/ebeam/blood
-	name = "blood beam"
+	name = "血激流"
 
 /obj/item/shield/mirror
-	name = "mirror shield"
-	desc = "An infamous shield used by Nar'Sien sects to confuse and disorient their enemies. Its edges are weighted for use as a throwing weapon - capable of disabling multiple foes with preternatural accuracy."
+	name = "镜盾"
+	desc = "Nar'Sie教派用来迷惑敌人的盾牌. 通过对边缘加重可作为投掷武器使用 - 能够以不可思议的精度致残多个敌人."
 	icon_state = "mirror_shield" // eshield1 for expanded
 	inhand_icon_state = "mirror_shield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
@@ -964,8 +964,8 @@ Striking a noncultist, however, will tear their flesh."}
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb_continuous = list("bumps", "prods")
-	attack_verb_simple = list("bump", "prod")
+	attack_verb_continuous = list("盾击", "戳击")
+	attack_verb_simple = list("盾击", "戳击")
 	hitsound = 'sound/weapons/smash.ogg'
 	block_sound = 'sound/weapons/effects/ric5.ogg'
 	var/illusions = 2
@@ -976,7 +976,7 @@ Striking a noncultist, however, will tear their flesh."}
 			if(damage_type == BRUTE || damage_type == BURN)
 				if(damage >= 30)
 					var/turf/T = get_turf(owner)
-					T.visible_message(span_warning("The sheer force from [hitby] shatters the mirror shield!"))
+					T.visible_message(span_warning("[hitby]的强大力量粉碎了镜盾!"))
 					new /obj/effect/temp_visual/cult/sparks(T)
 					playsound(T, 'sound/effects/glassbr3.ogg', 100)
 					owner.Paralyze(25)
@@ -1008,14 +1008,14 @@ Striking a noncultist, however, will tear their flesh."}
 			H.faction = list(FACTION_CULT)
 			H.GiveTarget(owner)
 			H.move_to_delay = owner.cached_multiplicative_slowdown
-			to_chat(owner, span_danger("<b>[src] betrays you!</b>"))
+			to_chat(owner, span_danger("<b>[src]背叛了你!</b>"))
 		return FALSE
 
 /obj/item/shield/mirror/proc/readd()
 	illusions++
 	if(illusions == initial(illusions) && isliving(loc))
 		var/mob/living/holder = loc
-		to_chat(holder, "<span class='cult italic'>The shield's illusions are back at full strength!</span>")
+		to_chat(holder, "<span class='cult italic'>盾的幻术恢复到全满状态!</span>")
 
 /obj/item/shield/mirror/IsReflect()
 	if(prob(block_chance))
@@ -1028,11 +1028,11 @@ Striking a noncultist, however, will tear their flesh."}
 		var/mob/living/target = hit_atom
 
 		if(target.can_block_magic() || IS_CULTIST(target))
-			target.visible_message(span_warning("[src] bounces off of [target], as if repelled by an unseen force!"))
+			target.visible_message(span_warning("[src]从[target]上弹开，似乎被一股看不见的力量所排斥!"))
 			return
 		if(IS_CULTIST(target) && target.put_in_active_hand(src))
 			playsound(src, 'sound/weapons/throwtap.ogg', 50)
-			target.visible_message(span_warning("[target] catches [src] out of the air!"))
+			target.visible_message(span_warning("[target]接住了[src]!"))
 			return
 		if(!..())
 			target.Paralyze(30)

@@ -2,20 +2,20 @@
 //space pirates from the pirate event.
 
 /obj/effect/mob_spawn/ghost_role/human/pirate
-	name = "space pirate sleeper"
-	desc = "A cryo sleeper smelling faintly of rum."
+	name = "太空海盗休眠仓"
+	desc = "有淡淡的朗姆酒味的休眠仓."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a space pirate"
+	prompt_name = "太空海盗"
 	outfit = /datum/outfit/pirate/space
 	anchored = TRUE
 	density = FALSE
 	show_flavor = FALSE //Flavour only exists for spawners menu
-	you_are_text = "You are a space pirate."
-	flavour_text = "The station refused to pay for your protection. Protect the ship, siphon the credits from the station, and raid it for even more loot."
+	you_are_text = "你是一名太空海盗."
+	flavour_text = "空间站拒绝交出保护费，保护你的海盗船，抽取站点的信用点以及突袭它以掠夺更多的战利品."
 	spawner_job_path = /datum/job/space_pirate
 	///Rank of the pirate on the ship, it's used in generating pirate names!
-	var/rank = "Deserter"
+	var/rank = "逃兵"
 	///Path of the structure we spawn after creating a pirate.
 	var/fluff_spawn = /obj/structure/showcase/machinery/oldpod/used
 
@@ -41,40 +41,40 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/captain
-	rank = "Renegade Leader"
+	rank = "叛军领袖"
 	outfit = /datum/outfit/pirate/space/captain
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/gunner
-	rank = "Rogue"
+	rank = "恶棍"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/skeleton
-	name = "pirate remains"
-	desc = "Some inanimate bones. They feel like they could spring to life at any moment!"
+	name = "海盗遗骸"
+	desc = "一些死气沉沉的骨头，他们好像知道自己随时都可以复活!"
 	density = FALSE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"
-	prompt_name = "a skeleton pirate"
+	prompt_name = "骷髅海盗"
 	mob_species = /datum/species/skeleton
 	outfit = /datum/outfit/pirate
-	rank = "Mate"
+	rank = "大副"
 	fluff_spawn = null
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/skeleton/captain
-	rank = "Captain"
+	rank = "船长"
 	outfit = /datum/outfit/pirate/captain/skeleton
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/skeleton/gunner
-	rank = "Gunner"
+	rank = "炮手"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale
-	name = "elegant sleeper"
-	desc = "Cozy. You get the feeling you aren't supposed to be here, though..."
+	name = "高雅休眠仓"
+	desc = "舒适，但你感觉自己好像不应该在这里..."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a silverscale"
+	prompt_name = "银鳞成员"
 	mob_species = /datum/species/lizard/silverscale
 	outfit = /datum/outfit/pirate/silverscale
-	rank = "High-born"
+	rank = "名门"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/generate_pirate_name(spawn_gender)
 	var/first_name
@@ -86,26 +86,26 @@
 		else
 			first_name = pick(GLOB.lizard_names_male + GLOB.lizard_names_female)
 
-	return "[rank] [first_name]-Silverscale"
+	return "[rank] [first_name]-银鳞"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/captain
-	rank = "Old-guard"
+	rank = "老辈"
 	outfit = /datum/outfit/pirate/silverscale/captain
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/gunner
-	rank = "Top-drawer"
+	rank = "顶流"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/interdyne
-	name = "\improper Interdyne sleeper"
-	desc = "A surprisingly clean cryogenic sleeper. You can see your reflection on the sides!"
+	name = "\improper Interdyne休眠仓"
+	desc = "非常干净的低温休眠仓，你可以在侧面看到自己的倒影."
 	density = FALSE
-	you_are_text = "You are an Ex-Interdyne pharmacyst now turned space pirate."
-	flavour_text = "The station has refused to fund your research, so you will 'convince' them to donate to your charitable cause."
+	you_are_text = "你曾经是一名Interdyne药剂师，现在变成了太空海盗."
+	flavour_text = "空间站拒绝资助你们的研究，所以你要'说服'他们为你们的慈善事业捐款."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "An Ex-Interdyne employee"
+	prompt_name = "前Interdyne员工"
 	outfit = /datum/outfit/pirate/interdyne
-	rank = "Pharmacist"
+	rank = "药剂师"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/interdyne/generate_pirate_name(spawn_gender)
 	var/first_name
@@ -120,21 +120,21 @@
 	return "[rank] [first_name]"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/interdyne/senior
-	rank = "Pharmacist Director"
+	rank = "药剂师主管"
 	outfit = /datum/outfit/pirate/interdyne/captain
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/interdyne/junior
-	rank = "Pharmacist"
+	rank = "药剂师"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/grey
-	name = "\improper Assistant sleeper"
-	desc = "A very dirty cryogenic sleeper. You're not sure if it even works."
+	name = "\improper 助手休眠仓"
+	desc = "非常脏的低温休眠仓，你甚至不确定它功能正不正常."
 	density = FALSE
-	you_are_text = "You used to be a Nanotrasen assistant, until a riot gone awry. Now you wander space, ransacking any ships you come across!"
-	flavour_text = "There's nothing a toolbox can't whack in the head enough times to spill blood, or in this case money. Loot everything!"
+	you_are_text = "你曾经是纳米传讯下的助手，直到一场暴乱的发生，现在你在太空漫游，洗劫你遇到的任何船只!"
+	flavour_text = "没有什么是工具箱砸不出来的，这次是钱，抢劫一切!"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "An assistant gone loose"
+	prompt_name = "野助手"
 	outfit = /datum/outfit/pirate/grey
 	rank = "Tider"
 
@@ -142,14 +142,14 @@
 	rank = "Tidemaster"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/irs
-	name = "\improper Space IRS sleeper"
-	desc = "A surprisingly clean cryogenic sleeper. You can see your reflection on the sides!"
+	name = "\improper 太空国税局休眠仓"
+	desc = "非常干净的低温休眠仓，你可以在侧面看到自己的倒影."
 	density = FALSE
-	you_are_text = "You are an agent working for the space IRS"
-	flavour_text = "Not even in the expanse of the expanding universe can someone evade the tax man! Whether you are just a well disciplined and professional pirate gang or an actual agent from a local polity. You will squeeze the station dry of it's income regardless! Through peaceful means or otherwise..."
+	you_are_text = "你是太空国税局的探员."
+	flavour_text = "在这浩瀚无穷的宇宙，唯有税务永恒；不管你是要扮演一名专业的海盗，还是隶属于政府的公务员，你都得不择手段地榨干空间站的收入！无论通过和平亦或其他的方式..."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "An agent of the space IRS"
+	prompt_name = "太空国税局探员"
 	outfit = /datum/outfit/pirate/irs
 	fluff_spawn = null // dirs are fucked and I don't have the energy to deal with it
 	rank = "Agent"
@@ -168,26 +168,26 @@
 
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/irs/auditor
-	rank = "Head Auditor"
+	rank = "总审计负责人"
 	outfit = /datum/outfit/pirate/irs/auditor
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/lustrous
-	name = "lustrous crystal"
-	desc = "A crystal housing a mutated Ethereal, it emanates a foreboding glow."
+	name = "耀光晶体"
+	desc = "容纳了变异光灵的水晶，散发出不详的光芒."
 	density = FALSE
-	you_are_text = "Once you were a proud Ethereal, now all that remains is your hunger for the precious bluespace crystal."
-	flavour_text = "The station has denied you your bluespace crystals, the sweet ambrosia of the fifth-dimension. Strike the earth!"
+	you_are_text = "曾经的你是一个拥有自尊的光灵，现在的你只剩下对珍贵的蓝空水晶的渴望."
+	flavour_text = "空间拒绝交出那五维空间的甜蜜之物，你只好亲自去取了."
 	icon = 'icons/mob/effects/ethereal_crystal.dmi'
 	icon_state = "ethereal_crystal"
 	fluff_spawn = null
-	prompt_name = "a geode dweller"
+	prompt_name = "晶洞居民"
 	mob_species = /datum/species/ethereal/lustrous
 	outfit = /datum/outfit/pirate/lustrous
-	rank = "Scintillant"
+	rank = "闪烁者"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/lustrous/captain
-	rank = "Radiant"
+	rank = "璀璨者"
 	outfit = /datum/outfit/pirate/lustrous/captain
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/lustrous/gunner
-	rank = "Coruscant"
+	rank = "辉光者"

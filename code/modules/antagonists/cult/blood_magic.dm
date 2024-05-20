@@ -1,7 +1,7 @@
-/datum/action/innate/cult/blood_magic //Blood magic handles the creation of blood spells (formerly talismans)
-	name = "Prepare Blood Magic"
+/datum/action/innate/cult/blood_magic //血魔法 handles the creation of blood spells (formerly talismans)
+	name = "准备血魔法"
 	button_icon_state = "carve"
-	desc = "Prepare blood magic by carving runes into your flesh. This is easier with an <b>empowering rune</b>."
+	desc = "通过在肉体上划刻符文来准备血魔法，使用<b>赋能符文</b>会很容易做到."
 	default_button_position = DEFAULT_BLOODSPELLS
 	var/list/spells = list()
 	var/channeling = FALSE
@@ -46,10 +46,10 @@
 		limit = MAX_BLOODCHARGE
 	if(length(spells) >= limit)
 		if(rune)
-			to_chat(owner, span_cultitalic("You cannot store more than [MAX_BLOODCHARGE] spells. <b>Pick a spell to remove.</b>"))
+			to_chat(owner, span_cultitalic("你无法储存超过[MAX_BLOODCHARGE]个法术. <b>选择一个法术来移除.</b>"))
 		else
-			to_chat(owner, span_cultitalic("<b><u>You cannot store more than [RUNELESS_MAX_BLOODCHARGE] spells without an empowering rune! Pick a spell to remove.</b></u>"))
-		var/nullify_spell = tgui_input_list(owner, "Spell to remove", "Current Spells", spells)
+			to_chat(owner, span_cultitalic("<b><u>没有赋能符文的情况下你无法储存超过[RUNELESS_MAX_BLOODCHARGE]个法术!选择一个法术来移除.</b></u>"))
+		var/nullify_spell = tgui_input_list(owner, "移除法术", "当前法术", spells)
 		if(isnull(nullify_spell))
 			return
 		qdel(nullify_spell)
@@ -60,24 +60,24 @@
 		var/datum/action/innate/cult/blood_spell/J = I
 		var/cult_name = initial(J.name)
 		possible_spells[cult_name] = J
-	possible_spells += "(REMOVE SPELL)"
-	entered_spell_name = tgui_input_list(owner, "Blood spell to prepare", "Spell Choices", possible_spells)
+	possible_spells += "(移除法术)"
+	entered_spell_name = tgui_input_list(owner, "准备血魔法", "选择法术", possible_spells)
 	if(isnull(entered_spell_name))
 		return
-	if(entered_spell_name == "(REMOVE SPELL)")
-		var/nullify_spell = tgui_input_list(owner, "Spell to remove", "Current Spells", spells)
+	if(entered_spell_name == "(移除法术)")
+		var/nullify_spell = tgui_input_list(owner, "移除法术", "当前法术", spells)
 		if(isnull(nullify_spell))
 			return
 		qdel(nullify_spell)
 	BS = possible_spells[entered_spell_name]
 	if(QDELETED(src) || owner.incapacitated() || !BS || (rune && !(locate(/obj/effect/rune/empower) in range(1, owner))) || (length(spells) >= limit))
 		return
-	to_chat(owner,span_warning("You begin to carve unnatural symbols into your flesh!"))
+	to_chat(owner,span_warning("你开始在肉身上刻下不自然的符号!"))
 	SEND_SOUND(owner, sound('sound/weapons/slice.ogg',0,1,10))
 	if(!channeling)
 		channeling = TRUE
 	else
-		to_chat(owner, span_cultitalic("You are already invoking blood magic!"))
+		to_chat(owner, span_cultitalic("你已经可以施展血魔法了!"))
 		return
 	if(do_after(owner, 100 - rune*60, target = owner))
 		if(ishuman(owner))
@@ -87,13 +87,13 @@
 		new_spell.Grant(owner, src)
 		spells += new_spell
 		Positioning()
-		to_chat(owner, span_warning("Your wounds glow with power, you have prepared a [new_spell.name] invocation!"))
+		to_chat(owner, span_warning("力量从你的伤口上渗出，你已经准备好了施展[new_spell.name]!"))
 	channeling = FALSE
 
-/datum/action/innate/cult/blood_spell //The next generation of talismans, handles storage/creation of blood magic
-	name = "Blood Magic"
+/datum/action/innate/cult/blood_spell //The next generation of talismans, handles storage/creation of 血魔法
+	name = "血魔法"
 	button_icon_state = "telerune"
-	desc = "Fear the Old Blood."
+	desc = "畏惧上古之血."
 	var/charges = 1
 	var/magic_path = null
 	var/obj/item/melee/blood_magic/hand_magic
@@ -106,9 +106,9 @@
 
 /datum/action/innate/cult/blood_spell/Grant(mob/living/owner, datum/action/innate/cult/blood_magic/BM)
 	if(health_cost)
-		desc += "<br>Deals <u>[health_cost] damage</u> to your arm per use."
+		desc += "<br>每次使用对你的手臂造成<u>[health_cost]伤害</u>."
 	base_desc = desc
-	desc += "<br><b><u>Has [charges] use\s remaining</u></b>."
+	desc += "<br><b><u>还能使用[charges]次</u></b>."
 	all_magic = BM
 	return ..()
 
@@ -132,70 +132,70 @@
 			if(!owner.put_in_hands(hand_magic))
 				qdel(hand_magic)
 				hand_magic = null
-				to_chat(owner, span_warning("You have no empty hand for invoking blood magic!"))
+				to_chat(owner, span_warning("你没有空闲的手来施展血魔法!"))
 				return
-			to_chat(owner, span_notice("Your wounds glow as you invoke the [name]."))
+			to_chat(owner, span_notice("你施展[name]时，身上伤口渗出了光."))
 			return
 		if(hand_magic)
 			qdel(hand_magic)
 			hand_magic = null
-			to_chat(owner, span_warning("You snuff out the spell, saving it for later."))
+			to_chat(owner, span_warning("你掐灭了法术，以备后用."))
 
 
 //Cult Blood Spells
 /datum/action/innate/cult/blood_spell/stun
-	name = "Stun"
-	desc = "Empowers your hand to stun and mute a victim on contact."
+	name = "眩晕"
+	desc = "让你的手在接触时使目标眩晕并失声."
 	button_icon_state = "hand"
 	magic_path = "/obj/item/melee/blood_magic/stun"
 	health_cost = 10
 
 /datum/action/innate/cult/blood_spell/teleport
-	name = "Teleport"
-	desc = "Empowers your hand to teleport yourself or another cultist to a teleport rune on contact."
+	name = "传送"
+	desc = "让你的手在接触时使自己或其他教徒传送到传送符文处."
 	button_icon_state = "tele"
 	magic_path = "/obj/item/melee/blood_magic/teleport"
 	health_cost = 7
 
 /datum/action/innate/cult/blood_spell/emp
-	name = "Electromagnetic Pulse"
-	desc = "Emits a large electromagnetic pulse."
+	name = "电磁脉冲"
+	desc = "释放大范围的电磁脉冲."
 	button_icon_state = "emp"
 	health_cost = 10
 	invocation = "Ta'gh fara'qha fel d'amar det!"
 
 /datum/action/innate/cult/blood_spell/emp/Activate()
 	owner.whisper(invocation, language = /datum/language/common)
-	owner.visible_message(span_warning("[owner]'s hand flashes a bright blue!"), \
-		span_cultitalic("You speak the cursed words, emitting an EMP blast from your hand."))
+	owner.visible_message(span_warning("[owner]的手闪出蓝光!"), \
+		span_cultitalic("你说出了咒语，一股电磁脉冲随即从手中施放."))
 	empulse(owner, 2, 5)
 	charges--
 	if(charges <= 0)
 		qdel(src)
 
 /datum/action/innate/cult/blood_spell/shackles
-	name = "Shadow Shackles"
-	desc = "Empowers your hand to start handcuffing victim on contact, and mute them if successful."
+	name = "影缚"
+	desc = "让你的手在接触时使目标失声并被铐上."
 	button_icon_state = "cuff"
 	charges = 4
 	magic_path = "/obj/item/melee/blood_magic/shackles"
 
 /datum/action/innate/cult/blood_spell/construction
-	name = "Twisted Construction"
-	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 metal into a construct shell<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Purified soulstones (and any shades inside) into cultist soulstones<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
+	name = "扭曲建筑"
+	desc = "让你的手能腐蚀某些金属物体.<br><u>可以将:</u><br>塑钢转化为符文金属<br>50金属转化为建筑者躯壳<br>活跃赛博在延迟后转化为建筑者<br>赛博躯体转化为建筑者躯体<br>纯净灵魂石(以及里面的任何幽影)转化为血教灵魂石<br>气闸门在延迟后转化为脆弱的符文气闸门(战斗模式)"
 	button_icon_state = "transmute"
 	magic_path = "/obj/item/melee/blood_magic/construction"
 	health_cost = 12
 
 /datum/action/innate/cult/blood_spell/equipment
-	name = "Summon Combat Equipment"
-	desc = "Empowers your hand to summon combat gear onto a cultist you touch, including cult armor, a cult bola, and a cult sword. Not recommended for use before the blood cult's presence has been revealed."
+	name = "召唤战斗装备"
+	desc = "让你的手在接触血教徒时可以召唤出装备到其身上，包括血教护甲、血教流星锤和血教剑. 在血教暴露前不建议使用."
 	button_icon_state = "equip"
 	magic_path = "/obj/item/melee/blood_magic/armor"
 
 /datum/action/innate/cult/blood_spell/dagger
-	name = "Summon Ritual Dagger"
-	desc = "Allows you to summon a ritual dagger, in case you've lost the dagger that was given to you."
+	name = "召唤仪式匕首"
+	desc = "让你召唤一把仪式匕首."
 	invocation = "Wur d'dai leev'mai k'sagan!" //where did I leave my keys, again?
 	button_icon_state = "equip" //this is the same icon that summon equipment uses, but eh, I'm not a spriter
 	/// The item given to the cultist when the spell is invoked. Typepath.
@@ -204,27 +204,27 @@
 /datum/action/innate/cult/blood_spell/dagger/Activate()
 	var/turf/owner_turf = get_turf(owner)
 	owner.whisper(invocation, language = /datum/language/common)
-	owner.visible_message(span_warning("[owner]'s hand glows red for a moment."), \
-		span_cultitalic("Your plea for aid is answered, and light begins to shimmer and take form within your hand!"))
+	owner.visible_message(span_warning("[owner]的手渗出红光."), \
+		span_cultitalic("你的请求得到回应，光点闪烁并在你手中汇聚塑形!"))
 	var/obj/item/summoned_blade = new summoned_type(owner_turf)
 	if(owner.put_in_hands(summoned_blade))
-		to_chat(owner, span_warning("A [summoned_blade] appears in your hand!"))
+		to_chat(owner, span_warning("一把[summoned_blade]出现在你的手中!"))
 	else
-		owner.visible_message(span_warning("A [summoned_blade] appears at [owner]'s feet!"), \
-			span_cultitalic("A [summoned_blade] materializes at your feet."))
+		owner.visible_message(span_warning("一把[summoned_blade]出现在[owner]的脚下!"), \
+			span_cultitalic("一把[summoned_blade]在你脚下成形."))
 	SEND_SOUND(owner, sound('sound/effects/magic.ogg', FALSE, 0, 25))
 	charges--
 	if(charges <= 0)
 		qdel(src)
 
 /datum/action/innate/cult/blood_spell/horror
-	name = "Hallucinations"
-	desc = "Gives hallucinations to a target at range. A silent and invisible spell."
+	name = "幻觉"
+	desc = "远距离使目标产生幻觉. 一种无声无形."
 	button_icon_state = "horror"
 	charges = 4
 	click_action = TRUE
-	enable_text = span_cult("You prepare to horrify a target...")
-	disable_text = span_cult("You dispel the magic...")
+	enable_text = span_cult("你准备好发动精神攻击了...")
+	disable_text = span_cult("你掐灭了魔法...")
 
 /datum/action/innate/cult/blood_spell/horror/InterceptClickOn(mob/living/caller, params, atom/clicked_on)
 	var/turf/caller_turf = get_turf(caller)
@@ -249,21 +249,21 @@
 	clicked_on.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/cult, "cult_apoc", sparkle_image, NONE)
 
 	addtimer(CALLBACK(clicked_on, TYPE_PROC_REF(/atom/, remove_alt_appearance), "cult_apoc", TRUE), 4 MINUTES, TIMER_OVERRIDE|TIMER_UNIQUE)
-	to_chat(caller, span_cultbold("[clicked_on] has been cursed with living nightmares!"))
+	to_chat(caller, span_cultbold("[clicked_on]被逼真的噩梦所折磨!"))
 
 	charges--
 	desc = base_desc
-	desc += "<br><b><u>Has [charges] use\s remaining</u></b>."
+	desc += "<br><b><u>还有[charges]次</u></b>."
 	build_all_button_icons()
 	if(charges <= 0)
-		to_chat(caller, span_cult("You have exhausted the spell's power!"))
+		to_chat(caller, span_cult("你已经耗尽了法术的力量!"))
 		qdel(src)
 
 	return TRUE
 
 /datum/action/innate/cult/blood_spell/veiling
-	name = "Conceal Presence"
-	desc = "Alternates between hiding and revealing nearby cult structures and runes."
+	name = "隐藏与存在"
+	desc = "交替隐藏和显示附近的血教建筑和符文."
 	invocation = "Kla'atu barada nikt'o!"
 	button_icon_state = "gone"
 	charges = 10
@@ -271,8 +271,8 @@
 
 /datum/action/innate/cult/blood_spell/veiling/Activate()
 	if(!revealing)
-		owner.visible_message(span_warning("Thin grey dust falls from [owner]'s hand!"), \
-			span_cultitalic("You invoke the veiling spell, hiding nearby runes."))
+		owner.visible_message(span_warning("[owner]的手中落下细小的灰尘!"), \
+			span_cultitalic("你施展隐藏法术，隐藏了附近的符文."))
 		charges--
 		SEND_SOUND(owner, sound('sound/magic/smoke.ogg',0,1,25))
 		owner.whisper(invocation, language = /datum/language/common)
@@ -287,11 +287,11 @@
 		for(var/obj/machinery/door/airlock/cult/AL in range(5, owner))
 			AL.conceal()
 		revealing = TRUE
-		name = "Reveal Runes"
+		name = "显示符文"
 		button_icon_state = "back"
 	else
-		owner.visible_message(span_warning("A flash of light shines from [owner]'s hand!"), \
-			span_cultitalic("You invoke the counterspell, revealing nearby runes."))
+		owner.visible_message(span_warning("[owner]的手中闪过一道光!"), \
+			span_cultitalic("你施展存在法术，显示附近的符文."))
 		charges--
 		owner.whisper(invocation, language = /datum/language/common)
 		SEND_SOUND(owner, sound('sound/magic/enter_blood.ogg',0,1,25))
@@ -306,17 +306,17 @@
 		for(var/obj/machinery/door/airlock/cult/AL in range(6, owner))
 			AL.reveal()
 		revealing = FALSE
-		name = "Conceal Runes"
+		name = "隐藏符文"
 		button_icon_state = "gone"
 	if(charges <= 0)
 		qdel(src)
 	desc = base_desc
-	desc += "<br><b><u>Has [charges] use\s remaining</u></b>."
+	desc += "<br><b><u>还有[charges]次</u></b>."
 	build_all_button_icons()
 
 /datum/action/innate/cult/blood_spell/manipulation
-	name = "Blood Rites"
-	desc = "Empowers your hand to absorb blood to be used for advanced rites, or heal a cultist on contact. Use the spell in-hand to cast advanced rites."
+	name = "血仪式"
+	desc = "让你的手可以吸取用于高级仪式的血液，或治疗所接触的血教徒. 使用手中法术来释放高级仪式."
 	invocation = "Fel'th Dol Ab'orod!"
 	button_icon_state = "manip"
 	charges = 5
@@ -324,8 +324,8 @@
 
 // The "magic hand" items
 /obj/item/melee/blood_magic
-	name = "\improper magical aura"
-	desc = "A sinister looking aura that distorts the flow of reality around it."
+	name = "\improper 法气"
+	desc = "一股邪恶的法气，扭曲了周围的现实流动."
 	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/items/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/touchspell_righthand.dmi'
@@ -358,7 +358,7 @@
 			source.hand_magic = null
 			source.charges = uses
 			source.desc = source.base_desc
-			source.desc += "<br><b><u>Has [uses] use\s remaining</u></b>."
+			source.desc += "<br><b><u>还有[uses]次</u></b>."
 			source.build_all_button_icons()
 	return ..()
 
@@ -370,7 +370,7 @@
 		uses = 0
 		qdel(src)
 		return
-	log_combat(user, M, "used a cult spell on", source.name, "")
+	log_combat(user, M, "施展了血教法术", source.name, "")
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
 
@@ -387,13 +387,13 @@
 		qdel(src)
 	else if(source)
 		source.desc = source.base_desc
-		source.desc += "<br><b><u>Has [uses] use\s remaining</u></b>."
+		source.desc += "<br><b><u>还有[uses]次</u></b>."
 		source.build_all_button_icons()
 
 //Stun
 /obj/item/melee/blood_magic/stun
-	name = "Stunning Aura"
-	desc = "Will stun and mute a weak-minded victim on contact."
+	name = "眩晕法气"
+	desc = "在接触时使人晕倒并失声."
 	color = RUNE_COLOR_RED
 	invocation = "Fuu ma'jin!"
 
@@ -403,29 +403,29 @@
 	if(IS_CULTIST(target))
 		return
 	if(IS_CULTIST(user))
-		user.visible_message(span_warning("[user] holds up [user.p_their()] hand, which explodes in a flash of red light!"), \
-							span_cultitalic("You attempt to stun [target] with the spell!"))
+		user.visible_message(span_warning("[user]抬起手，红光一闪而过!"), \
+							span_cultitalic("你尝试用法术击晕[target]!"))
 		user.mob_light(range = 3, color = LIGHT_COLOR_BLOOD_MAGIC, duration = 0.2 SECONDS)
 		if(IS_HERETIC(target))
-			to_chat(user, span_warning("Some force greater than you intervenes! [target] is protected by the Forgotten Gods!"))
-			to_chat(target, span_warning("You are protected by your faith to the Forgotten Gods."))
+			to_chat(user, span_warning("有比你更强大的力量在干预! [target]受到了某些被遗忘神祇的保护!"))
+			to_chat(target, span_warning("你所忠于的遗忘神祇们保护了你."))
 			var/old_color = target.color
 			target.color = rgb(0, 128, 0)
 			animate(target, color = old_color, time = 1 SECONDS, easing = EASE_IN)
 
 		// SKYRAT EDIT START
 		if(IS_CLOCK(target))
-			to_chat(user, span_warning("Some force greater than you intervenes! [target] is protected by the heretic Ratvar!"))
-			to_chat(target, span_warning("You are protected by your faith to Ratvar!"))
+			to_chat(user, span_warning("某种比你更强大的力量介入了! [target]受到了异教徒拉特瓦的保护!"))
+			to_chat(target, span_warning("你所忠于的拉特瓦保护了你!"))
 			var/old_color = target.color
 			target.color = rgb(190, 135, 0)
 			animate(target, color = old_color, time = 1 SECONDS, easing = EASE_IN)
 		// SKYRAT EDIT END
 
 		else if(target.can_block_magic())
-			to_chat(user, span_warning("The spell had no effect!"))
+			to_chat(user, span_warning("法术不起效果!"))
 		else
-			to_chat(user, span_cultitalic("In a brilliant flash of red, [target] falls to the ground!"))
+			to_chat(user, span_cultitalic("红光闪过，[target]倒地!"))
 			target.Paralyze(16 SECONDS)
 			target.flash_act(1, TRUE)
 			if(issilicon(target))
@@ -442,15 +442,15 @@
 
 //Teleportation
 /obj/item/melee/blood_magic/teleport
-	name = "Teleporting Aura"
+	name = "传送法气"
 	color = RUNE_COLOR_TELEPORT
-	desc = "Will teleport a cultist to a teleport rune on contact."
+	desc = "将接触到的血教徒传送到传送符文."
 	invocation = "Sas'so c'arta forbici!"
 
 /obj/item/melee/blood_magic/teleport/afterattack(atom/target, mob/living/carbon/user, proximity)
 	var/mob/mob_target = target
 	if(istype(mob_target) && !IS_CULTIST(mob_target) || !proximity)
-		to_chat(user, span_warning("You can only teleport adjacent cultists with this spell!"))
+		to_chat(user, span_warning("该法术只能传送相邻的血教徒!"))
 		return
 	if(IS_CULTIST(user))
 		var/list/potential_runes = list()
@@ -459,40 +459,40 @@
 			potential_runes[avoid_assoc_duplicate_keys(teleport_rune.listkey, teleportnames)] = teleport_rune
 
 		if(!length(potential_runes))
-			to_chat(user, span_warning("There are no valid runes to teleport to!"))
+			to_chat(user, span_warning("没有有效的符文可以传送!"))
 			return
 
 		var/turf/T = get_turf(src)
 		if(is_away_level(T.z))
-			to_chat(user, span_cultitalic("You are not in the right dimension!"))
+			to_chat(user, span_cultitalic("你不在正确的空间范围!"))
 			return
 
-		var/input_rune_key = tgui_input_list(user, "Rune to teleport to", "Teleportation Target", potential_runes) //we know what key they picked
+		var/input_rune_key = tgui_input_list(user, "传送到的符文", "传送目标", potential_runes) //we know what key they picked
 		if(isnull(input_rune_key))
 			return
 		if(isnull(potential_runes[input_rune_key]))
-			to_chat(user, span_warning("You must pick a valid rune!"))
+			to_chat(user, span_warning("你必须选择一个有效的符文!"))
 			return
 		var/obj/effect/rune/teleport/actual_selected_rune = potential_runes[input_rune_key] //what rune does that key correspond to?
 		if(QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !actual_selected_rune || !proximity)
 			return
 		var/turf/dest = get_turf(actual_selected_rune)
 		if(dest.is_blocked_turf(TRUE))
-			to_chat(user, span_warning("The target rune is blocked. You cannot teleport there."))
+			to_chat(user, span_warning("目标符文被堵住了，你无法传送到那里."))
 			return
 		uses--
 		var/turf/origin = get_turf(user)
 		var/mob/living/L = target
 		if(do_teleport(L, dest, channel = TELEPORT_CHANNEL_CULT))
-			origin.visible_message(span_warning("Dust flows from [user]'s hand, and [user.p_they()] disappear[user.p_s()] with a sharp crack!"), \
-				span_cultitalic("You speak the words of the talisman and find yourself somewhere else!"), "<i>You hear a sharp crack.</i>")
-			dest.visible_message(span_warning("There is a boom of outrushing air as something appears above the rune!"), null, "<i>You hear a boom.</i>")
+			origin.visible_message(span_warning("[user]的手中流出灰尘，并且随着尖锐的破裂声消失了!"), \
+				span_cultitalic("你念出了咒语然后发现自己到了别的地方!"), "<i>你听到一声尖锐的破裂声.</i>")
+			dest.visible_message(span_warning("有什么东西出现在符文上方，一阵爆炸的气流涌出!"), null, "<i>你听到一声爆炸.</i>")
 		..()
 
 //Shackles
 /obj/item/melee/blood_magic/shackles
-	name = "Shackling Aura"
-	desc = "Will start handcuffing a victim on contact, and mute them if successful."
+	name = "束缚法气"
+	desc = "给接触的目标带上手铐并且失声."
 	invocation = "In'totum Lig'abis!"
 	color = "#000000" // black
 
@@ -502,65 +502,65 @@
 		if(C.canBeHandcuffed())
 			CuffAttack(C, user)
 		else
-			user.visible_message(span_cultitalic("This victim doesn't have enough arms to complete the restraint!"))
+			user.visible_message(span_cultitalic("这名目标没有足够的手臂来带上手铐!"))
 			return
 		..()
 
 /obj/item/melee/blood_magic/shackles/proc/CuffAttack(mob/living/carbon/C, mob/living/user)
 	if(!C.handcuffed)
 		playsound(loc, 'sound/weapons/cablecuff.ogg', 30, TRUE, -2)
-		C.visible_message(span_danger("[user] begins restraining [C] with dark magic!"), \
-								span_userdanger("[user] begins shaping dark magic shackles around your wrists!"))
+		C.visible_message(span_danger("[user]开始用黑魔法束缚[C]!"), \
+								span_userdanger("[user]开始在你的手腕上塑造黑魔法手铐!"))
 		if(do_after(user, 30, C))
 			if(!C.handcuffed)
 				C.set_handcuffed(new /obj/item/restraints/handcuffs/energy/cult/used(C))
 				C.update_handcuffed()
 				C.adjust_silence(10 SECONDS)
-				to_chat(user, span_notice("You shackle [C]."))
-				log_combat(user, C, "shackled")
+				to_chat(user, span_notice("你铐上了[C]."))
+				log_combat(user, C, "铐上了")
 				uses--
 			else
-				to_chat(user, span_warning("[C] is already bound."))
+				to_chat(user, span_warning("[C]已经被束缚了."))
 		else
-			to_chat(user, span_warning("You fail to shackle [C]."))
+			to_chat(user, span_warning("你没能铐上[C]."))
 	else
-		to_chat(user, span_warning("[C] is already bound."))
+		to_chat(user, span_warning("[C]已经被束缚了."))
 
 
-/obj/item/restraints/handcuffs/energy/cult //For the shackling spell
-	name = "shadow shackles"
-	desc = "Shackles that bind the wrists with sinister magic."
+/obj/item/restraints/handcuffs/energy/cult //For the 束缚 spell
+	name = "影缚"
+	desc = "用邪恶魔法给目标上手铐."
 	trashtype = /obj/item/restraints/handcuffs/energy/used
 	item_flags = DROPDEL
 
 /obj/item/restraints/handcuffs/energy/cult/used/dropped(mob/user)
-	user.visible_message(span_danger("[user]'s shackles shatter in a discharge of dark magic!"), \
-							span_userdanger("Your [src] shatters in a discharge of dark magic!"))
+	user.visible_message(span_danger("[user]的镣铐在黑魔法的溃能中破碎了!"), \
+							span_userdanger("你的[src]在黑魔法的溃能中破碎了!"))
 	. = ..()
 
 
 //Construction: Converts 50 iron to a construct shell, plasteel to runed metal, airlock to brittle runed airlock, a borg to a construct, or borg shell to a construct shell
 /obj/item/melee/blood_magic/construction
-	name = "Twisting Aura"
-	desc = "Corrupts certain metalic objects on contact."
+	name = "扭曲法气"
+	desc = "腐蚀某些金属物体."
 	invocation = "Ethra p'ni dedol!"
 	color = "#000000" // black
 	var/channeling = FALSE
 
 /obj/item/melee/blood_magic/construction/examine(mob/user)
 	. = ..()
-	. += {"<u>A sinister spell used to convert:</u>\n
-	Plasteel into runed metal\n
-	[IRON_TO_CONSTRUCT_SHELL_CONVERSION] iron into a construct shell\n
-	Living cyborgs into constructs after a delay\n
-	Cyborg shells into construct shells\n
-	Purified soulstones (and any shades inside) into cultist soulstones\n
-	Airlocks into brittle runed airlocks after a delay (harm intent)"}
+	. += {"<u>可以将:</u>\n
+	>塑钢转化为符文金属\n
+	[IRON_TO_CONSTRUCT_SHELL_CONVERSION]铁转化为建筑者躯壳\n
+	活跃赛博在延迟后转化为建筑者\n
+	赛博躯体转化为建筑者躯体\n
+	纯净灵魂石(以及里面的任何幽影)转化为血教灵魂石\n
+	气闸门在延迟后转化为脆弱的符文气闸门(战斗模式)"}
 
 /obj/item/melee/blood_magic/construction/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(proximity_flag && IS_CULTIST(user))
 		if(channeling)
-			to_chat(user, span_cultitalic("You are already invoking twisted construction!"))
+			to_chat(user, span_cultitalic("你已经施展了扭曲建筑!"))
 			return
 		. |= AFTERATTACK_PROCESSED_ITEM
 		var/turf/T = get_turf(target)
@@ -568,11 +568,11 @@
 			var/obj/item/stack/sheet/candidate = target
 			if(candidate.use(IRON_TO_CONSTRUCT_SHELL_CONVERSION))
 				uses--
-				to_chat(user, span_warning("A dark cloud emanates from your hand and swirls around the iron, twisting it into a construct shell!"))
+				to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的铁块，将其扭曲成了一具建筑者的躯壳!"))
 				new /obj/structure/constructshell(T)
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 			else
-				to_chat(user, span_warning("You need [IRON_TO_CONSTRUCT_SHELL_CONVERSION] iron to produce a construct shell!"))
+				to_chat(user, span_warning("你需要[IRON_TO_CONSTRUCT_SHELL_CONVERSION]块铁来创造躯壳!"))
 				return
 		else if(istype(target, /obj/item/stack/sheet/plasteel))
 			var/obj/item/stack/sheet/plasteel/candidate = target
@@ -580,13 +580,13 @@
 			if(candidate.use(quantity))
 				uses --
 				new /obj/item/stack/sheet/runed_metal(T,quantity)
-				to_chat(user, span_warning("A dark cloud emanates from you hand and swirls around the plasteel, transforming it into runed metal!"))
+				to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的塑钢，将其转化成了符文金属!"))
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(istype(target,/mob/living/silicon/robot))
 			var/mob/living/silicon/robot/candidate = target
 			if(candidate.mmi || candidate.shell)
 				channeling = TRUE
-				user.visible_message(span_danger("A dark cloud emanates from [user]'s hand and swirls around [candidate]!"))
+				user.visible_message(span_danger("黑气从[user]的手中散发出来，蒙住了[candidate]!"))
 				playsound(T, 'sound/machines/airlock_alien_prying.ogg', 80, TRUE)
 				var/prev_color = candidate.color
 				candidate.color = "black"
@@ -600,7 +600,7 @@
 						channeling = FALSE
 						return
 					candidate.grab_ghost()
-					user.visible_message(span_danger("The dark cloud recedes from what was formerly [candidate], revealing a\n [construct_class]!"))
+					user.visible_message(span_danger("[candidate]上的黑气退散，[construct_class]显露出来!"))
 					make_new_construct_from_class(construct_class, THEME_CULT, candidate, user, FALSE, T)
 					uses--
 					qdel(candidate)
@@ -611,7 +611,7 @@
 					return
 			else
 				uses--
-				to_chat(user, span_warning("A dark cloud emanates from you hand and swirls around [candidate] - twisting it into a construct shell!"))
+				to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的[candidate] - 正将其扭曲成建筑者!"))
 				new /obj/structure/constructshell(T)
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 				qdel(candidate)
@@ -625,7 +625,7 @@
 					return
 				target.narsie_act()
 				uses--
-				user.visible_message(span_warning("Black ribbons suddenly emanate from [user]'s hand and cling to the airlock - twisting and corrupting it!"))
+				user.visible_message(span_warning("黑气从[user]蜿蜒而出，伸向了气闸门 - 正将其扭曲并腐化!"))
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 				channeling = FALSE
 			else
@@ -635,10 +635,10 @@
 			var/obj/item/soulstone/candidate = target
 			if(candidate.corrupt())
 				uses--
-				to_chat(user, span_warning("You corrupt [candidate]!"))
+				to_chat(user, span_warning("你腐化了[candidate]!"))
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else
-			to_chat(user, span_warning("The spell will not work on [target]!"))
+			to_chat(user, span_warning("法术对[target]不起作用!"))
 			return
 		return . | ..()
 
@@ -652,8 +652,8 @@
 
 //Armor: Gives the target (cultist) a basic cultist combat loadout
 /obj/item/melee/blood_magic/armor
-	name = "Arming Aura"
-	desc = "Will equip cult combat gear onto a cultist on contact."
+	name = "唤装法气"
+	desc = "给接触到的血教徒换上战斗装备."
 	color = "#33cc33" // green
 
 /obj/item/melee/blood_magic/armor/afterattack(atom/target, mob/living/carbon/user, proximity)
@@ -661,7 +661,7 @@
 	if(istype(carbon_target) && IS_CULTIST(carbon_target) && proximity)
 		uses--
 		var/mob/living/carbon/C = target
-		C.visible_message(span_warning("Otherworldly armor suddenly appears on [C]!"))
+		C.visible_message(span_warning("异界的盔甲突然出现在了[C]身上!"))
 		C.equip_to_slot_or_del(new /obj/item/clothing/under/color/black,ITEM_SLOT_ICLOTHING)
 		C.equip_to_slot_or_del(new /obj/item/clothing/suit/hooded/cultrobes/alt(user), ITEM_SLOT_OCLOTHING)
 		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult/alt(user), ITEM_SLOT_FEET)
@@ -673,51 +673,51 @@
 		..()
 
 /obj/item/melee/blood_magic/manipulator
-	name = "Blood Rite Aura"
-	desc = "Absorbs blood from anything you touch. Touching cultists and constructs can heal them. Use in-hand to cast an advanced rite."
+	name = "血仪式法气"
+	desc = "通过触摸吸取任何血液. 触摸血教徒和建筑对其进行治疗. 在手中使用则释放高级仪式."
 	color = "#7D1717"
 
 /obj/item/melee/blood_magic/manipulator/examine(mob/user)
 	. = ..()
-	. += "Bloody halberd, blood bolt barrage, and blood beam cost [BLOOD_HALBERD_COST], [BLOOD_BARRAGE_COST], and [BLOOD_BEAM_COST] charges respectively."
+	. += "血戟，血弹幕和血激流分别消耗[BLOOD_HALBERD_COST]，[BLOOD_BARRAGE_COST]和[BLOOD_BEAM_COST]的费用."
 
 /obj/item/melee/blood_magic/manipulator/afterattack(atom/target, mob/living/carbon/human/user, proximity)
 	if(proximity)
 		if(ishuman(target))
 			var/mob/living/carbon/human/human_bloodbag = target
 			if(HAS_TRAIT(human_bloodbag, TRAIT_NOBLOOD))
-				to_chat(user,span_warning("Blood rites do not work on people with no blood!"))
+				to_chat(user,span_warning("没有血液，血仪式无法发动!"))
 				return
 			if(IS_CULTIST(human_bloodbag))
 				if(human_bloodbag.stat == DEAD)
-					to_chat(user,span_warning("Only a revive rune can bring back the dead!"))
+					to_chat(user,span_warning("只有复活符文才能起死回生!"))
 					return
 				if(human_bloodbag.blood_volume < BLOOD_VOLUME_SAFE)
 					var/restore_blood = BLOOD_VOLUME_SAFE - human_bloodbag.blood_volume
 					if(uses*2 < restore_blood)
 						human_bloodbag.blood_volume += uses*2
-						to_chat(user,span_danger("You use the last of your blood rites to restore what blood you could!"))
+						to_chat(user,span_danger("你用最后的血仪式来恢复你自身的血液!"))
 						uses = 0
 						return ..()
 					else
 						human_bloodbag.blood_volume = BLOOD_VOLUME_SAFE
 						uses -= round(restore_blood/2)
-						to_chat(user,span_warning("Your blood rites have restored [human_bloodbag == user ? "your" : "[human_bloodbag.p_their()]"] blood to safe levels!"))
+						to_chat(user,span_warning("你的血仪式恢复了目标血液到安全水平!"))
 				var/overall_damage = human_bloodbag.getBruteLoss() + human_bloodbag.getFireLoss() + human_bloodbag.getToxLoss() + human_bloodbag.getOxyLoss()
 				if(overall_damage == 0)
-					to_chat(user,span_cult("That cultist doesn't require healing!"))
+					to_chat(user,span_cult("这名血教徒不需要治疗!"))
 				else
 					var/ratio = uses/overall_damage
 					if(human_bloodbag == user)
-						to_chat(user,span_cult("<b>Your blood healing is far less efficient when used on yourself!</b>"))
+						to_chat(user,span_cult("<b>对自己使用时，血仪式的治疗效率很低!</b>"))
 						ratio *= 0.35 // Healing is half as effective if you can't perform a full heal
 						uses -= round(overall_damage) // Healing is 65% more "expensive" even if you can still perform the full heal
 					if(ratio>1)
 						ratio = 1
 						uses -= round(overall_damage)
-						human_bloodbag.visible_message(span_warning("[human_bloodbag] is fully healed by [human_bloodbag == user ? "[human_bloodbag.p_their()]":"[human_bloodbag]'s"] blood magic!"))
+						human_bloodbag.visible_message(span_warning("[human_bloodbag]被自己的血魔法完全治愈了!"))
 					else
-						human_bloodbag.visible_message(span_warning("[human_bloodbag] is partially healed by [human_bloodbag == user ? "[human_bloodbag.p_their()]":"[human_bloodbag]'s"] blood magic."))
+						human_bloodbag.visible_message(span_warning("[human_bloodbag]被自己的血魔法部分治愈了."))
 						uses = 0
 					ratio *= -1
 					var/need_mob_update = FALSE
@@ -732,21 +732,21 @@
 					user.Beam(human_bloodbag, icon_state="sendbeam", time = 15)
 			else
 				if(human_bloodbag.stat == DEAD)
-					to_chat(user,span_warning("[human_bloodbag.p_Their()] blood has stopped flowing, you'll have to find another way to extract it."))
+					to_chat(user,span_warning("目标的血液已经停止流动了，你得另想办法将血提取出来."))
 					return
 				if(human_bloodbag.has_status_effect(/datum/status_effect/speech/slurring/cult))
-					to_chat(user,span_danger("[human_bloodbag.p_Their()] blood has been tainted by an even stronger form of blood magic, it's no use to us like this!"))
+					to_chat(user,span_danger("目标的血液已经被另一种更强大的血魔法污染了，这种血我们无法利用!"))
 					return
 				if(human_bloodbag.blood_volume > BLOOD_VOLUME_SAFE)
 					human_bloodbag.blood_volume -= 100
 					uses += 50
 					user.Beam(human_bloodbag, icon_state="drainbeam", time = 1 SECONDS)
 					playsound(get_turf(human_bloodbag), 'sound/magic/enter_blood.ogg', 50)
-					human_bloodbag.visible_message(span_danger("[user] drains some of [human_bloodbag]'s blood!"))
-					to_chat(user,span_cultitalic("Your blood rite gains 50 charges from draining [human_bloodbag]'s blood."))
+					human_bloodbag.visible_message(span_danger("[user]吸收了一些[human_bloodbag]的血液!"))
+					to_chat(user,span_cultitalic("你吸取了[human_bloodbag]的血液，血仪式获得了50点的可消耗费用."))
 					new /obj/effect/temp_visual/cult/sparks(get_turf(human_bloodbag))
 				else
-					to_chat(user,span_warning("[human_bloodbag.p_Theyre()] missing too much blood - you cannot drain [human_bloodbag.p_them()] further!"))
+					to_chat(user,span_warning("目标失血太多 - 你没法再吸了!"))
 					return
 		if(isconstruct(target))
 			var/mob/living/simple_animal/construct_thing = target
@@ -754,11 +754,11 @@
 			if(missing_health)
 				if(uses > missing_health)
 					construct_thing.adjustHealth(-missing_health)
-					construct_thing.visible_message(span_warning("[construct_thing] is fully healed by [user]'s blood magic!"))
+					construct_thing.visible_message(span_warning("[construct_thing]被[user]的血魔法完全修补好了!"))
 					uses -= missing_health
 				else
 					construct_thing.adjustHealth(-uses)
-					construct_thing.visible_message(span_warning("[construct_thing] is partially healed by [user]'s blood magic!"))
+					construct_thing.visible_message(span_warning("[construct_thing]被[user]的血魔法部分修补好了!"))
 					uses = 0
 				playsound(get_turf(construct_thing), 'sound/magic/staff_healing.ogg', 25)
 				user.Beam(construct_thing, icon_state="sendbeam", time = 1 SECONDS)
@@ -787,24 +787,24 @@
 			user.Beam(our_turf,icon_state="drainbeam", time = 15)
 			new /obj/effect/temp_visual/cult/sparks(get_turf(user))
 			playsound(our_turf, 'sound/magic/enter_blood.ogg', 50)
-			to_chat(user, span_cultitalic("Your blood rite has gained [round(blood_to_gain)] charge\s from blood sources around you!"))
+			to_chat(user, span_cultitalic("你的血仪式从周围获取了[round(blood_to_gain)]点可消耗费用!"))
 			uses += max(1, round(blood_to_gain))
 
 /obj/item/melee/blood_magic/manipulator/attack_self(mob/living/user)
 	if(IS_CULTIST(user))
 		var/static/list/spells = list(
-			"Bloody Halberd (150)" = image(icon = 'icons/obj/weapons/spear.dmi', icon_state = "occultpoleaxe0"),
-			"Blood Bolt Barrage (300)" = image(icon = 'icons/obj/weapons/guns/ballistic.dmi', icon_state = "arcane_barrage"),
-			"Blood Beam (500)" = image(icon = 'icons/obj/weapons/hand.dmi', icon_state = "disintegrate")
+			"血戟 (150)" = image(icon = 'icons/obj/weapons/spear.dmi', icon_state = "occultpoleaxe0"),
+			"血弹幕 (300)" = image(icon = 'icons/obj/weapons/guns/ballistic.dmi', icon_state = "arcane_barrage"),
+			"血激流 (500)" = image(icon = 'icons/obj/weapons/hand.dmi', icon_state = "disintegrate")
 			)
 		var/choice = show_radial_menu(user, src, spells, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE)
 		if(!check_menu(user))
-			to_chat(user, span_cultitalic("You decide against conducting a greater blood rite."))
+			to_chat(user, span_cultitalic("你决定不施展更大的血仪式."))
 			return
 		switch(choice)
-			if("Bloody Halberd (150)")
+			if("血戟 (150)")
 				if(uses < BLOOD_HALBERD_COST)
-					to_chat(user, span_cultitalic("You need [BLOOD_HALBERD_COST] charges to perform this rite."))
+					to_chat(user, span_cultitalic("你需要[BLOOD_HALBERD_COST]费用来施展该仪式."))
 				else
 					uses -= BLOOD_HALBERD_COST
 					var/turf/current_position = get_turf(user)
@@ -814,38 +814,38 @@
 					halberd_act_granted.Grant(user, rite)
 					rite.halberd_act = halberd_act_granted
 					if(user.put_in_hands(rite))
-						to_chat(user, span_cultitalic("A [rite.name] appears in your hand!"))
+						to_chat(user, span_cultitalic("一把[rite.name]出现在你的手中!"))
 					else
-						user.visible_message(span_warning("A [rite.name] appears at [user]'s feet!"), \
-							span_cultitalic("A [rite.name] materializes at your feet."))
-			if("Blood Bolt Barrage (300)")
+						user.visible_message(span_warning("一把[rite.name]出现在[user]的脚下!"), \
+							span_cultitalic("一把[rite.name]出现在你的脚下."))
+			if("血弹幕 (300)")
 				if(uses < BLOOD_BARRAGE_COST)
-					to_chat(user, span_cultitalic("You need [BLOOD_BARRAGE_COST] charges to perform this rite."))
+					to_chat(user, span_cultitalic("你需要[BLOOD_BARRAGE_COST]费用来施展该仪式."))
 				else
 					var/obj/rite = new /obj/item/gun/magic/wand/arcane_barrage/blood()
 					uses -= BLOOD_BARRAGE_COST
 					qdel(src)
 					if(user.put_in_hands(rite))
-						to_chat(user, span_cult("<b>Your hands glow with power!</b>"))
+						to_chat(user, span_cult("<b>你的手汇聚了力量!</b>"))
 					else
-						to_chat(user, span_cultitalic("You need a free hand for this rite!"))
+						to_chat(user, span_cultitalic("你需要空闲的手来完成仪式!"))
 						qdel(rite)
-			if("Blood Beam (500)")
+			if("血激流 (500)")
 				if(uses < BLOOD_BEAM_COST)
-					to_chat(user, span_cultitalic("You need [BLOOD_BEAM_COST] charges to perform this rite."))
+					to_chat(user, span_cultitalic("你需要[BLOOD_BEAM_COST]费用来施展该仪式."))
 				else
 					var/obj/rite = new /obj/item/blood_beam()
 					uses -= BLOOD_BEAM_COST
 					qdel(src)
 					if(user.put_in_hands(rite))
-						to_chat(user, span_cultlarge("<b>Your hands glow with POWER OVERWHELMING!!!</b>"))
+						to_chat(user, span_cultlarge("<b>你的手汇聚了千钧般的力量!!!</b>"))
 					else
-						to_chat(user, span_cultitalic("You need a free hand for this rite!"))
+						to_chat(user, span_cultitalic("你需要空闲的手来完成仪式!"))
 						qdel(rite)
 
 /obj/item/melee/blood_magic/manipulator/proc/check_menu(mob/living/user)
 	if(!istype(user))
-		CRASH("The Blood Rites manipulator radial menu was accessed by something other than a valid user.")
+		CRASH("The 血仪式 manipulator radial menu was accessed by something other than a valid user.")
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE

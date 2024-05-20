@@ -27,7 +27,7 @@
 		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
 			target_candidates += player.mind
 	if(target_candidates.len == 0)
-		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
+		message_admins("血教献祭: 找不到不可转换目标，检查可转换目标.")
 		for(var/mob/living/carbon/human/player in GLOB.player_list)
 			// SKYRAT EDIT ADDITION START - Players in the interlink can't be obsession targets
 			if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
@@ -45,7 +45,7 @@
 		RegisterSignal(target.current, COMSIG_QDELETING, PROC_REF(on_target_body_del))
 		RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
 	else
-		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
+		message_admins("血教献祭: 找不到不可转化和可转化目标. WELP!")
 		sacced = TRUE // Prevents another hypothetical softlock. This basically means every PC is a cultist.
 	if(!sacced)
 		cult.make_image(src)
@@ -86,9 +86,9 @@
 
 /datum/objective/sacrifice/update_explanation_text()
 	if(target)
-		explanation_text = "Sacrifice [target], the [target.assigned_role.title] via invoking an Offer rune with [target.p_them()] on it and three acolytes around it."
+		explanation_text = "献祭[target]，[target.assigned_role.title]，将其放在一个供给符文上激活，并有三个教徒围在周围."
 	else
-		explanation_text = "The veil has already been weakened here, proceed to the final objective."
+		explanation_text = "这里的帷幕已经被削弱了，进入最终目标."
 
 /datum/objective/eldergod
 	var/summoned = FALSE
@@ -106,7 +106,7 @@
 	update_explanation_text()
 
 /datum/objective/eldergod/update_explanation_text()
-	explanation_text = "Summon Nar'Sie by invoking the rune 'Summon Nar'Sie'. The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin."
+	explanation_text = "通过激活'召唤Nar'Sie'符文召唤Nar'Sie. 召唤只能在[english_list(summon_spots)]中完成 - 那里的帷幕足够弱."
 
 /datum/objective/eldergod/check_completion()
 	if(killed)

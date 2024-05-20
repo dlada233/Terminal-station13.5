@@ -42,7 +42,7 @@
 
 /datum/antagonist/nukeop/leader/clownop
 	name = "小丑特工队长"
-	roundend_category = "clown operatives"
+	roundend_category = "小丑特工"
 	antagpanel_category = ANTAG_GROUP_CLOWNOPS
 	nukeop_outfit = /datum/outfit/syndicate/clownop/leader
 	challengeitem = /obj/item/nuclear_challenge/clownops
