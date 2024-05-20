@@ -1,8 +1,8 @@
 //Shuttle equipment
 
 /obj/machinery/shuttle_scrambler
-	name = "Data Siphon"
-	desc = "This heap of machinery steals credits and data from unprotected systems and locks down cargo shuttles."
+	name = "数据抽取"
+	desc = "这台机器从无防护的系统中窃取信用点和数据，同时还锁定货运穿梭机."
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	density = TRUE
@@ -34,17 +34,17 @@
 ///Turns on the siphoning, and its various side effects
 /obj/machinery/shuttle_scrambler/proc/toggle_on(mob/user)
 	SSshuttle.registerTradeBlockade(src)
-	AddComponent(/datum/component/gps, "Nautical Signal")
+	AddComponent(/datum/component/gps, "航用信号")
 	active = TRUE
-	to_chat(user,span_notice("You toggle [src] [active ? "on":"off"]."))
-	to_chat(user,span_warning("The scrambling signal can now be tracked by GPS."))
+	to_chat(user,span_notice("你[active ? "启动":"关闭"]了[src]."))
+	to_chat(user,span_warning("扰频信号现在可以被GPS追踪."))
 	START_PROCESSING(SSobj,src)
 
 /obj/machinery/shuttle_scrambler/interact(mob/user)
 	if(active)
 		dump_loot(user)
 		return
-	var/scramble_response = tgui_alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", list("Yes", "Cancel"))
+	var/scramble_response = tgui_alert(user, "打开扰频器会让飞船可以被GPS追踪，你确定要这么做吗？", "扰频器", list("Yes", "Cancel"))
 	if(scramble_response != "Yes")
 		return
 	if(active || !user.can_perform_action(src))
@@ -66,14 +66,14 @@
 /obj/machinery/shuttle_scrambler/proc/dump_loot(mob/user)
 	if(credits_stored) // Prevents spamming empty holochips
 		new /obj/item/holochip(drop_location(), credits_stored)
-		to_chat(user,span_notice("You retrieve the siphoned credits!"))
+		to_chat(user,span_notice("你找回了被窃走的信用点!"))
 		credits_stored = 0
 	else
-		to_chat(user,span_notice("There's nothing to withdraw."))
+		to_chat(user,span_notice("无钱可提."))
 
 /// Alerts the crew about the siphon
 /obj/machinery/shuttle_scrambler/proc/send_notification()
-	priority_announce("Data theft signal detected; source registered on local GPS units.")
+	priority_announce("检测到数据窃取信号，信号源已在本地GPS单位上标注.")
 
 /// Switches off the siphon
 /obj/machinery/shuttle_scrambler/proc/toggle_off(mob/user)
@@ -90,7 +90,7 @@
 	return ..()
 
 /obj/machinery/computer/shuttle/pirate
-	name = "pirate shuttle console"
+	name = "海盗穿梭机终端"
 	shuttleId = "pirate"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
@@ -98,8 +98,8 @@
 	possible_destinations = "pirate_away;pirate_home;pirate_custom"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate
-	name = "pirate shuttle navigation computer"
-	desc = "Used to designate a precise transit location for the pirate shuttle."
+	name = "海盗穿梭机导航计算机"
+	desc = "用来指定海盗穿梭机的精确位点."
 	shuttleId = "pirate"
 	lock_override = CAMERA_LOCK_STATION
 	shuttlePortId = "pirate_custom"
@@ -108,7 +108,7 @@
 	see_hidden = FALSE
 
 /obj/docking_port/mobile/pirate
-	name = "pirate shuttle"
+	name = "海盗穿梭机"
 	shuttle_id = "pirate"
 	rechargeTime = 3 MINUTES
 
@@ -119,8 +119,8 @@
 	storage_type = /obj/item/tank/internals/oxygen
 
 /obj/machinery/loot_locator
-	name = "Booty Locator"
-	desc = "This sophisticated machine scans the nearby space for items of value."
+	name = "战利品定位器"
+	desc = "这台精密的机器会扫描附近空间内的高价值物品."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	density = TRUE
@@ -129,13 +129,13 @@
 
 /obj/machinery/loot_locator/interact(mob/user)
 	if(!COOLDOWN_FINISHED(src, locate_cooldown))
-		balloon_alert_to_viewers("locator recharging!", vision_distance = 3)
+		balloon_alert_to_viewers("定位器充能中!", vision_distance = 3)
 		return
 	var/atom/movable/found_loot = find_random_loot()
 	if(!found_loot)
-		say("No valuables located. Try again later.")
+		say("未找到高价值物品，请稍后再试.")
 	else
-		say("Located: [found_loot.name] at [get_area_name(found_loot)]")
+		say("已定位: [found_loot.name] 于 [get_area_name(found_loot)]")
 
 	COOLDOWN_START(src, locate_cooldown, 10 SECONDS)
 
@@ -155,8 +155,8 @@
 
 /// Surgery disk for the space IRS (I don't know where to dump them anywhere else)
 /obj/item/disk/surgery/irs
-	name = "Advanced Surgery Disk"
-	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
+	name = "先进手术磁盘"
+	desc = "磁盘内包含先进手术程序，需要插入手术控制台以使用."
 	surgeries = list(
 		/datum/surgery/advanced/lobotomy,
 		/datum/surgery/advanced/bioware/vein_threading,
@@ -168,7 +168,7 @@
 
 //Pad & Pad Terminal
 /obj/machinery/piratepad
-	name = "cargo hold pad"
+	name = "货运板"
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "lpad-idle-off"
 	///This is the icon_state that this telepad uses when it's not in use.
@@ -184,7 +184,7 @@
 	. = ..()
 	if (istype(I))
 		I.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
+		balloon_alert(user, "已保存到多功能工具缓存区内")
 		return TRUE
 
 /obj/machinery/piratepad/screwdriver_act_secondary(mob/living/user, obj/item/screwdriver/screw)
@@ -198,9 +198,9 @@
 	return TRUE
 
 /obj/machinery/computer/piratepad_control
-	name = "cargo hold control terminal"
+	name = "货运板控制终端"
 	///Message to display on the TGUI window.
-	var/status_report = "Ready for delivery."
+	var/status_report = "准备发货."
 	///Reference to the specific pad that the control computer is linked up to.
 	var/datum/weakref/pad_ref
 	///How long does it take to warmup the pad to teleport?
@@ -229,7 +229,7 @@
 /obj/machinery/computer/piratepad_control/multitool_act(mob/living/user, obj/item/multitool/I)
 	. = ..()
 	if (istype(I) && istype(I.buffer,/obj/machinery/piratepad))
-		to_chat(user, span_notice("You link [src] with [I.buffer] in [I] buffer."))
+		to_chat(user, span_notice("你将[src]连接到[I]的缓存区内."))
 		pad_ref = WEAKREF(I.buffer)
 		return TRUE
 
@@ -282,7 +282,7 @@
 	if(sending)
 		return
 
-	status_report = "Predicted value: "
+	status_report = "预估价值: "
 	var/value = 0
 	var/datum/export_report/report = new
 	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
@@ -312,7 +312,7 @@
 			continue
 		export_item_and_contents(item_on_pad, apply_elastic = FALSE, delete_unsold = FALSE, external_report = report, ignore_typecache = nosell_typecache)
 
-	status_report = "Sold: "
+	status_report = "已售出: "
 	var/value = 0
 	for(var/datum/export/exported_datum in report.total_amount)
 		var/export_text = exported_datum.total_printout(report,notes = FALSE) //Don't want nanotrasen messages, makes no sense here.
@@ -335,9 +335,9 @@
 	points += value
 
 	if(!value)
-		status_report += "Nothing"
+		status_report += "无"
 
-	pad.visible_message(span_notice("[pad] activates!"))
+	pad.visible_message(span_notice("[pad]启动!"))
 	flick(pad.sending_state,pad)
 	pad.icon_state = pad.idle_state
 	sending = FALSE
@@ -346,18 +346,18 @@
 /obj/machinery/computer/piratepad_control/proc/start_sending()
 	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
 	if(!pad)
-		status_report = "No pad detected. Build or link a pad."
-		pad.audible_message(span_notice("[pad] beeps."))
+		status_report = "未检测到对应货运板，建造或连接一台货运板."
+		pad.audible_message(span_notice("[pad]哔哔响."))
 		return
 	if(pad?.panel_open)
-		status_report = "Please screwdrive pad closed to send. "
-		pad.audible_message(span_notice("[pad] beeps."))
+		status_report = "请将螺丝拧紧后发送."
+		pad.audible_message(span_notice("[pad]哔哔响."))
 		return
 	if(sending)
 		return
 	sending = TRUE
-	status_report = "Sending... "
-	pad.visible_message(span_notice("[pad] starts charging up."))
+	status_report = "发送... "
+	pad.visible_message(span_notice("[pad]开始充能."))
 	pad.icon_state = pad.warmup_state
 	sending_timer = addtimer(CALLBACK(src, PROC_REF(send)),warmup_time, TIMER_STOPPABLE)
 
@@ -366,7 +366,7 @@
 	if(!sending)
 		return
 	sending = FALSE
-	status_report = "Ready for delivery."
+	status_report = "准备发货."
 	if(custom_report)
 		status_report = custom_report
 	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
@@ -379,7 +379,7 @@
 
 /datum/export/pirate/ransom
 	cost = 3000
-	unit_name = "hostage"
+	unit_name = "肉票"
 	export_types = list(/mob/living/carbon/human)
 
 /datum/export/pirate/ransom/find_loot()
@@ -403,7 +403,7 @@
 
 /datum/export/pirate/parrot
 	cost = 2000
-	unit_name = "alive parrot"
+	unit_name = "活鹦鹉"
 	export_types = list(/mob/living/basic/parrot)
 
 /datum/export/pirate/parrot/find_loot()
@@ -414,7 +414,7 @@
 
 /datum/export/pirate/cash
 	cost = 1
-	unit_name = "bills"
+	unit_name = "现金"
 	export_types = list(/obj/item/stack/spacecash)
 
 /datum/export/pirate/cash/get_amount(obj/exported_item)
@@ -423,7 +423,7 @@
 
 /datum/export/pirate/holochip
 	cost = 1
-	unit_name = "holochip"
+	unit_name = "信用芯片"
 	export_types = list(/obj/item/holochip)
 
 /datum/export/pirate/holochip/get_cost(atom/movable/exported_item)

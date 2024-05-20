@@ -115,7 +115,7 @@
 	material_drop = /obj/item/stack/sheet/mineral/abductor
 
 /obj/structure/door_assembly/door_assembly_abductor
-	name = "外星气阀门"
+	name = "外星气闸门"
 	icon = 'icons/obj/doors/airlocks/abductor/abductor_airlock.dmi'
 	base_name = "alien airlock"
 	overlays_file = 'icons/obj/doors/airlocks/abductor/overlays.dmi'

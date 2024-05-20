@@ -1,13 +1,13 @@
 /datum/disease/revblight
-	name = "Unnatural Wasting"
+	name = "非自然消耗病"
 	max_stages = 5
 	stage_prob = 5
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
-	cure_text = "Holy water or extensive rest."
-	spread_text = "A burst of unholy energy"
+	cure_text = "圣水或大量休息."
+	spread_text = "一阵不洁的能量爆发了"
 	cures = list(/datum/reagent/water/holywater)
 	cure_chance = 30 //higher chance to cure, because revenants are assholes
-	agent = "Unholy Forces"
+	agent = "不洁能量"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	disease_flags = CURABLE
 	spreading_modifier = 1
@@ -21,7 +21,7 @@
 		if(affected_mob.dna && affected_mob.dna.species)
 			affected_mob.dna.species.handle_mutant_bodyparts(affected_mob)
 			affected_mob.set_haircolor(null, override = TRUE)
-		to_chat(affected_mob, span_notice("You feel better."))
+		to_chat(affected_mob, span_notice("你感觉好些了."))
 	..()
 
 
@@ -36,7 +36,7 @@
 			cure()
 			return FALSE
 		if(SPT_PROB(1.5 * stage, seconds_per_tick))
-			to_chat(affected_mob, span_revennotice("You suddenly feel [pick("sick and tired", "disoriented", "tired and confused", "nauseated", "faint", "dizzy")]..."))
+			to_chat(affected_mob, span_revennotice("你突然感到[pick("又病又累", "迷失方向", "疲惫和困惑", "恶心", "虚弱", "头晕")]..."))
 			affected_mob.adjust_confusion(8 SECONDS)
 			need_mob_update += affected_mob.adjustStaminaLoss(20, updating_stamina = FALSE)
 			new /obj/effect/temp_visual/revenant(affected_mob.loc)
@@ -62,12 +62,12 @@
 		if(5)
 			if(!finalstage)
 				finalstage = TRUE
-				to_chat(affected_mob, span_revenbignotice("You feel like [pick("nothing's worth it anymore", "nobody ever needed your help", "nothing you did mattered", "everything you tried to do was worthless")]."))
+				to_chat(affected_mob, span_revenbignotice("你感觉好像[pick("什么都没意思了", "没有人需要你", "你所做的一切都毫无意义", "你所做的一切都毫无价值")]."))
 				affected_mob.adjustStaminaLoss(22.5 * seconds_per_tick, updating_stamina = FALSE)
 				new /obj/effect/temp_visual/revenant(affected_mob.loc)
 				if(affected_mob.dna && affected_mob.dna.species)
 					affected_mob.dna.species.handle_mutant_bodyparts(affected_mob,"#1d2953")
 					affected_mob.set_haircolor("#1d2953", override = TRUE)
-				affected_mob.visible_message(span_warning("[affected_mob] looks terrifyingly gaunt..."), span_revennotice("You suddenly feel like your skin is <i>wrong</i>..."))
+				affected_mob.visible_message(span_warning("[affected_mob]看起来憔悴至极..."), span_revennotice("你突然感觉你的皮肤有些<i>不对劲</i>..."))
 				affected_mob.add_atom_colour("#1d2953", TEMPORARY_COLOUR_PRIORITY)
 				addtimer(CALLBACK(src, PROC_REF(cure)), 10 SECONDS)

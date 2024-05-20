@@ -447,7 +447,7 @@
 		var/mob/living/carbon/human/human_victim = victim
 		species = span_notice("[human_victim.dna.species.name]")
 		if(human_victim.mind && human_victim.mind.has_antag_datum(/datum/antagonist/changeling))
-			species = span_warning("化身灵生命形式")
+			species = span_warning("化形生命形式")
 		var/obj/item/organ/internal/heart/gland/temp = locate() in human_victim.organs
 		if(temp)
 			helptext = span_warning("探测到实验性腺体!")

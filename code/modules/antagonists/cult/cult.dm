@@ -1,7 +1,7 @@
 /datum/antagonist/cult
-	name = "Cultist"
-	roundend_category = "cultists"
-	antagpanel_category = "Cult"
+	name = "血教徒"
+	roundend_category = "血教徒"
+	antagpanel_category = "血教"
 	antag_moodlet = /datum/mood_event/cult
 	suicide_cry = "FOR NAR'SIE!!"
 	preview_outfit = /datum/outfit/cultist
@@ -42,13 +42,13 @@
 		var/datum/action/innate/cult/blood_magic/magic = new(owner)
 		magic.Grant(current)
 
-	current.log_message("has been converted to the cult of Nar'Sie!", LOG_ATTACK, color="#960000")
+	current.log_message("皈依了Nar'Sie血教!", LOG_ATTACK, color="#960000")
 
 /datum/antagonist/cult/on_removal()
 	if(!silent)
-		owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!"), ignored_mobs = owner.current)
-		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
-		owner.current.log_message("has renounced the cult of Nar'Sie!", LOG_ATTACK, color="#960000")
+		owner.current.visible_message(span_deconversion_message("[owner.current]看起来只是回归到了旧信仰!"), ignored_mobs = owner.current)
+		to_chat(owner.current, span_userdanger("一道陌生白光闪过你的脑海，清除了几何血尊的腐化与你做为它仆人的全部记忆."))
+		owner.current.log_message("放弃了对Nar'Sie的崇拜!", LOG_ATTACK, color="#960000")
 
 	if(vote_ability)
 		QDEL_NULL(vote_ability)
@@ -60,7 +60,7 @@
 /datum/antagonist/cult/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current = owner.current || mob_override
-	handle_clown_mutation(current, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	handle_clown_mutation(current, mob_override ? null : "你所受的训练让你克服了小丑的本性，你可以在不伤害自己的情况下使用武器.")
 	current.faction |= FACTION_CULT
 	current.grant_language(/datum/language/narsie, source = LANGUAGE_CULTIST)
 
@@ -96,14 +96,14 @@
 
 /datum/antagonist/cult/on_mindshield(mob/implanter)
 	if(!silent)
-		to_chat(owner.current, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
+		to_chat(owner.current, span_warning("你感到有什么东西在干涉你的精神状态，但你抵抗住了!"))
 	return
 
 /datum/antagonist/cult/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has cult-ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has cult-ed [key_name(new_owner)].")
+	message_admins("[key_name_admin(admin)]让[key_name_admin(new_owner)]成为血教徒.")
+	log_admin("[key_name(admin)]让[key_name(new_owner)]成为血教徒.")
 
 /datum/antagonist/cult/admin_remove(mob/user)
 	silent = TRUE
@@ -111,14 +111,14 @@
 
 /datum/antagonist/cult/get_admin_commands()
 	. = ..()
-	.["Dagger"] = CALLBACK(src, PROC_REF(admin_give_dagger))
-	.["Dagger and Metal"] = CALLBACK(src, PROC_REF(admin_give_metal))
-	.["Remove Dagger and Metal"] = CALLBACK(src, PROC_REF(admin_take_all))
+	.["匕首"] = CALLBACK(src, PROC_REF(admin_give_dagger))
+	.["匕首与金属"] = CALLBACK(src, PROC_REF(admin_give_metal))
+	.["移除匕首与金属"] = CALLBACK(src, PROC_REF(admin_take_all))
 
 	if(is_cult_leader())
-		.["Demote From Leader"] = CALLBACK(src, PROC_REF(demote_from_leader))
+		.["撤去领袖地位"] = CALLBACK(src, PROC_REF(demote_from_leader))
 	else if(isnull(cult_team.cult_leader_datum))
-		.["Make Cult Leader"] = CALLBACK(src, PROC_REF(make_cult_leader))
+		.["给予领袖地位"] = CALLBACK(src, PROC_REF(make_cult_leader))
 
 /datum/antagonist/cult/get_team()
 	return cult_team
@@ -147,28 +147,28 @@
 	. += cult_give_item(/obj/item/melee/cultblade/dagger, H)
 	if(metal)
 		. += cult_give_item(/obj/item/stack/sheet/runed_metal/ten, H)
-	to_chat(owner, "These will help you start the cult on this station. Use them well, and remember - you are not the only one.</span>")
+	to_chat(owner, "这些东西可以帮助你在这个空间站上建立起血教，好好利用它们，记住你不是唯一一个这样做的人.</span>")
 
 ///Attempts to make a new item and put it in a potential inventory slot in the provided mob.
 /datum/antagonist/cult/proc/cult_give_item(obj/item/item_path, mob/living/carbon/human/mob)
 	var/item = new item_path(mob)
 	var/where = mob.equip_conspicuous_item(item)
 	if(!where)
-		to_chat(mob, span_userdanger("Unfortunately, you weren't able to get [item]. This is very bad and you should adminhelp immediately (press F1)."))
+		to_chat(mob, span_userdanger("很遗憾，你没有得到[item]. 这很糟糕并且你应该立刻adminhelp (按 F1)."))
 		return FALSE
 	else
-		to_chat(mob, span_danger("You have [item] in your [where]."))
+		to_chat(mob, span_danger("[item]在你的[where]里."))
 		if(where == "backpack")
 			mob.back.atom_storage?.show_contents(mob)
 		return TRUE
 
 /datum/antagonist/cult/proc/admin_give_dagger(mob/admin)
 	if(!equip_cultist(metal = FALSE))
-		to_chat(admin, span_danger("Spawning dagger failed!"))
+		to_chat(admin, span_danger("生成匕首失败!"))
 
 /datum/antagonist/cult/proc/admin_give_metal(mob/admin)
 	if (!equip_cultist(metal = TRUE))
-		to_chat(admin, span_danger("Spawning runed metal failed!"))
+		to_chat(admin, span_danger("生成符文金属失败!"))
 
 /datum/antagonist/cult/proc/admin_take_all(mob/admin)
 	var/mob/living/current = owner.current
@@ -201,14 +201,12 @@
 
 	for(var/datum/mind/cult_mind as anything in cult_team.members)
 		vote_ability.Remove(cult_mind.current)
-		to_chat(cult_mind.current, span_cultlarge("[owner.current] has won the cult's support and is now their master. \
-			Follow [owner.current.p_their()] orders to the best of your ability!"))
+		to_chat(cult_mind.current, span_cultlarge("[owner.current]赢得了血教徒们的支持，现在这个人是教主. \
+			尽你所能去完成[owner.current.p_their()]下达的命令!"))
 
-	to_chat(owner.current, span_cultlarge("<span class='warningplain'>You are the cult's Master</span>. \
-		As the cult's Master, you have a unique title and loud voice when communicating, are capable of marking \
-		targets, such as a location or a noncultist, to direct the cult to them, and, finally, you are capable of \
-		summoning the entire living cult to your location <b><i>once</i></b>. Use these abilities to direct the cult \
-		to victory at any cost."))
+	to_chat(owner.current, span_cultlarge("<span class='warningplain'>你是血教的教主</span>. \
+		作为血教教主，首先，你在群语时拥有独特的头衔与响亮的声音；其次，你能够标记目标指引教众，比如标记某地或某不信者；\
+		最后，你有<b><i>一次</i></b>召唤所有活着的血教成员到你位置的机会. 你要妥善使用这些能力，指引血教不惜一切代价取得胜利."))
 
 	return TRUE
 
@@ -236,7 +234,7 @@
 	for(var/datum/mind/cult_mind as anything in cult_team.members)
 		vote_ability.Grant(cult_mind.current)
 
-	to_chat(owner.current, span_cultlarge("You have been demoted from being the cult's Master, you are now an acolyte once more!"))
+	to_chat(owner.current, span_cultlarge("你已经从教主位置上被撤职了，你现在又成了教徒!"))
 
 	return TRUE
 
@@ -254,7 +252,7 @@
 	var/area/current_area = get_area(owner.current)
 	for(var/datum/mind/cult_mind as anything in cult_team.members)
 		SEND_SOUND(cult_mind, sound('sound/hallucinations/veryfar_noise.ogg'))
-		to_chat(cult_mind, span_cultlarge("The Cult's Master, [owner.current.name], has fallen in \the [current_area]!"))
+		to_chat(cult_mind, span_cultlarge("教主，[owner.current.name]，殁于[current_area]!"))
 
 /datum/antagonist/cult/get_preview_icon()
 	var/icon/icon = render_preview_outfit(preview_outfit)

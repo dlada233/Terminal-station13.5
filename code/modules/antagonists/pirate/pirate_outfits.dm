@@ -1,5 +1,5 @@
 /datum/outfit/pirate
-	name = "Space Pirate"
+	name = "太空海盗"
 
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/pirate
@@ -31,19 +31,19 @@
 		equipped.update_suit_sensors()
 
 /datum/outfit/pirate/captain
-	name = "Space Pirate Captain"
+	name = "太空海盗船长"
 
 	id_trim = /datum/id_trim/pirate/captain
 	head = /obj/item/clothing/head/costume/pirate/armored
 
 /datum/outfit/pirate/captain/skeleton
-	name = "Space Pirate Captain (Skeleton)"
+	name = "太空海盗船长 (骷髅)"
 
 	belt = /obj/item/gun/magic/midas_hand
 	l_pocket = /obj/item/coin/gold/doubloon
 
 /datum/outfit/pirate/space
-	name = "Space Pirate (EVA)"
+	name = "太空海盗 (EVA)"
 
 	suit = /obj/item/clothing/suit/space/pirate
 	suit_store = /obj/item/tank/internals/oxygen
@@ -51,12 +51,12 @@
 	mask = /obj/item/clothing/mask/breath
 
 /datum/outfit/pirate/space/captain
-	name = "Space Pirate Captain (EVA)"
+	name = "太空海盗船长 (EVA)"
 
 	head = /obj/item/clothing/head/helmet/space/pirate
 
 /datum/outfit/pirate/silverscale
-	name = "Silver Scale Member"
+	name = "银鳞成员"
 
 	id = /obj/item/card/id/advanced/silver
 	id_trim = /datum/id_trim/pirate/silverscale
@@ -68,7 +68,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 
 /datum/outfit/pirate/silverscale/captain
-	name = "Silver Scale Captain"
+	name = "银鳞船长"
 
 	id_trim = /datum/id_trim/pirate/captain/silverscale
 	head = /obj/item/clothing/head/costume/crown
@@ -76,7 +76,7 @@
 	l_pocket = /obj/item/lighter
 
 /datum/outfit/pirate/interdyne
-	name = "Ex-Interdyne Pharmacist"
+	name = "前Interdyne药剂师"
 
 	id = /obj/item/card/id/advanced/black
 	id_trim = /datum/id_trim/syndicom/Interdyne/pharmacist
@@ -90,12 +90,12 @@
 	l_pocket = /obj/item/card/emag/doorjack
 
 /datum/outfit/pirate/interdyne/captain
-	name = "Ex-Interdyne Senior Resident"
+	name = "前Interdyne高级医师"
 
 	id_trim = /datum/id_trim/syndicom/Interdyne/pharmacist_director
 
 /datum/outfit/pirate/grey
-	name = "The Grey Tide"
+	name = "灰潮"
 
 	id = /obj/item/card/id/advanced/chameleon
 	uniform = /obj/item/clothing/under/color/grey/ancient
@@ -109,7 +109,7 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen
 
 /datum/outfit/pirate/irs
-	name = "IRS Agent Outfit"
+	name = "国税局探员"
 	id = /obj/item/card/id/advanced
 	id_trim = /datum/id_trim/syndicom/irs
 	uniform = /obj/item/clothing/under/costume/buttondown/slacks
@@ -122,7 +122,7 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 
 /datum/outfit/pirate/irs/auditor
-	name = "IRS Head Auditor"
+	name = "国税局总审计负责人"
 	id_trim = /datum/id_trim/syndicom/irs/auditor
 	uniform = /obj/item/clothing/under/suit/charcoal
 	neck = /obj/item/clothing/neck/tie/red/tied
@@ -132,7 +132,7 @@
 	belt = /obj/item/storage/belt/holster/detective/full/ert
 
 /datum/outfit/pirate/lustrous
-	name = "Lustrous Scintillant"
+	name = "闪烁光耀者"
 
 	id = /obj/item/card/id/advanced/black
 	uniform = /obj/item/clothing/under/ethereal_tunic
@@ -143,7 +143,7 @@
 	l_pocket = /obj/item/switchblade
 
 /datum/outfit/pirate/lustrous/captain
-	name = "Lustrous Radiant"
+	name = "璀璨光耀者"
 
 	glasses = null
 	suit = /obj/item/clothing/suit/jacket/oversized

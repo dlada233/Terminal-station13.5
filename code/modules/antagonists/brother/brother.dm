@@ -1,12 +1,12 @@
 /datum/antagonist/brother
-	name = "\improper Brother"
-	antagpanel_category = "Brother"
+	name = "\improper 兄弟"
+	antagpanel_category = "兄弟"
 	job_rank = ROLE_BROTHER
 	var/special_role = ROLE_BROTHER
 	antag_hud_name = "brother"
 	hijack_speed = 0.5
 	ui_name = "AntagInfoBrother"
-	suicide_cry = "FOR MY BROTHER!!"
+	suicide_cry = "情同手足，肝胆相照!!"
 	antag_moodlet = /datum/mood_event/focused
 	hardcore_random_bonus = TRUE
 	VAR_PRIVATE
@@ -38,7 +38,7 @@
 			RegisterSignal(carbon_owner, COMSIG_MOB_SUCCESSFUL_FLASHED_CARBON, PROC_REF(on_mob_successful_flashed_carbon))
 
 			if (!is_first_brother)
-				to_chat(carbon_owner, span_boldwarning("The Syndicate have higher expectations from you than others. They have granted you an extra flash to convert one other person."))
+				to_chat(carbon_owner, span_boldwarning("辛迪加对你有比其他人更高的期望，他们额外给了你一个转变他人的机会."))
 
 	return ..()
 
@@ -56,19 +56,19 @@
 		return
 
 	if (flashed.stat != CONSCIOUS)
-		flashed.balloon_alert(source, "unconscious!")
+		flashed.balloon_alert(source, "失去意识!")
 		return
 
 	if (isnull(flashed.mind) || !GET_CLIENT(flashed))
-		flashed.balloon_alert(source, "[flashed.p_their()] mind is vacant!")
+		flashed.balloon_alert(source, "[flashed.p_their()]毫无神智可言!")
 		return
 
 	if (flashed.mind.has_antag_datum(/datum/antagonist/brother))
-		flashed.balloon_alert(source, "[flashed.p_theyre()] loyal to someone else!")
+		flashed.balloon_alert(source, "[flashed.p_theyre()]忠于他者!")
 		return
 
 	if (HAS_TRAIT(flashed, TRAIT_MINDSHIELD) || flashed.mind.assigned_role?.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-		flashed.balloon_alert(source, "[flashed.p_they()] resist!")
+		flashed.balloon_alert(source, "[flashed.p_they()]抵抗了!")
 		return
 
 	flashed.mind.add_antag_datum(/datum/antagonist/brother, team)

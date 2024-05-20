@@ -1,5 +1,5 @@
 /datum/antagonist/pyro_slime
-	name = "\improper Pyroclastic Anomaly"
+	name = "\improper 火山灰异常"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE
@@ -15,7 +15,7 @@
 	owner.announce_objectives()
 
 /datum/objective/pyro_slime
-	explanation_text = "All I know fire. I speak in tongues of flame. Why is everyone so cold?"
+	explanation_text = "火，只有火，我用火做的舌头说话...为什么大家都这样“冷漠”?"
 
 /datum/objective/pyro_slime/check_completion()
 	return owner.current.stat != DEAD

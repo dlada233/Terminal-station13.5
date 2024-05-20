@@ -14,8 +14,8 @@
 ///////////WIZARD
 
 /obj/item/antag_spawner/contract
-	name = "contract"
-	desc = "A magic contract previously signed by an apprentice. In exchange for instruction in the magical arts, they are bound to answer your call for aid."
+	name = "合同"
+	desc = "一份由你的学徒签署的魔法合同，规定了作为学习魔法的代价，他们必须响应你的请求."
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state ="scroll2"
 	var/polling = FALSE
@@ -25,7 +25,7 @@
 	if(!.)
 		return FALSE
 	if(polling)
-		balloon_alert(user, "already calling an apprentice!")
+		balloon_alert(user, "已经在呼叫徒弟了!")
 		return FALSE
 
 /obj/item/antag_spawner/contract/ui_interact(mob/user, datum/tgui/ui)
@@ -53,12 +53,12 @@
 	SStgui.close_uis(src)
 
 /obj/item/antag_spawner/contract/proc/poll_for_student(mob/living/carbon/human/teacher, apprentice_school)
-	balloon_alert(teacher, "contacting apprentice...")
+	balloon_alert(teacher, "联系学徒中...")
 	polling = TRUE
-	var/list/candidates = SSpolling.poll_ghost_candidates_for_mob("Do you want to play as a wizard's [apprentice_school] apprentice?", check_jobban = ROLE_WIZARD, role = ROLE_WIZARD, poll_time = 15 SECONDS, target_mob = src, pic_source = teacher, role_name_text = "wizard apprentice")
+	var/list/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演巫师的[apprentice_school]学徒吗?", check_jobban = ROLE_WIZARD, role = ROLE_WIZARD, poll_time = 15 SECONDS, target_mob = src, pic_source = teacher, role_name_text = "巫师学徒")
 	polling = FALSE
 	if(!LAZYLEN(candidates))
-		to_chat(teacher, span_warning("Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later."))
+		to_chat(teacher, span_warning("联系不到你的学徒!你可以使用合同击打魔法书来退还点数或者稍后重试."))
 		return
 	if(QDELETED(src) || used)
 		return
@@ -95,8 +95,8 @@
  * Device to request reinforcments from ghost pop
  */
 /obj/item/antag_spawner/nuke_ops
-	name = "syndicate operative beacon"
-	desc = "MI13 designed one-use radio for calling immediate backup. Have no regards for safety of whom it summons - they are all inferior clones from Interdyne's genebanks anyway."
+	name = "辛迪加行动信标"
+	desc = "MI13开发的增援呼叫装置. 不用考虑被呼叫者的安全 - 反正他们都来自Interdyne基因库的劣质克隆体."
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "nukietalkie"
 	var/borg_to_spawn
@@ -115,10 +115,10 @@
 
 /obj/item/antag_spawner/nuke_ops/proc/check_usability(mob/user)
 	if(used)
-		to_chat(user, span_warning("[src] is out of power!"))
+		to_chat(user, span_warning("[src]电力不足!"))
 		return FALSE
 	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
-		to_chat(user, span_danger("AUTHENTICATION FAILURE. ACCESS DENIED."))
+		to_chat(user, span_danger("认证失败. 拒绝访问."))
 		return FALSE
 	return TRUE
 
@@ -133,8 +133,8 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice("You activate [src] and wait for confirmation."))
-	var/list/nuke_candidates = SSpolling.poll_ghost_candidates("Do you want to play as a syndicate [borg_to_spawn ? "[lowertext(borg_to_spawn)] cyborg":"operative"]?", check_jobban = ROLE_OPERATIVE, role = ROLE_OPERATIVE, poll_time = 15 SECONDS, ignore_category = POLL_IGNORE_SYNDICATE, pic_source = src, role_name_text = "syndicate [borg_to_spawn ? "[borg_to_spawn] cyborg":"operative"]")
+	to_chat(user, span_notice("你激活[src]并等待确认信息."))
+	var/list/nuke_candidates = SSpolling.poll_ghost_candidates("你想要扮演一名辛迪加[borg_to_spawn ? "[lowertext(borg_to_spawn)]赛博":"行动队员"]吗?", check_jobban = ROLE_OPERATIVE, role = ROLE_OPERATIVE, poll_time = 15 SECONDS, ignore_category = POLL_IGNORE_SYNDICATE, pic_source = src, role_name_text = "辛迪加[borg_to_spawn ? "[borg_to_spawn]赛博":"行动队员"]")
 	if(LAZYLEN(nuke_candidates))
 		if(QDELETED(src) || !check_usability(user))
 			return
@@ -144,7 +144,7 @@
 		do_sparks(4, TRUE, src)
 		qdel(src)
 	else
-		to_chat(user, span_warning("Unable to connect to Syndicate command. Please wait and try again later or use the beacon on your uplink to get your points refunded."))
+		to_chat(user, span_warning("无法连通到辛迪加指挥部，请稍后再试或在上行链路上使用信标来退货."))
 
 /obj/item/antag_spawner/nuke_ops/spawn_antag(client/our_client, turf/T, kind, datum/mind/user)
 	var/mob/living/carbon/human/nukie = new()
@@ -170,8 +170,8 @@
 
 //////CLOWN OP
 /obj/item/antag_spawner/nuke_ops/clown
-	name = "clown operative beacon"
-	desc = "A single-use beacon designed to quickly launch reinforcement clown operatives into the field."
+	name = "小丑行动队员信标"
+	desc = "一次性的信标，用来快速地派遣增援小丑特工进入战场."
 	special_role_name = ROLE_CLOWN_OPERATIVE
 	outfit = /datum/outfit/syndicate/clownop/no_crystals
 	antag_datum = /datum/antagonist/nukeop/clownop
@@ -180,22 +180,22 @@
 
 //////SYNDICATE BORG
 /obj/item/antag_spawner/nuke_ops/borg_tele
-	name = "syndicate cyborg beacon"
-	desc = "A single-use beacon designed to quickly launch reinforcement cyborgs into the field."
+	name = "辛迪加赛博信标"
+	desc = "一次性的信标，用来快速地派遣增援赛博进入战场."
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "gangtool-red"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/assault
-	name = "syndicate assault cyborg beacon"
-	borg_to_spawn = "Assault"
+	name = "辛迪加突击赛博信标"
+	borg_to_spawn = "突击型"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/medical
-	name = "syndicate medical beacon"
-	borg_to_spawn = "Medical"
+	name = "辛迪加医疗赛博信标"
+	borg_to_spawn = "医疗型"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur
-	name = "syndicate saboteur beacon"
-	borg_to_spawn = "Saboteur"
+	name = "辛迪加武工赛博信标"
+	borg_to_spawn = "武工型"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	var/mob/living/silicon/robot/borg
@@ -204,9 +204,9 @@
 		return
 	var/obj/structure/closet/supplypod/pod = setup_pod()
 	switch(borg_to_spawn)
-		if("Medical")
+		if("医疗型")
 			borg = new /mob/living/silicon/robot/model/syndicate/medical()
-		if("Saboteur")
+		if("武工型")
 			borg = new /mob/living/silicon/robot/model/syndicate/saboteur()
 		else
 			borg = new /mob/living/silicon/robot/model/syndicate() //Assault borg by default
@@ -220,7 +220,7 @@
 	var/brainopsname = "[brainfirstname] [brainopslastname]"
 
 	borg.mmi.name = "[initial(borg.mmi.name)]: [brainopsname]"
-	borg.mmi.brain.name = "[brainopsname]'s brain"
+	borg.mmi.brain.name = "[brainopsname]的大脑"
 	borg.mmi.brainmob.real_name = brainopsname
 	borg.mmi.brainmob.name = brainopsname
 	borg.real_name = borg.name
@@ -230,42 +230,42 @@
 	var/datum/antagonist/nukeop/new_borg = new()
 	new_borg.send_to_spawnpoint = FALSE
 	borg.mind.add_antag_datum(new_borg,creator_op.nuke_team)
-	borg.mind.special_role = "Syndicate Cyborg"
+	borg.mind.special_role = "辛迪加赛博"
 	borg.forceMove(pod)
 	new /obj/effect/pod_landingzone(get_turf(src), pod)
 
 ///////////SLAUGHTER DEMON
 
 /obj/item/antag_spawner/slaughter_demon //Warning edgiest item in the game
-	name = "vial of blood"
-	desc = "A magically infused bottle of blood, distilled from countless murder victims. Used in unholy rituals to attract horrifying creatures."
+	name = "魔血瓶"
+	desc = "一瓶被魔法注入的血，从无数被谋杀的受害者身上提炼而成，一般用来在邪恶的仪式中吸引可怕的生物."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 
-	var/shatter_msg = span_notice("You shatter the bottle, no turning back now!")
-	var/veil_msg = span_warning("You sense a dark presence lurking just beyond the veil...")
+	var/shatter_msg = span_notice("你打碎了瓶子，你现在没有回头路可走了!")
+	var/veil_msg = span_warning("你感觉到一个黑暗的存在潜伏在面纱后面...")
 	var/mob/living/demon_type = /mob/living/basic/demon/slaughter
 
 /obj/item/antag_spawner/slaughter_demon/attack_self(mob/user)
 	if(!is_station_level(user.z))
-		to_chat(user, span_warning("You should probably wait until you reach the station."))
+		to_chat(user, span_warning("你也许应该等到空间站再说."))
 		return
 	if(used)
 		return
-	var/list/candidates = SSpolling.poll_ghost_candidates_for_mob("Do you want to play as a [initial(demon_type.name)]?", check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, poll_time = 5 SECONDS, target_mob = src, pic_source = src, role_name_text = initial(demon_type.name))
+	var/list/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演[initial(demon_type.name)]吗?", check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, poll_time = 5 SECONDS, target_mob = src, pic_source = src, role_name_text = initial(demon_type.name))
 	if(LAZYLEN(candidates))
 		if(used || QDELETED(src))
 			return
 		used = TRUE
 		var/mob/dead/observer/summoned = pick(candidates)
-		user.log_message("has summoned forth the [initial(demon_type.name)] (played by [key_name(summoned)]) using a [name].", LOG_GAME) // has to be here before we create antag otherwise we can't get the ckey of the demon
+		user.log_message("已经召唤出了[initial(demon_type.name)] (played by [key_name(summoned)]) using a [name].", LOG_GAME) // has to be here before we create antag otherwise we can't get the ckey of the demon
 		spawn_antag(summoned.client, get_turf(src), initial(demon_type.name), user.mind)
 		to_chat(user, shatter_msg)
 		to_chat(user, veil_msg)
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, TRUE)
 		qdel(src)
 	else
-		to_chat(user, span_warning("The bottle's contents usually pop and boil constantly, but right now they're eerily still and calm. Perhaps you should try again later."))
+		to_chat(user, span_warning("瓶子里的东西通常会不断地爆裂和沸腾，但现在却出奇地平静，也许你应该稍后再试."))
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	var/mob/living/basic/demon/spawned = new demon_type(T)
@@ -275,13 +275,13 @@
 	spawned.generate_antagonist_status()
 
 /obj/item/antag_spawner/slaughter_demon/laughter
-	name = "vial of tickles"
-	desc = "A magically infused bottle of clown love, distilled from countless hugging attacks. Used in funny rituals to attract adorable creatures."
+	name = "愉悦瓶"
+	desc = "一瓶魔法注入的小丑之爱，从无数次拥抱攻击中提炼出来，用于在有趣的仪式中吸引可爱的生物。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 	color = "#FF69B4" // HOT PINK
 
-	veil_msg = span_warning("You sense an adorable presence lurking just beyond the veil...")
+	veil_msg = span_warning("你感觉到一个可爱的存在潜伏在面纱后面...")
 	demon_type = /mob/living/basic/demon/slaughter/laughter
 
 /**
@@ -289,8 +289,8 @@
  */
 
 /obj/item/antag_spawner/loadout
-	name = "generic beacon"
-	desc = "A single-use beacon designed to quickly launch bad code into the field."
+	name = "通用信标"
+	desc = "一次性信标，可以快速将错误代码发射到现场."
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "walkietalkie"
 	/// The mob type to spawn.
@@ -312,11 +312,11 @@
 	/// What category to ignore the poll
 	var/poll_ignore_category = POLL_IGNORE_SYNDICATE
 	/// text given when device fails to secure candidates
-	var/fail_text = "Unable to connect to Syndicate command. Please wait and try again later or use the beacon on your uplink to get your points refunded."
+	var/fail_text = "无法连通到辛迪加指挥部，请稍后再试或在上行链路上使用信标来退货."
 
 /obj/item/antag_spawner/loadout/proc/check_usability(mob/user)
 	if(used)
-		to_chat(user, span_warning("[src] is out of power!"))
+		to_chat(user, span_warning("[src]电力不足!"))
 		return FALSE
 	return TRUE
 
@@ -331,8 +331,8 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice("You activate [src] and wait for confirmation."))
-	var/list/baddie_candidates = SSpolling.poll_ghost_candidates("Do you want to play as a [role_to_play]?", check_jobban = poll_role_check, role = poll_role_check, poll_time = 10 SECONDS, ignore_category = poll_ignore_category, pic_source = src, role_name_text = role_to_play)
+	to_chat(user, span_notice("你激活了[src]并等待确认信息."))
+	var/list/baddie_candidates = SSpolling.poll_ghost_candidates("你想要扮演[role_to_play]吗?", check_jobban = poll_role_check, role = poll_role_check, poll_time = 10 SECONDS, ignore_category = poll_ignore_category, pic_source = src, role_name_text = role_to_play)
 	if(!LAZYLEN(baddie_candidates))
 		to_chat(user, span_warning(fail_text))
 		return
@@ -374,8 +374,8 @@
 	new /obj/effect/pod_landingzone(get_turf(src), pod)
 
 /obj/item/antag_spawner/loadout/monkey_man
-	name = "monkey agent beacon"
-	desc = "Call up some backup from ARC for monkey mayhem."
+	name = "猴特工信标"
+	desc = "叫ARC的后援来制造猴子骚乱."
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "walkietalkie"
 	species_type = /datum/species/monkey
@@ -385,7 +385,7 @@
 	poll_role_check = ROLE_TRAITOR
 	role_to_play = ROLE_SYNDICATE_MONKEY
 	poll_ignore_category = POLL_IGNORE_SYNDICATE
-	fail_text = "Unable to connect to the Animal Rights Consortium's Banana Ops. Please wait and try again later or use the beacon on your uplink to get your points refunded."
+	fail_text = "无法连通到动物权利联盟的香蕉行动部，请稍后再试或在上行链路上使用信标来退货."
 
 /obj/item/antag_spawner/loadout/monkey_man/do_special_things(mob/living/carbon/human/monkey_man, mob/user)
 
@@ -407,7 +407,7 @@
 	imp.implant(monkey_man, user)
 
 /datum/outfit/syndicate_monkey
-	name = "Syndicate Monkey Agent Kit"
+	name = "辛迪加猴特工套装"
 
 	head = /obj/item/clothing/head/fedora
 	mask = /obj/item/clothing/mask/cigarette/syndicate
