@@ -2,7 +2,7 @@
  * A highly aggressive subset of shadowlings
  */
 /datum/species/shadow/nightmare
-	name = "Nightmare"
+	name = "梦魇"
 	id = SPECIES_NIGHTMARE
 	examine_limb_id = SPECIES_SHADOW
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE

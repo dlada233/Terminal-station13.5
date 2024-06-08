@@ -1,5 +1,5 @@
 /datum/antagonist/space_carp
-	name = "\improper Space Carp"
+	name = "\improper 太空鲤鱼"
 	antagpanel_category = ANTAG_GROUP_LEVIATHANS
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE
@@ -21,7 +21,7 @@
 	owner.announce_objectives()
 
 /datum/objective/space_carp
-	explanation_text = "Protect the rift to summon more carps."
+	explanation_text = "保护裂隙以召唤更多的鲤鱼."
 	var/datum/weakref/rift
 
 /datum/objective/space_carp/check_completion()

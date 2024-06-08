@@ -1,9 +1,9 @@
 /datum/antagonist/santa
-	name = "\improper Santa"
+	name = "\improper 圣诞老人"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
-	suicide_cry = "FOR CHRISTMAS!!"
+	suicide_cry = "圣诞节万岁!!"
 
 /datum/antagonist/santa/on_gain()
 	. = ..()
@@ -14,7 +14,7 @@
 
 /datum/antagonist/santa/greet()
 	. = ..()
-	to_chat(owner, span_boldannounce("Your objective is to bring joy to the people on this station. You have a magical bag, which generates presents as long as you have it! You can examine the presents to take a peek inside, to make sure that you give the right gift to the right person."))
+	to_chat(owner, span_boldannounce("你的目标是给这个空间站的大伙带来欢乐. 你有一个神奇的袋子，只要持有就会源源不断地生成礼物! 你可以检查一下礼物，看看里面是什么，以确保你把合适的礼物送给了合适的人."))
 
 /datum/antagonist/santa/proc/give_equipment()
 	var/mob/living/carbon/human/H = owner.current
@@ -27,7 +27,7 @@
 
 /datum/antagonist/santa/proc/give_objective()
 	var/datum/objective/santa_objective = new()
-	santa_objective.explanation_text = "Bring joy and presents to the station!"
+	santa_objective.explanation_text = "给空间站带来欢乐与礼物!"
 	santa_objective.completed = TRUE //lets cut our santas some slack.
 	santa_objective.owner = owner
 	objectives |= santa_objective

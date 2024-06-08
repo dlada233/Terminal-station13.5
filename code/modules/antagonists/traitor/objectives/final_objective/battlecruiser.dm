@@ -1,16 +1,15 @@
 /datum/traitor_objective/ultimate/battlecruiser
-	name = "Reveal Station Coordinates to nearby Syndicate Battlecruiser"
-	description = "Use a special upload card on a communications console to send the coordinates \
-	of the station to a nearby Battlecruiser. You may want to make your syndicate status known to \
-	the battlecruiser crew when they arrive - their goal will be to destroy the station."
+	name = "向附近的辛迪加战巡舰透露空间站坐标"
+	description = "使用一个特殊的上传卡片在通讯终端上发送空间站的坐标到附近的战巡舰.\
+	当战巡舰到达时，你可能需要向战巡舰船员表明你的辛迪加身份——因为他们的目标是摧毁整个空间站."
 
-	/// Checks whether we have sent the card to the traitor yet.
+	/// 检查我们是否已经将卡片发送给叛徒.
 	var/sent_accesscard = FALSE
-	/// Battlecruiser team that we get assigned to
+	/// 我们被分配到的战巡舰团队
 	var/datum/team/battlecruiser/team
 
 /datum/traitor_objective/ultimate/battlecruiser/generate_objective(datum/mind/generating_for, list/possible_duplicates)
-	// There's no empty space to load a battlecruiser in...
+	// 没有空余的空间来加载战巡舰...
 	if(SSmapping.is_planetary())
 		return FALSE
 
@@ -26,11 +25,10 @@
 	team.update_objectives()
 	handler.owner.add_antag_datum(/datum/antagonist/battlecruiser/ally, team)
 
-
 /datum/traitor_objective/ultimate/battlecruiser/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!sent_accesscard)
-		buttons += add_ui_button("", "Pressing this will materialize an upload card, which you can use on a communication console to contact the fleet.", "phone", "card")
+		buttons += add_ui_button("", "按下此按钮将生成一个上传卡片，你可以在通讯终端上使用它来联系舰队.", "phone", "card")
 	return buttons
 
 /datum/traitor_objective/ultimate/battlecruiser/ui_perform_action(mob/living/user, action)

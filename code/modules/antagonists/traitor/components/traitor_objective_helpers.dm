@@ -1,15 +1,15 @@
-/// Helper component that registers signals on an object
-/// This is not necessary to use and gives little control over the conditions
+/// 帮助组件，用于在对象上注册信号
+/// 使用这个组件并不是必须的，而且对条件的控制很少
 /datum/component/traitor_objective_register
 	dupe_mode = COMPONENT_DUPE_ALLOWED
 
-	/// The target to apply the succeed/fail signals onto
+	/// 要应用成功/失败信号的目标
 	var/datum/target
-	/// Signals to listen out for to automatically succeed the objective
+	/// 用于自动完成目标的信号
 	var/succeed_signals
-	/// Signals to listen out for to automatically fail the objective.
+	/// 用于自动失败目标的信号
 	var/fail_signals
-	/// Whether failing has a penalty
+	/// 失败是否有惩罚
 	var/penalty = 0
 
 /datum/component/traitor_objective_register/Initialize(datum/target, succeed_signals, fail_signals, penalty)

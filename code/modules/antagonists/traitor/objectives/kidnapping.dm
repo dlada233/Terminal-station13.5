@@ -1,7 +1,7 @@
 /datum/traitor_objective/target_player/kidnapping
-	name = "Kidnap %TARGET% the %JOB TITLE% and deliver them to %AREA%"
-	description = "%TARGET% holds extremely important information regarding secret NT projects - and you'll need to kidnap and deliver them to %AREA%, where our transport pod will be waiting. \
-		If %TARGET% is delivered alive, you will be rewarded with an additional %TC% telecrystals."
+	name = "绑架 %TARGET% %JOB TITLE% 并将其送到 %AREA%"
+	description = "%TARGET% 掌握着关于NT秘密项目的重要情报 - 你需要绑架并将其送到 %AREA%，我们的运输舱会在那里等待. \
+		如果 %TARGET% 活着送达，你还会得到额外的 %TC% TC奖励."
 
 	abstract_type = /datum/traitor_objective/target_player/kidnapping
 
@@ -187,7 +187,7 @@
 /datum/traitor_objective/target_player/kidnapping/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!pod_called)
-		buttons += add_ui_button("Call Extraction Pod", "Pressing this will call down an extraction pod.", "rocket", "call_pod")
+		buttons += add_ui_button("呼叫输送舱", "按下此按钮呼叫输送舱.", "rocket", "call_pod")
 	return buttons
 
 /datum/traitor_objective/target_player/kidnapping/ui_perform_action(mob/living/user, action)
@@ -200,11 +200,11 @@
 			var/area/target_area = get_area(target)
 
 			if(user_area.type != dropoff_area)
-				to_chat(user, span_warning("You must be in [initial(dropoff_area.name)] to call the extraction pod."))
+				to_chat(user, span_warning("你必须在[initial(dropoff_area.name)]内才能呼叫输送舱."))
 				return
 
 			if(target_area.type != dropoff_area)
-				to_chat(user, span_warning("[target.real_name] must be in [initial(dropoff_area.name)] for you to call the extraction pod."))
+				to_chat(user, span_warning("[target.real_name]必须位于[initial(dropoff_area.name)]内，你才能呼叫输送舱."))
 				return
 
 			call_pod(user)
@@ -241,7 +241,7 @@
 	if(cargo_account) //Just in case
 		cargo_account.adjust_money(-min(rand(1000, 3000), cargo_account.account_balance)) //Not so much, especially for competent cargo. Plus this can't be mass-triggered like it has been done with contractors
 
-	priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. As is policy we've taken a portion of the station's funds to offset the overall cost.", "Nanotrasen Asset Protection", has_important_message = TRUE)
+	priority_announce("你们的一名船员被敌对组织绑架 - 我们需要支付赎金以赎回他们. 按照政策，我们会从站点的资金中扣除一部分以补充总体费用. ", "纳米资产保护", has_important_message = TRUE)
 
 	addtimer(CALLBACK(src, PROC_REF(handle_target), sent_mob), 1.5 SECONDS)
 
@@ -266,9 +266,8 @@
 	sent_mob.adjust_dizzy(10 SECONDS)
 	sent_mob.set_eye_blur_if_lower(100 SECONDS)
 	sent_mob.dna.species.give_important_for_life(sent_mob) // so plasmamen do not get left for dead
-	to_chat(sent_mob, span_hypnophrase(span_reallybig("A million voices echo in your head... <i>\"Your mind held many valuable secrets - \
-		we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
-		so it's only a matter of time before we ship you back...\"</i>")))
+	to_chat(sent_mob, span_hypnophrase(span_reallybig("无数声音在你头脑中回荡... <i>\"你的头脑中藏有许多宝贵的秘密 - 我们感谢你提供它们. 你的价值已经耗尽，\
+				你将等待被赎回到你的站点. 我们总会得到赎金的，所以只是时间问题，...\"</i>")))
 
 /datum/traitor_objective/target_player/kidnapping/proc/return_target(mob/living/carbon/human/sent_mob)
 	if(!sent_mob || QDELETED(sent_mob)) //suicided and qdeleted themselves
@@ -283,8 +282,7 @@
 	if(!LAZYLEN(possible_turfs))
 		var/turf/new_turf = get_safe_random_station_turf()
 		if(!new_turf) //SOMEHOW
-			to_chat(sent_mob, span_hypnophrase(span_reallybig("A million voices echo in your head... <i>\"Seems where you got sent here from won't \
-				be able to handle our pod... You will die here instead.\"</i></span>")))
+			to_chat(sent_mob, span_hypnophrase(span_reallybig("无数声音在你头脑中回荡... \"看来你被送来的地方无法处理我们的返回舱... 你将会死在这里. \"</i></span>")))
 			if (sent_mob.can_heartattack())
 				sent_mob.set_heartattack(TRUE)
 			return
@@ -297,7 +295,7 @@
 	return_pod.style = STYLE_SYNDICATE
 
 	do_sparks(8, FALSE, sent_mob)
-	sent_mob.visible_message(span_notice("[sent_mob] vanishes!"))
+	sent_mob.visible_message(span_notice("[sent_mob]消失!"))
 	for(var/obj/item/belonging in sent_mob.gather_belongings())
 		if(belonging == sent_mob.get_item_by_slot(ITEM_SLOT_ICLOTHING) || belonging == sent_mob.get_item_by_slot(ITEM_SLOT_FEET))
 			continue

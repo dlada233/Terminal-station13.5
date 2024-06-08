@@ -1,48 +1,48 @@
 /datum/antagonist/space_dragon
-	name = "\improper Space Dragon"
-	roundend_category = "space dragons"
+	name = "\improper 太空龙"
+	roundend_category = "太空龙"
 	antagpanel_category = ANTAG_GROUP_LEVIATHANS
 	job_rank = ROLE_SPACE_DRAGON
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
-	/// All space carps created by this antagonist space dragon
+	/// 由此反派太空龙创建的所有太空鲤鱼
 	var/list/datum/mind/carp = list()
-	/// The innate ability to summon rifts
+	/// 召唤裂隙的内在能力
 	var/datum/action/innate/summon_rift/rift_ability
-	/// Current time since the the last rift was activated.  If set to -1, does not increment.
+	/// 自上次裂隙激活以来的当前时间. 如果设置为-1，则不递增.
 	var/riftTimer = 0
-	/// Maximum amount of time which can pass without a rift before Space Dragon despawns.
+	/// 在太空龙消失之前允许的最长时间，单位为秒.
 	var/maxRiftTimer = 300
-	/// A list of all of the rifts created by Space Dragon.  Used for setting them all to infinite carp spawn when Space Dragon wins, and removing them when Space Dragon dies.
+	/// 太空龙创建的所有裂隙的列表. 用于在太空龙获胜时将它们全部设置为无限的鲤鱼生成，以及在太空龙死亡时将它们移除.
 	var/list/obj/structure/carp_rift/rift_list = list()
-	/// How many rifts have been successfully charged
+	/// 成功充能的裂隙数量
 	var/rifts_charged = 0
-	/// Whether or not Space Dragon has completed their objective, and thus triggered the ending sequence.
+	/// 太空龙是否完成了其目标，从而触发了结束序列.
 	var/objective_complete = FALSE
-	/// What mob to spawn from ghosts using this dragon's rifts
+	/// 通过此龙的裂隙召唤的幽灵的生物
 	var/minion_to_spawn = /mob/living/basic/carp/advanced
-	/// What AI mobs to spawn from this dragon's rifts
+	/// 通过此龙的裂隙召唤的AI生物
 	var/ai_to_spawn = /mob/living/basic/carp
-	/// Wavespeak mind linker, to allow telepathy between dragon and carps
+	/// Wavespeak心灵链接器，允许太空龙与鲤鱼进行心灵交流
 	var/datum/component/mind_linker/wavespeak
-	/// What areas are we allowed to place rifts in?
+	/// 可以放置裂隙的区域列表
 	var/list/chosen_rift_areas = list()
 
 /datum/antagonist/space_dragon/greet()
 	. = ..()
-	to_chat(owner, "<b>Through endless time and space we have moved. We do not remember from where we came, we do not know where we will go.  All of space belongs to us.\n\
-					It is an empty void, of which our kind was the apex predator, and there was little to rival our claim to this title.\n\
-					But now, we find intruders spread out amongst our claim, willing to fight our teeth with magics unimaginable, their dens like lights flickering in the depths of space.\n\
-					Today, we will snuff out one of those lights.</b>")
-	to_chat(owner, span_boldwarning("You have five minutes to find a safe location to place down the first rift.  If you take longer than five minutes to place a rift, you will be returned from whence you came."))
+	to_chat(owner, "<b>我们已经跨越了无尽的时空，我们不记得来自何处，也不知道将去往何处，因为咫尺天涯不过一瞬. \n\
+					这片空旷的虚空中，我们曾屹立于食物链之巅，而极少有挑战者上前. \n\
+					然而时过境迁，入侵者如今分散在我们的领地中，想用费解的魔法对抗利齿，筑起闪烁星光的巢穴. \n\
+					但可知，星云变换也不过朝生暮死!</b>")
+	to_chat(owner, span_boldwarning("你有五分钟的时间找到一个安全的位置放置第一个裂隙. 超时将被送回原来的地方. "))
 	owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/magic/demon_attack1.ogg', 80)
 
 /datum/antagonist/space_dragon/forge_objectives()
 	var/static/list/area/allowed_areas
 	if(!allowed_areas)
-		// Areas that will prove a challeng for the dragon and are provocative to the crew.
+		// 对太空龙构成挑战且对船员具有挑衅性的区域.
 		allowed_areas = typecacheof(list(
 			/area/station/command,
 			/area/station/engineering,
@@ -80,11 +80,11 @@
 	RegisterSignal(antag, COMSIG_LIVING_LIFE, PROC_REF(rift_checks))
 	RegisterSignal(antag, COMSIG_LIVING_DEATH, PROC_REF(destroy_rifts))
 	antag.faction |= FACTION_CARP
-	// Give the ability over if we have one
+	// 如果有的话，赋予能力
 	rift_ability?.Grant(antag)
 	wavespeak = antag.AddComponent( \
 		/datum/component/mind_linker, \
-		network_name = "Wavespeak", \
+		network_name = "交流波", \
 		chat_color = "#635BAF", \
 		signals_which_destroy_us = list(COMSIG_LIVING_DEATH), \
 		speech_action_icon = 'icons/mob/actions/actions_space_dragon.dmi', \
@@ -124,10 +124,9 @@
 	wavespeak = null
 
 /**
- * Checks to see if we need to do anything with the current state of the dragon's rifts.
+ * 检查太空龙裂隙的当前状态是否需要进行任何操作.
  *
- * A simple update check which sees if we need to do anything based on the current state of the dragon's rifts.
- *
+ * 一个简单的更新检查，根据太空龙裂隙的当前状态判断是否需要进行任何操作.
  */
 /datum/antagonist/space_dragon/proc/rift_checks()
 	if((rifts_charged == 3 || (SSshuttle.emergency.mode == SHUTTLE_DOCKED && rifts_charged > 0)) && !objective_complete)
@@ -137,21 +136,21 @@
 		return
 	riftTimer = min(riftTimer + 1, maxRiftTimer + 1)
 	if(riftTimer == (maxRiftTimer - 60))
-		to_chat(owner.current, span_boldwarning("You have a minute left to summon the rift! Get to it!"))
+		to_chat(owner.current, span_boldwarning("你还有一分钟召唤裂隙的时间！抓紧时间！"))
 		return
 	if(riftTimer >= maxRiftTimer)
-		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You're being pulled back from whence you came!"))
+		to_chat(owner.current, span_boldwarning("你未能及时召唤裂隙！你被送回了原来的地方！"))
 		destroy_rifts()
 		SEND_SOUND(owner.current, sound('sound/magic/demon_dies.ogg'))
 		owner.current.death(/* gibbed = */ TRUE)
 		QDEL_NULL(owner.current)
 
 /**
- * Destroys all of Space Dragon's current rifts.
+ * 销毁太空龙当前的所有裂隙.
  *
- * QDeletes all the current rifts after removing their references to other objects.
- * Currently, the only reference they have is to the Dragon which created them, so we clear that before deleting them.
- * Currently used when Space Dragon dies or one of his rifts is destroyed.
+ * QDeletes所有当前的裂隙，之前移除它们与其他对象的引用.
+ * 目前，它们唯一的引用是创建它们的太空龙，因此我们在删除它们之前清除了该引用.
+ * 当太空龙死亡或其裂隙之一被销毁时当前使用.
  */
 /datum/antagonist/space_dragon/proc/destroy_rifts()
 	if(objective_complete)
@@ -168,31 +167,31 @@
 			QDEL_NULL(rift)
 
 /**
- * Sets up Space Dragon's victory for completing the objectives.
+ * 设置太空龙完成目标的胜利条件.
  *
- * Triggers when Space Dragon completes his objective.
- * Calls the shuttle with a coefficient of 3, making it impossible to recall.
- * Sets all of his rifts to allow for infinite sentient carp spawns
- * Also plays appropiate sounds and CENTCOM messages.
+ * 当太空龙完成他的目标时触发.
+ * 呼叫系数为3的穿梭，使其无法召回.
+ * 设置他的所有裂隙以允许无限产生有感知的鲤鱼.
+ * 同时播放适当的声音和CENTCOM消息.
  */
 /datum/antagonist/space_dragon/proc/victory()
 	objective_complete = TRUE
 	permanant_empower()
 	var/datum/objective/summon_carp/main_objective = locate() in objectives
 	main_objective?.completed = TRUE
-	priority_announce("A large amount of lifeforms have been detected approaching [station_name()] at extreme speeds. \
-		Remaining crew are advised to evacuate as soon as possible.", "[command_name()] Wildlife Observations", has_important_message = TRUE)
+	priority_announce("在[station_name()]上检测到了大量生命体以极高的速度接近. \
+		剩余船员被建议尽快撤离. ", "[command_name()] 野生动物监测", has_important_message = TRUE)
 	sound_to_playing_players('sound/creatures/space_dragon_roar.ogg', volume = 75)
 	for(var/obj/structure/carp_rift/rift as anything in rift_list)
 		rift.carp_stored = 999999
 		rift.time_charged = rift.max_charge
 
 /**
- * Gives Space Dragon their the rift speed buff permanantly and fully heals the user.
+ * 永久给予太空龙裂隙速度提升，并完全治愈用户.
  *
- * Gives Space Dragon the enraged speed buff from charging rifts permanantly.
- * Only happens in circumstances where Space Dragon completes their objective.
- * Also gives them a full heal.
+ * 永久给予太空龙从充能裂隙中获得的愤怒速度提升.
+ * 仅在太空龙完成他们的目标的情况下发生.
+ * 同时对其进行完全治愈.
  */
 /datum/antagonist/space_dragon/proc/permanant_empower()
 	owner.current.fully_heal()
@@ -200,10 +199,10 @@
 	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
 
 /**
- * Handles Space Dragon's temporary empowerment after boosting a rift.
+ * 在增强裂隙后处理太空龙的临时增强.
  *
- * Empowers and depowers Space Dragon after a successful rift charge.
- * Empowered, Space Dragon regains all his health and becomes temporarily faster for 30 seconds, along with being tinted red.
+ * 在成功充能裂隙后，给予太空龙力量，并在30秒内降低太空龙的力量.
+ * 在增强状态下，太空龙恢复所有健康，并在30秒内变得临时更快，同时呈现红色.
  */
 /datum/antagonist/space_dragon/proc/rift_empower()
 	owner.current.fully_heal()
@@ -212,18 +211,18 @@
 	addtimer(CALLBACK(src, PROC_REF(rift_depower)), 30 SECONDS)
 
 /**
- * Removes Space Dragon's rift speed buff.
+ * 移除太空龙的裂隙速度提升.
  *
- * Removes Space Dragon's speed buff from charging a rift.  This is only called
- * in rift_empower, which uses a timer to call this after 30 seconds.  Also
- * removes the red glow from Space Dragon which is synonymous with the speed buff.
+ * 移除太空龙从充能裂隙中获得的速度提升. 此方法仅在
+ * rift_empower中调用，该方法使用定时器在30秒后调用此方法.
+ * 同时从太空龙身上移除与速度提升相对应的红色发光.
  */
 /datum/antagonist/space_dragon/proc/rift_depower()
 	owner.current.remove_filter("anger_glow")
 	owner.current.remove_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
 
 /datum/objective/summon_carp
-	explanation_text = "Summon 3 rifts in order to flood the station with carp."
+	explanation_text = "召唤3个裂隙以让鲤鱼潮淹没空间站."
 
 /datum/objective/summon_carp/update_explanation_text()
 	var/datum/antagonist/space_dragon/dragon_owner = owner.has_antag_datum(/datum/antagonist/space_dragon)
@@ -235,13 +234,13 @@
 		converted_names += possible_area.get_original_area_name()
 
 	explanation_text = initial(explanation_text)
-	explanation_text += " Your possible rift locations are: [english_list(converted_names)]"
+	explanation_text += " 你可用的裂隙位置有：[english_list(converted_names)]"
 
 /datum/antagonist/space_dragon/roundend_report()
 	var/list/parts = list()
 	var/datum/objective/summon_carp/S = locate() in objectives
 	if(S.check_completion())
-		parts += "<span class='redtext big'>The [name] has succeeded! Station space has been reclaimed by the space carp!</span>"
+		parts += "<span class='redtext big'>[name]成功了！太空鲤鱼占领了空间站空间！</span>"
 	parts += printplayer(owner)
 	var/objectives_complete = TRUE
 	if(objectives.len)
@@ -251,19 +250,19 @@
 				objectives_complete = FALSE
 				break
 	if(objectives_complete)
-		parts += "<span class='greentext big'>The [name] was successful!</span>"
+		parts += "<span class='greentext big'>[name]成功了！</span>"
 	else
-		parts += "<span class='redtext big'>The [name] has failed!</span>"
+		parts += "<span class='redtext big'>[name]失败了！</span>"
 
 	if(length(carp))
-		parts += "<br><span class='header'>The [name] was assisted by:</span>"
+		parts += "<br><span class='header'>[name]受到以下帮助：</span>"
 		parts += "<ul class='playerlist'>"
 		var/list/players_to_carp_taken = list()
 		for(var/datum/mind/carpy as anything in carp)
 			players_to_carp_taken[carpy.key] += 1
 		var/list = ""
 		for(var/carp_user in players_to_carp_taken)
-			list += "<li><b>[carp_user]<b>, who played <b>[players_to_carp_taken[carp_user]]</b> space carps.</li>"
+			list += "<li><b>[carp_user]</b>总共玩了<b>[players_to_carp_taken[carp_user]]</b>只太空鲤鱼. </li>"
 		parts += list
 		parts += "</ul>"
 

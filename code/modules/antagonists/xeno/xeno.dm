@@ -6,17 +6,17 @@
 #define CAPTIVE_XENO_PASS "captive_xeno_escaped"
 
 /datum/team/xeno
-	name = "\improper Aliens"
+	name = "\improper 异形"
 
 //Simply lists them.
 /datum/team/xeno/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='header'>The [name] were:</span>"
+	parts += "<span class='header'>[name]是:</span>"
 	parts += printplayerlist(members)
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/antagonist/xeno
-	name = "\improper Xenomorph"
+	name = "\improper 异形"
 	job_rank = ROLE_ALIEN
 	show_in_antagpanel = FALSE
 	antagpanel_category = ANTAG_GROUP_XENOS
@@ -53,7 +53,7 @@
 	objectives += objective
 
 /datum/antagonist/xeno/captive
-	name = "\improper Captive Xenomorph"
+	name = "\improper 被囚禁的异形"
 	///Our associated antagonist team for captive xenomorphs
 	var/datum/team/xeno/captive/captive_team
 
@@ -84,7 +84,7 @@
 /datum/objective/escape_captivity
 
 /datum/objective/escape_captivity/New()
-	explanation_text = "Escape from captivity."
+	explanation_text = "逃离囚禁."
 
 /datum/objective/escape_captivity/check_completion()
 	if(!istype(get_area(owner), SScommunications.captivity_area))
@@ -93,14 +93,14 @@
 /datum/objective/advance_hive
 
 /datum/objective/advance_hive/New()
-	explanation_text = "Survive and advance the Hive."
+	explanation_text = "生存并发展巢穴."
 
 /datum/objective/advance_hive/check_completion()
 	return owner.current.stat != DEAD
 
 ///Captive Xenomorphs team
 /datum/team/xeno/captive
-	name = "\improper Captive Aliens"
+	name = "\improper 被囚禁的异形"
 	///The first member of this team, presumably the queen.
 	var/datum/mind/progenitor
 
@@ -109,12 +109,12 @@
 	var/escape_count = 0 //counts the number of xenomorphs that were born in captivity who ended the round outside of it
 	var/captive_count = 0 //counts the number of xenomorphs born in captivity who remained there until the end of the round (losers)
 
-	parts += "<span class='header'>The [name] were:</span> <br>"
+	parts += "<span class='header'>[name]是:</span> <br>"
 
 	if(check_captivity(progenitor))
-		parts += span_greentext("The progenitor of this hive was [progenitor.key], as [progenitor], who successfully escaped captivity!") + "<br>"
+		parts += span_greentext("巢穴的源兽是[progenitor.key]，作为[progenitor]，它成功逃离了囚禁!") + "<br>"
 	else
-		parts += span_redtext("The progenitor of this hive was [progenitor.key], as [progenitor], who failed to escape captivity") + "<br>"
+		parts += span_redtext("巢穴的源兽是[progenitor.key]，作为[progenitor]，它没能逃离囚禁!") + "<br>"
 
 	for(var/datum/mind/alien_mind in members)
 		if(alien_mind == progenitor)
@@ -122,23 +122,23 @@
 
 		switch(check_captivity(alien_mind.current))
 			if(CAPTIVE_XENO_DEAD)
-				parts += "[printplayer(alien_mind, fleecheck = FALSE)] while trying to escape captivity!"
+				parts += "[printplayer(alien_mind, fleecheck = FALSE)]正尝试逃离囚禁!"
 			if(CAPTIVE_XENO_FAIL)
-				parts += "[printplayer(alien_mind, fleecheck = FALSE)] in captivity!"
+				parts += "[printplayer(alien_mind, fleecheck = FALSE)]被囚禁中!"
 				captive_count++
 			if(CAPTIVE_XENO_PASS)
-				parts += "[printplayer(alien_mind, fleecheck = FALSE)] and managed to [span_greentext("escape captivity!")]"
+				parts += "[printplayer(alien_mind, fleecheck = FALSE)]成功[span_greentext("逃离囚禁!")]"
 				escape_count++
 
-	parts += "<br> <span class='neutraltext big'> Overall, [captive_count] xenomorphs remained alive and in captivity, and [escape_count] managed to escape!</span> <br>"
+	parts += "<br> <span class='neutraltext big'> 最终，[captive_count]只异形仍然活囚禁之下，而[escape_count]只成功逃离了!</span> <br>"
 
 	var/thank_you_message
 	if(captive_count > escape_count)
-		thank_you_message = "xenobiological containment architecture"
+		thank_you_message = "异形生物收容工程"
 	else
-		thank_you_message = "xenofauna combat effectiveness"
+		thank_you_message = "异形生物战斗力测试项目"
 
-	parts += "<span class='neutraltext'>Nanotrasen thanks the crew of [station_name()] for providing much needed research data on <b>[thank_you_message]<b>.</span>"
+	parts += "<span class='neutraltext'>纳米传讯感谢[station_name()]为<b>[thank_you_message]<b>提供了宝贵的研究数据.</span>"
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div> <br>"
 

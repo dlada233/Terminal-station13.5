@@ -4,9 +4,9 @@
 
 /// Kill yourself and probably a bunch of other people
 /datum/grand_finale/armageddon
-	name = "Annihilation"
-	desc = "This crew have offended you beyond the realm of pranks. Make the ultimate sacrifice to teach them a lesson your elders can really respect. \
-		YOU WILL NOT SURVIVE THIS."
+	name = "湮灭"
+	desc = "我受够这伙人的不断冒犯了，哪怕牺牲自我，也要给所有人来个大的. \
+		你自己无法幸存."
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_head"
 	minimum_time = 90 MINUTES // This will probably immediately end the round if it gets finished.
@@ -15,19 +15,19 @@
 	glow_colour = "#be000048"
 	/// Things to yell before you die
 	var/static/list/possible_last_words = list(
-		"Flames and ruin!",
-		"Dooooooooom!!",
+		"火焰与毁灭!",
+		"末末末末末末日!!",
 		"HAHAHAHAHAHA!! AHAHAHAHAHAHAHAHAA!!",
 		"Hee hee hee!! Hoo hoo hoo!! Ha ha haaa!!",
 		"Ohohohohohoho!!",
-		"Cower in fear, puny mortals!",
-		"Tremble before my glory!",
-		"Pick a god and pray!",
-		"It's no use!",
-		"If the gods wanted you to live, they would not have created me!",
-		"God stays in heaven out of fear of what I have created!",
-		"Ruination is come!",
-		"All of creation, bend to my will!",
+		"尖叫畏缩吧，渺小凡人!",
+		"在我荣光前颤抖!",
+		"选个神开始祈祷吧!",
+		"毫无用处!",
+		"我存在就是上帝抛弃你的证明!",
+		"上帝之所以在天堂，是因为我在人间!",
+		"毁灭将至!",
+		"万物臣服于我!",
 	)
 
 /datum/grand_finale/armageddon/trigger(mob/living/carbon/human/invoker)
@@ -52,7 +52,7 @@
 			var/datum/dynamic_ruleset/roundstart/meteor/meteors = new()
 			meteors.meteordelay = 0
 			SSdynamic.execute_roundstart_rule(meteors) // Meteors will continue until morale is crushed.
-			priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", ANNOUNCER_METEORS)
+			priority_announce("在空间站运行轨道上发现陨石.", "陨石警报", ANNOUNCER_METEORS)
 
 #undef DOOM_SINGULARITY
 #undef DOOM_TESLA

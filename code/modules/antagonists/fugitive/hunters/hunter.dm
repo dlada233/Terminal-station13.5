@@ -1,7 +1,7 @@
 //The hunters!!
 /datum/antagonist/fugitive_hunter
-	name = "Fugitive Hunter"
-	roundend_category = "Fugitive"
+	name = "赏金猎人"
+	roundend_category = "逃亡者"
 	silent = TRUE //greet called by the spawn
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
@@ -20,30 +20,30 @@
 /datum/antagonist/fugitive_hunter/forge_objectives() //this isn't an actual objective because it's about round end rosters
 	var/datum/objective/capture = new /datum/objective
 	capture.owner = owner
-	capture.explanation_text = "Capture the fugitives in the station and put them into the bluespace capture machine on your ship."
+	capture.explanation_text = "捉捕空间站上的逃亡者，把他们全都放进飞船里的蓝空捕获机."
 	objectives += capture
 
 /datum/antagonist/fugitive_hunter/greet()
 	switch(backstory)
 		if(HUNTER_PACK_COPS)
-			to_chat(owner, span_boldannounce("Justice has arrived. I am a member of the Spacepol!"))
-			to_chat(owner, "<B>The criminals should be on the station, we have special huds implanted to recognize them.</B>")
-			to_chat(owner, "<B>As we have lost pretty much all power over these damned lawless megacorporations, it's a mystery if their security will cooperate with us.</B>")
+			to_chat(owner, span_boldannounce("我是太空警察的一员，代表正义而来!"))
+			to_chat(owner, "<B>罪犯就在太空站上，我们植入了特殊的装置来识别他们.</B>")
+			to_chat(owner, "<B>对于管理该站的公司，我们已经没有约束它的权力了，所以安保部门是否肯于我们合作还是个谜.</B>")
 		if(HUNTER_PACK_RUSSIAN)
-			to_chat(owner, span_danger("Ay blyat. I am a space-russian smuggler! We were mid-flight when our cargo was beamed off our ship!"))
-			to_chat(owner, span_danger("We were hailed by a man in a green uniform, promising the safe return of our goods in exchange for a favor:"))
-			to_chat(owner, span_danger("There is a local station housing fugitives that the man is after, he wants them returned; dead or alive."))
-			to_chat(owner, span_danger("We will not be able to make ends meet without our cargo, so we must do as he says and capture them."))
+			to_chat(owner, span_danger("Ay blyat. 我是俄国的太空走私犯! 我们的货在飞行途中微笑着离开了我们的船!"))
+			to_chat(owner, span_danger("一个穿绿色制服的家伙向我们打招呼，说会将我们的货安全送回，但代价是我们要帮他一个忙:"))
+			to_chat(owner, span_danger("当地的一个空间站里藏着逃亡犯，这个人正在追捕他们，他想要逃亡犯回来，无论死活."))
+			to_chat(owner, span_danger("没了我们的货，我们将无法维持生计，所以我们只能按照他说的做，把逃亡犯抓回来."))
 		if(HUNTER_PACK_BOUNTY)
-			to_chat(owner, span_danger("Time to clock in. I am a bounty hunter! We should be arriving at our mark's hideout shortly."))
-			to_chat(owner, span_danger("The briefing mentioned our destination was a research station. An unusual place for a target to try and lay low."))
-			to_chat(owner, span_danger("Our client promised us big bucks, and we intend to make good on our delivery. Let's hope this is an easy paycheck..."))
+			to_chat(owner, span_danger("上钟了伙计. 我是赏金猎人! 马上就要到达目标的藏身地点."))
+			to_chat(owner, span_danger("简报上说那是一个科研空间站，一个不怎么寻常的地方."))
+			to_chat(owner, span_danger("我们的客户答应付一大笔钱，所以可不能搞砸了这次工作. 希望我们很快能拿到这笔钱..."))
 		if(HUNTER_PACK_PSYKER)
-			to_chat(owner, span_danger("GOOD EVENING, WE ARE PSYKER HUNTE- NO, PSYKER SHIKARIS!"))
-			to_chat(owner, span_danger("A brainling hit us up on the holopad with an offer we could NOT pass up. We kidnap some fools for them, and in exchange we get a LIFETIME SUPPLY OF GORE."))
-			to_chat(owner, span_danger("Our gore supply has been running thin as of late -- How could we say no? The binge MUST go on!"))
+			to_chat(owner, span_danger("晚上好，我们是灵能猎人——不，灵能猎手！"))
+			to_chat(owner, span_danger("一个脑灵通过全息板向我们提出了一个无法拒绝的提议. 我们为他们绑架一些蠢货，作为交换我们得到终身供应的脏血."))
+			to_chat(owner, span_danger("最近我们的脏血供应越来越少了——我们怎么能说不呢？狂欢必须继续！"))
 
-	to_chat(owner, span_boldannounce("You are not an antagonist in that you may kill whomever you please, but you can do anything to ensure the capture of the fugitives, even if that means going through the station."))
+	to_chat(owner, span_boldannounce("你不是一个可以随意杀人的反派，但你确实可以做任何事来确保抓住逃犯，即使这意味着要打穿空间站。"))
 	owner.announce_objectives()
 
 /datum/antagonist/fugitive_hunter/create_team(datum/team/fugitive_hunters/new_team)
@@ -131,48 +131,48 @@
 		else//all fugitives died, all hunters died, nobody brought back. seems weird to not give fugitives a victory if they managed to kill the hunters but literally no progress to either goal should lead to a nobody wins situation
 			return FUGITIVE_RESULT_STALEMATE
 
-/datum/team/fugitive_hunters/roundend_report() //shows the number of fugitives, but not if they won in case there is no security
+/datum/team/fugitive_hunters/roundend_report() // 显示逃亡者的数量，但不显示是否赢了，以防没有安保
 	if(!members.len)
 		return
 
 	var/list/result = list()
 
-	result += "<div class='panel redborder'>...And <B>[members.len]</B> [backstory]s tried to hunt them down!"
+	result += "<div class='panel redborder'>……<B>[members.len]</B>[backstory]试图追捕他们！"
 
 	for(var/datum/mind/M in members)
 		result += "<b>[printplayer(M)]</b>"
 
 	switch(get_result())
-		if(FUGITIVE_RESULT_BADASS_HUNTER)//use defines
-			result += "<span class='greentext big'>Badass [capitalize(backstory)] Victory!</span>"
-			result += "<B>The [backstory]s managed to capture every fugitive, alive!</B>"
+		if(FUGITIVE_RESULT_BADASS_HUNTER)//使用定义
+			result += "<span class='greentext big'>[capitalize(backstory)]传奇胜利！</span>"
+			result += "<B>这些[backstory]成功抓获了所有逃亡者，而且全都是活捉！</B>"
 		if(FUGITIVE_RESULT_POSTMORTEM_HUNTER)
-			result += "<span class='greentext big'>Postmortem [capitalize(backstory)] Victory!</span>"
-			result += "<B>The [backstory]s managed to capture every fugitive, but all of them died! Spooky!</B>"
+			result += "<span class='greentext big'>[capitalize(backstory)]尸检胜利！</span>"
+			result += "<B>这些[backstory]成功抓获了所有逃亡者，但他们全都死了！好吓人！</B>"
 		if(FUGITIVE_RESULT_MAJOR_HUNTER)
-			result += "<span class='greentext big'>Major [capitalize(backstory)] Victory</span>"
-			result += "<B>The [backstory]s managed to capture every fugitive, dead or alive.</B>"
+			result += "<span class='greentext big'>[capitalize(backstory)]重大胜利</span>"
+			result += "<B>这些[backstory]成功抓获了所有逃亡者，不论是死是活.</B>"
 		if(FUGITIVE_RESULT_HUNTER_VICTORY)
-			result += "<span class='greentext big'>[capitalize(backstory)] Victory</span>"
-			result += "<B>The [backstory]s managed to capture a fugitive, dead or alive.</B>"
+			result += "<span class='greentext big'>[capitalize(backstory)]胜利</span>"
+			result += "<B>这些[backstory]成功抓获了一名逃亡者，不论是死是活.</B>"
 		if(FUGITIVE_RESULT_MINOR_HUNTER)
-			result += "<span class='greentext big'>Minor [capitalize(backstory)] Victory</span>"
-			result += "<B>All the [backstory]s died, but managed to capture a fugitive, dead or alive.</B>"
+			result += "<span class='greentext big'>[capitalize(backstory)]小胜利</span>"
+			result += "<B>所有[backstory]都死了，但他们成功抓获了一名逃亡者，不论是死是活.</B>"
 		if(FUGITIVE_RESULT_STALEMATE)
-			result += "<span class='neutraltext big'>Bloody Stalemate</span>"
-			result += "<B>Everyone died, and no fugitives were recovered!</B>"
+			result += "<span class='neutraltext big'>血腥僵局</span>"
+			result += "<B>所有人都死了，也没有逃亡者被抓获！</B>"
 		if(FUGITIVE_RESULT_MINOR_FUGITIVE)
-			result += "<span class='redtext big'>Minor Fugitive Victory</span>"
-			result += "<B>All the fugitives died, but none were recovered!</B>"
+			result += "<span class='redtext big'>逃亡者小胜利</span>"
+			result += "<B>所有逃亡者都死了，但没有人被抓获！</B>"
 		if(FUGITIVE_RESULT_FUGITIVE_VICTORY)
-			result += "<span class='redtext big'>Fugitive Victory</span>"
-			result += "<B>A fugitive survived, and no bodies were recovered by the [backstory]s.</B>"
+			result += "<span class='redtext big'>逃亡者胜利</span>"
+			result += "<B>一个逃亡者幸存，没有人被[backstory]抓获.</B>"
 		if(FUGITIVE_RESULT_MAJOR_FUGITIVE)
-			result += "<span class='redtext big'>Major Fugitive Victory</span>"
-			result += "<B>All of the fugitives survived and avoided capture!</B>"
-		else //get_result returned null- either bugged or no fugitives showed
-			result += "<span class='neutraltext big'>Prank Call!</span>"
-			result += "<B>[capitalize(backstory)]s were called, yet there were no fugitives...?</B>"
+			result += "<span class='redtext big'>逃亡者重大胜利</span>"
+			result += "<B>所有逃亡者都活了下来并且没有被抓获！</B>"
+		else //get_result 返回null - 可能是bug或没有逃亡者
+			result += "<span class='neutraltext big'>恶作剧电话！</span>"
+			result += "<B>叫来了[capitalize(backstory)]，但没有逃亡者...?</B>"
 
 	result += "</div>"
 

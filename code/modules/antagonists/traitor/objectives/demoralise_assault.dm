@@ -1,5 +1,5 @@
 /datum/traitor_objective_category/demoralise
-	name = "Demoralise Crew"
+	name = "动摇船员士气"
 	objectives = list(
 		/datum/traitor_objective/target_player/assault = 1,
 		/datum/traitor_objective/destroy_item/demoralise = 1,
@@ -7,11 +7,11 @@
 	weight = OBJECTIVE_WEIGHT_UNLIKELY
 
 /datum/traitor_objective/target_player/assault
-	name = "Assault %TARGET% the %JOB TITLE%"
-	description = "%TARGET% has been identified as a potential future agent. \
-		Pick a fight and give them a good beating. \
-		%COUNT% hits should reduce their morale and have them questioning their loyalties. \
-		Try not to kill them just yet, we may want to recruit them in the future."
+	name = "袭击 %TARGET%，%JOB TITLE%"
+	description = "%TARGET% 被确定为了潜在的特工. \
+		找个机会好好打击他们一顿. \
+		%COUNT% 次命中应该能挫败他们的士气，让他们怀疑自己的忠诚是否值得. \
+		注意先别杀掉他们，我们以后可能会招募他们."
 
 	abstract_type = /datum/traitor_objective/target_player
 	duplicate_type = /datum/traitor_objective/target_player
@@ -114,7 +114,7 @@
 /datum/traitor_objective/target_player/assault/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(attacks_required > attacks_inflicted)
-		buttons += add_ui_button("[attacks_required - attacks_inflicted]", "This tells you how many more times you have to attack the target player to succeed.", "hand-rock-o", "none")
+		buttons += add_ui_button("[attacks_required - attacks_inflicted]", "这会告诉你还需要攻击目标玩家多少次才能获得成功.", "hand-rock-o", "none")
 	return buttons
 
 /datum/traitor_objective/target_player/assault/target_deleted()

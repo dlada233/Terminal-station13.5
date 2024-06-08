@@ -1,6 +1,6 @@
 /datum/antagonist/disease
-	name = "Sentient Disease"
-	roundend_category = "diseases"
+	name = "感知瘟疫"
+	roundend_category = "瘟疫"
 	antagpanel_category = ANTAG_GROUP_BIOHAZARDS
 	show_to_ghosts = TRUE
 	var/disease_name = ""
@@ -20,7 +20,7 @@
 
 /datum/antagonist/disease/greet()
 	. = ..()
-	to_chat(owner.current, span_notice("Infect members of the crew to gain adaptation points, and spread your infection further."))
+	to_chat(owner.current, span_notice("感染船员以获得进化点，并进一步传播感染."))
 	owner.announce_objectives()
 
 /datum/antagonist/disease/apply_innate_effects(mob/living/mob_override)
@@ -38,7 +38,7 @@
 /datum/antagonist/disease/roundend_report()
 	var/list/result = list()
 
-	result += "<b>Disease name:</b> [disease_name]"
+	result += "<b>瘟疫名称:</b> [disease_name]"
 	result += printplayer(owner)
 
 	var/win = TRUE
@@ -46,9 +46,9 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
+			objectives_text += "<br><B>目标 #[count]</B>: [objective.explanation_text] [span_greentext("成功!")]"
 		else
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
+			objectives_text += "<br><B>目标 #[count]</B>: [objective.explanation_text] [span_redtext("失败.")]"
 			win = FALSE
 		count++
 
@@ -57,14 +57,14 @@
 	var/special_role_text = lowertext(name)
 
 	if(win)
-		result += span_greentext("The [special_role_text] was successful!")
+		result += span_greentext("[special_role_text]成功了!")
 	else
-		result += span_redtext("The [special_role_text] has failed!")
+		result += span_redtext("[special_role_text]失败了!")
 
 	if(istype(owner.current, /mob/camera/disease))
 		var/mob/camera/disease/D = owner.current
-		result += "<B>[disease_name] completed the round with [D.hosts.len] infected hosts, and reached a maximum of [D.total_points] concurrent infections.</B>"
-		result += "<B>[disease_name] completed the round with the following adaptations:</B>"
+		result += "<B>[disease_name]以[D.hosts.len]名感染宿主完成本局，最多时有[D.total_points]人同时感染.</B>"
+		result += "<B>[disease_name]在本局中完成了以下进化:</B>"
 		var/list/adaptations = list()
 		for(var/V in D.purchased_abilities)
 			var/datum/disease_ability/A = V
@@ -80,7 +80,7 @@
 	return icon
 
 /datum/objective/disease_infect
-	explanation_text = "Survive and infect as many people as possible."
+	explanation_text = "存活下去并感染尽可能多的人."
 
 /datum/objective/disease_infect/check_completion()
 	var/mob/camera/disease/D = owner.current
@@ -90,7 +90,7 @@
 
 
 /datum/objective/disease_infect_centcom
-	explanation_text = "Ensure that at least one infected host escapes on the shuttle or an escape pod."
+	explanation_text = "确保至少有一名感染宿主乘坐穿梭机或逃生舱成功逃生."
 
 /datum/objective/disease_infect_centcom/check_completion()
 	var/mob/camera/disease/D = owner.current

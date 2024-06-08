@@ -169,7 +169,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(user)]正在创造没有玩家操纵的失声亡者.")
 		var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("你愿意扮演[soon_to_be_ghoul.real_name]，一名失声亡者吗?", check_jobban = ROLE_HERETIC, role = ROLE_HERETIC, poll_time = 5 SECONDS, target_mob = soon_to_be_ghoul, pic_source = soon_to_be_ghoul, role_name_text = "失声亡者")
 		if(!LAZYLEN(candidates))
-			loc.balloon_alert(user, "仪式失败，没有鬼魂!")
+			loc.balloon_alert(user, "仪式失败，没有灵魂!")
 			return FALSE
 
 		var/mob/dead/observer/chosen_candidate = pick(candidates)

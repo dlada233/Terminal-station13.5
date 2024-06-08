@@ -1,5 +1,5 @@
 /datum/outfit/spacepol
-	name = "Spacepol Officer"
+	name = "太空警察"
 	uniform = /obj/item/clothing/under/rank/security/officer/spacepol
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt
 	belt = /obj/item/gun/ballistic/automatic/pistol/m1911
@@ -25,14 +25,14 @@
 
 
 /datum/id_trim/bounty_hunter/police
-	assignment = "Police Officer"
+	assignment = "警察"
 	trim_state = "trim_warden"
 	department_color = COLOR_STRONG_BLUE
 
 	access = list(ACCESS_HUNTER)
 
 /datum/outfit/russian_hunter
-	name = "Russian Hunter"
+	name = "俄罗斯猎人"
 	uniform = /obj/item/clothing/under/costume/soviet
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	suit_store = /obj/item/gun/ballistic/rifle/boltaction
@@ -78,7 +78,7 @@
 
 	if(istype(equip_to.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/equipped_card = equip_to.wear_id
-		equipped_card.assignment = "Russian Bounty Hunter"
+		equipped_card.assignment = "俄国赏金猎人"
 		equipped_card.registered_name = equip_to.real_name
 		equipped_card.update_label()
 		equipped_card.update_icon()
@@ -89,7 +89,7 @@
 		uniform.has_sensor = NO_SENSORS
 
 /datum/outfit/russian_hunter/leader
-	name = "Russian Hunter Leader"
+	name = "俄国猎人头领"
 	head = /obj/item/clothing/head/costume/ushanka
 	shoes = /obj/item/clothing/shoes/combat
 
@@ -97,7 +97,7 @@
 	return // None of the RNG russian equipment stuff.
 
 /datum/outfit/bountyarmor
-	name = "Bounty Hunter - Armored"
+	name = "赏金猎人 - 装甲"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	head = /obj/item/clothing/head/cowboy/bounty
@@ -127,7 +127,7 @@
 	W.update_icon()
 
 /datum/outfit/bountyhook
-	name = "Bounty Hunter - Hook"
+	name = "赏金猎人 - 捕钩"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	head = /obj/item/clothing/head/costume/scarecrow_hat
@@ -152,7 +152,7 @@
 	W.update_icon()
 
 /datum/outfit/bountysynth
-	name = "Bounty Hunter - Synth"
+	name = "赏金猎人 - 合成人"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	back = /obj/item/storage/backpack
 	suit = /obj/item/clothing/suit/armor/riot
@@ -168,23 +168,23 @@
 		)
 
 /datum/id_trim/bounty_hunter/psykers
-	assignment = "Psyker-gang Shikari"
+	assignment = "灵能猎手团 猎手"
 
 /datum/id_trim/bounty_hunter/psykers/captain
-	assignment = "Psyker-gang Shikari Captain"
+	assignment = "灵能猎手团 团长"
 
 /datum/id_trim/bounty_hunter/psykers/seer
-	assignment = "Psyker-gang Shikari Seer"
+	assignment = "灵能猎手团 先知"
 
 /datum/outfit/psyker/captain
-	name = "Psyker-Shikari Leader"
+	name = "灵能猎手领袖"
 
 	id_trim = /datum/id_trim/bounty_hunter/psykers/captain
 	suit = /obj/item/clothing/suit/armor/reactive/psykerboost
 	uniform = /obj/item/clothing/under/pants/camo
 
 /datum/outfit/psyker
-	name = "Psyker-Shikari Hunter"
+	name = "灵能猎手"
 	glasses = null
 	head = null
 	ears = /obj/item/radio/headset/psyker
@@ -203,7 +203,7 @@
 	equipped.psykerize()
 
 /datum/outfit/psyker_seer
-	name = "Psyker-Shikari Seer"
+	name = "灵能猎手先知"
 	glasses = /obj/item/clothing/glasses/regular/thin
 	ears = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/pants/jeans
@@ -219,7 +219,7 @@
 //ids and ert code
 
 /obj/item/card/id/advanced/bountyhunter
-	assignment = "Bounty Hunter"
+	assignment = "赏金猎人"
 	icon_state = "card_flame" //oh SHIT
 	trim = /datum/id_trim/bounty_hunter
 

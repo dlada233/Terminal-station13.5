@@ -1,5 +1,5 @@
 /datum/antagonist/syndicate_monkey
-	name = "\improper Syndicate Monkey"
+	name = "\improper 辛迪加猴子"
 	antagpanel_category = ANTAG_GROUP_SYNDICATE
 	show_in_roundend = TRUE
 	show_in_antagpanel = TRUE
@@ -32,6 +32,6 @@
 /datum/antagonist/syndicate_monkey/forge_objectives(mob/monky_master)
 	var/datum/objective/syndicate_monkey/objective = new
 	objective.monky_master = monky_master
-	objective.explanation_text = "You are a badass monkey syndicate agent. Protect and obey all of your master [monky_master]'s orders!"
+	objective.explanation_text = "你是牛逼的辛迪加候特工，保护并服从你主人[monky_master]的命令!"
 	objective.owner = owner
 	objectives += objective

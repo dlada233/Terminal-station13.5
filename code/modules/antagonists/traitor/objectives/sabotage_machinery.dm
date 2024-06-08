@@ -8,14 +8,14 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 
 /// Traitor objective to destroy a machine the crew cares about
 /datum/traitor_objective_category/sabotage_machinery
-	name = "Sabotage Worksite"
+	name = "破坏工作场所"
 	objectives = list(
 		/datum/traitor_objective/sabotage_machinery/trap = 1,
 		/datum/traitor_objective/sabotage_machinery/destroy = 1,
 	)
 
 /datum/traitor_objective/sabotage_machinery
-	name = "Sabotage the %MACHINE%"
+	name = "破坏 %MACHINE%"
 	description = "Abstract objective holder which shouldn't appear in your uplink."
 	abstract_type = /datum/traitor_objective/sabotage_machinery
 
@@ -59,8 +59,8 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 
 // Destroy machines which are in annoying locations, are annoying when destroyed, and aren't directly interacted with
 /datum/traitor_objective/sabotage_machinery/destroy
-	name = "Destroy the %MACHINE%"
-	description = "Destroy the %MACHINE% to cause disarray and disrupt the operations of the %JOB%'s department."
+	name = "摧毁 %MACHINE%"
+	description = "摧毁 %MACHINE% 以造成混乱，扰乱 %JOB% 部门的活动."
 
 	progression_reward = list(5 MINUTES, 10 MINUTES)
 	telecrystal_reward = list(3, 4)
@@ -75,8 +75,8 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 
 // Rig machines which are in public locations to explode when interacted with
 /datum/traitor_objective/sabotage_machinery/trap
-	name = "Sabotage the %MACHINE%"
-	description = "Destroy the %MACHINE% to cause disarray and disrupt the operations of the %JOB%'s department. If you can get another crew member to destroy the machine using the provided booby trap, you will be rewarded with an additional %PROGRESSION% reputation and %TC% telecrystals."
+	name = "破坏 %MACHINE%"
+	description = "摧毁 %MACHINE% 以造成混乱，扰乱 %JOB% 部门的活动. 如果你有办法让其他船员使用提供给你的诡雷摧毁机器，你将额外获得 %PROGRESSION% 点声望和 %TC% 点TC."
 
 	progression_reward = list(2 MINUTES, 4 MINUTES)
 	telecrystal_reward = 0 // Only from completing the bonus objective
@@ -123,7 +123,7 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 /datum/traitor_objective/sabotage_machinery/trap/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!traitor_trapper_given)
-		buttons += add_ui_button("", "Pressing this will materialize an explosive trap in your hand, which you can conceal within the target machine", "wifi", "summon_gear")
+		buttons += add_ui_button("", "按下该按钮爆炸陷阱就会出现在你的手中，你可以把它藏进机器里.", "wifi", "summon_gear")
 	return buttons
 
 /datum/traitor_objective/sabotage_machinery/trap/ui_perform_action(mob/living/user, action)
@@ -135,21 +135,21 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 			traitor_trapper_given = TRUE
 			var/obj/item/traitor_machine_trapper/tool = new(user.drop_location())
 			user.put_in_hands(tool)
-			tool.balloon_alert(user, "a booby trap materializes in your hand")
+			tool.balloon_alert(user, "诡雷出现在你的手中.")
 			tool.target_machine_path = applicable_jobs[chosen_job]
 
-/// Item which you use on a machine to cause it to explode next time someone interacts with it
+/// 一个用在机器上的物品，导致下次有人使用机器时爆炸
 /obj/item/traitor_machine_trapper
-	name = "suspicious device"
-	desc = "It looks dangerous."
+	name = "可疑装置"
+	desc = "它看起来很危险. "
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "boobytrap"
 
-	/// Light explosion range, to hurt the person using the machine
+	/// 轻微的爆炸范围，用于伤害使用机器的人
 	var/explosion_range = 3
-	/// The type of object on which this can be planted on.
+	/// 可以放置这个装置的目标机器类型
 	var/obj/machinery/target_machine_path
-	/// The time it takes to deploy the bomb.
+	/// 部署炸弹所需的时间
 	var/deploy_time = 10 SECONDS
 
 /obj/item/traitor_machine_trapper/examine(mob/user)
@@ -157,14 +157,14 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 	if(!IS_TRAITOR(user))
 		return
 	if(target_machine_path)
-		. += span_notice("This device must be placed by <b>clicking on a [initial(target_machine_path.name)]</b> with it. It can be removed with a screwdriver.")
-	. += span_notice("Remember, you may leave behind fingerprints on the device. Wear <b>gloves</b> when handling it to be safe!")
+		. += span_notice("这个装置必须通过<b>单击 [initial(target_machine_path.name)]</b> 来放置. 可以用螺丝刀移除. ")
+	. += span_notice("记住，你可能会在装置上留下指纹. 处理它时请戴上<b>手套</b>以确保安全！")
 
 /obj/item/traitor_machine_trapper/pre_attack(atom/target, mob/living/user, params)
 	. = ..()
 	if (. || !istype(target, target_machine_path))
 		return
-	balloon_alert(user, "planting device...")
+	balloon_alert(user, "正在放置装置...")
 	if(!do_after(user, delay = deploy_time, target = src, interaction_key = DOAFTER_SOURCE_PLANTING_DEVICE))
 		return TRUE
 	target.AddComponent(\
@@ -177,21 +177,21 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 	moveToNullspace()
 	return TRUE
 
-/// Called when applied trap is triggered, mark success
+/// 当安装的陷阱被触发时调用，标记成功
 /obj/item/traitor_machine_trapper/proc/on_triggered(atom/machine)
 	SEND_SIGNAL(machine, COMSIG_TRAITOR_MACHINE_TRAP_TRIGGERED)
 	qdel(src)
 
-/// Called when applied trap has been defused, retrieve this item from nullspace
+/// 当安装的陷阱被解除时调用，从虚空中取回此物品
 /obj/item/traitor_machine_trapper/proc/on_defused(atom/machine, mob/defuser, obj/item/tool)
 	UnregisterSignal(machine, COMSIG_QDELETING)
 	playsound(machine, 'sound/effects/structure_stress/pop3.ogg', 100, vary = TRUE)
 	forceMove(get_turf(machine))
-	visible_message(span_warning("A [src] falls out from the [machine]!"))
+	visible_message(span_warning("一个 [src] 从 [machine] 掉了出来！"))
 
-/// Datum which manages references to things we are instructed to destroy
+/// 管理我们被指示摧毁的事物的引用的数据
 /datum/objective_target_machine_handler
-	/// Existing instances of machines organised by typepath
+	/// 根据类型路径组织的现有机器实例
 	var/list/machine_instances_by_path = list()
 
 /datum/objective_target_machine_handler/New()
@@ -199,12 +199,12 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 	RegisterSignal(SSdcs, COMSIG_GLOB_NEW_MACHINE, PROC_REF(on_machine_created))
 	RegisterSignal(SSatoms, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(finalise_valid_targets))
 
-/// Adds a newly created machine to our list of machines, if we need it
+/// 如果需要，将新创建的机器添加到我们的机器列表中
 /datum/objective_target_machine_handler/proc/on_machine_created(datum/source, obj/machinery/new_machine)
 	SIGNAL_HANDLER
 	new_machine.add_as_sabotage_target()
 
-/// Confirm that everything added to the list is a valid target, then prevent new targets from being added
+/// 确认添加到列表中的所有内容都是有效目标，然后阻止添加新目标
 /datum/objective_target_machine_handler/proc/finalise_valid_targets()
 	SIGNAL_HANDLER
 	for (var/machine_type in machine_instances_by_path)
@@ -218,14 +218,14 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 
 /datum/objective_target_machine_handler/proc/machine_destroyed(atom/machine)
 	SIGNAL_HANDLER
-	// Sadly can't do a direct typepath association because of some map helper subtypes
+	// 由于某些地图帮助子类型，无法直接进行类型路径关联
 	for (var/machine_type in machine_instances_by_path)
 		machine_instances_by_path[machine_type] -= machine
 
-// Mark valid machines as targets, add a new entry here if you add a new potential target
+// 将有效的机器标记为目标，如果添加了新的潜在目标，请在此处添加新的条目
 
 /obj/machinery/telecomms/hub/add_as_sabotage_target()
-	return add_sabotage_machine(src, /obj/machinery/telecomms/hub) // Not always our specific type because of map helper subtypes
+	return add_sabotage_machine(src, /obj/machinery/telecomms/hub) // 不总是我们的特定类型，因为地图帮助子类型
 
 /obj/machinery/rnd/server/add_as_sabotage_target()
 	return add_sabotage_machine(src, type)

@@ -1,18 +1,18 @@
-/// Number of times you need to cast on the rune to complete it
+/// 需要在法阵上施法的次数以完成它
 #define GRAND_RUNE_INVOKES_TO_COMPLETE 3
-/// Base time to take to invoke one stage of the rune. This is done three times to complete the rune.
+/// 完成法阵的每个阶段所需的基础时间.这个过程要重复三次才能完成法阵.
 #define BASE_INVOKE_TIME 7 SECONDS
-/// Time to add on to each step every time a previous rune is completed.
+/// 每次完成一个法阵后，每个步骤增加的时间.
 #define ADD_INVOKE_TIME 2 SECONDS
 
 /**
- * Magic rune used in the grand ritual.
- * A wizard sits themselves on this thing and waves their hands for a while shouting silly words.
- * Then something (usually bad) happens.
+ * 大仪式中使用的魔法法阵.
+ * 一个巫师坐在这东西上，挥舞双手一会儿，喊着荒谬的词语.
+ * 然后某些事情（通常是坏事）会发生.
  */
 /obj/effect/grand_rune
-	name = "grand rune"
-	desc = "A flowing circle of shapes and runes is etched into the floor, the lines twist and move before your eyes."
+	name = "大法阵"
+	desc = "大小圆圈嵌套重叠，陌生文字三向罗列，线条在你眼前扭曲颤动."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "wizard_rune"
 	pixel_x = -28
@@ -21,23 +21,23 @@
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = SIGIL_LAYER
-	/// How many prior grand rituals have been completed?
+	/// 完成了多少次大仪式？
 	var/potency = 0
-	/// Time to take per invocation of rune.
+	/// 每次法阵调用所需的时间.
 	var/invoke_time = BASE_INVOKE_TIME
-	/// Prevent ritual spam click.
+	/// 防止仪式点击过多.
 	var/is_in_use = FALSE
-	/// Number of times this rune has been cast
+	/// 此法阵已被调用的次数
 	var/times_invoked = 0
-	/// What colour you glow while channeling
+	/// 你在通道中发光的颜色
 	var/spell_colour = "#de3aff48"
-	/// How much cheese was sacrificed to the other realm, if any
+	/// 向另一个领域献祭了多少奶酪（如果有的话）
 	var/cheese_sacrificed = 0
-	/// What kind of remains this rune leaves behind after completing invokation
+	/// 法阵完成后留下的残余类型
 	var/remains_typepath = /obj/effect/decal/cleanable/grand_remains
-	/// Magic words you say to invoke the ritual
+	/// 你在调用仪式时说的魔法词语
 	var/list/magic_words = list()
-	/// Things you might yell when invoking a rune
+	/// 你在调用法阵时可能会喊出的词语
 	var/static/list/possible_magic_words = list(
 		list("*scream", "*scream", "*scream"),
 		list("Abra...", "Cadabra...", "Alakazam!"),
@@ -66,7 +66,7 @@
 		list("Y-abbaa", "Dab'Bah", "Doom!!"),
 	)
 
-/// Prepare magic words and hide from silicons
+/// 准备魔法词语并对硅基生物隐藏
 /obj/effect/grand_rune/Initialize(mapload, potency = 0)
 	. = ..()
 	src.potency = potency
@@ -78,24 +78,24 @@
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "wizard_rune", silicon_image)
 	announce_rune()
 
-/// I cast Summon Security
+/// 我释放召唤安保
 /obj/effect/grand_rune/proc/announce_rune()
 	var/area/created_area = get_area(src)
 	if (potency >= GRAND_RITUAL_IMMINENT_FINALE_POTENCY)
-		priority_announce("Major anomalous fluctuations to local spacetime detected in: [created_area.name].", "Anomaly Alert")
+		priority_announce("在[created_area.name]检测到重大异常时空波动.", "异常警报")
 		return
 	if (potency >= GRAND_RITUAL_RUNES_WARNING_POTENCY)
-		priority_announce("Unusual anomalous energy fluctuations detected in: [created_area.name].", "Anomaly Alert")
+		priority_announce("在[created_area.name]检测到异常能量波动.", "异常警报")
 		return
 
 /obj/effect/grand_rune/examine(mob/user)
 	. = ..()
 	if (times_invoked >= GRAND_RUNE_INVOKES_TO_COMPLETE)
-		. += span_notice("Its power seems to have been expended.")
+		. += span_notice("它的力量似乎已经耗尽.")
 		return
 	if(!IS_WIZARD(user))
 		return
-	. += span_notice("Invoke this rune [GRAND_RUNE_INVOKES_TO_COMPLETE - times_invoked] more times to complete the ritual.")
+	. += span_notice("再启动此法阵[GRAND_RUNE_INVOKES_TO_COMPLETE - times_invoked]次以完成仪式.")
 
 /obj/effect/grand_rune/can_interact(mob/living/user)
 	. = ..()
@@ -114,31 +114,31 @@
 	INVOKE_ASYNC(src, PROC_REF(invoke_rune), user)
 	return TRUE
 
-/// Actually does the whole invoking thing
+/// 实际执行整个调用过程
 /obj/effect/grand_rune/proc/invoke_rune(mob/living/user)
 	is_in_use = TRUE
 	add_channel_effect(user)
-	user.balloon_alert(user, "invoking rune...")
+	user.balloon_alert(user, "启动法阵...")
 
 	if(!do_after(user, invoke_time, src))
 		remove_channel_effect(user)
-		user.balloon_alert(user, "interrupted!")
+		user.balloon_alert(user, "被打断!")
 		is_in_use = FALSE
 		return
 
 	times_invoked++
 
-	//fetch cheese on the rune
+	// 在法阵上获取奶酪
 	var/list/obj/item/food/cheese/wheel/cheese_list = list()
 	for(var/obj/item/food/cheese/wheel/nearby_cheese in range(1, src))
-		if(HAS_TRAIT(nearby_cheese, TRAIT_HAUNTED)) //already haunted
+		if(HAS_TRAIT(nearby_cheese, TRAIT_HAUNTED)) // 已经被附身
 			continue
 		cheese_list += nearby_cheese
-	//handle cheese sacrifice - haunt a part of all cheese on the rune with each invocation, then delete it
+	// 处理奶酪祭品 - 每次调用时用每个法阵附身一部分奶酪，然后删除它
 	var/list/obj/item/food/cheese/wheel/cheese_to_haunt = list()
 	cheese_list = shuffle(cheese_list)
-	//the intent here is to sacrifice cheese in parts, roughly in thirds since we invoke the rune three times
-	//so hopefully this will properly do that, and on the third invocation it will just eat all remaining cheese
+	// 这里的意图是将奶酪分成几部分进行祭献，大致分为三分之一，因为我们要调用法阵三次
+	// 所以希望这样能正确地做到这一点，并且在第三次调用时，它将吃掉所有剩余的奶酪
 	cheese_to_haunt = cheese_list.Copy(1, min(round(length(cheese_list) * times_invoked * 0.4), max(length(cheese_list), 3)))
 	for(var/obj/item/food/cheese/wheel/sacrifice as anything in cheese_to_haunt)
 		sacrifice.AddComponent(\
@@ -146,7 +146,7 @@
 			haunt_color = spell_colour, \
 			haunt_duration = 10 SECONDS, \
 			aggro_radius = 0, \
-			spawn_message = span_revenwarning("[sacrifice] begins to float and twirl into the air as it becomes enveloped in otherworldy energies..."), \
+			spawn_message = span_revenwarning("[sacrifice]开始浮起并在空中旋转，被异世界的能量包围..."), \
 		)
 		addtimer(CALLBACK(sacrifice, TYPE_PROC_REF(/obj/item/food/cheese/wheel, consume_cheese)), 10 SECONDS)
 	cheese_sacrificed += length(cheese_to_haunt)
@@ -164,12 +164,12 @@
 	playsound(src,'sound/magic/staff_animation.ogg', 75, TRUE)
 	INVOKE_ASYNC(src, PROC_REF(invoke_rune), user)
 
-/// Add special effects for casting a spell, basically you glow and hover in the air.
+/// 为施法添加特效，基本上你会发光并悬浮在空中.
 /obj/effect/grand_rune/proc/add_channel_effect(mob/living/user)
 	user.AddElement(/datum/element/forced_gravity, 0)
 	user.add_filter("channeling_glow", 2, list("type" = "outline", "color" = spell_colour, "size" = 2))
 
-/// Remove special effects for casting a spell
+/// 移除施法特效
 /obj/effect/grand_rune/proc/remove_channel_effect(mob/living/user)
 	user.RemoveElement(/datum/element/forced_gravity, 0)
 	user.remove_filter("channeling_glow")
@@ -177,11 +177,11 @@
 /obj/effect/grand_rune/proc/get_invoke_time()
 	return  (BASE_INVOKE_TIME) + (potency * (ADD_INVOKE_TIME))
 
-/// Called when you actually finish the damn thing
+/// 当你真正完成这件事时调用
 /obj/effect/grand_rune/proc/on_invocation_complete(mob/living/user)
 	is_in_use = FALSE
 	playsound(src,'sound/magic/staff_change.ogg', 75, TRUE)
-	INVOKE_ASYNC(src, PROC_REF(summon_round_event), user) // Running the event sleeps
+	INVOKE_ASYNC(src, PROC_REF(summon_round_event), user) // 运行事件时休眠
 	trigger_side_effects()
 	tear_reality()
 	SEND_SIGNAL(src, COMSIG_GRAND_RUNE_COMPLETE, cheese_sacrificed)
@@ -193,7 +193,7 @@
 	new remains_typepath(get_turf(src))
 	qdel(src)
 
-/// Triggers some form of event somewhere on the station
+/// 在车站某处触发某种形式的事件
 /obj/effect/grand_rune/proc/summon_round_event(mob/living/user)
 	var/list/possible_events = list()
 
@@ -208,16 +208,16 @@
 		possible_events += possible_event
 
 	if (!length(possible_events))
-		visible_message(span_notice("[src] makes a sad whizzing noise."))
+		visible_message(span_notice("[src]发出悲伤的嗡鸣声."))
 		return
 
-	var/datum/round_event_control/final_event = pick (possible_events)
-	final_event.run_event(event_cause = "a Grand Ritual Rune")
-	to_chat(user, span_notice("Your released magic afflicts the crew: [final_event.name]!"))
+	var/datum/round_event_control/final_event = pick(possible_events)
+	final_event.run_event(event_cause = "大仪式法阵")
+	to_chat(user, span_notice("你释放出了影响船员的魔法: [final_event.name]!"))
 
-/// Applies some local side effects to the area
+/// 在该区域应用一些本地副作用
 /obj/effect/grand_rune/proc/trigger_side_effects(mob/living/user)
-	if (potency == 0) // Not on the first one
+	if (potency == 0) // 第一次不触发
 		return
 	var/list/possible_effects = list()
 	for (var/effect_path in subtypesof(/datum/grand_side_effect))
@@ -230,8 +230,8 @@
 	final_effect.trigger(potency, loc, user)
 
 /**
- * Invoking the ritual spawns up to three reality tears based on potency.
- * Each of these has a 50% chance to spawn already expended.
+ * 进行仪式会根据效力生成最多三个现实裂缝.
+ * 每个裂缝有50%的几率已经耗尽.
  */
 /obj/effect/grand_rune/proc/tear_reality()
 	var/max_tears = 0
@@ -248,11 +248,11 @@
 		return
 	var/created = 0
 	var/location_sanity = 0
-	// Copied from the influences manager, but we don't want to obey the cap on influences per heretic.
+	// 复制自影响管理器，但我们不想遵守每个异教徒的影响上限.
 	while(created < to_create && location_sanity < 100)
 		var/turf/chosen_location = get_safe_random_station_turf()
 
-		// We don't want them close to each other - at least 1 tile of seperation
+		// 我们不希望它们彼此靠近 - 至少要有1个瓦片的间隔
 		var/list/nearby_things = range(1, chosen_location)
 		var/obj/effect/heretic_influence/what_if_i_have_one = locate() in nearby_things
 		var/obj/effect/visible_heretic_influence/what_if_i_had_one_but_its_used = locate() in nearby_things
@@ -271,14 +271,14 @@
 #undef ADD_INVOKE_TIME
 
 /**
- * Variant rune used for the Final Ritual
+ * 用于最终仪式的变体法阵
  */
 /obj/effect/grand_rune/finale
-	/// What does the player want to do?
+	/// 玩家想要做什么？
 	var/datum/grand_finale/finale_effect
-	/// Has the player chosen an outcome?
+	/// 玩家是否选择了一个结果？
 	var/chosen_effect = FALSE
-	/// If we need to warn the crew, have we done so?
+	/// 如果我们需要警告船员，我们是否已经这样做了？
 	var/dire_warnings_given = 0
 
 /obj/effect/grand_rune/finale/invoke_rune(mob/living/user)
@@ -292,13 +292,13 @@
 	var/announce = null
 	switch (dire_warnings_given)
 		if (0)
-			announce = "Large anomalous energy spike detected in: [created_area.name]."
+			announce = "在:[created_area.name]发现大规模异常能量波动."
 		if (1)
-			announce = "Automatic causality stabilisation failed, recommend urgent intervention in: [created_area.name]."
+			announce = "自动因果稳定化失败，建议对[created_area.name]进行紧急干预."
 		if (2)
-			announce = "Imminent local reality failure in: [created_area.name]. All crew please prepare to evacuate."
+			announce = "在[created_area.name]发生的局部现实故障迫在眉睫，所有船员请准备撤离."
 	if (announce)
-		priority_announce(announce, "Anomaly Alert")
+		priority_announce(announce, "异常警报")
 	dire_warnings_given++
 	return ..()
 
@@ -308,12 +308,12 @@
 		return
 	var/round_time_passed = world.time - SSticker.round_start_time
 	if (chosen_effect && finale_effect.minimum_time >= round_time_passed)
-		to_chat(user, span_warning("The chosen grand finale will only be available in <b>[DisplayTimeText(finale_effect.minimum_time - round_time_passed)]</b>!"))
+		to_chat(user, span_warning("所选的最终仪式只能在<b>[DisplayTimeText(finale_effect.minimum_time - round_time_passed)]</b>后进行!"))
 		return
 	return ..()
 
 
-#define PICK_NOTHING "Continuation"
+#define PICK_NOTHING "继续"
 
 /// Make a selection from a radial menu.
 /obj/effect/grand_rune/finale/proc/select_finale(mob/living/user)
@@ -330,8 +330,7 @@
 	var/datum/radial_menu_choice/choice_none = new()
 	choice_none.name = PICK_NOTHING
 	choice_none.image = image(icon = 'icons/mob/actions/actions_cult.dmi', icon_state = "draw")
-	choice_none.info = "The ultimate use of your gathered power! They will never expect you to continue to do \
-		exactly the same kind of thing you've been doing this whole time!"
+	choice_none.info = "使用你汇聚至今的所有魔力！他们绝对想不到你已拥有何等的磅礴伟力! 要成就何等的辉煌伟业!"
 	options += list("[choice_none.name]" = choice_none)
 
 	var/pick = show_radial_menu(user, user, options, require_near = TRUE, tooltips = TRUE)
@@ -360,15 +359,15 @@
 
 
 /**
- * Spawned when 50 or more cheese was sacrificed during previous grand rituals.
- * Will spawn instead of the usual grand ritual rune, and its effect is already set and can't be changed.
- * Sorry, no narwal fighting on the open ocean this time.
+ * 在之前的伟大仪式中牺牲了50个或更多奶酪时生成.
+ * 将代替通常的伟大仪式符文生成，其效果已经设置且无法更改.
+ * 抱歉，这次无法在开放海洋上与独角鲸战斗.
  */
 /obj/effect/grand_rune/finale/cheesy
-	name = "especially grand rune"
-	desc = "A ritual circle of maddening shapes and outlines, its mere presence an insult to reason."
+	name = "特别的大法阵"
+	desc = "圈圈套套中尽是疯狂的形状轮廓，仅其存在本身就对理智构成侮辱."
 	icon_state = "wizard_rune_cheese"
-	magic_words = list("Greetings! Salutations!", "Welcome! Now go away.", "Leave. Run. Or die.")
+	magic_words = list("问候！致敬！", "欢迎！现在请离开.", "离开，逃跑，或者死.")
 	remains_typepath = /obj/effect/decal/cleanable/grand_remains/cheese
 
 /obj/effect/grand_rune/finale/cheesy/Initialize(mapload, potency)
@@ -379,11 +378,11 @@
 
 
 /**
- * Spawned when we are done with the rune
+ * 在我们完成符文时生成
  */
 /obj/effect/decal/cleanable/grand_remains
-	name = "circle of ash"
-	desc = "Looks like someone's been drawing weird shapes with ash on the ground."
+	name = "灰烬圈"
+	desc = "看起来有人在地上用灰画了奇怪的形状."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "wizard_rune_burned"
 	pixel_x = -28
@@ -395,8 +394,8 @@
 	layer = SIGIL_LAYER
 
 /obj/effect/decal/cleanable/grand_remains/cheese
-	name = "cheese soot marks"
-	desc = "The bizarre shapes on the ground turn out to be a cheese crust burned to black tar."
+	name = "奶酪灰烬痕迹"
+	desc = "原来，地上的奇怪形状是烧成黑焦油的奶酪皮."
 	icon_state = "wizard_rune_cheese_burned"
 
 #undef PICK_NOTHING

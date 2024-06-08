@@ -1,6 +1,6 @@
 /datum/traitor_objective/destroy_item
-	name = "Steal %ITEM% and destroy it"
-	description = "Find %ITEM% and destroy it using any means necessary. We can't allow the crew to have %ITEM% as it conflicts with our interests."
+	name = "偷取并摧毁 %ITEM%"
+	description = "以任何必要手段找到并摧毁 %ITEM% . 出于利益考量我们不能让船员拥有 %ITEM% ."
 
 	var/list/possible_items = list()
 	/// The current target item that we are stealing.
@@ -36,9 +36,9 @@
 
 /// Super early-game destroy objective intended to be items easily tided that the crew tends to value.
 /datum/traitor_objective/destroy_item/demoralise
-	description = "Find %ITEM% and destroy it using any means necessary. \
-		We believe this luxury item is important for crew morale. \
-		Destruction of this item will help our recruitment efforts."
+	description = "以任何必要手段找到并摧毁 %ITEM% . \
+		我认为该奢侈品是船员们总体士气的重要来源. \
+		摧毁它将有利于我们招募工作的进行."
 
 	progression_minimum = 0 MINUTES
 	progression_maximum = 10 MINUTES
@@ -83,7 +83,7 @@
 /datum/traitor_objective/destroy_item/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(special_equipment)
-		buttons += add_ui_button("", "Pressing this will summon any extra special equipment you may need for the mission.", "tools", "summon_gear")
+		buttons += add_ui_button("", "按下此按钮将生成你任务所需的额外特殊装备.", "tools", "summon_gear")
 	return buttons
 
 /datum/traitor_objective/destroy_item/ui_perform_action(mob/living/user, action)
@@ -95,7 +95,7 @@
 			for(var/item in special_equipment)
 				var/obj/item/new_item = new item(user.drop_location())
 				user.put_in_hands(new_item)
-			user.balloon_alert(user, "the equipment materializes in your hand")
+			user.balloon_alert(user, "装备在你手中显现.")
 			special_equipment = null
 
 /datum/traitor_objective/destroy_item/proc/on_item_pickup(datum/source, obj/item/item, slot)

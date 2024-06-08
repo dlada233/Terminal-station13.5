@@ -1,22 +1,22 @@
 /datum/traitor_objective/ultimate/space_dragon
-	name = "Find a Space Carp and mutate their DNA with your own using a DNA harvester we will drop pod at %AREA%"
-	description = "Go to %AREA%, and receive the Carp DNA scanner. Use it on any Space Carp to harvest its DNA. \
-	From there, use it on yourself, to mutate your own DNA with it and become a Space Dragon. \
-	Don't worry about finding one, I'm sure there'll have a wave of carp right when you need it."
+	name = "接收空投在 %AREA% 的DNA收集器，提取太空鲤鱼DNA，然后使自己变异."
+	description = "前往 %AREA% ，接收鲤鱼DNA扫描器，可以提取任何一只太空鲤鱼的DNA.\
+	然后通过对自己使用将自己的DNA与鲤鱼混合变异，成为太空龙.\
+	别担心找不到鲤鱼，当你需要时，会有一波鲤鱼出现的. "
 
-	///Area type the objective owner must be in to receive the DNA extractor.
+	///任务持有者必须在此区域内才能接收 DNA 提取器
 	var/area/dna_scanner_spawnarea_type
-	///Whether the DNA extraction kit was sent already.
+	///是否已发送 DNA 提取工具包
 	var/received_dna_scanner = FALSE
 
 /datum/traitor_objective/ultimate/space_dragon/on_objective_taken(mob/user)
 	. = ..()
-	force_event(/datum/round_event_control/carp_migration, "[handler.owner]'s final objective")
+	force_event(/datum/round_event_control/carp_migration, "[handler.owner]的最终目标")
 
 /datum/traitor_objective/ultimate/space_dragon/generate_objective(datum/mind/generating_for, list/possible_duplicates)
 	var/list/possible_areas = GLOB.the_station_areas.Copy()
 	for(var/area/possible_area as anything in possible_areas)
-		//remove areas too close to the destination, too obvious for our poor shmuck, or just unfair
+		//删除离目的地太近、对我们的可怜家伙来说太明显或不公平的区域
 		if(ispath(possible_area, /area/station/hallway) || ispath(possible_area, /area/station/security))
 			possible_areas -= possible_area
 	if(length(possible_areas) == 0)
@@ -28,7 +28,7 @@
 /datum/traitor_objective/ultimate/space_dragon/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!received_dna_scanner)
-		buttons += add_ui_button("", "Pressing this will call down a pod with the DNA extraction kit.", "biohazard", "carp_dna")
+		buttons += add_ui_button("", "按下此按钮将呼叫一个带有 DNA 提取工具包的空投，", "biohazard", "carp_dna")
 	return buttons
 
 /datum/traitor_objective/ultimate/space_dragon/ui_perform_action(mob/living/user, action)
@@ -39,7 +39,7 @@
 				return
 			var/area/delivery_area = get_area(user)
 			if(delivery_area.type != dna_scanner_spawnarea_type)
-				to_chat(user, span_warning("You must be in [initial(dna_scanner_spawnarea_type.name)] to receive the DNA extraction kit."))
+				to_chat(user, span_warning("你必须在 [initial(dna_scanner_spawnarea_type.name)] 才能接收 DNA 提取工具包，"))
 				return
 			received_dna_scanner = TRUE
 			podspawn(list(

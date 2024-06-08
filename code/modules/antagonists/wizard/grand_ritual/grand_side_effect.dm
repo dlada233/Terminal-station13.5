@@ -1,39 +1,39 @@
 /**
- * Describes something which can happen in a local area when the grand ritual is completed.
+ * 描述在完成宏伟仪式时可以在局部区域内发生的事情。
  */
 /datum/grand_side_effect
-	/// If true then this effect is a holder for behaviour and should not be selected.
+	/// 如果为真，则此效果是行为的持有者，不应被选择。
 	var/abstract = TRUE
 
 /**
- * Returns true if you can trigger this effect.
- * * ritual_location - Central turf of the ritual rune.
+ * 如果可以触发此效果，则返回 true。
+ * * ritual_location - 仪式符文的中心地皮。
  */
 /datum/grand_side_effect/proc/can_trigger(turf/ritual_location)
 	return !abstract
 
 /**
- * Triggers some kind of effect in the area of the ritual.
- * Arguments
- * * potency - How many times a ritual has been cast previously.
- * * ritual_location - Central turf of the ritual rune.
- * * invoker - Mob who cast the spell.
+ * 在仪式区域触发某种效果。
+ * 参数
+ * * potency - 之前施法次数。
+ * * ritual_location - 仪式符文的中心地皮。
+ * * invoker - 施法者。
  */
 /datum/grand_side_effect/proc/trigger(potency, turf/ritual_location, mob/invoker)
-	return // Do something cool in the override
+	return // 在重写中做些酷炫的事
 
 /**
- * A side effect which just casts a spell at its position
+ * 只在其位置施放一个法术的副作用
  */
 /datum/grand_side_effect/spell
-	/// Path of spell to cast
+	/// 要施放的法术路径
 	var/spell_path
-	/// Time to spend before ending spell
+	/// 结束法术前的持续时间
 	var/duration = 0
-	/// Sound effect to play
+	/// 播放的音效
 	var/sound
 
-/// Casts dimensional instability on the area
+/// 在区域内施放维度不稳定
 /datum/grand_side_effect/scramble_turfs
 	abstract = FALSE
 
@@ -45,7 +45,7 @@
 	var/duration = LERP((10 SECONDS), (15 SECONDS), potency/GRAND_RITUAL_FINALE_COUNT)
 	QDEL_IN(spell, duration)
 
-/// Transform the surrounding area into something else.
+/// 将周围区域变成其他东西
 /datum/grand_side_effect/transmogrify_area
 	abstract = FALSE
 
@@ -77,15 +77,15 @@
 	for (var/turf/target_turf as anything in transform_turfs)
 		theme.apply_theme(target_turf)
 
-/// Minimum number of anomalies to create
+/// 最小创建异常数量
 #define MIN_ANOMALIES_CREATED 1
-/// Maximum number of anomalies to create
+/// 最大创建异常数量
 #define MAX_ANOMALIES_CREATED 4
 
-/// Spawn some anomalies in the area, ones which are not too dangerous
+/// 在区域内生成一些不太危险的异常
 /datum/grand_side_effect/create_anomalies
 	abstract = FALSE
-	/// List of anomaly types we are allowed to create, paired with a maximum to create of each
+	/// 我们允许创建的异常类型列表，每种类型的最大创建数量
 	var/static/list/permitted_anomalies = list(
 		/obj/effect/anomaly/bioscrambler = 1,
 		/obj/effect/anomaly/hallucination = 2,
@@ -116,7 +116,7 @@
 #undef MIN_ANOMALIES_CREATED
 #undef MAX_ANOMALIES_CREATED
 
-/// EMP nearby machines
+/// 使附近的机器产生EMP脉冲
 /datum/grand_side_effect/emp
 	abstract = FALSE
 
@@ -125,11 +125,11 @@
 	var/light = LERP(3, 6, potency/GRAND_RITUAL_FINALE_COUNT)
 	empulse(ritual_location, heavy, light)
 
-/// Swap locations of nearby mobs arbitrarily and confuse them
+/// 随机交换附近生物的位置并使其混乱
 /datum/grand_side_effect/translocate
 	abstract = FALSE
 
-/// Don't run if there's nobody to swap
+/// 如果没有人可交换则不运行
 /datum/grand_side_effect/translocate/can_trigger(turf/ritual_location)
 	. = ..()
 	if (!.)
@@ -164,7 +164,7 @@
 		var/atom/new_loc = pop(mob_locations)
 		do_teleport(victim, new_loc, channel = TELEPORT_CHANNEL_MAGIC)
 
-/// Spawn lube in the area
+/// 在区域内生成润滑剂
 /datum/grand_side_effect/slippery
 	abstract = FALSE
 
@@ -176,13 +176,13 @@
 	lube.create_foam(/datum/effect_system/fluid_spread/foam, DIAMOND_AREA(range))
 	qdel(lube)
 
-/// Grabs one person and pulls them to this location, after a delay
+/// 抓住一个人并将其拉到此位置，延迟后
 /datum/grand_side_effect/summon_crewmate
 	abstract = FALSE
-	/// Weak reference to someone we're going to grab and pull to our location
+	/// 将要抓住并拉到我们位置的人的弱引用
 	var/datum/weakref/victim
 
-/// Don't run if there's nobody to summon
+/// 如果没有人可召唤则不运行
 /datum/grand_side_effect/summon_crewmate/can_trigger(turf/ritual_location)
 	. = ..()
 	if (!.)
@@ -223,7 +223,7 @@
 	victim.Immobilize(CREWMATE_SUMMON_TELEPORT_DELAY)
 	victim.AddElement(/datum/element/forced_gravity, 0)
 	victim.add_filter("teleport_glow", 2, list("type" = "outline", "color" = "#de3aff48", "size" = 2))
-	victim.visible_message(span_warning("[victim] suddenly floats up into the air!"), span_warning("You feel a tug in your chest, and are lifted upwards into the air!"))
+	victim.visible_message(span_warning("[victim]突然漂浮起来!"), span_warning("你被一股升力揪到空中!"))
 	addtimer(CALLBACK(src, PROC_REF(summon_crewmate), victim, landing_pos), CREWMATE_SUMMON_TELEPORT_DELAY)
 
 #undef CREWMATE_SUMMON_TELEPORT_DELAY
@@ -236,9 +236,9 @@
 	if (do_teleport(victim, destination, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_MAGIC))
 		var/obj/effect/particle_effect/fluid/smoke/poof = new(was_position)
 		poof.lifetime = 2 SECONDS
-		was_position.visible_message(span_warning("[victim] disappears in a puff of smoke!"))
+		was_position.visible_message(span_warning("[victim]消失在一团烟雾中!"))
 	else
-		victim.visible_message(span_notice("[victim] sinks back to the ground."))
+		victim.visible_message(span_notice("[victim]回到了地面."))
 
 /// Create colourful smoke
 /datum/grand_side_effect/smoke

@@ -172,7 +172,7 @@
 		qdel(objective)
 		return
 	objective.forced = force
-	log_traitor("[key_name(owner)] has received a potential objective: [objective.to_debug_string()] | Forced: [force]")
+	log_traitor("[key_name(owner)]收到了潜在目标: [objective.to_debug_string()] | 强制: [force]")
 	objective.original_progression = objective.progression_reward
 	objective.update_progression_reward()
 	potential_objectives += objective

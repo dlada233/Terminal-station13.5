@@ -1,155 +1,148 @@
-// Defensive wizard spells
+// 防御性巫师法术
 /datum/spellbook_entry/magicm
-	name = "Magic Missile"
-	desc = "Fires several, slow moving, magic projectiles at nearby targets."
-	spell_type = /datum/action/cooldown/spell/aoe/magic_missile
-	category = "Defensive"
+    name = "魔法飞弹"
+    desc = "向附近的目标发射几个缓慢移动的魔法投射物."
+    spell_type = /datum/action/cooldown/spell/aoe/magic_missile
+    category = "防御"
 
 /datum/spellbook_entry/disabletech
-	name = "Disable Tech"
-	desc = "Disables all weapons, cameras and most other technology in range."
-	spell_type = /datum/action/cooldown/spell/emp/disable_tech
-	category = "Defensive"
-	cost = 1
+    name = "科学封印"
+    desc = "禁用范围内的所有武器、摄像头和大多数其他科技产品."
+    spell_type = /datum/action/cooldown/spell/emp/disable_tech
+    category = "防御"
+    cost = 1
 
 /datum/spellbook_entry/repulse
-	name = "Repulse"
-	desc = "Throws everything around the user away."
-	spell_type = /datum/action/cooldown/spell/aoe/repulse/wizard
-	category = "Defensive"
+    name = "驱逐术"
+    desc = "将周围的一切击飞."
+    spell_type = /datum/action/cooldown/spell/aoe/repulse/wizard
+    category = "防御"
 
 /datum/spellbook_entry/lightning_packet
-	name = "Thrown Lightning"
-	desc = "Forged from eldrich energies, a packet of pure power, \
-		known as a spell packet will appear in your hand, that when thrown will stun the target."
-	spell_type = /datum/action/cooldown/spell/conjure_item/spellpacket
-	category = "Defensive"
+    name = "飞雷术"
+    desc = "由古老的能量锻造而成，包含着纯净的能量的投掷沙包，\
+        俗称法术沙包，使用后会出现在你手中，将其投掷会击晕目标."
+    spell_type = /datum/action/cooldown/spell/conjure_item/spellpacket
+    category = "防御"
 
 /datum/spellbook_entry/timestop
-	name = "Time Stop"
-	desc = "Stops time for everyone except for you, allowing you to move freely \
-		while your enemies and even projectiles are frozen."
-	spell_type = /datum/action/cooldown/spell/timestop
-	category = "Defensive"
+    name = "时间停止"
+    desc = "除了你之外的所有人甚至连投射物都被冻结暂停，让你可以自由移动."
+    spell_type = /datum/action/cooldown/spell/timestop
+    category = "防御"
 
 /datum/spellbook_entry/smoke
-	name = "Smoke"
-	desc = "Spawns a cloud of choking smoke at your location."
-	spell_type = /datum/action/cooldown/spell/smoke
-	category = "Defensive"
-	cost = 1
+    name = "烟雾术"
+    desc = "在你的位置生成一片让人窒息的烟雾."
+    spell_type = /datum/action/cooldown/spell/smoke
+    category = "防御"
+    cost = 1
 
 /datum/spellbook_entry/forcewall
-	name = "Force Wall"
-	desc = "Create a magical barrier that only you can pass through."
-	spell_type = /datum/action/cooldown/spell/forcewall
-	category = "Defensive"
-	cost = 1
+    name = "斥力墙"
+    desc = "创造一堵只有你能通过的魔法屏障."
+    spell_type = /datum/action/cooldown/spell/forcewall
+    category = "防御"
+    cost = 1
 
 /datum/spellbook_entry/lichdom
-	name = "Bind Soul"
-	desc = "A dark necromantic pact that can forever bind your soul to an item of your choosing, \
-		turning you into an immortal Lich. So long as the item remains intact, you will revive from death, \
-		no matter the circumstances. Be wary - with each revival, your body will become weaker, and \
-		it will become easier for others to find your item of power."
-	spell_type =  /datum/action/cooldown/spell/lichdom
-	category = "Defensive"
-	no_coexistance_typecache = list(/datum/action/cooldown/spell/splattercasting)
+    name = "灵魂绑定契约"
+    desc = "一份邪恶的死灵契约，通过把自己的灵魂绑定到一件物品上，将自己变成一个不死的巫妖\
+    	只要绑定物品完好无损，任何情况下你都可以复活.\
+        但代价是每次复活，你的身体都会变得更虚弱，\
+        别人也会更容易找到你的不死力量的来源."
+    spell_type = /datum/action/cooldown/spell/lichdom
+    category = "防御"
+    no_coexistance_typecache = list(/datum/action/cooldown/spell/splattercasting)
 
 /datum/spellbook_entry/chuunibyou
-	name = "Chuuni Invocations"
-	desc = "Makes all your spells shout invocations, and the invocations become... stupid. You heal slightly after casting a spell."
-	spell_type =  /datum/action/cooldown/spell/chuuni_invocations
-	category = "Defensive"
+    name = "中二吟唱词"
+    desc = "让你在释放所有法术时喊出愚蠢施法词. 你在施法后会有轻微的恢复效果."
+    spell_type = /datum/action/cooldown/spell/chuuni_invocations
+    category = "防御"
 
 /datum/spellbook_entry/spacetime_dist
-	name = "Spacetime Distortion"
-	desc = "Entangle the strings of space-time in an area around you, \
-		randomizing the layout and making proper movement impossible. The strings vibrate..."
-	spell_type = /datum/action/cooldown/spell/spacetime_dist
-	category = "Defensive"
-	cost = 1
+    name = "时空扭曲"
+    desc = "随机分布你周围的区域中纠缠时空的弦，使人无法正常移动，一切事物都会在弦的无序振动中被打乱..."
+    spell_type = /datum/action/cooldown/spell/spacetime_dist
+    category = "防御"
+    cost = 1
 
 /datum/spellbook_entry/the_traps
-	name = "The Traps!"
-	desc = "Summon a number of traps around you. They will damage and enrage any enemies that step on them."
-	spell_type = /datum/action/cooldown/spell/conjure/the_traps
-	category = "Defensive"
-	cost = 1
+    name = "陷阱术"
+    desc = "在你周围召唤一些陷阱，它们会对伤害并激怒踩到陷阱的敌人."
+    spell_type = /datum/action/cooldown/spell/conjure/the_traps
+    category = "防御"
+    cost = 1
 
 /datum/spellbook_entry/bees
-	name = "Lesser Summon Bees"
-	desc = "This spell magically kicks a transdimensional beehive, \
-		instantly summoning a swarm of bees to your location. These bees are NOT friendly to anyone."
-	spell_type = /datum/action/cooldown/spell/conjure/bee
-	category = "Defensive"
+    name = "次级蜜蜂召唤术"
+    desc = "这个术式调用魔法去踢一下超维蜂巢，瞬间在你的位置召唤出一群会攻击任何人蜜蜂."
+    spell_type = /datum/action/cooldown/spell/conjure/bee
+    category = "防御"
 
 /datum/spellbook_entry/duffelbag
-	name = "Bestow Cursed Duffel Bag"
-	desc = "A curse that firmly attaches a demonic duffel bag to the target's back. \
-		The duffel bag will make the person it's attached to take periodical damage \
-		if it is not fed regularly, and regardless of whether or not it's been fed, \
-		it will slow the person wearing it down significantly."
-	spell_type = /datum/action/cooldown/spell/touch/duffelbag
-	category = "Defensive"
-	cost = 1
+    name = "旅行包诅咒"
+    desc = "一个诅咒，将一个恶魔旅行包牢牢附着在目标的背上.\
+        如果不定期喂养，旅行包会使被附身者受到周期性伤害，\
+        而且无论该包是否被喂养，都会显著减慢穿戴者的速度."
+    spell_type = /datum/action/cooldown/spell/touch/duffelbag
+    category = "防御"
+    cost = 1
 
 /datum/spellbook_entry/item/staffhealing
-	name = "Staff of Healing"
-	desc = "An altruistic staff that can heal the lame and raise the dead."
-	item_path = /obj/item/gun/magic/staff/healing
-	cost = 1
-	category = "Defensive"
+    name = "治愈法杖"
+    desc = "一根无私的法杖，从治愈瘸腿到复活死者都可以做到."
+    item_path = /obj/item/gun/magic/staff/healing
+    cost = 1
+    category = "防御"
 
 /datum/spellbook_entry/item/lockerstaff
-	name = "Staff of the Locker"
-	desc = "A staff that shoots lockers. It eats anyone it hits on its way, leaving a welded locker with your victims behind."
-	item_path = /obj/item/gun/magic/staff/locker
-	category = "Defensive"
+    name = "储物柜法杖"
+    desc = "一根能射出储物柜的法杖，它会吞噬路径上的任何人，将他们困在焊死的储物柜中."
+    item_path = /obj/item/gun/magic/staff/locker
+    category = "防御"
 
 /datum/spellbook_entry/item/scryingorb
-	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
-	item_path = /obj/item/scrying
-	category = "Defensive"
+    name = "占卜球"
+    desc = "一颗充满魔力的球体，使用它可以让你灵魂出窍，允许你观察空间站并与亡者交谈. 此外，购买它将永久给予你透视能力."
+    item_path = /obj/item/scrying
+    category = "防御"
 
 /datum/spellbook_entry/item/wands
-	name = "Wand Assortment"
-	desc = "A collection of wands that allow for a wide variety of utility. \
-		Wands have a limited number of charges, so be conservative with their use. Comes in a handy belt."
-	item_path = /obj/item/storage/belt/wands/full
-	category = "Defensive"
+    name = "魔杖合集腰带"
+    desc = "一根挂了各种魔杖的腰带，但上面的魔杖使用次数都是有限的"
+    item_path = /obj/item/storage/belt/wands/full
+    category = "防御"
 
 /datum/spellbook_entry/item/wands/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
-	var/was_equipped = user.equip_to_slot_if_possible(to_equip, ITEM_SLOT_BELT, disable_warning = TRUE)
-	to_chat(user, span_notice("\A [to_equip.name] has been summoned [was_equipped ? "on your waist" : "at your feet"]."))
+    var/was_equipped = user.equip_to_slot_if_possible(to_equip, ITEM_SLOT_BELT, disable_warning = TRUE)
+    to_chat(user, span_notice("[to_equip.name] 被召唤[was_equipped ? "到你的腰间" : "到你的脚下"]."))
 
 /datum/spellbook_entry/item/armor
-	name = "Mastercrafted Armor Set"
-	desc = "An artefact suit of armor that allows you to cast spells \
-		while providing more protection against attacks and the void of space. \
-		Also grants a battlemage shield."
-	item_path = /obj/item/mod/control/pre_equipped/enchanted
-	category = "Defensive"
+    name = "精工铠甲套装"
+    desc = "一套拥有防护性能和太空环境适应的神器铠甲，穿上后同巫师袍一样能让你释放法术，还提供一个战法师护盾."
+    item_path = /obj/item/mod/control/pre_equipped/enchanted
+    category = "防御"
 
 /datum/spellbook_entry/item/armor/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
-	var/obj/item/mod/control/mod = to_equip
-	var/obj/item/mod/module/storage/storage = locate() in mod.modules
-	var/obj/item/back = user.back
-	if(back)
-		if(!user.dropItemToGround(back))
-			return
-		for(var/obj/item/item as anything in back.contents)
-			item.forceMove(storage)
-	if(!user.equip_to_slot_if_possible(mod, mod.slot_flags, qdel_on_fail = FALSE, disable_warning = TRUE))
-		return
-	if(!user.dropItemToGround(user.wear_suit) || !user.dropItemToGround(user.head))
-		return
-	mod.quick_activation()
+    var/obj/item/mod/control/mod = to_equip
+    var/obj/item/mod/module/storage/storage = locate() in mod.modules
+    var/obj/item/back = user.back
+    if(back)
+        if(!user.dropItemToGround(back))
+            return
+        for(var/obj/item/item as anything in back.contents)
+            item.forceMove(storage)
+    if(!user.equip_to_slot_if_possible(mod, mod.slot_flags, qdel_on_fail = FALSE, disable_warning = TRUE))
+        return
+    if(!user.dropItemToGround(user.wear_suit) || !user.dropItemToGround(user.head))
+        return
+    mod.quick_activation()
 
 /datum/spellbook_entry/item/battlemage_charge
-	name = "Battlemage Armour Charges"
-	desc = "A powerful defensive rune, it will grant eight additional charges to a battlemage shield."
-	item_path = /obj/item/wizard_armour_charge
-	category = "Defensive"
-	cost = 1
+    name = "战法师铠甲充能"
+    desc = "一个强大的防御性法术，赋予战法师护盾八层充能."
+    item_path = /obj/item/wizard_armour_charge
+    category = "防御"
+    cost = 1

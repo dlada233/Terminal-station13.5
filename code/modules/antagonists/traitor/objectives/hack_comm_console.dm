@@ -1,12 +1,12 @@
 /datum/traitor_objective_category/hack_comm_console
-	name = "Hack Communication Console"
+	name = "骇入通讯终端"
 	objectives = list(
 		/datum/traitor_objective/hack_comm_console = 1,
 	)
 
 /datum/traitor_objective/hack_comm_console
-	name = "Hack a communication console to summon an unknown threat to the station"
-	description = "Right click on a communication console to begin the hacking process. Once started, the AI will know that you are hacking a communication console, so be ready to run or have yourself disguised to prevent being caught. This objective will invalidate itself if another traitor completes it first."
+	name = "骇入通讯终端并引发未知威胁"
+	description = "右键通讯终端开始骇入，一旦开始，AI会知道你在骇入通讯终端，所以准备好逃跑或做好伪装. 如果另有叛徒先完成了同样的目标，你的这个目标会失败."
 
 	progression_minimum = 60 MINUTES
 	progression_reward = list(30 MINUTES, 40 MINUTES)
