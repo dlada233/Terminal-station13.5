@@ -18,11 +18,11 @@ import {
 import { Window } from '../layouts';
 
 enum SpellCategory {
-  Offensive = 'Offensive',
-  Defensive = 'Defensive',
-  Mobility = 'Mobility',
-  Assistance = 'Assistance',
-  Rituals = 'Rituals',
+  Offensive = '进攻',
+  Defensive = '防御',
+  Mobility = '位移',
+  Assistance = '辅助',
+  Rituals = '仪式',
 }
 
 type byondRef = string;
@@ -68,69 +68,69 @@ type TabType = {
 
 const TAB2NAME: TabType[] = [
   {
-    title: 'Enscribed Name',
+    title: '署名',
     blurb:
-      "This book answers only to its owner, and of course, must have one. The permanence of the pact between a spellbook and its owner ensures such a powerful artifact cannot fall into enemy hands, or be used in ways that break the Federation's rules such as bartering spells.",
+      "这本书只对它的主人负责，当然每个主人也只有一本，魔法书与其主人之间的永久契约确保了如此强大的神器不会落入敌人之手，或被用于违法行为，如贩卖魔法.",
     component: () => <EnscribedName />,
   },
   {
-    title: 'Table of Contents',
+    title: '目录',
     component: () => <TableOfContents />,
   },
   {
-    title: 'Offensive',
-    blurb: 'Spells and items geared towards debilitating and destroying.',
+    title: '进攻',
+    blurb: '用于破坏的法术及物品.',
     scrollable: true,
   },
   {
-    title: 'Defensive',
+    title: '防御',
     blurb:
-      "Spells and items geared towards improving your survivability or reducing foes' ability to attack.",
+      "能提高生存能力或降低敌人攻击能力的法术及物品.",
     scrollable: true,
   },
   {
-    title: 'Mobility',
+    title: '位移',
     blurb:
-      'Spells and items geared towards improving your ability to move. It is a good idea to take at least one.',
+      '用于提高你移动能力的法术及物品，最好至少购买一项.',
     scrollable: true,
   },
   {
-    title: 'Assistance',
+    title: '辅助',
     blurb:
-      'Spells and items geared towards bringing in outside forces to aid you or improving upon your other items and abilities.',
+      '能从外部引入力量来帮助或强化你的法术和物品.',
     scrollable: true,
   },
   {
-    title: 'Challenges',
+    title: '挑战',
     blurb:
-      'The Wizard Federation is looking for shows of power. Arming the station against you will increase the danger, but will grant you more charges for your spellbook.',
+      '巫师联盟需要赢得更多威望，让空间站武装起来对付你，而你能获得更多的魔法书点数.',
     locked: true,
     scrollable: true,
   },
   {
-    title: 'Rituals',
+    title: '仪式',
     blurb:
-      'These powerful spells change the very fabric of reality. Not always in your favour.',
+      '这些强大的魔法能改变现实的结构，并不总是对你有利.',
     scrollable: true,
   },
   {
-    title: 'Loadouts',
+    title: '预设配装',
     blurb:
-      'The Wizard Federation accepts that sometimes, choosing is hard. You can choose from some approved wizard loadouts here.',
+      '巫师联盟承认，选择困难是人之常情，在这里您可以直接选择预设的配装.',
     component: () => <Loadouts />,
   },
   {
-    title: 'Randomize',
+    title: '随机配装',
     blurb:
-      "If you didn't like the loadouts offered, you can embrace chaos. Not recommended for newer wizards.",
+      "用于不喜欢预设，希望人生充满了混乱的人，不建议经验尚浅的巫师使用.",
     component: () => <Randomize />,
   },
 ];
 
 enum Buywords {
-  Learn = 'Learn',
-  Summon = 'Summon',
-  Cast = 'Cast',
+  Learn = '学习',
+  Summon = '召唤',
+  Cast = '举行',
 }
 
 const BUYWORD2ICON = {
@@ -170,28 +170,28 @@ const TableOfContents = (props) => {
         fluid
         icon="pen"
         disabled
-        content="Name Enscription"
+        content="真名绑定"
       />
       <Button
         lineHeight={lineHeightToc}
         fluid
         icon="clipboard"
         disabled
-        content="Table of Contents"
+        content="目录"
       />
       <Divider />
       <Button
         lineHeight={lineHeightToc}
         fluid
         icon="fire"
-        content="Deadly Evocations"
+        content="致命法术"
         onClick={() => setTabIndex(3)}
       />
       <Button
         lineHeight={lineHeightToc}
         fluid
         icon="shield-alt"
-        content="Defensive Evocations"
+        content="防御法术"
         onClick={() => setTabIndex(3)}
       />
       <Divider />
@@ -199,14 +199,14 @@ const TableOfContents = (props) => {
         lineHeight={lineHeightToc}
         fluid
         icon="globe-americas"
-        content="Magical Transportation"
+        content="魔法位移术"
         onClick={() => setTabIndex(5)}
       />
       <Button
         lineHeight={lineHeightToc}
         fluid
         icon="users"
-        content="Assistance and Summoning"
+        content="辅助及召唤术"
         onClick={() => setTabIndex(5)}
       />
       <Divider />
@@ -214,14 +214,14 @@ const TableOfContents = (props) => {
         lineHeight={lineHeightToc}
         fluid
         icon="crown"
-        content="Challenges"
+        content="挑战项目"
         onClick={() => setTabIndex(7)}
       />
       <Button
         lineHeight={lineHeightToc}
         fluid
         icon="magic"
-        content="Rituals"
+        content="仪式项目"
         onClick={() => setTabIndex(7)}
       />
       <Divider />
@@ -229,14 +229,14 @@ const TableOfContents = (props) => {
         lineHeight={lineHeightToc}
         fluid
         icon="thumbs-up"
-        content="Wizard Approved Loadouts"
+        content="巫师预设配装"
         onClick={() => setTabIndex(9)}
       />
       <Button
         lineHeight={lineHeightToc}
         fluid
         icon="dice"
-        content="Arcane Randomizer"
+        content="神秘随机化"
         onClick={() => setTabIndex(9)}
       />
     </Box>
@@ -337,27 +337,27 @@ const Loadouts = (props) => {
           <SingleLoadout
             loadoutId="loadout_classic"
             loadoutColor="purple"
-            name="The Classic Wizard"
+            name="经典巫师"
             icon="fire"
             author="Archchancellor Gray"
             blurb={multiline`
-                This is the classic wizard, crazy popular in
-                the 2550's. Comes with Fireball, Magic Missile,
-                Ei Nath, and Ethereal Jaunt. The key here is that
-                every part of this kit is very easy to pick up and use.
+                经典法师款，在2550年代疯狂流行，
+                自带火球术、魔法飞弹、
+                裂解之手和虚空漫步.
+                本套装关键在于所有的东西都很简单粗暴.
               `}
           />
           <SingleLoadout
-            name="Mjolnir's Power"
+            name="雷神下凡"
             icon="hammer"
             loadoutId="loadout_hammer"
             loadoutColor="green"
             author="Jegudiel Worldshaker"
             blurb={multiline`
-                The power of the mighty Mjolnir! Best not to lose it.
-                This loadout has Summon Item, Mutate, Blink, Force Wall,
-                Tesla Blast, and Mjolnir. Mutate is your utility in this case:
-                Use it for limited ranged fire and getting out of bad blinks.
+                发挥雷神之锤的神力! 最好不要让它离手.
+                预设内有唤来术、突变术、闪现术、斥力墙、特斯拉电弧和雷神之锤.
+                妥善运用变异这种多功能的魔法:
+                比如进行有限的远程攻击和避免糟糕的闪现.
               `}
           />
         </Stack>
@@ -365,28 +365,27 @@ const Loadouts = (props) => {
       <Stack.Item>
         <Stack fill>
           <SingleLoadout
-            name="Fantastical Army"
+            name="亡灵军队"
             icon="pastafarianism"
             loadoutId="loadout_army"
             loadoutColor="yellow"
             author="Prospero Spellstone"
             blurb={multiline`
-                Why kill when others will gladly do it for you?
-                Embrace chaos with your kit: Soulshards, Staff of Change,
-                Necro Stone, Teleport, and Jaunt! Remember, no offense spells!
+                如果有人愿意为你杀人的时候，为什么还要亲自动手呢?
+                用一下装备拥抱混沌: 灵魂石碎片、变化法杖,
+                不死石、传送和虚空漫步! 记住，拒绝进攻性法术!
               `}
           />
           <SingleLoadout
-            name="Soul Tapper"
+            name="灵魂行者"
             icon="skull"
             loadoutId="loadout_tap"
             loadoutColor="white"
             author="Tom the Empty"
             blurb={multiline`
-                Embrace the dark, and tap into your soul.
-                You can recharge very long recharge spells
-                like Ei Nath by jumping into new bodies with
-                Mind Swap and starting Soul Tap anew.
+                拥抱黑暗，深入灵魂.
+                你可以通过心灵交换进入新的身体，然后不断地为某些长充能法术进行灵魂注能，
+                比如裂解之手等.
               `}
           />
         </Stack>
@@ -414,7 +413,7 @@ const Randomize = (props) => {
           lineHeight={lineHeightRandomize}
           fluid
           icon="dice-three"
-          content="Semi-Randomize!"
+          content="半随机!"
           onClick={() => act('semirandomize')}
         />
         <Divider />
@@ -432,7 +431,7 @@ const Randomize = (props) => {
             fluid
             color="black"
             icon="dice"
-            content="Full Random!"
+            content="全随机!"
             onClick={() => act('randomize')}
           />
         </NoticeBox>
@@ -472,12 +471,11 @@ const SearchSpells = (props) => {
     return (
       <Stack width="100%" vertical>
         <Stack.Item>
-          <NoticeBox>{`No spells found!`}</NoticeBox>
+          <NoticeBox>{`找不到法术!`}</NoticeBox>
         </Stack.Item>
         <Stack.Item>
           <Box italic align="center" color="lightgrey">
-            {`Search tip: Searching "Robeless" will only show you
-            spells that don't require wizard garb!`}
+            {`提示: 搜索"Robeless" 会显示不需要巫师服装的法术!`}
           </Box>
         </Stack.Item>
       </Stack>
@@ -504,13 +502,13 @@ const SpellTabDisplay = (props: {
   const getTimeOrCat = (entry: SpellEntry) => {
     if (entry.cat === SpellCategory.Rituals) {
       if (entry.times) {
-        return `Cast ${entry.times} times.`;
+        return `花费 ${entry.times} 次.`;
       } else {
-        return 'Not cast yet.';
+        return '尚未花费.';
       }
     } else {
       if (entry.cooldown) {
-        return `${entry.cooldown}s Cooldown`;
+        return `${entry.cooldown}秒 冷却`;
       } else {
         return '';
       }
@@ -538,8 +536,8 @@ const SpellTabDisplay = (props: {
                   tooltipPosition="bottom-start"
                   tooltip={
                     entry.requires_wizard_garb
-                      ? 'Requires wizard garb.'
-                      : 'Can be cast without wizard garb.'
+                      ? '需要巫师服装.'
+                      : '无需巫师服装.'
                   }
                 />
               </Stack.Item>
@@ -572,7 +570,7 @@ const SpellTabDisplay = (props: {
                     textAlign="center"
                     width={7}
                     icon="arrow-left"
-                    content="Refund"
+                    content="退款"
                     onClick={() =>
                       act('refund', {
                         spellref: entry.ref,
@@ -632,43 +630,43 @@ export const Spellbook = (props) => {
   const SelectSearchVerb = () => {
     let found = Math.random();
     if (found <= 0.03) {
-      return 'Seeking';
+      return '搜索中';
     }
     if (found <= 0.06) {
-      return 'Contemplating';
+      return '沉思中';
     }
     if (found <= 0.09) {
-      return 'Divining';
+      return '探测中';
     }
     if (found <= 0.12) {
-      return 'Scrying';
+      return '占卜中';
     }
     if (found <= 0.15) {
-      return 'Peeking';
+      return '窥视中';
     }
     if (found <= 0.18) {
-      return 'Pondering';
+      return '冥想中';
     }
     if (found <= 0.21) {
-      return 'Divining';
+      return '探寻中';
     }
     if (found <= 0.24) {
-      return 'Gazing';
+      return '凝视中';
     }
     if (found <= 0.27) {
-      return 'Studying';
+      return '学习中';
     }
     if (found <= 0.3) {
-      return 'Reviewing';
+      return '回顾中';
     }
 
-    return 'Searching';
+    return '搜索中';
   };
 
   const SelectedVerb = SelectSearchVerb();
 
   return (
-    <Window title="Spellbook" theme="wizard" width={950} height={540}>
+    <Window title="魔法书" theme="wizard" width={950} height={540}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
@@ -682,7 +680,7 @@ export const Spellbook = (props) => {
                     fill
                     buttons={
                       <Button
-                        content={`Stop ${SelectedVerb}`}
+                        content={`停止 ${SelectedVerb}`}
                         icon="arrow-rotate-left"
                         onClick={() => setSpellSearch('')}
                       />
@@ -707,7 +705,7 @@ export const Spellbook = (props) => {
                             mr={57}
                             disabled={tabIndex === 1}
                             icon="arrow-left"
-                            content="Previous Page"
+                            content="上一页"
                             onClick={() => setTabIndex(tabIndex - 2)}
                           />
                           <Box textAlign="right" bold mt={-3.3} mr={1}>
@@ -733,7 +731,7 @@ export const Spellbook = (props) => {
                             mr={0}
                             icon="arrow-right"
                             disabled={tabIndex === 9}
-                            content="Next Page"
+                            content="下一页"
                             onClick={() => setTabIndex(tabIndex + 2)}
                           />
                           <Box textAlign="left" bold mt={-3.3} ml={-59.8}>
@@ -754,13 +752,13 @@ export const Spellbook = (props) => {
               <Stack>
                 <Stack.Item grow>
                   <ProgressBar value={points / 10}>
-                    {points + ' points left to spend.'}
+                    {points + ' 剩余点数.'}
                   </ProgressBar>
                 </Stack.Item>
                 <Stack.Item>
                   <Input
                     width={15}
-                    placeholder="Search for a spell..."
+                    placeholder="搜索法术中..."
                     onInput={(e, val) => setSpellSearch(val)}
                   />
                 </Stack.Item>
