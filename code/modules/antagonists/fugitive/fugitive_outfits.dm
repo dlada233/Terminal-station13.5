@@ -1,5 +1,5 @@
 /datum/outfit/prisoner
-	name = "Prison Escapee"
+	name = "囚犯逃亡者"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 	r_pocket = /obj/item/knife/shiv
@@ -14,7 +14,7 @@
 	prisoner.fully_replace_character_name(null,"NTP #CC-0[rand(111,999)]") //same as the lavaland prisoner transport, but this time they are from CC, or CentCom
 
 /datum/outfit/yalp_cultist
-	name = "Cultist of Yalp Elor"
+	name = "Yalp Elor血教徒"
 	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	suit = /obj/item/clothing/suit/chaplainsuit/holidaypriest
 	gloves = /obj/item/clothing/gloves/color/red
@@ -22,7 +22,7 @@
 	mask = /obj/item/clothing/mask/gas/tiki_mask/yalp_elor
 
 /datum/outfit/waldo
-	name = "Waldo"
+	name = "沃尔多"
 	uniform = /obj/item/clothing/under/pants/jeans
 	suit = /obj/item/clothing/suit/costume/striped_sweater
 	head = /obj/item/clothing/head/waldo
@@ -35,7 +35,7 @@
 	equipped_on.update_worn_undersuit()
 	if(visualsOnly)
 		return
-	equipped_on.fully_replace_character_name(null, "Waldo")
+	equipped_on.fully_replace_character_name(null, "沃尔多")
 	equipped_on.eye_color_left = "#000000"
 	equipped_on.eye_color_right = "#000000"
 	equipped_on.gender = MALE
@@ -59,7 +59,7 @@
 	waldos_key.Grant(equipped_on)
 
 /datum/outfit/synthetic
-	name = "Factory Error Synth"
+	name = "工厂故障合成人"
 	uniform = /obj/item/clothing/under/color/white
 	ears = /obj/item/radio/headset
 
@@ -70,7 +70,7 @@
 	eyes.Insert(H, movement_flags = DELETE_IF_REPLACED)
 
 /datum/outfit/invisible_man
-	name = "Invisible Man"
+	name = "隐形人"
 	uniform = /obj/item/clothing/under/suit/black_really
 	back = /obj/item/storage/backpack/satchel/leather
 	shoes = /obj/item/clothing/shoes/laceup

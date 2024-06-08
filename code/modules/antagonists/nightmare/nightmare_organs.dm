@@ -1,18 +1,18 @@
-/// How many life ticks are required for the nightmare's heart to revive the nightmare.
+/// 梦魇的心脏需要多少生命刻来复活梦魇.
 #define HEART_RESPAWN_THRESHHOLD (80 SECONDS)
-/// A special flag value used to make a nightmare heart not grant a light eater. Appears to be unused.
+/// 一个特殊标志值，用于使梦魇心脏不授予光蚀器. 似乎未使用.
 #define HEART_SPECIAL_SHADOWIFY 2
 
 
 /obj/item/organ/internal/brain/shadow/nightmare
-	name = "tumorous mass"
-	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
+	name = "肿瘤组织"
+	desc = "从梦魇的头骨中挖出的肉质生长物. "
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "brain-x-d"
 	applied_status = /datum/status_effect/shadow_regeneration/nightmare
-	///Our associated shadow jaunt spell, for all nightmares
+	/// 我们的关联影遁法术，适用于所有梦魇
 	var/datum/action/cooldown/spell/jaunt/shadow_walk/our_jaunt
-	///Our associated terrorize spell, for antagonist nightmares
+	/// 我们的关联恐吓法术，适用于反派梦魇
 	var/datum/action/cooldown/spell/pointed/terrorize/terrorize_spell
 
 /obj/item/organ/internal/brain/shadow/nightmare/on_mob_insert(mob/living/carbon/brain_owner)
@@ -20,12 +20,12 @@
 
 	if(brain_owner.dna.species.id != SPECIES_NIGHTMARE)
 		brain_owner.set_species(/datum/species/shadow/nightmare)
-		visible_message(span_warning("[brain_owner] thrashes as [src] takes root in [brain_owner.p_their()] body!"))
+		visible_message(span_warning("[brain_owner]因[src]植根于身体而抽搐！"))
 
 	our_jaunt = new(brain_owner)
 	our_jaunt.Grant(brain_owner)
 
-	if(brain_owner.mind?.has_antag_datum(/datum/antagonist/nightmare)) //Only a TRUE NIGHTMARE is worthy of using this ability
+	if(brain_owner.mind?.has_antag_datum(/datum/antagonist/nightmare)) // 只有真正的梦魇才配使用这个能力
 		terrorize_spell = new(src)
 		terrorize_spell.Grant(brain_owner)
 
@@ -35,9 +35,9 @@
 	QDEL_NULL(terrorize_spell)
 
 /atom/movable/screen/alert/status_effect/shadow_regeneration/nightmare
-	name = "Lightless Domain"
-	desc = "Bathed in soothing darkness you will slowly regenerate, even past the point of death. \
-		Heightened reflexes will allow you to dodge projectile weapons."
+	name = "无光领域"
+	desc = "沐浴在舒缓的黑暗中，你会慢慢再生，即使是在死亡之后也一样. \
+		还会提升的反应能力，让你能够躲避投射物. "
 
 /datum/status_effect/shadow_regeneration/nightmare
 	alert_type = /atom/movable/screen/alert/status_effect/shadow_regeneration/nightmare
@@ -56,37 +56,37 @@
 /datum/status_effect/shadow_regeneration/nightmare/proc/dodge_bullets(mob/living/carbon/human/source, obj/projectile/hitting_projectile, def_zone)
 	SIGNAL_HANDLER
 	source.visible_message(
-		span_danger("[source] dances in the shadows, evading [hitting_projectile]!"),
-		span_danger("You evade [hitting_projectile] with the cover of darkness!"),
+		span_danger("[source]在阴影中起舞，躲避了[hitting_projectile]！"),
+		span_danger("你在黑暗的掩护下躲避了[hitting_projectile]！"),
 	)
 	playsound(source, SFX_BULLET_MISS, 75, TRUE)
 	return COMPONENT_BULLET_PIERCED
 
 /obj/item/organ/internal/heart/nightmare
-	name = "heart of darkness"
-	desc = "An alien organ that twists and writhes when exposed to light."
+	name = "黑暗之心"
+	desc = "一种在光照下扭曲和蠕动的外来器官. "
 	icon_state = "demon_heart-on"
 	base_icon_state = "demon_heart"
 	visual = TRUE
 	color = "#1C1C1C"
 	decay_factor = 0
-	/// How many life ticks in the dark the owner has been dead for. Used for nightmare respawns.
+	/// 主人在黑暗中死亡的生命刻数量. 用于梦魇复活.
 	var/respawn_progress = 0
-	/// The armblade granted to the host of this heart.
+	/// 授予此心脏宿主的臂刃.
 	var/obj/item/light_eater/blade
 
 /obj/item/organ/internal/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
 		return ..()
 	user.visible_message(
-		span_warning("[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"),
-		span_danger("[src] feels unnaturally cold in your hands. You raise [src] to your mouth and devour it!")
+		span_warning("[user]将[src]举到嘴边，大口撕咬！"),
+		span_danger("[src]在你的手中不自然地冷. 你将[src]举到嘴边并吞噬它！")
 	)
 	playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
 
 	user.visible_message(
-		span_warning("Blood erupts from [user]'s arm as it reforms into a weapon!"),
-		span_userdanger("Icy blood pumps through your veins as your arm reforms itself!")
+		span_warning("血液从[user]的手臂中流出，重塑为武器！"),
+		span_userdanger("冰冷的血液在你的静脉中流动，你的手臂重塑了自己！")
 	)
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	Insert(user)
@@ -101,7 +101,7 @@
 	. = ..()
 	respawn_progress = 0
 	if(blade && special != HEART_SPECIAL_SHADOWIFY)
-		heart_owner.visible_message(span_warning("\The [blade] disintegrates!"))
+		heart_owner.visible_message(span_warning("[blade]崩解了！"))
 		QDEL_NULL(blade)
 
 /obj/item/organ/internal/heart/nightmare/Stop()
@@ -125,9 +125,9 @@
 		Remove(owner, HEART_SPECIAL_SHADOWIFY)
 		old_owner.set_species(/datum/species/shadow)
 		Insert(old_owner, HEART_SPECIAL_SHADOWIFY)
-		to_chat(owner, span_userdanger("You feel the shadows invade your skin, leaping into the center of your chest! You're alive!"))
+		to_chat(owner, span_userdanger("你感觉到阴影侵入你的皮肤，跳跃到你的胸口中央！你活了过来！"))
 		SEND_SOUND(owner, sound('sound/effects/ghost.ogg'))
-	owner.visible_message(span_warning("[owner] staggers to [owner.p_their()] feet!"))
+	owner.visible_message(span_warning("[owner]摇摇晃晃地站了起来！"))
 	playsound(owner, 'sound/hallucinations/far_noise.ogg', 50, TRUE)
 	respawn_progress = 0
 

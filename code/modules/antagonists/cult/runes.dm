@@ -882,7 +882,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 //Rite of Spectral Manifestation: Summons a ghost on top of the rune as a cultist human with no items. User must stand on the rune at all times, and takes damage for each summoned ghost.
 /obj/effect/rune/manifest
 	cultist_name = "灵魂世界"
-	cultist_desc = "显化一个几何血尊仆人的鬼魂，也允许你自己化成恶鬼. 激活者自己必须一直位于符文上，并且每召唤一个鬼魂自身都会受到伤害."
+	cultist_desc = "显化一个几何血尊仆人的灵魂，也允许你自己化成恶鬼. 激活者自己必须一直位于符文上，并且每召唤一个灵魂自身都会受到伤害."
 	invocation = "Gal'h'rfikk harfrandid mud'gib!" //how the fuck do you pronounce this
 	icon_state = "7"
 	invoke_damage = 10
@@ -903,9 +903,9 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		log_game("显化符文激活失败 - 使用者没有站在符文上")
 		return list()
 	if(user.has_status_effect(/datum/status_effect/cultghost))
-		to_chat(user, "<span class='cult italic'>鬼魂不能召唤更多鬼魂!</span>")
+		to_chat(user, "<span class='cult italic'>灵魂不能召唤更多灵魂!</span>")
 		fail_invoke()
-		log_game("显化符文激活失败 - 使用者是个鬼魂")
+		log_game("显化符文激活失败 - 使用者是个灵魂")
 		return list()
 	return ..()
 
@@ -913,15 +913,15 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	. = ..()
 	var/mob/living/user = invokers[1]
 	var/turf/T = get_turf(src)
-	var/choice = tgui_alert(user, "你架起与灵界的连接...", "灵魂世界", list("显化血教徒鬼魂", "自己化身成恶鬼"))
-	if(choice == "显化血教徒鬼魂")
+	var/choice = tgui_alert(user, "你架起与灵界的连接...", "灵魂世界", list("显化血教徒灵魂", "自己化身成恶鬼"))
+	if(choice == "显化血教徒灵魂")
 		if(!is_station_level(T.z))
-			to_chat(user, span_cultitalic("<b>帷幕不够脆弱，无法显现鬼魂，你必须位于空间站上!</b>"))
+			to_chat(user, span_cultitalic("<b>帷幕不够脆弱，无法显现灵魂，你必须位于空间站上!</b>"))
 			return
 		if(ghosts >= ghost_limit)
-			to_chat(user, span_cultitalic("你承受了太多的鬼魂，无法召唤更多!"))
+			to_chat(user, span_cultitalic("你承受了太多的灵魂，无法召唤更多!"))
 			fail_invoke()
-			log_game("显化符文激活失败 - 太多生成的鬼魂")
+			log_game("显化符文激活失败 - 太多生成的灵魂")
 			return list()
 		notify_ghosts(
 			"[get_area(src)]处的显化符文已激活.",
@@ -934,9 +934,9 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			if(O.client && !is_banned_from(O.ckey, ROLE_CULTIST) && !QDELETED(src) && !(isAdminObserver(O) && (O.client.prefs.toggles & ADMIN_IGNORE_CULT_GHOST)) && !QDELETED(O))
 				ghosts_on_rune += O
 		if(!length(ghosts_on_rune))
-			to_chat(user, span_cultitalic("[src]附近没有鬼魂!"))
+			to_chat(user, span_cultitalic("[src]附近没有灵魂!"))
 			fail_invoke()
-			log_game("显化符文激活失败 - 附近没有鬼魂")
+			log_game("显化符文激活失败 - 附近没有灵魂")
 			return list()
 		var/mob/dead/observer/ghost_to_spawn = pick(ghosts_on_rune)
 

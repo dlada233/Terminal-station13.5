@@ -8,8 +8,8 @@ the new instance inside the host to be updated to the template's stats.
 */
 
 /mob/camera/disease
-	name = "Sentient Disease"
-	real_name = "Sentient Disease"
+	name = "感知瘟疫"
+	real_name = "感知瘟疫"
 	desc = ""
 	icon = 'icons/mob/silicon/cameramob.dmi'
 	icon_state = "marker"
@@ -70,7 +70,7 @@ the new instance inside the host to be updated to the template's stats.
 	var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
 	my_hud.show_to(src)
 
-	browser = new /datum/browser(src, "disease_menu", "Adaptation Menu", 1000, 770, src)
+	browser = new /datum/browser(src, "disease_menu", "进化菜单", 1000, 770, src)
 
 	freemove_end = world.time + FREEMOVE_TIME
 	freemove_end_timerid = addtimer(CALLBACK(src, PROC_REF(infect_random_patient_zero)), FREEMOVE_TIME, TIMER_STOPPABLE)
@@ -90,26 +90,26 @@ the new instance inside the host to be updated to the template's stats.
 	if(!. || !client)
 		return FALSE
 	if(freemove)
-		to_chat(src, span_warning("You have [DisplayTimeText(freemove_end - world.time)] to select your first host. Click on a human to select your host."))
+		to_chat(src, span_warning("你有[DisplayTimeText(freemove_end - world.time)]来选择你第一个宿主. 单击以选择宿主."))
 
 
 /mob/camera/disease/get_status_tab_items()
 	. = ..()
 	if(freemove)
-		. += "Host Selection Time: [round((freemove_end - world.time)/10)]s"
+		. += "宿主选择时间: [round((freemove_end - world.time)/10)]秒"
 	else
-		. += "Adaptation Points: [points]/[total_points]"
-		. += "Hosts: [disease_instances.len]"
+		. += "进化点数: [points]/[total_points]"
+		. += "宿主: [disease_instances.len]"
 		var/adapt_ready = next_adaptation_time - world.time
 		if(adapt_ready > 0)
-			. += "Adaptation Ready: [round(adapt_ready/10, 0.1)]s"
+			. += "进化就绪: [round(adapt_ready/10, 0.1)]秒"
 
 
 /mob/camera/disease/examine(mob/user)
 	. = ..()
 	if(isobserver(user))
-		. += {"[span_notice("[src] has [points]/[total_points] adaptation points.")]
-		[span_notice("[src] has the following unlocked:")]"}
+		. += {"[span_notice("[src]拥有[points]/[total_points]的进化点数.")]
+		[span_notice("[src]解锁了以下内容:")]"}
 		for(var/datum/disease_ability/ability in purchased_abilities)
 			. += span_notice("[ability.name]")
 
@@ -119,7 +119,7 @@ the new instance inside the host to be updated to the template's stats.
 	if(sanitize)
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	log_talk(message, LOG_SAY)
-	var/rendered = "<span class='sentientdisease'><b>[src]</b> says, \"[message]\"</span>"
+	var/rendered = "<span class='sentientdisease'><b>[src]</b>说， \"[message]\"</span>"
 	for(var/mob/listener in GLOB.mob_list)
 		if(issentientdisease(listener))
 			to_chat(listener, rendered)
@@ -176,16 +176,16 @@ the new instance inside the host to be updated to the template's stats.
 			taken_names[initial(D.name)] = TRUE
 	var/set_name
 	while(!set_name)
-		var/input = sanitize_name(tgui_input_text(src, "Select a name for your disease", "Select Name", max_length = MAX_NAME_LEN))
+		var/input = sanitize_name(tgui_input_text(src, "为你的瘟疫选择一个名字", "选择名字", max_length = MAX_NAME_LEN))
 		if(!input)
-			set_name = "Sentient Virus"
+			set_name = "感知病毒-Sentient Virus"
 			break
 		if(taken_names[input])
-			to_chat(src, span_warning("You cannot use the name of such a well-known disease!"))
+			to_chat(src, span_warning("你不能使用这么广为人知的疾病名字!"))
 		else
 			set_name = input
-	real_name = "[set_name] (Sentient Disease)"
-	name = "[set_name] (Sentient Disease)"
+	real_name = "[set_name] (感知瘟疫)"
+	name = "[set_name] (感知瘟疫)"
 	disease_template.AssignName(set_name)
 	var/datum/antagonist/disease/A = mind.has_antag_datum(/datum/antagonist/disease)
 	if(A)
@@ -216,7 +216,7 @@ the new instance inside the host to be updated to the template's stats.
 		possible_hosts.Cut(1, 2)
 
 	if(del_on_fail)
-		to_chat(src, span_warning("No hosts were available for your disease to infect."))
+		to_chat(src, span_warning("没有宿主可以感染你的瘟疫."))
 		qdel(src)
 	return FALSE
 
@@ -259,7 +259,7 @@ the new instance inside the host to be updated to the template's stats.
 	var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
 	my_hud.add_atom_to_hud(V.affected_mob)
 
-	to_chat(src, span_notice("A new host, <b>[V.affected_mob.real_name]</b>, has been infected."))
+	to_chat(src, span_notice("新宿主，<b>[V.affected_mob.real_name]</b>被感染."))
 
 	if(!following_host)
 		set_following(V.affected_mob)
@@ -270,7 +270,7 @@ the new instance inside the host to be updated to the template's stats.
 		disease_instances -= V
 		hosts -= V.affected_mob
 	else
-		to_chat(src, span_notice("One of your hosts, <b>[V.affected_mob.real_name]</b>, has been purged of your infection."))
+		to_chat(src, span_notice("你的一位宿主，<b>[V.affected_mob.real_name]</b>消灭了体内病原体."))
 
 		var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
 		my_hud.remove_atom_from_hud(V.affected_mob)
@@ -282,7 +282,7 @@ the new instance inside the host to be updated to the template's stats.
 		hosts -= V.affected_mob
 
 		if(!disease_instances.len)
-			to_chat(src, span_userdanger("The last of your infection has disappeared."))
+			to_chat(src, span_userdanger("你最后的病原体也消失了."))
 			set_following(null)
 			qdel(src)
 		refresh_adaptation_menu()
@@ -319,22 +319,22 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/ClickOn(atom/A, params)
 	if(freemove && ishuman(A))
 		var/mob/living/carbon/human/H = A
-		if(tgui_alert(usr, "Select [H.name] as your initial host?", "Select Host", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "选择[H.name]作为你最初的宿主?", "选择宿主", list("Yes", "No")) != "Yes")
 			return
 		if(!freemove)
 			return
 		if(QDELETED(H) || !force_infect(H))
-			to_chat(src, span_warning("[H ? H.name : "Host"] cannot be infected."))
+			to_chat(src, span_warning("[H ? H.name : "宿主"]无法被感染."))
 	else
 		..()
 
 /mob/camera/disease/proc/adapt_cooldown()
-	to_chat(src, span_notice("You have altered your genetic structure. You will be unable to adapt again for [DisplayTimeText(adaptation_cooldown)]."))
+	to_chat(src, span_notice("你改变了你的基因结构. 在[DisplayTimeText(adaptation_cooldown)]内无法再次进化."))
 	next_adaptation_time = world.time + adaptation_cooldown
 	addtimer(CALLBACK(src, PROC_REF(notify_adapt_ready)), adaptation_cooldown)
 
 /mob/camera/disease/proc/notify_adapt_ready()
-	to_chat(src, span_notice("You are now ready to adapt again."))
+	to_chat(src, span_notice("你准备好再次进化了."))
 	refresh_adaptation_menu()
 
 /mob/camera/disease/proc/refresh_adaptation_menu()
@@ -354,32 +354,32 @@ the new instance inside the host to be updated to the template's stats.
 		for(var/entry in examining_ability.threshold_block)
 			dat += "<b>[entry]</b>: [examining_ability.threshold_block[entry]]<br>"
 	else
-		dat += "<h1>Disease Statistics</h1><br>\
-			Resistance: [DT.totalResistance()]<br>\
-			Stealth: [DT.totalStealth()]<br>\
-			Stage Speed: [DT.totalStageSpeed()]<br>\
-			Transmissibility: [DT.totalTransmittable()]<hr>\
-			Cure: [DT.cure_text]"
-		dat += "<hr><h1>Adaptations</h1>\
-			Points: [points] / [total_points]\
+		dat += "<h1>瘟疫数据</h1><br>\
+			耐药性: [DT.totalResistance()]<br>\
+			隐蔽性: [DT.totalStealth()]<br>\
+			阶段速度: [DT.totalStageSpeed()]<br>\
+			传染性: [DT.totalTransmittable()]<hr>\
+			治愈对策: [DT.cure_text]"
+		dat += "<hr><h1>进化项</h1>\
+			点数: [points] / [total_points]\
 			<table border=1>\
-			<tr><td>Cost</td><td></td><td>Unlock</td><td width='180px'>Name</td><td>Type</td><td>Description</td></tr>"
+			<tr><td>花费</td><td></td><td>解锁</td><td width='180px'>名称</td><td>类型</td><td>描述</td></tr>"
 		for(var/V in GLOB.disease_ability_singletons)
 			var/datum/disease_ability/A = V
 			var/purchase_text
 			if(unpurchased_abilities[A])
 				if(A.CanBuy(src))
-					purchase_text = "<a href='byond://?src=[REF(src)];buy_ability=[REF(A)]'>Purchase</a>"
+					purchase_text = "<a href='byond://?src=[REF(src)];buy_ability=[REF(A)]'>购买</a>"
 				else
-					purchase_text = "<span class='linkOff'>Purchase</span>"
+					purchase_text = "<span class='linkOff'>购买</span>"
 			else
 				if(A.CanRefund(src))
-					purchase_text = "<a href='byond://?src=[REF(src)];refund_ability=[REF(A)]'>Refund</a>"
+					purchase_text = "<a href='byond://?src=[REF(src)];refund_ability=[REF(A)]'>退还</a>"
 				else
-					purchase_text = "<span class='linkOff'>Refund</span>"
+					purchase_text = "<span class='linkOff'>退还</span>"
 			dat += "<tr><td>[A.cost]</td><td>[purchase_text]</td><td>[A.required_total_points]</td><td><a href='byond://?src=[REF(src)];examine_ability=[REF(A)]'>[A.name]</a></td><td>[A.category]</td><td>[A.short_desc]</td></tr>"
 
-		dat += "</table><br>Infect many hosts at once to gain adaptation points.<hr><h1>Infected Hosts</h1>"
+		dat += "</table><br>同时感染多个宿主以获得进化点.<hr><h1>感染宿主</h1>"
 		for(var/V in hosts)
 			var/mob/living/L = V
 			dat += "<br><a href='byond://?src=[REF(src)];follow_instance=[REF(L)]'>[L.real_name]</a>"
@@ -427,7 +427,7 @@ the new instance inside the host to be updated to the template's stats.
 
 
 /datum/action/innate/disease_adapt
-	name = "Adaptation Menu"
+	name = "进化菜单"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "disease_menu"
 

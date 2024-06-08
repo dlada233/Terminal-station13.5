@@ -1,5 +1,5 @@
 /datum/traitor_objective_category/destroy_heirloom
-	name = "Destroy Heirloom"
+	name = "摧毁传家宝"
 	objectives = list(
 		list(
 			// There's about 16 jobs in common, so assistant has a 1/21 chance of getting chosen.
@@ -12,8 +12,8 @@
 	)
 
 /datum/traitor_objective/destroy_heirloom
-	name = "Destroy %ITEM%, the family heirloom that belongs to %TARGET% the %JOB TITLE%"
-	description = "%TARGET% has been on our shitlist for a while and we want to show them we mean business. Find their %ITEM% and destroy it."
+	name = "摧毁 %ITEM%，属于%TARGET%，%JOB TITLE%的一件传家宝"
+	description = "%TARGET% 已经在我们的黑名单有一段时间了，我们得让这个人知道我们是认真的. 找到 %ITEM% 并摧毁它."
 
 	abstract_type = /datum/traitor_objective/destroy_heirloom
 

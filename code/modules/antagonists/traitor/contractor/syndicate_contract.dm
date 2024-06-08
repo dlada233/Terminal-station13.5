@@ -81,8 +81,10 @@
 /datum/syndicate_contract/proc/enter_check(datum/source, sent_mob)
 	SIGNAL_HANDLER
 
+	// 如果来源不是提取舱，返回
 	if(!istype(source, /obj/structure/closet/supplypod/extractionpod))
 		return
+	// 如果发送的不是生物，返回
 	if(!isliving(sent_mob))
 		return
 	var/mob/living/person_sent = sent_mob
@@ -96,7 +98,7 @@
 		if(traitor_data.uplink_handler.contractor_hub.current_contract == src)
 			traitor_data.uplink_handler.contractor_hub.current_contract = null
 	else
-		status = CONTRACT_STATUS_ABORTED // Sending a target that wasn't even yours is as good as just aborting it
+		status = CONTRACT_STATUS_ABORTED
 		if(traitor_data.uplink_handler.contractor_hub.current_contract == src)
 			traitor_data.uplink_handler.contractor_hub.current_contract = null
 
@@ -105,26 +107,25 @@
 			if(ishuman(person_sent))
 				var/mob/living/carbon/human/human_sent = person_sent
 				if(person_contents == human_sent.w_uniform)
-					continue //So all they're left with are shoes and uniform.
+					continue
 				if(person_contents == human_sent.shoes)
 					continue
 			person_sent.transferItemToLoc(person_contents)
 			victim_belongings.Add(WEAKREF(person_contents))
 
 	var/obj/structure/closet/supplypod/extractionpod/pod = source
-	// Handle the pod returning
+	// 处理舱返回
 	pod.startExitSequence(pod)
 
+	// 如果是人类，确保他们有生存所需的物品
 	if(ishuman(person_sent))
 		var/mob/living/carbon/human/target = person_sent
-		// After we remove items, at least give them what they need to live.
 		target.dna.species.give_important_for_life(target)
 
-	//we'll start the effects in a few seconds since it takes a moment for the pod to leave.
+	// 我们将在几秒钟后开始效果，因为舱离开需要时间
 	addtimer(CALLBACK(src, PROC_REF(handle_victim_experience), person_sent), 3 SECONDS)
 
-	// This is slightly delayed because of the sleep calls above to handle the narrative.
-	// We don't want to tell the station instantly.
+	// 由于上面的延迟调用，我们不想立即通知全站
 	var/points_to_check
 	var/datum/bank_account/cargo_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(cargo_account)
@@ -134,22 +135,21 @@
 	else
 		cargo_account.adjust_money(-points_to_check)
 	priority_announce(
-		text = "One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. \
-		As is policy we've taken a portion of the station's funds to offset the overall cost.",
-		sender_override = "Nanotrasen Asset Protection")
+		text = "你们的一名船员被敌对组织绑架 - 我们需要支付赎金以赎回他们. \
+		按照政策，我们会从站点的资金中扣除一部分以补充总体费用. ",
+		sender_override = "纳米传讯资产保护")
 
 	addtimer(CALLBACK(src, PROC_REF(finish_enter)), 3 SECONDS)
 
 /datum/syndicate_contract/proc/finish_enter()
-	// Pay contractor their portion of ransom
 	if(status != CONTRACT_STATUS_COMPLETE)
 		return
 	var/obj/item/card/id/contractor_id = contract.owner.current?.get_idcard(TRUE)
 	if(!contractor_id || !contractor_id.registered_account)
 		return
 	contractor_id.registered_account.adjust_money(ransom * 0.35)
-	contractor_id.registered_account.bank_card_talk("We've processed the ransom, agent. \
-		Here's your cut - your balance is now [contractor_id.registered_account.account_balance] cr.", TRUE)
+	contractor_id.registered_account.bank_card_talk("我们已经处理好赎金了，特工. \
+		这是你的分成 - 你的余额现在是[contractor_id.registered_account.account_balance] cr. ", TRUE)
 
 #define VICTIM_EXPERIENCE_START 0
 #define VICTIM_EXPERIENCE_FIRST_HIT 1
@@ -160,15 +160,16 @@
 /**
  * handle_victim_experience
  *
- * Handles the effects given to victims upon being contracted.
- * We heal them up and cause them immersive effects, just for fun.
- * Args:
- * victim - The person we're harassing
- * level - The current stage of harassement they are facing. This increases by itself, looping until finished.
+ * 处理受害者在被承包时的效果.
+ * 我们会治愈他们并让他们体验一些沉浸式的效果，仅仅是为了乐趣.
+ * 参数:
+ * victim - 我们正在骚扰的人
+ * level - 他们正在面对的骚扰阶段. 这个会自行增加，循环直到结束.
  */
+
 /datum/syndicate_contract/proc/handle_victim_experience(mob/living/victim, level = VICTIM_EXPERIENCE_START)
-	// Ship 'em back - dead or alive, 4 minutes wait.
-	// Even if they weren't the target, we're still treating them the same.
+	// 将他们送回去 - 死或活，等待4分钟.
+	// 即使他们不是目标，我们仍然会以同样的方式对待他们.
 	if(!level)
 		addtimer(CALLBACK(src, PROC_REF(return_victim), victim), (60 * 10) * 4)
 	if(victim.stat == DEAD)
@@ -177,38 +178,36 @@
 	var/time_until_next
 	switch(level)
 		if(VICTIM_EXPERIENCE_START)
-			// Heal them up - gets them out of crit/soft crit. If omnizine is removed in the future, this needs to be replaced with a
-			// method of healing them, consequence free, to a reasonable amount of health.
+			// 治愈他们 - 让他们脱离危机状态. 如果未来移除了全能药物，这需要替换成一种无后果的治疗方法，恢复到合理的健康水平.
 			victim.reagents.add_reagent(/datum/reagent/medicine/omnizine, amount = 20)
 			victim.flash_act()
 			victim.adjust_confusion(1 SECONDS)
 			victim.adjust_eye_blur(5 SECONDS)
-			to_chat(victim, span_warning("You feel strange..."))
+			to_chat(victim, span_warning("你感觉有些奇怪..."))
 			time_until_next = 6 SECONDS
 		if(VICTIM_EXPERIENCE_FIRST_HIT)
-			to_chat(victim, span_warning("That pod did something to you..."))
+			to_chat(victim, span_warning("那个舱对你做了些什么..."))
 			victim.adjust_dizzy(3.5 SECONDS)
 			time_until_next = 6.5 SECONDS
 		if(VICTIM_EXPERIENCE_SECOND_HIT)
-			to_chat(victim, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
+			to_chat(victim, span_warning("你的头很痛...感觉脑袋要爆炸了！"))
 			victim.flash_act()
 			victim.adjust_confusion(2 SECONDS)
 			victim.adjust_eye_blur(3 SECONDS)
 			time_until_next = 3 SECONDS
 		if(VICTIM_EXPERIENCE_THIRD_HIT)
-			to_chat(victim, span_warning("Your head pounds..."))
+			to_chat(victim, span_warning("你的头很痛..."))
 			time_until_next = 10 SECONDS
 		if(VICTIM_EXPERIENCE_LAST_HIT)
 			victim.flash_act()
 			victim.Unconscious(200)
-			to_chat(victim, span_hypnophrase("A million voices echo in your head... <i>\"Your mind held many valuable secrets - \
-				we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
-				so it's only a matter of time before we ship you back...\"</i>"))
+			to_chat(victim, span_hypnophrase("无数声音在你头脑中回荡... <i>\"你的头脑中藏有许多宝贵的秘密 - 我们感谢你提供它们. 你的价值已经耗尽，\
+				你将等待被赎回到你的站点. 我们总会得到赎金的，所以只是时间问题，...\"</i>"))
 			victim.adjust_eye_blur(10 SECONDS)
 			victim.adjust_dizzy(1.5 SECONDS)
 			victim.adjust_confusion(2 SECONDS)
 
-	level++ //move onto the next level.
+	level++
 	if(time_until_next)
 		addtimer(CALLBACK(src, PROC_REF(handle_victim_experience), victim, level), time_until_next)
 
@@ -218,7 +217,7 @@
 #undef VICTIM_EXPERIENCE_THIRD_HIT
 #undef VICTIM_EXPERIENCE_LAST_HIT
 
-// We're returning the victim
+// 我们正在送回受害者
 /datum/syndicate_contract/proc/return_victim(mob/living/victim)
 	var/list/possible_drop_loc = list()
 
@@ -228,8 +227,7 @@
 				possible_drop_loc.Add(possible_drop)
 
 	if(!possible_drop_loc.len)
-		to_chat(victim, span_hypnophrase("A million voices echo in your head... \"Seems where you got sent here from won't \
-			be able to handle our pod... You will die here instead.\""))
+		to_chat(victim, span_hypnophrase("无数声音在你头脑中回荡... \"看来你被送来的地方无法处理我们的返回舱... 你将会死在这里. \""))
 		if(iscarbon(victim))
 			var/mob/living/carbon/carbon_victim = victim
 			if(carbon_victim.can_heartattack())
@@ -243,7 +241,7 @@
 	return_pod.style = STYLE_SYNDICATE
 
 	do_sparks(8, FALSE, victim)
-	victim.visible_message(span_notice("[victim] vanishes..."))
+	victim.visible_message(span_notice("[victim] 消失了..."))
 
 	for(var/datum/weakref/belonging_ref in victim_belongings)
 		var/obj/item/belonging = belonging_ref.resolve()
@@ -251,7 +249,7 @@
 			continue
 		if(ishuman(victim))
 			var/mob/living/carbon/human/human_victim = victim
-			//So all they're left with are shoes and uniform.
+			// 所以他们只剩下鞋子和制服.
 			if(belonging == human_victim.w_uniform)
 				continue
 			if(belonging == human_victim.shoes)

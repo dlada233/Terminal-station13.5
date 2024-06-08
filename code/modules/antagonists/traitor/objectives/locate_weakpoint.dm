@@ -1,13 +1,13 @@
 /datum/traitor_objective_category/locate_weakpoint
-	name = "Locate And Destroy Weakpoint"
+	name = "定位并摧毁薄弱点"
 	objectives = list(
 		/datum/traitor_objective/locate_weakpoint = 1,
 	)
 	weight = OBJECTIVE_WEIGHT_UNLIKELY
 
 /datum/traitor_objective/locate_weakpoint
-	name = "Triangulate station's structural weakpoint and detonate an explosive charge nearby."
-	description = "You will be given a handheld device that you'll need to use in %AREA1% and %AREA2% in order to triangulate the station's structural weakpoint and detonate an explosive charge there. Warning: Once you start scanning either one of the areas, station's AI will be alerted."
+	name = "三角定位空间站的结构薄弱点并在那附近引爆炸药."
+	description = "你会得到一台手持设备，你需要在 %AREA1% 和 %AREA2% 使用它以三角定位出空间站的结构薄弱点，并在那里引爆炸药. 警告: 一旦你在区域内开始扫描，空间站的AI会收到警报."
 
 	progression_minimum = 45 MINUTES
 	progression_reward = list(15 MINUTES, 20 MINUTES)
@@ -87,9 +87,9 @@
 /datum/traitor_objective/locate_weakpoint/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!locator_sent)
-		buttons += add_ui_button("", "Pressing this will materialize a weakpoint locator in your hand.", "globe", "locator")
+		buttons += add_ui_button("", "按下该按钮薄弱点定位器将出现在你的手中.", "globe", "locator")
 	if(weakpoint_found && !bomb_sent)
-		buttons += add_ui_button("", "Pressing this will materialize an ES8 explosive charge in your hand.", "bomb", "shatter_charge")
+		buttons += add_ui_button("", "按下该按钮ES8炸弹将出现在你的手中.", "bomb", "shatter_charge")
 	return buttons
 
 /datum/traitor_objective/locate_weakpoint/ui_perform_action(mob/living/user, action)
@@ -101,7 +101,7 @@
 			locator_sent = TRUE
 			var/obj/item/weakpoint_locator/locator = new(user.drop_location(), src)
 			user.put_in_hands(locator)
-			locator.balloon_alert(user, "the weakpoint locator materializes in your hand")
+			locator.balloon_alert(user, "薄弱点定位器出现在了你的手中")
 
 		if("shatter_charge")
 			if(bomb_sent)
@@ -109,10 +109,10 @@
 			bomb_sent = TRUE
 			var/obj/item/grenade/c4/es8/bomb = new(user.drop_location(), src)
 			user.put_in_hands(bomb)
-			bomb.balloon_alert(user, "the ES8 charge materializes in your hand")
+			bomb.balloon_alert(user, "ES8炸弹出现在你的手中")
 
 /datum/traitor_objective/locate_weakpoint/proc/weakpoint_located()
-	description = "Structural weakpoint has been located in %AREA%. Detonate an ES8 explosive charge there to create a shockwave that will severely damage the station."
+	description = "定位到结构薄弱点在 %AREA%. 在那里引爆ES8炸弹将对空间站造成重大破坏."
 	replace_in_name("%AREA%", initial(weakpoint_area.name))
 	weakpoint_found = TRUE
 
@@ -124,15 +124,15 @@
 	else
 		explosion(epicenter, devastation_range = 3, heavy_impact_range = 6, light_impact_range = 9, explosion_cause = src)
 	priority_announce(
-				"Attention crew, it appears that a high-power explosive charge has been detonated in your station's weakpoint, causing severe structural damage.",
-				"[command_name()] High-Priority Update"
+				"全体人员请注意，一枚高能炸弹在你们空间站的结构薄弱点被爆破，对结构造成了重大破坏.",
+				"[command_name()] 高优先级传讯"
 				)
 
 	succeed_objective()
 
 /obj/item/weakpoint_locator
-	name = "structural weakpoint locator"
-	desc = "A device that can triangulate station's structural weakpoint. It has to be used in %AREA1% and %AREA2% in order to triangulate the weakpoint. Warning: station's AI will be notified as soon as the process starts!"
+	name = "结构薄弱点定位器"
+	desc = "一种可以三角测量空间站结构薄弱点的设备，必须在 %AREA1% 和 %AREA2% 使用，以三角测量薄弱点. 警告：一旦过程开始，空间站的 AI 将会收到通知！"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "weakpoint_locator"
 	inhand_icon_state = "weakpoint_locator"
@@ -160,33 +160,33 @@
 
 /obj/item/weakpoint_locator/attack_self(mob/living/user, modifiers)
 	. = ..()
-	if(!istype(user) || loc != user || !user.mind) //No TK cheese
+	if(!istype(user) || loc != user || !user.mind) // 禁止心灵感应操作
 		return
 
 	var/datum/traitor_objective/locate_weakpoint/objective = objective_weakref.resolve()
 
 	if(!objective || objective.objective_state == OBJECTIVE_STATE_INACTIVE)
-		to_chat(user, span_warning("Your time to use [src] has not come yet."))
+		to_chat(user, span_warning("你使用 [src] 的时机还未到. "))
 		return
 
 	if(objective.handler.owner != user.mind)
-		to_chat(user, span_warning("You have zero clue how to use [src]."))
+		to_chat(user, span_warning("你完全不知道如何使用 [src]. "))
 		return
 
 	var/area/user_area = get_area(user)
 	if(!(user_area.type in objective.scan_areas))
-		balloon_alert(user, "invalid area!")
+		balloon_alert(user, "无效的区域！")
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
 
 	if(!objective.scan_areas[user_area.type])
-		balloon_alert(user, "already scanned here!")
+		balloon_alert(user, "这里已经扫描过了！")
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
 
-	user.visible_message(span_danger("[user] presses a few buttons on [src] and it starts ominously beeping!"), span_notice("You activate [src] and start scanning the area. Do not exit [get_area_name(user, TRUE)] until the scan finishes!"))
+	user.visible_message(span_danger("[user] 按下 [src] 上的几个按钮，它开始不祥地发出哔哔声！"), span_notice("你激活了 [src] 并开始扫描区域. 在扫描完成之前不要离开 [get_area_name(user, TRUE)]！"))
 	playsound(user, 'sound/machines/triple_beep.ogg', 30, TRUE)
-	var/alertstr = span_userdanger("Network Alert: Station network probing attempt detected[user_area?" in [get_area_name(user, TRUE)]":". Unable to pinpoint location"].")
+	var/alertstr = span_userdanger("网络警报：检测到空间站结构探测尝试[user_area?" 位于[get_area_name(user, TRUE)]":". 无法确定具体位置"].")
 	for(var/mob/living/silicon/ai/ai_player in GLOB.player_list)
 		to_chat(ai_player, alertstr)
 
@@ -198,10 +198,10 @@
 	objective.scan_areas[user_area.type] = FALSE
 	for(var/area/scan_area as anything in objective.scan_areas)
 		if(objective.scan_areas[scan_area])
-			say("Next scanning location is [initial(scan_area.name)]")
+			say("下一个扫描位置是 [initial(scan_area.name)]")
 			return
 
-	to_chat(user, span_notice("Scan finished. Structural weakpoint located in [initial(objective.weakpoint_area.name)]."))
+	to_chat(user, span_notice("扫描完成. 结构薄弱点位于 [initial(objective.weakpoint_area.name)]. "))
 	objective.weakpoint_located()
 
 /obj/item/weakpoint_locator/proc/scan_checks(mob/living/user, area/user_area, datum/traitor_objective/locate_weakpoint/parent_objective)
@@ -221,8 +221,8 @@
 	return TRUE
 
 /obj/item/grenade/c4/es8
-	name = "ES8 explosive charge"
-	desc = "A high-power explosive charge designed to create a shockwave in a structural weakpoint of the station."
+	name = "ES8 爆炸装置"
+	desc = "一种高能爆炸装置，设计用于在空间站的结构弱点处产生冲击波."
 
 	icon_state = "plasticx40"
 	inhand_icon_state = "plasticx4"
@@ -230,7 +230,7 @@
 
 	boom_sizes = list(3, 6, 9)
 
-	/// Weakref to user's objective
+	/// 用户任务的弱引用
 	var/datum/weakref/objective_weakref
 
 /obj/item/grenade/c4/es8/Initialize(mapload, objective)
@@ -246,22 +246,22 @@
 		return
 
 	if(!IS_TRAITOR(user))
-		to_chat(user, span_warning("You can't seem to find a way to detonate the charge."))
+		to_chat(user, span_warning("你似乎无法找到引爆装置的方法."))
 		return
 
 	var/datum/traitor_objective/locate_weakpoint/objective = objective_weakref.resolve()
 
 	if(!objective || objective.objective_state == OBJECTIVE_STATE_INACTIVE || objective.handler.owner != user.mind)
-		to_chat(user, span_warning("You don't think it would be wise to use [src]."))
+		to_chat(user, span_warning("你认为在此时使用 [src] 并不明智."))
 		return
 
 	var/area/target_area = get_area(target)
 	if (target_area.type != objective.weakpoint_area)
-		to_chat(user, span_warning("[src] can only be detonated in [initial(objective.weakpoint_area.name)]."))
+		to_chat(user, span_warning("[src] 只能在 [initial(objective.weakpoint_area.name)] 引爆."))
 		return
 
 	if(!isfloorturf(target) && !iswallturf(target))
-		to_chat(user, span_warning("[src] can only be planted on a wall or the floor!"))
+		to_chat(user, span_warning("[src] 只能安放在墙上或地板上！"))
 		return
 
 	return ..()
@@ -275,7 +275,7 @@
 
 	if (target_area.type != objective.weakpoint_area)
 		var/obj/item/grenade/c4/es8/new_bomb = new(target.drop_location())
-		new_bomb.balloon_alert_to_viewers("invalid location!")
+		new_bomb.balloon_alert_to_viewers("无效的位置！")
 		target.cut_overlay(plastic_overlay, TRUE)
 		qdel(src)
 		return

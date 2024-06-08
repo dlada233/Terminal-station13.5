@@ -1,13 +1,13 @@
 /datum/traitor_objective_category/sleeper_protocol
-	name = "Sleeper Protocol"
+	name = "休眠协议"
 	objectives = list(
 		/datum/traitor_objective/sleeper_protocol = 1,
 		/datum/traitor_objective/sleeper_protocol/everybody = 1,
 	)
 
 /datum/traitor_objective/sleeper_protocol
-	name = "Perform the sleeper protocol on a crewmember"
-	description = "Use the button below to materialize a surgery disk in your hand, where you'll then be able to perform the sleeper protocol on a crewmember. If the disk gets destroyed, the objective will fail. This will only work on living and sentient crewmembers."
+	name = "对一名船员执行休眠协议"
+	description = "按下下面的按钮，一个手术磁盘就会出现在你的手中，然后你可以依靠它对船员执行休眠协议. 如果磁盘被破坏，目标会失败. 此外该手术只适用于有知觉且活着的船员."
 
 	progression_minimum = 0 MINUTES
 
@@ -31,7 +31,7 @@
 /datum/traitor_objective/sleeper_protocol/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!disk)
-		buttons += add_ui_button("", "Clicking this will materialize the sleeper protocol surgery in your hand", "save", "summon_disk")
+		buttons += add_ui_button("", "单击以获取手术磁盘到手中", "save", "summon_disk")
 	return buttons
 
 /datum/traitor_objective/sleeper_protocol/ui_perform_action(mob/living/user, action)
@@ -67,13 +67,13 @@
 /datum/traitor_objective/sleeper_protocol/ungenerate_objective()
 	disk = null
 /obj/item/disk/surgery/sleeper_protocol
-	name = "Suspicious Surgery Disk"
-	desc = "The disk provides instructions on how to turn someone into a sleeper agent for the Syndicate."
+	name = "可疑手术磁盘"
+	desc = "这张磁盘提供了如何把人变成辛迪加潜在特工的手术资料."
 	surgeries = list(/datum/surgery/advanced/brainwashing_sleeper)
 
 /datum/surgery/advanced/brainwashing_sleeper
-	name = "Sleeper Agent Surgery"
-	desc = "A surgical procedure which implants the sleeper protocol into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
+	name = "休眠特工手术"
+	desc = "一种可以将休眠协议植入病人大脑的手术，使其成为他们的首要任务. 心盾植入物可以清除它."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -96,18 +96,18 @@
 /datum/surgery_step/brainwash/sleeper_agent
 	time = 25 SECONDS
 	var/static/list/possible_objectives = list(
-		"You love the Syndicate.",
-		"Do not trust Nanotrasen.",
-		"The Captain is a lizardperson.",
-		"Nanotrasen isn't real.",
-		"They put something in the food to make you forget.",
-		"You are the only real person on the station.",
-		"Things would be a lot better on the station if more people were screaming, someone should do something about that.",
-		"The people in charge around here have only ill intentions for the crew.",
-		"Help the crew? What have they ever done for you anyways?",
-		"Does your bag feel lighter? I bet those guys in Security stole something from it. Go get it back.",
-		"Command is incompetent, someone with some REAL authority should take over around here.",
-		"The cyborgs and the AI are stalking you. What are they planning?",
+		"你爱辛迪加.",
+		"不要相信纳米传讯.",
+		"舰长是蜥蜴人.",
+		"纳米传讯不是真实的.",
+		"他们在食物中放了某些东西让你健忘.",
+		"你是整个空间站里唯一真实存在的人.",
+		"如果有更多人惊觉就好了，应该有人做点什么.",
+		"这里的负责人们对船员只有恶意.",
+		"帮助船员?这些人又为你做过什么吗？",
+		"你的包是不是拎起来变轻了？我敢说是那些安保从里面偷了东西. 去把它拿回来.",
+		"指挥层无能，应该有真正的权威来接管这里.",
+		"赛博和AI在跟踪你，它们在计划什么?",
 	)
 
 /datum/surgery_step/brainwash/sleeper_agent/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -115,15 +115,15 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to brainwash [target]..."),
-		span_notice("[user] begins to fix [target]'s brain."),
-		span_notice("[user] begins to perform surgery on [target]'s brain."),
+		span_notice("你开始洗脑[target]..."),
+		span_notice("[user]开始修复[target]的大脑."),
+		span_notice("[user]开始对[target]的大脑进行手术."),
 	)
-	display_pain(target, "Your head pounds with unimaginable pain!") // Same message as other brain surgeries
+	display_pain(target, "你的头承受着难以想象的痛苦!") // Same message as other brain surgeries
 
 /datum/surgery_step/brainwash/sleeper_agent/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(target.stat == DEAD)
-		to_chat(user, span_warning("They need to be alive to perform this surgery!"))
+		to_chat(user, span_warning("他们必须活着才能做手术!"))
 		return FALSE
 	. = ..()
 	if(!.)

@@ -1,7 +1,7 @@
 /datum/disease/advance/sentient_disease
-	form = "Virus"
-	name = "Sentient Virus"
-	desc = "An apparently sentient virus, extremely adaptable and resistant to outside sources of mutation."
+	form = "病毒"
+	name = "感知病毒"
+	desc = "一种有知觉的病毒，适应性极强，能抵抗外界的变异."
 	viable_mobtypes = list(/mob/living/carbon/human)
 	mutable = FALSE
 	bypasses_immunity = TRUE

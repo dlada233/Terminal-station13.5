@@ -1,50 +1,50 @@
-/// Global assoc list. [ckey] = [spellbook entry type]
+/// 全局关联列表.[ckey] = [法术书条目类型]
 GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 
 /datum/antagonist/wizard
-	name = "\improper Space Wizard"
-	roundend_category = "wizards/witches"
+	name = "\improper 太空巫师"
+	roundend_category = "巫师/女巫"
 	antagpanel_category = ANTAG_GROUP_WIZARDS
 	job_rank = ROLE_WIZARD
 	antag_hud_name = "wizard"
 	antag_moodlet = /datum/mood_event/focused
 	hijack_speed = 0.5
 	ui_name = "AntagInfoWizard"
-	suicide_cry = "FOR THE FEDERATION!!"
+	suicide_cry = "为了联盟！！"
 	preview_outfit = /datum/outfit/wizard
 	can_assign_self_objectives = TRUE
-	default_custom_objective = "Demonstrate your incredible and destructive magical powers."
+	default_custom_objective = "展示你令人难以置信的破坏性魔法."
 	hardcore_random_bonus = TRUE
 	var/give_objectives = TRUE
-	var/strip = TRUE //strip before equipping
+	var/strip = TRUE // 在装备之前脱掉
 	var/allow_rename = TRUE
-	var/datum/team/wizard/wiz_team //Only created if wizard summons apprentices
+	var/datum/team/wizard/wiz_team // 仅在巫师召唤学徒时创建
 	var/move_to_lair = TRUE
 	var/outfit_type = /datum/outfit/wizard
-	var/wiz_age = WIZARD_AGE_MIN /* Wizards by nature cannot be too young. */
+	var/wiz_age = WIZARD_AGE_MIN /* 巫师天生不能太年轻. */
 	show_to_ghosts = TRUE
-	/// This mob's Grand Ritual ability
+	/// 该角色的大仪式能力
 	var/datum/action/cooldown/grand_ritual/ritual
 
 /datum/antagonist/wizard/New()
-	if(move_to_lair) // kick off loading of your lair, if you want to be moved to it
+	if(move_to_lair) // 开始加载你的巢穴，如果你想要被移到那里
 		INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, lazy_load_template), LAZY_TEMPLATE_KEY_WIZARDDEN)
 	return ..()
 
 /datum/antagonist/wizard_minion
-	name = "Wizard Minion"
+	name = "巫师学徒"
 	antagpanel_category = ANTAG_GROUP_WIZARDS
 	antag_hud_name = "apprentice"
 	show_in_roundend = FALSE
 	show_name_in_check_antagonists = TRUE
-	/// The wizard team this wizard minion is part of.
+	/// 这个巫师学徒所属的巫师团队.
 	var/datum/team/wizard/wiz_team
 
 /datum/antagonist/wizard_minion/create_team(datum/team/wizard/new_team)
 	if(!new_team)
 		return
 	if(!istype(new_team))
-		stack_trace("Wrong team type passed to [type] initialization.")
+		stack_trace("传递给[type]初始化的团队类型错误.")
 	wiz_team = new_team
 
 /datum/antagonist/wizard_minion/apply_innate_effects(mob/living/mob_override)
@@ -70,8 +70,8 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 		return
 	var/datum/objective/custom/custom_objective = new()
 	custom_objective.owner = owner
-	custom_objective.name = "Serve [wiz_team.master_wizard?.owner]"
-	custom_objective.explanation_text = "Serve [wiz_team.master_wizard?.owner]"
+	custom_objective.name = "为[wiz_team.master_wizard?.owner]服务"
+	custom_objective.explanation_text = "为[wiz_team.master_wizard?.owner]服务"
 	objectives += custom_objective
 
 /datum/antagonist/wizard_minion/get_team()
@@ -79,7 +79,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 
 /datum/antagonist/wizard/on_gain()
 	if(!owner)
-		CRASH("Wizard datum with no owner.")
+		CRASH("巫师数据没有所有者.")
 	assign_ritual()
 	equip_wizard()
 	owner.current.add_quirk(/datum/quirk/introvert)
@@ -107,12 +107,12 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	return wiz_team
 
 /datum/team/wizard
-	name = "\improper Wizard team"
+	name = "\improper 巫师团队"
 	var/datum/antagonist/wizard/master_wizard
 
 /datum/antagonist/wizard/proc/create_wiz_team()
 	wiz_team = new(owner)
-	wiz_team.name = "[owner.current.real_name] team"
+	wiz_team.name = "[owner.current.real_name]队"
 	wiz_team.master_wizard = src
 
 /// Initialises the grand ritual action for this mob
@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	var/wizard_name_second = pick(GLOB.wizard_second)
 	var/randomname = "[wizard_name_first] [wizard_name_second]"
 	var/mob/living/wiz_mob = owner.current
-	var/newname = sanitize_name(reject_bad_text(tgui_input_text(wiz_mob, "You are the [name]. Would you like to change your name to something else?", "Name change", randomname, MAX_NAME_LEN)))
+	var/newname = sanitize_name(reject_bad_text(tgui_input_text(wiz_mob, "你名为[name]. 你想改名吗?", "改名", randomname, MAX_NAME_LEN)))
 
 	if (!newname)
 		newname = randomname
@@ -246,20 +246,20 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	SIGNAL_HANDLER
 	var/datum/objective/custom/successful_ritual = new()
 	successful_ritual.owner = owner
-	successful_ritual.explanation_text = "Complete the Grand Ritual at least seven times."
+	successful_ritual.explanation_text = "完成至少7次大仪式."
 	successful_ritual.completed = TRUE
 	objectives = list(successful_ritual)
 	UnregisterSignal(ritual, COMSIG_GRAND_RITUAL_FINAL_COMPLETE)
 
 /datum/antagonist/wizard/get_admin_commands()
 	. = ..()
-	.["Send to Lair"] = CALLBACK(src, PROC_REF(admin_send_to_lair))
+	.["送至藏身处"] = CALLBACK(src, PROC_REF(admin_send_to_lair))
 
 /datum/antagonist/wizard/proc/admin_send_to_lair(mob/admin)
 	owner.current.forceMove(pick(GLOB.wizardstart))
 
 /datum/antagonist/wizard/apprentice
-	name = "Wizard Apprentice"
+	name = "巫师学徒"
 	antag_hud_name = "apprentice"
 	can_assign_self_objectives = FALSE
 	move_to_lair = FALSE
@@ -269,11 +269,11 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	wiz_age = APPRENTICE_AGE_MIN
 
 /datum/antagonist/wizard/apprentice/greet()
-	to_chat(owner, "<B>You are [master.current.real_name]'s apprentice! You are bound by magic contract to follow [master.p_their()] orders and help [master.p_them()] in accomplishing [master.p_their()] goals.")
+	to_chat(owner, "<B>你是[master.current.real_name]的学徒！你受到魔法契约的束缚，必须遵循老师的命令并帮助其实现目标.")
 	owner.announce_objectives()
 
 /datum/antagonist/wizard/apprentice/assign_ritual()
-	return // Haven't learned how to do it yet
+	return // 尚未学会
 
 /datum/antagonist/wizard/apprentice/equip_wizard()
 	. = ..()
@@ -289,18 +289,14 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 				/datum/action/cooldown/spell/aoe/magic_missile,
 				/datum/action/cooldown/spell/pointed/projectile/fireball,
 			)
-			to_chat(owner, span_bold("Your service has not gone unrewarded, however. \
-				Studying under [master.current.real_name], you have learned powerful, \
-				destructive spells. You are able to cast magic missile and fireball."))
+			to_chat(owner, span_bold("你的忠心一直被看在眼里，在[master.current.real_name]的教导下，你学会了强大的毁灭性法术.你能够施放魔法飞弹和火球."))
 
 		if(APPRENTICE_BLUESPACE)
 			spells_to_grant = list(
 				/datum/action/cooldown/spell/teleport/area_teleport/wizard,
 				/datum/action/cooldown/spell/jaunt/ethereal_jaunt,
 			)
-			to_chat(owner, span_bold("Your service has not gone unrewarded, however. \
-				Studying under [master.current.real_name], you have learned reality-bending \
-				mobility spells. You are able to cast teleport and ethereal jaunt."))
+			to_chat(owner, span_bold("你的忠心一直被看在眼里，在[master.current.real_name]的教导下，你学会了扭曲现实的移动法术.你能够施放传送和虚无逃遁."))
 
 		if(APPRENTICE_HEALING)
 			spells_to_grant = list(
@@ -310,17 +306,13 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 			items_to_grant = list(
 				/obj/item/gun/magic/staff/healing,
 			)
-			to_chat(owner, span_bold("Your service has not gone unrewarded, however. \
-				Studying under [master.current.real_name], you have learned life-saving \
-				survival spells. You are able to cast charge and forcewall, and have a staff of healing."))
+			to_chat(owner, span_bold("你的忠心一直被看在眼里，在[master.current.real_name]的教导下，你学会了拯救生命的生存法术.你能够施放充能和力场，同时拥有一根治疗法杖."))
 		if(APPRENTICE_ROBELESS)
 			spells_to_grant = list(
 				/datum/action/cooldown/spell/aoe/knock,
 				/datum/action/cooldown/spell/pointed/mind_transfer,
 			)
-			to_chat(owner, span_bold("Your service has not gone unrewarded, however. \
-				Studying under [master.current.real_name], you have learned stealthy, \
-				robeless spells. You are able to cast knock and mindswap."))
+			to_chat(owner, span_bold("你的忠心一直被看在眼里，在[master.current.real_name]的教导下，你学会了隐秘的、无袍的法术.你能够施放击晕和心灵转移."))
 
 	for(var/spell_type in spells_to_grant)
 		var/datum/action/cooldown/spell/new_spell = new spell_type(owner)
@@ -334,19 +326,19 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	var/datum/objective/protect/new_objective = new /datum/objective/protect
 	new_objective.owner = owner
 	new_objective.target = master
-	new_objective.explanation_text = "Protect [master.current.real_name], the wizard."
+	new_objective.explanation_text = "保护巫师[master.current.real_name]."
 	objectives += new_objective
 
-//Random event wizard
+//随机事件巫师
 /datum/antagonist/wizard/apprentice/imposter
-	name = "Wizard Imposter"
+	name = "巫师替身"
 	show_in_antagpanel = FALSE
 	allow_rename = FALSE
 	move_to_lair = FALSE
 
 /datum/antagonist/wizard/apprentice/imposter/greet()
 	. = ..()
-	to_chat(owner, "<B>Trick and confuse the crew to misdirect malice from your handsome original!</B>")
+	to_chat(owner, "<B>欺骗并迷惑船员，将危险引导至你英俊的原型之外！</B>")
 	owner.announce_objectives()
 
 /datum/antagonist/wizard/apprentice/imposter/equip_wizard()
@@ -376,7 +368,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	blink.Grant(H)
 
 /datum/antagonist/wizard/academy
-	name = "Academy Teacher"
+	name = "学院教授"
 	show_in_antagpanel = FALSE
 	outfit_type = /datum/outfit/wizard/academy
 	move_to_lair = FALSE
@@ -402,7 +394,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	exiled.implant(living_current)
 
 /datum/antagonist/wizard/academy/create_objectives()
-	var/datum/objective/new_objective = new("Protect Wizard Academy from the intruders")
+	var/datum/objective/new_objective = new("保护巫师学院不受入侵")
 	new_objective.owner = owner
 	objectives += new_objective
 
@@ -412,20 +404,20 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 
 	parts += printplayer(owner)
 	if (ritual)
-		parts += "<br><B>Grand Rituals completed:</B> [ritual.times_completed]<br>"
+		parts += "<br><B>已完成的大仪式:</B> [ritual.times_completed]<br>"
 
 	var/count = 1
 	var/wizardwin = TRUE
 	for(var/datum/objective/objective in objectives)
 		if(!objective.check_completion())
 			wizardwin = FALSE
-		parts += "<B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
+		parts += "<B>目标 #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 		count++
 
 	if(wizardwin)
-		parts += span_greentext("The wizard was successful!")
+		parts += span_greentext("巫师成功了!")
 	else
-		parts += span_redtext("The wizard has failed!")
+		parts += span_redtext("巫师失败了!")
 
 	var/list/purchases = list()
 	for(var/list/log as anything in GLOB.wizard_spellbook_purchases_by_key[owner.key])
@@ -435,10 +427,10 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 		purchases += "[amount > 1 ? "[amount]x ":""][initial(bought.name)]"
 
 	if(length(purchases))
-		parts += span_bold("[owner.name] used the following spells:")
+		parts += span_bold("[owner.name] 获得了以下法术:")
 		parts += purchases.Join(", ")
 	else
-		parts += span_bold("[owner.name] didn't buy any spells!")
+		parts += span_bold("[owner.name] 没有购买任何法术!")
 
 	return parts.Join("<br>")
 
@@ -446,10 +438,10 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 /datum/team/wizard/roundend_report()
 	var/list/parts = list()
 
-	parts += "<span class='header'>Wizards/witches of [master_wizard.owner.name] team were:</span>"
+	parts += "<span class='header'>巫师/女巫的[master_wizard.owner.name]队有:</span>"
 	parts += master_wizard.roundend_report()
 	parts += " "
-	parts += "<span class='header'>[master_wizard.owner.name] apprentices and minions were:</span>"
+	parts += "<span class='header'>[master_wizard.owner.name]的学徒和侍从有:</span>"
 	parts += printplayerlist(members - master_wizard.owner)
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

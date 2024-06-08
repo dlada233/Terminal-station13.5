@@ -75,7 +75,7 @@ new /datum/disease_ability/symptom/powerful/youth
 			stage_speed += initial(S.stage_speed)
 			transmittable += initial(S.transmittable)
 			threshold_block += initial(S.threshold_descs)
-			stat_block = "Resistance: [resistance]<br>Stealth: [stealth]<br>Stage Speed: [stage_speed]<br>Transmissibility: [transmittable]<br><br>"
+			stat_block = "耐药性: [resistance]<br>隐蔽性: [stealth]<br>阶段速度: [stage_speed]<br>传染性: [transmittable]<br><br>"
 			if(symptoms.len == 1) //lazy boy's dream
 				name = initial(S.name)
 				if(short_desc == "")
@@ -92,7 +92,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/proc/Buy(mob/camera/disease/D, silent = FALSE, trigger_cooldown = TRUE)
 	if(!silent)
-		to_chat(D, span_notice("Purchased [name]."))
+		to_chat(D, span_notice("已购买 [name]."))
 	D.points -= cost
 	D.unpurchased_abilities -= src
 	if(trigger_cooldown)
@@ -121,7 +121,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/proc/Refund(mob/camera/disease/D, silent = FALSE, trigger_cooldown = TRUE)
 	if(!silent)
-		to_chat(D, span_notice("Refunded [name]."))
+		to_chat(D, span_notice("已退还 [name]."))
 	D.points += cost
 	D.unpurchased_abilities[src] = TRUE
 	if(trigger_cooldown)
@@ -146,28 +146,28 @@ new /datum/disease_ability/symptom/powerful/youth
 //these sybtypes are for conveniently separating the different categories, they have no unique code.
 
 /datum/disease_ability/action
-	category = "Active"
+	category = "行为"
 
 /datum/disease_ability/symptom
-	category = "Symptom"
+	category = "症状"
 
 //active abilities and their associated actions
 
 /datum/disease_ability/action/cough
-	name = "Voluntary Coughing"
+	name = "主动性咳嗽"
 	actions = list(/datum/action/cooldown/disease_cough)
 	cost = 0
 	required_total_points = 0
 	start_with = TRUE
-	short_desc = "Force the host you are following to cough, spreading your infection to those nearby."
-	long_desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmissibility is low.<br>Cooldown: 10 seconds"
+	short_desc = "强迫你跟随的宿主咳嗽，将你传播给附近的人."
+	long_desc = "强迫你跟随的宿主咳嗽，将你传播给宿主两米内的人.<br>冷却时间: 10 秒"
 
 
 /datum/action/cooldown/disease_cough
-	name = "Cough"
+	name = "咳嗽"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "cough"
-	desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmissibility is low.<br>Cooldown: 10 seconds"
+	desc = "强迫你跟随的宿主咳嗽，将你传播给宿主两米内的人.<br>冷却时间: 10 秒"
 	cooldown_time = 100
 
 /datum/action/cooldown/disease_cough/Activate(atom/target)
@@ -185,9 +185,9 @@ new /datum/disease_ability/symptom/powerful/youth
 	if(!host)
 		return FALSE
 	if(host.stat != CONSCIOUS)
-		to_chat(our_disease, span_warning("Your host must be conscious to cough."))
+		to_chat(our_disease, span_warning("你的宿主能意识到咳嗽."))
 		return FALSE
-	to_chat(our_disease, span_notice("You force [host.real_name] to cough."))
+	to_chat(our_disease, span_notice("你强迫[host.real_name]咳嗽."))
 	host.emote("cough")
 	if(host.CanSpreadAirborneDisease()) //don't spread germs if they covered their mouth
 		var/datum/disease/advance/sentient_disease/disease_datum = our_disease.hosts[host]
@@ -195,18 +195,18 @@ new /datum/disease_ability/symptom/powerful/youth
 	return TRUE
 
 /datum/disease_ability/action/sneeze
-	name = "Voluntary Sneezing"
+	name = "主动性喷嚏"
 	actions = list(/datum/action/cooldown/disease_sneeze)
 	cost = 2
 	required_total_points = 3
-	short_desc = "Force the host you are following to sneeze, spreading your infection to those in front of them."
-	long_desc = "Force the host you are following to sneeze with extra force, spreading your infection to any victims in a 4 meter cone in front of your host.<br>Cooldown: 20 seconds"
+	short_desc = "强迫你跟随的宿主咳嗽，将你传播给前方的人."
+	long_desc = "强迫你跟随的宿主咳嗽，将你传播给宿主前方四米内的任何人.<br>冷却时间: 20 秒"
 
 /datum/action/cooldown/disease_sneeze
-	name = "Sneeze"
+	name = "喷嚏"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "sneeze"
-	desc = "Force the host you are following to sneeze with extra force, spreading your infection to any victims in a 4 meter cone in front of your host even if your transmissibility is low.<br>Cooldown: 20 seconds"
+	desc = "强迫你跟随的宿主咳嗽，将你传播给宿主前方四米内的任何人.<br>冷却时间: 20 秒"
 	cooldown_time = 200
 
 /datum/action/cooldown/disease_sneeze/Activate(atom/target)
@@ -224,9 +224,9 @@ new /datum/disease_ability/symptom/powerful/youth
 	if(!host)
 		return FALSE
 	if(host.stat != CONSCIOUS)
-		to_chat(our_disease, span_warning("Your host must be conscious to sneeze."))
+		to_chat(our_disease, span_warning("你的宿主能意识到喷嚏."))
 		return FALSE
-	to_chat(our_disease, span_notice("You force [host.real_name] to sneeze."))
+	to_chat(our_disease, span_notice("你强迫[host.real_name]打喷嚏."))
 	host.emote("sneeze")
 	if(host.CanSpreadAirborneDisease()) //don't spread germs if they covered their mouth
 		var/datum/disease/advance/sentient_disease/disease_datum = our_disease.hosts[host]
@@ -240,18 +240,18 @@ new /datum/disease_ability/symptom/powerful/youth
 	return TRUE
 
 /datum/disease_ability/action/infect
-	name = "Secrete Infection"
+	name = "分泌物传染"
 	actions = list(/datum/action/cooldown/disease_infect)
 	cost = 2
 	required_total_points = 3
-	short_desc = "Cause all objects your host is touching to become infectious for a limited time, spreading your infection to anyone who touches them."
-	long_desc = "Cause the host you are following to excrete an infective substance from their pores, causing all objects touching their skin to transmit your infection to anyone who touches them for the next 30 seconds. This includes the floor, if they are not wearing shoes, and any items they are holding, if they are not wearing gloves.<br>Cooldown: 40 seconds"
+	short_desc = "一定时间内让你的宿主所接触到的所有物体都具有传染性，任何接触到这些物体的人都会被传染."
+	long_desc = "让你跟随的宿主从毛孔中分泌出感染物质，所有接触到他们皮肤的物体在接下来30秒内会传染给其他接触到他们的人. 可附着物体包括地板，但前提是宿主没有穿鞋，也包括他们手接触到的物体，但前提是宿主没有戴手套.<br>冷却时间: 40 秒"
 
 /datum/action/cooldown/disease_infect
-	name = "Secrete Infection"
+	name = "分泌物传染"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "infect"
-	desc = "Cause the host you are following to excrete an infective substance from their pores, causing all objects touching their skin to transmit your infection to anyone who touches them for the next 30 seconds.<br>Cooldown: 40 seconds"
+	desc = "让你跟随的宿主从毛孔中分泌出感染物质，所有接触到他们皮肤的物体在接下来30秒内会传染给其他接触到他们的人. 可附着物体包括地板，但前提是宿主没有穿鞋，也包括他们手接触到的物体，但前提是宿主没有戴手套.<br>冷却时间: 40 秒"
 	cooldown_time = 400
 
 /datum/action/cooldown/disease_infect/Activate(atom/target)
@@ -283,46 +283,46 @@ new /datum/disease_ability/symptom/powerful/youth
 			held_thing.AddComponent(/datum/component/infective, our_disease.disease_template, 300)
 	return TRUE
 
-/*******************BASE SYMPTOM TYPES*******************/
+/*******************BASE 症状TYPES*******************/
 // cost is for convenience and can be changed. If you're changing req_tot_points then don't use the subtype...
 //healing costs more so you have to techswitch from naughty disease otherwise we'd have friendly disease for easy greentext (no fun!)
 
 /datum/disease_ability/symptom/mild
 	cost = 2
 	required_total_points = 4
-	category = "Symptom (Weak)"
+	category = "症状(弱)"
 
 /datum/disease_ability/symptom/medium
 	cost = 4
 	required_total_points = 8
-	category = "Symptom"
+	category = "症状"
 
 /datum/disease_ability/symptom/medium/heal
 	cost = 5
-	category = "Symptom (+)"
+	category = "症状(+)"
 
 /datum/disease_ability/symptom/powerful
 	cost = 4
 	required_total_points = 16
-	category = "Symptom (Strong)"
+	category = "症状(强)"
 
 /datum/disease_ability/symptom/powerful/heal
 	cost = 8
-	category = "Symptom (Strong+)"
+	category = "症状(强+)"
 
 /******MILD******/
 
 /datum/disease_ability/symptom/mild/cough
-	name = "Involuntary Coughing"
+	name = "自发性咳嗽"
 	symptoms = list(/datum/symptom/cough)
-	short_desc = "Cause victims to cough intermittently."
-	long_desc = "Cause victims to cough intermittently, spreading your infection."
+	short_desc = "导致患者间歇性咳嗽."
+	long_desc = "导致患者间歇性咳嗽，传染他人."
 
 /datum/disease_ability/symptom/mild/sneeze
-	name = "Involuntary Sneezing"
+	name = "自发性喷嚏"
 	symptoms = list(/datum/symptom/sneeze)
-	short_desc = "Cause victims to sneeze intermittently."
-	long_desc = "Cause victims to sneeze intermittently, spreading your infection and also increasing transmissibility and resistance, at the cost of stealth."
+	short_desc = "导致患者间歇性喷嚏."
+	long_desc = "导致患者间歇性打喷嚏，传染他人，同时能以隐蔽性为代价增加你的传染性和耐药性，"
 
 /******MEDIUM******/
 
@@ -331,38 +331,38 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/medium/beard
 	symptoms = list(/datum/symptom/beard)
-	short_desc = "Cause all victims to grow a luscious beard."
-	long_desc = "Cause all victims to grow a luscious beard. Ineffective against Santa Claus."
+	short_desc = "导致患者长出飘逸胡须."
+	long_desc = "导致患者长出飘逸胡须. 对圣诞老人无效."
 
 /datum/disease_ability/symptom/medium/hallucigen
 	symptoms = list(/datum/symptom/hallucigen)
-	short_desc = "Cause victims to hallucinate."
-	long_desc = "Cause victims to hallucinate. Decreases stats, especially resistance."
+	short_desc = "导致患者产生幻觉."
+	long_desc = "导致患者产生幻觉. 会降低属性，尤其是耐药性."
 
 /datum/disease_ability/symptom/medium/choking
 	symptoms = list(/datum/symptom/choking)
-	short_desc = "Cause victims to choke."
-	long_desc = "Cause victims to choke, threatening asphyxiation. Decreases stats, especially transmissibility."
+	short_desc = "导致患者咽喉堵塞."
+	long_desc = "导致患者咽喉堵塞，直至窒息. 会降低属性，尤其是传染性."
 
 /datum/disease_ability/symptom/medium/confusion
 	symptoms = list(/datum/symptom/confusion)
-	short_desc = "Cause victims to become confused."
-	long_desc = "Cause victims to become confused intermittently."
+	short_desc = "导致患者陷入混乱."
+	long_desc = "导致患者间歇性陷入混乱."
 
 /datum/disease_ability/symptom/medium/vomit
 	symptoms = list(/datum/symptom/vomit)
-	short_desc = "Cause victims to vomit."
-	long_desc = "Cause victims to vomit. Slightly increases transmissibility. Vomiting also also causes the victims to lose nutrition and removes some toxin damage."
+	short_desc = "导致患者呕吐."
+	long_desc = "导致患者呕吐. 稍微增加传染性，呕吐会使患者失去营养，并消除一些毒素伤害."
 
 /datum/disease_ability/symptom/medium/voice_change
 	symptoms = list(/datum/symptom/voice_change)
-	short_desc = "Change the voice of victims."
-	long_desc = "Change the voice of victims, causing confusion in communications."
+	short_desc = "改变患者声音."
+	long_desc = "改变患者声音，在交流中造成混乱."
 
 /datum/disease_ability/symptom/medium/visionloss
 	symptoms = list(/datum/symptom/visionloss)
-	short_desc = "Damage the eyes of victims, eventually causing blindness."
-	long_desc = "Damage the eyes of victims, eventually causing blindness. Decreases all stats."
+	short_desc = "对患者眼睛造成伤害，最终导致失明."
+	long_desc = "对患者眼睛造成伤害，最终导致失明. 降低所有属性."
 
 /datum/disease_ability/symptom/medium/deafness
 	symptoms = list(/datum/symptom/deafness)
@@ -378,8 +378,8 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/medium/viraladaptation
 	symptoms = list(/datum/symptom/viraladaptation)
-	short_desc = "Cause your infection to become more resistant to detection and eradication."
-	long_desc = "Cause your infection to mimic the function of normal body cells, becoming much harder to spot and to eradicate, but reducing its speed."
+	short_desc = "让你更加难以被发现和被根除."
+	long_desc = "让你的病原体模仿正常身体细胞工作，更加难以被发现和被根除，但会降低速度."
 
 /datum/disease_ability/symptom/medium/viralevolution
 	symptoms = list(/datum/symptom/viralevolution)
@@ -392,18 +392,18 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/medium/itching
 	symptoms = list(/datum/symptom/itching)
-	short_desc = "Cause victims to itch."
-	long_desc = "Cause victims to itch, increasing all stats except stealth."
+	short_desc = "导致患者发痒."
+	long_desc = "导致患者发痒，增加除隐蔽性之外的所有属性."
 
 /datum/disease_ability/symptom/medium/heal/weight_loss
 	symptoms = list(/datum/symptom/weight_loss)
-	short_desc = "Cause victims to lose weight."
-	long_desc = "Cause victims to lose weight, and make it almost impossible for them to gain nutrition from food. Reduced nutrition allows your infection to spread more easily from hosts, especially by sneezing."
+	short_desc = "导致患者体重减轻."
+	long_desc = "导致患者体重减轻，并让他们几乎无法从食物中获取营养. 缺乏营养会让病原体更容易借由宿主传播，尤其是通过打喷嚏传播."
 
 /datum/disease_ability/symptom/medium/heal/sensory_restoration
 	symptoms = list(/datum/symptom/sensory_restoration)
-	short_desc = "Regenerate eye and ear damage of victims."
-	long_desc = "Regenerate eye and ear damage of victims."
+	short_desc = "减少患者眼睛和耳朵所受的伤害."
+	long_desc = "减少患者眼睛和耳朵所受的伤害."
 
 /datum/disease_ability/symptom/medium/heal/mind_restoration
 	symptoms = list(/datum/symptom/mind_restoration)
@@ -428,8 +428,8 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/powerful/youth
 	symptoms = list(/datum/symptom/youth)
-	short_desc = "Cause victims to become eternally young."
-	long_desc = "Cause victims to become eternally young. Provides boosts to all stats except transmissibility."
+	short_desc = "导致患者永葆青春."
+	long_desc = "导致患者永葆青春. 提供除传染力以外的所有属性的提升."
 
 /****HEALING SUBTYPE****/
 
@@ -444,8 +444,8 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/powerful/heal/metabolism
 	symptoms = list(/datum/symptom/heal/metabolism)
-	short_desc = "Increase the metabolism of victims, causing them to process chemicals and grow hungry faster."
-	long_desc = "Increase the metabolism of victims, causing them to process chemicals twice as fast and grow hungry more quickly."
+	short_desc = "加速患者的新陈代谢，使他们更快地消化化学物质，更快地感到饥饿."
+	long_desc = "加速患者的新陈代谢，使他们对化学物质的代谢速度提高一倍，并更快地感到饥饿."
 
 /datum/disease_ability/symptom/powerful/heal/dark
 	symptoms = list(/datum/symptom/heal/darkness)
@@ -461,5 +461,5 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/powerful/heal/coma
 	symptoms = list(/datum/symptom/heal/coma)
-	short_desc = "Cause victims to fall into a healing coma when hurt."
-	long_desc = "Cause victims to fall into a healing coma when hurt."
+	short_desc = "导致患者在受到伤害时陷入自愈性昏迷."
+	long_desc = "导致患者在受到伤害时陷入自愈性昏迷."

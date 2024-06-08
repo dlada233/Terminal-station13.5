@@ -1,12 +1,12 @@
 /datum/traitor_objective_category/infect
-	name = "Infect with Disease"
+	name = "感染疾病"
 	objectives = list(
 		/datum/traitor_objective/target_player/infect = 1,
 	)
 
 /datum/traitor_objective/target_player/infect
-	name = "Infect %TARGET% the %JOB TITLE%"
-	description = "Infect your target with the experimental Hereditary Manifold Sickness."
+	name = "感染 %TARGET%，%JOB TITLE%"
+	description = "让你的目标感染上实验性的遗传性多重流形病."
 
 	progression_minimum = 30 MINUTES
 
@@ -34,7 +34,7 @@
 /datum/traitor_objective/target_player/infect/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!injector_given)
-		buttons += add_ui_button("", "Pressing this will materialize a EHMS autoinjector into your hand, which you must inject into the target to succeed.", "syringe", "summon_pen")
+		buttons += add_ui_button("", "按下此按钮EHMS注射器会生成在你的手中，你必须把它注射到目标体内才算成功.", "syringe", "summon_pen")
 	return buttons
 
 /datum/traitor_objective/target_player/infect/ui_perform_action(mob/living/user, action)
@@ -148,8 +148,8 @@
 		fail_objective()
 
 /obj/item/reagent_containers/hypospray/medipen/manifoldinjector
-	name = "EHMS autoinjector"
-	desc = "Experimental Hereditary Manifold Sickness autoinjector."
+	name = "EHMS自动注射器"
+	desc = "实验性遗传性多重流形病的自动注射器."
 	icon_state = "tbpen"
 	inhand_icon_state = "tbpen"
 	base_icon_state = "tbpen"
@@ -163,11 +163,11 @@
 /obj/item/reagent_containers/hypospray/medipen/manifoldinjector/attack(mob/living/affected_mob, mob/living/carbon/human/user)
 	if(used)
 		return ..()
-	to_chat(affected_mob, span_warning("You feel someone try to inject you with something."))
-	balloon_alert(user, "injecting...")
-	log_combat(user, affected_mob, "attempted to inject", src)
+	to_chat(affected_mob, span_warning("你感觉有人在尝试注射给你什么东西."))
+	balloon_alert(user, "注射...")
+	log_combat(user, affected_mob, "尝试注射", src)
 	if(!do_after(user, 1.5 SECONDS))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断!")
 		return
 	var/datum/disease/chronic_illness/hms = new /datum/disease/chronic_illness()
 	affected_mob.ForceContractDisease(hms)

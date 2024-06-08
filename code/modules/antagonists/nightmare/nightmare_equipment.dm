@@ -1,8 +1,8 @@
 /**
- * An armblade that instantly snuffs out lights
+ *  一个可以立即熄灭灯光的臂刃
  */
 /obj/item/light_eater
-	name = "light eater" //as opposed to heavy eater
+	name = "消光" //as opposed to heavy eater
 	icon = 'icons/obj/weapons/changeling_items.dmi'
 	icon_state = "arm_blade"
 	inhand_icon_state = "arm_blade"

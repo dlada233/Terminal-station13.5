@@ -1,5 +1,5 @@
 /datum/traitor_objective_category/assassinate_kidnap
-	name = "Assassination/Kidnap"
+	name = "刺杀/绑架"
 	objectives = list(
 		list(
 			list(
@@ -23,18 +23,16 @@
 	)
 
 /datum/traitor_objective/target_player/assassinate
-	name = "Assassinate %TARGET% the %JOB TITLE%"
-	description = "Simply kill your target to accomplish this objective."
+	name = "刺杀 %TARGET%，%JOB TITLE%"
+	description = "简单地杀死你的目标即可完成此目标. "
 
 	abstract_type = /datum/traitor_objective/target_player/assassinate
 
 	progression_minimum = 30 MINUTES
 
-	/**
-	 * Makes the objective only set heads as targets when true, and block them from being targets when false.
-	 * This also blocks the objective from generating UNTIL the un-heads_of_staff version (WHICH SHOULD BE A DIRECT PARENT) is completed.
-	 * example: calling card objective, you kill someone, you unlock the chance to roll a head of staff target version of calling card.
-	 */
+	// 当为真时，使目标仅设置为头目，为假时阻止它们成为目标.
+	// 这也会阻止生成目标，直到完成无头版本（应该是直接父级）.
+	// 例如：明信片目标，你杀了某人，解锁了可以选择杀死头目版本的明信片目标.
 	var/heads_of_staff = FALSE
 
 	duplicate_type = /datum/traitor_objective/target_player
@@ -45,8 +43,8 @@
 	. += NAMEOF(src, maximum_objectives_in_period)
 
 /datum/traitor_objective/target_player/assassinate/calling_card
-	name = "Assassinate %TARGET% the %JOB TITLE%, and plant a calling card"
-	description = "Kill your target and plant a calling card in the pockets of your victim. If your calling card gets destroyed before you are able to plant it, this objective will fail."
+	name = "刺杀 %TARGET%，%JOB TITLE%，并留下一张名片"
+	description = "杀死你的目标并将一张名片放入受害者的口袋中，如果你的名片之前就被摧毁了，这个目标将失败. "
 	progression_reward = 2 MINUTES
 	telecrystal_reward = list(1, 2)
 
@@ -59,14 +57,14 @@
 	heads_of_staff = TRUE
 
 /datum/traitor_objective/target_player/assassinate/behead
-	name = "Behead %TARGET%, the %JOB TITLE%"
-	description = "Behead and hold %TARGET%'s head to succeed this objective. If the head gets destroyed before you can do this, you will fail this objective."
+	name = "斩首 %TARGET%，%JOB TITLE%"
+	description = "斩下并持有 %TARGET% 的头颅即可完成此目标，如果头颅在斩首前被摧毁了，此目标将失败. "
 	progression_reward = 2 MINUTES
 	telecrystal_reward = list(1, 2)
 
-	///the body who needs to hold the head
+	/// 需要持有头颅的身体
 	var/mob/living/needs_to_hold_head
-	///the head that needs to be picked up
+	/// 需要被拿起的头部
 	var/obj/item/bodypart/head/behead_goal
 
 /datum/traitor_objective/target_player/assassinate/behead/heads_of_staff
@@ -75,11 +73,10 @@
 
 	heads_of_staff = TRUE
 
-
 /datum/traitor_objective/target_player/assassinate/calling_card/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!card)
-		buttons += add_ui_button("", "Pressing this will materialize a calling card, which you must plant to succeed.", "paper-plane", "summon_card")
+		buttons += add_ui_button("", "点击这个按钮会制作一张名片，你必须放置它才能完成任务. ", "paper-plane", "summon_card")
 	return buttons
 
 /datum/traitor_objective/target_player/assassinate/calling_card/ui_perform_action(mob/living/user, action)
@@ -90,7 +87,7 @@
 				return
 			card = new(user.drop_location())
 			user.put_in_hands(card)
-			card.balloon_alert(user, "the card materializes in your hand")
+			card.balloon_alert(user, "名片在你手中出现了")
 			RegisterSignal(card, COMSIG_ITEM_EQUIPPED, PROC_REF(on_card_planted))
 			AddComponent(/datum/component/traitor_objective_register, card, \
 				succeed_signals = null, \
@@ -140,11 +137,11 @@
 
 /datum/traitor_objective/target_player/assassinate/behead/proc/on_head_pickup(datum/source, mob/taker)
 	SIGNAL_HANDLER
-	if(objective_state == OBJECTIVE_STATE_INACTIVE) //just in case- this shouldn't happen?
+	if(objective_state == OBJECTIVE_STATE_INACTIVE) // 只是以防万一-这不应该发生？
 		fail_objective()
 		return
 	if(taker == handler.owner.current)
-		taker.visible_message(span_notice("[taker] holds [behead_goal] into the air for a moment."), span_boldnotice("You lift [behead_goal] into the air for a moment."))
+		taker.visible_message(span_notice("[taker]将[behead_goal]举了一会儿. "), span_boldnotice("你将[behead_goal]举了一会儿. "))
 		succeed_objective()
 
 /datum/traitor_objective/target_player/assassinate/behead/proc/on_target_dismembered(datum/source, obj/item/bodypart/head/lost_head, special, dismembered)
@@ -248,23 +245,23 @@
 		fail_objective()
 
 /obj/item/paper/calling_card
-	name = "calling card"
+	name = "名片"
 	icon_state = "syndicate_calling_card"
 	color = "#ff5050"
 	show_written_words = FALSE
 	default_raw_text = {"
-	<b>**Death to Nanotrasen.**</b><br><br>
+	<b>**死于纳米传讯**</b><br><br>
 
-	Only through the inviolable cooperation of corporations known as The Syndicate, can Nanotrasen and its autocratic tyrants be silenced.
-	The outcries of Nanotrasen's employees are squelched by the suffocating iron grip of their leaders. If you read this, and understand
-	why we fight, then you need only to look where Nanotrasen doesn't want you to find us to join our cause. Any number of our companies
-	may be fighting with your interests in mind.<br><br>
+	纳米传讯员工在哀嚎，而公司领导只是挥以铁腕压制.
+	只有同被称为辛迪加的公司联合体进行永不破裂的合作，纳米传讯及其专制暴政才能被消灭.
+	读到此处，若你已经明白我们为何而战，那么你只需要去到没有纳米传讯的地方找到我们就能加入我们的事业.
+	我们的公司联合体内可能就有属于你的组织. <br><br>
 
-	<b>SELF:</b> They fight for the protection and freedom of silicon life all across the galaxy.<br><br>
+	<b>SELF：</b> 他们为了保护和解放整个星系中的硅基生命而战斗. <br><br>
 
-	<b>Tiger Cooperative:</b> They fight for religious freedom and their righteous concoctions.<br><br>
+	<b>老虎合作社：</b> 他们为宗教自由和他们的正义药剂而战斗. <br><br>
 
-	<b>Waffle Corporation:</b> They fight for the return of healthy corporate competition, snuffed out by Nanotrasen's monopoly.<br><br>
+	<b>Waffle公司：</b> 他们为市场的健康竞争的回归而战斗. <br><br>
 
-	<b>Animal Rights Consortium:</b> They fight for nature and the right for all biological life to exist.
+	<b>动物权利协会：</b> 他们为了自然和所有生物生存的权利而战斗.
 	"}

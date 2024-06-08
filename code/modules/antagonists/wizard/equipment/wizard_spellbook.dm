@@ -1,6 +1,6 @@
 /obj/item/spellbook
-	name = "spell book"
-	desc = "An unearthly tome that glows with power."
+	name = "魔法书"
+	desc = "一本散发着神奇力量的书."
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="book"
 	worn_icon_state = "book"
@@ -39,13 +39,13 @@
 /obj/item/spellbook/proc/on_magic_charge(datum/source, datum/action/cooldown/spell/spell, mob/living/caster)
 	SIGNAL_HANDLER
 
-	to_chat(caster, span_warning("Glowing red letters appear on the front cover..."))
+	to_chat(caster, span_warning("封面上出现了发光的红色字母..."))
 	to_chat(caster, span_red(pick(
-		"NICE TRY BUT NO!",
-		"CLEVER BUT NOT CLEVER ENOUGH!",
-		"SUCH FLAGRANT CHEESING IS WHY WE ACCEPTED YOUR APPLICATION!",
-		"CUTE! VERY CUTE!",
-		"YOU DIDN'T THINK IT'D BE THAT EASY, DID YOU?",
+		"不错的尝试，但可惜不行!",
+		"聪明，但还不够!",
+		"少壮不努力，老大魔法师!",
+		"可爱! 很可爱!",
+		"你知道不会这么容易的，对吧?",
 	)))
 
 	return COMPONENT_ITEM_BURNT_OUT
@@ -53,23 +53,23 @@
 /obj/item/spellbook/examine(mob/user)
 	. = ..()
 	if(owner)
-		. += "There is a small signature on the front cover: \"[owner]\"."
+		. += "封面上有一行很小的署名: \"[owner]\"."
 	else
-		. += "It appears to have no author."
+		. += "看不出任何作者信息."
 
 /obj/item/spellbook/attack_self(mob/user)
 	if(!owner)
 		if(!user.mind)
 			return
-		to_chat(user, span_notice("You bind [src] to yourself."))
+		to_chat(user, span_notice("你将[src]绑定到你自己."))
 		owner = user.mind
 		return
 
 	if(user.mind != owner)
 		if(user.mind?.special_role == ROLE_WIZARD_APPRENTICE)
-			to_chat(user, span_warning("If you got caught sneaking a peek from your teacher's spellbook, you'd likely be expelled from the Wizard Academy. Better not."))
+			to_chat(user, span_warning("偷看老师的魔法书可能会被巫师学院开除，所以最好别这样做."))
 		else
-			to_chat(user, span_warning("[src] does not recognize you as its owner and refuses to open!"))
+			to_chat(user, span_warning("[src]不承认你是它的主人，所以拒绝打开!"))
 		return
 
 	return ..()
@@ -79,17 +79,17 @@
 	if(istype(O, /obj/item/antag_spawner/contract))
 		var/datum/spellbook_entry/item/contract/contract_entry = locate() in entries
 		if(!istype(contract_entry))
-			to_chat(user, span_warning("[src] doesn't seem to want to refund [O]."))
+			to_chat(user, span_warning("[src]看起来不想为[O]退款."))
 			return
 		if(!contract_entry.can_refund(user, src))
-			to_chat(user, span_warning("You can't refund [src]."))
+			to_chat(user, span_warning("你不能退掉[src]."))
 			return
 		var/obj/item/antag_spawner/contract/contract = O
 		if(contract.used)
-			to_chat(user, span_warning("The contract has been used, you can't get your points back now!"))
+			to_chat(user, span_warning("合同都已经用过了，你的点数拿不回来了!"))
 			return
 
-		to_chat(user, span_notice("You feed the contract back into the spellbook, refunding your points."))
+		to_chat(user, span_notice("你把合同扔回魔法书，退还了你的点数."))
 		uses += contract_entry.cost
 		contract_entry.times--
 		qdel(O)
@@ -97,13 +97,13 @@
 	else if(istype(O, /obj/item/antag_spawner/slaughter_demon/laughter))
 		var/datum/spellbook_entry/item/hugbottle/demon_entry = locate() in entries
 		if(!istype(demon_entry))
-			to_chat(user, span_warning("[src] doesn't seem to want to refund [O]."))
+			to_chat(user, span_warning("[src]看起来不想为[O]退款."))
 			return
 		if(!demon_entry.can_refund(user, src))
-			to_chat(user, span_warning("You can't refund [O]."))
+			to_chat(user, span_warning("你不能退掉[O]."))
 			return
 
-		to_chat(user, span_notice("On second thought, maybe summoning a demon isn't a funny idea. You refund your points."))
+		to_chat(user, span_notice("转念一想，也许召唤恶魔也没有那么有趣，你退款了!"))
 		uses += demon_entry.cost
 		demon_entry.times--
 		qdel(O)
@@ -111,13 +111,13 @@
 	else if(istype(O, /obj/item/antag_spawner/slaughter_demon))
 		var/datum/spellbook_entry/item/bloodbottle/demon_entry = locate() in entries
 		if(!istype(demon_entry))
-			to_chat(user, span_warning("[src] doesn't seem to want to refund [O]."))
+			to_chat(user, span_warning("[src]看起来不想为[O]退款."))
 			return
 		if(!demon_entry.can_refund(user, src))
-			to_chat(user, span_warning("You can't refund [O]."))
+			to_chat(user, span_warning("你不能退掉[O]."))
 			return
 
-		to_chat(user, span_notice("On second thought, maybe summoning a demon is a bad idea. You refund your points."))
+		to_chat(user, span_notice("转念一想，也许召唤恶魔是个糟糕的主意，你退款了!"))
 		uses += demon_entry.cost
 		demon_entry.times--
 		qdel(O)
@@ -178,7 +178,7 @@
 		return
 	var/mob/living/carbon/human/wizard = usr
 	if(!istype(wizard))
-		to_chat(wizard, span_warning("The book doesn't seem to listen to lower life forms."))
+		to_chat(wizard, span_warning("这本书对低等生物充耳不闻."))
 		return FALSE
 
 	// Actions that are always available
@@ -202,7 +202,7 @@
 			return TRUE
 
 	if(uses < initial(uses))
-		to_chat(wizard, span_warning("You need to have all your spell points to do this!"))
+		to_chat(wizard, span_warning("你得用掉所有点数才能做到这个!"))
 		return FALSE
 
 	// Actions that are only available if you have full spell points
@@ -287,7 +287,7 @@
 		for(var/i in 1 to wanted_spells[entry])
 			if(!purchase_entry(to_buy, wizard))
 				stack_trace("Wizard Loadout \"[loadout]\" was unable to buy a spell for [wizard]. ([entry])")
-				message_admins("Wizard [wizard] purchased Loadout \"[loadout]\" but was unable to purchase one of the entries ([to_buy]) for some reason.")
+				message_admins("巫师[wizard]购买了预设\"[loadout]\" 但出于某些原因无法购买其中一个条目([to_buy]).")
 				break
 
 	refunds_allowed = FALSE
@@ -298,7 +298,7 @@
 /// Purchases a semi-random wizard loadout for [wizard]
 /// If passed a number [bonus_to_give], the wizard is given additional uses on their spellbook, used in randomization.
 /obj/item/spellbook/proc/semirandomize(mob/living/carbon/human/wizard, bonus_to_give = 0)
-	var/list/needed_cats = list("Offensive", "Mobility")
+	var/list/needed_cats = list("进攻", "位移")
 	var/list/shuffled_entries = shuffle(entries)
 	for(var/i in 1 to 2)
 		for(var/datum/spellbook_entry/entry as anything in shuffled_entries)

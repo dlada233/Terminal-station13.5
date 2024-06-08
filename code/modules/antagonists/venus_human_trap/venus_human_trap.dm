@@ -1,5 +1,5 @@
 /datum/antagonist/venus_human_trap
-	name = "\improper Venus Human Trap"
+	name = "\improper 维纳斯捕人草"
 	antagpanel_category = ANTAG_GROUP_OVERGROWTH
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE
@@ -15,7 +15,7 @@
 	owner.announce_objectives()
 
 /datum/objective/venus_human_trap
-	explanation_text = "Spread the infestation."
+	explanation_text = "传播感染."
 
 /datum/objective/venus_human_trap/check_completion()
 	return owner.current.stat != DEAD

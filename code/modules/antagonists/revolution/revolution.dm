@@ -1,14 +1,14 @@
 /datum/antagonist/rev
-	name = "\improper Revolutionary"
-	roundend_category = "revolutionaries" // if by some miracle revolutionaries without revolution happen
-	antagpanel_category = "Revolution"
+	name = "\improper 革命者"
+	roundend_category = "革命者" // if by some miracle revolutionaries without revolution happen
+	antagpanel_category = "革命"
 	job_rank = ROLE_REV
 	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_name = "rev"
-	suicide_cry = "VIVA LA REVOLUTION!!"
+	suicide_cry = "革命万岁!!"
 	var/datum/team/revolution/rev_team
 
-	/// When this antagonist is being de-antagged, this is the source. Can be a mob (for mindshield/blunt force trauma) or a #define string.
+	/// 当这个反派被解除时，这是来源. 可以是一个mob（用于心灵屏蔽/钝击创伤）或一个#define字符串.
 	var/deconversion_source
 
 /datum/antagonist/rev/can_be_owned(datum/mind/new_owner)
@@ -21,22 +21,22 @@
 	return ..()
 
 /datum/antagonist/rev/admin_add(datum/mind/new_owner, mob/admin)
-	// No revolution exists which means admin adding this will create a new revolution team
-	// This causes problems because revolution teams (currently) require a dynamic datum to process its victory / defeat conditions
+	// 没有革命存在，这意味着管理员添加这个角色将创建一个新的革命
+	// 这会带来问题，因为革命（目前）需要一个动态的数据来处理其胜利/失败条件
 	if(!(locate(/datum/team/revolution) in GLOB.antagonist_teams))
-		var/confirm = tgui_alert(admin, "Notice: Revolutions do not function 100% when created via traitor panel instead of dynamic. \
-			The leaders will be able to convert as normal, but the shuttle will not be blocked and there will be no announcements when either side wins. \
-			Are you sure?", "Be Wary", list("Yes", "No"))
-		if(QDELETED(src) || QDELETED(new_owner.current) || confirm != "Yes")
+		var/confirm = tgui_alert(admin, "注意：通过叛徒面板创建的革命不会完全起作用.  \
+			领袖将能够像平常一样进行转变，但是逃生穿梭机不会被阻止，而且任何一方获胜时都不会有任何公告.  \
+			你确定吗？", "慎重选择", list("是", "否"))
+		if(QDELETED(src) || QDELETED(new_owner.current) || confirm != "是")
 			return
 
 	go_through_with_admin_add(new_owner, admin)
 
 /datum/antagonist/rev/proc/go_through_with_admin_add(datum/mind/new_owner, mob/admin)
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has rev'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has rev'ed [key_name(new_owner)].")
-	to_chat(new_owner.current, span_userdanger("You are a member of the revolution!"))
+	message_admins("[key_name_admin(admin)]转变了[key_name_admin(new_owner)]. ")
+	log_admin("[key_name(admin)]转变了[key_name(new_owner)]. ")
+	to_chat(new_owner.current, span_userdanger("你成为了革命集团的一员！"))
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
@@ -58,7 +58,7 @@
 	. = ..()
 	create_objectives()
 	equip_rev()
-	owner.current.log_message("has been converted to the revolution!", LOG_ATTACK, color="red")
+	owner.current.log_message("被转变为革命者！", LOG_ATTACK, color="red")
 
 /datum/antagonist/rev/on_removal()
 	remove_objectives()
@@ -66,7 +66,7 @@
 
 /datum/antagonist/rev/greet()
 	. = ..()
-	to_chat(owner, span_userdanger("Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!"))
+	to_chat(owner, span_userdanger("支持革命事业. 不要伤害同为自由战士的同伴. 你可以通过红色的\"R\"图标识别你的同志，通过蓝色的\"R\"图标识别你的领袖. 帮助他们杀死头目，赢得革命胜利！"))
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/revolutionary_tide.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	owner.announce_objectives()
 
@@ -84,7 +84,7 @@
 		rev_team.update_rev_heads()
 		return
 	if(!istype(new_team))
-		stack_trace("Wrong team type passed to [type] initialization.")
+		stack_trace("错误的队伍类型传递给[type]初始化. ")
 	rev_team = new_team
 
 /datum/antagonist/rev/get_team()
@@ -106,45 +106,45 @@
 	new_revhead.silent = TRUE
 	old_owner.add_antag_datum(new_revhead,old_team)
 	new_revhead.silent = FALSE
-	to_chat(old_owner, span_userdanger("You have proved your devotion to revolution! You are a head revolutionary now!"))
+	to_chat(old_owner, span_userdanger("你已经证明了你对革命的忠诚！你现在是一个革命领袖！"))
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src, PROC_REF(admin_promote))
+	.["擢升"] = CALLBACK(src, PROC_REF(admin_promote))
 
 /datum/antagonist/rev/proc/admin_promote(mob/admin)
 	var/datum/mind/O = owner
 	promote()
-	message_admins("[key_name_admin(admin)] has head-rev'ed [O].")
-	log_admin("[key_name(admin)] has head-rev'ed [O].")
+	message_admins("[key_name_admin(admin)] 已经擢升了[O]为革命领袖. ")
+	log_admin("[key_name(admin)]擢升[O]为革命领袖. ")
 
 /datum/antagonist/rev/head/go_through_with_admin_add(datum/mind/new_owner, mob/admin)
 	give_flash = TRUE
 	give_hud = TRUE
 	remove_clumsy = TRUE
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has head-rev'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has head-rev'ed [key_name(new_owner)].")
-	to_chat(new_owner.current, span_userdanger("You are a member of the revolutionaries' leadership now!"))
+	message_admins("[key_name_admin(admin)]擢升[key_name_admin(new_owner)]为革命领袖. ")
+	log_admin("[key_name(admin)]擢升[key_name(new_owner)]为革命领袖. ")
+	to_chat(new_owner.current, span_userdanger("你现在是革命领袖的一员！"))
 
 /datum/antagonist/rev/head/get_admin_commands()
 	. = ..()
-	. -= "Promote"
-	.["Take flash"] = CALLBACK(src, PROC_REF(admin_take_flash))
-	.["Give flash"] = CALLBACK(src, PROC_REF(admin_give_flash))
-	.["Repair flash"] = CALLBACK(src, PROC_REF(admin_repair_flash))
-	.["Demote"] = CALLBACK(src, PROC_REF(admin_demote))
+	. -= "擢升"
+	.["删除闪光灯"] = CALLBACK(src, PROC_REF(admin_take_flash))
+	.["给予闪光灯"] = CALLBACK(src, PROC_REF(admin_give_flash))
+	.["修复闪光灯"] = CALLBACK(src, PROC_REF(admin_repair_flash))
+	.["降级"] = CALLBACK(src, PROC_REF(admin_demote))
 
 /datum/antagonist/rev/head/proc/admin_take_flash(mob/admin)
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, span_danger("Deleting flash failed!"))
+		to_chat(admin, span_danger("删除闪光灯失败！"))
 		return
 	qdel(flash)
 
 /datum/antagonist/rev/head/proc/admin_give_flash(mob/admin)
-	//This is probably overkill but making these impact state annoys me
+	//这可能有点过头了，但我讨厌这些影响状态
 	var/old_give_flash = give_flash
 	var/old_give_hud = give_hud
 	var/old_remove_clumsy = remove_clumsy
@@ -160,18 +160,18 @@
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, span_danger("Repairing flash failed!"))
+		to_chat(admin, span_danger("修复闪光灯失败！"))
 	else
 		flash.burnt_out = FALSE
 		flash.update_appearance()
 
 /datum/antagonist/rev/head/proc/admin_demote(mob/admin)
-	message_admins("[key_name_admin(admin)] has demoted [key_name_admin(owner)] from head revolutionary.")
-	log_admin("[key_name(admin)] has demoted [key_name(owner)] from head revolutionary.")
+	message_admins("[key_name_admin(admin)]降级了[key_name_admin(owner)]的革命领袖身份. ")
+	log_admin("[key_name(admin)]降级了[key_name(owner)]的革命领袖身份. ")
 	demote()
 
 /datum/antagonist/rev/head
-	name = "\improper Head Revolutionary"
+	name = "\improper 革命领袖"
 	antag_hud_name = "rev_head"
 	job_rank = ROLE_REV_HEAD
 
@@ -205,38 +205,39 @@
 	real_mob.RemoveComponentSource(REF(src), /datum/component/can_flash_from_behind)
 	UnregisterSignal(real_mob, COMSIG_MOB_SUCCESSFUL_FLASHED_CARBON)
 
-/// Signal proc for [COMSIG_MOB_SUCCESSFUL_FLASHED_CARBON].
-/// Bread and butter of revolution conversion, successfully flashing a carbon will make them a revolutionary
+/// 用于 [COMSIG_MOB_SUCCESSFUL_FLASHED_CARBON] 的信号过程.
+/// 革命转变的基本方法，成功闪光一个碳素将使其成为革命者
 /datum/antagonist/rev/head/proc/on_flash_success(mob/living/source, mob/living/carbon/flashed, obj/item/assembly/flash/flash, deviation)
 	SIGNAL_HANDLER
 
 	if(flashed.stat == DEAD)
 		return
 	if(flashed.stat != CONSCIOUS)
-		to_chat(source, span_warning("[flashed.p_They()] must be conscious before you can convert [flashed.p_them()]!"))
+		to_chat(source, span_warning("目标必须在转变前保持清醒！"))
 		return
 
 	if(isnull(flashed.mind) || !GET_CLIENT(flashed))
-		to_chat(source, span_warning("[flashed]'s mind is so vacant that it is not susceptible to influence!"))
+		to_chat(source, span_warning("[flashed]的头脑如此空虚，以至于无法受到影响！"))
 		return
 
 	var/holiday_meme_chance = check_holidays(APRIL_FOOLS) && prob(10)
-	if(add_revolutionary(flashed.mind, mute = !holiday_meme_chance)) // don't mute if we roll the meme holiday chance
+	if(add_revolutionary(flashed.mind, mute = !holiday_meme_chance)) // 如果我们滚动了梗毒节日的机会，则不要消音
 		if(holiday_meme_chance)
 			INVOKE_ASYNC(src, PROC_REF(_async_holiday_meme_say), flashed)
-		flash.times_used-- // Flashes are less likely to burn out for headrevs, when used for conversion
+		flash.times_used-- // 用于转换的闪光灯不太可能烧毁，当用于转换时
 	else
-		to_chat(source, span_warning("[flashed] seems resistant to [flash]!"))
+		to_chat(source, span_warning("[flashed]似乎能抵抗[flash]！"))
 
-/// Used / called async from [proc/on_flash] to deliver a funny meme line
+/// 异步从 [proc/on_flash] 调用，发送一个有趣的迷因台词
 /datum/antagonist/rev/head/proc/_async_holiday_meme_say(mob/living/carbon/flashed)
 	if(ishuman(flashed))
 		var/mob/living/carbon/human/human_flashed = flashed
 		human_flashed.force_say()
 	flashed.say("You son of a bitch! I'm in.", forced = "That son of a bitch! They're in. (April Fools)")
 
+
 /datum/antagonist/rev/head/antag_listing_name()
-	return ..() + "(Leader)"
+	return ..() + "(领袖)"
 
 /datum/antagonist/rev/head/get_preview_icon()
 	var/icon/final_icon = render_preview_outfit(preview_outfit)
@@ -244,8 +245,8 @@
 	final_icon.Blend(make_assistant_icon("Business Hair"), ICON_UNDERLAY, -8, 0)
 	final_icon.Blend(make_assistant_icon("CIA"), ICON_UNDERLAY, 8, 0)
 
-	// Apply the rev head HUD, but scale up the preview icon a bit beforehand.
-	// Otherwise, the R gets cut off.
+	// 应用革命领袖的 HUD，在预览图标之前稍微放大一点.
+	// 否则，“R”会被截断.
 	final_icon.Scale(64, 64)
 
 	var/icon/rev_head_icon = icon('icons/mob/huds/antag_hud.dmi', "rev_head")
@@ -273,17 +274,17 @@
 		return FALSE
 	if(!can_be_owned(candidate.mind))
 		return FALSE
-	var/mob/living/carbon/C = candidate //Check to see if the potential rev is implanted
-	if(!istype(C)) //Can't convert simple animals
+	var/mob/living/carbon/C = candidate // 检查潜在的革命者是否被植入
+	if(!istype(C)) // 无法转换简单动物
 		return FALSE
 	return TRUE
 
 /**
- * Adds a new mind to our revoltuion
+ * 将新的头脑添加到我们的革命中
  *
- * * rev_mind - the mind we're adding
- * * stun - If TRUE, we will flash act and apply a long stun when we're applied
- * * mute - If TRUE, we will apply a mute when we're applied
+ * * rev_mind - 我们要添加的头脑
+ * * stun - 如果为 TRUE，则在应用时我们将闪光并施加长时间的昏迷
+ * * mute - 如果为 TRUE，则在应用时我们将应用静音
  */
 /datum/antagonist/rev/proc/add_revolutionary(datum/mind/rev_mind, stun = TRUE, mute = TRUE)
 	if(!can_be_converted(rev_mind.current))
@@ -309,45 +310,45 @@
 	new_rev.silent = TRUE
 	old_owner.add_antag_datum(new_rev,old_team)
 	new_rev.silent = FALSE
-	to_chat(old_owner, span_userdanger("Revolution has been disappointed of your leader traits! You are a regular revolutionary now!"))
+	to_chat(old_owner, span_userdanger("革命集团对你的头目才能感到失望！你现在只是一个普通的革命者了！"))
 
 /datum/antagonist/rev/farewell()
 	if(ishuman(owner.current))
-		owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!"), null, null, null, owner.current)
-		to_chat(owner, "<span class='deconversion_message bold'>You are no longer a brainwashed revolutionary! Your memory is hazy from the time you were a rebel...the only thing you remember is the name of the one who brainwashed you....</span>")
+		owner.current.visible_message(span_deconversion_message("[owner.current]看起来想起了真正的效忠对象！"), null, null, null, owner.current)
+		to_chat(owner, "<span class='deconversion_message bold'>你不再是被洗脑的革命者！你对反叛时的记忆很模糊...你唯一记得的是洗脑你的人的名字....</span>")
 	else if(issilicon(owner.current))
-		owner.current.visible_message(span_deconversion_message("The frame beeps contentedly, purging the hostile memory engram from the MMI before initalizing it."), null, null, null, owner.current)
-		to_chat(owner, span_userdanger("The frame's firmware detects and deletes your neural reprogramming! You remember nothing but the name of the one who flashed you."))
+		owner.current.visible_message(span_deconversion_message("机器发出了满意的哔哔声，清除了MMI中的敌对记忆图像，然后再次初始化. "), null, null, null, owner.current)
+		to_chat(owner, span_userdanger("MMI固件检测到并删除了你的不需要的个性特征！你对周围的头目感到更满意了. "))
 
 /datum/antagonist/rev/head/farewell()
 	if (deconversion_source == DECONVERTER_STATION_WIN)
 		return
 	if((ishuman(owner.current)))
 		if(owner.current.stat != DEAD)
-			owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!"), null, null, null, owner.current)
-			to_chat(owner, "<span class='deconversion_message bold'>You have given up your cause of overthrowing the command staff. You are no longer a Head Revolutionary.</span>")
+			owner.current.visible_message(span_deconversion_message("[owner.current]看起来想起了真正的效忠对象！"), null, null, null, owner.current)
+			to_chat(owner, "<span class='deconversion_message bold'>你放弃了推翻指挥人员的事业. 你不再是革命领袖. </span>")
 		else
-			to_chat(owner, "<span class='deconversion_message bold'>The sweet release of death. You are no longer a Head Revolutionary.</span>")
+			to_chat(owner, "<span class='deconversion_message bold'>甜蜜的死亡解脱. 你不再是革命领袖. </span>")
 	else if(issilicon(owner.current))
-		owner.current.visible_message(span_deconversion_message("The frame beeps contentedly, suppressing the disloyal personality traits from the MMI before initalizing it."), null, null, null, owner.current)
-		to_chat(owner, span_userdanger("The frame's firmware detects and suppresses your unwanted personality traits! You feel more content with the leadership around these parts."))
+		owner.current.visible_message(span_deconversion_message("MMI发出了满意的嗡嗡声，抑制了叛逆的个性特征，然后再次初始化. "), null, null, null, owner.current)
+		to_chat(owner, span_userdanger("MMI固件检测到并抑制了您不需要的个性特征！你对这些头目们感到更满意了. "))
 
-/// Handles rev removal via IC methods such as borging, mindshielding, blunt force trauma to the head or revs losing.
+/// 处理通过IC方法（如borging，mindshielding，对头部的钝力创伤或革命失败）移除革命者的过程.
 /datum/antagonist/rev/proc/remove_revolutionary(deconverter)
-	owner.current.log_message("has been deconverted from the revolution by [ismob(deconverter) ? key_name(deconverter) : deconverter]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("已通过[ismob(deconverter) ? key_name(deconverter) : deconverter]从革命中解脱！", LOG_ATTACK, color="#960000")
 	if(deconverter == DECONVERTER_BORGED)
-		message_admins("[ADMIN_LOOKUPFLW(owner.current)] has been borged while being a [name]")
+		message_admins("[ADMIN_LOOKUPFLW(owner.current)]在成为[name]时被赛博化")
 	owner.special_role = null
 	deconversion_source = deconverter
 	owner.remove_antag_datum(type)
 
-/// This is for revheads, for which they ordinarily shouldn't be deconverted outside of revs losing. As an exception, forceborging can de-headrev them.
+/// 这适用于革命领袖，通常情况下，他们不应该在革命失败之外被解除领袖地位. 作为例外，强制装备可以将他们除去领袖地位.
 /datum/antagonist/rev/head/remove_revolutionary(deconverter)
-	// If they're living and the station won, turn them into an exiled headrev.
+	// 如果他们活着而站赢了，将他们变成被放逐的领袖.
 	if(owner.current.stat != DEAD && deconverter == DECONVERTER_STATION_WIN)
 		owner.add_antag_datum(/datum/antagonist/enemy_of_the_state)
 
-	// Only actually remove headrev status on borging or when the station wins.
+	// 仅在装备装备或站赢时实际移除领袖地位.
 	if(deconverter == DECONVERTER_BORGED || deconverter == DECONVERTER_STATION_WIN)
 		return ..()
 
@@ -359,37 +360,36 @@
 	if(give_flash)
 		var/where = carbon_owner.equip_conspicuous_item(new /obj/item/assembly/flash/handheld)
 		if (where)
-			to_chat(carbon_owner, "The flash in your [where] will help you to persuade the crew to join your cause.")
+			to_chat(carbon_owner, "你[where]中的闪光灯将帮助你说服船员加入你的事业. ")
 		else
-			to_chat(carbon_owner, "The Syndicate were unfortunately unable to get you a flash.")
+			to_chat(carbon_owner, "很遗憾辛迪加不能为您提供闪光灯. ")
 
 	if(give_hud)
 		var/obj/item/organ/internal/cyberimp/eyes/hud/security/syndicate/hud = new()
 		hud.Insert(carbon_owner)
 		if(carbon_owner.get_quirk(/datum/quirk/body_purist))
-			to_chat(carbon_owner, "Being a body purist, you would never accept cybernetic implants. Upon hearing this, your employers signed you up for a special program, which... for \
-			some odd reason, you just can't remember... either way, the program must have worked, because you have gained the ability to keep track of who is mindshield-implanted, and therefore unable to be recruited.")
+			to_chat(carbon_owner, "作为一个身体纯粹主义者，你永远不会接受赛博植入物. 在听到这一消息后，你的雇主为你启动了一项特殊项目，之后...出于某种原因，你就是记不起来了...无论如何，这个项目一定是奏效了，因为你已经获得了追踪谁有心盾的能力，从而明白该对象是否可以招募. ")
 		else
-			to_chat(carbon_owner, "Your eyes have been implanted with a cybernetic security HUD which will help you keep track of who is mindshield-implanted, and therefore unable to be recruited.")
+			to_chat(carbon_owner, "你的眼睛被植入了一个赛博安保HUD，它将帮助你追踪谁被植入了心盾，从而明白该对象是否可以招募. ")
 
 /datum/team/revolution
-	name = "\improper Revolution"
+	name = "\improper 革命"
 
-	/// Maximum number of headrevs
+	/// 革命领袖的最大数量
 	var/max_headrevs = 3
 
-	/// List of all ex-headrevs. Useful because dynamic removes antag status when it ends, so this can be kept for the roundend report.
+	/// 所有前革命领袖的列表. 因为动态在结束时删除反派状态，所以这可以保存到回合结束报告中.
 	var/list/ex_headrevs = list()
 
-	/// List of all ex-revs. Useful because dynamic removes antag status when it ends, so this can be kept for the roundend report.
+	/// 所有前革命者的列表. 因为动态在结束时删除反派状态，所以这可以保存到回合结束报告中.
 	var/list/ex_revs = list()
 
-	/// The objective of the heads of staff, aka to kill the headrevs.
+	/// 领袖员工的目标，即杀死革命领袖.
 	var/list/datum/objective/mutiny/heads_objective = list()
 
-/// Proc called on periodic timer.
-/// Updates the rev team's objectives to make sure all heads are targets, useful when new heads latejoin.
-/// Propagates all objectives to all revs.
+/// 定期定时器调用的过程.
+/// 更新革命团队的目标，以确保所有领袖都是目标，当新领袖晚加入时很有用.
+/// 将所有目标传播到所有革命者.
 /datum/team/revolution/proc/update_objectives(initial = FALSE)
 	var/untracked_heads = SSjob.get_all_heads()
 
@@ -409,7 +409,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(update_objectives)), HEAD_UPDATE_PERIOD, TIMER_UNIQUE)
 
-/// Returns a list of all headrevs.
+/// 返回所有革命领袖的列表.
 /datum/team/revolution/proc/get_head_revolutionaries()
 	var/list/headrev_list = list()
 
@@ -419,9 +419,9 @@
 
 	return headrev_list
 
-/// Proc called on periodic timer.
-/// Tries to make sure an appropriate number of headrevs are part of the revolution.
-/// Will promote up revs to headrevs as necessary based on the hard max_headrevs cap and the soft cap based on the number of heads of staff and sec.
+/// 定期定时器调用的过程.
+/// 尝试确保适当数量的革命领袖成为革命的一部分.
+/// 将根据硬max_headrevs上限和基于头部员工和安全部门人数的软上限晋升革命者为革命领袖.
 /datum/team/revolution/proc/update_rev_heads()
 	if(SSticker.HasRoundStarted())
 		var/list/datum/mind/head_revolutionaries = get_head_revolutionaries()
@@ -439,7 +439,7 @@
 							promotable += khrushchev
 						else
 							monkey_promotable += khrushchev
-			if(!promotable.len && monkey_promotable.len) //if only monkey revolutionaries remain, promote one of them to the leadership.
+			if(!promotable.len && monkey_promotable.len) //如果只剩下猴子革命者，将其中的一个晋升为领袖.
 				promotable = monkey_promotable
 			if(promotable.len)
 				var/datum/mind/new_leader = pick(promotable)
@@ -448,29 +448,29 @@
 
 	addtimer(CALLBACK(src, PROC_REF(update_rev_heads)),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
 
-/// Saves a list of all ex-headrevs and a list of all revs.
+/// 保存所有前革命领袖和所有革命者的列表.
 /datum/team/revolution/proc/save_members()
 	ex_headrevs = get_antag_minds(/datum/antagonist/rev/head, TRUE)
 	ex_revs = get_antag_minds(/datum/antagonist/rev, TRUE)
 
-/// Checks if revs have won
+/// 检查革命者是否获胜
 /datum/team/revolution/proc/check_rev_victory()
 	for(var/datum/objective/mutiny/objective in objectives)
 		if(!(objective.check_completion()))
 			return FALSE
 	return TRUE
 
-/// Checks if heads have won
+/// 检查领袖是否获胜
 /datum/team/revolution/proc/check_heads_victory()
-	// List of headrevs we're currently tracking
+	// 我们当前正在跟踪的革命领袖列表
 	var/list/included_headrevs = list()
-	// List of current headrevs
+	// 当前的革命领袖列表
 	var/list/current_headrevs = get_head_revolutionaries()
-	// A copy of the head of staff objective list, since we're going to be modifying the original list.
+	// 头部员工目标列表的副本，因为我们将修改原始列表.
 	var/list/heads_objective_copy = heads_objective.Copy()
 
 	var/objective_complete = TRUE
-	// Here, we check current head of staff objectives and remove them if the target doesn't exist as a headrev anymore
+	// 在这里，我们检查当前头部员工的目标，并在目标不再作为革命领袖存在时将其移除
 	for(var/datum/objective/mutiny/objective in heads_objective_copy)
 		if(!(objective.target in current_headrevs))
 			heads_objective -= objective
@@ -479,8 +479,8 @@
 			objective_complete = FALSE
 		included_headrevs += objective.target
 
-	// Here, we check current headrevs and add them as objectives if they didn't exist as a head of staff objective before.
-	// Additionally, we make sure the objective is not completed by running the check_completion check on them.
+	// 在这里，我们检查当前革命领袖，并将它们添加为目标，如果它们之前不存在作为头部员工的目标.
+	// 另外，我们通过运行check_completion检查来确保目标尚未完成.
 	for(var/datum/mind/rev_mind as anything in current_headrevs)
 		if(!(rev_mind in included_headrevs))
 			var/datum/objective/mutiny/objective = new()
@@ -491,8 +491,8 @@
 
 	return objective_complete
 
-/// Updates the state of the world depending on if revs won or loss.
-/// Returns who won, at which case this method should no longer be called.
+/// 根据革命者是赢了还是输了来更新世界的状态.
+/// 返回谁赢了，此时不应再调用此方法.
 /datum/team/revolution/proc/process_victory()
 	if (check_rev_victory())
 		victory_effects()
@@ -505,22 +505,22 @@
 
 	SSshuttle.clearHostileEnvironment(src)
 
-	// Save rev lists before we remove the antag datums.
+	// 在删除反派数据之前保存革命者列表.
 	save_members()
 
-	// Remove everyone as a revolutionary
+	// 将每个人都从革命者身份中移除
 	for (var/datum/mind/rev_mind as anything in members)
 		var/datum/antagonist/rev/rev_antag = rev_mind.has_antag_datum(/datum/antagonist/rev)
 		if (!isnull(rev_antag))
 			rev_antag.remove_revolutionary(DECONVERTER_STATION_WIN)
 			if(rev_mind in ex_headrevs)
-				LAZYADD(rev_mind.special_statuses, "<span class='bad'>Former head revolutionary</span>")
+				LAZYADD(rev_mind.special_statuses, "<span class='bad'>前革命领袖</span>")
 			else
-				LAZYADD(rev_mind.special_statuses, "<span class='bad'>Former revolutionary</span>")
+				LAZYADD(rev_mind.special_statuses, "<span class='bad'>前革命者</span>")
 
 	defeat_effects()
 
-/// Handles any pre-round-ending effects on rev victory. An example use case is recording memories.
+/// 处理革命者胜利时的任何回合结束前效果. 一个示例用法是记录记忆.
 /datum/team/revolution/proc/victory_effects()
 	for(var/datum/mind/headrev_mind as anything in ex_headrevs)
 		var/mob/living/real_headrev = headrev_mind.current
@@ -528,9 +528,9 @@
 			continue
 		add_memory_in_range(real_headrev, 5, /datum/memory/revolution_rev_victory, protagonist = real_headrev)
 
-/// Handles effects of revs losing, such as making ex-headrevs unrevivable and setting up head of staff memories.
+/// 处理革命者失败时的效果，例如使前革命领袖无法复活，并设置头部员工的记忆.
 /datum/team/revolution/proc/defeat_effects()
-	// If the revolution was quelled, make rev heads unable to be revived through pods
+	// 如果革命被镇压，使革命领袖无法通过舱室复活
 	for (var/datum/mind/rev_head as anything in ex_headrevs)
 		if(!isnull(rev_head.current))
 			ADD_TRAIT(rev_head.current, TRAIT_DEFIB_BLACKLISTED, REF(src))
@@ -540,16 +540,16 @@
 		if(!isnull(head_of_staff))
 			add_memory_in_range(head_of_staff, 5, /datum/memory/revolution_heads_victory, protagonist = head_of_staff)
 
-	priority_announce("It appears the mutiny has been quelled. Please return yourself and your incapacitated colleagues to work. \
-		We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, null, null, "[command_name()] Loyalty Monitoring Division")
+	priority_announce("看来叛乱已经平息了. 请将您和您的同事们带回到工作岗位. \
+		我们已经远程将革命领袖列入医疗黑名单，以防止意外复活. ", null, null, null, "[command_name()] 忠诚部")
 
-/// Mutates the ticker to report that the revs have won
+/// 变异报告，报告革命者的胜利
 /datum/team/revolution/proc/round_result(finished)
 	if (finished == REVOLUTION_VICTORY)
-		SSticker.mode_result = "win - heads killed"
+		SSticker.mode_result = "胜利 - 头目被杀"
 		SSticker.news_report = REVS_WIN
 	else if (finished == STATION_VICTORY)
-		SSticker.mode_result = "loss - rev heads killed"
+		SSticker.mode_result = "失败 - 革命领袖被杀"
 		SSticker.news_report = REVS_LOSE
 
 /datum/team/revolution/roundend_report()
@@ -582,29 +582,29 @@
 				num_revs += 1
 
 	if(num_survivors)
-		result += "Command's Approval Rating: <B>[100 - round((num_revs/num_survivors)*100, 0.1)]%</B><br>"
+		result += "指挥部满意度: <B>[100 - round((num_revs/num_survivors)*100, 0.1)]%</B><br>"
 
 	if(headrevs.len)
 		var/list/headrev_part = list()
-		headrev_part += "<span class='header'>The head revolutionaries were:</span>"
+		headrev_part += "<span class='header'>革命领袖是：</span>"
 		headrev_part += printplayerlist(headrevs, !check_rev_victory())
 		result += headrev_part.Join("<br>")
 
 	if(revs.len)
 		var/list/rev_part = list()
-		rev_part += "<span class='header'>The revolutionaries were:</span>"
+		rev_part += "<span class='header'>革命者是：</span>"
 		rev_part += printplayerlist(revs, !check_rev_victory())
 		result += rev_part.Join("<br>")
 
 	var/list/heads = SSjob.get_all_heads()
 	if(heads.len)
-		var/head_text = "<span class='header'>The heads of staff were:</span>"
+		var/head_text = "<span class='header'>员工头目是：</span>"
 		head_text += "<ul class='playerlist'>"
 		for(var/datum/mind/head in heads)
 			var/target = (head in targets)
 			head_text += "<li>"
 			if(target)
-				head_text += span_redtext("Target")
+				head_text += span_redtext("目标")
 			head_text += "[printplayer(head, 1)]</li>"
 		head_text += "</ul><br>"
 		result += head_text
@@ -627,24 +627,24 @@
 	parts += "</table>"
 	common_part = parts.Join()
 
-	var/heads_report = "<b>Heads of Staff</b><br>"
+	var/heads_report = "<b>员工头目</b><br>"
 	heads_report += "<table cellspacing=5>"
 	for(var/datum/mind/N as anything in SSjob.get_living_heads())
 		var/mob/M = N.current
 		if(M)
-			heads_report += "<tr><td><a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(No Client)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+			heads_report += "<tr><td><a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(无客户端)</i>"][M.stat == DEAD ? " <b><font color=red>(已死亡)</font></b>" : ""]</td>"
 			heads_report += "<td><A href='?priv_msg=[M.ckey]'>PM</A></td>"
 			heads_report += "<td><A href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>FLW</a></td>"
 			var/turf/mob_loc = get_turf(M)
 			heads_report += "<td>[mob_loc.loc]</td></tr>"
 		else
-			heads_report += "<tr><td><a href='?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>Head body destroyed!</i></td>"
+			heads_report += "<tr><td><a href='?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>头部被摧毁！</i></td>"
 			heads_report += "<td><A href='?priv_msg=[N.key]'>PM</A></td></tr>"
 	heads_report += "</table>"
 	return common_part + heads_report
 
 /datum/outfit/revolutionary
-	name = "Revolutionary (Preview only)"
+	name = "革命者（仅供预览）"
 
 	uniform = /obj/item/clothing/under/costume/soviet
 	head = /obj/item/clothing/head/costume/ushanka

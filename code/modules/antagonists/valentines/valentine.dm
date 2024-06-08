@@ -1,6 +1,6 @@
 /datum/antagonist/valentine
-	name = "\improper Valentine"
-	roundend_category = "valentines" //there's going to be a ton of them so put them in separate category
+	name = "\improper 现充"
+	roundend_category = "情人节" //there's going to be a ton of them so put them in separate category
 	show_in_antagpanel = FALSE
 	prevent_roundtype_conversion = FALSE
 	suicide_cry = "FOR MY LOVE!!"
@@ -15,7 +15,7 @@
 	protect_objective.target = date
 	if(!ishuman(date.current))
 		protect_objective.human_check = FALSE
-	protect_objective.explanation_text = "Protect [date.name], your date."
+	protect_objective.explanation_text = "保护[date.name]，你的约会对象."
 	objectives += protect_objective
 
 /datum/antagonist/valentine/on_gain()
@@ -32,7 +32,7 @@
 	. = ..()
 
 /datum/antagonist/valentine/greet()
-	to_chat(owner, span_warning("<B>You're on a date with [date.name]! Protect [date.p_them()] at all costs. This takes priority over all other loyalties.</B>"))
+	to_chat(owner, span_warning("<B>你在和[date.name]约会! 不惜一切代价保护约会对象，你对爱情的忠诚优先于所有其他的忠诚.</B>"))
 
 //Squashed up a bit
 /datum/antagonist/valentine/roundend_report()
@@ -44,6 +44,6 @@
 				break
 
 	if(objectives_complete)
-		return "<span class='greentext big'>[owner.name] protected [owner.p_their()] date</span>"
+		return "<span class='greentext big'>[owner.name]保护了约会</span>"
 	else
-		return "<span class='redtext big'>[owner.name] date failed!</span>"
+		return "<span class='redtext big'>[owner.name]约会失败了!</span>"

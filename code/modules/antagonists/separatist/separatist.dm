@@ -1,11 +1,11 @@
 /datum/team/nation
-	name = "\improper Nation"
-	member_name = "separatist"
-	///a list of ranks that can join this nation.
+	name = "\improper 国家"
+	member_name = "分离主义者"
+	/// 可以加入该国家的一系列等级.
 	var/list/potential_recruits
-	///department said team is related to
+	/// 与该团队相关的部门
 	var/datum/job_department/department
-	///whether to forge objectives attacking other nations
+	/// 是否制定攻击其他国家的目标
 	var/dangerous_nation = TRUE
 
 /datum/team/nation/New(starting_members, potential_recruits, department)
@@ -20,32 +20,32 @@
 	. = ..()
 
 /**
- * Signal for adding new crewmembers (players joining the game) to the revolution.
+ * 信号，用于将新的船员（玩家加入游戏）添加到革命中.
  *
- * Arguments:
- * source: global signal, so this is SSdcs.
- * crewmember: new onboarding crewmember.
- * rank: new crewmember's rank.
+ * 参数:
+ * source: 全局信号，因此这是 SSdcs.
+ * crewmember: 新的船员.
+ * rank: 新船员的等级.
  */
 /datum/team/nation/proc/new_possible_separatist(datum/source, mob/living/crewmember, rank)
 	SIGNAL_HANDLER
 
 	if(rank in potential_recruits)
-		//surely we can trust the player who just joined the game to have a mind.
+		// 我们可以相信刚刚加入游戏的玩家有一颗头脑.
 		crewmember.mind.add_antag_datum(/datum/antagonist/separatist,src)
 
 /**
- * Called by department revolt event to give the team some objectives.
+ * 由部门叛乱事件调用，为团队提供一些目标.
  *
- * Arguments:
- * dangerous_nation: whether this nation will get objectives that are very very bloodthirsty, like killing other departments.
- * target_nation: string of the nation they need to destroy/befriend
+ * 参数:
+ * dangerous_nation: 是否该国家将获得非常非常嗜血的目标，比如杀死其他部门.
+ * target_nation: 他们需要摧毁/与之友好的国家的字符串
  */
 /datum/team/nation/proc/generate_nation_objectives(are_we_hostile = TRUE, datum/team/nation/target_nation)
 
 	var/datum/objective/fluff
 	if(istype(department, /datum/job_department/silicon))
-		// snowflake but silicons have their own goals
+		// 雪花，但是硅元素有自己的目标
 		fluff = new /datum/objective/united_nations()
 
 	else
@@ -54,7 +54,7 @@
 			var/datum/objective/destroy = new /datum/objective/destroy_nation(null, target_nation)
 			destroy.team = src
 			objectives += destroy
-			target_nation.war_declared(src) //they need to possibly get an objective back
+			target_nation.war_declared(src) // 他们可能需要得到一个目标
 		fluff = new /datum/objective/separatist_fluff(null, name)
 
 	fluff.team = src
@@ -62,13 +62,13 @@
 	update_all_member_objectives()
 
 /datum/team/nation/proc/war_declared(datum/team/nation/attacking_nation)
-	if(!dangerous_nation) //peaceful nations do not wish to strike back
+	if(!dangerous_nation) // 和平的国家不希望反击
 		return
-	//otherwise, lets add an objective to strike them back
+	// 否则，让我们添加一个目标来反击他们
 	var/datum/objective/destroy = new /datum/objective/destroy_nation(null, attacking_nation)
 	destroy.team = src
 	objectives += destroy
-	update_all_member_objectives(span_danger("The nation of [attacking_nation] has declared the intent to conquer [src]! You have new objectives."))
+	update_all_member_objectives(span_danger("国家[attacking_nation]已宣布意图征服[src]！你有新的目标. "))
 
 /datum/team/nation/proc/update_all_member_objectives(message)
 	for(var/datum/mind/member in members)
@@ -79,10 +79,10 @@
 		needs_objectives.owner.announce_objectives()
 
 /datum/antagonist/separatist
-	name = "\improper Separatists"
+	name = "\improper 分离主义者"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
-	suicide_cry = "FOR THE MOTHERLAND!!"
+	suicide_cry = "为了祖国!!"
 	ui_name = "AntagInfoSeparatist"
 	///team datum
 	var/datum/team/nation/nation

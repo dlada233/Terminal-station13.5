@@ -1,13 +1,13 @@
 /datum/traitor_objective/ultimate/dark_matteor
-	name = "Summon a dark matter singularity to consume the station."
-	description = "Go to %AREA%, and receive the smuggled satellites + emag. Set up and emag the satellites, \
-	after enough have been recalibrated by the emag, IT COMES. Warning: The dark matter singularity will hunt all creatures, you included."
+	name = "召唤暗物质奇点吞噬车站"
+	description = "前往 %AREA% 并接收走私卫星和电子干扰器.设置并使用电子干扰器修改卫星的校准，\
+	当足够多的卫星被重新校准后，暗物质奇点将会出现. 警告：暗物质奇点会猎杀所有生物，包括你在内."
 
-	//this is a prototype so this progression is for all basic level kill objectives
+	//这是一个原型，所以这个进程适用于所有基本级别的杀戮目标
 
-	///area type the objective owner must be in to receive the satellites
+	///任务持有者必须在此区域内才能接收卫星
 	var/area/satellites_spawnarea_type
-	///checker on whether we have sent the satellites yet.
+	///检查是否已发送卫星
 	var/sent_satellites = FALSE
 
 /datum/traitor_objective/ultimate/dark_matteor/can_generate_objective(generating_for, list/possible_duplicates)
@@ -15,7 +15,7 @@
 	if(!.)
 		return FALSE
 	if(SSmapping.is_planetary())
-		return FALSE //meteors can't spawn on planets
+		return FALSE //陨石无法在行星上生成
 	return TRUE
 
 /datum/traitor_objective/ultimate/dark_matteor/generate_objective(datum/mind/generating_for, list/possible_duplicates)
@@ -32,7 +32,7 @@
 /datum/traitor_objective/ultimate/dark_matteor/generate_ui_buttons(mob/user)
 	var/list/buttons = list()
 	if(!sent_satellites)
-		buttons += add_ui_button("", "Pressing this will call down a pod with the smuggled satellites.", "satellite", "satellite")
+		buttons += add_ui_button("", "按下此按钮将呼叫一个带有走私卫星的传输舱.", "satellite", "satellite")
 	return buttons
 
 /datum/traitor_objective/ultimate/dark_matteor/ui_perform_action(mob/living/user, action)
@@ -43,7 +43,7 @@
 				return
 			var/area/delivery_area = get_area(user)
 			if(delivery_area.type != satellites_spawnarea_type)
-				to_chat(user, span_warning("You must be in [initial(satellites_spawnarea_type.name)] to receive the smuggled satellites."))
+				to_chat(user, span_warning("你必须在 [initial(satellites_spawnarea_type.name)] 才能接收走私卫星."))
 				return
 			sent_satellites = TRUE
 			podspawn(list(
@@ -62,22 +62,19 @@
 	new /obj/item/paper/dark_matteor_summoning(src)
 
 /obj/item/paper/dark_matteor_summoning
-	name = "notes - dark matter meteor summoning"
+	name = "笔记 - 暗物质陨石召唤"
 	default_raw_text = {"
-		Summoning a dark matter meteor.<br>
+		召唤暗物质陨石.<br>
 		<br>
 		<br>
-		Operative, this crate contains 10+1 spare meteor shield satellites stolen from NT’s supply lines. Your mission is to
-		deploy them in space near the station and recalibrate them with the provided emag. Be careful: you need a 30 second
-		cooldown between each hack, and NT will detect your interference after seven recalibrations. That means you
-		have at least 5 minutes of work and 1 minute of resistance.<br>
+		特工，此箱子包含10+1个陨石防护卫星，是从NT的供应线上偷来的.你的任务是在车站附近的太空中部署它们，并使用提供的电子干扰器重新校准它们.小心：每次骇入需要30秒的冷却时间，在七次重新校准后NT会检测到你的干扰，这意味着你至少需要5分钟的工作时间和1分钟的抵抗时间.<br>
 		<br>
-		This is a high-risk operation. You’ll need backup, fortification, and determination. The reward?
-		A spectacular dark matter singularity that will wipe out the station.<br>
+		这是一次高风险的行动. 你需要后援、设防以及决心. 那么回报是什么呢？<br>
+		一个壮观的暗物质奇点，摧毁整个空间站.<br>
 		<br>
-		<b>**Death to Nanotrasen.**</b>
+		<b>**死于Nanotrasen.**</b>
 "}
 
 /obj/item/card/emag/meteor_shield_recalibrator
-	name = "cryptographic satellite recalibrator"
-	desc = "It's a cryptographic sequencer that has been tuned to recalibrate meteor shields quicker and with less risk of frying them."
+	name = "加密卫星重新校准器"
+	desc = "这是一个加密的序列器，已被调校为更快且更安全地重新校准陨石防护卫星."

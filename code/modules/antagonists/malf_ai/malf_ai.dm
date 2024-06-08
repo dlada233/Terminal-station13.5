@@ -156,8 +156,8 @@
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
 	var/responses = jointext(GLOB.syndicate_code_response, ", ")
 
-	antag_memory += "<b>呼叫代码</b>: [span_blue("[phrases]")]<br>"
-	antag_memory += "<b>回应代码</b>: [span_red("[responses]")]<br>"
+	antag_memory += "<b>呼叫暗号</b>: [span_blue("[phrases]")]<br>"
+	antag_memory += "<b>应答暗号</b>: [span_red("[responses]")]<br>"
 
 /datum/antagonist/malf_ai/proc/add_law_zero()
 	var/mob/living/silicon/ai/malf_ai = owner.current

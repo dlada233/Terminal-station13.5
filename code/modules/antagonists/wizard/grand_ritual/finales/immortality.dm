@@ -8,10 +8,10 @@
  * Or if they do, they will be back
  */
 /datum/grand_finale/immortality
-	name = "Perpetuation"
-	desc = "The ultimate use of your gathered power! Share with the crew the gift, or curse, of eternal life! \
-		And why not just the crew? How about their pets too? And any other animals around here! \
-		What if nobody died ever again!?"
+	name = "不朽"
+	desc = "倾泻汇聚至今的所有魔力！与船员们分享永生的赐福，或诅咒! \
+		而且为什么只限定船员? 把他们的宠物也算上怎么样? 把这里的所有动物都算上怎么样! \
+		如果再也没有东西会死怎么样!?"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "asclepius_active"
 	glow_colour = COLOR_PALE_GREEN
@@ -24,7 +24,7 @@
 		new /obj/effect/temp_visual/immortality_pulse(get_turf(alive_guy))
 		if (!alive_guy.mind)
 			continue
-		to_chat(alive_guy, span_notice("You feel <b>extremely</b> healthy."))
+		to_chat(alive_guy, span_notice("你感觉<b>极度的</b>健康."))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(something_died))
 
 /// Called when something passes into the great beyond, make it not do that
@@ -53,7 +53,7 @@
 
 	var/datum/mind/dead_mind = HAS_TRAIT(died, TRAIT_SUICIDED) ? null : died.mind // There is a way out of the cycle
 	if (!isnull(dead_mind))
-		to_chat(died, span_boldnotice("Your spirit surges! You will return to life in [DisplayTimeText(IMMORTAL_PRE_ACTIVATION_TIME + IMMORTAL_RESURRECT_TIME)]."))
+		to_chat(died, span_boldnotice("你的精神任然振奋! 你将在[DisplayTimeText(IMMORTAL_PRE_ACTIVATION_TIME + IMMORTAL_RESURRECT_TIME)]内复活."))
 	animate(died, alpha = died.alpha, time = IMMORTAL_PRE_ACTIVATION_TIME / 2, flags = ANIMATION_PARALLEL)
 	animate(alpha = 0, time = IMMORTAL_PRE_ACTIVATION_TIME / 2, easing = SINE_EASING | EASE_IN)
 	addtimer(CALLBACK(src, PROC_REF(reverse_death), died, dead_mind, died_turf, body_type, saved_appearance), IMMORTAL_PRE_ACTIVATION_TIME, TIMER_DELETE_ME)
@@ -138,8 +138,8 @@
 
 /// A ghostly image of a mob showing where and what is going to respawn
 /obj/effect/spectre_of_resurrection
-	name = "spectre"
-	desc = "A frightening apparition, slowly growing more solid."
+	name = "灵魂"
+	desc = "可怕的灵魂，正慢慢的实体化."
 	icon_state = "blank_white"
 	anchored = TRUE
 	layer = MOB_LAYER
@@ -166,7 +166,7 @@
 	src.corpse = corpse
 	src.dead_mind = dead_mind
 	corpse.forceMove(src)
-	name = "spectre of [corpse]"
+	name = "[corpse]的灵魂"
 	setup_icon(corpse)
 	DO_FLOATING_ANIM(src)
 
@@ -207,7 +207,7 @@
 	SIGNAL_HANDLER
 	if (isnull(corpse))
 		return
-	visible_message(span_boldnotice("[corpse] suddenly shudders to life!"))
+	visible_message(span_boldnotice("[corpse]突然开始颤抖!"))
 	corpse.remove_traits(list(TRAIT_NO_TELEPORT, TRAIT_AI_PAUSED), MAGIC_TRAIT)
 	corpse.remove_status_effect(/datum/status_effect/grouped/stasis, MAGIC_TRAIT)
 	corpse.forceMove(loc)
@@ -245,7 +245,7 @@
 
 /// Visual flair on the wizard when cast
 /obj/effect/temp_visual/immortality_blast
-	name = "immortal wave"
+	name = "不朽之光"
 	duration = 2.5 SECONDS
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "boh_tear"
@@ -262,7 +262,7 @@
 
 /// Visual flair on living creatures who have become immortal
 /obj/effect/temp_visual/immortality_pulse
-	name = "immortal pulse"
+	name = "不朽之能"
 	duration = 1 SECONDS
 	icon = 'icons/effects/anomalies.dmi'
 	icon_state = "dimensional_overlay"
