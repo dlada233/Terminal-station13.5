@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/garland
-	name = "floral garland"
-	desc = "Someone, somewhere, is starving while wearing this. And it's definitely not you."
+	name = "花环"
+	desc = "在某个地方，某个带着这个的人在挨饿，你肯定不是那个人."
 	icon_state = "garland"
 	worn_icon_state = "garland"
 
@@ -14,8 +14,8 @@
 	user.clear_mood_event("garland")
 
 /obj/item/clothing/head/costume/garland/rainbowbunch
-	name = "rainbow flower crown"
-	desc = "A flower crown made out of the flowers of the rainbow bunch plant."
+	name = "彩虹花冠"
+	desc = "由各色颜色的花朵制成的花冠，"
 	icon_state = "rainbow_bunch_crown_1"
 	base_icon_state = "rainbow_bunch_crown"
 
@@ -25,29 +25,29 @@
 	icon_state = "[base_icon_state]_[crown_type]"
 	switch(crown_type)
 		if(1)
-			desc += " This one has red, yellow, and white flowers."
+			desc += " 这个有红色、黄色和白色的花."
 		if(2)
-			desc += " This one has blue, yellow, green, and white flowers."
+			desc += " 这个有蓝色、黄色、绿色和白色的花."
 		if(3)
-			desc += " This one has red, blue, purple, and pink flowers."
+			desc += " 这个有红色、蓝色、紫色和粉色的花."
 		if(4)
-			desc += " This one has yellow, green, and white flowers."
+			desc += " 这个有黄色、绿色和白色的花."
 
 /obj/item/clothing/head/costume/garland/sunflower
-	name = "sunflower crown"
-	desc = "A bright flower crown made out sunflowers that is sure to brighten up anyone's day!"
+	name = "向日葵花冠"
+	desc = "一个由向日葵制成的阳光花冠，肯定会让任何人心情愉悦！"
 	icon_state = "sunflower_crown"
 	worn_icon_state = "sunflower_crown"
 
 /obj/item/clothing/head/costume/garland/poppy
-	name = "poppy crown"
-	desc = "A flower crown made out of a string of bright red poppies."
+	name = "罂粟花冠"
+	desc = "由一串亮红色罂粟花制成的花冠."
 	icon_state = "poppy_crown"
 	worn_icon_state = "poppy_crown"
 
 /obj/item/clothing/head/costume/garland/lily
-	name = "lily crown"
-	desc = "A leafy flower crown with a cluster of large white lilies at at the front."
+	name = "百合花冠"
+	desc = "一个叶状的花冠，前面有一簇大白百合."
 	icon_state = "lily_crown"
 	worn_icon_state = "lily_crown"
 

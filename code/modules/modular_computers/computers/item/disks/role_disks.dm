@@ -57,7 +57,7 @@
 	)
 
 /obj/item/computer_disk/command/ce
-	name = "首席工程师数据磁盘"
+	name = "工程部长数据磁盘"
 	desc = "储存有首席工程师需要的各种应用程序的磁盘."
 	starting_programs = list(
 		/datum/computer_file/program/supermatter_monitor,
@@ -98,6 +98,7 @@
 	starting_programs = list(
 		/datum/computer_file/program/shipping,
 		/datum/computer_file/program/budgetorders,
+		/datum/computer_file/program/restock_tracker,
 	)
 
 /**

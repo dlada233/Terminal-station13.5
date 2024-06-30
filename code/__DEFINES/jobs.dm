@@ -49,10 +49,12 @@
 #define JOB_CHIEF_ENGINEER "首席工程师-Chief Engineer"
 #define JOB_CHIEF_MEDICAL_OFFICER "首席医疗官-Chief Medical Officer"
 #define JOB_BRIDGE_ASSISTANT "舰桥助理-Bridge Assistant"
+#define JOB_VETERAN_ADVISOR "资深安保顾问-Veteran Security Advisor"
 //Silicon
 #define JOB_AI "AI"
-#define JOB_CYBORG "塞博-Cyborg"
+#define JOB_CYBORG "赛博-Cyborg"
 #define JOB_PERSONAL_AI "个人AI-Personal AI"
+#define JOB_HUMAN_AI "老大哥-Big Brother"
 //Security
 #define JOB_WARDEN "典狱长-Warden"
 #define JOB_DETECTIVE "侦探-Detective"
@@ -68,16 +70,15 @@
 #define JOB_ENGINEERING_GUARD "工程安保-Engineering Guard" // SKYRAT EDIT ADDITION
 //Medical
 #define JOB_CORONER "验尸官-Coroner"
-#define JOB_MEDICAL_DOCTOR "医生-Medical Doctor"
+#define JOB_MEDICAL_DOCTOR "医生Medical Doctor"
 #define JOB_PARAMEDIC "急救员-Paramedic"
 #define JOB_CHEMIST "化学家-Chemist"
-#define JOB_VIROLOGIST "病毒学家-Virologist"
 #define JOB_ORDERLY "医护员-Orderly" // SKYRAT EDIT ADDITION
 //Science
 #define JOB_SCIENTIST "科学家-Scientist"
 #define JOB_ROBOTICIST "机械学家-Roboticist"
 #define JOB_GENETICIST "基因学家-Geneticist"
-#define JOB_SCIENCE_GUARD "科研安保-Science Guard"
+#define JOB_SCIENCE_GUARD "科研安保-Science Guard""
 //Supply
 #define JOB_QUARTERMASTER "军需官-Quartermaster"
 #define JOB_CARGO_TECHNICIAN "货仓技工-Cargo Technician"
@@ -89,6 +90,7 @@
 #define JOB_BARTENDER "酒保-Bartender"
 #define JOB_BOTANIST "植物学家-Botanist"
 #define JOB_COOK "厨师-Cook"
+#define JOB_CHEF "伙夫-Chef" // Alternate cook title.
 #define JOB_JANITOR "清洁工-Janitor"
 #define JOB_CLOWN "小丑-Clown"
 #define JOB_MIME "默剧演员-Mime"
@@ -99,43 +101,43 @@
 #define JOB_BARBER "理发师-Barber" // SKYRAT EDIT ADDITION
 #define JOB_BOUNCER "服务安保-Service Guard" // SKYRAT EDIT ADDITION
 //ERTs
-#define JOB_ERT_DEATHSQUAD "Death Commando"
-#define JOB_ERT_COMMANDER "Emergency Response Team Commander"
-#define JOB_ERT_OFFICER "Security Response Officer"
-#define JOB_ERT_ENGINEER "Engineering Response Officer"
-#define JOB_ERT_MEDICAL_DOCTOR "Medical Response Officer"
-#define JOB_ERT_CHAPLAIN "Religious Response Officer"
-#define JOB_ERT_JANITOR "Janitorial Response Officer"
-#define JOB_ERT_CLOWN "Entertainment Response Officer"
+#define JOB_ERT_DEATHSQUAD "行刑队-Death Commando"
+#define JOB_ERT_COMMANDER "应急响应部队指挥官-Emergency Response Team Commander"
+#define JOB_ERT_OFFICER "安保响应负责人-Security Response Officer"
+#define JOB_ERT_ENGINEER "工程响应负责人-Engineering Response Officer"
+#define JOB_ERT_MEDICAL_DOCTOR "医疗响应负责人-Medical Response Officer"
+#define JOB_ERT_CHAPLAIN "宗教响应负责人-Religious Response Officer"
+#define JOB_ERT_JANITOR "清洁响应负责人-Janitorial Response Officer"
+#define JOB_ERT_CLOWN "娱乐响应负责人-Entertainment Response Officer"
 //CentCom
 #define JOB_CENTCOM "中央指挥部-Central Command"
-#define JOB_CENTCOM_OFFICIAL "中央指挥官员-CentCom Official"
-#define JOB_CENTCOM_ADMIRAL "Admiral"
-#define JOB_CENTCOM_COMMANDER "中央指挥司令-CentCom Commander"
-#define JOB_CENTCOM_VIP "VIP Guest"
-#define JOB_CENTCOM_BARTENDER "CentCom Bartender"
-#define JOB_CENTCOM_CUSTODIAN "Custodian"
-#define JOB_CENTCOM_THUNDERDOME_OVERSEER "Thunderdome Overseer"
-#define JOB_CENTCOM_MEDICAL_DOCTOR "Medical Officer"
-#define JOB_CENTCOM_RESEARCH_OFFICER "Research Officer"
-#define JOB_CENTCOM_SPECIAL_OFFICER "Special Ops Officer"
-#define JOB_CENTCOM_PRIVATE_SECURITY "Private Security Force"
+#define JOB_CENTCOM_OFFICIAL "中央指挥部官员-CentCom Official"
+#define JOB_CENTCOM_ADMIRAL "将军-Admiral"
+#define JOB_CENTCOM_COMMANDER "中央指挥部指挥官-CentCom Commander"
+#define JOB_CENTCOM_VIP "VIP访客-VIP Guest"
+#define JOB_CENTCOM_BARTENDER "中央指挥部酒保-CentCom Bartender"
+#define JOB_CENTCOM_CUSTODIAN "管理人-Custodian"
+#define JOB_CENTCOM_THUNDERDOME_OVERSEER "雷霆竞技场观众-Thunderdome Overseer"
+#define JOB_CENTCOM_MEDICAL_DOCTOR "医疗官-Medical Officer"
+#define JOB_CENTCOM_RESEARCH_OFFICER "科研官-Research Officer"
+#define JOB_CENTCOM_SPECIAL_OFFICER "特别行动指挥官-Special Ops Officer"
+#define JOB_CENTCOM_PRIVATE_SECURITY "私人安保力量-Private Security Force"
 // SKYRAT EDIT ADDITION START
 #define JOB_BLUESHIELD "蓝盾-Blueshield"
 #define JOB_NT_REP "纳米传讯顾问-Nanotrasen Consultant"
 // Nanotrasen Naval Command jobs
-#define JOB_NAVAL_ENSIGN "Ensign"
-#define JOB_NAVAL_LIEUTENANT "Lieutenant"
-#define JOB_NAVAL_LTCR "Lieutenant Commander"
-#define JOB_NAVAL_COMMANDER "Commander"
-#define JOB_NAVAL_CAPTAIN "Captain"
-#define JOB_NAVAL_REAR_ADMIRAL "Rear Admiral"
-#define JOB_NAVAL_ADMIRAL "Admiral"
-#define JOB_NAVAL_FLEET_ADMIRAL "Fleet Admiral"
+#define JOB_NAVAL_ENSIGN "少尉-Ensign"
+#define JOB_NAVAL_LIEUTENANT "中尉-Lieutenant"
+#define JOB_NAVAL_LTCR "少校-Lieutenant Commander"
+#define JOB_NAVAL_COMMANDER "中校-Commander"
+#define JOB_NAVAL_CAPTAIN "舰长-Captain"
+#define JOB_NAVAL_REAR_ADMIRAL "少将-Rear Admiral"
+#define JOB_NAVAL_ADMIRAL "上将-Admiral"
+#define JOB_NAVAL_FLEET_ADMIRAL "元帅-Fleet Admiral"
 // Off-Station
-#define JOB_SPACE_POLICE "Space Police"
-#define JOB_SOLFED "SolFed"
-#define JOB_SOLFED_LIASON "SolFed Liason"
+#define JOB_SPACE_POLICE "太空警察-Space Police"
+#define JOB_SOLFED "太阳系联邦-SolFed"
+#define JOB_SOLFED_LIASON "太阳系联邦联络人-SolFed Liason"
 // SKYRAT EDIT ADDITION END
 
 #define JOB_GROUP_ENGINEERS list( \
@@ -172,13 +174,13 @@
 #define JOB_DISPLAY_ORDER_MEDICAL_DOCTOR 26
 #define JOB_DISPLAY_ORDER_PARAMEDIC 27
 #define JOB_DISPLAY_ORDER_CHEMIST 28
-#define JOB_DISPLAY_ORDER_VIROLOGIST 29
-#define JOB_DISPLAY_ORDER_CORONER 30
-#define JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR 31
-#define JOB_DISPLAY_ORDER_SCIENTIST 32
-#define JOB_DISPLAY_ORDER_ROBOTICIST 33
-#define JOB_DISPLAY_ORDER_GENETICIST 34
-#define JOB_DISPLAY_ORDER_HEAD_OF_SECURITY 35
+#define JOB_DISPLAY_ORDER_CORONER 29
+#define JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR 30
+#define JOB_DISPLAY_ORDER_SCIENTIST 31
+#define JOB_DISPLAY_ORDER_ROBOTICIST 32
+#define JOB_DISPLAY_ORDER_GENETICIST 33
+#define JOB_DISPLAY_ORDER_HEAD_OF_SECURITY 34
+#define JOB_DISPLAY_ORDER_VETERAN_ADVISOR 35
 #define JOB_DISPLAY_ORDER_WARDEN 36
 #define JOB_DISPLAY_ORDER_DETECTIVE 37
 #define JOB_DISPLAY_ORDER_SECURITY_OFFICER 38
@@ -219,6 +221,19 @@
 #define DEPARTMENT_BITFLAG_CENTRAL_COMMAND (1<<10) //SKYRAT EDIT CHANGE
 #define DEPARTMENT_CENTRAL_COMMAND "Central Command" //SKYRAT EDIT CHANGE
 
+DEFINE_BITFIELD(departments_bitflags, list(
+	"SECURITY" = DEPARTMENT_BITFLAG_SECURITY,
+	"COMMAND" = DEPARTMENT_BITFLAG_COMMAND,
+	"SERVICE" = DEPARTMENT_BITFLAG_SERVICE,
+	"CARGO" = DEPARTMENT_BITFLAG_CARGO,
+	"ENGINEERING" = DEPARTMENT_BITFLAG_ENGINEERING,
+	"SCIENCE" = DEPARTMENT_BITFLAG_SCIENCE,
+	"MEDICAL" = DEPARTMENT_BITFLAG_MEDICAL,
+	"SILICON" = DEPARTMENT_BITFLAG_SILICON,
+	"ASSISTANT" = DEPARTMENT_BITFLAG_ASSISTANT,
+	"CAPTAIN" = DEPARTMENT_BITFLAG_CAPTAIN,
+))
+
 /* Job datum job_flags */
 /// Whether the mob is announced on arrival.
 #define JOB_ANNOUNCE_ARRIVAL (1<<0)
@@ -246,6 +261,22 @@
 #define JOB_LATEJOIN_ONLY (1<<11)
 /// This job is a head of staff.
 #define JOB_HEAD_OF_STAFF (1<<12)
+
+DEFINE_BITFIELD(job_flags, list(
+	"JOB_ANNOUNCE_ARRIVAL" = JOB_ANNOUNCE_ARRIVAL,
+	"JOB_CREW_MANIFEST" = JOB_CREW_MANIFEST,
+	"JOB_EQUIP_RANK" = JOB_EQUIP_RANK,
+	"JOB_CREW_MEMBER" = JOB_CREW_MEMBER,
+	"JOB_NEW_PLAYER_JOINABLE" = JOB_NEW_PLAYER_JOINABLE,
+	"JOB_BOLD_SELECT_TEXT" = JOB_BOLD_SELECT_TEXT,
+	"JOB_REOPEN_ON_ROUNDSTART_LOSS" = JOB_REOPEN_ON_ROUNDSTART_LOSS,
+	"JOB_ASSIGN_QUIRKS" = JOB_ASSIGN_QUIRKS,
+	"JOB_CAN_BE_INTERN" = JOB_CAN_BE_INTERN,
+	"JOB_CANNOT_OPEN_SLOTS" = JOB_CANNOT_OPEN_SLOTS,
+	"JOB_HIDE_WHEN_EMPTY" = JOB_HIDE_WHEN_EMPTY,
+	"JOB_LATEJOIN_ONLY" = JOB_LATEJOIN_ONLY,
+	"JOB_HEAD_OF_STAFF" = JOB_HEAD_OF_STAFF,
+))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
 #define STATION_JOB_FLAGS (JOB_ANNOUNCE_ARRIVAL|JOB_CREW_MANIFEST|JOB_EQUIP_RANK|JOB_CREW_MEMBER|JOB_NEW_PLAYER_JOINABLE|JOB_REOPEN_ON_ROUNDSTART_LOSS|JOB_ASSIGN_QUIRKS|JOB_CAN_BE_INTERN)

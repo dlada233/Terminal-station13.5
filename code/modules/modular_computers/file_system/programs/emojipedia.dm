@@ -1,7 +1,7 @@
 /// A tablet app that lets anyone see all the valid emoji they can send via a PDA message (and even OOC!)
 /datum/computer_file/program/emojipedia
 	filename = "emojipedia"
-	filedesc = "表情百科全书"
+	filedesc = "表情百科"
 	downloader_category = PROGRAM_CATEGORY_DEVICE // we want everyone to be able to access this application, since everyone can send emoji via PDA messages
 	program_open_overlay = "generic"
 	extended_desc = "这个程序可以让你查看所有Emoji，并可以通过PDA消息发送."
@@ -14,7 +14,7 @@
 /datum/computer_file/program/emojipedia/New()
 	. = ..()
 	// Sort the emoji list so it's easier to find things and we don't have to keep sorting on ui_data since the number of emojis can not change in-game.
-	emoji_list = sortTim(emoji_list, GLOBAL_PROC_REF(cmp_text_asc))
+	sortTim(emoji_list, /proc/cmp_text_asc)
 
 /datum/computer_file/program/emojipedia/ui_static_data(mob_user)
 	var/list/data = list()

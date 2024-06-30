@@ -60,8 +60,7 @@
 	inhand_icon_state = "sabre"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	obj_flags = CONDUCTS_ELECTRICITY
-	obj_flags = UNIQUE_RENAME
+	obj_flags = CONDUCTS_ELECTRICITY | UNIQUE_RENAME
 	force = 15
 	throwforce = 10
 	demolition_mod = 0.75 //but not metal
@@ -109,22 +108,18 @@
 		span_warning("[src] 以不自然的方式轻松撕开了 [baned_target]!"),
 		span_userdanger("当 [src] 撕开进入你的身体时, 你能感受到权威的重量塌入你的伤口中!"),
 	)
-	INVOKE_ASYNC(baned_target, TYPE_PROC_REF(/mob/living/carbon/human, emote), "尖叫")
+	INVOKE_ASYNC(baned_target, TYPE_PROC_REF(/mob/living/carbon/human, emote), "scream")
 
-/obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK || attack_type == LEAP_ATTACK)
 		final_block_chance = 0 //Don't bring a sword to a gunfight, and also you aren't going to really block someone full body tackling you with a sword
 	return ..()
 
 /obj/item/melee/sabre/on_exit_storage(datum/storage/container)
-	var/obj/item/storage/belt/sabre/sabre = container.real_location?.resolve()
-	if(istype(sabre))
-		playsound(sabre, 'sound/items/unsheath.ogg', 25, TRUE)
+	playsound(container.parent, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/on_enter_storage(datum/storage/container)
-	var/obj/item/storage/belt/sabre/sabre = container.real_location?.resolve()
-	if(istype(sabre))
-		playsound(sabre, 'sound/items/sheath.ogg', 25, TRUE)
+	playsound(container.parent, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] 正试图用 [src] 砍掉所有的肢体! 看起来 [user.p_theyre()] 正在试图自杀!"))
@@ -335,9 +330,11 @@
 	attack_verb_simple = list("鞭笞了", "抽打了", "鞭打了", "调教了")
 	hitsound = 'sound/weapons/whip.ogg'
 
-/obj/item/melee/curator_whip/afterattack(target, mob/user, proximity_flag)
+/obj/item/melee/curator_whip/attack(mob/living/target, mob/living/user, params)
 	. = ..()
-	if(ishuman(target) && proximity_flag)
+	if(.)
+		return
+	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		human_target.drop_all_held_items()
 		human_target.visible_message(span_danger("[user] 解除了 [human_target] 的武装!"), span_userdanger("[user] 解除了你的武装!"))
@@ -450,7 +447,7 @@
 	finish_roasting(user, target)
 
 /obj/item/melee/roastingstick/proc/finish_roasting(user, atom/target)
-	if(do_after(user, 100, target = user))
+	if(do_after(user, 10 SECONDS, target = user))
 		to_chat(user, span_notice("你完成了对 [held_sausage] 的烤制."))
 		playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
 		held_sausage.add_atom_colour(rgb(103, 63, 24), FIXED_COLOUR_PRIORITY)
@@ -474,7 +471,7 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/cleric_mace_lefthand
 	greyscale_config_inhand_right = /datum/greyscale_config/cleric_mace_righthand
 	greyscale_config_worn = /datum/greyscale_config/cleric_mace
-	greyscale_colors = "#FFFFFF"
+	greyscale_colors = COLOR_WHITE
 
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_AFFECT_STATISTICS //Material type changes the prefix as well as the color.
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6)  //Defaults to an Iron Mace.

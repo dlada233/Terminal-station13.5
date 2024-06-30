@@ -265,7 +265,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/airalarm_electronics
-	name = "Air Alarm Electronics-大气警报器电路板"
+	name = "Air Alarm Electronics-空气警报器电路板"
 	id = "airalarm_electronics"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
@@ -424,5 +424,31 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MOUNTS,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design/tram_floor_dark
+	name = "Dark Tram Tile-暗色电车地板"
+	id = "tram_floor_dark"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 0.25)
+	build_path = /obj/item/stack/thermoplastic
+	maxstack = 50
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MATERIALS,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design/tram_floor_light
+	name = "Light Tram Tile-亮色电车地板"
+	id = "tram_floor_light"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 0.25)
+	build_path = /obj/item/stack/thermoplastic/light
+	maxstack = 50
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MATERIALS,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING

@@ -5,6 +5,6 @@
 	value = 4
 	mob_trait = TRAIT_LIGHT_STEP
 	gain_text = span_notice("你的步伐变得轻盈.")
-	lose_text = span_danger("你像个野蛮人一样迈步粗犷.")
-	medical_record_text = "Patient's dexterity belies a strong capacity for stealth."
+	lose_text = span_danger("你开始像个野蛮人一样粗犷迈步.")
+	medical_record_text = "患者灵巧的步伐使其拥有高强的潜行能力."
 	mail_goodies = list(/obj/item/clothing/shoes/sandal)

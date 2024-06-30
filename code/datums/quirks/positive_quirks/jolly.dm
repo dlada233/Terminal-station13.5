@@ -5,5 +5,5 @@
 	value = 4
 	mob_trait = TRAIT_JOLLY
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED
-	medical_record_text = "患者表现出心情一直不错，跟其所处环境并不相符，老实说，有点过头了."
+	medical_record_text = "患者表现出的心情一直不错，跟其所处环境并不相符，老实说，心情有点好过头了."
 	mail_goodies = list(/obj/item/clothing/mask/joy)

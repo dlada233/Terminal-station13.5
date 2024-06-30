@@ -22,8 +22,10 @@
 	projectile_type = /obj/projectile/bullet/rocket/heap
 
 /obj/item/ammo_casing/rocket/weak
-	name = "PM-9HE低当量"
+	name = "\improper HE 低当量标枪火箭弹"
 	desc = "一枚84毫米高爆火箭弹，这一枚威力没那么大."
+	icon_state = "low_yield_rocket"
+	base_icon_state = "low_yield_rocket"
 	projectile_type = /obj/projectile/bullet/rocket/weak
 
 /obj/item/ammo_casing/a75

@@ -579,24 +579,24 @@ em {
   color: #973e3b;
 }
 
-.cultitalic {
+.cult_italic {
   color: #973e3b;
   font-style: italic;
 }
 
-.cultbold {
+.cult_bold {
   color: #973e3b;
   font-style: italic;
   font-weight: bold;
 }
 
-.cultboldtalic {
+.cult_bold_italic {
   color: #973e3b;
   font-weight: bold;
   font-size: 185%;
 }
 
-.cultlarge {
+.cult_large {
   color: #973e3b;
   font-weight: bold;
   font-size: 185%;
@@ -820,8 +820,8 @@ em {
     color: #7adbf3;
   }
 }
+// SKYRAT EDIT ADDITION BEGIN
 
-// SKYRAT ADDITION BEGIN
 .velvet {
   color: #660015;
   font-weight: bold;
@@ -917,8 +917,7 @@ em {
     color: #9b6000;
   }
 }
-
-// SKYRAT ADDITION END
+// SKYRAT EDIT ADDITION END
 
 .phobia {
   color: #dd0000;
@@ -1164,6 +1163,24 @@ $border-width-px: $border-width * 1px;
   flex-direction: column;
 }
 
+.ooc_alert {
+  background: #4d4100;
+  border: 1px solid #cca300;
+  margin: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.2em;
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.ooc_announcement_text {
+  color: #cca300;
+  padding: 0.5em 0 0 0.35em;
+  display: flex;
+  flex-direction: column;
+}
+
 @each $color-name, $color-value in $alert-stripe-colors {
   .chat_alert_#{$color-name} {
     color: #ffffff;
@@ -1209,8 +1226,8 @@ $border-width-px: $border-width * 1px;
     background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
   }
 }
+/* SKYRAT EDIT ADDITION START - DARK MODE CLASSES */
 
-/* SKYRAT DARK MODE CLASSES */
 .mentor {
   color: #8a2be2;
 }
@@ -1306,3 +1323,4 @@ $border-width-px: $border-width * 1px;
   font-weight: bold;
   font-style: italic;
 }
+// SKYRAT EDIT ADDITION END

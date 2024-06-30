@@ -23,7 +23,7 @@
 	if(!fug_antag)
 		to_chat(fugitive_hunter, span_warning("这个不是通缉犯!"))
 		return
-	if(do_after(fugitive_hunter, 50, target = fugitive))
+	if(do_after(fugitive_hunter, 5 SECONDS, target = fugitive))
 		add_prisoner(fugitive, fug_antag)
 
 /obj/machinery/fugitive_capture/proc/add_prisoner(mob/living/carbon/human/fugitive, datum/antagonist/fugitive/antag)
@@ -31,7 +31,7 @@
 	antag.is_captured = TRUE
 	to_chat(fugitive, span_userdanger("你被扔进了一片无边无际的蓝空虚空中，下坠在无意识的虚无深渊中，通往现实的相对入口越发狭小，直到你再也看不见它. 你最终未能逃脱追捕."))
 	fugitive.ghostize(TRUE) //so they cannot suicide, round end stuff.
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 
 /obj/machinery/computer/shuttle/hunter
 	name = "飞船终端"

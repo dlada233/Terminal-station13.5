@@ -59,7 +59,7 @@
 			span_notice("你成功从[src]中逃脱了!"))
 		open_machine()
 
-/obj/machinery/abductor/experiment/ui_status(mob/user)
+/obj/machinery/abductor/experiment/ui_status(mob/user, datum/ui_state/state)
 	if(user == occupant)
 		return UI_CLOSE
 	return ..()

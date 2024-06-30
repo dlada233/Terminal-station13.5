@@ -173,41 +173,12 @@
 
 /obj/projectile/magic/animate/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	target.animate_atom_living(firer)
+	if(!is_type_in_typecache(target, GLOB.animatable_blacklist))
+		target.animate_atom_living(firer)
 
-/atom/proc/animate_atom_living(mob/living/owner = null)
-	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.animatable_blacklist))
-		if(istype(src, /obj/structure/statue/petrified))
-			var/obj/structure/statue/petrified/P = src
-			if(P.petrified_mob)
-				var/mob/living/L = P.petrified_mob
-				var/mob/living/basic/statue/S = new(P.loc, owner)
-				S.name = "[L.name]雕像"
-				if(owner)
-					S.faction = list("[REF(owner)]")
-				S.icon = P.icon
-				S.icon_state = P.icon_state
-				S.copy_overlays(P, TRUE)
-				S.color = P.color
-				S.atom_colours = P.atom_colours.Copy()
-				if(L.mind)
-					L.mind.transfer_to(S)
-					if(owner)
-						to_chat(S, span_userdanger("你是一个有生命的雕像，在被监视时不可移动，但在不被监视时几乎是无敌和致命的! 不得伤害你的创造者[owner]."))
-				P.forceMove(S)
-				return
-		else
-			var/obj/O = src
-			if(isgun(O))
-				new /mob/living/simple_animal/hostile/mimic/copy/ranged(drop_location(), src, owner)
-			else
-				new /mob/living/simple_animal/hostile/mimic/copy(drop_location(), src, owner)
-
-	else if(istype(src, /mob/living/simple_animal/hostile/mimic/copy))
-		// Change our allegiance!
-		var/mob/living/simple_animal/hostile/mimic/copy/C = src
-		if(owner)
-			C.ChangeOwner(owner)
+///proc to animate the target into a living creature
+/atom/proc/animate_atom_living(mob/living/owner)
+	return
 
 /obj/projectile/magic/spellblade
 	name = "能量刃"
@@ -400,15 +371,14 @@
 		var/datum/antagonist/A = target.mind.has_antag_datum(/datum/antagonist/)
 		if(A)
 			poll_message = "[poll_message] 状态:[A.name]."
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob(poll_message, check_jobban = ROLE_PAI, poll_time = 10 SECONDS, target_mob = target, pic_source = target, role_name_text = "bolt of possession")
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(poll_message, check_jobban = ROLE_PAI, poll_time = 10 SECONDS, checked_target = target, alert_pic = target, role_name_text = "bolt of possession")
 	if(target.stat == DEAD)//boo.
 		return
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/ghost = pick(candidates)
+	if(chosen_one)
 		to_chat(target, span_boldnotice("你被一个灵魂盯上并附身了!"))
 		var/oldkey = target.key
 		target.ghostize(FALSE)
-		target.key = ghost.key
+		target.key = chosen_one.key
 		trauma.friend.key = oldkey
 		trauma.friend.reset_perspective(null)
 		trauma.friend.Show()
@@ -610,3 +580,31 @@
 	damage_type = BURN
 	damage = 2
 	antimagic_charge_cost = 0 // since the cards gets spammed like a shotgun
+
+//a shrink ray that shrinks stuff, which grows back after a short while.
+/obj/projectile/magic/shrink
+	name = "缩小射线"
+	icon_state = "blue_laser"
+	hitsound = 'sound/weapons/shrink_hit.ogg'
+	damage = 0
+	damage_type = STAMINA
+	armor_flag = ENERGY
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/shrink
+	light_color = LIGHT_COLOR_BLUE
+	var/shrink_time = -1
+
+/obj/projectile/magic/shrink/on_hit(atom/target, blocked = 0, pierce_hit)
+	. = ..()
+	if(isopenturf(target) || isindestructiblewall(target))//shrunk floors wouldnt do anything except look weird, i-walls shouldn't be bypassable
+		return
+	target.AddComponent(/datum/component/shrink, shrink_time)
+
+/obj/projectile/magic/shrink/is_hostile_projectile()
+	return TRUE
+
+/obj/projectile/magic/shrink/wand
+	shrink_time = 90 SECONDS
+
+/obj/projectile/magic/shrink/wand/on_hit(atom/target, blocked = 0, pierce_hit)
+	shrink_time = rand(60 SECONDS, 90 SECONDS)
+	return ..()

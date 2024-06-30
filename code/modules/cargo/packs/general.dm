@@ -119,7 +119,7 @@
 	crate_name = "文书用品箱"
 
 /datum/supply_pack/misc/fountainpens
-	name = "书法用品"
+	name = "写字用品"
 	desc = "用这七支行政钢笔签署死刑令."
 	cost = CARGO_CRATE_VALUE * 1.45
 	contains = list(/obj/item/storage/box/fountainpens)

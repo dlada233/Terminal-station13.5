@@ -271,6 +271,24 @@
 		/obj/item/storage/pill_bottle/penacid = 1)
 	generate_items_inside(items_inside,src)
 
+/obj/item/storage/medkit/tactical_lite
+	name = "战斗急救箱"
+	icon_state = "medkit_tactical"
+	inhand_icon_state = "medkit-tactical"
+	damagetype_healed = HEAL_ALL_DAMAGE
+
+/obj/item/storage/medkit/tactical_lite/PopulateContents()
+	if(empty)
+		return
+	var/static/list/items_inside = list(
+		/obj/item/healthanalyzer/advanced = 1,
+		/obj/item/reagent_containers/hypospray/medipen/atropine = 1,
+		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/suture/medicated = 2,
+		/obj/item/stack/medical/mesh/advanced = 2,
+	)
+	generate_items_inside(items_inside, src)
+
 /obj/item/storage/medkit/tactical
 	name = "战斗医疗箱"
 	desc = "我希望你有保险."
@@ -625,7 +643,7 @@
 		new /obj/item/reagent_containers/pill/lsdpsych(src)
 
 /obj/item/storage/pill_bottle/paxpsych
-	name = "重熙药丸"
+	name = "和平素药丸"
 	desc = "含有用于暂时安抚对自己或他人造成伤害的患者的药丸，暂时消除他们的暴力倾向."
 
 /obj/item/storage/pill_bottle/paxpsych/PopulateContents()
@@ -642,7 +660,7 @@
 
 /obj/item/storage/pill_bottle/ondansetron
 	name = "枢复宁贴片"
-	desc = "一种装有昂丹司琼片的瓶子，一种用于治疗恶心和呕吐的药物，可能引起嗜睡."
+	desc = "一种装有枢复宁片的瓶子，一种用于治疗恶心和呕吐的药物，可能引起嗜睡."
 
 /obj/item/storage/pill_bottle/ondansetron/PopulateContents()
 	for(var/i in 1 to 5)
@@ -666,12 +684,16 @@
 /obj/item/storage/organbox/Initialize(mapload)
 	. = ..()
 
-	create_storage(storage_type = /datum/storage/organ_box, max_specific_storage = WEIGHT_CLASS_BULKY, max_total_storage = 21)
-	atom_storage.set_holdable(list(
-		/obj/item/organ,
-		/obj/item/bodypart,
-		/obj/item/food/icecream
-		))
+	create_storage(
+		storage_type = /datum/storage/organ_box,
+		max_specific_storage = WEIGHT_CLASS_BULKY,
+		max_total_storage = 21,
+		canhold = list(
+			/obj/item/organ,
+			/obj/item/bodypart,
+			/obj/item/food/icecream,
+		),
+	)
 
 	create_reagents(100, TRANSPARENT)
 	START_PROCESSING(SSobj, src)
@@ -766,9 +788,7 @@
 	atom_storage.max_slots = 8
 	atom_storage.screen_max_columns = 4
 	atom_storage.screen_max_rows = 2
-	atom_storage.set_holdable(list(
-		/obj/item/reagent_containers/cup/tube,
-	))
+	atom_storage.set_holdable(/obj/item/reagent_containers/cup/tube)
 
 /obj/item/storage/test_tube_rack/attack_self(mob/user)
 	emptyStorage()

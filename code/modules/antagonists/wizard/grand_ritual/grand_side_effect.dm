@@ -1,39 +1,39 @@
 /**
- * 描述在完成宏伟仪式时可以在局部区域内发生的事情。
+ * Describes something which can happen in a local area when the grand ritual is completed.
  */
 /datum/grand_side_effect
-	/// 如果为真，则此效果是行为的持有者，不应被选择。
+	/// If true then this effect is a holder for behaviour and should not be selected.
 	var/abstract = TRUE
 
 /**
- * 如果可以触发此效果，则返回 true。
- * * ritual_location - 仪式符文的中心地皮。
+ * Returns true if you can trigger this effect.
+ * * ritual_location - Central turf of the ritual rune.
  */
 /datum/grand_side_effect/proc/can_trigger(turf/ritual_location)
 	return !abstract
 
 /**
- * 在仪式区域触发某种效果。
- * 参数
- * * potency - 之前施法次数。
- * * ritual_location - 仪式符文的中心地皮。
- * * invoker - 施法者。
+ * Triggers some kind of effect in the area of the ritual.
+ * Arguments
+ * * potency - How many times a ritual has been cast previously.
+ * * ritual_location - Central turf of the ritual rune.
+ * * invoker - Mob who cast the spell.
  */
 /datum/grand_side_effect/proc/trigger(potency, turf/ritual_location, mob/invoker)
-	return // 在重写中做些酷炫的事
+	return // Do something cool in the override
 
 /**
- * 只在其位置施放一个法术的副作用
+ * A side effect which just casts a spell at its position
  */
 /datum/grand_side_effect/spell
-	/// 要施放的法术路径
+	/// Path of spell to cast
 	var/spell_path
-	/// 结束法术前的持续时间
+	/// Time to spend before ending spell
 	var/duration = 0
-	/// 播放的音效
+	/// Sound effect to play
 	var/sound
 
-/// 在区域内施放维度不稳定
+/// Casts dimensional instability on the area
 /datum/grand_side_effect/scramble_turfs
 	abstract = FALSE
 
@@ -45,7 +45,7 @@
 	var/duration = LERP((10 SECONDS), (15 SECONDS), potency/GRAND_RITUAL_FINALE_COUNT)
 	QDEL_IN(spell, duration)
 
-/// 将周围区域变成其他东西
+/// Transform the surrounding area into something else.
 /datum/grand_side_effect/transmogrify_area
 	abstract = FALSE
 
@@ -74,18 +74,17 @@
 		addtimer(CALLBACK(src, PROC_REF(staggered_transform), theme, range_turfs), (0.5 SECONDS) * iterator)
 
 /datum/grand_side_effect/transmogrify_area/proc/staggered_transform(datum/dimension_theme/theme, list/transform_turfs)
-	for (var/turf/target_turf as anything in transform_turfs)
-		theme.apply_theme(target_turf)
+	theme.apply_theme_to_list_of_turfs(transform_turfs)
 
-/// 最小创建异常数量
+/// Minimum number of anomalies to create
 #define MIN_ANOMALIES_CREATED 1
-/// 最大创建异常数量
+/// Maximum number of anomalies to create
 #define MAX_ANOMALIES_CREATED 4
 
-/// 在区域内生成一些不太危险的异常
+/// Spawn some anomalies in the area, ones which are not too dangerous
 /datum/grand_side_effect/create_anomalies
 	abstract = FALSE
-	/// 我们允许创建的异常类型列表，每种类型的最大创建数量
+	/// List of anomaly types we are allowed to create, paired with a maximum to create of each
 	var/static/list/permitted_anomalies = list(
 		/obj/effect/anomaly/bioscrambler = 1,
 		/obj/effect/anomaly/hallucination = 2,
@@ -110,13 +109,13 @@
 		if (can_create[create_path] == 0)
 			continue
 		can_create[create_path] = can_create[create_path] - 1
-		new create_path(pick(anomaly_positions), new_lifespan = rand(150, 300), drops_core = FALSE)
+		new create_path(pick(anomaly_positions), /*new_lifespan = */rand(15 SECONDS, 30 SECONDS), /*drops_core = */FALSE)
 		to_create--
 
 #undef MIN_ANOMALIES_CREATED
 #undef MAX_ANOMALIES_CREATED
 
-/// 使附近的机器产生EMP脉冲
+/// EMP nearby machines
 /datum/grand_side_effect/emp
 	abstract = FALSE
 
@@ -125,11 +124,11 @@
 	var/light = LERP(3, 6, potency/GRAND_RITUAL_FINALE_COUNT)
 	empulse(ritual_location, heavy, light)
 
-/// 随机交换附近生物的位置并使其混乱
+/// Swap locations of nearby mobs arbitrarily and confuse them
 /datum/grand_side_effect/translocate
 	abstract = FALSE
 
-/// 如果没有人可交换则不运行
+/// Don't run if there's nobody to swap
 /datum/grand_side_effect/translocate/can_trigger(turf/ritual_location)
 	. = ..()
 	if (!.)
@@ -164,7 +163,7 @@
 		var/atom/new_loc = pop(mob_locations)
 		do_teleport(victim, new_loc, channel = TELEPORT_CHANNEL_MAGIC)
 
-/// 在区域内生成润滑剂
+/// Spawn lube in the area
 /datum/grand_side_effect/slippery
 	abstract = FALSE
 
@@ -176,13 +175,13 @@
 	lube.create_foam(/datum/effect_system/fluid_spread/foam, DIAMOND_AREA(range))
 	qdel(lube)
 
-/// 抓住一个人并将其拉到此位置，延迟后
+/// Grabs one person and pulls them to this location, after a delay
 /datum/grand_side_effect/summon_crewmate
 	abstract = FALSE
-	/// 将要抓住并拉到我们位置的人的弱引用
+	/// Weak reference to someone we're going to grab and pull to our location
 	var/datum/weakref/victim
 
-/// 如果没有人可召唤则不运行
+/// Don't run if there's nobody to summon
 /datum/grand_side_effect/summon_crewmate/can_trigger(turf/ritual_location)
 	. = ..()
 	if (!.)

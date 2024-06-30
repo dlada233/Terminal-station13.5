@@ -1,9 +1,9 @@
 /datum/round_event_control/gravity_generator_blackout
-	name = "Gravity Generator Blackout"
+	name = "Gravity Generator Blackout-重力发生器停机"
 	typepath = /datum/round_event/gravity_generator_blackout
 	weight = 30
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Turns off the gravity generator."
+	description = "关掉重力发生器."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 

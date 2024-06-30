@@ -56,7 +56,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "身份验证遭到覆写")
+	balloon_alert(user, "authentication checks overridden")
 	return TRUE
 
 /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
@@ -137,7 +137,7 @@
 /obj/item/firing_pin/clown
 	name = "搞笑撞针"
 	desc = "先进的小丑技术将武器们变得更加实用."
-	color = "#FFFF00"
+	color = COLOR_YELLOW
 	fail_message = "honk!"
 	force_replace = TRUE
 
@@ -221,7 +221,7 @@
 /obj/item/firing_pin/paywall
 	name = "付费撞针"
 	desc = "该撞针使武器开火时从使用者的银行账户中扣款，付款方式可事前自定义设置."
-	color = "#FFD700"
+	color = COLOR_GOLD
 	fail_message = ""
 	///list of account IDs which have accepted the license prompt. If this is the multi-payment pin, then this means they accepted the waiver that each shot will cost them money
 	var/list/gun_owners = list()
@@ -387,4 +387,5 @@
 /obj/item/firing_pin/Destroy()
 	if(gun)
 		gun.pin = null
+		gun = null
 	return ..()

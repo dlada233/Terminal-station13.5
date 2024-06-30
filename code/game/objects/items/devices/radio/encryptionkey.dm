@@ -21,7 +21,7 @@
 	if(LAZYLEN(channels) || translate_binary)
 		var/list/examine_text_list = list()
 		for(var/i in channels)
-			examine_text_list += "[GLOB.channel_tokens[i]] - [lowertext(i)]"
+			examine_text_list += "[GLOB.channel_tokens[i]] - [LOWER_TEXT(i)]"
 
 		if(translate_binary)
 			examine_text_list += "[GLOB.channel_tokens[MODE_BINARY]] - [MODE_BINARY]"
@@ -152,35 +152,35 @@
 	greyscale_colors = "#2b2793#c2c1c9"
 
 /obj/item/encryptionkey/heads/qm
-	name = "\proper the quartermaster's encryption key"
+	name = "\proper 军需官的加密密钥"
 	icon_state = "cypherkey_cargo"
 	channels = list(RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_COMMAND = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_cargo
 	greyscale_colors = "#49241a#dca01b"
 
 /obj/item/encryptionkey/headset_cargo
-	name = "supply radio encryption key"
+	name = "货运加密密钥"
 	icon_state = "cypherkey_cargo"
 	channels = list(RADIO_CHANNEL_SUPPLY = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_cargo
 	greyscale_colors = "#49241a#7b3f2e"
 
 /obj/item/encryptionkey/headset_mining
-	name = "mining radio encryption key"
+	name = "矿工加密密钥"
 	icon_state = "cypherkey_cargo"
 	channels = list(RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_SCIENCE = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_cargo
 	greyscale_colors = "#49241a#bc4a9b"
 
 /obj/item/encryptionkey/headset_service
-	name = "service radio encryption key"
+	name = "服务加密密钥"
 	icon_state = "cypherkey_service"
 	channels = list(RADIO_CHANNEL_SERVICE = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_service
 	greyscale_colors = "#3758c4#3bca5a"
 
 /obj/item/encryptionkey/headset_cent
-	name = "\improper CentCom radio encryption key"
+	name = "\improper 中央指挥部加密密钥"
 	icon_state = "cypherkey_centcom"
 	independent = TRUE
 	channels = list(RADIO_CHANNEL_CENTCOM = 1)
@@ -188,10 +188,34 @@
 	greyscale_colors = "#24a157#dca01b"
 
 /obj/item/encryptionkey/ai //ported from NT, this goes 'inside' the AI.
-	channels = list(RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_ENGINEERING = 1, RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_SERVICE = 1, RADIO_CHANNEL_AI_PRIVATE = 1)
+	channels = list(
+		RADIO_CHANNEL_COMMAND = 1,
+		RADIO_CHANNEL_SECURITY = 1,
+		RADIO_CHANNEL_ENGINEERING = 1,
+		RADIO_CHANNEL_SCIENCE = 1,
+		RADIO_CHANNEL_MEDICAL = 1,
+		RADIO_CHANNEL_SUPPLY = 1,
+		RADIO_CHANNEL_SERVICE = 1,
+		RADIO_CHANNEL_AI_PRIVATE = 1,
+	)
+
+/obj/item/encryptionkey/ai_with_binary
+	name = "ai加密密钥"
+	channels = list(
+		RADIO_CHANNEL_COMMAND = 1,
+		RADIO_CHANNEL_SECURITY = 1,
+		RADIO_CHANNEL_ENGINEERING = 1,
+		RADIO_CHANNEL_SCIENCE = 1,
+		RADIO_CHANNEL_MEDICAL = 1,
+		RADIO_CHANNEL_SUPPLY = 1,
+		RADIO_CHANNEL_SERVICE = 1,
+		RADIO_CHANNEL_AI_PRIVATE = 1,
+	)
+	translate_binary = TRUE
+	translated_language = /datum/language/machine
 
 /obj/item/encryptionkey/ai/evil //ported from NT, this goes 'inside' the AI.
-	name = "syndicate binary encryption key"
+	name = "辛迪加二进制加密密钥"
 	icon_state = "cypherkey_syndicate"
 	channels = list(RADIO_CHANNEL_SYNDICATE = 1)
 	syndie = TRUE

@@ -30,7 +30,7 @@
 	if(user.movement_type & VENTCRAWLING)
 		user.balloon_alert(user, "不能在管道中变形!")
 		return FALSE
-	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	var/datum/changeling_profile/chosen_form = select_form(changeling, user)
 	if(!chosen_form)
 		return FALSE

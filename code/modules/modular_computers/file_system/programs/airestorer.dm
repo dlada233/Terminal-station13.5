@@ -1,9 +1,9 @@
 /datum/computer_file/program/ai_restorer
 	filename = "ai_restore"
-	filedesc = "AI管理&复原"
+	filedesc = "AI Manager & Restorer"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	program_open_overlay = "generic"
-	extended_desc = "固件恢复包，能够复原损坏的AI系统.需要将英特利储存卡连接至插槽."
+	extended_desc = "Firmware Restoration Kit, capable of reconstructing damaged AI systems. Requires direct AI connection via intellicard slot."
 	size = 12
 	can_run_on_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
 	download_access = list(ACCESS_RD)
@@ -18,14 +18,14 @@
 /datum/computer_file/program/ai_restorer/on_examine(obj/item/modular_computer/source, mob/user)
 	var/list/examine_text = list()
 	if(!stored_card)
-		examine_text += "有一个用于插入英特利储存卡的卡槽."
+		examine_text += "It has a slot installed for an intelliCard."
 		return examine_text
 
 	if(computer.Adjacent(user))
-		examine_text += "有一个用于英特利储存卡，当前里面有: [stored_card.name]"
+		examine_text += "It has a slot installed for an intelliCard which contains: [stored_card.name]"
 	else
-		examine_text += "有一个用于插入英特利储存卡的卡槽，目前已经被占用了."
-	examine_text += span_info("Alt+左键取出英特利储存卡.")
+		examine_text += "It has a slot installed for an intelliCard, which appears to be occupied."
+	examine_text += span_info("Alt-click to eject the intelliCard.")
 	return examine_text
 
 /datum/computer_file/program/ai_restorer/kill_program(mob/user)
@@ -64,29 +64,29 @@
 		return FALSE
 
 	if(stored_card)
-		to_chat(user, span_warning("你尝试将[attacking_item]插入[computer.name], 但插槽已经被占用了."))
+		to_chat(user, span_warning("You try to insert \the [attacking_item] into \the [computer.name], but the slot is occupied."))
 		return FALSE
 	if(user && !user.transferItemToLoc(attacking_item, computer))
 		return FALSE
 
 	stored_card = attacking_item
-	to_chat(user, span_notice("你将[attacking_item]插入到[computer.name]上."))
+	to_chat(user, span_notice("You insert \the [attacking_item] into \the [computer.name]."))
 
 	return TRUE
 
 /datum/computer_file/program/ai_restorer/try_eject(mob/living/user, forced = FALSE)
 	if(!stored_card)
 		if(user)
-			to_chat(user, span_warning("[computer.name]内英特利储存卡."))
+			to_chat(user, span_warning("There is no card in \the [computer.name]."))
 		return FALSE
 
 	if(restoring && !forced)
 		if(user)
-			to_chat(user, span_warning("重建完成前请勿取出储存卡，以免发生安全故障..."))
+			to_chat(user, span_warning("Safeties prevent you from removing the card until reconstruction is complete..."))
 		return FALSE
 
 	if(user && computer.Adjacent(user))
-		to_chat(user, span_notice("你从[computer.name]取出了[stored_card]."))
+		to_chat(user, span_notice("You remove [stored_card] from [computer.name]."))
 		user.put_in_hands(stored_card)
 	else
 		stored_card.forceMove(computer.drop_location())
@@ -97,6 +97,7 @@
 
 
 /datum/computer_file/program/ai_restorer/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(!stored_card || !stored_card.AI)
@@ -104,7 +105,7 @@
 			var/mob/living/silicon/ai/A = stored_card.AI
 			if(A && A.health < 100)
 				restoring = TRUE
-				A.notify_revival("你的核心文件正在恢复!", source = computer)
+				A.notify_revival("Your core files are being restored!", source = computer)
 			return TRUE
 		if("PRG_eject")
 			if(stored_card)
@@ -119,11 +120,11 @@
 	data["error"] = null
 
 	if(!stored_card)
-		data["error"] = "请插入英特利储存卡."
+		data["error"] = "Please insert an intelliCard."
 	else if(!stored_card.AI)
-		data["error"] = "未能定位到AI..."
+		data["error"] = "No AI located..."
 	else if(stored_card.flush)
-		data["error"] = "刷新进程!"
+		data["error"] = "Flush in progress!"
 	else
 		data["name"] = stored_card.AI.name
 		data["restoring"] = restoring

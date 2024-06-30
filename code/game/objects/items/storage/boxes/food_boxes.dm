@@ -14,7 +14,7 @@
 
 /obj/item/storage/box/donkpockets/Initialize(mapload)
 	. = ..()
-	atom_storage.set_holdable(list(/obj/item/food/donkpocket))
+	atom_storage.set_holdable(/obj/item/food/donkpocket)
 
 /obj/item/storage/box/donkpockets/donkpocketspicy
 	name = "辣味口袋饼盒"

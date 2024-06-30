@@ -15,8 +15,9 @@
 	desc = "大小圆圈嵌套重叠，陌生文字三向罗列，线条在你眼前扭曲颤动."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "wizard_rune"
-	pixel_x = -28
-	pixel_y = -33
+	pixel_x = -33
+	pixel_y = 16
+	pixel_z = -48
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -66,7 +67,7 @@
 		list("Y-abbaa", "Dab'Bah", "Doom!!"),
 	)
 
-/// 准备魔法词语并对硅基生物隐藏
+/// Prepare magic words and hide from silicons
 /obj/effect/grand_rune/Initialize(mapload, potency = 0)
 	. = ..()
 	src.potency = potency
@@ -114,7 +115,7 @@
 	INVOKE_ASYNC(src, PROC_REF(invoke_rune), user)
 	return TRUE
 
-/// 实际执行整个调用过程
+/// Actually does the whole invoking thing
 /obj/effect/grand_rune/proc/invoke_rune(mob/living/user)
 	is_in_use = TRUE
 	add_channel_effect(user)
@@ -128,17 +129,17 @@
 
 	times_invoked++
 
-	// 在法阵上获取奶酪
+	//fetch cheese on the rune
 	var/list/obj/item/food/cheese/wheel/cheese_list = list()
 	for(var/obj/item/food/cheese/wheel/nearby_cheese in range(1, src))
-		if(HAS_TRAIT(nearby_cheese, TRAIT_HAUNTED)) // 已经被附身
+		if(HAS_TRAIT(nearby_cheese, TRAIT_HAUNTED)) //already haunted
 			continue
 		cheese_list += nearby_cheese
-	// 处理奶酪祭品 - 每次调用时用每个法阵附身一部分奶酪，然后删除它
+	//handle cheese sacrifice - haunt a part of all cheese on the rune with each invocation, then delete it
 	var/list/obj/item/food/cheese/wheel/cheese_to_haunt = list()
 	cheese_list = shuffle(cheese_list)
-	// 这里的意图是将奶酪分成几部分进行祭献，大致分为三分之一，因为我们要调用法阵三次
-	// 所以希望这样能正确地做到这一点，并且在第三次调用时，它将吃掉所有剩余的奶酪
+	//the intent here is to sacrifice cheese in parts, roughly in thirds since we invoke the rune three times
+	//so hopefully this will properly do that, and on the third invocation it will just eat all remaining cheese
 	cheese_to_haunt = cheese_list.Copy(1, min(round(length(cheese_list) * times_invoked * 0.4), max(length(cheese_list), 3)))
 	for(var/obj/item/food/cheese/wheel/sacrifice as anything in cheese_to_haunt)
 		sacrifice.AddComponent(\
@@ -164,12 +165,12 @@
 	playsound(src,'sound/magic/staff_animation.ogg', 75, TRUE)
 	INVOKE_ASYNC(src, PROC_REF(invoke_rune), user)
 
-/// 为施法添加特效，基本上你会发光并悬浮在空中.
+/// Add special effects for casting a spell, basically you glow and hover in the air.
 /obj/effect/grand_rune/proc/add_channel_effect(mob/living/user)
 	user.AddElement(/datum/element/forced_gravity, 0)
 	user.add_filter("channeling_glow", 2, list("type" = "outline", "color" = spell_colour, "size" = 2))
 
-/// 移除施法特效
+/// Remove special effects for casting a spell
 /obj/effect/grand_rune/proc/remove_channel_effect(mob/living/user)
 	user.RemoveElement(/datum/element/forced_gravity, 0)
 	user.remove_filter("channeling_glow")
@@ -177,23 +178,23 @@
 /obj/effect/grand_rune/proc/get_invoke_time()
 	return  (BASE_INVOKE_TIME) + (potency * (ADD_INVOKE_TIME))
 
-/// 当你真正完成这件事时调用
+/// Called when you actually finish the damn thing
 /obj/effect/grand_rune/proc/on_invocation_complete(mob/living/user)
 	is_in_use = FALSE
 	playsound(src,'sound/magic/staff_change.ogg', 75, TRUE)
-	INVOKE_ASYNC(src, PROC_REF(summon_round_event), user) // 运行事件时休眠
+	INVOKE_ASYNC(src, PROC_REF(summon_round_event), user) // Running the event sleeps
 	trigger_side_effects()
 	tear_reality()
 	SEND_SIGNAL(src, COMSIG_GRAND_RUNE_COMPLETE, cheese_sacrificed)
 	flick("[icon_state]_activate", src)
-	addtimer(CALLBACK(src, PROC_REF(remove_rune)), 6)
+	addtimer(CALLBACK(src, PROC_REF(remove_rune)), 0.6 SECONDS)
 	SSblackbox.record_feedback("amount", "grand_runes_invoked", 1)
 
 /obj/effect/grand_rune/proc/remove_rune()
 	new remains_typepath(get_turf(src))
 	qdel(src)
 
-/// 在车站某处触发某种形式的事件
+/// Triggers some form of event somewhere on the station
 /obj/effect/grand_rune/proc/summon_round_event(mob/living/user)
 	var/list/possible_events = list()
 
@@ -215,9 +216,9 @@
 	final_event.run_event(event_cause = "大仪式法阵")
 	to_chat(user, span_notice("你释放出了影响船员的魔法: [final_event.name]!"))
 
-/// 在该区域应用一些本地副作用
+/// Applies some local side effects to the area
 /obj/effect/grand_rune/proc/trigger_side_effects(mob/living/user)
-	if (potency == 0) // 第一次不触发
+	if (potency == 0) // Not on the first one
 		return
 	var/list/possible_effects = list()
 	for (var/effect_path in subtypesof(/datum/grand_side_effect))
@@ -230,8 +231,8 @@
 	final_effect.trigger(potency, loc, user)
 
 /**
- * 进行仪式会根据效力生成最多三个现实裂缝.
- * 每个裂缝有50%的几率已经耗尽.
+ * Invoking the ritual spawns up to three reality tears based on potency.
+ * Each of these has a 50% chance to spawn already expended.
  */
 /obj/effect/grand_rune/proc/tear_reality()
 	var/max_tears = 0
@@ -248,11 +249,11 @@
 		return
 	var/created = 0
 	var/location_sanity = 0
-	// 复制自影响管理器，但我们不想遵守每个异教徒的影响上限.
+	// Copied from the influences manager, but we don't want to obey the cap on influences per heretic.
 	while(created < to_create && location_sanity < 100)
 		var/turf/chosen_location = get_safe_random_station_turf()
 
-		// 我们不希望它们彼此靠近 - 至少要有1个瓦片的间隔
+		// We don't want them close to each other - at least 1 tile of seperation
 		var/list/nearby_things = range(1, chosen_location)
 		var/obj/effect/heretic_influence/what_if_i_have_one = locate() in nearby_things
 		var/obj/effect/visible_heretic_influence/what_if_i_had_one_but_its_used = locate() in nearby_things
@@ -271,14 +272,14 @@
 #undef ADD_INVOKE_TIME
 
 /**
- * 用于最终仪式的变体法阵
+ * Variant rune used for the Final Ritual
  */
 /obj/effect/grand_rune/finale
-	/// 玩家想要做什么？
+	/// What does the player want to do?
 	var/datum/grand_finale/finale_effect
-	/// 玩家是否选择了一个结果？
+	/// Has the player chosen an outcome?
 	var/chosen_effect = FALSE
-	/// 如果我们需要警告船员，我们是否已经这样做了？
+	/// If we need to warn the crew, have we done so?
 	var/dire_warnings_given = 0
 
 /obj/effect/grand_rune/finale/invoke_rune(mob/living/user)

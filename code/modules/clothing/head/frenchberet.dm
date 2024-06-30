@@ -1,6 +1,6 @@
 /obj/item/clothing/head/frenchberet
-	name = "french beret"
-	desc = "A quality beret, infused with the aroma of chain-smoking, wine-swilling Parisians. You feel less inclined to engage in military conflict, for some reason."
+	name = "法国贝雷帽"
+	desc = "一顶优质的贝雷帽，带有吸雪茄喝红酒的巴黎人香气，不知为何，你对军事冲突的兴趣减少了."
 	icon_state = "beret"
 	greyscale_config = /datum/greyscale_config/beret
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
@@ -38,5 +38,5 @@
 			message = replacetextEx(message, " [key]", " [value]")
 
 		if(prob(3))
-			message += pick(" Honh honh honh!"," Honh!"," Zut Alors!")
+			message += pick(" Honh honh honh!", " Honh!", " Zut Alors!")
 	speech_args[SPEECH_MESSAGE] = trim(message)

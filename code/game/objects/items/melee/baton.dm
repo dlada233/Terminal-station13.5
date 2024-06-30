@@ -1,7 +1,7 @@
 /obj/item/melee/baton
 	name = "警棍"
 	desc = "用于击打罪犯的木制警棍."
-	desc_controls = "左键点击可使其昏迷, 右键点击可造成伤害."
+	desc_controls = "左键点击可使其眩晕, 右键点击可造成伤害."
 	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "classic_baton"
 	inhand_icon_state = "classic_baton"
@@ -43,10 +43,10 @@
 	var/chunky_finger_usable = FALSE
 
 	/// The context to show when the baton is active and targeting a living thing
-	var/context_living_target_active = "昏迷"
+	var/context_living_target_active = "眩晕"
 
 	/// The context to show when the baton is active and targeting a living thing in combat mode
-	var/context_living_target_active_combat_mode = "昏迷"
+	var/context_living_target_active_combat_mode = "眩晕"
 
 	/// The context to show when the baton is inactive and targeting a living thing
 	var/context_living_target_inactive = "戳击"
@@ -64,7 +64,7 @@
 	. = ..()
 	// Adding an extra break for the sake of presentation
 	if(stamina_damage != 0)
-		offensive_notes = "需要 [span_warning("[CEILING(100 / stamina_damage, 1)] 次击晕打击")] 才能使敌人昏迷."
+		offensive_notes = "需要 [span_warning("[CEILING(100 / stamina_damage, 1)] 次击晕打击")] 才能使敌人眩晕."
 
 	register_item_context()
 
@@ -190,9 +190,8 @@
 	if(user)
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
-		target.LAssailant = WEAKREF(user)
 		if(log_stun_attack)
-			log_combat(user, target, "昏迷攻击", src)
+			log_combat(user, target, "眩晕攻击", src)
 	if(baton_effect(target, user, modifiers) && user)
 		set_batoned(target, user, cooldown)
 
@@ -288,7 +287,7 @@
 
 	user.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD, attacking_item = src)
 
-	log_combat(user, user, "太笨了! [user.p_them()]自己对自己使用了昏迷攻击", src)
+	log_combat(user, user, "太笨了! [user.p_them()]自己对自己使用了眩晕攻击", src)
 	if(stun_animation)
 		user.do_attack_animation(user)
 	return
@@ -407,7 +406,7 @@
 /obj/item/melee/baton/security
 	name = "电棍"
 	desc = "用于使人失去行动能力的电棍."
-	desc_controls = "左键点击可使其昏迷, 右键点击可造成伤害."
+	desc_controls = "左键点击可使其眩晕, 右键点击可造成伤害."
 	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "stunbaton"
 	inhand_icon_state = "baton"
@@ -426,12 +425,18 @@
 	on_stun_sound = 'sound/weapons/egloves.ogg'
 	on_stun_volume = 50
 	active = FALSE
-	context_living_rmb_active = "有伤害的昏迷攻击"
+	context_living_rmb_active = "有伤害的眩晕攻击"
+	light_range = 1.5
+	light_system = OVERLAY_LIGHT
+	light_on = FALSE
+	light_color = LIGHT_COLOR_ORANGE
+	light_power = 0.5
+
 
 	var/throw_stun_chance = 35
 	var/obj/item/stock_parts/cell/cell
 	var/preload_cell_type //if not empty the baton starts with this type of cell
-	var/cell_hit_cost = 1000
+	var/cell_hit_cost = STANDARD_CELL_CHARGE
 	var/can_remove_cell = TRUE
 	var/convertible = TRUE //if it can be converted with a conversion kit
 
@@ -444,10 +449,11 @@
 	. = ..()
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type, /obj/item/stock_parts/cell))
-			log_mapping("[src] 在 [AREACOORD(src)] 有一个无效的 preload_cell_type: [preload_cell_type].")
+			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
 	RegisterSignal(src, COMSIG_ATOM_ATTACKBY, PROC_REF(convert))
+	RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 	update_appearance()
 
 /obj/item/melee/baton/security/get_cell()
@@ -482,6 +488,14 @@
 	qdel(item)
 	qdel(src)
 
+/obj/item/melee/baton/security/proc/on_saboteur(datum/source, disrupt_duration)
+	SIGNAL_HANDLER
+	if(!active)
+		return
+	toggle_light()
+	active = FALSE
+	update_appearance()
+	return COMSIG_SABOTEUR_SUCCESS
 /obj/item/melee/baton/security/Exited(atom/movable/mov_content)
 	. = ..()
 	if(mov_content == cell)
@@ -503,9 +517,9 @@
 /obj/item/melee/baton/security/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice("\The [src] 已充 [round(cell.percent())]% 电量.")
+		. += span_notice("[src]剩余电量[round(cell.percent())]%.")
 	else
-		. += span_warning("\The [src] 没有安装电池.")
+		. += span_warning("[src] 没有安装电池.")
 
 /obj/item/melee/baton/security/screwdriver_act(mob/living/user, obj/item/tool)
 	if(tryremovecell(user))
@@ -541,6 +555,8 @@
 		active = !active
 		balloon_alert(user, "电源 [active ? "开启" : "关闭"]")
 		playsound(src, SFX_SPARKS, 75, TRUE, -1)
+		toggle_light(user)
+		do_sparks(1, TRUE, src)
 	else
 		active = FALSE
 		if(!cell)
@@ -549,6 +565,11 @@
 			balloon_alert(user, "没电了!")
 	update_appearance()
 	add_fingerprint(user)
+
+/// Toggles the stun baton's light
+/obj/item/melee/baton/security/proc/toggle_light(mob/user)
+	set_light_on(!light_on)
+	return
 
 /obj/item/melee/baton/security/proc/deductcharge(deducted_charge)
 	if(!cell)
@@ -559,6 +580,7 @@
 	if(active && cell.charge < cell_hit_cost)
 		//we're below minimum, turn off
 		active = FALSE
+		set_light_on(FALSE)
 		update_appearance()
 		playsound(src, SFX_SPARKS, 75, TRUE, -1)
 
@@ -618,14 +640,14 @@
 /obj/item/melee/baton/security/get_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["全体"] = span_danger("[user] 用 [src] 击晕了 [target]!")
-	.["个人"] = span_userdanger("[user] 用 [src] 击晕了你!")
+	.["visible"] = span_danger("[user] 用 [src] 击晕了 [target]!")
+	.["local"] = span_userdanger("[user] 用 [src] 击晕了你!")
 
 /obj/item/melee/baton/security/get_unga_dunga_cyborg_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["全体"] = span_danger("[user] 试图用 [src] 击倒 [target], 毫不意外地失败了!")
-	.["个人"] = span_userdanger("[user] 试图用 [src] 将你击倒?")
+	.["visible"] = span_danger("[user] 试图用 [src] 击倒 [target], 毫不意外地失败了!")
+	.["local"] = span_userdanger("[user] 试图用 [src] 将你击倒?")
 
 /obj/item/melee/baton/security/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -637,7 +659,7 @@
 	if (!cell)
 		return
 	if (!(. & EMP_PROTECT_SELF))
-		deductcharge(1000 / severity)
+		deductcharge(STANDARD_CELL_CHARGE / severity)
 	if (cell.charge >= cell_hit_cost)
 		var/scramble_time
 		scramble_mode()
@@ -649,6 +671,8 @@
 	if (!cell || cell.charge < cell_hit_cost)
 		return
 	active = !active
+	toggle_light()
+	do_sparks(1, TRUE, src)
 	playsound(src, SFX_SPARKS, 75, TRUE, -1)
 	update_appearance()
 
@@ -659,7 +683,7 @@
 /obj/item/melee/baton/security/cattleprod
 	name = "电棒"
 	desc = "一个临时制作的电棒."
-	desc_controls = "左键点击可使其昏迷, 右键点击可造成伤害."
+	desc_controls = "左键点击可使其眩晕, 右键点击可造成伤害."
 	icon = 'icons/obj/weapons/spear.dmi'
 	icon_state = "stunprod"
 	inhand_icon_state = "prod"
@@ -669,7 +693,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 3
 	throwforce = 5
-	cell_hit_cost = 2000
+	cell_hit_cost = STANDARD_CELL_CHARGE * 2
 	throw_stun_chance = 10
 	slot_flags = ITEM_SLOT_BACK
 	convertible = FALSE
@@ -724,7 +748,7 @@
 	return ..()
 
 /obj/item/melee/baton/security/boomerang
-	name = "OZtek回旋镖"
+	name = "\improper OZtek回旋镖"
 	desc = "这些高科技回旋镖是2486年由澳大利亚联邦为太空鸸鹋大战发明的, 在击晕机组人员方面也非常出色. 就是扔出去的时候要小心接住!"
 	throw_speed = 1
 	icon = 'icons/obj/weapons/thrown.dmi'
@@ -733,7 +757,7 @@
 	force = 5
 	throwforce = 5
 	throw_range = 5
-	cell_hit_cost = 2000
+	cell_hit_cost = STANDARD_CELL_CHARGE * 2
 	throw_stun_chance = 99  //Have you prayed today?
 	convertible = FALSE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT*2, /datum/material/silver = SHEET_MATERIAL_AMOUNT*5, /datum/material/gold = SHEET_MATERIAL_AMOUNT)

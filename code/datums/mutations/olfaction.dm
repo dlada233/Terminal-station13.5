@@ -39,6 +39,10 @@
 		to_chat(owner, span_warning("你没有鼻子!"))
 		return FALSE
 
+	if(HAS_TRAIT(living_cast_on, TRAIT_ANOSMIA)) //Anosmia quirk holders can't smell anything
+		to_chat(owner, span_warning("你不能闻!"))
+		return FALSE
+
 	return TRUE
 
 /datum/action/cooldown/spell/olfaction/cast(mob/living/cast_on)

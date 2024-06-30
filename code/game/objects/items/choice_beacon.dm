@@ -71,6 +71,10 @@
 /obj/item/choice_beacon/music
 	name = "乐器投送信标"
 	desc = "开启你的音乐人生."
+	icon_state = "sb_delivery"
+	inhand_icon_state = "sb_delivery"
+	company_source = "Sophronia Broadcasting"
+	company_message = span_bold("Please enjoy your Sophronia Broadcasting's 'Spinward Idol' Musical Instrument, exactly as shown in the hit show!")
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/choice_beacon/music/generate_display_names()

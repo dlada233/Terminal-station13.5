@@ -1,10 +1,10 @@
 /datum/round_event_control/anomaly/anomaly_bluespace
-	name = "Anomaly: Bluespace"
+	name = "Anomaly: Bluespace-蓝空"
 	typepath = /datum/round_event/anomaly/anomaly_bluespace
 
 	max_occurrences = 1
 	weight = 15
-	description = "This anomaly randomly teleports all items and mobs in a large area."
+	description = "该异常在大范围内随机传送所有物品和mob."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 2
 

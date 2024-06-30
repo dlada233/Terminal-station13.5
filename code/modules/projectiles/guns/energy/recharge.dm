@@ -12,7 +12,7 @@
 	/// How much time we need to recharge
 	var/recharge_time = 1.6 SECONDS
 	/// Sound we use when recharged
-	var/recharge_sound = 'sound/weapons/kenetic_reload.ogg'
+	var/recharge_sound = 'sound/weapons/kinetic_reload.ogg'
 	/// An ID for our recharging timer.
 	var/recharge_timerid
 	/// Do we recharge slower with more of our type?
@@ -30,6 +30,7 @@
 	. = ..()
 	if(!holds_charge)
 		empty()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/item/gun/energy/recharge/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	. = ..()
@@ -77,9 +78,6 @@
 	carried = max(carried, 1)
 	deltimer(recharge_timerid)
 	recharge_timerid = addtimer(CALLBACK(src, PROC_REF(reload)), set_recharge_time * carried, TIMER_STOPPABLE)
-
-/obj/item/gun/energy/recharge/emp_act(severity)
-	return
 
 /obj/item/gun/energy/recharge/proc/reload()
 	cell.give(cell.maxcharge)
@@ -161,10 +159,12 @@
 	. = ..()
 	if(user.Adjacent(target))
 		var/obj/projectile/energy/fisher/melee/simulated_hit = new
+		simulated_hit.firer = user
 		simulated_hit.on_hit(target)
 
 /obj/item/gun/energy/recharge/fisher/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	// ...you reeeeeally just shoot them, but in case you can't/won't
 	. = ..()
 	var/obj/projectile/energy/fisher/melee/simulated_hit = new
+	simulated_hit.firer = throwingdatum.get_thrower()
 	simulated_hit.on_hit(hit_atom)

@@ -65,6 +65,6 @@
 	desc = "辛迪加模块服的升级精英版，与标准辛迪加模块服相比它拥有更好的装甲、机动性与防火."
 	item = /obj/item/mod/control/pre_equipped/traitor_elite
 	// This one costs more than the nuke op counterpart
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY)
 	progression_minimum = 90 MINUTES
 	cost = 16

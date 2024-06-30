@@ -17,22 +17,21 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/spider/giant/sgt_araneus,
 	/mob/living/simple_animal/bot/secbot/beepsky,
 	/mob/living/simple_animal/hostile/retaliate/goose/vomit,
-	/mob/living/simple_animal/pet,
 )))
 
 /datum/round_event_control/sentience
-	name = "Random Human-level Intelligence"
+	name = "Random Human-level Intelligence-随机高等智能"
 	typepath = /datum/round_event/ghost_role/sentience
 	weight = 10
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "An animal or robot becomes sentient!"
+	description = "一只动物或机器人变得拥有知性!"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 
 
 /datum/round_event/ghost_role/sentience
 	minimum_required = 1
-	role_name = "random animal"
+	role_name = "随机动物"
 	var/animals = 1
 	var/one = "某个"
 	fakeable = TRUE
@@ -49,8 +48,9 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	priority_announce(sentience_report,"[command_name()] 中等优先级事项")
 
 /datum/round_event/ghost_role/sentience/spawn_role()
-	var/list/mob/dead/observer/candidates
-	candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, pic_source = /obj/item/slimepotion/slime/sentience, role_name_text = role_name)
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, alert_pic = /obj/item/slimepotion/slime/sentience, role_name_text = role_name)
+	if(!length(candidates))
+		return NOT_ENOUGH_PLAYERS
 
 	// find our chosen mob to breathe life into
 	// Mobs have to be simple animals, mindless, on station, and NOT holograms.
@@ -101,9 +101,9 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		spawned_mobs += selected
 
 		to_chat(selected, span_userdanger("Hello world!"))
-		to_chat(selected, "<span class='warning'>Due to freak radiation and/or chemicals \
-			and/or lucky chance, you have gained human level intelligence \
-			and the ability to speak and understand human language!</span>")
+		to_chat(selected, "<span class='warning'>由于受到辐射或化学物质感染\
+			或只是运气好，你获得了人类的水平的智力\
+			和理解人类语言的能力!</span>")
 
 	return SUCCESSFUL_SPAWN
 
@@ -120,13 +120,13 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		low += checked_mob
 
 /datum/round_event_control/sentience/all
-	name = "Station-wide Human-level Intelligence"
+	name = "Station-wide Human-level Intelligence-全站高等智能"
 	typepath = /datum/round_event/ghost_role/sentience/all
 	weight = 0
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "ALL animals and robots become sentient, provided there is enough ghosts."
+	description = "所有动物和机器人变得拥有知性，以满足灵魂们的数量."
 
 /datum/round_event/ghost_role/sentience/all
-	one = "all"
+	one = "所有"
 	animals = INFINITY // as many as there are ghosts and animals
 	// cockroach pride, station wide

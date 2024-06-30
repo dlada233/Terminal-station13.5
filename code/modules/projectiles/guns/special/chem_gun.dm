@@ -2,7 +2,7 @@
 //this is meant to hold reagents/obj/item/gun/syringe
 /obj/item/gun/chem
 	name = "试剂枪"
-	desc = "一把Nanotrasen注射器枪，经过修改可以自动合成化学飞镖，还需要向里填充试剂."
+	desc = "一把纳米传讯注射器枪，经过修改可以自动合成化学飞镖，还需要向里填充试剂."
 	icon_state = "chemgun"
 	inhand_icon_state = "chemgun"
 	w_class = WEIGHT_CLASS_NORMAL

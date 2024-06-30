@@ -119,7 +119,7 @@
 /obj/item/gun/energy/e_gun/turret/add_seclight_point()
 	return
 
-/obj/item/gun/energy/e_gun/nuclear //SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
+/obj/item/gun/energy/e_gun/nuclear // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	name = "先进激光枪"
 	desc = "一种装有有实验性微型核反应堆的能量枪，可以自动为内部电池充电."
 	icon_state = "nucgun"

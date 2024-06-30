@@ -93,8 +93,9 @@
 	desc = "一种基于能量的激光枪，可以依靠赛博格的内部电池供能，这就是自由的样子?"
 	use_cyborg_cell = TRUE
 
-/obj/item/gun/energy/laser/cyborg/emp_act()
-	return
+/obj/item/gun/energy/laser/cyborg/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/item/gun/energy/laser/scatter
 	name = "散射激光枪"
@@ -142,7 +143,8 @@
 /obj/projectile/beam/laser/accelerator/Range()
 	..()
 	damage += 7
-	transform *= 1 + ((damage/7) * 0.2)//20% larger per tile
+	transform = 0
+	transform *= 1 + (((damage - 6)/7) * 0.2)//20% larger per tile
 
 ///X-ray gun
 
@@ -185,46 +187,6 @@
 
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
-
-//Inferno and Cryo Pistols
-
-/obj/item/gun/energy/laser/thermal //the common parent of these guns, it just shoots hard bullets, somoene might like that?
-	name = "纳米手枪"
-	desc = "一门改装过的手枪，配备了退役的攻击性纳米机器人，把愤怒的机器人喷到坏人身上吧."
-	icon_state = "infernopistol"
-	inhand_icon_state = null
-	ammo_type = list(/obj/item/ammo_casing/energy/nanite)
-	shaded_charge = TRUE
-	ammo_x_offset = 1
-	obj_flags = UNIQUE_RENAME
-	can_bayonet = TRUE
-	knife_x_offset = 19
-	knife_y_offset = 13
-	w_class = WEIGHT_CLASS_NORMAL
-	dual_wield_spread = 10 //as intended by the coders
-
-/obj/item/gun/energy/laser/thermal/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
-
-/obj/item/gun/energy/laser/thermal/add_seclight_point()
-	AddComponent(/datum/component/seclite_attachable, \
-		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
-		light_overlay = "flight", \
-		overlay_x = 15, \
-		overlay_y = 9)
-
-/obj/item/gun/energy/laser/thermal/inferno //the magma gun
-	name = "热熔手枪"
-	desc = "一把改装过的手枪，配备了退役的攻击性纳米机器人，把愤怒的机器人喷到坏人身上吧.虽然本身不会控制温度，但确实能让一个严重受冻的人发生剧烈爆炸."
-	icon_state = "infernopistol"
-	ammo_type = list(/obj/item/ammo_casing/energy/nanite/inferno)
-
-/obj/item/gun/energy/laser/thermal/cryo //the ice gun
-	name = "冷冻手枪"
-	desc = "一把改装过的手枪，配备了退役的攻击性纳米机器人，把愤怒的机器人喷到坏人身上吧.虽然本身不会控制温度，但确实能让一个严重受热的人发生剧烈爆炸."
-	icon_state = "cryopistol"
-	ammo_type = list(/obj/item/ammo_casing/energy/nanite/cryo)
 
 // luxury shuttle funnies
 /obj/item/firing_pin/paywall/luxury

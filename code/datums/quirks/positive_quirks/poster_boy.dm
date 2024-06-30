@@ -4,7 +4,7 @@
 	icon = FA_ICON_TAPE
 	value = 4
 	mob_trait = TRAIT_POSTERBOY
-	medical_record_text = "患者报告称希望用自制作品覆盖墙壁."
+	medical_record_text = "患者报告称希望用自制作品贴满墙壁."
 	mail_goodies = list(/obj/item/poster/random_official)
 
 /datum/quirk/item_quirk/poster_boy/add_unique()
@@ -15,7 +15,7 @@
 
 /obj/item/storage/box/posterbox
 	name = "一盒海报"
-	desc = "里边全是你亲手做成的！"
+	desc = "你亲手制成的！"
 
 /// fills box of posters based on job, one neutral poster and 2 department posters
 /obj/item/storage/box/posterbox/proc/add_quirk_posters(datum/mind/posterboy)

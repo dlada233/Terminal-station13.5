@@ -2,7 +2,7 @@
 // The place where Changelings go to purchase biological weaponry.
 /datum/cellular_emporium
 	/// The name of the emporium - why does it need a name? Dunno
-	var/name = "cellular emporium"
+	name = "生物商城"
 	/// The changeling who owns this emporium
 	var/datum/antagonist/changeling/changeling
 
@@ -86,7 +86,7 @@
 	return TRUE
 
 /datum/action/cellular_emporium
-	name = "生物商城"
+	name = "Cellular Emporium"
 	button_icon = 'icons/obj/drinks/soda.dmi'
 	button_icon_state = "changelingsting"
 	background_icon_state = "bg_changeling"

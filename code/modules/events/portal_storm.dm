@@ -1,11 +1,11 @@
 /datum/round_event_control/portal_storm_syndicate
-	name = "Portal Storm: Syndicate Shocktroops"
+	name = "Portal Storm: Syndicate Shocktroops-传送门风暴（辛迪加）"
 	typepath = /datum/round_event/portal_storm/syndicate_shocktroop
 	weight = 2
 	min_players = 15
 	earliest_start = 30 MINUTES
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Syndicate troops pour out of portals."
+	description = "辛迪加部队从传送门涌出."
 
 /datum/round_event/portal_storm/syndicate_shocktroop
 	boss_types = list(/mob/living/basic/trooper/syndicate/melee/space/stormtrooper = 2)
@@ -15,12 +15,12 @@
 	)
 
 /datum/round_event_control/portal_storm_narsie
-	name = "Portal Storm: Constructs"
+	name = "Portal Storm: Constructs-传送门风暴（血教建筑者）"
 	typepath = /datum/round_event/portal_storm/portal_storm_narsie
 	weight = 0
 	max_occurrences = 0
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Nar'sie constructs pour out of portals."
+	description = "Nar'sie建筑者从传送门涌出."
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 
@@ -51,7 +51,7 @@
 	for(var/offset in 0 to SSmapping.max_plane_offset)
 		var/mutable_appearance/storm = mutable_appearance('icons/obj/machines/engine/energy_ball.dmi', "energy_ball_fast", FLY_LAYER)
 		SET_PLANE_W_SCALAR(storm, ABOVE_GAME_PLANE, offset)
-		storm.color = "#00FF00"
+		storm.color = COLOR_VIBRANT_LIME
 		storm_appearances += storm
 
 	number_of_bosses = 0
@@ -74,7 +74,7 @@
 	set waitfor = 0
 	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
 	sleep(8 SECONDS)
-	priority_announce("在前往 [station_name()] 的路径上探测到大量蓝空异常，请做好冲击准备.")
+	priority_announce("Massive bluespace anomaly detected en route to [station_name()]. Brace for impact.")
 	sleep(2 SECONDS)
 	sound_to_playing_players('sound/magic/lightningbolt.ogg')
 
@@ -108,7 +108,7 @@
 
 /datum/round_event/portal_storm/proc/spawn_effects(turf/T)
 	if(!T)
-		log_game("Portal Storm failed to spawn effect due to an invalid location.")
+		log_game("在前往 [station_name()] 的路径上探测到大量蓝空异常，请做好冲击准备.")
 		return
 	T = get_step(T, SOUTHWEST) //align center of image with turf
 	T.flick_overlay_static(storm_appearances[GET_TURF_PLANE_OFFSET(T) + 1], 15)

@@ -1,13 +1,13 @@
 GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 
 /datum/round_event_control/wormholes
-	name = "Wormholes"
+	name = "Wormholes-虫洞"
 	typepath = /datum/round_event/wormholes
 	max_occurrences = 3
 	weight = 2
 	min_players = 2
 	category = EVENT_CATEGORY_SPACE
-	description = "Space time anomalies appear on the station, randomly teleporting people who walk into them."
+	description = "时空虫洞出现在空间站上，走进去的人将会被随机的传送."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 
@@ -48,8 +48,8 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 	wormholes = null
 
 /obj/effect/portal/wormhole
-	name = "wormhole"
-	desc = "It looks highly unstable; It could close at any moment."
+	name = "虫洞"
+	desc = "看起来毫无稳定性可言，我不应该靠近它."
 	icon = 'icons/obj/anomaly.dmi'
 	icon_state = "anom"
 	mech_sized = TRUE

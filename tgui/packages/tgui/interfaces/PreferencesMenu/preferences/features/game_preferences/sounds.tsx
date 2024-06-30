@@ -1,13 +1,11 @@
-import { multiline } from 'common/string';
-
 import {
   CheckboxInput,
   Feature,
   FeatureChoiced,
-  FeatureDropdownInput,
   FeatureSliderInput,
   FeatureToggle,
 } from '../base';
+import { FeatureDropdownInput } from '../dropdowns';
 
 export const sound_ambience: FeatureToggle = {
   name: '启用环境音效',
@@ -46,7 +44,7 @@ export const sound_instruments: FeatureToggle = {
 export const sound_tts: FeatureChoiced = {
   name: '启用TTS',
   category: 'SOUND',
-  description: multiline`
+  description: `
     When enabled, be able to hear text-to-speech sounds in game.
     When set to "Blips", text to speech will be replaced with blip sounds based on the voice.
   `,
@@ -95,7 +93,7 @@ export const sound_elevator: FeatureToggle = {
 export const sound_achievement: FeatureChoiced = {
   name: '启用成就解锁音效',
   category: 'SOUND',
-  description: multiline`
+  description: `
     The sound that's played when unlocking an achievement.
     If disabled, no sound will be played.
   `,

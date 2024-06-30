@@ -20,7 +20,7 @@
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin-硝化甘油"
 	description = "硝化甘油是一种重质、无色、油性、爆炸性液体."
-	color = "#808080" // rgb: 128, 128, 128
+	color = COLOR_GRAY
 	taste_description = "油"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -28,7 +28,7 @@
 	name = "Stabilizing Agent-稳定剂"
 	description = "使不稳定的化学物质保持稳定，这并不适用于所有情况."
 	reagent_state = LIQUID
-	color = "#FFFF00"
+	color = COLOR_YELLOW
 	taste_description = "金属"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -95,7 +95,7 @@
 	name = "Gunpowder-火药"
 	description = "爆炸."
 	reagent_state = LIQUID
-	color = "#000000"
+	color = COLOR_BLACK
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	taste_description = "咸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -124,7 +124,7 @@
 	name = "RDX"
 	description = "军用级炸药"
 	reagent_state = SOLID
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 	taste_description = "咸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -132,7 +132,7 @@
 	name = "TaTP"
 	description = "自杀级炸药"
 	reagent_state = SOLID
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 	taste_description = "死亡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -261,7 +261,7 @@
 	. = ..()
 	if(reac_volume < 5)
 		return
-	for(var/mob/living/simple_animal/slime/exposed_slime in exposed_turf)
+	for(var/mob/living/basic/slime/exposed_slime in exposed_turf)
 		exposed_slime.adjustToxLoss(rand(15,30))
 
 #undef CRYO_SPEED_PREFACTOR

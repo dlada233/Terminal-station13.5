@@ -1,3 +1,22 @@
+//bitfield defines
+
+///can honkbots slip people?
+#define HONKBOT_MODE_SLIP (1<<0)
+///can honkbots check IDs?
+#define HONKBOT_CHECK_IDS (1<<1)
+///can honkbots check records?
+#define HONKBOT_CHECK_RECORDS (1<<2)
+///can honkbots handcuff people?
+#define HONKBOT_HANDCUFF_TARGET (1<<3)
+
+DEFINE_BITFIELD(honkbot_flags, list(
+	"CAN_SLIP" = HONKBOT_MODE_SLIP,
+	"CHECK_IDS" = HONKBOT_CHECK_IDS,
+	"CHECK_RECORDS" = HONKBOT_CHECK_RECORDS,
+	"CAN_FAKE_CUFF" = HONKBOT_HANDCUFF_TARGET,
+))
+
+
 // bot keys
 ///The first beacon we find
 #define BB_BEACON_TARGET "beacon_target"
@@ -33,6 +52,10 @@
 #define BB_NEAR_DEATH_SPEECH "near_death_speech"
 ///in crit patient we must alert medbay about
 #define BB_PATIENT_IN_CRIT "patient_in_crit"
+///how much time interval before we clear list
+#define BB_UNREACHABLE_LIST_COOLDOWN "unreachable_list_cooldown"
+///can we clear the list now
+#define	BB_CLEAR_LIST_READY "clear_list_ready"
 
 // cleanbots
 ///key that holds the foaming ability
@@ -55,3 +78,34 @@
 #define BB_ACID_SPRAY_TARGET "acid_spray_target"
 ///key that holds trash we will burn
 #define BB_HUNTABLE_TRASH "huntable_trash"
+
+//hygienebots
+///key that holds our threats
+#define BB_WASH_THREATS "wash_threats"
+///key that holds speech when we find our target
+#define BB_WASH_FOUND "wash_found"
+///key that holds speech when we cleaned our target
+#define BB_WASH_DONE "wash_done"
+///key that holds target we will wash
+#define BB_WASH_TARGET "wash_target"
+///key that holds how frustrated we are when target is running away
+#define BB_WASH_FRUSTRATION "wash_frustration"
+///key that holds cooldown after we finish cleaning something, so we dont immediately run off to patrol
+#define BB_POST_CLEAN_COOLDOWN "post_clean_cooldown"
+
+//Honkbots
+///key that holds all possible clown friends
+#define BB_CLOWNS_LIST "clowns_list"
+///key that holds the clown we play with
+#define BB_CLOWN_FRIEND "clown_friend"
+///key that holds the list of slippery items
+#define BB_SLIPPERY_ITEMS "slippery_items"
+///key that holds list of types we will attempt to slip
+#define BB_SLIP_LIST "slip_list"
+///key that holds the slippery item we will drag people too
+#define BB_SLIPPERY_TARGET "slippery_target"
+///key that holds the victim we will slip
+#define BB_SLIP_TARGET "slip_target"
+///key that holds our honk ability
+#define BB_HONK_ABILITY "honk_ability"
+

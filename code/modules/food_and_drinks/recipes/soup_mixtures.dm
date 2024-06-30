@@ -564,7 +564,7 @@
 		"别人的父母" = 2,
 	)
 	glass_price = FOOD_PRICE_EXOTIC
-	color = "#FF0000"
+	color = COLOR_RED
 
 /datum/glass_style/has_foodtype/soup/clownchili
 	required_drink_type = /datum/reagent/consumable/nutriment/soup/clownchili
@@ -618,7 +618,7 @@
 	name = "Tomato soup-番茄汤"
 	description = "喝这个感觉就像吸血鬼一样!吸番茄鬼..."
 	data = list("tomato" = 1)
-	color = "#FF0000"
+	color = COLOR_RED
 
 /datum/glass_style/has_foodtype/soup/tomato
 	required_drink_type = /datum/reagent/consumable/nutriment/soup/tomato
@@ -655,7 +655,7 @@
 /datum/glass_style/has_foodtype/soup/eyeball
 	required_drink_type = /datum/reagent/consumable/nutriment/soup/eyeball
 	icon_state = "eyeballsoup"
-	drink_type = VEGETABLES | FRUIT | MEAT | GORE // 番茄汤 + an eyeball
+	drink_type = VEGETABLES | FRUIT | MEAT | GORE // Tomato soup + an eyeball
 
 /datum/chemical_reaction/food/soup/eyeballsoup
 	required_reagents = list(/datum/reagent/water = 50)
@@ -700,11 +700,11 @@
 	percentage_of_nutriment_converted = 0 // Soy has very low nutrients.
 
 // Blood soup
-// Fake 番茄汤.
+// Fake tomato soup.
 // Can also appear by pouring blood into a bowl!
 /datum/glass_style/has_foodtype/soup/tomato/blood
 	required_drink_type = /datum/reagent/blood
-	name = "Blood soup-番茄汤"
+	name = "Tomato soup-番茄汤"
 	desc = "闻起来像铜."
 	drink_type = GROSS
 
@@ -1326,7 +1326,7 @@
 	name = "Corn Chowder-玉米浓汤"
 	description = "一碗奶油玉米浓汤，配上培根和什锦蔬菜，一碗永远不够."
 	data = list("奶油浓汤" = 1, "培根" = 1, "什锦蔬菜" = 1)
-	color = "#FFF200"
+	color = COLOR_CRAYON_YELLOW
 
 /datum/glass_style/has_foodtype/soup/corn_chowder
 	required_drink_type = /datum/reagent/consumable/nutriment/soup/corn_chowder
@@ -1484,12 +1484,15 @@
 	drink_type = MEAT | VEGETABLES
 
 /datum/chemical_reaction/food/soup/rootbread_soup
-	required_reagents = list(/datum/reagent/water = 50)
+	required_reagents = list(
+		/datum/reagent/water = 50,
+		/datum/reagent/consumable/eggyolk = 2,
+		/datum/reagent/consumable/eggwhite = 4
+	)
 	required_ingredients = list(
 		/obj/item/food/breadslice/root = 2,
 		/obj/item/food/grown/garlic = 1,
-		/obj/item/food/grown/chili = 1,
-		/obj/item/food/egg = 1
+		/obj/item/food/grown/chili = 1
 	)
 	results = list(
 		/datum/reagent/consumable/nutriment/soup/rootbread = 30,

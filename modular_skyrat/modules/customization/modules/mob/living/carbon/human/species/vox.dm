@@ -45,6 +45,8 @@
 		LOADOUT_ITEM_EARS = VOX_EARS_ICON
 	)
 
+	meat = /obj/item/food/meat/slab/chicken/human //item file in teshari module
+
 /datum/species/vox/get_default_mutant_bodyparts()
 	return list(
 		"tail" = list("Vox Tail", FALSE),
@@ -59,17 +61,6 @@
 		equipping.equipOutfit(job.vox_outfit, visuals_only)
 	else
 		give_important_for_life(equipping)
-
-/datum/species/vox/random_name(gender,unique,lastname)
-	if(unique)
-		return random_unique_vox_name()
-
-	var/randname = vox_name()
-
-	if(lastname)
-		randname += " [lastname]"
-
-	return randname
 
 /datum/species/vox/randomize_features()
 	var/list/features = ..()

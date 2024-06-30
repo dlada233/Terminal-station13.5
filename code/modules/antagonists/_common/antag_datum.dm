@@ -147,13 +147,13 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //button for antags to review their descriptions/info
 /datum/action/antag_info
-	name = "查看特殊角色信息:"
+	name = "Open Special Role Information:"
 	button_icon_state = "round_end"
 	show_to_observers = FALSE
 
 /datum/action/antag_info/New(Target)
 	. = ..()
-	name = "查看[target]信息:"
+	name = "Open [target] Information:"
 
 /datum/action/antag_info/Trigger(trigger_flags)
 	. = ..()
@@ -251,7 +251,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(!silent)
 		greet()
 		if(ui_name)
-			to_chat(owner.current, span_boldnotice("欲了解更多信息，你可以使用左上角的按钮打开面板查阅."))
+			to_chat(owner.current, span_boldnotice("For more info, read the panel. \
+				You can always come back to it using the button in the top left."))
 			info_button.Trigger()
 		var/type_policy = get_policy("[type]") // path to text
 		if(type_policy)
@@ -292,13 +293,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/replace_banned_player()
 	set waitfor = FALSE
 
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演一名[name]吗?", check_jobban = "[name]", role = job_rank, poll_time = 5 SECONDS, target_mob = owner.current, pic_source = owner.current, role_name_text = name)
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		to_chat(owner, "你的角色已经被其他灵魂控制了! 如果你想在未来避免这种情况就申请解除你的job ban!")
-		message_admins("[key_name_admin(C)]已经控制了([key_name_admin(owner)])来取代一个被ban的玩家.")
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = job_rank, role = job_rank, poll_time = 5 SECONDS, checked_target = owner.current, alert_pic = owner.current, role_name_text = name)
+	if(chosen_one)
+		to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
+		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(owner)]) to replace antagonist banned player.")
+		log_game("[key_name(chosen_one)] has taken control of ([key_name(owner)]) to replace antagonist banned player.")
 		owner.current.ghostize(FALSE)
-		owner.current.key = C.key
+		owner.current.key = chosen_one.key
+	else
+		log_game("Couldn't find antagonist ban replacement for ([key_name(owner)]).")
 
 /**
  * Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
@@ -341,8 +344,8 @@ GLOBAL_LIST_EMPTY(antagonists)
  */
 /datum/antagonist/proc/greet()
 	if(!silent)
-		to_chat(owner.current, span_big("你是[src]."))
-		to_chat(owner.current, span_infoplain(span_doyourjobidiot("请记住，作为一名反派你仍然受服务器RP相关规定的约束."))) //SKYRAT EDIT - RP REMINDER
+		to_chat(owner.current, span_big("You are \the [src]."))
+		to_chat(owner.current, span_infoplain(span_doyourjobidiot("Remember that being an antagonist does not exclude you from the server rules regarding RP standards."))) //SKYRAT EDIT - RP REMINDER
 
 /**
  * Proc that sends fluff or instructional messages to the player when they lose this antag datum.
@@ -350,7 +353,7 @@ GLOBAL_LIST_EMPTY(antagonists)
  */
 /datum/antagonist/proc/farewell()
 	if(!silent)
-		to_chat(owner.current, span_userdanger("你不在是[src]了!"))
+		to_chat(owner.current, span_userdanger("You are no longer \the [src]!"))
 
 /**
  * Proc that assigns this antagonist's ascribed moodlet to the player.
@@ -396,9 +399,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 				break
 
 	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>[name]成功了!</span>"
+		report += "<span class='greentext big'>The [name] was successful!</span>"
 	else
-		report += "<span class='redtext big'>[name]失败了!</span>"
+		report += "<span class='redtext big'>The [name] has failed!</span>"
 
 	return report.Join("<br>")
 
@@ -408,7 +411,7 @@ GLOBAL_LIST_EMPTY(antagonists)
  * Appears at start of roundend_catagory section.
  */
 /datum/antagonist/proc/roundend_report_header()
-	return "<span class='header'>[roundend_category]是:</span><br>"
+	return "<span class='header'>The [roundend_category] were:</span><br>"
 
 /**
  * Proc that sends string data for the round-end report.
@@ -493,7 +496,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return finish_preview_icon(render_preview_outfit(preview_outfit))
 
 /datum/antagonist/proc/edit_memory(mob/user)
-	var/new_memo = tgui_input_text(user, "写下新的记忆", "反派记忆", antag_memory, multiline = TRUE)
+	var/new_memo = tgui_input_text(user, "Write a new memory", "Antag Memory", antag_memory, multiline = TRUE)
 	if (isnull(new_memo))
 		return
 	antag_memory = new_memo
@@ -559,20 +562,20 @@ GLOBAL_LIST_EMPTY(antagonists)
 		return
 	var/mob/living/owner_mob = owner.current
 	if (!force && !can_assign_self_objectives)
-		owner_mob.balloon_alert(owner_mob, "不能那样做!")
+		owner_mob.balloon_alert(owner_mob, "can't do that!")
 		return
 	var/custom_objective_text = tgui_input_text(
 		owner_mob,
-		message = "明确你的新目标.",
-		title = "自定义目标",
+		message = "Specify your new objective.",
+		title = "Custom Objective",
 		default = default_custom_objective,
 		max_length = CUSTOM_OBJECTIVE_MAX_LENGTH,
 	)
 	if (QDELETED(src) || QDELETED(owner_mob) || isnull(custom_objective_text))
 		return // Some people take a long-ass time to type maybe they got dusted
 
-	log_game("[key_name(owner_mob)] [retain_existing ? "" : "放弃了最初的目标，并且"]选择了新的自定义目标: [custom_objective_text]")
-	message_admins("[ADMIN_LOOKUPFLW(owner_mob)]选择了新的自定义目标: [span_syndradio("[custom_objective_text]")] | [ADMIN_SMITE(owner_mob)] | [ADMIN_SYNDICATE_REPLY(owner_mob)]")
+	log_game("[key_name(owner_mob)] [retain_existing ? "" : "opted out of their original objectives and "]chose a custom objective: [custom_objective_text]")
+	message_admins("[ADMIN_LOOKUPFLW(owner_mob)] has chosen a custom antagonist objective: [span_syndradio("[custom_objective_text]")] | [ADMIN_SMITE(owner_mob)] | [ADMIN_SYNDICATE_REPLY(owner_mob)]")
 
 	var/datum/objective/custom/custom_objective = new()
 	custom_objective.owner = owner

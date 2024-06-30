@@ -61,7 +61,7 @@
 	icon_state = "mshell"
 	projectile_type = /obj/projectile/bullet/cannonball/meteorslug
 
-/obj/item/ammo_casing/shotgun/pulseslug // 经过游戏实测，与描述无误
+/obj/item/ammo_casing/shotgun/pulseslug
 	name = "脉冲弹"
 	desc = "一颗霰弹外形的精密装置. 底火被改造成了一个触发增益介质的按钮，按下后引发一次性的能量射击. 它的设计用途是针对那些实弹难以攻击到的目标."
 	icon_state = "pshell"
@@ -101,15 +101,6 @@
 	pellets = 12//double the pellets, but half the stun power of each, which makes this best for just dumping right in someone's face.
 	variance = 25
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)
-
-/obj/item/ammo_casing/shotgun/improvised
-	name = "自制霰弹"
-	desc = "一颗自制的霰弹子弹，里面装满了碎玻璃，它制造出来的用途就是破坏公共财产."
-	icon_state = "improvshell"
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_improvised
-	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2, /datum/material/glass=SMALL_MATERIAL_AMOUNT*1)
-	pellets = 6
-	variance = 30
 
 /obj/item/ammo_casing/shotgun/ion
 	name = "离子弹"

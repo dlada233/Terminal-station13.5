@@ -22,7 +22,7 @@
 /obj/item/evidencebag/Exited(atom/movable/gone, direction)
 	. = ..()
 	cut_overlays()
-	w_class = initial(w_class)
+	update_weight_class(initial(w_class))
 	icon_state = initial(icon_state)
 	desc = initial(desc)
 
@@ -78,7 +78,7 @@
 
 	desc = "一个包含[I]的证物袋. [I.desc]"
 	I.forceMove(src)
-	w_class = I.w_class
+	update_weight_class(I.w_class)
 	return 1
 
 /obj/item/evidencebag/attack_self(mob/user)
@@ -88,7 +88,7 @@
 		span_hear("你听到有人捣鼓塑料袋的声音，似乎是从里面拿走了一些东西."))
 		cut_overlays() //remove the overlays
 		user.put_in_hands(I)
-		w_class = WEIGHT_CLASS_TINY
+		update_weight_class(WEIGHT_CLASS_TINY)
 		icon_state = "evidenceobj"
 		desc = "一个空的证据袋."
 

@@ -37,7 +37,7 @@
 
 /// Ask ghosts if they want to make some noise
 /obj/structure/lock_tear/proc/poll_ghosts()
-	var/list/candidates = SSpolling.poll_ghost_candidates("你想扮演一名邪恶怪物来攻击船员吗?", check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_HERETIC_MONSTER, pic_source = src, role_name_text = "邪恶怪物")
+	var/list/candidates = SSpolling.poll_ghost_candidates("你扮演一名随机种类的[span_notice("邪恶怪物")]攻击船员吗?", check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_HERETIC_MONSTER, alert_pic = src, role_name_text = "eldritch monster")
 	while(LAZYLEN(candidates))
 		var/mob/dead/observer/candidate = pick_n_take(candidates)
 		ghost_to_monster(candidate, should_ask = FALSE)

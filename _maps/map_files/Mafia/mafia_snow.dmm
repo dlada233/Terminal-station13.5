@@ -32,7 +32,7 @@
 "j" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	max_integrity = 99999;
-	name = "维护管道"
+	name = "Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,

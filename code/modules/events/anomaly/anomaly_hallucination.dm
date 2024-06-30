@@ -1,11 +1,11 @@
 /datum/round_event_control/anomaly/anomaly_hallucination
-	name = "Anomaly: Hallucination"
+	name = "Anomaly: Hallucination-幻觉"
 	typepath = /datum/round_event/anomaly/anomaly_hallucination
 
 	min_players = 10
 	max_occurrences = 5
 	weight = 20
-	description = "This anomaly causes you to hallucinate."
+	description = "该异常引发幻觉."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 2
 

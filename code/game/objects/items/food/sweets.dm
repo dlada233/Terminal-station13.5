@@ -79,6 +79,14 @@
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_1
 
+/obj/item/food/virtual_chocolate
+	name = "虚拟巧克力棒"
+	desc = "数据化的食物只能给人带来进食的感觉...不摄入任何实际营养."
+	icon_state = "virtual_chocolate"
+	tastes = list("nothing" = 1)
+	foodtypes = NONE
+	w_class = WEIGHT_CLASS_TINY
+
 /obj/item/food/chococoin
 	name = "巧克力币"
 	desc = "一枚完全可食用但不可抛的节庆硬币。"

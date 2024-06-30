@@ -1,12 +1,12 @@
 #define MOB_SPAWN_MINIMUM 3
 
 /datum/round_event_control/vent_clog
-	name = "Ventilation Clog: Minor"
+	name = "Ventilation Clog: Minor-通风口堵塞（轻微）"
 	typepath = /datum/round_event/vent_clog
 	weight = 25
 	earliest_start = 5 MINUTES
 	category = EVENT_CATEGORY_JANITORIAL
-	description = "Harmless mobs climb out of a vent."
+	description = "一群无害的mob从通风口涌出."
 
 /datum/round_event_control/vent_clog/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()
@@ -129,7 +129,7 @@
 	clog_vent()
 
 	announce_to_ghosts(vent)
-	priority_announce("Lifesign readings have moved to a new location in the ventilation network. New Location: [prob(50) ? "Unknown.":"[get_area_name(vent)]."]", "Lifesign Notification")
+	priority_announce("生命读数已经移至通风网络中的新位置. 新位置: [prob(50) ? "未知.":"[get_area_name(vent)]."]", "生命信号警告")
 
 /**
  * Handles the production of our mob and adds it to our living_mobs list
@@ -149,7 +149,7 @@
 
 	var/mob/new_mob = new spawned_mob(vent_loc) // we spawn it early so we can actually use is_blocked_turf
 	living_mobs += WEAKREF(new_mob)
-	vent.visible_message(span_warning("[new_mob] crawls out of [vent]!"))
+	vent.visible_message(span_warning("[new_mob]爬出[vent]!"))
 
 	var/list/potential_locations = list(vent_loc) // already confirmed to be accessable via the 2nd if check of the proc
 
@@ -177,9 +177,9 @@
 		to_chat(user, span_notice("在被焊上的时候，你不能疏通 [vent] !"))
 		return
 
-	to_chat(user, span_notice("你开始疏通 [vent] ."))
+	user.balloon_alert_to_viewers("疏通管道...", "疏通管道...")
 	if(do_after(user, 6 SECONDS, target = vent))
-		to_chat(user, span_notice("你成功疏通了 [vent]."))
+		user.balloon_alert_to_viewers("疏通完成")
 		clear_signals()
 		kill()
 
@@ -199,12 +199,12 @@
 	UnregisterSignal(vent, list(COMSIG_QDELETING, COMSIG_PLUNGER_ACT))
 
 /datum/round_event_control/vent_clog/major
-	name = "Ventilation Clog: Major"
+	name = "Ventilation Clog: Major-通风口堵塞（重大）"
 	typepath = /datum/round_event/vent_clog/major
 	weight = 12
 	max_occurrences = 5
 	earliest_start = 10 MINUTES
-	description = "Dangerous mobs climb out of a vent."
+	description = "许多危险的mob从通风口中爬出."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 
@@ -233,13 +233,13 @@
 	priority_announce("通风网络中发现重大生物阻塞. 堵塞被认为发生在 [event_area] .", "渗透警报")
 
 /datum/round_event_control/vent_clog/critical
-	name = "Ventilation Clog: Critical"
+	name = "Ventilation Clog: Critical-通风口堵塞（严重）"
 	typepath = /datum/round_event/vent_clog/critical
 	weight = 8
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 25 MINUTES
-	description = "Really dangerous mobs climb out of a vent."
+	description = "许多真的危险的mob从通风口爬出."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 6
 
@@ -265,11 +265,11 @@
 	return pick(mob_list)
 
 /datum/round_event_control/vent_clog/strange
-	name = "Ventilation Clog: Strange"
+	name = "Ventilation Clog: Strange-通风口堵塞（奇怪）"
 	typepath = /datum/round_event/vent_clog/strange
 	weight = 5
 	max_occurrences = 2
-	description = "Strange mobs climb out of a vent, harmfulness varies."
+	description = "奇怪的mob们从通风口爬出，危害性各异."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 
@@ -298,7 +298,7 @@
 		/mob/living/basic/mushroom,
 		/mob/living/basic/viscerator,
 		/mob/living/simple_animal/hostile/retaliate/goose, //Janitors HATE geese.
-		/mob/living/simple_animal/pet/gondola,
+		/mob/living/basic/pet/gondola,
 	)
 	return pick(mob_list)
 

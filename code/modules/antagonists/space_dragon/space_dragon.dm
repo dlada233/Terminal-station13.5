@@ -127,6 +127,7 @@
  * 检查太空龙裂隙的当前状态是否需要进行任何操作.
  *
  * 一个简单的更新检查，根据太空龙裂隙的当前状态判断是否需要进行任何操作.
+ *
  */
 /datum/antagonist/space_dragon/proc/rift_checks()
 	if((rifts_charged == 3 || (SSshuttle.emergency.mode == SHUTTLE_DOCKED && rifts_charged > 0)) && !objective_complete)
@@ -195,27 +196,26 @@
  */
 /datum/antagonist/space_dragon/proc/permanant_empower()
 	owner.current.fully_heal()
-	owner.current.add_filter("anger_glow", 3, list("type" = "outline", "color" = "#ff330030", "size" = 5))
+	owner.current.add_filter("anger_glow", 3, list("type" = "outline", "color" = COLOR_CARP_RIFT_RED, "size" = 5))
 	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
+
+/**
+ * Handles Space Dragon's temporary empowerment after boosting a rift.
+ *
+ * Empowers and depowers Space Dragon after a successful rift charge.
+ * Empowered, Space Dragon regains all his health and becomes temporarily faster for 30 seconds, along with being tinted red.
+ */
+/datum/antagonist/space_dragon/proc/rift_empower()
+	owner.current.fully_heal()
+	owner.current.add_filter("anger_glow", 3, list("type" = "outline", "color" = COLOR_CARP_RIFT_RED, "size" = 5))
+	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
+	addtimer(CALLBACK(src, PROC_REF(rift_depower)), 30 SECONDS)
 
 /**
  * 在增强裂隙后处理太空龙的临时增强.
  *
  * 在成功充能裂隙后，给予太空龙力量，并在30秒内降低太空龙的力量.
  * 在增强状态下，太空龙恢复所有健康，并在30秒内变得临时更快，同时呈现红色.
- */
-/datum/antagonist/space_dragon/proc/rift_empower()
-	owner.current.fully_heal()
-	owner.current.add_filter("anger_glow", 3, list("type" = "outline", "color" = "#ff330030", "size" = 5))
-	owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
-	addtimer(CALLBACK(src, PROC_REF(rift_depower)), 30 SECONDS)
-
-/**
- * 移除太空龙的裂隙速度提升.
- *
- * 移除太空龙从充能裂隙中获得的速度提升. 此方法仅在
- * rift_empower中调用，该方法使用定时器在30秒后调用此方法.
- * 同时从太空龙身上移除与速度提升相对应的红色发光.
  */
 /datum/antagonist/space_dragon/proc/rift_depower()
 	owner.current.remove_filter("anger_glow")

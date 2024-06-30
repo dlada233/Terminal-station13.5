@@ -93,7 +93,7 @@
 
 ///Borg Hypospray
 /obj/item/reagent_containers/borghypo
-	name = "cyborg 无针注射器"
+	name = "赛博无针注射器"
 	desc = "集成先进的化学合成和注射系统，专为重型医疗设备设计."
 	icon = 'icons/obj/medical/syringe.dmi'
 	inhand_icon_state = "hypo"
@@ -109,7 +109,7 @@
 	 */
 	var/max_volume_per_reagent = 30
 	/// Cell cost for charging a reagent
-	var/charge_cost = 50
+	var/charge_cost = 0.05 * STANDARD_CELL_CHARGE
 	/// Counts up to the next time we charge
 	var/charge_timer = 0
 	/// Time it takes for shots to recharge (in seconds)
@@ -195,7 +195,7 @@
 			balloon_alert(user, "[amount_per_transfer_from_this] unit\s injected")
 			log_combat(user, injectee, "injected", src, "(CHEMICALS: [selected_reagent])")
 	else
-		balloon_alert(user, "[parse_zone(user.zone_selected)] is blocked!")
+		balloon_alert(user, "[injectee.parse_zone_with_bodypart(user.zone_selected)] is blocked!")
 
 /obj/item/reagent_containers/borghypo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -245,13 +245,12 @@
 	. += "Currently loaded: [selected_reagent ? "[selected_reagent]. [selected_reagent.description]" : "nothing."]"
 	. += span_notice("<i>Alt+Click</i> to change transfer amount. Currently set to [amount_per_transfer_from_this]u.")
 
-/obj/item/reagent_containers/borghypo/AltClick(mob/living/user)
-	. = ..()
-/* SKYRAT REMOVAL START - Changing transfer amounts is now handled by the parent proc in modular files.
-	if(user.stat == DEAD || user != loc)
-		return //IF YOU CAN HEAR ME SET MY TRANSFER AMOUNT TO 1
+/* SKYRAT EDIT REMOVAL START - SEE master_files/code/modules/reagents/reagent_containers.dm
+/obj/item/reagent_containers/borghypo/click_alt(mob/living/user)
+
 	change_transfer_amount(user)
-*/ // SKYRAT REMOVAL END
+	return CLICK_ACTION_SUCCESS
+SKYRAT EDIT REMOVAL END */
 
 /// Default Medborg Hypospray
 /obj/item/reagent_containers/borghypo/medical
@@ -311,20 +310,20 @@
 		Also metabolizes potassium iodide for radiation poisoning, inacusiate for ear damage and morphine for offense."
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
-	charge_cost = 20
+	charge_cost = 0.02 * STANDARD_CELL_CHARGE
 	recharge_time = 2
 	default_reagent_types = BASE_SYNDICATE_REAGENTS
 	bypass_protection = TRUE
 
 /// Borg Shaker for the serviceborgs
 /obj/item/reagent_containers/borghypo/borgshaker
-	name = "cyborg 化学烧杯"
+	name = "赛博化学烧杯"
 	desc = "An advanced drink synthesizer and mixer."
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "shaker"
 	possible_transfer_amounts = list(5,10,20,1)
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
-	charge_cost = 20
+	charge_cost = 0.02 * STANDARD_CELL_CHARGE
 	recharge_time = 3
 	dispensed_temperature = WATER_MATTERSTATE_CHANGE_TEMP //Water stays wet, ice stays ice
 	default_reagent_types = BASE_SERVICE_REAGENTS
@@ -396,7 +395,7 @@
 	icon_state = "flour"
 	possible_transfer_amounts = list(5,10,20,1)
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
-	charge_cost = 40 //Costs double the power of the borgshaker due to synthesizing solids
+	charge_cost = 0.04 * STANDARD_CELL_CHARGE //Costs double the power of the borgshaker due to synthesizing solids
 	recharge_time = 6 //Double the recharge time too, for the same reason.
 	dispensed_temperature = WATER_MATTERSTATE_CHANGE_TEMP
 	default_reagent_types = EXPANDED_SERVICE_REAGENTS
@@ -454,7 +453,7 @@
 
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
-	name = "cyborg 化学烧杯"
+	name = "赛博化学烧杯"
 	desc = "Will mix drinks that knock them dead."
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "threemileislandglass"

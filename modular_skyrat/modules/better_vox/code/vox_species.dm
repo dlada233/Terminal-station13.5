@@ -16,6 +16,7 @@
 	mutantbrain = /obj/item/organ/internal/brain/vox
 	breathid = "n2"
 	mutant_bodyparts = list()
+	meat = /obj/item/food/meat/slab/chicken/human //item file in teshari module
 	mutanttongue = /obj/item/organ/internal/tongue/vox
 	payday_modifier = 1.0
 	outfit_important_for_life = /datum/outfit/vox
@@ -58,17 +59,6 @@
 		equipping.equipOutfit(job.vox_outfit, visuals_only)
 	else
 		give_important_for_life(equipping)
-
-/datum/species/vox_primalis/random_name(gender, unique, lastname)
-	if(unique)
-		return random_unique_vox_name()
-
-	var/randname = vox_name()
-
-	if(lastname)
-		randname += " [lastname]"
-
-	return randname
 
 /datum/species/vox_primalis/get_custom_worn_icon(item_slot, obj/item/item)
 	return item.worn_icon_better_vox

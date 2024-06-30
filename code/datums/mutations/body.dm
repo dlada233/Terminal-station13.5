@@ -20,7 +20,7 @@
 	owner.Unconscious(200 * GET_MUTATION_POWER(src))
 	owner.set_jitter(2000 SECONDS * GET_MUTATION_POWER(src)) //yes this number looks crazy but the jitter animations are amplified based on the duration.
 	owner.add_mood_event("epilepsy", /datum/mood_event/epilepsy)
-	addtimer(CALLBACK(src, PROC_REF(jitter_less)), 90)
+	addtimer(CALLBACK(src, PROC_REF(jitter_less)), 9 SECONDS)
 
 /datum/mutation/human/epilepsy/proc/jitter_less()
 	if(QDELETED(owner))
@@ -120,7 +120,7 @@
 	if(..())
 		return
 	// SKYRAT EDIT BEGIN
-	if(owner.dna.features["body_size"] < 1)
+	if(owner.dna.features["body_size"] < 1 || isteshari(owner))
 		to_chat(owner, "你感觉身体缩小了，但你的器官没有跟着一起！糟了!")
 		owner.adjustBruteLoss(25)
 		return
@@ -132,13 +132,13 @@
 	if(..())
 		return
 	// SKYRAT EDIT BEGIN
-	if(owner.dna.features["body_size"] < 1)
-		to_chat(owner, "随着器官挤压的感觉消失，你感到无比轻松.")
+	if(owner.dna.features["body_size"] < 1 || isteshari(owner))
+		to_chat(owner, "随着器官挤压的感觉消失，你感到无比轻松..")
 		REMOVE_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
 		return
 	// SKYRAT EDIT END
 	REMOVE_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
-	owner.visible_message(span_danger("[owner]突然变大了!"), span_notice("周围的一切似乎变小了."))
+	owner.visible_message(span_danger("[owner]突然变大了!"), span_notice("周围的一切似乎变小了"))
 
 //Clumsiness has a very large amount of small drawbacks depending on item.
 /datum/mutation/human/clumsy
@@ -206,7 +206,9 @@
 	text_gain_indication = "你怪异地觉得像猴子一样."
 	text_lose_indication = "你感觉又恢复了原先的自我."
 	quality = NEGATIVE
+	remove_on_aheal = FALSE
 	locked = TRUE //Species specific, keep out of actual gene pool
+	mutadone_proof = TRUE
 	var/datum/species/original_species = /datum/species/human
 	var/original_name
 
@@ -232,7 +234,7 @@
 	instability = 5
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
-	var/glow_power = 2.5
+	var/glow_power = 2
 	var/glow_range = 2.5
 	var/glow_color
 	var/obj/effect/dummy/lighting_obj/moblight/glow
@@ -265,7 +267,7 @@
 /datum/mutation/human/glow/anti
 	name = "反荧光"
 	desc = "你的皮肤似乎会吸引和吸收附近的光线，在你周围制造“黑暗”."
-	text_gain_indication = "<span class='notice'>你身边的光线似乎消失了	.</span>"
+	text_gain_indication = "<span class='notice'>你身边的光线似乎消失了.</span>"
 	conflicts = list(/datum/mutation/human/glow)
 	locked = TRUE
 	glow_power = -1.5
@@ -278,14 +280,41 @@
 	desc = "携带者的肌肉轻微扩张了."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>你感觉变得强壮.</span>"
+	instability = 5
 	difficulty = 16
+
+/datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	ADD_TRAIT(owner, TRAIT_STRENGTH, GENETIC_MUTATION)
+
+/datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	REMOVE_TRAIT(owner, TRAIT_STRENGTH, GENETIC_MUTATION)
+
 
 /datum/mutation/human/stimmed
 	name = "自我刺激"
 	desc = "携带者的化学平衡更稳定."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>你感觉精力充沛.</span>"
+	instability = 5
 	difficulty = 16
+
+/datum/mutation/human/stimmed/on_acquiring(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	ADD_TRAIT(owner, TRAIT_STIMMED, GENETIC_MUTATION)
+
+/datum/mutation/human/stimmed/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	REMOVE_TRAIT(owner, TRAIT_STIMMED, GENETIC_MUTATION)
 
 /datum/mutation/human/insulated
 	name = "绝缘"
@@ -335,8 +364,8 @@
 	name = "空间不稳定性"
 	desc = "受突变者与现实空间的联系非常微弱，有时可能会被放逐. 通常会引起极度的恶心."
 	quality = NEGATIVE
-	text_gain_indication = "<span class='warning'>The space around you twists sickeningly.</span>"
-	text_lose_indication = "<span class='notice'>The space around you settles back to normal.</span>"
+	text_gain_indication = "<span class='warning'>你周围的空间开始不自然扭曲.</span>"
+	text_lose_indication = "<span class='notice'>你周围的空间变回正常.</span>"
 	difficulty = 18//high so it's hard to unlock and abuse
 	instability = 10
 	synchronizer_coeff = 1
@@ -378,7 +407,7 @@
 			COOLDOWN_START(src, msgcooldown, 20 SECONDS)
 		if(prob(15))
 			owner.acid_act(rand(30, 50), 10)
-			owner.visible_message(span_warning("[owner]的皮肤起泡并破裂开来."), span_userdanger("Your bubbling flesh pops! It burns!"))
+			owner.visible_message(span_warning("[owner]的皮肤起泡并破裂开来."), span_userdanger("你的皮肤正起泡和破裂! 它在燃烧!"))
 			playsound(owner,'sound/weapons/sear.ogg', 50, TRUE)
 
 /datum/mutation/human/gigantism
@@ -436,8 +465,8 @@
 	name = "双左脚"
 	desc = "一种基因突变，使你的右脚变成另一只左脚. 症状包括走路时会绊倒自己，和地板热吻."
 	quality = NEGATIVE
-	text_gain_indication = "<span class='warning'>你的右脚感觉... 像左脚一样.</span>"
-	text_lose_indication = "<span class='notice'>你的右脚恢复了正常.</span>"
+	text_gain_indication = "<span class='warning'>Your right foot feels... left.</span>"
+	text_lose_indication = "<span class='notice'>Your right foot feels alright.</span>"
 	difficulty = 16
 
 /datum/mutation/human/extrastun/on_acquiring()
@@ -530,7 +559,7 @@
 
 	var/obj/item/bodypart/head/head = owner.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
-		owner.visible_message(span_warning("[owner]的头颅发出令人作呕的嘎吱声，四溅开来!"), ignored_mobs = list(owner))
+		owner.visible_message(span_warning("[owner]的头颅发出令人作呕的嘎吱声，爆裂开来!"), ignored_mobs = list(owner))
 		new /obj/effect/gibspawner/generic(get_turf(owner), owner)
 		head.drop_organs()
 		head.dismember(dam_type = BRUTE, silent = TRUE)

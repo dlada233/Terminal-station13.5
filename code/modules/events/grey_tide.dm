@@ -1,10 +1,10 @@
 /datum/round_event_control/grey_tide
-	name = "Grey Tide"
+	name = "Grey Tide-灰潮病毒"
 	typepath = /datum/round_event/grey_tide
 	max_occurrences = 2
 	min_players = 5
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Bolts open all doors in one or more departments."
+	description = "打开并锁定一个或多个部门的气阀门."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 

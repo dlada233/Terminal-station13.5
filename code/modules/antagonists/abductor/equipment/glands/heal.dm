@@ -159,7 +159,7 @@
 	else
 		to_chat(owner, span_warning("你感到眼眶后面有一种奇怪的隆隆声..."))
 
-	addtimer(CALLBACK(src, PROC_REF(finish_replace_eyes)), rand(100, 200))
+	addtimer(CALLBACK(src, PROC_REF(finish_replace_eyes)), rand(10 SECONDS, 20 SECONDS))
 
 /obj/item/organ/internal/heart/gland/heal/proc/finish_replace_eyes()
 	var/eye_type = /obj/item/organ/internal/eyes
@@ -207,7 +207,7 @@
 		if(owner.reagents.has_reagent(R.type))
 			keep_going = TRUE
 	if(keep_going)
-		addtimer(CALLBACK(src, PROC_REF(keep_replacing_blood)), 30)
+		addtimer(CALLBACK(src, PROC_REF(keep_replacing_blood)), 3 SECONDS)
 
 /obj/item/organ/internal/heart/gland/heal/proc/replace_chest(obj/item/bodypart/chest/chest)
 	if(!IS_ORGANIC_LIMB(chest))

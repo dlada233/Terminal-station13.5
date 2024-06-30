@@ -24,8 +24,7 @@ export const NtosMain = (props) => {
   return (
     <NtosWindow
       title={
-        (PC_device_theme === 'syndicate' && 'Syndix Main Menu') ||
-        'NtOS 主菜单'
+        (PC_device_theme === 'syndicate' && 'Syndix Main Menu') || 'NtOS 主菜单'
       }
       width={400}
       height={500}

@@ -193,6 +193,12 @@
 	icon_state = "backpack-virology"
 	inhand_icon_state = "viropack"
 
+/obj/item/storage/backpack/floortile
+	name = "地砖背包"
+	desc = "It's a backpack especially designed for use in floortiles..."
+	icon_state = "floortile_backpack"
+	inhand_icon_state = "backpack"
+
 /obj/item/storage/backpack/ert
 	name = "应急部队指挥官背包"
 	desc = "一个有很多口袋的宽敞背包，由应急部队指挥官装备."

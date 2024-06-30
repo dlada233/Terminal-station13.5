@@ -90,7 +90,6 @@
 	/// 裂隙的重力场，使附近所有地块受到强制重力.
 	var/datum/proximity_monitor/advanced/gravity/warns_on_entrance/gravity_aura
 
-
 /datum/armor/structure_carp_rift
 	energy = 100
 	bomb = 50

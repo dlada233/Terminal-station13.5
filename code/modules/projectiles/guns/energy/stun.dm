@@ -19,10 +19,11 @@
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 
-/obj/item/gun/energy/e_gun/advtaser/cyborg/add_seclight_point()
-	return
+/obj/item/gun/energy/e_gun/advtaser/cyborg/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
-/obj/item/gun/energy/e_gun/advtaser/cyborg/emp_act()
+/obj/item/gun/energy/e_gun/advtaser/cyborg/add_seclight_point()
 	return
 
 /obj/item/gun/energy/disabler
@@ -61,10 +62,11 @@
 	)
 
 /obj/item/gun/energy/disabler/cyborg
-	name = "赛博格镇暴光枪"
+	name = "赛博镇暴光枪"
 	desc = "用赛博格电池供电的镇暴光枪，上面装有热传感器防止内部电池过热."
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 
-/obj/item/gun/energy/disabler/cyborg/emp_act()
-	return
+/obj/item/gun/energy/disabler/cyborg/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)

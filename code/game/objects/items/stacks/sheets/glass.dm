@@ -9,15 +9,15 @@
  * Glass sheets
  */
 GLOBAL_LIST_INIT(glass_recipes, list ( \
-	new/datum/stack_recipe("侧玻璃窗", /obj/structure/window/unanchored, time = 0.5 SECONDS, on_solid_ground = TRUE, check_direction = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("全玻璃窗", /obj/structure/window/fulltile/unanchored, 2, time =  1 SECONDS, on_solid_ground = TRUE, is_fulltile = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("玻璃碎片", /obj/item/shard, time = 0, on_solid_ground = TRUE, category = CAT_MISC), \
-	new/datum/stack_recipe("玻璃地板", /obj/item/stack/tile/glass, 1, 4, 20, category = CAT_TILES) \
+	new/datum/stack_recipe("directional window-侧玻璃窗", /obj/structure/window/unanchored, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("fulltile window-全玻璃窗", /obj/structure/window/fulltile/unanchored, 2, time =  1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("glass shard-玻璃碎片", /obj/item/shard, time = 0, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC), \
+	new/datum/stack_recipe("glass tile-玻璃地板", /obj/item/stack/tile/glass, 1, 4, 20, category = CAT_TILES) \
 ))
 
 /obj/item/stack/sheet/glass
 	name = "玻璃"
-	desc = "HOLY SHEET! That is a lot of glass."
+	desc = "HOLY SHEET! 这有好多块玻璃."
 	singular_name = "玻璃"
 	icon_state = "sheet-glass"
 	inhand_icon_state = "sheet-glass"
@@ -27,7 +27,6 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/glass
 	grind_results = list(/datum/reagent/silicon = 20)
 	material_type = /datum/material/glass
-	point_value = 1
 	tableVariant = /obj/structure/table/glass
 	matter_amount = 4
 	cost = SHEET_MATERIAL_AMOUNT
@@ -83,15 +82,15 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	return ..()
 
 GLOBAL_LIST_INIT(pglass_recipes, list ( \
-	new/datum/stack_recipe("侧加固窗", /obj/structure/window/plasma/unanchored, time = 0.5 SECONDS, on_solid_ground = TRUE, check_direction = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("全加固窗", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 2 SECONDS, on_solid_ground = TRUE, is_fulltile = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("等离子玻璃碎片", /obj/item/shard/plasma, time = 20, on_solid_ground = TRUE, category = CAT_MISC), \
-	new/datum/stack_recipe("等离子玻璃地板", /obj/item/stack/tile/glass/plasma, 1, 4, 20, category = CAT_TILES) \
+	new/datum/stack_recipe("directional window-侧加固窗", /obj/structure/window/plasma/unanchored, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("fulltile window-全加固窗", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("plasma glass shard-等离子玻璃碎片", /obj/item/shard/plasma, time = 20, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC), \
+	new/datum/stack_recipe("plasma glass tile-等离子玻璃地板", /obj/item/stack/tile/glass/plasma, 1, 4, 20, category = CAT_TILES) \
 ))
 
 /obj/item/stack/sheet/plasmaglass
 	name = "等离子玻璃"
-	desc = "A glass sheet made out of a plasma-silicate alloy. It looks extremely tough and heavily fire resistant."
+	desc = "一种由等离子硅酸盐合金制成的玻璃板，它非常坚固，且具有很强的耐火性."
 	singular_name = "等离子玻璃"
 	icon_state = "sheet-pglass"
 	inhand_icon_state = "sheet-pglass"
@@ -139,18 +138,18 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
  * Reinforced glass sheets
  */
 GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
-	new/datum/stack_recipe("windoor frame", /obj/structure/windoor_assembly, 5, time = 0, on_solid_ground = TRUE, check_direction = TRUE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("windoor frame", /obj/structure/windoor_assembly, 5, time = 0, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
 	null, \
-	new/datum/stack_recipe("侧加固窗", /obj/structure/window/reinforced/unanchored, time = 0.5 SECONDS, on_solid_ground = TRUE, check_direction = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("全加固窗", /obj/structure/window/reinforced/fulltile/unanchored, 2, time = 2 SECONDS, on_solid_ground = TRUE, is_fulltile = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("玻璃碎片", /obj/item/shard, time = 10, on_solid_ground = TRUE, category = CAT_MISC), \
-	new/datum/stack_recipe("强化玻璃地板", /obj/item/stack/tile/rglass, 1, 4, 20, category = CAT_TILES) \
+	new/datum/stack_recipe("directional reinforced window-侧加固窗", /obj/structure/window/reinforced/unanchored, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("fulltile reinforced window-全加固窗", /obj/structure/window/reinforced/fulltile/unanchored, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("glass shard-玻璃碎片", /obj/item/shard, time = 10, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC), \
+	new/datum/stack_recipe("reinforced glass tile-强化玻璃地板", /obj/item/stack/tile/rglass, 1, 4, 20, category = CAT_TILES) \
 ))
 
 
 /obj/item/stack/sheet/rglass
 	name = "强化玻璃"
-	desc = "Glass which seems to have rods or something stuck in them."
+	desc = "玻璃材质内填充了棒状基体和其他结构."
 	singular_name = "强化玻璃"
 	icon_state = "sheet-rglass"
 	inhand_icon_state = "sheet-rglass"
@@ -159,7 +158,6 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/rglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/iron = 10)
-	point_value = 4
 	matter_amount = 6
 	tableVariant = /obj/structure/table/reinforced/rglass
 
@@ -179,15 +177,15 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	. += GLOB.reinforced_glass_recipes
 
 GLOBAL_LIST_INIT(prglass_recipes, list ( \
-	new/datum/stack_recipe("侧加固窗", /obj/structure/window/reinforced/plasma/unanchored, time = 0.5 SECONDS, on_solid_ground = TRUE, check_direction = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("全加固窗", /obj/structure/window/reinforced/plasma/fulltile/unanchored, 2, time = 2 SECONDS, on_solid_ground = TRUE, is_fulltile = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("等离子玻璃碎片", /obj/item/shard/plasma, time = 40, on_solid_ground = TRUE, category = CAT_MISC), \
-	new/datum/stack_recipe("强化等离子玻璃地板", /obj/item/stack/tile/rglass/plasma, 1, 4, 20, category = CAT_TILES) \
+	new/datum/stack_recipe("directional reinforced window-侧加固窗", /obj/structure/window/reinforced/plasma/unanchored, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("fulltile reinforced window-全加固窗", /obj/structure/window/reinforced/plasma/fulltile/unanchored, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("plasma glass shard-等离子玻璃碎片", /obj/item/shard/plasma, time = 40, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC), \
+	new/datum/stack_recipe("reinforced plasma glass tile--强化等离子玻璃地板", /obj/item/stack/tile/rglass/plasma, 1, 4, 20, category = CAT_TILES) \
 ))
 
 /obj/item/stack/sheet/plasmarglass
 	name = "强化等离子玻璃"
-	desc = "A glass sheet made out of a plasma-silicate alloy and a rod matrix. It looks hopelessly tough and nearly fire-proof!"
+	desc = "由等离子硅酸盐合金和棒状基体制成的玻璃片，它看起来非常坚固，能达到近乎完全防火!"
 	singular_name = "强化等离子玻璃"
 	icon_state = "sheet-prglass"
 	inhand_icon_state = "sheet-prglass"
@@ -197,7 +195,7 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	material_flags = NONE
 	merge_type = /obj/item/stack/sheet/plasmarglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10, /datum/reagent/iron = 10)
-	point_value = 23
+	gulag_valid = TRUE
 	matter_amount = 8
 	tableVariant = /obj/structure/table/reinforced/plasmarglass
 
@@ -214,13 +212,13 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	. += GLOB.prglass_recipes
 
 GLOBAL_LIST_INIT(titaniumglass_recipes, list(
-	new/datum/stack_recipe("穿梭机窗户", /obj/structure/window/reinforced/shuttle/unanchored, 2, time = 0.5 SECONDS, on_solid_ground = TRUE, check_direction = TRUE, is_fulltile = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("钛钢玻璃碎片", /obj/item/shard/titanium, time = 40, on_solid_ground = TRUE, category = CAT_MISC) \
+	new/datum/stack_recipe("shuttle window-飞船窗户", /obj/structure/window/reinforced/shuttle/unanchored, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("titanium glass shard-钛钢玻璃碎片", /obj/item/shard/titanium, time = 40, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC) \
 	))
 
 /obj/item/stack/sheet/titaniumglass
 	name = "钛钢玻璃"
-	desc = "A glass sheet made out of a titanium-silicate alloy."
+	desc = "由硅酸钛合金制成的玻璃片."
 	singular_name = "钛钢玻璃"
 	icon_state = "sheet-titaniumglass"
 	inhand_icon_state = "sheet-titaniumglass"
@@ -243,13 +241,13 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	. += GLOB.titaniumglass_recipes
 
 GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
-	new/datum/stack_recipe("塑钢玻璃窗", /obj/structure/window/reinforced/plasma/plastitanium/unanchored, 2, time = 2 SECONDS, on_solid_ground = TRUE, is_fulltile = TRUE, category = CAT_WINDOWS), \
-	new/datum/stack_recipe("塑钢玻璃碎片", /obj/item/shard/plastitanium, time = 60, on_solid_ground = TRUE, category = CAT_MISC) \
+	new/datum/stack_recipe("plastitanium window-塑钢玻璃窗", /obj/structure/window/reinforced/plasma/plastitanium/unanchored, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \
+	new/datum/stack_recipe("plastitanium glass shard-塑钢玻璃碎片", /obj/item/shard/plastitanium, time = 60, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND, category = CAT_MISC) \
 	))
 
 /obj/item/stack/sheet/plastitaniumglass
 	name = "塑钢玻璃"
-	desc = "A glass sheet made out of a plasma-titanium-silicate alloy."
+	desc = "由等离子钛硅酸盐合金制成的玻璃片."
 	singular_name = "塑钢玻璃"
 	icon_state = "sheet-plastitaniumglass"
 	inhand_icon_state = "sheet-plastitaniumglass"
@@ -274,7 +272,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 
 /obj/item/shard
 	name = "碎片"
-	desc = "A nasty looking shard of glass."
+	desc = "一块难看的玻璃碎片."
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
@@ -392,8 +390,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 			playsound(src, 'sound/effects/footstep/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 
 /obj/item/shard/plasma
-	name = "紫色碎片"
-	desc = "A nasty looking shard of plasma glass."
+	name = "紫色玻璃碎片"
+	desc = "一块难看的等离子玻璃碎片."
 	force = 6
 	throwforce = 11
 	icon_state = "plasmalarge"
@@ -405,8 +403,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	craft_time = 7 SECONDS
 
 /obj/item/shard/titanium
-	name = "亮碎片"
-	desc = "A nasty looking shard of titanium infused glass."
+	name = "亮色玻璃碎片"
+	desc = "一块难看的钛钢玻璃碎片."
 	throwforce = 12
 	icon_state = "titaniumlarge"
 	inhand_icon_state = "shard-titanium"
@@ -417,8 +415,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	craft_time = 7 SECONDS
 
 /obj/item/shard/plastitanium
-	name = "黑色碎片"
-	desc = "A nasty looking shard of titanium infused plasma glass."
+	name = "暗色玻璃碎片"
+	desc = "一块难看的塑钢玻璃碎片."
 	force = 7
 	throwforce = 12
 	icon_state = "plastitaniumlarge"

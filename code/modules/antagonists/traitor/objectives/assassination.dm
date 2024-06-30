@@ -2,14 +2,8 @@
 	name = "刺杀/绑架"
 	objectives = list(
 		list(
-			list(
-				/datum/traitor_objective/target_player/assassinate/calling_card = 1,
-				/datum/traitor_objective/target_player/assassinate/behead = 1,
-			) = 1,
-			list(
-				/datum/traitor_objective/target_player/assassinate/calling_card/heads_of_staff = 1,
-				/datum/traitor_objective/target_player/assassinate/behead/heads_of_staff = 1,
-			) = 1,
+			/datum/traitor_objective/target_player/assassinate/calling_card = 1,
+			/datum/traitor_objective/target_player/assassinate/calling_card/heads_of_staff = 1,
 		) = 1,
 		list(
 			list(
@@ -30,9 +24,11 @@
 
 	progression_minimum = 30 MINUTES
 
-	// 当为真时，使目标仅设置为头目，为假时阻止它们成为目标.
-	// 这也会阻止生成目标，直到完成无头版本（应该是直接父级）.
-	// 例如：明信片目标，你杀了某人，解锁了可以选择杀死头目版本的明信片目标.
+	/**
+	 * Makes the objective only set heads as targets when true, and block them from being targets when false.
+	 * This also blocks the objective from generating UNTIL the un-heads_of_staff version (WHICH SHOULD BE A DIRECT PARENT) is completed.
+	 * example: calling card objective, you kill someone, you unlock the chance to roll a head of staff target version of calling card.
+	 */
 	var/heads_of_staff = FALSE
 
 	duplicate_type = /datum/traitor_objective/target_player
@@ -51,23 +47,6 @@
 	var/obj/item/paper/calling_card/card
 
 /datum/traitor_objective/target_player/assassinate/calling_card/heads_of_staff
-	progression_reward = 4 MINUTES
-	telecrystal_reward = list(2, 3)
-
-	heads_of_staff = TRUE
-
-/datum/traitor_objective/target_player/assassinate/behead
-	name = "斩首 %TARGET%，%JOB TITLE%"
-	description = "斩下并持有 %TARGET% 的头颅即可完成此目标，如果头颅在斩首前被摧毁了，此目标将失败. "
-	progression_reward = 2 MINUTES
-	telecrystal_reward = list(1, 2)
-
-	/// 需要持有头颅的身体
-	var/mob/living/needs_to_hold_head
-	/// 需要被拿起的头部
-	var/obj/item/bodypart/head/behead_goal
-
-/datum/traitor_objective/target_player/assassinate/behead/heads_of_staff
 	progression_reward = 4 MINUTES
 	telecrystal_reward = list(2, 3)
 
@@ -113,47 +92,6 @@
 /datum/traitor_objective/target_player/assassinate/calling_card/target_deleted()
 	//you cannot plant anything on someone who is gone gone, so even if this happens after you're still liable to fail
 	fail_objective(penalty_cost = telecrystal_penalty)
-
-/datum/traitor_objective/target_player/assassinate/behead/special_target_filter(list/possible_targets)
-	for(var/datum/mind/possible_target as anything in possible_targets)
-		var/mob/living/carbon/possible_current = possible_target.current
-		var/obj/item/bodypart/head/behead_goal = possible_current.get_bodypart(BODY_ZONE_HEAD)
-		if(!behead_goal)
-			possible_targets -= possible_target //cannot be beheaded without a head
-
-/datum/traitor_objective/target_player/assassinate/behead/generate_objective(datum/mind/generating_for, list/possible_duplicates)
-	. = ..()
-	if(!.) //didn't generate
-		return FALSE
-	AddComponent(/datum/component/traitor_objective_register, behead_goal, fail_signals = list(COMSIG_QDELETING))
-	RegisterSignal(target, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(on_target_dismembered))
-
-/datum/traitor_objective/target_player/assassinate/behead/ungenerate_objective()
-	UnregisterSignal(target, COMSIG_CARBON_REMOVE_LIMB)
-	. = ..() //this unsets target
-	if(behead_goal)
-		UnregisterSignal(behead_goal, COMSIG_ITEM_PICKUP)
-	behead_goal = null
-
-/datum/traitor_objective/target_player/assassinate/behead/proc/on_head_pickup(datum/source, mob/taker)
-	SIGNAL_HANDLER
-	if(objective_state == OBJECTIVE_STATE_INACTIVE) // 只是以防万一-这不应该发生？
-		fail_objective()
-		return
-	if(taker == handler.owner.current)
-		taker.visible_message(span_notice("[taker]将[behead_goal]举了一会儿. "), span_boldnotice("你将[behead_goal]举了一会儿. "))
-		succeed_objective()
-
-/datum/traitor_objective/target_player/assassinate/behead/proc/on_target_dismembered(datum/source, obj/item/bodypart/head/lost_head, special, dismembered)
-	SIGNAL_HANDLER
-	if(!istype(lost_head))
-		return
-	if(objective_state == OBJECTIVE_STATE_INACTIVE)
-		//no longer can be beheaded
-		fail_objective()
-	else
-		behead_goal = lost_head
-		RegisterSignal(behead_goal, COMSIG_ITEM_PICKUP, PROC_REF(on_head_pickup))
 
 /datum/traitor_objective/target_player/assassinate/New(datum/uplink_handler/handler)
 	. = ..()

@@ -96,8 +96,8 @@
 
 /obj/projectile/floating_blade
 	name = "利刃"
-	icon = 'icons/obj/service/kitchen.dmi'
-	icon_state = "knife"
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "dio_knife"
 	speed = 2
 	damage = 25
 	armour_penetration = 100
@@ -107,7 +107,7 @@
 
 /obj/projectile/floating_blade/Initialize(mapload)
 	. = ..()
-	add_filter("knife", 2, list("type" = "outline", "color" = "#f8f8ff", "size" = 1))
+	add_filter("dio_knife", 2, list("type" = "outline", "color" = "#f8f8ff", "size" = 1))
 
 /obj/projectile/floating_blade/prehit_pierce(atom/hit)
 	if(isliving(hit) && isliving(firer))

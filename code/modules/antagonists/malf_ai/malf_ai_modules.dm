@@ -47,6 +47,9 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		/obj/machinery/hypertorus/corner,
 		/obj/machinery/atmospherics/components/binary/valve,
 		/obj/machinery/portable_atmospherics/canister,
+		/obj/machinery/computer/shuttle,
+		/obj/machinery/computer/emergency_shuttle,
+		/obj/machinery/computer/gateway_control,
 	)))
 
 GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
@@ -166,7 +169,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 /datum/action/innate/ai/nuke_station
 	name = "末日装置"
 	desc = "激活末日装置，该操作不可撤销."
-	button_icon_state = "doomsday_device"
+	button_icon = 'icons/obj/machines/nuke_terminal.dmi'
+	button_icon_state = "nuclearbomb_timing"
 	auto_use_uses = FALSE
 
 /datum/action/innate/ai/nuke_station/Activate()
@@ -445,10 +449,15 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		unset_ranged_ability(caller)
 		return FALSE
 	if(!ismachinery(clicked_on))
-		to_chat(caller, span_warning("你能让机器暴走!"))
+		to_chat(caller, span_warning("你只能让机器暴走!"))
 		return FALSE
 	var/obj/machinery/clicked_machine = clicked_on
-	if(!clicked_machine.can_be_overridden() || is_type_in_typecache(clicked_machine, GLOB.blacklisted_malf_machines))
+
+	if(istype(clicked_machine, /obj/machinery/porta_turret_cover)) //clicking on a closed turret will attempt to override the turret itself instead of the animated/abstract cover.
+		var/obj/machinery/porta_turret_cover/clicked_turret = clicked_machine
+		clicked_machine = clicked_turret.parent_turret
+
+	if((clicked_machine.resistance_flags & INDESTRUCTIBLE) || is_type_in_typecache(clicked_machine, GLOB.blacklisted_malf_machines))
 		to_chat(caller, span_warning("这台机器无法超驰!"))
 		return FALSE
 
@@ -536,7 +545,12 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		to_chat(caller, span_warning("你只能让机器过载!"))
 		return FALSE
 	var/obj/machinery/clicked_machine = clicked_on
-	if(is_type_in_typecache(clicked_machine, GLOB.blacklisted_malf_machines))
+
+	if(istype(clicked_machine, /obj/machinery/porta_turret_cover)) //clicking on a closed turret will attempt to override the turret itself instead of the animated/abstract cover.
+		var/obj/machinery/porta_turret_cover/clicked_turret = clicked_machine
+		clicked_machine = clicked_turret.parent_turret
+
+	if((clicked_machine.resistance_flags & INDESTRUCTIBLE) || is_type_in_typecache(clicked_machine, GLOB.blacklisted_malf_machines))
 		to_chat(caller, span_warning("这台设备无法过载!"))
 		return FALSE
 
@@ -597,6 +611,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 /datum/action/innate/ai/honk
 	name = "对讲机高亢噪音"
 	desc = "通过对讲机用刺耳的HONK声震撼整个空间站!"
+	button_icon = 'icons/obj/machines/wallmounts.dmi'
 	button_icon_state = "intercom"
 	uses = 2
 
@@ -685,7 +700,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		I.loc = T
 		client.images += I
 		I.icon_state = "[success ? "green" : "red"]Overlay" //greenOverlay and redOverlay for success and failure respectively
-		addtimer(CALLBACK(src, PROC_REF(remove_transformer_image), client, I, T), 30)
+		addtimer(CALLBACK(src, PROC_REF(remove_transformer_image), client, I, T), 3 SECONDS)
 	if(!success)
 		to_chat(src, span_warning("[alert_msg]"))
 	return success
@@ -704,7 +719,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 /datum/action/innate/ai/break_air_alarms
 	name = "超驰空气警报"
 	desc = "在所有空气警报上启用极端危险设置."
-	button_icon_state = "break_air_alarms"
+	button_icon = 'icons/obj/machines/wallmounts.dmi'
+	button_icon_state = "alarmx"
 	uses = 1
 
 /datum/action/innate/ai/break_air_alarms/Activate()
@@ -757,7 +773,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 /datum/action/innate/ai/emergency_lights
 	name = "关闭应急照明"
 	desc = "关闭所有的应急照明，请注意，应急照明可以通过重启APC来恢复."
-	button_icon_state = "emergency_lights"
+	button_icon = 'icons/obj/lighting.dmi'
+	button_icon_state = "floor_emergency"
 	uses = 1
 
 /datum/action/innate/ai/emergency_lights/Activate()
@@ -797,7 +814,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	for(var/obj/machinery/camera/C as anything in GLOB.cameranet.cameras)
 		if(!uses)
 			break
-		if(!C.status || C.view_range != initial(C.view_range))
+		if(!C.camera_enabled || C.view_range != initial(C.view_range))
 			C.toggle_cam(owner_AI, 0) //Reactivates the camera based on status. Badly named proc.
 			C.view_range = initial(C.view_range)
 			fixed_cameras++
@@ -827,10 +844,6 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 
 	var/upgraded_cameras = 0
 	for(var/obj/machinery/camera/camera as anything in GLOB.cameranet.cameras)
-		var/obj/structure/camera_assembly/assembly = camera.assembly_ref?.resolve()
-		if(!assembly)
-			continue
-
 		var/upgraded = FALSE
 
 		if(!camera.isXRay())
@@ -863,7 +876,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 
 /datum/ai_module/upgrade/upgrade_turrets/upgrade(mob/living/silicon/ai/AI)
 	for(var/obj/machinery/porta_turret/ai/turret as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/porta_turret/ai))
-		turret.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES | EMP_PROTECT_CONTENTS)
+		turret.AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 		turret.max_integrity = 200
 		turret.repair_damage(200)
 		turret.lethal_projectile = /obj/projectile/beam/laser/heavylaser //Once you see it, you will know what it means to FEAR.
@@ -885,8 +898,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 /// Unlock Mech Domination: Unlocks the ability to dominate mechs. Big shocker, right?
 /datum/ai_module/upgrade/mecha_domination
 	name = "解锁机甲控制"
-	description = "让你可以黑进机甲的内部电脑，将所有的程序分流进去，然后还把里面的人赶出去. \
-		不要让机甲离开空间站范围，也不要让其被摧毁. 购买后立刻完成升级."
+	description = "让你可以黑进机甲的内部电脑，将所有的程序分流进去，然后还能把里面的人赶出去. \
+不要让机甲离开空间站范围，也不要让其被摧毁. 购买后立刻完成升级."
 	cost = 30
 	upgrade = TRUE
 	unlock_text = span_notice("病毒包编译完成. 随时可以选择一个机甲作为目标. <b>你必须一直待在空间站内，丢失信号将导致整个系统关闭.</b>")
@@ -938,6 +951,8 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	var/prev_verbs
 	/// Saved span state, used to restore after a voice change
 	var/prev_span
+	/// The list of available voices
+	var/static/list/voice_options = list("normal", SPAN_ROBOT, SPAN_YELL, SPAN_CLOWN)
 
 /obj/machinery/ai_voicechanger/Initialize(mapload)
 	. = ..()
@@ -965,11 +980,12 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 
 /obj/machinery/ai_voicechanger/ui_data(mob/user)
 	var/list/data = list()
-	data["voices"] = list("normal", SPAN_ROBOT, SPAN_YELL, SPAN_CLOWN) //manually adding this since i dont see other option
+	data["voices"] = voice_options
 	data["loud"] = loudvoice
 	data["on"] = changing_voice
 	data["say_verb"] = say_verb
 	data["name"] = say_name
+	data["selected"] = say_span || owner.speech_span
 	return data
 
 /obj/machinery/ai_voicechanger/ui_act(action, params)
@@ -1003,9 +1019,23 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 			if(changing_voice)
 				owner.radio.use_command = loudvoice
 		if("look")
-			say_span = params["look"]
+			var/selection = params["look"]
+			if(isnull(selection))
+				return FALSE
+
+			var/found = FALSE
+			for(var/option in voice_options)
+				if(option == selection)
+					found = TRUE
+					break
+			if(!found)
+				stack_trace("User attempted to select an unavailable voice option")
+				return FALSE
+
+			say_span = selection
 			if(changing_voice)
 				owner.speech_span = say_span
+			to_chat(usr, span_notice("Voice set to [selection]."))
 		if("verb")
 			say_verb = params["verb"]
 			if(changing_voice)
@@ -1021,7 +1051,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	description = "让你可以EMAG你能访问的任何机器."
 	cost = 20
 	power_type = /datum/action/innate/ai/ranged/emag
-	unlock_text = span_notice("你从辛迪加数据库泄露中下载到了一个非法软件包，并将其集成到固件中，在此过程中你还抵御了几次对内核的入侵.")
+	unlock_text = span_notice("你从辛迪加数据库泄露中下载到了一个非法软件包，并将其集成到固件中，在此过程中你还抵御了几次该包对内核的入侵.")
 	unlock_sound = SFX_SPARKS
 
 /datum/action/innate/ai/ranged/emag
@@ -1111,7 +1141,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	return TRUE
 
 /datum/ai_module/utility/core_tilt
-	name = "滚动伺服系统"
+	name = "服务器滚动系统"
 	description = "让你缓慢地滚动，你的身体将碾压任何挡道的东西."
 	cost = 10
 	one_purchase = FALSE

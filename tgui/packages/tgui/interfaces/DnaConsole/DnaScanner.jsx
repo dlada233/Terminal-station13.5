@@ -29,10 +29,7 @@ const DnaScannerButtons = (props) => {
   } = data;
   if (!isScannerConnected) {
     return (
-      <Button
-        content="连接扫描仪"
-        onClick={() => act('connect_scanner')}
-      />
+      <Button content="连接扫描仪" onClick={() => act('connect_scanner')} />
     );
   }
   return (

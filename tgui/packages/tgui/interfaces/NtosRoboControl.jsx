@@ -2,7 +2,6 @@ import { useBackend, useSharedState } from '../backend';
 import {
   Box,
   Button,
-  Dropdown,
   LabeledList,
   ProgressBar,
   Section,
@@ -70,20 +69,23 @@ export const NtosRoboControl = (props) => {
             <Section>
               <Button
                 icon="address-card"
-                tooltip="允许/禁止无人机操作危险设备和电线."
-                content={
-                  droneaccess ? '授予无人机操作权限' : '撤销无人机操作权限'
-                }
+                tooltip="Grant/Remove Drone access to interact with machines and wires that would otherwise be deemed dangerous."
                 color={droneaccess ? 'good' : 'bad'}
                 onClick={() => act('changedroneaccess')}
-              />
-              <Dropdown
-                tooltip="无人机标记"
-                width="100%"
-                displayText={'无人机标记'}
-                options={dronepingtypes}
-                onSelected={(value) => act('ping_drones', { ping_type: value })}
-              />
+              >
+                {droneaccess ? 'Grant Drone Access' : 'Revoke Drone Access'}
+              </Button>
+              <Box my={1}>Drone Pings</Box>
+              {dronepingtypes.map((ping_type) => (
+                <Button
+                  key={ping_type}
+                  icon="bullhorn"
+                  tooltip="Issue a drone ping."
+                  onClick={() => act('ping_drones', { ping_type })}
+                >
+                  {ping_type}
+                </Button>
+              ))}
             </Section>
             {drones?.map((drone) => (
               <DroneInfo key={drone.drone_ref} drone={drone} />
@@ -153,8 +155,9 @@ export const RobotInfo = (props) => {
             <LabeledList.Item label="状态">{robot.mode}</LabeledList.Item>
             {mule && (
               <>
+                <LabeledList.Item label="Bot ID">{mule.id}</LabeledList.Item>
                 <LabeledList.Item label="搭载货物">
-                  {data.load || 'N/A'}
+                  {mule.load || 'N/A'}
                 </LabeledList.Item>
                 <LabeledList.Item label="停泊处">{mule.home}</LabeledList.Item>
                 <LabeledList.Item label="目的地">

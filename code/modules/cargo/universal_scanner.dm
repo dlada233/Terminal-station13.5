@@ -2,9 +2,10 @@
 
 /obj/item/universal_scanner
 	name = "通用扫码枪"
-	desc = "用于根据Nanotrasen导出数据库检查对象、分配价格标签或为自定义自动售货机准备商品的设备."
+	desc = "用于根据纳米传讯导出数据库检查对象、分配价格标签或为自定义自动售货机准备商品的设备."
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "export scanner"
+	worn_icon_state = "electronic"
 	inhand_icon_state = "export_scanner"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
@@ -128,15 +129,15 @@
 		payments_acc = null
 		to_chat(user, span_notice("你清除了注册账户."))
 
-/obj/item/universal_scanner/AltClick(mob/user)
-	. = ..()
+/obj/item/universal_scanner/click_alt(mob/user)
 	if(!scanning_mode == SCAN_SALES_TAG)
-		return
+		return CLICK_ACTION_BLOCKING
 	var/potential_cut = input("在注册的卡上支付多少钱？","利润率 ([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
 	if(!potential_cut)
 		cut_multiplier = initial(cut_multiplier)
 	cut_multiplier = clamp(round(potential_cut/100, cut_min), cut_min, cut_max)
 	to_chat(user, span_notice("[round(cut_multiplier*100)]% 如果销售带有条形码的货物，将获得利润."))
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/universal_scanner/examine(mob/user)
 	. = ..()

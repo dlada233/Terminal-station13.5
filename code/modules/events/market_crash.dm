@@ -4,11 +4,11 @@
  * Done by decreasing the station_target by a high value per crew member, resulting in the station total being much higher than the target, and causing artificial inflation.
  */
 /datum/round_event_control/market_crash
-	name = "Market Crash"
+	name = "Market Crash-市场崩溃"
 	typepath = /datum/round_event/market_crash
 	weight = 10
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Temporarily increases the prices of vending machines."
+	description = "暂时提高自动售货机的价格"
 
 /datum/round_event/market_crash
 	/// This counts the number of ticks that the market crash event has been processing, so that we don't call vendor price updates every tick, but we still iterate for other mechanics that use inflation.
@@ -26,12 +26,12 @@
 		"SolFed的投机性拨开适得其反",  /*SKYRAT EDIT CHANGE; original was "speculative Terragov grants backfiring"*/\
 		"银行惨遭抢劫一空",\
 		"供应链短缺",\
-		"\"Nanotrasen+\" 社交账号不小心发表了暴论",\
-		"\"Nanotrasen+\" 的虚拟偶像企划不太成功",\
-		"Dlada糟糕的资金管理"
+		"\"纳米传讯+\" 社交账号不小心发表了暴论",\
+		"\"纳米传讯+\" 的虚拟偶像企划不太成功",\
+		"糟糕的资金管理"
 	)
 	var/reason = pick(poss_reasons)
-	priority_announce("由于 [reason]，站内售货机的价格将在短期内上涨.", "Nanotrasen会计部门")
+	priority_announce("由于 [reason]，站内售货机的价格将在短期内上涨.", "纳米传讯会计部门")
 
 /datum/round_event/market_crash/start()
 	. = ..()
@@ -44,7 +44,7 @@
 	REMOVE_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING, MARKET_CRASH_EVENT_TRAIT)
 	SSeconomy.price_update()
 	SSeconomy.update_vending_prices()
-	priority_announce("站内售货机的价格现在已回落到正常水平.", "Nanotrasen会计部门")
+	priority_announce("站内售货机的价格现在已回落到正常水平.", "纳米传讯会计部门")
 
 /datum/round_event/market_crash/tick()
 	. = ..()

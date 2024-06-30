@@ -177,7 +177,7 @@
 		通过传统方式撤离疏散已不具备可能性; 但我们设法在[get_area_name(rift)]附近打开了一个裂隙. \
 		特此要求所有人员以任何可能的方式进入裂隙.\n\n\
 		[Gibberish("在必要的系统设备恢复后，将进行救援工作.", FALSE, 5)] \
-		[Gibberish("祝你好运--", FALSE, 25)]")
+		[Gibberish("祝你好--", FALSE, 25)]")
 	return rift
 
 /// Announce the destruction of the rift and end the round.

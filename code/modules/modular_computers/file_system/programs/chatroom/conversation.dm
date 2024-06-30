@@ -113,7 +113,7 @@
 
 /datum/ntnet_conversation/proc/changeop(datum/computer_file/program/chatclient/newop, silent = FALSE)
 	if(!istype(newop))
-		CRASH("[src]尝试添加[newop]为管理员失败, 因其不是本频道用户.")
+		CRASH("[src] is attempting to add [newop] as the operator, but it isn't a chat client.")
 	channel_operator = newop
 	if(!silent)
 		add_status_message("频道管理员转移到[newop.username].")

@@ -26,9 +26,9 @@
 /obj/machinery/power/terminal/examine(mob/user)
 	. = ..()
 	if(!QDELETED(powernet))
-		. += span_notice("它运作在[lowertext(GLOB.cable_layer_to_name["[cable_layer]"])].")
+		. += span_notice("它运作在[LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"])].")
 	else
-		. += span_warning("它与[lowertext(GLOB.cable_layer_to_name["[cable_layer]"])]断开了连接.")
+		. += span_warning("它与[LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"])]断开了连接.")
 
 /obj/machinery/power/terminal/should_have_node()
 	return TRUE

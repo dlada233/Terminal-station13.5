@@ -1,5 +1,5 @@
 /obj/item/stack/license_plates
-	name = "invalid plate"
+	name = "废车牌"
 	desc = "someone fucked up"
 	icon = 'icons/obj/machines/prison.dmi'
 	icon_state = "empty_plate"

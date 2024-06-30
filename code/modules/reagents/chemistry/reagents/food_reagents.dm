@@ -54,10 +54,10 @@
 			var/obj/item/the_real_food = holder.my_atom
 			if(isitem(the_real_food) && !is_reagent_container(the_real_food))
 				exposed_mob.add_mob_memory(/datum/memory/good_food, food = the_real_food)
-		// SKYRAT ADDITION BEGIN - Racial Drinks
+		// SKYRAT EDIT ADDITION BEGIN - Racial Drinks
 		if (RACE_DRINK)
 			exposed_mob.add_mood_event("quality_drink", /datum/mood_event/race_drink)
-		// SKYRAT ADDITION END
+		// SKYRAT EDIT ADDITION END
 
 /// Gets just how much nutrition this reagent is worth for the passed mob
 /datum/reagent/consumable/proc/get_nutriment_factor(mob/living/carbon/eater)
@@ -189,7 +189,7 @@
 			exposed_mob.emote("scream")
 		playsound(exposed_mob, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
 		ADD_TRAIT(exposed_mob, TRAIT_OIL_FRIED, "cooking_oil_react")
-		addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living, unfry_mob)), 3)
+		addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living, unfry_mob)), 0.3 SECONDS)
 	if(FryLoss)
 		exposed_mob.adjustFireLoss(FryLoss)
 
@@ -282,7 +282,7 @@
 	name = "Sugar-糖"
 	description = "通常被称为食糖的有机化合物，有时也被称为蔗糖，这种白色无味的结晶粉末有一种令人愉悦的甜味."
 	reagent_state = SOLID
-	color = "#FFFFFF" // rgb: 255, 255, 255
+	color = COLOR_WHITE // rgb: 255, 255, 255
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2
 	metabolization_rate = 5 * REAGENTS_METABOLISM
@@ -403,7 +403,7 @@
 		exposed_open_turf.air.temperature = max(exposed_open_turf.air.temperature - ((temperature - TCMB) * (heat_capacity * reac_volume * specific_heat) / (heat_capacity + reac_volume * specific_heat)) / heat_capacity, TCMB) // Exchanges environment temperature with reagent. Reagent is at 2.7K with a heat capacity of 40J per unit.
 	if(reac_volume < 5)
 		return
-	for(var/mob/living/simple_animal/slime/exposed_slime in exposed_turf)
+	for(var/mob/living/basic/slime/exposed_slime in exposed_turf)
 		exposed_slime.adjustToxLoss(rand(15,30))
 
 /datum/reagent/consumable/condensedcapsaicin
@@ -457,7 +457,7 @@
 	name = "Table Salt-调味盐"
 	description = "一种由氯化钠制成的盐，通常用于给食物调味."
 	reagent_state = SOLID
-	color = "#FFFFFF" // rgb: 255,255,255
+	color = COLOR_WHITE // rgb: 255,255,255
 	taste_description = "盐"
 	penetrates_skin = NONE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -488,13 +488,13 @@
 	adjust_blood_flow(-0.06 * reac_volume, initial_flow * 0.6) // 20u of a salt shacker * 0.1 = -1.6~ blood flow, but is always clamped to, at best, third blood loss from that wound.
 	// Crystal irritation worsening recovery.
 	gauzed_clot_rate *= 0.65
-	to_chat(carbies, span_notice("盐粒渗入了[lowertext(src)], 疼痛地刺激皮肤，但吸收了大部分血液."))
+	to_chat(carbies, span_notice("盐粒渗入了[LOWER_TEXT(src)], 疼痛地刺激皮肤，但吸收了大部分血液."))
 
 /datum/wound/slash/flesh/on_salt(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.1 * reac_volume, initial_flow * 0.5) // 20u of a salt shacker * 0.1 = -2~ blood flow, but is always clamped to, at best, halve blood loss from that wound.
 	// Crystal irritation worsening recovery.
 	clot_rate *= 0.75
-	to_chat(carbies, span_notice("盐粒渗入了[lowertext(src)], 疼痛地刺激皮肤，但吸收了大部分血液."))
+	to_chat(carbies, span_notice("盐粒渗入了[LOWER_TEXT(src)], 疼痛地刺激皮肤，但吸收了大部分血液."))
 
 /datum/wound/burn/flesh/on_salt(reac_volume)
 	// Slightly sanitizes and disinfects, but also increases infestation rate (some bacteria are aided by salt), and decreases flesh healing (can damage the skin from moisture absorption)
@@ -502,7 +502,7 @@
 	infestation -= max(VALUE_PER(0.3, 30) * reac_volume, 0)
 	infestation_rate += VALUE_PER(0.12, 30) * reac_volume
 	flesh_healing -= max(VALUE_PER(5, 30) * reac_volume, 0)
-	to_chat(victim, span_notice("盐粒渗入了[lowertext(src)],疼痛刺激皮肤!过了一会儿，感觉稍微好了一点."))
+	to_chat(victim, span_notice("盐粒渗入了[LOWER_TEXT(src)],疼痛刺激皮肤!过了一会儿，感觉稍微好了一点."))
 
 /datum/reagent/consumable/blackpepper
 	name = "Black Pepper-黑胡椒"
@@ -526,23 +526,19 @@
 	name = "Garlic Juice-蒜泥"
 	description = "碎大蒜，厨师们喜欢它，但它会让你闻起来很糟糕."
 	color = "#FEFEFE"
-	taste_description = "garlic"
+	taste_description = "大蒜"
 	metabolization_rate = 0.15 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/consumable/garlic/on_mob_add(mob/living/affected_mob, amount)
-	. = ..()
-	ADD_TRAIT(affected_mob, TRAIT_GARLIC_BREATH, type)
-
-/datum/reagent/consumable/garlic/on_mob_delete(mob/living/affected_mob)
-	. = ..()
-	REMOVE_TRAIT(affected_mob, TRAIT_GARLIC_BREATH, type)
+	added_traits = list(TRAIT_GARLIC_BREATH)
 
 /datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	if(isvampire(affected_mob)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
 		if(SPT_PROB(min((current_cycle-1)/2, 12.5), seconds_per_tick))
-			to_chat(affected_mob, span_danger("你的鼻子闻不出大蒜外的味道!你几乎不能思考..."))
+			if(HAS_TRAIT(affected_mob, TRAIT_ANOSMIA))
+				to_chat(affected_mob, span_danger("你感觉有什么地方错了，你的力量正在流失! 你几乎不能思考..."))
+			else
+				to_chat(affected_mob, span_danger("你的鼻子闻不出大蒜外的味道!你几乎不能思考..."))
 			affected_mob.Paralyze(10)
 			affected_mob.set_jitter_if_lower(20 SECONDS)
 	else
@@ -575,7 +571,7 @@
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles-糖屑"
 	description = "多色的小糖屑，常见于甜甜圈上，深受警察喜爱."
-	color = "#FF00FF" // rgb: 255, 0, 255
+	color = COLOR_MAGENTA // rgb: 255, 0, 255
 	taste_description = "童趣"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -640,7 +636,7 @@
 	name = "Flour-面粉"
 	description = "这就是你用来装鬼的东西."
 	reagent_state = SOLID
-	color = "#FFFFFF" // rgb: 0, 0, 0
+	color = COLOR_WHITE // rgb: 0, 0, 0
 	taste_description = "小麦粉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_AFFECTS_WOUNDS
 	default_container = /obj/item/reagent_containers/condiment/flour
@@ -660,18 +656,18 @@
 
 /datum/wound/pierce/bleed/on_flour(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.015 * reac_volume) // 30u of a flour sack * 0.015 = -0.45~ blood flow, prettay good
-	to_chat(carbies, span_notice("面粉渗进了[lowertext(src)], 痛苦地擦干伤口，吸收一些血液."))
+	to_chat(carbies, span_notice("面粉渗进了[LOWER_TEXT(src)], 痛苦地擦干伤口，吸收一些血液."))
 	// When some nerd adds infection for wounds, make this increase the infection
 
 /datum/wound/slash/flesh/on_flour(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.04 * reac_volume) // 30u of a flour sack * 0.04 = -1.25~ blood flow, pretty good!
-	to_chat(carbies, span_notice("面粉渗进了[lowertext(src)], 痛苦地擦干伤口，吸收一些血液."))
+	to_chat(carbies, span_notice("面粉渗进了[LOWER_TEXT(src)], 痛苦地擦干伤口，吸收一些血液."))
 	// When some nerd adds infection for wounds, make this increase the infection
 
 // Don't pour flour onto burn wounds, it increases infection risk! Very unwise. Backed up by REAL info from REAL professionals.
 // https://www.reuters.com/article/uk-factcheck-flour-burn-idUSKCN26F2N3
 /datum/wound/burn/flesh/on_flour(reac_volume)
-	to_chat(victim, span_notice("面粉渗进了[lowertext(src)], 让你痛不欲生!那可能不是个好主意..."))
+	to_chat(victim, span_notice("面粉渗进了[LOWER_TEXT(src)], 让你痛不欲生!那可能不是个好主意..."))
 	sanitization -= min(0, 1)
 	infestation += 0.2
 	return
@@ -705,7 +701,7 @@
 	description = "小米粒们"
 	reagent_state = SOLID
 	nutriment_factor = 3
-	color = "#FFFFFF" // rgb: 0, 0, 0
+	color = COLOR_WHITE // rgb: 0, 0, 0
 	taste_description = "米"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	default_container = /obj/item/reagent_containers/condiment/rice
@@ -714,7 +710,7 @@
 	name = "Rice Flour-米粉"
 	description = "面粉混着米粉？"
 	reagent_state = SOLID
-	color = "#FFFFFF" // rgb: 0, 0, 0
+	color = COLOR_WHITE // rgb: 0, 0, 0
 	taste_description = "小麦混米粉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -766,18 +762,18 @@
 
 /datum/wound/pierce/bleed/on_starch(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.03 * reac_volume)
-	to_chat(carbies, span_notice("粘稠的淀粉渗入了[lowertext(src)], 痛苦地擦干伤口，吸了一点血."))
+	to_chat(carbies, span_notice("粘稠的淀粉渗入了[LOWER_TEXT(src)], 痛苦地擦干伤口，吸了一点血."))
 	// When some nerd adds infection for wounds, make this increase the infection
 	return
 
 /datum/wound/slash/flesh/on_starch(reac_volume, mob/living/carbon/carbies)
 	adjust_blood_flow(-0.06 * reac_volume)
-	to_chat(carbies, span_notice("粘稠的淀粉渗入了[lowertext(src)], 痛苦地擦干伤口，吸了一点血."))
+	to_chat(carbies, span_notice("粘稠的淀粉渗入了[LOWER_TEXT(src)], 痛苦地擦干伤口，吸了一点血."))
 	// When some nerd adds infection for wounds, make this increase the infection
 	return
 
 /datum/wound/burn/flesh/on_starch(reac_volume, mob/living/carbon/carbies)
-	to_chat(carbies, span_notice("粘稠的淀粉渗入了[lowertext(src)], 让你痛不欲生!那可能不是个好主意..."))
+	to_chat(carbies, span_notice("粘稠的淀粉渗入了[LOWER_TEXT(src)], 让你痛不欲生!那可能不是个好主意..."))
 	sanitization -= min(0, 0.5)
 	infestation += 0.1
 	return
@@ -957,7 +953,7 @@
 	var/mob/living/carbon/exposed_carbon = exposed_mob
 	var/obj/item/organ/internal/stomach/ethereal/stomach = exposed_carbon.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(istype(stomach))
-		stomach.adjust_charge(reac_volume * 30)
+		stomach.adjust_charge(reac_volume * 0.03 * STANDARD_CELL_CHARGE)
 
 /datum/reagent/consumable/liquidelectricity/enriched/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
@@ -973,7 +969,7 @@
 	nutriment_factor = 0
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	reagent_state = SOLID
-	color = "#FFFFFF" // rgb: 255, 255, 255
+	color = COLOR_WHITE // rgb: 255, 255, 255
 	taste_mult = 8
 	taste_description = "甜味"
 	overdose_threshold = 17
@@ -1110,7 +1106,7 @@
 	name = "Korta Milk-科塔尔奶"
 	description = "一种乳白色的液体，由碾碎坚果的中心制成."
 	taste_description = "甜牛奶"
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/korta_nectar
@@ -1165,7 +1161,7 @@
 /datum/reagent/consumable/yoghurt
 	name = "Yoghurt-酸奶"
 	description = "乳状天然酸奶，在食品和饮料中都有应用."
-	taste_description = "yoghurt"
+	taste_description = "酸奶"
 	color = "#efeff0"
 	nutriment_factor = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

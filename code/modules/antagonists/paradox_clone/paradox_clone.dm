@@ -95,3 +95,9 @@
 		explanation_text = "自由目标"
 		CRASH("WARNING! [ADMIN_LOOKUPFLW(owner)] paradox clone objectives forged without an original!")
 	explanation_text = "杀掉并取代[target.name]，[!target_role_type ? target.assigned_role.title : target.special_role]. 记住你的任务是融入正常社会中，不到万不得已不要杀人."
+
+///Static bluespace stream used in its ghost poll icon.
+/obj/effect/bluespace_stream
+	name = "蓝空流"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "bluestream"

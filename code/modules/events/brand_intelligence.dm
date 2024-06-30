@@ -1,9 +1,9 @@
 /datum/round_event_control/brand_intelligence
-	name = "Brand Intelligence"
+	name = "Brand Intelligence-售货机暴动"
 	typepath = /datum/round_event/brand_intelligence
 	weight = 5
 	category = EVENT_CATEGORY_AI
-	description = "Vending machines will attack people until the Patient Zero is disabled."
+	description = "所有售货机受到感染开始攻击人，直到零号病机被摧毁."
 	min_players = 15
 	max_occurrences = 1
 	min_wizard_trigger_potency = 2

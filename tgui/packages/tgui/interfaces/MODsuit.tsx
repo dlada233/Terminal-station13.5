@@ -19,7 +19,7 @@ import {
   Stack,
   Table,
 } from '../components';
-import { formatSiUnit } from '../format';
+import { formatEnergy, formatPower, formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
 type MODsuitData = {
@@ -27,15 +27,17 @@ type MODsuitData = {
   ui_theme: string;
   control: string;
   complexity_max: number;
-  helmet: string;
-  chestplate: string;
-  gauntlets: string;
-  boots: string;
+  parts: PartData[];
   // Dynamic
   suit_status: SuitStatus;
   user_status: UserStatus;
   module_custom_status: ModuleCustomStatus;
   module_info: Module[];
+};
+
+type PartData = {
+  slot: string;
+  name: string;
 };
 
 type SuitStatus = {
@@ -98,7 +100,7 @@ type Module = {
   pinned: BooleanLike;
   idle_power: number;
   active_power: number;
-  use_power: number;
+  use_energy: number;
   module_complexity: number;
   cooldown_time: number;
   cooldown: number;
@@ -120,10 +122,10 @@ export const MODsuit = (props) => {
   const { interface_break } = data.suit_status;
   return (
     <Window
-      width={600}
-      height={600}
+      width={800}
+      height={640}
       theme={ui_theme}
-      title="模块服交互面板"
+      title="MOD Interface Panel"
     >
       <Window.Content scrollable={!interface_break}>
         <MODsuitContent />
@@ -171,9 +173,10 @@ const ConfigureNumberEntry = (props) => {
       value={value}
       minValue={-50}
       maxValue={50}
+      step={1}
       stepPixelSize={5}
       width="39px"
-      onChange={(e, value) =>
+      onChange={(value) =>
         act('configure', {
           key: name,
           value: value,
@@ -225,7 +228,7 @@ const ConfigureListEntry = (props) => {
   const { act } = useBackend();
   return (
     <Dropdown
-      displayText={value}
+      selected={value}
       options={values}
       onSelected={(value) =>
         act('configure', {
@@ -248,7 +251,7 @@ const ConfigurePinEntry = (props) => {
       }
       icon="thumbtack"
       selected={value}
-      tooltip="固定"
+      tooltip="Pin"
       tooltipPosition="left"
     />
   );
@@ -320,24 +323,24 @@ const ConfigureScreen = (props) => {
 const moduleTypeAction = (param) => {
   switch (param) {
     case 1:
-      return '使用';
+      return 'Use';
     case 2:
-      return '切换';
+      return 'Toggle';
     case 3:
-      return '选择';
+      return 'Select';
   }
 };
 
 const radiationLevels = (param) => {
   switch (param) {
     case 1:
-      return '低水平';
+      return 'Low';
     case 2:
-      return '中水平';
+      return 'Medium';
     case 3:
-      return '高水平';
+      return 'High';
     case 4:
-      return '极端水平';
+      return 'Extreme';
   }
 };
 
@@ -363,15 +366,15 @@ const SuitStatusSection = (props) => {
   const status = malfunctioning
     ? 'Malfunctioning'
     : active
-      ? '启动'
-      : '未启动';
+      ? 'Active'
+      : 'Inactive';
   const charge_percent = Math.round(
     (100 * cell_charge_current) / cell_charge_max,
   );
 
   return (
     <Section
-      title="模块服状态"
+      title="Suit Status"
       fill
       buttons={
         <Button
@@ -383,7 +386,7 @@ const SuitStatusSection = (props) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="电量">
+        <LabeledList.Item label="Charge">
           <ProgressBar
             value={cell_charge_current / cell_charge_max}
             ranges={{
@@ -402,21 +405,21 @@ const SuitStatusSection = (props) => {
                 : cell_charge_current === 1e31
                   ? 'Infinite'
                   : `${formatSiUnit(
-                      cell_charge_current * 1000,
+                      cell_charge_current,
                       0,
                       'J',
                     )} of ${formatSiUnit(
-                      cell_charge_max * 1000,
+                      cell_charge_max,
                       0,
                       'J',
                     )} (${charge_percent}%)`}
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="ID 锁">
+        <LabeledList.Item label="ID Lock">
           <Button
             icon={locked ? 'lock' : 'lock-open'}
             color={locked ? 'good' : 'default'}
-            content={locked ? '锁定' : '解锁'}
+            content={locked ? 'Locked' : 'Unlocked'}
             onClick={() => act('lock')}
           />
         </LabeledList.Item>
@@ -429,8 +432,8 @@ const SuitStatusSection = (props) => {
             content={
               link_freq
                 ? link_call
-                  ? '通话中 (' + link_call + ')'
-                  : '呼叫 (' + link_id + ')'
+                  ? 'Calling (' + link_call + ')'
+                  : 'Call (' + link_id + ')'
                 : 'Frequency Unset'
             }
             onClick={() => act('call')}
@@ -447,11 +450,11 @@ const SuitStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {!!ai_name && (
-          <LabeledList.Item label="个人人工智能 控制">
+          <LabeledList.Item label="pAI Control">
             {has_pai && (
               <Button
                 icon="eject"
-                content="弹出个人人工智能"
+                content="Eject pAI"
                 disabled={is_ai}
                 onClick={() => act('eject_pai')}
               />
@@ -475,28 +478,37 @@ const SuitStatusSection = (props) => {
 
 const HardwareSection = (props) => {
   const { act, data } = useBackend<MODsuitData>();
-  const { control, helmet, chestplate, gauntlets, boots } = data;
+  const { control } = data;
   const { ai_name, core_name } = data.suit_status;
   return (
     <Section title="Hardware" style={{ textTransform: 'capitalize' }}>
       <LabeledList>
-        <LabeledList.Item label="AI 助理">
-          {ai_name || '未检测到AI'}
+        <LabeledList.Item label="AI Assistant">
+          {ai_name || 'No AI Detected'}
         </LabeledList.Item>
-        <LabeledList.Item label="核心">
-          {core_name || '未检测到核心'}
+        <LabeledList.Item label="Core">
+          {core_name || 'No Core Detected'}
         </LabeledList.Item>
-        <LabeledList.Item label="控制单元">{control}</LabeledList.Item>
-        <LabeledList.Item label="头盔">{helmet || '无'}</LabeledList.Item>
-        <LabeledList.Item label="胸板">
-          {chestplate || '无'}
-        </LabeledList.Item>
-        <LabeledList.Item label="手套">
-          {gauntlets || '无'}
-        </LabeledList.Item>
-        <LabeledList.Item label="靴">{boots || '无'}</LabeledList.Item>
+        <LabeledList.Item label="Control Unit">{control}</LabeledList.Item>
+        <ModParts />
       </LabeledList>
     </Section>
+  );
+};
+
+const ModParts = (props) => {
+  const { act, data } = useBackend<MODsuitData>();
+  const { parts } = data;
+  return (
+    <>
+      {parts.map((part) => {
+        return (
+          <LabeledList.Item key={part.slot} label={part.slot + ' Slot'}>
+            {part.name}
+          </LabeledList.Item>
+        );
+      })}
+    </>
   );
 };
 
@@ -520,11 +532,11 @@ const UserStatusSection = (props) => {
     viruses,
   } = data.module_custom_status;
   return (
-    <Section title="使用者状态" fill>
+    <Section title="User Status" fill>
       {!active && <LockedModule />}
       <LabeledList>
         {health !== undefined && (
-          <LabeledList.Item label="健康状态">
+          <LabeledList.Item label="Health">
             <ProgressBar
               value={active ? health / health_max : 0}
               ranges={{
@@ -538,7 +550,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_brute !== undefined && (
-          <LabeledList.Item label="创伤">
+          <LabeledList.Item label="Brute Damage">
             <ProgressBar
               value={active ? loss_brute / health_max : 0}
               ranges={{
@@ -552,7 +564,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_fire !== undefined && (
-          <LabeledList.Item label="烧伤">
+          <LabeledList.Item label="Burn Damage">
             <ProgressBar
               value={active ? loss_fire / health_max : 0}
               ranges={{
@@ -566,7 +578,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_oxy !== undefined && (
-          <LabeledList.Item label="窒息">
+          <LabeledList.Item label="Oxy Damage">
             <ProgressBar
               value={active ? loss_oxy / health_max : 0}
               ranges={{
@@ -580,7 +592,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_tox !== undefined && (
-          <LabeledList.Item label="毒素">
+          <LabeledList.Item label="Tox Damage">
             <ProgressBar
               value={active ? loss_tox / health_max : 0}
               ranges={{
@@ -594,7 +606,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {background_radiation_level !== undefined && (
-          <LabeledList.Item label="辐射">
+          <LabeledList.Item label="Radiation">
             {!active ? (
               'Unknown'
             ) : is_user_irradiated ? (
@@ -618,12 +630,12 @@ const UserStatusSection = (props) => {
             {`${active ? Math.round(nutrition) : 0}`}
           </LabeledList.Item>
         )}
-        <LabeledList.Item label="名称">{user_name}</LabeledList.Item>
-        <LabeledList.Item label="职务">
+        <LabeledList.Item label="Name">{user_name}</LabeledList.Item>
+        <LabeledList.Item label="Assignment">
           {user_assignment}
         </LabeledList.Item>
         {dna_unique_identity !== undefined && (
-          <LabeledList.Item label="指纹">
+          <LabeledList.Item label="Fingerprints">
             <Box
               style={{
                 wordBreak: 'break-all',
@@ -678,22 +690,22 @@ const ModuleSection = (props) => {
 
   return (
     <Section
-      title="模块"
+      title="Modules"
       fill
       buttons={`${complexity} of ${complexity_max} complexity used`}
     >
       {!module_info.length ? (
-        <NoticeBox>未检测到模块</NoticeBox>
+        <NoticeBox>No Modules Detected</NoticeBox>
       ) : (
         <Table>
           <Table.Row header>
-            <Table.Cell colspan={3}>操作</Table.Cell>
-            <Table.Cell>名称</Table.Cell>
+            <Table.Cell colSpan={3}>Actions</Table.Cell>
+            <Table.Cell>Name</Table.Cell>
             <Table.Cell width={1} textAlign="center">
               <Button
                 color="transparent"
                 icon="plug"
-                tooltip="待机电力损耗"
+                tooltip="Idle Power Cost"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -701,7 +713,7 @@ const ModuleSection = (props) => {
               <Button
                 color="transparent"
                 icon="lightbulb"
-                tooltip="激活功率损耗"
+                tooltip="Active Power Cost"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -709,7 +721,7 @@ const ModuleSection = (props) => {
               <Button
                 color="transparent"
                 icon="bolt"
-                tooltip="启动功率损耗"
+                tooltip="Use Energy Cost"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -750,7 +762,7 @@ const ModuleSection = (props) => {
                     }
                     icon="cog"
                     selected={configureState === module.ref}
-                    tooltip="配置"
+                    tooltip="Configure"
                     tooltipPosition="left"
                     disabled={module.configuration_data.length === 0}
                   />
@@ -760,7 +772,7 @@ const ModuleSection = (props) => {
                     onClick={() => act('pin', { ref: module.ref })}
                     icon="thumbtack"
                     selected={module.pinned}
-                    tooltip="固定"
+                    tooltip="Pin"
                     tooltipPosition="left"
                     disabled={!module.module_type}
                   />
@@ -780,13 +792,45 @@ const ModuleSection = (props) => {
                     />
                   )}
                 </Table.Cell>
-                <Table.Cell textAlign="center">{module.idle_power}</Table.Cell>
                 <Table.Cell textAlign="center">
-                  {module.active_power}
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      width: '60px',
+                    }}
+                  >
+                    {formatPower(module.idle_power)}
+                  </div>
                 </Table.Cell>
-                <Table.Cell textAlign="center">{module.use_power}</Table.Cell>
                 <Table.Cell textAlign="center">
-                  {module.module_complexity}
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      width: '60px',
+                    }}
+                  >
+                    {formatPower(module.active_power)}
+                  </div>
+                </Table.Cell>
+                <Table.Cell textAlign="center">
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      width: '60px',
+                    }}
+                  >
+                    {formatEnergy(module.use_energy)}
+                  </div>
+                </Table.Cell>
+                <Table.Cell textAlign="center">
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      width: '10px',
+                    }}
+                  >
+                    {module.module_complexity}
+                  </div>
                 </Table.Cell>
               </Table.Row>
             );

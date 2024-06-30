@@ -1,47 +1,47 @@
 /datum/config_entry/string/alert_green
-	default = "所有对站点威胁均已解除，安保人员不得持有高性能武器，也不得在没有合理理由的情况下进行搜查或逮捕."
+	default = "All threats to the station have passed. Security may not have high powered weapons and may not search or arrest without Probable Cause."
 
 /datum/config_entry/string/alert_blue_upto
-	default = "已收到有关该站点可能存在敌对活动的可靠情报，建议安保人员携带带有非致命性弹药的武器，并可在安保首长、典狱长及舰长的授权下对船员进行搜身."
+	default = "The station has received reliable information about possible hostile activity on the station. Security staff may have longarms with nonlethals, and may search crew members with authorization from the Head of Security, Warden, or Captain."
 
 /datum/config_entry/string/alert_blue_downto
-	default = "重大威胁已经解除，安保人员不再建议佩戴致命性武器，只建议携带带有非致命性弹药的武器，并可在安保首长、典狱长及舰长的授权下对船员进行搜身."
+	default = "The immediate threat has passed. Security may no longer have lethal weapons, but may continue to have longarms with nonlethals. Searches are allowed with authorization from the Head of Security, Warden, or Captain."
 
 /datum/config_entry/string/alert_amber_upto
-	config_entry_value = "发生重大安全紧急情况，安保人员允许携带致命性武器，允许并建议进行随机搜查；所有安保人员应立即终止个人活动并回到位置上，非安保人员应当服从安保人员的相关指示."
+	config_entry_value = "A major security emergency has developed. Security staff may have lethal weapons. Random searches are allowed and advised. All security personnel are required to disengage personal activities and come to active duty. Non-security personnel are required to obey all relevant instructions from security staff."
 
 /datum/config_entry/string/alert_amber_downto
-	config_entry_value = "站点仍然面临重大安全紧急情况，非安保人员应当服从安保人员的相关指示并接受要求的搜查."
+	config_entry_value = "A major security emergency is still underway. Non-security personnel are required to obey all relevant instructions from security staff and submit to requested searches."
 
 /datum/config_entry/string/alert_red_upto
-	default = "站点面临直接的严重威胁，安保人员授权使用一切火力，允许并建议进行随机搜查，非安保人员必须服从安保人员的所有相关指示."
+	default = "There is an immediate serious threat to the station. Security may use all weapons available. Random searches are allowed and advised. Non-security personnel are required to obey all relevant instructions from security staff."
 
 /datum/config_entry/string/alert_red_downto
-	default = "站点的毁灭危机已被阻止，但仍面临直接的严重威胁，安保人员授权使用一切火力，允许并建议进行随机搜查，非安保人员必须服从安保人员的所有相关指示."
+	default = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may use all weapons available, random searches are allowed and advised. Non-security personnel are required to obey all relevant instructions from security staff and submit to requested searches."
 
 /datum/config_entry/string/alert_orange_upto
-	config_entry_value = "发生重大工程事故，非工程人员必须服从工程人员的相关指示，并立刻撤离受影响区域."
+	config_entry_value = "A major engineering emergency has developed. Non-engineering personnel are required to obey relevant instructions from engineering staff and are recommended to evacuate affected areas."
 
 /datum/config_entry/string/alert_orange_downto
-	config_entry_value = "发生重大工程事故，非工程人员必须服从工程人员的相关指示，并立刻撤离受影响区域."
+	config_entry_value = "A major engineering emergency has developed. Non-engineering personnel are required to obey relevant instructions from engineering staff and are recommended to evacuate affected areas."
 
 /datum/config_entry/string/alert_violet_upto
-	config_entry_value = "进入医疗紧急状态，非医疗人员必须服从医疗人员的所有相关指示，建议所有船员佩戴呼吸设备，并尽量减少不必要的接触."
+	config_entry_value = "A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff. All crew are advised to wear internals and minimize unecessary contact."
 
 /datum/config_entry/string/alert_violet_downto
-	config_entry_value = "进入医疗紧急状态，非医疗人员必须服从医疗人员的所有相关指示，建议所有船员佩戴呼吸设备，并尽量减少不必要的接触."
+	config_entry_value = "A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff. All crew are advised to wear internals and minimize unecessary contact."
 
 /datum/config_entry/string/alert_delta_upto
-	config_entry_value = "空间站面临毁灭，所有船员必须服从所有来自部门主管及安保人员的指示，任何违反命令的行为都将受到最高至当初处决的惩罚，这不是演习."
+	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff or security. Any violations of these orders can be punished by death. This is not a drill."
 
 /datum/config_entry/string/alert_delta_downto
-	config_entry_value = "空间站仍然面临毁灭，所有船员必须服从所有来自部门主管及安保人员的指示，任何违反命令的行为都将受到最高至当初处决的惩罚，这不是演习."
+	config_entry_value = "Destruction of the station is still imminent. All crew are instructed to obey all instructions given by heads of staff or security. Any violations of these orders can be punished by death. This is not a drill."
 
 /datum/config_entry/string/alert_epsilon_upto
-	config_entry_value = "Central Command-中央指挥部已下令对空间站实行Epsilon级安全策略，所有合同被视为终止."
+	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
 
 /datum/config_entry/string/alert_epsilon_downto
-	config_entry_value = "Central Command-中央指挥部已下令对空间站实行Epsilon级安全策略，所有合同被视为终止."
+	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
 
 /datum/config_entry/string/alert_gamma
-	config_entry_value = "Solar Federation-太阳系联邦已经发布伽马级警报，这个星系整面临着ZK级现实失效场景，安全部队被授权使用一切火力以化乱为治，不遵循紧急程序者将受到处决惩罚，这不是演习."
+	config_entry_value = "The Solar Federation has placed this system under Gamma Alert status. This galactic system is facing a ZK-Class Reality Failure Scenario. Security Personnel is authorized full access to lethal equipment to enforce Martial Law. Failure to follow emergency procedures is punishable by death. This is not a drill."

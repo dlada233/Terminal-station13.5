@@ -1,11 +1,11 @@
 /datum/round_event_control/anomaly/anomaly_flux
-	name = "Anomaly: Hyper-Energetic Flux"
+	name = "Anomaly: Hyper-Energetic Flux-高能通量波"
 	typepath = /datum/round_event/anomaly/anomaly_flux
 
 	min_players = 10
 	max_occurrences = 5
 	weight = 20
-	description = "This anomaly shocks and explodes."
+	description = "该异常引发爆炸冲击."
 	min_wizard_trigger_potency = 1
 	max_wizard_trigger_potency = 4
 

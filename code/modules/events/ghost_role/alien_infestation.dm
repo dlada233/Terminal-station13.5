@@ -1,5 +1,5 @@
 /datum/round_event_control/alien_infestation
-	name = "Alien Infestation"
+	name = "异形入侵"
 	typepath = /datum/round_event/ghost_role/alien_infestation
 	weight = 5
 
@@ -7,7 +7,7 @@
 
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
-	description = "A xenomorph larva spawns on a random vent."
+	description = "一只异形幼虫生成在随机的管道里."
 
 /datum/round_event_control/alien_infestation/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()
@@ -62,9 +62,9 @@
 		message_admins("An event attempted to spawn an alien but no suitable vents were found. Shutting down.")
 		return MAP_ERROR
 
-	var/list/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, pic_source = /mob/living/carbon/alien/larva, role_name_text = role_name)
+	var/list/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, alert_pic = /mob/living/carbon/alien/larva, role_name_text = role_name)
 
-	if(!candidates.len)
+	if(!length(candidates))
 		return NOT_ENOUGH_PLAYERS
 
 	while(spawncount > 0 && vents.len && candidates.len)

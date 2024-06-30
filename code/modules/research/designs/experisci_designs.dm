@@ -1,6 +1,6 @@
 /datum/design/experi_scanner
-	name = "Experimental Scanner-实验扫描仪"
-	desc = "用于各种扫描实验的实验扫描仪."
+	name = "Experimental Scanner"
+	desc = "Experimental scanning unit used for performing scanning experiments."
 	id = "experi_scanner"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/iron =SMALL_MATERIAL_AMOUNT*5)

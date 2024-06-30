@@ -23,7 +23,7 @@
 
 /obj/item/gun/ballistic/revolver/chamber_round(spin_cylinder = TRUE, replace_new_round)
 	if(!magazine) //if it mag was qdel'd somehow.
-		CRASH("左轮手枪在没有弹巢的情况下开膛!")
+		CRASH("revolver tried to chamber a round without a magazine!")
 	if(chambered)
 		UnregisterSignal(chambered, COMSIG_MOVABLE_MOVED)
 	if(spin_cylinder)
@@ -37,9 +37,9 @@
 	..()
 	chamber_round()
 
-/obj/item/gun/ballistic/revolver/AltClick(mob/user)
-	..()
+/obj/item/gun/ballistic/revolver/click_alt(mob/user)
 	spin()
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/gun/ballistic/revolver/fire_sounds()
 	var/frequency_to_use = sin((90/magazine?.max_ammo) * get_ammo(TRUE, FALSE)) // fucking REVOLVERS
@@ -311,3 +311,10 @@
 		user.emote("scream")
 		user.drop_all_held_items()
 		user.Paralyze(80)
+
+/obj/item/gun/ballistic/revolver/reverse/mateba
+	name = /obj/item/gun/ballistic/revolver/mateba::name
+	desc = /obj/item/gun/ballistic/revolver/mateba::desc
+	clumsy_check = FALSE
+	icon_state = "mateba"
+

@@ -24,6 +24,7 @@
 	attack_verb_simple = list("pinch", "nip")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'
+	operating_sound = 'sound/items/wirecutter_cut.ogg'
 	drop_sound = 'sound/items/handling/wirecutter_drop.ogg'
 	pickup_sound = 'sound/items/handling/wirecutter_pickup.ogg'
 	tool_behaviour = TOOL_WIRECUTTER
@@ -63,7 +64,7 @@
 	playsound(loc, usesound, 50, TRUE, -1)
 	return BRUTELOSS
 
-/obj/item/wirecutters/abductor//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
+/obj/item/wirecutters/abductor//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "外星剪线钳"
 	desc = "极其锋利的剪线钳，由一种银绿色金属制成."
 	icon = 'icons/obj/antags/abductor.dmi'
@@ -77,7 +78,7 @@
 	name = "动力剪线钳"
 	desc = "用电力相剪电线。比普通剪线钳更急."
 	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "wirecutters_cyborg"
+	icon_state = "toolkit_engiborg_cutters"
 	worn_icon_state = "cutters"
 	toolspeed = 0.5
 	random_color = FALSE

@@ -2,13 +2,13 @@
 #define TRAM_MALFUNCTION_TIME_LOWER 120
 
 /datum/round_event_control/tram_malfunction
-	name = "Tram Malfunction"
+	name = "Tram Malfunction-电车故障"
 	typepath = /datum/round_event/tram_malfunction
-	weight = 40
-	max_occurrences = 4
+	weight = 30
+	max_occurrences = 3
 	earliest_start = 15 MINUTES
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Tram crossing signals malfunction, tram collision damage is increased."
+	description = "电车将紧急停止，需要工程干预."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
 
@@ -34,9 +34,6 @@
 /datum/round_event/tram_malfunction/setup()
 	end_when = rand(TRAM_MALFUNCTION_TIME_LOWER, TRAM_MALFUNCTION_TIME_UPPER)
 
-/datum/round_event/tram_malfunction/announce()
-	priority_announce("我们的自动控制系统与电车的车载计算机失去了联系，在工程师诊断和解决问题时，请注意交通安全.", "[command_name()]工程部")
-
 /datum/round_event/tram_malfunction/start()
 	for(var/datum/transport_controller/linear/tram/malfunctioning_controller as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
 		if(malfunctioning_controller.specific_transport_id == specific_transport_id)
@@ -45,9 +42,8 @@
 
 /datum/round_event/tram_malfunction/end()
 	for(var/datum/transport_controller/linear/tram/malfunctioning_controller as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
-		if(malfunctioning_controller.specific_transport_id == specific_transport_id && malfunctioning_controller.controller_status & COMM_ERROR)
+		if(malfunctioning_controller.specific_transport_id == specific_transport_id && malfunctioning_controller.malf_active)
 			malfunctioning_controller.end_malf_event()
-			priority_announce("电车上的软件已经重置，现已恢复正常运行，对于造成的不便我们深表歉意.", "[command_name()]工程部")
 			return
 
 #undef TRAM_MALFUNCTION_TIME_UPPER

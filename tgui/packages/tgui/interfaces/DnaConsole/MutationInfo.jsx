@@ -1,5 +1,4 @@
 import { filter, uniqBy } from 'common/collections';
-import { flow } from 'common/fp';
 
 import { useBackend } from '../../backend';
 import {
@@ -122,10 +121,10 @@ export const MutationInfo = (props) => {
     isSameMutation(x, mutation),
   );
   const savedToDisk = diskMutations.find((x) => isSameMutation(x, mutation));
-  const combinedMutations = flow([
-    uniqBy((mutation) => mutation.Name),
-    filter((x) => x.Name !== mutation.Name),
-  ])([...diskMutations, ...mutationStorage]);
+  const combinedMutations = filter(
+    uniqBy([...diskMutations, ...mutationStorage], (mutation) => mutation.Name),
+    (x) => x.Name !== mutation.Name,
+  );
   return (
     <>
       <LabeledList>
@@ -134,9 +133,7 @@ export const MutationInfo = (props) => {
             {mutation.Name}
           </Box>
         </LabeledList.Item>
-        <LabeledList.Item label="描述">
-          {mutation.Description}
-        </LabeledList.Item>
+        <LabeledList.Item label="描述">{mutation.Description}</LabeledList.Item>
         <LabeledList.Item label="不稳定性">
           {mutation.Instability}
         </LabeledList.Item>

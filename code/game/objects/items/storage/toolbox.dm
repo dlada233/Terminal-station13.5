@@ -331,7 +331,7 @@
 /obj/item/storage/toolbox/guncase/Initialize(mapload)
 	. = ..()
 	atom_storage.max_specific_storage = WEIGHT_CLASS_BULKY
-	atom_storage.max_total_storage = 7 //enough to hold ONE bulky gun and the 弹药箱es
+	atom_storage.max_total_storage = 7 //enough to hold ONE bulky gun and the ammo boxes
 	atom_storage.max_slots = 4
 
 /obj/item/storage/toolbox/guncase/PopulateContents()

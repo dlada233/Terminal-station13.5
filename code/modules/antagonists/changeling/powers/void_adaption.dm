@@ -53,14 +53,14 @@
 	if (!should_be_active)
 		on_removed_adaption(void_adapted, "我们的细胞在安全的空气中松弛下来.")
 		return
-	var/datum/antagonist/changeling/changeling_data = void_adapted.mind?.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling_data = IS_CHANGELING(void_adapted)
 	to_chat(void_adapted, span_changeling("我们的细胞为抵御[pick(active_reasons)]而硬化起来."))
 	changeling_data?.chem_recharge_slowdown -= recharge_slowdown
 	currently_active = TRUE
 
 /// Called when we stop being adapted
 /datum/action/changeling/void_adaption/proc/on_removed_adaption(mob/living/former, message)
-	var/datum/antagonist/changeling/changeling_data = former.mind?.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling_data = IS_CHANGELING(former)
 	to_chat(former, span_changeling(message))
 	changeling_data?.chem_recharge_slowdown += recharge_slowdown
 	currently_active = FALSE

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/utility/hardhat/cakehat
-	name = "cakehat"
-	desc = "You put the cake on your head. Brilliant."
+	name = "蛋糕帽"
+	desc = "你把蛋糕戴在头上，真是聪明."
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "hardhat0_cakehat"
@@ -9,8 +9,10 @@
 	lefthand_file = 'icons/mob/inhands/clothing/hats_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing/hats_righthand.dmi'
 	armor_type = /datum/armor/none
+	light_system = OVERLAY_LIGHT
 	light_range = 2 //luminosity when on
-	light_system = MOVABLE_LIGHT
+	light_power = 1.3
+	light_color = "#FF964E"
 	flags_cover = HEADCOVERSEYES
 	heat = 999
 	wound_bonus = 10
@@ -53,8 +55,8 @@
 	return on * heat
 
 /obj/item/clothing/head/utility/hardhat/cakehat/energycake
-	name = "energy cake"
-	desc = "You put the energy sword on your cake. Brilliant."
+	name = "能量蛋糕"
+	desc = "你把能量剑放在蛋糕上，真是聪明."
 	icon_state = "hardhat0_energycake"
 	inhand_icon_state = "hardhat0_energycake"
 	hat_type = "energycake"
@@ -62,16 +64,16 @@
 	hitsound_on = 'sound/weapons/blade1.ogg'
 	hitsound_off = 'sound/weapons/tap.ogg'
 	damtype_on = BRUTE
-	force_on = 18 //same as epen (but much more obvious)
-	light_range = 3 //ditto
+	force_on = 18 //与能量笔相同（但明显得多）
+	light_range = 3 //同上
 	heat = 0
 
 /obj/item/clothing/head/utility/hardhat/cakehat/energycake/turn_on(mob/living/user)
 	playsound(src, 'sound/weapons/saberon.ogg', 5, TRUE)
-	to_chat(user, span_warning("You turn on \the [src]."))
+	to_chat(user, span_warning("你启动了[src]."))
 	return ..()
 
 /obj/item/clothing/head/utility/hardhat/cakehat/energycake/turn_off(mob/living/user)
 	playsound(src, 'sound/weapons/saberoff.ogg', 5, TRUE)
-	to_chat(user, span_warning("You turn off \the [src]."))
+	to_chat(user, span_warning("你关闭了[src]."))
 	return ..()

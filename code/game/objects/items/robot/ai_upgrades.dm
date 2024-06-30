@@ -4,7 +4,7 @@
 //Malf Picker
 /obj/item/malf_upgrade
 	name = "战争升级模块"
-	desc = "高度非法、极度危险的AI升级模块，赋予安装AI各种各样的能力，如攻击APC的能力.<br>该升级模块不会覆盖任何有效法律，仅仅作用于一个有效的AI核心."
+	desc = "高度非法、极度危险的AI升级模块，赋予安装AI各种各样的能力，如攻击APC的能力.<br>该升级模块不会覆盖任何有效法令，仅仅作用于一个有效的AI核心."
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "datadisk3"
 

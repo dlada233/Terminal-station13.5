@@ -27,6 +27,8 @@
 	var/area/weakpoint_area
 
 /datum/traitor_objective/locate_weakpoint/can_generate_objective(datum/mind/generating_for, list/possible_duplicates)
+	if(length(possible_duplicates) > 0)
+		return FALSE
 	if(handler.get_completion_progression(/datum/traitor_objective) < progression_objectives_minimum)
 		return FALSE
 	if(SStraitor.get_taken_count(/datum/traitor_objective/locate_weakpoint) > 0)
@@ -160,7 +162,7 @@
 
 /obj/item/weakpoint_locator/attack_self(mob/living/user, modifiers)
 	. = ..()
-	if(!istype(user) || loc != user || !user.mind) // 禁止心灵感应操作
+	if(!istype(user) || loc != user || !user.mind) //No TK cheese
 		return
 
 	var/datum/traitor_objective/locate_weakpoint/objective = objective_weakref.resolve()
@@ -190,7 +192,7 @@
 	for(var/mob/living/silicon/ai/ai_player in GLOB.player_list)
 		to_chat(ai_player, alertstr)
 
-	if(!do_after(user, 30 SECONDS, src, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(scan_checks), user, user_area, objective)))
+	if(!do_after(user, 30 SECONDS, src, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(scan_checks), user, user_area, objective), hidden = TRUE))
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
 
@@ -230,7 +232,7 @@
 
 	boom_sizes = list(3, 6, 9)
 
-	/// 用户任务的弱引用
+	/// Weakref to user's objective
 	var/datum/weakref/objective_weakref
 
 /obj/item/grenade/c4/es8/Initialize(mapload, objective)

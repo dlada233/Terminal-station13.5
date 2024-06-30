@@ -191,3 +191,33 @@
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/lustrous/gunner
 	rank = "辉光者"
+
+/obj/effect/mob_spawn/ghost_role/human/pirate/medieval
+	name = "\improper 简易睡仓"
+	desc = "被戳了洞的收尸袋，目前用于当睡袋，好像还有人在里面睡觉."
+	density = FALSE
+	you_are_text = "你以前只是个无名小卒，直到有人给了你一把剑以及上升的机会. 如果你再付出一些努力，或许可以创造你的辉煌."
+	flavour_text = "在参与暴力血腥运动的时候顺带袭击一些白痴？多划算啊，聚在一起，洗劫一切!"
+	icon = 'icons/obj/medical/bodybag.dmi'
+	icon_state = "bodybag"
+	fluff_spawn = null
+	prompt_name = "中世纪战团战士"
+	outfit = /datum/outfit/pirate/medieval
+	rank = "Footsoldier"
+
+/obj/effect/mob_spawn/ghost_role/human/pirate/medieval/special(mob/living/carbon/spawned_mob)
+	. = ..()
+	if(rank == "Footsoldier")
+		ADD_TRAIT(spawned_mob, TRAIT_NOGUNS, INNATE_TRAIT)
+		spawned_mob.AddComponent(/datum/component/unbreakable)
+		var/datum/action/cooldown/mob_cooldown/dash/dodge = new(spawned_mob)
+		dodge.Grant(spawned_mob)
+
+/obj/effect/mob_spawn/ghost_role/human/pirate/medieval/warlord
+	rank = "军阀"
+	outfit = /datum/outfit/pirate/medieval/warlord
+
+/obj/effect/mob_spawn/ghost_role/human/pirate/medieval/warlord/special(mob/living/carbon/spawned_mob)
+	. = ..()
+	spawned_mob.dna.add_mutation(/datum/mutation/human/hulk/superhuman)
+	spawned_mob.dna.add_mutation(/datum/mutation/human/gigantism)

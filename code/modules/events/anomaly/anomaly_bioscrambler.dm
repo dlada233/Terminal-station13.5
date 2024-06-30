@@ -1,11 +1,11 @@
 /datum/round_event_control/anomaly/anomaly_bioscrambler
-	name = "Anomaly: Bioscrambler"
+	name = "Anomaly: Bioscrambler-生物换肢"
 	typepath = /datum/round_event/anomaly/anomaly_bioscrambler
 
 	min_players = 10
 	max_occurrences = 5
 	weight = 20
-	description = "This anomaly replaces the limbs of nearby people."
+	description = "该异常替换周围人的肢体."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 2
 

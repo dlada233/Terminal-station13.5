@@ -1,5 +1,5 @@
 /obj/machinery/computer/mechpad
-	name = "轨道机甲控制台"
+	name = "轨道机甲控制终端"
 	desc = "一种设计用来处理从轨道上发送和接收机甲所需的计算和路由,需要连接到附近的轨道机甲垫才能运行."
 	icon_screen = "mechpad"
 	icon_keyboard = "teleport_key"
@@ -34,7 +34,8 @@
 	SIGNAL_HANDLER
 	connected_mechpad = null
 
-/obj/machinery/computer/mechpad/LateInitialize()
+/obj/machinery/computer/mechpad/post_machine_initialize()
+	. = ..()
 	for(var/obj/machinery/mechpad/pad as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/mechpad))
 		if(pad == connected_mechpad)
 			continue

@@ -30,7 +30,7 @@
 	options = altar_items
 
 /obj/structure/destructible/cult/item_dispenser/altar/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cultitalic("你跪在[src]前，你的信仰被回报以[spawned_item]!"))
+	to_chat(user, span_cult_italic("你跪在[src]前，你的信仰被回报以[spawned_item]!"))
 
 #undef ELDRITCH_WHETSTONE
 #undef CONSTRUCT_SHELL

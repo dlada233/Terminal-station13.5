@@ -42,7 +42,7 @@
 		/obj/item/stack/sheet/mineral/gold = 15,
 		/obj/effect/spawner/random/engineering/tool_advanced = 3
 	)
-	rpg_title = "Head Crystallomancer"
+	rpg_title = "大构筑术士"
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 
 	voice_of_god_power = 1.4 //Command staff has authority
@@ -57,7 +57,7 @@
 
 
 /datum/outfit/job/ce
-	name = "首席工程师"
+	name = "工程部长"
 	jobtype = /datum/job/chief_engineer
 
 	id = /obj/item/card/id/advanced/silver
@@ -85,7 +85,7 @@
 	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/ce/mod
-	name = "首席工程师 (模块服)"
+	name = "工程部长 (模块服)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/advanced

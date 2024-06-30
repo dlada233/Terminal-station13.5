@@ -4,7 +4,7 @@
 #define RISEN_MAX_HEALTH 125
 
 /datum/heretic_knowledge/limited_amount/risen_corpse
-	name = "破碎秘仪"
+	name = "破碎秘仪-Risen corpse"
 	desc = "你可以将一具带有灵魂的尸体、一双乳胶或丁腈手套以及一件任意外衣（如盔甲）进行嬗变以创造一个破碎返生者\
 		破碎返生者是强大的食尸鬼，拥有125点生命值，自带两把残忍的武器，但无法拿取物品，同一时间也只能创造一只."
 	gain_text = "我目睹了一股冰冷破碎的力量将这具尸体拖回了返生的状态. \
@@ -118,7 +118,7 @@
 		icon_state = "[base_icon_state]_left"
 
 /datum/heretic_knowledge/rune_carver
-	name = "雕刻刀"
+	name = "雕刻刀-Rune carver"
 	desc = "你可以将一把刀、一块玻璃碎片盒一张纸嬗变成一把雕刻刀. \
 		雕刻刀可以让你雕刻出难以被察觉的陷阱，不信之人一旦走上去就会触发. 另外这也是一把方便的投掷武器."
 	gain_text = "蚀刻，雕刻...永远地. 力量潜藏在万物之间. 我可以揭开它的面纱! \
@@ -137,7 +137,7 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/summon/maid_in_mirror
-	name = "镜中少女"
+	name = "镜中少女-Maid in mirror"
 	desc = "你可以将五片钛、一个闪光灯、一套护甲和一块肺嬗变成一名镜中少女. \
 		镜中少女是优秀的战士，可以通过进出镜界而变得无形，擅长侦察与伏击."
 	gain_text = "每个反射面都泛出不存在的色彩，都是通往奇异世界的大门. 水晶玻璃铺成楼梯，利刃尖刀砌成墙壁，如若无人指引，步步下血池."

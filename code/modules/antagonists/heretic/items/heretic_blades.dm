@@ -145,3 +145,12 @@
 	after_use_message = "管家听到了你的呼唤..."
 	tool_behaviour = TOOL_CROWBAR
 	toolspeed = 1.3
+
+// Path of Moon's blade
+/obj/item/melee/sickly_blade/moon
+	name = "\improper 月之刃"
+	desc = "刃面中显映这片土地上的真相: 终有一天我都会在剧团相聚. \
+		剧团不分男女老幼，只为他们在脸上刻满微笑."
+	icon_state = "moon_blade"
+	inhand_icon_state = "moon_blade"
+	after_use_message = "月亮听到了你的呼唤..."

@@ -1,6 +1,6 @@
 /obj/machinery/computer/robotics
 	name = "机器人控制争端"
-	desc = "用于远程锁定已链接的Cyborgs和Drones-无人机."
+	desc = "用于远程锁定已链接的赛博格和Drones-无人机."
 	icon_screen = "robot"
 	icon_keyboard = "rd_key"
 	req_access = list(ACCESS_ROBOTICS)

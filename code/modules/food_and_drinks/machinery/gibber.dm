@@ -1,6 +1,6 @@
-/obj/machinery/gibber//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
+/obj/machinery/gibber//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "歌唱机"
-	desc = "这个名字不够描述?"
+	desc = "这个名字还不够描述的?"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grinder"
 	density = TRUE
@@ -144,8 +144,14 @@
 	if(!occupant)
 		audible_message(span_hear("你听到一声巨大的金属摩擦声."))
 		return
+	if(occupant.flags_1 & HOLOGRAM_1)
+		audible_message(span_hear("你听到一声短促的金属摩擦声"))
+		playsound(loc, 'sound/machines/hiss.ogg', 20, TRUE)
+		qdel(occupant)
+		set_occupant(null)
+		return
 
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 	audible_message(span_hear("你听到一声响亮的磨碎声."))
 	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	operating = TRUE
@@ -170,7 +176,9 @@
 
 	if(ishuman(occupant))
 		var/mob/living/carbon/human/gibee = occupant
-		if(gibee.dna && gibee.dna.species)
+		if(prob(40) && (sourcejob in list(JOB_SECURITY_OFFICER,JOB_WARDEN,JOB_HEAD_OF_SECURITY)))
+			typeofmeat = /obj/item/food/meat/slab/pig
+		else if(gibee.dna && gibee.dna.species)
 			typeofmeat = gibee.dna.species.meat
 			typeofskin = gibee.dna.species.skinned_type
 

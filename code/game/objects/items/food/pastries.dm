@@ -77,6 +77,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
+/obj/item/food/waffles/make_edible()
+	. = ..()
+	AddComponent(/datum/component/ice_cream_holder, max_scoops = 1, x_offset = -2)
+
 /obj/item/food/soylentgreen
 	name = "\improper 绿色食品"
 	desc = "原料不是人类,没说谎." //Totally people.
@@ -122,6 +126,10 @@
 	foodtypes = GRAIN | VEGETABLES | SUGAR | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
+
+/obj/item/food/rofflewaffles/make_edible()
+	. = ..()
+	AddComponent(/datum/component/ice_cream_holder, max_scoops = 1, x_offset = -2)
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 
@@ -186,9 +194,9 @@
 	foodtypes = GRAIN | JUNKFOOD | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_2
 
-/obj/item/food/cookie/sugar/Initialize(mapload)
+/obj/item/food/cookie/sugar/Initialize(mapload, seasonal_changes = TRUE)
 	. = ..()
-	if(check_holidays(FESTIVE_SEASON))
+	if(seasonal_changes && check_holidays(FESTIVE_SEASON))
 		var/shape = pick("圣诞树", "熊", "圣诞老人", "长袜", "礼物", "拐杖")
 		desc = "一个[shape]形状的糖霜曲奇.我希望圣诞老人喜欢它!"
 		icon_state = "sugarcookie_[shape]"
@@ -371,12 +379,10 @@
 	 */
 	var/list/prefill_flavours
 
-/obj/item/food/icecream/New(loc, list/prefill_flavours)
-	return ..()
-
 /obj/item/food/icecream/Initialize(mapload, list/prefill_flavours)
-	if(prefill_flavours)
-		src.prefill_flavours = prefill_flavours
+	if(ingredients)
+		ingredients_text = "需要: [reagent_paths_list_to_text(ingredients)]"
+	src.prefill_flavours = prefill_flavours
 	return ..()
 
 /obj/item/food/icecream/make_edible()
@@ -385,7 +391,7 @@
 
 /obj/item/food/icecream/chocolate
 	name = "巧克力筒"
-	desc = "美味的巧克力筒，但是没有冰淇淋。"
+	desc = "美味的巧克力筒，但是没有冰淇淋."
 	icon_state = "icecream_cone_chocolate"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -396,11 +402,10 @@
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/consumable/coco,
 	)
-	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/icecream/korta
 	name = "科塔尔筒"
-	desc = "美味的蜥式蛋卷，但没有冰淇淋。"
+	desc = "美味的蜥式蛋卷，但没有冰淇淋."
 	foodtypes = NUTS | SUGAR
 	ingredients = list(
 		/datum/reagent/consumable/korta_flour,

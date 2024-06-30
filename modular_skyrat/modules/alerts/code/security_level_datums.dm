@@ -26,7 +26,7 @@
  * Medical emergency
  */
 /datum/security_level/violet
-	name = "紫色"
+	name = "violet"
 	announcement_color = "purple"
 	number_level = SEC_LEVEL_VIOLET
 	lowering_to_configuration_key = /datum/config_entry/string/alert_violet_downto
@@ -40,7 +40,7 @@
  * Engineering emergency
  */
 /datum/security_level/orange
-	name = "橙色"
+	name = "orange"
 	announcement_color = "orange"
 	number_level = SEC_LEVEL_ORANGE
 	lowering_to_configuration_key = /datum/config_entry/string/alert_orange_downto
@@ -55,7 +55,7 @@
  */
 
 /datum/security_level/amber
-	name = "琥珀色"
+	name = "amber"
 	announcement_color = "yellow"
 	number_level = SEC_LEVEL_AMBER
 	lowering_to_configuration_key = /datum/config_entry/string/alert_amber_downto
@@ -84,7 +84,7 @@
  * XK-Class EOW Event
  */
 /datum/security_level/gamma
-	name = "伽马"
+	name = "gamma"
 	announcement_color = "pink"
 	number_level = SEC_LEVEL_GAMMA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_gamma

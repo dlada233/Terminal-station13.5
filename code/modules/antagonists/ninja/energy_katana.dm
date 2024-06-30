@@ -28,8 +28,8 @@
 	pickup_sound = 'sound/items/unsheath.ogg'
 	drop_sound = 'sound/items/sheath.ogg'
 	block_sound = 'sound/weapons/block_blade.ogg'
-	attack_verb_continuous = list("攻击", "横劈", "竖切", "斜斩", "撩剁", "平抹", "送刀向", "外旋至", "直刺")
-	attack_verb_simple = list("攻击", "横劈", "竖切", "斜斩", "撩剁", "平抹", "送刀向", "外旋至", "直刺")
+	attack_verb_continuous = list("攻击", "横劈", "竖切", "斜斩", "袈裟斩", "一文字斩", "直刺")
+	attack_verb_simple = list("攻击", "横劈", "竖切", "斜斩", "袈裟斩", "一文字斩", "直刺")
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
 	max_integrity = 200

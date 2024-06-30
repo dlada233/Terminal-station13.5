@@ -102,7 +102,7 @@
 	crate_name = "小马箱"
 
 /datum/supply_pack/critter/crab
-	name = "蟹友会"
+	name = "螃蟹"
 	desc = "CRAAAAAAB ROCKET. CRAB ROCKET. CRAB ROCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB \
 		CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB \
 		CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB \
@@ -112,7 +112,7 @@
 		ROCKEEEEEEEEEGGGGHHHHTT CRAB CRAB CRAABROCKET CRAB ROCKEEEET."//fun fact: i actually spent like 10 minutes and transcribed the entire video.
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/mob/living/basic/crab)
-	crate_name = "集合啦动物蟹友会"
+	crate_name = "螃蟹"
 	drop_pod_only = TRUE
 
 /datum/supply_pack/critter/crab/generate()

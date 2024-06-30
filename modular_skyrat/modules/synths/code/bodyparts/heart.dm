@@ -1,7 +1,7 @@
 /obj/item/organ/internal/heart/synth
 	name = "hydraulic pump engine"
 	desc = "An electronic device that handles the hydraulic pumps, powering one's robotic limbs. Without this, synthetics are unable to move."
-	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
+	organ_flags = ORGAN_ROBOTIC
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "heart-ipc-on"
 	base_icon_state = "heart-ipc"
@@ -34,8 +34,8 @@
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5,
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/organ/internal/heart/synth
 	category = list(

@@ -92,10 +92,7 @@ const TransferSection = (props) => {
       <Stack.Item>
         <Section title="转账">
           <Box>
-            <Tooltip
-              content="输入转账收款方的支付令牌."
-              position="top"
-            >
+            <Tooltip content="输入转账收款方的支付令牌." position="top">
               <Input
                 placeholder="支付令牌"
                 width="190px"
@@ -103,10 +100,7 @@ const TransferSection = (props) => {
               />
             </Tooltip>
           </Box>
-          <Tooltip
-            content="输入转出信用点的数额."
-            position="top"
-          >
+          <Tooltip content="输入转出信用点的数额." position="top">
             <RestrictedInput
               width="83px"
               minValue={1}
@@ -160,9 +154,9 @@ const TransactionHistory = (props) => {
     <Section fill title="收支记录">
       <Section fill scrollable title={<TableHeaders />}>
         <Table>
-          {transaction_list.map((log) => (
+          {transaction_list.map((log, index) => (
             <Table.Row
-              key={log}
+              key={index}
               className="candystripe"
               color={log.adjusted_money < 1 ? 'red' : 'green'}
             >

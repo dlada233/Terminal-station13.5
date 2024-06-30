@@ -5,8 +5,8 @@
 		此外，在附近存在有感知的生命时，你无法施展避难所技能，并且当你接触到反魔法造物时，你的避难状态会失效."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
-	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	button_icon_state = "ninja_cloak"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "caretaker"
 	sound = 'sound/effects/curse2.ogg'
 
 	school = SCHOOL_FORBIDDEN

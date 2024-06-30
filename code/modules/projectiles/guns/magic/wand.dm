@@ -103,7 +103,7 @@
 
 /obj/item/gun/magic/wand/resurrection
 	name = "治愈魔杖"
-	desc = "这根魔杖使用治疗魔法来治疗和复活，由于某些原因，它们很少在巫师联合会中使用."
+	desc = "这根魔杖使用治疗魔法来治疗和复活，由于某些原因，它们很少在巫师联盟中使用."
 	school = SCHOOL_RESTORATION
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	fire_sound = 'sound/magic/staff_healing.ogg'
@@ -256,3 +256,25 @@
 	name = "空魔杖"
 	desc = "这不仅仅是一根棍子，它是一根魔法棒?"
 	ammo_type = /obj/item/ammo_casing/magic/nothing
+
+
+/////////////////////////////////////
+//WAND OF SHRINKING
+/////////////////////////////////////
+
+/obj/item/gun/magic/wand/shrink
+	name = "缩小魔杖"
+	desc = "感受到被小猫玩弄的小动物的恐惧吧......"
+	ammo_type = /obj/item/ammo_casing/magic/shrink/wand
+	icon_state = "shrinkwand"
+	base_icon_state = "shrinkwand"
+	fire_sound = 'sound/magic/staff_shrink.ogg'
+	max_charges = 10 //10, 5, 5, 4
+	no_den_usage = TRUE
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/gun/magic/wand/shrink/zap_self(mob/living/user)
+	to_chat(user, span_notice("世界变大了..."))
+	charges--
+	user.AddComponent(/datum/component/shrink, -1) // small forever
+	return ..()

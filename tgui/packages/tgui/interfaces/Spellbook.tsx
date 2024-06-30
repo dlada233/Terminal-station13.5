@@ -1,5 +1,4 @@
 import { BooleanLike } from 'common/react';
-import { multiline } from 'common/string';
 import { ReactNode } from 'react';
 
 import { useBackend, useLocalState } from '../backend';
@@ -70,7 +69,7 @@ const TAB2NAME: TabType[] = [
   {
     title: '署名',
     blurb:
-      "这本书只对它的主人负责，当然每个主人也只有一本，魔法书与其主人之间的永久契约确保了如此强大的神器不会落入敌人之手，或被用于违法行为，如贩卖魔法.",
+      '这本书只对它的主人负责，当然每个主人也只有一本，魔法书与其主人之间的永久契约确保了如此强大的神器不会落入敌人之手，或被用于违法行为，如贩卖魔法.',
     component: () => <EnscribedName />,
   },
   {
@@ -84,20 +83,17 @@ const TAB2NAME: TabType[] = [
   },
   {
     title: '防御',
-    blurb:
-      "能提高生存能力或降低敌人攻击能力的法术及物品.",
+    blurb: '能提高生存能力或降低敌人攻击能力的法术及物品.',
     scrollable: true,
   },
   {
     title: '位移',
-    blurb:
-      '用于提高你移动能力的法术及物品，最好至少购买一项.',
+    blurb: '用于提高你移动能力的法术及物品，最好至少购买一项.',
     scrollable: true,
   },
   {
     title: '辅助',
-    blurb:
-      '能从外部引入力量来帮助或强化你的法术和物品.',
+    blurb: '能从外部引入力量来帮助或强化你的法术和物品.',
     scrollable: true,
   },
   {
@@ -109,20 +105,17 @@ const TAB2NAME: TabType[] = [
   },
   {
     title: '仪式',
-    blurb:
-      '这些强大的魔法能改变现实的结构，并不总是对你有利.',
+    blurb: '这些强大的魔法能改变现实的结构，并不总是对你有利.',
     scrollable: true,
   },
   {
     title: '预设配装',
-    blurb:
-      '巫师联盟承认，选择困难是人之常情，在这里您可以直接选择预设的配装.',
+    blurb: '巫师联盟承认，选择困难是人之常情，在这里您可以直接选择预设的配装.',
     component: () => <Loadouts />,
   },
   {
     title: '随机配装',
-    blurb:
-      "用于不喜欢预设，希望人生充满了混乱的人，不建议经验尚浅的巫师使用.",
+    blurb: '用于不喜欢预设，希望人生充满了混乱的人，不建议经验尚浅的巫师使用.',
     component: () => <Randomize />,
   },
 ];
@@ -340,7 +333,7 @@ const Loadouts = (props) => {
             name="经典巫师"
             icon="fire"
             author="Archchancellor Gray"
-            blurb={multiline`
+            blurb={`
                 经典法师款，在2550年代疯狂流行，
                 自带火球术、魔法飞弹、
                 裂解之手和虚空漫步.
@@ -353,7 +346,7 @@ const Loadouts = (props) => {
             loadoutId="loadout_hammer"
             loadoutColor="green"
             author="Jegudiel Worldshaker"
-            blurb={multiline`
+            blurb={`
                 发挥雷神之锤的神力! 最好不要让它离手.
                 预设内有唤来术、突变术、闪现术、斥力墙、特斯拉电弧和雷神之锤.
                 妥善运用变异这种多功能的魔法:
@@ -370,7 +363,7 @@ const Loadouts = (props) => {
             loadoutId="loadout_army"
             loadoutColor="yellow"
             author="Prospero Spellstone"
-            blurb={multiline`
+            blurb={`
                 如果有人愿意为你杀人的时候，为什么还要亲自动手呢?
                 用一下装备拥抱混沌: 灵魂石碎片、变化法杖,
                 不死石、传送和虚空漫步! 记住，拒绝进攻性法术!
@@ -382,7 +375,7 @@ const Loadouts = (props) => {
             loadoutId="loadout_tap"
             loadoutColor="white"
             author="Tom the Empty"
-            blurb={multiline`
+            blurb={`
                 拥抱黑暗，深入灵魂.
                 你可以通过心灵交换进入新的身体，然后不断地为某些长充能法术进行灵魂注能，
                 比如裂解之手等.
@@ -705,7 +698,7 @@ export const Spellbook = (props) => {
                             mr={57}
                             disabled={tabIndex === 1}
                             icon="arrow-left"
-                            content="上一页"
+                            content="Previous Page"
                             onClick={() => setTabIndex(tabIndex - 2)}
                           />
                           <Box textAlign="right" bold mt={-3.3} mr={1}>

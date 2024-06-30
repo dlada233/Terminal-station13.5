@@ -1,10 +1,10 @@
 /datum/round_event_control/processor_overload
-	name = "Processor Overload"
+	name = "Processor Overload-处理器过载"
 	typepath = /datum/round_event/processor_overload
 	weight = 15
 	min_players = 20
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Emps the telecomm processors, scrambling radio speech. Might blow up a few."
+	description = "干扰电信处理器，影响无线电通讯，可能还会发生爆炸."
 
 /datum/round_event/processor_overload
 	announce_when = 1

@@ -23,7 +23,7 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/cyborg
 	desc = "六连装榴弹发射器."
 	name = "多管榴弹发射器"
-	icon = 'icons/mob/mecha_equipment.dmi'
+	icon = 'icons/obj/devices/mecha_equipment.dmi'
 	icon_state = "mecha_grenadelnchr"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/grenademulti
 	pin = /obj/item/firing_pin
@@ -45,10 +45,14 @@
 	name = "PML-9"
 	desc = "一种可重复使用的火箭推进器. 枪管附近写有\"请看纳米狗\"的字样与箭头涂鸦. \
 	在靠近观瞄具的附近还有一段提示标签，写着\"开火前确保后方无人\""
+	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "rocketlauncher"
 	inhand_icon_state = "rocketlauncher"
+	worn_icon_state = "rocketlauncher"
+	SET_BASE_PIXEL(-8, 0)
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/rocketlauncher
 	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
+	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	can_suppress = FALSE
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -70,6 +74,9 @@
 		AddElement(/datum/element/backblast)
 
 /obj/item/gun/ballistic/rocketlauncher/unrestricted
+	desc = "A reusable rocket propelled grenade launcher. An arrow pointing toward the front of the launcher \
+		alongside the words \"Front Toward Enemy\" are printed on the tube. \
+		A sticker near the back of the launcher warn to \"CHECK BACKBLAST CLEAR BEFORE FIRING\", whatever that means."
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/rocketlauncher/nobackblast
@@ -83,6 +90,11 @@
 
 /obj/item/gun/ballistic/rocketlauncher/attack_self_tk(mob/user)
 	return //too difficult to remove the rocket with TK
+
+/obj/item/gun/ballistic/rocketlauncher/update_overlays()
+	. = ..()
+	if(get_ammo())
+		. += "rocketlauncher_loaded"
 
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
 	user.visible_message(span_warning("[user]用[src]瞄准地面! 看起来试图表演一个经典的火箭跳!"), \

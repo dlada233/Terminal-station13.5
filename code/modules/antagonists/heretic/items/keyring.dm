@@ -3,7 +3,7 @@
 	desc = "空间中的裂口，深不见底，只是盯着就让眼睛疼痛万分，绝对的不安全."
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "realitycrack"
-	light_system = STATIC_LIGHT
+	light_system = COMPLEX_LIGHT
 	light_power = 1
 	light_on = TRUE
 	light_color = COLOR_GREEN

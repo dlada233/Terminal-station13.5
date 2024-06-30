@@ -3,8 +3,8 @@
 #define ANOMALY_INTENSITY_MAJOR "Major Intensity"
 
 /datum/round_event_control/anomaly/anomaly_ectoplasm
-	name = "Anomaly: Ectoplasmic Outburst"
-	description = "Anomaly that produces an effect of varying intensity based on how many ghosts are orbiting it."
+	name = "Anomaly: Ectoplasmic Outburst-灵魂"
+	description = "该异常因围绕自身的灵魂数量产生不同的效果."
 	typepath = /datum/round_event/anomaly/anomaly_ectoplasm
 	min_players = 30
 	max_occurrences = 2
@@ -41,7 +41,7 @@
 /datum/round_event/anomaly/anomaly_ectoplasm/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name]上检测到灵能异常.", "异常警报", ANNOUNCER_ANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Paranormal ectoplasmic outburst detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在 [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name]上检测到灵魂异常.", "异常警报", ANNOUNCER_ANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Paranormal ectoplasmic outburst detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
 
 /datum/event_admin_setup/anomaly_ectoplasm
 	///The admin-selected intensity
@@ -50,13 +50,13 @@
 	var/ghost_override
 
 /datum/event_admin_setup/anomaly_ectoplasm/prompt_admins()
-	if(tgui_alert(usr, "Override the anomaly effect and power?", "You'll be ruining the authenticity.", list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr, "过载异常的效果？", "你将扰乱它的真实性.", list("Yes", "No")) == "Yes")
 		var/list/power_values = list(ANOMALY_INTENSITY_MINOR, ANOMALY_INTENSITY_MODERATE, ANOMALY_INTENSITY_MAJOR)
 		chosen_effect = tgui_input_list(usr, "Provide effect override", "Criiiiinge.", power_values)
 		if(!chosen_effect)
 			return ADMIN_CANCEL_EVENT
 
-		ghost_override = tgui_input_number(usr, "How many ghosts do you want simulate orbiting your anomaly? (determines the effect radius).", "Seriously, CRINGE.", 0, 20, 1)
+		ghost_override = tgui_input_number(usr, "你想模拟多少灵魂正围绕着你的异常? (determines the effect radius).", "Seriously, CRINGE.", 0, 20, 1)
 		if(!ghost_override)
 			return ADMIN_CANCEL_EVENT
 

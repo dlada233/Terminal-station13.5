@@ -15,6 +15,8 @@
 	var/wanted_message
 	///List of everything found on the victim at the time of contracting, used to return their stuff afterwards.
 	var/list/victim_belongings = list()
+	///timerid for stuff that handles victim chat messages, effects and returnal
+	var/victim_timerid
 
 /datum/syndicate_contract/New(contract_owner, blacklist, type=CONTRACT_PAYOUT_SMALL)
 	contract = new(src)
@@ -81,10 +83,8 @@
 /datum/syndicate_contract/proc/enter_check(datum/source, sent_mob)
 	SIGNAL_HANDLER
 
-	// 如果来源不是提取舱，返回
 	if(!istype(source, /obj/structure/closet/supplypod/extractionpod))
 		return
-	// 如果发送的不是生物，返回
 	if(!isliving(sent_mob))
 		return
 	var/mob/living/person_sent = sent_mob
@@ -98,50 +98,39 @@
 		if(traitor_data.uplink_handler.contractor_hub.current_contract == src)
 			traitor_data.uplink_handler.contractor_hub.current_contract = null
 	else
-		status = CONTRACT_STATUS_ABORTED
+		status = CONTRACT_STATUS_ABORTED // Sending a target that wasn't even yours is as good as just aborting it
 		if(traitor_data.uplink_handler.contractor_hub.current_contract == src)
 			traitor_data.uplink_handler.contractor_hub.current_contract = null
 
-	if(iscarbon(person_sent))
-		for(var/obj/item/person_contents in person_sent.gather_belongings())
-			if(ishuman(person_sent))
-				var/mob/living/carbon/human/human_sent = person_sent
-				if(person_contents == human_sent.w_uniform)
-					continue
-				if(person_contents == human_sent.shoes)
-					continue
-			person_sent.transferItemToLoc(person_contents)
-			victim_belongings.Add(WEAKREF(person_contents))
+	for(var/obj/item/person_contents as anything in person_sent.gather_belongings())
+		if(ishuman(person_sent))
+			var/mob/living/carbon/human/human_sent = person_sent
+			if(person_contents == human_sent.w_uniform)
+				continue //So all they're left with are shoes and uniform.
+			if(person_contents == human_sent.shoes)
+				continue
+		person_sent.transferItemToLoc(person_contents)
+		victim_belongings.Add(WEAKREF(person_contents))
 
 	var/obj/structure/closet/supplypod/extractionpod/pod = source
-	// 处理舱返回
+	// Handle the pod returning
 	pod.startExitSequence(pod)
 
-	// 如果是人类，确保他们有生存所需的物品
 	if(ishuman(person_sent))
 		var/mob/living/carbon/human/target = person_sent
+		// After we remove items, at least give them what they need to live.
 		target.dna.species.give_important_for_life(target)
 
-	// 我们将在几秒钟后开始效果，因为舱离开需要时间
+	//we'll start the effects in a few seconds since it takes a moment for the pod to leave.
 	addtimer(CALLBACK(src, PROC_REF(handle_victim_experience), person_sent), 3 SECONDS)
 
-	// 由于上面的延迟调用，我们不想立即通知全站
-	var/points_to_check
-	var/datum/bank_account/cargo_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
-	if(cargo_account)
-		points_to_check = cargo_account.account_balance
-	if(points_to_check >= ransom)
-		cargo_account.adjust_money(-ransom)
-	else
-		cargo_account.adjust_money(-points_to_check)
-	priority_announce(
-		text = "你们的一名船员被敌对组织绑架 - 我们需要支付赎金以赎回他们. \
-		按照政策，我们会从站点的资金中扣除一部分以补充总体费用. ",
-		sender_override = "纳米传讯资产保护")
+	var/datum/market_item/hostage/market_item = person_sent.process_capture(ransom * (rand(11, 13)/10))
+	RegisterSignal(market_item, COMSIG_MARKET_ITEM_SPAWNED, PROC_REF(on_victim_shipped))
 
 	addtimer(CALLBACK(src, PROC_REF(finish_enter)), 3 SECONDS)
 
 /datum/syndicate_contract/proc/finish_enter()
+	// Pay contractor their portion of ransom
 	if(status != CONTRACT_STATUS_COMPLETE)
 		return
 	var/obj/item/card/id/contractor_id = contract.owner.current?.get_idcard(TRUE)
@@ -166,19 +155,19 @@
  * victim - 我们正在骚扰的人
  * level - 他们正在面对的骚扰阶段. 这个会自行增加，循环直到结束.
  */
-
 /datum/syndicate_contract/proc/handle_victim_experience(mob/living/victim, level = VICTIM_EXPERIENCE_START)
-	// 将他们送回去 - 死或活，等待4分钟.
-	// 即使他们不是目标，我们仍然会以同样的方式对待他们.
+	// Ship 'em back - dead or alive
+	// Even if they weren't the target, we're still treating them the same.
 	if(!level)
-		addtimer(CALLBACK(src, PROC_REF(return_victim), victim), (60 * 10) * 4)
+		victim_timerid = addtimer(CALLBACK(src, PROC_REF(return_victim), victim), COME_BACK_FROM_CAPTURE_TIME, TIMER_STOPPABLE)
 	if(victim.stat == DEAD)
 		return
 
 	var/time_until_next
 	switch(level)
 		if(VICTIM_EXPERIENCE_START)
-			// 治愈他们 - 让他们脱离危机状态. 如果未来移除了全能药物，这需要替换成一种无后果的治疗方法，恢复到合理的健康水平.
+			// Heal them up - gets them out of crit/soft crit. If omnizine is removed in the future, this needs to be replaced with a
+			// method of healing them, consequence free, to a reasonable amount of health.
 			victim.reagents.add_reagent(/datum/reagent/medicine/omnizine, amount = 20)
 			victim.flash_act()
 			victim.adjust_confusion(1 SECONDS)
@@ -207,9 +196,9 @@
 			victim.adjust_dizzy(1.5 SECONDS)
 			victim.adjust_confusion(2 SECONDS)
 
-	level++
+	level++ //move onto the next level.
 	if(time_until_next)
-		addtimer(CALLBACK(src, PROC_REF(handle_victim_experience), victim, level), time_until_next)
+		victim_timerid = addtimer(CALLBACK(src, PROC_REF(handle_victim_experience), victim, level), time_until_next, TIMER_STOPPABLE)
 
 #undef VICTIM_EXPERIENCE_START
 #undef VICTIM_EXPERIENCE_FIRST_HIT
@@ -217,53 +206,47 @@
 #undef VICTIM_EXPERIENCE_THIRD_HIT
 #undef VICTIM_EXPERIENCE_LAST_HIT
 
-// 我们正在送回受害者
+/// We're returning the victim to the station
 /datum/syndicate_contract/proc/return_victim(mob/living/victim)
 	var/list/possible_drop_loc = list()
-
-	for(var/turf/possible_drop in contract.dropoff.contents)
+	for(var/turf/possible_drop in shuffle(contract.dropoff.contents))
 		if(!isspaceturf(possible_drop) && !isclosedturf(possible_drop))
 			if(!possible_drop.is_blocked_turf())
 				possible_drop_loc.Add(possible_drop)
 
-	if(!possible_drop_loc.len)
-		to_chat(victim, span_hypnophrase("无数声音在你头脑中回荡... \"看来你被送来的地方无法处理我们的返回舱... 你将会死在这里. \""))
-		if(iscarbon(victim))
-			var/mob/living/carbon/carbon_victim = victim
-			if(carbon_victim.can_heartattack())
-				carbon_victim.set_heartattack(TRUE)
-		return
+	var/turf/destination
+	if(length(possible_drop_loc))
+		destination = pick(possible_drop_loc)
 
-	var/pod_rand_loc = rand(1, possible_drop_loc.len)
-	var/obj/structure/closet/supplypod/return_pod = new()
-	return_pod.bluespace = TRUE
-	return_pod.explosionSize = list(0,0,0,0)
-	return_pod.style = STYLE_SYNDICATE
+	var/obj/structure/closet/supplypod/back_to_station/return_pod = new()
+	return_pod.return_from_capture(victim, destination)
+	returnal_side_effects(return_pod, victim)
 
-	do_sparks(8, FALSE, victim)
-	victim.visible_message(span_notice("[victim] 消失了..."))
+///Called if the victim is being returned to the station early, when from the black market.
+/datum/syndicate_contract/proc/on_victim_shipped(datum/market_item/source, obj/item/market_uplink/uplink, shipping_method, turf/shipping_loc)
+	SIGNAL_HANDLER
+	deltimer(victim_timerid)
+	returnal_side_effects(shipping_loc, source.item)
 
+///The annoying negative effects applied to the victim when returned to the station.
+/datum/syndicate_contract/proc/returnal_side_effects(atom/dropoff_location, mob/living/victim)
 	for(var/datum/weakref/belonging_ref in victim_belongings)
 		var/obj/item/belonging = belonging_ref.resolve()
 		if(!belonging)
 			continue
 		if(ishuman(victim))
 			var/mob/living/carbon/human/human_victim = victim
-			// 所以他们只剩下鞋子和制服.
+			//So all they're left with are shoes and uniform.
 			if(belonging == human_victim.w_uniform)
 				continue
 			if(belonging == human_victim.shoes)
 				continue
-		belonging.forceMove(return_pod)
+		belonging.forceMove(dropoff_location)
 
-	for(var/obj/item/W in victim_belongings)
-		W.forceMove(return_pod)
-
-	victim.forceMove(return_pod)
+	for(var/obj/item/item in victim_belongings)
+		item.forceMove(dropoff_location)
 
 	victim.flash_act()
 	victim.adjust_eye_blur(3 SECONDS)
 	victim.adjust_dizzy(3.5 SECONDS)
 	victim.adjust_confusion(2 SECONDS)
-
-	new /obj/effect/pod_landingzone(possible_drop_loc[pod_rand_loc], return_pod)

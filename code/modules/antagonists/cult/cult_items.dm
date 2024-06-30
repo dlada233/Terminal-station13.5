@@ -382,7 +382,7 @@
 	AddComponent( \
 		/datum/component/shielded, \
 		recharge_start_delay = 0 SECONDS, \
-		shield_icon_file = 'icons/effects/cult/effects.dmi', \
+		shield_icon_file = 'icons/effects/cult.dmi', \
 		shield_icon = "shield-cult", \
 		run_hit_callback = CALLBACK(src, PROC_REF(shield_damaged)), \
 	)
@@ -620,9 +620,9 @@
 	new /obj/effect/temp_visual/dir_setting/cult/phase/out(mobloc, user_cultist.dir)
 	new /obj/effect/temp_visual/dir_setting/cult/phase(destination, user_cultist.dir)
 
-	playsound(mobloc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(mobloc, 'sound/effects/portal_travel.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	playsound(destination, 'sound/effects/phasein.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	playsound(destination, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(destination, 'sound/effects/portal_travel.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /obj/item/flashlight/flare/culttorch
 	name = "虚空火炬"
@@ -832,9 +832,9 @@
 		var/mob/living/carbon/carbon_cultist = our_target
 		carbon_cultist.reagents.add_reagent(/datum/reagent/fuel/unholywater, 4)
 	if(isshade(our_target) || isconstruct(our_target))
-		var/mob/living/simple_animal/undead_abomination = our_target
-		if(undead_abomination.health+5 < undead_abomination.maxHealth)
-			undead_abomination.adjustHealth(-5)
+		var/mob/living/basic/construct/undead_abomination = our_target
+		if(undead_abomination.health + 5 < undead_abomination.maxHealth)
+			undead_abomination.adjust_health(-5)
 	return PROJECTILE_DELETE_WITHOUT_HITTING
 
 /obj/item/blood_beam
@@ -934,11 +934,11 @@
 						if(H.stat != DEAD)
 							H.reagents.add_reagent(/datum/reagent/fuel/unholywater, 7)
 					if(isshade(target) || isconstruct(target))
-						var/mob/living/simple_animal/M = target
-						if(M.health+15 < M.maxHealth)
-							M.adjustHealth(-15)
+						var/mob/living/basic/construct/healed_guy = target
+						if(healed_guy.health + 15 < healed_guy.maxHealth)
+							healed_guy.adjust_health(-15)
 						else
-							M.health = M.maxHealth
+							healed_guy.health = healed_guy.maxHealth
 				else
 					var/mob/living/L = target
 					if(L.density)
@@ -970,7 +970,7 @@
 	block_sound = 'sound/weapons/effects/ric5.ogg'
 	var/illusions = 2
 
-/obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(IS_CULTIST(owner))
 		if(attack_type == PROJECTILE_ATTACK)
 			if(damage_type == BRUTE || damage_type == BURN)
@@ -989,7 +989,7 @@
 		if(.)
 			if(illusions > 0)
 				illusions--
-				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 45 SECONDS)
 				if(prob(60))
 					var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
 					M.faction = list(FACTION_CULT)

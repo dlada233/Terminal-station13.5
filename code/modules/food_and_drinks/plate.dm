@@ -1,6 +1,6 @@
 /obj/item/plate
 	name = "盘子"
-	desc = "装食物，且威力也不俗，当你决定不在桌子上吃意大利面时，对心情很有帮助。"
+	desc = "装食物，且威力也不俗，当你决定不在桌子上吃意大利面时，对心情很有帮助."
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "plate"
 	w_class = WEIGHT_CLASS_BULKY //No backpack.
@@ -22,7 +22,7 @@
 	. = ..()
 
 	if(fragile)
-		AddElement(/datum/element/shatters_when_thrown)
+		AddElement(/datum/element/can_shatter)
 
 /obj/item/plate/attackby(obj/item/I, mob/user, params)
 	if(!IS_EDIBLE(I))
@@ -70,7 +70,7 @@
 	update_appearance()
 	// If the incoming item is the same weight class as the plate, bump us up a class
 	if(item_to_plate.w_class == w_class)
-		w_class += 1
+		update_weight_class(w_class + 1)
 
 ///This proc cleans up any signals on the item when it is removed from a plate, and ensures it has the correct state again.
 /obj/item/plate/proc/ItemRemovedFromPlate(obj/item/removed_item)
@@ -85,11 +85,13 @@
 	removed_item.pixel_z = 0
 	// We need to ensure the weight class is accurate now that we've lost something
 	// that may or may not have been of equal weight
-	w_class = initial(w_class)
+	var/new_w_class = initial(w_class)
 	for(var/obj/item/on_board in src)
 		if(on_board.w_class == w_class)
-			w_class += 1
+			new_w_class += 1
 			break
+
+	update_weight_class(new_w_class)
 
 ///This proc is called by signals that remove the food from the plate.
 /obj/item/plate/proc/ItemMoved(obj/item/moved_item, atom/OldLoc, Dir, Forced)

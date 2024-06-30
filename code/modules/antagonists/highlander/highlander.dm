@@ -1,7 +1,7 @@
 /datum/antagonist/highlander
 	name = "\improper 高地人"
 	var/obj/item/claymore/highlander/sword
-	show_in_antagpanel = FALSE
+	show_in_antagpanel = TRUE
 	show_name_in_check_antagonists = TRUE
 	can_elimination_hijack = ELIMINATION_ENABLED
 	suicide_cry = "为了苏格兰!!" // 如果他们设法失去了无法丢弃的装备

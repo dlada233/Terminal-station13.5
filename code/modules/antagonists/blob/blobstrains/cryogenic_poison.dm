@@ -33,3 +33,4 @@
 	need_mob_update += exposed_mob.adjustToxLoss(0.5 * REM * seconds_per_tick, updating_health = FALSE)
 	if(need_mob_update)
 		. = UPDATE_MOB_HEALTH
+code\modules\antagonists\blob\blobstrains\debris_devourer.dm

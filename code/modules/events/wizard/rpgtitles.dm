@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/rpgtitles //its time to adventure on boys
-	name = "RPG Titles"
+	name = "RPG Titles-RPG头衔"
 	weight = 3
 	typepath = /datum/round_event/wizard/rpgtitles
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Everyone gains an RPG title hovering above them."
+	description = "每个人都将获得一个RPG头衔."
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
@@ -43,7 +43,7 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 	//we must prepare for the mother of all strings
 	new_crewmember.maptext_height = max(new_crewmember.maptext_height, 32)
 	new_crewmember.maptext_width = max(new_crewmember.maptext_width, 112)
-	new_crewmember.maptext_x = -24 - new_crewmember.base_pixel_x
+	new_crewmember.maptext_x = -38 - new_crewmember.base_pixel_x
 	new_crewmember.maptext_y = -32
 
 	//list of lists involving strings related to a biotype flag, their position in the list equal to the position they were defined as bitflags.
@@ -98,8 +98,8 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 	var/obj/item/card/id/card = new_crewmember.get_idcard()
 	if(!card)//since this is called on current crew, some may not have IDs. shame on them for missing out!
 		return
-	card.name = "adventuring license"
-	card.desc = "A written license from the adventuring guild. You're good to go!"
+	card.name = "冒险许可证"
+	card.desc = "冒险家协会的许可证明！你准备好冒险了！"
 	card.icon_state = "card_rpg"
 	card.assignment = job.rpg_title
 	if(istype(card, /obj/item/card/id/advanced))

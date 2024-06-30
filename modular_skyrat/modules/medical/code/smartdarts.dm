@@ -74,6 +74,16 @@
 	harmful = FALSE
 	projectile_type = /obj/projectile/bullet/dart/syringe/dart
 
+//Handles loading smartdarts into regular syringeguns
+/obj/item/ammo_casing/syringegun/newshot(alternative_ammo)
+	if(!loaded_projectile)
+		if(!isnull(alternative_ammo))
+			loaded_projectile = new alternative_ammo(src, src)
+			harmful = FALSE
+		else
+			loaded_projectile = new projectile_type(src, src)
+			harmful = TRUE
+
 /obj/projectile/bullet/dart/syringe/dart
 	name = "智能镖"
 	damage = 0
@@ -103,8 +113,8 @@
 	if(!injectee.can_inject(target_zone = def_zone, injection_flags = inject_flags)) // if the syringe is blocked
 		blocked = 100
 	if(blocked == 100)
-		target.visible_message(span_danger("\The [src]被弹开了!"),
-							span_userdanger("你防护住了 \the [src]!"))
+		target.visible_message(span_danger("[src]被弹开了!"),
+							span_userdanger("你防护住了[src]!"))
 		return
 
 	//Checks for allergies, and saves allergies to a list if they are present
@@ -154,4 +164,5 @@
 		injectee.visible_message(span_notice("[src]发出一声短促的蜂鸣声."), span_notice("你听到[src]发出一声短促的蜂鸣声."))
 		playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 	return BULLET_ACT_HIT
+
 

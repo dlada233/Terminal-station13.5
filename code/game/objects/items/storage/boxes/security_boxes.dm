@@ -174,6 +174,16 @@
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/buckshot(src)
 
+/obj/item/storage/box/slugs
+	name = "霰弹盒 (致命)"
+	desc = "一整盒致命的霰弹子弹."
+	icon_state = "breacher_box"
+	illustration = null
+
+/obj/item/storage/box/slugs/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun(src)
+
 /obj/item/storage/box/beanbag
 	name = "豆袋霰弹盒 (低致命)"
 	desc = "低致命的豆袋弹."

@@ -19,7 +19,7 @@
 
 ///Machine that lets you play roulette. Odds are pre-defined to be the same as European Roulette without the "En Prison" rule
 /obj/machinery/roulette
-	name = "Roulette Table-轮盘赌桌"
+	name = "轮盘赌桌"
 	desc = "A computerized roulette table. Swipe your ID to play or register yourself as owner!"
 	icon = 'icons/obj/machines/roulette.dmi'
 	icon_state = "idle"
@@ -224,9 +224,9 @@
 
 	playsound(src, 'sound/machines/roulettewheel.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(finish_play), player_id, bet_type, bet_amount, payout, rolled_number), 34) //4 deciseconds more so the animation can play
-	addtimer(CALLBACK(src, PROC_REF(finish_play_animation)), 30)
+	addtimer(CALLBACK(src, PROC_REF(finish_play_animation)), 3 SECONDS)
 
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 
 /obj/machinery/roulette/proc/finish_play_animation()
 	icon_state = "idle"
@@ -437,7 +437,7 @@
 		return FALSE
 
 /obj/item/roulette_wheel_beacon
-	name = "roulette wheel beacon-轮盘信标"
+	name = "轮盘信标"
 	desc = "N.T. approved roulette wheel beacon, toss it down and you will have a complementary roulette wheel delivered to you."
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beacon"
@@ -448,7 +448,7 @@
 		return
 	loc.visible_message(span_warning("\The [src] begins to beep loudly!"))
 	used = TRUE
-	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 40)
+	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 4 SECONDS)
 
 /obj/item/roulette_wheel_beacon/proc/launch_payload()
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()

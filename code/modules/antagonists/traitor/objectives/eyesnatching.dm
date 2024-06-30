@@ -1,5 +1,5 @@
 /datum/traitor_objective_category/eyesnatching
-	name = "夺眼"
+	name = "挖眼"
 	objectives = list(
 		/datum/traitor_objective/target_player/eyesnatching = 1,
 		/datum/traitor_objective/target_player/eyesnatching/heads = 1,

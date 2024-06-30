@@ -4164,7 +4164,7 @@
 /area/ruin/space/ks13/engineering/grav_gen)
 "Fd" = (
 /obj/machinery/door/window/left/directional/east{
-	name = "舰桥";
+	name = "Bridge";
 	req_access = list("command")
 	},
 /obj/structure/cable,

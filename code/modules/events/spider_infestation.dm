@@ -1,12 +1,12 @@
 /datum/round_event_control/spider_infestation
-	name = "Spider Infestation"
+	name = "Spider Infestation-蜘蛛入侵"
 	typepath = /datum/round_event/spider_infestation
 	weight = 10
 	max_occurrences = 1
 	min_players = 20
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Spawns spider eggs, ready to hatch."
+	description = "生成随时可孵化完成的蜘蛛卵."
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 

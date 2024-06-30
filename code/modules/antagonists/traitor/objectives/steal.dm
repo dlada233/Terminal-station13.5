@@ -285,7 +285,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		if(result & COMPONENT_FORCE_FAIL_PLACEMENT || !istype(target, target_object_type))
 			balloon_alert(user, "你不能将它附加在这里！")
 			return
-	if(!do_after(user, deploy_time, src))
+	if(!do_after(user, deploy_time, src, hidden = TRUE))
 		return
 	if(planted_on)
 		return

@@ -11,6 +11,7 @@
 	tastes = list("辣白菜" = 1)
 	foodtypes = VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/inferno_kimchi
 	name = "地狱辣泡菜"
@@ -24,6 +25,7 @@
 	tastes = list("地狱辣" = 1)
 	foodtypes = VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/garlic_kimchi
 	name = "蒜蓉泡菜"
@@ -38,6 +40,7 @@
 	tastes = list("辣白菜" = 1, "大蒜" = 1)
 	foodtypes = VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/surimi
 	name = "鱼糜"
@@ -51,6 +54,7 @@
 	tastes = list("鱼" = 1)
 	foodtypes = SEAFOOD
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/surimi/Initialize(mapload)
 	. = ..()
@@ -68,6 +72,7 @@
 	tastes = list("鱼" = 1)
 	foodtypes = SEAFOOD
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/kamaboko/Initialize(mapload)
 	. = ..()
@@ -90,6 +95,7 @@
 	tastes = list("鱼" = 1)
 	foodtypes = SEAFOOD
 	w_class = WEIGHT_CLASS_TINY
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/sambal
 	name = "参巴辣椒酱"
@@ -103,6 +109,7 @@
 	tastes = list("辣" = 1, "鲜" = 1)
 	foodtypes = SEAFOOD | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/katsu_fillet
 	name = "日式煎猪排"
@@ -117,6 +124,7 @@
 	tastes = list("肉" = 1, "面包糠" = 1)
 	foodtypes = MEAT | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/rice_dough
 	name = "米粉团"
@@ -128,6 +136,7 @@
 	)
 	tastes = list("稻米" = 1)
 	foodtypes = GRAIN
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/rice_dough/make_bakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/food/bread/reispan, rand(30 SECONDS, 45 SECONDS), TRUE, TRUE)
@@ -146,6 +155,7 @@
 	)
 	tastes = list("稻米" = 1)
 	foodtypes = GRAIN
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/boilednoodles
 	name = "熟面条"
@@ -157,6 +167,7 @@
 	)
 	tastes = list("米饭" = 1)
 	foodtypes = GRAIN
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/reispan
 	name = "米粉面包"
@@ -169,6 +180,7 @@
 	tastes = list("面包" = 10)
 	foodtypes = GRAIN
 	venue_value = FOOD_PRICE_TRASH
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/reispan/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/reispan, 5, 3 SECONDS, table_required = TRUE)
@@ -182,6 +194,7 @@
 		/datum/reagent/consumable/nutriment = 3
 	)
 	foodtypes = GRAIN | VEGETABLES
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Fried Rice
 
@@ -198,6 +211,7 @@
 	tastes = list("米饭" = 1, "肉丁" = 1, "菠萝" = 1, "蔬菜" = 1)
 	foodtypes = MEAT | GRAIN | PINEAPPLE | FRUIT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/ikareis
 	name = "墨汁鱿鱼炒饭"
@@ -213,6 +227,7 @@
 	tastes = list("米饭" = 1, "墨汁" = 1, "蔬菜" = 1, "香肠" = 1, "辛辣" = 1)
 	foodtypes = MEAT | GRAIN | SEAFOOD | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/hawaiian_fried_rice
 	name = "\improper 夏威夷炒饭"
@@ -227,6 +242,7 @@
 	tastes = list("米饭" = 1, "肉丁" = 1, "菠萝" = 1, "酱油" = 1, "蔬菜" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES | FRUIT | PINEAPPLE
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/ketchup_fried_rice
 	name = "番茄酱炒饭"
@@ -242,6 +258,7 @@
 	tastes = list("米饭" = 1, "香肠" = 1, "番茄酱" = 1, "蔬菜" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/mediterranean_fried_rice
 	name = "地中海炒饭"
@@ -256,6 +273,7 @@
 	tastes = list("米饭" = 1, "奶酪" = 1, "肉丸" = 1, "橄榄" = 1, "香草" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/egg_fried_rice
 	name = "蛋炒饭"
@@ -269,6 +287,7 @@
 	tastes = list("米饭" = 1, "鸡蛋" = 1, "酱油" = 1)
 	foodtypes = MEAT | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/salad/egg_fried_rice/Initialize(mapload)
 	. = ..()
@@ -288,6 +307,7 @@
 	tastes = list("米饭" = 1, "辣白菜" = 1, "辛辣" = 1, "蛋" = 1, "肉" = 1)
 	foodtypes = MEAT | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/bibimbap/Initialize(mapload)
 	. = ..()
@@ -307,6 +327,7 @@
 	tastes = list("韩式烤肉" = 1, "面条" = 1, "辛辣" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES | FRUIT
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/yakisoba_katsu
 	name = "炸猪排炒面"
@@ -321,6 +342,7 @@
 	tastes = list("炒面" = 1, "肉" = 1, "面包糠" = 1, "蔬菜" = 1)
 	foodtypes = MEAT | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/martian_fried_noodles
 	name = "\improper 火星炒面"
@@ -335,6 +357,7 @@
 	tastes = list("炒面" = 1, "肉" = 1, "坚果" = 1, "洋葱" = 1, "蛋" = 1)
 	foodtypes = GRAIN | NUTS | MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/simple_fried_noodles
 	name = "炒面"
@@ -349,6 +372,7 @@
 	tastes = list("炒面" = 1, "酱油" = 1)
 	foodtypes = GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/salad/simple_fried_noodles/Initialize(mapload)
 	. = ..()
@@ -369,6 +393,7 @@
 	tastes = list("极品咖喱" = 1, "米饭" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Burgers and Sandwiches
 /obj/item/food/burger/big_blue
@@ -384,6 +409,7 @@
 	tastes = list("圆面包" = 1, "汉堡" = 2, "照烧洋葱" = 1, "芝士" = 1, "培根" = 1, "菠萝" = 1)
 	foodtypes = MEAT | GRAIN | DAIRY | VEGETABLES | FRUIT | PINEAPPLE
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/burger/chappy // 这里是它的原文，我他妈不会给他翻译半句. Originally born of a night of drinking in a Big Blue Burger's kitchen, the Chappy patty has since become a staple of both Big Blue's menu and Hawaiian (or at least, faux-Hawaiian) cuisine galaxy-wide. Given Big Kahuna operates most of its stores on Mars, it's perhaps no wonder this dish is popular there.
 	name = "\improper Chappy patty"
@@ -397,6 +423,7 @@
 	tastes = list("汉堡包" = 1, "煎猪排" = 2, "蛋" = 1, "芝士" = 1, "番茄酱" = 1)
 	foodtypes = MEAT | GRAIN | DAIRY | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/king_katsu_sandwich // 他妈的外国佬无语了
 	name = "\improper 肉王三明治"
@@ -412,6 +439,7 @@
 	tastes = list("肉" = 1, "培根" = 1, "韩国泡菜" = 1, "沙拉" = 1, "米粉面包" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/marte_cubano_sandwich
 	name = "\improper 古巴三明治"
@@ -426,6 +454,7 @@
 	tastes = list("培根" = 1, "腌菜" = 1, "芝士" = 1, "米粉面包" = 1)
 	foodtypes = MEAT | DAIRY | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/little_shiro_sandwich
 	name = "\improper little shiro三明治"
@@ -441,6 +470,7 @@
 	tastes = list("蛋" = 1, "肉" = 1, "韩国泡菜" = 1, "马苏里拉奶酪" = 1)
 	foodtypes = MEAT | DAIRY | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/croque_martienne
 	name = "火腿起司三明治"
@@ -455,6 +485,7 @@
 	tastes = list("鸡蛋" = 1, "吐司" = 1, "猪肉" = 1, "菠萝" = 1, "芝士" = 1)
 	foodtypes = MEAT | DAIRY | VEGETABLES | GRAIN | PINEAPPLE | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/prospect_sunrise
 	name = "\improper 日升三明治"
@@ -469,6 +500,7 @@
 	tastes = list("鸡蛋" = 1, "吐司" = 1, "培根" = 1, "韩国泡菜" = 1, "芝士" = 1)
 	foodtypes = MEAT | DAIRY | VEGETABLES | GRAIN | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Snacks
 /obj/item/food/takoyaki
@@ -484,6 +516,7 @@
 	tastes = list("章鱼" = 1, "面糊" = 1, "洋葱" = 1, "乌酢" = 1)
 	foodtypes = SEAFOOD | GRAIN | FRIED | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/takoyaki/russian
 	name = "俄罗斯章鱼小丸子"
@@ -498,6 +531,7 @@
 	tastes = list("章鱼" = 1, "面糊" = 1, "洋葱" = 1, "辛辣" = 1)
 	foodtypes = SEAFOOD | GRAIN | FRIED | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/takoyaki/taco
 	name = "墨西哥小丸子"
@@ -512,6 +546,7 @@
 	tastes = list("塔可肉" = 1, "面糊" = 1, "玉米" = 1, "芝士" = 1)
 	foodtypes = MEAT | GRAIN | FRIED | VEGETABLES | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/okonomiyaki
 	name = "御好烧"
@@ -525,6 +560,7 @@
 	tastes = list("面糊" = 1, "卷心菜" = 1, "洋葱" = 1, "乌酢" = 1)
 	foodtypes = SEAFOOD | GRAIN | FRIED | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 //hey, the name literally means "grilled how you like it", it'd be crazy to not make it customisable
 /obj/item/food/okonomiyaki/Initialize(mapload)
@@ -545,6 +581,7 @@
 	tastes = list("辣白菜" = 1, "香肠" = 1)
 	foodtypes = MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/tonkatsuwurst
 	name = "东胜香肠"
@@ -559,6 +596,7 @@
 	tastes = list("香肠" = 1, "辣酱" = 1, "薯条" = 1)
 	foodtypes = MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/kebab/ti_hoeh_koe
 	name = "炸猪血糕"
@@ -573,6 +611,7 @@
 	tastes = list("猪血" = 1, "坚果" = 1, "香菜" = 1)
 	foodtypes = MEAT | NUTS | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/kitzushi
 	name = "辣稻荷寿司"
@@ -587,6 +626,7 @@
 	tastes = list("米饭" = 1, "豆腐" = 1, "辣芝士" = 1)
 	foodtypes = GRAIN | FRIED | VEGETABLES | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/epok_epok
 	name = "epok-epok"
@@ -600,6 +640,7 @@
 	tastes = list("咖喱" = 1, "鸡蛋" = 1, "糕点" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/roti_john
 	name = "约翰面包"
@@ -614,6 +655,7 @@
 	tastes = list("面包" = 1, "鸡蛋" = 1, "肉" = 1, "洋葱" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES | FRIED | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/izakaya_fries
 	name = "居酒屋薯条"
@@ -629,6 +671,7 @@
 	tastes = list("薯条" = 1, "居酒屋的味道" = 1)
 	foodtypes = VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/kurry_ok_subsando
 	name = "kurry-ok subsando"
@@ -643,6 +686,7 @@
 	tastes = list("长面包" = 1, "辣酱薯条" = 1, "mayonnaise" = 1, "curry" = 1, "肉" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/loco_moco
 	name = "loco moco"
@@ -656,6 +700,7 @@
 	tastes = list("米饭" = 1, "汉堡" = 1, "肉汁" = 1, "鸡蛋" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/wild_duck_fries
 	name = "酱鸭薯条"
@@ -671,6 +716,7 @@
 	tastes = list("薯条" = 1, "酱鸭" = 1, "番茄酱" = 1, "蛋黄酱" = 1, "辛辣的调味料" = 1)
 	foodtypes = MEAT | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/little_hawaii_hotdog
 	name = "\improper 小夏威夷热狗"
@@ -685,6 +731,8 @@
 	tastes = list("香肠" = 1, "菠萝" = 1, "洋葱" = 1, "照烧酱" = 1)
 	foodtypes = MEAT | VEGETABLES | FRUIT | PINEAPPLE
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_4
+	custom_price = PAYCHECK_CREW * 1.2
 
 /obj/item/food/salt_chilli_fries
 	name = "椒盐薯条"
@@ -700,6 +748,7 @@
 	tastes = list("薯条" = 1, "大蒜" = 1, "姜" = 1, "麻木" = 1, "咸味" = 1)
 	foodtypes = VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/grilled_octopus
 	name = "铁板鱿鱼触手"
@@ -713,6 +762,7 @@
 	tastes = list("鱿鱼" = 1)
 	foodtypes = SEAFOOD | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/steak_croquette
 	name = "炸牛排"
@@ -726,6 +776,7 @@
 	tastes = list("牛排" = 1, "淀粉" = 1)
 	foodtypes = MEAT | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/chapsilog
 	name = "菲律宾盖饭"
@@ -741,6 +792,7 @@
 	tastes = list("火腿" = 1, "蒜蓉炒饭" = 1, "鸡蛋" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/chap_hash
 	name = "烤盘杂烩" // chap hash
@@ -755,6 +807,7 @@
 	tastes = list("火腿" = 1, "洋葱" = 1, "辣椒" = 1, "土豆" = 1)
 	foodtypes = MEAT | VEGETABLES | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/agedashi_tofu
 	name = "日式炸豆腐"
@@ -769,6 +822,7 @@
 	tastes = list("鲜汤" = 1, "豆腐" = 1)
 	foodtypes = SEAFOOD | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 // Curries and Stews
 /obj/item/food/salad/po_kok_gai
@@ -784,6 +838,7 @@
 	tastes = list("鸡肉" = 1, "椰子" = 1, "咖喱" = 1)
 	foodtypes = MEAT | VEGETABLES | FRUIT
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/huoxing_tofu
 	name = "\improper 火星豆腐"
@@ -799,6 +854,7 @@
 	tastes = list("肉" = 1, "辛辣" = 1, "豆腐" = 1)
 	foodtypes = MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/feizhou_ji
 	name = "非洲鸡"
@@ -813,6 +869,7 @@
 	tastes = list("鸡肉" = 1, "辛辣" = 1, "醋" = 1)
 	foodtypes = MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/galinha_de_cabidela
 	name = "卡比德拉米饭"
@@ -826,6 +883,7 @@
 	tastes = list("鸡肉" = 1, "葡萄牙风味" = 1, "醋" = 1, "米饭" = 1)
 	foodtypes = MEAT | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/katsu_curry
 	name = "猪排咖喱" // katsu 猪排
@@ -839,6 +897,7 @@
 	tastes = list("咖喱" = 1, "肉" = 1, "面包糠" = 1, "米饭" = 1)
 	foodtypes = MEAT | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/beef_bowl
 	name = "牛肉丼"
@@ -853,6 +912,7 @@
 	tastes = list("牛肉" = 25, "洋葱" = 25, "辣" = 15, "米饭" = 34, "触及灵魂的美味" = 1) //I pour my soul into this bowl
 	foodtypes = MEAT | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/salt_chilli_bowl
 	name = "辣鱿鱼丼"
@@ -869,6 +929,7 @@
 	tastes = list("海鲜" = 1, "米饭" = 1, "大蒜" = 1, "姜" = 1, "麻辣" = 1, "咸味" = 1)
 	foodtypes = SEAFOOD | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/salad/kansai_bowl
 	name = "\improper 关西丼"
@@ -883,6 +944,7 @@
 	tastes = list("海鲜" = 1, "米饭" = 1, "鸡蛋" = 1, "洋葱" = 1)
 	foodtypes = SEAFOOD | MEAT | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/eigamudo_curry //Eigamudo curry
 	name = "\improper 臭咖喱"
@@ -897,6 +959,7 @@
 	tastes = list("勇气" = 1, "黏糊" = 1, "软骨" = 1, "米饭" = 1, "神秘食材X" = 1)
 	foodtypes = GROSS | GRAIN | TOXIC
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Entrees
 /obj/item/food/cilbir
@@ -914,6 +977,7 @@
 	tastes = list("酸奶" = 1, "大蒜" = 1, "柠檬" = 1, "鸡蛋" = 1, "辛辣" = 1)
 	foodtypes = DAIRY | VEGETABLES | FRUIT | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/peking_duck_crepes
 	name = "\improper 橙鸭可丽" // Peking duck crepes a l'orange
@@ -929,6 +993,7 @@
 	tastes = list("肉" = 1, "可丽饼" = 1, "橙味" = 1)
 	foodtypes = MEAT | DAIRY | VEGETABLES | FRUIT
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Desserts
 /obj/item/food/cake/spekkoek
@@ -942,6 +1007,7 @@
 	)
 	tastes = list("冬香料" = 2, "香兰叶" = 2, "蛋糕" = 5)
 	foodtypes = GRAIN | SUGAR | DAIRY
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/cake/spekkoek/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/spekkoek, 5, 3 SECONDS, table_required = TRUE)
@@ -953,6 +1019,7 @@
 	icon_state = "spekkoek_slice"
 	tastes = list("冬香料" = 2, "香兰叶" = 2, "蛋糕" = 5)
 	foodtypes = GRAIN | SUGAR | DAIRY
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/pineapple_foster
 	name = "菠萝甜碗"
@@ -969,6 +1036,7 @@
 	tastes = list("菠萝" = 1, "香草" = 1, "焦糖" = 1, "冰淇淋" = 1)
 	foodtypes = FRUIT | DAIRY | PINEAPPLE
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pastel_de_nata
 	name = "奶油蛋糕"
@@ -983,6 +1051,7 @@
 	tastes = list("蛋奶沙司" = 1, "香草" = 1, "甜品" = 1)
 	foodtypes = DAIRY | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/boh_loh_yah
 	name = "菠萝包"
@@ -996,6 +1065,7 @@
 	tastes = list("糖饼干" = 1, "黄油" = 1)
 	foodtypes = DAIRY | GRAIN | PINEAPPLE //it's funny
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/banana_fritter
 	name = "香蕉油酥" // banana fritter
@@ -1010,6 +1080,7 @@
 	tastes = list("香蕉" = 1, "面糊" = 1)
 	foodtypes = GRAIN | FRUIT | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pineapple_fritter
 	name = "菠萝油酥"
@@ -1024,6 +1095,7 @@
 	tastes = list("菠萝" = 1, "面糊" = 1)
 	foodtypes = GRAIN | FRUIT | FRIED | PINEAPPLE
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/kebab/kasei_dango
 	name = "日式丸子"
@@ -1039,6 +1111,7 @@
 	tastes = list("石榴" = 1, "橙子" = 1)
 	foodtypes = FRUIT | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Frozen
 /obj/item/food/pb_ice_cream_mochi
@@ -1055,6 +1128,7 @@
 	tastes = list("花生酱" = 1, "麻糬" = 1)
 	foodtypes = NUTS | GRAIN | DAIRY | SUGAR
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/popsicle/pineapple_pop
 	name = "冰菠萝糖"
@@ -1068,6 +1142,7 @@
 	)
 	tastes = list("冻菠萝" = 1, "巧克力" = 1)
 	foodtypes = SUGAR | PINEAPPLE
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/popsicle/sea_salt
 	name = "海盐雪糕"
@@ -1082,6 +1157,7 @@
 	)
 	tastes = list("咸味" = 1, "甜味" = 1)
 	foodtypes = SUGAR | DAIRY
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // topsicles, also known as tofu popsicles
 /obj/item/food/popsicle/topsicle
@@ -1132,6 +1208,8 @@
 	tastes = list("香肠" = 1, "好滋味" = 1, "洋葱" = 1, "水果沙拉" = 1)
 	foodtypes = FRUIT | MEAT | PINEAPPLE | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_price = PAYCHECK_CREW * 2
 
 /obj/item/food/frickles
 	name = "辣丸子"
@@ -1146,6 +1224,7 @@
 	tastes = list("辣丸子" = 1)
 	foodtypes = VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/raw_ballpark_pretzel
 	name = "生椒盐卷饼"
@@ -1159,6 +1238,7 @@
 	tastes = list("长面包" = 1, "椒盐" = 1)
 	foodtypes = GRAIN | RAW
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/raw_ballpark_pretzel/make_bakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/food/ballpark_pretzel, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
@@ -1178,6 +1258,7 @@
 	tastes = list("长面包" = 1, "椒盐" = 1)
 	foodtypes = GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/kebab/raw_ballpark_tsukune
 	name = "生鸡肉串"
@@ -1191,6 +1272,7 @@
 	tastes = list("生鸡肉" = 7, "沙门氏菌" = 1)
 	foodtypes = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/kebab/raw_ballpark_tsukune/make_grillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/kebab/ballpark_tsukune, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
@@ -1207,6 +1289,7 @@
 	tastes = list("鸡肉" = 1, "鲜香酱" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Ethereal-suitable cross-culture food
 /*	Ethereals are, as part of the uplifting process, considered as citizens of the Terran Federation.
@@ -1228,6 +1311,7 @@
 	tastes = list("酸萝卜" = 1)
 	foodtypes = VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_2
 
 // 24-Volt Energy
 /obj/item/food/volt_fish
@@ -1242,6 +1326,7 @@
 	tastes = list("鱼" = 1, "酸梨" = 1)
 	foodtypes = SEAFOOD
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 // Sprout Bowl
 /obj/item/food/salad/sprout_bowl
@@ -1257,3 +1342,4 @@
 	tastes = list("鱼" = 1, "酸梨" = 1, "米饭" = 1)
 	foodtypes = SEAFOOD | VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+	crafting_complexity = FOOD_COMPLEXITY_3

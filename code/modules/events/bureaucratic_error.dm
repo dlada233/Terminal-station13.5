@@ -1,10 +1,10 @@
 /datum/round_event_control/bureaucratic_error
-	name = "Bureaucratic Error"
+	name = "Bureaucratic Error-行政失误"
 	typepath = /datum/round_event/bureaucratic_error
 	max_occurrences = 1
 	weight = 5
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Randomly opens and closes job slots, along with changing the overflow role."
+	description = "随机增设或削减职位数量，同时更改溢出角色"
 
 /datum/round_event/bureaucratic_error
 	announce_when = 1

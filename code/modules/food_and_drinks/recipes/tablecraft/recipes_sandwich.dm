@@ -118,7 +118,6 @@
 
 /datum/crafting_recipe/food/death_sandwich
 	name = "死亡三明治"
-	always_available = FALSE
 	reqs = list(
 		/obj/item/food/breadslice/plain = 2,
 		/obj/item/food/salami = 4,
@@ -127,6 +126,7 @@
 	)
 	result = /obj/item/food/sandwich/death
 	category = CAT_SANDWICH
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/toast_sandwich
 	name = "吐司三明治"

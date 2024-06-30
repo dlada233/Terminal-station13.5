@@ -1,11 +1,11 @@
 
 
 /datum/round_event_control/shuttle_insurance
-	name = "Shuttle Insurance"
+	name = "Shuttle Insurance-撤离船保险"
 	typepath = /datum/round_event/shuttle_insurance
 	max_occurrences = 1
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "A sketchy but legit insurance offer."
+	description = "粗略但合法的保险合同."
 
 /datum/round_event_control/shuttle_insurance/can_spawn_event(players, allow_magic = FALSE)
 	. = ..()
@@ -43,7 +43,7 @@
 /datum/round_event/shuttle_insurance/start()
 	insurance_message = new("撤离船保险", "嘿，伙计, 这里是 [ship_name]，不得不注意到你有一个狂野疯狂且没有保险的撤离船！ 好TM疯狂，如果它出了事怎么办，嗯?! 我们对你们在这个领域的保险费率做了一个快速评估，我们现在为你们的撤离船提供 [insurance_evaluation] 来防止你遇到意外束手无策.", list("购买保险.","拒绝购买."))
 	insurance_message.answer_callback = CALLBACK(src, PROC_REF(answered))
-	SScommunications.send_message(insurance_message, unique = TRUE)
+	GLOB.communications_controller.send_message(insurance_message, unique = TRUE)
 
 /datum/round_event/shuttle_insurance/proc/answered()
 	if(EMERGENCY_AT_LEAST_DOCKED)
@@ -52,7 +52,7 @@
 	if(insurance_message && insurance_message.answered == 1)
 		var/datum/bank_account/station_balance = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(!station_balance?.adjust_money(-insurance_evaluation))
-			priority_announce("你没有为保险支付足够的钱，而这在太空商法中被认为是诈骗，我们现在没收你已经给的钱, 诈骗犯！", sender_override = ship_name, color_override = "red")
+			priority_announce("你没有为保险支付足够的钱，而这在太空商法中被认为是诈骗，我们现在没收你已经给的钱, 诈骗犯!", sender_override = ship_name, color_override = "red")
 			return
-		priority_announce("感谢你方购买撤离船保险！", sender_override = ship_name, color_override = "red")
+		priority_announce("感谢你方购买撤离船保险!", sender_override = ship_name, color_override = "red")
 		SSshuttle.shuttle_insurance = TRUE

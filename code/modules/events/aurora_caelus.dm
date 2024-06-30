@@ -1,11 +1,11 @@
 /datum/round_event_control/aurora_caelus
-	name = "Aurora Caelus"
+	name = "Aurora Caelus-极光"
 	typepath = /datum/round_event/aurora_caelus
 	max_occurrences = 1
 	weight = 1
 	earliest_start = 5 MINUTES
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "A colourful display can be seen through select windows. And the kitchen."
+	description = "透过窗户有五颜六色的风景. 还有厨房."
 
 /datum/round_event_control/aurora_caelus/can_spawn_event(players, allow_magic = FALSE)
 	if(!SSmapping.empty_space)
@@ -18,9 +18,9 @@
 	end_when = 80
 
 /datum/round_event/aurora_caelus/announce()
-	priority_announce("[station_name()]: 一团无害的离子云正在接近你的空间站，并在撞击后耗尽能量。Nanotrasen已经批准让所有员工享受一段惬意的休闲时间以观赏这个罕见的事件。在这段时间里，星光明亮而柔和，宇宙在静谧的绿色和蓝色之间变换。希望这场光影游戏能让你喜欢.",
+	priority_announce("[station_name()]: 一团离子云正在接近你方空间站，预计将无害地产生极光. 纳米传讯已经批准了一段休闲时间以惬意地观赏这个罕见的事件. 可视宇宙将在这段时间内变得静谧而柔美，祝你享受愉快.",
 	sound = 'sound/misc/notice2.ogg',
-	sender_override = "Nanotrasen气象部门")
+	sender_override = "纳米传讯气象部门")
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
 		if((M.client.prefs.read_preference(/datum/preference/toggle/sound_midi)) && is_station_level(M.z))
@@ -37,12 +37,12 @@
 			roast_ruiner.balloon_alert_to_viewers("oh egads!")
 			var/turf/ruined_roast = get_turf(roast_ruiner)
 			ruined_roast.atmos_spawn_air("[GAS_PLASMA]=100;[TURF_TEMPERATURE(1000)]")
-			message_admins("Aurora Caelus event caused an oven to ignite at [ADMIN_VERBOSEJMP(ruined_roast)].")
-			log_game("Aurora Caelus event caused an oven to ignite at [loc_name(ruined_roast)].")
+			message_admins("极光事件导致烤箱在[ADMIN_VERBOSEJMP(ruined_roast)]起火.")
+			log_game("极光事件导致烤箱在[loc_name(ruined_roast)]起火.")
 			announce_to_ghosts(roast_ruiner)
 		for(var/mob/living/carbon/human/seymour as anything in GLOB.human_list)
 			if(seymour.mind && istype(seymour.mind.assigned_role, /datum/job/cook))
-				seymour.say("My roast is ruined!!!", forced = "ruined roast")
+				seymour.say("烤砸了!!!", forced = "ruined roast")
 				seymour.emote("scream")
 
 /datum/round_event/aurora_caelus/tick()
@@ -52,15 +52,15 @@
 	set_starlight(aurora_color)
 
 	for(var/area/station/service/kitchen/affected_area in GLOB.areas)
-		for(var/turf/open/kitchen_floor in affected_area.get_contained_turfs())
+		for(var/turf/open/kitchen_floor in affected_area.get_turfs_from_all_zlevels())
 			kitchen_floor.set_light(l_color = aurora_color)
 
 /datum/round_event/aurora_caelus/end()
 	fade_space()
 	fade_kitchen()
-	priority_announce("极光事件即将结束，宇宙光照将逐渐恢复正常。请在结束后回到工作岗位，继续正常工作。祝您今天过得愉快，感谢一路陪伴.",
+	priority_announce("极光事件即将结束，宇宙光照将恢复正常. 请在结束后马上回到工作岗位继续工作. 祝您今天过得愉快.",
 	sound = 'sound/misc/notice2.ogg',
-	sender_override = "Nanotrasen气象部门")
+	sender_override = "Nanotrasen Meteorology Division")
 
 /datum/round_event/aurora_caelus/proc/fade_space(fade_in = FALSE)
 	set waitfor = FALSE
@@ -92,14 +92,14 @@
 	var/start_color = hsl_gradient(1, 0, "#A2FF80", 1, "#A2FFEE")
 	var/start_range = 1
 	var/start_power = 0.75
-	var/end_color = "#000000"
+	var/end_color = COLOR_BLACK
 	var/end_range = 0.5
 	var/end_power = 0
 	if(fade_in)
 		end_color = hsl_gradient(0, 0, "#A2FF80", 1, "#A2FFEE")
 		end_range = start_range
 		end_power = start_power
-		start_color = "#000000"
+		start_color = COLOR_BLACK
 		start_range = 0.5
 		start_power = 0
 
@@ -108,9 +108,9 @@
 		var/walked_range = LERP(start_range, end_range, i/5)
 		var/walked_power = LERP(start_power, end_power, i/5)
 		for(var/area/station/service/kitchen/affected_area in GLOB.areas)
-			for(var/turf/open/kitchen_floor in affected_area.get_contained_turfs())
+			for(var/turf/open/kitchen_floor in affected_area.get_turfs_from_all_zlevels())
 				kitchen_floor.set_light(walked_range, walked_power, walked_color)
 		sleep(8 SECONDS)
 	for(var/area/station/service/kitchen/affected_area in GLOB.areas)
-		for(var/turf/open/kitchen_floor in affected_area.get_contained_turfs())
+		for(var/turf/open/kitchen_floor in affected_area.get_turfs_from_all_zlevels())
 			kitchen_floor.set_light(end_range, end_power, end_color)

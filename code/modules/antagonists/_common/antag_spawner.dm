@@ -25,7 +25,7 @@
 	if(!.)
 		return FALSE
 	if(polling)
-		balloon_alert(user, "已经在呼叫徒弟了!")
+		balloon_alert(user, "已经在呼叫学徒了!")
 		return FALSE
 
 /obj/item/antag_spawner/contract/ui_interact(mob/user, datum/tgui/ui)
@@ -55,16 +55,15 @@
 /obj/item/antag_spawner/contract/proc/poll_for_student(mob/living/carbon/human/teacher, apprentice_school)
 	balloon_alert(teacher, "联系学徒中...")
 	polling = TRUE
-	var/list/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演巫师的[apprentice_school]学徒吗?", check_jobban = ROLE_WIZARD, role = ROLE_WIZARD, poll_time = 15 SECONDS, target_mob = src, pic_source = teacher, role_name_text = "巫师学徒")
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("你想要扮演[span_danger("[teacher]的")] [span_notice("[apprentice_school]学徒吗")]?", check_jobban = ROLE_WIZARD, role = ROLE_WIZARD, poll_time = 15 SECONDS, checked_target = src, alert_pic = /obj/item/clothing/head/wizard/red, jump_target = src, role_name_text = "wizard apprentice", chat_text_border_icon = /obj/item/clothing/head/wizard/red)
 	polling = FALSE
-	if(!LAZYLEN(candidates))
+	if(isnull(chosen_one))
 		to_chat(teacher, span_warning("联系不到你的学徒!你可以使用合同击打魔法书来退还点数或者稍后重试."))
 		return
 	if(QDELETED(src) || used)
 		return
 	used = TRUE
-	var/mob/dead/observer/student = pick(candidates)
-	spawn_antag(student.client, get_turf(src), apprentice_school, teacher.mind)
+	spawn_antag(chosen_one.client, get_turf(src), apprentice_school, teacher.mind)
 
 /obj/item/antag_spawner/contract/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	new /obj/effect/particle_effect/fluid/smoke(T)
@@ -99,19 +98,18 @@
 	desc = "MI13开发的增援呼叫装置. 不用考虑被呼叫者的安全 - 反正他们都来自Interdyne基因库的劣质克隆体."
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "nukietalkie"
-	var/borg_to_spawn
 	/// The name of the special role given to the recruit
 	var/special_role_name = ROLE_NUCLEAR_OPERATIVE
 	/// The applied outfit
 	var/datum/outfit/syndicate/outfit = /datum/outfit/syndicate/reinforcement
-	/// The outfit given to plasmaman operatives
-	var/datum/outfit/syndicate/plasma_outfit = /datum/outfit/syndicate/reinforcement/plasmaman
 	/// The antag datum applied
-	var/datum/antagonist/nukeop/antag_datum = /datum/antagonist/nukeop
+	var/antag_datum = /datum/antagonist/nukeop/reinforcement
 	/// Style used by the droppod
 	var/pod_style = STYLE_SYNDICATE
 	/// Do we use a random subtype of the outfit?
 	var/use_subtypes = TRUE
+	/// Where do we land our pod?
+	var/turf/spawn_location
 
 /obj/item/antag_spawner/nuke_ops/proc/check_usability(mob/user)
 	if(used)
@@ -134,13 +132,12 @@
 		return
 
 	to_chat(user, span_notice("你激活[src]并等待确认信息."))
-	var/list/nuke_candidates = SSpolling.poll_ghost_candidates("你想要扮演一名辛迪加[borg_to_spawn ? "[lowertext(borg_to_spawn)]赛博":"行动队员"]吗?", check_jobban = ROLE_OPERATIVE, role = ROLE_OPERATIVE, poll_time = 15 SECONDS, ignore_category = POLL_IGNORE_SYNDICATE, pic_source = src, role_name_text = "辛迪加[borg_to_spawn ? "[borg_to_spawn]赛博":"行动队员"]")
-	if(LAZYLEN(nuke_candidates))
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates("你想要扮演辛迪加[special_role_name]增援部队吗?", check_jobban = ROLE_OPERATIVE, role = ROLE_OPERATIVE, poll_time = 15 SECONDS, ignore_category = POLL_IGNORE_SYNDICATE, alert_pic = src, role_name_text = special_role_name, amount_to_pick = 1)
+	if(chosen_one)
 		if(QDELETED(src) || !check_usability(user))
 			return
 		used = TRUE
-		var/mob/dead/observer/G = pick(nuke_candidates)
-		spawn_antag(G.client, get_turf(src), "nukeop", user.mind)
+		spawn_antag(chosen_one.client, get_turf(src), "nukeop", user.mind)
 		do_sparks(4, TRUE, src)
 		qdel(src)
 	else
@@ -148,7 +145,6 @@
 
 /obj/item/antag_spawner/nuke_ops/spawn_antag(client/our_client, turf/T, kind, datum/mind/user)
 	var/mob/living/carbon/human/nukie = new()
-	var/obj/structure/closet/supplypod/pod = setup_pod()
 	our_client.prefs.safe_transfer_prefs_to(nukie, is_antag = TRUE)
 	nukie.ckey = our_client.key
 	var/datum/mind/op_mind = nukie.mind
@@ -157,16 +153,33 @@
 	else
 		nukie.forceMove(locate(1,1,1))
 
-	antag_datum = new()
-	antag_datum.send_to_spawnpoint = FALSE
-
-	antag_datum.nukeop_outfit = use_subtypes ? pick(subtypesof(outfit)) : outfit
+	var/new_datum = new antag_datum()
 
 	var/datum/antagonist/nukeop/creator_op = user.has_antag_datum(/datum/antagonist/nukeop, TRUE)
-	op_mind.add_antag_datum(antag_datum, creator_op ? creator_op.get_team() : null)
+	op_mind.add_antag_datum(new_datum, creator_op ? creator_op.get_team() : null)
 	op_mind.special_role = special_role_name
+
+	if(outfit)
+		var/datum/antagonist/nukeop/nukie_datum = op_mind.has_antag_datum(antag_datum)
+		nukie_datum.nukeop_outfit = use_subtypes ? pick(subtypesof(outfit)) : outfit
+
+	var/obj/structure/closet/supplypod/pod = setup_pod()
 	nukie.forceMove(pod)
-	new /obj/effect/pod_landingzone(get_turf(src), pod)
+	new /obj/effect/pod_landingzone(spawn_location ? spawn_location : get_turf(src), pod)
+
+/obj/item/antag_spawner/nuke_ops/overwatch
+	name = "overwatch support beacon"
+	desc = "Assigns an Overwatch Intelligence Agent to your operation. Stationed at their own remote outpost, they can view station cameras, alarms, and even move the Infiltrator shuttle! \
+		Also, all members of your operation will receive body cameras that they can view your progress from."
+	special_role_name = ROLE_OPERATIVE_OVERWATCH
+	outfit = /datum/outfit/syndicate/support
+	use_subtypes = FALSE
+	antag_datum = /datum/antagonist/nukeop/support
+
+/obj/item/antag_spawner/nuke_ops/overwatch/Initialize(mapload)
+	. = ..()
+	if(length(GLOB.nukeop_overwatch_start)) //Otherwise, it will default to the datum's spawn point anyways
+		spawn_location = pick(GLOB.nukeop_overwatch_start)
 
 //////CLOWN OP
 /obj/item/antag_spawner/nuke_ops/clown
@@ -182,20 +195,20 @@
 /obj/item/antag_spawner/nuke_ops/borg_tele
 	name = "辛迪加赛博信标"
 	desc = "一次性的信标，用来快速地派遣增援赛博进入战场."
-	icon = 'icons/obj/devices/remote.dmi'
-	icon_state = "gangtool-red"
+	antag_datum = /datum/antagonist/nukeop/reinforcement/cyborg
+	special_role_name = "Syndicate Cyborg"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/assault
 	name = "辛迪加突击赛博信标"
-	borg_to_spawn = "突击型"
+	special_role_name = ROLE_SYNDICATE_ASSAULTBORG
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/medical
 	name = "辛迪加医疗赛博信标"
-	borg_to_spawn = "医疗型"
+	special_role_name = ROLE_SYNDICATE_MEDBORG
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur
 	name = "辛迪加武工赛博信标"
-	borg_to_spawn = "武工型"
+	special_role_name = ROLE_SYNDICATE_SABOBORG
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	var/mob/living/silicon/robot/borg
@@ -203,13 +216,15 @@
 	if(!creator_op)
 		return
 	var/obj/structure/closet/supplypod/pod = setup_pod()
-	switch(borg_to_spawn)
-		if("医疗型")
+	switch(special_role_name)
+		if(ROLE_SYNDICATE_MEDBORG)
 			borg = new /mob/living/silicon/robot/model/syndicate/medical()
-		if("武工型")
+		if(ROLE_SYNDICATE_SABOBORG)
 			borg = new /mob/living/silicon/robot/model/syndicate/saboteur()
+		if(ROLE_SYNDICATE_ASSAULTBORG)
+			borg = new /mob/living/silicon/robot/model/syndicate()
 		else
-			borg = new /mob/living/silicon/robot/model/syndicate() //Assault borg by default
+			stack_trace("Unknown cyborg type '[special_role_name]' could not be found by [src]!")
 
 	var/brainfirstname = pick(GLOB.first_names_male)
 	if(prob(50))
@@ -227,10 +242,8 @@
 
 	borg.key = C.key
 
-	var/datum/antagonist/nukeop/new_borg = new()
-	new_borg.send_to_spawnpoint = FALSE
-	borg.mind.add_antag_datum(new_borg,creator_op.nuke_team)
-	borg.mind.special_role = "辛迪加赛博"
+	borg.mind.add_antag_datum(antag_datum, creator_op ? creator_op.get_team() : null)
+	borg.mind.special_role = special_role_name
 	borg.forceMove(pod)
 	new /obj/effect/pod_landingzone(get_turf(src), pod)
 
@@ -243,7 +256,7 @@
 	icon_state = "vial"
 
 	var/shatter_msg = span_notice("你打碎了瓶子，你现在没有回头路可走了!")
-	var/veil_msg = span_warning("你感觉到一个黑暗的存在潜伏在面纱后面...")
+	var/veil_msg = span_warning("你感觉到一个黑暗的存在潜伏在帷幕后面...")
 	var/mob/living/demon_type = /mob/living/basic/demon/slaughter
 
 /obj/item/antag_spawner/slaughter_demon/attack_self(mob/user)
@@ -252,14 +265,13 @@
 		return
 	if(used)
 		return
-	var/list/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演[initial(demon_type.name)]吗?", check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, poll_time = 5 SECONDS, target_mob = src, pic_source = src, role_name_text = initial(demon_type.name))
-	if(LAZYLEN(candidates))
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, poll_time = 5 SECONDS, checked_target = src, alert_pic = demon_type, jump_target = src, role_name_text = initial(demon_type.name))
+	if(chosen_one)
 		if(used || QDELETED(src))
 			return
 		used = TRUE
-		var/mob/dead/observer/summoned = pick(candidates)
-		user.log_message("已经召唤出了[initial(demon_type.name)] (played by [key_name(summoned)]) using a [name].", LOG_GAME) // has to be here before we create antag otherwise we can't get the ckey of the demon
-		spawn_antag(summoned.client, get_turf(src), initial(demon_type.name), user.mind)
+		user.log_message("召唤出了[initial(demon_type.name)] (played by [key_name(chosen_one)]) using a [name].", LOG_GAME) // has to be here before we create antag otherwise we can't get the ckey of the demon
+		spawn_antag(chosen_one.client, get_turf(src), initial(demon_type.name), user.mind)
 		to_chat(user, shatter_msg)
 		to_chat(user, veil_msg)
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, TRUE)
@@ -272,7 +284,6 @@
 	new /obj/effect/dummy/phased_mob(T, spawned)
 
 	spawned.key = C.key
-	spawned.generate_antagonist_status()
 
 /obj/item/antag_spawner/slaughter_demon/laughter
 	name = "愉悦瓶"
@@ -331,16 +342,23 @@
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice("你激活了[src]并等待确认信息."))
-	var/list/baddie_candidates = SSpolling.poll_ghost_candidates("你想要扮演[role_to_play]吗?", check_jobban = poll_role_check, role = poll_role_check, poll_time = 10 SECONDS, ignore_category = poll_ignore_category, pic_source = src, role_name_text = role_to_play)
-	if(!LAZYLEN(baddie_candidates))
+	to_chat(user, span_notice("You activate [src] and wait for confirmation."))
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(
+		check_jobban = poll_role_check,
+		role = poll_role_check,
+		poll_time = 10 SECONDS,
+		ignore_category = poll_ignore_category,
+		alert_pic = src,
+		role_name_text = role_to_play,
+		amount_to_pick = 1
+	)
+	if(isnull(chosen_one))
 		to_chat(user, span_warning(fail_text))
 		return
 	if(QDELETED(src) || !check_usability(user))
 		return
 	used = TRUE
-	var/mob/dead/observer/ghostie = pick(baddie_candidates)
-	spawn_antag(ghostie.client, get_turf(src), user)
+	spawn_antag(chosen_one.client, get_turf(src), user)
 	do_sparks(4, TRUE, src)
 	qdel(src)
 
@@ -359,7 +377,7 @@
 	else
 		spawned_mob.forceMove(locate(1,1,1))
 
-	antag_datum = new()
+	op_mind.add_antag_datum(antag_datum)
 
 	if(ishuman(spawned_mob))
 		var/mob/living/carbon/human/human_mob = spawned_mob
@@ -372,6 +390,21 @@
 
 	spawned_mob.forceMove(pod)
 	new /obj/effect/pod_landingzone(get_turf(src), pod)
+
+/obj/item/antag_spawner/loadout/contractor
+	name = "contractor support beacon"
+	desc = "A beacon sold to the most prestigeous syndicate members, a single-use radio for calling immediate backup."
+	icon = 'icons/obj/devices/voice.dmi'
+	icon_state = "nukietalkie"
+	outfit = /datum/outfit/contractor_partner
+	use_subtypes = FALSE
+	antag_datum = /datum/antagonist/traitor/contractor_support
+	poll_ignore_category = ROLE_TRAITOR
+	role_to_play = ROLE_CONTRACTOR_SUPPORT
+
+/obj/item/antag_spawner/loadout/contractor/do_special_things(mob/living/carbon/human/contractor_support, mob/user)
+	to_chat(contractor_support, "\n[span_alertwarning("[user.real_name] is your superior. Follow any, and all orders given by them. You're here to support their mission only.")]")
+	to_chat(contractor_support, "[span_alertwarning("Should they perish, or be otherwise unavailable, you're to assist other active agents in this mission area to the best of your ability.")]")
 
 /obj/item/antag_spawner/loadout/monkey_man
 	name = "猴特工信标"

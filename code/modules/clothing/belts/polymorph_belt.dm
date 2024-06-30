@@ -1,18 +1,18 @@
-/// Belt which can turn you into a beast, once an anomaly core is inserted
+/// 插入异常核心后可以将你变成野兽的腰带
 /obj/item/polymorph_belt
-	name = "polymorphic field inverter"
-	desc = "This device can scan and store DNA from other life forms."
+	name = "多态场反转器"
+	desc = "这个设备可以扫描并存储其他生命形式的DNA。"
 	slot_flags = ITEM_SLOT_BELT
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "polybelt_inactive"
 	worn_icon_state = "polybelt_inactive"
 	base_icon_state = "polybelt"
 	item_flags = NOBLUDGEON
-	/// Typepath of a mob we have scanned, we only store one at a time
+	/// 存储的生物类型路径，只存储一个
 	var/stored_mob_type
-	/// Have we activated the belt?
+	/// 腰带是否已激活
 	var/active = FALSE
-	/// Our current transformation action
+	/// 当前的变形动作
 	var/datum/action/cooldown/spell/shapeshift/polymorph_belt/transform_action
 
 /obj/item/polymorph_belt/Initialize(mapload)
@@ -27,9 +27,9 @@
 	. = ..()
 	if (stored_mob_type)
 		var/mob/living/will_become = stored_mob_type
-		. += span_notice("It contains digitised [initial(will_become.name)] DNA.")
+		. += span_notice("它包含已经数字化的 [initial(will_become.name)] DNA。")
 	if (!active)
-		. += span_warning("It requires a Bioscrambler Anomaly Core in order to function.")
+		. += span_warning("它需要一个生物异常核心才能工作。")
 
 /obj/item/polymorph_belt/item_action_slot_check(slot, mob/user, datum/action/action)
 	return slot & ITEM_SLOT_BELT
@@ -42,7 +42,7 @@
 /obj/item/polymorph_belt/attackby(obj/item/weapon, mob/user, params)
 	if (!istype(weapon, /obj/item/assembly/signaler/anomaly/bioscrambler))
 		return ..()
-	balloon_alert(user, "inserting...")
+	balloon_alert(user, "插入中...")
 	if (!do_after(user, delay = 3 SECONDS, target = src))
 		return
 	qdel(weapon)
@@ -58,26 +58,25 @@
 	if (!isliving(target_mob))
 		return
 	if (!isanimal_or_basicmob(target_mob))
-		balloon_alert(user, "target too complex!")
+		balloon_alert(user, "目标太复杂！")
 		return TRUE
 	if (target_mob.mob_biotypes & (MOB_HUMANOID|MOB_ROBOTIC|MOB_SPECIAL|MOB_SPIRIT|MOB_UNDEAD))
-		balloon_alert(user, "incompatible!")
+		balloon_alert(user, "不兼容！")
 		return TRUE
-	if (isanimal_or_basicmob(target_mob))
-		if (!target_mob.compare_sentience_type(SENTIENCE_ORGANIC))
-			balloon_alert(user, "target too intelligent!")
-			return TRUE
+	if (!target_mob.compare_sentience_type(SENTIENCE_ORGANIC))
+		balloon_alert(user, "目标太聪明！")
+		return TRUE
 	if (stored_mob_type == target_mob.type)
-		balloon_alert(user, "already scanned!")
+		balloon_alert(user, "已扫描过！")
 		return TRUE
 	if (DOING_INTERACTION_WITH_TARGET(user, target_mob))
-		balloon_alert(user, "busy!")
+		balloon_alert(user, "忙碌中！")
 		return TRUE
-	balloon_alert(user, "scanning...")
-	visible_message(span_notice("[user] begins scanning [target_mob] with [src]."))
+	balloon_alert(user, "扫描中...")
+	visible_message(span_notice("[user] 开始用 [src] 扫描 [target_mob]。"))
 	if (!do_after(user, delay = 5 SECONDS, target = target_mob))
 		return TRUE
-	visible_message(span_notice("[user] scans [target_mob] with [src]."))
+	visible_message(span_notice("[user] 用 [src] 扫描 [target_mob]。"))
 	stored_mob_type = target_mob.type
 	update_transform_action()
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
@@ -99,7 +98,7 @@
 
 /// Ability provided by the polymorph belt
 /datum/action/cooldown/spell/shapeshift/polymorph_belt
-	name = "Invert Polymorphic Field"
+	name = "反转多态场"
 	cooldown_time = 30 SECONDS
 	school = SCHOOL_UNSET
 	invocation_type = INVOCATION_NONE
@@ -134,12 +133,12 @@
 	animate(transform = matrix() * 1.3, time = animate_step, easing = SINE_EASING)
 	animate(transform = matrix() * 0.1, time = animate_step, easing = SINE_EASING)
 
-	cast_on.balloon_alert(cast_on, "transforming...")
+	cast_on.balloon_alert(cast_on, "变形中...")
 	if (!do_after(cast_on, delay = channel_time, target = cast_on))
 		animate(cast_on, transform = matrix(), time = 0, easing = SINE_EASING)
 		cast_on.transform = old_transform
 		return . | SPELL_CANCEL_CAST
-	cast_on.visible_message(span_warning("[cast_on]'s body rearranges itself with a horrible crunching sound!"))
+	cast_on.visible_message(span_warning("[cast_on] 的身体发出可怕的嘎吱声，自行重组！"))
 	playsound(cast_on, 'sound/magic/demon_consume.ogg', 50, TRUE)
 
 /datum/action/cooldown/spell/shapeshift/polymorph_belt/after_cast(atom/cast_on)
@@ -155,5 +154,5 @@
 	shapeshift_type = transform_type
 	possible_shapes = list(transform_type)
 	var/mob/living/will_become = transform_type
-	desc = "Assume your [initial(will_become.name)] form!"
+	desc = "变成你的 [initial(will_become.name)] 形态！"
 	build_all_button_icons(update_flags = UPDATE_BUTTON_NAME)

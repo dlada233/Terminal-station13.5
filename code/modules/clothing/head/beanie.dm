@@ -1,11 +1,11 @@
 
 //BeanieStation13 Redux
 
-//Plus a bobble hat, lets be inclusive!!
+//再加一个毛绒球帽子，让我们更加包容!!
 
 /obj/item/clothing/head/beanie
-	name = "beanie"
-	desc = "A stylish beanie. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their heads."
+	name = "毛线帽"
+	desc = "一款时尚的毛线帽，对于那些有敏锐时尚感的人和那些不能忍受头顶着凉的人来说，这是一款完美的冬季头饰."
 	icon = 'icons/obj/clothing/head/beanie.dmi'
 	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
 	icon_state = "beanie"
@@ -18,57 +18,57 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/beanie/black
-	name = "black beanie"
+	name = "黑色毛线帽"
 	greyscale_colors = "#4A4A4B#4A4A4B"
 
 /obj/item/clothing/head/beanie/red
-	name = "red beanie"
+	name = "红色毛线帽"
 	greyscale_colors = "#D91414#D91414"
 
 /obj/item/clothing/head/beanie/darkblue
-	name = "dark blue beanie"
+	name = "深蓝色毛线帽"
 	greyscale_colors = "#1E85BC#1E85BC"
 
 /obj/item/clothing/head/beanie/yellow
-	name = "yellow beanie"
+	name = "黄色毛线帽"
 	greyscale_colors = "#E0C14F#E0C14F"
 
 /obj/item/clothing/head/beanie/orange
-	name = "orange beanie"
+	name = "橙色毛线帽"
 	greyscale_colors = "#C67A4B#C67A4B"
 
 /obj/item/clothing/head/beanie/christmas
-	name = "christmas beanie"
+	name = "圣诞毛线帽"
 	greyscale_colors = "#038000#960000"
 
 /obj/item/clothing/head/beanie/durathread
-	name = "durathread beanie"
-	desc = "A beanie made from durathread, its resilient fibres provide some protection to the wearer."
+	name = "杜拉棉毛线帽"
+	desc = "一款由杜拉棉纤维制成的毛线帽，其坚韧的纤维为佩戴者提供了一些保护."
 	icon_preview = 'icons/obj/fluff/previews.dmi'
 	icon_state_preview = "beanie_durathread"
 	greyscale_colors = "#8291A1#8291A1"
 	armor_type = /datum/armor/beanie_durathread
 
 /obj/item/clothing/head/rasta
-	name = "rastacap"
-	desc = "Perfect for tucking in those dreadlocks."
+	name = "拉斯塔帽"
+	desc = "完美地藏住那些脏辫."
 	icon = 'icons/obj/clothing/head/beanie.dmi'
 	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
 	icon_state = "beanierasta"
 
 /obj/item/clothing/head/waldo
-	name = "red striped bobble hat"
-	desc = "If you're going on a worldwide hike, you'll need some cold protection."
+	name = "红色条纹毛绒球帽"
+	desc = "如果你要进行全球徒步旅行，你需要一些防寒保护."
 	icon = 'icons/obj/clothing/head/beanie.dmi'
 	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
 	icon_state = "waldo_hat"
 
-//No dog fashion sprites yet :(  poor Ian can't be dope like the rest of us yet
+//还没有狗狗的时尚精灵 :( 可怜的伊恩还不能像我们一样酷
 
 /obj/item/clothing/head/beanie/black/dboy
-	name = "test subject beanie"
-	desc = "A dingy and torn black beanie. Is that slime or grease?"
-	/// Used for the extra flavor text the d-boy himself sees
+	name = "测试对象毛线帽"
+	desc = "一顶脏兮兮且破旧的黑色毛线帽.这是粘液还是油脂？"
+	/// 用于d-boy自己看到的额外文本
 	var/datum/weakref/beanie_owner = null
 
 /datum/armor/beanie_durathread
@@ -88,4 +88,4 @@
 /obj/item/clothing/head/beanie/black/dboy/examine(mob/user)
 	. = ..()
 	if(IS_WEAKREF_OF(user, beanie_owner))
-		. += span_purple("It's covered in otherworldly debris only your eyes have been ruined enough to see.")
+		. += span_purple("它覆盖着只有你的眼睛被破坏到一定程度才能看到的奇异残骸.")

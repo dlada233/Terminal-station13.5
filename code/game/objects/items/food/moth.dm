@@ -71,7 +71,7 @@
 	name = "蛾类披萨饼"
 	desc = "一种用玉米粉和面粉做成的结实的、有谷质的面团，用来承载起司和酱汁"
 	icon = 'icons/obj/food/moth.dmi'
-	icon_state = "mothic_pizza_面团"
+	icon_state = "mothic_pizza_dough"
 	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("生面粉" = 1)
 	foodtypes = GRAIN
@@ -249,7 +249,7 @@
 	tastes = list("米饭" = 1, "土豆" = 1, "蔬菜" = 1)
 	foodtypes = VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
-	crafting_complexity = FOOD_COMPLEXITY_1
+	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/oven_baked_corn
 	name = "烘玉米"
@@ -406,6 +406,7 @@
 	desc = "PSB,或预包装营养棒,是舰队上一种食物短缺时的应急食品,由大豆和豌豆蛋白制成.有时也会因存货接近保质期而向市场清仓销售.这个的味道像大多数人工调味的蛾类食物一样，混合了草药的味道。."
 	icon = 'icons/obj/food/moth.dmi'
 	icon_state = "sustenance_bar"
+	trash_type = /obj/item/trash/fleet_ration
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20)
 	tastes = list("草药" = 1)
 	foodtypes = VEGETABLES | GRAIN
@@ -726,7 +727,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 5,
 	)
 	tastes = list("披萨" = 1, "青酱" = 1, "奶酪" = 1)
-	foodtypes = GRAIN | VEGETABLES | DAIRY | NUTS | RAW
+	foodtypes = GRAIN | VEGETABLES | DAIRY | NUTS
 	slice_type = /obj/item/food/pizzaslice/mothic_pesto
 	boxtag = "Presto 青酱" // Presto pesto
 	crafting_complexity = FOOD_COMPLEXITY_5

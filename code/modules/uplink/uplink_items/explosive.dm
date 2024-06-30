@@ -35,7 +35,8 @@
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
 	cost = 4
 	cant_discount = TRUE
-/* //SKYRAT EDIT REMOVAL START
+
+/* // SKYRAT EDIT REMOVAL START
 /datum/uplink_item/explosives/detomatix
 	name = "Detomatix disk"
 	desc = "When inserted into a tablet, this cartridge gives you four opportunities to \
@@ -44,7 +45,7 @@
 	item = /obj/item/computer_disk/virus/detomatix
 	cost = 6
 	restricted = TRUE
-*/ //SKYRAT REMOVAL END
+*/ // SKYRAT EDIT REMOVAL END
 /datum/uplink_item/explosives/emp
 	name = "EMP手榴弹和植入物套件"
 	desc = "一个装有五枚EMP手榴弹和一支EMP植入物的盒子."
@@ -55,6 +56,12 @@
 	..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_CYBERNETIC_REVOLUTION))
 		cost *= 3
+
+/datum/uplink_item/explosives/smoke
+	name = "Smoke Grenades"
+	desc = "A box that contains five smoke grenades. Useful for vanishing and ninja fans with katana."
+	item = /obj/item/storage/box/syndie_kit/smoke
+	cost = 2
 
 /datum/uplink_item/explosives/pizza_bomb
 	name = "披萨炸弹"

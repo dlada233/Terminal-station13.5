@@ -4,7 +4,7 @@
 ///Pad for the Civilian Bounty Control.
 /obj/machinery/piratepad/civilian
 	name = "民用赏金发射平台"
-	desc = "用于向Centcom发送赏金目标来赚钱快外的发射平台"
+	desc = "用于向中央指挥部发送赏金目标来赚钱快外的发射平台"
 	layer = TABLE_LAYER
 	resistance_flags = FIRE_PROOF
 	circuit = /obj/item/circuitboard/machine/bountypad
@@ -37,7 +37,7 @@
 ///Computer for assigning new civilian bounties, and sending bounties for collection.
 /obj/machinery/computer/piratepad_control/civilian
 	name = "民用赏金终端"
-	desc = "用于向Centcom发送赏金目标来赚钱快外，将ID卡插入来操作."
+	desc = "用于向中央指挥部发送赏金目标来赚钱快外，将ID卡插入来操作."
 	status_report = "Ready for delivery."
 	icon_screen = "civ_bounty"
 	icon_keyboard = "id_key"
@@ -60,7 +60,7 @@
 		pad_ref = WEAKREF(I.buffer)
 		return TRUE
 
-/obj/machinery/computer/piratepad_control/civilian/LateInitialize()
+/obj/machinery/computer/piratepad_control/civilian/post_machine_initialize()
 	. = ..()
 	if(cargo_hold_id)
 		for(var/obj/machinery/piratepad/civilian/C as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/piratepad/civilian))
@@ -163,11 +163,9 @@
 	inserted_scan_id.registered_account.bounties = null
 	return inserted_scan_id.registered_account.civilian_bounty
 
-/obj/machinery/computer/piratepad_control/civilian/AltClick(mob/user)
-	. = ..()
-	if(!Adjacent(user))
-		return FALSE
+/obj/machinery/computer/piratepad_control/civilian/click_alt(mob/user)
 	id_eject(user, inserted_scan_id)
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/computer/piratepad_control/civilian/ui_data(mob/user)
 	var/list/data = list()
@@ -186,6 +184,9 @@
 			data["id_bounty_names"] = list(inserted_scan_id.registered_account.bounties[1].name,
 											inserted_scan_id.registered_account.bounties[2].name,
 											inserted_scan_id.registered_account.bounties[3].name)
+			data["id_bounty_infos"] = list(inserted_scan_id.registered_account.bounties[1].description,
+											inserted_scan_id.registered_account.bounties[2].description,
+											inserted_scan_id.registered_account.bounties[3].description)
 			data["id_bounty_values"] = list(inserted_scan_id.registered_account.bounties[1].reward * (CIV_BOUNTY_SPLIT/100),
 											inserted_scan_id.registered_account.bounties[2].reward * (CIV_BOUNTY_SPLIT/100),
 											inserted_scan_id.registered_account.bounties[3].reward * (CIV_BOUNTY_SPLIT/100))

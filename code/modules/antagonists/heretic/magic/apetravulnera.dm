@@ -5,7 +5,7 @@
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
-	button_icon_state = "cleave"
+	button_icon_state = "apetra_vulnera"
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 45 SECONDS

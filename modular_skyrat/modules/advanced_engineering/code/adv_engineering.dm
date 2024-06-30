@@ -28,19 +28,24 @@
 	ui_theme = "neutral"
 
 /obj/item/rcd_ammo/combat
-	name = "工业级RCD 物质筒"
-	desc = "为工业级RCD一次性完全补充库存的物质筒."
+	name = "industrial RCD matter cartridge"
+	desc = "A cartridge with one complete refill for an industrial RCD."
 	w_class = WEIGHT_CLASS_SMALL
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 60, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 40)
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 60,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 40,
+	)
 	ammoamt = 440
 
 /obj/item/storage/box/rcd_ammo
-	name = "工业级RCD物质筒盒"
+	name = "industrial RCD matter box"
 	icon = 'modular_skyrat/modules/aesthetics/storage/storage.dmi'
-	desc = "一个坚固的盒子，装有工业级RCD物质筒."
+	desc = "A durable box with refill cartridges for an industrial RCD."
 	icon_state = "engibox"
 	illustration = "rcd"
-	custom_materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/storage/box/rcd_ammo/PopulateContents()
 	for(var/i in 1 to 4)

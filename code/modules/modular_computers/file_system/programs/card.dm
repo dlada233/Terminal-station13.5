@@ -51,7 +51,7 @@
 		authenticated_user = auth_card.registered_name ? auth_card.registered_name : "Unknown"
 		job_templates = is_centcom ? SSid_access.centcom_job_templates.Copy() : SSid_access.station_job_templates.Copy()
 		valid_access = is_centcom ? SSid_access.get_region_access_list(list(REGION_CENTCOM)) : SSid_access.get_region_access_list(list(REGION_ALL_STATION))
-		update_static_data(user)
+		computer.update_static_data_for_all_viewers()
 		return TRUE
 
 	// Otherwise, we're minor and now we have to build a list of restricted departments we can change access for.
@@ -67,7 +67,7 @@
 		minor = TRUE
 		valid_access |= SSid_access.get_region_access_list(region_access)
 		authenticated_card = "[auth_card.name] \[访问受限\]"
-		update_static_data(user)
+		computer.update_static_data_for_all_viewers()
 		return TRUE
 
 	return FALSE
@@ -87,6 +87,7 @@
 	return ..()
 
 /datum/computer_file/program/card_mod/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 	var/mob/user = usr
 	var/obj/item/card/id/inserted_auth_card = computer.computer_id_slot
 
@@ -124,7 +125,7 @@
 				if(A in known_access_rights)
 					contents += " [SSid_access.get_access_desc(A)]"
 
-			if(!computer.print_text(contents, "access report - [inserted_auth_card.registered_name ? inserted_auth_card.registered_name : "未注册"]"))
+			if(!computer.print_text(contents, "access report - [inserted_auth_card.registered_name ? inserted_auth_card.registered_name : "Unregistered"]"))
 				to_chat(usr, span_notice("打印机没纸了."))
 				return TRUE
 			else
@@ -254,7 +255,7 @@
 				SSid_access.add_trim_access_to_card(inserted_auth_card, trim_path)
 				return TRUE
 
-			stack_trace("[key_name(usr)] ([usr])尝试应用无效模板\[[template_name]\]为[inserted_auth_card]")
+			stack_trace("[key_name(usr)] ([usr]) attempted to apply invalid template \[[template_name]\] to [inserted_auth_card]")
 
 			return TRUE
 

@@ -1,9 +1,9 @@
 /datum/computer_file/program/ntnet_dos
 	filename = "ntn_dos"
-	filedesc = "DoS通讯堵塞产生器"
+	filedesc = "DoS Traffic Generator"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "hostile"
-	extended_desc = "此高级脚本程序可以对NTNet量子中继器发起DOS攻击，但系统的管理员可能会注意到这些异常的流量；多个设备可以同时运行此程序对同一中继器增加威力"
+	extended_desc = "This advanced script can perform denial of service attacks against NTNet quantum relays. The system administrator will probably notice this. Multiple devices can run this program together against same relay for increased effect"
 	size = 20
 	program_flags = PROGRAM_ON_SYNDINET_STORE | PROGRAM_REQUIRES_NTNET
 	tgui_id = "NtosNetDos"
@@ -28,7 +28,7 @@
 		if(!target.is_operational)
 			target.dos_sources.Remove(src)
 			target = null
-			error = "与目标中继器的连接丢失."
+			error = "Connection to destination relay lost."
 
 /datum/computer_file/program/ntnet_dos/kill_program(mob/user)
 	if(target)
@@ -38,6 +38,7 @@
 	return ..()
 
 /datum/computer_file/program/ntnet_dos/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 	switch(action)
 		if("PRG_target_relay")
 			for(var/obj/machinery/ntnet_relay/relays as anything in SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay))
@@ -57,7 +58,7 @@
 				executed = TRUE
 				target.dos_sources.Add(src)
 				if(SSmodular_computers.intrusion_detection_enabled)
-					SSmodular_computers.add_log("IDS WARNING - 检测到来自[computer.name]的过量流量瞄准中继[target.uid]")
+					SSmodular_computers.add_log("IDS WARNING - Excess traffic flood targeting relay [target.uid] detected from device: [computer.name]")
 					SSmodular_computers.intrusion_detection_alarm = TRUE
 			return TRUE
 

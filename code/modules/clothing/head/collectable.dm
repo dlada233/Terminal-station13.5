@@ -2,30 +2,30 @@
 //Hat Station 13
 
 /obj/item/clothing/head/collectable
-	name = "collectable hat"
-	desc = "A rare collectable hat."
+	name = "收藏帽"
+	desc = "一顶罕见的收藏帽."
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = null
 
 /obj/item/clothing/head/collectable/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/series, /obj/item/clothing/head/collectable, "Super duper collectable hats")
+	AddElement(/datum/element/series, /obj/item/clothing/head/collectable, "超级罕见收藏帽")
 
 /obj/item/clothing/head/collectable/petehat
-	name = "ultra rare Pete's hat!"
-	desc = "It smells faintly of plasma."
+	name = "超罕见Pete的帽子！"
+	desc = "它有淡淡的等离子气味."
 	icon_state = "petehat"
 
 /obj/item/clothing/head/collectable/xenom
-	name = "collectable xenomorph helmet!"
-	desc = "Hiss hiss hiss!"
+	name = "收藏级异形头套！"
+	desc = "嘶嘶嘶！"
 	clothing_flags = SNUG_FIT
 	icon_state = "xenom"
 
 /obj/item/clothing/head/collectable/chef
-	name = "collectable chef's hat"
-	desc = "A rare chef's hat meant for hat collectors!"
+	name = "收藏级厨师帽"
+	desc = "一顶罕见的厨师帽，适合帽子收藏家！"
 	icon = 'icons/obj/clothing/head/utility.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "chef"
@@ -33,23 +33,23 @@
 	dog_fashion = /datum/dog_fashion/head/chef
 
 /obj/item/clothing/head/collectable/paper
-	name = "collectable paper hat"
-	desc = "What looks like an ordinary paper hat is actually a rare and valuable collector's edition paper hat. Keep away from water, fire, and Curators."
+	name = "收藏级纸帽"
+	desc = "看起来像一顶普通的纸帽，实际上是一顶罕见且有价值的收藏版纸帽，远离水、火和图书馆长."
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "paper"
 	dog_fashion = /datum/dog_fashion/head
 
 /obj/item/clothing/head/collectable/tophat
-	name = "collectable top hat"
-	desc = "A top hat worn by only the most prestigious hat collectors."
+	name = "收藏级高顶帽"
+	desc = "一顶只有最尊贵的帽子收藏家才会戴的高顶帽."
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "tophat"
 	inhand_icon_state = "that"
 
 /obj/item/clothing/head/collectable/captain
-	name = "collectable captain's hat"
-	desc = "A collectable hat that'll make you look just like a real comdom!"
+	name = "收藏级船长帽"
+	desc = "一顶让你看起来像真正船长的收藏级帽子！"
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "captain"
@@ -57,16 +57,16 @@
 	dog_fashion = /datum/dog_fashion/head/captain
 
 /obj/item/clothing/head/collectable/police
-	name = "collectable police officer's hat"
-	desc = "A collectable police officer's Hat. This hat emphasizes that you are THE LAW."
+	name = "收藏级警察帽"
+	desc = "一顶收藏级的警察帽，这顶帽子强调你就是法律."
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "policehelm"
 	dog_fashion = /datum/dog_fashion/head/warden
 
 /obj/item/clothing/head/collectable/beret
-	name = "collectable beret"
-	desc = "A collectable red beret. It smells faintly of garlic."
+	name = "收藏级贝雷帽"
+	desc = "一顶收藏级的红色贝雷帽，它有淡淡的大蒜味."
 	icon_state = "beret"
 	greyscale_config = /datum/greyscale_config/beret
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
@@ -74,8 +74,8 @@
 	dog_fashion = /datum/dog_fashion/head/beret
 
 /obj/item/clothing/head/collectable/welding
-	name = "collectable welding helmet"
-	desc = "A collectable welding helmet. Now with 80% less lead! Not for actual welding. Any welding done while wearing this helmet is done so at the owner's own risk!"
+	name = "收藏级焊接头盔"
+	desc = "一顶收藏级的焊接头盔，含铅量减少了80%！不适合实际焊接，任何在佩戴此头盔时进行的焊接均由佩戴者自担风险！"
 	icon = 'icons/obj/clothing/head/utility.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "welding"
@@ -85,15 +85,15 @@
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/collectable/slime
-	name = "collectable slime hat"
-	desc = "Just like a real brain slug!"
+	name = "收藏级史莱姆帽"
+	desc = "就像一个真正的脑蛞蝓！"
 	icon_state = "headslime"
 	inhand_icon_state = null
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/collectable/flatcap
-	name = "collectable flat cap"
-	desc = "A collectible farmer's flat cap!"
+	name = "收藏级平顶帽"
+	desc = "一顶收藏级的农民平顶帽！"
 	icon_state = "beret_flat"
 	greyscale_config = /datum/greyscale_config/beret
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
@@ -101,37 +101,37 @@
 	inhand_icon_state = null
 
 /obj/item/clothing/head/collectable/pirate
-	name = "collectable pirate hat"
-	desc = "You'd make a great Dread Syndie Roberts!"
+	name = "收藏级海盗帽"
+	desc = "你会成为一个伟大的Dread Syndie Roberts！"
 	icon_state = "pirate"
 	inhand_icon_state = null
 	dog_fashion = /datum/dog_fashion/head/pirate
 
 /obj/item/clothing/head/collectable/kitty
-	name = "collectable kitty ears"
-	desc = "The fur feels... a bit too realistic."
+	name = "收藏级猫耳"
+	desc = "这毛感觉...有点太真实了."
 	icon_state = "kitty"
 	inhand_icon_state = null
 	dog_fashion = /datum/dog_fashion/head/kitty
 
 /obj/item/clothing/head/collectable/rabbitears
-	name = "collectable rabbit ears"
-	desc = "Not as lucky as the feet!"
+	name = "收藏级兔耳"
+	desc = "没有兔脚那么幸运！"
 	icon_state = "bunny"
 	inhand_icon_state = null
 	dog_fashion = /datum/dog_fashion/head/rabbit
 
 /obj/item/clothing/head/collectable/wizard
-	name = "collectable wizard's hat"
-	desc = "NOTE: Any magical powers gained from wearing this hat are purely coincidental."
+	name = "收藏级巫师帽"
+	desc = "注意：佩戴此帽子所获得的任何魔法能力纯属巧合."
 	icon = 'icons/obj/clothing/head/wizard.dmi'
 	worn_icon = 'icons/mob/clothing/head/wizard.dmi'
 	icon_state = "wizard"
 	dog_fashion = /datum/dog_fashion/head/blue_wizard
 
 /obj/item/clothing/head/collectable/hardhat
-	name = "collectable hard hat"
-	desc = "WARNING! Offers no real protection, or luminosity, but damn, is it fancy!"
+	name = "收藏级安全帽"
+	desc = "警告！不提供任何实际保护或照明，但非常华丽！"
 	icon = 'icons/obj/clothing/head/utility.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	clothing_flags = SNUG_FIT
@@ -140,23 +140,23 @@
 	dog_fashion = /datum/dog_fashion/head
 
 /obj/item/clothing/head/collectable/hos
-	name = "collectable HoS hat"
-	desc = "Now you too can beat prisoners, set silly sentences, and arrest for no reason!"
+	name = "收藏级安全主管帽"
+	desc = "现在你也可以殴打囚犯、设置荒唐的刑期并无理由逮捕人了！"
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "hoscap"
 
 /obj/item/clothing/head/collectable/hop
-	name = "collectable HoP hat"
-	desc = "It's your turn to demand excessive paperwork, signatures, stamps, and hire more clowns! Papers, please!"
+	name = "收藏级人事主管帽"
+	desc = "轮到你来处理过多的文书工作、签名、印章，并雇用更多的小丑了！文件，请！"
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "hopcap"
 	dog_fashion = /datum/dog_fashion/head/hop
 
 /obj/item/clothing/head/collectable/thunderdome
-	name = "collectable Thunderdome helmet"
-	desc = "Go Red! I mean Green! I mean Red! No Green!"
+	name = "收藏级雷霆竞技头盔"
+	desc = "加油红队！我是说绿队！我是说红队！不，绿队！"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "thunderdome"
@@ -165,8 +165,8 @@
 	flags_inv = HIDEHAIR|HIDEHAIR
 
 /obj/item/clothing/head/collectable/swat
-	name = "collectable SWAT helmet"
-	desc = "That's not real blood. That's red paint." //Reference to the actual description
+	name = "收藏级特警头盔"
+	desc = "那不是真血，那是红色油漆." //参考实际描述
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "swatsyndie"

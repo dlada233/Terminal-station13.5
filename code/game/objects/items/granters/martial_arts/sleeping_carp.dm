@@ -14,7 +14,7 @@
 		"侵掠如火，不动如山...",
 		"静心...制敌只需分秒...",
 		"不知可否使力量穿透护甲呢...",
-		"好像没法和其他武术结合...",
+		"好像没法和其他武术结合使用...",
 		"人鲤合一...",
 		"Glub...",
 	)
@@ -27,7 +27,7 @@
 	. = ..()
 	if(uses <= 0)
 		name = "空卷轴"
-		desc = "It's completely blank."
+		desc = "完全是空白的."
 		icon_state = "blankscroll"
 	else
 		name = initial(name)

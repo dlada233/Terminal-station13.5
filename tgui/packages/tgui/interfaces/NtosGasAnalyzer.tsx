@@ -25,7 +25,7 @@ export const NtosGasAnalyzer = (props) => {
             tooltip={
               atmozphereMode === 'click'
                 ? '手持设备时右键物体可进行扫描.右键设备可扫描当前位置.'
-                : "应用程序会自动更新其气体混合物读数."
+                : '应用程序会自动更新其气体混合物读数.'
             }
             tooltipPosition="bottom"
           >

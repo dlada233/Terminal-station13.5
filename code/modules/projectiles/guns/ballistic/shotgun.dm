@@ -85,6 +85,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	semi_auto = TRUE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/tube
+	interaction_flags_click = NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING
 	/// If defined, the secondary tube is this type, if you want different shell loads
 	var/alt_mag_type
 	/// If TRUE, we're drawing from the alternate_magazine
@@ -96,6 +97,10 @@
 	name = "赏金双匣霰弹枪"
 	desc = "先进的霰弹枪，有两个独立的弹匣，这一个可能是经过赏金猎人定制过的，意味着可能有橡胶弹/燃烧弹."
 	alt_mag_type = /obj/item/ammo_box/magazine/internal/shot/tube/fire
+
+/obj/item/gun/ballistic/shotgun/automatic/dual_tube/deadly
+	spawn_magazine_type = /obj/item/ammo_box/magazine/internal/shot/tube/buckshot
+	alt_mag_type = /obj/item/ammo_box/magazine/internal/shot/tube/slug
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()
@@ -127,10 +132,9 @@
 	else
 		balloon_alert(user, "切换到管路A")
 
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/AltClick(mob/living/user)
-	if(!user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS))
-		return
+/obj/item/gun/ballistic/shotgun/automatic/dual_tube/click_alt(mob/living/user)
 	rack()
+	return CLICK_ACTION_SUCCESS
 
 // Bulldog shotgun //
 
@@ -148,10 +152,11 @@
 	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m12g
 	can_suppress = FALSE
-	burst_size = 1
-	fire_delay = 10 //Skyrat edit - Original: 0
+	burst_size = 2
+	fire_delay = 10 //Skyrat edit - Original: 1
 	pin = /obj/item/firing_pin/implant/pindicate
 	fire_sound = 'sound/weapons/gun/shotgun/shot_alt.ogg'
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	mag_display = TRUE
 	empty_indicator = TRUE
 	empty_alarm = TRUE
@@ -160,6 +165,7 @@
 	semi_auto = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE
+	burst_fire_selection = TRUE
 	///the type of secondary magazine for the bulldog
 	var/secondary_magazine_type
 	///the secondary magazine
@@ -233,14 +239,13 @@
 	update_appearance()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/item/gun/ballistic/shotgun/bulldog/alt_click_secondary(mob/user)
+/obj/item/gun/ballistic/shotgun/bulldog/click_alt_secondary(mob/user)
 	if(secondary_magazine)
 		var/obj/item/ammo_box/magazine/old_mag = secondary_magazine
 		secondary_magazine = null
 		user.put_in_hands(old_mag)
 		update_appearance()
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/gun/ballistic/shotgun/bulldog/proc/toggle_magazine()
 	var/primary_magazine = magazine
@@ -282,10 +287,6 @@
 	can_be_sawn_off = TRUE
 	pb_knockback = 3 // it's a super shotgun!
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/AltClick(mob/user)
-	. = ..()
-	if(unique_reskin && !current_skin && user.can_perform_action(src, NEED_DEXTERITY))
-		reskin_obj(user)
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/sawoff(mob/user)
 	. = ..()

@@ -90,19 +90,32 @@
 		baked_item.fire_act(1000) //Hot hot hot!
 
 		if(SPT_PROB(10, seconds_per_tick))
-			visible_message(span_danger("你从[src]那里闻到一股烧焦的味道!"))
+			var/list/asomnia_hadders = list()
+			for(var/mob/smeller in get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src))
+				if(HAS_TRAIT(smeller, TRAIT_ANOSMIA))
+					asomnia_hadders += smeller
+			visible_message(span_danger("你从[src]那里闻到一股烧焦的味道!"), ignored_mobs = asomnia_hadders)
 	set_smoke_state(worst_cooked_food_state)
 	update_appearance()
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 
-
-/obj/machinery/oven/attackby(obj/item/I, mob/user, params)
-	if(open && !used_tray && istype(I, /obj/item/plate/oven_tray))
-		if(user.transferItemToLoc(I, src, silent = FALSE))
-			to_chat(user, span_notice("你放[I]进[src]."))
-			add_tray_to_oven(I, user)
-	else
+/obj/machinery/oven/attackby(obj/item/item, mob/user, params)
+	if(!open || used_tray || !istype(item, /obj/item/plate/oven_tray))
 		return ..()
+
+	if(user.transferItemToLoc(item, src, silent = FALSE))
+		to_chat(user, span_notice("你放[I]进[src]."))
+		add_tray_to_oven(item, user)
+
+/obj/machinery/oven/item_interaction(mob/living/user, obj/item/item, list/modifiers)
+	if(open && used_tray && item.atom_storage)
+		return used_tray.item_interaction(user, item, modifiers)
+	return NONE
+
+/obj/machinery/oven/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
+	if(open && used_tray && tool.atom_storage)
+		return used_tray.item_interaction_secondary(user, tool, modifiers)
+	return NONE
 
 ///Adds a tray to the oven, making sure the shit can get baked.
 /obj/machinery/oven/proc/add_tray_to_oven(obj/item/plate/oven_tray, mob/baker)
@@ -141,13 +154,13 @@
 	if(open)
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		set_smoke_state(OVEN_SMOKE_STATE_NONE)
-		to_chat(user, span_notice("You open [src]."))
+		to_chat(user, span_notice("你打开了[src]."))
 		end_processing()
 		if(used_tray)
 			used_tray.vis_flags &= ~VIS_HIDE
 	else
 		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
-		to_chat(user, span_notice("You close [src]."))
+		to_chat(user, span_notice("你关上了[src]."))
 		if(used_tray)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
@@ -166,13 +179,13 @@
 	if(open)
 		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		set_smoke_state(OVEN_SMOKE_STATE_NONE)
-		to_chat(user, span_notice("你打开[src]."))
+		to_chat(user, span_notice("你打开了[src]."))
 		end_processing()
 		if(used_tray)
 			used_tray.vis_flags &= ~VIS_HIDE
 	else
 		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
-		to_chat(user, span_notice("你关上[src]."))
+		to_chat(user, span_notice("你关上了[src]."))
 		if(used_tray)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
@@ -238,6 +251,43 @@
 	icon_state = "oven_tray"
 	max_items = 6
 	biggest_w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/plate/oven_tray/item_interaction_secondary(mob/living/user, obj/item/item, list/modifiers)
+	if(isnull(item.atom_storage))
+		return NONE
+
+	for(var/obj/tray_item in src)
+		item.atom_storage.attempt_insert(tray_item, user, TRUE)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/plate/oven_tray/item_interaction(mob/living/user, obj/item/item, list/modifiers)
+	if(isnull(item.atom_storage))
+		return NONE
+
+	if(length(contents) >= max_items)
+		balloon_alert(user, "它是满的!")
+		return ITEM_INTERACT_BLOCKING
+
+	if(!istype(item, /obj/item/storage/bag/tray))
+		// Non-tray dumping requires a do_after
+		to_chat(user, span_notice("你开始将[item]的内容倒进[src]里..."))
+		if(!do_after(user, 2 SECONDS, target = item))
+			return ITEM_INTERACT_BLOCKING
+
+	var/loaded = 0
+	for(var/obj/tray_item in item)
+		if(!IS_EDIBLE(tray_item))
+			continue
+		if(length(contents) >= max_items)
+			break
+		if(item.atom_storage.attempt_remove(tray_item, src))
+			loaded++
+			AddToPlate(tray_item, user)
+	if(loaded)
+		to_chat(user, span_notice("你送入[loaded]到[src]中."))
+		update_appearance()
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
 #undef OVEN_SMOKE_STATE_NONE
 #undef OVEN_SMOKE_STATE_GOOD

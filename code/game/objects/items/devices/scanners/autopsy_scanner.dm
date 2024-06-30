@@ -13,7 +13,7 @@
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*2)
 	custom_price = PAYCHECK_COMMAND
 
-/obj/item/autopsy_scanner/interact_with_atom(atom/interacting_with, mob/living/user)
+/obj/item/autopsy_scanner/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
 		return NONE
 	if(!user.can_read(src) || user.is_blind())
@@ -85,7 +85,7 @@
 		if(HAS_TRAIT_FROM(scanned, TRAIT_HUSK, BURN))
 			autopsy_information += "重度烧伤.</br>"
 		else if (HAS_TRAIT_FROM(scanned, TRAIT_HUSK, CHANGELING_DRAIN))
-			autopsy_information += "干裂,常由化身灵引起.</br>"
+			autopsy_information += "干裂,常由化形引起.</br>"
 		else
 			autopsy_information += "未知成因.</br>"
 	else

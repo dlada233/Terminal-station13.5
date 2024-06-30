@@ -1,9 +1,9 @@
 /datum/round_event_control/radiation_storm
-	name = "Radiation Storm"
+	name = "Radiation Storm-辐射风暴"
 	typepath = /datum/round_event/radiation_storm
 	max_occurrences = 1
 	category = EVENT_CATEGORY_SPACE
-	description = "Radiation storm affects the station, forcing the crew to escape to maintenance."
+	description = "辐射风暴袭击整个空间站，所有船员需要躲进维护管道."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 

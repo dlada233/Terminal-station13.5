@@ -24,13 +24,13 @@
  */
 
 /datum/round_event_control/supermatter_surge
-	name = "Supermatter Surge"
+	name = "Supermatter Surge-超物质浪涌"
 	typepath = /datum/round_event/supermatter_surge
 	category = EVENT_CATEGORY_ENGINEERING
 	weight = 15
 	max_occurrences = 1
 	earliest_start = 20 MINUTES
-	description = "The supermatter will increase in power and heat by a random amount, and announce it."
+	description = "超物质能量和热量将随机增加，并受到广播"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 	admin_setup = list(
@@ -54,7 +54,7 @@
 	var/datum/sm_gas/nitrogen/sm_gas
 
 /datum/event_admin_setup/input_number/surge_spiciness
-	input_text = "Set surge intensity. (Higher is more severe.)"
+	input_text = "设定浪涌等级. (越高越严重.)"
 	min_value = SURGE_SEVERITY_MIN
 	max_value = SURGE_SEVERITY_MAX
 
@@ -110,12 +110,12 @@
 	sm_gas = null
 
 /datum/round_event_control/supermatter_surge/poly
-	name = "Supermatter Surge: Poly's Revenge"
+	name = "Supermatter Surge: Poly's Revenge-超物质浪涌（poly的复仇）"
 	typepath = /datum/round_event/supermatter_surge/poly
 	category = EVENT_CATEGORY_ENGINEERING
 	weight = 0
 	max_occurrences = 0
-	description = "For when Poly is sacrificed to the SM. Not really useful to run manually."
+	description = "当poly被推进超物质的时候. 手动运行不是很有用."
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	admin_setup = null

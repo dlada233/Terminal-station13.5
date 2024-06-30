@@ -9,44 +9,10 @@
 	fire_sound_volume = 90
 	rack_sound = 'sound/weapons/gun/smg/smgrack.ogg'
 	suppressed_sound = 'sound/weapons/gun/smg/shot_suppressed.ogg'
-	var/select = 1 ///fire selector position. 1 = semi, 2 = burst. anything past that can vary between guns.
-	var/selector_switch_icon = FALSE ///if it has an icon for a selector switch indicating current firemode.
-
-/obj/item/gun/ballistic/automatic/update_overlays()
-	. = ..()
-	if(!selector_switch_icon)
-		return
-
-	switch(select)
-		if(0)
-			. += "[initial(icon_state)]_semi"
-		if(1)
-			. += "[initial(icon_state)]_burst"
-
-/obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
-	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
-		burst_select()
-	else
-		..()
-
-/obj/item/gun/ballistic/automatic/proc/burst_select()
-	var/mob/living/carbon/human/user = usr
-	select = !select
-	if(!select)
-		burst_size = 1
-		fire_delay = 0
-		balloon_alert(user, "切换到半自动模式")
-	else
-		burst_size = initial(burst_size)
-		fire_delay = initial(fire_delay)
-		balloon_alert(user, "切换到[burst_size]连发模式")
-
-	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
-	update_appearance()
-	update_item_action_buttons()
+	burst_fire_selection = TRUE
 
 /obj/item/gun/ballistic/automatic/proto
-	name = "纳米剑兵冲锋枪"
+	name = "\improper 纳米剑兵冲锋枪"
 	desc = "一种原型全自动9毫米冲锋枪，代号“SABR”，带有有装消音器的螺纹枪管."
 	icon_state = "saber"
 	burst_size = 1
@@ -66,7 +32,7 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/automatic/c20r
-	name = "C-20r冲锋枪"
+	name = "\improper C-20r冲锋枪"
 	desc = "三连发的.45冲锋枪，代号C-20r，还有“斯卡伯勒武器”的印章."
 	icon_state = "c20r"
 	inhand_icon_state = "c20r"
@@ -95,7 +61,7 @@
 	update_appearance()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "WT-550自动步枪"
+	name = "\improper WT-550自动步枪"
 	desc = "这把重量轻、全自动的武器发射4.6x30毫米子弹，大多被海盗、资金不足的安保人员、货仓技工、理论物理学家和帮派分子使用. 辛迪加曾蓄意煽动，引发了公众对于纳米热武器的强烈抗议，使得纳米最终不得不转向能量武器市场."
 	icon_state = "wt550"
 	w_class = WEIGHT_CLASS_BULKY
@@ -117,7 +83,7 @@
 	AddComponent(/datum/component/automatic_fire, 0.3 SECONDS)
 
 /obj/item/gun/ballistic/automatic/plastikov
-	name = "PP-95冲锋枪"
+	name = "\improper PP-95冲锋枪"
 	desc = "一种古老的9毫米冲锋枪模式，为了降低成本进行了简化，尽管可能简化得太多了."
 	icon_state = "plastikov"
 	inhand_icon_state = "plastikov"
@@ -132,7 +98,7 @@
 	fire_sound = 'sound/weapons/gun/smg/shot_alt.ogg'
 
 /obj/item/gun/ballistic/automatic/mini_uzi
-	name = "U3型乌兹冲锋枪"
+	name = "\improper U3型乌兹冲锋枪"
 	desc = "一种轻便的乌兹冲锋枪，使用9毫米子弹."
 	icon_state = "miniuzi"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/uzim9mm
@@ -147,14 +113,14 @@
  * Roughly 9 damage per bullet every 0.2 seconds, equaling out to downing an opponent in a bit over a second, if they have no armor.
  */
 /obj/item/gun/ballistic/automatic/mini_uzi/chimpgun
-	name = "猿-10"
+	name = "\improper 猿-10"
 	desc = "由辛迪加猴子开发，供辛迪加猴子使用. 除了名字，这把武器更像是一把乌兹冲锋枪. 发射9毫米子弹. 墙身上写着一段标语\"顺其自然.\""
 	projectile_damage_multiplier = 0.4
 	projectile_wound_bonus = -25
 	pin = /obj/item/firing_pin/monkey
 
 /obj/item/gun/ballistic/automatic/m90
-	name = "M-90gl卡宾枪"
+	name = "\improper M-90gl卡宾枪"
 	desc = "三连发的5.56口径卡宾枪，代号M-90gl，枪管附加下挂榴弹发射器."
 	desc_controls = "Right-click to use grenade launcher."
 	icon_state = "m90"
@@ -201,16 +167,8 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_overlays()
-	. = ..()
-	switch(select)
-		if(0)
-			. += "[initial(icon_state)]_semi"
-		if(1)
-			. += "[initial(icon_state)]_burst"
-
 /obj/item/gun/ballistic/automatic/tommygun
-	name = "汤姆逊冲锋枪"
+	name = "\improper 汤姆逊冲锋枪"
 	desc = "俗称'芝加哥打字机'."
 	icon_state = "tommygun"
 	inhand_icon_state = "shotgun"
@@ -237,7 +195,7 @@
  * Roughly 9 damage per bullet every 0.2 seconds, equaling out to downing an opponent in a bit over a second, if they have no armor.
  */
 /obj/item/gun/ballistic/automatic/tommygun/chimpgun
-	name = "打字机"
+	name = "\improper 打字机"
 	desc = "这是最好的时代，也是最混乱的时代!?你这蠢猴子!"
 	fire_delay = 2
 	rof = 0.2 SECONDS
@@ -246,7 +204,7 @@
 	pin = /obj/item/firing_pin/monkey
 
 /obj/item/gun/ballistic/automatic/ar
-	name = "NT-ARG '先登者'"
+	name = "\improper NT-ARG '先登者'"
 	desc = "纳米作战部队使用的一种突击步枪."
 	icon_state = "arg"
 	inhand_icon_state = "arg"
@@ -259,7 +217,7 @@
 // L6 SAW //
 
 /obj/item/gun/ballistic/automatic/l6_saw
-	name = "L6 SAW轻机枪"
+	name = "\improper L6 SAW轻机枪"
 	desc = "彻底改装过的7毫米轻机枪，命名为'L6 SAW'. 墙身底部刻有'Aussec Armoury - 2531'字样."
 	icon_state = "l6"
 	inhand_icon_state = "l6closedmag"
@@ -298,13 +256,12 @@
 		. += span_notice("看起来你可以<b>空手</b>取出弹匣.")
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/AltClick(mob/user)
-	if(!user.can_perform_action(src))
-		return
+/obj/item/gun/ballistic/automatic/l6_saw/click_alt(mob/user)
 	cover_open = !cover_open
 	balloon_alert(user, "防尘盖[cover_open ? "已打开" : "已闭合"]")
 	playsound(src, 'sound/weapons/gun/l6/l6_door.ogg', 60, TRUE)
 	update_appearance()
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon_state()
 	. = ..()

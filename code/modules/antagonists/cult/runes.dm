@@ -1,6 +1,4 @@
 
-/// list of weakrefs to mobs OR minds that have been sacrificed
-GLOBAL_LIST(sacrificed)
 /// List of all teleport runes
 GLOBAL_LIST(teleport_runes)
 /// Assoc list of every rune that can be drawn by ritual daggers. [rune_name] = [typepath]
@@ -100,25 +98,27 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	. = ..()
 	if(.)
 		return
-	if(!IS_CULTIST(user))
+	if(!IS_CULTIST_OR_CULTIST_MOB(user))
 		to_chat(user, span_warning("你无法理解[src]的文字."))
 		return
 	var/list/invokers = can_invoke(user)
 	if(length(invokers) >= req_cultists)
 		invoke(invokers)
+		SSblackbox.record_feedback("tally", "cult_rune_invoke", 1, "[name]")
 	else
 		to_chat(user, span_danger("你需要[req_cultists - length(invokers)]位教徒相邻才能使用这个符文."))
 		fail_invoke()
 
-/obj/effect/rune/attack_animal(mob/living/simple_animal/user, list/modifiers)
-	if(isshade(user) || isconstruct(user))
-		if(HAS_TRAIT(user, TRAIT_ANGELIC))
-			to_chat(user, span_warning("你清除了符文!"))
-			qdel(src)
-		else if(construct_invoke || !IS_CULTIST(user)) //if you're not a cult construct we want the normal fail message
-			attack_hand(user)
-		else
-			to_chat(user, span_warning("你无法激活符文!"))
+/obj/effect/rune/attack_animal(mob/living/user, list/modifiers)
+	if(!isshade(user) && !isconstruct(user))
+		return
+	if(HAS_TRAIT(user, TRAIT_ANGELIC))
+		to_chat(user, span_warning("你清除了符文!"))
+		qdel(src)
+	else if(construct_invoke || !IS_CULTIST(user)) //if you're not a cult construct we want the normal fail message
+		attack_hand(user)
+	else
+		to_chat(user, span_warning("你无法激活符文!"))
 
 /obj/effect/rune/proc/conceal() //for talisman of revealing/hiding
 	visible_message(span_danger("[src]慢慢消失."))
@@ -127,7 +127,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 /obj/effect/rune/proc/reveal() //for talisman of revealing/hiding
 	RemoveInvisibility(type)
-	visible_message(span_danger("[src]突然出现!"))
+	visible_message(span_danger("[src]慢慢消失!"))
 	alpha = initial(alpha)
 
 /*
@@ -149,6 +149,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 		for(var/mob/living/cultist in range(1, src))
 			if(!IS_CULTIST(cultist))
 				continue
+			var/datum/antagonist/cult/cultist_datum = locate(/datum/antagonist/cult) in cultist.mind.antag_datums
+			if(!cultist_datum.check_invoke_validity()) //We can assume there's a datum here since we can't get past the previous check otherwise.
+				continue
 			if(cultist == user)
 				continue
 			if(!cultist.can_speak(allow_mimes = TRUE))
@@ -161,17 +164,19 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/proc/invoke(list/invokers)
 	//This proc contains the effects of the rune as well as things that happen afterwards. If you want it to spawn an object and then delete itself, have both here.
-	for(var/M in invokers)
-		if(isliving(M))
-			var/mob/living/L = M
-			if(invocation)
-				L.say(invocation, language = /datum/language/common, ignore_spam = TRUE, forced = "血教祷文")
-			if(invoke_damage)
-				L.apply_damage(invoke_damage, BRUTE)
-				to_chat(L, "<span class='cult italic'>[src]削弱了你的力量!</span>")
-		else if(istype(M, /obj/item/toy/plush/narplush))
-			var/obj/item/toy/plush/narplush/P = M
-			P.visible_message("<span class='cult italic'>[P]大声尖叫!</span>")
+	for(var/atom/invoker in invokers)
+		if(istype(invoker, /obj/item/toy/plush/narplush))
+			invoker.visible_message(span_cult_italic("[src]大声尖叫!"))
+			continue
+		if(!isliving(invoker))
+			continue
+		var/mob/living/living_invoker = invoker
+		if(invocation)
+			living_invoker.say(invocation, language = /datum/language/common, ignore_spam = TRUE, forced = "血教祷文")
+		if(invoke_damage)
+			living_invoker.apply_damage(invoke_damage, BRUTE)
+			to_chat(living_invoker,  span_cult_italic("[src]削弱了你的力量!"))
+
 	do_invoke_glow()
 
 /obj/effect/rune/proc/do_invoke_glow()
@@ -186,7 +191,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/oldcolor = color
 	color = rgb(255, 0, 0)
 	animate(src, color = oldcolor, time = 5)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 5)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 0.5 SECONDS)
 
 //Malformed Rune: This forms if a rune is not drawn correctly. Invoking it does nothing but hurt the user.
 /obj/effect/rune/malformed
@@ -222,52 +227,58 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/convert/invoke(list/invokers)
 	if(rune_in_use)
 		return
-	var/list/myriad_targets = list()
-	var/turf/T = get_turf(src)
-	for(var/mob/living/M in T)
-		if(!IS_CULTIST(M))
-			myriad_targets |= M
-	if(!length(myriad_targets))
-		fail_invoke()
-		log_game("供给符文失败 - 没有合适的目标.")
-		return
-	rune_in_use = TRUE
-	visible_message(span_warning("[src]射出红光!"))
-	var/oldcolor = color
-	color = RUNE_COLOR_DARKRED
-	var/mob/living/L = pick(myriad_targets)
 
-	var/mob/living/F = invokers[1]
-	var/datum/antagonist/cult/C = F.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	var/datum/team/cult/Cult_team = C.cult_team
-	var/is_convertable = is_convertable_to_cult(L, C.cult_team)
-	if(L.stat != DEAD && is_convertable)
-		invocation = "Mah'weyh pleggh at e'ntrath!"
-		..()
-		if(is_convertable)
-			do_convert(L, invokers, Cult_team)
+	var/list/myriad_targets = list()
+	for(var/mob/living/non_cultist in loc)
+		if(!IS_CULTIST(non_cultist))
+			myriad_targets += non_cultist
+
+	if(!length(myriad_targets) && !try_spawn_sword())
+		fail_invoke()
+		return
+
+	rune_in_use = TRUE
+	visible_message(span_warning("[src] pulses blood red!"))
+	color = RUNE_COLOR_DARKRED
+
+	if(length(myriad_targets))
+		var/mob/living/new_convertee = pick(myriad_targets)
+		var/mob/living/first_invoker = invokers[1]
+		var/datum/antagonist/cult/first_invoker_datum = first_invoker.mind.has_antag_datum(/datum/antagonist/cult)
+		var/datum/team/cult/cult_team = first_invoker_datum.get_team()
+
+		var/is_convertable = is_convertable_to_cult(new_convertee, cult_team)
+		if(new_convertee.stat != DEAD && is_convertable)
+			invocation = "Mah'weyh pleggh at e'ntrath!"
+			..()
+			do_convert(new_convertee, invokers, cult_team)
+
+		else
+			invocation = "Barhah hra zar'garis!"
+			..()
+			do_sacrifice(new_convertee, invokers, cult_team)
+
+		cult_team.check_size() // Triggers the eye glow or aura effects if the cult has grown large enough relative to the crew
+
 	else
-		invocation = "Barhah hra zar'garis!"
-		..()
-		do_sacrifice(L, invokers)
-	animate(src, color = oldcolor, time = 5)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 5)
-	Cult_team.check_size() // Triggers the eye glow or aura effects if the cult has grown large enough relative to the crew
+		do_invoke_glow()
+
+	animate(src, color = initial(color), time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 0.5 SECONDS)
 	rune_in_use = FALSE
+	return ..()
 
 /obj/effect/rune/convert/proc/do_convert(mob/living/convertee, list/invokers, datum/team/cult/cult_team)
 	ASSERT(convertee.mind)
 
 	if(length(invokers) < 2)
-		for(var/M in invokers)
-			to_chat(M, span_warning("你至少需要两名教徒来激活符文，以使[convertee]皈依!"))
-		log_game("载有[convertee]的供给符文激活失败 - 尝试用一个激活者来使其皈依.")
+		for(var/invoker in invokers)
+			to_chat(invoker, span_warning("你至少需要两名教徒来激活符文，以使[convertee]皈依!"))
 		return FALSE
 
 	if(convertee.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, charge_cost = 0)) //No charge_cost because it can be spammed
-		for(var/M in invokers)
-			to_chat(M, span_warning("有什么东西保护了[convertee]的思维!"))
-		log_game("载有[convertee]的供给符文激活失败 - 被教化者有反魔法.")
+		for(var/invoker in invokers)
+			to_chat(invoker, span_warning("有什么东西保护了[convertee]的思维!"))
 		return FALSE
 
 	var/brutedamage = convertee.getBruteLoss()
@@ -280,7 +291,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		span_warning("[convertee]在痛苦中挣扎 [(brutedamage || burndamage) \
 			? "即使其伤口正愈合" \
 			: "身下的标记发出血色光芒"]!"),
-		span_cultlarge("<i>AAAAAAAAAAAAAA-</i>"),
+		span_cult_large("<i>AAAAAAAAAAAAAA-</i>"),
 	)
 
 	// We're not guaranteed to be a human but we'll cast here since we use it in a few branches
@@ -299,10 +310,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 	convertee.mind.special_role = ROLE_CULTIST
 	convertee.mind.add_antag_datum(/datum/antagonist/cult, cult_team)
 
-	to_chat(convertee, span_cultitalic("<b>你的血液涌动. 你的头脑抽痛. 世界溶入红色. \
-		你意识到一件非常非常可怕的事实. 现实的帷幕被无情地撕开，而邪恶扎下了根.</b>"))
-	to_chat(convertee, span_cultitalic("<b>协助你的新同伴们进行黑暗事业. \
-		你的目标就是他们的目标，而他们的目标也是你的目标. 服侍几何血尊的使命高于一切，将它带回来.</b>"))
+	to_chat(convertee, span_cult_bold_italic("你的血液涌动. 你的头脑抽痛. 世界溶入红色. \
+		你意识到一件非常非常可怕的事实. 现实的帷幕被无情地撕开，而邪恶扎下了根."))
+	to_chat(convertee, span_cult_bold_italic("协助你的新同伴们进行黑暗事业. \
+		你的目标就是他们的目标，而他们的目标也是你的目标. 服侍几何血尊的使命高于一切，将它带回来."))
 
 	if(istype(human_convertee))
 		human_convertee.uncuff()
@@ -313,28 +324,20 @@ structure_check() searches for nearby cultist structures required for the invoca
 		convertee.name = convertee.real_name
 	return TRUE
 
-/obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
-	var/mob/living/first_invoker = invokers[1]
-	if(!first_invoker)
-		return FALSE
-	var/datum/antagonist/cult/C = first_invoker.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	if(!C)
-		return FALSE
-
+/obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers, datum/team/cult/cult_team)
 	var/big_sac = FALSE
-	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != DEAD) || C.cult_team.is_sacrifice_target(sacrificial.mind)) && length(invokers) < 3)
-		for(var/M in invokers)
-			to_chat(M, span_cultitalic("[sacrificial]与世界的太过紧密，你需要三名教徒!"))
-		log_game("载有[sacrificial]的供给符文激活失败 - 没有足够的教徒")
+	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != DEAD) || cult_team.is_sacrifice_target(sacrificial.mind)) && length(invokers) < 3)
+		for(var/invoker in invokers)
+			to_chat(invoker, span_cult_italic("[sacrificial]与世界的太过紧密，你需要三名教徒!"))
 		return FALSE
 
-	var/signal_result = SEND_SIGNAL(sacrificial, COMSIG_LIVING_CULT_SACRIFICED, invokers)
+	var/signal_result = SEND_SIGNAL(sacrificial, COMSIG_LIVING_CULT_SACRIFICED, invokers, cult_team)
 	if(signal_result & STOP_SACRIFICE)
 		return FALSE
 
 	if(sacrificial.mind)
 		LAZYADD(GLOB.sacrificed, WEAKREF(sacrificial.mind))
-		for(var/datum/objective/sacrifice/sac_objective in C.cult_team.objectives)
+		for(var/datum/objective/sacrifice/sac_objective in cult_team.objectives)
 			if(sac_objective.target == sacrificial.mind)
 				sac_objective.sacced = TRUE
 				sac_objective.clear_sacrifice()
@@ -343,38 +346,82 @@ structure_check() searches for nearby cultist structures required for the invoca
 	else
 		LAZYADD(GLOB.sacrificed, WEAKREF(sacrificial))
 
-	new /obj/effect/temp_visual/cult/sac(get_turf(src))
+	new /obj/effect/temp_visual/cult/sac(loc)
 
 	if(!(signal_result & SILENCE_SACRIFICE_MESSAGE))
 		for(var/invoker in invokers)
 			if(big_sac)
-				to_chat(invoker, span_cultlarge("\"没错! 这就是我想要的! 你做得很好l.\""))
+				to_chat(invoker, span_cult_large("\"没错! 这就是我想要的! 你做得很好.\""))
 				continue
 			if(ishuman(sacrificial) || iscyborg(sacrificial))
-				to_chat(invoker, span_cultlarge("\"我接受你的祭品.\""))
+				to_chat(invoker, span_cult_large("\"我接受你的祭品.\""))
 			else
-				to_chat(invoker, span_cultlarge("\"我接受你微薄的祭品.\""))
+				to_chat(invoker, span_cult_large("\"即便如此薄礼，我也照收不误.\""))
 
 	if(iscyborg(sacrificial))
-		var/construct_class = show_radial_menu(first_invoker, sacrificial, GLOB.construct_radial_images, require_near = TRUE, tooltips = TRUE)
+		var/construct_class = show_radial_menu(invokers[1], sacrificial, GLOB.construct_radial_images, require_near = TRUE, tooltips = TRUE)
 		if(QDELETED(sacrificial) || !construct_class)
 			return FALSE
 		sacrificial.grab_ghost()
-		make_new_construct_from_class(construct_class, THEME_CULT, sacrificial, first_invoker, TRUE, get_turf(src))
+		make_new_construct_from_class(construct_class, THEME_CULT, sacrificial, invokers[1], TRUE, get_turf(src))
 		var/mob/living/silicon/robot/sacriborg = sacrificial
 		sacrificial.log_message("作为赛博被献祭了.", LOG_GAME)
 		sacriborg.mmi = null
 		qdel(sacrificial)
 		return TRUE
-	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
+
+	var/obj/item/soulstone/stone = new(loc)
 	if(sacrificial.mind && !HAS_TRAIT(sacrificial, TRAIT_SUICIDED))
-		stone.capture_soul(sacrificial, first_invoker, TRUE)
+		stone.capture_soul(sacrificial,  invokers[1], forced = TRUE)
 
 	if(sacrificial)
 		playsound(sacrificial, 'sound/magic/disintegrate.ogg', 100, TRUE)
 		sacrificial.investigate_log("被血教献祭而碎尸.", INVESTIGATE_DEATHS)
 		sacrificial.gib(DROP_ALL_REMAINS)
+
+	try_spawn_sword() // after sharding and gibbing, which potentially dropped a null rod
 	return TRUE
+
+/// Tries to convert a null rod over the rune to a cult sword
+/obj/effect/rune/convert/proc/try_spawn_sword()
+	for(var/obj/item/nullrod/rod in loc)
+		if(rod.anchored || (rod.resistance_flags & INDESTRUCTIBLE))
+			continue
+
+		var/num_slain = LAZYLEN(rod.cultists_slain)
+		var/displayed_message = "[rod]发出不洁的红光并开始转变..."
+		if(GET_ATOM_BLOOD_DNA_LENGTH(rod))
+			displayed_message += " The blood of [num_slain] fallen cultist[num_slain == 1 ? "":"s"] is absorbed into [rod]!"
+
+		rod.visible_message(span_cult_italic(displayed_message))
+		switch(num_slain)
+			if(0, 1)
+				animate_spawn_sword(rod, /obj/item/melee/cultblade/dagger)
+			if(2)
+				animate_spawn_sword(rod, /obj/item/melee/cultblade)
+			else
+				animate_spawn_sword(rod, /obj/item/cult_bastard)
+		return TRUE
+
+	return FALSE
+
+/// Does an animation of a null rod transforming into a cult sword
+/obj/effect/rune/convert/proc/animate_spawn_sword(obj/item/nullrod/former_rod, new_blade_typepath)
+	playsound(src, 'sound/effects/magic.ogg', 33, vary = TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 0.66)
+	former_rod.anchored = TRUE
+	former_rod.Shake()
+	animate(former_rod, alpha = 0, transform = matrix(former_rod.transform).Scale(0.01), time = 2 SECONDS, easing = BOUNCE_EASING, flags = ANIMATION_PARALLEL)
+	QDEL_IN(former_rod, 2 SECONDS)
+
+	var/obj/item/new_blade = new new_blade_typepath(loc)
+	var/matrix/blade_matrix_on_spawn = matrix(new_blade.transform)
+	new_blade.name = "converted [new_blade.name]"
+	new_blade.anchored = TRUE
+	new_blade.alpha = 0
+	new_blade.transform = matrix(new_blade.transform).Scale(0.01)
+	new_blade.Shake()
+	animate(new_blade, alpha = 255, transform = blade_matrix_on_spawn, time = 2 SECONDS, easing = BOUNCE_EASING, flags = ANIMATION_PARALLEL)
+	addtimer(VARSET_CALLBACK(new_blade, anchored, FALSE), 2 SECONDS)
 
 /obj/effect/rune/empower
 	cultist_name = "赋能"
@@ -446,7 +493,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		return
 	var/obj/effect/rune/teleport/actual_selected_rune = potential_runes[input_rune_key] //what rune does that key correspond to?
-	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated() || !actual_selected_rune)
+	if(!Adjacent(user) || QDELETED(src) || user.incapacitated() || !actual_selected_rune)
 		fail_invoke()
 		return
 
@@ -500,7 +547,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/teleport/proc/handle_portal(portal_type, turf/origin)
 	var/turf/T = get_turf(src)
 	close_portal() // To avoid stacking descriptions/animations
-	playsound(T, pick('sound/effects/sparks1.ogg', 'sound/effects/sparks2.ogg', 'sound/effects/sparks3.ogg', 'sound/effects/sparks4.ogg'), 100, TRUE, 14)
+	playsound(T, 'sound/effects/portal_travel.ogg', 100, TRUE, 14)
 	inner_portal = new /obj/effect/temp_visual/cult/portal(T)
 	if(portal_type == "space")
 		set_light_color(color)
@@ -531,7 +578,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 	color = RUNE_COLOR_DARKRED
 	icon_state = "rune_large"
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
-	pixel_y = -32
+	pixel_y = 16
+	pixel_z = -48
 	scribe_delay = 50 SECONDS //how long the rune takes to create
 	scribe_damage = 40.1 //how much damage you take doing it
 	log_when_erased = TRUE
@@ -568,10 +616,10 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	GLOB.narsie_effect_last_modified = started
 
 	var/starting_color = GLOB.starlight_color
-	var/list/target_color = ReadHSV(RGBtoHSV(starting_color))
+	var/list/target_color = rgb2hsv(starting_color)
 	target_color[2] = target_color[2] * 0.4
 	target_color[3] = target_color[3] * 0.5
-	var/mid_color = HSVtoRGB(hsv(target_color[1], target_color[2], target_color[3]))
+	var/mid_color = hsv2rgb(target_color)
 	var/end_color = "#c21d57"
 	for(var/i in 1 to 9)
 		if(GLOB.narsie_effect_last_modified > started)
@@ -595,7 +643,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	for(var/i in 1 to 4)
 		if(GLOB.narsie_effect_last_modified > started)
 			return
-		var/starlight_color = hsv_gradient(i, 1, starting_color, 4, end_color)
+		var/starlight_color = BlendHSV(i / 4, starting_color, end_color)
 		set_starlight(starlight_color)
 		sleep(8 SECONDS)
 
@@ -609,11 +657,11 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
 	var/area/place = get_area(src)
 	if(!(place in summon_objective.summon_spots))
-		to_chat(user, span_cultlarge("几何血尊只能在帷幕薄弱的地方被召唤 - 比如[english_list(summon_objective.summon_spots)]!"))
+		to_chat(user, span_cult_large("几何血尊只能在帷幕薄弱的地方被召唤 - 比如[english_list(summon_objective.summon_spots)]!"))
 		return
 	if(locate(/obj/narsie) in SSpoints_of_interest.narsies)
 		for(var/invoker in invokers)
-			to_chat(invoker, span_warning("Nar'Sie已经在这个维度了!"))
+			to_chat(invoker, span_warning("Nar'Sie 已经在这个维度了!"))
 		log_game("[user]激活于[COORD(src)]处的Nar'Sie符文失败 - 已经召唤.")
 		return
 
@@ -645,79 +693,78 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	invocation = "Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!" //Depends on the name of the user - see below
 	icon_state = "1"
 	color = RUNE_COLOR_MEDIUMRED
-	var/static/sacrifices_used = -SOULS_TO_REVIVE // Cultists get one "free" revive
 
 /obj/effect/rune/raise_dead/examine(mob/user)
 	. = ..()
 	if(IS_CULTIST(user) || user.stat == DEAD)
-		. += "<b>未得报偿的献祭:</b> [LAZYLEN(GLOB.sacrificed) - sacrifices_used]"
+		. += "<b>未得报偿的献祭:</b> [LAZYLEN(GLOB.sacrificed) - GLOB.sacrifices_used]"
 
 /obj/effect/rune/raise_dead/invoke(list/invokers)
-	var/turf/T = get_turf(src)
-	var/mob/living/mob_to_revive
-	var/list/potential_revive_mobs = list()
-	var/mob/living/user = invokers[1]
 	if(rune_in_use)
 		return
 	rune_in_use = TRUE
-	for(var/mob/living/M in T.contents)
-		if(IS_CULTIST(M) && (M.stat == DEAD || !M.client || M.client.is_afk()))
-			potential_revive_mobs |= M
+	var/mob/living/mob_to_revive
+	var/list/potential_revive_mobs = list()
+	var/mob/living/user = invokers[1]
+
+	for(var/mob/living/target in loc)
+		if(IS_CULTIST(target) && (target.stat == DEAD || isnull(target.client) || target.client.is_afk()))
+			potential_revive_mobs += target
+
 	if(!length(potential_revive_mobs))
 		to_chat(user, "<span class='cult italic'>符文上没有死去的教徒!</span>")
 		log_game("[user]于[COORD(src)]激活复活符文失败 - 没有教徒可复活.")
 		fail_invoke()
 		return
-	if(length(potential_revive_mobs) > 1)
+
+	if(length(potential_revive_mobs) > 1 && user.mind)
 		mob_to_revive = tgui_input_list(user, "复活教徒", "复活", potential_revive_mobs)
 		if(isnull(mob_to_revive))
 			return
 	else
 		mob_to_revive = potential_revive_mobs[1]
+
 	if(QDELETED(src) || !validness_checks(mob_to_revive, user))
 		fail_invoke()
 		return
-	if(user.name == "Herbert West")   // 出自克苏鲁神话中的《赫伯特•韦斯特 — 尸体复生者》Herbert West—Reanimator
-		invocation = "To life, to life, I bring them!"
-	else
-		invocation = initial(invocation)
-	..()
+
+	invocation = (user.name == "Herbert West") ? "To life, to life, I bring them!" : initial(invocation)// 克苏鲁神话《赫伯特•韦斯特 — 尸体复生者》Herbert West—Reanimator
+
 	if(mob_to_revive.stat == DEAD)
-		var/diff = LAZYLEN(GLOB.sacrificed) - SOULS_TO_REVIVE - sacrifices_used
+		var/diff = LAZYLEN(GLOB.sacrificed) - SOULS_TO_REVIVE - GLOB.sacrifices_used
 		if(diff < 0)
 			to_chat(user, span_warning("你的血教必须进行[abs(diff)]或更多献祭，才能复活另一名教徒!"))
 			fail_invoke()
 			return
-		sacrifices_used += SOULS_TO_REVIVE
+		GLOB.sacrifices_used += SOULS_TO_REVIVE
 		mob_to_revive.revive(ADMIN_HEAL_ALL) //This does remove traits and such, but the rune might actually see some use because of it! //Why did you think this was a good idea
 
 	if(!mob_to_revive.client || mob_to_revive.client.is_afk())
 		set waitfor = FALSE
-		var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演[mob_to_revive.real_name]，一名当前不活动的血教徒吗?", check_jobban = ROLE_CULTIST, role = ROLE_CULTIST, poll_time = 5 SECONDS, target_mob = mob_to_revive, pic_source = mob_to_revive)
-		if(LAZYLEN(candidates))
-			var/mob/dead/observer/C = pick(candidates)
-			to_chat(mob_to_revive.mind, "由于你的不活动，你的物质形态已经被另一个灵魂接管了! 如果你想要恢复，管理员也许可以帮助你.")
-			message_admins("[key_name_admin(C)]取代了AFK玩家，获得了([key_name_admin(mob_to_revive)])的控制权.")
+		var/mob/chosen_one = SSpolling.poll_ghosts_for_target("你想要扮演[span_danger(mob_to_revive.real_name)]，[span_notice("AFK的血教徒")]吗?", check_jobban = ROLE_CULTIST, role = ROLE_CULTIST, poll_time = 5 SECONDS, checked_target = mob_to_revive, alert_pic = mob_to_revive, role_name_text = "inactive cultist")
+		if(chosen_one)
+			to_chat(mob_to_revive.mind, "由于你长时间不活跃，你的物质形态已经被另一个灵魂接管了! 如果你想要恢复，管理员也许可以帮助你.")
+			message_admins("[key_name_admin(chosen_one)]取代了AFK玩家，获得了([key_name_admin(mob_to_revive)])的控制权.")
 			mob_to_revive.ghostize(FALSE)
-			mob_to_revive.key = C.key
+			mob_to_revive.key = chosen_one.key
 		else
 			fail_invoke()
 			return
 	SEND_SOUND(mob_to_revive, 'sound/ambience/antag/bloodcult/bloodcult_gain.ogg')
-	to_chat(mob_to_revive, span_cultlarge("\"PASNAR SAVRAE YAM'TOTH. Arise.\""))
+	to_chat(mob_to_revive, span_cult_large("\"PASNAR SAVRAE YAM'TOTH. Arise.\""))
 	mob_to_revive.visible_message(span_warning("[mob_to_revive]深深地吸了一口气，双眼中闪烁出红光."), \
-								  span_cultlarge("你从虚无中醒来，你复活了!"))
+		span_cult_large("你从虚无中醒来，你复活了!"))
 	rune_in_use = FALSE
+	return ..()
 
 /obj/effect/rune/raise_dead/proc/validness_checks(mob/living/target_mob, mob/living/user)
-	var/turf/T = get_turf(src)
 	if(QDELETED(user))
 		return FALSE
 	if(!Adjacent(user) || user.incapacitated())
 		return FALSE
 	if(QDELETED(target_mob))
 		return FALSE
-	if(!(target_mob in T.contents))
+	if(!(target_mob in loc))
 		to_chat(user, "<span class='cult italic'>需要复活的教徒被移动了!</span>")
 		log_game("[user]于[COORD(src)]的复活符文激活失败 - 复活目标被移动了.")
 		return FALSE
@@ -726,9 +773,9 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 /obj/effect/rune/raise_dead/fail_invoke()
 	..()
 	rune_in_use = FALSE
-	for(var/mob/living/M in range(1,src))
-		if(IS_CULTIST(M) && M.stat == DEAD)
-			M.visible_message(span_warning("[M]抽搐."))
+	for(var/mob/living/cultist in loc)
+		if(IS_CULTIST(cultist) && cultist.stat == DEAD)
+			cultist.visible_message(span_warning("[cultist]抽搐."))
 
 //Rite of the Corporeal Shield: When invoked, becomes solid and cannot be passed. Invoke again to undo.
 /obj/effect/rune/wall
@@ -852,7 +899,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		if(!IS_CULTIST(target) && target.blood_volume)
 			if(target.can_block_magic(charge_cost = 0))
 				continue
-			to_chat(target, span_cultlarge("你血管里的血液在沸腾!"))
+			to_chat(target, span_cult_large("你血管里的血液在沸腾!"))
 	animate(src, color = "#FCB56D", time = 4)
 	sleep(0.4 SECONDS)
 	if(QDELETED(src))
@@ -916,10 +963,10 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	var/choice = tgui_alert(user, "你架起与灵界的连接...", "灵魂世界", list("显化血教徒灵魂", "自己化身成恶鬼"))
 	if(choice == "显化血教徒灵魂")
 		if(!is_station_level(T.z))
-			to_chat(user, span_cultitalic("<b>帷幕不够脆弱，无法显现灵魂，你必须位于空间站上!</b>"))
+			to_chat(user, span_cult_italic("<b>帷幕不够脆弱，无法显现灵魂，你必须位于空间站上!</b>"))
 			return
 		if(ghosts >= ghost_limit)
-			to_chat(user, span_cultitalic("你承受了太多的灵魂，无法召唤更多!"))
+			to_chat(user, span_cult_italic("你承受了太多的灵魂，无法召唤更多!"))
 			fail_invoke()
 			log_game("显化符文激活失败 - 太多生成的灵魂")
 			return list()
@@ -952,7 +999,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		ghosts++
 		playsound(src, 'sound/magic/exit_blood.ogg', 50, TRUE)
 		visible_message(span_warning("红雾弥漫在[src]上，几步之内...一个[new_human.gender == FEMALE ? "女":"男"]人."))
-		to_chat(user, span_cultitalic("你的血流入[src]. 你必须寸步不离和强打精神来维持召唤仪式. 这会缓慢地伤害你，但肯定也..."))
+		to_chat(user, span_cult_italic("你的血流入[src]. 你必须寸步不离和强打精神来维持召唤仪式. 这会缓慢地伤害你，但肯定也..."))
 		var/obj/structure/emergency_shield/cult/weak/N = new(T)
 		if(ghost_to_spawn.mind && ghost_to_spawn.mind.current)
 			new_human.AddComponent( \
@@ -963,7 +1010,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		new_human.key = ghost_to_spawn.key
 		var/datum/antagonist/cult/created_cultist = new_human.mind?.add_antag_datum(/datum/antagonist/cult)
 		created_cultist?.silent = TRUE
-		to_chat(new_human, span_cultitalic("<b>你是几何血尊的仆人. Nar'Sie血教让你变成了半物质的形态，你要不惜一切代价为他们服务.</b>"))
+		to_chat(new_human, span_cult_italic("<b>你是几何血尊的仆人. Nar'Sie血教让你变成了半物质的形态，你要不惜一切代价为他们服务.</b>"))
 
 		while(!QDELETED(src) && !QDELETED(user) && !QDELETED(new_human) && (user in T))
 			if(user.stat != CONSCIOUS || HAS_TRAIT(new_human, TRAIT_CRITICAL_CONDITION))
@@ -975,7 +1022,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		ghosts--
 		if(new_human)
 			new_human.visible_message(span_warning("[new_human]突然融化成了骨头灰烬."), \
-					span_cultlarge("你与世界的联系消失了，你的身体随之崩溃."))
+					span_cult_large("你与世界的联系消失了，你的身体随之崩溃."))
 			for(var/obj/I in new_human)
 				new_human.dropItemToGround(I, TRUE)
 			new_human.mind?.remove_antag_datum(/datum/antagonist/cult)
@@ -1004,7 +1051,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 				affecting.Paralyze(40)
 				break
 			if(affecting.health <= 10)
-				to_chat(G, span_cultitalic("你的身体不能在维持这种联系了!"))
+				to_chat(G, span_cult_italic("你的身体不能在维持这种联系了!"))
 				break
 			sleep(0.5 SECONDS)
 		CM.Remove(G)
@@ -1031,7 +1078,8 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "apoc"
 	pixel_x = -32
-	pixel_y = -32
+	pixel_y = 16
+	pixel_z = -48
 	color = RUNE_COLOR_DARKRED
 	req_cultists = 3
 	scribe_delay = 100
@@ -1046,10 +1094,10 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	var/datum/antagonist/cult/user_antag = user.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
 	if(length(summon_objective.summon_spots) <= 1)
-		to_chat(user, span_cultlarge("只剩下最后一个仪式地点了 - 它必须留给最后的召唤!"))
+		to_chat(user, span_cult_large("只剩下最后一个仪式地点了 - 它必须留给最后的召唤!"))
 		return
 	if(!(place in summon_objective.summon_spots))
-		to_chat(user, span_cultlarge("天启符文将占用一个可用的仪式地点，在那里可以召唤出Nar'Sie，该符文只能在[english_list(summon_objective.summon_spots)]里被画出!"))
+		to_chat(user, span_cult_large("天启符文将占用一个可用的仪式地点，在那里可以召唤出Nar'Sie，该符文只能在[english_list(summon_objective.summon_spots)]里被画出!"))
 		return
 
 	summon_objective.summon_spots -= place
@@ -1095,12 +1143,12 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			images += B
 		if(!IS_CULTIST(M))
 			if(M.client)
-				var/image/C = image('icons/effects/cult/effects.dmi',M,"bloodsparkles", ABOVE_MOB_LAYER)
+				var/image/C = image('icons/effects/cult.dmi',M,"bloodsparkles", ABOVE_MOB_LAYER)
 				add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/cult, "cult_apoc", C, NONE)
 				addtimer(CALLBACK(M, TYPE_PROC_REF(/atom/, remove_alt_appearance),"cult_apoc",TRUE), duration)
 				images += C
 		else
-			to_chat(M, span_cultlarge("天启符文在[place.name]被激活，该地点不再能用作召唤地点!"))
+			to_chat(M, span_cult_large("天启符文在[place.name]被激活，该地点不再能用作召唤地点!"))
 			SEND_SOUND(M, 'sound/effects/pope_entry.ogg')
 	image_handler(images, duration)
 	if(intensity >= 285) // Based on the prior formula, this means the cult makes up <15% of current players

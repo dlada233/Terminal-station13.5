@@ -1,6 +1,6 @@
 #define PROCESSOR_SELECT_RECIPE(movable_input) LAZYACCESS(processor_inputs[type], movable_input.type)
 
-/obj/machinery/processor //SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
+/obj/machinery/processor //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "食品加工机"
 	desc = "操作时请勿将手伸进去."
 	icon = 'icons/obj/machines/kitchen.dmi'
@@ -69,8 +69,9 @@
 		var/cached_multiplier = (recipe.food_multiplier * rating_amount)
 		for(var/i in 1 to cached_multiplier)
 			var/atom/processed_food = new recipe.output(drop_location())
-			processed_food.reagents.clear_reagents()
-			what.reagents.copy_to(processed_food, what.reagents.total_volume, multiplier = 1 / cached_multiplier)
+			if(processed_food.reagents && what.reagents)
+				processed_food.reagents.clear_reagents()
+				what.reagents.copy_to(processed_food, what.reagents.total_volume, multiplier = 1 / cached_multiplier)
 			if(cached_mats)
 				processed_food.set_custom_materials(cached_mats, 1 / cached_multiplier)
 
@@ -146,7 +147,7 @@
 		span_notice("你打开了[src]."), \
 		span_hear("你听到了食品加工机的声音."))
 	playsound(src.loc, 'sound/machines/blender.ogg', 50, TRUE)
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 	var/total_time = 0
 	for(var/atom/movable/movable_input as anything in processor_contents)
 		var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(movable_input)
@@ -165,7 +166,7 @@
 			continue
 		process_food(recipe, content_item)
 	processing = FALSE
-	visible_message(span_notice("[src]结束了加工."))
+	visible_message(span_notice("\The [src] finishes processing."))
 
 /obj/machinery/processor/verb/eject()
 	set category = "Object"
@@ -208,8 +209,8 @@
 /obj/machinery/processor/slime/process()
 	if(processing)
 		return
-	var/mob/living/simple_animal/slime/picked_slime
-	for(var/mob/living/simple_animal/slime/slime in range(1,src))
+	var/mob/living/basic/slime/picked_slime
+	for(var/mob/living/basic/slime/slime in range(1,src))
 		if(!CanReach(slime)) //don't take slimes behind glass panes or somesuch; also makes it ignore slimes inside the processor
 			continue
 		if(slime.stat)
@@ -226,7 +227,7 @@
 	picked_slime.forceMove(src)
 
 /obj/machinery/processor/slime/process_food(datum/food_processor_process/recipe, atom/movable/what)
-	var/mob/living/simple_animal/slime/processed_slime = what
+	var/mob/living/basic/slime/processed_slime = what
 	if (!istype(processed_slime))
 		return
 

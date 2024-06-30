@@ -1,5 +1,5 @@
 /datum/computer_file/program/themeify
-	filename = "主题"
+	filename = "themeify"
 	filedesc = "主题"
 	extended_desc = "该程序允许您配置您设备的主题."
 	program_open_overlay = "generic"
@@ -23,6 +23,7 @@
 	return data
 
 /datum/computer_file/program/themeify/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 	switch(action)
 		if("PRG_change_theme")
 			var/selected_theme = params["selected_theme"]

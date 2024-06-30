@@ -27,7 +27,7 @@
  * Waltz at the End of Time
  */
 /datum/heretic_knowledge/limited_amount/starting/base_void
-	name = "冬日的微光"
+	name = "冬日的微光-Base void"
 	desc = "通往虚无之路. \
 		允许你在零度以下的环境将刀具嬗变为虚无之刃. \
 		同一时间只能创造五把出来." //SKYRAT EDIT two to five
@@ -161,7 +161,7 @@
 	route = PATH_VOID
 
 /datum/heretic_knowledge/ultimate/void_final
-	name = "终末华尔兹"
+	name = "终末华尔兹-Void final"
 	desc = "虚无之路的飞升仪式. \
 		在零下的温度里带三具尸体到嬗变符文以完成仪式. \
 		一旦仪式完成，将在空间站上刮起猛烈的虚无暴雪，冻结和伤害不信之人. \
@@ -193,7 +193,7 @@
 	priority_announce(
 		text = "[generate_heretic_text()] 虚无贵族[user.real_name]迈着终末华尔兹到来! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = ANNOUNCER_SPANOMALIES,
+		sound = 'sound/ambience/antag/heretic/ascend_void.ogg',
 		color_override = "pink",
 	)
 	user.client?.give_award(/datum/award/achievement/misc/void_ascension, user)

@@ -1,19 +1,20 @@
 GLOBAL_LIST_INIT(rod_recipes, list ( \
-	new/datum/stack_recipe("grill-格栅", /obj/structure/grille, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = FALSE, check_density = FALSE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("table frame-桌子框架", /obj/structure/table_frame, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
-	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 2.5 SECONDS, one_per_turf = FALSE, category = CAT_ENTERTAINMENT), \
-	new/datum/stack_recipe("linen bin", /obj/structure/bedsheetbin/empty, 2, time = 0.5 SECONDS, one_per_turf = FALSE, category = CAT_CONTAINERS), \
-	new/datum/stack_recipe("railing-栏杆", /obj/structure/railing, 2, time = 1 SECONDS, check_direction = TRUE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("railing-栏杆 corner", /obj/structure/railing/corner, 1, time = 1 SECONDS, check_direction = TRUE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("railing-栏杆 end", /obj/structure/railing/corner/end, 1, time = 1 SECONDS, check_direction = TRUE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("railing-栏杆 end (flipped)", /obj/structure/railing/corner/end/flip, 1, time = 1 SECONDS, check_direction = TRUE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("tank holder-气瓶架", /obj/structure/tank_holder, 2, time = 0.5 SECONDS, one_per_turf = TRUE, on_solid_ground = FALSE, check_density = FALSE, category = CAT_FURNITURE), \
-	new/datum/stack_recipe("ladder-梯子", /obj/structure/ladder/crafted, 15, time = 15 SECONDS, one_per_turf = TRUE, on_solid_ground = FALSE, check_density = FALSE, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("grill-格栅", /obj/structure/grille, 2, time = 1 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("table frame-桌子框架", /obj/structure/table_frame, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
+	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_ENTERTAINMENT), \
+	new/datum/stack_recipe("linen bin", /obj/structure/bedsheetbin/empty, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_CONTAINERS), \
+	new/datum/stack_recipe("railing-栏杆", /obj/structure/railing, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("railing-栏杆转角", /obj/structure/railing/corner, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("railing-栏杆尽头", /obj/structure/railing/corner/end, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("railing-栏杆尽头(反)", /obj/structure/railing/corner/end/flip, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("tank holder-气瓶架", /obj/structure/tank_holder, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
+	new/datum/stack_recipe("ladder-梯子", /obj/structure/ladder/crafted, 15, time = 15 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("catwalk floor tile-脚手架", /obj/item/stack/tile/catwalk_tile, 1, 4, 20, category = CAT_TILES), \
-	new/datum/stack_recipe("stairs frame-楼梯框架", /obj/structure/stairs_frame, 10, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("white cane-导盲杖", /obj/item/cane/white, 3, time = 1 SECONDS, one_per_turf = FALSE, category = CAT_TOOLS), \
-	new/datum/stack_recipe("sharpened iron rod-磨尖铁棒", /obj/item/ammo_casing/rebar, 1, time = 0.2 SECONDS, one_per_turf = FALSE, category = CAT_WEAPON_AMMO), \
+	new/datum/stack_recipe("stairs frame-楼梯框架", /obj/structure/stairs_frame, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("probing cane-导盲杖", /obj/item/cane/white, 3, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_TOOLS), \
+	new/datum/stack_recipe("sharpened iron rodd-磨尖铁棒", /obj/item/ammo_casing/rebar, 1, time = 0.2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_WEAPON_AMMO), \
 	))
+
 /obj/item/stack/rods
 	name = "铁棒"
 	desc = "可以用于建造一些东西."
@@ -124,8 +125,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	amount = 50
 
 /obj/item/stack/rods/lava
-	name = "heat resistant rod"
-	desc = "Treated, specialized iron rods. When exposed to the vaccum of space their coating breaks off, but they can hold up against the extreme heat of active lava."
+	name = "耐热铁棒"
+	desc = "经过处理的特种铁棒，上面的涂层可以抵御岩浆的极端高温，但一旦暴露在真空中涂层就会脱落."
 	singular_name = "heat resistant rod"
 	icon_state = "rods"
 	inhand_icon_state = "rods"

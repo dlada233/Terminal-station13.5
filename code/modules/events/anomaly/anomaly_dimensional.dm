@@ -1,11 +1,11 @@
 /datum/round_event_control/anomaly/anomaly_dimensional
-	name = "Anomaly: Dimensional"
+	name = "Anomaly: Dimensional-维度"
 	typepath = /datum/round_event/anomaly/anomaly_dimensional
 
 	min_players = 10
 	max_occurrences = 5
 	weight = 20
-	description = "This anomaly replaces the materials of the surrounding area."
+	description = "该异常替换周围环境的材料."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 2
 	admin_setup = list(/datum/event_admin_setup/set_location/anomaly, /datum/event_admin_setup/listed_options/anomaly_dimensional)
@@ -28,8 +28,8 @@
 	priority_announce("在 [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name] 上检测到维度异常.", "异常警报", ANNOUNCER_ANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Dimensional instability detected on [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name].", "Anomaly Alert")
 
 /datum/event_admin_setup/listed_options/anomaly_dimensional
-	input_text = "Select a dimensional anomaly theme?"
-	normal_run_option = "Random Theme"
+	input_text = "选择维度异常主题?"
+	normal_run_option = "随机主题"
 
 /datum/event_admin_setup/listed_options/anomaly_dimensional/get_list()
 	return subtypesof(/datum/dimension_theme)

@@ -169,6 +169,7 @@
 					/obj/item/clothing/mask/whistle,
 					/obj/item/conversion_kit,
 				)
+	crate_name = "传统装备箱"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /// Armory packs
@@ -273,7 +274,7 @@
 
 /datum/supply_pack/security/armory/trackingimp
 	name = "'追踪'植入物"
-	desc = "四个'追踪'植入物和.38 追踪弹快速装弹器."
+	desc = "四个'追踪'植入物和.38 TRAC弹快速装弹器."
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(/obj/item/storage/box/trackimp,
 					/obj/item/ammo_box/c38/trac = 3,
@@ -331,7 +332,7 @@
 	name = "热力双枪箱"
 	desc = "包含两套枪套,每套枪套内含两把实验性热能手枪,\
 		弹药使用纳米技术."
-	cost = CARGO_CRATE_VALUE * 7
+	cost = CARGO_CRATE_VALUE * 10
 	contains = list(/obj/item/storage/belt/holster/energy/thermal = 2)
 	crate_name = "热力双枪箱"
 
@@ -343,16 +344,3 @@
 	contains = list(/obj/item/clothing/glasses/sunglasses = 1)
 	crate_name = "太阳镜箱"
 
-/datum/supply_pack/security/armory/beacon_imp
-	name = "'信标'植入物"
-	desc = "里面有五个'信标'植入物."
-	cost = CARGO_CRATE_VALUE * 5.5
-	contains = list(/obj/item/storage/box/beaconimp)
-	crate_name = "'信标'植入物箱"
-
-/datum/supply_pack/security/armory/teleport_blocker_imp
-	name = "'蓝空接地'植入物"
-	desc = "里面有五个'蓝空接地'植入物."
-	cost = CARGO_CRATE_VALUE * 7
-	contains = list(/obj/item/storage/box/teleport_blocker)
-	crate_name = "'蓝空接地'植入物箱"

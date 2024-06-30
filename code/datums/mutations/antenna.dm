@@ -99,8 +99,8 @@
 
 	if(iscarbon(cast_on))
 		var/mob/living/carbon/carbon_cast_on = cast_on
-		to_chat(owner, span_boldnotice("你发现他们的意图是[carbon_cast_on.combat_mode ? "伤害" : "帮助"]..."))
-		to_chat(owner, span_boldnotice("你发现了目标的真实身份，她是[carbon_cast_on.mind.name]."))
+		to_chat(owner, span_boldnotice("你发现其的意图是[carbon_cast_on.combat_mode ? "伤害" : "帮助"]..."))
+		to_chat(owner, span_boldnotice("你发现了目标的真实身份，是[carbon_cast_on.mind.name]."))
 
 /datum/mutation/human/mindreader/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
 	..()

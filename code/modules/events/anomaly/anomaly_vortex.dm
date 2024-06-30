@@ -1,11 +1,11 @@
 /datum/round_event_control/anomaly/anomaly_vortex
-	name = "Anomaly: Vortex"
+	name = "Anomaly: Vortex-漩涡"
 	typepath = /datum/round_event/anomaly/anomaly_vortex
 
 	min_players = 20
 	max_occurrences = 2
 	weight = 10
-	description = "This anomaly sucks in and detonates items."
+	description = "该异常会吸入周围物品并引爆."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 

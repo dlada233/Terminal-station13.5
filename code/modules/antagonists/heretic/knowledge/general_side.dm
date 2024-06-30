@@ -1,7 +1,7 @@
 // Some general sidepath options.
 
 /datum/heretic_knowledge/reroll_targets
-	name = "无情心音"
+	name = "无情心音-Reroll targets"
 	desc = "你可以将一朵风信子、一本书以及意见连身衣嬗变，以重新选取你的献祭目标."
 	gain_text = "心是长存与延续的准则."
 	required_atoms = list(
