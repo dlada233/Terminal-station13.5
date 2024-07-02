@@ -31,7 +31,7 @@
 			to_chat(user, span_warning("你需要一块外星合金来做这个!"))
 			return
 		to_chat(user, span_notice("你开始添加[stacked_sheets]到[src]..."))
-		if(do_after(user, 50, target = src))
+		if(do_after(user, 5 SECONDS, target = src))
 			stacked_sheets.use(1)
 			new /obj/structure/table/abductor(src.loc)
 			qdel(src)
@@ -42,7 +42,7 @@
 			to_chat(user, span_warning("你需要一块白银来做这个!"))
 			return
 		to_chat(user, span_notice("你开始添加[stacked_sheets]到[src]..."))
-		if(do_after(user, 50, target = src))
+		if(do_after(user, 5 SECONDS, target = src))
 			stacked_sheets.use(1)
 			new /obj/structure/table/optable/abductor(src.loc)
 			qdel(src)

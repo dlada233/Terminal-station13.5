@@ -1,9 +1,9 @@
 /datum/round_event_control/communications_blackout
-	name = "Communications Blackout"
+	name = "Communications Blackout-通讯故障"
 	typepath = /datum/round_event/communications_blackout
 	weight = 30
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Heavily emps all telecommunication machines, blocking all communication for a while."
+	description = "对通讯机器施加严重的EMP，阻塞所有通讯频道."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
 
@@ -29,3 +29,7 @@
 /datum/round_event/communications_blackout/start()
 	for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
 		T.emp_act(EMP_HEAVY)
+	for(var/datum/transport_controller/linear/tram/transport as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
+		if(!isnull(transport.home_controller))
+			var/obj/machinery/transport/tram_controller/tcomms/controller = transport.home_controller
+			controller.emp_act(EMP_HEAVY)

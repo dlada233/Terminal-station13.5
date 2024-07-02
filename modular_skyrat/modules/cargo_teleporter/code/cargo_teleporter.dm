@@ -32,10 +32,11 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	spawned_marker.parent_item = src
 	marker_children += spawned_marker
 
-/obj/item/cargo_teleporter/AltClick(mob/user)
+/obj/item/cargo_teleporter/click_alt(mob/user)
 	if(length(marker_children))
 		for(var/obj/effect/decal/cleanable/cargo_mark/destroy_children in marker_children)
 			qdel(destroy_children)
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/cargo_teleporter/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!proximity_flag)
@@ -74,19 +75,25 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	id = "cargotele"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/cargo_teleporter
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 5)
-	category = list(RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_CARGO)
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_CARGO,
+	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/techweb_node/cargo_teleporter
 	id = "cargoteleporter"
 	display_name = "Cargo Teleporter"
 	description = "We can teleport items across long distances, as long as they are not blocked."
-	prereq_ids = list("bluespace_basic", "engineering")
+	prereq_ids = list("bluespace_theory")
 	design_ids = list(
 		"cargotele",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 
 /obj/effect/decal/cleanable/cargo_mark
 	name = "cargo mark"

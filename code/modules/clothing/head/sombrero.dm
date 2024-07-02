@@ -1,9 +1,9 @@
 /obj/item/clothing/head/costume/sombrero
-	name = "sombrero"
+	name = "墨西哥帽"
 	icon = 'icons/obj/clothing/head/sombrero.dmi'
 	icon_state = "sombrero"
 	inhand_icon_state = "sombrero"
-	desc = "You can practically taste the fiesta."
+	desc = "让你尝到节日的狂欢味道."
 	flags_inv = HIDEHAIR
 
 	dog_fashion = /datum/dog_fashion/head/sombrero
@@ -14,17 +14,17 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/sombrero/righthand
 
 /obj/item/clothing/head/costume/sombrero/green
-	name = "green sombrero"
-	desc = "As elegant as a dancing cactus."
+	name = "绿色墨西哥帽"
+	desc = "像跳舞的仙人掌一样优雅."
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 	dog_fashion = null
 	greyscale_colors = "#13d968#ffffff"
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/costume/sombrero/shamebrero
-	name = "shamebrero"
+	name = "羞耻帽"
 	icon_state = "shamebrero"
-	desc = "Once it's on, it never comes off."
+	desc = "一旦戴上，就永远无法取下."
 	dog_fashion = null
 	greyscale_colors = "#d565d3#f8db18"
 	flags_1 = IS_PLAYER_COLORABLE_1

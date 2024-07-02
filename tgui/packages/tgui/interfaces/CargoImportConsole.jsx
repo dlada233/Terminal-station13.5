@@ -122,7 +122,7 @@ export const CargoImportConsole = (props) => {
                             {!!cant_buy_restricted && !!item.restricted && (
                               <Stack.Item textColor={'red'}>
                                 {
-                                  '你无法通过此控制台购买限制物品!'
+                                '你无法通过此控制台购买限制物品!'
                                 }
                               </Stack.Item>
                             )}

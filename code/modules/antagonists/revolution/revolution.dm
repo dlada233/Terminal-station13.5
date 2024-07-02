@@ -7,6 +7,7 @@
 	antag_hud_name = "rev"
 	suicide_cry = "革命万岁!!"
 	var/datum/team/revolution/rev_team
+	stinger_sound = 'sound/ambience/antag/revolutionary_tide.ogg'
 
 	/// 当这个反派被解除时，这是来源. 可以是一个mob（用于心灵屏蔽/钝击创伤）或一个#define字符串.
 	var/deconversion_source
@@ -234,7 +235,6 @@
 		var/mob/living/carbon/human/human_flashed = flashed
 		human_flashed.force_say()
 	flashed.say("You son of a bitch! I'm in.", forced = "That son of a bitch! They're in. (April Fools)")
-
 
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(领袖)"

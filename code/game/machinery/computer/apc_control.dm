@@ -1,5 +1,5 @@
 /obj/machinery/computer/apc_control
-	name = "电力分配控制台"
+	name = "电力分配终端"
 	desc = "Used to remotely control the flow of power to different parts of the station."
 	icon_screen = "solar"
 	icon_keyboard = "power_key"

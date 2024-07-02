@@ -1,7 +1,7 @@
 // Sidepaths for knowledge between Flesh and Void.
 
 /datum/heretic_knowledge/void_cloak
-	name = "虚空斗篷"
+	name = "虚空斗篷-Void cloak"
 	desc = "你能将一块玻璃碎片、一张床单和任意外层衣物嬗变成虚空斗篷. \
 		当戴上兜帽，这件斗篷让你完全隐形，当放下兜帽时，斗篷可以视作焦点. \
 		这件斗篷也提供不错的护甲和储存空间，足以容纳你的一把刀刃，各种仪式道具（如器官）和一些异教徒小道具."
@@ -24,7 +24,6 @@
 	desc = "赐予你吸血术的咒语，让你能吸取目标的血液和生命力，同时有机会将你的重伤口转移到目标身上."
 	gain_text = "\"不管是谁，都会一样流血.\" 元帅如是说."
 	next_knowledge = list(
-		/datum/heretic_knowledge/spell/apetra_vulnera,
 		/datum/heretic_knowledge/spell/void_phase,
 		/datum/heretic_knowledge/summon/raw_prophet,
 	)

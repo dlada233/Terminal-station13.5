@@ -152,7 +152,7 @@
 	name = "电子多功能工具"
 	desc = "常规多功能工具的优化版本。内置的微芯片简化了处理的流程."
 	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "multitool_cyborg"
+	icon_state = "toolkit_engiborg_multitool"
 	toolspeed = 0.5
 
 #undef PROXIMITY_NEAR

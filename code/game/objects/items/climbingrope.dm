@@ -26,20 +26,23 @@
 	. += span_notice("然后，点击靠近你上方洞口的固体地面.")
 	. += span_notice("这根绳子看起来再用[uses]次会断掉.")
 
-/obj/item/climbing_hook/afterattack(turf/open/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(target.z == user.z)
-		return
+/obj/item/climbing_hook/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return ranged_interact_with_atom(interacting_with, user, modifiers)
+
+/obj/item/climbing_hook/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(interacting_with.z == user.z)
+		return NONE
+	var/turf/open/target = interacting_with
 	if(!istype(target) || isopenspaceturf(target))
-		return
+		return ITEM_INTERACT_BLOCKING
 
 	var/turf/user_turf = get_turf(user)
 	var/turf/above = GET_TURF_ABOVE(user_turf)
 	if(target_blocked(target, above))
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(!isopenspaceturf(above) || !above.Adjacent(target)) //are we below a hole, is the target blocked, is the target adjacent to our hole
 		balloon_alert(user, "堵住了!")
-		return
+		return ITEM_INTERACT_BLOCKING
 
 	var/away_dir = get_dir(above, target)
 	user.visible_message(span_notice("[user]开始用[src]向上爬."), span_notice("你需要正确地构住[src]并向上移动."))
@@ -56,6 +59,7 @@
 		qdel(src)
 
 	QDEL_LIST(effects)
+	return ITEM_INTERACT_SUCCESS
 
 // didnt want to mess up is_blocked_turf_ignore_climbable
 /// checks if our target is blocked, also checks for border objects facing the above turf and climbable stuff

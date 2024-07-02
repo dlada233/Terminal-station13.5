@@ -1,10 +1,10 @@
 /datum/round_event_control/shuttle_catastrophe
-	name = "Shuttle Catastrophe"
+	name = "Shuttle Catastrophe-撤离船事故"
 	typepath = /datum/round_event/shuttle_catastrophe
 	weight = 10
 	max_occurrences = 1
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Replaces the emergency shuttle with a random one."
+	description = "把应急撤离船换成随机的某个船."
 	admin_setup = list(/datum/event_admin_setup/warn_admin/shuttle_catastrophe, /datum/event_admin_setup/listed_options/shuttle_catastrophe)
 
 /datum/round_event_control/shuttle_catastrophe/can_spawn_event(players, allow_magic = FALSE)
@@ -59,15 +59,15 @@
 	log_shuttle("Shuttle Catastrophe set a new shuttle, [new_shuttle.name].")
 
 /datum/event_admin_setup/warn_admin/shuttle_catastrophe
-	warning_text = "This will unload the currently docked emergency shuttle, and ERASE ANYTHING within it. Proceed anyways?"
-	snitch_text = "has forced a shuttle catastrophe while a shuttle was already docked."
+	warning_text = "这将卸载当前停靠的应急撤离船以及其中的任何东西，确定要进行吗？"
+	snitch_text = "在撤离船已经对接的情况下触发了撤离船事故."
 
 /datum/event_admin_setup/warn_admin/shuttle_catastrophe/should_warn()
 	return EMERGENCY_AT_LEAST_DOCKED || istype(SSshuttle.emergency, /obj/docking_port/mobile/emergency/shuttle_build)
 
 /datum/event_admin_setup/listed_options/shuttle_catastrophe
-	input_text = "Select a specific shuttle?"
-	normal_run_option = "Random shuttle"
+	input_text = "选择指定的船?"
+	normal_run_option = "随机船"
 
 /datum/event_admin_setup/listed_options/shuttle_catastrophe/get_list()
 	var/list/valid_shuttle_templates = list()

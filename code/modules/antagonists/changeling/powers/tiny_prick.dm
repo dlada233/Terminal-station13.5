@@ -6,7 +6,7 @@
 	var/mob/user = owner
 	if(!user || !user.mind)
 		return
-	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(!changeling)
 		return
 	if(!changeling.chosen_sting)
@@ -17,7 +17,7 @@
 
 /datum/action/changeling/sting/proc/set_sting(mob/user)
 	to_chat(user, span_notice("我们准备好叮咬了.Alt加左键或鼠标中键目标来叮咬他们."))
-	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	changeling.chosen_sting = src
 
 	changeling.lingstingdisplay.icon_state = button_icon_state
@@ -25,7 +25,7 @@
 
 /datum/action/changeling/sting/proc/unset_sting(mob/user)
 	to_chat(user, span_warning("我们收回了叮刺，现在无法叮咬任何人了."))
-	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	changeling.chosen_sting = null
 
 	changeling.lingstingdisplay.icon_state = null
@@ -40,7 +40,7 @@
 /datum/action/changeling/sting/can_sting(mob/user, mob/target)
 	if(!..())
 		return
-	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(!changeling.chosen_sting)
 		to_chat(user, "我们还没准备好叮刺!")
 	if(!iscarbon(target))
@@ -53,7 +53,7 @@
 		return // SKYRAT EDIT END
 	if(!length(get_path_to(user, target, max_distance = changeling.sting_range, simulated_only = FALSE)))
 		return // no path within the sting's range is found. what a weird place to use the pathfinding system
-	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/changeling))
+	if(IS_CHANGELING(target))
 		sting_feedback(user, target)
 		changeling.chem_charges -= chemical_cost
 	return 1
@@ -62,7 +62,7 @@
 	if(!target)
 		return
 	to_chat(user, span_notice("我们悄悄地叮咬了[target.name]."))
-	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/changeling))
+	if(IS_CHANGELING(target))
 		to_chat(target, span_warning("你感到一点刺痛."))
 	return 1
 
@@ -80,6 +80,8 @@
 	VAR_FINAL/datum/changeling_profile/selected_dna
 	/// Duration of the sting
 	var/sting_duration = 8 MINUTES
+	/// Set this to false via VV to allow golem, plasmaman, or monkey changelings to turn other people into golems, plasmamen, or monkeys
+	var/verify_valid_species = TRUE
 
 /datum/action/changeling/sting/transformation/Grant(mob/grant_to)
 	. = ..()
@@ -96,11 +98,14 @@
 
 /datum/action/changeling/sting/transformation/set_sting(mob/user)
 	selected_dna = null
-	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	var/datum/changeling_profile/new_selected_dna = changeling.select_dna()
 	if(QDELETED(src) || QDELETED(changeling) || QDELETED(user))
 		return
 	if(!new_selected_dna || changeling.chosen_sting || selected_dna) // selected other sting or other DNA while sleeping
+		return
+	if(verify_valid_species && (TRAIT_NO_DNA_COPY in new_selected_dna.dna.species.inherent_traits))
+		user.balloon_alert(user, "dna incompatible!")
 		return
 	selected_dna = new_selected_dna
 	return ..()
@@ -177,7 +182,7 @@
 	target.visible_message(span_warning("[target.name]的手臂周围长出了怪异刀刃!"), span_userdanger("你的手臂扭曲变异，变成了可怖的怪异形状!"), span_hear("你听到有机物撕扯的声音!"))
 	playsound(target, 'sound/effects/blobattack.ogg', 30, TRUE)
 
-	addtimer(CALLBACK(src, PROC_REF(remove_fake), target, blade), 600)
+	addtimer(CALLBACK(src, PROC_REF(remove_fake), target, blade), 1 MINUTES)
 	return TRUE
 
 /datum/action/changeling/sting/false_armblade/proc/remove_fake(mob/target, obj/item/melee/arm_blade/false/blade)
@@ -200,7 +205,7 @@
 
 /datum/action/changeling/sting/extract_dna/can_sting(mob/user, mob/target)
 	if(..())
-		var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
+		var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 		return changeling.can_absorb_dna(target)
 
 /datum/action/changeling/sting/extract_dna/sting_action(mob/user, mob/living/carbon/human/target)

@@ -1,6 +1,6 @@
 /datum/quirk/item_quirk/musician
 	name = "Musician-音乐家"
-	desc = "你能调谐手中乐器，为听众演奏出旋律，抚平负面影响和抚慰心灵。."
+	desc = "你能调谐手中乐器，为听众演奏出旋律，抚平负面影响和抚慰心灵."
 	icon = FA_ICON_GUITAR
 	value = 2
 	mob_trait = TRAIT_MUSICIAN

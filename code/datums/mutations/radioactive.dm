@@ -3,7 +3,7 @@
 	desc = "该变异导致体内放射性元素积累，释放有害β射线，危害自身及周围环境."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>你感觉辐射深入骨髓!</span>"
-	instability = 5
+	instability = NEGATIVE_STABILITY_MAJOR
 	difficulty = 8
 	power_coeff = 1
 	/// Weakref to our radiation emitter component

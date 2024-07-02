@@ -2,14 +2,14 @@
 #define EXOTIC_DAMAGE_HEALING -0.1
 
 /obj/item/gun/medbeam/afad
-	name = "AFAD 自动急救枪"
-	desc = "AFAD是一款用于修复擦伤和瘀伤的革命性设备，常见于医疗包中，绝对不是传说中的医疗光束山寨品. 底部标签写着提醒：请勿交叉多条医疗光束."
+	name = "Automated First Aid Device"
+	desc = "Usually supplied in medkits, the AFAD is a revolutionary device meant for fixing scrapes and bruises, and totally not a knockoff of the legendary medibeam. A label on the underside reminds you not to cross the beams."
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronogun"
 	inhand_icon_state = "chronogun"
 	w_class = WEIGHT_CLASS_NORMAL
 
-
+	
 
 /obj/item/gun/medbeam/afad/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth)

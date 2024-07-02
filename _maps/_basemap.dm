@@ -16,8 +16,9 @@
 		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
 		#include "map_files\NSVBlueshift\Blueshift.dmm"
+		#include "map_files\KiloStation\KiloStation.dmm"
 		// SKYRAT EDIT END
-
+		#include "map_files\wawastation\wawastation.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

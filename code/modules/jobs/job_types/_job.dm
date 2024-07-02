@@ -119,8 +119,11 @@
 	var/job_spawn_title
 	//SKYRAT ADDITION END
 
-	///RPG job names, for the memes
+	/// RPG job names, for the memes
 	var/rpg_title
+
+	/// Alternate titles to register as pointing to this job.
+	var/list/alternate_titles
 
 	/// Does this job ignore human authority?
 	var/ignore_human_authority = FALSE
@@ -178,6 +181,10 @@
 		for(var/i in roundstart_experience)
 			spawned_human.mind.adjust_experience(i, roundstart_experience[i], TRUE)
 
+/// Return the outfit to use
+/datum/job/proc/get_outfit(consistent)
+	return outfit
+
 /// Announce that this job as joined the round to all crew members.
 /// Note the joining mob has no client at this point.
 /datum/job/proc/announce_job(mob/living/joining_mob, job_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: /datum/job/proc/announce_job(mob/living/joining_mob)
@@ -190,19 +197,25 @@
 	return TRUE
 
 
-/mob/living/proc/on_job_equipping(datum/job/equipping)
+/mob/living/proc/on_job_equipping(datum/job/equipping, client/player_client)
 	return
 
 #define VERY_LATE_ARRIVAL_TOAST_PROB 20
 
-/mob/living/carbon/human/on_job_equipping(datum/job/equipping, datum/preferences/used_pref, client/player_client) //SKYRAT EDIT CHANGE - ORIGINAL: /mob/living/carbon/human/on_job_equipping(datum/job/equipping)
-	var/datum/bank_account/bank_account = new(real_name, equipping, dna.species.payday_modifier)
-	bank_account.payday(STARTING_PAYCHECKS, TRUE)
-	account_id = bank_account.account_id
-	bank_account.replaceable = FALSE
-	add_mob_memory(/datum/memory/key/account, remembered_id = account_id)
+/mob/living/carbon/human/on_job_equipping(datum/job/equipping, client/player_client)
+	if(equipping.paycheck_department)
+		var/datum/bank_account/bank_account = new(real_name, equipping, dna.species.payday_modifier)
+		bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		account_id = bank_account.account_id
+		bank_account.replaceable = FALSE
+		add_mob_memory(/datum/memory/key/account, remembered_id = account_id)
 
-	dress_up_as_job(equipping, FALSE, used_pref) //SKYRAT EDIT CHANGE - ORIGINAL: dress_up_as_job(equipping)
+	dress_up_as_job(
+		equipping = equipping,
+		visual_only = FALSE,
+		player_client = player_client,
+		consistent = FALSE,
+	)
 
 	if(EMERGENCY_PAST_POINT_OF_NO_RETURN && prob(VERY_LATE_ARRIVAL_TOAST_PROB))
 		//equipping.equip_to_slot_or_del(new /obj/item/food/griddle_toast(equipping), ITEM_SLOT_MASK) // SKYRAT EDIT REMOVAL - See below
@@ -215,15 +228,15 @@
 
 #undef VERY_LATE_ARRIVAL_TOAST_PROB
 
-/mob/living/proc/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+/mob/living/proc/dress_up_as_job(datum/job/equipping, visual_only = FALSE, client/player_client, consistent = FALSE)
 	return
 
-/mob/living/carbon/human/dress_up_as_job(datum/job/equipping, visual_only = FALSE, datum/preferences/used_pref) //SKYRAT EDIT CHANGE
+/mob/living/carbon/human/dress_up_as_job(datum/job/equipping, visual_only = FALSE, client/player_client, consistent = FALSE)
 	dna.species.pre_equip_species_outfit(equipping, src, visual_only)
-	equip_outfit_and_loadout(equipping.outfit, used_pref, visual_only, equipping) //SKYRAT EDIT CHANGE
+	equip_outfit_and_loadout(equipping.get_outfit(consistent), player_client?.prefs, visual_only, equipping) // SKYRAT EDIT CHANGE - Add equipping param
 
-/// tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
-/datum/job/proc/announce_head(mob/living/carbon/human/H, channels, job_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: /datum/job/proc/announce_head(mob/living/carbon/human/H, channels)
+// Original: /datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/H, channels, job_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(pick(GLOB.announcement_systems), TYPE_PROC_REF(/obj/machinery/announcement_system, announce), "NEWHEAD", H.real_name, job_title, channels), 1)) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(pick(GLOB.announcement_systems), TYPE_PROC_REF(/obj/machinery/announcement_system, announce), "NEWHEAD", H.real_name, H.job, channels), 1))
@@ -292,24 +305,26 @@
 /datum/job/proc/get_spawn_message_information(alt_title = title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/job/proc/get_spawn_message_information()
 	SHOULD_CALL_PARENT(TRUE)
 	var/list/info = list()
-	info += "<b>你是 [alt_title].</b>\n" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
+	info += "<b>You are the [alt_title].</b>\n" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
 	var/related_policy = get_policy(title)
 	var/radio_info = get_radio_information()
 	if(related_policy)
 		info += related_policy
 	if(supervisors)
-		info += "作为[alt_title == title ? alt_title : "[alt_title] ([title])"]，你直接向[supervisors]负责.特殊情况下可能有所变动." // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
+		info += "As the [alt_title == title ? alt_title : "[alt_title] ([title])"] you answer directly to [supervisors]. Special circumstances may change this." // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
 	if(radio_info)
 		info += radio_info
 	if(req_admin_notify)
-		info += "<b>你当前扮演的角色对游戏进程非常重要。如果你需要断开连接，请通过 adminhelp-管理员帮助 通知管理员.</b>"
+		info += "<b>You are playing a job that is important for Game Progression. \
+			If you have to disconnect, please notify the admins via adminhelp.</b>"
 	if(CONFIG_GET(number/minimal_access_threshold))
-		info += span_boldnotice("鉴于空间站起始人员配置为 \
-			[CONFIG_GET(flag/jobs_have_minimal_access) ? "职位完整,你的ID卡仅具有履行职责所需的权限" : "职位空缺, 你的ID卡可能具有额外权限"].")
+		info += span_boldnotice("As this station was initially staffed with a \
+			[CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] \
+			have been added to your ID card.")
 	//SKYRAT EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
 	if(alt_title != title)
-		info += span_warning("请注意，替代职衔仅用于增添趣味和增进角色扮演，并不代表实际职务和权限.")
-		info += span_doyourjobidiot("请勿以\"[alt_title]\"为借口来逃避作为[title]应尽的职责.")
+		info += span_warning("Remember that alternate titles are purely for flavor and roleplay.")
+		info += span_doyourjobidiot("Do not use your \"[alt_title]\" alt title as an excuse to forego your duties as a [title].")
 	//SKYRAT EDIT END
 
 	return info
@@ -317,7 +332,7 @@
 /// Returns information pertaining to this job's radio.
 /datum/job/proc/get_radio_information()
 	if(job_flags & JOB_CREW_MEMBER)
-		return "<b>若要使用部门频道交流，请在输入框开头加上“:h”前缀。其余可用频道前缀可在耳机的物品说明中查看.</b>"
+		return "<b>Prefix your message with :h to speak on your department's radio. To see other prefixes, look closely at your headset.</b>"
 
 /datum/outfit/job
 	name = "Standard Gear"
@@ -450,7 +465,7 @@
 
 
 /datum/job/proc/get_captaincy_announcement(mob/living/captain)
-	return "由于人员极度短缺,任命新抵达的[captain.real_name]为新任代理舰长!"
+	return "Due to extreme staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
 
 
 /// Returns an atom where the mob should spawn in.
@@ -563,13 +578,13 @@
 			dna.species.roundstart_changed = TRUE
 			apply_pref_name(/datum/preference/name/backup_human, player_client)
 		if(CONFIG_GET(flag/force_random_names))
-			var/species_type = player_client.prefs.read_preference(/datum/preference/choiced/species)
-			var/datum/species/species = new species_type
-
-			var/gender = player_client.prefs.read_preference(/datum/preference/choiced/gender)
-			real_name = species.random_name(gender, TRUE)
+			real_name = generate_random_name_species_based(
+				player_client.prefs.read_preference(/datum/preference/choiced/gender),
+				TRUE,
+				player_client.prefs.read_preference(/datum/preference/choiced/species),
+			)
 	dna.update_dna_identity()
-
+	updateappearance()
 
 /mob/living/silicon/ai/apply_prefs_job(client/player_client, datum/job/job)
 	if(GLOB.current_anonymous_theme)
@@ -589,9 +604,11 @@
 			if(!player_client)
 				return // Disconnected while checking the appearance ban.
 
-			var/species_type = player_client.prefs.read_preference(/datum/preference/choiced/species)
-			var/datum/species/species = new species_type
-			organic_name = species.random_name(player_client.prefs.read_preference(/datum/preference/choiced/gender), TRUE)
+			organic_name = generate_random_name_species_based(
+				player_client.prefs.read_preference(/datum/preference/choiced/gender),
+				TRUE,
+				player_client.prefs.read_preference(/datum/preference/choiced/species),
+			)
 		else
 			if(!player_client)
 				return // Disconnected while checking the appearance ban.
@@ -599,7 +616,7 @@
 
 		mmi.name = "[initial(mmi.name)]: [organic_name]"
 		if(mmi.brain)
-			mmi.brain.name = "[organic_name]的大脑"
+			mmi.brain.name = "[organic_name]'s brain"
 		if(mmi.brainmob)
 			mmi.brainmob.real_name = organic_name //the name of the brain inside the cyborg is the robotized human's name.
 			mmi.brainmob.name = organic_name

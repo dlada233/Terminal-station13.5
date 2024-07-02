@@ -32,7 +32,7 @@
 	options = forge_items
 
 /obj/structure/destructible/cult/item_dispenser/forge/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cultitalic("你在黑暗知识指引下操作[src]，创造了[spawned_item]!"))
+	to_chat(user, span_cult_italic("你在黑暗知识指引下操作[src]，创造了[spawned_item]!"))
 
 /obj/structure/destructible/cult/item_dispenser/forge/engine
 	name = "熔岩引擎"

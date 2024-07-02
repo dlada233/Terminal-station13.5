@@ -25,7 +25,7 @@
 
 ///Lazy version of the arade that can be found in maintenance disks
 /datum/computer_file/program/arcade/eazy
-	filename = "杜软游戏"
+	filename = "dsarcadeez"
 	filedesc = "Donksoft Micro Arcade Ez-杜软小街机无敌版"
 	filetype = "MNT"
 	program_flags = PROGRAM_UNIQUE_COPY
@@ -107,7 +107,8 @@
 	data["BossID"] = "boss[boss_id].gif"
 	return data
 
-/datum/computer_file/program/arcade/ui_act(action, list/params)
+/datum/computer_file/program/arcade/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 	usr.played_game()
 	var/gamerSkillLevel = 0
 	var/gamerSkill = 0

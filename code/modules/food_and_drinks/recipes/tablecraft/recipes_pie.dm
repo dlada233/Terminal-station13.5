@@ -132,7 +132,6 @@
 
 /datum/crafting_recipe/food/mimetart
 	name = "默剧馅饼"
-	always_available = FALSE
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -141,10 +140,10 @@
 	)
 	result = /obj/item/food/pie/mimetart
 	category = CAT_PIE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/berrytart
 	name = "浆果馅饼"
-	always_available = FALSE
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -153,10 +152,10 @@
 	)
 	result = /obj/item/food/pie/berrytart
 	category = CAT_PIE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/cocolavatart
 	name = "巧克力熔岩馅饼"
-	always_available = FALSE
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -166,6 +165,7 @@
 	)
 	result = /obj/item/food/pie/cocolavatart
 	category = CAT_PIE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/blumpkinpie
 	name = "蓝瓜派"
@@ -236,4 +236,12 @@
 		/obj/item/food/pie/plain = 2,
 	)
 	result = /obj/item/food/pie/asdfpie
+	category = CAT_PIE
+
+/datum/crafting_recipe/food/bacid_pie
+	reqs = list(
+		/obj/item/food/pie/plain = 1,
+		/obj/item/stock_parts/cell = 2,
+	)
+	result = /obj/item/food/pie/bacid_pie
 	category = CAT_PIE

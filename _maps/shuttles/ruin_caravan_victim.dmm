@@ -93,7 +93,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/command{
-	name = "舰桥"
+	name = "Bridge"
 	},
 /turf/open/floor/iron/dark/airless,
 /area/shuttle/ruin/caravan/freighter1)

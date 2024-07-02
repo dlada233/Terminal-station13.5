@@ -589,7 +589,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge_onehalf";
-	name = 舰桥防爆门
+	name = "Bridge Blast Door"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/onehalf/bridge)
@@ -659,7 +659,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge_onehalf";
-	name = 舰桥防爆门
+	name = "Bridge Blast Door"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/onehalf/bridge)
@@ -697,7 +697,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge_onehalf";
-	name = 舰桥防爆门
+	name = "Bridge Blast Door"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -763,7 +763,7 @@
 /area/ruin/space/has_grav/onehalf/hallway)
 "cE" = (
 /obj/machinery/door/airlock/command/glass{
-	name = "舰桥"
+	name = "Bridge"
 	},
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -776,10 +776,10 @@
 "cG" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge_onehalf";
-	name = 舰桥防爆门
+	name = "Bridge Blast Door"
 	},
 /obj/machinery/door/airlock/command/glass{
-	name = "舰桥"
+	name = "Bridge"
 	},
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -831,7 +831,7 @@
 "cT" = (
 /obj/machinery/button/door{
 	id = "bridge_onehalf";
-	name = 舰桥防爆门;
+	name = "Bridge Blast Door";
 	pixel_x = 32;
 	pixel_y = 5
 	},

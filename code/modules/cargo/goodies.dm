@@ -152,7 +152,7 @@
 	name = "情人节贺卡"
 	desc = "俘获你的真爱!内含一张情人节贺卡和一颗免费的心形糖果!"
 	cost = PAYCHECK_CREW * 2
-	contains = list(/obj/item/valentine, /obj/item/food/candyheart)
+	contains = list(/obj/item/paper/valentine, /obj/item/food/candyheart)
 
 /datum/supply_pack/goody/beeplush
 	name = "蜜蜂玩偶"
@@ -249,6 +249,18 @@
 	cost = PAYCHECK_CREW
 	contains = list(/obj/item/bait_can/worm/premium)
 
+/datum/supply_pack/goody/fish_feed
+	name = "Can of Fish Food Single-Pack"
+	desc = "For keeping your little friends fed and alive."
+	cost = PAYCHECK_CREW * 1
+	contains = list(/obj/item/fish_feed)
+
+/datum/supply_pack/goody/naturalbait
+	name = "Freshness Jars full of Natural Bait Single-Pack"
+	desc = "Homemade in the Spinward Sector."
+	cost = PAYCHECK_CREW * 4 //rock on
+	contains = list(/obj/item/storage/pill_bottle/naturalbait)
+
 /datum/supply_pack/goody/telescopic_fishing_rod
 	name = "伸缩鱼竿"
 	desc = "可伸缩式钓鱼竿，方便收纳放入背包."
@@ -302,3 +314,10 @@
 	desc = "一个相对便宜的进口登山钩，仅适用于行星类空间站的攀岩环境."
 	cost = PAYCHECK_CREW * 5
 	contains = list(/obj/item/climbing_hook)
+
+/datum/supply_pack/goody/double_barrel
+	name = "Double-barreled Shotgun Single-Pack"
+	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? No worries! Get a new gun as long as you can pay the absurd fees."
+	cost = PAYCHECK_COMMAND * 18
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/shotgun/doublebarrel)

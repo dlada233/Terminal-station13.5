@@ -21,8 +21,7 @@
 	. = ..()
 	break_message = span_warning("[src]砰的一声裂开了!")
 
-/obj/structure/destructible/eldritch_crucible/deconstruct(disassembled = TRUE)
-
+/obj/structure/destructible/eldritch_crucible/atom_deconstruct(disassembled = TRUE)
 	// Create a spillage if we were destroyed with leftover mass
 	if(current_mass)
 		break_message = span_warning("[src]砰的一声裂开了，闪闪发光的汁液洒得到处都是!")

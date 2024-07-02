@@ -2,9 +2,10 @@
 
 /obj/item/universal_scanner
 	name = "通用扫码枪"
-	desc = "用于根据Nanotrasen导出数据库检查对象、分配价格标签或为自定义自动售货机准备商品的设备."
+	desc = "用于根据纳米传讯导出数据库检查对象、分配价格标签或为自定义自动售货机准备商品的设备."
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "export scanner"
+	worn_icon_state = "electronic"
 	inhand_icon_state = "export_scanner"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
@@ -57,17 +58,16 @@
 	icon_state = "[choice]"
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 
-/obj/item/universal_scanner/afterattack(obj/object, mob/user, proximity)
-	. = ..()
-	if(!istype(object) || !proximity)
-		return
-	. |= AFTERATTACK_PROCESSED_ITEM
+/obj/item/universal_scanner/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!isobj(interacting_with))
+		return NONE
 	if(scanning_mode == SCAN_EXPORTS)
-		export_scan(object, user)
-		return .
+		export_scan(interacting_with, user)
+		return ITEM_INTERACT_SUCCESS
 	if(scanning_mode == SCAN_PRICE_TAG)
-		price_tag(target = object, user = user)
-	return .
+		price_tag(interacting_with, user)
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/universal_scanner/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
@@ -122,21 +122,22 @@
 		new_custom_price = chosen_price
 		to_chat(user, span_notice("[src]现在会给货物一个[new_custom_price]cr的价格标签."))
 
-/obj/item/universal_scanner/CtrlClick(mob/user)
-	. = ..()
+/obj/item/universal_scanner/item_ctrl_click(mob/user)
+	. = CLICK_ACTION_BLOCKING
 	if(scanning_mode == SCAN_SALES_TAG)
 		payments_acc = null
 		to_chat(user, span_notice("你清除了注册账户."))
+		return CLICK_ACTION_SUCCESS
 
-/obj/item/universal_scanner/AltClick(mob/user)
-	. = ..()
+/obj/item/universal_scanner/click_alt(mob/user)
 	if(!scanning_mode == SCAN_SALES_TAG)
-		return
+		return CLICK_ACTION_BLOCKING
 	var/potential_cut = input("在注册的卡上支付多少钱？","利润率 ([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
 	if(!potential_cut)
 		cut_multiplier = initial(cut_multiplier)
 	cut_multiplier = clamp(round(potential_cut/100, cut_min), cut_min, cut_max)
 	to_chat(user, span_notice("[round(cut_multiplier*100)]% 如果销售带有条形码的货物，将获得利润."))
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/universal_scanner/examine(mob/user)
 	. = ..()

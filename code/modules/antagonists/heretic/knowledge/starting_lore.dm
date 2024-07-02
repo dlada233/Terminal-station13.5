@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * Also includes a ritual to turn their heart into a living heart.
  */
 /datum/heretic_knowledge/living_heart
-	name = "活体之心"
+	name = "活体之心-Living heart"
 	desc = "赐予你一颗活体之心，使你能够追踪献祭目标. \
 		如果你失去了活体之心，你可以用一摊血和一朵罂粟将你的心嬗变成活体之心 \
 		如果你的心是电子心，那你则需要额外一颗可用的有机心脏."
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	// even though it's not invokable if you already have one,
 	// they may have gained one unexpectantly in between now and then
 	if(HAS_TRAIT(our_living_heart, TRAIT_LIVING_HEART))
-		loc.balloon_alert(user, "仪式失败，以及有了一颗活体之心!")
+		loc.balloon_alert(user, "仪式失败，已经有了一颗活体之心!")
 		return FALSE
 
 	// By this point they are making a new heart
@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * They require a focus to cast advanced spells.
  */
 /datum/heretic_knowledge/amber_focus
-	name = "聚焦琥珀"
+	name = "聚焦琥珀-Amber focus"
 	desc = "通过嬗变一块玻璃和一双眼睛来创造出聚焦琥珀. \
 		焦点对高级咒术来说不可缺少的."
 	required_atoms = list(
@@ -217,7 +217,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * Overall, it's a tradeoff between speed and stealth or power.
  */
 /datum/heretic_knowledge/codex_cicatrix
-	name = "疤痕法典"
+	name = "疤痕法典-Codex cicatrix"
 	desc = "你可以将一本书、一支特别的笔以及任何皮革或毛皮嬗变为疤痕法典. \
 		用疤痕法典抽取‘异响’可以获得额外的知识点，但也会更加容易暴露. 法典还可以更快捷地擦除和绘制嬗变符文，在紧要关头还能作为焦点使用."
 	gain_text = "疤痕法典是超自然存在向世间显露出的无数线索中的其中一角，无一不关系着秘密的知识与力量. \
@@ -232,6 +232,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	cost = 1
 	route = PATH_START
 	priority = MAX_KNOWLEDGE_PRIORITY - 3 // Least priority out of the starting knowledges, as it's an optional boon.
+	var/static/list/non_mob_bindings = typecacheof(list(/obj/item/stack/sheet/leather, /obj/item/stack/sheet/animalhide))
 
 /datum/heretic_knowledge/codex_cicatrix/parse_required_item(atom/item_path, number_of_things)
 	if(item_path == /obj/item/pen)
@@ -243,12 +244,16 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	if(!.)
 		return FALSE
 
-	for(var/mob/living/body in atoms)
-		if(body.stat != DEAD)
-			continue
-
-		selected_atoms += body
-		return TRUE
+	for(var/thingy in atoms)
+		if(is_type_in_typecache(thingy, non_mob_bindings))
+			selected_atoms += thingy
+			return TRUE
+		else if(isliving(thingy))
+			var/mob/living/body = thingy
+			if(body.stat != DEAD)
+				continue
+			selected_atoms += body
+			return TRUE
 	return FALSE
 
 /datum/heretic_knowledge/codex_cicatrix/cleanup_atoms(list/selected_atoms)
@@ -283,3 +288,28 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	body.do_jitter_animation()
 	body.visible_message(span_danger("[ripped_thing]的[exterior_text]伴随着可怕的撕裂声分崩离析，碎片缠扰着[le_book || ""]，发出一种古老而神秘的蓝色!"))
 	return ..()
+
+/datum/heretic_knowledge/feast_of_owls
+	name = "Feast of Owls"
+	desc = "Allows you to undergo a ritual that gives you 5 knowledge points but locks you out of ascension. This can only be done once and cannot be reverted."
+	gain_text = "Under the soft glow of unreason there is a beast that stalks the night. I shall bring it forth and let it enter my presence. It will feast upon my amibitions and leave knowledge in its wake."
+	route = PATH_START
+	required_atoms = list()
+
+/datum/heretic_knowledge/feast_of_owls/can_be_invoked(datum/antagonist/heretic/invoker)
+	return !invoker.feast_of_owls
+
+/datum/heretic_knowledge/feast_of_owls/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	var/alert = tgui_alert(user,"Do you really want to forsake your ascension? This action cannot be reverted.", "Feast of Owls", list("Yes I'm sure", "No"), 30 SECONDS)
+	if( alert != "Yes I'm sure")
+		return FALSE
+	user.set_temp_blindness(5 SECONDS)
+	user.AdjustParalyzed(5 SECONDS)
+	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
+	for(var/i in 0 to 4)
+		user.emote("scream")
+		playsound(loc, 'sound/items/eatfood.ogg', 100, TRUE)
+		heretic_datum.knowledge_points++
+		sleep(1 SECONDS)
+	to_chat(user,span_danger("You feel different..."))
+	heretic_datum.feast_of_owls = TRUE

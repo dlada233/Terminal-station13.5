@@ -51,8 +51,3 @@
 	balloon_alert(user, "已折叠")
 	qdel(src)
 	user.put_in_hands(result)
-
-/obj/item/storage/box/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/stack/package_wrap))
-		return FALSE
-	return ..()

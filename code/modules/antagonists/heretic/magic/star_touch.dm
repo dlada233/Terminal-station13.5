@@ -1,4 +1,4 @@
-/datum/action/cooldown/spell/touch/star_touch // 史上最糟糕技能有力竞争者
+/datum/action/cooldown/spell/touch/star_touch
 	name = "星之触"
 	desc = "首先对目标施加星痕，若目标已有星痕则强制入眠四秒并消除星痕. \
 		然后会在你与目标之间用宇宙射线相连，射线持续伤害目标一分钟，当目标逃出视线范围或距离太远时提前结束.\

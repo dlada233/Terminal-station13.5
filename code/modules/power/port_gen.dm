@@ -66,7 +66,7 @@
 			TogglePower()
 			return
 		if(powernet)
-			add_avail(power_gen * power_output)
+			add_avail(power_to_energy(power_gen * power_output))
 		UseFuel()
 	else
 		handleInactive()
@@ -98,7 +98,7 @@
 	var/obj/S = sheet_path
 	sheet_name = initial(S.name)
 
-/obj/machinery/power/port_gen/pacman/Destroy()
+/obj/machinery/power/port_gen/pacman/on_deconstruction(disassembled)
 	DropFuel()
 	return ..()
 
@@ -213,7 +213,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "最大电力输出功率已解锁")
+	balloon_alert(user, "maximum power output unlocked")
 	emp_act(EMP_HEAVY)
 	return TRUE
 
@@ -240,8 +240,8 @@
 	data["anchored"] = anchored
 	data["connected"] = (powernet == null ? 0 : 1)
 	data["ready_to_boot"] = anchored && HasFuel()
-	data["power_generated"] = display_power(power_gen)
-	data["power_output"] = display_power(power_gen * power_output)
+	data["power_generated"] = display_power(power_gen, convert = FALSE)
+	data["power_output"] = display_power(power_gen * power_output, convert = FALSE)
 	data["power_available"] = (powernet == null ? 0 : display_power(avail()))
 	data["current_heat"] = current_heat
 	. = data

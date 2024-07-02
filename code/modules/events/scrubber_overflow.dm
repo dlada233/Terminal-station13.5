@@ -1,11 +1,11 @@
 /datum/round_event_control/scrubber_overflow
-	name = "Scrubber Overflow: Normal"
+	name = "Scrubber Overflow: Normal-吸气扇外溢（普通）"
 	typepath = /datum/round_event/scrubber_overflow
 	weight = 10
 	max_occurrences = 3
 	min_players = 10
 	category = EVENT_CATEGORY_JANITORIAL
-	description = "The scrubbers release a tide of mostly harmless froth."
+	description = "吸气扇释放出几乎无害的液体泡沫."
 	admin_setup = list(/datum/event_admin_setup/listed_options/scrubber_overflow)
 
 /datum/round_event/scrubber_overflow
@@ -64,10 +64,10 @@
 	if(!forced_reagent_type)
 		//nothing out of the ordinary, so default announcement
 		return ..()
-	deadchat_broadcast(" 刚刚[random ? "随机地" : ""]启动了[cause ? " 因为[cause]" : ""]!", "<b>Scrubber溢出: [initial(forced_reagent_type.name)]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast(" 刚刚[random ? "随机地" : ""]启动了[cause ? " 因为[cause]" : ""]!", "<b>吸气扇溢出: [initial(forced_reagent_type.name)]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/round_event/scrubber_overflow/announce(fake)
-	priority_announce("scrubbers网络的背压激增，一些内容物将可能溢出.", "[command_name()]工程部")
+	priority_announce("吸气扇网络的背压激增，一些内容物将可能溢出.", "[command_name()]工程部")
 
 /datum/round_event/scrubber_overflow/setup()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/temp_vent as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/components/unary/vent_scrubber))
@@ -125,13 +125,13 @@
 		CHECK_TICK
 
 /datum/round_event_control/scrubber_overflow/threatening
-	name = "Scrubber Overflow: Threatening"
+	name = "Scrubber Overflow: Threatening-吸气扇外溢（威胁性）"
 	typepath = /datum/round_event/scrubber_overflow/threatening
 	weight = 4
 	min_players = 25
 	max_occurrences = 1
 	earliest_start = 35 MINUTES
-	description = "The scrubbers release a tide of moderately harmless froth."
+	description = "吸气扇释放出一些较为无害的液体泡沫."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 
@@ -140,13 +140,13 @@
 	reagents_amount = 100
 
 /datum/round_event_control/scrubber_overflow/catastrophic
-	name = "Scrubber Overflow: Catastrophic"
+	name = "Scrubber Overflow: Catastrophic-吸气扇外溢（灾难性）"
 	typepath = /datum/round_event/scrubber_overflow/catastrophic
 	weight = 2
 	min_players = 35
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
-	description = "The scrubbers release a tide of mildly harmless froth."
+	description = "吸气扇释放出一些中等危害的液体泡沫."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 6
 
@@ -155,19 +155,19 @@
 	reagents_amount = 150
 
 /datum/round_event_control/scrubber_overflow/every_vent
-	name = "Scrubber Overflow: Every Vent"
+	name = "Scrubber Overflow: Every Vent-吸气扇外溢（全范围）"
 	typepath = /datum/round_event/scrubber_overflow/every_vent
 	weight = 0
 	max_occurrences = 0
-	description = "The scrubbers release a tide of mostly harmless froth, but every scrubber is affected."
+	description = "所有吸气扇释放出几乎无害的液体泡沫."
 
 /datum/round_event/scrubber_overflow/every_vent
 	overflow_probability = 100
 	reagents_amount = 100
 
 /datum/event_admin_setup/listed_options/scrubber_overflow
-	normal_run_option = "Random Reagents"
-	special_run_option = "Random Single Reagent"
+	normal_run_option = "随机试剂"
+	special_run_option = "随机单类试剂"
 
 /datum/event_admin_setup/listed_options/scrubber_overflow/get_list()
 	return sort_list(subtypesof(/datum/reagent), /proc/cmp_typepaths_asc)

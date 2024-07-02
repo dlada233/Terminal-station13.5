@@ -3,7 +3,7 @@
 	desc = "允许生物自愿放弃一条随机肢体."
 	quality = POSITIVE
 	text_gain_indication = span_notice("你感觉关节变得松了.")
-	instability = 30
+	instability = POSITIVE_INSTABILITY_MINOR
 	power_path = /datum/action/cooldown/spell/self_amputation
 
 	energy_coeff = 1

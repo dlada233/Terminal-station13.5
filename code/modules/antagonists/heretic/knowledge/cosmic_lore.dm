@@ -22,7 +22,6 @@
  * Cosmic Expansion
  * > Sidepaths:
  *   Eldritch Coin
- *   Rusted Ritual
  *
  * Creators's Gift
  */
@@ -67,9 +66,9 @@
 	desc = "赐予你宇宙符文，这个咒语可以创造两个连接的传送符文，需要站在上面激活来传送. 被施加星痕生物无法激活该符文，但可以借由其他人的激活来传送."
 	gain_text = "遥远的星星爬进我的梦里，毫无理由地咆哮与尖叫. 我发出话语却只有回声传来."
 	next_knowledge = list(
+		/datum/heretic_knowledge/summon/fire_shark,
 		/datum/heretic_knowledge/mark/cosmic_mark,
 		/datum/heretic_knowledge/essence,
-		/datum/heretic_knowledge/summon/fire_shark,
 	)
 	spell_to_add = /datum/action/cooldown/spell/cosmic_rune
 	cost = 1
@@ -106,6 +105,7 @@
 		/datum/heretic_knowledge/blade_upgrade/cosmic,
 		/datum/heretic_knowledge/reroll_targets,
 		/datum/heretic_knowledge/curse/corrosion,
+		/datum/heretic_knowledge/summon/rusty,
 		/datum/heretic_knowledge/spell/space_phase,
 	)
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/star_blast
@@ -213,14 +213,13 @@
 	next_knowledge = list(
 		/datum/heretic_knowledge/ultimate/cosmic_final,
 		/datum/heretic_knowledge/eldritch_coin,
-		/datum/heretic_knowledge/summon/rusty,
 	)
 	spell_to_add = /datum/action/cooldown/spell/conjure/cosmic_expansion
 	cost = 1
 	route = PATH_COSMIC
 
 /datum/heretic_knowledge/ultimate/cosmic_final
-	name = "造物主的馈赠"
+	name = "造物主的馈赠-Cosmic final"
 	desc = "宇宙之路的飞升仪式. \
 		带三具体内含有蓝空尘的尸体到嬗变符文以完成仪式. \
 		一旦完成，你将成为观星者的主人. \
@@ -252,7 +251,7 @@
 	priority_announce(
 		text = "[generate_heretic_text()] 观星者降临空间站， [user.real_name]飞升了! 站点终将回归群星怀抱! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = ANNOUNCER_SPANOMALIES,
+		sound = 'sound/ambience/antag/heretic/ascend_cosmic.ogg',
 		color_override = "pink",
 	)
 	var/mob/living/basic/heretic_summon/star_gazer/star_gazer_mob = new /mob/living/basic/heretic_summon/star_gazer(loc)

@@ -1,5 +1,5 @@
 /obj/machinery/computer/aifixer
-	name = "\improper AI 系统完整性恢复台"
+	name = "\improper AI系统完整性恢复台"
 	desc = "Used with intelliCards containing nonfunctional AIs to restore them to working order."
 	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_COMMAND)
 	circuit = /obj/item/circuitboard/computer/aifixer
@@ -64,7 +64,9 @@
 				. = TRUE
 
 /obj/machinery/computer/aifixer/proc/Fix()
-	use_power(1000)
+	if(!use_energy(active_power_usage, force = TRUE))
+		say("Not enough energy. Restoration cancelled.")
+		return FALSE
 	var/need_mob_update = FALSE
 	need_mob_update += occupier.adjustOxyLoss(-5, updating_health = FALSE)
 	need_mob_update += occupier.adjustFireLoss(-5, updating_health = FALSE)
@@ -138,6 +140,6 @@
 		QDEL_NULL(occupier)
 	return ..()
 
-/obj/machinery/computer/aifixer/on_deconstruction()
+/obj/machinery/computer/aifixer/on_deconstruction(disassembled)
 	if(occupier)
 		QDEL_NULL(occupier)

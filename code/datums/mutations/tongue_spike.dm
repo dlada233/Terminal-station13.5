@@ -3,7 +3,7 @@
 	desc = "允许生物自行射出自己的舌头以作为致命武器."
 	quality = POSITIVE
 	text_gain_indication = span_notice("你感觉可以自己的喉舌之音射出去.")
-	instability = 15
+	instability = POSITIVE_INSTABILITY_MINI // worthless. also serves as a bit of a hint that it's not good
 	power_path = /datum/action/cooldown/spell/tongue_spike
 
 	energy_coeff = 1
@@ -78,7 +78,7 @@
 		missed = FALSE
 
 /obj/item/hardened_spike/unembedded()
-	visible_message(span_warning("[src]嘎吱作响，扭曲变形了!"))
+	visible_message(span_warning("[src] cracks and twists, changing shape!"))
 	for(var/obj/tongue as anything in contents)
 		tongue.forceMove(get_turf(src))
 
@@ -89,7 +89,7 @@
 	desc = "允许生物自行地将舌头作为刺射出，用于远距离传递化学物质."
 	quality = POSITIVE
 	text_gain_indication = span_notice("你感觉可以通过射出舌刺来与他人形成连接.")
-	instability = 15
+	instability = POSITIVE_INSTABILITY_MINOR // slightly less worthless. slightly.
 	locked = TRUE
 	power_path = /datum/action/cooldown/spell/tongue_spike/chem
 	energy_coeff = 1

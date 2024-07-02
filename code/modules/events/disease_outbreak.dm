@@ -24,13 +24,13 @@
 #define ADV_SPREAD_FORCED_HIGH 90
 
 /datum/round_event_control/disease_outbreak
-	name = "Disease Outbreak: Classic"
+	name = "Disease Outbreak: Classic-Classic疫情爆发"
 	typepath = /datum/round_event/disease_outbreak
 	max_occurrences = 1
 	min_players = 10
 	weight = 5
 	category = EVENT_CATEGORY_HEALTH
-	description = "A 'classic' virus will infect some members of the crew."
+	description = "一种'Classic'瘟疫在空间站上爆发."
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
 	admin_setup = list(/datum/event_admin_setup/minimum_candidate_requirement/disease_outbreak, /datum/event_admin_setup/listed_options/disease_outbreak)
@@ -71,7 +71,7 @@
 
 ///Handles checking and alerting admins about the number of valid candidates
 /datum/event_admin_setup/minimum_candidate_requirement/disease_outbreak
-	output_text = "There are no candidates eligible to receive a disease!"
+	output_text = "没有可以接受这种病毒的人!"
 
 /datum/event_admin_setup/minimum_candidate_requirement/disease_outbreak/count_candidates()
 	var/datum/round_event_control/disease_outbreak/disease_control = event_control
@@ -81,9 +81,9 @@
 
 ///Handles actually selecting whicch disease will spawn.
 /datum/event_admin_setup/listed_options/disease_outbreak
-	input_text = "Select a specific disease? Warning: Some are EXTREMELY dangerous."
-	normal_run_option = "Random Classic Disease (Safe)"
-	special_run_option = "Entirely Random Disease (Dangerous)"
+	input_text = "选择特定病毒? 警告: 有些病毒极端危险."
+	normal_run_option = "随机Classic瘟疫 (安全)"
+	special_run_option = "完全随机瘟疫 (危险)"
 
 /datum/event_admin_setup/listed_options/disease_outbreak/get_list()
 	return subtypesof(/datum/disease)
@@ -166,13 +166,13 @@
 		log_game("Event Disease Outbreak: Classic attempted to start, but failed to find a candidate target")
 
 /datum/round_event_control/disease_outbreak/advanced
-	name = "Disease Outbreak: Advanced"
+	name = "Disease Outbreak: Advanced-高级疫情爆发"
 	typepath = /datum/round_event/disease_outbreak/advanced
 	category = EVENT_CATEGORY_HEALTH
 	weight = 15
 	min_players = 35 // To avoid shafting lowpop
 	earliest_start = 15 MINUTES // give the chemist a chance
-	description = "An 'advanced' disease will infect some members of the crew."
+	description = "一种'advanced'瘟疫将感染随机一些船员."
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
 	admin_setup = list(
@@ -189,7 +189,7 @@
  */
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/severity
-	input_text = "Pick a severity!"
+	input_text = "选择严重性!"
 	normal_run_option = "Random"
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/severity/get_list()
@@ -209,7 +209,7 @@
 			return ADMIN_CANCEL_EVENT
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/transmissibility
-	input_text = "Pick a transmissibility!"
+	input_text = "选择传播性!"
 	normal_run_option = "Random"
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/transmissibility/get_list()
@@ -229,17 +229,17 @@
 			return ADMIN_CANCEL_EVENT
 
 /datum/event_admin_setup/input_number/disease_outbreak_advanced
-	input_text = "How many symptoms do you want your virus to have?"
+	input_text = "该病毒将表现出多少种症状？"
 	default_value = 4
 	max_value = 7
 	min_value = 1
 
 /datum/event_admin_setup/input_number/disease_outbreak_advanced/prompt_admins()
-	var/customize_number_of_symptoms = tgui_alert(usr, "Select number of symptoms?", event_control.name, list("Default", "Custom"))
+	var/customize_number_of_symptoms = tgui_alert(usr, "症状数量是?", event_control.name, list("默认", "自定义"))
 	switch(customize_number_of_symptoms)
-		if("Custom")
+		if("默认")
 			return ..()
-		if("Default")
+		if("自定义")
 			chosen_value = null
 		else
 			return ADMIN_CANCEL_EVENT
@@ -303,7 +303,7 @@
 		log_game("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
 
 /datum/disease/advance/random/event
-	name = "Event Disease"
+	name = "Event Disease-事件瘟疫"
 	copy_type = /datum/disease/advance
 
 /datum/round_event/disease_outbreak/advance/setup()
@@ -442,7 +442,7 @@
 
 	//If we have an advanced (high stage) disease, add it to the name.
 	if(properties["stage_rate"] >= 7)
-		name = "Advanced [name]"
+		name = "高级[name]"
 
 	generate_cure(properties)
 
@@ -454,13 +454,13 @@
 /datum/disease/advance/random/event/set_spread(spread_id)
 	switch(spread_id)
 		if(DISEASE_SPREAD_CONTACT_FLUIDS)
-			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS
+			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS)
 			spread_text = "Fluids"
 		if(DISEASE_SPREAD_CONTACT_SKIN)
-			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN
+			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN)
 			spread_text = "Skin contact"
 		if(DISEASE_SPREAD_AIRBORNE)
-			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_AIRBORNE
+			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_AIRBORNE)
 			spread_text = "Respiration"
 
 /**

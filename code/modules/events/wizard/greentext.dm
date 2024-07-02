@@ -4,7 +4,7 @@
 	typepath = /datum/round_event/wizard/greentext
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "The Green Text appears on the station, tempting people to try and pick it up."
+	description = "Green Text出现在空间站上，引诱着人们去拾取它."
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 
@@ -24,7 +24,7 @@
 
 /obj/item/greentext
 	name = "greentext"
-	desc = "No one knows what this massive tome does, but it feels <i><font color='green'>desirable</font></i> all the same..."
+	desc = "没人知道这本书是用来做什么的, 但无时不刻都<i><font color='green'>好渴望</font></i>得到它..."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "greentext"

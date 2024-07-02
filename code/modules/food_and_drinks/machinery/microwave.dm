@@ -15,7 +15,7 @@
 #define MAX_MICROWAVE_DIRTINESS 100
 
 /// For the wireless version, and display fluff
-#define TIER_1_CELL_CHARGE_RATE 250
+#define TIER_1_CELL_CHARGE_RATE (0.25 * STANDARD_CELL_CHARGE)
 
 /obj/machinery/microwave
 	name = "微波炉"
@@ -31,6 +31,7 @@
 	light_color = LIGHT_COLOR_DIM_YELLOW
 	light_power = 3
 	anchored_tabletop_offset = 6
+	interaction_flags_click = ALLOW_SILICON_REACH
 	/// Is its function wire cut?
 	var/wire_disabled = FALSE
 	/// Wire cut to run mode backwards
@@ -105,7 +106,7 @@
 				itemized_ingredient.pixel_y = itemized_ingredient.base_pixel_y + rand(-5, 6)
 	return ..()
 
-/obj/machinery/microwave/on_deconstruction()
+/obj/machinery/microwave/on_deconstruction(disassembled)
 	eject()
 	return ..()
 
@@ -364,21 +365,15 @@
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/microwave/item_interaction(mob/living/user, obj/item/tool, list/modifiers, is_right_clicking)
+/obj/machinery/microwave/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(operating)
-		return
+		return ITEM_INTERACT_SKIP_TO_ATTACK // Don't use tools if we're dirty
 	if(dirty >= MAX_MICROWAVE_DIRTINESS)
-		return
-
-	. = ..()
-	if(. & ITEM_INTERACT_ANY_BLOCKER)
-		return .
-
+		return ITEM_INTERACT_SKIP_TO_ATTACK // Don't insert items if we're dirty
 	if(panel_open && is_wire_tool(tool))
 		wires.interact(user)
 		return ITEM_INTERACT_SUCCESS
-
-	return .
+	return NONE
 
 /obj/machinery/microwave/attackby(obj/item/item, mob/living/user, params)
 	if(operating)
@@ -394,7 +389,7 @@
 		var/swapped = FALSE
 		if(!isnull(cell))
 			cell.forceMove(drop_location())
-			if(!issilicon(user) && Adjacent(user))
+			if(!HAS_SILICON_ACCESS(user) && Adjacent(user))
 				user.put_in_hands(cell)
 			cell = null
 			swapped = TRUE
@@ -473,24 +468,29 @@
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/machinery/microwave/AltClick(mob/user, list/modifiers)
-	if(user.can_perform_action(src, ALLOW_SILICON_REACH))
-		if(!vampire_charging_capable)
-			return
+/obj/machinery/microwave/click_alt(mob/user, list/modifiers)
+	if(!vampire_charging_capable)
+		return NONE
 
-		vampire_charging_enabled = !vampire_charging_enabled
-		balloon_alert(user, "设置为[vampire_charging_enabled ? "充能" : "加热"]")
-		playsound(src, 'sound/machines/twobeep_high.ogg', 50, FALSE)
-		if(issilicon(user))
-			visible_message(span_notice("[user]设置[src]为[vampire_charging_enabled ? "充能" : "加热"]."), blind_message = span_notice("你听到[src]发出信息的哔哔声!"))
+	vampire_charging_enabled = !vampire_charging_enabled
+	balloon_alert(user, "设置为[vampire_charging_enabled ? "充能" : "加热"]")
+	playsound(src, 'sound/machines/twobeep_high.ogg', 50, FALSE)
+	if(HAS_SILICON_ACCESS(user))
+		visible_message(span_notice("[user]设置[src]为[vampire_charging_enabled ? "充能" : "加热"]."), blind_message = span_notice("你听到[src]发出信息的哔哔声!"))
+	return CLICK_ACTION_SUCCESS
 
-/obj/machinery/microwave/CtrlClick(mob/user)
-	. = ..()
-	if(cell_powered && !isnull(cell) && anchored)
+/obj/machinery/microwave/click_ctrl(mob/user)
+	if(!anchored)
+		return NONE
+
+	if(cell_powered && !isnull(cell))
 		user.put_in_hands(cell)
 		balloon_alert(user, "移除电池")
 		cell = null
 		update_appearance()
+		return CLICK_ACTION_SUCCESS
+
+	return CLICK_ACTION_BLOCKING
 
 /obj/machinery/microwave/ui_interact(mob/user)
 	. = ..()
@@ -500,22 +500,22 @@
 		return
 	if(operating || panel_open || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
-	if(isAI(user) && (machine_stat & NOPOWER))
+	if(HAS_AI_ACCESS(user) && (machine_stat & NOPOWER))
 		return
 
 	if(!length(ingredients))
-		if(isAI(user))
+		if(HAS_AI_ACCESS(user))
 			examine(user)
 		else
 			balloon_alert(user, "它是满的!")
 		return
 
-	var/choice = show_radial_menu(user, src, isAI(user) ? ai_radial_options : radial_options, require_near = !issilicon(user))
+	var/choice = show_radial_menu(user, src, HAS_AI_ACCESS(user) ? ai_radial_options : radial_options, require_near = !HAS_SILICON_ACCESS(user))
 
 	// post choice verification
 	if(operating || panel_open || (!vampire_charging_capable && !anchored) || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
-	if(isAI(user) && (machine_stat & NOPOWER))
+	if(HAS_AI_ACCESS(user) && (machine_stat & NOPOWER))
 		return
 
 	switch(choice)
@@ -577,7 +577,7 @@
 
 	if(cell_powered && cell?.charge < TIER_1_CELL_CHARGE_RATE * efficiency)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		balloon_alert(cooker, "no power draw!")
+		balloon_alert(cooker, "无电可抽!")
 		return
 
 	if(cooker && HAS_TRAIT(cooker, TRAIT_CURSED) && prob(7))
@@ -675,7 +675,7 @@
 				pre_success(cooker)
 		return
 	cycles--
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 	addtimer(CALLBACK(src, PROC_REF(cook_loop), type, cycles, wait, cooker), wait)
 
 /obj/machinery/microwave/power_change()
@@ -799,7 +799,7 @@
 	// We should only be charging PDAs
 	for(var/atom/movable/potential_item as anything in ingredients)
 		if(!istype(potential_item, /obj/item/modular_computer))
-			balloon_alert(cooker, "pda only!")
+			balloon_alert(cooker, "仅限PDA!")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 			eject()
 			return
@@ -831,8 +831,9 @@
 	if(cell_powered && !cell.use(charge_rate))
 		charge_loop_finish(cooker)
 
-	vampire_cell.give(charge_rate * (0.85 + (efficiency * 0.5))) // we lose a tiny bit of power in the transfer as heat
-	use_power(charge_rate)
+	use_energy(charge_rate * (0.5 - efficiency * 0.12)) //Some of the power gets lost as heat.
+	charge_cell(charge_rate * (0.5 + efficiency * 0.12), vampire_cell) //Cell gets charged, which further uses power.
+
 
 	vampire_charge_amount = vampire_cell.maxcharge - vampire_cell.charge
 

@@ -1,9 +1,9 @@
 /datum/round_event_control/mice_migration
-	name = "Mice Migration"
+	name = "Mice Migration-老鼠迁徙"
 	typepath = /datum/round_event/mice_migration
 	weight = 10
 	category = EVENT_CATEGORY_ENTITIES
-	description = "A horde of mice arrives, and perhaps even the Rat King themselves."
+	description = "一群老鼠到来，可能还有鼠王本人也来了."
 
 /datum/round_event/mice_migration
 	var/minimum_mice = 5

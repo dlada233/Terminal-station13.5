@@ -28,8 +28,7 @@
 		"有些东西感觉很不对劲.",
 		"一种被淹没的恐惧感席卷了你.",
 	)
-	for(var/mob/victim as anything in GLOB.player_list)
-		to_chat(victim, span_danger(pick(messages)))
+	dispatch_announcement_to_players(span_danger(pick(messages)), should_play_sound = FALSE)
 
 	return TRUE
 
@@ -59,7 +58,7 @@
 	effect_emergency_state()
 	effect_cascade_demoralize()
 	priority_announce("在你的区域发生了C型共振移位事件，扫描显示局部振荡通量影响了空间和重力子结构. \
-		并形成了多个共振点，请注意防范.", "Nanotrasen观星协会", ANNOUNCER_SPANOMALIES)
+		并形成了多个共振点，请注意防范.", "纳米传讯观星协会", ANNOUNCER_SPANOMALIES)
 	sleep(2 SECONDS)
 	effect_strand_shuttle()
 	sleep(5 SECONDS)
@@ -88,8 +87,9 @@
 		return FALSE
 	if(!can_select(sm))
 		return FALSE
-	priority_announce("注意: 远程扫描显示[station_name()]内的一个对象产生了异常数量的谐波通量，可能会引发共振崩溃.",
-	"Nanotrasen观星协会", 'sound/misc/airraid.ogg')
+	priority_announce("Attention: Long range anomaly scans indicate abnormal quantities of harmonic flux originating from \
+	a subject within [station_name()], a resonance collapse may occur.",
+	"Nanotrasen Star Observation Association", 'sound/misc/airraid.ogg')
 	return TRUE
 
 /// Signal calls cant sleep, we gotta do this.

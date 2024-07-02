@@ -81,7 +81,7 @@
 	var/my_message
 	if(!message)
 		return
-	my_message = span_cultboldtalic("The [user.name]: [message]")
+	my_message = span_cult_bold_italic("The [user.name]: [message]")
 	for(var/mob/player_list as anything in GLOB.player_list)
 		if(IS_CULTIST(player_list))
 			to_chat(player_list, my_message)
@@ -99,60 +99,101 @@
 /datum/action/innate/cult/mastervote/IsAvailable(feedback = FALSE)
 	if(!owner || !owner.mind)
 		return FALSE
-	var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	if(!C || C.cult_team.cult_vote_called || !ishuman(owner))
+	var/datum/antagonist/cult/mind_cult_datum = owner.mind.has_antag_datum(/datum/antagonist/cult)
+	if(!mind_cult_datum || mind_cult_datum.cult_team.cult_leader_datum || mind_cult_datum.cult_team.cult_vote_called || !ishuman(owner))
 		return FALSE
 	return ..()
 
 /datum/action/innate/cult/mastervote/Activate()
 	var/choice = tgui_alert(owner, "领袖责任重大，若要成功胜任这一角色，需要具备专业的沟通技巧和充分的经验. 你确定吗?",, list("Yes", "No"))
 	if(choice == "Yes" && IsAvailable())
-		var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-		pollCultists(owner,C.cult_team)
+		var/datum/antagonist/cult/mind_cult_datum = owner.mind.has_antag_datum(/datum/antagonist/cult)
+		start_poll_cultists_for_leader(owner, mind_cult_datum.cult_team)
 
-/proc/pollCultists(mob/living/Nominee, datum/team/cult/team) //Cult Master Poll
+///Start the poll for Cult Leaeder.
+/proc/start_poll_cultists_for_leader(mob/living/nominee, datum/team/cult/team)
 	if(world.time < CULT_POLL_WAIT)
-		to_chat(Nominee, "在每个人都还在适应的时候选择领导者还为时过早，请在[DisplayTimeText(CULT_POLL_WAIT-world.time)]内再试一次。")
+		to_chat(nominee, "在每个人都还在适应的时候选择领导者还为时过早，请在[DisplayTimeText(CULT_POLL_WAIT-world.time)]内再试一次。")
 		return
-	team.cult_vote_called = TRUE //somebody's trying to be a master, make sure we don't let anyone else try
-	for(var/datum/mind/B in team.members)
-		if(B.current)
-			B.current.update_mob_action_buttons()
-			if(!B.current.incapacitated())
-				SEND_SOUND(B.current, 'sound/hallucinations/im_here1.ogg')
-				to_chat(B.current, span_cultlarge("教徒[Nominee]宣称自己可以领导血教. 投票将在不久后举行."))
-	sleep(10 SECONDS)
-	var/list/asked_cultists = list()
-	for(var/datum/mind/B in team.members)
-		if(B.current && B.current != Nominee && !B.current.incapacitated())
-			SEND_SOUND(B.current, 'sound/magic/exit_blood.ogg')
-			asked_cultists += B.current
-	var/list/yes_voters = SSpolling.poll_candidates("[Nominee]希望自己可以领导血教，你愿意支持这个人吗?", poll_time = 30 SECONDS, group = asked_cultists, pic_source = Nominee, role_name_text = "血教教主")
-	if(QDELETED(Nominee) || Nominee.incapacitated())
+	team.cult_vote_called = TRUE
+	for(var/datum/mind/team_member as anything in team.members)
+		if(!team_member.current)
+			continue
+		team_member.current.update_mob_action_buttons()
+		if(team_member.current.incapacitated())
+			continue
+		SEND_SOUND(team_member.current, 'sound/hallucinations/im_here1.ogg')
+		to_chat(team_member.current, span_cult_large("教徒[nominee]宣称自己可以领导血教. 投票将在不久后举行."))
+
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(poll_cultists_for_leader), nominee, team), 10 SECONDS)
+
+///Polls all Cultists on whether the person putting themselves forward should be made the Cult Leader, if they can actually be such.
+/proc/poll_cultists_for_leader(mob/living/nominee, datum/team/cult/team)
+	if(QDELETED(nominee) || nominee.incapacitated())
 		team.cult_vote_called = FALSE
-		for(var/datum/mind/B in team.members)
-			if(B.current)
-				B.current.update_mob_action_buttons()
-				if(!B.current.incapacitated())
-					to_chat(B.current,span_cultlarge("[Nominee]在争取教徒支持的过程中死亡!"))
+		for(var/datum/mind/team_member as anything in team.members)
+			if(!team_member.current)
+				continue
+			team_member.current.update_mob_action_buttons()
+			if(team_member.current.incapacitated())
+				continue
+			to_chat(team_member.current,span_cult_large("[nominee]在开始投票前死了!"))
 		return FALSE
-	if(!Nominee.mind)
+	var/list/mob/living/asked_cultists = list()
+	for(var/datum/mind/team_member as anything in team.members)
+		if(!team_member.current || team_member.current == nominee || team_member.current.incapacitated())
+			continue
+		SEND_SOUND(team_member.current, 'sound/magic/exit_blood.ogg')
+		asked_cultists += team_member.current
+
+	var/list/yes_voters = SSpolling.poll_candidates(
+		question = "[span_notice(nominee.name)]希望自己可以领导血教，你愿意支持这个人吗?",
+		poll_time = 30 SECONDS,
+		group = asked_cultists,
+		alert_pic = nominee,
+		role_name_text = "教主选举",
+		custom_response_messages = list(
+			POLL_RESPONSE_SIGNUP = "你选择支持 [nominee].",
+			POLL_RESPONSE_ALREADY_SIGNED = "你已经支持过对象了!",
+			POLL_RESPONSE_NOT_SIGNED = "你不是候选人.",
+			POLL_RESPONSE_TOO_LATE_TO_UNREGISTER = "现在取消太晚了，投票已经开始了!",
+			POLL_RESPONSE_UNREGISTERED = "你取消了对[nominee]的支持.",
+		chat_text_border_icon = mutable_appearance('icons/effects/effects.dmi', "cult_master_logo")
+		)
+	)
+	if(QDELETED(nominee) || nominee.incapacitated())
 		team.cult_vote_called = FALSE
-		for(var/datum/mind/B in team.members)
-			if(B.current)
-				B.current.update_mob_action_buttons()
-				if(!B.current.incapacitated())
-					to_chat(B.current,span_cultlarge("[Nominee]在争取教徒支持的过程中患上了紧张性精神症!"))
+		for(var/datum/mind/team_member as anything in team.members)
+			if(!team_member.current)
+				continue
+			team_member.current.update_mob_action_buttons()
+			if(team_member.current.incapacitated())
+				continue
+			to_chat(team_member.current,span_cult_large("[nominee]在争取教徒支持的过程中死亡!"))
+		return FALSE
+	if(!nominee.mind)
+		team.cult_vote_called = FALSE
+		for(var/datum/mind/team_member as anything in team.members)
+			if(!team_member.current)
+				continue
+			team_member.current.update_mob_action_buttons()
+			if(team_member.current.incapacitated())
+				continue
+			to_chat(team_member.current,span_cult_large("[nominee]在争取教徒支持的过程中患上了紧张性精神症!"))
 		return FALSE
 	if(LAZYLEN(yes_voters) <= LAZYLEN(asked_cultists) * 0.5)
 		team.cult_vote_called = FALSE
-		for(var/datum/mind/B in team.members)
-			if(B.current)
-				B.current.update_mob_action_buttons()
-				if(!B.current.incapacitated())
-					to_chat(B.current, span_cultlarge("[Nominee]无法争取到教徒支持，将继续担任教徒."))
+		for(var/datum/mind/team_member as anything in team.members)
+			if(!team_member.current)
+				continue
+			team_member.current.update_mob_action_buttons()
+			if(team_member.current.incapacitated())
+				continue
+			to_chat(team_member.current, span_cult_large("[nominee]无法争取到教徒支持，将继续担任教徒."))
 		return FALSE
-	var/datum/antagonist/cult/cult_datum = Nominee.mind.has_antag_datum(/datum/antagonist/cult)
+
+	team.cult_vote_called = FALSE
+	var/datum/antagonist/cult/cult_datum = nominee.mind.has_antag_datum(/datum/antagonist/cult)
 	if(!cult_datum.make_cult_leader())
 		CRASH("[cult_datum.owner.current] was supposed to turn into the leader, but they didn't for some reason. This isn't supposed to happen unless an Admin messed with it.")
 	return TRUE
@@ -177,7 +218,7 @@
 	var/place = get_area(owner)
 	var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
 	if(place in summon_objective.summon_spots)//cant do final reckoning in the summon area to prevent abuse, you'll need to get everyone to stand on the circle!
-		to_chat(owner, span_cultlarge("这里的帷幕太弱!移动到一个足够坚实的地方来施展这个法术."))
+		to_chat(owner, span_cult_large("这里的帷幕太弱!移动到一个足够坚实的地方来施展这个法术."))
 		return
 	for(var/i in 1 to 4)
 		chant(i)
@@ -188,7 +229,7 @@
 		if(!LAZYLEN(destinations))
 			to_chat(owner, span_warning("你需要更多的空间来召唤你的教众!"))
 			return
-		if(do_after(owner, 30, target = owner))
+		if(do_after(owner, 3 SECONDS, target = owner))
 			for(var/datum/mind/B in antag.cult_team.members)
 				if(B.current && B.current.stat != DEAD)
 					var/turf/mobloc = get_turf(B.current)
@@ -198,10 +239,10 @@
 							playsound(mobloc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 						if(2)
 							new /obj/effect/temp_visual/dir_setting/cult/phase/out(mobloc, B.current.dir)
-							playsound(mobloc, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+							playsound(mobloc, SFX_PORTAL_ENTER, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 						if(3)
 							new /obj/effect/temp_visual/dir_setting/cult/phase(mobloc, B.current.dir)
-							playsound(mobloc, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+							playsound(mobloc, SFX_PORTAL_ENTER, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 						if(4)
 							playsound(mobloc, 'sound/magic/exit_blood.ogg', 100, TRUE)
 							if(B.current != owner)
@@ -211,7 +252,7 @@
 									S.release_shades(owner)
 								B.current.setDir(SOUTH)
 								new /obj/effect/temp_visual/cult/blood(final)
-								addtimer(CALLBACK(B.current, TYPE_PROC_REF(/mob/, reckon), final), 10)
+								addtimer(CALLBACK(B.current, TYPE_PROC_REF(/mob/, reckon), final), 1 SECONDS)
 		else
 			return
 	antag.cult_team.reckoning_complete = TRUE
@@ -312,14 +353,14 @@
 	if(cult_team.blood_target)
 		if(!COOLDOWN_FINISHED(src, cult_mark_cooldown))
 			cult_team.unset_blood_target_and_timer()
-			to_chat(owner, span_cultbold("你清除了血教的目标!"))
+			to_chat(owner, span_cult_bold("你清除了血教的目标!"))
 			return TRUE
 
-		to_chat(owner, span_cultbold("血教已经指定了目标"))
+		to_chat(owner, span_cult_bold("血教已经指定了目标!"))
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, cult_mark_cooldown))
-		to_chat(owner, span_cultbold("你还没准备好标记目标!"))
+		to_chat(owner, span_cult_bold("你还没准备好标记目标!"))
 		return FALSE
 
 	var/atom/mark_target = owner.orbiting?.parent || get_turf(owner)
@@ -327,7 +368,7 @@
 		return FALSE
 
 	if(cult_team.set_blood_target(mark_target, owner, 60 SECONDS))
-		to_chat(owner, span_cultbold("你为血教标记了[mark_target]! 它将持续[DisplayTimeText(cult_mark_duration)]."))
+		to_chat(owner, span_cult_bold("你为血教标记了[mark_target]! 它将持续[DisplayTimeText(cult_mark_duration)]."))
 		COOLDOWN_START(src, cult_mark_cooldown, cult_mark_cooldown_duration)
 		build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 		addtimer(CALLBACK(src, PROC_REF(reset_button)), cult_mark_cooldown_duration + 1)
@@ -359,13 +400,13 @@
 		return
 
 	SEND_SOUND(owner, 'sound/magic/enter_blood.ogg')
-	to_chat(owner, span_cultbold("你移除了之前的血教标记，现在你准备好标记一个新的了."))
+	to_chat(owner, span_cult_bold("你移除了之前的血教标记，现在你准备好标记一个新的了."))
 	build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 
 //////// ELDRITCH PULSE /////////
 
 /datum/action/innate/cult/master/pulse
-	name = "邪恶脉充"
+	name = "邪恶脉冲"
 	desc = "紧抓一名教徒或血教建筑，将其传送到附近的位置."
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "arcane_barrage"
@@ -448,12 +489,12 @@
 			if(!IS_CULTIST(living_clicked))
 				return FALSE
 			SEND_SOUND(caller, sound('sound/weapons/thudswoosh.ogg'))
-			to_chat(caller, span_cultbold("你用心灵的眼睛看穿帷幕，紧抓住了[clicked_on]! <b>点击附近的地方将其传送!</b>"))
+			to_chat(caller, span_cult_bold("你用心灵的眼睛看穿帷幕，紧抓住了[clicked_on]! <b>点击附近的地方将其传送!</b>"))
 			throwee_ref = WEAKREF(clicked_on)
 			return TRUE
 
 		if(istype(clicked_on, /obj/structure/destructible/cult))
-			to_chat(caller, span_cultbold("你用心灵的眼睛看穿帷幕，抬起了[clicked_on]! <b>点击附近的地方将其传送!</b>"))
+			to_chat(caller, span_cult_bold("你用心灵的眼睛看穿帷幕，抬起了[clicked_on]! <b>点击附近的地方将其传送!</b>"))
 			throwee_ref = WEAKREF(clicked_on)
 			return TRUE
 

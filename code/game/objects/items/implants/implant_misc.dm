@@ -5,16 +5,15 @@
 	actions_types = null
 
 /obj/item/implant/weapons_auth/get_data()
-	var/dat = {"<b>Implant Specifications:</b><BR>
-				<b>Name:</b> Firearms Authentication Implant<BR>
-				<b>Life:</b> 4 hours after death of host<BR>
-				<b>Implant Details:</b> <BR>
-				<b>Function:</b> Allows operation of implant-locked weaponry, preventing equipment from falling into enemy hands."}
-	return dat
+	return "<b>Implant Specifications:</b><BR> \
+		<b>Name:</b> Firearms Authentication Implant<BR> \
+		<b>Life:</b> 4 hours after death of host<BR> \
+		<b>Implant Details:</b> <BR> \
+		<b>Function:</b> Allows operation of implant-locked weaponry, preventing equipment from falling into enemy hands."
 
 /obj/item/implant/emp
 	name = "'电磁脉冲'植入物"
-	desc = "触发一道电磁脉冲."
+	desc = "发出一道电磁脉冲."
 	icon_state = "emp"
 	uses = 3
 
@@ -77,11 +76,10 @@
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/get_data()
-	var/dat = {"<b>Implant Specifications:</b><BR>
-				<b>Name:</b> Internal Radio Implant<BR>
-				<b>Life:</b> 24 hours<BR>
-				<b>Implant Details:</b> Allows user to use an internal radio, useful if user expects equipment loss, or cannot equip conventional radios."}
-	return dat
+	return "<b>Implant Specifications:</b><BR> \
+		<b>Name:</b> Internal Radio Implant<BR> \
+		<b>Life:</b> 24 hours<BR> \
+		<b>Implant Details:</b> Allows user to use an internal radio, useful if user expects equipment loss, or cannot equip conventional radios."
 
 /obj/item/implanter/radio
 	name = "植入器(内置无线电)"

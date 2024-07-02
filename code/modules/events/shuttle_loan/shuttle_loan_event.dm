@@ -1,11 +1,11 @@
 
 /datum/round_event_control/shuttle_loan
-	name = "Shuttle Loan"
+	name = "Shuttle Loan-货船出租"
 	typepath = /datum/round_event/shuttle_loan
 	max_occurrences = 3
 	earliest_start = 7 MINUTES
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "If cargo accepts the offer, fills the shuttle with loot and/or enemies."
+	description = "货仓接受提议后，货船将装满战利品或敌人."
 	///The types of loan events already run (and to be excluded if the event triggers).
 	admin_setup = list(/datum/event_admin_setup/listed_options/shuttle_loan)
 	///A list of normally unavailable (or already run) situations datums
@@ -40,12 +40,15 @@
 	situation = new situation()
 
 /datum/round_event/shuttle_loan/announce(fake)
-	var/announcement_text = situation?.announcement_text
-	if(isnull(announcement_text) || fake)
+	if(fake)
 		var/datum/shuttle_loan_situation/fake_situation = pick(subtypesof(/datum/shuttle_loan_situation))
-		announcement_text = initial(fake_situation.announcement_text)
-	priority_announce("Cargo: [announcement_text]", situation.sender)
-	SSshuttle.shuttle_loan = src
+		situation = new fake_situation
+	else
+		SSshuttle.shuttle_loan = src
+	priority_announce("Cargo: [situation.announcement_text]", situation.sender)
+	if(fake)
+		qdel(situation)
+
 
 /datum/round_event/shuttle_loan/proc/loan_shuttle()
 	priority_announce(situation.thanks_msg, "货船已被 [command_name()] 征用.")
@@ -80,7 +83,7 @@
 	var/list/blocked_shutte_turfs = list()
 	var/list/area/shuttle/shuttle_areas = SSshuttle.supply.shuttle_areas
 	for(var/area/shuttle/shuttle_area as anything in shuttle_areas)
-		for(var/turf/open/floor/shuttle_turf in shuttle_area.get_contained_turfs())
+		for(var/turf/open/floor/shuttle_turf in shuttle_area.get_turfs_from_all_zlevels())
 			if(shuttle_turf.is_blocked_turf())
 				blocked_shutte_turfs += shuttle_turf
 				continue

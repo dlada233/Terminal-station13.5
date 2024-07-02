@@ -1,10 +1,10 @@
 /datum/round_event_control/grid_check
-	name = "Grid Check"
+	name = "Grid Check-断电检查"
 	typepath = /datum/round_event/grid_check
 	weight = 10
 	max_occurrences = 3
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Turns off all APCs for a while, or until they are manually rebooted."
+	description = "关掉所有APC一段时间，期间可以手动重启."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 	/// Cooldown for the announement associated with this event.

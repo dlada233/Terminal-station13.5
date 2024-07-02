@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser/musket
-	name = "激光滑膛枪"
-	desc = "这是一种手工制作的激光武器，它的侧面有一个手动曲柄来给它充电."
+	name = "laser musket"
+	desc = "A hand-crafted laser weapon, it has a hand crank on the side to charge it up."
 	icon_state = "musket"
 	inhand_icon_state = "musket"
 	worn_icon_state = "las_musket"
@@ -17,19 +17,19 @@
 	AddComponent( \
 		/datum/component/crank_recharge, \
 		charging_cell = get_cell(), \
-		charge_amount = 500, \
+		charge_amount = STANDARD_CELL_CHARGE * 0.5, \
 		cooldown_time = 2 SECONDS, \
 		charge_sound = 'sound/weapons/laser_crank.ogg', \
 		charge_sound_cooldown_time = 1.8 SECONDS, \
 	)
 
 /obj/item/gun/energy/laser/musket/update_icon_state()
-	inhand_icon_state = "[initial(inhand_icon_state)][(get_charge_ratio() == 4 ? "已充能" : "")]"
+	inhand_icon_state = "[initial(inhand_icon_state)][(get_charge_ratio() == 4 ? "charged" : "")]"
 	return ..()
 
 /obj/item/gun/energy/laser/musket/prime
-	name = "英雄激光滑膛枪"
-	desc = "一种精心设计、手动充电的激光武器，它的电容器积满了电压."
+	name = "heroic laser musket"
+	desc = "A well-engineered, hand-charged laser weapon. Its capacitors hum with potential."
 	icon_state = "musket_prime"
 	inhand_icon_state = "musket_prime"
 	worn_icon_state = "las_musket_prime"
@@ -37,8 +37,8 @@
 
 
 /obj/item/gun/energy/disabler/smoothbore
-	name = "滑膛镇暴枪"
-	desc = "一种手工制作的镇暴枪，通过对能量电池的冲压来发射镇暴光束，但缺乏聚焦系统也意味着它没有任何准确性."
+	name = "smoothbore disabler"
+	desc = "A hand-crafted disabler, using a hard knock on an energy cell to fire the stunner laser. A lack of proper focusing means it has no accuracy whatsoever."
 	icon_state = "smoothbore"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smoothbore)
 	shaded_charge = 1
@@ -50,7 +50,7 @@
 	AddComponent( \
 		/datum/component/crank_recharge, \
 		charging_cell = get_cell(), \
-		charge_amount = 1000, \
+		charge_amount = STANDARD_CELL_CHARGE, \
 		cooldown_time = 2 SECONDS, \
 		charge_sound = 'sound/weapons/laser_crank.ogg', \
 		charge_sound_cooldown_time = 1.8 SECONDS, \
@@ -65,9 +65,63 @@
 	) //i swear 1812 being the overlay numbers was accidental
 
 /obj/item/gun/energy/disabler/smoothbore/prime //much stronger than the other prime variants, so dont just put this in as maint loot
-	name = "精英滑膛镇暴枪"
-	desc = "滑膛镇暴枪的增强版，改进了光学和电池设计，拥有了良好的精度和二次发射的能力."
+	name = "elite smoothbore disabler"
+	desc = "An enhancement version of the smoothbore disabler pistol. Improved optics and cell type result in good accuracy and the ability to fire twice. \
+	The disabler bolts also don't dissipate upon impact with armor, unlike the previous model."
 	icon_state = "smoothbore_prime"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smoothbore/prime)
 	charge_sections = 2
 	spread = 0 //could be like 5, but having just very tiny spread kinda feels like bullshit
+
+//Inferno and Cryo Pistols
+
+/obj/item/gun/energy/laser/thermal //the common parent of these guns, it just shoots hard bullets, somoene might like that?
+	name = "nanite pistol"
+	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit globs of angry robots into the bad guys."
+	icon_state = "infernopistol"
+	inhand_icon_state = null
+	ammo_type = list(/obj/item/ammo_casing/energy/nanite)
+	shaded_charge = TRUE
+	ammo_x_offset = 1
+	obj_flags = UNIQUE_RENAME
+	can_bayonet = TRUE
+	knife_x_offset = 19
+	knife_y_offset = 13
+	w_class = WEIGHT_CLASS_NORMAL
+	dual_wield_spread = 5 //as intended by the coders
+
+/obj/item/gun/energy/laser/thermal/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
+	AddComponent( \
+		/datum/component/crank_recharge, \
+		charging_cell = get_cell(), \
+		spin_to_win = TRUE, \
+		charge_amount = LASER_SHOTS(8, STANDARD_CELL_CHARGE), \
+		cooldown_time = 0.8 SECONDS, \
+		charge_sound = 'sound/weapons/kinetic_reload.ogg', \
+		charge_sound_cooldown_time = 0.8 SECONDS, \
+	)
+
+/obj/item/gun/energy/laser/thermal/add_seclight_point()
+	AddComponent(/datum/component/seclite_attachable, \
+		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
+		light_overlay = "flight", \
+		overlay_x = 15, \
+		overlay_y = 9)
+
+/obj/item/gun/energy/laser/thermal/inferno //the magma gun
+	name = "inferno pistol"
+	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit globs of molten angry robots into the bad guys. \
+		While it doesn't manipulate temperature in and of itself, it does cause an violent eruption in anyone who is severely cold. Able to generate \
+		ammunition by manually spinning the weapon's nanite canister."
+	icon_state = "infernopistol"
+	ammo_type = list(/obj/item/ammo_casing/energy/nanite/inferno)
+
+/obj/item/gun/energy/laser/thermal/cryo //the ice gun
+	name = "cryo pistol"
+	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit shards of frozen angry robots into the bad guys. \
+		While it doesn't manipulate temperature in and of itself, it does cause an internal explosion in anyone who is severely hot. Able to generate \
+		ammunition by manually spinning the weapon's nanite canister."
+	icon_state = "cryopistol"
+	ammo_type = list(/obj/item/ammo_casing/energy/nanite/cryo)

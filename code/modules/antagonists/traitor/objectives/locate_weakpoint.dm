@@ -27,6 +27,8 @@
 	var/area/weakpoint_area
 
 /datum/traitor_objective/locate_weakpoint/can_generate_objective(datum/mind/generating_for, list/possible_duplicates)
+	if(length(possible_duplicates) > 0)
+		return FALSE
 	if(handler.get_completion_progression(/datum/traitor_objective) < progression_objectives_minimum)
 		return FALSE
 	if(SStraitor.get_taken_count(/datum/traitor_objective/locate_weakpoint) > 0)
@@ -160,7 +162,7 @@
 
 /obj/item/weakpoint_locator/attack_self(mob/living/user, modifiers)
 	. = ..()
-	if(!istype(user) || loc != user || !user.mind) // 禁止心灵感应操作
+	if(!istype(user) || loc != user || !user.mind) //No TK cheese
 		return
 
 	var/datum/traitor_objective/locate_weakpoint/objective = objective_weakref.resolve()
@@ -190,7 +192,7 @@
 	for(var/mob/living/silicon/ai/ai_player in GLOB.player_list)
 		to_chat(ai_player, alertstr)
 
-	if(!do_after(user, 30 SECONDS, src, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(scan_checks), user, user_area, objective)))
+	if(!do_after(user, 30 SECONDS, src, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(scan_checks), user, user_area, objective), hidden = TRUE))
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
 
@@ -230,7 +232,7 @@
 
 	boom_sizes = list(3, 6, 9)
 
-	/// 用户任务的弱引用
+	/// Weakref to user's objective
 	var/datum/weakref/objective_weakref
 
 /obj/item/grenade/c4/es8/Initialize(mapload, objective)
@@ -241,28 +243,24 @@
 	objective_weakref = null
 	return ..()
 
-/obj/item/grenade/c4/es8/afterattack(atom/movable/target, mob/user, flag)
-	if(!user.mind)
-		return
-
+/obj/item/grenade/c4/es8/plant_c4(atom/bomb_target, mob/living/user)
 	if(!IS_TRAITOR(user))
 		to_chat(user, span_warning("你似乎无法找到引爆装置的方法."))
-		return
+		return FALSE
 
 	var/datum/traitor_objective/locate_weakpoint/objective = objective_weakref.resolve()
-
 	if(!objective || objective.objective_state == OBJECTIVE_STATE_INACTIVE || objective.handler.owner != user.mind)
 		to_chat(user, span_warning("你认为在此时使用 [src] 并不明智."))
-		return
+		return FALSE
 
-	var/area/target_area = get_area(target)
+	var/area/target_area = get_area(bomb_target)
 	if (target_area.type != objective.weakpoint_area)
 		to_chat(user, span_warning("[src] 只能在 [initial(objective.weakpoint_area.name)] 引爆."))
-		return
+		return FALSE
 
 	if(!isfloorturf(target) && !iswallturf(target))
 		to_chat(user, span_warning("[src] 只能安放在墙上或地板上！"))
-		return
+		return FALSE
 
 	return ..()
 

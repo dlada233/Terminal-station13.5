@@ -7,5 +7,5 @@
 	gain_text = span_notice("你想要抱一抱其他人.")
 	lose_text = span_danger("你不再感到要非抱别人不可的了.")
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED
-	medical_record_text = "患者表现出对身体接触毫无顾忌，且手臂发达。请求另一位医生接手此案."
+	medical_record_text = "患者表现出对身体接触毫无顾忌，且手臂发育良好，请求另一位医生接手此病例."
 	mail_goodies = list(/obj/item/storage/box/hug)

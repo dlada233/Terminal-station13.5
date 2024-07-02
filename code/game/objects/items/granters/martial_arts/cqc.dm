@@ -3,25 +3,25 @@
 	name = "老旧的手册"
 	martial_name = "close quarters combat-近身格斗术"
 	desc = "一本黑色的手册，里面有CQC-近身格斗术的教学."
-	greet = "<span class='boldannounce'>You've mastered the basics of CQC.</span>"
+	greet = "<span class='boldannounce'>你已经掌握了CQC的基础招式.</span>"
 	icon_state = "cqcmanual"
 	remarks = list(
-		"Kick... Slam...",
-		"Lock... Kick...",
-		"Strike their abdomen, neck and back for critical damage...",
-		"Slam... Lock...",
-		"I could probably combine this with some other martial arts!",
-		"Words that kill...",
-		"The last and final moment is yours...",
+		"前踢... 猛摔...",
+		"锁喉... 后蹬...",
+		"击腹，然后撕裂颈部与背部...",
+		"猛锤... 锁拳...",
+		"这些招式或许也能同其他武术结合使用!",
+		"全是杀招...",
+		"我将战至最后一人...",
 	)
 
 /obj/item/book/granter/martial/cqc/on_reading_finished(mob/living/carbon/user)
 	. = ..()
 	if(uses <= 0)
-		to_chat(user, span_warning("[src] beeps ominously..."))
+		to_chat(user, span_warning("[src]发出不详的哔哔声..."))
 
 /obj/item/book/granter/martial/cqc/recoil(mob/living/user)
-	to_chat(user, span_warning("[src] explodes!"))
+	to_chat(user, span_warning("[src]爆炸了!"))
 	playsound(src,'sound/effects/explosion1.ogg',40,TRUE)
 	user.flash_act(1, 1)
 	user.adjustBruteLoss(6)

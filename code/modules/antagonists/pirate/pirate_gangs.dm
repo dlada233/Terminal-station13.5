@@ -200,3 +200,24 @@ GLOBAL_LIST_INIT(heavy_pirate_gangs, init_pirate_gangs(is_heavy = TRUE))
 	response_too_late = "你们错过了付钱的彼时，于是顺流而来了此刻的我们."
 	response_not_enough = "你们侮辱了我们，我们之间不会有仇恨，只有及时的正义!"
 	announcement_color = "purple"
+
+//medieval militia, from OUTER SPACE!
+/datum/pirate_gang/medieval
+	name = "中世纪战团"
+
+	is_heavy_threat = TRUE
+	ship_template_id = "medieval"
+	ship_name_pool = "medieval_names"
+
+	threat_title = "快交钱"
+	threat_content = "幸会，这里是正在刮地皮的%SHIPNAME，这次遇着你们了!! \
+		通常情况下，咱会直接杀光擅闯咱土地的懦夫. \
+		但咱也可以对你在咱星域表示欢迎，前提是给咱 %PAYOFF 以表示对咱规矩的尊重!! \
+		好好做出明智的选择吧!!(发送消息. 发送消息. 为啥消息没发送啊?)."
+	arrival_announcement = "咱刚刚搞懂咋驾驶飞船了，咱马上就会到你那儿!!"
+	possible_answers = list("好吧，我还是希望自己的头盖骨留在头上.","弱智，去别处睡觉吧.")
+
+	response_received = "这就够啦，记住谁拥有你们!!"
+	response_rejected = "蠢货，咱要拿你杀鸡儆猴!! (有人记得怎么驾驶飞船嘛?)"
+	response_too_late = "你已经被包围了蠢货，你们是有病还是无知?!!"
+	response_not_enough = "当我小丑吗? 你死定了!! (草了我忘了怎么开船了.)"

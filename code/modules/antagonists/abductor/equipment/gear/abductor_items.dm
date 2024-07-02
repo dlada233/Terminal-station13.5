@@ -48,7 +48,7 @@
 		icon_state = "gizmo_scan"
 	to_chat(user, span_notice("你切换设备到[mode == GIZMO_SCAN? "扫描": "标记"]模式"))
 
-/obj/item/abductor/gizmo/interact_with_atom(atom/interacting_with, mob/living/user)
+/obj/item/abductor/gizmo/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!ScientistCheck(user))
 		return ITEM_INTERACT_SKIP_TO_ATTACK // So you slap them with it
 	if(!console)
@@ -63,14 +63,8 @@
 
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/abductor/gizmo/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	// Proximity is already handled via the interact_with_atom proc
-	if(proximity_flag)
-		return
-
-	. |= AFTERATTACK_PROCESSED_ITEM
-	interact_with_atom(target, user)
+/obj/item/abductor/gizmo/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return interact_with_atom(interacting_with, user, modifiers)
 
 /obj/item/abductor/gizmo/proc/scan(atom/target, mob/living/user)
 	if(ishuman(target))
@@ -93,7 +87,7 @@
 		to_chat(user, span_warning("你需要在样本旁边来做运输准备!"))
 		return
 	to_chat(user, span_notice("你开始准备运输[target]..."))
-	if(do_after(user, 100, target = target))
+	if(do_after(user, 10 SECONDS, target = target))
 		marked_target_weakref = WEAKREF(target)
 		to_chat(user, span_notice("你完成了[target]的运输准备."))
 
@@ -110,21 +104,15 @@
 	icon_state = "silencer"
 	inhand_icon_state = "gizmo"
 
-/obj/item/abductor/silencer/interact_with_atom(atom/interacting_with, mob/living/user)
+/obj/item/abductor/silencer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!AbductorCheck(user))
 		return ITEM_INTERACT_SKIP_TO_ATTACK // So you slap them with it
 
 	radio_off(interacting_with, user)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/abductor/silencer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	// Proximity is already handled via the interact_with_atom proc
-	if(proximity_flag)
-		return
-
-	. |= AFTERATTACK_PROCESSED_ITEM
-	interact_with_atom(target, user)
+/obj/item/abductor/silencer/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return interact_with_atom(interacting_with, user, modifiers)
 
 /obj/item/abductor/silencer/proc/radio_off(atom/target, mob/living/user)
 	if( !(user in (viewers(7,target))) )
@@ -167,17 +155,19 @@
 		icon_state = "mind_device_message"
 	to_chat(user, span_notice("你切换设备到[mode == MIND_DEVICE_MESSAGE? "传讯": "命令"]模式"))
 
-/obj/item/abductor/mind_device/afterattack(atom/target, mob/living/user, flag, params)
-	. = ..()
-	. |= AFTERATTACK_PROCESSED_ITEM
+/obj/item/abductor/mind_device/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return interact_with_atom(interacting_with, user, modifiers)
+
+/obj/item/abductor/mind_device/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!ScientistCheck(user))
-		return
+		return ITEM_INTERACT_BLOCKING
 
 	switch(mode)
 		if(MIND_DEVICE_CONTROL)
-			mind_control(target, user)
+			mind_control(interacting_with, user)
 		if(MIND_DEVICE_MESSAGE)
-			mind_message(target, user)
+			mind_message(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/abductor/mind_device/proc/mind_control(atom/target, mob/living/user)
 	if(iscarbon(target))
@@ -285,8 +275,8 @@
 <br>
 恭喜你！你现在已经完成了入侵式异种生物学研究的培训!"}
 
-/obj/item/paper/guides/antag/abductor/AltClick()
-	return //otherwise it would fold into a paperplane.
+/obj/item/paper/guides/antag/abductor/click_alt()
+	return CLICK_ACTION_BLOCKING //otherwise it would fold into a paperplane.
 
 /obj/item/melee/baton/abductor
 	name = "先进电棍"
@@ -446,7 +436,7 @@
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
 		species = span_notice("[human_victim.dna.species.name]")
-		if(human_victim.mind && human_victim.mind.has_antag_datum(/datum/antagonist/changeling))
+		if(IS_CHANGELING(human_victim))
 			species = span_warning("化形生命形式")
 		var/obj/item/organ/internal/heart/gland/temp = locate() in human_victim.organs
 		if(temp)
@@ -523,7 +513,7 @@
 	user.visible_message(span_notice("[user]放置并激活了[src]."), span_notice("你放置并激活了[src]."))
 	user.dropItemToGround(src)
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50)
-	addtimer(CALLBACK(src, PROC_REF(try_spawn_machine)), 30)
+	addtimer(CALLBACK(src, PROC_REF(try_spawn_machine)), 3 SECONDS)
 
 /obj/item/abductor_machine_beacon/proc/try_spawn_machine()
 	var/viable = FALSE

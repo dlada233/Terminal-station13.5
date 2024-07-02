@@ -1,12 +1,12 @@
 /datum/computer_file/program/contract_uplink
 	filename = "contractor uplink"
-	filedesc = "契约上行"
-	extended_desc = "由辛迪加发布的标准软件，用于在现场处理重要合同."
+	filedesc = "Syndicate Contractor Uplink"
+	extended_desc = "A standard, Syndicate issued system for handling important contracts while on the field."
 	program_open_overlay = "contractor-assign"
 	program_icon = "tasks"
 	size = 10
 
-	program_flags = PROGRAM_ON_SYNDINET_STORE | PROGRAM_UNIQUE_COPY
+	program_flags = PROGRAM_UNIQUE_COPY
 	can_run_on_flags = PROGRAM_PDA //this is all we've got sprites for :sob:
 	undeletable = TRUE
 	tgui_id = "SyndicateContractor"
@@ -29,7 +29,7 @@
 	traitor_data = null
 	return ..()
 
-/datum/computer_file/program/contract_uplink/ui_act(action, params)
+/datum/computer_file/program/contract_uplink/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -67,10 +67,10 @@
 					program_open_overlay = "contractor-extracted"
 				else
 					user.playsound_local(user, 'sound/machines/uplinkerror.ogg', 50)
-					error = "要么你和你的目标不在投送地点，要么就是回收舱-pod没有有效的降落地点，需要确保你们在目标位置或腾出位置."
+					error = "Either both you or your target aren't at the dropoff location, or the pod hasn't got a valid place to land. Clear space, or make sure you're both inside."
 			else
 				user.playsound_local(user, 'sound/machines/uplinkerror.ogg', 50)
-				error = "已经提取...把目标放进回收舱-pod， 如果回收舱被毁, 合同将失效."
+				error = "Already extracting... Place the target into the pod. If the pod was destroyed, this contract is no longer possible."
 
 			return TRUE
 		if("PRG_contract_abort")
@@ -88,9 +88,9 @@
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(H.put_in_hands(crystals))
-						to_chat(H, span_notice("你的付款会落到你手里!"))
+						to_chat(H, span_notice("Your payment materializes into your hands!"))
 					else
-						to_chat(user, span_notice("你的付款会出现在地上."))
+						to_chat(user, span_notice("Your payment materializes onto the floor."))
 
 				traitor_data.uplink_handler.contractor_hub.contract_TC_payed_out += traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem
 				traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem = 0

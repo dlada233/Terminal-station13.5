@@ -1,9 +1,9 @@
 /datum/round_event_control/fake_virus
-	name = "Fake Virus"
+	name = "Fake Virus-假病毒"
 	typepath = /datum/round_event/fake_virus
 	weight = 20
 	category = EVENT_CATEGORY_HEALTH
-	description = "Some crewmembers suffer from temporary hypochondria."
+	description = "一些船员患上了暂时的疑病症."
 
 /datum/round_event/fake_virus/start()
 	var/list/fake_virus_victims = list()
@@ -36,4 +36,4 @@
 		if(prob(25))//1/4 odds to get a spooky message instead of coughing out loud
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), onecoughman, span_warning("[pick("你的头疼.", "你的头昏昏沉沉.")]")), rand(3 SECONDS, 15 SECONDS))
 		else
-			addtimer(CALLBACK(onecoughman, TYPE_PROC_REF(/mob, emote), pick("咳嗽", "抽鼻子", "打喷嚏")), rand(3 SECONDS, 15 SECONDS))//deliver the message with a slightly randomized time interval so there arent multiple people coughing at the exact same time
+			addtimer(CALLBACK(onecoughman, TYPE_PROC_REF(/mob, emote), pick("cough", "sniff")), rand(3 SECONDS, 15 SECONDS))//deliver the message with a slightly randomized time interval so there arent multiple people coughing at the exact same time

@@ -1450,7 +1450,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/airlock/command{
-	name = "舰桥";
+	name = "Bridge";
 	req_access = list("403")
 	},
 /obj/effect/turf_decal/tile/neutral{

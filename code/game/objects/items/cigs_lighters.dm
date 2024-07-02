@@ -58,6 +58,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "一根[initial(name)]，这根已经点燃了."
 	attack_verb_continuous = string_list(list("灼烧", "火燎"))
 	attack_verb_simple = string_list(list("灼烧", "火燎"))
+	if(isliving(loc))
+		var/mob/living/male_model = loc
+		if(male_model.fire_stacks && !(male_model.on_fire))
+			male_model.ignite_mob()
 	START_PROCESSING(SSobj, src)
 	update_appearance()
 
@@ -140,7 +144,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	heat = 1000
 	throw_verb = "轻弹"
 	/// Whether this cigarette has been lit.
-	var/lit = FALSE
+	VAR_FINAL/lit = FALSE
 	/// Whether this cigarette should start lit.
 	var/starts_lit = FALSE
 	// Note - these are in masks.dmi not in cigarette.dmi
@@ -172,6 +176,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/choke_forever = FALSE
 	/// When choking, what is the maximum amount of time we COULD choke for
 	var/choke_time_max = 30 SECONDS // I am mean
+	/// The particle effect of the smoke rising out of the cigarette when lit
+	VAR_PRIVATE/obj/effect/abstract/particle_holder/cig_smoke
+	/// The particle effect of the smoke rising out of the mob when...smoked
+	VAR_PRIVATE/obj/effect/abstract/particle_holder/mob_smoke
+	/// How long the current mob has been smoking this cigarette
+	VAR_FINAL/how_long_have_we_been_smokin = 0 SECONDS
 
 	var/pollution_type = /datum/pollutant/smoke //SKYRAT EDIT ADDITION /// What type of pollution does this produce on smoking, changed to weed pollution sometimes
 
@@ -185,30 +195,67 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		light()
 	AddComponent(/datum/component/knockoff, 90, list(BODY_ZONE_PRECISE_MOUTH), slot_flags) //90% to knock off when wearing a mask
 	AddElement(/datum/element/update_icon_updates_onmob)
+	RegisterSignal(src, COMSIG_ATOM_TOUCHED_SPARKS, PROC_REF(sparks_touched))
 	icon_state = icon_off
 	inhand_icon_state = inhand_icon_off
 
 /obj/item/clothing/mask/cigarette/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	QDEL_NULL(mob_smoke)
+	QDEL_NULL(cig_smoke)
 	return ..()
 
 /obj/item/clothing/mask/cigarette/equipped(mob/equipee, slot)
 	. = ..()
 	if(!(slot & ITEM_SLOT_MASK))
-		UnregisterSignal(equipee, COMSIG_HUMAN_FORCESAY)
+		UnregisterSignal(equipee, list(COMSIG_HUMAN_FORCESAY, COMSIG_ATOM_DIR_CHANGE))
 		return
 	RegisterSignal(equipee, COMSIG_HUMAN_FORCESAY, PROC_REF(on_forcesay))
+	RegisterSignal(equipee, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_mob_dir_change))
 
-/obj/item/clothing/mask/cigarette/dropped(mob/dropee)
+	if(lit && iscarbon(loc))
+		make_mob_smoke(loc)
+
+/obj/item/clothing/mask/cigarette/dropped(mob/dropee, silent)
 	. = ..()
-	UnregisterSignal(dropee, COMSIG_HUMAN_FORCESAY)
+	// Moving the cigarette from mask to hands (or pocket I guess) will emit a larger puff of smoke
+	if(!QDELETED(src) && !QDELETED(dropee) && how_long_have_we_been_smokin >= 4 SECONDS && iscarbon(dropee) && iscarbon(loc))
+		var/mob/living/carbon/smoker = dropee
+		// This relies on the fact that dropped is called before slot is nulled
+		if(src == smoker.wear_mask && !smoker.incapacitated())
+			long_exhale(smoker)
+
+	UnregisterSignal(dropee, list(COMSIG_HUMAN_FORCESAY, COMSIG_ATOM_DIR_CHANGE))
+	QDEL_NULL(mob_smoke)
+	how_long_have_we_been_smokin = 0 SECONDS
 
 /obj/item/clothing/mask/cigarette/proc/on_forcesay(mob/living/source)
 	SIGNAL_HANDLER
 	source.apply_status_effect(/datum/status_effect/choke, src, lit, choke_forever ? -1 : rand(25 SECONDS, choke_time_max))
 
+/obj/item/clothing/mask/cigarette/proc/on_mob_dir_change(mob/living/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(isnull(mob_smoke))
+		return
+	update_particle_position(mob_smoke, new_dir)
+
+/obj/item/clothing/mask/cigarette/proc/update_particle_position(obj/effect/abstract/particle_holder/to_edit, new_dir = loc.dir)
+	var/new_x = 0
+	var/new_layer = initial(to_edit.layer)
+	if(new_dir & NORTH)
+		new_x = 4
+		new_layer = BELOW_MOB_LAYER
+	else if(new_dir & SOUTH)
+		new_x = -4
+	else if(new_dir & EAST)
+		new_x = 8
+	else if(new_dir & WEST)
+		new_x = -8
+	to_edit.set_particle_position(new_x, 8, 0)
+	to_edit.layer = new_layer
+
 /obj/item/clothing/mask/cigarette/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user]狂抽[src]!看起来想早日得肺癌."))
+	user.visible_message(span_suicide("[user]狂抽[src]! 看起来想早日得肺癌."))
 	return (TOXLOSS|OXYLOSS)
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
@@ -240,13 +287,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/mob/living/carbon/the_smoker = user
 	return the_smoker.can_breathe_helmet()
 
-/obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/cup/glass, mob/user, proximity)
-	. = ..()
-	if(!proximity || lit) //can't dip if cigarette is lit (it will heat the reagents in the glass instead)
-		return
+/obj/item/clothing/mask/cigarette/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(lit) //can't dip if cigarette is lit (it will heat the reagents in the glass instead)
+		return NONE
+	var/obj/item/reagent_containers/cup/glass = interacting_with
 	if(!istype(glass)) //you can dip cigarettes into beakers
-		return
-
+		return NONE
+	if(istype(glass, /obj/item/reagent_containers/cup/mortar))
+		return NONE
 	if(glass.reagents.trans_to(src, chem_volume, transferred_by = user)) //if reagents were transferred, show the message
 		to_chat(user, span_notice("你把[src]浸入[glass]中."))
 	//if not, either the beaker was empty, or the cigarette was full
@@ -254,8 +302,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		to_chat(user, span_warning("[glass]是空的!"))
 	else
 		to_chat(user, span_warning("[src]已经满了!"))
-
-	return AFTERATTACK_PROCESSED_ITEM
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/mask/cigarette/update_icon_state()
 	. = ..()
@@ -266,15 +313,23 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_state = icon_off
 		inhand_icon_state = inhand_icon_off
 
+
+/obj/item/clothing/mask/cigarette/proc/sparks_touched(datum/source, obj/effect/particle_effect)
+	SIGNAL_HANDLER
+
+	if(lit)
+		return
+	light()
+
 /// Lights the cigarette with given flavor text.
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
 	if(lit)
 		return
 
 	lit = TRUE
-
+	make_cig_smoke()
 	if(!(flags_1 & INITIALIZED_1))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	attack_verb_continuous = string_list(list("灼烧", "火燎"))
@@ -303,17 +358,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(flavor_text)
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
 	START_PROCESSING(SSobj, src)
 
-	//can't think of any other way to update the overlays :<
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_worn_mask()
-		M.update_held_items()
+	if(iscarbon(loc))
+		var/mob/living/carbon/smoker = loc
+		if(src == smoker.wear_mask)
+			make_mob_smoke(smoker)
 
 /obj/item/clothing/mask/cigarette/extinguish()
 	. = ..()
@@ -327,16 +381,26 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	STOP_PROCESSING(SSobj, src)
 	reagents.flags |= NO_REACT
 	lit = FALSE
-	update_icon()
-
+	update_appearance(UPDATE_ICON)
 	if(ismob(loc))
-		var/mob/living/M = loc
-		to_chat(M, span_notice("Your [name] goes out."))
-		M.update_worn_mask()
-		M.update_held_items()
+		to_chat(loc, span_notice("Your [name] goes out."))
+	QDEL_NULL(cig_smoke)
+	QDEL_NULL(mob_smoke)
+
+/obj/item/clothing/mask/cigarette/proc/long_exhale(mob/living/carbon/smoker)
+	smoker.visible_message(
+		span_notice("[smoker] exhales a large cloud of smoke from [src]."),
+		span_notice("You exhale a large cloud of smoke from [src]."),
+	)
+	if(!isturf(smoker.loc))
+		return
+
+	var/obj/effect/abstract/particle_holder/big_smoke = new(smoker.loc, /particles/smoke/cig/big)
+	update_particle_position(big_smoke, smoker.dir)
+	QDEL_IN(big_smoke, big_smoke.particles.lifespan)
 
 /// Handles processing the reagents in the cigarette.
-/obj/item/clothing/mask/cigarette/proc/handle_reagents()
+/obj/item/clothing/mask/cigarette/proc/handle_reagents(seconds_per_tick)
 	if(!reagents.total_volume)
 		return
 	reagents.expose_temperature(heat, 0.05)
@@ -349,27 +413,28 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!istype(smoker))
 		// If not, check if it's a gas mask
 		if(!istype(smoker, /obj/item/clothing/mask/gas))
-			reagents.remove_any(to_smoke)
+			reagents.remove_all(to_smoke)
 			return
 
 		smoker = smoker.loc
 
 		// If it is, check if that mask is on a carbon mob
 		if(!istype(smoker) || smoker.get_item_by_slot(ITEM_SLOT_MASK) != loc)
-			reagents.remove_any(to_smoke)
+			reagents.remove_all(to_smoke)
 			return
 	else
 		if(src != smoker.wear_mask)
-			reagents.remove_any(to_smoke)
+			reagents.remove_all(to_smoke)
 			return
 
+	how_long_have_we_been_smokin += seconds_per_tick * (1 SECONDS)
 	reagents.expose(smoker, INGEST, min(to_smoke / reagents.total_volume, 1))
 	var/obj/item/organ/internal/lungs/lungs = smoker.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if(lungs && IS_ORGANIC_ORGAN(lungs))
 		var/smoker_resistance = HAS_TRAIT(smoker, TRAIT_SMOKER) ? 0.5 : 1
 		smoker.adjustOrganLoss(ORGAN_SLOT_LUNGS, lung_harm * smoker_resistance)
 	if(!reagents.trans_to(smoker, to_smoke, methods = INGEST, ignore_stomach = TRUE))
-		reagents.remove_any(to_smoke)
+		reagents.remove_all(to_smoke)
 
 /obj/item/clothing/mask/cigarette/process(seconds_per_tick)
 	var/mob/living/user = isliving(loc) ? loc : null
@@ -392,7 +457,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	open_flame(heat)
 	if((reagents?.total_volume) && COOLDOWN_FINISHED(src, drag_cooldown))
 		COOLDOWN_START(src, drag_cooldown, dragtime)
-		handle_reagents()
+		handle_reagents(seconds_per_tick)
 
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit)
@@ -401,11 +466,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/proc/put_out(mob/user, done_early = FALSE)
 	var/atom/location = drop_location()
-	if(done_early)
-		user.visible_message(span_notice("[user]淡定地将扔在地上的[src]踩灭."))
-		new /obj/effect/decal/cleanable/ash(location)
-	else if(user)
-		to_chat(user, span_notice("Your [name] goes out."))
+	if(!isnull(user))
+		if(done_early)
+			if(isfloorturf(location) && location.has_gravity())
+				user.visible_message(span_notice("[user]淡定地将扔在地上的[src]踩灭."))
+				new /obj/effect/decal/cleanable/ash(location)
+				long_exhale(user)
+			else
+				user.visible_message(span_notice("[user] pinches out [src]."))
+			how_long_have_we_been_smokin = 0 SECONDS
+		else
+			to_chat(user, span_notice("Your [name] goes out."))
 	new type_butt(location)
 	qdel(src)
 
@@ -420,7 +491,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 
 	if(cig.lit)
-		to_chat(user, span_warning("[cig.name]已经点燃了!"))
+		to_chat(user, span_warning("The [cig.name] is already lit!"))
 	if(M == user)
 		cig.attackby(src, user)
 	else
@@ -432,7 +503,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/get_temperature()
 	return lit * heat
 
-jay
+/obj/item/clothing/mask/cigarette/proc/make_mob_smoke(mob/living/smoker)
+	mob_smoke = new(smoker, /particles/smoke/cig)
+	update_particle_position(mob_smoke, smoker.dir)
+	return mob_smoke
+
+/obj/item/clothing/mask/cigarette/proc/make_cig_smoke()
+	cig_smoke = new(src, /particles/smoke/cig)
+	cig_smoke.particles.scale *= 1.5
+	return cig_smoke
+
 // Cigarette brands.
 /obj/item/clothing/mask/cigarette/space_cigarette
 	desc = "一根\"太空牌\"香烟——让你想在哪抽就在哪抽！."
@@ -441,7 +521,7 @@ jay
 	smoke_all = TRUE // so that it doesn't runout of oxygen while being smoked in space
 
 /obj/item/clothing/mask/cigarette/dromedary
-	desc = "一根\"单峰骆驼\"牌香烟，与流行的观点相反，它不含甘汞，但是有一股水味."
+	desc = "一根\"丹峰骆驼\"牌香烟，与流行的观点相反，它不含甘汞，但是有一股水味."
 	list_reagents = list(/datum/reagent/drug/nicotine = 13, /datum/reagent/water = 5) //camel has water
 
 /obj/item/clothing/mask/cigarette/uplift
@@ -557,7 +637,7 @@ jay
 	list_reagents = list(/datum/reagent/toxin/mindbreaker = 35, /datum/reagent/toxin/lipolicide = 15)
 
 /obj/item/clothing/mask/cigarette/candy
-	name = "Little Timmy牌糖果香烟" // \improper
+	name = "\improper Little Timmy牌糖果香烟"
 	desc = "全年龄可抽*! 不含任何尼古丁，健康风险可以在烟头上查阅."
 	smoketime = 2 MINUTES
 	icon_state = "candyoff"
@@ -606,8 +686,12 @@ jay
 	list_reagents = list(/datum/reagent/drug/nicotine = 25)
 	choke_time_max = 40 SECONDS
 
+/obj/item/clothing/mask/cigarette/cigar/premium
+	name = "premium cigar"
+	//this is the version that actually spawns in premium cigar cases, the distinction is made so that the smoker quirk can differentiate between the default cigar box and its subtypes
+
 /obj/item/clothing/mask/cigarette/cigar/cohiba
-	name = "高斯巴强健雪茄" // \improper
+	name = "\improper 高斯巴强健雪茄"
 	desc = "有了它，你对雪茄便别无所求."
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
@@ -647,7 +731,7 @@ jay
 	name = "烟斗"
 	desc = "抽烟的烟斗，可能是用海泡石之类的东西做的."
 	icon_state = "pipeoff"
-	icon_on = "pipeon"  //Note - these are in masks.dmi
+	icon_on = "pipeoff"  //Note - these are in masks.dmi
 	icon_off = "pipeoff"
 	inhand_icon_state = null
 	inhand_icon_on = null
@@ -662,11 +746,11 @@ jay
 
 /obj/item/clothing/mask/cigarette/pipe/Initialize(mapload)
 	. = ..()
-	update_name()
+	update_appearance(UPDATE_NAME)
 
 /obj/item/clothing/mask/cigarette/pipe/update_name()
 	. = ..()
-	name = packeditem ? "[packeditem] [initial(name)]" : "空 [initial(name)]"
+	name = packeditem ? "[packeditem] [initial(name)]" : "空[initial(name)]"
 
 /obj/item/clothing/mask/cigarette/pipe/put_out(mob/user, done_early = FALSE)
 	lit = FALSE
@@ -677,11 +761,9 @@ jay
 		if(user)
 			to_chat(user, span_notice("Your [name] goes out."))
 		packeditem = null
-	update_icon()
-
-	inhand_icon_state = icon_off
-	user?.update_worn_mask()
+	update_appearance(UPDATE_ICON)
 	STOP_PROCESSING(SSobj, src)
+	QDEL_NULL(cig_smoke)
 
 /obj/item/clothing/mask/cigarette/pipe/attackby(obj/item/thing, mob/user, params)
 	if(!istype(thing, /obj/item/food/grown))
@@ -720,7 +802,7 @@ jay
 	name = "玉米烟斗"
 	desc = "最初在乡下农夫间流行，至今仍受太空世代青睐的经典尼古丁输送系统.“对此，麦克阿瑟将军评论到...”"
 	icon_state = "cobpipeoff"
-	icon_on = "cobpipeon"  //Note - these are in masks.dmi
+	icon_on = "cobpipeoff"  //Note - these are in masks.dmi
 	icon_off = "cobpipeoff"
 	inhand_icon_on = null
 	inhand_icon_off = null
@@ -729,7 +811,7 @@ jay
 //ZIPPO//
 /////////
 /obj/item/lighter
-	name = "Zippo打火机" // \improper
+	name = "\improper Zippo打火机"
 	desc = "Zippo."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "zippo"
@@ -742,9 +824,9 @@ jay
 	resistance_flags = FIRE_PROOF
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/fuel/oil = 5)
 	custom_price = PAYCHECK_CREW * 1.1
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_range = 2
-	light_power = 0.6
+	light_power = 1.3
 	light_color = LIGHT_COLOR_FIRE
 	light_on = FALSE
 	/// Whether the lighter is lit.
@@ -775,8 +857,8 @@ jay
 
 /// Destroy the lighter when it's shot by a bullet
 /obj/item/lighter/proc/on_intercepted_bullet(mob/living/victim, obj/projectile/bullet)
-	victim.visible_message(span_warning("\The [bullet]击中了[victim]的打火机!"))
-	playsound(victim, get_sfx(SFX_RICOCHET), 100, TRUE)
+	victim.visible_message(span_warning("[bullet]击中了[victim]的打火机!"))
+	playsound(victim, SFX_RICOCHET, 100, TRUE)
 	new /obj/effect/decal/cleanable/oil(get_turf(src))
 	do_sparks(1, TRUE, src)
 	victim.dropItemToGround(src, force = TRUE, silent = TRUE)
@@ -824,6 +906,10 @@ jay
 		attack_verb_continuous = string_list(list("灼烧", "火燎"))
 		attack_verb_simple = string_list(list("灼烧", "火燎"))
 		START_PROCESSING(SSobj, src)
+		if(isliving(loc))
+			var/mob/living/male_model = loc
+			if(male_model.fire_stacks && !(male_model.on_fire))
+				male_model.ignite_mob()
 	else
 		hitsound = SFX_SWING_HIT
 		force = 0
@@ -1050,7 +1136,7 @@ jay
 //VAPE NATION//
 ///////////////
 /obj/item/clothing/mask/vape
-	name = "电子烟" // improper
+	name = "\improper 电子烟"
 	desc = "一款优雅有格调的电子烟，为端庄优雅的绅士设计，上面的标签写着 \"警告: 请勿填充可燃物.\".“适合纯真的人”"//<<< i'd vape to that.
 	icon = 'icons/obj/clothing/masks.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi' //SKYRAT EDIT: ADDITION
@@ -1172,7 +1258,7 @@ jay
 
 	var/mob/living/carbon/vaper = loc
 	if(!iscarbon(vaper) || src != vaper.wear_mask)
-		reagents.remove_any(REAGENTS_METABOLISM)
+		reagents.remove_all(REAGENTS_METABOLISM)
 		return
 
 	if(reagents.get_reagent_amount(/datum/reagent/fuel))
@@ -1187,7 +1273,7 @@ jay
 		qdel(src)
 
 	if(!reagents.trans_to(vaper, REAGENTS_METABOLISM, methods = INGEST, ignore_stomach = TRUE))
-		reagents.remove_any(REAGENTS_METABOLISM)
+		reagents.remove_all(REAGENTS_METABOLISM)
 
 /obj/item/clothing/mask/vape/process(seconds_per_tick)
 	var/mob/living/M = loc

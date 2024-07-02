@@ -8,7 +8,7 @@
 		"colony_arc_welder",
 		"colony_compact_drill",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000000000000000) // God save you
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 50000000000000) // God save you
 	hidden = TRUE
 	show_on_wiki = FALSE
 	starting_node = TRUE
@@ -55,7 +55,7 @@
 	build_path = /obj/item/weldingtool/electric/arc_welder
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
 	)
 	category = list(

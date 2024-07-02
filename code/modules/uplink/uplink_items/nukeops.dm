@@ -75,25 +75,27 @@
 	name = "12g霰弹鼓(斗牛犬)"
 	desc = "一个8发霰弹鼓，用于斗牛犬霰弹枪."
 	item = /obj/item/ammo_box/magazine/m12g
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/basic/slug
 	name = "12g独头弹鼓(斗牛犬)"
 	desc = "一个8发独头弹鼓，用于牛头犬霰弹枪，\
 		现在友伤的可能性降低了8倍."
 	item = /obj/item/ammo_box/magazine/m12g/slug
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/incendiary/dragon
 	name = "12g龙息弹鼓(斗牛犬)"
 	desc = "一个8发龙息弹鼓，用于牛头犬霰弹枪. \
 		'I'm a fire starter, twisted fire starter!'"
 	item = /obj/item/ammo_box/magazine/m12g/dragon
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/special/meteor
 	name = "12g穿墙独头弹鼓(斗牛犬)"
 	desc = "一个8发穿墙独头弹鼓，用于牛头犬霰弹枪."
 	item = /obj/item/ammo_box/magazine/m12g/meteor
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 // ~~ Ansem Pistol ~~
 
@@ -107,24 +109,28 @@
 	name = "10mm手枪弹匣 (安瑟姆)"
 	desc = "一个额外的8发10毫米弹匣，与安瑟姆手枪兼容."
 	item = /obj/item/ammo_box/magazine/m10mm
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/ap/m10mm
 	name = "10mm穿甲弹匣 (安瑟姆)"
 	desc = "一个额外的8发10毫米弹匣，与安瑟姆手枪兼容。 \
 		这种子弹伤害肉体的效果较差，但能穿透护甲."
 	item = /obj/item/ammo_box/magazine/m10mm/ap
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/hp/m10mm
 	name = "10mm空尖弹匣 (安瑟姆)"
 	desc = "一个额外的8发10毫米弹匣，与安瑟姆手枪兼容. \
 		这种子弹对肉体杀伤力更强，但对装甲无效."
 	item = /obj/item/ammo_box/magazine/m10mm/hp
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/incendiary/m10mm
 	name = "10mm燃烧弹匣 (安瑟姆)"
 	desc = "一个额外的8发10毫米弹匣，与安瑟姆手枪兼容. \
 		这种子弹只能造成较小的伤害，但能点燃目标."
 	item = /obj/item/ammo_box/magazine/m10mm/fire
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 //Medium-cost: 14 TC each. Meant for more expensive purchases with a goal in mind.
 
@@ -195,6 +201,7 @@
 	desc = "一个装有7发.357马格南子弹的快速装弹器，可用于辛迪加左轮. \
 		当你真的很多东西死掉的时候..."
 	item = /obj/item/ammo_box/a357
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/special/revolver/phasic
 	name = ".357相位弹 快速装弹器 (左轮)"
@@ -202,6 +209,7 @@
 		这些子弹是由一种名为“幽灵铅”的实验合金制成的，这种合金几乎可以穿透任何非有机材料. \
 		但别被这个名字误导了，它实际上不含任何铅!"
 	item = /obj/item/ammo_box/a357/phasic
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/special/revolver/heartseeker
 	name = ".357寻心弹 快速装弹器 (左轮)"
@@ -209,6 +217,7 @@
 		寻心弹在发射后可以直接转向目标，只要目标心脏还在跳动就行."
 	item = /obj/item/ammo_box/a357/heartseeker
 	cost = 3
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 // ~~ Grenade Launcher ~~
 // 'If god had wanted you to live, he would not have created ME!'
@@ -430,7 +439,7 @@
 	refundable = TRUE
 
 /datum/uplink_item/reinforcements/operative_reinforcement
-	name = "行动队员增援"
+	name = "增援队员"
 	desc = "从我们的阵营里再叫一个队员来，他只有一把老式冲锋枪，所以最好再给他武装一下."
 	item = /obj/item/antag_spawner/nuke_ops
 
@@ -451,6 +460,13 @@
 	desc = "最新型工程赛博格，配备隐蔽模块. 除了常规的工程设备外，特殊的模块设计可以让它遍历管道网络， \
 		变色龙投影仪使他伪装成一个纳米赛博格，顶部的热成像还有定位器帮助它为团队收集情报."
 	item = /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur
+
+/datum/uplink_item/reinforcements/overwatch_agent
+	name = "照管情报人员"
+	desc = "一名辛迪加情报人员会加入到你们的任务中来，他可以调用空间站摄像头以及你们的随身摄像头视角，\
+		他还可以远程操控你们基地的飞船. 即便你此行是只管杀人而不使智谋，那么该人员也可以用于将你的狂态见证在心."
+	item = /obj/item/antag_spawner/nuke_ops/overwatch
+	cost = 12
 
 // ~~ Disposable Sentry Gun ~~
 // Technically not a spawn but it is a kind of reinforcement...I guess.
@@ -568,35 +584,35 @@
 	name = "精英辛迪加模块服"
 	desc = "辛迪加模块服的升级精英版，与标准辛迪加模块服相比它拥有更好的装甲、机动性与防火."
 	item = /obj/item/mod/control/pre_equipped/elite
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY
 
 /datum/uplink_item/suits/energy_shield
 	name = "能量护盾模块"
 	desc = "模块服的能量护盾模块. 充能后可以阻止一次冲击，如果使用得到，这个模块会让你活得很久."
 	item = /obj/item/mod/module/energy_shield
 	cost = 8
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY
 
 /datum/uplink_item/suits/emp_shield
 	name = "EMP防护模块"
 	desc = "模块服用的先进EMP防护模块，可以保护你的整个身体免受电磁脉冲的伤害."
 	item = /obj/item/mod/module/emp_shield/advanced
 	cost = 5
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY
 
 /datum/uplink_item/suits/injector
 	name = "注射器模块"
 	desc = "模块服的注射器模块，是一种容量30u的注射器."
 	item = /obj/item/mod/module/injector
 	cost = 2
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY
 
 /datum/uplink_item/suits/holster
 	name = "枪套模块"
 	desc = "模块服的枪套模块，可以秘密地储存任何不太笨重的枪."
 	item = /obj/item/mod/module/holster
 	cost = 2
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY
 
 /datum/uplink_item/device_tools/medgun_mod
 	name = "医疗光束模块"
@@ -607,7 +623,7 @@
 
 /datum/uplink_item/suits/syndi_intellicard
 	name = "预装的辛迪AI人格芯片"
-	desc = "辛迪AI人格芯片，可以激活以下载捕获的Nanotrasen AI，并应用辛迪加法律. \
+	desc = "辛迪AI人格芯片，可以激活以下载捕获的Nanotrasen AI，并应用辛迪加法令. \
 			你可以把它插进模块服里，让它控制模块服，甚至移动你的身体. 然而由于提取过程中的故障，该AI无法远程操纵站点设备，只能靠近以操作."
 	item = /obj/item/aicard/syndie/loaded
 	cost = 12
@@ -639,7 +655,7 @@
 	desc = "基于纳米版，这个强大的工具既可以用作撬棍，也可以变形成剪线钳，它的撬棍功率非常强大，甚至能强行打开气闸门."
 	item = /obj/item/crowbar/power/syndicate
 	cost = 4
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY
 
 /datum/uplink_item/device_tools/medkit
 	name = "辛迪加战斗医疗包"
@@ -663,7 +679,7 @@
 	desc = "一种由辛迪加秘密特工冒着极大的风险才回收的药剂，随后用辛迪加的技术进行了改良. \
 		使用它可以让任何动物产生知性，并且一定会为你服务，还可以自动在它体内植入无线电通信和气阀身份认证."
 	cost = 4
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY
 	restricted = TRUE
 
 // Implants
@@ -673,7 +689,7 @@
 	purchasable_from = UPLINK_NUKE_OPS
 
 /datum/uplink_item/implants/nuclear/deathrattle
-	name = "丧钟植入物组"
+	name = "丧铃植入物组"
 	desc = "一组团队用植入物，植入后，当团队中的一名成员死亡时，所有其他植入者都会收到死亡信息，告知死者队友的名字和死亡地点."
 	item = /obj/item/storage/box/syndie_kit/imp_deathrattle
 	cost = 4
@@ -683,6 +699,7 @@
 	desc = "一种植入物，注射到体内，然后在死亡时手动或自动激活自爆，你体内的植入物越多，你自爆的威力就越大."
 	item = /obj/item/storage/box/syndie_kit/imp_microbomb
 	cost = 2
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_SPY
 
 /datum/uplink_item/implants/nuclear/macrobomb
 	name = "高爆炸弹植入物"
@@ -697,8 +714,9 @@
 			能让你在濒死或死后尸体尽可能完整，然后在倒计时结束后自爆."
 	item = /obj/item/storage/box/syndie_kit/imp_deniability
 	cost = 6
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_SPY
 
-/datum/uplink_item/implants/nuclear/reviverplus
+/datum/uplink_item/implants/nuclear/reviver
 	name = "复活泵"
 	desc = "如果你失去意识，这个义体会试图使你苏醒并治愈你，配有自动手术仪."
 	item = /obj/item/autosurgeon/syndicate/reviver

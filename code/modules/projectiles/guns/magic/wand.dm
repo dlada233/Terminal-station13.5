@@ -33,23 +33,23 @@
 		return
 	..()
 
-/obj/item/gun/magic/wand/afterattack(atom/target, mob/living/user)
-	. |= AFTERATTACK_PROCESSED_ITEM
+/obj/item/gun/magic/wand/try_fire_gun(atom/target, mob/living/user, params)
 	if(!charges)
 		shoot_with_empty_chamber(user)
-		return
+		return FALSE
 	if(target == user)
-		if(no_den_usage)
-			var/area/A = get_area(user)
-			if(istype(A, /area/centcom/wizard_station))
-				to_chat(user, span_warning("你知道不能破坏据点的安全，最好等到离开后再使用[src]."))
-				return
-			else
-				no_den_usage = 0
+		if(no_den_usage && istype(get_area(user), /area/centcom/wizard_station))
+			to_chat(user, span_warning("你知道不能破坏据点的安全，最好等到离开后再使用[src]."))
+			return FALSE
 		zap_self(user)
+		. = TRUE
+
 	else
-		. |= ..()
-	update_appearance()
+		. = ..()
+
+	if(.)
+		update_appearance()
+	return .
 
 
 /obj/item/gun/magic/wand/proc/zap_self(mob/living/user)
@@ -103,7 +103,7 @@
 
 /obj/item/gun/magic/wand/resurrection
 	name = "治愈魔杖"
-	desc = "这根魔杖使用治疗魔法来治疗和复活，由于某些原因，它们很少在巫师联合会中使用."
+	desc = "这根魔杖使用治疗魔法来治疗和复活，由于某些原因，它们很少在巫师联盟中使用."
 	school = SCHOOL_RESTORATION
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	fire_sound = 'sound/magic/staff_healing.ogg'
@@ -192,7 +192,7 @@
 
 /obj/item/gun/magic/wand/safety/zap_self(mob/living/user)
 	var/turf/origin = get_turf(user)
-	var/turf/destination = find_safe_turf()
+	var/turf/destination = find_safe_turf(extended_safety_checks = TRUE)
 
 	if(do_teleport(user, destination, channel=TELEPORT_CHANNEL_MAGIC))
 		for(var/t in list(origin, destination))
@@ -256,3 +256,25 @@
 	name = "空魔杖"
 	desc = "这不仅仅是一根棍子，它是一根魔法棒?"
 	ammo_type = /obj/item/ammo_casing/magic/nothing
+
+
+/////////////////////////////////////
+//WAND OF SHRINKING
+/////////////////////////////////////
+
+/obj/item/gun/magic/wand/shrink
+	name = "缩小魔杖"
+	desc = "感受到被小猫玩弄的小动物的恐惧吧......"
+	ammo_type = /obj/item/ammo_casing/magic/shrink/wand
+	icon_state = "shrinkwand"
+	base_icon_state = "shrinkwand"
+	fire_sound = 'sound/magic/staff_shrink.ogg'
+	max_charges = 10 //10, 5, 5, 4
+	no_den_usage = TRUE
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/gun/magic/wand/shrink/zap_self(mob/living/user)
+	to_chat(user, span_notice("世界变大了..."))
+	charges--
+	user.AddComponent(/datum/component/shrink, -1) // small forever
+	return ..()

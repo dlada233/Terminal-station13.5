@@ -13,7 +13,6 @@
  * Imperfect Ritual
  * > Sidepaths:
  *   Void Cloak
- *   Ashen Eyes
  *
  * Mark of Flesh
  * Ritual of Knowledge
@@ -21,18 +20,18 @@
  * Raw Ritual
  * > Sidepaths:
  *   Blood Siphon
- *   Curse of Paralysis
+ *   Opening Blast
  *
  * Bleeding Steel
  * Lonely Ritual
  * > Sidepaths:
- *   Ashen Ritual
  *   Cleave
+ *   Aptera Vulnera
  *
  * Priest's Final Hymn
  */
 /datum/heretic_knowledge/limited_amount/starting/base_flesh
-	name = "饥渴原理"
+	name = "饥渴原理-Base flesh"
 	desc = "通往血肉之路. \
 		你能将一摊血和一把刀具嬗变成一把血腥之刃. \
 		同一时间只能创造二十把出来." //SKYRAT EDIT three to twenty
@@ -119,7 +118,7 @@
 	LAZYREMOVE(created_items, WEAKREF(ghoul))
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul
-	name = "残缺秘仪"
+	name = "残缺秘仪-Flesh ghoul"
 	desc = "允许你将一具尸体和罂粟嬗变为一只失声亡者. \
 		失声亡者是一种沉默不语的食尸鬼，只有50点生命值，但擅长挥舞血腥之刃. \
 		你同一时间只能创造两只出来."
@@ -127,7 +126,6 @@
 	next_knowledge = list(
 		/datum/heretic_knowledge/mark/flesh_mark,
 		/datum/heretic_knowledge/void_cloak,
-		/datum/heretic_knowledge/medallion,
 	)
 	required_atoms = list(
 		/mob/living/carbon/human = 1,
@@ -167,15 +165,13 @@
 
 	if(!soon_to_be_ghoul.mind || !soon_to_be_ghoul.client)
 		message_admins("[ADMIN_LOOKUPFLW(user)]正在创造没有玩家操纵的失声亡者.")
-		var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("你愿意扮演[soon_to_be_ghoul.real_name]，一名失声亡者吗?", check_jobban = ROLE_HERETIC, role = ROLE_HERETIC, poll_time = 5 SECONDS, target_mob = soon_to_be_ghoul, pic_source = soon_to_be_ghoul, role_name_text = "失声亡者")
-		if(!LAZYLEN(candidates))
+		var/mob/chosen_one = SSpolling.poll_ghosts_for_target("你愿意扮演[span_danger(soon_to_be_ghoul.real_name)], 一名[span_notice("失声亡者")]?", check_jobban = ROLE_HERETIC, role = ROLE_HERETIC, poll_time = 5 SECONDS, checked_target = soon_to_be_ghoul, alert_pic = mutable_appearance('icons/mob/human/human.dmi', "husk"), jump_target = soon_to_be_ghoul, role_name_text = "voiceless dead")
+		if(isnull(chosen_one))
 			loc.balloon_alert(user, "仪式失败，没有灵魂!")
 			return FALSE
-
-		var/mob/dead/observer/chosen_candidate = pick(candidates)
-		message_admins("[key_name_admin(chosen_candidate)]已经控制了([key_name_admin(soon_to_be_ghoul)])来取代AFK玩家.")
+		message_admins("[key_name_admin(chosen_one)]已经控制了([key_name_admin(soon_to_be_ghoul)])来取代AFK玩家.")
 		soon_to_be_ghoul.ghostize(FALSE)
-		soon_to_be_ghoul.key = chosen_candidate.key
+		soon_to_be_ghoul.key = chosen_one.key
 
 	selected_atoms -= soon_to_be_ghoul
 	make_ghoul(user, soon_to_be_ghoul)
@@ -227,7 +223,7 @@
 	route = PATH_FLESH
 
 /datum/heretic_knowledge/summon/raw_prophet
-	name = "食生秘仪"
+	name = "食生秘仪-Raw prophet"
 	desc = "允许你将一双眼睛、一只左臂和一摊血嬗变成一名食生先知. \
 		食生先知拥有大范围的视野和可以透视的X射线视觉，还拥有远距离跳跃和心灵沟通的能力. \
 		唯一的缺点在于它们在战斗无力且脆弱."
@@ -237,7 +233,7 @@
 		/datum/heretic_knowledge/blade_upgrade/flesh,
 		/datum/heretic_knowledge/reroll_targets,
 		/datum/heretic_knowledge/spell/blood_siphon,
-		/datum/heretic_knowledge/curse/paralysis,
+		/datum/heretic_knowledge/spell/opening_blast,
 	)
 	required_atoms = list(
 		/obj/item/organ/internal/eyes = 1,
@@ -269,14 +265,14 @@
 	crit_wound.apply_wound(bodypart, attack_direction = get_dir(source, target))
 
 /datum/heretic_knowledge/summon/stalker
-	name = "孤生秘仪"
+	name = "孤生秘仪-Stalker"
 	desc = "你可以将一根任何物种的尾巴、一个胃、一条舌头、一支笔以及一张纸来嬗变出一只游荡者. \
 		游荡者可以传送，释放电磁脉冲，变形成动物或者机器人，并且在战斗中表现不俗."
 	gain_text = "我能够将贪婪和欲望结合在一起，召唤出我从未见的野兽. \
 		一团不断变形、知晓我目标的邪恶肉块. 元帅同意了."
 	next_knowledge = list(
 		/datum/heretic_knowledge/ultimate/flesh_final,
-		/datum/heretic_knowledge/summon/ashy,
+		/datum/heretic_knowledge/spell/apetra_vulnera,
 		/datum/heretic_knowledge/spell/cleave,
 	)
 	required_atoms = list(
@@ -292,7 +288,7 @@
 	poll_ignore_define = POLL_IGNORE_STALKER
 
 /datum/heretic_knowledge/ultimate/flesh_final
-	name = "祭司的最终颂歌"
+	name = "祭司的最终颂歌-Flesh final"
 	desc = "血肉之路的飞升仪式. \
 		带四具尸体到嬗变符文以完成仪式. \
 		一旦完成，你将能摆脱人类姿态，变身成为夜之主，一种异常强大的生物 \
@@ -310,7 +306,7 @@
 	priority_announce(
 		text = "[generate_heretic_text()] 盘旋的螺旋. 现世的平展. 迎我双臂，暗夜之主， [user.real_name]飞升了! 唯有畏惧那永远扭曲的双手! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = ANNOUNCER_SPANOMALIES,
+		sound = 'sound/ambience/antag/heretic/ascend_flesh.ogg',
 		color_override = "pink",
 	)
 

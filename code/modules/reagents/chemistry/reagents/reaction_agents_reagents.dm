@@ -34,7 +34,7 @@
 	//do the ph change
 	var/message
 	if(target.ph <= ph)
-		message = "当加入缓冲液时，烧杯起泡，但没有效果。"
+		message = "当加入缓冲液时，烧杯起泡，但没有效果."
 	else
 		message = "随着pH值的变化，烧杯起泡!"
 		target.adjust_all_reagents_ph((-(amount / target.total_volume) * BUFFER_IONIZING_STRENGTH))

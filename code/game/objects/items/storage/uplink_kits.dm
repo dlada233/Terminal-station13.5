@@ -10,6 +10,7 @@
 #define KIT_SNIPER "sniper"
 #define KIT_NUKEOPS_METAGAME "metaops"
 #define KIT_LORD_SINGULOTH "lordsingulo"
+#define KIT_REVOLUTIONARY "revolutionary"
 
 #define KIT_JAMES_BOND "bond"
 #define KIT_NINJA "ninja"
@@ -19,6 +20,9 @@
 #define KIT_BEES "bee"
 #define KIT_MR_FREEZE "mr_freeze"
 #define KIT_TRAITOR_2006 "ancient"
+#define KIT_DEAD_MONEY "dead_money"
+#define KIT_SAM_FISHER "sam_fisher"
+#define KIT_PROP_HUNT "prop_hunt"
 
 /// last audited december 2022
 /obj/item/storage/box/syndicate
@@ -35,7 +39,8 @@
 		KIT_IMPLANTS = 1,
 		KIT_HACKER = 3,
 		KIT_SNIPER = 1,
-		KIT_NUKEOPS_METAGAME = 1
+		KIT_NUKEOPS_METAGAME = 1,
+		KIT_REVOLUTIONARY = 2
 		)))
 		if(KIT_RECON)
 			new /obj/item/clothing/glasses/thermal/xray(src) // ~8 tc?
@@ -165,6 +170,18 @@
 			new /obj/item/card/emag(src) // 4 tc
 			new /obj/item/card/emag/doorjack(src) // 3 tc
 
+		if(KIT_REVOLUTIONARY)
+			new /obj/item/healthanalyzer/rad_laser(src) // 3 TC
+			new /obj/item/assembly/flash/hypnotic(src) // 7 TC
+			new /obj/item/storage/pill_bottle/lsd(src) // ~1 TC
+			new /obj/item/pen/sleepy(src) // 4 TC
+			new /obj/item/gun/ballistic/revolver/nagant(src) // 13 TC comparable to 357. revolvers
+			new /obj/item/megaphone(src)
+			new /obj/item/bedsheet/rev(src)
+			new /obj/item/clothing/suit/armor/vest/russian_coat(src)
+			new /obj/item/clothing/head/helmet/rus_ushanka(src)
+			new /obj/item/storage/box/syndie_kit/poster_box(src)
+
 /obj/item/storage/box/syndicate/bundle_b/PopulateContents()
 	switch (pick_weight(list(
 		KIT_JAMES_BOND = 2,
@@ -174,7 +191,10 @@
 		KIT_MAD_SCIENTIST = 2,
 		KIT_BEES = 1,
 		KIT_MR_FREEZE = 2,
-		KIT_TRAITOR_2006 = 1
+		KIT_DEAD_MONEY = 2,
+		KIT_TRAITOR_2006 = 1,
+		KIT_SAM_FISHER = 1,
+		KIT_PROP_HUNT = 1
 		)))
 		if(KIT_JAMES_BOND)
 			new /obj/item/gun/ballistic/automatic/pistol(src) // 7 tc
@@ -261,8 +281,36 @@
 			new /obj/item/gun/energy/laser/thermal/cryo(src) // ~6 tc
 			new /obj/item/melee/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue, 8 tc
 
-		if(KIT_TRAITOR_2006) //A kit so old, it's probably older than you. //This bundle is filled with the entire unlink contents traitors had access to in 2006, from OpenSS13. Notably the esword was not a choice but existed in code.
+		if(KIT_TRAITOR_2006) //A kit so old, it's probably older than you. //This bundle is filled with the entire uplink contents traitors had access to in 2006, from OpenSS13. Notably the esword was not a choice but existed in code.
 			new /obj/item/storage/toolbox/emergency/old/ancientbundle(src) //Items fit neatly into a classic toolbox just to remind you what the theme is.
+
+		if(KIT_DEAD_MONEY)
+			for(var/i in 1 to 4)
+				new /obj/item/clothing/neck/collar_bomb(src) // These let you remotely kill people with a signaler, though you have to get them first.
+			new /obj/item/storage/box/syndie_kit/signaler(src)
+			new /obj/item/mod/control/pre_equipped/responsory/inquisitory/syndie(src) // basically a snowflake yet better elite modsuit, so like, 8 + 5 tc.
+			new /obj/item/card/id/advanced/chameleon(src) // 2 tc
+			new /obj/item/clothing/mask/chameleon(src)
+			new /obj/item/melee/baton/telescopic/contractor_baton(src) // 7 tc
+			new /obj/item/jammer(src) // 5 tc
+			new /obj/item/pinpointer/crew(src) //priceless
+
+		if(KIT_SAM_FISHER)
+			new /obj/item/clothing/under/syndicate/combat(src)
+			new /obj/item/clothing/suit/armor/vest/marine/pmc(src) //The armor kit is comparable to the infiltrator, 6 TC
+			new /obj/item/clothing/head/helmet/marine/pmc(src)
+			new /obj/item/clothing/mask/gas/sechailer(src)
+			new /obj/item/clothing/glasses/night(src) // 3~ TC
+			new /obj/item/clothing/gloves/krav_maga/combatglovesplus(src) //5TC
+			new /obj/item/clothing/shoes/jackboots(src)
+			new /obj/item/storage/belt/military/assault/fisher(src) //items in this belt easily costs 18 TC
+
+		if(KIT_PROP_HUNT)
+			new /obj/item/chameleon(src) // 7 TC
+			new /obj/item/card/emag/doorjack(src) // 3 TC
+			new /obj/item/storage/box/syndie_kit/imp_stealth(src) //8 TC
+			new /obj/item/gun/ballistic/automatic/pistol(src) // 7 TC
+			new /obj/item/clothing/glasses/thermal(src) // 4 TC
 
 /obj/item/storage/toolbox/emergency/old/ancientbundle/ //So the subtype works
 
@@ -275,6 +323,15 @@
 	new /obj/item/gun/ballistic/revolver(src) // 13 tc old one stays in the old box
 	new /obj/item/implanter/freedom(src) // 5 tc
 	new /obj/item/stack/telecrystal(src) //The failsafe/self destruct isn't an item we can physically include in the kit, but 1 TC is technically enough to buy the equivalent.
+
+/obj/item/storage/belt/military/assault/fisher
+
+/obj/item/storage/belt/military/assault/fisher/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/clandestine/fisher(src) // 11 TC: 7 (pistol) + 3 (suppressor) + lightbreaker (1 TC, black market meme/util item)
+	new /obj/item/ammo_box/magazine/m10mm(src) // 1 TC
+	new /obj/item/ammo_box/magazine/m10mm(src)
+	new /obj/item/card/emag/doorjack(src) // 3 TC
+	new /obj/item/knife/combat(src) //comparable to the e-dagger, 2 TC
 
 /obj/item/storage/box/syndie_kit
 	name = "盒子"
@@ -382,6 +439,13 @@
 	for(var/i in 1 to 5)
 		new /obj/item/grenade/empgrenade(src)
 	new /obj/item/implanter/emp(src)
+
+/obj/item/storage/box/syndie_kit/smoke
+	name = "烟雾弹盒"
+
+/obj/item/storage/box/syndie_kit/smoke/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/grenade/smokebomb(src)
 
 /obj/item/storage/box/syndie_kit/mail_counterfeit
 	name = "邮件伪造套件"
@@ -602,8 +666,8 @@
 		new /obj/item/assembly/signaler(src)
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle
-	name = "'丧钟'植入物盒"
-	desc = "包含八个相连的'丧钟'植入物."
+	name = "'丧铃'植入物盒"
+	desc = "包含八个相连的'丧铃'植入物."
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle/PopulateContents()
 	new /obj/item/implanter(src)
@@ -628,6 +692,7 @@
 
 /obj/item/storage/box/syndie_kit/stickers/PopulateContents()
 	var/list/types = subtypesof(/obj/item/sticker/syndicate)
+
 	for(var/i in 1 to atom_storage.max_slots)
 		var/type = pick(types)
 		new type(src)
@@ -682,12 +747,11 @@
 	implant_color = "r"
 
 /obj/item/implant/nuclear_operative/get_data()
-	var/dat = {"<b>植入规格:</b><BR>
-				<b>名称:</b> 可疑的植入物<BR>
-				<b>使用寿命:</b> 未知 <BR>
-				<b>植入物详情:</b> <BR>
-				<b>功能:</b> 奇怪的植入物,似乎能抵抗任何扫描."}
-	return dat
+	return "<b>植入规格:</b><BR> \
+		<b>名称:</b> 可疑的植入物<BR> \
+		<b>使用寿命:</b> 未知 <BR> \
+		<b>植入物详情:</b> <BR> \
+		<b>功能:</b> 奇怪的植入物,似乎能抵抗任何扫描.."
 
 /obj/item/implant/nuclear_operative/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	. = ..()
@@ -734,7 +798,7 @@
 	var/mob/living/living_target = target
 	living_target.mind.remove_antag_datum(/datum/antagonist/nukeop)
 	living_target.faction -= ROLE_SYNDICATE
-	to_chat(target, span_notice("你觉得自己没那么有核力."))
+	to_chat(target, span_notice("你觉得自己没那么有核力了."))
 	to_chat(target, span_userdanger("你不再是核特工了!您可以自由地遵循您希望的任何有效目标，甚至可以继续保护磁盘，只要确保没有炮塔和核特工一看到你就杀了你."))
 	return TRUE
 
@@ -774,33 +838,6 @@
 	new /obj/item/modular_computer/pda/syndicate_contract_uplink(src)
 	new /obj/item/storage/box/syndicate/contractor_loadout(src)
 	new /obj/item/melee/baton/telescopic/contractor_baton(src)
-
-	// All about 4 TC or less - some nukeops only items, but fit nicely to the theme.
-	var/static/list/item_list = list(
-		/obj/item/storage/backpack/duffelbag/syndie/x4,
-		/obj/item/storage/box/syndie_kit/throwing_weapons,
-		/obj/item/gun/syringe/syndicate,
-		/obj/item/pen/edagger,
-		/obj/item/pen/sleepy,
-		/obj/item/flashlight/emp,
-		/obj/item/reagent_containers/syringe/mulligan,
-		/obj/item/clothing/shoes/chameleon/noslip,
-		/obj/item/storage/medkit/tactical,
-		/obj/item/encryptionkey/syndicate,
-		/obj/item/clothing/glasses/thermal/syndi,
-		/obj/item/slimepotion/slime/sentience/nuclear,
-		/obj/item/storage/box/syndie_kit/imp_radio,
-		/obj/item/storage/box/syndie_kit/imp_uplink,
-		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
-		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
-		/obj/item/reagent_containers/hypospray/medipen/stimulants,
-		/obj/item/storage/box/syndie_kit/imp_freedom,
-		/obj/item/toy/eightball/haunted,
-	)
-	for(var/i in 1 to 3)
-		var/selected_item = pick_n_take(item_list)
-		new selected_item(src)
-
 	// Paper guide is always last.
 	new /obj/item/paper/contractor_guide(src)
 
@@ -811,14 +848,16 @@
 	illustration = "writing_syndie"
 
 /obj/item/storage/box/syndicate/contractor_loadout/PopulateContents()
-	/* SKYRAT EDIT REMOVAL BEGIN - Contractors get MODSuits instead, see contractor modular for overrides
+	new /obj/item/mod/control/pre_equipped/contractor(src) //SKYRAT EDIT: Was infiltrator variant
 	new /obj/item/clothing/head/helmet/space/syndicate/contract(src)
 	new /obj/item/clothing/suit/space/syndicate/contract(src)
-	SKYRAT EDIT REMOVAL END */
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/clothing/mask/chameleon(src)
-	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/card/id/advanced/chameleon(src)
+	new /obj/item/clothing/glasses/thermal/syndi(src)
+	new /obj/item/storage/toolbox/syndicate(src)
+	new /obj/item/jammer(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
 
 #undef KIT_RECON
@@ -833,6 +872,7 @@
 #undef KIT_SNIPER
 #undef KIT_NUKEOPS_METAGAME
 #undef KIT_LORD_SINGULOTH
+#undef KIT_REVOLUTIONARY
 
 #undef KIT_JAMES_BOND
 #undef KIT_NINJA
@@ -842,3 +882,6 @@
 #undef KIT_BEES
 #undef KIT_MR_FREEZE
 #undef KIT_TRAITOR_2006
+#undef KIT_DEAD_MONEY
+#undef KIT_SAM_FISHER
+#undef KIT_PROP_HUNT

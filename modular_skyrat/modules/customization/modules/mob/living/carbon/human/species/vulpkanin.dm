@@ -23,6 +23,8 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	)
 
+	meat = /obj/item/food/meat/slab/corgi
+
 /datum/species/vulpkanin/get_default_mutant_bodyparts()
 	return list(
 		"tail" = list("Fox", TRUE),
@@ -71,22 +73,6 @@
 	if(BMS)
 		markings = assemble_body_markings_from_set(BMS, passed_features, src)
 	return markings
-
-/*	Runtime in vulpkanin.dm,78: pick() from empty list
-/datum/species/vulpkanin/random_name(gender,unique,lastname)
-	var/randname
-	if(gender == MALE)
-		randname = pick(GLOB.first_names_male_vulp)
-	else
-		randname = pick(GLOB.first_names_female_vulp)
-
-	if(lastname)
-		randname += " [lastname]"
-	else
-		randname += " [pick(GLOB.last_names_vulp)]"
-
-	return randname
-*/
 
 /datum/species/vulpkanin/get_species_description()
 	return placeholder_description

@@ -54,7 +54,7 @@
 	to_chat(owner, span_notice("你开始将[linkee]的思维与你共联..."))
 	to_chat(linkee, span_warning("你感到你思维被拖到了某个地方...被共联...与现实交织了在一起."))
 
-	if(!do_after(owner, link_time, linkee))
+	if(!do_after(owner, link_time, linkee, hidden = TRUE))
 		to_chat(owner, span_warning("你共联[linkee]的思维失败."))
 		to_chat(linkee, span_warning("异质的存在离开了你的思维."))
 		return FALSE

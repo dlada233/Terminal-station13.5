@@ -25,7 +25,7 @@
 		if(cult_examine_tip)
 			. += span_cult(cult_examine_tip)
 		if(!COOLDOWN_FINISHED(src, use_cooldown_duration))
-			. += span_cultitalic("[src]中的魔力太弱了，它将在<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown_duration))]</b>内准备好再次使用.")
+			. += span_cult_italic("[src]中的魔力太弱了，它将在<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown_duration))]</b>内准备好再次使用.")
 
 /obj/structure/destructible/cult/set_anchored(anchorvalue)
 	. = ..()
@@ -78,10 +78,10 @@
 		to_chat(user, span_warning("你确定你知道它的用途，但你似乎不能碰它."))
 		return
 	if(!anchored)
-		to_chat(user, span_cultitalic("你需要先把[src]固定到地板上."))
+		to_chat(user, span_cult_italic("你需要先把[src]固定到地板上."))
 		return
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
-		to_chat(user, span_cultitalic("[src]中的魔力太弱了，它将在<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown))]</b>内准备好再次使用."))
+		to_chat(user, span_cult_italic("[src]中的魔力太弱了，它将在<b>[DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown))]</b>内准备好再次使用."))
 		return
 
 	var/list/spawned_items = get_items_to_spawn(user)
@@ -142,7 +142,7 @@
  * Override for unique feedback messages on item spawn.
  */
 /obj/structure/destructible/cult/item_dispenser/proc/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cultitalic("[src]生产出了[spawned_item.name]."))
+	to_chat(user, span_cult_italic("[src]生产出了[spawned_item.name]."))
 
 /*
  * Simple proc intended for use in callbacks to determine if [user] can continue to use a radial menu.

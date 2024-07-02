@@ -1,7 +1,7 @@
 /obj/machinery/power/apc/proc/get_malf_status(mob/living/silicon/ai/malf)
 	if(!istype(malf) || !malf.malf_picker)
 		return APC_AI_NO_MALF
-	if(malfai != (malf.parent || malf))
+	if(malfai != malf)
 		return APC_AI_NO_HACK
 	if(occupier == malf)
 		return APC_AI_HACK_SHUNT_HERE
@@ -12,7 +12,7 @@
 /obj/machinery/power/apc/proc/malfhack(mob/living/silicon/ai/malf)
 	if(!istype(malf))
 		return
-	if(get_malf_status(malf) != 1)
+	if(get_malf_status(malf) != APC_AI_NO_HACK)
 		return
 	if(malf.malfhacking)
 		to_chat(malf, span_warning("你已经骇入了一个APC!"))
@@ -36,19 +36,23 @@
 		return
 	if(!is_station_level(z))
 		return
+	INVOKE_ASYNC(src, PROC_REF(malfshunt), malf)
+
+/obj/machinery/power/apc/proc/malfshunt(mob/living/silicon/ai/malf)
+	var/confirm = tgui_alert(malf, "Are you sure that you want to shunt? This will take you out of your core!", "Shunt to [name]?", list("Yes", "No"))
+	if(confirm != "Yes")
+		return
 	malf.ShutOffDoomsdayDevice()
-	occupier = new /mob/living/silicon/ai(src, malf.laws, malf) //DEAR GOD WHY? //IKR????
-	occupier.adjustOxyLoss(malf.getOxyLoss())
+	occupier = malf
+	if (isturf(malf.loc)) // create a deactivated AI core if the AI isn't coming from an emergency mech shunt
+		malf.linked_core = new /obj/structure/ai_core/deactivated
+		malf.linked_core.remote_ai = malf // note that we do not set the deactivated core's core_mmi.brainmob
+	malf.forceMove(src) // move INTO the APC, not to its tile
 	if(!findtext(occupier.name, "APC Copy"))
 		occupier.name = "[malf.name] APC Copy"
-	if(malf.parent)
-		occupier.parent = malf.parent
-	else
-		occupier.parent = malf
 	malf.shunted = TRUE
 	occupier.eyeobj.name = "[occupier.name] (AI Eye)"
-	if(malf.parent)
-		qdel(malf)
+	occupier.eyeobj.forceMove(src.loc)
 	for(var/obj/item/pinpointer/nuke/disk_pinpointers in GLOB.pinpointer_list)
 		disk_pinpointers.switch_mode_to(TRACK_MALF_AI) //Pinpointer will track the shunted AI
 	var/datum/action/innate/core_return/return_action = new
@@ -58,12 +62,11 @@
 /obj/machinery/power/apc/proc/malfvacate(forced)
 	if(!occupier)
 		return
-	if(occupier.parent && occupier.parent.stat != DEAD)
-		occupier.mind.transfer_to(occupier.parent)
-		occupier.parent.shunted = FALSE
-		occupier.parent.setOxyLoss(occupier.getOxyLoss())
-		occupier.parent.cancel_camera()
-		qdel(occupier)
+	if(occupier.linked_core)
+		occupier.shunted = FALSE
+		occupier.forceMove(occupier.linked_core.loc)
+		qdel(occupier.linked_core)
+		occupier.cancel_camera()
 		return
 	to_chat(occupier, span_danger("主核心损坏，无法返回核心进程."))
 	if(forced)
@@ -89,7 +92,7 @@
 	if(!occupier.mind || !occupier.client)
 		to_chat(user, span_warning("[occupier]要么未激活，要么被摧毁!"))
 		return FALSE
-	if(!occupier.parent.stat)
+	if(occupier.linked_core) //if they have an active linked_core, they can't be transferred from an APC
 		to_chat(user, span_warning("[occupier]拒绝所有传输的尝试!") )
 		return FALSE
 	if(transfer_in_progress)
@@ -116,7 +119,7 @@
 		return FALSE
 	to_chat(user, span_notice("AI接受请求. 传输智能到[card]..."))
 	to_chat(occupier, span_notice("传输开始. 你很快就会被传输到[card]."))
-	if(!do_after(user, 50, target = src))
+	if(!do_after(user, 5 SECONDS, target = src))
 		to_chat(occupier, span_warning("[user]被打断! 传输取消."))
 		transfer_in_progress = FALSE
 		return FALSE
@@ -127,7 +130,7 @@
 	to_chat(occupier, span_notice("传输完成! 你已经被转储到[user]的[card.name]."))
 	occupier.forceMove(card)
 	card.AI = occupier
-	occupier.parent.shunted = FALSE
+	occupier.shunted = FALSE
 	occupier.cancel_camera()
 	occupier = null
 	transfer_in_progress = FALSE

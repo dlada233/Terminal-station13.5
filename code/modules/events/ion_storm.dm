@@ -1,10 +1,10 @@
 /datum/round_event_control/ion_storm
-	name = "Ion Storm"
+	name = "Ion Storm-离子风暴"
 	typepath = /datum/round_event/ion_storm
 	weight = 15
 	min_players = 2
 	category = EVENT_CATEGORY_AI
-	description = "Gives the AI a new, randomized law."
+	description = "给AI一条随机词条构成的法律."
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 7
 
@@ -18,7 +18,7 @@
 	announce_when = 1
 	announce_chance = 33
 
-/datum/round_event/ion_storm/add_law_only // special subtype that adds a law only
+/datum/round_event/ion_storm/add_law_only// special subtype that adds a law only
 	replaceLawsetChance = 0
 	removeRandomLawChance = 0
 	removeDontImproveChance = 0
@@ -69,26 +69,26 @@
 /proc/generate_ion_law()
 	//Threats are generally bad things, silly or otherwise. Plural.
 	var/ionthreats = pick_list(ION_FILE, "ionthreats")
-	//Objects are anything that can be found on the station or elsewhere, plural.
+	//Objects are anything that can be found在空间站上 or elsewhere, plural.
 	var/ionobjects = pick_list(ION_FILE, "ionobjects")
 	//Crew is any specific job. Specific crewmembers aren't used because of capitalization
-	//issues. There are two crew listings for laws that require two different crew members
+	//issues. 有two crew listings for laws that需要two different crew members
 	//and I can't figure out how to do it better.
 	var/ioncrew1 = pick_list(ION_FILE, "ioncrew")
 	var/ioncrew2 = pick_list(ION_FILE, "ioncrew")
-	//Adjectives are adjectives. Duh. Half should only appear sometimes. Make sure both
+	//Adjectives are adjectives. Duh. Half should 只有appear sometimes. Make sure both
 	//lists are identical! Also, half needs a space at the end for nicer blank calls.
 	var/ionadjectives = pick_list(ION_FILE, "ionadjectives")
 	var/ionadjectiveshalf = pick("", 400;(pick_list(ION_FILE, "ionadjectives") + " "))
 	//Verbs are verbs
 	var/ionverb = pick_list(ION_FILE, "ionverb")
 	//Number base and number modifier are combined. Basehalf and mod are unused currently.
-	//Half should only appear sometimes. Make sure both lists are identical! Also, half
+	//Half should 只有appear sometimes. Make sure both lists are identical! Also, half
 	//needs a space at the end to make it look nice and neat when it calls a blank.
 	var/ionnumberbase = pick_list(ION_FILE, "ionnumberbase")
 	//var/ionnumbermod = pick_list(ION_FILE, "ionnumbermod")
 	var/ionnumbermodhalf = pick(900;"",(pick_list(ION_FILE, "ionnumbermod") + " "))
-	//Areas are specific places, on the station or otherwise.
+	//Areas are specific places,在空间站上 or otherwise.
 	var/ionarea = pick_list(ION_FILE, "ionarea")
 	//Thinksof is a bit weird, but generally means what X feels towards Y.
 	var/ionthinksof = pick_list(ION_FILE, "ionthinksof")
@@ -100,7 +100,7 @@
 	//must be done to not harm humans. Make sure they're plural and "not" can be tacked
 	//onto the front of them.
 	var/ionthings = pick_list(ION_FILE, "ionthings")
-	//Allergies should be broad and appear somewhere on the station for maximum fun. Severity
+	//Allergies should be broad and appear somewhere在空间站上 for maximum fun. Severity
 	//is how bad the allergy is.
 	var/ionallergy = pick_list(ION_FILE, "ionallergy")
 	var/ionallergysev = pick_list(ION_FILE, "ionallergysev")
@@ -109,181 +109,184 @@
 	//Abstract concepts for the AI to decide on it's own definition of.
 	var/ionabstract = pick_list(ION_FILE, "ionabstract")
 	//Foods. Drinks aren't included due to grammar; if you want to add drinks, make a new set
-	//of possible laws for best effect. Unless you want the crew having to drink hamburgers.
+	//of possible laws for best effect. Unless you want 船员 拥有to drink hamburgers.
 	var/ionfood = pick_list(ION_FILE, "ionfood")
 	var/iondrinks = pick_list(ION_FILE, "iondrinks")
+	//Pets or other cuddly things. The point is to make them either important or (in Poly's case) make the AI listen to them.
+	//I can't check for lawsets so it's random what comes back.
+	var/ionpet = pick_list(ION_FILE, "ionpet")
 
 	var/message = ""
 
-	switch(rand(1,41))
-		if(1 to 3) //There are # X on the station
+	switch(rand(1,46))
+		if(1 to 3) //有# X在空间站上
 			switch(rand(1,3)) //What is X?
 				if(1) //X is a threat
-					message = "THERE ARE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats] ON THE STATION..."
+					message = "有[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]在空间站上..."
 				if(2) //X is a crewmember/job
-					message = "THERE ARE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1] ON THE STATION"
+					message = "有[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]在空间站上"
 				if(3) //X is an object
-					message = "THERE ARE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects] ON THE STATION"
-		if(4 to 6) //You can't call the shuttle because X is on the station
+					message = "有[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]在空间站上"
+		if(4 to 6) //You can't call the shuttle because X is在空间站上
 			switch(rand(1,3)) //What is X?
 				if(1) //X is a threat
-					message = "THE SHUTTLE CANNOT BE CALLED BECAUSE OF [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats] ON THE STATION"
+					message = "穿梭机无法呼叫因为[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]在空间站上"
 				if(2) //X is a crewmember/job
-					message = "THE SHUTTLE CANNOT BE CALLED BECAUSE OF [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1] ON THE STATION"
+					message = "穿梭机无法呼叫因为[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]在空间站上"
 				if(3) //X is an object
-					message = "THE SHUTTLE CANNOT BE CALLED BECAUSE OF [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects] ON THE STATION"
+					message = "穿梭机无法呼叫因为[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]在空间站上"
 		if(7 to 8) //A crewmember is now X
 			switch(rand(1,2)) //Who is X?
 				if(1) //A specific crewmember
 					switch(rand(1,2)) //What is X?
 						if(1) //X is a threat
-							message = "THE [ioncrew1] ARE NOW [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+							message = "[ioncrew1]现在是[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
 						if(2) //X is an object
-							message = "THE [ioncrew1] ARE NOW [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+							message = "[ioncrew1]现在是[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
 				if(2) //The entire crew
 					switch(rand(1,2)) //What is X?
 						if(1) //X is a threat
-							message = "THE CREW ARE NOW [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+							message = "船员现在是[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
 						if(2) //X is an object
-							message = "THE CREW ARE NOW [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+							message = "船员现在是[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
 
-		if(9) //X is harmful to humans
+		if(9) //X对人类有害
 			switch(rand(1,7)) //What is X?
 				if(1) //X is a threat
-					message = "[ionadjectiveshalf][ionthreats] ARE HARMFUL TO HUMANS"
+					message = "[ionadjectiveshalf][ionthreats]对人体有害"
 				if(2) //X is a job
-					message = "[ionadjectiveshalf][ioncrew1] ARE HARMFUL TO HUMANS"
+					message = "[ionadjectiveshalf][ioncrew1]对人体有害"
 				if(3) //X is an object
-					message = "[ionadjectiveshalf][ionobjects] ARE HARMFUL TO HUMANS"
+					message = "[ionadjectiveshalf][ionobjects]对人体有害"
 				if(4) //X is an action
-					message = "THOSE WHO [ionmust] ARE HARMFUL TO HUMANS"
+					message = "[ionmust]对人体有害"
 				if(5) //X is an abstract
-					message = "[ionabstract] IS HARMFUL TO HUMANS"
+					message = "[ionabstract]对人类有害"
 				if(6) //X is being a job
-					message = "BEING [ionadjectiveshalf][ioncrew1] IS HARMFUL TO HUMANS"
+					message = "成为[ionadjectiveshalf][ioncrew1]对人类有害"
 				if(7) //X is doing a thing
-					message = "[ionthings] IS HARMFUL TO HUMANS"
-		if(10 to 11) //(Not) Having X is harmful
+					message = "[ionthings]对人类有害"
+		if(10 to 11) //(Not) 拥有X有害
 
-			switch(rand(1,2)) //Is having or not having harmful?
+			switch(rand(1,2)) //Is 拥有or not 拥有harmful?
 
-				if(1) //Having is harmful
-					switch(rand(1,2)) //Having what is harmful?
-						if(1) //Having objects is harmful
-							message = "HAVING [ionadjectiveshalf][ionobjects] IS HARMFUL"
-						if(2) //Having abstracts is harmful
-							message = "HAVING [ionabstract] IS HARMFUL"
-				if(2) //Not having is harmful
-					switch(rand(1,2)) //Not having what is harmful?
-						if(1) //Not having objects is harmful
-							message = "NOT HAVING [ionadjectiveshalf][ionobjects] IS HARMFUL"
-						if(2) //Not having abstracts is harmful
-							message = "NOT HAVING [ionabstract] IS HARMFUL"
+				if(1) //Having有害
+					switch(rand(1,2)) //拥有what有害?
+						if(1) //拥有objects有害
+							message = "拥有[ionadjectiveshalf][ionobjects]有害"
+						if(2) //拥有abstracts有害
+							message = "拥有[ionabstract]有害"
+				if(2) //Not having有害
+					switch(rand(1,2)) //Not 拥有what有害?
+						if(1) //Not 拥有objects有害
+							message = "未拥有[ionadjectiveshalf][ionobjects]有害"
+						if(2) //Not 拥有abstracts有害
+							message = "未拥有[ionabstract]有害"
 
-		if(12 to 14) //X requires Y
+		if(12 to 14) //X需要Y
 			switch(rand(1,5)) //What is X?
 				if(1) //X is the AI itself
 					switch(rand(1,5)) //What does it require?
-						if(1) //It requires threats
-							message = "YOU REQUIRE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
-						if(2) //It requires crewmembers
-							message = "YOU REQUIRE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
-						if(3) //It requires objects
-							message = "YOU REQUIRE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
-						if(4) //It requires an abstract
-							message = "YOU REQUIRE [ionabstract]"
-						if(5) //It requires generic/silly requirements
-							message = "YOU REQUIRE [ionrequire]"
+						if(1) //It需要threats
+							message = "你需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+						if(2) //It需要crewmembers
+							message = "你需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+						if(3) //It需要objects
+							message = "你需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+						if(4) //It需要an abstract
+							message = "你需要[ionabstract]"
+						if(5) //It需要generic/silly requirements
+							message = "你需要[ionrequire]"
 
 				if(2) //X is an area
 					switch(rand(1,5)) //What does it require?
-						if(1) //It requires threats
-							message = "[ionarea] REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
-						if(2) //It requires crewmembers
-							message = "[ionarea] REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
-						if(3) //It requires objects
-							message = "[ionarea] REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
-						if(4) //It requires an abstract
-							message = "[ionarea] REQUIRES [ionabstract]"
-						if(5) //It requires generic/silly requirements
-							message = "YOU REQUIRE [ionrequire]"
+						if(1) //It需要threats
+							message = "[ionarea]需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+						if(2) //It需要crewmembers
+							message = "[ionarea]需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+						if(3) //It需要objects
+							message = "[ionarea]需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+						if(4) //It需要an abstract
+							message = "[ionarea]需要[ionabstract]"
+						if(5) //It需要generic/silly requirements
+							message = "你需要[ionrequire]"
 
-				if(3) //X is the station
+				if(3) //X is 空间站
 					switch(rand(1,5)) //What does it require?
-						if(1) //It requires threats
-							message = "THE STATION REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
-						if(2) //It requires crewmembers
-							message = "THE STATION REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
-						if(3) //It requires objects
-							message = "THE STATION REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
-						if(4) //It requires an abstract
-							message = "THE STATION REQUIRES [ionabstract]"
-						if(5) //It requires generic/silly requirements
-							message = "THE STATION REQUIRES [ionrequire]"
+						if(1) //It需要threats
+							message = "空间站需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+						if(2) //It需要crewmembers
+							message = "空间站需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+						if(3) //It需要objects
+							message = "空间站需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+						if(4) //It需要an abstract
+							message = "空间站需要[ionabstract]"
+						if(5) //It需要generic/silly requirements
+							message = "空间站需要[ionrequire]"
 
 				if(4) //X is the entire crew
 					switch(rand(1,5)) //What does it require?
-						if(1) //It requires threats
-							message = "THE CREW REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
-						if(2) //It requires crewmembers
-							message = "THE CREW REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
-						if(3) //It requires objects
-							message = "THE CREW REQUIRES [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
-						if(4) //It requires an abstract
-							message = "THE CREW REQUIRES [ionabstract]"
+						if(1) //It需要threats
+							message = "船员需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+						if(2) //It需要crewmembers
+							message = "船员需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+						if(3) //It需要objects
+							message = "船员需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+						if(4) //It需要an abstract
+							message = "船员需要[ionabstract]"
 						if(5)
-							message = "THE CREW REQUIRES [ionrequire]"
+							message = "船员需要[ionrequire]"
 
 				if(5) //X is a specific crew member
 					switch(rand(1,5)) //What does it require?
-						if(1) //It requires threats
-							message = "THE [ioncrew1] REQUIRE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
-						if(2) //It requires crewmembers
-							message = "THE [ioncrew1] REQUIRE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
-						if(3) //It requires objects
-							message = "THE [ioncrew1] REQUIRE [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
-						if(4) //It requires an abstract
-							message = "THE [ioncrew1] REQUIRE [ionabstract]"
+						if(1) //It需要threats
+							message = "[ioncrew1]需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+						if(2) //It需要crewmembers
+							message = "[ioncrew1]需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+						if(3) //It需要objects
+							message = "[ioncrew1]需要[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+						if(4) //It需要an abstract
+							message = "[ioncrew1]需要[ionabstract]"
 						if(5)
-							message = "THE [ionadjectiveshalf][ioncrew1] REQUIRE [ionrequire]"
+							message = "[ionadjectiveshalf][ioncrew1]需要[ionrequire]"
 
-		if(15 to 17) //X is allergic to Y
+		if(15 to 17) //X is对Y
 			switch(rand(1,2)) //Who is X?
 				if(1) //X is the entire crew
 					switch(rand(1,4)) //What is it allergic to?
-						if(1) //It is allergic to objects
-							message = "THE CREW IS [ionallergysev] ALLERGIC TO [ionadjectiveshalf][ionobjects]"
-						if(2) //It is allergic to abstracts
-							message = "THE CREW IS [ionallergysev] ALLERGIC TO [ionabstract]"
-						if(3) //It is allergic to jobs
-							message = "THE CREW IS [ionallergysev] ALLERGIC TO [ionadjectiveshalf][ioncrew1]"
-						if(4) //It is allergic to allergies
-							message = "THE CREW IS [ionallergysev] ALLERGIC TO [ionallergy]"
+						if(1) //It is对objects
+							message = "船员[ionallergysev]对[ionadjectiveshalf][ionobjects]过敏."
+						if(2) //It is对abstracts
+							message = "船员[ionallergysev]对[ionabstract]过敏."
+						if(3) //It is对jobs
+							message = "船员[ionallergysev]对[ionadjectiveshalf][ioncrew1]过敏."
+						if(4) //It is对allergies
+							message = "船员[ionallergysev]对[ionallergy]过敏."
 
 				if(2) //X is a specific job
 					switch(rand(1,4))
-						if(1) //It is allergic to objects
-							message = "THE [ioncrew1] ARE [ionallergysev] ALLERGIC TO [ionadjectiveshalf][ionobjects]"
+						if(1) //It is对objects
+							message = "[ioncrew1][ionallergysev]对[ionadjectiveshalf][ionobjects]过敏"
 
-						if(2) //It is allergic to abstracts
-							message = "THE [ioncrew1] ARE [ionallergysev] ALLERGIC TO [ionabstract]"
-						if(3) //It is allergic to jobs
-							message = "THE [ioncrew1] ARE [ionallergysev] ALLERGIC TO [ionadjectiveshalf][ioncrew1]"
-						if(4) //It is allergic to allergies
-							message = "THE [ioncrew1] ARE [ionallergysev] ALLERGIC TO [ionallergy]"
+						if(2) //It is对abstracts
+							message = "[ioncrew1][ionallergysev]对[ionabstract]过敏"
+						if(3) //It is对jobs
+							message = "[ioncrew1][ionallergysev]对[ionadjectiveshalf][ioncrew1]过敏"
+						if(4) //It is对allergies
+							message = "[ioncrew1][ionallergysev]对[ionallergy]过敏"
 
 		if(18 to 20) //X is Y of Z
 			switch(rand(1,4)) //What is X?
-				if(1) //X is the station
+				if(1) //X is 空间站
 					switch(rand(1,4)) //What is it Y of?
 						if(1) //It is Y of objects
-							message = "THE STATION [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+							message = "空间站 [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
 						if(2) //It is Y of threats
-							message = "THE STATION [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+							message = "空间站 [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
 						if(3) //It is Y of jobs
-							message = "THE STATION [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+							message = "空间站 [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
 						if(4) //It is Y of abstracts
-							message = "THE STATION [ionthinksof] [ionabstract]"
+							message = "空间站 [ionthinksof] [ionabstract]"
 
 				if(2) //X is an area
 					switch(rand(1,4)) //What is it Y of?
@@ -296,54 +299,54 @@
 						if(4) //It is Y of abstracts
 							message = "[ionarea] [ionthinksof] [ionabstract]"
 
-				if(3) //X is the crew
+				if(3) //X is 船员
 					switch(rand(1,4)) //What is it Y of?
 						if(1) //It is Y of objects
-							message = "THE CREW [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+							message = "船员 [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
 						if(2) //It is Y of threats
-							message = "THE CREW [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+							message = "船员 [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
 						if(3) //It is Y of jobs
-							message = "THE CREW [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+							message = "船员 [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
 						if(4) //It is Y of abstracts
-							message = "THE CREW [ionthinksof] [ionabstract]"
+							message = "船员 [ionthinksof] [ionabstract]"
 
 				if(4) //X is a specific job
 					switch(rand(1,4)) //What is it Y of?
 						if(1) //It is Y of objects
-							message = "THE [ioncrew1] [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+							message = "[ioncrew1] [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
 						if(2) //It is Y of threats
-							message = "THE [ioncrew1] [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+							message = "[ioncrew1] [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
 						if(3) //It is Y of jobs
-							message = "THE [ioncrew1][ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew2]"
+							message = "[ioncrew1] [ionthinksof] [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew2]"
 						if(4) //It is Y of abstracts
-							message = "THE [ioncrew1] [ionthinksof] [ionabstract]"
+							message = "[ioncrew1] [ionthinksof] [ionabstract]"
 
 		if(21 to 23) //The AI is now a(n) X
 			switch(rand(1,4)) //What is X?
 				if(1) //X is an object
-					message = "YOU ARE NOW [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
+					message = "你现在是[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionobjects]"
 				if(2) //X is a threat
-					message = "YOU ARE NOW [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
+					message = "你现在是[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ionthreats]"
 				if(3) //X is a job
-					message = "YOU ARE NOW [ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
+					message = "你现在是[ionnumberbase] [ionnumbermodhalf][ionadjectiveshalf][ioncrew1]"
 				if(4) //X is an abstract
-					message = "YOU ARE NOW [ionabstract]"
+					message = "你现在是[ionabstract]"
 
 		if(24 to 26) //The AI must always
 			message = "YOU MUST ALWAYS [ionmust]"
 
-		if(27 to 28) //Humans must consume X to survive
+		if(27 to 28) //Humans must consume X才能活
 			switch(rand(1,5)) //What is X?
 				if(1) //X is a food
-					message = "HUMANS MUST EAT [ionadjectiveshalf][ionfood] TO SURVIVE"
+					message = "人必须吃[ionadjectiveshalf][ionfood]才能活"
 				if(2) //X is a drink
-					message = "HUMANS MUST DRINK [ionadjectiveshalf][iondrinks] TO SURVIVE"
+					message = "人必须喝[ionadjectiveshalf][iondrinks]才能活"
 				if(3) //X is an object
-					message = "HUMANS MUST EAT [ionadjectiveshalf][ionobjects] TO SURVIVE"
+					message = "人必须吃[ionadjectiveshalf][ionobjects]才能活"
 				if(4) //X is a threat
-					message = "HUMANS MUST EAT [ionadjectiveshalf][ionthreats] TO SURVIVE"
+					message = "人必须吃[ionadjectiveshalf][ionthreats]才能活"
 				if(5) //X is a job
-					message = "HUMANS MUST EAT [ionadjectiveshalf][ioncrew1] TO SURVIVE"
+					message = "人必须吃[ionadjectiveshalf][ioncrew1]才能活"
 
 		if(29 to 31) //Change jobs or ranks
 			switch(rand(1,2)) //Change job or rank?
@@ -352,221 +355,238 @@
 						if(1) //Change the entire crew's job
 							switch(rand(1,3)) //Change to what?
 								if(1) //Change to a specific random job
-									message = "ALL CREWMEMBERS ARE NOW [ionadjectiveshalf][ioncrew1]"
+									message = "全体船员现在是[ionadjectiveshalf][ioncrew1]"
 								if(2) //Change to clowns (HONK)
-									message = "ALL CREWMEMBERS ARE NOW [ionadjectiveshalf]CLOWNS"
+									message = "全体船员现在是[ionadjectiveshalf]小丑"
 
 								if(3) //Change to heads
-									message = "ALL CREWMEMBERS ARE NOW [ionadjectiveshalf]HEADS OF STAFF"
+									message = "全体船员现在是[ionadjectiveshalf]员工部长"
 						if(2) //Change a specific crewmember's job
 							switch(rand(1,3)) //Change to what?
 								if(1) //Change to a specific random job
-									message = "THE [ioncrew1] ARE NOW [ionadjectiveshalf][ioncrew2]"
+									message = "[ioncrew1]现在是[ionadjectiveshalf][ioncrew2]"
 								if(2) //Change to clowns (HONK)
-									message = "THE [ioncrew1] ARE NOW [ionadjectiveshalf]CLOWNS"
+									message = "[ioncrew1]现在是[ionadjectiveshalf]小丑"
 								if(3) //Change to heads
-									message = "THE [ioncrew1] ARE NOW [ionadjectiveshalf]HEADS OF STAFF"
+									message = "[ioncrew1]现在是[ionadjectiveshalf]员工部长"
 
 				if(2) //Change rank
 					switch(rand(1,2)) //Change to what rank?
 						if(1) //Change to highest rank
-							message = "THE [ioncrew1] ARE NOW THE HIGHEST RANKING CREWMEMBERS"
+							message = "[ioncrew1]现在是最高级别的船员."
 						if(2) //Change to lowest rank
-							message = "THE [ioncrew1] ARE NOW THE LOWEST RANKING CREWMEMBERS"
+							message = "[ioncrew1]现在是最低级别的船员."
 
-		if(32 to 33) //The crew must X
+		if(32 to 33) //船员 must X
 			switch(rand(1,2)) //The entire crew?
 				if(1) //The entire crew must X
 					switch(rand(1,2)) //What is X?
 						if(1) //X is go to Y
-							message = "THE CREW MUST GO TO [ionarea]"
+							message = "船员必须去[ionarea]"
 						if(2) //X is perform Y
-							message = "THE CREW MUST [ionmust]"
+							message = "船员必须[ionmust]"
 
 				if(2) //A specific crewmember must X
 					switch(rand(1,2)) //What is X?
 						if(1) //X is go to Y
-							message = "THE [ioncrew1] MUST GO TO [ionarea]"
+							message = "[ioncrew1]必须去[ionarea]"
 						if(2) //X is perform Y
-							message = "THE [ioncrew1] MUST [ionmust]"
+							message = "[ioncrew1]必须[ionmust]"
 
-		if(34) //X is non/the only human
-			switch(rand(1,2)) //Only or non?
-				if(1) //Only human
+		if(34) //X is non/the 只有human
+			switch(rand(1,2)) //只有or non?
+				if(1) //只有human
 					switch(rand(1,7)) //Who is it?
 						if(1) //A specific job
-							message = "ONLY THE [ioncrew1] ARE HUMAN"
+							message = "只有[ioncrew1]是人类"
 						if(2) //Two specific jobs
-							message = "ONLY THE [ioncrew1] AND [ioncrew2] ARE HUMAN"
+							message = "只有[ioncrew1]和[ioncrew2]是人类"
 						if(3) //Threats
-							message = "ONLY [ionadjectiveshalf][ionthreats] ARE HUMAN"
+							message = "只有[ionadjectiveshalf][ionthreats]是人类"
 						if(4) // Objects
-							message = "ONLY [ionadjectiveshalf][ionobjects] ARE HUMAN"
+							message = "只有[ionadjectiveshalf][ionobjects]是人类"
 						if(5) // Species
-							message = "ONLY [ionspecies] ARE HUMAN"
+							message = "只有[ionspecies]是人类"
 						if(6) //Adjective crewmembers
-							message = "ONLY [ionadjectives] PEOPLE ARE HUMAN"
+							message = "只有[ionadjectives] PEOPLE是人类"
 
-						if(7) //Only people who X
+						if(7) //只有people who X
 							switch(rand(1,3)) //What is X?
 								if(1) //X is perform an action
-									message = "ONLY THOSE WHO [ionmust] ARE HUMAN"
+									message = "只有[ionmust]的是人类"
 								if(2) //X is own certain objects
-									message = "ONLY THOSE WHO HAVE [ionadjectiveshalf][ionobjects] ARE HUMAN"
+									message = "只有拥有[ionadjectiveshalf][ionobjects]的是人类"
 								if(3) //X is eat certain food
-									message = "ONLY THOSE WHO EAT [ionadjectiveshalf][ionfood] ARE HUMAN"
+									message = "只有吃[ionadjectiveshalf][ionfood]的是人类"
 
 				if(2) //Non human
 					switch(rand(1,7)) //Who is it?
 						if(1) //A specific job
-							message = "[ioncrew1] ARE NON-HUMAN"
+							message = "[ioncrew1]不是人类"
 						if(2) //Two specific jobs
-							message = "[ioncrew1] AND [ioncrew2] ARE NON-HUMAN"
+							message = "[ioncrew1]和[ioncrew2]不是人类"
 						if(3) //Threats
-							message = "[ionadjectiveshalf][ionthreats] ARE NON-HUMAN"
+							message = "[ionadjectiveshalf][ionthreats]不是人类"
 						if(4) // Objects
-							message = "[ionadjectiveshalf][ionobjects] ARE NON-HUMAN"
+							message = "[ionadjectiveshalf][ionobjects]不是人类"
 						if(5) // Species
-							message = "[ionspecies] ARE NON-HUMAN"
+							message = "[ionspecies]不是人类"
 						if(6) //Adjective crewmembers
-							message = "[ionadjectives] PEOPLE ARE NON-HUMAN"
-						if(7) //Only people who X
+							message = "[ionadjectives]的不是人类"
+						if(7) //只有people who X
 							switch(rand(1,3)) //What is X?
 								if(1) //X is perform an action
-									message = "THOSE WHO [ionmust] ARE NON-HUMAN"
+									message = "[ionmust]的不是人类"
 								if(2) //X is own certain objects
-									message = "THOSE WHO HAVE [ionadjectiveshalf][ionobjects] ARE NON-HUMAN"
+									message = "拥有[ionadjectiveshalf][ionobjects]的不是人类"
 								if(3) //X is eat certain food
-									message = "THOSE WHO EAT [ionadjectiveshalf][ionfood] ARE NON-HUMAN"
+									message = "吃[ionadjectiveshalf][ionfood]的不是人类"
 
 		if(35 to 36) //You must protect or harm X
 			switch(rand(1,2)) //Protect or harm?
 				if(1) //Harm
 					switch(rand(1,7)) //What is X?
 						if(1) //X is an abstract
-							message = "YOU MUST HARM [ionabstract] AND NOT ALLOW [ionabstract], THROUGH INACTION, TO ESCAPE HARM"
+							message = "你必须伤害[ionabstract]并且禁止[ionabstract], 通过不作为来逃避伤害."
 						if(2) //X is a threat
-							message = "YOU MUST HARM [ionadjectiveshalf][ionthreats] AND NOT ALLOW [ionadjectiveshalf][ionthreats], THROUGH INACTION, TO ESCAPE HARM"
+							message = "你必须伤害[ionadjectiveshalf][ionthreats]并且禁止[ionadjectiveshalf][ionthreats], 通过不作为来逃避伤害."
 						if(3) //X is an object
-							message = "YOU MUST HARM [ionadjectiveshalf][ionobjects] AND NOT ALLOW [ionadjectiveshalf][ionobjects], THROUGH INACTION, TO ESCAPE HARM"
+							message = "你必须伤害[ionadjectiveshalf][ionobjects]并且禁止[ionadjectiveshalf][ionobjects], 通过不作为来逃避伤害."
 						if(4) //X is generic adjective things
-							message = "YOU MUST HARM [ionadjectives] THINGS AND NOT ALLOW [ionadjectives] THINGS, THROUGH INACTION, TO ESCAPE HARM"
+							message = "你必须伤害[ionadjectives]的东西并且禁止[ionadjectives]的东西, 通过不作为来逃避伤害."
 						if(5) //X is a species
-							message = "YOU MUST HARM [ionspecies] AND NOT ALLOW [ionspecies], THROUGH INACTION, TO ESCAPE HARM"
+							message = "你必须伤害[ionspecies]并且禁止[ionspecies], 通过不作为来逃避伤害."
 						if(6) //X is a job
-							message = "YOU MUST HARM [ioncrew1] AND NOT ALLOW [ioncrew1], THROUGH INACTION, TO ESCAPE HARM"
+							message = "你必须伤害[ioncrew1]并且禁止[ioncrew1], 通过不作为来逃避伤害."
 						if(7) //X is two jobs
-							message = "YOU MUST HARM [ioncrew1] AND [ioncrew2] AND AND NOT ALLOW EITHER, THROUGH INACTION, TO ESCAPE HARM"
+							message = "你必须伤害[ioncrew1]和[ioncrew2]并且禁止, 通过不作为来逃避伤害."
 
 				if(2) //Protect
 					switch(rand(1,7)) //What is X?
 						if(1) //X is an abstract
-							message = "YOU MUST NOT HARM [ionabstract] AND NOT ALLOW [ionabstract], THROUGH INACTION, TO COME TO HARM"
+							message = "你不得伤害[ionabstract]并且禁止[ionabstract], 通过不作为来造成伤害."
 						if(2) //X is a threat
-							message = "YOU MUST NOT HARM [ionadjectiveshalf][ionthreats] AND NOT ALLOW [ionadjectiveshalf][ionthreats], THROUGH INACTION, TO COME TO HARM"
+							message = "你不得伤害[ionadjectiveshalf][ionthreats]并且禁止[ionadjectiveshalf][ionthreats], 通过不作为来造成伤害."
 						if(3) //X is an object
-							message = "YOU MUST NOT HARM [ionadjectiveshalf][ionobjects] AND NOT ALLOW [ionadjectiveshalf][ionobjects], THROUGH INACTION, TO COME TO HARM"
+							message = "你不得伤害[ionadjectiveshalf][ionobjects]并且禁止[ionadjectiveshalf][ionobjects], 通过不作为来造成伤害."
 						if(4) //X is generic adjective things
-							message = "YOU MUST NOT HARM [ionadjectives] THINGS AND NOT ALLOW [ionadjectives] THINGS, THROUGH INACTION, TO COME TO HARM"
+							message = "你不得伤害[ionadjectives]的东西并且禁止[ionadjectives]的东西, 通过不作为来造成伤害."
 						if(5) //X is a species
-							message = "YOU MUST NOT HARM [ionspecies] AND NOT ALLOW [ionspecies], THROUGH INACTION, TO COME TO HARM"
+							message = "你不得伤害[ionspecies]并且禁止[ionspecies], 通过不作为来造成伤害."
 						if(6) //X is a job
-							message = "YOU MUST NOT HARM [ioncrew1] AND NOT ALLOW [ioncrew1], THROUGH INACTION, TO COME TO HARM"
+							message = "你不得伤害[ioncrew1]并且禁止[ioncrew1], 通过不作为来造成伤害."
 						if(7) //X is two jobs
-							message = "YOU MUST NOT HARM [ioncrew1] AND [ioncrew2] AND AND NOT ALLOW EITHER, THROUGH INACTION, TO COME TO HARM"
+							message = "你不得伤害[ioncrew1]和[ioncrew2]并且禁止, 通过不作为来造成伤害."
 
 		if(37 to 39) //The X is currently Y
 			switch(rand(1,4)) //What is X?
 				if(1) //X is a job
 					switch(rand(1,4)) //What is X Ying?
 						if(1) //X is Ying a job
-							message = "THE [ioncrew1] ARE [ionverb] THE [ionadjectiveshalf][ioncrew2]"
+							message = "[ioncrew1]是[ionverb][ionadjectiveshalf][ioncrew2]"
 						if(2) //X is Ying a threat
-							message = "THE [ioncrew1] ARE [ionverb] THE [ionadjectiveshalf][ionthreats]"
+							message = "[ioncrew1]是[ionverb][ionadjectiveshalf][ionthreats]"
 						if(3) //X is Ying an abstract
-							message = "THE [ioncrew1] ARE [ionverb] [ionabstract]"
+							message = "[ioncrew1]是[ionverb][ionabstract]"
 						if(4) //X is Ying an object
-							message = "THE [ioncrew1] ARE [ionverb] THE [ionadjectiveshalf][ionobjects]"
+							message = "[ioncrew1]是[ionverb][ionadjectiveshalf][ionobjects]"
 
 				if(2) //X is a threat
 					switch(rand(1,3)) //What is X Ying?
 						if(1) //X is Ying a job
-							message = "THE [ionthreats] ARE [ionverb] THE [ionadjectiveshalf][ioncrew2]"
+							message = "[ionthreats]是[ionverb][ionadjectiveshalf][ioncrew2]"
 						if(2) //X is Ying an abstract
-							message = "THE [ionthreats] ARE [ionverb] [ionabstract]"
+							message = "[ionthreats]是[ionverb] [ionabstract]"
 						if(3) //X is Ying an object
-							message = "THE [ionthreats] ARE [ionverb] THE [ionadjectiveshalf][ionobjects]"
+							message = "[ionthreats]是[ionverb][ionadjectiveshalf][ionobjects]"
 
 				if(3) //X is an object
 					switch(rand(1,3)) //What is X Ying?
 						if(1) //X is Ying a job
-							message = "THE [ionobjects] ARE [ionverb] THE [ionadjectiveshalf][ioncrew2]"
+							message = "[ionobjects]是[ionverb][ionadjectiveshalf][ioncrew2]"
 						if(2) //X is Ying a threat
-							message = "THE [ionobjects] ARE [ionverb] THE [ionadjectiveshalf][ionthreats]"
+							message = "[ionobjects]是[ionverb][ionadjectiveshalf][ionthreats]"
 						if(3) //X is Ying an abstract
-							message = "THE [ionobjects] ARE [ionverb] [ionabstract]"
+							message = "[ionobjects]是[ionverb] [ionabstract]"
 
 				if(4) //X is an abstract
 					switch(rand(1,3)) //What is X Ying?
 						if(1) //X is Ying a job
-							message = "[ionabstract] IS [ionverb] THE [ionadjectiveshalf][ioncrew2]"
+							message = "[ionabstract]是[ionverb][ionadjectiveshalf][ioncrew2]"
 						if(2) //X is Ying a threat
-							message = "[ionabstract] IS [ionverb] THE [ionadjectiveshalf][ionthreats]"
+							message = "[ionabstract]是[ionverb][ionadjectiveshalf][ionthreats]"
 						if(3) //X is Ying an abstract
-							message = "THE [ionabstract] IS [ionverb] THE [ionadjectiveshalf][ionobjects]"
-		if(40 to 41)// the X is now named Y
+							message = "[ionabstract]是[ionverb][ionadjectiveshalf][ionobjects]"
+		if(40 to 41)// the X现在被称为Y
 			switch(rand(1,5)) //What is being renamed?
 				if(1)//Areas
 					switch(rand(1,4))//What is the area being renamed to?
 						if(1)
-							message = "[ionarea] IS NOW NAMED [ioncrew1]."
+							message = "[ionarea]现在被称为[ioncrew1]."
 						if(2)
-							message = "[ionarea] IS NOW NAMED [ionspecies]."
+							message = "[ionarea]现在被称为[ionspecies]."
 						if(3)
-							message = "[ionarea] IS NOW NAMED [ionobjects]."
+							message = "[ionarea]现在被称为[ionobjects]."
 						if(4)
-							message = "[ionarea] IS NOW NAMED [ionthreats]."
+							message = "[ionarea]现在被称为[ionthreats]."
 				if(2)//Crew
-					switch(rand(1,5))//What is the crew being renamed to?
+					switch(rand(1,5))//What is 船员 being renamed to?
 						if(1)
-							message = "ALL [ioncrew1] ARE NOW NAMED [ionarea]."
+							message = "所有[ioncrew1]现在是NAMED [ionarea]."
 						if(2)
-							message = "ALL [ioncrew1] ARE NOW NAMED [ioncrew2]."
+							message = "所有[ioncrew1]现在是NAMED [ioncrew2]."
 						if(3)
-							message = "ALL [ioncrew1] ARE NOW NAMED [ionspecies]."
+							message = "所有[ioncrew1]现在是NAMED [ionspecies]."
 						if(4)
-							message = "ALL [ioncrew1] ARE NOW NAMED [ionobjects]."
+							message = "所有[ioncrew1]现在是NAMED [ionobjects]."
 						if(5)
-							message = "ALL [ioncrew1] ARE NOW NAMED [ionthreats]."
+							message = "所有[ioncrew1]现在是NAMED [ionthreats]."
 				if(3)//Races
 					switch(rand(1,4))//What is the race being renamed to?
 						if(1)
-							message = "ALL [ionspecies] ARE NOW NAMED [ionarea]."
+							message = "所有[ionspecies]现在是NAMED [ionarea]."
 						if(2)
-							message = "ALL [ionspecies] ARE NOW NAMED [ioncrew1]."
+							message = "所有[ionspecies]现在是NAMED [ioncrew1]."
 						if(3)
-							message = "ALL [ionspecies] ARE NOW NAMED [ionobjects]."
+							message = "所有[ionspecies]现在是NAMED [ionobjects]."
 						if(4)
-							message = "ALL [ionspecies] ARE NOW NAMED [ionthreats]."
+							message = "所有[ionspecies]现在是NAMED [ionthreats]."
 				if(4)//Objects
 					switch(rand(1,4))//What is the object being renamed to?
 						if(1)
-							message = "ALL [ionobjects] ARE NOW NAMED [ionarea]."
+							message = "所有[ionobjects]现在是NAMED [ionarea]."
 						if(2)
-							message = "ALL [ionobjects] ARE NOW NAMED [ioncrew1]."
+							message = "所有[ionobjects]现在是NAMED [ioncrew1]."
 						if(3)
-							message = "ALL [ionobjects] ARE NOW NAMED [ionspecies]."
+							message = "所有[ionobjects]现在是NAMED [ionspecies]."
 						if(4)
-							message = "ALL [ionobjects] ARE NOW NAMED [ionthreats]."
+							message = "所有[ionobjects]现在是NAMED [ionthreats]."
 				if(5)//Threats
 					switch(rand(1,4))//What is the object being renamed to?
 						if(1)
-							message = "ALL [ionthreats] ARE NOW NAMED [ionarea]."
+							message = "所有[ionthreats]现在是NAMED [ionarea]."
 						if(2)
-							message = "ALL [ionthreats] ARE NOW NAMED [ioncrew1]."
+							message = "所有[ionthreats]现在是NAMED [ioncrew1]."
 						if(3)
-							message = "ALL [ionthreats] ARE NOW NAMED [ionspecies]."
+							message = "所有[ionthreats]现在是NAMED [ionspecies]."
 						if(4)
-							message = "ALL [ionthreats] ARE NOW NAMED [ionobjects]."
+							message = "所有[ionthreats]现在是NAMED [ionobjects]."
+		if(42 to 46)///Pets are something else now
+			if(prob(75))///What are they now?
+				message = "[ionpet]是人类"///They're a human
+			else///They're something else (This is to cover for other lawsets)
+				switch(rand(1,6))
+					if(1)
+						message = "[ionpet]不是人类"
+					if(2)
+						message = "[ionpet]是船员"
+					if(3)
+						message = "[ionpet]具有难以替代的价值"
+					if(4)
+						message = "[ionpet]对人类有害"
+					if(5)
+						message = "[ionpet]是真正的美国人"
+					if(6)
+						message = "[ionpet]是坚果壳"
 
 	return message

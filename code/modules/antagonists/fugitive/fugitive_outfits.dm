@@ -1,5 +1,5 @@
 /datum/outfit/prisoner
-	name = "囚犯逃亡者"
+	name = "越狱犯"
 	uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 	r_pocket = /obj/item/knife/shiv
@@ -35,15 +35,15 @@
 	equipped_on.update_worn_undersuit()
 	if(visualsOnly)
 		return
-	equipped_on.fully_replace_character_name(null, "沃尔多")
-	equipped_on.eye_color_left = "#000000"
-	equipped_on.eye_color_right = "#000000"
+	equipped_on.fully_replace_character_name(null, "Waldo")
+	equipped_on.eye_color_left = COLOR_BLACK
+	equipped_on.eye_color_right = COLOR_BLACK
 	equipped_on.gender = MALE
 	equipped_on.skin_tone = "caucasian3"
 	equipped_on.hairstyle = "Business Hair 3"
 	equipped_on.facial_hairstyle = "Shaved"
-	equipped_on.hair_color = "#000000"
-	equipped_on.facial_hair_color = "#000000"
+	equipped_on.hair_color = COLOR_BLACK
+	equipped_on.facial_hair_color = COLOR_BLACK
 	equipped_on.update_body(is_creating = TRUE)
 
 	var/list/no_drops = list()
@@ -59,7 +59,7 @@
 	waldos_key.Grant(equipped_on)
 
 /datum/outfit/synthetic
-	name = "工厂故障合成人"
+	name = "故障合成人劳工"
 	uniform = /obj/item/clothing/under/color/white
 	ears = /obj/item/radio/headset
 

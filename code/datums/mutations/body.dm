@@ -4,6 +4,7 @@
 /datum/mutation/human/epilepsy
 	name = "癫痫"
 	desc = "一种偶尔引起癫痫发作的遗传缺陷."
+	instability = NEGATIVE_STABILITY_MODERATE
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你感觉头疼.</span>"
 	synchronizer_coeff = 1
@@ -20,7 +21,7 @@
 	owner.Unconscious(200 * GET_MUTATION_POWER(src))
 	owner.set_jitter(2000 SECONDS * GET_MUTATION_POWER(src)) //yes this number looks crazy but the jitter animations are amplified based on the duration.
 	owner.add_mood_event("epilepsy", /datum/mood_event/epilepsy)
-	addtimer(CALLBACK(src, PROC_REF(jitter_less)), 90)
+	addtimer(CALLBACK(src, PROC_REF(jitter_less)), 9 SECONDS)
 
 /datum/mutation/human/epilepsy/proc/jitter_less()
 	if(QDELETED(owner))
@@ -50,6 +51,7 @@
 /datum/mutation/human/bad_dna
 	name = "不稳定DNA"
 	desc = "一种奇怪的变异，会导致携带者产生随机变异."
+	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你有种古怪的感觉.</span>"
 	locked = TRUE
@@ -79,6 +81,7 @@
 /datum/mutation/human/cough
 	name = "咳嗽"
 	desc = "慢性咳嗽."
+	instability = NEGATIVE_STABILITY_MODERATE
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>你开始咳嗽起来.</span>"
 	synchronizer_coeff = 1
@@ -96,6 +99,7 @@
 /datum/mutation/human/paranoia
 	name = "躁狂症"
 	desc = "对象容易受到惊吓，并可能产生幻觉."
+	instability = NEGATIVE_STABILITY_MODERATE
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你感觉尖叫声回荡在你的脑海中...</span>"
 	text_lose_indication = "<span class='notice'>萦绕在脑海中的尖叫声逐渐消逝.</span>"
@@ -112,15 +116,15 @@
 	desc = "一种被认为导致了侏儒症的突变."
 	quality = POSITIVE
 	difficulty = 16
-	instability = 5
-	conflicts = list(/datum/mutation/human/gigantism)
+	instability = POSITIVE_INSTABILITY_MINOR
+	conflicts = list(/datum/mutation/human/gigantism, /datum/mutation/human/acromegaly)
 	locked = TRUE // Default intert species for now, so locked from regular pool.
 
 /datum/mutation/human/dwarfism/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
 	// SKYRAT EDIT BEGIN
-	if(owner.dna.features["body_size"] < 1)
+	if(owner.dna.features["body_size"] < 1 || isteshari(owner))
 		to_chat(owner, "你感觉身体缩小了，但你的器官没有跟着一起！糟了!")
 		owner.adjustBruteLoss(25)
 		return
@@ -132,18 +136,88 @@
 	if(..())
 		return
 	// SKYRAT EDIT BEGIN
-	if(owner.dna.features["body_size"] < 1)
-		to_chat(owner, "随着器官挤压的感觉消失，你感到无比轻松.")
+	if(owner.dna.features["body_size"] < 1 || isteshari(owner))
+		to_chat(owner, "随着器官挤压的感觉消失，你感到无比轻松..")
 		REMOVE_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
 		return
 	// SKYRAT EDIT END
 	REMOVE_TRAIT(owner, TRAIT_DWARF, GENETIC_MUTATION)
-	owner.visible_message(span_danger("[owner]突然变大了!"), span_notice("周围的一切似乎变小了."))
+	owner.visible_message(span_danger("[owner]突然变大了!"), span_notice("周围的一切似乎变小了"))
+
+/datum/mutation/human/acromegaly
+	name = "Acromegaly"
+	desc = "A mutation believed to be the cause of acromegaly, or 'being unusually tall'."
+	quality = MINOR_NEGATIVE
+	difficulty = 16
+	instability = NEGATIVE_STABILITY_MODERATE
+	synchronizer_coeff = 1
+	conflicts = list(/datum/mutation/human/dwarfism)
+
+/datum/mutation/human/acromegaly/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	ADD_TRAIT(owner, TRAIT_TOO_TALL, GENETIC_MUTATION)
+	owner.visible_message(span_danger("[owner] suddenly grows tall!"), span_notice("You feel a small strange urge to fight small men with slingshots. Or maybe play some basketball."))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(head_bonk))
+	owner.regenerate_icons()
+
+/datum/mutation/human/acromegaly/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	REMOVE_TRAIT(owner, TRAIT_TOO_TALL, GENETIC_MUTATION)
+	owner.visible_message(span_danger("[owner] suddenly shrinks!"), span_notice("You return to your usual height."))
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(head_bonk))
+	owner.regenerate_icons()
+
+// This is specifically happening because they're not used to their new height and are stumbling around into machinery made for normal humans
+/datum/mutation/human/acromegaly/proc/head_bonk(mob/living/parent)
+	SIGNAL_HANDLER
+	var/turf/airlock_turf = get_turf(parent)
+	var/atom/movable/whacked_by = locate(/obj/machinery/door/airlock) in airlock_turf || locate(/obj/machinery/door/firedoor) in airlock_turf || locate(/obj/structure/mineral_door) in airlock_turf
+	if(!whacked_by || prob(100 - (8 *  GET_MUTATION_SYNCHRONIZER(src))))
+		return
+	to_chat(parent, span_danger("You hit your head on \the [whacked_by]'s header!"))
+	var/dmg = HAS_TRAIT(parent, TRAIT_HEAD_INJURY_BLOCKED) ? rand(1,4) : rand(2,9)
+	parent.apply_damage(dmg, BRUTE, BODY_ZONE_HEAD)
+	parent.do_attack_animation(whacked_by, ATTACK_EFFECT_PUNCH)
+	playsound(whacked_by, 'sound/effects/bang.ogg', 10, TRUE)
+	parent.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
+
+/datum/mutation/human/gigantism
+	name = "Gigantism" //negative version of dwarfism
+	desc = "The cells within the subject spread out to cover more area, making the subject appear larger."
+	quality = MINOR_NEGATIVE
+	difficulty = 12
+	conflicts = list(/datum/mutation/human/dwarfism)
+
+/datum/mutation/human/gigantism/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	// SKYRAT EDIT BEGIN
+	if(owner.dna.features["body_size"] > 1)
+		to_chat(owner, "You feel your body expanding even further, but it feels like your bones are expanding too much!")
+		owner.adjustBruteLoss(25) // take some DAMAGE
+		return
+	// SKYRAT EDIT END
+	ADD_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
+	owner.update_transform(1.25)
+	owner.visible_message(span_danger("[owner] suddenly grows!"), span_notice("Everything around you seems to shrink.."))
+
+/datum/mutation/human/gigantism/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	// SKYRAT EDIT BEGIN
+	if(owner.dna.features["body_size"] > 1)
+		to_chat(owner, "You feel relief as your bones cease their growth spurt.")
+		REMOVE_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
+		return
+	// SKYRAT EDIT END
 
 //Clumsiness has a very large amount of small drawbacks depending on item.
 /datum/mutation/human/clumsy
 	name = "笨拙"
 	desc = "一种抑制了某些大脑功能的基因组，使携带者显得十分笨拙. Honk!"
+	instability = NEGATIVE_STABILITY_MAJOR
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>你感觉头晕目眩.</span>"
 
@@ -163,6 +237,7 @@
 	name = "秽语综合征"
 	desc = "一种慢性抽搐，会迫使携带者尖叫骂出难听的话." //definitely needs rewriting
 	quality = NEGATIVE
+	instability = 0
 	text_gain_indication = "<span class='danger'>你抽搐了一下.</span>"
 	synchronizer_coeff = 1
 
@@ -185,6 +260,7 @@
 /datum/mutation/human/deaf
 	name = "失聪"
 	desc = "拥有该基因组的人完全失聪."
+	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你似乎听不见声音了.</span>"
 
@@ -206,7 +282,10 @@
 	text_gain_indication = "你怪异地觉得像猴子一样."
 	text_lose_indication = "你感觉又恢复了原先的自我."
 	quality = NEGATIVE
+	instability = NEGATIVE_STABILITY_MAJOR // mmmonky
+	remove_on_aheal = FALSE
 	locked = TRUE //Species specific, keep out of actual gene pool
+	mutadone_proof = TRUE
 	var/datum/species/original_species = /datum/species/human
 	var/original_name
 
@@ -229,10 +308,10 @@
 	desc = "你永久性的散发随机颜色和强度的荧光."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>你的皮肤开始散发出柔和的光线.</span>"
-	instability = 5
+	instability = POSITIVE_INSTABILITY_MINI
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
-	var/glow_power = 2.5
+	var/glow_power = 2
 	var/glow_range = 2.5
 	var/glow_color
 	var/obj/effect/dummy/lighting_obj/moblight/glow
@@ -265,8 +344,9 @@
 /datum/mutation/human/glow/anti
 	name = "反荧光"
 	desc = "你的皮肤似乎会吸引和吸收附近的光线，在你周围制造“黑暗”."
-	text_gain_indication = "<span class='notice'>你身边的光线似乎消失了	.</span>"
+	text_gain_indication = "<span class='notice'>你身边的光线似乎消失了.</span>"
 	conflicts = list(/datum/mutation/human/glow)
+	instability = POSITIVE_INSTABILITY_MINOR
 	locked = TRUE
 	glow_power = -1.5
 
@@ -278,14 +358,41 @@
 	desc = "携带者的肌肉轻微扩张了."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>你感觉变得强壮.</span>"
+	instability = POSITIVE_INSTABILITY_MINI
 	difficulty = 16
+
+/datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	ADD_TRAIT(owner, TRAIT_STRENGTH, GENETIC_MUTATION)
+
+/datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	REMOVE_TRAIT(owner, TRAIT_STRENGTH, GENETIC_MUTATION)
+
 
 /datum/mutation/human/stimmed
 	name = "自我刺激"
 	desc = "携带者的化学平衡更稳定."
 	quality = POSITIVE
+	instability = POSITIVE_INSTABILITY_MINI
 	text_gain_indication = "<span class='notice'>你感觉精力充沛.</span>"
 	difficulty = 16
+
+/datum/mutation/human/stimmed/on_acquiring(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	ADD_TRAIT(owner, TRAIT_STIMMED, GENETIC_MUTATION)
+
+/datum/mutation/human/stimmed/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	if(.)
+		return
+	REMOVE_TRAIT(owner, TRAIT_STIMMED, GENETIC_MUTATION)
 
 /datum/mutation/human/insulated
 	name = "绝缘"
@@ -294,7 +401,7 @@
 	text_gain_indication = "<span class='notice'>你的指尖变得麻木.</span>"
 	text_lose_indication = "<span class='notice'>你的指尖恢复了知觉.</span>"
 	difficulty = 16
-	instability = 25
+	instability = POSITIVE_INSTABILITY_MODERATE
 
 /datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -335,10 +442,10 @@
 	name = "空间不稳定性"
 	desc = "受突变者与现实空间的联系非常微弱，有时可能会被放逐. 通常会引起极度的恶心."
 	quality = NEGATIVE
-	text_gain_indication = "<span class='warning'>The space around you twists sickeningly.</span>"
-	text_lose_indication = "<span class='notice'>The space around you settles back to normal.</span>"
+	text_gain_indication = "<span class='warning'>你周围的空间开始不自然扭曲.</span>"
+	text_lose_indication = "<span class='notice'>你周围的空间变回正常.</span>"
 	difficulty = 18//high so it's hard to unlock and abuse
-	instability = 10
+	instability = NEGATIVE_STABILITY_MODERATE
 	synchronizer_coeff = 1
 	energy_coeff = 1
 	power_coeff = 1
@@ -364,6 +471,7 @@
 /datum/mutation/human/acidflesh
 	name = "酸性血肉"
 	desc = "实验对象的皮肤下有酸性物质积聚，这通常是致命的."
+	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
 	text_gain_indication = "<span class='userdanger'> 一股可怕的灼烧感笼罩着你，你的血肉变成了酸!</span>"
 	text_lose_indication = "<span class='notice'>一阵轻松感涌来，你的皮肤恢复了正常.</span>"
@@ -378,45 +486,13 @@
 			COOLDOWN_START(src, msgcooldown, 20 SECONDS)
 		if(prob(15))
 			owner.acid_act(rand(30, 50), 10)
-			owner.visible_message(span_warning("[owner]的皮肤起泡并破裂开来."), span_userdanger("Your bubbling flesh pops! It burns!"))
+			owner.visible_message(span_warning("[owner]的皮肤起泡并破裂开来."), span_userdanger("你的皮肤正起泡和破裂! 它在燃烧!"))
 			playsound(owner,'sound/weapons/sear.ogg', 50, TRUE)
-
-/datum/mutation/human/gigantism
-	name = "巨人症"//negative version of dwarfism
-	desc = "携带者体内的细胞分散开来并覆盖了更多区域，使携带者看起来更大了."
-	quality = MINOR_NEGATIVE
-	difficulty = 12
-	conflicts = list(/datum/mutation/human/dwarfism)
-
-/datum/mutation/human/gigantism/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
-		return
-	// SKYRAT EDIT BEGIN
-	if(owner.dna.features["body_size"] > 1)
-		to_chat(owner, "你的身体变得更大了!但是骨头好像快要撑不住了!")
-		owner.adjustBruteLoss(25) // take some DAMAGE
-		return
-	// SKYRAT EDIT END
-	ADD_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
-	owner.update_transform(1.25)
-	owner.visible_message(span_danger("[owner]突然变大了!"), span_notice("周围的一切似乎变小了."))
-
-/datum/mutation/human/gigantism/on_losing(mob/living/carbon/human/owner)
-	if(..())
-		return
-	// SKYRAT EDIT BEGIN
-	if(owner.dna.features["body_size"] > 1)
-		to_chat(owner, "随着骨骼生长突增的停止，你感到如释重负.")
-		REMOVE_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
-		return
-	// SKYRAT EDIT END
-	REMOVE_TRAIT(owner, TRAIT_GIANT, GENETIC_MUTATION)
-	owner.update_transform(0.8)
-	owner.visible_message(span_danger("[owner]突然缩小了!"), span_notice("周围的一切似乎变大了."))
 
 /datum/mutation/human/spastic
 	name = "痉挛"
 	desc = "受试者的肌肉痉挛."
+	instability = NEGATIVE_STABILITY_MODERATE
 	quality = NEGATIVE
 	text_gain_indication = "<span class='你感到一阵抽搐.</span>"
 	text_lose_indication = "<span class='notice'>抽搐的感觉逐渐消退.</span>"
@@ -435,9 +511,10 @@
 /datum/mutation/human/extrastun
 	name = "双左脚"
 	desc = "一种基因突变，使你的右脚变成另一只左脚. 症状包括走路时会绊倒自己，和地板热吻."
+	instability = NEGATIVE_STABILITY_MODERATE
 	quality = NEGATIVE
-	text_gain_indication = "<span class='warning'>你的右脚感觉... 像左脚一样.</span>"
-	text_lose_indication = "<span class='notice'>你的右脚恢复了正常.</span>"
+	text_gain_indication = "<span class='warning'>Your right foot feels... left.</span>"
+	text_lose_indication = "<span class='notice'>Your right foot feels alright.</span>"
 	difficulty = 16
 
 /datum/mutation/human/extrastun/on_acquiring()
@@ -460,12 +537,13 @@
 		return
 	if(owner.buckled || owner.body_position == LYING_DOWN || HAS_TRAIT(owner, TRAIT_IMMOBILIZED) || owner.throwing || owner.movement_type & (VENTCRAWLING | FLYING | FLOATING))
 		return //remove the 'edge' cases
-	to_chat(owner, span_danger("你被自己的脚绊倒了."))
+	to_chat(owner, span_danger("You trip over your own feet."))
 	owner.Knockdown(30)
 
 /datum/mutation/human/martyrdom
 	name = "内爆殉道"
 	desc = "一种基因突变，使身体在接近死亡时自我毁灭. 不会造成伤害，但会极度迷失方向."
+	instability = NEGATIVE_STABILITY_MAJOR // free stability >:)
 	locked = TRUE
 	quality = POSITIVE //not that cloning will be an option a lot but generally lets keep this around i guess?
 	text_gain_indication = "<span class='warning'>你感到一阵剧烈的烧灼感.</span>"
@@ -513,6 +591,7 @@
 /datum/mutation/human/headless
 	name = "H.A.R.S 头部过敏性排斥综合征."
 	desc = "一种基因突变，使身体排斥头部，导致大脑退缩至胸腔内. 警告：移除此突变非常危险，虽然它会再生非重要头部器官"
+	instability = NEGATIVE_STABILITY_MAJOR
 	difficulty = 12 //pretty good for traitors
 	quality = NEGATIVE //holy shit no eyes or tongue or ears
 	text_gain_indication = "<span class='warning'>感觉有些不对劲.</span>"
@@ -530,7 +609,7 @@
 
 	var/obj/item/bodypart/head/head = owner.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
-		owner.visible_message(span_warning("[owner]的头颅发出令人作呕的嘎吱声，四溅开来!"), ignored_mobs = list(owner))
+		owner.visible_message(span_warning("[owner]的头颅发出令人作呕的嘎吱声，爆裂开来!"), ignored_mobs = list(owner))
 		new /obj/effect/gibspawner/generic(get_turf(owner), owner)
 		head.drop_organs()
 		head.dismember(dam_type = BRUTE, silent = TRUE)
@@ -545,7 +624,7 @@
 	UnregisterSignal(owner, COMSIG_ATTEMPT_CARBON_ATTACH_LIMB)
 	var/successful = owner.regenerate_limb(BODY_ZONE_HEAD)
 	if(!successful)
-		stack_trace("HARS 突变头部再生失败!(通常由无头综合症患者长出头导致的)")
+		stack_trace("HARS mutation head regeneration failed! (usually caused by headless syndrome having a head)")
 		return TRUE
 	var/obj/item/organ/internal/brain/brain = owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(brain)

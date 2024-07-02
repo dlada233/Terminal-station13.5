@@ -3,11 +3,15 @@
 	desc = "一种安装在前臂内的的螳螂状刀片，锋利无比，作为致命的自卫武器。."
 	id = "ci-mantis"
 	build_type = MECHFAB
-	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
+	materials = list (
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	construction_time = 200
 	build_path = /obj/item/organ/internal/cyberimp/arm/armblade
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
@@ -19,12 +23,12 @@
 	materials = list (
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	construction_time = 20 SECONDS
 	build_path = /obj/item/organ/internal/cyberimp/arm/razor_claws
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY
 
@@ -33,11 +37,15 @@
 	desc = "一套安装在使用者手臂上的植入物，收纳了高级黑客工具和机器改装工具组."
 	id = "ci-hacker"
 	build_type = MECHFAB
-	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
+	materials = list (
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	construction_time = 200
 	build_path = /obj/item/organ/internal/cyberimp/arm/hacker
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
@@ -46,11 +54,15 @@
 	desc = "一种安装在使用者手臂上的集成投影仪，可以用作强力闪光灯."
 	id = "ci-flash"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
+	materials = list (
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	construction_time = 200
 	build_path = /obj/item/organ/internal/cyberimp/arm/flash
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
@@ -59,11 +71,16 @@
 	desc = "一套手臂植入物，包含植物学家所需的一切工具，可安装在使用者手臂上."
 	id = "ci-botany"
 	build_type = MECHFAB | PROTOLATHE
-	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
+	materials = list (
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
 	construction_time = 200
 	build_path = /obj/item/organ/internal/cyberimp/arm/botany
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
@@ -73,10 +90,16 @@
 	id = "ci-nv"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 6, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 6, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 6, /datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,)
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/silver = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	build_path = /obj/item/organ/internal/eyes/night_vision/cyber
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
@@ -86,10 +109,15 @@
 	id = "ci-antisleep"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 6, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 5)
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+		)
 	build_path = /obj/item/organ/internal/cyberimp/brain/anti_sleep
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
@@ -99,10 +127,15 @@
 	id = "ci-scanner"
 	build_type = MECHFAB | PROTOLATHE
 	construction_time = 40
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	build_path = /obj/item/organ/internal/cyberimp/chest/scanner
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
@@ -111,11 +144,15 @@
 	desc = "一套手臂植入物，包含多种清洁工具，可安装在使用者手臂上."
 	id = "ci-janitor"
 	build_type = PROTOLATHE | MECHFAB
-	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
+	materials = list (
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	construction_time = 200
 	build_path = /obj/item/organ/internal/cyberimp/arm/janitor
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
@@ -124,11 +161,15 @@
 	desc = "植入手臂的打火机，毫无意义."
 	id = "ci-lighter"
 	build_type = PROTOLATHE | MECHFAB
-	materials = list (/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 5)
+	materials = list (
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	construction_time = 100
 	build_path = /obj/item/organ/internal/cyberimp/arm/lighter
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
@@ -142,6 +183,6 @@
 	name = "复活植入物-Reviver Implant"
 	id = "ci-reviver"
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

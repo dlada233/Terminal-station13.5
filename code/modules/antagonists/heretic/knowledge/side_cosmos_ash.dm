@@ -1,7 +1,7 @@
 // Sidepaths for knowledge between Cosmos and Ash.
 
 /datum/heretic_knowledge/summon/fire_shark
-	name = "炎鲨"
+	name = "炎鲨-Fire shark"
 	desc = "你可以将一团灰烬、一块肝和一块等离子嬗变出一只火鲨. \
 		火鲨在群体行动时迅捷且致命，但也很容易死掉. 它们对烧伤有很强的抗性. \
 		攻击时向目标体内注射燃素，并在杀死目标后产生等离子."
@@ -34,7 +34,7 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/eldritch_coin
-	name = "诡奇硬币"
+	name = "诡奇硬币-Eldritch coin"
 	desc = "你可以将一块等离子体和一颗钻石嬗变成一枚诡奇硬币. \
 		抛出硬币，当硬币正面朝上时，它会打开或关闭附近的门；当硬币反面朝上时，它会拴住或打开附近的门. \
 		如果将硬币插入气闸门，它会EMGA气闸门并摧毁硬币自身."

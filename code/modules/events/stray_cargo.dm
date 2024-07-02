@@ -1,23 +1,23 @@
 ///Spawns a cargo pod containing a random cargo supply pack on a random area of the station
 /datum/round_event_control/stray_cargo
-	name = "Stray Cargo Pod"
+	name = "Stray Cargo Pod-散落货仓"
 	typepath = /datum/round_event/stray_cargo
 	weight = 20
 	max_occurrences = 4
 	earliest_start = 10 MINUTES
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "A pod containing a random supply crate lands on the station."
+	description = "装着随机货物的运输仓降落到空间站上."
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo, /datum/event_admin_setup/listed_options/stray_cargo)
 
 /datum/event_admin_setup/set_location/stray_cargo
-	input_text = "Aim pod at turf we're on?"
+	input_text = "在你所在的位置上降落运输仓?"
 
 /datum/event_admin_setup/set_location/stray_cargo/apply_to_event(datum/round_event/stray_cargo/event)
 	event.admin_override_turf = chosen_turf
 
 /datum/event_admin_setup/listed_options/stray_cargo
-	input_text = "Choose a cargo crate to drop."
-	normal_run_option = "Random Crate"
+	input_text = "选择一个货运板条箱来装载."
+	normal_run_option = "随机板条箱"
 
 /datum/event_admin_setup/listed_options/stray_cargo/get_list()
 	return sort_list(subtypesof(/datum/supply_pack), /proc/cmp_typepaths_asc)
@@ -102,7 +102,8 @@
 		crate.update_appearance()
 	var/obj/structure/closet/supplypod/pod = make_pod()
 	var/obj/effect/pod_landingzone/landing_marker = new(landing_zone, pod, crate)
-	announce_to_ghosts(landing_marker)
+	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
+	notify_ghosts("[control.name] has summoned a supply crate!", source = get_turf(landing_marker), header = "Cargo Inbound", alert_overlay = target_appearance)
 
 ///Handles the creation of the pod, in case it needs to be modified beforehand
 /datum/round_event/stray_cargo/proc/make_pod()
@@ -130,12 +131,12 @@
 
 ///A rare variant that drops a crate containing syndicate uplink items
 /datum/round_event_control/stray_cargo/syndicate
-	name = "Stray Syndicate Cargo Pod"
+	name = "Stray Syndicate Cargo Pod-散落辛迪加货仓"
 	typepath = /datum/round_event/stray_cargo/syndicate
 	weight = 6
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
-	description = "A pod containing syndicate gear lands on the station."
+	description = "装有辛迪加装备的货仓落入太空站."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 6
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo, /datum/event_admin_setup/syndicate_cargo_pod)
@@ -145,7 +146,7 @@
 	var/pack_type_override
 
 /datum/event_admin_setup/syndicate_cargo_pod/prompt_admins()
-	var/admin_selected_pack = tgui_alert(usr,"Customize Pod contents?", "Pod Contents", list("Yes", "No", "Cancel"))
+	var/admin_selected_pack = tgui_alert(usr,"自定义运输仓内容?", "Pod Contents", list("Yes", "No", "Cancel"))
 	switch(admin_selected_pack)
 		if("Yes")
 			override_contents()
@@ -157,11 +158,11 @@
 ///This proc prompts admins to set a TC value and uplink type for the crate, those values are then passed to a new syndicate pack's setup_contents() to generate the contents before spawning it.
 /datum/event_admin_setup/syndicate_cargo_pod/proc/override_contents()
 	var/datum/supply_pack/misc/syndicate/custom_value/syndicate_pack = new
-	var/pack_telecrystals = tgui_input_number(usr, "Please input crate's value in telecrystals.", "Set Telecrystals.", 30)
+	var/pack_telecrystals = tgui_input_number(usr, "请输入里面货物价值多少TC.", "Set Telecrystals.", 30)
 	if(isnull(pack_telecrystals))
 		return ADMIN_CANCEL_EVENT
-	var/list/possible_uplinks = list("Traitor" = UPLINK_TRAITORS, "Nuke Op" = UPLINK_NUKE_OPS, "Clown Op" = UPLINK_CLOWN_OPS)
-	var/uplink_type = tgui_input_list(usr, "Choose uplink to draw items from.", "Choose uplink type.", possible_uplinks)
+	var/list/possible_uplinks = list("叛徒" = UPLINK_TRAITORS, "核队" = UPLINK_NUKE_OPS, "小丑" = UPLINK_CLOWN_OPS)
+	var/uplink_type = tgui_input_list(usr, "选择里面货物来自哪种上行链路.", "Choose uplink type.", possible_uplinks)
 	var/selection
 	if(!isnull(uplink_type))
 		selection = possible_uplinks[uplink_type]

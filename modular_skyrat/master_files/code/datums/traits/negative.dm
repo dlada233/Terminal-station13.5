@@ -15,17 +15,56 @@
 	medical_record_text = "患者身体已经适应了低重力环境。遗憾的是，低重力环境不利于坚固骨骼的发育."
 	icon = FA_ICON_TIRED
 
+/datum/quirk_constant_data/fragile
+	associated_typepath = /datum/quirk/fragile
+	customization_options = list(
+		/datum/preference/numeric/fragile_customization/brute,
+		/datum/preference/numeric/fragile_customization/burn,
+	)
+
+/datum/preference/numeric/fragile_customization
+	abstract_type = /datum/preference/numeric/fragile_customization
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+
+	minimum = 1.25
+	maximum = 5 // 5x damage, arbitrary
+
+	step = 0.01
+
+/datum/preference/numeric/fragile_customization/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/numeric/fragile_customization/create_default_value()
+	return 1.25
+
+/datum/preference/numeric/fragile_customization/brute
+	savefile_key = "fragile_brute"
+
+/datum/preference/numeric/fragile_customization/burn
+	savefile_key = "fragile_burn"
+
 /datum/quirk/fragile/post_add()
 	. = ..()
+
 	var/mob/living/carbon/human/user = quirk_holder
-	user.physiology.brute_mod *= 1.25
-	user.physiology.burn_mod *= 1.2
+	var/datum/preferences/prefs = user.client.prefs
+	var/brutemod = prefs.read_preference(/datum/preference/numeric/fragile_customization/brute)
+	var/burnmod = prefs.read_preference(/datum/preference/numeric/fragile_customization/burn)
+
+	user.physiology.brute_mod *= brutemod
+	user.physiology.burn_mod *= burnmod
 
 /datum/quirk/fragile/remove()
 	. = ..()
+
 	var/mob/living/carbon/human/user = quirk_holder
-	user.physiology.brute_mod /= 1.25
-	user.physiology.burn_mod /= 1.2
+	var/datum/preferences/prefs = user.client.prefs
+	var/brutemod = prefs.read_preference(/datum/preference/numeric/fragile_customization/brute)
+	var/burnmod = prefs.read_preference(/datum/preference/numeric/fragile_customization/burn)
+	// will cause issues if the user changes this value before removal
+	user.physiology.brute_mod /= brutemod
+	user.physiology.burn_mod /= burnmod
 
 /datum/quirk/monophobia
 	name = "Monophobia-孤独恐惧症"

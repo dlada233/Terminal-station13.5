@@ -42,6 +42,7 @@
 		name = "生巧克力煎饼"
 		icon_state = "rawccpancakes_1"
 		stack_name = "生煎饼"
+	else
 		return ..()
 	if(newresult)
 		qdel(garnish)

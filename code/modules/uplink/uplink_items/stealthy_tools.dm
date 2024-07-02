@@ -94,7 +94,7 @@
 /datum/uplink_item/stealthy_tools/telecomm_blackout
 	name = "电信关闭病毒"
 	desc = "购买时，病毒将被上传到电信处理服务器，使其暂时被禁用."
-	item = /obj/effect/gibspawner/generic
+	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
 	progression_minimum = 15 MINUTES
 	limited_stock = 1
@@ -109,7 +109,7 @@
 /datum/uplink_item/stealthy_tools/blackout
 	name = "触发全站停电"
 	desc = "购买后，病毒会被上传到工程处理服务器强制进行例行电网检查，迫使站点上所有APC暂时瘫痪."
-	item = /obj/effect/gibspawner/generic
+	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
 	progression_minimum = 20 MINUTES
 	limited_stock = 1

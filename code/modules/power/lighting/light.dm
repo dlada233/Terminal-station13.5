@@ -1,9 +1,9 @@
 // the standard tube light fixture
 /obj/machinery/light
-	name = "灯具"
+	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube"
-	desc = "照明装置."
+	desc = "A lighting fixture."
 	layer = WALL_OBJ_LAYER
 	max_integrity = 100
 	use_power = ACTIVE_POWER_USE
@@ -77,12 +77,13 @@
 	var/fire_power = 0.5
 	///The Light colour to use when working in fire alarm status
 	var/fire_colour = COLOR_FIRE_LIGHT_RED
-
 	///Power usage - W per unit of luminosity
 	var/power_consumption_rate = 20
+	///break if moved, if false also makes it ignore if the wall its on breaks
+	var/break_if_moved = TRUE
 
 /obj/machinery/light/Move()
-	if(status != LIGHT_BROKEN)
+	if(status != LIGHT_BROKEN && break_if_moved)
 		break_light_tube(TRUE)
 	return ..()
 
@@ -117,11 +118,12 @@
 	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 	AddElement(/datum/element/atmos_sensitive, mapload)
-	find_and_hang_on_wall(custom_drop_callback = CALLBACK(src, PROC_REF(knock_down)))
-	return INITIALIZE_HINT_LATELOAD
+	if(break_if_moved)
+		find_and_hang_on_wall(custom_drop_callback = CALLBACK(src, PROC_REF(knock_down)))
 
-/obj/machinery/light/LateInitialize()
+/obj/machinery/light/post_machine_initialize()
 	. = ..()
+#ifndef MAP_TEST
 	switch(fitting)
 		if("tube")
 			if(prob(2))
@@ -129,6 +131,7 @@
 		if("bulb")
 			if(prob(5))
 				break_light_tube(TRUE)
+#endif
 	update(trigger = FALSE)
 
 /obj/machinery/light/Destroy()
@@ -186,9 +189,12 @@
 	. += mutable_appearance(overlay_icon, base_state)
 
 
-//SKYRAT EDIT ADDITION BEGIN - AESTHETICS
+// SKYRAT EDIT ADDITION BEGIN - AESTHETICS
 #define LIGHT_ON_DELAY_UPPER (2 SECONDS)
 #define LIGHT_ON_DELAY_LOWER (0.25 SECONDS)
+/// Dynamically calculate nightshift brightness
+#define NIGHTSHIFT_LIGHT_MODIFIER 0.15
+#define NIGHTSHIFT_COLOR_MODIFIER 0.15
 //SKYRAT EDIT END
 
 // Area sensitivity is traditionally tied directly to power use, as an optimization
@@ -211,16 +217,15 @@
 
 /obj/machinery/light/proc/handle_fire(area/source, new_fire)
 	SIGNAL_HANDLER
-	update(instant = TRUE, play_sound = FALSE) //SKYRAT EDIT CHANGE
+	update(instant = TRUE, play_sound = FALSE) //SKYRAT EDIT CHANGE - ORIGINAL: update()
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(trigger = TRUE, instant = FALSE, play_sound = TRUE) //SKYRAT EDIT CHANGE
+/obj/machinery/light/proc/update(trigger = TRUE, instant = FALSE, play_sound = TRUE) // SKYRAT EDIT CHANGE
 	switch(status)
 		if(LIGHT_BROKEN,LIGHT_BURNED,LIGHT_EMPTY)
 			on = FALSE
 	low_power_mode = FALSE
 	if(on)
-	/* SKYRAT EDIT ORIGINAL
 		var/brightness_set = brightness
 		var/power_set = bulb_power
 		var/color_set = bulb_colour
@@ -234,15 +239,31 @@
 			power_set = fire_power
 			brightness_set = fire_brightness
 		else if (nightshift_enabled)
-			brightness_set = nightshift_brightness
-			power_set = nightshift_light_power
+			brightness_set -= brightness_set * NIGHTSHIFT_LIGHT_MODIFIER // SKYRAT EDIT CHANGE - ORIGINAL: brightness_set = nightshift_brightness
+			power_set -= power_set * NIGHTSHIFT_LIGHT_MODIFIER // SKYRAT EDIT CHANGE - ORIGINAL: power_set = nightshift_light_power
 			if(!color)
 				color_set = nightshift_light_color
+				// SKYRAT EDIT ADDITION START - Dynamic nightshift color
+				if(!color_set)
+					// Adjust light values to be warmer. I doubt caching would speed this up by any worthwhile amount, as it's all very fast number and string operations.
+					// Convert to numbers for easier manipulation.
+					var/list/color_parts = rgb2num(bulb_colour)
+					var/red = color_parts[1]
+					var/green = color_parts[2]
+					var/blue = color_parts[3]
+
+					red += round(red * NIGHTSHIFT_COLOR_MODIFIER)
+					green -= round(green * NIGHTSHIFT_COLOR_MODIFIER * 0.3)
+					red = clamp(red, 0, 255) // clamp to be safe, or you can end up with an invalid hex value
+					green = clamp(green, 0, 255)
+					blue = clamp(blue, 0, 255)
+					color_set = rgb(red, green, blue) // Splice the numbers together and turn them back to hex.
+				// SKYRAT EDIT ADDITION END
 		else if (major_emergency)
 			color_set = bulb_low_power_colour
 			brightness_set = brightness * bulb_major_emergency_brightness_mul
 		var/matching = light && brightness_set == light.light_range && power_set == light.light_power && color_set == light.light_color
-		if(!matching)
+		if(!matching && (maploaded || instant)) // SKYRAT EDIT CHANGE - ORIGINAL: if(!matching)
 			switchcount++
 			if( prob( min(60, (switchcount**2)*0.01) ) )
 				if(trigger)
@@ -254,17 +275,15 @@
 					l_power = power_set,
 					l_color = color_set
 					)
-		*/
-		//SKYRAT EDIT CHANGE BEGIN - AESTHETICS
-		if(instant)
-			turn_on(trigger, play_sound)
-		else if(maploaded)
-			turn_on(trigger, play_sound)
-			maploaded = FALSE
-		else if(!turning_on)
+		// SKYRAT EDIT ADDITION START
+				maploaded = FALSE
+				if(play_sound)
+					playsound(src.loc, 'modular_skyrat/modules/aesthetics/lights/sound/light_on.ogg', 65, 1)
+		else if(!matching && !turning_on)
+			switchcount++
 			turning_on = TRUE
-			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger, play_sound), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
-		//SKYRAT EDIT END
+			addtimer(CALLBACK(src, PROC_REF(delayed_turn_on), trigger, play_sound, color_set, power_set, brightness_set), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
+		// SKYRAT EDIT ADDITION END
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		use_power = IDLE_POWER_USE
 		low_power_mode = TRUE
@@ -280,7 +299,9 @@
 //SKYRAT EDIT ADDITION BEGIN - AESTHETICS
 #undef LIGHT_ON_DELAY_UPPER
 #undef LIGHT_ON_DELAY_LOWER
-//SKYRAT EDIT END
+#undef NIGHTSHIFT_LIGHT_MODIFIER
+#undef NIGHTSHIFT_COLOR_MODIFIER
+// SKYRAT EDIT ADDITION END
 
 /obj/machinery/light/update_current_power_usage()
 	if(!on && static_power_used > 0) //Light is off but still powered
@@ -309,16 +330,22 @@
 		var/delay = rand(BROKEN_SPARKS_MIN, BROKEN_SPARKS_MAX)
 		addtimer(CALLBACK(src, PROC_REF(broken_sparks)), delay, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
 
+/obj/machinery/light/proc/is_full_charge()
+	if(cell)
+		return cell.charge == cell.maxcharge
+	return TRUE
+
 /obj/machinery/light/process(seconds_per_tick)
-	if(has_power()) //If the light is being powered by the station.
+	if(has_power())
+		// If the cell is done mooching station power, and reagents don't need processing, stop processing
+		if(is_full_charge() && !reagents)
+			return PROCESS_KILL
 		if(cell)
-			if(cell.charge == cell.maxcharge && !reagents) //If the cell is done mooching station power, and reagents don't need processing, stop processing
-				return PROCESS_KILL
-			cell.charge = min(cell.maxcharge, cell.charge + LIGHT_EMERGENCY_POWER_USE) //Recharge emergency power automatically while not using it
+			charge_cell(LIGHT_EMERGENCY_POWER_USE * seconds_per_tick, cell = cell) //Recharge emergency power automatically while not using it
 	if(reagents) //with most reagents coming out at 300, and with most meaningful reactions coming at 370+, this rate gives a few seconds of time to place it in and get out of dodge regardless of input.
 		reagents.adjust_thermal_energy(8 * reagents.total_volume * SPECIFIC_HEAT_DEFAULT * seconds_per_tick)
 		reagents.handle_reactions()
-	if(low_power_mode && !use_emergency_power(LIGHT_EMERGENCY_POWER_USE))
+	if(low_power_mode && !use_emergency_power(LIGHT_EMERGENCY_POWER_USE * seconds_per_tick))
 		update(FALSE) //Disables emergency mode and sets the color to normal
 
 /obj/machinery/light/proc/burn_out()
@@ -346,18 +373,18 @@
 	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			. += "已经被切换到[on? "on" : "off"]."
+			. += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			. += "[fitting]已经被移除."
+			. += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			. += "[fitting]已经烧毁."
+			. += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			. += "[fitting]被打碎了."
+			. += "The [fitting] has been smashed."
 	if(cell || has_mock_cell)
-		. += "它的备用电源读数显示[has_mock_cell ? 100 : round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
+		. += "Its backup power charge meter reads [has_mock_cell ? 100 : round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
 	//SKYRAT EDIT ADDITION
 	if(constant_flickering)
-		. += span_danger("照明镇流器似乎损坏了，可以用多功能工具修理.")
+		. += span_danger("The lighting ballast appears to be damaged, this could be fixed with a multitool.")
 	//SKYRAT EDIT END
 
 
@@ -368,12 +395,12 @@
 	// attempt to insert light
 	if(istype(tool, /obj/item/light))
 		if(status == LIGHT_OK)
-			to_chat(user, span_warning("已经插入了一个[fitting]!"))
+			to_chat(user, span_warning("There is a [fitting] already inserted!"))
 			return
 		add_fingerprint(user)
 		var/obj/item/light/light_object = tool
 		if(!istype(light_object, light_type))
-			to_chat(user, span_warning("这种类型的灯需要[fitting]!"))
+			to_chat(user, span_warning("This type of light requires a [fitting]!"))
 			return
 		if(!user.temporarilyRemoveItemFromInventory(light_object))
 			return
@@ -381,9 +408,9 @@
 		add_fingerprint(user)
 		if(status != LIGHT_EMPTY)
 			drop_light_tube(user)
-			to_chat(user, span_notice("你替换了[light_object]."))
+			to_chat(user, span_notice("You replace [light_object]."))
 		else
-			to_chat(user, span_notice("你插入[light_object]."))
+			to_chat(user, span_notice("You insert [light_object]."))
 		if(length(light_object.reagents.reagent_list))
 			create_reagents(LIGHT_REAGENT_CAPACITY, SEALED_CONTAINER | TRANSPARENT)
 			light_object.reagents.trans_to(reagents, LIGHT_REAGENT_CAPACITY)
@@ -402,20 +429,21 @@
 		return ..()
 	if(tool.tool_behaviour == TOOL_SCREWDRIVER) //If it's a screwdriver open it.
 		tool.play_tool_sound(src, 75)
-		user.visible_message(span_notice("[user.name]打开了[src]的套管."), \
-			span_notice("你打开[src]的套管."), span_hear("你听到一些声音."))
+		user.visible_message(span_notice("[user.name] opens [src]'s casing."), \
+			span_notice("You open [src]'s casing."), span_hear("You hear a noise."))
 		deconstruct()
 		return
-	to_chat(user, span_userdanger("你把[tool]放到灯槽里!"))
+
+	if(tool.item_flags & ABSTRACT)
+		return
+
+	to_chat(user, span_userdanger("You stick \the [tool] into the light socket!"))
 	if(has_power() && (tool.obj_flags & CONDUCTS_ELECTRICITY))
 		do_sparks(3, TRUE, src)
 		if (prob(75))
 			electrocute_mob(user, get_area(src), src, (rand(7,10) * 0.1), TRUE)
 
-/obj/machinery/light/deconstruct(disassembled = TRUE)
-	if(obj_flags & NO_DECONSTRUCTION)
-		qdel(src)
-		return
+/obj/machinery/light/on_deconstruction(disassembled)
 	var/obj/structure/light_construct/new_light = null
 	var/current_stage = 2
 	if(!disassembled)
@@ -444,7 +472,6 @@
 		new_light.cell = real_cell
 		real_cell.forceMove(new_light)
 		cell = null
-	qdel(src)
 
 /obj/machinery/light/attacked_by(obj/item/attacking_object, mob/living/user)
 	..()
@@ -506,8 +533,8 @@
 	if(!has_emergency_power(power_usage_amount))
 		return FALSE
 	var/obj/item/stock_parts/cell/real_cell = get_cell()
-	if(real_cell.charge > 300) //it's meant to handle 120 W, ya doofus
-		visible_message(span_warning("[src]电池功率过大导致了短路!"))
+	if(real_cell.charge > 2.5 * /obj/item/stock_parts/cell/emergency_light::maxcharge) //it's meant to handle 120 W, ya doofus
+		visible_message(span_warning("[src] short-circuits from too powerful of a power cell!"))
 		burn_out()
 		return FALSE
 	real_cell.use(power_usage_amount)
@@ -543,7 +570,7 @@
 
 /obj/machinery/light/attack_ai(mob/user)
 	no_low_power = !no_low_power
-	to_chat(user, span_notice("这个装置的应急灯已经[no_low_power ? "关闭" : "开启"]."))
+	to_chat(user, span_notice("Emergency lights for this fixture have been [no_low_power ? "disabled" : "enabled"]."))
 	update(FALSE)
 	return
 
@@ -558,12 +585,12 @@
 	add_fingerprint(user)
 
 	if(status == LIGHT_EMPTY)
-		to_chat(user, span_warning("灯具中无[fitting]!"))
+		to_chat(user, span_warning("There is no [fitting] in this light!"))
 		return
 
 	// make it burn hands unless you're wearing heat insulated gloves or have the RESISTHEAT/RESISTHEATHANDS traits
 	if(!on)
-		to_chat(user, span_notice("你移除了灯具中的[fitting]."))
+		to_chat(user, span_notice("You remove the light [fitting]."))
 		// create a light tube/bulb item and put it in the user's hand
 		drop_light_tube(user)
 		return
@@ -576,15 +603,15 @@
 			var/obj/item/organ/internal/stomach/ethereal/stomach = maybe_stomach
 			if(stomach.drain_time > world.time)
 				return
-			to_chat(user, span_notice("你开始引导电力通过[fitting]进入你的身体."))
+			to_chat(user, span_notice("You start channeling some power through the [fitting] into your body."))
 			stomach.drain_time = world.time + LIGHT_DRAIN_TIME
 			while(do_after(user, LIGHT_DRAIN_TIME, target = src))
 				stomach.drain_time = world.time + LIGHT_DRAIN_TIME
 				if(istype(stomach))
-					to_chat(user, span_notice("你从[fitting]中接收到了电力."))
+					to_chat(user, span_notice("You receive some charge from the [fitting]."))
 					stomach.adjust_charge(LIGHT_POWER_GAIN)
 				else
-					to_chat(user, span_warning("你不能从[fitting]中接收电力!"))
+					to_chat(user, span_warning("You can't receive charge from the [fitting]!"))
 			return
 
 		if(user.gloves)
@@ -595,23 +622,23 @@
 		protected = TRUE
 
 	if(protected || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
-		to_chat(user, span_notice("你移除了灯具[fitting]."))
+		to_chat(user, span_notice("You remove the light [fitting]."))
 	else if(istype(user) && user.dna.check_mutation(/datum/mutation/human/telekinesis))
-		to_chat(user, span_notice("你用灵能移除了灯具[fitting]."))
+		to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
 	else
 		var/obj/item/bodypart/affecting = user.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		if(affecting?.receive_damage( 0, 5 )) // 5 burn damage
 			user.update_damage_overlays()
 		if(HAS_TRAIT(user, TRAIT_LIGHTBULB_REMOVER))
-			to_chat(user, span_notice("你感觉你的[affecting]烧伤了, 灯具稍微移动了些."))
+			to_chat(user, span_notice("You feel your [affecting] burning, and the light beginning to budge."))
 			if(!do_after(user, 5 SECONDS, target = src))
 				return
 			if(affecting?.receive_damage( 0, 10 )) // 10 more burn damage
 				user.update_damage_overlays()
-			to_chat(user, span_notice("你尝试移除灯具[fitting], 在过程中打碎了它."))
+			to_chat(user, span_notice("You manage to remove the light [fitting], shattering it in process."))
 			break_light_tube()
 		else
-			to_chat(user, span_warning("你尝试移除灯具[fitting], 但你的手被烫伤了!"))
+			to_chat(user, span_warning("You try to remove the light [fitting], but you burn your hand on it!"))
 			return
 	// create a light tube/bulb item and put it in the user's hand
 	drop_light_tube(user)
@@ -649,10 +676,10 @@
 
 /obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
-		to_chat(user, span_warning("灯具中没有[fitting]!"))
+		to_chat(user, span_warning("There is no [fitting] in this light!"))
 		return
 
-	to_chat(user, span_notice("你用灵能移除了[fitting]."))
+	to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
 	// create a light tube/bulb item and put it in the user's hand
 	var/obj/item/light/light_tube = drop_light_tube()
 	return light_tube.attack_tk(user)
@@ -738,8 +765,8 @@
 	qdel(src)
 
 /obj/machinery/light/floor
-	name = "地灯"
-	desc = "一个你可以踩着走而不会破裂的灯泡，太神奇了."
+	name = "floor light"
+	desc = "A lightbulb you can walk on without breaking it, amazing."
 	icon = 'icons/obj/lighting.dmi'
 	base_state = "floor" // base description and icon_state
 	icon_state = "floor"
@@ -758,3 +785,8 @@
 /obj/machinery/light/floor/broken
 	status = LIGHT_BROKEN
 	icon_state = "floor-broken"
+
+/obj/machinery/light/floor/transport
+	name = "transport light"
+	break_if_moved = FALSE
+	layer = BELOW_OPEN_DOOR_LAYER

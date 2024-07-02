@@ -214,3 +214,83 @@
 /datum/status_effect/heretic_lastresort/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_STATUS_EFFECT(id))
 	owner.AdjustUnconscious(20 SECONDS, ignore_canstun = TRUE)
+
+
+
+/// Used by moon heretics to make people mad
+/datum/status_effect/moon_converted
+	id = "moon converted"
+	alert_type = /atom/movable/screen/alert/status_effect/moon_converted
+	duration = -1
+	status_type = STATUS_EFFECT_REPLACE
+	///used to track damage
+	var/damage_sustained = 0
+	///overlay used to indicate that someone is marked
+	var/mutable_appearance/moon_insanity_overlay
+	/// icon file for the overlay
+	var/effect_icon = 'icons/effects/eldritch.dmi'
+	/// icon state for the overlay
+	var/effect_icon_state = "moon_insanity_overlay"
+
+/atom/movable/screen/alert/status_effect/moon_converted
+	name = "月变"
+	desc = "THEY LIE, THEY ALL LIE!!! SLAY THEM!!! BURN THEM!!! MAKE THEM SEE THE TRUTH!!!"
+	icon_state = "lastresort"
+
+/datum/status_effect/moon_converted/on_creation()
+	. = ..()
+	moon_insanity_overlay = mutable_appearance(effect_icon, effect_icon_state, ABOVE_MOB_LAYER)
+
+/datum/status_effect/moon_converted/Destroy()
+	QDEL_NULL(moon_insanity_overlay)
+	return ..()
+
+/datum/status_effect/moon_converted/on_apply()
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_damaged))
+	// Heals them so people who are in crit can have this affect applied on them and still be of some use for the heretic
+	owner.adjustBruteLoss( -150 + owner.mob_mood.sanity)
+	owner.adjustFireLoss(-150 + owner.mob_mood.sanity)
+
+	to_chat(owner, span_hypnophrase(("月亮向你展示了真相，说谎的人想要掩盖真相，杀了他们!!!</span>")))
+	owner.balloon_alert(owner, "撒谎，全在撒谎!!!")
+	owner.AdjustUnconscious(7 SECONDS, ignore_canstun = FALSE)
+	ADD_TRAIT(owner, TRAIT_MUTE, REF(src))
+	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+	owner.update_appearance(UPDATE_OVERLAYS)
+	owner.cause_hallucination(/datum/hallucination/delusion/preset/moon, "[id] status effect", duration = duration, affects_us = FALSE, affects_others = TRUE)
+	return TRUE
+
+/datum/status_effect/moon_converted/proc/on_damaged(datum/source, damage, damagetype)
+	SIGNAL_HANDLER
+
+	// Stamina damage is funky so we will ignore it
+	if(damagetype == STAMINA)
+		return
+
+	damage_sustained += damage
+
+	if (damage_sustained < 75)
+		return
+
+	qdel(src)
+
+/datum/status_effect/moon_converted/proc/update_owner_overlay(atom/source, list/overlays)
+	SIGNAL_HANDLER
+	overlays += moon_insanity_overlay
+
+/datum/status_effect/moon_converted/on_remove()
+	// Span warning and unconscious so they realize they aren't evil anymore
+	to_chat(owner, span_warning("你头脑摆脱了漫宿的影响，你恢复到了从前."))
+	REMOVE_TRAIT(owner, TRAIT_MUTE, REF(src))
+	owner.AdjustUnconscious(5 SECONDS, ignore_canstun = FALSE)
+	owner.log_message("[owner] is no longer insane.", LOG_GAME)
+	UnregisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS)
+	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_damaged))
+	owner.update_appearance(UPDATE_OVERLAYS)
+	return ..()
+
+
+/atom/movable/screen/alert/status_effect/moon_converted
+	name = "月变"
+	desc = "They LIE, SLAY ALL OF THE THEM!!! THE LIARS OF THE SUN MUST FALL!!!"
+	icon_state = "moon_insanity"

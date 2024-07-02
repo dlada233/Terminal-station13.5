@@ -27,7 +27,7 @@
  * Ashlord's Rite
  */
 /datum/heretic_knowledge/limited_amount/starting/base_ash
-	name = "守夜人的秘密"
+	name = "守夜人的秘密-Base ash"
 	desc = "通往灰烬之路. \
 		你将能把火柴和刀具嬗变为灰烬之刃. \
 		同一时间只能创造五把出来." //SKYRAT EDIT two to five
@@ -98,7 +98,7 @@
 	// Also refunds 75% of charge!
 	var/datum/action/cooldown/spell/touch/mansus_grasp/grasp = locate() in source.actions
 	if(grasp)
-		grasp.next_use_time = min(round(grasp.next_use_time - grasp.cooldown_time * 0.75, 0), 0)
+		grasp.next_use_time -= round(grasp.cooldown_time*0.75)
 		grasp.build_all_button_icons()
 
 /datum/heretic_knowledge/knowledge_ritual/ash
@@ -116,7 +116,7 @@
 
 
 /datum/heretic_knowledge/mad_mask
-	name = "蒙尘面罩"
+	name = "蒙尘面罩-Mad mask"
 	desc = "这狂人的假面可由任意面具、四根蜡烛、一根电棍以及一块肝脏创造出来. \
 		假面将恐惧灌输给任何看到它的不信之人，造成耐力损伤、幻觉和精神错乱. \
 		也可以将假面强行戴在不信之人脸上，他们无法脱下这幅假面..."
@@ -168,7 +168,7 @@
 	route = PATH_ASH
 
 /datum/heretic_knowledge/ultimate/ash_final
-	name = "灰烬之主的仪式"
+	name = "灰烬之主的仪式-Ash final"
 	desc = "灰烬之路的飞升仪式. \
 		将三具燃烧或烧干的尸体带到嬗变符文前以完成仪式. \
 		一旦完成，你将化身火焰使者，同时获得流火和火焰之誓两个技能. \
@@ -204,9 +204,9 @@
 /datum/heretic_knowledge/ultimate/ash_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "[generate_heretic_text()]敬畏火焰，盗取火焰，[user.real_name]飞升了! 火焰将焚烧万物! [generate_heretic_text()]",
+		text = "[generate_heretic_text()]敬畏火焰，以敬灰烬之主，[user.real_name]飞升了! 火焰将焚烧万物! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = ANNOUNCER_SPANOMALIES,
+		sound = 'sound/ambience/antag/heretic/ascend_ash.ogg',
 		color_override = "pink",
 	)
 

@@ -34,7 +34,7 @@
 	name = "契约重置"
 	desc = "也许你对你当前的契约不是很满意，购买此项可以请求对你当前的契约清单进行重置. \
 		重置后你的契约会有新的目标、付款和交付条件."
-	item = /obj/effect/gibspawner/generic
+	item = ABSTRACT_UPLINK_ITEM
 	limited_stock = 2
 	cost = 0
 
@@ -77,25 +77,6 @@
 /datum/uplink_item/contractor/partner
 	name = "增援"
 	desc = "购买后，我们会联系该地区的可用特工，如果特工有空，我们会立刻派遣；如果没有空闲的特工，我们也会全额退款."
-	item = /obj/effect/gibspawner/generic
+	item = /obj/item/antag_spawner/loadout/contractor
 	limited_stock = 1
 	cost = 2
-
-/datum/uplink_item/contractor/partner/spawn_item(spawn_path, mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
-	to_chat(user, span_notice("上行链路悄悄地振动，连接到附近的特工..."))
-	var/list/candidates = SSpolling.poll_ghost_candidates(
-		question = "您愿意扮演契约特工的增援人员[user.real_name]吗?",
-		check_jobban = ROLE_TRAITOR,
-		role = ROLE_TRAITOR,
-		poll_time = 10 SECONDS,
-		ignore_category = POLL_IGNORE_CONTRACTOR_SUPPORT,
-		pic_source = /obj/item/modular_computer/pda/syndicate_contract_uplink,
-		role_name_text = "契约特工增援人员",
-	)
-	if(!LAZYLEN(candidates))
-		to_chat(user, span_notice("目前没有空闲的特工，请稍后再试."))
-		limited_stock++
-		return //bobux no icon
-	var/mob/dead/observer/selected_player = pick(candidates)
-	uplink_handler.contractor_hub.contractor_teammate = spawn_contractor_partner(user, selected_player.key)
-	return source //for log icon

@@ -1,7 +1,7 @@
 /obj/machinery/computer/camera_advanced/abductor
 	name = "人类观测控制台"
 	var/team_number = 0
-	networks = list("ss13", "abductor")
+	networks = list(CAMERANET_NETWORK_SS13, CAMERANET_NETWORK_ABDUCTOR)
 	var/obj/machinery/abductor/console/console
 	/// We can't create our actions until after LateInitialize
 	/// So we instead do it on the first call to GrantActions
@@ -61,7 +61,11 @@
 	var/obj/machinery/abductor/pad/P = target
 
 	var/area/target_area = get_area(remote_eye)
-	if(target_area.area_flags & ABDUCTOR_PROOF)
+	if((target_area.area_flags & NOTELEPORT) && !istype(target_area, /area/centcom/abductor_ship))
+		to_chat(owner, span_warning("这个区域的屏蔽太过严密，无法安全地传送下去."))
+		return
+
+	if(istype(target_area, /area/station/ai_monitored))
 		to_chat(owner, span_warning("这个区域的屏蔽太过严密，无法安全地传送下去."))
 		return
 
@@ -101,7 +105,11 @@
 	var/obj/machinery/abductor/pad/P = target
 
 	var/area/target_area = get_area(remote_eye)
-	if(target_area.area_flags & ABDUCTOR_PROOF)
+	if((target_area.area_flags & NOTELEPORT) && !istype(target_area, /area/centcom/abductor_ship))
+		to_chat(owner, span_warning("这个区域的屏蔽太过严密，无法安全传送下去."))
+		return
+
+	if(istype(target_area, /area/station/ai_monitored))
 		to_chat(owner, span_warning("这个区域的屏蔽太过严密，无法安全传送下去."))
 		return
 

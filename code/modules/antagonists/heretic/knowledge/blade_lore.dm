@@ -30,7 +30,7 @@
  * Maelstrom of Silver
  */
 /datum/heretic_knowledge/limited_amount/starting/base_blade
-	name = "锋刃"
+	name = "锋刃-Base blade"
 	desc = "通往刀锋之路. \
 		你能将两根银条或钛钢条嬗变为一把刀，创造出碎裂之刃. \
 		同一时间只能创造五把出来."
@@ -243,6 +243,7 @@
 		/datum/heretic_knowledge/reroll_targets,
 		/datum/heretic_knowledge/rune_carver,
 		/datum/heretic_knowledge/crucible,
+		/datum/heretic_knowledge/rifle,
 	)
 	cost = 1
 	route = PATH_BLADE
@@ -371,7 +372,7 @@
 	route = PATH_BLADE
 
 /datum/heretic_knowledge/ultimate/blade_final
-	name = "银光螺旋"
+	name = "银光螺旋-Blade final"
 	desc = "刀锋之路的飞升仪式. \
 		带三具无头尸体到嬗变符文前完成仪式. \
 		一旦完成，你将被不断再生的刀刃包裹，这些刀刃消耗自身保护你免受所有伤害. \
@@ -387,14 +388,14 @@
 	if(!.)
 		return FALSE
 
-	return !sacrifice.get_bodypart(BODY_ZONE_HEAD)
+	return !sacrifice.get_bodypart(BODY_ZONE_HEAD) || HAS_TRAIT(sacrifice, TRAIT_HAS_CRANIAL_FISSURE)
 
 /datum/heretic_knowledge/ultimate/blade_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
 		text = "[generate_heretic_text()]锋刃之主，撕裂斗士的信徒， [user.real_name]已经飞升! 现实将在钢铁与银光的螺旋中搅碎! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = ANNOUNCER_SPANOMALIES,
+		sound = 'sound/ambience/antag/heretic/ascend_blade.ogg',
 		color_override = "pink",
 	)
 	user.client?.give_award(/datum/award/achievement/misc/blade_ascension, user)

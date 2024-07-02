@@ -2,7 +2,7 @@
 
 /obj/item/storage/box/shipping
 	name = "运输用品盒"
-	desc = "包含几个扫描仪和标签机等货仓用品，不包括包装纸。"
+	desc = "包含几个扫描仪和标签机等货仓用品，不包括包装纸."
 	illustration = "shipping"
 
 /obj/item/storage/box/shipping/PopulateContents()

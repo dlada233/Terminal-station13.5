@@ -2,10 +2,6 @@
 #define SCANMODE_HEALTH 0
 #define SCANMODE_WOUND 1
 #define SCANMODE_COUNT 2 // Update this to be the number of scan modes if you add more
-#define SCANNER_CONDENSED 0
-#define SCANNER_VERBOSE 1
-// Not updating above count because you're not meant to switch to this mode.
-#define SCANNER_NO_MODE -1
 
 /obj/item/healthanalyzer
 	name = "健康扫描仪"
@@ -24,8 +20,12 @@
 	throw_speed = 3
 	throw_range = 7
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT *2)
+	interaction_flags_click = NEED_LITERACY|NEED_LIGHT|ALLOW_RESTING
+	/// Verbose/condensed
 	var/mode = SCANNER_VERBOSE
+	/// HEALTH/WOUND
 	var/scanmode = SCANMODE_HEALTH
+	/// Advanced health analyzer
 	var/advanced = FALSE
 	custom_price = PAYCHECK_COMMAND
 	/// If this analyzer will give a bonus to wound treatments apon woundscan.
@@ -37,7 +37,8 @@
 
 /obj/item/healthanalyzer/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt并单击 [src] 来切换到肢体损伤读数模式.")
+	if(src.mode != SCANNER_NO_MODE)
+		. += span_notice("Alt并单击 [src] 来切换到肢体损伤读数模式.")
 
 /obj/item/healthanalyzer/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
@@ -54,7 +55,7 @@
 		if(SCANMODE_WOUND)
 			to_chat(user, span_notice("你切换健康分析仪以显示伤口额外信息."))
 
-/obj/item/healthanalyzer/interact_with_atom(atom/interacting_with, mob/living/user)
+/obj/item/healthanalyzer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
 		return NONE
 	if(!user.can_read(src)) //SKYRAT EDIT CHANGE - Blind People Can Analyze Again- ORIGINAL: if(!user.can_read(src) || user.is_blind())
@@ -92,7 +93,7 @@
 
 	add_fingerprint(user)
 
-/obj/item/healthanalyzer/interact_with_atom_secondary(atom/interacting_with, mob/living/user)
+/obj/item/healthanalyzer/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
 		return NONE
 	if(!user.can_read(src)) // SKYRAT EDIT CHANGE - Blind people can analyze again - ORIGINAL: if(!user.can_read(src) || user.is_blind())
@@ -142,7 +143,7 @@
 	var/tox_loss = target.getToxLoss()
 	var/fire_loss = target.getFireLoss()
 	var/brute_loss = target.getBruteLoss()
-	var/mob_status = (target.stat == DEAD ? span_alert("<b>已死亡</b>") : "<b>[round(target.health/target.maxHealth,0.01)*100]% healthy</b>")
+	var/mob_status = (target.stat == DEAD ? span_alert("<b>已死亡</b>") : "<b>[round(target.health/target.maxHealth,0.01)*100]% 健康</b>")
 
 	if(HAS_TRAIT(target, TRAIT_FAKEDEATH) && !advanced)
 		mob_status = span_alert("<b>已死亡</b>")
@@ -163,14 +164,18 @@
 	if(HAS_TRAIT(target, TRAIT_HUSK))
 		if(advanced)
 			if(HAS_TRAIT_FROM(target, TRAIT_HUSK, BURN))
-				render_list += "<span class='alert ml-1'>对象已被严重烧伤.</span>\n"
+				/* SKYRAT EDIT START: More unhusking information */
+				render_list += "<span class='alert ml-1'>对象已被严重烧伤. Proceed by repairing burn damage and following up with \
+								application of [SYNTHFLESH_UNHUSK_AMOUNT]u synthflesh or injection of rezadone as treatment.</span>\n"
 			else if (HAS_TRAIT_FROM(target, TRAIT_HUSK, CHANGELING_DRAIN))
-				render_list += "<span class='alert ml-1'>对象已被风干剥皮.</span>\n"
+				render_list += "<span class='alert ml-1'>对象已被风干. Use application of [SYNTHFLESH_LING_UNHUSK_AMOUNT]u \
+								of synthflesh or injection of rezadone as treatment.</span>\n"
+				/* SKYRAT EDIT END */
 			else
-				render_list += "<span class='alert ml-1'>对象被神秘的事故剥去了外皮.</span>\n"
+				render_list += "<span class='alert ml-1'>对象被神秘的事故损毁了外皮.</span>\n"
 
 		else
-			render_list += "<span class='alert ml-1'>对象被剥了皮.</span>\n"
+			render_list += "<span class='alert ml-1'>对象外皮已经损毁.</span>\n"
 
 	if(target.getStaminaLoss())
 		if(advanced)
@@ -212,6 +217,17 @@
 			render_list += "<span class='info ml-1'>主要障碍: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY, from_scan = TRUE)].</span>\n"
 			if(advanced)
 				render_list += "<span class='info ml-1'>次要障碍: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, TRUE)].</span>\n"
+
+	// SKYRAT EDIT ADDITION START -- Show increased/decreased brute/burn mods, to "leave a paper trail" for the fragility quirk
+	if(ishuman(target))
+		var/mob/living/carbon/human/humantarget = target
+
+		var/datum/physiology/physiology = humantarget.physiology
+		if (physiology.brute_mod != 1)
+			render_list += "<span class='danger ml-1'>Subject takes [(physiology.brute_mod) * 100]% brute damage.</span>\n"
+		if (physiology.burn_mod != 1)
+			render_list += "<span class='danger ml-1'>Subject takes [(physiology.burn_mod) * 100]% burn damage.</span>\n"
+	// SKYRAT EDIT ADDITION END
 
 	if (HAS_TRAIT(target, TRAIT_IRRADIATED))
 		render_list += "<span class='alert ml-1'>对象遭到辐射,请施以解毒治疗.</span>\n"
@@ -288,7 +304,7 @@
 				<td style='width:12em;'><font color='#ff0000'><b>Status</b></font></td>"
 
 			for(var/obj/item/organ/organ as anything in humantarget.organs)
-				var/status = organ.get_status_text()
+				var/status = organ.get_status_text(advanced)
 				if (status != "")
 					render = TRUE
 					toReport += "<tr><td><font color='#cc3333'>[organ.name]:</font></td>\
@@ -360,7 +376,7 @@
 		var/list/wounded_parts = carbontarget.get_wounded_bodyparts()
 		for(var/i in wounded_parts)
 			var/obj/item/bodypart/wounded_part = i
-			render_list += "<span class='alert ml-1'><b>Wound-重伤 [LAZYLEN(wounded_part.wounds) > 1 ? "s" : ""] 被检测到于 [wounded_part.name]</b>"
+			render_list += "<span class='alert ml-1'><b>Wound-重伤 [LAZYLEN(wounded_part.wounds) > 1 ? "" : ""] 被检测到于 [wounded_part.name]</b>"
 			for(var/k in wounded_part.wounds)
 				var/datum/wound/W = k
 				render_list += "<div class='ml-2'>[W.name] ([W.severity_text()])\n推荐对策: [W.treat_text]</div>" // less lines than in woundscan() so we don't overload people trying to get basic med info
@@ -390,7 +406,15 @@
 			else if(carbontarget.blood_volume <= BLOOD_VOLUME_OKAY)
 				render_list += "<span class='alert ml-1'>血含量: <b>危急 [blood_percent] %</b>, [carbontarget.blood_volume] cl,</span> [span_info("血型: [blood_type]")]\n"
 			else
-				render_list += "<span class='info ml-1'>血含量: [blood_percent] %, [carbontarget.blood_volume] cl, 血型: [blood_type]</span>\n"
+				render_list += "<span class='info ml-1'>血含量: [blood_percent]%, [carbontarget.blood_volume] cl, type: [blood_type]</span>\n"
+
+	// Blood Alcohol Content
+	var/blood_alcohol_content = target.get_blood_alcohol_content()
+	if(blood_alcohol_content > 0)
+		if(blood_alcohol_content >= 0.24)
+			render_list += "<span class='alert ml-1'>Blood alcohol content: <b>CRITICAL [blood_alcohol_content]%</b></span>\n"
+		else
+			render_list += "<span class='info ml-1'>Blood alcohol content: [blood_alcohol_content]%</span>\n"
 
 	// Cybernetics
 	if(iscarbon(target))
@@ -436,9 +460,9 @@
 				render_block += "<span class='notice ml-2'>[round(reagent.volume, 0.001)] units of [reagent.name][reagent.overdosed ? "</span> - [span_boldannounce("OVERDOSING")]" : ".</span>"]\n"
 
 		if(!length(render_block)) //If no VISIBLY DISPLAYED reagents are present, we report as if there is nothing.
-			render_list += "<span class='notice ml-1'>对象的血液中没有任何reagents-试剂.</span>\n"
+			render_list += "<span class='notice ml-1'>对象的血液中没有任何试剂成分.</span>\n"
 		else
-			render_list += "<span class='notice ml-1'>对象的血液中含有以下reagents-试剂:</span>\n"
+			render_list += "<span class='notice ml-1'>对象的血液中含有以下试剂成分:</span>\n"
 			render_list += render_block //Otherwise, we add the header, reagent readouts, and clear the readout block for use on the stomach.
 			render_block.Cut()
 
@@ -484,17 +508,13 @@
 		// we handled the last <br> so we don't need handholding
 		to_chat(user, examine_block(jointext(render_list, "")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 
-/obj/item/healthanalyzer/AltClick(mob/user)
-	..()
-
-	if(!user.can_perform_action(src, NEED_LITERACY|NEED_LIGHT) || user.is_blind())
-		return
-
+/obj/item/healthanalyzer/click_alt(mob/user)
 	if(mode == SCANNER_NO_MODE)
-		return
+		return CLICK_ACTION_BLOCKING
 
 	mode = !mode
 	to_chat(user, mode == SCANNER_VERBOSE ? "The scanner now shows specific limb damage." : "The scanner no longer shows limb damage.")
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/healthanalyzer/advanced
 	name = "高级健康分析仪"
@@ -517,14 +537,14 @@
 	var/advised = FALSE
 	for(var/limb in patient.get_wounded_bodyparts())
 		var/obj/item/bodypart/wounded_part = limb
-		render_list += "<span class='alert ml-1'><b>Warning: Wound-重伤[LAZYLEN(wounded_part.wounds) > 1? "s" : ""] 被检测到于 [wounded_part.name]</b>"
+		render_list += "<span class='alert ml-1'><b>Warning: Wound-重伤[LAZYLEN(wounded_part.wounds) > 1? "" : ""] 被检测到于 [wounded_part.name]</b>"
 		for(var/limb_wound in wounded_part.wounds)
 			var/datum/wound/current_wound = limb_wound
 			render_list += "<div class='ml-2'>[simple_scan ? current_wound.get_simple_scanner_description() : current_wound.get_scanner_description()]</div>\n"
 			if (scanner.give_wound_treatment_bonus)
 				ADD_TRAIT(current_wound, TRAIT_WOUND_SCANNED, ANALYZER_TRAIT)
 				if(!advised)
-					to_chat(user, span_notice("你注意到明亮的全息图像出现在你的 [(length(wounded_part.wounds) || length(patient.get_wounded_bodyparts()) ) > 1 ? "various wounds" : "wound"]之上. 它们充满了有用的参数信息，这对于治疗有所帮助!"))
+					to_chat(user, span_notice("你注意到明亮的全息图像出现在你的 [(length(wounded_part.wounds) || length(patient.get_wounded_bodyparts()) ) > 1 ? "不同伤口" : "伤口"]之上. 它们充满了有用的参数信息，这对于治疗有所帮助!"))
 					advised = TRUE
 		render_list += "</span>"
 
@@ -591,7 +611,7 @@
 /obj/item/healthanalyzer/simple/proc/violence_damage(mob/living/user)
 	user.adjustBruteLoss(4)
 
-/obj/item/healthanalyzer/simple/interact_with_atom(atom/interacting_with, mob/living/user)
+/obj/item/healthanalyzer/simple/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
 		return NONE
 	if(!user.can_read(src)) //SKYRAT EDIT CHANGE - Blind People Can Analyze Again - ORIGINAL: if(!user.can_read(src) || user.is_blind())
@@ -701,9 +721,6 @@
 #undef SCANMODE_HEALTH
 #undef SCANMODE_WOUND
 #undef SCANMODE_COUNT
-#undef SCANNER_CONDENSED
-#undef SCANNER_VERBOSE
-#undef SCANNER_NO_MODE
 
 #undef AID_EMOTION_NEUTRAL
 #undef AID_EMOTION_HAPPY

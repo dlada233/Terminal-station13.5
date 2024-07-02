@@ -91,7 +91,7 @@
 		types += current_type
 		current_type = type2parent(current_type)
 	types += /datum/traitor_objective
-	// 反转列表方向
+	// Reverse the list direction
 	reverse_range(types)
 	var/list/supported_configurations = supported_configuration_changes()
 	for(var/typepath in types)
@@ -116,7 +116,7 @@
 	var/deviance = (SStraitor.current_global_progression - handler.progression_points) / SStraitor.progression_scaling_deviance
 	if(abs(deviance) < global_progression_deviance_required)
 		return
-	if(abs(deviance) == deviance) // 如果是正值
+	if(abs(deviance) == deviance) // If it is positive
 		deviance = deviance - global_progression_deviance_required
 	else
 		deviance = deviance + global_progression_deviance_required
@@ -124,7 +124,7 @@
 	if(abs(deviance) != deviance)
 		coeff *= -1
 
-	// 当系数接近 -1 时影响减小. 是线性的
+	// This has less of an effect as the coeff gets nearer to -1. Is linear
 	coeff += progression_cost_coeff * min(max(1 - abs(coeff), 1), 0)
 
 
@@ -138,18 +138,18 @@
 	handler = null
 	return ..()
 
-/// 在目标即将生成时调用. 通过强制添加目标绕过此步骤.
-/// 返回 false 或 true 的效果与 generate_objective 过程相同.
+/// Called whenever the objective is about to be generated. Bypassed by forcefully adding objectives.
+/// Returning false or true will do the same as the generate_objective proc.
 /datum/traitor_objective/proc/can_generate_objective(datum/mind/generating_for, list/possible_duplicates)
 	return TRUE
 
-/// 当目标应该生成时调用. 应该返回目标是否成功生成.
-/// 如果返回 false，该目标将被移除作为正在生成的叛徒的潜在目标.
-/// 这是暂时的，当再次为叛徒生成目标时会再次运行此过程.
+/// Called when the objective should be generated. Should return if the objective has been successfully generated.
+/// If false is returned, the objective will be removed as a potential objective for the traitor it is being generated for.
+/// This is only temporary, it will run the proc again when objectives are generated for the traitor again.
 /datum/traitor_objective/proc/generate_objective(datum/mind/generating_for, list/possible_duplicates)
 	return FALSE
 
-/// 用于清理信号并停止监听状态.
+/// Used to clean up signals and stop listening to states.
 /datum/traitor_objective/proc/ungenerate_objective()
 	return
 
@@ -167,41 +167,41 @@
 		"time_of_creation" = time_of_creation,
 	)
 
-/// 将类型转换为用于日志记录和调试显示的有用调试字符串.
+/// Converts the type into a useful debug string to be used for logging and debug display.
 /datum/traitor_objective/proc/to_debug_string()
-	return "[type] (名称: [name], TC: [telecrystal_reward], 进展: [progression_reward], 创建时间: [time_of_creation])"
+	return "[type] (Name: [name], TC: [telecrystal_reward], Progression: [progression_reward], Time of creation: [time_of_creation])"
 
 /datum/traitor_objective/proc/save_objective()
 	SSblackbox.record_feedback("associative", "traitor_objective", 1, get_log_data())
 
-/// 用于处理目标清理.
+/// Used to handle cleaning up the objective.
 /datum/traitor_objective/proc/handle_cleanup()
 	time_of_completion = world.time
 	ungenerate_objective()
 	if(objective_state == OBJECTIVE_STATE_INACTIVE)
 		skipped = TRUE
-		handler.complete_objective(src) // 立即移除此目标，没有理由保留它. 它甚至未激活
+		handler.complete_objective(src) // Remove this objective immediately, no reason to keep it around. It isn't even active
 
-/// 用于失败目标. 玩家可以在 UI 中清除已完成的目标
+/// Used to fail objectives. Players can clear completed objectives in the UI
 /datum/traitor_objective/proc/fail_objective(penalty_cost = 0, trigger_update = TRUE)
-	// 不允许玩家完成已成功/失败的目标
+	// Don't let players succeed already succeeded/failed objectives
 	if(objective_state != OBJECTIVE_STATE_INACTIVE && objective_state != OBJECTIVE_STATE_ACTIVE)
 		return
 	SEND_SIGNAL(src, COMSIG_TRAITOR_OBJECTIVE_FAILED)
 	handle_cleanup()
 	log_traitor("[key_name(handler.owner)] [objective_state == OBJECTIVE_STATE_INACTIVE? "missed" : "已失败"] [to_debug_string()]")
 	if(penalty_cost)
-		handler.telecrystals -= penalty_cost
+		handler.add_telecrystals(-penalty_cost)
 		objective_state = OBJECTIVE_STATE_FAILED
 	else
 		objective_state = OBJECTIVE_STATE_INVALID
 	save_objective()
 	if(trigger_update)
-		handler.on_update() // 触发 UI 更新
+		handler.on_update() // Trigger an update to the UI
 
-/// 用于成功完成目标. 允许玩家在 UI 中兑换.
+/// Used to succeed objectives. Allows the player to cash it out in the UI.
 /datum/traitor_objective/proc/succeed_objective()
-	// 不允许玩家完成已成功/失败的目标
+	// Don't let players succeed already succeeded/failed objectives
 	if(objective_state != OBJECTIVE_STATE_INACTIVE && objective_state != OBJECTIVE_STATE_ACTIVE)
 		return
 	SEND_SIGNAL(src, COMSIG_TRAITOR_OBJECTIVE_COMPLETED)
@@ -210,9 +210,9 @@
 	log_traitor("[key_name(handler.owner)] [objective_state == OBJECTIVE_STATE_INACTIVE? "missed" : "已完成"] [to_debug_string()]")
 	objective_state = OBJECTIVE_STATE_COMPLETED
 	save_objective()
-	handler.on_update() // 触发 UI 更新
+	handler.on_update() // Trigger an update to the UI
 
-/// 由玩家输入调用，不要直接调用。验证目标是否完成，如果完成则支付给处理者。
+/// Called by player input, do not call directly. Validates whether the objective is finished and pays out the handler if it is.
 /datum/traitor_objective/proc/finish_objective(mob/user)
 	switch(objective_state)
 		if(OBJECTIVE_STATE_FAILED, OBJECTIVE_STATE_INVALID)
@@ -224,12 +224,12 @@
 			return TRUE
 	return FALSE
 
-/// 当应该给用户奖励时调用。
+/// Called when rewards should be given to the user.
 /datum/traitor_objective/proc/completion_payout()
 	handler.progression_points += progression_reward
-	handler.telecrystals += telecrystal_reward
+	handler.add_telecrystals(telecrystal_reward)
 
-/// 用于向传送链接 UI 发送数据
+/// Used for sending data to the uplink UI
 /datum/traitor_objective/proc/uplink_ui_data(mob/user)
 	return list(
 		"name" = name,
@@ -247,7 +247,7 @@
 	SStraitor.on_objective_taken(src)
 	log_traitor("[key_name(handler.owner)] 已接取目标: [to_debug_string()]")
 
-/// 用于为 UI 生成按钮。使用 ui_perform_action 响应点击。
+/// Used for generating the UI buttons for the UI. Use ui_perform_action to respond to clicks.
 /datum/traitor_objective/proc/generate_ui_buttons(mob/user)
 	return
 
@@ -259,6 +259,6 @@
 		"action" = action,
 	))
 
-/// 返回 TRUE 以触发 UI 更新
+/// Return TRUE to trigger a UI update
 /datum/traitor_objective/proc/ui_perform_action(mob/user, action)
 	return TRUE

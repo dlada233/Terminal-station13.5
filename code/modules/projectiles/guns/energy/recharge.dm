@@ -12,7 +12,7 @@
 	/// How much time we need to recharge
 	var/recharge_time = 1.6 SECONDS
 	/// Sound we use when recharged
-	var/recharge_sound = 'sound/weapons/kenetic_reload.ogg'
+	var/recharge_sound = 'sound/weapons/kinetic_reload.ogg'
 	/// An ID for our recharging timer.
 	var/recharge_timerid
 	/// Do we recharge slower with more of our type?
@@ -30,6 +30,7 @@
 	. = ..()
 	if(!holds_charge)
 		empty()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/item/gun/energy/recharge/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	. = ..()
@@ -77,9 +78,6 @@
 	carried = max(carried, 1)
 	deltimer(recharge_timerid)
 	recharge_timerid = addtimer(CALLBACK(src, PROC_REF(reload)), set_recharge_time * carried, TIMER_STOPPABLE)
-
-/obj/item/gun/energy/recharge/emp_act(severity)
-	return
 
 /obj/item/gun/energy/recharge/proc/reload()
 	cell.give(cell.maxcharge)
@@ -156,15 +154,17 @@
 	该效果同样对<b>赛博格头灯<b>有用, 并在近距离时持续效果更长.<br><br>\
 	虽然有些人觉得这是很糟糕的设计，但有些人显然能从破坏照明资源中获得快乐，望购者自慎.")
 
-/obj/item/gun/energy/recharge/fisher/afterattack(atom/target, mob/living/user, flag, params)
-	// you should just shoot them, but in case you can't/wont
+/obj/item/gun/energy/recharge/fisher/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
-	if(user.Adjacent(target))
-		var/obj/projectile/energy/fisher/melee/simulated_hit = new
-		simulated_hit.on_hit(target)
+	if(.)
+		return
+	var/obj/projectile/energy/fisher/melee/simulated_hit = new
+	simulated_hit.firer = user
+	simulated_hit.on_hit(target_mob)
 
 /obj/item/gun/energy/recharge/fisher/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	// ...you reeeeeally just shoot them, but in case you can't/won't
 	. = ..()
 	var/obj/projectile/energy/fisher/melee/simulated_hit = new
+	simulated_hit.firer = throwingdatum.get_thrower()
 	simulated_hit.on_hit(hit_atom)

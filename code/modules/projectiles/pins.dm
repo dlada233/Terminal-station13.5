@@ -25,38 +25,37 @@
 	if(isgun(newloc))
 		gun = newloc
 
-/obj/item/firing_pin/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	if(proximity_flag)
-		if(isgun(target))
-			. |= AFTERATTACK_PROCESSED_ITEM
-			var/obj/item/gun/targeted_gun = target
-			var/obj/item/firing_pin/old_pin = targeted_gun.pin
-			if(old_pin?.pin_removable && (force_replace || old_pin.pin_hot_swappable))
-				if(Adjacent(user))
-					user.put_in_hands(old_pin)
-				else
-					old_pin.forceMove(targeted_gun.drop_location())
-				old_pin.gun_remove(user)
+/obj/item/firing_pin/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!isgun(interacting_with))
+		return NONE
 
-			if(!targeted_gun.pin)
-				if(!user.temporarilyRemoveItemFromInventory(src))
-					return .
-				if(gun_insert(user, targeted_gun))
-					if(old_pin)
-						balloon_alert(user, "已更换撞针")
-					else
-						balloon_alert(user, "已安装撞针")
-			else
-				to_chat(user, span_notice("这把枪已经安装了撞针."))
+	var/obj/item/gun/targeted_gun = interacting_with
+	var/obj/item/firing_pin/old_pin = targeted_gun.pin
+	if(old_pin?.pin_removable && (force_replace || old_pin.pin_hot_swappable))
+		if(Adjacent(user))
+			user.put_in_hands(old_pin)
+		else
+			old_pin.forceMove(targeted_gun.drop_location())
+		old_pin.gun_remove(user)
 
+	if(!targeted_gun.pin)
+		if(!user.temporarilyRemoveItemFromInventory(src))
 			return .
+		if(gun_insert(user, targeted_gun))
+			if(old_pin)
+				balloon_alert(user, "已更换撞针")
+			else
+				balloon_alert(user, "已安装撞针")
+	else
+		to_chat(user, span_notice("这把枪已经安装了撞针."))
+
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/firing_pin/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "身份验证遭到覆写")
+	balloon_alert(user, "authentication checks overridden")
 	return TRUE
 
 /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
@@ -137,7 +136,7 @@
 /obj/item/firing_pin/clown
 	name = "搞笑撞针"
 	desc = "先进的小丑技术将武器们变得更加实用."
-	color = "#FFFF00"
+	color = COLOR_YELLOW
 	fail_message = "honk!"
 	force_replace = TRUE
 
@@ -190,13 +189,15 @@
 	fail_message = "dna check failed!"
 	var/unique_enzymes = null
 
-/obj/item/firing_pin/dna/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	if(proximity_flag && iscarbon(target))
-		var/mob/living/carbon/M = target
+/obj/item/firing_pin/dna/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(iscarbon(interacting_with))
+		var/mob/living/carbon/M = interacting_with
 		if(M.dna && M.dna.unique_enzymes)
 			unique_enzymes = M.dna.unique_enzymes
 			balloon_alert(user, "DNA锁设置")
+			return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_BLOCKING
+	return ..()
 
 /obj/item/firing_pin/dna/pin_auth(mob/living/carbon/user)
 	if(user && user.dna && user.dna.unique_enzymes)
@@ -221,7 +222,7 @@
 /obj/item/firing_pin/paywall
 	name = "付费撞针"
 	desc = "该撞针使武器开火时从使用者的银行账户中扣款，付款方式可事前自定义设置."
-	color = "#FFD700"
+	color = COLOR_GOLD
 	fail_message = ""
 	///list of account IDs which have accepted the license prompt. If this is the multi-payment pin, then this means they accepted the waiver that each shot will cost them money
 	var/list/gun_owners = list()
@@ -307,7 +308,7 @@
 	if(active_prompt_user == user)
 		return FALSE
 	active_prompt_user = user
-	var/license_request = tgui_alert(user, "对于[( multi_payment ) ? "[gun.name]的每次设计" : "[gun.name]的使用许可证"]，你希望支付多少[payment_amount]信用点[( payment_amount > 1 ) ? "" : ""]?", "武器购买", list("Yes", "No"), 15 SECONDS)
+	var/license_request = tgui_alert(user, "对于[( multi_payment ) ? "[gun.name]的每次射击" : "[gun.name]的使用许可证"]，你希望支付多少[payment_amount]信用点[( payment_amount > 1 ) ? "" : ""]?", "武器购买", list("Yes", "No"), 15 SECONDS)
 	if(!user.can_perform_action(src))
 		active_prompt_user = null
 		return FALSE
@@ -380,11 +381,12 @@
 
 /obj/item/firing_pin/monkey/pin_auth(mob/living/user)
 	if(!is_simian(user))
-		playsound(get_turf(src), "sound/creatures/monkey/monkey_screech_[rand(1,7)].ogg", 75, TRUE)
+		playsound(src, SFX_SCREECH, 75, TRUE)
 		return FALSE
 	return TRUE
 
 /obj/item/firing_pin/Destroy()
 	if(gun)
 		gun.pin = null
+		gun = null
 	return ..()

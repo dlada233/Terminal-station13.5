@@ -1,15 +1,15 @@
 /datum/round_event_control/heart_attack
-	name = "Random Heart Attack"
+	name = "Random Heart Attack-随机心脏发病"
 	typepath = /datum/round_event/heart_attack
 	weight = 20
 	max_occurrences = 2
 	min_players = 40 // To avoid shafting lowpop
 	category = EVENT_CATEGORY_HEALTH
-	description = "A random crewmember's heart gives out."
+	description = "随机船员的心脏停跳."
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/minimum_candidate_requirement/heart_attack, /datum/event_admin_setup/input_number/heart_attack)
-	///Candidates for recieving a healthy dose of heart disease
+	///Candidates for receiving a healthy dose of heart disease
 	var/list/heart_attack_candidates = list()
 
 /datum/round_event_control/heart_attack/can_spawn_event(players_amt, allow_magic = FALSE)
@@ -69,7 +69,7 @@
 /datum/round_event/heart_attack/proc/attack_heart()
 	var/mob/living/carbon/human/winner = pick_weight(victims)
 	if(winner.has_status_effect(/datum/status_effect/exercised)) //Stuff that should "block" a heart attack rather than just deny eligibility for one goes here.
-		winner.visible_message(span_warning("[winner] 突然咕噜了一声，紧抓自己的胸部，并急促地喘气了一口气."), span_medal("你的胸部突然感到疼痛，但好在随后就消退了. \
+		winner.visible_message(span_warning("[winner]突然咕噜了一声，紧抓自己的胸部，并急促地喘气了一口气."), span_medal("你的胸部突然感到疼痛，但好在随后就消退了. \
 								你觉得你刚刚路过鬼门关."), span_hear("你听到某人的呼吸突然变得急促，接着是松了一口气."), 4)
 		winner.playsound_local(get_turf(winner), 'sound/health/slowbeat.ogg', 40, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 		winner.Stun(3 SECONDS)
@@ -94,7 +94,7 @@
 	return length(heart_control.heart_attack_candidates)
 
 /datum/event_admin_setup/input_number/heart_attack
-	input_text = "Please select how many people's days you wish to ruin."
+	input_text = "请选择你希望毁了多少人的一天."
 	default_value = 0
 	max_value = 90 //Will be overridden
 	min_value = 0

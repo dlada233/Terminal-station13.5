@@ -113,6 +113,16 @@
 	r_hand = /obj/item/gun/energy/recharge/ebow
 	shoes = /obj/item/clothing/shoes/magboots/advance
 
+/datum/outfit/heretic_hallucination
+	name = "Heretic Hallucination"
+
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	neck = /obj/item/clothing/neck/heretic_focus
+	r_hand = /obj/item/melee/touch_attack/mansus_fist
+	head = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
+	shoes = /obj/item/clothing/shoes/sneakers/black
+
 /datum/outfit/rev_cutout
 	name = "Revolutionary Cutout"
 
@@ -175,7 +185,7 @@
 	l_hand = /obj/item/fireaxe
 
 /datum/outfit/psycho/post_equip(mob/living/carbon/human/H)
-	for(var/obj/item/carried_item in H.get_equipped_items(include_pockets = TRUE, include_accessories = TRUE))
+	for(var/obj/item/carried_item in H.get_equipped_items(INCLUDE_POCKETS | INCLUDE_ACCESSORIES))
 		carried_item.add_mob_blood(H)//Oh yes, there will be blood...
 	for(var/obj/item/I in H.held_items)
 		I.add_mob_blood(H)

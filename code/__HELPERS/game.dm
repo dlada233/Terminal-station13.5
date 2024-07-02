@@ -205,25 +205,37 @@
 		return
 	winset(flashed_client, "mainwindow", "flash=5")
 
-///Recursively checks if an item is inside a given type, even through layers of storage. Returns the atom if it finds it.
+///Recursively checks if an item is inside a given type/atom, even through layers of storage. Returns the atom if it finds it.
 /proc/recursive_loc_check(atom/movable/target, type)
-	var/atom/atom_to_find = target
-	if(istype(atom_to_find, type))
-		return atom_to_find
+	var/atom/atom_to_find = null
 
-	while(!istype(atom_to_find.loc, type))
-		if(!atom_to_find.loc)
-			return
-		atom_to_find = atom_to_find.loc
+	if(ispath(type))
+		atom_to_find = target
+		if(istype(atom_to_find, type))
+			return atom_to_find
 
-	return atom_to_find.loc
+		while(!istype(atom_to_find.loc, type))
+			if(!atom_to_find.loc)
+				return
+			atom_to_find = atom_to_find.loc
+	else if(isatom(type))
+		atom_to_find = target
+		if(atom_to_find.loc == type)
+			return atom_to_find
+
+		while(atom_to_find.loc != type)
+			if(!atom_to_find.loc)
+				return
+			atom_to_find = atom_to_find.loc
+
+	return atom_to_find
 
 ///Send a message in common radio when a player arrives
 /proc/announce_arrival(mob/living/carbon/human/character, rank)
 	if(!SSticker.IsRoundInProgress() || QDELETED(character))
 		return
 	var/area/player_area = get_area(character)
-	deadchat_broadcast("<span class='game'>已于<span class='name'>[player_area.name]</span></span>抵达空间站", "<span class='game'><span class='name'>[character.real_name]</span> ([rank])</span>", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
+	deadchat_broadcast("<span class='game'> has arrived at the station at <span class='name'>[player_area.name]</span>.</span>", "<span class='game'><span class='name'>[character.real_name]</span> ([rank])</span>", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
 	if(!character.mind)
 		return
 	if(!GLOB.announcement_systems.len)
@@ -271,7 +283,7 @@
 		if(!current_apc.cell || !SSmapping.level_trait(current_apc.z, ZTRAIT_STATION))
 			continue
 		var/area/apc_area = current_apc.area
-		if(GLOB.typecache_powerfailure_safe_areas[apc_area.type])
+		if(is_type_in_typecache(apc_area, GLOB.typecache_powerfailure_safe_areas))
 			continue
 
 		var/duration = rand(duration_min,duration_max)
@@ -300,4 +312,4 @@
 		message = html_encode(message)
 	else
 		message = copytext(message, 2)
-	to_chat(target, span_purple(examine_block("<span class='oocplain'><b>回合小贴士: </b>[message]</span>")))
+	to_chat(target, span_purple(examine_block("<span class='oocplain'><b>Tip of the round: </b>[message]</span>")))

@@ -4,7 +4,7 @@
 /datum/supply_pack/vending/bartending
 	name = "Booze-o-mat and Coffee 补货单元"
 	desc = "Bring on the booze and coffee vending machine refills."
-	cost = CARGO_CRATE_VALUE * 4
+	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/boozeomat,
 					/obj/item/vending_refill/coffee,
 				)
@@ -14,7 +14,7 @@
 	name = "Cigarette 补货单元"
 	desc = "Don't believe the reports - smoke today! Contains a \
 		cigarette vending machine refill."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/cigarette)
 	crate_name = "cigarette 补货单元"
 	crate_type = /obj/structure/closet/crate
@@ -62,7 +62,7 @@
 /datum/supply_pack/vending/imported
 	name = "Imported Vending Machines"
 	desc = "Vending machines famous in other parts of the galaxy."
-	cost = CARGO_CRATE_VALUE * 8
+	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/vending_refill/sustenance,
 					/obj/item/vending_refill/robotics,
 					/obj/item/vending_refill/sovietsoda,
@@ -85,7 +85,7 @@
 	name = "PTech 补货单元"
 	desc = "Not enough cartridges after half the crew lost their PDA \
 		to explosions? This may fix it."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 2.5
 	contains = list(/obj/item/vending_refill/cart)
 	crate_name = "\improper PTech 补货单元"
 
@@ -93,7 +93,7 @@
 	name = "SecTech 补货单元"
 	desc = "Officer Paul bought all the donuts? Then refill the security \
 		vendor with this crate."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/vending_refill/security)
 	crate_name = "\improper SecTech 补货单元"
@@ -103,7 +103,7 @@
 	name = "Snack 补货单元"
 	desc = "One vending machine refill of cavity-bringin' goodness! \
 		The number one dentist recommended order!"
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/snack)
 	crate_name = "snacks 补货单元"
 
@@ -111,7 +111,7 @@
 	name = "Softdrinks 补货单元"
 	desc = "Got whacked by a toolbox, but you still have those pesky teeth? \
 		Get rid of those pearly whites with this soda machine refill, today!"
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/cola)
 	crate_name = "soft drinks 补货单元"
 
@@ -138,7 +138,7 @@
 	name = "Autodrobe 补货单元"
 	desc = "Autodrobe missing your favorite dress? Solve that issue today \
 		with this autodrobe refill."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/autodrobe)
 	crate_name = "autodrobe 补货单元"
 
@@ -200,7 +200,7 @@
 	name = "Science Wardrobe 补货单元"
 	desc = "This crate contains refills for the SciDrobe, \
 		GeneDrobe, and RoboDrobe."
-	cost = CARGO_CRATE_VALUE * 3
+	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(/obj/item/vending_refill/wardrobe/robo_wardrobe,
 					/obj/item/vending_refill/wardrobe/gene_wardrobe,
 					/obj/item/vending_refill/wardrobe/science_wardrobe,

@@ -7,6 +7,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
+	operating_sound = 'sound/items/crowbar_prying.ogg'
 	obj_flags = CONDUCTS_ELECTRICITY
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
@@ -51,7 +52,6 @@
 	icon_state = "crowbar"
 	belt_icon_state = "crowbar_alien"
 	toolspeed = 0.1
-
 
 /obj/item/crowbar/large
 	name = "大撬棍"
@@ -235,7 +235,7 @@
 	var/mech_dir = mech.dir
 	mech.balloon_alert(user, "撬开中...")
 	playsound(mech, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
-	if(!use_tool(mech, user, mech.enclosed ? 5 SECONDS : 3 SECONDS, volume = 0, extra_checks = CALLBACK(src, PROC_REF(extra_checks), mech, mech_dir)))
+	if(!use_tool(mech, user, (mech.mecha_flags & IS_ENCLOSED) ? 5 SECONDS : 3 SECONDS, volume = 0, extra_checks = CALLBACK(src, PROC_REF(extra_checks), mech, mech_dir)))
 		mech.balloon_alert(user, "中断!")
 		return
 	user.log_message("已撬开[mech], located at [loc_name(mech)], which is currently occupied by [mech.occupants.Join(", ")].", LOG_ATTACK)

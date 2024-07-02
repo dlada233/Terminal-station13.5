@@ -184,7 +184,6 @@
 
 /datum/crafting_recipe/food/clowncake
 	name = "小丑蛋糕"
-	always_available = FALSE
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/sundae = 2,
@@ -192,16 +191,17 @@
 	)
 	result = /obj/item/food/cake/clown_cake
 	category = CAT_CAKE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/vanillacake
 	name = "香草蛋糕"
-	always_available = FALSE
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/vanillapod = 2
 	)
 	result = /obj/item/food/cake/vanilla_cake
 	category = CAT_CAKE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/trumpetcake
 	name = "宇航员蛋糕"

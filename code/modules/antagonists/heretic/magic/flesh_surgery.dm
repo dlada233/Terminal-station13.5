@@ -83,23 +83,24 @@
 
 /// If cast on an organ, we'll restore it's health and even un-fail it.
 /datum/action/cooldown/spell/touch/flesh_surgery/proc/heal_organ(obj/item/melee/touch_attack/hand, obj/item/organ/to_heal, mob/living/carbon/caster)
+	if(to_heal.damage == 0)
+		to_heal.balloon_alert(caster, "已经在良好状态了!")
+		return FALSE
 	to_heal.balloon_alert(caster, "治愈器官...")
 	if(!do_after(caster, 1 SECONDS, to_heal, extra_checks = CALLBACK(src, PROC_REF(heal_checks), hand, to_heal, caster)))
 		to_heal.balloon_alert(caster, "被打断!")
 		return FALSE
 
 	var/organ_hp_to_heal = to_heal.maxHealth * organ_percent_healing
-	if(to_heal.damage < organ_hp_to_heal)
-		to_heal.set_organ_damage(organ_hp_to_heal)
-		to_heal.balloon_alert(caster, "器官已治愈")
-		playsound(to_heal, 'sound/magic/staff_healing.ogg', 30)
-		new /obj/effect/temp_visual/cult/sparks(get_turf(to_heal))
-		caster.visible_message(
-			span_warning("在[caster]双手发出的血色光芒下，自己的[to_heal]恢复到了良好状态!"),
-			span_notice("在你的双手发出的血色光芒下，自己的[to_heal]恢复到了良好状态!"),
-		)
-	else
-		to_heal.balloon_alert(caster, "已经在良好状态了!")
+	to_heal.set_organ_damage(max(0 , to_heal.damage - organ_hp_to_heal))
+	to_heal.balloon_alert(caster, "器官已治愈")
+	playsound(to_heal, 'sound/magic/staff_healing.ogg', 30)
+	new /obj/effect/temp_visual/cult/sparks(get_turf(to_heal))
+	var/condition = (to_heal.damage > 0) ? "更好的" : "完美"
+	caster.visible_message(
+		span_warning("在[caster]双手发出的血色光芒下，自己的[to_heal]恢复到了[condition]状态!"),
+		span_notice("在你的双手发出的血色光芒下，自己的[to_heal]恢复到了[condition]状态!"),
+	)
 
 	return TRUE
 
@@ -132,7 +133,7 @@
 
 	// Round u pto the nearest generic zone (body, chest, arm)
 	var/zone_to_check = check_zone(caster.zone_selected)
-	var/parsed_zone = parse_zone(zone_to_check)
+	var/parsed_zone = victim.parse_zone_with_bodypart(zone_to_check)
 
 	var/list/organs_we_can_remove = list()
 	for(var/obj/item/organ/organ as anything in carbon_victim.organs)
@@ -182,6 +183,7 @@
 	carbon_victim.add_atom_colour(COLOR_DARK_RED, TEMPORARY_COLOUR_PRIORITY)
 	if(!do_after(caster, time_it_takes, carbon_victim, extra_checks = CALLBACK(src, PROC_REF(extraction_checks), picked_organ, hand, victim, caster)))
 		carbon_victim.balloon_alert(caster, "被打断!")
+		carbon_victim.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_DARK_RED)
 		return FALSE
 
 	// Visible message done before Remove()
@@ -199,7 +201,7 @@
 		)
 
 	picked_organ.Remove(carbon_victim)
-	carbon_victim.balloon_alert(caster, "[chosen_organ]被移除")
+	carbon_victim.balloon_alert(caster, "[chosen_organ] removed")
 	carbon_victim.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_DARK_RED)
 	playsound(victim, 'sound/effects/dismember.ogg', 50, TRUE)
 	if(carbon_victim.stat == CONSCIOUS)
@@ -207,7 +209,7 @@
 		carbon_victim.emote("scream")
 
 	// We need to wait for the spell to actually finish casting to put the organ in their hands, hence, 1 ms timer.
-	addtimer(CALLBACK(caster, TYPE_PROC_REF(/mob, put_in_hands), picked_organ), 1)
+	addtimer(CALLBACK(caster, TYPE_PROC_REF(/mob, put_in_hands), picked_organ), 0.1 SECONDS)
 	return TRUE
 
 /// Extra checks ran while we're extracting an organ to make sure we can continue to do.

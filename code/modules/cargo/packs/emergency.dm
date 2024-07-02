@@ -11,6 +11,8 @@
 					/obj/item/storage/bag/bio,
 					/obj/item/reagent_containers/syringe/antiviral = 2,
 					/obj/item/clothing/gloves/latex/nitrile = 2,
+					/obj/item/storage/box/masks,
+					/obj/item/storage/box/gloves,
 				)
 	crate_name = "生物防化服箱"
 

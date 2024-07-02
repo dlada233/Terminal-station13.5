@@ -1,10 +1,10 @@
 /datum/round_event_control/anomaly/anomaly_grav
-	name = "Anomaly: Gravitational"
+	name = "Anomaly: Gravitational-重力"
 	typepath = /datum/round_event/anomaly/anomaly_grav
 
 	max_occurrences = 5
 	weight = 25
-	description = "This anomaly throws things around."
+	description = "该异常使周围物品乱飞."
 	min_wizard_trigger_potency = 1
 	max_wizard_trigger_potency = 3
 
@@ -14,12 +14,12 @@
 	anomaly_path = /obj/effect/anomaly/grav
 
 /datum/round_event_control/anomaly/anomaly_grav/high
-	name = "Anomaly: Gravitational (High Intensity)"
+	name = "Anomaly: Gravitational (High Intensity)-重力场"
 	typepath = /datum/round_event/anomaly/anomaly_grav/high
 	weight = 15
 	max_occurrences = 1
 	earliest_start = 20 MINUTES
-	description = "This anomaly has an intense gravitational field, and can disable the gravity generator."
+	description = "该异常产生重力场，可使重力发生器失效."
 
 /datum/round_event/anomaly/anomaly_grav/high
 	start_when = ANOMALY_START_HARMFUL_TIME

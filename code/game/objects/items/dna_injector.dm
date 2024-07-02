@@ -163,7 +163,7 @@
 /obj/item/dnainjector/activator
 	name = "\improper DNA激活器"
 	desc = "如果对象拥有目标基因，则注射后激活对应突变."
-	var/doitanyway = FALSE
+	var/force_mutate = FALSE
 	var/research = FALSE //Set to true to get expended and filled injectors for chromosomes
 	var/filled = FALSE
 	var/crispr_charge = FALSE // Look for viruses, look at symptoms, if research and Dormant DNA Activator or Viral Evolutionary Acceleration, set to true
@@ -176,7 +176,7 @@
 		if(istype(added_mutation, /datum/mutation/human))
 			mutation = added_mutation.type
 		if(!target.dna.activate_mutation(added_mutation))
-			if(doitanyway)
+			if(force_mutate)
 				target.dna.add_mutation(added_mutation, MUT_EXTRA)
 		else if(research && target.client)
 			filled = TRUE
@@ -184,7 +184,7 @@
 			for(var/datum/symptom/symp in disease.symptoms)
 				if((symp.type == /datum/symptom/genetic_mutation) || (symp.type == /datum/symptom/viralevolution))
 					crispr_charge = TRUE
-		log_combat(user, target, "[!doitanyway ? "failed to inject" : "injected"]", "[src] ([mutation])[crispr_charge ? " with CRISPR charge" : ""]")
+		log_combat(user, target, "[!force_mutate ? "failed to inject" : "injected"]", "[src] ([mutation])[crispr_charge ? " with CRISPR charge" : ""]")
 	return TRUE
 
 /// DNA INJECTORS

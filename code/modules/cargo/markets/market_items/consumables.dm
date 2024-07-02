@@ -1,5 +1,6 @@
 /datum/market_item/consumable
 	category = "消耗品"
+	abstract_path = /datum/market_item/consumable
 
 /datum/market_item/consumable/clown_tears
 	name = "一瓶小丑之泪"
@@ -39,7 +40,8 @@
 				/obj/item/storage/pill_bottle/lsd,
 				/obj/item/storage/pill_bottle/aranesp,
 				/obj/item/storage/pill_bottle/stimulant))
-	return new pillbottle(loc)
+	item = pillbottle
+	return ..()
 
 /datum/market_item/consumable/floor_pill
 	name = "奇怪的药丸"

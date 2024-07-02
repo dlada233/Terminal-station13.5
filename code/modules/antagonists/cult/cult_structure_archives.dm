@@ -32,7 +32,7 @@
 	options = archive_items
 
 /obj/structure/destructible/cult/item_dispenser/archives/succcess_message(mob/living/user, obj/item/spawned_item)
-	to_chat(user, span_cultitalic("你从[src]中生成了[spawned_item]!"))
+	to_chat(user, span_cult_italic("你从[src]中生成了[spawned_item]!"))
 
 // Preset for the library that doesn't spawn runed metal on destruction.
 /obj/structure/destructible/cult/item_dispenser/archives/library

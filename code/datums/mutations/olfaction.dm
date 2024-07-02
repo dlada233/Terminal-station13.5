@@ -6,7 +6,7 @@
 	text_gain_indication = "<span class='notice'>气味开始变得更有意义...</span>"
 	text_lose_indication = "<span class='notice'>你的嗅觉恢复了正常.</span>"
 	power_path = /datum/action/cooldown/spell/olfaction
-	instability = 30
+	instability = POSITIVE_INSTABILITY_MODERATE
 	synchronizer_coeff = 1
 
 /datum/mutation/human/olfaction/modify()
@@ -37,6 +37,10 @@
 	var/mob/living/living_cast_on = cast_on
 	if(ishuman(living_cast_on) && !living_cast_on.get_bodypart(BODY_ZONE_HEAD))
 		to_chat(owner, span_warning("你没有鼻子!"))
+		return FALSE
+
+	if(HAS_TRAIT(living_cast_on, TRAIT_ANOSMIA)) //Anosmia quirk holders can't smell anything
+		to_chat(owner, span_warning("你不能闻!"))
 		return FALSE
 
 	return TRUE
@@ -112,6 +116,9 @@
 /// Actually go through and give the user a hint of the direction our target is.
 /datum/action/cooldown/spell/olfaction/proc/on_the_trail(mob/living/caster)
 	var/mob/living/carbon/current_target = tracking_ref?.resolve()
+	//Using get_turf to deal with those pesky closets that put your x y z to 0
+	var/turf/current_target_turf = get_turf(current_target)
+	var/turf/caster_turf = get_turf(caster)
 	if(!current_target)
 		to_chat(caster, span_warning("你没有追踪任何气味，但游戏却认为你在追踪， \
 			出现了错误!请报告此bug."))
@@ -123,14 +130,14 @@
 		to_chat(caster, span_warning("你闻到了自己的气味. 是的，就是你自己."))
 		return
 
-	if(caster.z < current_target.z)
+	if(caster_turf.z < current_target_turf.z)
 		to_chat(caster, span_warning("气味线索... 高高在你头顶？嗯，他们可能真的非常、非常远."))
 		return
 
-	else if(caster.z > current_target.z)
+	else if(caster_turf.z > current_target_turf.z)
 		to_chat(caster, span_warning("气味线索... 深深在你脚下？嗯，他们可能真的非常、非常远."))
 		return
 
-	var/direction_text = span_bold("[dir2text(get_dir(caster, current_target))]")
+	var/direction_text = span_bold("[dir2text(get_dir(caster_turf, current_target_turf))]")
 	if(direction_text)
 		to_chat(caster, span_notice("你感受到了[current_target]的气味，气味线索指向[direction_text]."))

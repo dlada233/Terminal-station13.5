@@ -107,8 +107,8 @@
 	desc = "它的味道和它的气味一样浓烈."
 	icon_state = "absinthe"
 
-/datum/glass_style/drinking_glass/hooch
-	required_drink_type = /datum/reagent/consumable/ethanol/hooch
+/datum/glass_style/drinking_glass/ale
+	required_drink_type = /datum/reagent/consumable/ethanol/ale
 	name = "爱尔啤酒"
 	desc = "一杯冰凉的爱尔啤酒."
 	icon_state = "aleglass"
@@ -140,7 +140,7 @@
 
 /datum/glass_style/drinking_glass/fruit_wine
 	required_drink_type = /datum/reagent/consumable/ethanol/fruit_wine
-	// This should really be dynamic like "pineapple wine" or something
+	// This should really be dynamic like "glass of pineapple wine" or something
 	// but seeing as fruit wine half doesn't work already I'm not inclined to add support for that now
 	name = "Fruit wine-果酒"
 	desc = "用植物酿造的酒."
@@ -177,8 +177,8 @@
 
 /datum/glass_style/drinking_glass/coconut_rum
 	required_drink_type = /datum/reagent/consumable/ethanol/coconut_rum
-	name = "coconut rum"
-	desc = "Breathe in and relax, you're on vacation until this glass is empty."
+	name = "椰子朗姆酒"
+	desc = "深呼吸放轻松，假期在酒杯见底之前都不会结束."
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "ginvodkaglass"
 
@@ -191,15 +191,15 @@
 
 /datum/glass_style/drinking_glass/shochu
 	required_drink_type = /datum/reagent/consumable/ethanol/shochu
-	name = "shochu"
-	desc = "A strong rice wine."
+	name = "烧酒"
+	desc = "浓的米酒."
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "ginvodkaglass"
 
 /datum/glass_style/drinking_glass/rice_beer
 	required_drink_type = /datum/reagent/consumable/ethanol/rice_beer
-	name = "rice beer"
-	desc = "A fine, light rice beer. Best enjoyed cold."
+	name = "米酒"
+	desc = "上好的米酒，有淡淡的稻香，冰镇冷饮就更好了."
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "rice_beer"
 

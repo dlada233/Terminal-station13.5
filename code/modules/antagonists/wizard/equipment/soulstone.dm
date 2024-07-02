@@ -75,13 +75,13 @@
 		desc = "传说中的宝物之一，名为'灵魂石'的一部分碎片，同样拥有着宝物一部分的力量. 这个碎片静止不动，暗淡无光，曾经在其上闪耀的火花已经完全熄灭了."
 
 /// 当灵魂石被圣经击打时调用的信号
-/obj/item/soulstone/proc/on_bible_smacked(datum/source, mob/living/user, direction)
+/obj/item/soulstone/proc/on_bible_smacked(datum/source, mob/living/user, ...)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(attempt_exorcism), user)
 
 /**
- * attempt_exorcism: 从on_bible_smacked调用，需要时间，如果成功
- * 将物品重置为未被占用状态
+ * attempt_exorcism: called from on_bible_smacked, takes time and if successful
+ * resets the item to a pre-possessed state
  *
  * 参数：
  * * exorcist: 试图驱除灵魂的用户
@@ -105,7 +105,7 @@
 	UnregisterSignal(src, COMSIG_BIBLE_SMACKED)
 
 /**
- * 腐化：将灵魂石转化为邪教用途，并将其中的灵魂，如果有的话，转化为邪教徒
+ * 腐化：将灵魂石转化为血教用途，并将其中的灵魂，如果有的话，转化为血教徒
  */
 /obj/item/soulstone/proc/corrupt()
 	if(theme == THEME_CULT)
@@ -117,16 +117,16 @@
 	for(var/mob/shade_to_convert in contents)
 		if(IS_CULTIST(shade_to_convert))
 			continue
-		shade_to_convert.mind?.add_antag_datum(/datum/antagonist/cult)
+		shade_to_convert.mind?.add_antag_datum(/datum/antagonist/cult/shade)
 
 	RegisterSignal(src, COMSIG_BIBLE_SMACKED)
 	return TRUE
 
-/// 检查传入的角色是否在灵魂石上设置了所需的反角色数据.
+/// Checks if the passed mob has the required antag datum set on the soulstone.
 /obj/item/soulstone/proc/role_check(mob/who)
 	return required_role ? (who.mind && who.mind.has_antag_datum(required_role, TRUE)) : TRUE
 
-/// 当灵魂石释放灵魂时调用.
+/// Called whenever the soulstone releases a shade from it.
 /obj/item/soulstone/proc/on_release_spirits()
 	if(!one_use)
 		return
@@ -150,7 +150,7 @@
 		if(spent)
 			. += span_cult("这块碎片已经耗尽；现在它只是一块令人毛骨悚然的石头.")
 
-/obj/item/soulstone/Destroy() // 阻止灵魂被立即删除，阻止它们的灵魂被送回到到达船上.
+/obj/item/soulstone/Destroy() //Stops the shade from being qdel'd immediately and their ghost being sent back to the arrival shuttle.
 	for(var/mob/living/basic/shade/shade in src)
 		INVOKE_ASYNC(shade, TYPE_PROC_REF(/mob/living, death))
 	return ..()
@@ -158,7 +158,7 @@
 /obj/item/soulstone/proc/hot_potato(mob/living/user)
 	to_chat(user, span_userdanger("潜伏在[src]中的神圣魔法灼烧你的手！"))
 	var/obj/item/bodypart/affecting = user.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
-	affecting.receive_damage( 0, 10 ) // 10点灼烧伤害
+	affecting.receive_damage( 0, 10 ) // 10 burn damage
 	user.emote("scream")
 	user.update_damage_overlays()
 	user.dropItemToGround(src)
@@ -178,7 +178,7 @@
 	if(M == user)
 		return
 	if(IS_CULTIST(M) && IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"拜托，不要捕获你同伴的灵魂.\""))
+		to_chat(user, span_cult_large("\"拜托，不要捕获你同伴的灵魂.\""))
 		return
 	if(theme == THEME_HOLY && IS_CULTIST(user))
 		hot_potato(user)
@@ -194,7 +194,7 @@
 	log_combat(user, M, "捕获了[M.name]的灵魂", src)
 	capture_soul(M, user)
 
-///////////////////使用捕获灵魂的选项///////////////////////////////////////
+///////////////////Options for using captured souls///////////////////////////////////////
 
 /obj/item/soulstone/attack_self(mob/living/user)
 	if(!in_range(src, user))
@@ -221,7 +221,9 @@
 			else if(role_check(user))
 				to_chat(captured_shade, span_bold("你已经从囚笼中被释放出来，但你仍然受[user.real_name]的控制.\
 					不惜任何代价帮助[user.real_name]达成目标."))
-
+		var/datum/antagonist/cult/shade/shade_datum = captured_shade.mind?.has_antag_datum(/datum/antagonist/cult/shade)
+		if(shade_datum)
+			shade_datum.release_time = world.time
 		on_release_spirits()
 
 /obj/item/soulstone/pre_attack(atom/A, mob/living/user, params)
@@ -286,12 +288,12 @@
 	else
 		return ..()
 
-/// 移动灵魂的procs
+/// Procs for moving soul in and out off stone
 
-/// 将碳基生物的意识（随后被灰尘化）转移到src内的灵魂中.
-/// 如果强制执行，牺牲和状态检查将被跳过.
+/// Transfer the mind of a carbon mob (which is then dusted) into a shade mob inside src.
+/// If forced, sacrifical and stat checks are skipped.
 /obj/item/soulstone/proc/capture_soul(mob/living/carbon/victim, mob/user, forced = FALSE)
-	if(!iscarbon(victim)) //TODO: 添加非有机生物的牺牲石化，因为你没有身体并不意味着你没有灵魂
+	if(!iscarbon(victim)) //TODO: Add sacrifice stoning for non-organics, just because you have no body doesnt mean you dont have a soul
 		return FALSE
 	if(contents.len)
 		return FALSE
@@ -314,18 +316,20 @@
 		return TRUE
 
 	to_chat(user, "[span_userdanger("捕获失败！")]: 灵魂已经摆脱了凡躯，而你试图把它带回来...")
-
-	var/datum/callback/to_call = CALLBACK(src, PROC_REF(on_poll_concluded), user, victim)
-	AddComponent(/datum/component/orbit_poll, \
-		ignore_key = POLL_IGNORE_SHADE, \
-		job_bans = ROLE_CULTIST, \
-		to_call = to_call, \
-		title = "一个幽影" \
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
+		check_jobban = ROLE_CULTIST,
+		poll_time = 20 SECONDS,
+		checked_target = src,
+		ignore_category = POLL_IGNORE_SHADE,
+		alert_pic = /mob/living/basic/shade,
+		jump_target = src,
+		role_name_text = "一个幽影",
+		chat_text_border_icon = /mob/living/basic/shade,
 	)
+	on_poll_concluded(user, victim, chosen_one)
+	return TRUE //it'll probably get someone ;)
 
-	return TRUE //可能会得到某人的灵魂 ;)
-
-///捕获先前从灵魂石释放的灵魂.
+///captures a shade that was previously released from a soulstone.
 /obj/item/soulstone/proc/capture_shade(mob/living/basic/shade/shade, mob/living/user)
 	if(isliving(user) && !role_check(user))
 		user.Unconscious(10 SECONDS)
@@ -339,6 +343,10 @@
 
 	to_chat(shade, span_notice("你的灵魂已被[src]捕获，其魔法能量正在重塑你的灵魂形态."))
 
+	var/datum/antagonist/cult/shade/shade_datum = shade.mind?.has_antag_datum(/datum/antagonist/cult/shade)
+	if(shade_datum)
+		shade_datum.release_time = null
+
 	if(user != shade)
 		to_chat(user, "[span_info("<b>捕获成功！</b>:")] [shade.real_name]的灵魂\
 			已被捕获并存储在[src]内.")
@@ -346,17 +354,17 @@
 
 	return TRUE
 
-///将shade的意识转移到用户选择的构造体mob，然后删除shade和src.
+///transfer the mind of the shade to a construct mob selected by the user, then deletes both the shade and src.
 /obj/item/soulstone/proc/transfer_to_construct(obj/structure/constructshell/shell, mob/user)
 	var/mob/living/basic/shade/shade = locate() in src
 	if(!shade)
-		to_chat(user, "[span_userdanger("创造失败！")]: [src]是空的！去杀人吧！")
+		to_chat(user, "[span_userdanger("Creation failed!")]: [src] is empty! Go kill someone!")
 		return FALSE
 	var/construct_class = show_radial_menu(user, src, GLOB.construct_radial_images, custom_check = CALLBACK(src, PROC_REF(check_menu), user, shell), require_near = TRUE, tooltips = TRUE)
 	if(QDELETED(shell) || !construct_class)
 		return FALSE
-	make_new_construct_from_class(construct_class, theme, shade, user, FALSE, shell.loc)
 	shade.mind?.remove_antag_datum(/datum/antagonist/cult)
+	make_new_construct_from_class(construct_class, theme, shade, user, FALSE, shell.loc)
 	qdel(shell)
 	qdel(src)
 	return TRUE
@@ -385,14 +393,15 @@
 	soulstone_spirit.name = "[victim.real_name]的幽影"
 	soulstone_spirit.real_name = "[victim.real_name]的幽影"
 	soulstone_spirit.key = shade_controller.key
-	soulstone_spirit.copy_languages(victim, LANGUAGE_MIND)//将旧mob的语言复制到新mob中.
+	soulstone_spirit.copy_languages(victim, LANGUAGE_MIND)//Copies the old mobs languages into the new mob holder.
 	if(user)
 		soulstone_spirit.copy_languages(user, LANGUAGE_MASTER)
-	soulstone_spirit.get_language_holder().omnitongue = TRUE //授予omnitongue
+	soulstone_spirit.get_language_holder().omnitongue = TRUE //Grants omnitongue
 	if(user)
-		soulstone_spirit.faction |= "[REF(user)]" //将主人添加为派别，允许mob之间的合作
+		soulstone_spirit.faction |= "[REF(user)]" //Add the master as a faction, allowing inter-mob cooperation
 		if(IS_CULTIST(user))
-			soulstone_spirit.mind.add_antag_datum(/datum/antagonist/cult)
+			soulstone_spirit.mind.add_antag_datum(/datum/antagonist/cult/shade)
+			SSblackbox.record_feedback("tally", "cult_shade_created", 1)
 
 	soulstone_spirit.cancel_camera()
 	update_appearance()
@@ -412,19 +421,19 @@
 	victim.dust(drop_items = TRUE)
 
 /**
- * 将新主人分配为shade的新主人.
+ * Assigns the bearer as the new master of a shade.
  */
 /obj/item/soulstone/proc/assign_master(mob/shade, mob/user)
 	if (!shade || !user || !shade.mind)
 		return
 
-	// 邪教阴影获得邪教datum
+	// Cult shades get cult datum
 	if (user.mind.has_antag_datum(/datum/antagonist/cult))
 		shade.mind.remove_antag_datum(/datum/antagonist/shade_minion)
-		shade.mind.add_antag_datum(/datum/antagonist/cult)
+		shade.mind.add_antag_datum(/datum/antagonist/cult/shade)
 		return
 
-	// 只有受祝福的灵魂石才能解除邪教阴影
+	// Only blessed soulstones can de-cult shades
 	if(theme == THEME_HOLY)
 		shade.mind.remove_antag_datum(/datum/antagonist/cult)
 
@@ -433,14 +442,14 @@
 		shade_datum = shade.mind.add_antag_datum(/datum/antagonist/shade_minion)
 	shade_datum.update_master(user.real_name)
 
-/// 当选择一个ghost成为shade时调用.
+/// Called when a ghost is chosen to become a shade.
 /obj/item/soulstone/proc/on_poll_concluded(mob/living/master, mob/living/victim, mob/dead/observer/ghost)
 	if(isnull(victim) || master.incapacitated() || !master.is_holding(src) || !master.CanReach(victim, src))
 		return FALSE
 	if(isnull(ghost?.client))
 		to_chat(master, span_danger("没有灵魂愿意成为幽影."))
 		return FALSE
-	if(length(contents)) // 如果在此期间使用了灵魂石对其他人使用
+	if(length(contents)) //If they used the soulstone on someone else in the meantime
 		return FALSE
 	to_chat(master, "[span_info("<b>捕获成功！</b>:")] 一个灵魂已进入[src]，\
 		承担了[victim]的身份.")
@@ -452,42 +461,45 @@
 	switch(construct_class)
 		if(CONSTRUCT_JUGGERNAUT)
 			if(IS_CULTIST(creator))
-				makeNewConstruct(/mob/living/basic/construct/juggernaut, target, creator, cultoverride, loc_override) // ignore themes, the actual giving of cult info is in the makeNewConstruct proc
+				make_new_construct(/mob/living/basic/construct/juggernaut, target, creator, cultoverride, loc_override) // ignore themes, the actual giving of cult info is in the make_new_construct proc
+				SSblackbox.record_feedback("tally", "cult_shade_to_jugger", 1)
 				return
 			switch(theme)
 				if(THEME_WIZARD)
-					makeNewConstruct(/mob/living/basic/construct/juggernaut/mystic, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/juggernaut/mystic, target, creator, cultoverride, loc_override)
 				if(THEME_HOLY)
-					makeNewConstruct(/mob/living/basic/construct/juggernaut/angelic, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/juggernaut/angelic, target, creator, cultoverride, loc_override)
 				if(THEME_CULT)
-					makeNewConstruct(/mob/living/basic/construct/juggernaut, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/juggernaut, target, creator, cultoverride, loc_override)
 		if(CONSTRUCT_WRAITH)
 			if(IS_CULTIST(creator))
-				makeNewConstruct(/mob/living/basic/construct/wraith, target, creator, cultoverride, loc_override) // ignore themes, the actual giving of cult info is in the makeNewConstruct proc
+				make_new_construct(/mob/living/basic/construct/wraith, target, creator, cultoverride, loc_override) // ignore themes, the actual giving of cult info is in the make_new_construct proc
+				SSblackbox.record_feedback("tally", "cult_shade_to_wraith", 1)
 				return
 			switch(theme)
 				if(THEME_WIZARD)
-					makeNewConstruct(/mob/living/basic/construct/wraith/mystic, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/wraith/mystic, target, creator, cultoverride, loc_override)
 				if(THEME_HOLY)
-					makeNewConstruct(/mob/living/basic/construct/wraith/angelic, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/wraith/angelic, target, creator, cultoverride, loc_override)
 				if(THEME_CULT)
-					makeNewConstruct(/mob/living/basic/construct/wraith, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/wraith, target, creator, cultoverride, loc_override)
 		if(CONSTRUCT_ARTIFICER)
 			if(IS_CULTIST(creator))
-				makeNewConstruct(/mob/living/basic/construct/artificer, target, creator, cultoverride, loc_override) // ignore themes, the actual giving of cult info is in the makeNewConstruct proc
+				make_new_construct(/mob/living/basic/construct/artificer, target, creator, cultoverride, loc_override) // ignore themes, the actual giving of cult info is in the make_new_construct proc
+				SSblackbox.record_feedback("tally", "cult_shade_to_arti", 1)
 				return
 			switch(theme)
 				if(THEME_WIZARD)
-					makeNewConstruct(/mob/living/basic/construct/artificer/mystic, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/artificer/mystic, target, creator, cultoverride, loc_override)
 				if(THEME_HOLY)
-					makeNewConstruct(/mob/living/basic/construct/artificer/angelic, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/artificer/angelic, target, creator, cultoverride, loc_override)
 				if(THEME_CULT)
-					makeNewConstruct(/mob/living/basic/construct/artificer/noncult, target, creator, cultoverride, loc_override)
+					make_new_construct(/mob/living/basic/construct/artificer/noncult, target, creator, cultoverride, loc_override)
 
-/proc/makeNewConstruct(mob/living/basic/construct/ctype, mob/target, mob/stoner = null, cultoverride = FALSE, loc_override = null)
+/proc/make_new_construct(mob/living/basic/construct/ctype, mob/target, mob/stoner = null, cultoverride = FALSE, loc_override = null)
 	if(QDELETED(target))
 		return
-	var/mob/living/basic/construct/newstruct = new ctype((loc_override) ? (loc_override) : (get_turf(target)))
+	var/mob/living/basic/construct/newstruct = new ctype(loc_override || get_turf(target))
 	var/makeicon = newstruct.icon_state
 	var/theme = newstruct.theme
 	flick("make_[makeicon][theme]", newstruct)
@@ -495,20 +507,24 @@
 	if(stoner)
 		newstruct.faction |= "[REF(stoner)]"
 		newstruct.master = stoner
-		var/datum/action/innate/seek_master/SM = new()
-		SM.Grant(newstruct)
-	newstruct.key = target.key
-	var/atom/movable/screen/alert/bloodsense/BS
-	if(newstruct.mind && ((stoner && IS_CULTIST(stoner)) || cultoverride) && SSticker.HasRoundStarted())
+		var/datum/action/innate/seek_master/seek_master = new
+		seek_master.Grant(newstruct)
+
+	if (isnull(target.mind))
+		newstruct.key = target.key
+	else
+		target.mind.transfer_to(newstruct, force_key_move = TRUE)
+	var/atom/movable/screen/alert/bloodsense/sense_alert
+	if(newstruct.mind && !IS_CULTIST(newstruct) && ((stoner && IS_CULTIST(stoner)) || cultoverride) && SSticker.HasRoundStarted())
 		newstruct.mind.add_antag_datum(/datum/antagonist/cult/construct)
 	if(IS_CULTIST(stoner) || cultoverride)
 		to_chat(newstruct, "<b>你仍然被强迫服侍血教[stoner ? "和[stoner]":""]，遵循命令，并协助其完成目标.</b>")
 	else if(stoner)
 		to_chat(newstruct, "<b>你仍然被强迫服侍[stoner]，遵循命令，并协助其完成目标.</b>")
 	newstruct.clear_alert("bloodsense")
-	BS = newstruct.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
-	if(BS)
-		BS.Cviewer = newstruct
+	sense_alert = newstruct.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
+	if(sense_alert)
+		sense_alert.Cviewer = newstruct
 	newstruct.cancel_camera()
 
 /obj/item/soulstone/anybody

@@ -14,11 +14,11 @@
 	else
 		deploy_bodybag(user, get_turf(src))
 
-/obj/item/bodybag/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(proximity)
-		if(isopenturf(target))
-			deploy_bodybag(user, target)
+/obj/item/bodybag/interact_with_atom(atom/interacting_with, mob/living/user, flags)
+	if(isopenturf(interacting_with))
+		deploy_bodybag(user, interacting_with)
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/bodybag/attempt_pickup(mob/user)
 	// can't pick ourselves up if we are inside of the bodybag, else very weird things may happen
@@ -63,7 +63,6 @@
 /obj/item/bodybag/bluespace/examine(mob/user)
 	. = ..()
 	if(contents.len)
-		var/s = contents.len == 1 ? "" : ""
 		. += span_notice("透过布料，你可以看到[contents.len]的物体形状.")
 
 /obj/item/bodybag/bluespace/Destroy()

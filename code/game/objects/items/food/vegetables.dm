@@ -1,6 +1,6 @@
 /obj/item/food/eggplantparm
 	name = "茄子通心粉"
-	desc = "茄子唯一的好食物."
+	desc = "茄子能做成唯一的美味."
 	icon_state = "eggplantparm"
 
 	food_reagents = list(

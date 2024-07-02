@@ -123,7 +123,7 @@
 /datum/uplink_item/device_tools/failsafe
 	name = "上行链路自毁代码"
 	desc = "当输入后立刻销毁上行链路."
-	item = /obj/effect/gibspawner/generic
+	item = ABSTRACT_UPLINK_ITEM
 	cost = 1
 	surplus = 0
 	restricted = TRUE
@@ -204,9 +204,9 @@
 	cost = 1
 
 /datum/uplink_item/device_tools/hacked_module
-	name = "被骇入的AI法律上传模块"
-	desc = "当与上传控制台一起使用时，该模块允许您将特别优先法律上传到AI. \
-			在输入法律时措辞要小心，因为AI可能会寻找漏洞加以利用."
+	name = "被骇入的AI法令上传模块"
+	desc = "当与上传控制台一起使用时，该模块允许您将特别优先法令上传到AI. \
+			在输入法令时措辞要小心，因为AI可能会寻找漏洞加以利用."
 	progression_minimum = 30 MINUTES
 	item = /obj/item/ai_module/syndicate
 	cost = 4

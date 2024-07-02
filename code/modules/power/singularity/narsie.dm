@@ -72,9 +72,9 @@
 
 	var/area/area = get_area(src)
 	if(area)
-		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/cult/effects.dmi', "ghostalertsie")
+		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/cult.dmi', "ghostalertsie")
 		notify_ghosts(
-			"Nar'Sie自[area]崛起. 找到次元几何学者来获得新的躯体.",
+			"Nar'Sie自[area]崛起. 找到次元几何血尊来获得新的躯体.",
 			source = src,
 			header = "Nar'Sie归位!",
 			click_interact = TRUE,
@@ -147,7 +147,7 @@
 	start_ending_the_round()
 
 /obj/narsie/attack_ghost(mob/user)
-	makeNewConstruct(/mob/living/basic/construct/harvester, user, cultoverride = TRUE, loc_override = loc)
+	make_new_construct(/mob/living/basic/construct/harvester, user, cultoverride = TRUE, loc_override = loc)
 
 /obj/narsie/process()
 	var/datum/component/singularity/singularity_component = singularity.resolve()
@@ -234,7 +234,7 @@
 	addtimer(CALLBACK(src, PROC_REF(narsie_spawn_animation_end)), 3.5 SECONDS)
 
 /obj/narsie/proc/narsie_spawn_animation_end()
-	var/datum/component/singularity/singularity_component = singularity.resolve()
+	var/datum/component/singularity/singularity_component = singularity?.resolve()
 	singularity_component?.roaming = TRUE
 
 /**

@@ -1,6 +1,6 @@
 import { classes } from 'common/react';
 import { capitalizeAll } from 'common/string';
-import { useBackend, useLocalState } from 'tgui/backend';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -10,8 +10,10 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui/components';
-import { Window } from 'tgui/layouts';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
 
 type VendingData = {
   onstation: boolean;
@@ -83,8 +85,7 @@ export const Vending = (props) => {
     stock,
   } = data;
 
-  const [selectedCategory, setSelectedCategory] = useLocalState<string>(
-    'selectedCategory',
+  const [selectedCategory, setSelectedCategory] = useState(
     Object.keys(data.categories)[0],
   );
 

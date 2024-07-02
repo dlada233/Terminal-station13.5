@@ -3,7 +3,7 @@
 	desc = "空间中的裂口，深不见底，只是盯着就让眼睛疼痛万分，绝对的不安全."
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "realitycrack"
-	light_system = STATIC_LIGHT
+	light_system = COMPLEX_LIGHT
 	light_power = 1
 	light_on = TRUE
 	light_color = COLOR_GREEN
@@ -118,12 +118,12 @@
 	var/obj/item/card/id/card = fused_ids[cardname]
 	shapeshift(card)
 
-/obj/item/card/id/advanced/heretic/CtrlClick(mob/user)
-	. = ..()
+/obj/item/card/id/advanced/heretic/item_ctrl_click(mob/user)
 	if(!IS_HERETIC(user))
-		return
+		return CLICK_ACTION_BLOCKING
 	inverted = !inverted
 	balloon_alert(user, "[inverted ? "开始" : "不再"]创造反向传送门")
+	return CLICK_ACTION_SUCCESS
 
 ///Changes our appearance to the passed ID card
 /obj/item/card/id/advanced/heretic/proc/shapeshift(obj/item/card/id/advanced/card)
@@ -171,20 +171,17 @@
 	playsound(drop_location(),'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	access += card.access
 
-/obj/item/card/id/advanced/heretic/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!proximity_flag || !IS_HERETIC(user))
-		return
+/obj/item/card/id/advanced/heretic/interact_with_atom(atom/target, mob/living/user, list/modifiers)
+	if(!IS_HERETIC(user))
+		return NONE
 	if(istype(target, /obj/effect/lock_portal))
 		clear_portals()
-		return
-
+		return ITEM_INTERACT_SUCCESS
 	if(!istype(target, /obj/machinery/door))
-		return
-
+		return NONE
 	var/reference_resolved = link?.resolve()
 	if(reference_resolved == target)
-		return
+		return ITEM_INTERACT_BLOCKING
 
 	if(reference_resolved)
 		make_portal(user, reference_resolved, target)
@@ -194,6 +191,7 @@
 	else
 		link = WEAKREF(target)
 		balloon_alert(user, "连接 1/2")
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/card/id/advanced/heretic/Destroy()
 	QDEL_LIST_ASSOC(fused_ids)

@@ -71,13 +71,6 @@
 	crate_name = "蕉板箱"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
-/datum/supply_pack/imports/naturalbait
-	name = "天然鱼饵罐头"
-	desc = "手工纯天然."
-	cost = 2000 //rock on
-	contains = list(/obj/item/storage/pill_bottle/naturalbait)
-	crate_name = "鱼饵箱"
-
 /datum/supply_pack/imports/dumpstercorpse
 	name = "一堆....垃圾?"
 	desc = "为什么闻起来这么糟糕...."
@@ -124,19 +117,6 @@
 			new /obj/item/clothing/mask/fakemoustache/italian(our_crate)
 	if(prob(10)) //A little extra sugar every now and then to shake things up.
 		new /obj/item/switchblade(our_crate)
-
-/datum/supply_pack/imports/blackmarket_telepad
-	name = "黑市 LTSRBT"
-	desc = "需要一种更快更好的方式将你的非法货物运送到站点吗? \
-		别担心, 长短距蓝空收发器(LTSRBT)可以帮到你，\
-		内含一个LTSRBT电路板，两个蓝空晶体和一个安塞波."
-	cost = CARGO_CRATE_VALUE * 20
-	contraband = TRUE
-	contains = list(
-		/obj/item/circuitboard/machine/ltsrbt,
-		/obj/item/stack/ore/bluespace_crystal/artificial = 2,
-		/obj/item/stock_parts/subspace/ansible,
-	)
 
 /datum/supply_pack/imports/contraband
 	name = "'违禁品'"
@@ -323,3 +303,21 @@
 	)
 	crate_name = "材料市场箱"
 	crate_type = /obj/structure/closet/crate/cargo
+
+/datum/supply_pack/imports/floortilecamo
+	name = "Floor-tile Camouflage Uniform"
+	desc = "Hey there, looking to surprise somebody? Spy? Steal? Then you're lucky, meet our newest \
+		floor-tile 'NT SCUM' styled camouflage fatigues. This is the ultimate \
+		espionage uniform used by the very best. Providing the best \
+		flexibility, with our latest Camo-tech threads. Perfect for \
+		risky espionage hallway operations. Enjoy our product!"
+	contraband = TRUE
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(/obj/item/clothing/under/syndicate/floortilecamo = 3,
+			/obj/item/clothing/mask/floortilebalaclava = 3,
+			/obj/item/clothing/gloves/combat/floortile = 3,
+			/obj/item/clothing/shoes/jackboots/floortile = 3,
+			/obj/item/storage/backpack/floortile = 3
+	)
+	crate_name = "floortile camouflauge crate"
+	crate_type = /obj/structure/closet/crate/secure/weapon

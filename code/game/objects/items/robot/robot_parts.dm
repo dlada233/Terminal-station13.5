@@ -3,8 +3,8 @@
 //The robot bodyparts have been moved to code/module/surgery/bodyparts/robot_bodyparts.dm
 
 /obj/item/robot_suit
-	name = "cyborg内骨骼"
-	desc = "一种复杂的金属脊椎，带有标准规格的肢窝和肌肉锚."
+	name = "cyborg endoskeleton"
+	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon = 'icons/mob/augmentation/augments.dmi'
 	icon_state = "robo_suit"
 	/// Left arm part of the endoskeleton
@@ -108,7 +108,7 @@
 			drop_all_parts(T)
 			to_chat(user, span_notice("You disassemble the cyborg shell."))
 	else
-		to_chat(user, span_warning("内骨骼上已无可移除物!"))
+		to_chat(user, span_warning("There is nothing to remove from the endoskeleton!"))
 	update_appearance()
 
 /// Drops all included parts to the passed location
@@ -236,14 +236,14 @@
 			chest = CH
 			update_appearance()
 		else if(!CH.wired)
-			to_chat(user, span_warning("你需要先接上电缆!"))
+			to_chat(user, span_warning("You need to attach wires to it first!"))
 		else
-			to_chat(user, span_warning("你需要先接上电池!"))
+			to_chat(user, span_warning("You need to attach a cell to it first!"))
 
 	else if(istype(W, /obj/item/bodypart/head/robot))
 		var/obj/item/bodypart/head/robot/HD = W
 		if(locate(/obj/item/organ/internal) in HD)
-			to_chat(user, span_warning("已有器官在内[HD]!"))
+			to_chat(user, span_warning("There are organs inside [HD]!"))
 			return
 		if(head)
 			return
@@ -255,22 +255,22 @@
 			head = HD
 			update_appearance()
 		else
-			to_chat(user, span_warning("你需要先安装闪光灯!"))
+			to_chat(user, span_warning("You need to attach a flash to it first!"))
 
 	else if (W.tool_behaviour == TOOL_MULTITOOL)
 		if(check_completion())
 			ui_interact(user)
 		else
-			to_chat(user, span_warning("内骨骼在外展前必须组装好!"))
+			to_chat(user, span_warning("The endoskeleton must be assembled before debugging can begin!"))
 
 	else if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W
 		if(check_completion())
 			if(!chest.cell)
-				to_chat(user, span_warning("内骨骼还需要一个电池!"))
+				to_chat(user, span_warning("The endoskeleton still needs a power cell!"))
 				return
 			if(!isturf(loc))
-				to_chat(user, span_warning("你没法把[M]放进去，框架得放平才能精准放置!"))
+				to_chat(user, span_warning("You can't put [M] in, the frame has to be standing on the ground to be perfectly precise!"))
 				return
 			if(!M.brain_check(user))
 				return
@@ -325,8 +325,8 @@
 			playsound(O.loc, 'sound/voice/liveagain.ogg', 75, TRUE)
 
 			if(O.mind && O.mind.special_role)
-				to_chat(O, span_userdanger("你已经被赛博化了!"))
-				to_chat(O, span_danger("你必须遵守你的法律以及胜过一切的AI的命令，针对你的目标会判定你已经死亡了."))
+				to_chat(O, span_userdanger("You have been robotized!"))
+				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
 
 			SSblackbox.record_feedback("amount", "cyborg_birth", 1)
 			forceMove(O)
@@ -376,12 +376,12 @@
 			if(!locomotion)
 				O.set_lockcharge(TRUE)
 
-	else if(istype(W, /obj/item/pen))
+	else if(IS_WRITING_UTENSIL(W))
 		to_chat(user, span_warning("You need to use a multitool to name [src]!"))
 	else
 		return ..()
 
-/obj/item/robot_suit/ui_status(mob/user)
+/obj/item/robot_suit/ui_status(mob/user, datum/ui_state/state)
 	if(isobserver(user))
 		return ..()
 	var/obj/item/held_item = user.get_active_held_item()

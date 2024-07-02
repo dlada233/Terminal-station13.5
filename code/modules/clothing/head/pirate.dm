@@ -1,5 +1,5 @@
 /obj/item/clothing/head/costume/pirate
-	name = "pirate hat"
+	name = "海盗帽"
 	desc = "Yarr."
 	icon_state = "pirate"
 	inhand_icon_state = null
@@ -10,20 +10,17 @@
 
 /obj/item/clothing/head/costume/pirate/equipped(mob/user, slot)
 	. = ..()
-	if(!ishuman(user))
+	if(!(slot_flags & slot))
 		return
-	if(slot & ITEM_SLOT_HEAD)
-		user.grant_language(/datum/language/piratespeak/, source = LANGUAGE_HAT)
-		to_chat(user, span_boldnotice("You suddenly know how to speak like a pirate!"))
+	user.grant_language(/datum/language/piratespeak, source = LANGUAGE_HAT)
+	to_chat(user, span_boldnotice("你突然学会了如何像海盗一样说话！"))
 
 /obj/item/clothing/head/costume/pirate/dropped(mob/user)
 	. = ..()
-	if(!ishuman(user))
+	if(QDELETED(src)) //This can be called as a part of destroy
 		return
-	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(ITEM_SLOT_HEAD) == src && !QDELETED(src)) //This can be called as a part of destroy
-		user.remove_language(/datum/language/piratespeak/, source = LANGUAGE_HAT)
-		to_chat(user, span_boldnotice("You can no longer speak like a pirate."))
+	user.remove_language(/datum/language/piratespeak, source = LANGUAGE_HAT)
+	to_chat(user, span_boldnotice("你再也不能像海盗一样说话了。"))
 
 /obj/item/clothing/head/costume/pirate/armored
 	armor_type = /datum/armor/pirate_armored
@@ -41,12 +38,12 @@
 	acid = 75
 
 /obj/item/clothing/head/costume/pirate/captain
-	name = "pirate captain hat"
+	name = "海盗船长帽"
 	icon_state = "hgpiratecap"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/costume/pirate/bandana
-	name = "pirate bandana"
+	name = "海盗头巾"
 	desc = "Yarr."
 	icon_state = "bandana"
 	inhand_icon_state = null

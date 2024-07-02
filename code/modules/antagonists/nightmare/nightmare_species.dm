@@ -2,7 +2,7 @@
  * A highly aggressive subset of shadowlings
  */
 /datum/species/shadow/nightmare
-	name = "梦魇"
+	name = "夜魇"
 	id = SPECIES_NIGHTMARE
 	examine_limb_id = SPECIES_SHADOW
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE
@@ -39,7 +39,6 @@
 	. = ..()
 
 	C.fully_replace_character_name(null, pick(GLOB.nightmare_names))
-	C.set_safe_hunger_level()
 
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE

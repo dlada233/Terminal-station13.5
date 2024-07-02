@@ -247,11 +247,11 @@
 	if(user)
 		to_chat(user, span_notice("你切换[src]到[setting_text]."))
 
-/obj/machinery/power/floodlight/cable_layer_change_checks(mob/living/user, obj/item/tool)
+/obj/machinery/power/floodlight/cable_layer_act(mob/living/user, obj/item/tool)
 	if(anchored)
 		balloon_alert(user, "先解除固定!")
-		return FALSE
-	return TRUE
+		return ITEM_INTERACT_BLOCKING
+	return ..()
 
 /obj/machinery/power/floodlight/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()

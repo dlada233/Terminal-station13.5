@@ -65,8 +65,8 @@ export const LanguagesPage = (props) => {
             data.total_language_points
           }
         >
-          你可以在此处通过语言点来掌握不同语言系统.每
-          种语言消耗1点.
+          你可以在此处通过语言点来掌握不同语言系统.
+          每种语言消耗1点
         </Section>
       </Stack.Item>
       <Stack.Item minWidth="33%">

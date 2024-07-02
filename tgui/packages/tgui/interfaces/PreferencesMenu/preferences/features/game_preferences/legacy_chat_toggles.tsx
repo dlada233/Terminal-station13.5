@@ -1,11 +1,9 @@
-import { multiline } from 'common/string';
-
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const chat_bankcard: FeatureToggle = {
   name: '启用收入信息',
   category: 'CHAT',
-  description: '接受关于银行账户的信息.',
+  description: '接收关于银行账户的信息.',
   component: CheckboxInput,
 };
 
@@ -18,7 +16,7 @@ export const chat_dead: FeatureToggle = {
 export const chat_ghostears: FeatureToggle = {
   name: '接收所有信息',
   category: 'GHOST',
-  description: multiline`
+  description: `
     启用时将在作为幽灵听到全世界的声音.
     禁用时将只能听到你屏幕范围内的声音.
   `,
@@ -56,7 +54,7 @@ export const chat_ghostsight: FeatureToggle = {
 export const chat_ghostwhisper: FeatureToggle = {
   name: '接收低语信息',
   category: 'GHOST',
-  description: multiline`
+  description: `
     启用时将接收全球范围的低语.
     禁用时将只接收屏幕范围内的低语.
   `,
@@ -66,7 +64,7 @@ export const chat_ghostwhisper: FeatureToggle = {
 export const chat_login_logout: FeatureToggle = {
   name: '接收玩家上下线信息',
   category: 'GHOST',
-  description: '启用时将接收他人上线或下线时的信息.',
+  description: 'When enabled, be notified when a player logs in or out.',
   component: CheckboxInput,
 };
 

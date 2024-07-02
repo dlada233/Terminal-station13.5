@@ -61,7 +61,7 @@
 	name = initial(name)
 
 	// Special check for if you're trapped in a body you can't control because it's owned by a ling.
-	if(brain_owner?.mind?.has_antag_datum(/datum/antagonist/changeling) && !(movement_flags & NO_ID_TRANSFER))
+	if(IS_CHANGELING(brain_owner) && !(movement_flags & NO_ID_TRANSFER))
 		if(brainmob && !(brain_owner.stat == DEAD || (HAS_TRAIT(brain_owner, TRAIT_DEATHCOMA))))
 			to_chat(brainmob, span_danger("You can't feel your body! You're still just a brain!"))
 		forceMove(brain_owner)
@@ -394,7 +394,15 @@
 /obj/item/organ/internal/brain/primitive //No like books and stompy metal men
 	name = "primitive brain"
 	desc = "This juicy piece of meat has a clearly underdeveloped frontal lobe."
-	organ_traits = list(TRAIT_ADVANCEDTOOLUSER, TRAIT_CAN_STRIP, TRAIT_PRIMITIVE) // No literacy
+	organ_traits = list(
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_CAN_STRIP,
+		TRAIT_PRIMITIVE, // No literacy
+		TRAIT_FORBID_MINING_SHUTTLE_CONSOLE_OUTSIDE_STATION,
+		TRAIT_EXPERT_FISHER, // live off land, fish from river
+		TRAIT_ROUGHRIDER, // ride beast, chase down prey, flee from danger
+		TRAIT_BEAST_EMPATHY, // know the way of beast, calm with food
+	)
 
 /obj/item/organ/internal/brain/golem
 	name = "crystalline matrix"
@@ -508,6 +516,7 @@
 		actual_trauma.owner = owner
 		SEND_SIGNAL(owner, COMSIG_CARBON_GAIN_TRAUMA, trauma)
 		actual_trauma.on_gain()
+		log_game("[key_name_and_tag(owner)] has gained the following brain trauma: [trauma.type]")
 	if(resilience)
 		actual_trauma.resilience = resilience
 	SSblackbox.record_feedback("tally", "traumas", 1, actual_trauma.type)

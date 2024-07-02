@@ -77,7 +77,7 @@
 			force = 5
 			return
 		else
-			to_chat(user, span_cultlarge("\"你离不开被遗忘的神祇，就好像棋子决定不了棋手一样.\""))
+			to_chat(user, span_cult_large("\"你离不开被遗忘的神祇，就好像棋子决定不了棋手一样.\""))
 			to_chat(user, span_userdanger("一股可怕的力量猛扯你的手臂!"))
 			user.emote("scream")
 			user.apply_damage(30, BRUTE, pick(GLOB.arm_zones))

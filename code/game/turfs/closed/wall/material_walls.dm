@@ -9,6 +9,7 @@
 	canSmoothWith = SMOOTH_GROUP_MATERIAL_WALLS
 	rcd_memory = null
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/closed/wall/material/break_wall()
 	for(var/i in custom_materials)
@@ -23,4 +24,5 @@
 
 /turf/closed/wall/material/mat_update_desc(mat)
 	desc = "一大块用来分隔房间的[mat]."
+
 

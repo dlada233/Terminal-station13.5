@@ -8,13 +8,13 @@
  */
 
 /datum/round_event_control/sandstorm
-	name = "Sandstorm: Directional"
+	name = "Sandstorm: Directional-沙尘暴（单向）"
 	typepath = /datum/round_event/sandstorm
 	max_occurrences = 3
 	min_players = 35
 	earliest_start = 35 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "A wave of space dust continually grinds down a side of the station."
+	description = "沙尘暴从空间站某个方向持续吹来."
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/listed_options/sandstorm)
@@ -65,13 +65,13 @@
  */
 
 /datum/round_event_control/sandstorm_classic
-	name = "Sandstorm: Classic"
+	name = "Sandstorm: Classic-沙尘暴（经典）"
 	typepath = /datum/round_event/sandstorm_classic
 	weight = 0
 	max_occurrences = 0
 	earliest_start = 0 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "The station is pelted by an extreme amount of dust, from all sides, for several minutes. Very destructive and likely to cause lag. Use at own risk."
+	description = "空间站在几分钟内持续遭受从四面而来的沙尘暴，极具破坏性且可能造成卡顿延迟，使用风险自负."
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/sandstorm_classic
@@ -84,19 +84,19 @@
 	spawn_meteors(10, GLOB.meteors_dust)
 
 /datum/event_admin_setup/listed_options/sandstorm
-	input_text = "Choose a side to powersand?"
+	input_text = "选择方向?"
 	normal_run_option = "Random Sandstorm Direction"
 
 /datum/event_admin_setup/listed_options/sandstorm/get_list()
-	return list("Up", "Down", "Right", "Left")
+	return list("上", "下", "右", "左")
 
 /datum/event_admin_setup/listed_options/sandstorm/apply_to_event(datum/round_event/sandstorm/event)
 	switch(chosen)
-		if("Up")
+		if("上")
 			event.start_side = NORTH
-		if("Down")
+		if("下")
 			event.start_side = SOUTH
-		if("Right")
+		if("右")
 			event.start_side = EAST
-		if("Left")
+		if("左")
 			event.start_side = WEST

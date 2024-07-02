@@ -1,18 +1,18 @@
-/// 梦魇的心脏需要多少生命刻来复活梦魇.
+/// How many life ticks are required for the nightmare's heart to revive the nightmare.
 #define HEART_RESPAWN_THRESHHOLD (80 SECONDS)
-/// 一个特殊标志值，用于使梦魇心脏不授予光蚀器. 似乎未使用.
+/// A special flag value used to make a nightmare heart not grant a light eater. Appears to be unused.
 #define HEART_SPECIAL_SHADOWIFY 2
 
 
 /obj/item/organ/internal/brain/shadow/nightmare
 	name = "肿瘤组织"
-	desc = "从梦魇的头骨中挖出的肉质生长物. "
+	desc = "从夜魇的头骨中挖出的肉质生长物. "
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "brain-x-d"
 	applied_status = /datum/status_effect/shadow_regeneration/nightmare
-	/// 我们的关联影遁法术，适用于所有梦魇
+	///Our associated shadow jaunt spell, for all nightmares
 	var/datum/action/cooldown/spell/jaunt/shadow_walk/our_jaunt
-	/// 我们的关联恐吓法术，适用于反派梦魇
+	///Our associated terrorize spell, for antagonist nightmares
 	var/datum/action/cooldown/spell/pointed/terrorize/terrorize_spell
 
 /obj/item/organ/internal/brain/shadow/nightmare/on_mob_insert(mob/living/carbon/brain_owner)
@@ -20,12 +20,12 @@
 
 	if(brain_owner.dna.species.id != SPECIES_NIGHTMARE)
 		brain_owner.set_species(/datum/species/shadow/nightmare)
-		visible_message(span_warning("[brain_owner]因[src]植根于身体而抽搐！"))
+		visible_message(span_warning("[brain_owner] thrashes as [src] takes root in [brain_owner.p_their()] body!"))
 
 	our_jaunt = new(brain_owner)
 	our_jaunt.Grant(brain_owner)
 
-	if(brain_owner.mind?.has_antag_datum(/datum/antagonist/nightmare)) // 只有真正的梦魇才配使用这个能力
+	if(brain_owner.mind?.has_antag_datum(/datum/antagonist/nightmare)) //Only a TRUE NIGHTMARE is worthy of using this ability
 		terrorize_spell = new(src)
 		terrorize_spell.Grant(brain_owner)
 
@@ -68,11 +68,11 @@
 	icon_state = "demon_heart-on"
 	base_icon_state = "demon_heart"
 	visual = TRUE
-	color = "#1C1C1C"
+	color = COLOR_CRAYON_BLACK
 	decay_factor = 0
-	/// 主人在黑暗中死亡的生命刻数量. 用于梦魇复活.
+	/// How many life ticks in the dark the owner has been dead for. Used for nightmare respawns.
 	var/respawn_progress = 0
-	/// 授予此心脏宿主的臂刃.
+	/// The armblade granted to the host of this heart.
 	var/obj/item/light_eater/blade
 
 /obj/item/organ/internal/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)

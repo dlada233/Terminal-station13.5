@@ -3,8 +3,8 @@
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 
 /obj/item/clothing/head/utility/hardhat
-	name = "hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
+	name = "安全帽"
+	desc = "一种用于危险工作环境的头部防护装备，内置照明灯."
 	icon_state = "hardhat0_yellow"
 	inhand_icon_state = null
 	armor_type = /datum/armor/utility_hardhat
@@ -13,9 +13,10 @@
 	clothing_flags = SNUG_FIT | STACKABLE_HELMET_EXEMPT
 	resistance_flags = FIRE_PROOF
 
-	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_range = 4
 	light_power = 0.8
+	light_color = "#ffcc99"
 	light_on = FALSE
 	dog_fashion = /datum/dog_fashion/head
 
@@ -23,7 +24,7 @@
 	var/hat_type = "yellow"
 	///Whether the headlamp is on or off.
 	var/on = FALSE
-
+	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
 
 /datum/armor/utility_hardhat
 	melee = 15
@@ -39,9 +40,7 @@
 /obj/item/clothing/head/utility/hardhat/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-
-/obj/item/clothing/head/utility/hardhat/attack_self(mob/living/user)
-	toggle_helmet_light(user)
+	RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 
 /obj/item/clothing/head/utility/hardhat/proc/toggle_helmet_light(mob/living/user)
 	on = !on
@@ -61,6 +60,15 @@
 /obj/item/clothing/head/utility/hardhat/proc/turn_off(mob/user)
 	set_light_on(FALSE)
 
+/obj/item/clothing/head/utility/hardhat/proc/on_saboteur(datum/source, disrupt_duration)
+	SIGNAL_HANDLER
+	if(on)
+		toggle_helmet_light()
+		return COMSIG_SABOTEUR_SUCCESS
+
+/obj/item/clothing/head/utility/hardhat/attack_self(mob/living/user)
+	toggle_helmet_light(user)
+
 /obj/item/clothing/head/utility/hardhat/orange
 	icon_state = "hardhat0_orange"
 	inhand_icon_state = null
@@ -72,7 +80,7 @@
 	inhand_icon_state = null
 	hat_type = "red"
 	dog_fashion = null
-	name = "firefighter helmet"
+	name = "消防头盔"
 	clothing_flags = STOPSPRESSUREDAMAGE | STACKABLE_HELMET_EXEMPT
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
@@ -80,8 +88,8 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/head/utility/hardhat/red/upgraded
-	name = "workplace-ready firefighter helmet"
-	desc = "By applying state of the art lighting technology to a fire helmet, and using photo-chemical hardening methods, this hardhat will protect you from robust workplace hazards."
+	name = "升级消防头盔"
+	desc = "通过将最先进的照明技术应用于消防头盔，并使用光化学硬化方法，这个安全帽将保护您免受工作场所的重大危险."
 	icon_state = "hardhat0_purple"
 	inhand_icon_state = null
 	light_range = 5
@@ -107,8 +115,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/utility/hardhat/welding
-	name = "welding hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield! The bulb seems a little smaller though."
+	name = "焊接安全帽"
+	desc = "一种用于危险工作环境的头部防护装备.带有内置照明灯和焊接面罩！不过灯泡看起来有点小."
 	light_range = 3 //Needs a little bit of tradeoff
 	dog_fashion = null
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_screen)
@@ -121,32 +129,21 @@
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	///Icon state of the welding visor.
 	var/visor_state = "weldvisor"
-	var/visor_sprite_path	//SKYRAT EDIT --- Lets the visor not smush the snout
-
-/obj/item/clothing/head/utility/hardhat/welding/Initialize(mapload)
-	. = ..()
-	update_appearance()
 
 /obj/item/clothing/head/utility/hardhat/welding/attack_self_secondary(mob/user, modifiers)
-	toggle_welding_screen(user)
+	adjust_visor(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/clothing/head/utility/hardhat/welding/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_welding_screen))
-		toggle_welding_screen(user)
+		adjust_visor(user)
 		return
-
 	return ..()
 
-/obj/item/clothing/head/utility/hardhat/welding/proc/toggle_welding_screen(mob/living/user)
-	if(weldingvisortoggle(user))
-		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Visors don't just come from nothing
-	var/mob/living/carbon/carbon_user = user	//SKYRAT EDIT --- Lets the visor not smush the snout
-	if(carbon_user.dna.species.mutant_bodyparts["snout"])
-		visor_sprite_path = 'modular_skyrat/master_files/icons/mob/clothing/head_muzzled.dmi'
-	else
-		visor_sprite_path = 'icons/mob/clothing/head/utility.dmi'	//END SKYRAT EDIT
-	update_appearance()
+/obj/item/clothing/head/utility/hardhat/welding/adjust_visor(mob/living/user)
+	. = ..()
+	if(.)
+		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE)
 
 /obj/item/clothing/head/utility/hardhat/welding/worn_overlays(mutable_appearance/standing, isinhands)
 	. = ..()
@@ -154,9 +151,7 @@
 		return
 
 	if(!up)
-		// SKYRAT EDIT: ORIGINAL - . += mutable_appearance('icons/mob/clothing/head/utility.dmi', visor_state)
-		// SKYRAT EDIT: WELDING MUZZLES
-		. += mutable_appearance(visor_sprite_path, visor_state)
+		. += mutable_appearance(visor_sprite_path, visor_state) //SKYRAT EDIT CHANGE - WELDING MUZZLES - ORIGINAL: . += mutable_appearance('icons/mob/clothing/head/utility.dmi', visor_state)
 
 /obj/item/clothing/head/utility/hardhat/welding/update_overlays()
 	. = ..()
@@ -169,7 +164,7 @@
 	hat_type = "orange"
 
 /obj/item/clothing/head/utility/hardhat/welding/white
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield!" //This bulb is not smaller
+	desc = "一种用于危险工作环境的头部防护装备.带有内置照明灯和焊接面罩！" //这个灯泡没有缩小
 	icon_state = "hardhat0_white"
 	inhand_icon_state = null
 	light_range = 4 //Boss always takes the best stuff
@@ -190,8 +185,8 @@
 	inhand_icon_state = null
 	hat_type = "atmos"
 	dog_fashion = null
-	name = "atmospheric firefighter helmet"
-	desc = "A firefighter's helmet, able to keep the user cool in any situation. Comes with a light and a welding visor."
+	name = "大气消防头盔"
+	desc = "一款消防头盔，能够让用户在任何情况下保持凉爽.配有照明灯和焊接面罩."
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | STACKABLE_HELMET_EXEMPT | HEADINTERNALS
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -199,7 +194,8 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = NONE
-	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+	transparent_protection = HIDEMASK|HIDEEYES
 	visor_flags_inv = NONE
 	visor_state = "weldvisor_atmos"
 
@@ -209,8 +205,8 @@
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
 
 /obj/item/clothing/head/utility/hardhat/pumpkinhead
-	name = "carved pumpkin"
-	desc = "A jack o' lantern! Believed to ward off evil spirits."
+	name = "雕刻南瓜"
+	desc = "一个南瓜灯！相信它可以驱邪！"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "hardhat0_pumpkin"
@@ -224,6 +220,7 @@
 	light_color = "#fff2bf"
 	worn_y_offset = 1
 	dog_fashion = /datum/dog_fashion/head/pumpkin/unlit
+	clothing_traits = list()
 
 /obj/item/clothing/head/utility/hardhat/pumpkinhead/set_light_on(new_value)
 	. = ..()
@@ -250,8 +247,8 @@
 	dog_fashion = /datum/dog_fashion/head/pumpkin/unlit
 
 /obj/item/clothing/head/utility/hardhat/pumpkinhead/blumpkin
-	name = "carved blumpkin"
-	desc = "A very blue jack o' lantern! Believed to ward off vengeful chemists."
+	name = "雕刻蓝瓜"
+	desc = "一个非常蓝的南瓜灯！相信可以驱除化学家的怨魂."
 	icon_state = "hardhat0_blumpkin"
 	inhand_icon_state = null
 	hat_type = "blumpkin"
@@ -267,8 +264,8 @@
 	dog_fashion = /datum/dog_fashion/head/blumpkin/unlit
 
 /obj/item/clothing/head/utility/hardhat/reindeer
-	name = "novelty reindeer hat"
-	desc = "Some fake antlers and a very fake red nose."
+	name = "新奇驯鹿帽"
+	desc = "一些假鹿角和一个非常假的红鼻子."
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "hardhat0_reindeer"
@@ -277,6 +274,6 @@
 	flags_inv = 0
 	armor_type = /datum/armor/none
 	light_range = 1 //luminosity when on
-
+	clothing_traits = list()
 
 	dog_fashion = /datum/dog_fashion/head/reindeer

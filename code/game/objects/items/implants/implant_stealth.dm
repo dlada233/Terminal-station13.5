@@ -13,7 +13,7 @@
 
 /obj/structure/closet/cardboard/agent
 	name = "不可疑的盒子"
-	desc = "It's so normal that you didn't notice it before."
+	desc = "在你注意到它之前是那么得正常."
 	icon_state = "agentbox"
 	max_integrity = 1 // "This dumb box shouldn't take more than one hit to make it vanish."
 	move_speed_multiplier = 0.5
@@ -39,6 +39,9 @@
 
 /obj/structure/closet/cardboard/agent/Bump(atom/A)
 	. = ..()
+	if(istype(A, /obj/machinery/door))
+		for(var/mob/mob_in_box in contents)
+			A.Bumped(mob_in_box)
 	if(isliving(A))
 		reveal()
 

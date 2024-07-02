@@ -1,6 +1,6 @@
 // Sidepaths for knowledge between Rust and Blade.
 /datum/heretic_knowledge/armor
-	name = "锻甲的仪式"
+	name = "锻甲的仪式-Armor"
 	desc = "允许你将一张桌子和一副防毒面具嬗变成一套邪术盔甲. \
 		邪术盔甲能提供优越的防护性，在戴上兜帽时还会提供焦点."
 	gain_text = "锈山慷慨地欢迎铁匠，铁匠慷慨地回报锈山."
@@ -17,7 +17,7 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/crucible
-	name = "喰食坩埚"
+	name = "喰食坩埚-Crucible"
 	desc = "你可以将一个水箱和一张桌子嬗变成喰食坩埚. \
 		喰食坩埚可以用来酿造强大的药水，但在多次使用之间必须投喂身体部位."
 	gain_text = "无法召唤贵族的身影为我带来了纯粹的苦楚.\
@@ -35,14 +35,14 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/rifle
-	name = "猎狮人的步枪"
+	name = "猎狮人的步枪-Rifle"
 	desc = "你可以将任意比如管道枪的弹道武器、任意兽皮、照相机和一块木板来嬗变出猎狮人的步枪. \
 		猎狮人的步枪弹容量三发，可以正常射击. 但要注意子弹伤害将会随着射击距离而变化，距离越远，伤害越高."
 	gain_text = "我在古董店遇到一位老人，挥舞着一把不同寻常的武器. \
 		虽然我当时买不起，但他们曾经为我展示过如何制作它."
 	next_knowledge = list(
-		/datum/heretic_knowledge/spell/realignment,
-		/datum/heretic_knowledge/spell/rust_construction,
+		/datum/heretic_knowledge/duel_stance,
+		/datum/heretic_knowledge/spell/area_conversion,
 		/datum/heretic_knowledge/rifle_ammo,
 	)
 	required_atoms = list(
@@ -56,7 +56,7 @@
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/rifle_ammo
-	name = "猎狮人的步枪子弹 (免费)"
+	name = "猎狮人的步枪子弹 (免费)-Rifle ammo"
 	desc = "你可以将包括霰弹枪在内的任意三颗子弹或弹壳与任意兽皮嬗变成一条猎狮人的步枪弹夹."
 	gain_text = "这把武器发射三颗粗铁球，致命且迅速.但我很快就打光了这些无可替代的弹药. \
 		这把枪想要的东西很特别."

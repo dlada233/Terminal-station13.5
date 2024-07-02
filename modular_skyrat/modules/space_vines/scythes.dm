@@ -63,26 +63,34 @@
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	id = "scythet1"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	build_path = /obj/item/scythe/tier1
-	category = list(RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_BOTANY)
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_BOTANY,
+	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/scythe/tier2
 	name = "Scythe (Tier 2)"
 	id = "scythet2"
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	build_path = /obj/item/scythe/tier2
 
 /datum/techweb_node/scythe_t1
 	id = "t1scythe"
 	display_name = "Scythe (Tier 1)"
 	description = "Culling tools"
-	prereq_ids = list("adv_engi", "biotech", "botany")
+	prereq_ids = list("exp_tools", "chem_synthesis", "botany_equip")
 	design_ids = list(
 		"scythet1",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/plants/wild = 500)
 
 /datum/techweb_node/scythe_t2
@@ -93,7 +101,7 @@
 	design_ids = list(
 		"scythet2",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/plants/wild = 1000)
 
 /datum/supply_pack/organic/tier3_scythe

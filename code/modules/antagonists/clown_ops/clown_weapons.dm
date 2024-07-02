@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray/waterflower/lube
 	name = "向汨葵"
-	desc = "一朵纯洁的向汨葵....‘日’字呢，‘日’变得有点<i>滑</i>."
+	desc = "一朵纯洁的向汨葵....‘日’字呢，‘日’还在，只是变得有点<i>滑</i>."
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	inhand_icon_state = "sunflower"

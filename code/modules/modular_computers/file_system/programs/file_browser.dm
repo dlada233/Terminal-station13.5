@@ -1,5 +1,5 @@
 /datum/computer_file/program/filemanager
-	filename = "文件管理器"
+	filename = "filemanager"
 	filedesc = "文件管理器"
 	extended_desc = "该程序允许管理文件."
 	program_open_overlay = "generic"
@@ -13,6 +13,7 @@
 	var/error
 
 /datum/computer_file/program/filemanager/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 	switch(action)
 		if("PRG_deletefile")
 			var/datum/computer_file/file = computer.find_file_by_name(params["name"])

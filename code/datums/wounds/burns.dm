@@ -129,8 +129,7 @@
 					if(0)
 						to_chat(victim, span_deadsay("<b>The last of the nerve endings in your [limb.plaintext_zone] wither away, as the infection completely paralyzes your joint connector.</b>"))
 						threshold_penalty = 120 // piss easy to destroy
-						var/datum/brain_trauma/severe/paralysis/sepsis = new (limb.body_zone)
-						victim.gain_trauma(sepsis)
+						set_disabling(TRUE)
 
 /datum/wound/burn/flesh/get_wound_description(mob/user)
 	if(strikes_to_lose_limb <= 0)
@@ -287,7 +286,7 @@
 	flesh_damage = 5
 	scar_keyword = "burnmoderate"
 
-	simple_desc = "Patient's skin is burned, weakening the limb and multiplying percieved damage!"
+	simple_desc = "Patient's skin is burned, weakening the limb and multiplying perceived damage!"
 	simple_treat_text = "Ointment will speed up recovery, as will regenerative mesh. Risk of infection is negligible."
 	homemade_treat_text = "Healthy tea will speed up recovery. Salt, or preferably a salt-water mixture, will sanitize the wound, but the former will cause skin irritation, increasing the risk of infection."
 

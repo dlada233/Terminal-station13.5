@@ -53,5 +53,5 @@
 			当你真的需要很东西死掉的时候使用."
 	item = /obj/item/ammo_box/a357
 	cost = 4
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //nukies get their own version
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY) //nukies get their own version
 	illegal_tech = FALSE

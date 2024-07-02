@@ -1,9 +1,10 @@
 /datum/market_item/misc
 	category = "杂项"
+	abstract_path = /datum/market_item/misc
 
 /datum/market_item/misc/Clear_PDA
-	name = "原型PDA"
-	desc = "用这款限量版原型PDA展示你的不羁."
+	name = "透明PDA"
+	desc = "用这款限量版透明PDA展示你的不羁."
 	item = /obj/item/modular_computer/pda/clear
 
 	price_min = CARGO_CRATE_VALUE * 1.25
@@ -50,6 +51,15 @@
 	stock_max = 2
 	availability_prob = 30
 
+/datum/market_item/misc/shove_blocker
+	name = "MOD Bulwark Module"
+	desc = "You have no idea how much effort it took us to extract this module from that damn safeguard MODsuit last shift."
+	item = /obj/item/mod/module/shove_blocker
+	price_min = CARGO_CRATE_VALUE * 4
+	price_max = CARGO_CRATE_VALUE * 5.75
+	stock_max = 1
+	availability_prob = 25
+
 /datum/market_item/misc/holywater
 	name = "圣水瓶"
 	desc = "卢修斯神父牌的现成圣水"
@@ -60,9 +70,11 @@
 	stock_max = 3
 	availability_prob = 40
 
-/datum/market_item/misc/holywater/spawn_item(loc)
+/datum/market_item/misc/holywater/spawn_item(loc, datum/market_purchase/purchase)
 	if (prob(6.66))
-		return new /obj/item/reagent_containers/cup/beaker/unholywater(loc)
+		item = /obj/item/reagent_containers/cup/beaker/unholywater
+	else
+		item = initial(item)
 	return ..()
 
 /datum/market_item/misc/strange_seed
@@ -98,6 +110,7 @@
 /datum/market_item/misc/jawed_hook
 	name = "颚型鱼钩"
 	desc = "当你和大鱼搏斗时将会用到的东西，要记得在万事休矣前大声呼救，因为这东西会像狠狠地伤害到它们."
+	item = /obj/item/fishing_hook/jaws
 	price_min = CARGO_CRATE_VALUE * 0.75
 	price_max = CARGO_CRATE_VALUE * 2
 	stock_max = 3

@@ -116,7 +116,7 @@
 	return TRUE
 
 /**
- * Parses specific items into a more reaadble form.
+ * Parses specific items into a more readble form.
  * Can be overriden by knoweldge subtypes.
  */
 /datum/heretic_knowledge/proc/parse_required_item(atom/item_path, number_of_things)
@@ -126,7 +126,6 @@
 	if(ispath(item_path, /mob/living))
 		return "任意尸体"
 	return "[initial(item_path.name)]\s"
-
 /**
  * Called whenever the knowledge's associated ritual is completed successfully.
  *
@@ -144,6 +143,7 @@
 /datum/heretic_knowledge/proc/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	if(!length(result_atoms))
 		return FALSE
+
 	for(var/result in result_atoms)
 		new result(loc)
 	return TRUE
@@ -181,7 +181,6 @@
 					continue
 				how_much_to_use = min(required_atoms[requirement], sac_stack.amount)
 				break
-
 			sac_stack.use(how_much_to_use)
 			continue
 
@@ -212,7 +211,8 @@
 
 /datum/heretic_knowledge/spell/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	var/datum/action/cooldown/spell/created_spell = created_spell_ref?.resolve()
-	created_spell?.Remove(user)
+	if(created_spell?.owner == user)
+		created_spell.Remove(user)
 
 /**
  * A knowledge subtype for knowledge that can only
@@ -537,23 +537,22 @@
 	animate(summoned, 10 SECONDS, alpha = 155)
 
 	message_admins("一个[summoned.name]被[ADMIN_LOOKUPFLW(user)]在[ADMIN_COORDJMP(summoned)]上生成.")
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演一个[summoned.name]吗?", check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, target_mob = summoned, ignore_category = poll_ignore_define, pic_source = summoned, role_name_text = summoned.name)
-	if(!LAZYLEN(candidates))
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, checked_target = summoned, ignore_category = poll_ignore_define, alert_pic = summoned, role_name_text = summoned.name)
+	if(isnull(chosen_one))
 		loc.balloon_alert(user, "仪式失败，无灵魂!")
 		animate(summoned, 0.5 SECONDS, alpha = 0)
 		QDEL_IN(summoned, 0.6 SECONDS)
 		return FALSE
 
-	var/mob/dead/observer/picked_candidate = pick(candidates)
 	// Ok let's make them an interactable mob now, since we got a ghost
 	summoned.alpha = 255
 	REMOVE_TRAIT(summoned, TRAIT_NO_TRANSFORM, REF(src))
 	summoned.move_resist = initial(summoned.move_resist)
 
 	summoned.ghostize(FALSE)
-	summoned.key = picked_candidate.key
+	summoned.key = chosen_one.key
 
-	user.log_message("创造了一个[summoned.name]，由[key_name(picked_candidate)]控制.", LOG_GAME)
+	user.log_message("创造了一个[summoned.name]，由[key_name(chosen_one)]控制.", LOG_GAME)
 	message_admins("[ADMIN_LOOKUPFLW(user)]创造了一个[summoned.name], [ADMIN_LOOKUPFLW(summoned)].")
 
 	var/datum/antagonist/heretic_monster/heretic_monster = summoned.mind.add_antag_datum(/datum/antagonist/heretic_monster)
@@ -634,8 +633,8 @@
 	to_chat(user, span_hierophant("[name]需要以下物品:"))
 	for(var/obj/item/path as anything in required_atoms)
 		var/amount_needed = required_atoms[path]
-		to_chat(user, span_hypnophrase("[amount_needed] [initial(path.name)]..."))
-		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]"
+		to_chat(user, span_hypnophrase("[amount_needed] [initial(path.name)]\s..."))
+		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]\s"
 
 	to_chat(user, span_hierophant("完成该仪式会奖励你[KNOWLEDGE_RITUAL_POINTS]点知识点数. 你可以随时在已研究知识面板中再次查看这些内容."))
 
@@ -731,6 +730,7 @@
 		source = user,
 		header = "一名异教徒飞升!",
 	)
+	heretic_datum.increase_rust_strength()
 	return TRUE
 
 /datum/heretic_knowledge/ultimate/cleanup_atoms(list/selected_atoms)

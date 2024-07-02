@@ -2,12 +2,12 @@
 // This is the "lets entice the wizard to use summon events!" file.
 
 /datum/round_event_control/wizard/robelesscasting //EI NUDTH!
-	name = "Robeless Casting"
+	name = "Robeless Casting-无袍施法"
 	weight = 2
 	typepath = /datum/round_event/wizard/robelesscasting
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Wizard no longer needs robes to cast spells."
+	description = "巫师不再需要法袍施法."
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
@@ -30,12 +30,12 @@
 //--//
 
 /datum/round_event_control/wizard/improvedcasting //blink x5 disintergrate x5 here I come!
-	name = "Improved Casting"
+	name = "Improved Casting-升级施法"
 	weight = 3
 	typepath = /datum/round_event/wizard/improvedcasting
 	max_occurrences = 4 //because that'd be max level spells
 	earliest_start = 0 MINUTES
-	description = "Levels up the wizard's spells."
+	description = "升级巫师们的法术."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 

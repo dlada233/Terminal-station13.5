@@ -1,4 +1,4 @@
-// Currently unused.
+// Currently unused
 /datum/action/cooldown/spell/touch/mad_touch
 	name = "疯狂之触" // 疯狂的摸
 	desc = "吸走目标理智的触摸咒语"

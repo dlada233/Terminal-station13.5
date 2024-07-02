@@ -97,7 +97,7 @@
 		user.Paralyze(100)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message(span_warning("一股强大的力量将[user]推离[target]!"), \
-				span_cultlarge("\"你不应该玩这么锐利的东西，你会把别人的眼睛戳出来的.\""))
+				span_cult_large("\"你不应该玩这么锐利的东西，你会把别人的眼睛戳出来的.\""))
 		if(ishuman(user))
 			var/mob/living/carbon/human/miscreant = user
 			miscreant.apply_damage(rand(force/2, force), BRUTE, pick(GLOB.arm_zones))
@@ -121,7 +121,7 @@
 /obj/item/melee/cultblade/pickup(mob/living/user)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 
 /datum/action/innate/dash/cult
 	name = "揭开帷幕"
@@ -156,7 +156,7 @@
 		return
 	var/mob/living/carbon/carbon_user = user
 	if(user.num_legs < 2 || carbon_user.legcuffed) //if they can't be ensnared, stun for the same time as it takes to breakout of bola
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 		user.dropItemToGround(src, TRUE)
 		user.Paralyze(CULT_BOLA_PICKUP_STUN)
 	else
@@ -382,7 +382,7 @@
 	AddComponent( \
 		/datum/component/shielded, \
 		recharge_start_delay = 0 SECONDS, \
-		shield_icon_file = 'icons/effects/cult/effects.dmi', \
+		shield_icon_file = 'icons/effects/cult.dmi', \
 		shield_icon = "shield-cult", \
 		run_hit_callback = CALLBACK(src, PROC_REF(shield_damaged)), \
 	)
@@ -413,7 +413,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 		to_chat(user, span_warning("一种强烈的恶心感压倒了你!"))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
@@ -450,7 +450,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 		to_chat(user, span_warning("一种强烈的恶心感压倒了你!"))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
@@ -467,7 +467,7 @@
 /obj/item/clothing/glasses/hud/health/night/cultblind/equipped(mob/living/user, slot)
 	..()
 	if(user.stat != DEAD && !IS_CULTIST(user) && (slot & ITEM_SLOT_EYES))
-		to_chat(user, span_cultlarge("\"你希望失明吗?\""))
+		to_chat(user, span_cult_large("\"你希望失明吗?\""))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
 		user.Paralyze(100)
@@ -620,9 +620,9 @@
 	new /obj/effect/temp_visual/dir_setting/cult/phase/out(mobloc, user_cultist.dir)
 	new /obj/effect/temp_visual/dir_setting/cult/phase(destination, user_cultist.dir)
 
-	playsound(mobloc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(mobloc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	playsound(destination, 'sound/effects/phasein.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	playsound(destination, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(destination, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /obj/item/flashlight/flare/culttorch
 	name = "虚空火炬"
@@ -639,49 +639,49 @@
 	var/charges = 5
 	start_on = TRUE
 
-/obj/item/flashlight/flare/culttorch/afterattack(atom/movable/A, mob/user, proximity)
-	if(!proximity)
-		return
-	if(!IS_CULTIST(user))
-		to_chat(user, "这似乎没什么用.")
-		return
+/obj/item/flashlight/flare/culttorch/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	var/datum/antagonist/cult/cult = user.mind.has_antag_datum(/datum/antagonist/cult)
+	var/datum/team/cult/cult_team = cult?.get_team()
+	if(isnull(cult_team))
+		to_chat(user, span_warning("这似乎没什么用."))
+		return ITEM_INTERACT_BLOCKING
 
-	if(!isitem(A))
-		..()
+	if(!isitem(interacting_with))
 		to_chat(user, span_warning("[src]只能传送物品!"))
-		return
+		return ITEM_INTERACT_BLOCKING
 
-	. |= AFTERATTACK_PROCESSED_ITEM
+	var/list/mob/living/cultists = list()
+	for(var/datum/mind/cult_mind as anything in cult_team.members)
+		if(cult_mind == user.mind)
+			continue
+		if(cult_mind.current?.stat != DEAD)
+			cultists |= cult_mind.current
 
-	var/list/cultists = list()
-	for(var/datum/mind/M as anything in get_antag_minds(/datum/antagonist/cult))
-		if(M.current && M.current.stat != DEAD)
-			cultists |= M.current
 	var/mob/living/cultist_to_receive = tgui_input_list(user, "你希望呼唤谁到[src]?", "几何血尊追随者", (cultists - user))
-	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
-		return
+	if(QDELETED(src) || loc != user || user.incapacitated())
+		return ITEM_INTERACT_BLOCKING
 	if(isnull(cultist_to_receive))
-		to_chat(user, "<span class='cult italic'>你需要一个目的地!</span>")
-		log_game("[key_name(user)]的虚空火炬失败了 - 无目标.")
-		return
+		to_chat(user, span_cult_italic("你需要一个目的地!"))
+		return ITEM_INTERACT_BLOCKING
 	if(cultist_to_receive.stat == DEAD)
-		to_chat(user, "<span class='cult italic'>[cultist_to_receive]已经死了!</span>")
-		log_game("[key_name(user)]的虚空火炬失败了 - 目标死亡.")
-		return
-	if(!IS_CULTIST(cultist_to_receive))
-		to_chat(user, "<span class='cult italic'>[cultist_to_receive]不是几何血尊追随者!</span>")
-		log_game("[key_name(user)]的虚空火炬失败了 - 目标信仰不同.")
-		return
-	if(A in user.get_all_contents())
-		to_chat(user, "<span class='cult italic'>[A]必须在一个表面上才能传送它!</span>")
-		return
-	to_chat(user, "<span class='cult italic'>你用[src]点燃了[A]，把它变成了灰烬，但透过火光，你看到了[A]已经到达了[cultist_to_receive]!</span>")
-	user.log_message("用[src]传送[A]到[cultist_to_receive].", LOG_GAME)
-	cultist_to_receive.put_in_hands(A)
+		to_chat(user, span_cult_italic("[cultist_to_receive]已经死了!"))
+		return ITEM_INTERACT_BLOCKING
+	if(!(cultist_to_receive.mind in cult_team.members))
+		to_chat(user, span_cult_italic("[cultist_to_receive]不是几何血尊追随者!"))
+		return ITEM_INTERACT_BLOCKING
+	if(!isturf(interacting_with.loc))
+		to_chat(user, span_cult_italic("[interacting_with]必须在一个表面上才能传送它!"))
+		return ITEM_INTERACT_BLOCKING
+
+	to_chat(user, span_cult_italic("你用[src]点燃了[interacting_with], 把它变成了灰烬, \
+		但透过火光, 你看到[interacting_with]已经到达了[cultist_to_receive]!"))
+	user.log_message("用[src]传送[interacting_with]到[cultist_to_receive].", LOG_GAME)
+	cultist_to_receive.put_in_hands(interacting_with)
 	charges--
-	to_chat(user, "[src]还能使用[charges]次.")
-	if(charges == 0)
+	to_chat(user, span_notice("[src]还能使用[charges]次."))
+	if(charges <= 0)
 		qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/cultblade/halberd
 	name = "血戟"
@@ -832,9 +832,9 @@
 		var/mob/living/carbon/carbon_cultist = our_target
 		carbon_cultist.reagents.add_reagent(/datum/reagent/fuel/unholywater, 4)
 	if(isshade(our_target) || isconstruct(our_target))
-		var/mob/living/simple_animal/undead_abomination = our_target
-		if(undead_abomination.health+5 < undead_abomination.maxHealth)
-			undead_abomination.adjustHealth(-5)
+		var/mob/living/basic/construct/undead_abomination = our_target
+		if(undead_abomination.health + 5 < undead_abomination.maxHealth)
+			undead_abomination.adjust_health(-5)
 	return PROJECTILE_DELETE_WITHOUT_HITTING
 
 /obj/item/blood_beam
@@ -859,31 +859,33 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 
-/obj/item/blood_beam/afterattack(atom/A, mob/living/user, proximity_flag, clickparams)
-	. = ..()
+/obj/item/blood_beam/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return ranged_interact_with_atom(interacting_with, user, modifiers)
+
+/obj/item/blood_beam/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(firing || charging)
-		return
-	if(ishuman(user))
-		angle = get_angle(user, A)
-	else
-		qdel(src)
-		return . | AFTERATTACK_PROCESSED_ITEM
+		return ITEM_INTERACT_BLOCKING
+	if(!ishuman(user))
+		return ITEM_INTERACT_BLOCKING
+	angle = get_angle(user, interacting_with)
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(charge), user)
 	if(do_after(user, 9 SECONDS, target = user))
 		firing = TRUE
 		ADD_TRAIT(user, TRAIT_IMMOBILIZED, CULT_TRAIT)
-		INVOKE_ASYNC(src, PROC_REF(pewpew), user, clickparams)
+		var/params = list2params(modifiers)
+		INVOKE_ASYNC(src, PROC_REF(pewpew), user, params)
 		var/obj/structure/emergency_shield/cult/weak/N = new(user.loc)
 		if(do_after(user, 9 SECONDS, target = user))
 			user.Paralyze(40)
-			to_chat(user, "<span class='cult italic'>你已经耗尽了这个法术的力量!</span>")
+			to_chat(user, span_cult_italic("你已经耗尽了这个法术的力量!"))
 		REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, CULT_TRAIT)
 		firing = FALSE
 		if(N)
 			qdel(N)
 		qdel(src)
 	charging = FALSE
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/blood_beam/proc/charge(mob/user)
 	var/obj/O
@@ -934,11 +936,11 @@
 						if(H.stat != DEAD)
 							H.reagents.add_reagent(/datum/reagent/fuel/unholywater, 7)
 					if(isshade(target) || isconstruct(target))
-						var/mob/living/simple_animal/M = target
-						if(M.health+15 < M.maxHealth)
-							M.adjustHealth(-15)
+						var/mob/living/basic/construct/healed_guy = target
+						if(healed_guy.health + 15 < healed_guy.maxHealth)
+							healed_guy.adjust_health(-15)
 						else
-							M.health = M.maxHealth
+							healed_guy.health = healed_guy.maxHealth
 				else
 					var/mob/living/L = target
 					if(L.density)
@@ -970,7 +972,7 @@
 	block_sound = 'sound/weapons/effects/ric5.ogg'
 	var/illusions = 2
 
-/obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(IS_CULTIST(owner))
 		if(attack_type == PROJECTILE_ATTACK)
 			if(damage_type == BRUTE || damage_type == BURN)
@@ -989,7 +991,7 @@
 		if(.)
 			if(illusions > 0)
 				illusions--
-				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 45 SECONDS)
 				if(prob(60))
 					var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
 					M.faction = list(FACTION_CULT)

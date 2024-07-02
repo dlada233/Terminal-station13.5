@@ -7,23 +7,22 @@
 	icon_state = "bluespace-prison"
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF //ha ha no getting out!!
+	interaction_flags_mouse_drop = NEED_DEXTERITY
 
 /obj/machinery/fugitive_capture/examine(mob/user)
 	. = ..()
 	. += span_notice("将囚犯拖拽进机器中以关押.")
 
-/obj/machinery/fugitive_capture/MouseDrop_T(mob/target, mob/user)
+/obj/machinery/fugitive_capture/mouse_drop_receive(mob/target, mob/user, params)
 	var/mob/living/fugitive_hunter = user
-	if(!isliving(fugitive_hunter))
-		return
-	if(HAS_TRAIT(fugitive_hunter, TRAIT_UI_BLOCKED) || !Adjacent(fugitive_hunter) || !target.Adjacent(fugitive_hunter) || !ishuman(target))
+	if(!isliving(fugitive_hunter) || !ishuman(target))
 		return
 	var/mob/living/carbon/human/fugitive = target
 	var/datum/antagonist/fugitive/fug_antag = fugitive.mind.has_antag_datum(/datum/antagonist/fugitive)
 	if(!fug_antag)
 		to_chat(fugitive_hunter, span_warning("这个不是通缉犯!"))
 		return
-	if(do_after(fugitive_hunter, 50, target = fugitive))
+	if(do_after(fugitive_hunter, 5 SECONDS, target = fugitive))
 		add_prisoner(fugitive, fug_antag)
 
 /obj/machinery/fugitive_capture/proc/add_prisoner(mob/living/carbon/human/fugitive, datum/antagonist/fugitive/antag)
@@ -31,7 +30,7 @@
 	antag.is_captured = TRUE
 	to_chat(fugitive, span_userdanger("你被扔进了一片无边无际的蓝空虚空中，下坠在无意识的虚无深渊中，通往现实的相对入口越发狭小，直到你再也看不见它. 你最终未能逃脱追捕."))
 	fugitive.ghostize(TRUE) //so they cannot suicide, round end stuff.
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 
 /obj/machinery/computer/shuttle/hunter
 	name = "飞船终端"

@@ -49,7 +49,7 @@
 
 
 /datum/outfit/job/hop
-	name = "Head of Personnel"
+	name = "人事部长"
 	jobtype = /datum/job/head_of_personnel
 
 	id = /obj/item/card/id/advanced/silver
@@ -71,7 +71,7 @@
 
 /datum/outfit/job/hop/pre_equip(mob/living/carbon/human/H)
 	..()
-	if(check_holidays("Ian's Birthday"))
+	if(check_holidays(IAN_HOLIDAY))
 		undershirt = /datum/sprite_accessory/undershirt/ian
 
 //only pet worth reviving

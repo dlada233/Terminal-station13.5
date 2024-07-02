@@ -29,6 +29,8 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 /datum/objective_item_handler/proc/new_item_created(datum/source, obj/item/item)
 	SIGNAL_HANDLER
+	if(HAS_TRAIT(item, TRAIT_ITEM_OBJECTIVE_BLOCKED))
+		return
 	if(!generated_items)
 		item.add_stealing_item_objective()
 		return
@@ -224,6 +226,8 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 /datum/traitor_objective/steal_item/proc/handle_special_case(obj/item/source, obj/item/target)
 	SIGNAL_HANDLER
+	if(HAS_TRAIT(target, TRAIT_ITEM_OBJECTIVE_BLOCKED))
+		return COMPONENT_FORCE_FAIL_PLACEMENT
 	if(istype(target, target_item.targetitem))
 		if(!target_item.check_special_completion(target))
 			return COMPONENT_FORCE_FAIL_PLACEMENT
@@ -256,11 +260,11 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "bug"
 
-	/// 此窃听器可以植入的对象类型.必须是一个类型.
+	/// The object on which this bug can be planted on. Has to be a type.
 	var/obj/target_object_type
-	/// 当前植入此窃听器的对象.
+	/// The object this bug is currently planted on.
 	var/obj/planted_on
-	/// 放置此窃听器所需的时间.
+	/// The time it takes to place this bug.
 	var/deploy_time = 10 SECONDS
 
 /obj/item/traitor_bug/examine(mob/user)
@@ -273,28 +277,26 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 			. += span_notice("此装置必须通过<b>点击[initial(target_object_type.name)]</b>来放置.")
 		. += span_notice("请记住，您可能会在装置上留下指纹或纤维，使用<b>肥皂</b>或类似物品清洗以确保安全！")
 
-/obj/item/traitor_bug/afterattack(atom/movable/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!target_object_type)
-		return
-	if(!user.Adjacent(target))
-		return
-	. |= AFTERATTACK_PROCESSED_ITEM
+/obj/item/traitor_bug/interact_with_atom(atom/movable/target, mob/living/user, list/modifiers)
+	if(!target_object_type || !ismovable(target))
+		return NONE
+
 	var/result = SEND_SIGNAL(src, COMSIG_TRAITOR_BUG_PRE_PLANTED_OBJECT, target)
 	if(!(result & COMPONENT_FORCE_PLACEMENT))
 		if(result & COMPONENT_FORCE_FAIL_PLACEMENT || !istype(target, target_object_type))
-			balloon_alert(user, "你不能将它附加在这里！")
-			return
-	if(!do_after(user, deploy_time, src))
-		return
+			balloon_alert(user, "你不能将它附加在这里!")
+			return ITEM_INTERACT_BLOCKING
+	if(!do_after(user, deploy_time, src, hidden = TRUE))
+		return ITEM_INTERACT_BLOCKING
 	if(planted_on)
-		return
+		return ITEM_INTERACT_BLOCKING
 	forceMove(target)
 	target.vis_contents += src
 	vis_flags |= VIS_INHERIT_PLANE
 	planted_on = target
 	RegisterSignal(planted_on, COMSIG_QDELETING, PROC_REF(handle_planted_on_deletion))
 	SEND_SIGNAL(src, COMSIG_TRAITOR_BUG_PLANTED_OBJECT, target)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/traitor_bug/proc/handle_planted_on_deletion()
 	planted_on = null
@@ -314,5 +316,5 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		UnregisterSignal(planted_on, COMSIG_QDELETING)
 		planted_on = null
 
-/obj/item/traitor_bug/attackby_storage_insert(datum/storage, atom/storage_holder, mob/user)
+/obj/item/traitor_bug/storage_insert_on_interaction(datum/storage, atom/storage_holder, mob/user)
 	return !istype(storage_holder, target_object_type)

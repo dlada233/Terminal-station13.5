@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 /obj/machinery/announcement_system
 	density = TRUE
 	name = "\improper 自动公告系统"
-	desc = "An automated announcement system that handles minor announcements over the radio."
+	desc = "一种自动广播系统，通过无线电处理小范围广播."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "AAS_On"
 	base_icon_state = "AAS"
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 /// Sends a message to the appropriate channels.
 /obj/machinery/announcement_system/proc/broadcast(message, list/channels)
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 	if(channels.len == 0)
 		radio.talk_into(src, message, null)
 	else

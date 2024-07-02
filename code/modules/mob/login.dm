@@ -99,6 +99,10 @@
 
 	update_client_colour()
 	update_mouse_pointer()
+	refresh_looping_ambience()
+	if(!can_hear())
+		stop_sound_channel(CHANNEL_AMBIENCE)
+
 	if(client)
 		if(client.view_size)
 			client.view_size.resetToDefault() // Resets the client.view in case it was changed.

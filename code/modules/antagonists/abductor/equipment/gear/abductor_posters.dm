@@ -17,6 +17,12 @@
 		return
 	return ..()
 
+/obj/structure/sign/poster/abductor/attackby(obj/item/tool, mob/user, params)
+	if(tool.toolspeed >= 0.2)
+		balloon_alert(user, "tool too weak!")
+		return FALSE
+	return ..()
+
 /obj/structure/sign/poster/abductor/random
 	name = "随机绑架者海报"
 	icon_state = "random_abductor"

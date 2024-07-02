@@ -23,16 +23,15 @@
 	color = "90560B"
 	taste_description = "薄荷"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+	metabolized_traits = list(TRAIT_RESISTHEAT)
 
 /datum/reagent/halon/on_mob_metabolize(mob/living/breather)
 	. = ..()
 	breather.add_movespeed_modifier(/datum/movespeed_modifier/reagent/halon)
-	ADD_TRAIT(breather, TRAIT_RESISTHEAT, type)
 
 /datum/reagent/halon/on_mob_end_metabolize(mob/living/breather)
 	. = ..()
 	breather.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/halon)
-	REMOVE_TRAIT(breather, TRAIT_RESISTHEAT, type)
 
 /datum/reagent/healium
 	name = "Healium-疗气"
@@ -81,19 +80,12 @@
 	ph = 1.8
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	addiction_types = list(/datum/addiction/stimulants = 14)
-
-/datum/reagent/nitrium_high_metabolization/on_mob_metabolize(mob/living/breather)
-	. = ..()
-	ADD_TRAIT(breather, TRAIT_SLEEPIMMUNE, type)
-
-/datum/reagent/nitrium_high_metabolization/on_mob_end_metabolize(mob/living/breather)
-	. = ..()
-	REMOVE_TRAIT(breather, TRAIT_SLEEPIMMUNE, type)
+	metabolized_traits = list(TRAIT_SLEEPIMMUNE)
 
 /datum/reagent/nitrium_high_metabolization/on_mob_life(mob/living/carbon/breather, seconds_per_tick, times_fired)
 	. = ..()
 	var/need_mob_update
-	need_mob_update = breather.adjustStaminaLoss(-2 * REM * seconds_per_tick, updating_stamina = FALSE, required_biotype = affected_biotype)
+	need_mob_update = breather.adjustStaminaLoss(-4 * REM * seconds_per_tick, updating_stamina = FALSE, required_biotype = affected_biotype)
 	need_mob_update += breather.adjustToxLoss(0.1 * (current_cycle-1) * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype) // 1 toxin damage per cycle at cycle 10
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
@@ -121,7 +113,7 @@
 	description = "这种气体的肺扩散效率是氧气的八倍，对睡眠中的病人有器官愈合作用."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
-	color = "#808080"
+	color = COLOR_GRAY
 	taste_description = "辐照空气"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 

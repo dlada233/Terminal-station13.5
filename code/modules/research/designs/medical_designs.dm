@@ -390,7 +390,7 @@
 	desc = "这个简单的植入物在你的背部添加了一个呼吸配件连接器，可以让你在没有佩戴面罩的情况下使用呼吸配件并防止你窒息."
 	id = "ci-breather"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 35
+	construction_time = 3.5 SECONDS
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*6, /datum/material/glass = SMALL_MATERIAL_AMOUNT*2.5)
 	build_path = /obj/item/organ/internal/cyberimp/mouth/breathing_tube
 	category = list(
@@ -404,7 +404,7 @@
 	id = "ci-surgery"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
-	construction_time =SMALL_MATERIAL_AMOUNT * 2
+	construction_time = 2 SECONDS
 	build_path = /obj/item/organ/internal/cyberimp/arm/surgery
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
@@ -417,7 +417,7 @@
 	id = "ci-toolset"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
-	construction_time =SMALL_MATERIAL_AMOUNT * 2
+	construction_time = 2 SECONDS
 	build_path = /obj/item/organ/internal/cyberimp/arm/toolset
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
@@ -429,7 +429,7 @@
 	desc = "这对电子眼会在你视野内的一切活物上显示医疗HUD.转动眼球来控制."
 	id = "ci-medhud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -447,7 +447,7 @@
 	desc = "这对电子眼会在你视野内的一切东西上显示安保HUD.转动眼球来控制."
 	id = "ci-sechud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -465,7 +465,7 @@
 	desc = "这对电子眼会在你视野内的一切上显示诊断HUD.转动眼球来控制."
 	id = "ci-diaghud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -483,7 +483,7 @@
 	desc = "这对电子眼球会带给你X射线视觉.眨眼变得毫无意义."
 	id = "ci-xray"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 60
+	construction_time = 6 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -510,7 +510,7 @@
 	desc = "这对电子眼球会带给你热视觉.带有缝状竖瞳."
 	id = "ci-thermals"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 60
+	construction_time = 6 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -535,7 +535,7 @@
 	desc = "这个脑部电子植入物能够让你的手部肌肉强制收缩，以防止物品从手中掉落.抽动耳朵来切换."
 	id = "ci-antidrop"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 60
+	construction_time = 6 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -553,7 +553,7 @@
 	desc = "这个植入物将自动恢复你对中枢神经系统的控制，减少晕眩的恢复时间."
 	id = "ci-antistun"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 60
+	construction_time = 6 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -571,7 +571,7 @@
 	desc = "这个植入物会在使用者饥饿时合成并泵入少量营养物质到血液中."
 	id = "ci-nutriment"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =SMALL_MATERIAL_AMOUNT*5,
@@ -588,7 +588,7 @@
 	desc = "这个植入物会在使用者饥饿时合成并泵入少量营养物质到血液中."
 	id = "ci-nutrimentplus"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*6,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*6,
@@ -606,7 +606,7 @@
 	desc = "这个植入物在你失去意识时会尝试唤醒你.适合那些胆小的人"
 	id = "ci-reviver"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 60
+	construction_time = 6 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*8,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*8,
@@ -624,7 +624,7 @@
 	desc = "这个植入物可以让你在零重力条件下使用环境气体或呼吸配件内的气体来推进."
 	id = "ci-thrusters"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 80
+	construction_time = 8 SECONDS
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT*2,
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT,
@@ -682,10 +682,10 @@
 	desc = "一个包含植入物的玻璃盒."
 	id = "implant_chem"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT*7)
+	materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 7)
 	build_path = /obj/item/implantcase/chem
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
 
@@ -694,12 +694,48 @@
 	desc = "一个包含植入物的玻璃盒."
 	id = "implant_tracking"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
 	build_path = /obj/item/implantcase/tracking
 	category = list(
-		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/implant_beacon
+	name = "Beacon Implant Case"
+	desc = "A glass case containing a beacon implant."
+	id = "implant_beacon"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3)
+	build_path = /obj/item/implantcase/beacon
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/implant_bluespace
+	name = "Bluespace Grounding Implant Case"
+	desc = "A glass case containing a teleport blocker implant."
+	id = "implant_bluespace"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3)
+	build_path = /obj/item/implantcase/teleport_blocker
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/implant_exile
+	name = "Exile Implant Case"
+	desc = "A glass case containing an exile implant."
+	id = "implant_exile"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3)
+	build_path = /obj/item/implantcase/exile
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 //Cybernetic organs
 
@@ -708,7 +744,7 @@
 	desc = "A basic cybernetic liver."
 	id = "cybernetic_liver"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/liver/cybernetic
 	category = list(
@@ -731,7 +767,7 @@
 	name = "Upgraded Cybernetic Liver-高级电子肝"
 	desc = "一块升级的电子肝."
 	id = "cybernetic_liver_tier3"
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver=SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/liver/cybernetic/tier3
 	category = list(
@@ -744,7 +780,7 @@
 	desc = "一颗初级电子心."
 	id = "cybernetic_heart"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/heart/cybernetic
 	category = list(
@@ -767,7 +803,7 @@
 	name = "Upgraded Cybernetic Heart-高级电子心"
 	desc = "一块升级的电子心脏."
 	id = "cybernetic_heart_tier3"
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver=SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/heart/cybernetic/tier3
 	category = list(
@@ -775,12 +811,29 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+/datum/design/cybernetic_heart/anomalock
+	name = "Voltaic combat cyberheart"
+	desc = "A cutting-edge cyberheart, originally designed for Nanotrasen killsquad usage but later declassified for normal research. Voltaic technology allows the heart to keep the body upright in dire circumstances, alongside redirecting anomalous flux energy to fully shield the user from shocks and electro-magnetic pulses. Does nothing without a flux anomaly core."
+	id = "cybernetic_heart_anomalock"
+	construction_time = 5 SECONDS
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/organ/internal/heart/cybernetic/anomalock
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design/cybernetic_lungs
 	name = "Basic Cybernetic Lungs-初级电子肺"
 	desc = "A basic pair of cybernetic lungs."
 	id = "cybernetic_lungs"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/lungs/cybernetic
 	category = list(
@@ -803,7 +856,7 @@
 	name = "Upgraded Cybernetic Lungs-高级电子肺"
 	desc = "一对高级电子肺."
 	id = "cybernetic_lungs_tier3"
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/lungs/cybernetic/tier3
 	category = list(
@@ -816,7 +869,7 @@
 	desc = "一块初级电子胃."
 	id = "cybernetic_stomach"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/stomach/cybernetic
 	category = list(
@@ -839,7 +892,7 @@
 	name = "Upgraded Cybernetic Stomach-高级电子胃"
 	desc = "一块升级的电子胃."
 	id = "cybernetic_stomach_tier3"
-	construction_time = 50
+	construction_time = 5 SECONDS
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/organ/internal/stomach/cybernetic/tier3
 	category = list(
@@ -852,7 +905,7 @@
 	desc = "一对初级电子耳."
 	id = "cybernetic_ears"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 30
+	construction_time = 3 SECONDS
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT*4)
 	build_path = /obj/item/organ/internal/ears/cybernetic
 	category = list(
@@ -865,7 +918,7 @@
 	desc = "一对电子耳."
 	id = "cybernetic_ears_u"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*5,
@@ -882,7 +935,7 @@
 	desc = "一对微敏电子耳."
 	id = "cybernetic_ears_whisper"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*5,
@@ -899,7 +952,7 @@
 	desc = "一对穿墙电子耳."
 	id = "cybernetic_ears_xray"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT*5,
@@ -916,7 +969,7 @@
 	desc = "一对基础电子眼."
 	id = "cybernetic_eyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 30
+	construction_time = 3 SECONDS
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT*4)
 	build_path = /obj/item/organ/internal/eyes/robotic/basic
 	category = list(
@@ -949,7 +1002,7 @@
 	desc = "这些反应式微型屏障会保护你的眼睛免受焊光和闪光弹的伤害，并且不会减弱你的视力."
 	id = "ci-welding"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*6, /datum/material/glass = SMALL_MATERIAL_AMOUNT*4)
 	build_path = /obj/item/organ/internal/eyes/robotic/shield
 	category = list(
@@ -967,7 +1020,7 @@
 	desc = "A pair of cybernetic eyes that can emit multicolored light"
 	id = "ci-gloweyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
-	construction_time = 40
+	construction_time = 4 SECONDS
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*6, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/organ/internal/eyes/robotic/glow
 	category = list(

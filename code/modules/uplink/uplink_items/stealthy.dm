@@ -87,7 +87,7 @@
 	name = "契约电棍"
 	desc = "一种专为契约特工设计的紧凑型特殊电棍, 可以对目标施加轻微电击造成短暂的昏迷，同时还能影响目标声带，使得他们像喝醉了一样口齿不清."
 	item = /obj/item/melee/baton/telescopic/contractor_baton
-	cost = 12
+	cost = 7
 	surplus = 50
 	limited_stock = 1
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	purchasable_from = UPLINK_TRAITORS | UPLINK_SPY
