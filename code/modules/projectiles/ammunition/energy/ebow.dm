@@ -11,4 +11,3 @@
 /obj/item/ammo_casing/energy/bolt/large
 	projectile_type = /obj/projectile/energy/bolt/large
 	select_name = "重激光"
-

@@ -133,8 +133,6 @@
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma/advanced
 	name = "先进合成人创伤维修包"
 	desc = "一个先进的\"手术\"行李包，里面包含了处理所有无机损伤 (无论伤势多重) 所需的全部工具.这款拥有更多空间和额外工具，可以处理<i>最严重</i>的损伤！但其高度专业化的内部结构只能放置合成修复工具."
-
-
 	storage_type = /datum/storage/duffel/synth_trauma_kit/advanced
 
 /datum/storage/duffel/synth_trauma_kit/advanced

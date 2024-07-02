@@ -2,7 +2,7 @@
 	name = "生物技术兼容性"
 	desc = "实验对象与技能芯片等生物技术更加兼容."
 	quality = POSITIVE
-	instability = 5
+	instability = POSITIVE_INSTABILITY_MINI
 
 /datum/mutation/human/biotechcompat/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -16,7 +16,7 @@
 	name = "聪慧"
 	desc = "使受试者感觉稍微聪明一点。在智力水平低的样本中最有效."
 	quality = POSITIVE
-	instability = 20
+	instability = POSITIVE_INSTABILITY_MODERATE // literally makes you on par with station equipment
 	text_gain_indication = "<span class='danger'>你感觉更加智慧了一点.</span>"
 	text_lose_indication = "<span class='danger'>你的头脑像是蒙上了薄雾.</span>"
 

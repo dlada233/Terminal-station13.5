@@ -41,24 +41,29 @@
 	. += span_hypnophrase("在视野内任意一块地块上形成障碍物，期间只有你能通过，持续8秒.")
 	. += span_hypnophrase("它还有<b>[uses]</b>次使用次数.")
 
-/obj/item/heretic_labyrinth_handbook/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	if(IS_HERETIC(user))
-		var/turf/turf_target = get_turf(target)
-		if(locate(barrier_type) in turf_target)
-			user.balloon_alert(user, "已经被占据了!")
-			return
-		turf_target.visible_message(span_warning("大量的纸页出现了!"))
-		new /obj/effect/temp_visual/paper_scatter(turf_target)
-		playsound(turf_target, 'sound/magic/smoke.ogg', 30)
-		new barrier_type(turf_target, user)
-		uses--
-		if(uses <= 0)
-			to_chat(user, span_warning("[src]分崩离析，化成了灰!"))
-			qdel(src)
-		return
-	var/mob/living/carbon/human/human_user = user
-	to_chat(human_user, span_userdanger("当你深深地盯着书时，思维烧成了一团，头疼的就像大脑着了火一样."))
-	human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30, 190)
-	human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
-	human_user.dropItemToGround(src)
+/obj/item/heretic_labyrinth_handbook/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return interact_with_atom(interacting_with, user, modifiers)
+
+/obj/item/heretic_labyrinth_handbook/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!IS_HERETIC(user))
+		if(ishuman(user))
+			var/mob/living/carbon/human/human_user = user
+			to_chat(human_user, span_userdanger("当你深深地盯着书时，思维烧成了一团，头疼的就像大脑着了火一样!"))
+			human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30, 190)
+			human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
+			human_user.dropItemToGround(src)
+		return ITEM_INTERACT_BLOCKING
+
+	var/turf/turf_target = get_turf(interacting_with)
+	if(locate(barrier_type) in turf_target)
+		user.balloon_alert(user, "已经被占据了!")
+		return ITEM_INTERACT_BLOCKING
+	turf_target.visible_message(span_warning("A storm of paper materializes!"))
+	new /obj/effect/temp_visual/paper_scatter(turf_target)
+	playsound(turf_target, 'sound/magic/smoke.ogg', 30)
+	new barrier_type(turf_target, user)
+	uses--
+	if(uses <= 0)
+		to_chat(user, span_warning("[src]分崩离析，化成了灰!!"))
+		qdel(src)
+	return ITEM_INTERACT_SUCCESS

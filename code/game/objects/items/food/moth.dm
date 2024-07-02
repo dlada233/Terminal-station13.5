@@ -1,7 +1,6 @@
 //Moth Foods, the three C's: cheese, coleslaw, and cotton 芝士 凉拌卷心菜 棉花
 //A large emphasis has been put on sharing and multiple portion dishes 重点放在了分享和多份菜肴上
 //Additionally, where a mothic name is given, a short breakdown of what exactly it means is provided, for the curious on the internal workings of mothic: it's very onomatopoeic, and makes heavy use of combined words and accents
-//此外，在给出蛾名的地方，提供了一个简短的分解，它的确切含义，为了好奇蛾的内部工作:它非常拟声，并且大量使用组合词和重音
 
 //Base ingredients and miscellany, generally not served on their own 基础配料和杂项，一般不单独供应
 /obj/item/food/herby_cheese

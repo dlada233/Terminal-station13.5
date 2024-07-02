@@ -537,8 +537,8 @@
 	animate(summoned, 10 SECONDS, alpha = 155)
 
 	message_admins("一个[summoned.name]被[ADMIN_LOOKUPFLW(user)]在[ADMIN_COORDJMP(summoned)]上生成.")
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates_for_mob("你想要扮演一个[summoned.name]吗?", check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, target_mob = summoned, ignore_category = poll_ignore_define, pic_source = summoned, role_name_text = summoned.name)
-	if(!LAZYLEN(candidates))
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, checked_target = summoned, ignore_category = poll_ignore_define, alert_pic = summoned, role_name_text = summoned.name)
+	if(isnull(chosen_one))
 		loc.balloon_alert(user, "仪式失败，无灵魂!")
 		animate(summoned, 0.5 SECONDS, alpha = 0)
 		QDEL_IN(summoned, 0.6 SECONDS)

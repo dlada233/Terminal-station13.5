@@ -117,7 +117,6 @@
 		particles = new stink_particles
 
 // We override the parent procs here to prevent burned messes from cooking into burned messes.
-// 我们在这里重写父进程，以防止烧焦的烂摊子再变成烧焦的烂摊子。
 /obj/item/food/badrecipe/make_grillable()
 	return
 /obj/item/food/badrecipe/make_bakeable()
@@ -142,7 +141,6 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_MOLD, CELL_VIRUS_TABLE_GENERIC, rand(2, 4), 25)
 
 ///Prevents grilling burnt shit from well, burning.
-//阻止燃烧
 /obj/item/food/badrecipe/proc/OnGrill()
 	SIGNAL_HANDLER
 	return COMPONENT_HANDLED_GRILLING

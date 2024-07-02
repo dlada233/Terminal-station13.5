@@ -79,7 +79,7 @@
 		这些血魔法召唤而出的生物会进行无差别杀戮，你自己也可能成为目标."
 	item_path = /obj/item/antag_spawner/slaughter_demon
 	limit = 3
-    category = "SPELLBOOK_CATEGORY_ASSISTANCE"
+	category = SPELLBOOK_CATEGORY_ASSISTANCE
 	refundable = TRUE
 
 /datum/spellbook_entry/item/hugbottle
@@ -90,7 +90,7 @@
 	item_path = /obj/item/antag_spawner/slaughter_demon/laughter
 	cost = 1 //无破坏性；这只是个玩笑，兄弟姐妹！
 	limit = 3
-    category = "SPELLBOOK_CATEGORY_ASSISTANCE"
+	category = SPELLBOOK_CATEGORY_ASSISTANCE
 	refundable = TRUE
 
 /datum/spellbook_entry/item/vendormancer
@@ -99,6 +99,6 @@
 		它可以召唤最多3个随时间衰弱的符文售货机，通过\
 		投掷来砸扁对手或直接引爆. 当耗尽充能时，进行长时间引导将恢复充能."
 	item_path = /obj/item/runic_vendor_scepter
-    category = "SPELLBOOK_CATEGORY_ASSISTANCE"
+	category = SPELLBOOK_CATEGORY_ASSISTANCE
 
 #undef SPELLBOOK_CATEGORY_ASSISTANCE

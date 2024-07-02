@@ -166,6 +166,12 @@
 /obj/item/cardboard_cutout/adaptive //Purchased by Syndicate agents, these cutouts are indistinguishable from normal cutouts but aren't discolored when their appearance is changed
 	deceptive = TRUE
 
+/obj/item/cardboard_cutout/nuclear_operative
+	starting_cutout = "Nuclear Operative"
+
+/obj/item/cardboard_cutout/xenomorph
+	starting_cutout = "Xenomorph"
+
 /datum/cardboard_cutout
 	/// Name of the cutout, used for radial selection and the global list.
 	var/name = "Boardjak"
@@ -339,15 +345,15 @@
 	name = "屠戮恶魔"
 	applied_name = "屠戮恶魔"
 	applied_desc = "一个屠戮恶魔的纸板模型."
-	direct_icon = 'icons/mob/simple/mob.dmi'
-	direct_icon_state = "daemon"
+	direct_icon = 'icons/mob/simple/demon.dmi'
+	direct_icon_state = "slaughter_demon"
 
 /datum/cardboard_cutout/laughter_demon
 	name = "诡笑恶魔"
 	applied_name = "诡笑恶魔"
 	applied_desc = "一个欢笑恶魔的纸板模型."
-	direct_icon = 'icons/mob/simple/mob.dmi'
-	direct_icon_state = "bowmon"
+	direct_icon = 'icons/mob/simple/demon.dmi'
+	direct_icon_state = "bow_demon"
 
 /datum/cardboard_cutout/security_officer
 	name = "私人安全官"

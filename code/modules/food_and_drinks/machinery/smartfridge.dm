@@ -302,6 +302,10 @@
 				to_chat(user, span_warning("[weapon]里没有东西可被放入[src]!"))
 				return FALSE
 
+	if(!powered())
+		to_chat(user, span_warning("\The [src]'s magnetic door won't open without power!"))
+		return FALSE
+
 	if(!user.combat_mode)
 		to_chat(user, span_warning("[src]智能地拒绝了[weapon]."))
 		return FALSE

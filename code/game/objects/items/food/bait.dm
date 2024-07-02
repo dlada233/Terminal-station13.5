@@ -3,10 +3,8 @@
 	desc = "你上钩了."
 	icon = 'icons/obj/fishing.dmi'
 	/// Quality trait of this bait
-	/// 这种鱼饵的质量trait
 	var/bait_quality = TRAIT_BASIC_QUALITY_BAIT
 	/// Icon state added to main fishing rod icon when this bait is equipped
-	/// 当这个诱饵装备时，图标状态添加到主鱼竿图标
 	var/rod_overlay_icon_state
 
 /obj/item/food/bait/Initialize(mapload)
@@ -38,9 +36,8 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	inhand_icon_state = "pen"
-	food_reagents = list(/datum/reagent/drug/kronkaine = 1)
+	food_reagents = list(/datum/reagent/drug/kronkaine = 2) //The kronkaine is the thing that makes this a great bait.
 	tastes = list("hypocrisy" = 1)
-	bait_quality = TRAIT_GREAT_QUALITY_BAIT
 
 /obj/item/food/bait/doughball
 	name = "小块面团"
@@ -60,8 +57,6 @@
  * should be ignored by this bait.
  * Otherwise it'd be hard/impossible to cath some fish with it,
  * making that rod a shoddy choice in the long run.
- * 与tech fishing rod捆绑在一起，无法移除，与诱饵相关的preferences和traits，无论是消极的还是积极的，都应与这个诱饵无关。
- * 否则，用它很难/不可能钓到鱼，从长远来看，这是一个劣质的选择。
  */
 /obj/item/food/bait/doughball/synthetic
 	name = "人造鱼饵"

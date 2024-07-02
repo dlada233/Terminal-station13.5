@@ -312,10 +312,6 @@
 /obj/item/stock_parts/cell/get_part_rating()
 	return maxcharge * 10 + charge
 
-/obj/item/stock_parts/cell/attackby_storage_insert(datum/storage, atom/storage_holder, mob/user)
-	var/obj/item/mod/control/mod = storage_holder
-	return !(istype(mod) && mod.open)
-
 /* Cell variants*/
 /obj/item/stock_parts/cell/empty
 	empty = TRUE
@@ -323,8 +319,13 @@
 /obj/item/stock_parts/cell/crap
 	name = "纳米传讯牌可充AA电池"
 	desc = "你无法超越等离子." //TOTALLY TRADEMARK INFRINGEMENT
+	icon_state = "aa_cell"
 	maxcharge = STANDARD_CELL_CHARGE * 0.5
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.4)
+
+/obj/item/stock_parts/cell/crap/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/stock_parts/cell/crap/empty
 	empty = TRUE
@@ -332,9 +333,14 @@
 /obj/item/stock_parts/cell/upgraded
 	name = "升级电池"
 	desc = "一个比普通电池容量稍高的先进电池!"
+	icon_state = "9v_cell"
 	maxcharge = STANDARD_CELL_CHARGE * 2.5
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.5)
-	chargerate = STANDARD_CELL_CHARGE
+	chargerate = STANDARD_CELL_RATE * 0.5
+
+/obj/item/stock_parts/cell/upgraded/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/stock_parts/cell/upgraded/plus
 	name = "升级电池+"
@@ -476,26 +482,11 @@
 	name = "抗电磁脉冲史莱姆核心"
 	desc = "注入等离子体的黄色史莱姆核心，它的有机性质使它对电磁脉冲免疫."
 	icon = 'icons/mob/simple/slimes.dmi'
-	icon_state = "yellow slime extract"
+	icon_state = "yellow-core"
 	custom_materials = null
 	maxcharge = STANDARD_CELL_CHARGE * 5
 	charge_light_type = null
 	connector_type = "slimecore"
-
-/obj/item/stock_parts/cell/beam_rifle
-	name = "光束步枪电容器"
-	desc = "一种能在瞬间提供大量能量的高功率电容器."
-	maxcharge = STANDARD_CELL_CHARGE * 50
-	chargerate = STANDARD_CELL_RATE * 2.5 //Extremely energy intensive
-
-/obj/item/stock_parts/cell/beam_rifle/corrupt()
-	return
-
-/obj/item/stock_parts/cell/beam_rifle/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	charge = clamp((charge-(10000/severity)),0,maxcharge)
 
 /obj/item/stock_parts/cell/emergency_light
 	name = "微型电池"

@@ -84,8 +84,10 @@
 	desc = "一种可重复使用的火箭推进器，这一个已经配备了一个特殊的冷却回路，以避免尴尬的友军伤害."
 	backblast = FALSE
 
-/obj/item/gun/ballistic/rocketlauncher/afterattack()
+/obj/item/gun/ballistic/rocketlauncher/try_fire_gun(atom/target, mob/living/user, params)
 	. = ..()
+	if(!.)
+		return
 	magazine.get_round(FALSE) //Hack to clear the mag after it's fired
 
 /obj/item/gun/ballistic/rocketlauncher/attack_self_tk(mob/user)
@@ -119,3 +121,8 @@
 			span_userdanger("你环顾四周，发现自己还在此地. 于是决定使用[src]让自己窒息而死!"))
 		sleep(2 SECONDS)
 		return OXYLOSS
+
+/obj/item/gun/ballistic/rocketlauncher/unrestricted/nanotrasen
+	desc = "A reusable rocket propelled grenade launcher. The words \"Syndicate this way\" and an arrow have been written near the barrel. \
+	A sticker near the cheek rest reads, \"ENSURE AREA BEHIND IS CLEAR BEFORE FIRING\""
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/rocketlauncher/empty

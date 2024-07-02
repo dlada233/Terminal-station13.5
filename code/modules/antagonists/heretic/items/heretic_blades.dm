@@ -24,17 +24,22 @@
 	attack_verb_simple = list("攻击", "挥砍", "斩击", "切割", "刺击", "伤害", "横劈", "猛切", "划伤")
 	var/after_use_message = ""
 
-/obj/item/melee/sickly_blade/attack(mob/living/M, mob/living/user)
+/obj/item/melee/sickly_blade/pre_attack(atom/A, mob/living/user, params)
+	. = ..()
+	if(.)
+		return .
 	if(!IS_HERETIC_OR_MONSTER(user))
 		to_chat(user, span_danger("你感到异域的心愫冲击着你的思维."))
-		var/mob/living/carbon/human/human_user = user
-		human_user.AdjustParalyzed(5 SECONDS)
+		user.AdjustParalyzed(5 SECONDS)
 		return TRUE
+	return .
 
-	return ..()
+/obj/item/melee/sickly_blade/afterattack(atom/target, mob/user, click_parameters)
+	if(isliving(target))
+		SEND_SIGNAL(user, COMSIG_HERETIC_BLADE_ATTACK, target, src)
 
 /obj/item/melee/sickly_blade/attack_self(mob/user)
-	var/turf/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
+	var/turf/safe_turf = find_safe_turf(zlevel = z, extended_safety_checks = TRUE)
 	if(IS_HERETIC_OR_MONSTER(user))
 		if(do_teleport(user, safe_turf, channel = TELEPORT_CHANNEL_MAGIC))
 			to_chat(user, span_warning("当你粉碎[src]时，你感到一股能量流经你的身体. [after_use_message]"))
@@ -45,15 +50,10 @@
 	playsound(src, SFX_SHATTER, 70, TRUE) //copied from the code for smashing a glass sheet onto the ground to turn it into a shard
 	qdel(src)
 
-/obj/item/melee/sickly_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!isliving(target))
-		return
-
-	if(proximity_flag)
-		SEND_SIGNAL(user, COMSIG_HERETIC_BLADE_ATTACK, target, src)
-	else
-		SEND_SIGNAL(user, COMSIG_HERETIC_RANGED_BLADE_ATTACK, target, src)
+/obj/item/melee/sickly_blade/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(isliving(interacting_with))
+		SEND_SIGNAL(user, COMSIG_HERETIC_RANGED_BLADE_ATTACK, interacting_with, src)
+		return ITEM_INTERACT_BLOCKING
 
 /obj/item/melee/sickly_blade/examine(mob/user)
 	. = ..()

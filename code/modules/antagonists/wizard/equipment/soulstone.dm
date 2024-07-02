@@ -75,7 +75,7 @@
 		desc = "传说中的宝物之一，名为'灵魂石'的一部分碎片，同样拥有着宝物一部分的力量. 这个碎片静止不动，暗淡无光，曾经在其上闪耀的火花已经完全熄灭了."
 
 /// 当灵魂石被圣经击打时调用的信号
-/obj/item/soulstone/proc/on_bible_smacked(datum/source, mob/living/user, direction)
+/obj/item/soulstone/proc/on_bible_smacked(datum/source, mob/living/user, ...)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(attempt_exorcism), user)
 

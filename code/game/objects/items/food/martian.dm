@@ -975,7 +975,7 @@
 		/datum/reagent/consumable/garlic = 1,
 	)
 	tastes = list("酸奶" = 1, "大蒜" = 1, "柠檬" = 1, "鸡蛋" = 1, "辛辣" = 1)
-	foodtypes = DAIRY | VEGETABLES | FRUIT | BREAKFAST
+	foodtypes = DAIRY | VEGETABLES | MEAT | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 
@@ -1171,6 +1171,7 @@
 	)
 	tastes = list("浆果" = 1, "豆腐" = 1)
 	foodtypes = FRUIT | VEGETABLES
+	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/popsicle/topsicle/banana
 	name = "香蕉豆腐冰棒"
@@ -1186,7 +1187,7 @@
 /obj/item/food/popsicle/topsicle/pineapple
 	name = "菠萝豆腐冰棒"
 	desc = "由豆腐和菠萝汁混合制成的冷冻食品,然后冷冻.就像在电视上看到的."
-	overlay_state = "topsicle_菠萝"
+	overlay_state = "topsicle_pineapple"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 		/datum/reagent/consumable/sugar = 6,

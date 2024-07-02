@@ -33,23 +33,23 @@
 		return
 	..()
 
-/obj/item/gun/magic/wand/afterattack(atom/target, mob/living/user)
-	. |= AFTERATTACK_PROCESSED_ITEM
+/obj/item/gun/magic/wand/try_fire_gun(atom/target, mob/living/user, params)
 	if(!charges)
 		shoot_with_empty_chamber(user)
-		return
+		return FALSE
 	if(target == user)
-		if(no_den_usage)
-			var/area/A = get_area(user)
-			if(istype(A, /area/centcom/wizard_station))
-				to_chat(user, span_warning("你知道不能破坏据点的安全，最好等到离开后再使用[src]."))
-				return
-			else
-				no_den_usage = 0
+		if(no_den_usage && istype(get_area(user), /area/centcom/wizard_station))
+			to_chat(user, span_warning("你知道不能破坏据点的安全，最好等到离开后再使用[src]."))
+			return FALSE
 		zap_self(user)
+		. = TRUE
+
 	else
-		. |= ..()
-	update_appearance()
+		. = ..()
+
+	if(.)
+		update_appearance()
+	return .
 
 
 /obj/item/gun/magic/wand/proc/zap_self(mob/living/user)
@@ -192,7 +192,7 @@
 
 /obj/item/gun/magic/wand/safety/zap_self(mob/living/user)
 	var/turf/origin = get_turf(user)
-	var/turf/destination = find_safe_turf()
+	var/turf/destination = find_safe_turf(extended_safety_checks = TRUE)
 
 	if(do_teleport(user, destination, channel=TELEPORT_CHANNEL_MAGIC))
 		for(var/t in list(origin, destination))

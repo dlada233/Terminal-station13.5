@@ -1,6 +1,5 @@
 
 /// Abstract parent object for bread items. Should not be made obtainable in game.
-/// 面包项的抽象父对象。不应该在游戏中获得。
 /obj/item/food/bread
 	name = "bread?"
 	desc = "You shouldn't see this, call the coders."
@@ -11,10 +10,8 @@
 	eat_time = 3 SECONDS
 	crafting_complexity = FOOD_COMPLEXITY_2
 	/// type is spawned 5 at a time and replaces this bread loaf when processed by cutting tool
-	/// Type每次生成5个，并在被切时替换此面包条
 	var/obj/item/food/breadslice/slice_type
 	/// so that the yield can change if it isnt 5
-	/// 如果不是5，(营养)收益率会改变
 	var/yield = 5
 
 /obj/item/food/bread/Initialize(mapload)
@@ -28,7 +25,6 @@
 		AddElement(/datum/element/processable, TOOL_SAW, slice_type, yield, 4 SECONDS, table_required = TRUE, screentip_verb = "Slice")
 
 // Abstract parent object for sliced bread items. Should not be made obtainable in game.
-// 面包片的抽象父对象.不应该在游戏中获得
 /obj/item/food/breadslice
 	name = "breadslice?"
 	desc = "You shouldn't see this, call the coders."
@@ -484,6 +480,7 @@
 	foodtypes = GRAIN | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_price = PAYCHECK_CREW
 
 /obj/item/food/butterdog/Initialize(mapload)
 	. = ..()
@@ -577,7 +574,6 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 // Enhanced weaponised bread
-// 强化武器化面包
 /obj/item/food/croissant/throwing
 	throwforce = 20
 	tastes = list("松软的面包" = 1, "黄油" = 2, "肉" = 1)

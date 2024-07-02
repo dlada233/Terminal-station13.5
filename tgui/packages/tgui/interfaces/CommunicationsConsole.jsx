@@ -26,7 +26,8 @@ const STATE_MESSAGES = 'messages';
 // Used for whether or not you need to swipe to confirm an alert level change
 const SWIPE_NEEDED = 'SWIPE_NEEDED';
 
-const EMAG_SHUTTLE_NOTICE = '这艘穿梭机对船员极其危险，并且仅由辛迪加供货.';
+const EMAG_SHUTTLE_NOTICE =
+  '这艘穿梭机对船员极其危险，并且仅由辛迪加供货.';
 
 const sortShuttles = (shuttles) =>
   sortBy(

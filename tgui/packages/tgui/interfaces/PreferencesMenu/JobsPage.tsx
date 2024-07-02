@@ -374,8 +374,9 @@ const JoblessRoleDropdown = (props) => {
     },
   ];
 
-  const selection = options?.find((option) => option.value === selected)!
-    .displayText;
+  const selection = options?.find(
+    (option) => option.value === selected,
+  )!.displayText;
 
   return (
     <Box position="absolute" right={0} width="30%">

@@ -525,6 +525,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 				movesuccess = TRUE
 	if(movedsomething)
 		..()
+		playsound(src, SFX_PORTAL_ENTER, 50, TRUE)
+		playsound(target, SFX_PORTAL_ENTER, 50, TRUE)
 		if(moveuserlater)
 			if(do_teleport(user, target, channel = TELEPORT_CHANNEL_CULT))
 				movesuccess = TRUE
@@ -547,7 +549,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/teleport/proc/handle_portal(portal_type, turf/origin)
 	var/turf/T = get_turf(src)
 	close_portal() // To avoid stacking descriptions/animations
-	playsound(T, 'sound/effects/portal_travel.ogg', 100, TRUE, 14)
+	playsound(T, SFX_PORTAL_CREATED, 100, TRUE, 14)
 	inner_portal = new /obj/effect/temp_visual/cult/portal(T)
 	if(portal_type == "space")
 		set_light_color(color)
@@ -861,12 +863,15 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 									  "<span class='cult italic'><b>随着你被抛向空中，压倒性的眩晕袭来!</b></span>")
 	..()
 	visible_message(span_warning("一个朦胧的身影在[src]上成形，然后凝固成了[cultist_to_summon]!"))
+	var/turf/old_turf = get_turf(cultist_to_summon)
 	if(!do_teleport(cultist_to_summon, get_turf(src)))
 		to_chat(user, span_warning("召唤[cultist_to_summon]完全失败了!"))
 		fail_logmsg += "目标不符合可传送对象的标准." //catch-all term, just means they failed do_teleport somehow. The most common reasons why someone should fail to be summoned already have verbose messages.
 		log_game(fail_logmsg)
 		fail_invoke()
 		return
+	playsound(src, SFX_PORTAL_ENTER, 100, TRUE, SILENCED_SOUND_EXTRARANGE)
+	playsound(old_turf, SFX_PORTAL_ENTER, 100, TRUE, SILENCED_SOUND_EXTRARANGE)
 	qdel(src)
 
 //Rite of Boiling Blood: Deals extremely high amounts of damage to non-cultists nearby

@@ -58,6 +58,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "一根[initial(name)]，这根已经点燃了."
 	attack_verb_continuous = string_list(list("灼烧", "火燎"))
 	attack_verb_simple = string_list(list("灼烧", "火燎"))
+	if(isliving(loc))
+		var/mob/living/male_model = loc
+		if(male_model.fire_stacks && !(male_model.on_fire))
+			male_model.ignite_mob()
 	START_PROCESSING(SSobj, src)
 	update_appearance()
 
@@ -191,6 +195,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		light()
 	AddComponent(/datum/component/knockoff, 90, list(BODY_ZONE_PRECISE_MOUTH), slot_flags) //90% to knock off when wearing a mask
 	AddElement(/datum/element/update_icon_updates_onmob)
+	RegisterSignal(src, COMSIG_ATOM_TOUCHED_SPARKS, PROC_REF(sparks_touched))
 	icon_state = icon_off
 	inhand_icon_state = inhand_icon_off
 
@@ -250,7 +255,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	to_edit.layer = new_layer
 
 /obj/item/clothing/mask/cigarette/suicide_act(mob/living/user)
-		user.visible_message(span_suicide("[user]狂抽[src]! 看起来想早日得肺癌."))
+	user.visible_message(span_suicide("[user]狂抽[src]! 看起来想早日得肺癌."))
 	return (TOXLOSS|OXYLOSS)
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
@@ -282,13 +287,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/mob/living/carbon/the_smoker = user
 	return the_smoker.can_breathe_helmet()
 
-/obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/cup/glass, mob/user, proximity)
-	. = ..()
-	if(!proximity || lit) //can't dip if cigarette is lit (it will heat the reagents in the glass instead)
-		return
+/obj/item/clothing/mask/cigarette/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(lit) //can't dip if cigarette is lit (it will heat the reagents in the glass instead)
+		return NONE
+	var/obj/item/reagent_containers/cup/glass = interacting_with
 	if(!istype(glass)) //you can dip cigarettes into beakers
-		return
-
+		return NONE
+	if(istype(glass, /obj/item/reagent_containers/cup/mortar))
+		return NONE
 	if(glass.reagents.trans_to(src, chem_volume, transferred_by = user)) //if reagents were transferred, show the message
 		to_chat(user, span_notice("你把[src]浸入[glass]中."))
 	//if not, either the beaker was empty, or the cigarette was full
@@ -296,8 +302,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		to_chat(user, span_warning("[glass]是空的!"))
 	else
 		to_chat(user, span_warning("[src]已经满了!"))
-
-	return AFTERATTACK_PROCESSED_ITEM
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/mask/cigarette/update_icon_state()
 	. = ..()
@@ -307,6 +312,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else
 		icon_state = icon_off
 		inhand_icon_state = inhand_icon_off
+
+
+/obj/item/clothing/mask/cigarette/proc/sparks_touched(datum/source, obj/effect/particle_effect)
+	SIGNAL_HANDLER
+
+	if(lit)
+		return
+	light()
 
 /// Lights the cigarette with given flavor text.
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
@@ -624,7 +637,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents = list(/datum/reagent/toxin/mindbreaker = 35, /datum/reagent/toxin/lipolicide = 15)
 
 /obj/item/clothing/mask/cigarette/candy
-	name = "Little Timmy牌糖果香烟" // \improper
+	name = "\improper Little Timmy牌糖果香烟"
 	desc = "全年龄可抽*! 不含任何尼古丁，健康风险可以在烟头上查阅."
 	smoketime = 2 MINUTES
 	icon_state = "candyoff"
@@ -845,7 +858,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /// Destroy the lighter when it's shot by a bullet
 /obj/item/lighter/proc/on_intercepted_bullet(mob/living/victim, obj/projectile/bullet)
 	victim.visible_message(span_warning("[bullet]击中了[victim]的打火机!"))
-	playsound(victim, get_sfx(SFX_RICOCHET), 100, TRUE)
+	playsound(victim, SFX_RICOCHET, 100, TRUE)
 	new /obj/effect/decal/cleanable/oil(get_turf(src))
 	do_sparks(1, TRUE, src)
 	victim.dropItemToGround(src, force = TRUE, silent = TRUE)
@@ -893,6 +906,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		attack_verb_continuous = string_list(list("灼烧", "火燎"))
 		attack_verb_simple = string_list(list("灼烧", "火燎"))
 		START_PROCESSING(SSobj, src)
+		if(isliving(loc))
+			var/mob/living/male_model = loc
+			if(male_model.fire_stacks && !(male_model.on_fire))
+				male_model.ignite_mob()
 	else
 		hitsound = SFX_SWING_HIT
 		force = 0
@@ -1119,7 +1136,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //VAPE NATION//
 ///////////////
 /obj/item/clothing/mask/vape
-	name = "电子烟" // improper
+	name = "\improper 电子烟"
 	desc = "一款优雅有格调的电子烟，为端庄优雅的绅士设计，上面的标签写着 \"警告: 请勿填充可燃物.\".“适合纯真的人”"//<<< i'd vape to that.
 	icon = 'icons/obj/clothing/masks.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi' //SKYRAT EDIT: ADDITION

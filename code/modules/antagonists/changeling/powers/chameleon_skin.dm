@@ -3,8 +3,8 @@
 	desc = "我们的皮肤色素能迅速随周围环境而变化，花费25点化学物质."
 	helptext = "保持静止几秒，我们就可以与周围环境融为一体，并且该能力可以主动开启或关闭."
 	button_icon_state = "chameleon_skin"
-	dna_cost = 2
-	chemical_cost = 25
+	dna_cost = 1
+	chemical_cost = 10
 	req_human = TRUE
 
 /datum/action/changeling/chameleon_skin/sting_action(mob/user)

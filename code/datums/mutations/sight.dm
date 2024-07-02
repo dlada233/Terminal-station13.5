@@ -2,6 +2,7 @@
 /datum/mutation/human/nearsight
 	name = "近视"
 	desc = "该突变的携带者视力不佳."
+	instability = NEGATIVE_STABILITY_MODERATE
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>你看东西不太清楚.</span>"
 
@@ -19,6 +20,7 @@
 /datum/mutation/human/blind
 	name = "失明"
 	desc = "使对象完全失明."
+	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你的眼睛看不见了.</span>"
 
@@ -40,8 +42,7 @@
 	difficulty = 18
 	text_gain_indication = "<span class='notice'>你可以看到从皮肤散发出的热量...</span>"
 	text_lose_indication = "<span class='notice'>你不再能感知到皮肤散发的热量...</span>"
-	instability = 25
-	locked = TRUE //SKYRAT EDIT ADDITION
+	instability = POSITIVE_INSTABILITY_MAJOR // thermals aren't station equipment
 	synchronizer_coeff = 1
 	power_coeff = 1
 	energy_coeff = 1
@@ -111,7 +112,7 @@
 	name = "X射线视觉"
 	desc = "一种奇怪的基因，可以让使用者看穿墙壁." //actual x-ray would mean you'd constantly be blasting rads, wich might be fun for later //hmb
 	text_gain_indication = "<span class='notice'>墙壁突然消失了!</span>"
-	instability = 35
+	instability = POSITIVE_INSTABILITY_MAJOR
 	locked = TRUE
 
 /datum/mutation/human/xray/on_acquiring(mob/living/carbon/human/owner)
@@ -183,6 +184,7 @@
 /datum/mutation/human/illiterate
 	name = "文盲"
 	desc = "引起严重的失语症，导致无法阅读或写作."
+	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你感觉无法阅读或书写任何文字.</span>"
 	text_lose_indication = "<span class='danger'>你恢复了阅读和书写的能力.</span>"

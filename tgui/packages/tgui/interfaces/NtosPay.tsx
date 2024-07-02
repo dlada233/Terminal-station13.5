@@ -92,7 +92,10 @@ const TransferSection = (props) => {
       <Stack.Item>
         <Section title="转账">
           <Box>
-            <Tooltip content="输入转账收款方的支付令牌." position="top">
+          <Tooltip
+              content="输入转账收款方的支付令牌."
+              position="top"
+            >
               <Input
                 placeholder="支付令牌"
                 width="190px"
@@ -100,7 +103,10 @@ const TransferSection = (props) => {
               />
             </Tooltip>
           </Box>
-          <Tooltip content="输入转出信用点的数额." position="top">
+          <Tooltip
+            content="输入转出信用点的数额."
+            position="top"
+          >
             <RestrictedInput
               width="83px"
               minValue={1}

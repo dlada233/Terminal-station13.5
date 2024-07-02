@@ -142,7 +142,9 @@ const ReactionHandbook = (props) => {
       title={
         <GasSearchBar
           title={
-            relevantReaction ? 'Reaction: ' + relevantReaction.name : '反应查找'
+            relevantReaction
+              ? 'Reaction: ' + relevantReaction.name
+              : '反应查找'
           }
           onChange={(keyword) =>
             setActiveReactionId(

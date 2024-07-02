@@ -9,35 +9,36 @@
 	base_icon_state = "dart"
 
 //Code that handles the base interactions involving smartdarts
-/obj/item/reagent_containers/syringe/smartdart/afterattack(atom/target, mob/user, proximity)
+/obj/item/reagent_containers/syringe/smartdart/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(isliving(target))
 		to_chat(user, span_warning("[src]不支持手动注射化学物质."))
 	return
+
 //A majority of this code is from the original syringes.dm file.
-/obj/item/reagent_containers/syringe/smartdart/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!try_syringe(target, user, proximity_flag))
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
+/obj/item/reagent_containers/syringe/smartdart/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!try_syringe(interacting_with, user))
+		return ITEM_INTERACT_BLOCKING
 
 	if(reagents.total_volume >= reagents.maximum_volume)
 		to_chat(user, span_notice("[src]已经满了."))
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
+		return ITEM_INTERACT_BLOCKING
 
-	if(isliving(target))
+	if(isliving(interacting_with))
 		to_chat(user, span_warning("[src]不支持抽血操作."))
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
+		return ITEM_INTERACT_BLOCKING
 
-	if(!target.reagents.total_volume)
-		to_chat(user, span_warning("[target]已经空了!"))
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
+	if(!interacting_with.reagents.total_volume)
+		to_chat(user, span_warning("[interacting_with]已经空了!"))
+		return ITEM_INTERACT_BLOCKING
 
-	if(!target.is_drawable(user))
-		to_chat(user, span_warning("无法直接从[target]中移除试剂!"))
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
+	if(!interacting_with.is_drawable(user))
+		to_chat(user, span_warning("无法直接从[interacting_with]中移除试剂!"))
+		return ITEM_INTERACT_BLOCKING
 
-	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user) // transfer from, transfer to - who cares?
+	var/trans = interacting_with.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user) // transfer from, transfer to - who cares?
 	to_chat(user, span_notice("你将[trans]单位的溶液注入到[src] .目前[target]中含有[reagents.total_volume]单位."))
 
-	return SECONDARY_ATTACK_CONTINUE_CHAIN
+	return ITEM_INTERACT_SUCCESS
 
 //The base smartdartgun
 /obj/item/gun/syringe/smartdart
@@ -164,5 +165,4 @@
 		injectee.visible_message(span_notice("[src]发出一声短促的蜂鸣声."), span_notice("你听到[src]发出一声短促的蜂鸣声."))
 		playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 	return BULLET_ACT_HIT
-
 

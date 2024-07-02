@@ -64,7 +64,7 @@
 */
 
 /area/station/maintenance/solars
-	name = "太阳能维护气闸"
+	name = "Solar Maintenance"
 	icon_state = "yellow"
 
 /area/station/maintenance/solars/port

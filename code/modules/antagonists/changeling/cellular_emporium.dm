@@ -2,7 +2,7 @@
 // The place where Changelings go to purchase biological weaponry.
 /datum/cellular_emporium
 	/// The name of the emporium - why does it need a name? Dunno
-	name = "生物商城"
+	var/name = "生物商城"
 	/// The changeling who owns this emporium
 	var/datum/antagonist/changeling/changeling
 

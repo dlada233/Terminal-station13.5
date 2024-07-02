@@ -17,6 +17,7 @@
 	can_assign_self_objectives = TRUE
 	default_custom_objective = "洗劫纳米传讯的高价值资产. "
 	hardcore_random_bonus = TRUE
+	stinger_sound = 'sound/ambience/antag/tatoralert.ogg'
 
 	// 此叛徒应拥有的上行链路标志
 	var/uplink_flag_given = UPLINK_TRAITORS
@@ -113,8 +114,6 @@
 	pick_employer()
 
 	owner.teach_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
-
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 	return ..()
 

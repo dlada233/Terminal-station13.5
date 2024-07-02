@@ -5,8 +5,6 @@
  *
  * 巫师可以通过购买条目来学习魔法、进行仪式或召唤物品。
  */
-
-
 /datum/spellbook_entry
 	/// 条目的名称
 	var/name

@@ -563,17 +563,17 @@
 	if(!mapload)
 		log_mapping("[src] spawned outside of mapload!")
 		return INITIALIZE_HINT_QDEL
-	check_validity()
-	return INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/mapping_helpers/turn_off_lights_with_lightswitch/proc/check_validity()
+/obj/effect/mapping_helpers/turn_off_lights_with_lightswitch/LateInitialize()
 	var/area/needed_area = get_area(src)
 	if(!needed_area.lightswitch)
 		stack_trace("[src] at [AREACOORD(src)] [(needed_area.type)] tried to turn lights off but they are already off!")
 	var/obj/machinery/light_switch/light_switch = locate(/obj/machinery/light_switch) in needed_area
 	if(!light_switch)
-		stack_trace("Trying to turn off lights with lightswitch in area without lightswitches. In [(needed_area.type)] to be precise.")
-	needed_area.lightswitch = FALSE
+		CRASH("Trying to turn off lights with lightswitch in area without lightswitches. In [(needed_area.type)] to be precise.")
+	light_switch.set_lights(FALSE)
+	qdel(src)
 
 //needs to do its thing before spawn_rivers() is called
 INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
@@ -1072,7 +1072,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 /obj/effect/mapping_helpers/airlock_note_placer/LateInitialize()
 	var/turf/turf = get_turf(src)
-	if(note_path && !istype(note_path, /obj/item/paper)) //don't put non-paper in the paper slot thank you
+	if(note_path && !ispath(note_path, /obj/item/paper)) //don't put non-paper in the paper slot thank you
 		log_mapping("[src] at [x],[y] had an improper note_path path, could not place paper note.")
 		qdel(src)
 		return

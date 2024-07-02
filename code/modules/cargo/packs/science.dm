@@ -59,6 +59,16 @@
 	crate_name = "原始涡流异常箱"
 	crate_type = /obj/structure/closet/crate/secure/science
 
+/datum/supply_pack/science/raw_ectoplasm_anomaly
+	name = "Raw Ectoplasm Anomaly"
+	desc = "Contains the raw core of a ectoplasm anomaly, ready to be implosion-compressed into a powerful artifact."
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_ORDNANCE
+	access_view = ACCESS_ORDNANCE
+	contains = list(/obj/item/raw_anomaly_core/ectoplasm)
+	crate_name = "raw ectoplasm anomaly"
+	crate_type = /obj/structure/closet/crate/secure/science
+
 /datum/supply_pack/science/raw_bluespace_anomaly
 	name = "原始蓝空异常"
 	desc = "包含一个蓝空异常原始核心，准备被内爆压缩成一个强大人工制品."
@@ -111,7 +121,7 @@
 	contains = list(/obj/item/assembly/prox_sensor = 4,
 					/obj/item/healthanalyzer = 2,
 					/obj/item/clothing/head/utility/hardhat/red = 2,
-					/obj/item/storage/medkit = 2
+					/obj/item/storage/medkit = 2,
 					/obj/item/storage/toolbox = 2,
 					/obj/item/bot_assembly/cleanbot = 2)
 	crate_name = "机器人配装箱"

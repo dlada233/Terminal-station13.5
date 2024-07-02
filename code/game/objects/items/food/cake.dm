@@ -551,7 +551,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/cakeslice/trumpet
-	name = "宇航员蛋糕"
+	name = "宇航员蛋糕块"
 	desc = "休斯顿...."
 	icon_state = "trumpetcakeslice"
 	food_reagents = list(

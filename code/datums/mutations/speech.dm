@@ -4,6 +4,7 @@
 /datum/mutation/human/nervousness
 	name = "神经紧张"
 	desc = "导致突变携带者口吃."
+	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>你感觉很紧张.</span>"
 
@@ -14,6 +15,7 @@
 /datum/mutation/human/wacky
 	name = "滑稽"
 	desc = "你不是个小丑，你简直就是整个马戏团."
+	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='sans'><span class='infoplain'>你的喉咙感觉有点异样.</span></span>"
 	text_lose_indication = "<span class='notice'>异样感消失了.</span>"
@@ -36,6 +38,7 @@
 /datum/mutation/human/mute
 	name = "失语"
 	desc = "完全抑制了大脑发声区域的功能."
+	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你感到无法表达自己，仿佛被世界禁言了一般.</span>"
 	text_lose_indication = "<span class='danger'>你终于能再次发声，打破了沉默的禁锢.</span>"
@@ -53,6 +56,7 @@
 /datum/mutation/human/unintelligible
 	name = "含糊不清"
 	desc = "部分抑制了大脑的发声区域，严重扭曲你的发音，使他人难以理解."
+	instability = NEGATIVE_STABILITY_MODERATE
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>你无法进行任何清晰的思考!</span>"
 	text_lose_indication = "<span class='danger'>你的思绪感觉更清晰了.</span>"
@@ -70,6 +74,7 @@
 /datum/mutation/human/swedish
 	name = "瑞典化"
 	desc = "起源于遥远过去的可怕变异，据信在 2037 年事件后被根除."
+	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>你感觉被“瑞典化”了，无论那是什么意思.</span>"
 	text_lose_indication = "<span class='notice'>瑞典化的感觉消失了.</span>"
@@ -101,6 +106,7 @@
 /datum/mutation/human/chav
 	name = "乡巴佬"
 	desc = "未知"
+	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>你感觉自己像个乡巴佬，对吧?</span>"
 	text_lose_indication = "<span class='notice'>你不再那么粗鲁无礼了.</span>"
@@ -138,6 +144,7 @@
 /datum/mutation/human/elvis
 	name = "猫王"
 	desc = "以其“零号病人”来命名，令人恐惧的突变."
+	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>你感觉很好，甜心.</span>"
@@ -180,7 +187,7 @@
 		message = replacetext(message," yes ",pick(" sure", "yea "))
 		message = replacetext(message," muh valids "," my kicks ")
 		speech_args[SPEECH_MESSAGE] = trim(message)
-// 效果为更换英文单词，无需处理
+
 
 /datum/mutation/human/stoner
 	name = "糊涂虫"
@@ -203,6 +210,7 @@
 /datum/mutation/human/medieval
 	name = "中世纪"
 	desc = "源于遥远过去的可怕变异，据信曾是旧世界欧洲普遍存在的基因."
+	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>你心中燃起了寻找圣杯的渴望!</span>"
 	text_lose_indication = "<span class='notice'>你不再渴望寻找任何东西.</span>"
@@ -243,6 +251,7 @@
 /datum/mutation/human/piglatin
 	name = "猪拉丁语"
 	desc = "历史学家说，早在 2020 年代，人类就完全用这种神秘的语言交流."
+	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	text_gain_indication = span_notice("你开始说猪拉丁语了.")
 	text_lose_indication = span_notice("你不再说猪拉丁语了.")

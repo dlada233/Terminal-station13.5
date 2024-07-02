@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		user.visible_message(span_danger("[src]爆裂开来!"), span_danger("[src]在你的脸上爆裂开来!"))
 		return
 
-	if(do_after(user, 30, target = src))
+	if(do_after(user, 3 SECONDS, target = src))
 		if(sawn_off)
 			return
 		user.visible_message(span_notice("[user]锯短了[src]!"), span_notice("你锯短了[src]."))

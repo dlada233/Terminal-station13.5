@@ -534,7 +534,6 @@
 	eatverbs = list("咬", "咀嚼", "啃", "吞", "大口咀嚼", "撕咬")
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_1
-	// bite chew nibble deep throat gobble chomp
 
 /obj/item/food/raw_sausage/make_grillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/sausage, rand(60 SECONDS, 75 SECONDS), TRUE)
@@ -555,6 +554,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_price = PAYCHECK_CREW * 0.6
 
 /obj/item/food/sausage/make_processable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/salami, 6, 3 SECONDS, table_required = TRUE,  screentip_verb = "片") // Slice
@@ -735,6 +735,7 @@
 	foodtypes = MEAT | DAIRY | GRAIN
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_price = PAYCHECK_CREW
 
 /obj/item/food/bbqribs
 	name = "烧烤肋排"

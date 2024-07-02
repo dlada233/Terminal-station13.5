@@ -10,6 +10,7 @@ import { FeatureDropdownInput } from '../dropdowns';
 export const sound_ambience: FeatureToggle = {
   name: '启用环境音效',
   category: 'SOUND',
+  description: `Ambience refers to the more noticeable ambient sounds that play on occasion.`,
   component: CheckboxInput,
 };
 
@@ -82,6 +83,7 @@ export const sound_ship_ambience: FeatureToggle = {
   name: '启用飞船氛围音',
   category: 'SOUND',
   component: CheckboxInput,
+  description: `Ship ambience refers to the low ambient buzz that plays on loop.`,
 };
 
 export const sound_elevator: FeatureToggle = {

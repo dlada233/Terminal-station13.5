@@ -8,6 +8,7 @@
 	clothing_flags = ANTI_TINFOIL_MANEUVER
 	var/datum/brain_trauma/mild/phobia/conspiracies/paranoia
 	var/warped = FALSE
+	interaction_flags_mouse_drop = NEED_HANDS
 
 /datum/armor/costume_foilhat
 	laser = -5
@@ -42,10 +43,10 @@
 	user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
 	to_chat(user, span_warning("当你戴上锡纸帽时，各种阴谋论和看似疯狂的想法突然涌入你的脑海，你曾认为难以置信的事情现在看起来......不可否认. 一切都是相互关联的，任何事情都不是偶然发生的. 你知道得太多了，他们现在要来抓你了. "))
 
-/obj/item/clothing/head/costume/foilhat/MouseDrop(atom/over_object)
+/obj/item/clothing/head/costume/foilhat/mouse_drop_dragged(atom/over_object, mob/user)
 	//God Im sorry
-	if(!warped && iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(!warped && iscarbon(user))
+		var/mob/living/carbon/C = user
 		if(src == C.head)
 			to_chat(C, span_userdanger("你为什么想要摘下这个？你想让他们进入你的思维吗？！"))
 			return

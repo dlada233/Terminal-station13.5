@@ -16,7 +16,11 @@ export const NtosJobManagerContent = (props) => {
   const { act, data } = useBackend();
   const { authed, cooldown, slots = [], prioritized = [] } = data;
   if (!authed) {
-    return <NoticeBox>当前ID无更改工作职位的所需权限.</NoticeBox>;
+    return (
+      <NoticeBox>
+        当前ID无更改工作职位的所需权限.
+      </NoticeBox>
+    );
   }
   return (
     <Section>

@@ -178,20 +178,20 @@
 	desc = "给小丑的彩色盒子"
 	illustration = "clown"
 
-/obj/item/storage/box/clown/attackby(obj/item/I, mob/user, params)
-	if((istype(I, /obj/item/bodypart/arm/left/robot)) || (istype(I, /obj/item/bodypart/arm/right/robot)))
+/obj/item/storage/box/clown/storage_insert_on_interacted_with(datum/storage, obj/item/inserted, mob/living/user)
+	if(istype(inserted, /obj/item/bodypart/arm/left/robot) || istype(inserted, /obj/item/bodypart/arm/right/robot))
 		if(contents.len) //prevent accidently deleting contents
-			balloon_alert(user, "内有物品!")
-			return
-		if(!user.temporarilyRemoveItemFromInventory(I))
-			return
-		qdel(I)
-		balloon_alert(user, "wheels added, honk!")
+			balloon_alert(user, "items inside!")
+			return FALSE
+		if(!user.temporarilyRemoveItemFromInventory(inserted))
+			return FALSE
+		qdel(inserted)
+		loc.balloon_alert(user, "wheels added, honk!")
 		var/obj/item/bot_assembly/honkbot/A = new
 		qdel(src)
 		user.put_in_hands(A)
-	else
-		return ..()
+		return FALSE
+	return TRUE
 
 /obj/item/storage/box/clown/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user]打开[src]，并被[p_them()]消耗! 这是一种自杀行为!"))

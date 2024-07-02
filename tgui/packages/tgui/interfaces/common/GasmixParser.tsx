@@ -63,7 +63,10 @@ export const GasmixParser = (props: GasmixParserProps) => {
       <LabeledList.Item
         label={
           temperatureOnClick ? (
-            <Button content={'温度'} onClick={() => temperatureOnClick()} />
+            <Button
+              content={'温度'}
+              onClick={() => temperatureOnClick()}
+            />
           ) : (
             '温度'
           )

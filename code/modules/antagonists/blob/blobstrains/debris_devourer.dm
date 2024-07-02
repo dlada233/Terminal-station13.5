@@ -61,4 +61,3 @@
 				. += span_notice("吸收到的零碎物品能中等程度地降低伤害.")
 
 #undef DEBRIS_DENSITY
-

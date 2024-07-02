@@ -3,7 +3,7 @@
 	desc = "一种罕见的基因组，吸引着通常无法被观察到的奇怪力量."
 	quality = MINOR_NEGATIVE //upsides and downsides
 	text_gain_indication = span_notice("你感觉到一股沉重、迟钝的力量在墙外注视着你.")
-	instability = 30
+	instability = POSITIVE_INSTABILITY_MODERATE // useful, but has large drawbacks
 	power_path = /datum/action/cooldown/spell/void/cursed
 	energy_coeff = 1
 	synchronizer_coeff = 1

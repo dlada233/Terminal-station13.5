@@ -152,7 +152,7 @@
 	name = "情人节贺卡"
 	desc = "俘获你的真爱!内含一张情人节贺卡和一颗免费的心形糖果!"
 	cost = PAYCHECK_CREW * 2
-	contains = list(/obj/item/valentine, /obj/item/food/candyheart)
+	contains = list(/obj/item/paper/valentine, /obj/item/food/candyheart)
 
 /datum/supply_pack/goody/beeplush
 	name = "蜜蜂玩偶"
@@ -314,7 +314,6 @@
 	desc = "一个相对便宜的进口登山钩，仅适用于行星类空间站的攀岩环境."
 	cost = PAYCHECK_CREW * 5
 	contains = list(/obj/item/climbing_hook)
-
 
 /datum/supply_pack/goody/double_barrel
 	name = "Double-barreled Shotgun Single-Pack"

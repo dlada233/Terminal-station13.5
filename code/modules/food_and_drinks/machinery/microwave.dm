@@ -479,13 +479,18 @@
 			visible_message(span_notice("[user]设置[src]为[vampire_charging_enabled ? "充能" : "加热"]."), blind_message = span_notice("你听到[src]发出信息的哔哔声!"))
 	return CLICK_ACTION_SUCCESS
 
-/obj/machinery/microwave/CtrlClick(mob/user)
-	. = ..()
-	if(user.can_perform_action(src) && cell_powered && !isnull(cell) && anchored)
+/obj/machinery/microwave/click_ctrl(mob/user)
+	if(!anchored)
+		return NONE
+
+	if(cell_powered && !isnull(cell))
 		user.put_in_hands(cell)
 		balloon_alert(user, "移除电池")
 		cell = null
 		update_appearance()
+		return CLICK_ACTION_SUCCESS
+
+	return CLICK_ACTION_BLOCKING
 
 /obj/machinery/microwave/ui_interact(mob/user)
 	. = ..()

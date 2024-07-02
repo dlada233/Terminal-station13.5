@@ -1,6 +1,6 @@
 /datum/antagonist/survivalist
 	name = "\improper 生存主义者"
-	show_in_antagpanel = TRUE
+	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	suicide_cry = "为了我自己!!"
 	/// What do we display when you gain the antag datum?

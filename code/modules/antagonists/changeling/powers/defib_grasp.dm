@@ -4,6 +4,7 @@
 	helptext = "这一个被动技能，当我们死亡或进入静滞状态时有人将除颤器放在我们胸部上时自动触发，即使是除颤者是赛博也能将其暂时击晕."
 	owner_has_control = FALSE
 	dna_cost = 0
+	disabled_by_fire = FALSE
 
 	/// Flags to pass to fully heal when we get zapped
 	var/heal_flags = HEAL_DAMAGE|HEAL_BODY|HEAL_STATUS|HEAL_CC_STATUS

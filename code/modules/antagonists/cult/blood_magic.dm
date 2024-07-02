@@ -376,27 +376,39 @@
 	return ..()
 
 /obj/item/melee/blood_magic/attack_self(mob/living/user)
-	afterattack(user, user, TRUE)
+	cast_spell(user, user)
 
 /obj/item/melee/blood_magic/attack(mob/living/M, mob/living/carbon/user)
-	if(!iscarbon(user) || !IS_CULTIST(user))
-		uses = 0
-		qdel(src)
-		return
 	log_combat(user, M, "施展了血教法术", source.name, "")
 	SSblackbox.record_feedback("tally", "cult_spell_invoke", 1, "[name]")
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
+	user.do_attack_animation(M)
+	cast_spell(M, user)
 
-/obj/item/melee/blood_magic/afterattack(atom/target, mob/living/carbon/user, proximity)
-	. = ..()
+/obj/item/melee/blood_magic/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!iscarbon(user) || !IS_CULTIST(user))
+		uses = 0
+		qdel(src)
+		return ITEM_INTERACT_BLOCKING
+
+	if(isliving(interacting_with))
+		return ITEM_INTERACT_SKIP_TO_ATTACK
+
+	user.do_attack_animation(interacting_with)
+	log_combat(user, interacting_with, "施展了血教法术", source.name, "")
+	SSblackbox.record_feedback("tally", "cult_spell_invoke", 1, "[name]")
+	cast_spell(interacting_with, user)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/melee/blood_magic/proc/cast_spell(atom/target, mob/living/carbon/user)
 	if(invocation)
 		user.whisper(invocation, language = /datum/language/common)
 	if(health_cost)
 		if(user.active_hand_index == 1)
-			user.apply_damage(health_cost, BRUTE, BODY_ZONE_L_ARM)
+			user.apply_damage(health_cost, BRUTE, BODY_ZONE_L_ARM, wound_bonus = CANT_WOUND)
 		else
-			user.apply_damage(health_cost, BRUTE, BODY_ZONE_R_ARM)
+			user.apply_damage(health_cost, BRUTE, BODY_ZONE_R_ARM, wound_bonus = CANT_WOUND)
 	if(uses <= 0)
 		qdel(src)
 	else if(source)
@@ -411,51 +423,48 @@
 	color = RUNE_COLOR_RED
 	invocation = "Fuu ma'jin!"
 
-/obj/item/melee/blood_magic/stun/afterattack(mob/living/target, mob/living/carbon/user, proximity)
-	if(!isliving(target) || !proximity)
-		return
-	if(IS_CULTIST(target))
+/obj/item/melee/blood_magic/stun/cast_spell(mob/living/target, mob/living/carbon/user)
+	if(!istype(target) || IS_CULTIST(target))
 		return
 	var/datum/antagonist/cult/cultist = IS_CULTIST(user)
-	if(!isnull(cultist))
-		var/datum/team/cult/cult_team = cultist.get_team()
-		var/effect_coef = 1 - (cult_team.cult_risen ? 0.4 : 0) - (cult_team.cult_ascendent ? 0.5 : 0)
-		user.visible_message(span_warning("[user]抬起手，红光一闪而过!"), \
-		span_cult_italic("你试图用咒术击晕[target]!"))
-		user.mob_light(range = 1.1, power = 2, color = LIGHT_COLOR_BLOOD_MAGIC, duration = 0.2 SECONDS)
-		if(IS_HERETIC(target))
-			to_chat(user, span_warning("有比你更强大的力量在干预! [target]受到了某些被遗忘神祇的保护!"))
-			to_chat(target, span_warning("你所忠于的遗忘神祇们保护了你."))
-			var/old_color = target.color
-			target.color = rgb(0, 128, 0)
-			animate(target, color = old_color, time = 1 SECONDS, easing = EASE_IN)
-
+	var/datum/team/cult/cult_team = cultist.get_team()
+	var/effect_coef = 1 - (cult_team.cult_risen ? 0.4 : 0) - (cult_team.cult_ascendent ? 0.5 : 0)
+	user.visible_message(
+		span_warning("[user]抬起手，红光一闪而过!"),
+		span_cult_italic("你试图用咒术击晕[target]!")
+		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
+	)
+	user.mob_light(range = 1.1, power = 2, color = LIGHT_COLOR_BLOOD_MAGIC, duration = 0.2 SECONDS)
+	if(IS_HERETIC(target))
+		to_chat(user, span_warning("有比你更强大的力量在干预! [target]受到了某些被遗忘神祇的保护!"))
+		to_chat(target, span_warning("你所忠于的遗忘神祇们保护了你."))
+		var/old_color = target.color
+		target.color = rgb(0, 128, 0)
+		animate(target, color = old_color, time = 1 SECONDS, easing = EASE_IN)
 		// SKYRAT EDIT START
 		if(IS_CLOCK(target))
 			to_chat(user, span_warning("某种比你更强大的力量介入了! [target]受到了异教徒拉特瓦的保护!"))
 			to_chat(target, span_warning("你所忠于的拉特瓦保护了你!"))
-			var/old_color = target.color
 			target.color = rgb(190, 135, 0)
 			animate(target, color = old_color, time = 1 SECONDS, easing = EASE_IN)
 		// SKYRAT EDIT END
-
-		else if(target.can_block_magic())
-			to_chat(user, span_warning("法术不起效果!"))
-		else
-			to_chat(user, span_cultitalic("红光闪过，[target]倒地!"))
-			target.Paralyze(16 SECONDS * effect_coef)
-			target.flash_act(1, TRUE)
-			if(issilicon(target))
-				var/mob/living/silicon/silicon_target = target
-				silicon_target.emp_act(EMP_HEAVY)
-			else if(iscarbon(target))
-				var/mob/living/carbon/carbon_target = target
-				carbon_target.adjust_silence(12 SECONDS * effect_coef)
-				carbon_target.adjust_stutter(30 SECONDS * effect_coef)
-				carbon_target.adjust_timed_status_effect(30 SECONDS * effect_coef, /datum/status_effect/speech/slurring/cult)
-				carbon_target.set_jitter_if_lower(30 SECONDS * effect_coef)
-		uses--
-	..()
+	else if(target.can_block_magic())
+		to_chat(user, span_warning("法术不起效果!"))
+	else
+		to_chat(user, span_cult_italic("红光闪过，[target]倒地!"))
+		target.Paralyze(16 SECONDS * effect_coef)
+		target.flash_act(1, TRUE)
+		if(issilicon(target))
+			var/mob/living/silicon/silicon_target = target
+			silicon_target.emp_act(EMP_HEAVY)
+		else if(iscarbon(target))
+			var/mob/living/carbon/carbon_target = target
+			carbon_target.adjust_silence(12 SECONDS * effect_coef)
+			carbon_target.adjust_stutter(30 SECONDS * effect_coef)
+			carbon_target.adjust_timed_status_effect(30 SECONDS * effect_coef, /datum/status_effect/speech/slurring/cult)
+			carbon_target.set_jitter_if_lower(30 SECONDS * effect_coef)
+	uses--
+	return ..()
 
 //Teleportation
 /obj/item/melee/blood_magic/teleport
@@ -464,47 +473,52 @@
 	desc = "将接触到的血教徒传送到传送符文."
 	invocation = "Sas'so c'arta forbici!"
 
-/obj/item/melee/blood_magic/teleport/afterattack(atom/target, mob/living/carbon/user, proximity)
-	var/mob/mob_target = target
-	if(istype(mob_target) && !IS_CULTIST(mob_target) || !proximity)
+/obj/item/melee/blood_magic/teleport/cast_spell(mob/living/target, mob/living/carbon/user)
+	if(!istype(target) || !IS_CULTIST(target))
 		to_chat(user, span_warning("该法术只能传送相邻的血教徒!"))
 		return
-	if(IS_CULTIST(user))
-		var/list/potential_runes = list()
-		var/list/teleportnames = list()
-		for(var/obj/effect/rune/teleport/teleport_rune as anything in GLOB.teleport_runes)
-			potential_runes[avoid_assoc_duplicate_keys(teleport_rune.listkey, teleportnames)] = teleport_rune
 
-		if(!length(potential_runes))
-			to_chat(user, span_warning("没有有效的符文可以传送!"))
-			return
+	var/list/potential_runes = list()
+	var/list/teleportnames = list()
+	for(var/obj/effect/rune/teleport/teleport_rune as anything in GLOB.teleport_runes)
+		potential_runes[avoid_assoc_duplicate_keys(teleport_rune.listkey, teleportnames)] = teleport_rune
 
-		var/turf/T = get_turf(src)
-		if(is_away_level(T.z))
-			to_chat(user, span_cultitalic("你不在正确的空间范围!"))
-			return
-
-		var/input_rune_key = tgui_input_list(user, "传送到的符文", "传送目标", potential_runes) //we know what key they picked
-		if(isnull(input_rune_key))
-			return
-		if(isnull(potential_runes[input_rune_key]))
-			to_chat(user, span_warning("你必须选择一个有效的符文!"))
-			return
-		var/obj/effect/rune/teleport/actual_selected_rune = potential_runes[input_rune_key] //what rune does that key correspond to?
-		if(QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !actual_selected_rune || !proximity)
-			return
-		var/turf/dest = get_turf(actual_selected_rune)
-		if(dest.is_blocked_turf(TRUE))
-			to_chat(user, span_warning("目标符文被堵住了，你无法传送到那里."))
-			return
-		uses--
-		var/turf/origin = get_turf(user)
-		var/mob/living/L = target
-		if(do_teleport(L, dest, channel = TELEPORT_CHANNEL_CULT))
-			origin.visible_message(span_warning("[user]的手中流出灰尘，并且随着尖锐的破裂声消失了!"), \
-				span_cultitalic("你念出了咒语然后发现自己到了别的地方!"), "<i>你听到一声尖锐的破裂声.</i>")
-			dest.visible_message(span_warning("有什么东西出现在符文上方，一阵爆炸的气流涌出!"), null, "<i>你听到一声爆炸.</i>")
-		..()
+	if(!length(potential_runes))
+		to_chat(user, span_warning("没有有效的符文可以传送!"))
+		return
+	var/turf/T = get_turf(src)
+	if(is_away_level(T.z))
+		to_chat(user, span_cult_italic("你不在正确的空间范围!"))
+		return
+	var/input_rune_key = tgui_input_list(user, "传送到的符文", "传送目标", potential_runes) //we know what key they picked
+	if(isnull(input_rune_key))
+		return
+	if(isnull(potential_runes[input_rune_key]))
+		to_chat(user, span_warning("你必须选择一个有效的符文!"))
+		return
+	var/obj/effect/rune/teleport/actual_selected_rune = potential_runes[input_rune_key] //what rune does that key correspond to?
+	if(QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !actual_selected_rune)
+		return
+	var/turf/dest = get_turf(actual_selected_rune)
+	if(dest.is_blocked_turf(TRUE))
+		to_chat(user, span_warning("目标符文被堵住了，你无法传送到那里."))
+		return
+	uses--
+	var/turf/origin = get_turf(user)
+	if(do_teleport(target, dest, channel = TELEPORT_CHANNEL_CULT))
+		origin.visible_message(
+			span_warning("[user]的手中流出灰尘，并且随着尖锐的破裂声消失了!"),
+			span_cult_italic("你念出了咒语然后发现自己到了别的地方!"),
+			span_hear("你听到一声尖锐的破裂声."),
+		)
+		dest.visible_message(
+			span_warning("有什么东西出现在符文上方，一阵爆炸的气流涌出!"),
+			null,
+			span_hear("你听到一声爆炸.."),
+		)
+		playsound(origin, SFX_PORTAL_ENTER, 50, TRUE, SILENCED_SOUND_EXTRARANGE)
+		playsound(dest, SFX_PORTAL_ENTER, 50, TRUE, SILENCED_SOUND_EXTRARANGE)
+	return ..()
 
 //Shackles
 /obj/item/melee/blood_magic/shackles
@@ -513,15 +527,17 @@
 	invocation = "In'totum Lig'abis!"
 	color = COLOR_BLACK // black
 
-/obj/item/melee/blood_magic/shackles/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(IS_CULTIST(user) && iscarbon(target) && proximity)
-		var/mob/living/carbon/C = target
-		if(C.canBeHandcuffed())
-			CuffAttack(C, user)
-		else
-			user.visible_message(span_cultitalic("这名目标没有足够的手臂来带上手铐!"))
-			return
-		..()
+/obj/item/melee/blood_magic/shackles/cast_spell(atom/target, mob/living/carbon/user)
+	if(!iscarbon(target))
+		return
+	var/mob/living/carbon/C = target
+	if(IS_CULTIST(C))
+		return
+	if(!C.canBeHandcuffed())
+		user.visible_message(span_cult_italic("这名目标没有足够的手臂来带上手铐!"))
+		return
+	CuffAttack(C, user)
+	return ..()
 
 /obj/item/melee/blood_magic/shackles/proc/CuffAttack(mob/living/carbon/C, mob/living/user)
 	if(!C.handcuffed)
@@ -574,90 +590,95 @@
 	纯净灵魂石(以及里面的任何幽影)转化为血教灵魂石\n
 	气闸门在延迟后转化为脆弱的符文气闸门(战斗模式)"}
 
-/obj/item/melee/blood_magic/construction/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(proximity_flag && IS_CULTIST(user))
-		if(channeling)
-			to_chat(user, span_cultitalic("你已经施展了扭曲建筑!"))
+/obj/item/melee/blood_magic/construction/cast_spell(atom/target, mob/living/carbon/user)
+	if(channeling)
+		to_chat(user, span_cult_italic("你已经施展了扭曲建筑!"))
+		return
+
+	var/turf/T = get_turf(target)
+	if(istype(target, /obj/item/stack/sheet/iron))
+		var/obj/item/stack/sheet/candidate = target
+		if(!candidate.use(IRON_TO_CONSTRUCT_SHELL_CONVERSION))
+			to_chat(user, span_warning("你需要[IRON_TO_CONSTRUCT_SHELL_CONVERSION]块铁来创造躯壳!"))
 			return
-		. |= AFTERATTACK_PROCESSED_ITEM
-		var/turf/T = get_turf(target)
-		if(istype(target, /obj/item/stack/sheet/iron))
-			var/obj/item/stack/sheet/candidate = target
-			if(candidate.use(IRON_TO_CONSTRUCT_SHELL_CONVERSION))
-				uses--
-				to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的铁块，将其扭曲成了一具建筑者的躯壳!"))
-				new /obj/structure/constructshell(T)
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-			else
-				to_chat(user, span_warning("你需要[IRON_TO_CONSTRUCT_SHELL_CONVERSION]块铁来创造躯壳!"))
-				return
-		else if(istype(target, /obj/item/stack/sheet/plasteel))
-			var/obj/item/stack/sheet/plasteel/candidate = target
-			var/quantity = candidate.amount
-			if(candidate.use(quantity))
-				uses --
-				new /obj/item/stack/sheet/runed_metal(T,quantity)
-				to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的塑钢，将其转化成了符文金属!"))
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-		else if(istype(target,/mob/living/silicon/robot))
-			var/mob/living/silicon/robot/candidate = target
-			if(candidate.mmi || candidate.shell)
-				channeling = TRUE
-				user.visible_message(span_danger("黑气从[user]的手中散发出来，蒙住了[candidate]!"))
-				playsound(T, 'sound/machines/airlock_alien_prying.ogg', 80, TRUE)
-				var/prev_color = candidate.color
-				candidate.color = "black"
-				if(do_after(user, 9 SECONDS, target = candidate))
-					candidate.undeploy()
-					candidate.emp_act(EMP_HEAVY)
-					var/construct_class = show_radial_menu(user, src, GLOB.construct_radial_images, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
-					if(!check_menu(user))
-						return
-					if(QDELETED(candidate))
-						channeling = FALSE
-						return
-					candidate.grab_ghost()
-					user.visible_message(span_danger("[candidate]上的黑气退散，[construct_class]显露出来!"))
-					make_new_construct_from_class(construct_class, THEME_CULT, candidate, user, FALSE, T)
-					uses--
-					qdel(candidate)
-					channeling = FALSE
-				else
-					channeling = FALSE
-					candidate.color = prev_color
-					return
-			else
-				uses--
-				to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的[candidate] - 正将其扭曲成建筑者!"))
-				new /obj/structure/constructshell(T)
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-				qdel(candidate)
-		else if(istype(target,/obj/machinery/door/airlock))
+		uses--
+		to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的铁块，将其扭曲成了一具建筑者的躯壳!"))
+		new /obj/structure/constructshell(T)
+		SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+		return ..()
+
+	if(istype(target, /obj/item/stack/sheet/plasteel))
+		var/obj/item/stack/sheet/plasteel/candidate = target
+		var/quantity = candidate.amount
+		if(!candidate.use(quantity))
+			return
+
+		uses--
+		new /obj/item/stack/sheet/runed_metal(T,quantity)
+		to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的塑钢，将其转化成了符文金属!"))
+		SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+		return ..()
+
+	if(istype(target,/mob/living/silicon/robot))
+		var/mob/living/silicon/robot/candidate = target
+		if(candidate.mmi || candidate.shell)
 			channeling = TRUE
-			playsound(T, 'sound/machines/airlockforced.ogg', 50, TRUE)
-			do_sparks(5, TRUE, target)
-			if(do_after(user, 5 SECONDS, target = user))
-				if(QDELETED(target))
-					channeling = FALSE
-					return
-				target.narsie_act()
-				uses--
-				to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的[candidate] - 正将其扭曲成建筑者!"))
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+			user.visible_message(span_danger("黑气从[user]的手中散发出来，蒙住了[candidate]!"))
+			playsound(T, 'sound/machines/airlock_alien_prying.ogg', 80, TRUE)
+			var/prev_color = candidate.color
+			candidate.color = "black"
+			if(!do_after(user, 9 SECONDS, target = candidate))
 				channeling = FALSE
-			else
-				channeling = FALSE
+				candidate.color = prev_color
 				return
-		else if(istype(target,/obj/item/soulstone))
-			var/obj/item/soulstone/candidate = target
-			if(candidate.corrupt())
-				uses--
-				to_chat(user, span_warning("你腐化了[candidate]!"))
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-		else
-			to_chat(user, span_warning("法术对[target]不起作用!"))
+			candidate.undeploy()
+			candidate.emp_act(EMP_HEAVY)
+			var/construct_class = show_radial_menu(user, src, GLOB.construct_radial_images, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
+			if(!check_menu(user) || QDELETED(candidate))
+				channeling = FALSE
+				candidate.color = prev_color
+				return
+			candidate.grab_ghost()
+			user.visible_message(span_danger("[candidate]上的黑气退散，[construct_class]显露出来!"))
+			make_new_construct_from_class(construct_class, THEME_CULT, candidate, user, FALSE, T)
+			uses--
+			qdel(candidate)
+			channeling = FALSE
+			return ..()
+
+		uses--
+		to_chat(user, span_warning("黑气从你的手中散发出来，蒙住了眼前的[candidate] - 正将其扭曲成建筑者!"))
+		new /obj/structure/constructshell(T)
+		SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+		qdel(candidate)
+		return ..()
+
+	if(istype(target,/obj/machinery/door/airlock))
+		channeling = TRUE
+		playsound(T, 'sound/machines/airlockforced.ogg', 50, TRUE)
+		do_sparks(5, TRUE, target)
+		if(!do_after(user, 5 SECONDS, target = user) && !QDELETED(target))
+			channeling = FALSE
 			return
-		return . | ..()
+
+		target.narsie_act()
+		uses--
+		user.visible_message(span_warning("Black ribbons suddenly emanate from [user]'s hand and cling to the airlock - twisting and corrupting it!"))
+		SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+		channeling = FALSE
+		return ..()
+
+	if(istype(target,/obj/item/soulstone))
+		var/obj/item/soulstone/candidate = target
+		if(!candidate.corrupt())
+			return
+
+		uses--
+		to_chat(user, span_warning("你腐化了[candidate]!"))
+		SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+		return ..()
+
+	to_chat(user, span_warning("法术对[target]不起作用!"))
 
 /obj/item/melee/blood_magic/construction/proc/check_menu(mob/user)
 	if(!istype(user))
@@ -673,21 +694,21 @@
 	desc = "给接触到的血教徒换上战斗装备."
 	color = "#33cc33" // green
 
-/obj/item/melee/blood_magic/armor/afterattack(atom/target, mob/living/carbon/user, proximity)
+/obj/item/melee/blood_magic/armor/cast_spell(mob/living/target, mob/living/carbon/user)
+	if(!iscarbon(target) || !IS_CULTIST(target))
+		return
+	uses--
 	var/mob/living/carbon/carbon_target = target
-	if(istype(carbon_target) && IS_CULTIST(carbon_target) && proximity)
-		uses--
-		var/mob/living/carbon/C = target
-		C.visible_message(span_warning("异界的盔甲突然出现在了[C]身上!"))
-		C.equip_to_slot_or_del(new /obj/item/clothing/under/color/black,ITEM_SLOT_ICLOTHING)
-		C.equip_to_slot_or_del(new /obj/item/clothing/suit/hooded/cultrobes/alt(user), ITEM_SLOT_OCLOTHING)
-		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult/alt(user), ITEM_SLOT_FEET)
-		C.equip_to_slot_or_del(new /obj/item/storage/backpack/cultpack(user), ITEM_SLOT_BACK)
-		if(C == user)
-			qdel(src) //Clears the hands
-		C.put_in_hands(new /obj/item/melee/cultblade/dagger(user))
-		C.put_in_hands(new /obj/item/restraints/legcuffs/bola/cult(user))
-		..()
+	carbon_target.visible_message(span_warning("异界的盔甲突然出现在了[carbon_target]身上!"))
+	carbon_target.equip_to_slot_or_del(new /obj/item/clothing/under/color/black,ITEM_SLOT_ICLOTHING)
+	carbon_target.equip_to_slot_or_del(new /obj/item/clothing/suit/hooded/cultrobes/alt(user), ITEM_SLOT_OCLOTHING)
+	carbon_target.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult/alt(user), ITEM_SLOT_FEET)
+	carbon_target.equip_to_slot_or_del(new /obj/item/storage/backpack/cultpack(user), ITEM_SLOT_BACK)
+	if(carbon_target == user)
+		qdel(src) //Clears the hands
+	carbon_target.put_in_hands(new /obj/item/melee/cultblade/dagger(user))
+	carbon_target.put_in_hands(new /obj/item/restraints/legcuffs/bola/cult(user))
+	return ..()
 
 /obj/item/melee/blood_magic/manipulator
 	name = "血仪式法气"
@@ -708,10 +729,7 @@
  *
  * '/obj/item/melee/blood_magic/manipulator/proc/blood_draw' handles blood pools/trails and does not affect parent proc
  */
-/obj/item/melee/blood_magic/manipulator/afterattack(atom/target, mob/living/carbon/human/user, proximity)
-	if(!proximity)
-		return
-
+/obj/item/melee/blood_magic/manipulator/cast_spell(mob/living/target, mob/living/carbon/user)
 	if((isconstruct(target) || isshade(target)) && !heal_construct(target, user))
 		return
 	if(istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/trail_holder) || isturf(target))
@@ -724,12 +742,11 @@
 		if(human_bloodbag.stat == DEAD)
 			human_bloodbag.balloon_alert(user, "死着的!")
 			return
-
 		if(IS_CULTIST(human_bloodbag) && !heal_cultist(human_bloodbag, user))
 			return
 		if(!IS_CULTIST(human_bloodbag) && !drain_victim(human_bloodbag, user))
 			return
-	..()
+	return ..()
 
 /**
  * handles blood rites usage on constructs

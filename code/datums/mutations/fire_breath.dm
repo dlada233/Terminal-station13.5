@@ -7,7 +7,7 @@
 	text_gain_indication = "<span class='notice'>你的喉间变得炙热起来!</span>"
 	text_lose_indication = "<span class='notice'>你的喉咙逐渐冷却下来.</span>"
 	power_path = /datum/action/cooldown/spell/cone/staggered/fire_breath
-	instability = 30
+	instability = POSITIVE_INSTABILITY_MODERATE
 	energy_coeff = 1
 	power_coeff = 1
 

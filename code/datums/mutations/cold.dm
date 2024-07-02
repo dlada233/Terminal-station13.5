@@ -3,7 +3,7 @@
 	desc = "允许使用者运用水分和冰冻之力来凝聚出雪花."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>你的手感觉很冷.</span>"
-	instability = 10
+	instability = POSITIVE_INSTABILITY_MINOR
 	difficulty = 10
 	synchronizer_coeff = 1
 	power_path = /datum/action/cooldown/spell/conjure_item/snow
@@ -25,7 +25,7 @@
 	desc = "从超低温的虚空汲取负能量，根据使用者意愿冻结周围环境."
 	quality = POSITIVE //upsides and downsides
 	text_gain_indication = "<span class='notice'>Your hand feels cold.</span>"
-	instability = 30
+	instability = POSITIVE_INSTABILITY_MODERATE
 	difficulty = 12
 	synchronizer_coeff = 1
 	energy_coeff = 1

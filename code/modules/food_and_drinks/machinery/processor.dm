@@ -4,7 +4,8 @@
 	name = "食品加工机"
 	desc = "操作时请勿将手伸进去."
 	icon = 'icons/obj/machines/kitchen.dmi'
-	icon_state = "processor1"
+	base_icon_state = "processor"
+	icon_state = "processor"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	pass_flags = PASSTABLE
@@ -91,7 +92,7 @@
 	if(processing)
 		to_chat(user, span_warning("[src]正在加工中!"))
 		return TRUE
-	if(default_deconstruction_screwdriver(user, "processor", "processor1", attacking_item) || default_pry_open(attacking_item, close_after_pry = TRUE) || default_deconstruction_crowbar(attacking_item))
+	if(default_deconstruction_screwdriver(user, base_icon_state + "_open", base_icon_state, attacking_item) || default_pry_open(attacking_item, close_after_pry = TRUE) || default_deconstruction_crowbar(attacking_item))
 		return
 
 	if(istype(attacking_item, /obj/item/storage/bag/tray))

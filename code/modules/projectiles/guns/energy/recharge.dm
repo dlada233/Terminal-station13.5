@@ -154,13 +154,13 @@
 	该效果同样对<b>赛博格头灯<b>有用, 并在近距离时持续效果更长.<br><br>\
 	虽然有些人觉得这是很糟糕的设计，但有些人显然能从破坏照明资源中获得快乐，望购者自慎.")
 
-/obj/item/gun/energy/recharge/fisher/afterattack(atom/target, mob/living/user, flag, params)
-	// you should just shoot them, but in case you can't/wont
+/obj/item/gun/energy/recharge/fisher/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
-	if(user.Adjacent(target))
-		var/obj/projectile/energy/fisher/melee/simulated_hit = new
-		simulated_hit.firer = user
-		simulated_hit.on_hit(target)
+	if(.)
+		return
+	var/obj/projectile/energy/fisher/melee/simulated_hit = new
+	simulated_hit.firer = user
+	simulated_hit.on_hit(target_mob)
 
 /obj/item/gun/energy/recharge/fisher/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	// ...you reeeeeally just shoot them, but in case you can't/won't

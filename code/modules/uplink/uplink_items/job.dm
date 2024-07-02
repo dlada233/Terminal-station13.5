@@ -162,7 +162,7 @@
 /datum/uplink_item/role_restricted/gorillacube
 	name = "大猩猩方块"
 	desc = "一盒三块Waffle公司的大猩猩方块，暴露于水中时会长出大猩猩."
-	item = /obj/item/storage/box/gorillacubes
+	item = /obj/item/food/monkeycube/gorilla
 	cost = 6
 	restricted_roles = list(JOB_GENETICIST, JOB_RESEARCH_DIRECTOR)
 
@@ -177,7 +177,7 @@
 /datum/uplink_item/role_restricted/advanced_plastic_surgery
 	name = "高级易容手术资料"
 	desc = "购买此项，将获得包含洗脑手术资料的磁盘，将资料磁盘插入一台手术辅助电脑中，你将能进行高级易容手术，该手术允许你根据你手上的照片来易容成某人的脸和声音."
-	item = /obj/item/disk/surgery/brainwashing
+	item = /obj/item/disk/surgery/advanced_plastic_surgery
 	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_ROBOTICIST)
 	cost = 1
 	surplus = 50

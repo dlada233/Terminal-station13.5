@@ -33,7 +33,7 @@
 		new/obj/effect/particle_effect/fluid/smoke(get_turf(src))
 		playsound(src, 'sound/effects/smoke.ogg', 50, TRUE)
 		visible_message(span_warning("啊,我靠! [src] 被搞砸了! 但似乎好像...?"))
-		name = "steamed hams"
+		name = "steamed ham"
 		desc = pick("Ahh, Head of Personnel, welcome. I hope you're prepared for an unforgettable luncheon!",
 			"And you call these steamed hams despite the fact that they are obviously microwaved?",
 			"Aurora Station 13? At this time of shift, in this time of year, in this sector of space, localized entirely within your freezer?",

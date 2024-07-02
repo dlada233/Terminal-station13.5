@@ -216,7 +216,10 @@
 	desc = "全称\"动态快速拘捕罪犯\",DRAGnet是一种用于在追击战中发射网具快速逮捕罪犯的网枪, \
 		是近年来执法工具的突破."
 	cost = CARGO_CRATE_VALUE * 5
-	contains = list(/obj/item/gun/energy/e_gun/dragnet = 3)
+	contains = list(
+		/obj/item/gun/energy/e_gun/dragnet = 3,
+		/obj/item/dragnet_beacon = 1
+	)
 	crate_name = "\improper 网枪箱"
 
 /datum/supply_pack/security/armory/energy
@@ -343,4 +346,3 @@
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/clothing/glasses/sunglasses = 1)
 	crate_name = "太阳镜箱"
-

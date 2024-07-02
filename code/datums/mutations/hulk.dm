@@ -8,7 +8,7 @@
 	text_gain_indication = "<span class='notice'>你感觉肌肉疼痛!</span>"
 	species_allowed = list(SPECIES_HUMAN) //no skeleton/lizard hulk
 	health_req = 25
-	instability = 40
+	instability = POSITIVE_INSTABILITY_MAJOR
 	var/scream_delay = 50
 	var/last_scream = 0
 	/// List of traits to add/remove when someone gets this mutation.
@@ -26,7 +26,7 @@
 		return
 	owner.add_traits(mutation_traits, GENETIC_MUTATION)
 	for(var/obj/item/bodypart/part as anything in owner.bodyparts)
-		part.variable_color = "#00aa00"
+		part.variable_color = COLOR_DARK_LIME
 	owner.update_body_parts()
 	owner.add_mood_event("hulk", /datum/mood_event/hulk)
 	RegisterSignal(owner, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(on_attack_hand))

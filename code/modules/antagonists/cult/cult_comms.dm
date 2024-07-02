@@ -81,7 +81,7 @@
 	var/my_message
 	if(!message)
 		return
-	my_message = span_cultboldtalic("The [user.name]: [message]")
+	my_message = span_cult_bold_italic("The [user.name]: [message]")
 	for(var/mob/player_list as anything in GLOB.player_list)
 		if(IS_CULTIST(player_list))
 			to_chat(player_list, my_message)
@@ -113,7 +113,7 @@
 ///Start the poll for Cult Leaeder.
 /proc/start_poll_cultists_for_leader(mob/living/nominee, datum/team/cult/team)
 	if(world.time < CULT_POLL_WAIT)
-		to_chat(Nominee, "在每个人都还在适应的时候选择领导者还为时过早，请在[DisplayTimeText(CULT_POLL_WAIT-world.time)]内再试一次。")
+		to_chat(nominee, "在每个人都还在适应的时候选择领导者还为时过早，请在[DisplayTimeText(CULT_POLL_WAIT-world.time)]内再试一次。")
 		return
 	team.cult_vote_called = TRUE
 	for(var/datum/mind/team_member as anything in team.members)
@@ -236,13 +236,13 @@
 					switch(i)
 						if(1)
 							new /obj/effect/temp_visual/cult/sparks(mobloc, B.current.dir)
-							playsound(mobloc, 'sound/effects/portal_travel.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+							playsound(mobloc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 						if(2)
 							new /obj/effect/temp_visual/dir_setting/cult/phase/out(mobloc, B.current.dir)
-							playsound(mobloc, 'sound/effects/portal_travel.ogg', 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+							playsound(mobloc, SFX_PORTAL_ENTER, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 						if(3)
 							new /obj/effect/temp_visual/dir_setting/cult/phase(mobloc, B.current.dir)
-							playsound(mobloc, 'sound/effects/portal_travel.ogg', 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+							playsound(mobloc, SFX_PORTAL_ENTER, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 						if(4)
 							playsound(mobloc, 'sound/magic/exit_blood.ogg', 100, TRUE)
 							if(B.current != owner)

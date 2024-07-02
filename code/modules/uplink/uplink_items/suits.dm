@@ -60,6 +60,12 @@
 	item = /obj/item/mod/module/noslip
 	cost = 2
 
+/datum/uplink_item/suits/shock_absorber
+	name = "MODsuit Shock-Absorber Module"
+	desc = "A MODsuit module preventing the user from getting knocked down by batons."
+	item = /obj/item/mod/module/shock_absorber
+	cost = 2
+
 /datum/uplink_item/suits/modsuit/elite_traitor
 	name = "精英辛迪加模块服"
 	desc = "辛迪加模块服的升级精英版，与标准辛迪加模块服相比它拥有更好的装甲、机动性与防火."

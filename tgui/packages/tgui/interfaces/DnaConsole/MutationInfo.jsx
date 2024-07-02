@@ -133,7 +133,9 @@ export const MutationInfo = (props) => {
             {mutation.Name}
           </Box>
         </LabeledList.Item>
-        <LabeledList.Item label="描述">{mutation.Description}</LabeledList.Item>
+        <LabeledList.Item label="描述">
+          {mutation.Description}
+        </LabeledList.Item>
         <LabeledList.Item label="不稳定性">
           {mutation.Instability}
         </LabeledList.Item>

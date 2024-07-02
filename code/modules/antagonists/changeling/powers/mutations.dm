@@ -148,10 +148,10 @@
 		return 1
 
 /datum/action/changeling/suit/sting_action(mob/living/carbon/human/user)
-	if(!user.canUnEquip(user.wear_suit))
+	if(!user.canUnEquip(user.wear_suit) && !isnull(suit_type))
 		user.balloon_alert(user, "身体部位被占用!")
 		return
-	if(!user.canUnEquip(user.head))
+	if(!user.canUnEquip(user.head) && !isnull(helmet_type))
 		user.balloon_alert(user, "头部被占用!")
 		return
 	..()
@@ -218,17 +218,13 @@
 	effectiveness = 80, \
 	)
 
-/obj/item/melee/arm_blade/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
+/obj/item/melee/arm_blade/afterattack(atom/target, mob/user, click_parameters)
 	if(istype(target, /obj/structure/table))
-		var/obj/structure/table/T = target
-		T.deconstruct(FALSE)
+		var/obj/smash = target
+		smash.deconstruct(FALSE)
 
 	else if(istype(target, /obj/machinery/computer))
-		var/obj/machinery/computer/C = target
-		C.attack_alien(user) //muh copypasta
+		target.attack_alien(user) //muh copypasta
 
 	else if(istype(target, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/opening = target

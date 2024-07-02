@@ -53,13 +53,13 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/rend/process()
-    if(!spawn_fast)
-        if(locate(/mob) in loc)
-            return
-    new spawn_path(loc)
-    spawn_amt_left--
-    if(spawn_amt_left <= 0)
-        qdel(src)
+	if(!spawn_fast)
+		if(locate(/mob) in loc)
+			return
+	new spawn_path(loc)
+	spawn_amt_left--
+	if(spawn_amt_left <= 0)
+		qdel(src)
 		return PROCESS_KILL
 
 /obj/effect/rend/attackby(obj/item/I, mob/user, params)
@@ -141,7 +141,7 @@
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	var/mob/living/carbon/jedi = user
 	if(jedi.mob_mood.sanity < 15)
-		return //他们已经看到了并且快要死了，或者已经太疯狂了，无法在意
+		return //they've already seen it and are about to die, or are just too insane to care
 	to_chat(jedi, span_userdanger("哦，天哪！这不是真的！这一切都不是真的！！！！！！！！！！！！！！！"))
 	jedi.mob_mood.sanity = 0
 	for(var/lore in typesof(/datum/brain_trauma/severe))
@@ -218,13 +218,13 @@
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	var/list/spooky_scaries = list()
-	///允许生产无限数量的奴仆.
+	///Allow for unlimited thralls to be produced.
 	var/unlimited = FALSE
-	///复活的人形生物的种族.
+	///Which species the resurected humanoid will be.
 	var/applied_species = /datum/species/skeleton
-	///复活的人形生物将穿的装备.
+	///The outfit the resurected humanoid will wear.
 	var/applied_outfit = /datum/outfit/roman
-	///可以创建的最大奴仆数量.
+	///Maximum number of thralls that can be created.
 	var/max_thralls = 3
 
 /obj/item/necromantic_stone/unlimited
@@ -335,7 +335,7 @@
 	whistler = user
 	var/turf/current_turf = get_turf(user)
 	var/turf/spawn_location = locate(user.x + pick(-7, 7), user.y, user.z)
-playsound(current_turf,'sound/magic/warpwhistle.ogg', 200, TRUE)
+	playsound(current_turf,'sound/magic/warpwhistle.ogg', 200, TRUE)
 	new /obj/effect/temp_visual/teleporting_tornado(spawn_location, src)
 
 ///Teleporting tornado, spawned by warp whistle, teleports the user if they manage to pick them up.
@@ -378,7 +378,7 @@ playsound(current_turf,'sound/magic/warpwhistle.ogg', 200, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(send_away)), 2 SECONDS)
 
 /obj/effect/temp_visual/teleporting_tornado/proc/send_away()
-	var/turf/ending_turfs = find_safe_turf()
+	var/turf/ending_turfs = get_safe_random_station_turf()
 	for(var/mob/stored_mobs as anything in pickedup_mobs)
 		do_teleport(stored_mobs, ending_turfs, channel = TELEPORT_CHANNEL_MAGIC)
 		animate(stored_mobs, pixel_y = null, time = 1 SECONDS)
@@ -412,15 +412,15 @@ playsound(current_turf,'sound/magic/warpwhistle.ogg', 200, TRUE)
 	attack_verb_continuous = list("猛击", "击打", "敲打")
 	attack_verb_simple = list("猛击", "击打", "敲打")
 
-	/// 召唤售货机的最大距离.
+	/// Range cap on where you can summon vendors.
 	var/max_summon_range = RUNIC_SCEPTER_MAX_RANGE
-    /// 召唤售货机的引导时间.
+	/// Channeling time to summon a vendor.
 	var/summoning_time = 1 SECONDS
-    /// 检查法杖是否已经在引导一个售货机.
+	/// Checks if the scepter is channeling a vendor already.
 	var/scepter_is_busy_summoning = FALSE
-    /// 检查法杖是否正在进行充能引导
+	/// Checks if the scepter is busy channeling recharges
 	var/scepter_is_busy_recharging = FALSE
-    /// 剩余的召唤次数.
+	///Number of summoning charges left.
 	var/summon_vendor_charges = RUNIC_SCEPTER_MAX_CHARGES
 
 /obj/item/runic_vendor_scepter/Initialize(mapload)
@@ -431,43 +431,45 @@ playsound(current_turf,'sound/magic/warpwhistle.ogg', 200, TRUE)
 		COMSIG_ITEM_MAGICALLY_CHARGED = PROC_REF(on_magic_charge),
 	)
 
-/obj/item/runic_vendor_scepter/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/runic_vendor_scepter/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	return interact_with_atom(interacting_with, user, modifiers)
+
+/obj/item/runic_vendor_scepter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(scepter_is_busy_recharging)
 		user.balloon_alert(user, "忙碌中!")
-		return
-	if(!check_allowed_items(target, not_inside = TRUE))
-		return
-	. |= AFTERATTACK_PROCESSED_ITEM
-	var/turf/afterattack_turf = get_turf(target)
-	if(istype(target, /obj/machinery/vending/runic_vendor))
-		var/obj/machinery/vending/runic_vendor/runic_explosion_target = target
+		return ITEM_INTERACT_BLOCKING
+	if(!check_allowed_items(interacting_with, not_inside = TRUE))
+		return NONE
+	if(istype(interacting_with, /obj/machinery/vending/runic_vendor))
+		var/obj/machinery/vending/runic_vendor/runic_explosion_target = interacting_with
 		runic_explosion_target.runic_explosion()
-		return
+		return ITEM_INTERACT_SUCCESS
+	var/turf/afterattack_turf = get_turf(interacting_with)
 	var/obj/machinery/vending/runic_vendor/vendor_on_turf = locate() in afterattack_turf
 	if(vendor_on_turf)
 		vendor_on_turf.runic_explosion()
-		return
+		return  ITEM_INTERACT_SUCCESS
 	if(!summon_vendor_charges)
 		user.balloon_alert(user, "没有充能!")
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(get_dist(afterattack_turf,src) > max_summon_range)
 		user.balloon_alert(user, "太远了!")
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(get_turf(src) == afterattack_turf)
 		user.balloon_alert(user, "太近了!")
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(scepter_is_busy_summoning)
 		user.balloon_alert(user, "已经在召唤中!")
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(afterattack_turf.is_blocked_turf(TRUE))
 		user.balloon_alert(user, "被阻挡了!")
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(summoning_time)
 		scepter_is_busy_summoning = TRUE
 		user.balloon_alert(user, "召唤中...")
-		if(!do_after(user, summoning_time, target = target))
+		if(!do_after(user, summoning_time, target = interacting_with))
 			scepter_is_busy_summoning = FALSE
-			return
+			return ITEM_INTERACT_BLOCKING
 		scepter_is_busy_summoning = FALSE
 	if(summon_vendor_charges)
 		playsound(src,'sound/weapons/resonator_fire.ogg',50,TRUE)
@@ -475,8 +477,8 @@ playsound(current_turf,'sound/magic/warpwhistle.ogg', 200, TRUE)
 		new /obj/machinery/vending/runic_vendor(afterattack_turf)
 		summon_vendor_charges--
 		user.changeNext_move(CLICK_CD_MELEE)
-		return
-	return ..()
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/runic_vendor_scepter/attack_self(mob/user, modifiers)
 	. = ..()
@@ -489,17 +491,20 @@ playsound(current_turf,'sound/magic/warpwhistle.ogg', 200, TRUE)
 	scepter_is_busy_recharging = FALSE
 	summon_vendor_charges = RUNIC_SCEPTER_MAX_CHARGES
 
-/obj/item/runic_vendor_scepter/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
-	var/turf/afterattack_secondary_turf = get_turf(target)
+/obj/item/runic_vendor_scepter/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	return interact_with_atom_secondary(interacting_with, user, modifiers)
+
+/obj/item/runic_vendor_scepter/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	var/turf/afterattack_secondary_turf = get_turf(interacting_with)
 	var/obj/machinery/vending/runic_vendor/vendor_on_turf = locate() in afterattack_secondary_turf
-	if(istype(target, /obj/machinery/vending/runic_vendor))
-		var/obj/machinery/vending/runic_vendor/vendor_being_throw = target
-		vendor_being_throw.throw_at(get_edge_target_turf(target, get_cardinal_dir(src, target)), 4, 20, user)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(istype(interacting_with, /obj/machinery/vending/runic_vendor))
+		var/obj/machinery/vending/runic_vendor/vendor_being_throw = interacting_with
+		vendor_being_throw.throw_at(get_edge_target_turf(interacting_with, get_cardinal_dir(src, interacting_with)), 4, 20, user)
+		return ITEM_INTERACT_SUCCESS
 	if(vendor_on_turf)
-		vendor_on_turf.throw_at(get_edge_target_turf(target, get_cardinal_dir(src, target)), 4, 20, user)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		vendor_on_turf.throw_at(get_edge_target_turf(interacting_with, get_cardinal_dir(src, interacting_with)), 4, 20, user)
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
 /obj/item/runic_vendor_scepter/proc/on_magic_charge(datum/source, datum/action/cooldown/spell/charge/spell, mob/living/caster)
 	SIGNAL_HANDLER

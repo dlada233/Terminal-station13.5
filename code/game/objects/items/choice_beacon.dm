@@ -2,8 +2,8 @@
 	name = "选择信标"
 	desc = "嘿，为啥你在看这玩意？！请快点让中央指挥部了解这个怪事."
 	icon = 'icons/obj/devices/remote.dmi'
-	icon_state = "gangtool-blue"
-	inhand_icon_state = "radio"
+	icon_state = "generic_delivery"
+	inhand_icon_state = "generic_delivery"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	/// How many uses this item has before being deleted
@@ -136,6 +136,8 @@
 	name = "增强植入物信标"
 	desc = "投送一些增强植入物，可以使用3次!"
 	uses = 3
+	icon_state = "self_delivery"
+	inhand_icon_state = "self_delivery"
 	company_source = "S.E.L.F."
 	company_message = span_bold("订单状态: 已收到. 包裹状态: 已发货. 注意: 为获得最佳体验, 使用补给的Interdyne牌全自动手术仪来改变植入物状态.")
 

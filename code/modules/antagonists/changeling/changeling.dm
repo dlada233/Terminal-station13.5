@@ -14,6 +14,7 @@
 	can_assign_self_objectives = TRUE
 	default_custom_objective = "享用空间站里最有价值的基因组."
 	hardcore_random_bonus = TRUE
+	stinger_sound = 'sound/ambience/antag/ling_alert.ogg'
 	/// Whether to give this changeling objectives or not
 	var/give_objectives = TRUE
 	/// Weather we assign objectives which compete with other lings
@@ -39,7 +40,7 @@
 	/// The max chemical storage the changeling currently has.
 	var/total_chem_storage = 75
 	/// The chemical recharge rate per life tick.
-	var/chem_recharge_rate = 0.5
+	var/chem_recharge_rate = 1
 	/// Any additional modifiers triggered by changelings that modify the chem_recharge_rate.
 	var/chem_recharge_slowdown = 0
 	/// The range this ling can sting things.
@@ -149,7 +150,6 @@
 	if(give_objectives)
 		forge_objectives()
 	owner.current.get_language_holder().omnitongue = TRUE
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ling_alert.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	return ..()
 
 /datum/antagonist/changeling/apply_innate_effects(mob/living/mob_override)
@@ -284,14 +284,18 @@
 	SIGNAL_HANDLER
 
 	var/delta_time = DELTA_WORLD_TIME(SSmobs)
+	var/mob/living/living_owner = owner.current
 
 	// If dead, we only regenerate up to half chem storage.
 	if(owner.current.stat == DEAD)
 		adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time, total_chem_storage * 0.5)
 
-	// If we're not dead - we go up to the full chem cap.
+	// If we're not dead and not on fire - we go up to the full chem cap at normal speed. If on fire we only regenerate at 1/4th the normal speed
 	else
-		adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time)
+		if(living_owner.fire_stacks && living_owner.on_fire)
+			adjust_chemicals((chem_recharge_rate - 0.75) * delta_time)
+		else
+			adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time)
 
 /**
  * Signal proc for [COMSIG_LIVING_POST_FULLY_HEAL]
@@ -950,7 +954,7 @@
 // Changeling profile themselves. Store a data to store what every DNA instance looked like.
 /datum/changeling_profile
 	/// The name of the profile / the name of whoever this profile source.
-	var/name = "bug"
+	var/name = "a bug"
 	/// Whether this profile is protected - if TRUE, it cannot be removed from a changeling's profiles without force
 	var/protected = FALSE
 	/// The DNA datum associated with our profile from the profile source
@@ -1135,6 +1139,7 @@
 	total_chem_storage = 50
 
 /datum/antagonist/changeling/headslug/greet()
+	play_stinger()
 	to_chat(owner, span_boldannounce("你们是由化形头蚴生出的新生化形! \
 		因为刚刚出生所以你们的性能比一般化形要弱."))
 
@@ -1147,6 +1152,7 @@
 	return finish_preview_icon(final_icon)
 
 /datum/antagonist/changeling/space/greet()
+	play_stinger()
 	to_chat(src, span_changeling("我们近乎永眠的思绪被重新唤起..."))
 
 /datum/outfit/changeling

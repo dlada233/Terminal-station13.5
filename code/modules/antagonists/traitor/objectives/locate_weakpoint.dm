@@ -243,28 +243,24 @@
 	objective_weakref = null
 	return ..()
 
-/obj/item/grenade/c4/es8/afterattack(atom/movable/target, mob/user, flag)
-	if(!user.mind)
-		return
-
+/obj/item/grenade/c4/es8/plant_c4(atom/bomb_target, mob/living/user)
 	if(!IS_TRAITOR(user))
 		to_chat(user, span_warning("你似乎无法找到引爆装置的方法."))
-		return
+		return FALSE
 
 	var/datum/traitor_objective/locate_weakpoint/objective = objective_weakref.resolve()
-
 	if(!objective || objective.objective_state == OBJECTIVE_STATE_INACTIVE || objective.handler.owner != user.mind)
 		to_chat(user, span_warning("你认为在此时使用 [src] 并不明智."))
-		return
+		return FALSE
 
-	var/area/target_area = get_area(target)
+	var/area/target_area = get_area(bomb_target)
 	if (target_area.type != objective.weakpoint_area)
 		to_chat(user, span_warning("[src] 只能在 [initial(objective.weakpoint_area.name)] 引爆."))
-		return
+		return FALSE
 
 	if(!isfloorturf(target) && !iswallturf(target))
 		to_chat(user, span_warning("[src] 只能安放在墙上或地板上！"))
-		return
+		return FALSE
 
 	return ..()
 

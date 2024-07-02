@@ -108,16 +108,16 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/anesthetic_machine/MouseDrop(mob/living/carbon/target)
+/obj/machinery/anesthetic_machine/mouse_drop_dragged(mob/living/carbon/target, mob/user, src_location, over_location, params)
 	. = ..()
-	if(!iscarbon(target))
+	if(!istype(target))
 		return
 
-	if((!Adjacent(target)) || !(usr.Adjacent(target)))
+	if((!Adjacent(target)) || !(user.Adjacent(target)))
 		return FALSE
 
 	if(!attached_tank || mask_out)
-		to_chat(usr, span_warning("[mask_out ? "这台机器已经在使用了!" : "这个机器未连接到罐子!"]"))
+		to_chat(user, span_warning("[mask_out ? "这台机器已经在使用了!" : "这个机器未连接到罐子!"]"))
 		return FALSE
 
 	// if we somehow lost the mask, let's just make a brand new one. the wonders of technology!
@@ -125,8 +125,8 @@
 		attached_mask = new /obj/item/clothing/mask/breath/anesthetic(src)
 		update_icon()
 
-	usr.visible_message(span_warning("[usr]试图将[attached_mask]戴到[target]上."), span_notice("你试图将[attached_mask]戴到[target]上"))
-	if(!do_after(usr, 5 SECONDS, target))
+	user.visible_message(span_warning("[user]试图将[attached_mask]戴到[target]."), span_notice("你试图将[attached_mask]戴到[target]"))
+	if(!do_after(user, 5 SECONDS, target))
 		return
 	if(!target.equip_to_appropriate_slot(attached_mask))
 		to_chat(usr, span_warning("你没法将[attached_mask]戴到[target]上!"))

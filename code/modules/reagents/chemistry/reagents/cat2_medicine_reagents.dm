@@ -605,7 +605,7 @@
 	if(affected_mob.health <= (affected_mob.crit_threshold + HEALTH_THRESHOLD_FULLCRIT*(2*normalise_creation_purity()))) //certain death below this threshold
 		REMOVE_TRAIT(affected_mob, TRAIT_STABLEHEART, type) //we have to remove the stable heart trait before we give them a heart attack
 		affected_mob.remove_traits(subject_traits, type)
-		to_chat(affected_mob,span_danger("你觉得胸腔里有东西破裂了!"))
+		to_chat(affected_mob, span_danger("你觉得胸腔里有东西破裂了!"))
 		if(!HAS_TRAIT(affected_mob, TRAIT_ANALGESIA))
 			affected_mob.emote("scream")
 		affected_mob.set_heartattack(TRUE)
