@@ -301,7 +301,7 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
  * Plastitanium
  */
 /obj/item/stack/sheet/mineral/plastitanium
-	name = "塑钢
+	name = "塑钢"
 	icon_state = "sheet-plastitanium"
 	inhand_icon_state = "sheet-plastitanium"
 	singular_name = "塑钢"

@@ -6,7 +6,7 @@
 	filename = "couponmaster"
 	filedesc = "折扣大师"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
-		extended_desc = "能够接收货物折扣的程序，在兑换完之后可以用PDA将其打印出来."
+	extended_desc = "能够接收货物折扣的程序，在兑换完之后可以用PDA将其打印出来."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 5
 	tgui_id = "NtosCouponMaster"

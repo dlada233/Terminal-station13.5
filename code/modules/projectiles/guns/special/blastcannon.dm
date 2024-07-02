@@ -112,6 +112,7 @@
 
 /obj/item/gun/blastcannon/try_fire_gun(atom/target, mob/living/user, params)
 	if((!bomb && bombcheck) || isnull(target) || (get_dist(get_turf(target), get_turf(user)) <= 2))
+		return ..()
 
 	cached_target = WEAKREF(target)
 	cached_modifiers = params

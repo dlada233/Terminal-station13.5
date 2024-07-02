@@ -201,7 +201,7 @@
 		to_dump.pixel_y = to_dump.base_pixel_y + rand(-5, 5)
 		AddToGrill(to_dump, user)
 
-	to_chat(user, span_notice("你把[storage_source]倒到[src]上."))
+	to_chat(user, span_notice("你把[storage.parent]倒到[src]上."))
 	return STORAGE_DUMP_HANDLED
 
 /obj/machinery/griddle/process(seconds_per_tick)

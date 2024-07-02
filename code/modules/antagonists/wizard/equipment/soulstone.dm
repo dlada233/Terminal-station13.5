@@ -178,7 +178,7 @@
 	if(M == user)
 		return
 	if(IS_CULTIST(M) && IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"拜托，不要捕获你同伴的灵魂.\""))
+		to_chat(user, span_cult_large("\"拜托，不要捕获你同伴的灵魂.\""))
 		return
 	if(theme == THEME_HOLY && IS_CULTIST(user))
 		hot_potato(user)

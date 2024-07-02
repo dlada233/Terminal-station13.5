@@ -162,7 +162,7 @@
 
 	var/mob/thrower = throw_args[4]
 	if(istype(thrower))
-	to_chat(thrower, span_hypnophrase("超自然的力量阻止了[source]被扔出[get_area_name(locked_to)]!"))
+		to_chat(thrower, span_hypnophrase("超自然的力量阻止了[source]被扔出[get_area_name(locked_to)]!"))
 
 	to_chat(source, span_hypnophrase("超自然的力量阻止了你被扔出[get_area_name(locked_to)]!"))
 

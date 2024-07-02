@@ -2,7 +2,7 @@
 	name = "\improper 夜魇"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	job_rank = ROLE_NIGHTMARE
-	show_in_antagpanel = TURE
+	show_in_antagpanel = TRUE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	ui_name = "AntagInfoNightmare"

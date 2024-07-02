@@ -104,7 +104,7 @@
 		return ..()
 
 	if(user.transferItemToLoc(item, src, silent = FALSE))
-		to_chat(user, span_notice("你放[I]进[src]."))
+		to_chat(user, span_notice("你放[item]进[src]."))
 		add_tray_to_oven(item, user)
 
 /obj/machinery/oven/item_interaction(mob/living/user, obj/item/item, list/modifiers)

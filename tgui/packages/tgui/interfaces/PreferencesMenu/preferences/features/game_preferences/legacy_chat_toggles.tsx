@@ -3,7 +3,7 @@ import { CheckboxInput, FeatureToggle } from '../base';
 export const chat_bankcard: FeatureToggle = {
   name: '启用收入信息',
   category: 'CHAT',
-  description: '接收关于银行账户的信息.'
+  description: '接收关于银行账户的信息.',
   component: CheckboxInput,
 };
 

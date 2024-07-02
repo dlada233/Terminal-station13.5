@@ -5,7 +5,7 @@
 	attack_verb_continuous = list("打了打", "敲了敲", "戳了戳")
 	attack_verb_simple = list("打了打", "敲了敲", "戳了戳")
 	resistance_flags = FIRE_PROOF
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_range = 3
 	light_power = 1
 	light_on = FALSE

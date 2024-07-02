@@ -36,7 +36,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = interacting_with.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user) // transfer from, transfer to - who cares?
-	to_chat(user, span_notice("你将[trans]单位的溶液注入到[src] .目前[target]中含有[reagents.total_volume]单位."))
+	to_chat(user, span_notice("你将[trans]单位的溶液注入到[src] .目前它含有[reagents.total_volume]单位."))
 
 	return ITEM_INTERACT_SUCCESS
 

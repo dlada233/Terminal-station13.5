@@ -97,7 +97,7 @@
 		user.Paralyze(100)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message(span_warning("一股强大的力量将[user]推离[target]!"), \
-				span_cultlarge("\"你不应该玩这么锐利的东西，你会把别人的眼睛戳出来的.\""))
+				span_cult_large("\"你不应该玩这么锐利的东西，你会把别人的眼睛戳出来的.\""))
 		if(ishuman(user))
 			var/mob/living/carbon/human/miscreant = user
 			miscreant.apply_damage(rand(force/2, force), BRUTE, pick(GLOB.arm_zones))
@@ -121,7 +121,7 @@
 /obj/item/melee/cultblade/pickup(mob/living/user)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 
 /datum/action/innate/dash/cult
 	name = "揭开帷幕"
@@ -156,7 +156,7 @@
 		return
 	var/mob/living/carbon/carbon_user = user
 	if(user.num_legs < 2 || carbon_user.legcuffed) //if they can't be ensnared, stun for the same time as it takes to breakout of bola
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 		user.dropItemToGround(src, TRUE)
 		user.Paralyze(CULT_BOLA_PICKUP_STUN)
 	else
@@ -413,7 +413,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 		to_chat(user, span_warning("一种强烈的恶心感压倒了你!"))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
@@ -450,7 +450,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
 	if(!IS_CULTIST(user))
-		to_chat(user, span_cultlarge("\"我不建议这么做.\""))
+		to_chat(user, span_cult_large("\"我不建议这么做.\""))
 		to_chat(user, span_warning("一种强烈的恶心感压倒了你!"))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
@@ -467,7 +467,7 @@
 /obj/item/clothing/glasses/hud/health/night/cultblind/equipped(mob/living/user, slot)
 	..()
 	if(user.stat != DEAD && !IS_CULTIST(user) && (slot & ITEM_SLOT_EYES))
-		to_chat(user, span_cultlarge("\"你希望失明吗?\""))
+		to_chat(user, span_cult_large("\"你希望失明吗?\""))
 		user.dropItemToGround(src, TRUE)
 		user.set_dizzy_if_lower(1 MINUTES)
 		user.Paralyze(100)

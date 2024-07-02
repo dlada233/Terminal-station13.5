@@ -18,7 +18,7 @@
 	announce_when = 1
 	announce_chance = 33
 
-/datum/round_event/ion_storm/add_law_只有// special subtype that adds a law only
+/datum/round_event/ion_storm/add_law_only// special subtype that adds a law only
 	replaceLawsetChance = 0
 	removeRandomLawChance = 0
 	removeDontImproveChance = 0

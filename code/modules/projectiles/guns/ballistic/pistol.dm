@@ -95,7 +95,6 @@
 	var/obj/projectile/energy/fisher/melee/simulated_hit = new
 	simulated_hit.firer = user
 	simulated_hit.on_hit(target)
-		simulated_hit.on_hit(target)
 
 /obj/item/gun/ballistic/automatic/pistol/clandestine/fisher/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()

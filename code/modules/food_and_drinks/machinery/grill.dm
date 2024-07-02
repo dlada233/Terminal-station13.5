@@ -5,7 +5,7 @@
 
 /obj/machinery/grill //SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
 	name = "烧烤架"
-	desc = "美好时光就在昨日，小火下烟熏物品
+	desc = "美好时光就在昨日，小火下烟熏物品"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grill_open"
 	density = TRUE

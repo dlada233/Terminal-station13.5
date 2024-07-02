@@ -581,7 +581,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		if(!do_after(user, (user == H ? self_delay : other_delay)))
 			return
 		// SKYRAT EDIT CHANGE END
-		if(item_heal_robotic(H, user, 0, 15))
+		if(H.item_heal(user, 0, 15, "dents", "burnt wires", BODYTYPE_ROBOTIC))
 			user.visible_message(span_green("[user]修理了[H] [affecting.name]中的一些电线."), span_green("你修理了[H == user ? "你" : "[H]"] [affecting.name]中的一些电线.")) // SKYRAT EDIT ADD
 			use(1)
 		return
@@ -764,7 +764,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 			C.deconstruct() // remove adversary cable
 	auto_propagate_cut_cable(src) // update the powernets
 
-/obj/structure/cable/multilayer/CtrlClick(mob/living/user)
+/obj/structure/cable/multilayer/click_ctrl(mob/user)
 	to_chat(user, span_warning("你按下复位按钮."))
 	addtimer(CALLBACK(src, PROC_REF(Reload)), 10, TIMER_UNIQUE) //spam protect
 	return CLICK_ACTION_SUCCESS

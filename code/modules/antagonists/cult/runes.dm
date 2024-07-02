@@ -986,7 +986,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			if(O.client && !is_banned_from(O.ckey, ROLE_CULTIST) && !QDELETED(src) && !(isAdminObserver(O) && (O.client.prefs.toggles & ADMIN_IGNORE_CULT_GHOST)) && !QDELETED(O))
 				ghosts_on_rune += O
 		if(!length(ghosts_on_rune))
-			to_chat(user, span_cultitalic("[src]附近没有灵魂!"))
+			to_chat(user, span_cult_italic("[src]附近没有灵魂!"))
 			fail_invoke()
 			log_game("显化符文激活失败 - 附近没有灵魂")
 			return list()

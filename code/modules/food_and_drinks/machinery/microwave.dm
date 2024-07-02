@@ -473,10 +473,10 @@
 		return NONE
 
 	vampire_charging_enabled = !vampire_charging_enabled
-		balloon_alert(user, "设置为[vampire_charging_enabled ? "充能" : "加热"]")
+	balloon_alert(user, "设置为[vampire_charging_enabled ? "充能" : "加热"]")
 	playsound(src, 'sound/machines/twobeep_high.ogg', 50, FALSE)
 	if(HAS_SILICON_ACCESS(user))
-			visible_message(span_notice("[user]设置[src]为[vampire_charging_enabled ? "充能" : "加热"]."), blind_message = span_notice("你听到[src]发出信息的哔哔声!"))
+		visible_message(span_notice("[user]设置[src]为[vampire_charging_enabled ? "充能" : "加热"]."), blind_message = span_notice("你听到[src]发出信息的哔哔声!"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/microwave/click_ctrl(mob/user)

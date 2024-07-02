@@ -39,7 +39,6 @@
 	if(!isliving(owner))
 		return
 
-	var/mob/living/living_owner = owner
 	invocation = span_danger("<b>[owner]</b>抬起手，一堵锈墙从[cast_on]中升起!")
 	invocation_self_message = span_notice("你抬起手，一堵锈墙从[cast_on]中升起.")
 

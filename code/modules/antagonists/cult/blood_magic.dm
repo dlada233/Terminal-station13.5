@@ -53,9 +53,9 @@
 		limit = MAX_BLOODCHARGE
 	if(length(spells) >= limit)
 		if(rune)
-			to_chat(owner, span_cultitalic("你无法储存超过[MAX_BLOODCHARGE]个法术. <b>选择一个法术来移除.</b>"))
+			to_chat(owner, span_cult_italic("你无法储存超过[MAX_BLOODCHARGE]个法术. <b>选择一个法术来移除.</b>"))
 		else
-			to_chat(owner, span_cultitalic("<b><u>没有赋能符文的情况下你无法储存超过[RUNELESS_MAX_BLOODCHARGE]个法术!选择一个法术来移除.</b></u>"))
+			to_chat(owner, span_cult_italic("<b><u>没有赋能符文的情况下你无法储存超过[RUNELESS_MAX_BLOODCHARGE]个法术!选择一个法术来移除.</b></u>"))
 		var/nullify_spell = tgui_input_list(owner, "移除法术", "当前法术", spells)
 		if(isnull(nullify_spell))
 			return
@@ -175,7 +175,7 @@
 /datum/action/innate/cult/blood_spell/emp/Activate()
 	owner.whisper(invocation, language = /datum/language/common)
 	owner.visible_message(span_warning("[owner]的手闪出蓝光!"), \
-		span_culti_talic("你说出了咒语，一股电磁脉冲随即从手中施放."))
+		span_cult_italic("你说出了咒语，一股电磁脉冲随即从手中施放."))
 	empulse(owner, 2, 5)
 	charges--
 	SSblackbox.record_feedback("tally", "cult_spell_invoke", 1, "[name]")
@@ -283,7 +283,7 @@
 /datum/action/innate/cult/blood_spell/veiling/Activate()
 	if(!revealing)
 		owner.visible_message(span_warning("[owner]的手中落下细小的灰尘!"), \
-			span_cultitalic("你施展隐藏法术，隐藏了附近的符文."))
+			span_cult_italic("你施展隐藏法术，隐藏了附近的符文."))
 		charges--
 		SEND_SOUND(owner, sound('sound/magic/smoke.ogg',0,1,25))
 		owner.whisper(invocation, language = /datum/language/common)
@@ -302,7 +302,7 @@
 		button_icon_state = "back"
 	else
 		owner.visible_message(span_warning("[owner]的手中闪过一道光!"), \
-			span_cultitalic("你施展存在法术，显示附近的符文."))
+			span_cult_italic("你施展存在法术，显示附近的符文."))
 		charges--
 		owner.whisper(invocation, language = /datum/language/common)
 		SEND_SOUND(owner, sound('sound/magic/enter_blood.ogg',0,1,25))
@@ -431,7 +431,7 @@
 	var/effect_coef = 1 - (cult_team.cult_risen ? 0.4 : 0) - (cult_team.cult_ascendent ? 0.5 : 0)
 	user.visible_message(
 		span_warning("[user]抬起手，红光一闪而过!"),
-		span_cult_italic("你试图用咒术击晕[target]!")
+		span_cult_italic("你试图用咒术击晕[target]!"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	user.mob_light(range = 1.1, power = 2, color = LIGHT_COLOR_BLOOD_MAGIC, duration = 0.2 SECONDS)

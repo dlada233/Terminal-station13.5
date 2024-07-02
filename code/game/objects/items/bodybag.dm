@@ -63,7 +63,6 @@
 /obj/item/bodybag/bluespace/examine(mob/user)
 	. = ..()
 	if(contents.len)
-		var/s = contents.len == 1 ? "" : "s"
 		. += span_notice("透过布料，你可以看到[contents.len]的物体形状.")
 
 /obj/item/bodybag/bluespace/Destroy()

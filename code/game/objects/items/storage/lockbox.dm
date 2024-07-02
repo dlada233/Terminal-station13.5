@@ -44,7 +44,7 @@
 			balloon_alert(user, locked ? "已上锁" : "已解锁")
 			return FALSE
 
-			balloon_alert(user, "权限不足!")
+		balloon_alert(user, "权限不足!")
 		return FALSE
 
 	if(locked)

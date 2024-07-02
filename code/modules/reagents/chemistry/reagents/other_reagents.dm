@@ -407,7 +407,7 @@
 				removed_any = TRUE
 				qdel(BS)
 			if(removed_any)
-				to_chat(affected_mob, span_cultlarge("当圣水冲刷你的身体时，你的血液崇拜动摇了!"))
+				to_chat(affected_mob, span_cult_large("当圣水冲刷你的身体时，你的血液崇拜动摇了!"))
 
 	if(data["deciseconds_metabolized"] >= (25 SECONDS)) // 10 units
 		affected_mob.adjust_stutter_up_to(4 SECONDS * REM * seconds_per_tick, 20 SECONDS)
@@ -417,7 +417,7 @@
 			if(prob(10))
 				affected_mob.visible_message(span_danger("[affected_mob]开始癫痫发作!"), span_userdanger("你癫痫发作了!"))
 				affected_mob.Unconscious(12 SECONDS)
-				to_chat(affected_mob, span_cultlarge("[pick("血是你们的纽带 - 没有它，你什么都不是", "别忘了你的位置", \
+				to_chat(affected_mob, span_cult_large("[pick("血是你们的纽带 - 没有它，你什么都不是", "别忘了你的位置", \
 					"那么强大的力量，你还是失败了?", "如果你洗不清这罪孽，我就要洗净你贫乏的生命!")]."))
 
 	if(data["deciseconds_metabolized"] >= (1 MINUTES)) // 24 units

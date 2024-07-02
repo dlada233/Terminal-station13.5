@@ -219,7 +219,7 @@
 /// Now to solve where all these keep coming from
 /obj/item/clothing/head/fedora/det_hat/click_alt(mob/user)
 	if(!COOLDOWN_FINISHED(src, candy_cooldown))
-	to_chat(user, span_warning("你刚刚拿了一颗玉米糖！你应该等几分钟，以免用完你的存货."))
+		to_chat(user, span_warning("你刚刚拿了一颗玉米糖！你应该等几分钟，以免用完你的存货."))
 		return CLICK_ACTION_BLOCKING
 
 	var/obj/item/food/candy_corn/sweets = new /obj/item/food/candy_corn(src)
@@ -290,7 +290,7 @@
 	for(var/found_regex in phrases_by_regex)
 		var/found_phrase = phrases_by_regex[found_regex]
 		var/obj/item/found_item = items_by_regex[found_regex]
-		. += span_notice("[icon2html(item, user)]你可以通过说出<b>\"[prefix] [phrase]\"</b>取出[item]！")
+		. += span_notice("[icon2html(found_item, user)] 你可以移除[found_item]通过说出<b>\"[prefix] [found_phrase]\"</b>！")
 
 /obj/item/clothing/head/fedora/inspector_hat/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), message_range)
 	. = ..()
@@ -305,7 +305,7 @@
 			continue
 		var/obj/item/found_item = items_by_regex[found_regex]
 		if(wearer.put_in_hands(found_item))
-			wearer.visible_message(span_warning("[src] 将 [result] 交给了 [wearer]！"))
+			wearer.visible_message(span_warning("[src] 将 [found_item] 交给了 [wearer]！"))
 			. = TRUE
 		else
 			balloon_alert(wearer, "不能放在手中！")
@@ -385,6 +385,8 @@
 	name = "贝雷帽"
 	desc = "贝雷帽，默剧演员最喜欢的头饰."
 	icon_state = "beret"
+	icon_preview = 'icons/obj/clothing/head/beret.dmi'
+	icon_state_preview = "beret"
 	dog_fashion = /datum/dog_fashion/head/beret
 	greyscale_config = /datum/greyscale_config/beret
 	greyscale_config_worn = /datum/greyscale_config/beret/worn
@@ -699,7 +701,7 @@
 	else
 		var/obj/item/organ/internal/tongue/has_tongue = human_examined.get_organ_slot(ORGAN_SLOT_TONGUE)
 		var/pill_count = 0
-		for(var/datum/action/item_action/hands_free/activate_pill/pill in human_examined.actions)
+		for(var/datum/action/item_action/activate_pill/pill in human_examined.actions)
 			pill_count++
 
 		if(pill_count >= 1 && has_tongue)

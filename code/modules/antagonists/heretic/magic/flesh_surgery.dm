@@ -96,10 +96,10 @@
 	to_heal.balloon_alert(caster, "器官已治愈")
 	playsound(to_heal, 'sound/magic/staff_healing.ogg', 30)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(to_heal))
-	var/condition = (to_heal.damage > 0) ? "better" : "perfect"
+	var/condition = (to_heal.damage > 0) ? "更好的" : "完美"
 	caster.visible_message(
-		span_warning("在[caster]双手发出的血色光芒下，自己的[to_heal]恢复到了良好状态!"),
-		span_notice("在你的双手发出的血色光芒下，自己的[to_heal]恢复到了良好状态!"),
+		span_warning("在[caster]双手发出的血色光芒下，自己的[to_heal]恢复到了[condition]状态!"),
+		span_notice("在你的双手发出的血色光芒下，自己的[to_heal]恢复到了[condition]状态!"),
 	)
 
 	return TRUE

@@ -27,7 +27,7 @@
 	var/cause = pick("被 [syndicate_name()] 特工攻击了", "神秘地被传送了", "后勤人员叛逃了",
 		"引擎被偷了", "\[数据删除\]", "融化在了落日中", "从一头非常聪明的牛那里学到了一些东西，然后自己离开了",
 		"上面有克隆设备", "地勤人员指挥失误，导致飞船撞进了机库")
-	var/message = "您的撤离船 [cause]. ""
+	var/message = "您的撤离船 [cause]. "
 
 	if(SSshuttle.shuttle_insurance)
 		message += "幸运的是，您的飞船保险已经涵盖了修理费！"

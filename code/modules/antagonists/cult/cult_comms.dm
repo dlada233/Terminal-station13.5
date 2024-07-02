@@ -123,7 +123,7 @@
 		if(team_member.current.incapacitated())
 			continue
 		SEND_SOUND(team_member.current, 'sound/hallucinations/im_here1.ogg')
-		to_chat(team_member.current, span_cult_large("教徒[Nominee]宣称自己可以领导血教. 投票将在不久后举行."))
+		to_chat(team_member.current, span_cult_large("教徒[nominee]宣称自己可以领导血教. 投票将在不久后举行."))
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(poll_cultists_for_leader), nominee, team), 10 SECONDS)
 
@@ -169,7 +169,7 @@
 			team_member.current.update_mob_action_buttons()
 			if(team_member.current.incapacitated())
 				continue
-			to_chat(team_member.current,span_cult_large("[Nominee]在争取教徒支持的过程中死亡!"))
+			to_chat(team_member.current,span_cult_large("[nominee]在争取教徒支持的过程中死亡!"))
 		return FALSE
 	if(!nominee.mind)
 		team.cult_vote_called = FALSE
@@ -179,7 +179,7 @@
 			team_member.current.update_mob_action_buttons()
 			if(team_member.current.incapacitated())
 				continue
-			to_chat(team_member.current,span_cult_large("[Nominee]在争取教徒支持的过程中患上了紧张性精神症!"))
+			to_chat(team_member.current,span_cult_large("[nominee]在争取教徒支持的过程中患上了紧张性精神症!"))
 		return FALSE
 	if(LAZYLEN(yes_voters) <= LAZYLEN(asked_cultists) * 0.5)
 		team.cult_vote_called = FALSE
@@ -189,7 +189,7 @@
 			team_member.current.update_mob_action_buttons()
 			if(team_member.current.incapacitated())
 				continue
-			to_chat(team_member.current, span_cult_large("[Nominee]无法争取到教徒支持，将继续担任教徒."))
+			to_chat(team_member.current, span_cult_large("[nominee]无法争取到教徒支持，将继续担任教徒."))
 		return FALSE
 
 	team.cult_vote_called = FALSE

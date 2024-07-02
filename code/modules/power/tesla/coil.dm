@@ -59,8 +59,8 @@
 		. += span_notice("状态显示读数:<br>" + \
 		  "发电量 <b>[input_power_multiplier*100]%</b>.<br>" + \
 			"电击间隔 at <b>[zap_cooldown*0.1]</b> 秒.<br>" + \
-			"储存 <b>[display_joules(get_stored_joules())]</b>.<br>" + \
-			"处理中 <b>[display_power(get_power_output())]</b>.")
+			"储存 <b>[display_energy(get_stored_joules())]</b>.<br>" + \
+			"处理中 <b>[display_power(processed_energy)]</b>.")
 
 /obj/machinery/power/energy_accumulator/tesla_coil/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
 	. = ..()
@@ -140,8 +140,8 @@
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("状态显示读数:<br>" + \
-			"最近引雷 <b>[display_joules(get_stored_joules())]</b>.<br>" + \
-			"能量将持续释放 <b>[display_power(get_power_output())]</b>.")
+			"最近引雷 <b>[display_energy(get_stored_joules())]</b>.<br>" + \
+			"能量将持续释放 <b>[display_power(calculate_sustainable_power(), convert = FALSE)]</b>.")
 
 /obj/machinery/power/energy_accumulator/grounding_rod/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
 	. = ..()

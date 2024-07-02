@@ -19,6 +19,6 @@
 	bear.melee_damage_upper += 5
 	bear.wound_bonus += 5
 	bear.update_icons()
-	to_chat(user, span_info("你将装甲板绑在[bear_target]身上，然后用指甲锉磨利这只熊的爪子，这可真是个好主意."))
+	to_chat(user, span_info("你将装甲板绑在[bear]身上，然后用指甲锉磨利这只熊的爪子，这可真是个好主意."))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

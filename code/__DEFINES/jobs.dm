@@ -78,7 +78,7 @@
 #define JOB_SCIENTIST "科学家-Scientist"
 #define JOB_ROBOTICIST "机械学家-Roboticist"
 #define JOB_GENETICIST "基因学家-Geneticist"
-#define JOB_SCIENCE_GUARD "科研安保-Science Guard""
+#define JOB_SCIENCE_GUARD "科研安保-Science Guard"
 //Supply
 #define JOB_QUARTERMASTER "军需官-Quartermaster"
 #define JOB_CARGO_TECHNICIAN "货仓技工-Cargo Technician"

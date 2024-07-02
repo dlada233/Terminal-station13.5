@@ -51,7 +51,7 @@
 		else
 			to_chat(user, span_warning("在某物内部时，你不能使用[src]!"))
 	else
-		to_chat(user, span_warning("你的电池至少需要[activationCost]电量来使用[src]!"))
+		to_chat(user, span_warning("你的电池至少需要[display_energy(ACTIVATION_COST)]电量来使用[src]!"))
 
 /obj/item/borg_chameleon/proc/toggle(mob/living/silicon/robot/user)
 	if(active)

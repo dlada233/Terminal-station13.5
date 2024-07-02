@@ -647,7 +647,7 @@
 				explosion(src, 2, 5, 7)
 			return PROCESS_KILL
 
-		radio.talk_into(src, "警告，涡轮机在[get_area_name(src)]受到损伤，当前完整度[integrity]%!", engineering_channel)
+		radio.talk_into(src, "警告，涡轮机在[get_area_name(src)]受到损伤，当前完整度[integrity]%!", RADIO_CHANNEL_ENGINEERING)
 		playsound(src, 'sound/machines/engine_alert1.ogg', 100, FALSE, 30, 30, falloff_distance = 10)
 
 	//================ROTOR WORKING============//
