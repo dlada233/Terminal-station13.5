@@ -1,6 +1,6 @@
 /obj/item/forcefield_projector
-	name = "立场投影仪"
-	desc = "An experimental device that can create several forcefields at a distance."
+	name = "力场投影仪"
+	desc = "一种能在一定距离内产生数个力场的实验性装置."
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "signmaker_forcefield"
 	slot_flags = ITEM_SLOT_BELT
@@ -30,7 +30,7 @@
 	if(istype(interacting_with, /obj/structure/projected_forcefield))
 		var/obj/structure/projected_forcefield/F = interacting_with
 		if(F.generator == src)
-			to_chat(user, span_notice("You deactivate [F]."))
+			to_chat(user, span_notice("你停用了[F]."))
 			qdel(F)
 			return ITEM_INTERACT_BLOCKING
 	var/turf/T = get_turf(interacting_with)
@@ -60,7 +60,7 @@
 		force_proj_busy = FALSE
 
 	playsound(src,'sound/weapons/resonator_fire.ogg',50,TRUE)
-	user.visible_message(span_warning("[user] projects a forcefield!"),span_notice("You project a forcefield."))
+	user.visible_message(span_warning("[user]投影了一道力场!"),span_notice("你投影了一道力场."))
 	var/obj/structure/projected_forcefield/F = new(T, src)
 	current_fields += F
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -68,13 +68,13 @@
 
 /obj/item/forcefield_projector/attack_self(mob/user)
 	if(LAZYLEN(current_fields))
-		to_chat(user, span_notice("You deactivate [src], disabling all active forcefields."))
+		to_chat(user, span_notice("你停用[src], 关闭了所有激活的力场."))
 		for(var/obj/structure/projected_forcefield/F in current_fields)
 			qdel(F)
 
 /obj/item/forcefield_projector/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently sustaining [LAZYLEN(current_fields)]/[max_fields] fields, and it's [round((shield_integrity/max_shield_integrity)*100)]% charged.")
+	. += span_notice("投影仪目前维持着[LAZYLEN(current_fields)]/[max_fields]个力场，剩余[round((shield_integrity/max_shield_integrity)*100)]% 电量.")
 
 /obj/item/forcefield_projector/Initialize(mapload)
 	. = ..()
@@ -123,7 +123,7 @@
 	generator = origin
 
 /obj/structure/projected_forcefield/Destroy()
-	visible_message(span_warning("[src] flickers and disappears!"))
+	visible_message(span_warning("[src]闪烁几下消失了!"))
 	playsound(src,'sound/weapons/resonator_blast.ogg',25,TRUE)
 	if(generator)
 		generator.current_fields -= src

@@ -11,8 +11,8 @@
 
 
 /obj/item/multitool //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "multitool"
-	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
+	name = "多功能工具"
+	desc = "用于脉冲电线，以测试要切割的电线. 医生建议不要这么干."
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "multitool"
 	inhand_icon_state = "multitool"
@@ -35,10 +35,10 @@
 
 /obj/item/multitool/examine(mob/user)
 	. = ..()
-	. += span_notice("Its buffer [buffer ? "contains [buffer]." : "is empty."]")
+	. += span_notice("多功能工具的缓冲区[buffer ? "含有[buffer]." : "为空."]")
 
 /obj/item/multitool/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] puts the [src] to [user.p_their()] chest. It looks like [user.p_theyre()] trying to pulse [user.p_their()] heart off!"))
+	user.visible_message(span_suicide("[user]将[src]放在自己的胸膛上.看起来[user]想要用它来脉冲停搏自己的心脏!"))
 	return OXYLOSS//theres a reason it wasn't recommended by doctors
 
 /**
@@ -68,7 +68,7 @@
 
 /obj/item/multitool/ai_detect
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A special sensor embedded stealthily into this device can detect and warn of nearby silicon activity and camera vision range." // Skyrat edit
+	special_desc = "该设备中嵌入了一个特殊的传感器，可以检测并警示附近的硅基个体活动和摄像头的视野范围." // Skyrat edit
 	actions_types = list(/datum/action/item_action/toggle_multitool)
 	var/detect_state = PROXIMITY_NONE
 	var/rangealert = 8 //Glows red when inside
@@ -96,7 +96,7 @@
 /obj/item/multitool/ai_detect/proc/toggle_detect(mob/user)
 	detecting = !detecting
 	if(user)
-		to_chat(user, span_notice("You toggle the ai detection feature on [src] [detecting ? "on" : "off"]."))
+		to_chat(user, span_notice("你[detecting ? "开启了" : "关闭了"][src]上的AI检测功能 ."))
 	if(!detecting)
 		detect_state = PROXIMITY_NONE
 		update_appearance()
@@ -128,7 +128,7 @@
 			detect_state = PROXIMITY_NEAR
 
 /datum/action/item_action/toggle_multitool
-	name = "Toggle AI detecting mode"
+	name = "切换AI检测模式"
 	check_flags = NONE
 
 /datum/action/item_action/toggle_multitool/Trigger(trigger_flags)
@@ -140,8 +140,8 @@
 	return TRUE
 
 /obj/item/multitool/abductor
-	name = "alien multitool"
-	desc = "An omni-technological interface."
+	name = "外星多功能工具"
+	desc = "一种万用的技术界面."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "multitool"
 	belt_icon_state = "multitool_alien"
@@ -149,8 +149,8 @@
 	toolspeed = 0.1
 
 /obj/item/multitool/cyborg
-	name = "electronic multitool"
-	desc = "Optimised version of a regular multitool. Streamlines processes handled by its internal microchip."
+	name = "电子多功能工具"
+	desc = "常规多功能工具的优化版本。内置的微芯片简化了处理的流程."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 	toolspeed = 0.5

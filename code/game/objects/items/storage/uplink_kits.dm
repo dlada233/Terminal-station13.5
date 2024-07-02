@@ -743,7 +743,7 @@
 
 /obj/item/implant/nuclear_operative
 	name = "核特工植入物"
-	desc = "登记你为辛迪加核行动小组的成员."
+	desc = "登记你为辛迪加核小队的成员."
 	implant_color = "r"
 
 /obj/item/implant/nuclear_operative/get_data()

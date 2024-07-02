@@ -698,7 +698,7 @@ export const Spellbook = (props) => {
                             mr={57}
                             disabled={tabIndex === 1}
                             icon="arrow-left"
-                            content="Previous Page"
+                            content="上一页"
                             onClick={() => setTabIndex(tabIndex - 2)}
                           />
                           <Box textAlign="right" bold mt={-3.3} mr={1}>
