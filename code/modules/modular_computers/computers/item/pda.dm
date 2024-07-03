@@ -153,6 +153,7 @@
 	if(tool.w_class >= WEIGHT_CLASS_SMALL) // Anything equal to or larger than small won't work
 		user.balloon_alert(user, "太大了!")
 		return ITEM_INTERACT_BLOCKING
+	if(inserted_item)
 		balloon_alert(user, "空间不足!")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
