@@ -257,9 +257,9 @@
 	return pick("Unknown", "Captain")
 
 /datum/cardboard_cutout/nuclear_operative
-	name = "核行动队员"
+	name = "核特工"
 	applied_name = "Unknown"
-	applied_desc = "一个核行动队员的纸板模型."
+	applied_desc = "一个核特工的纸板模型."
 	outfit = /datum/outfit/syndicate/full
 
 /datum/cardboard_cutout/nuclear_operative/get_name()
