@@ -8430,5 +8430,6 @@
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\sentinel.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\spitter.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\warrior.dm"
+#include "code\datums\abnormality\datum\abnormality.dm"
 #include "code\datums\looping_sounds\abnormality.dm"
 // END_INCLUDE
