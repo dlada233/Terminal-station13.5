@@ -1783,7 +1783,7 @@
 		if(is_type_in_typecache(L, exclude))
 			continue
 		if(check_faction)
-			if(faction_check_mob(L, exact_faction_match))
+			if(faction_check(L, exact_faction_match))
 				continue
 		if(damage)
 			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
@@ -1799,7 +1799,7 @@
 				if(M in .)
 					continue
 				if(check_faction && M.occupants && M.occupants.len > 0)
-					if(faction_check_mob(M.occupants[1], exact_faction_match))
+					if(faction_check(M.occupants[1], exact_faction_match))
 						continue
 				var/mechDamage = mech_damage ? mech_damage : damage
 				if(mechDamage)
@@ -1815,7 +1815,7 @@
 					if(is_type_in_typecache(L, exclude))
 						continue
 					if(check_faction)
-						if(faction_check_mob(L, exact_faction_match))
+						if(faction_check(L, exact_faction_match))
 							continue
 					if(damage)
 						L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
