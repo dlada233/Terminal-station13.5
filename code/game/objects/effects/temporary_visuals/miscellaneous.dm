@@ -710,3 +710,13 @@
 		flags = ANIMATION_RELATIVE,
 	)
 	return ..()
+
+/obj/effect/temp_visual/smash_effect
+	name = "smash"
+	icon_state = "smash"
+	duration = 4
+
+/obj/effect/temp_visual/nt_goodbye
+	name = "goodbye"
+	icon_state = "nt_goodbye"
+	duration = 5

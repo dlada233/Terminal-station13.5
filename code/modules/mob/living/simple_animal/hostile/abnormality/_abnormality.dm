@@ -120,3 +120,9 @@
 	to_chat(A, toggle_message)
 	button_icon_state = button_icon_toggle_deactivated
 	active = FALSE
+
+// transfers a var to the datum to be used later
+/mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
+	if(isnull(datum_reference))
+		return
+	LAZYSET(datum_reference.transferable_var, value, index)
