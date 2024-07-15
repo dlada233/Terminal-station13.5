@@ -87,7 +87,7 @@
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
-	set category = "Object"
+	set category = "物件"
 	set src in oview(1)
 
 	if(usr.stat || usr.can_interact())

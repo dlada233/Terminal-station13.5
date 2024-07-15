@@ -1,7 +1,7 @@
-ADMIN_VERB(cmd_player_panel, R_ADMIN, "Player Panel", "See all players and their Player Panel.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(cmd_player_panel, R_ADMIN, "玩家面板", "See all players and their Player Panel.", ADMIN_CATEGORY_GAME)
 	user.holder.player_panel_new()
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mob/player in world)
+ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "显示玩家面板", mob/player in world)
 	log_admin("[key_name(user)] checked the individual player panel for [key_name(player)][isobserver(user.mob)?"":" while in game"].")
 
 	if(!player)
@@ -166,7 +166,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 	body += "</body></html>"
 
 	user << browse(body, "window=adminplayeropts-[REF(player)];size=550x515")
-	BLACKBOX_LOG_ADMIN_VERB("Player Panel")
+	BLACKBOX_LOG_ADMIN_VERB("玩家面板")
 
 /client/proc/cmd_admin_godmode(mob/M in GLOB.mob_list)
 	set category = "Admin.Game"
@@ -188,7 +188,7 @@ If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
-ADMIN_VERB(respawn_character, R_ADMIN, "Respawn Character", "Respawn a player that has been round removed in some manner. They must be a ghost.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(respawn_character, R_ADMIN, "角色重生", "Respawn a player that has been round removed in some manner. They must be a ghost.", ADMIN_CATEGORY_GAME)
 	var/input = ckey(input(user, "Please specify which key will be respawned.", "Key", ""))
 	if(!input)
 		return
@@ -306,12 +306,12 @@ ADMIN_VERB(respawn_character, R_ADMIN, "Respawn Character", "Respawn a player th
 
 	to_chat(new_character, "You have been fully respawned. Enjoy the game.", confidential = TRUE)
 
-	BLACKBOX_LOG_ADMIN_VERB("Respawn Character")
+	BLACKBOX_LOG_ADMIN_VERB("角色重生")
 	return new_character
 
-ADMIN_VERB(manage_job_slots, R_ADMIN, "Manage Job Slots", "Manage the number of available job slots.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(manage_job_slots, R_ADMIN, "管理工作岗位", "Manage the number of available job slots.", ADMIN_CATEGORY_GAME)
 	user.holder.manage_free_slots()
-	BLACKBOX_LOG_ADMIN_VERB("Manage Job Slots")
+	BLACKBOX_LOG_ADMIN_VERB("管理工作岗位")
 
 /datum/admins/proc/manage_free_slots()
 	if(!check_rights())
@@ -353,7 +353,7 @@ ADMIN_VERB(manage_job_slots, R_ADMIN, "Manage Job Slots", "Manage the number of 
 	browser.set_content(dat.Join())
 	browser.open()
 
-ADMIN_VERB(toggle_view_range, R_ADMIN, "Change View Range", "Switch between 1x and custom views.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(toggle_view_range, R_ADMIN, "改变视距", "Switch between 1x and custom views.", ADMIN_CATEGORY_GAME)
 	if(user.view_size.getView() == user.view_size.default)
 		user.view_size.setTo(input(user, "Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,37) - 7)
 	else
@@ -362,7 +362,7 @@ ADMIN_VERB(toggle_view_range, R_ADMIN, "Change View Range", "Switch between 1x a
 	log_admin("[key_name(user)] changed their view range to [user.view].")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Change View Range", "[user.view]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
-ADMIN_VERB(combo_hud, R_ADMIN, "Toggle Combo HUD", "Toggles the Admin Combo HUD.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(combo_hud, R_ADMIN, "切换战斗HUD", "Toggles the Admin Combo HUD.", ADMIN_CATEGORY_GAME)
 	if(user.combo_hud_enabled)
 		user.disable_combo_hud()
 	else
@@ -405,7 +405,7 @@ ADMIN_VERB(combo_hud, R_ADMIN, "Toggle Combo HUD", "Toggles the Admin Combo HUD.
 	mob.lighting_cutoff = mob.default_lighting_cutoff()
 	mob.update_sight()
 
-ADMIN_VERB(show_traitor_panel, R_ADMIN, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_GAME, mob/target_mob)
+ADMIN_VERB(show_traitor_panel, R_ADMIN, "显示叛徒面板", "Edit mobs's memory and role", ADMIN_CATEGORY_GAME, mob/target_mob)
 	var/datum/mind/target_mind = target_mob.mind
 	if(!target_mind)
 		to_chat(user, "This mob has no mind!", confidential = TRUE)
@@ -414,9 +414,9 @@ ADMIN_VERB(show_traitor_panel, R_ADMIN, "Show Traitor Panel", "Edit mobs's memor
 		to_chat(user, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
 		return
 	target_mind.traitor_panel()
-	BLACKBOX_LOG_ADMIN_VERB("Traitor Panel")
+	BLACKBOX_LOG_ADMIN_VERB("显示叛徒面板")
 
-ADMIN_VERB(show_skill_panel, R_ADMIN, "Show Skill Panel", "Edit mobs's experience and skill levels", ADMIN_CATEGORY_GAME, mob/target_mob)
+ADMIN_VERB(show_skill_panel, R_ADMIN, "显示技能面板", "Edit mobs's experience and skill levels", ADMIN_CATEGORY_GAME, mob/target_mob)
 	var/datum/mind/target_mind
 	if(istype(target_mob, /datum/mind))
 		target_mind = target_mob
@@ -426,7 +426,7 @@ ADMIN_VERB(show_skill_panel, R_ADMIN, "Show Skill Panel", "Edit mobs's experienc
 	var/datum/skill_panel/SP = new(user, target_mind)
 	SP.ui_interact(user.mob)
 
-ADMIN_VERB(lag_switch_panel, R_ADMIN, "Show Lag Switches", "Display the controls for drastic lag mitigation.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(lag_switch_panel, R_ADMIN, "显示Lag Switches", "Display the controls for drastic lag mitigation.", ADMIN_CATEGORY_GAME)
 	if(!SSlag_switch.initialized)
 		to_chat(user, span_notice("The Lag Switch subsystem has not yet been initialized."))
 		return

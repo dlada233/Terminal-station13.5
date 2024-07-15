@@ -1,5 +1,5 @@
-ADMIN_VERB(show_tip, R_ADMIN, "Show Tip", "Sends a tip to all players.", ADMIN_CATEGORY_MAIN)
-	var/input = input(user, "Please specify your tip that you want to send to the players.", "Tip", "") as message|null
+ADMIN_VERB(show_tip, R_ADMIN, "显示小提示", "Sends a tip to all players.", ADMIN_CATEGORY_MAIN)
+	var/input = input(user, "输入发送给玩家的小提示.", "Tip", "") as message|null
 	if(!input)
 		return
 
@@ -16,30 +16,30 @@ ADMIN_VERB(show_tip, R_ADMIN, "Show Tip", "Sends a tip to all players.", ADMIN_C
 	log_admin("[key_name(user)] sent \"[input]\" as the Tip of the Round.")
 	BLACKBOX_LOG_ADMIN_VERB("Show Tip")
 
-ADMIN_VERB(announce, R_ADMIN, "Announce", "Announce your desires to the world.", ADMIN_CATEGORY_MAIN)
-	var/message = input(user, "Global message to send:", "Admin Announce")  as message|null
+ADMIN_VERB(announce, R_ADMIN, "通知", "Announce your desires to the world.", ADMIN_CATEGORY_MAIN)
+	var/message = input(user, "发送全局消息:", "管理员通知")  as message|null
 	if(!message)
 		return
 
 	if(!user.holder.check_for_rights(R_SERVER))
 		message = adminscrub(message,500)
-	send_ooc_announcement(message, "From [user.holder.fakekey ? "Administrator" : user.key]")
+	send_ooc_announcement(message, "来自 [user.holder.fakekey ? "管理员" : user.key]")
 	log_admin("Announce: [key_name(user)] : [message]")
-	BLACKBOX_LOG_ADMIN_VERB("Announce")
+	BLACKBOX_LOG_ADMIN_VERB("通知")
 
-ADMIN_VERB(unprison, R_ADMIN, "UnPrison", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/prisoner in GLOB.mob_list)
+ADMIN_VERB(unprison, R_ADMIN, "出狱", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/prisoner in GLOB.mob_list)
 	if(!is_centcom_level(prisoner.z))
-		tgui_alert(user, "[prisoner.name] is not prisoned.")
+		tgui_alert(user, "[prisoner.name]没有在监狱.")
 		return
 
 	SSjob.SendToLateJoin(prisoner)
 	message_admins("[key_name_admin(user)] has unprisoned [key_name_admin(prisoner)]")
 	log_admin("[key_name(user)] has unprisoned [key_name(prisoner)]")
-	BLACKBOX_LOG_ADMIN_VERB("Unprison")
+	BLACKBOX_LOG_ADMIN_VERB("出狱")
 
-ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player playtime.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "玩家游玩时长", "View player playtime.", ADMIN_CATEGORY_MAIN)
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(user, span_warning("Tracking is disabled in the server configuration file."), confidential = TRUE)
+		to_chat(user, span_warning("服务器配置禁用了追踪."), confidential = TRUE)
 		return
 
 	var/list/msg = list()
@@ -144,7 +144,7 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/dropee in GLOB.mob_list)
+ADMIN_VERB(drop_everything, R_ADMIN, "丢下所有", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/dropee in GLOB.mob_list)
 	var/confirm = tgui_alert(user, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
@@ -156,7 +156,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	var/msg = "[key_name_admin(user)] made [ADMIN_LOOKUPFLW(dropee)] drop everything!"
 	message_admins(msg)
 	admin_ticket_log(dropee, msg)
-	BLACKBOX_LOG_ADMIN_VERB("Drop Everything")
+	BLACKBOX_LOG_ADMIN_VERB("丢下所有")
 
 /proc/cmd_admin_mute(whom, mute_type, automute = 0)
 	if(!whom)

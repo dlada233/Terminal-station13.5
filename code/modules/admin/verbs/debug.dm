@@ -173,7 +173,7 @@ ADMIN_VERB(cmd_assume_direct_control, R_ADMIN, "Assume Direct Control", "Assume 
 		qdel(adminmob)
 	BLACKBOX_LOG_ADMIN_VERB("Assume Direct Control")
 
-ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "Give Direct Control", "Give direct control of a mob to another player.", ADMIN_CATEGORY_GAME, mob/M)
+ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "赋予控制权", "Give direct control of a mob to another player.", ADMIN_CATEGORY_GAME, mob/M)
 	if(!M)
 		return
 	if(M.ckey)
@@ -197,7 +197,7 @@ ADMIN_VERB(cmd_give_direct_control, R_ADMIN, "Give Direct Control", "Give direct
 		qdel(oldmob)
 	message_admins(span_adminnotice("[key_name_admin(user)] gave away direct control of [M] to [newkey]."))
 	log_admin("[key_name(user)] gave away direct control of [M] to [newkey].")
-	BLACKBOX_LOG_ADMIN_VERB("Give Direct Control")
+	BLACKBOX_LOG_ADMIN_VERB("赋予控制权")
 
 ADMIN_VERB_VISIBILITY(cmd_admin_areatest, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test Areas", "Tests the areas for various machinery.", ADMIN_CATEGORY_MAPPING, on_station as num, filter_maint as num)

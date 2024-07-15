@@ -993,7 +993,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in view(1)
-	set category = "Object"
+	set category = "物件"
 	set name = "Toggle Open"
 
 	if(!usr.can_perform_action(src) || !isturf(loc))

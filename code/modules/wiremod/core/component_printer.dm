@@ -246,7 +246,7 @@
 	for(var/obj/item/circuit_component/component as anything in subtypesof(/obj/item/circuit_component))
 		var/categories = list("Inaccessible")
 		if(initial(component.circuit_flags) & CIRCUIT_FLAG_ADMIN)
-			categories = list("Admin")
+			categories = list("管理员")
 		if(!(component in all_circuit_designs))
 			all_circuit_designs[component] = list(
 				"name" = initial(component.display_name),

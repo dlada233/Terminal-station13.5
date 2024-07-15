@@ -11,8 +11,8 @@
 	BLACKBOX_LOG_ADMIN_VERB("Show Adminverbs")
 
 /client/proc/readmin()
-	set name = "Readmin"
-	set category = "Admin"
+	set name = "恢复权限"
+	set category = "管理员"
 	set desc = "Regain your admin powers."
 
 	var/datum/admins/A = GLOB.deadmins[ckey]
@@ -36,8 +36,8 @@
 	BLACKBOX_LOG_ADMIN_VERB("Readmin")
 
 /client/proc/admin_2fa_verify()
-	set name = "Verify Admin"
-	set category = "Admin"
+	set name = "验证管理"
+	set category = "管理员"
 
 	var/datum/admins/admin = GLOB.admin_datums[ckey]
 	admin?.associate(src)

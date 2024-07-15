@@ -70,8 +70,8 @@
 	to_chat(src, "<span class='infoplain'>[msg]</span>")
 
 /client/verb/adminwho()
-	set category = "Admin"
-	set name = "Adminwho"
+	set category = "管理员"
+	set name = "管理名单"
 
 	var/list/lines = list()
 	var/payload_string = generate_adminwho_string()

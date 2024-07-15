@@ -133,7 +133,7 @@
 		return ..()
 
 /obj/machinery/gibber/verb/eject()
-	set category = "Object"
+	set category = "物件"
 	set name = "空歌唱机"
 	set src in oview(1)
 	if (usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))

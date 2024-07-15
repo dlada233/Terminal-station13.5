@@ -1,5 +1,5 @@
 
-ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit admin permissions.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "权限面板", "Edit admin permissions.", ADMIN_CATEGORY_MAIN)
 	user.holder.edit_admin_permissions()
 
 /datum/admins/proc/edit_admin_permissions(action, target, operation, page)

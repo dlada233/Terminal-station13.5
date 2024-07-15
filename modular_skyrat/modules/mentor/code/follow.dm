@@ -15,7 +15,7 @@
 	log_mentor("[key_name(usr)] [orbiting ? "is now orbiting" : "began following"][key_name(M)][orbiting ? " as a ghost" : ""].")
 
 /client/proc/mentor_unfollow()
-	set category = "Mentor"
+	set category = "指导"
 	set name = "Stop Following"
 	set desc = "Stop following the followed."
 

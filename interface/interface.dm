@@ -1,6 +1,6 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
 /client/verb/wiki(query as text)
-	set name = "wiki"
+	set name = "wiki百科"
 	set desc = "Type what you want to know about.  This will open the wiki in your web browser. Type nothing to go to the main page."
 	set hidden = TRUE
 	var/wikiurl = CONFIG_GET(string/wikiurl)
@@ -14,21 +14,8 @@
 		to_chat(src, span_danger("The wiki URL is not set in the server configuration."))
 	return
 
-/client/verb/forum()
-	set name = "forum"
-	set desc = "Visit the forum."
-	set hidden = TRUE
-	var/forumurl = CONFIG_GET(string/forumurl)
-	if(forumurl)
-		if(tgui_alert(src, "This will open the forum in your browser. Are you sure?",, list("Yes","No"))!="Yes")
-			return
-		src << link(forumurl)
-	else
-		to_chat(src, span_danger("The forum URL is not set in the server configuration."))
-	return
-
 /client/verb/rules()
-	set name = "rules"
+	set name = "游戏规则"
 	set desc = "Show Server Rules."
 	set hidden = TRUE
 	var/rulesurl = CONFIG_GET(string/rulesurl)
@@ -54,7 +41,7 @@
 	return
 
 /client/verb/reportissue()
-	set name = "report-issue"
+	set name = "上报问题"
 	set desc = "Report an issue"
 	set hidden = TRUE
 	var/githuburl = CONFIG_GET(string/githuburl)
@@ -99,7 +86,7 @@
 	return
 
 /client/verb/changelog()
-	set name = "Changelog"
+	set name = "更新日志"
 	set category = "OOC"
 	if(!GLOB.changelog_tgui)
 		GLOB.changelog_tgui = new /datum/changelog()
@@ -111,7 +98,7 @@
 		winset(src, "infowindow.changelog", "font-style=;")
 
 /client/verb/hotkeys_help()
-	set name = "Hotkeys Help"
+	set name = "快捷键查询"
 	set category = "OOC"
 
 	if(!GLOB.hotkeys_tgui)

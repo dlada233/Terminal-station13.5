@@ -313,7 +313,7 @@
 	return use_internal_storage ? reagents : reagent_container?.reagents
 
 /obj/machinery/iv_drip/verb/eject_beaker()
-	set category = "Object"
+	set category = "物件"
 	set name = "Remove IV Container"
 	set src in view(1)
 
@@ -333,7 +333,7 @@
 		update_appearance(UPDATE_ICON)
 
 /obj/machinery/iv_drip/verb/toggle_mode()
-	set category = "Object"
+	set category = "物件"
 	set name = "Toggle Mode"
 	set src in view(1)
 

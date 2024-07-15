@@ -614,7 +614,7 @@
  * for why this isn't atom/verb/examine()
  */
 /mob/verb/examinate(atom/examinify as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
-	set name = "Examine"
+	set name = "检视"
 	set category = "IC"
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
@@ -822,8 +822,8 @@
  * Calls attack self on the item and updates the inventory hud for hands
  */
 /mob/verb/mode()
-	set name = "Activate Held Object"
-	set category = "Object"
+	set name = "激活持有物品"
+	set category = "物件"
 	set src = usr
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_mode)))
@@ -852,7 +852,7 @@
  * Only works if flag/allow_respawn is allowed in config
  */
 /mob/verb/abandon_mob()
-	set name = "Respawn"
+	set name = "重生"
 	set category = "OOC"
 
 	switch(CONFIG_GET(flag/allow_respawn))
@@ -927,7 +927,7 @@
  * Sometimes helps if the user is stuck in another perspective or camera
  */
 /mob/verb/cancel_camera()
-	set name = "Cancel Camera View"
+	set name = "取消摄像头视角"
 	set category = "OOC"
 	reset_perspective(null)
 
@@ -1560,7 +1560,7 @@
 
 ///Show the language menu for this mob
 /mob/verb/open_language_menu_verb()
-	set name = "Open Language Menu"
+	set name = "打开语言菜单"
 	set category = "IC"
 
 	get_language_holder().open_language_menu(usr)
@@ -1684,7 +1684,7 @@
 
 ///Shows a tgui window with memories
 /mob/verb/memory()
-	set name = "Memories"
+	set name = "记忆"
 	set category = "IC"
 	set desc = "View your character's memories."
 	if(!mind)
@@ -1739,7 +1739,7 @@
 
 /mob/verb/view_skills()
 	set category = "IC"
-	set name = "View Skills"
+	set name = "浏览技能"
 
 	mind?.print_levels(src)
 

@@ -33,7 +33,7 @@
 
 ///A right-click verb, for those not using hotkey mode.
 /obj/item/borg/apparatus/verb/verb_dropHeld()
-	set category = "Object"
+	set category = "物件"
 	set name = "Drop"
 
 	if(usr != loc || !stored)

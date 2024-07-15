@@ -1,5 +1,5 @@
 /client/proc/cmd_mentor_dementor()
-	set category = "Mentor"
+	set category = "指导"
 	set name = "dementor"
 	if(!is_mentor())
 		return
@@ -12,7 +12,7 @@
 	add_verb(src,/client/proc/cmd_mentor_rementor)
 
 /client/proc/cmd_mentor_rementor()
-	set category = "Mentor"
+	set category = "指导"
 	set name = "rementor"
 	if(!is_mentor())
 		return

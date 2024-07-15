@@ -1,4 +1,4 @@
-ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "Explosion", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
+ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "爆炸", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
 	var/devastation = input(user, "Range of total devastation. -1 to none", "Input")  as num|null
 	if(devastation == null)
 		return
@@ -25,7 +25,7 @@ ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "Explosion", ADMIN_VERB_NO_DESCRIPTIO
 		message_admins("[key_name_admin(user)] created an explosion ([devastation],[heavy],[light],[flames]) at [AREACOORD(orignator)]")
 		BLACKBOX_LOG_ADMIN_VERB("Explosion")
 
-ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "EM Pulse", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
+ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "电磁脉冲EMP", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/orignator as obj|mob|turf)
 	var/heavy = input(user, "Range of heavy pulse.", "Input")  as num|null
 	if(heavy == null)
 		return
@@ -39,7 +39,7 @@ ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "EM Pulse", ADMIN_VERB_NO_DESCRIPTION, ADMI
 		message_admins("[key_name_admin(user)] created an EM Pulse ([heavy],[light]) at [AREACOORD(orignator)]")
 		BLACKBOX_LOG_ADMIN_VERB("EM Pulse")
 
-ADMIN_VERB(gib_them, R_ADMIN, "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/victim in GLOB.mob_list)
+ADMIN_VERB(gib_them, R_ADMIN, "碎尸Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/victim in GLOB.mob_list)
 	var/confirm = tgui_alert(user, "Drop a brain?", "Confirm", list("Yes", "No","Cancel")) || "Cancel"
 	if(confirm == "Cancel")
 		return
@@ -62,21 +62,21 @@ ADMIN_VERB(gib_them, R_ADMIN, "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_H
 		else
 			living_victim.gib(DROP_ORGANS|DROP_BODYPARTS)
 
-	BLACKBOX_LOG_ADMIN_VERB("Gib")
+	BLACKBOX_LOG_ADMIN_VERB("碎尸Gib")
 
-ADMIN_VERB(gib_self, R_ADMIN, "Gibself", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(gib_self, R_ADMIN, "自我碎尸Gib", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
 	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 	log_admin("[key_name(user)] used gibself.")
 	message_admins(span_adminnotice("[key_name_admin(user)] used gibself."))
-	BLACKBOX_LOG_ADMIN_VERB("Gib Self")
+	BLACKBOX_LOG_ADMIN_VERB("自我碎尸Gib")
 
 	var/mob/living/ourself = user.mob
 	if (istype(ourself))
 		ourself.gib()
 
-ADMIN_VERB(everyone_random, R_SERVER, "Make Everyone Random", "Make everyone have a random appearance.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(everyone_random, R_SERVER, "全员随机化", "Make everyone have a random appearance.", ADMIN_CATEGORY_FUN)
 	if(SSticker.HasRoundStarted())
 		to_chat(user, "Nope you can't do this, the game's already started. This only works before rounds!", confidential = TRUE)
 		return
@@ -103,7 +103,7 @@ ADMIN_VERB(everyone_random, R_SERVER, "Make Everyone Random", "Make everyone hav
 	CONFIG_SET(flag/force_random_names, TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Make Everyone Random")
 
-ADMIN_VERB(mass_zombie_infection, R_ADMIN, "Mass Zombie Infection", "Infects all humans with a latent organ that will zombify them on death.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(mass_zombie_infection, R_ADMIN, "大规模僵尸感染", "Infects all humans with a latent organ that will zombify them on death.", ADMIN_CATEGORY_FUN)
 	var/confirm = tgui_alert(user, "Please confirm you want to add latent zombie organs in all humans?", "Confirm Zombies", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
@@ -114,9 +114,9 @@ ADMIN_VERB(mass_zombie_infection, R_ADMIN, "Mass Zombie Infection", "Infects all
 
 	message_admins("[key_name_admin(user)] added a latent zombie infection to all humans.")
 	log_admin("[key_name(user)] added a latent zombie infection to all humans.")
-	BLACKBOX_LOG_ADMIN_VERB("Mass Zombie Infection")
+	BLACKBOX_LOG_ADMIN_VERB("大规模僵尸感染")
 
-ADMIN_VERB(mass_zombie_cure, R_ADMIN, "Mass Zombie Cure", "Removes the zombie infection from all humans, returning them to normal.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(mass_zombie_cure, R_ADMIN, "大规模僵尸治愈", "Removes the zombie infection from all humans, returning them to normal.", ADMIN_CATEGORY_FUN)
 	var/confirm = tgui_alert(user, "Please confirm you want to cure all zombies?", "Confirm Zombie Cure", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
@@ -126,9 +126,9 @@ ADMIN_VERB(mass_zombie_cure, R_ADMIN, "Mass Zombie Cure", "Removes the zombie in
 
 	message_admins("[key_name_admin(user)] cured all zombies.")
 	log_admin("[key_name(user)] cured all zombies.")
-	BLACKBOX_LOG_ADMIN_VERB("Mass Zombie Cure")
+	BLACKBOX_LOG_ADMIN_VERB("大规模僵尸治愈")
 
-ADMIN_VERB(polymorph_all, R_ADMIN, "Polymorph All", "Applies the effects of the bolt of change to every single mob.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(polymorph_all, R_ADMIN, "全员变形", "Applies the effects of the bolt of change to every single mob.", ADMIN_CATEGORY_FUN)
 	var/confirm = tgui_alert(user, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
@@ -138,7 +138,7 @@ ADMIN_VERB(polymorph_all, R_ADMIN, "Polymorph All", "Applies the effects of the 
 
 	message_admins("[key_name_admin(user)] started polymorphed all living mobs.")
 	log_admin("[key_name(user)] polymorphed all living mobs.")
-	BLACKBOX_LOG_ADMIN_VERB("Polymorph All")
+	BLACKBOX_LOG_ADMIN_VERB("全员变形")
 
 	for(var/mob/living/M in mobs)
 		CHECK_TICK
@@ -153,7 +153,7 @@ ADMIN_VERB(polymorph_all, R_ADMIN, "Polymorph All", "Applies the effects of the 
 
 	message_admins("Mass polymorph started by [who_did_it] is complete.")
 
-ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player with divine power.", ADMIN_CATEGORY_FUN, mob/living/target in world)
+ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "毁灭", "Smite a player with divine power.", ADMIN_CATEGORY_FUN, mob/living/target in world)
 	var/punishment = input(user, "Choose a punishment", "DIVINE SMITING") as null|anything in GLOB.smites
 
 	if(QDELETED(target) || !punishment)

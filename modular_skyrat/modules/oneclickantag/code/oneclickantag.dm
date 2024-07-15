@@ -36,7 +36,7 @@
 			return FALSE
 	return TRUE
 
-ADMIN_VERB(one_click_antag, R_ADMIN, "Create Antagonist", "Auto-create an antagonist of your choice", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(one_click_antag, R_ADMIN, "创建反派", "Auto-create an antagonist of your choice", ADMIN_CATEGORY_EVENTS)
 	user.holder?.one_click_antag()
 
 /**

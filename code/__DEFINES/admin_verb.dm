@@ -76,18 +76,18 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_HIDDEN null
 
 // Admin verb categories
-#define ADMIN_CATEGORY_MAIN "Admin"
-#define ADMIN_CATEGORY_EVENTS "Admin.Events"
-#define ADMIN_CATEGORY_FUN "Admin.Fun"
-#define ADMIN_CATEGORY_GAME "Admin.Game"
+#define ADMIN_CATEGORY_MAIN "管理员"
+#define ADMIN_CATEGORY_EVENTS "管理员.事件"
+#define ADMIN_CATEGORY_FUN "管理员.娱乐"
+#define ADMIN_CATEGORY_GAME "管理员.游戏"
 
 // Special categories that are seperated
 #define ADMIN_CATEGORY_DEBUG "Debug"
-#define ADMIN_CATEGORY_SERVER "Server"
-#define ADMIN_CATEGORY_OBJECT "Object"
-#define ADMIN_CATEGORY_MAPPING "Mapping"
-#define ADMIN_CATEGORY_PROFILE "Profile"
-#define ADMIN_CATEGORY_IPINTEL "Admin.IPIntel"
+#define ADMIN_CATEGORY_SERVER "服务器"
+#define ADMIN_CATEGORY_OBJECT "物件"
+#define ADMIN_CATEGORY_MAPPING "地图"
+#define ADMIN_CATEGORY_PROFILE "配置"
+#define ADMIN_CATEGORY_IPINTEL "管理员.IPIntel"
 
 // Visibility flags
 #define ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG "Map-Debug"

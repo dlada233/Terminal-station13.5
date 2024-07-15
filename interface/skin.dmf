@@ -175,7 +175,7 @@ window "infowindow"
 		anchor1 = 1,0
 		anchor2 = 15,0
 		saved-params = "is-checked"
-		text = "Changelog"
+		text = "更新日志"
 		command = "changelog"
 	elem "rules"
 		type = BUTTON
@@ -184,7 +184,7 @@ window "infowindow"
 		anchor1 = 15,0
 		anchor2 = 29,0
 		saved-params = "is-checked"
-		text = "Rules"
+		text = "游戏规则"
 		command = "rules"
 	elem "wiki"
 		type = BUTTON
@@ -193,17 +193,8 @@ window "infowindow"
 		anchor1 = 29,0
 		anchor2 = 43,0
 		saved-params = "is-checked"
-		text = "Wiki"
+		text = "Wiki百科"
 		command = "wiki"
-	elem "forum"
-		type = BUTTON
-		pos = 275,5
-		size = 90x20
-		anchor1 = 43,0
-		anchor2 = 57,0
-		saved-params = "is-checked"
-		text = "Forum"
-		command = "forum"
 	elem "github"
 		type = BUTTON
 		pos = 365,5
@@ -220,7 +211,7 @@ window "infowindow"
 		anchor1 = 71,0
 		anchor2 = 85,0
 		saved-params = "is-checked"
-		text = "Report Issue"
+		text = "上报问题"
 		command = "report-issue"
 	elem "fullscreen-toggle"
 		type = BUTTON
@@ -229,7 +220,7 @@ window "infowindow"
 		anchor1 = 85,0
 		anchor2 = 99,0
 		saved-params = "is-checked"
-		text = "Fullscreen"
+		text = "全屏模式"
 		command = "fullscreen"
 
 window "outputwindow"

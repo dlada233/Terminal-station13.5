@@ -6,7 +6,7 @@
 /obj/item/circuit_component/set_variable
 	display_name = "Set Variable"
 	desc = "A component that sets a variable on an object."
-	category = "Admin"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	/// Whether to resolve weakrefs or not

@@ -1,5 +1,5 @@
 /client/verb/mentorwho()
-	set category = "Mentor"
+	set category = "指导"
 	set name = "Mentorwho"
 	var/msg = "<b>Current Mentors:</b>\n"
 	for(var/X in GLOB.mentors)

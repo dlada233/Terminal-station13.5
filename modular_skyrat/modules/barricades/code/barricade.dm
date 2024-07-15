@@ -204,7 +204,7 @@
 
 /obj/structure/deployable_barricade/verb/rotate()
 	set name = "Rotate barricade counterclockwise <"
-	set category = "Object"
+	set category = "物件"
 	set src in oview(1)
 
 	if(anchored)
@@ -215,7 +215,7 @@
 
 /obj/structure/deployable_barricade/verb/revrotate()
 	set name = "Rotate barricade clockwise >"
-	set category = "Object"
+	set category = "物件"
 	set src in oview(1)
 
 	if(anchored)
