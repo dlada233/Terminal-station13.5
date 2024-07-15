@@ -1684,6 +1684,7 @@
 #include "code\datums\keybinding\movement.dm"
 #include "code\datums\keybinding\robot.dm"
 #include "code\datums\looping_sounds\_looping_sound.dm"
+#include "code\datums\looping_sounds\abnormality.dm"
 #include "code\datums\looping_sounds\acid.dm"
 #include "code\datums\looping_sounds\burning.dm"
 #include "code\datums\looping_sounds\choking.dm"
@@ -5229,6 +5230,9 @@
 #include "code\modules\mob\living\simple_animal\hostile\ooze.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vatbeast.dm"
 #include "code\modules\mob\living\simple_animal\hostile\zombie.dm"
+#include "code\modules\mob\living\simple_animal\hostile\abnormality\_abnormality.dm"
+#include "code\modules\mob\living\simple_animal\hostile\abnormality\hiding.dm"
+#include "code\modules\mob\living\simple_animal\hostile\abnormality\nothing_there.dm"
 #include "code\modules\mob\living\simple_animal\hostile\megafauna\_megafauna.dm"
 #include "code\modules\mob\living\simple_animal\hostile\megafauna\blood_drunk_miner.dm"
 #include "code\modules\mob\living\simple_animal\hostile\megafauna\bubblegum.dm"
@@ -8427,4 +8431,5 @@
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\sentinel.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\spitter.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\warrior.dm"
+#include "code\datums\looping_sounds\abnormality.dm"
 // END_INCLUDE
