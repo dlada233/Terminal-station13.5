@@ -1,7 +1,7 @@
 /// The list of the available special player ranks
 #define SKYRAT_PLAYER_RANKS list("Donator", "Mentor", "Veteran")
 
-ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage who has the special player ranks while the server is running.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "管理玩家Rank", "Manage who has the special player ranks while the server is running.", ADMIN_CATEGORY_MAIN)
 	if(!check_rights(R_PERMISSIONS))
 		return
 

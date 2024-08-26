@@ -4,9 +4,9 @@
  * Spawns an atom.
  */
 /obj/item/circuit_component/spawn_atom
-	display_name = "Spawn Atom"
+	display_name = "生成 Atom"
 	desc = "Spawns an atom at a desired location"
-	category = "Admin"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	/// The input path to convert into a typepath

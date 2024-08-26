@@ -1,5 +1,5 @@
 
-ADMIN_VERB(force_event, R_FUN, "Trigger Event", "Forces an event to occur.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(force_event, R_FUN, "触发事件", "Forces an event to occur.", ADMIN_CATEGORY_EVENTS)
 	user.holder.forceEvent()
 
 ///Opens up the Force Event Panel

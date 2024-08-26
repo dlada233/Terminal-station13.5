@@ -210,7 +210,7 @@
 
 
 /obj/item/clothing/suit/wizrobe/paper/verb/stickmen()
-	set category = "Object"
+	set category = "物件"
 	set name = "Summon Stick Minions"
 	if(!isliving(usr))
 		return

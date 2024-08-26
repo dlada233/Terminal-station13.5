@@ -6,12 +6,12 @@
 	control_freak = initial(control_freak)
 	SSadmin_verbs.deassosciate_admin(src)
 
-ADMIN_VERB(hide_verbs, R_NONE, "Adminverbs - Hide All", "Hide most of your admin verbs.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(hide_verbs, R_NONE, "管理变量配置 - 隐藏所有", "Hide most of your admin verbs.", ADMIN_CATEGORY_MAIN)
 	user.remove_admin_verbs()
 	add_verb(user, /client/proc/show_verbs)
 
 	to_chat(user, span_interface("Almost all of your adminverbs have been hidden."), confidential = TRUE)
-	BLACKBOX_LOG_ADMIN_VERB("Hide All Adminverbs")
+	BLACKBOX_LOG_ADMIN_VERB("隐藏所有变量")
 
 ADMIN_VERB(admin_ghost, R_ADMIN, "AGhost", "Become a ghost without DNR.", ADMIN_CATEGORY_GAME)
 	. = TRUE
@@ -40,7 +40,7 @@ ADMIN_VERB(admin_ghost, R_ADMIN, "AGhost", "Become a ghost without DNR.", ADMIN_
 			body.key = "@[user.key]" //Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 		BLACKBOX_LOG_ADMIN_VERB("Admin Ghost")
 
-ADMIN_VERB(invisimin, R_ADMIN, "Invisimin", "Toggles ghost-like invisibility.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(invisimin, R_ADMIN, "角色隐身", "Toggles ghost-like invisibility.", ADMIN_CATEGORY_GAME)
 	if(HAS_TRAIT(user.mob, TRAIT_INVISIMIN))
 		REMOVE_TRAIT(user.mob, TRAIT_INVISIMIN, ADMIN_TRAIT)
 		user.mob.add_to_all_human_data_huds()
@@ -53,52 +53,52 @@ ADMIN_VERB(invisimin, R_ADMIN, "Invisimin", "Toggles ghost-like invisibility.", 
 	user.mob.SetInvisibility(INVISIBILITY_OBSERVER, INVISIBILITY_SOURCE_INVISIMIN, INVISIBILITY_PRIORITY_ADMIN)
 	to_chat(user, span_adminnotice(span_bold("Invisimin on. You are now as invisible as a ghost.")), confidential = TRUE)
 
-ADMIN_VERB(check_antagonists, R_ADMIN, "Check Antagonists", "See all antagonists for the round.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(check_antagonists, R_ADMIN, "检查反派", "See all antagonists for the round.", ADMIN_CATEGORY_GAME)
 	user.holder.check_antagonists()
 	log_admin("[key_name(user)] checked antagonists.")
 	if(!isobserver(user.mob) && SSticker.HasRoundStarted())
 		message_admins("[key_name_admin(user)] checked antagonists.")
-	BLACKBOX_LOG_ADMIN_VERB("Check Antagonists")
+	BLACKBOX_LOG_ADMIN_VERB("检查反派")
 
-ADMIN_VERB(list_bombers, R_ADMIN, "List Bombers", "Look at all bombs and their likely culprit.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(list_bombers, R_ADMIN, "炸弹列表", "Look at all bombs and their likely culprit.", ADMIN_CATEGORY_GAME)
 	user.holder.list_bombers()
-	BLACKBOX_LOG_ADMIN_VERB("List Bombers")
+	BLACKBOX_LOG_ADMIN_VERB("炸弹列表")
 
-ADMIN_VERB(list_signalers, R_ADMIN, "List Signalers", "View all signalers.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(list_signalers, R_ADMIN, "信号源列表", "View all signalers.", ADMIN_CATEGORY_GAME)
 	user.holder.list_signalers()
-	BLACKBOX_LOG_ADMIN_VERB("List Signalers")
+	BLACKBOX_LOG_ADMIN_VERB("信号源列表")
 
-ADMIN_VERB(list_law_changes, R_ADMIN, "List Law Changes", "View all AI law changes.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(list_law_changes, R_ADMIN, "法律变更列表", "View all AI law changes.", ADMIN_CATEGORY_DEBUG)
 	user.holder.list_law_changes()
-	BLACKBOX_LOG_ADMIN_VERB("List Law Changes")
+	BLACKBOX_LOG_ADMIN_VERB("法律变更列表")
 
-ADMIN_VERB(show_manifest, R_ADMIN, "Show Manifest", "View the shift's Manifest.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(show_manifest, R_ADMIN, "显示名单", "View the shift's Manifest.", ADMIN_CATEGORY_DEBUG)
 	user.holder.show_manifest()
-	BLACKBOX_LOG_ADMIN_VERB("Show Manifest")
+	BLACKBOX_LOG_ADMIN_VERB("显示名单")
 
-ADMIN_VERB(list_dna, R_ADMIN, "List DNA", "View DNA.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(list_dna, R_ADMIN, "DNA列表", "View DNA.", ADMIN_CATEGORY_DEBUG)
 	user.holder.list_dna()
-	BLACKBOX_LOG_ADMIN_VERB("List DNA")
+	BLACKBOX_LOG_ADMIN_VERB("DNA列表")
 
-ADMIN_VERB(list_fingerprints, R_ADMIN, "List Fingerprints", "View fingerprints.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(list_fingerprints, R_ADMIN, "指纹列表", "View fingerprints.", ADMIN_CATEGORY_DEBUG)
 	user.holder.list_fingerprints()
-	BLACKBOX_LOG_ADMIN_VERB("List Fingerprints")
+	BLACKBOX_LOG_ADMIN_VERB("指纹列表")
 
-ADMIN_VERB(ban_panel, R_BAN, "Banning Panel", "Ban players here.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(ban_panel, R_BAN, "封禁玩家", "Ban players here.", ADMIN_CATEGORY_MAIN)
 	user.holder.ban_panel()
-	BLACKBOX_LOG_ADMIN_VERB("Banning Panel")
+	BLACKBOX_LOG_ADMIN_VERB("封禁玩家")
 
-ADMIN_VERB(unban_panel, R_BAN, "Unbanning Panel", "Unban players here.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(unban_panel, R_BAN, "解封玩家", "Unban players here.", ADMIN_CATEGORY_MAIN)
 	user.holder.unban_panel()
-	BLACKBOX_LOG_ADMIN_VERB("Unbanning Panel")
+	BLACKBOX_LOG_ADMIN_VERB("解封玩家")
 
-ADMIN_VERB(game_panel, R_ADMIN, "Game Panel", "Look at the state of the game.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(game_panel, R_ADMIN, "游戏菜单", "Look at the state of the game.", ADMIN_CATEGORY_GAME)
 	user.holder.Game()
-	BLACKBOX_LOG_ADMIN_VERB("Game Panel")
+	BLACKBOX_LOG_ADMIN_VERB("游戏菜单")
 
-ADMIN_VERB(poll_panel, R_POLL, "Server Poll Management", "View and manage polls.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(poll_panel, R_POLL, "服务器轮替", "View and manage polls.", ADMIN_CATEGORY_MAIN)
 	user.holder.poll_list_panel()
-	BLACKBOX_LOG_ADMIN_VERB("Server Poll Management")
+	BLACKBOX_LOG_ADMIN_VERB("服务器轮替")
 
 /// Returns this client's stealthed ckey
 /client/proc/getStealthKey()
@@ -133,13 +133,13 @@ ADMIN_VERB(poll_panel, R_POLL, "Server Poll Management", "View and manage polls.
 /client/proc/createStealthKey()
 	GLOB.stealthminID["[ckey]"] = generateStealthCkey()
 
-ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(stealth, R_STEALTH, "管理隐身", "Toggle stealth.", ADMIN_CATEGORY_MAIN)
 	if(user.holder.fakekey)
 		user.disable_stealth_mode()
 	else
 		user.enable_stealth_mode()
 
-	BLACKBOX_LOG_ADMIN_VERB("Stealth Mode")
+	BLACKBOX_LOG_ADMIN_VERB("管理隐身")
 
 #define STEALTH_MODE_TRAIT "stealth_mode"
 
@@ -182,7 +182,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", ADMIN_CATEGORY
 
 #undef STEALTH_MODE_TRAIT
 
-ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strength at your location", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(drop_bomb, R_FUN, "扔炸弹", "Cause an explosion of varying strength at your location", ADMIN_CATEGORY_FUN)
 	var/list/choices = list("Small Bomb (1, 2, 3, 3)", "Medium Bomb (2, 3, 4, 4)", "Big Bomb (3, 5, 7, 5)", "Maxcap", "Custom Bomb")
 	var/choice = tgui_input_list(user, "What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap", "Drop Bomb", choices)
 	if(isnull(choice))
@@ -220,7 +220,7 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 	log_admin("[key_name(user)] created an admin explosion at [epicenter.loc].")
 	BLACKBOX_LOG_ADMIN_VERB("Drop Bomb")
 
-ADMIN_VERB(drop_bomb_dynex, R_FUN, "Drop DynEx Bomb", "Cause an explosion of varying strength at your location.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(drop_bomb_dynex, R_FUN, "扔DynEx炸弹", "Cause an explosion of varying strength at your location.", ADMIN_CATEGORY_FUN)
 	var/ex_power = input(user, "Explosive Power:") as null|num
 	var/turf/epicenter = get_turf(user.mob)
 	if(!ex_power || !epicenter)
@@ -228,23 +228,23 @@ ADMIN_VERB(drop_bomb_dynex, R_FUN, "Drop DynEx Bomb", "Cause an explosion of var
 	dyn_explosion(epicenter, ex_power)
 	message_admins("[ADMIN_LOOKUPFLW(user.mob)] creating an admin explosion at [epicenter.loc].")
 	log_admin("[key_name(user)] created an admin explosion at [epicenter.loc].")
-	BLACKBOX_LOG_ADMIN_VERB("Drop Dynamic Bomb")
+	BLACKBOX_LOG_ADMIN_VERB("扔DynEx炸弹")
 
-ADMIN_VERB(get_dynex_range, R_FUN, "Get DynEx Range", "Get the estimated range of a bomb using explosive power.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(get_dynex_range, R_FUN, "获取DynEx范围", "Get the estimated range of a bomb using explosive power.", ADMIN_CATEGORY_DEBUG)
 	var/ex_power = input(user, "Explosive Power:") as null|num
 	if (isnull(ex_power))
 		return
 	var/range = round((2 * ex_power)**GLOB.DYN_EX_SCALE)
 	to_chat(user, "Estimated Explosive Range: (Devastation: [round(range*0.25)], Heavy: [round(range*0.5)], Light: [round(range)])", confidential = TRUE)
 
-ADMIN_VERB(get_dynex_power, R_FUN, "Get DynEx Power", "Get the estimated required power of a bomb to reach the given range.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(get_dynex_power, R_FUN, "获取DynEx威力", "Get the estimated required power of a bomb to reach the given range.", ADMIN_CATEGORY_DEBUG)
 	var/ex_range = input(user, "Light Explosion Range:") as null|num
 	if (isnull(ex_range))
 		return
 	var/power = (0.5 * ex_range)**(1/GLOB.DYN_EX_SCALE)
 	to_chat(user, "Estimated Explosive Power: [power]", confidential = TRUE)
 
-ADMIN_VERB(set_dynex_scale, R_FUN, "Set DynEx Scale", "Set the scale multiplier on dynex explosions. Default 0.5.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(set_dynex_scale, R_FUN, "设定DynEx规模", "Set the scale multiplier on dynex explosions. Default 0.5.", ADMIN_CATEGORY_DEBUG)
 	var/ex_scale = input(user, "New DynEx Scale:") as null|num
 	if(!ex_scale)
 		return
@@ -252,7 +252,7 @@ ADMIN_VERB(set_dynex_scale, R_FUN, "Set DynEx Scale", "Set the scale multiplier 
 	log_admin("[key_name(user)] has modified Dynamic Explosion Scale: [ex_scale]")
 	message_admins("[key_name_admin(user)] has  modified Dynamic Explosion Scale: [ex_scale]")
 
-ADMIN_VERB(atmos_control, R_DEBUG|R_SERVER, "Atmos Control Panel", "Open the atmospherics control panel.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(atmos_control, R_DEBUG|R_SERVER, "Atmos控制面板", "Open the atmospherics control panel.", ADMIN_CATEGORY_DEBUG)
 	SSair.ui_interact(user.mob)
 
 ADMIN_VERB(reload_cards, R_DEBUG, "Reload Cards", "Reload all TCG cards.", ADMIN_CATEGORY_DEBUG)
@@ -287,7 +287,7 @@ ADMIN_VERB(test_cardpack_distribution, R_DEBUG, "Test Cardpack Distribution", "T
 ADMIN_VERB(print_cards, R_DEBUG, "Print Cards", "Print all cards to chat.", ADMIN_CATEGORY_DEBUG)
 	SStrading_card_game.printAllCards()
 
-ADMIN_VERB(give_mob_action, R_FUN, "Give Mob Action", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/ability_recipient)
+ADMIN_VERB(give_mob_action, R_FUN, "给予Mob能力", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/ability_recipient)
 	var/static/list/all_mob_actions = sort_list(subtypesof(/datum/action/cooldown/mob_cooldown), GLOBAL_PROC_REF(cmp_typepaths_asc))
 	var/static/list/actions_by_name = list()
 	if (!length(actions_by_name))
@@ -331,9 +331,9 @@ ADMIN_VERB(give_mob_action, R_FUN, "Give Mob Action", ADMIN_VERB_NO_DESCRIPTION,
 
 	message_admins("[key_name_admin(user)] added mob ability [ability_type] to mob [ability_recipient].")
 	log_admin("[key_name(user)] added mob ability [ability_type] to mob [ability_recipient].")
-	BLACKBOX_LOG_ADMIN_VERB("Add Mob Ability")
+	BLACKBOX_LOG_ADMIN_VERB("给予Mob能力")
 
-ADMIN_VERB(remove_mob_action, R_FUN, "Remove Mob Action", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
+ADMIN_VERB(remove_mob_action, R_FUN, "移除Mob能力", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
 	var/list/target_abilities = list()
 	for(var/datum/action/cooldown/mob_cooldown/ability in removal_target.actions)
 		target_abilities[ability.name] = ability
@@ -351,9 +351,9 @@ ADMIN_VERB(remove_mob_action, R_FUN, "Remove Mob Action", ADMIN_VERB_NO_DESCRIPT
 	qdel(to_remove)
 	log_admin("[key_name(user)] removed the ability [chosen_ability] from [key_name(removal_target)].")
 	message_admins("[key_name_admin(user)] removed the ability [chosen_ability] from [key_name_admin(removal_target)].")
-	BLACKBOX_LOG_ADMIN_VERB("Remove Mob Ability")
+	BLACKBOX_LOG_ADMIN_VERB("移除Mob能力")
 
-ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
+ADMIN_VERB(give_spell, R_FUN, "给予法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
 	var/which = tgui_alert(user, "Chose by name or by type path?", "Chose option", list("Name", "Typepath"))
 	if(!which)
 		return
@@ -385,7 +385,7 @@ ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CAT
 		to_chat(user, span_warning("The intended spell recipient no longer exists."))
 		return
 
-	BLACKBOX_LOG_ADMIN_VERB("Give Spell")
+	BLACKBOX_LOG_ADMIN_VERB("给予法术")
 	log_admin("[key_name(user)] gave [key_name(spell_recipient)] the spell [chosen_spell][robeless ? " (Forced robeless)" : ""].")
 	message_admins("[key_name_admin(user)] gave [key_name_admin(spell_recipient)] the spell [chosen_spell][robeless ? " (Forced robeless)" : ""].")
 
@@ -400,7 +400,7 @@ ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CAT
 		to_chat(user, span_userdanger("Spells given to mindless mobs will belong to the mob and not their mind, \
 			and as such will not be transferred if their mind changes body (Such as from Mindswap)."))
 
-ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
+ADMIN_VERB(remove_spell, R_FUN, "移除法术", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
 	var/list/target_spell_list = list()
 	for(var/datum/action/cooldown/spell/spell in removal_target.actions)
 		target_spell_list[spell.name] = spell
@@ -418,14 +418,14 @@ ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN
 	qdel(to_remove)
 	log_admin("[key_name(user)] removed the spell [chosen_spell] from [key_name(removal_target)].")
 	message_admins("[key_name_admin(user)] removed the spell [chosen_spell] from [key_name_admin(removal_target)].")
-	BLACKBOX_LOG_ADMIN_VERB("Remove Spell")
+	BLACKBOX_LOG_ADMIN_VERB("移除法术")
 
-ADMIN_VERB(give_disease, R_FUN, "Give Disease", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/victim)
+ADMIN_VERB(give_disease, R_FUN, "给予疾病", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/victim)
 	var/datum/disease/D = input(user, "Choose the disease to give to that guy", "ACHOO") as null|anything in sort_list(SSdisease.diseases, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	if(!D)
 		return
 	victim.ForceContractDisease(new D, FALSE, TRUE)
-	BLACKBOX_LOG_ADMIN_VERB("Give Disease")
+	BLACKBOX_LOG_ADMIN_VERB("给予疾病")
 	log_admin("[key_name(user)] gave [key_name(victim)] the disease [D].")
 	message_admins(span_adminnotice("[key_name_admin(user)] gave [key_name_admin(victim)] the disease [D]."))
 
@@ -438,14 +438,14 @@ ADMIN_VERB_AND_CONTEXT_MENU(object_say, R_FUN, "OSay", ADMIN_VERB_NO_DESCRIPTION
 	message_admins(span_adminnotice("[key_name_admin(user)] made [speaker] at [AREACOORD(speaker)]. say \"[message]\""))
 	BLACKBOX_LOG_ADMIN_VERB("Object Say")
 
-ADMIN_VERB(build_mode_self, R_BUILD, "Toggle Build Mode Self", "Toggle build mode for yourself.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(build_mode_self, R_BUILD, "开启建造模式", "Toggle build mode for yourself.", ADMIN_CATEGORY_EVENTS)
 	togglebuildmode(user.mob) // why is this a global proc???
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Build Mode")
+	BLACKBOX_LOG_ADMIN_VERB("开启建造模式")
 
-ADMIN_VERB(check_ai_laws, R_ADMIN, "Check AI Laws", "View the current AI laws.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(check_ai_laws, R_ADMIN, "检查AI法律", "View the current AI laws.", ADMIN_CATEGORY_GAME)
 	user.holder.output_ai_laws()
 
-ADMIN_VERB(manage_sect, R_ADMIN, "Manage Religious Sect", "Manages the chaplain's religion.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(manage_sect, R_ADMIN, "管理牧师宗教", "Manages the chaplain's religion.", ADMIN_CATEGORY_GAME)
 	if (!isnull(GLOB.religious_sect))
 		var/you_sure = tgui_alert(
 			user,
@@ -469,12 +469,12 @@ ADMIN_VERB(manage_sect, R_ADMIN, "Manage Religious Sect", "Manages the chaplain'
 		return
 	set_new_religious_sect(choices[choice], reset_existing = TRUE)
 
-ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(deadmin, R_NONE, "卸下权限", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
 	user.holder.deactivate()
 	to_chat(user, span_interface("You are now a normal player."))
 	log_admin("[key_name(user)] deadminned themselves.")
 	message_admins("[key_name_admin(user)] deadminned themselves.")
-	BLACKBOX_LOG_ADMIN_VERB("Deadmin")
+	BLACKBOX_LOG_ADMIN_VERB("卸下权限")
 
 ADMIN_VERB(populate_world, R_DEBUG, "Populate World", "Populate the world with test mobs.", ADMIN_CATEGORY_DEBUG, amount = 50 as num)
 	for (var/i in 1 to amount)
@@ -483,7 +483,7 @@ ADMIN_VERB(populate_world, R_DEBUG, "Populate World", "Populate the world with t
 		hooman.equipOutfit(pick(subtypesof(/datum/outfit)))
 		testing("Spawned test mob at [get_area_name(tile, TRUE)] ([tile.x],[tile.y],[tile.z])")
 
-ADMIN_VERB(toggle_ai_interact, R_ADMIN, "Toggle Admin AI Interact", "Allows you to interact with most machines as an AI would as a ghost.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(toggle_ai_interact, R_ADMIN, "AI交互模式", "Allows you to interact with most machines as an AI would as a ghost.", ADMIN_CATEGORY_GAME)
 	user.AI_Interact = !user.AI_Interact
 	if(user.mob && isAdminGhostAI(user.mob))
 		user.mob.has_unlimited_silicon_privilege = user.AI_Interact
@@ -590,7 +590,7 @@ ADMIN_VERB(debug_spell_requirements, R_DEBUG, "Debug Spell Requirements", "View 
 	popup.set_content(page_contents)
 	popup.open()
 
-ADMIN_VERB(load_lazy_template, R_ADMIN, "Load/Jump Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(load_lazy_template, R_ADMIN, "加载/跳至 Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_EVENTS)
 	var/list/choices = LAZY_TEMPLATE_KEY_LIST_ALL()
 	var/choice = tgui_input_list(user, "Key?", "Lazy Loader", choices)
 	var/teleport_to_template = tgui_input_list(user, "Jump to template after loading?", "Where to?", list("Yes", "No"))
@@ -620,13 +620,13 @@ ADMIN_VERB(load_lazy_template, R_ADMIN, "Load/Jump Lazy Template", "Loads a lazy
 
 	message_admins("[key_name_admin(user)] has loaded lazy template '[choice]'")
 
-ADMIN_VERB(library_control, R_BAN, "Library Management", "List and manage the Library.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(library_control, R_BAN, "图书馆管理", "List and manage the Library.", ADMIN_CATEGORY_MAIN)
 	if(!user.holder.library_manager)
 		user.holder.library_manager = new
 	user.holder.library_manager.ui_interact(user.mob)
-	BLACKBOX_LOG_ADMIN_VERB("Library Management")
+	BLACKBOX_LOG_ADMIN_VERB("图书馆管理")
 
-ADMIN_VERB(create_mob_worm, R_FUN, "Create Mob Worm", "Attach a linked list of mobs to your marked mob.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(create_mob_worm, R_FUN, "创建Mob Worm", "Attach a linked list of mobs to your marked mob.", ADMIN_CATEGORY_FUN)
 	if(!isliving(user.holder.marked_datum))
 		to_chat(user, span_warning("Error: Please mark a mob to attach mobs to."))
 		return

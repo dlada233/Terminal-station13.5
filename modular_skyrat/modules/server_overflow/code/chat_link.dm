@@ -60,7 +60,7 @@
 		html = msg,
 		confidential = TRUE)
 
-ADMIN_VERB(request_help, R_ADMIN, "Cross-server Help Request", "Sends a loud message to all other servers that we are crosslinked to!", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(request_help, R_ADMIN, "跨服务器帮助请求", "Sends a loud message to all other servers that we are crosslinked to!", ADMIN_CATEGORY_MAIN)
 	var/help_request_message = tgui_input_text(user, "Input help message!", "Help message", "Send help!", 150, FALSE)
 	if(!help_request_message)
 		return

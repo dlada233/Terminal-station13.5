@@ -141,7 +141,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/set_ooc()
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Server"
+	set category = "服务器"
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -170,8 +170,8 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 
 //Checks admin notice
 /client/verb/admin_notice()
-	set name = "Adminnotice"
-	set category = "Admin"
+	set name = "管理需知"
+	set category = "管理员"
 	set desc ="Check the admin notice if it has been set"
 
 	if(GLOB.admin_notice)
@@ -340,14 +340,14 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	SSticker.show_roundend_report(src, report_type = PERSONAL_LAST_ROUND)
 
 /client/proc/show_servers_last_roundend_report()
-	set name = "Server's Last Round"
+	set name = "上一轮信息"
 	set category = "OOC"
 	set desc = "View the last round end report from this server"
 
 	SSticker.show_roundend_report(src, report_type = SERVER_LAST_ROUND)
 
 /client/verb/fit_viewport()
-	set name = "Fit Viewport"
+	set name = "符合视窗"
 	set category = "OOC"
 	set desc = "Fit the width of the map window to match the viewport"
 
@@ -427,7 +427,7 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS))
 
 /client/verb/policy()
-	set name = "Show Policy"
+	set name = "显示原则"
 	set desc = "Show special server rules related to your current character."
 	set category = "OOC"
 
@@ -448,13 +448,13 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	usr << browse(policytext.Join(""),"window=policy")
 
 /client/verb/fix_stat_panel()
-	set name = "Fix Stat Panel"
+	set name = "修复状态面板"
 	set hidden = TRUE
 
 	init_verbs()
 
 /client/proc/export_preferences()
-	set name = "Export Preferences"
+	set name = "导出偏好设置"
 	set desc = "Export your current preferences to a file."
 	set category = "OOC"
 

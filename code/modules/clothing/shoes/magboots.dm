@@ -35,7 +35,7 @@
 
 /obj/item/clothing/shoes/magboots/verb/toggle()
 	set name = "Toggle Magboots"
-	set category = "Object"
+	set category = "物件"
 	set src in usr
 
 	if(!can_use(usr))

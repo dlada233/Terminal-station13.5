@@ -60,16 +60,16 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_headset_message, R_ADMIN, "Headset Message
 
 	BLACKBOX_LOG_ADMIN_VERB("Headset Message")
 
-ADMIN_VERB(cmd_admin_world_narrate, R_ADMIN, "Global Narrate", "Send a direct narration to all connected players.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(cmd_admin_world_narrate, R_ADMIN, "全局陈述", "Send a direct narration to all connected players.", ADMIN_CATEGORY_EVENTS)
 	var/msg = input(user, "Message:", "Enter the text you wish to appear to everyone:") as text|null
 	if (!msg)
 		return
 	to_chat(world, "[msg]", confidential = TRUE)
-	log_admin("GlobalNarrate: [key_name(user)] : [msg]")
-	message_admins(span_adminnotice("[key_name_admin(user)] Sent a global narrate"))
-	BLACKBOX_LOG_ADMIN_VERB("Global Narrate")
+	log_admin("全局陈述: [key_name(user)] : [msg]")
+	message_admins(span_adminnotice("[key_name_admin(user)]发送了全局陈述"))
+	BLACKBOX_LOG_ADMIN_VERB("全局陈述")
 
-ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_local_narrate, R_ADMIN, "Local Narrate", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/locale in world)
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_local_narrate, R_ADMIN, "本地陈述", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/locale in world)
 	var/range = input(user, "Range:", "Narrate to mobs within how many tiles:", 7) as num|null
 	if(!range)
 		return
@@ -79,24 +79,24 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_local_narrate, R_ADMIN, "Local Narrate", A
 	for(var/mob/M in view(range, locale))
 		to_chat(M, msg, confidential = TRUE)
 
-	log_admin("LocalNarrate: [key_name(user)] at [AREACOORD(locale)]: [msg]")
-	message_admins(span_adminnotice("<b> LocalNarrate: [key_name_admin(user)] at [ADMIN_VERBOSEJMP(locale)]:</b> [msg]<BR>"))
-	BLACKBOX_LOG_ADMIN_VERB("Local Narrate")
+	log_admin("本地陈述: [key_name(user)] at [AREACOORD(locale)]: [msg]")
+	message_admins(span_adminnotice("<b> 本地陈述: [key_name_admin(user)] at [ADMIN_VERBOSEJMP(locale)]:</b> [msg]<BR>"))
+	BLACKBOX_LOG_ADMIN_VERB("本地陈述")
 
-ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_direct_narrate, R_ADMIN, "Direct Narrate", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/target)
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_direct_narrate, R_ADMIN, "指定陈述", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/target)
 	var/msg = input(user, "Message:", "Enter the text you wish to appear to your target:") as text|null
 
 	if( !msg )
 		return
 
 	to_chat(target, msg, confidential = TRUE)
-	log_admin("DirectNarrate: [key_name(user)] to ([key_name(target)]): [msg]")
-	msg = span_adminnotice("<b> DirectNarrate: [key_name_admin(user)] to ([key_name_admin(target)]):</b> [msg]<BR>")
+	log_admin("指定陈述: [key_name(user)] to ([key_name(target)]): [msg]")
+	msg = span_adminnotice("<b> 指定陈述: [key_name_admin(user)] to ([key_name_admin(target)]):</b> [msg]<BR>")
 	message_admins(msg)
 	admin_ticket_log(target, msg)
-	BLACKBOX_LOG_ADMIN_VERB("Direct Narrate")
+	BLACKBOX_LOG_ADMIN_VERB("指定陈述")
 
-ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_ADMIN, "Add Custom AI Law", "Add a custom law to the Silicons.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_ADMIN, "添加自定义AI法律", "Add a custom law to the Silicons.", ADMIN_CATEGORY_EVENTS)
 	var/input = input(user, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null
 	if(!input)
 		return
@@ -111,9 +111,9 @@ ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_ADMIN, "Add Custom AI Law", "Add a c
 	ion.announce_chance = announce_ion_laws
 	ion.ionMessage = input
 
-	BLACKBOX_LOG_ADMIN_VERB("Add Custom AI Law")
+	BLACKBOX_LOG_ADMIN_VERB("添加自定义AI法律")
 
-ADMIN_VERB(call_shuttle, R_ADMIN, "Call Shuttle", "Force a shuttle call with additional modifiers.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(call_shuttle, R_ADMIN, "呼叫撤离船", "Force a shuttle call with additional modifiers.", ADMIN_CATEGORY_EVENTS)
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		return
 
@@ -126,11 +126,11 @@ ADMIN_VERB(call_shuttle, R_ADMIN, "Call Shuttle", "Force a shuttle call with add
 			SSshuttle.emergency.mode = SHUTTLE_IDLE
 
 	SSshuttle.emergency.request()
-	BLACKBOX_LOG_ADMIN_VERB("Call Shuttle")
+	BLACKBOX_LOG_ADMIN_VERB("呼叫撤离船")
 	log_admin("[key_name(user)] admin-called the emergency shuttle.")
 	message_admins(span_adminnotice("[key_name_admin(user)] admin-called the emergency shuttle[confirm == "Yes (No Recall)" ? " (non-recallable)" : ""]."))
 
-ADMIN_VERB(cancel_shuttle, R_ADMIN, "Cancel Shuttle", "Recall the shuttle, regardless of circumstances.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(cancel_shuttle, R_ADMIN, "取消撤离船", "Recall the shuttle, regardless of circumstances.", ADMIN_CATEGORY_EVENTS)
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		return
 
@@ -138,11 +138,11 @@ ADMIN_VERB(cancel_shuttle, R_ADMIN, "Cancel Shuttle", "Recall the shuttle, regar
 		return
 	SSshuttle.admin_emergency_no_recall = FALSE
 	SSshuttle.emergency.cancel()
-	BLACKBOX_LOG_ADMIN_VERB("Cancel Shuttle")
+	BLACKBOX_LOG_ADMIN_VERB("取消撤离船")
 	log_admin("[key_name(user)] admin-recalled the emergency shuttle.")
 	message_admins(span_adminnotice("[key_name_admin(user)] admin-recalled the emergency shuttle."))
 
-ADMIN_VERB(disable_shuttle, R_ADMIN, "Disable Shuttle", "Those fuckers aren't getting out.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(disable_shuttle, R_ADMIN, "关闭撤离船", "Those fuckers aren't getting out.", ADMIN_CATEGORY_EVENTS)
 	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
 		to_chat(user, span_warning("Error, shuttle is already disabled."))
 		return
@@ -158,14 +158,14 @@ ADMIN_VERB(disable_shuttle, R_ADMIN, "Disable Shuttle", "Those fuckers aren't ge
 	SSshuttle.emergency.setTimer(0)
 	SSshuttle.emergency.mode = SHUTTLE_DISABLED
 	priority_announce(
-		text = "Emergency Shuttle uplink failure, shuttle disabled until further notice.",
-		title = "Uplink Failure",
+		text = "应急撤离船上行链路故障，直到进一步通知到来前，撤离船将无法呼叫.",
+		title = "上行链路故障",
 		sound = ANNOUNCER_SHUTTLE, // SKYRAT EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/misc/announce_dig.ogg',
-		sender_override = "Emergency Shuttle Uplink Alert",
+		sender_override = "应急撤离船",
 		color_override = "grey",
 	)
 
-ADMIN_VERB(enable_shuttle, R_ADMIN, "Enable Shuttle", "Those fuckers ARE getting out.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(enable_shuttle, R_ADMIN, "开启撤离船", "Those fuckers ARE getting out.", ADMIN_CATEGORY_EVENTS)
 	if(SSshuttle.emergency.mode != SHUTTLE_DISABLED)
 		to_chat(user, span_warning("Error, shuttle not disabled."))
 		return
@@ -184,14 +184,14 @@ ADMIN_VERB(enable_shuttle, R_ADMIN, "Enable Shuttle", "Those fuckers ARE getting
 		SSshuttle.last_call_time = 10 SECONDS //Make sure no insta departures.
 	SSshuttle.emergency.setTimer(SSshuttle.last_call_time)
 	priority_announce(
-		text = "Emergency Shuttle uplink reestablished, shuttle enabled.",
-		title = "Uplink Restored",
+		text = "应急撤离船上行链路恢复，撤离船可呼叫.",
+		title = "上行链路恢复",
 		sound = ANNOUNCER_SHUTTLE, // SKYRAT EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/misc/announce_dig.ogg',
-		sender_override = "Emergency Shuttle Uplink Alert",
+		sender_override = "应急撤离船",
 		color_override = "green",
 	)
 
-ADMIN_VERB(hostile_environment, R_ADMIN, "Hostile Environment", "Disable the shuttle, naturally.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(hostile_environment, R_ADMIN, "危险环境", "Disable the shuttle, naturally.", ADMIN_CATEGORY_EVENTS)
 	switch(tgui_alert(user, "Select an Option", "Hostile Environment Manager", list("Enable", "Disable", "Clear All")))
 		if("Enable")
 			if (SSshuttle.hostile_environments["Admin"] == TRUE)
@@ -210,7 +210,7 @@ ADMIN_VERB(hostile_environment, R_ADMIN, "Hostile Environment", "Disable the shu
 			SSshuttle.hostile_environments.Cut()
 			SSshuttle.checkHostileEnvironment()
 
-ADMIN_VERB(toggle_nuke, R_DEBUG|R_ADMIN, "Toggle Nuke", "Arm or disarm a nuke.", ADMIN_CATEGORY_EVENTS, obj/machinery/nuclearbomb/nuke in world)
+ADMIN_VERB(toggle_nuke, R_DEBUG|R_ADMIN, "核弹开关", "Arm or disarm a nuke.", ADMIN_CATEGORY_EVENTS, obj/machinery/nuclearbomb/nuke in world)
 	if(!nuke.timing)
 		var/newtime = input(user, "Set activation timer.", "Activate Nuke", "[nuke.timer_set]") as num|null
 		if(!newtime)
@@ -223,7 +223,7 @@ ADMIN_VERB(toggle_nuke, R_DEBUG|R_ADMIN, "Toggle Nuke", "Arm or disarm a nuke.",
 	message_admins("[ADMIN_LOOKUPFLW(user)] [nuke.timing ? "activated" : "deactivated"] a nuke at [ADMIN_VERBOSEJMP(nuke)].")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Nuke", "[nuke.timing]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
-ADMIN_VERB(change_sec_level, R_ADMIN, "Set Security Level", "Changes the security level. Announcement effects only.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(change_sec_level, R_ADMIN, "设定安保等级", "Changes the security level. Announcement effects only.", ADMIN_CATEGORY_EVENTS)
 	var/level = tgui_input_list(user, "Select Security Level:", "Set Security Level", SSsecurity_level.available_levels)
 
 	if(!level)
@@ -235,7 +235,7 @@ ADMIN_VERB(change_sec_level, R_ADMIN, "Set Security Level", "Changes the securit
 	message_admins("[key_name_admin(user)] changed the security level to [level]")
 	BLACKBOX_LOG_ADMIN_VERB("Set Security Level [capitalize(level)]")
 
-ADMIN_VERB(run_weather, R_FUN, "Run Weather", "Triggers specific weather on the z-level you choose.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(run_weather, R_FUN, "运行天气", "Triggers specific weather on the z-level you choose.", ADMIN_CATEGORY_EVENTS)
 	var/weather_type = input(user, "Choose a weather", "Weather")  as null|anything in sort_list(subtypesof(/datum/weather), GLOBAL_PROC_REF(cmp_typepaths_asc))
 	if(!weather_type)
 		return
@@ -249,9 +249,9 @@ ADMIN_VERB(run_weather, R_FUN, "Run Weather", "Triggers specific weather on the 
 
 	message_admins("[key_name_admin(user)] started weather of type [weather_type] on the z-level [z_level].")
 	log_admin("[key_name(user)] started weather of type [weather_type] on the z-level [z_level].")
-	BLACKBOX_LOG_ADMIN_VERB("Run Weather")
+	BLACKBOX_LOG_ADMIN_VERB("运行天气")
 
-ADMIN_VERB(command_report_footnote, R_ADMIN, "Command Report Footnote", "Adds a footnote to the roundstart command report.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(command_report_footnote, R_ADMIN, "命令书补注", "Adds a footnote to the roundstart command report.", ADMIN_CATEGORY_EVENTS)
 	var/datum/command_footnote/command_report_footnote = new /datum/command_footnote()
 	GLOB.communications_controller.block_command_report += 1 //Add a blocking condition to the counter until the inputs are done.
 
@@ -275,6 +275,6 @@ ADMIN_VERB(command_report_footnote, R_ADMIN, "Command Report Footnote", "Adds a 
 	var/message
 	var/signature
 
-ADMIN_VERB(delay_command_report, R_FUN, "Delay Command Report", "Prevents the roundstart command report from being sent; or forces it to send it delayed.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(delay_command_report, R_FUN, "延发命令书", "Prevents the roundstart command report from being sent; or forces it to send it delayed.", ADMIN_CATEGORY_EVENTS)
 	GLOB.communications_controller.block_command_report = !GLOB.communications_controller.block_command_report
 	message_admins("[key_name_admin(user)] has [(GLOB.communications_controller.block_command_report ? "delayed" : "sent")] the roundstart command report.")

@@ -21,7 +21,7 @@
 	..()
 
 /obj/item/clothing/head/soft/verb/flipcap()
-	set category = "Object"
+	set category = "物件"
 	set name = "反戴棒球帽"
 
 	flip(usr)

@@ -64,7 +64,7 @@
 
 /obj/item/watertank/verb/toggle_mister_verb()
 	set name = "开启喷嘴"
-	set category = "Object"
+	set category = "物件"
 	toggle_mister(usr)
 
 /obj/item/watertank/proc/make_noz()

@@ -13,7 +13,7 @@
 
 	///Defines how fast the basic mob can move. This is not a multiplier
 	var/speed = 1
-	///How much stamina the mob recovers per second
+	///每秒耐力恢复
 	var/stamina_recovery = 5
 
 	///how much damage this basic mob does to objects, if any.

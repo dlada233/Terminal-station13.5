@@ -99,7 +99,7 @@
 
 /obj/item/photo/verb/rename()
 	set name = "Rename photo"
-	set category = "Object"
+	set category = "物件"
 	set src in usr
 
 	var/n_name = tgui_input_text(usr, "What would you like to label the photo?", "Photo Labelling", max_length = MAX_NAME_LEN)

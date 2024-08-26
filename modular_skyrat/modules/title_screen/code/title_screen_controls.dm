@@ -2,7 +2,7 @@
 /**
  * Enables an admin to upload a new titlescreen image.
  */
-ADMIN_VERB(admin_change_title_screen, R_FUN, "Title Screen: Change", "Upload a new titlescreen image.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(admin_change_title_screen, R_FUN, "标题画面: 改变", "Upload a new titlescreen image.", ADMIN_CATEGORY_FUN)
 	log_admin("[key_name(user)] is changing the title screen.")
 	message_admins("[key_name_admin(user)] is changing the title screen.")
 
@@ -20,7 +20,7 @@ ADMIN_VERB(admin_change_title_screen, R_FUN, "Title Screen: Change", "Upload a n
 /**
  * Sets a titlescreen notice, a big red text on the main screen.
  */
-ADMIN_VERB(change_title_screen_notice, R_FUN, "Title Screen: Set Notice", "Sets a titlescreen notice, a big red text on the main screen.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(change_title_screen_notice, R_FUN, "标题画面: 设定通知", "Sets a titlescreen notice, a big red text on the main screen.", ADMIN_CATEGORY_FUN)
 	log_admin("[key_name(usr)] is setting the title screen notice.")
 	message_admins("[key_name_admin(usr)] is setting the title screen notice.")
 
@@ -36,7 +36,7 @@ ADMIN_VERB(change_title_screen_notice, R_FUN, "Title Screen: Set Notice", "Sets 
  * Reloads the titlescreen if it is bugged for someone.
  */
 /client/verb/fix_title_screen()
-	set name = "Fix Lobby Screen"
+	set name = "修复大厅画面"
 	set desc = "Lobbyscreen broke? Press this."
 	set category = "OOC"
 
@@ -50,7 +50,7 @@ ADMIN_VERB(change_title_screen_notice, R_FUN, "Title Screen: Set Notice", "Sets 
 /**
  * An admin debug command that enables you to change the HTML on the go.
  */
-ADMIN_VERB(change_title_screen_html, R_DEBUG, "Title Screen: Set HTML", "Change lobby screen HTML on the go.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(change_title_screen_html, R_DEBUG, "标题画面: 设置HTML", "Change lobby screen HTML on the go.", ADMIN_CATEGORY_FUN)
 	log_admin("[key_name(user)] is setting the title screen HTML.")
 	message_admins("[key_name_admin(user)] is setting the title screen HTML.")
 

@@ -45,7 +45,7 @@
 	adjust_mask(user)
 
 /obj/item/clothing/mask/balaclavaadjust/verb/toggle()
-		set category = "Object"
+		set category = "物件"
 		set name = "Adjust Balaclava"
 		set src in usr
 		adjust_mask(usr)

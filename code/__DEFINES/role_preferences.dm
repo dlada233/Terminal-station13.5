@@ -48,6 +48,8 @@
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
 // SKYRAT EDIT END
 
+#define ROLE_ABNORMALITY "异常实体"
+
 // Latejoin roles
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"
 #define ROLE_PROVOCATEUR "Provocateur"

@@ -142,9 +142,9 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 ))
 
 /obj/item/circuit_component/filter_helper
-	display_name = "Filter Parameter Helper"
+	display_name = "屏蔽词参数"
 	desc = "Constructs a list of filter parameters from the inputs."
-	category = "Admin"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	var/datum/port/input/option/filter_type_port
@@ -186,9 +186,9 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 	output_params.set_value(new_params)
 
 /obj/item/circuit_component/filter_adder
-	display_name = "Add Filter"
+	display_name = "添加屏蔽词"
 	desc = "Adds a filter to the target atom."
-	category = "Admin"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	var/datum/port/input/target_port
@@ -238,9 +238,9 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 	target_atom.add_filter(filter_name.value, filter_priority.value, new_params)
 
 /obj/item/circuit_component/filter_remover
-	display_name = "Filter Remover"
+	display_name = "移除屏蔽词"
 	desc = "Removes the specified filter from the target."
-	category = "Admin"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	var/datum/port/input/target_port
@@ -259,7 +259,7 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 
 /obj/item/circuit_component/bitflag_helper
 	display_name = "Animation & Filter Bitflag Helper"
-	category = "Admin"
+	category = "管理员"
 	desc = "Allows you to construct bitflags for BYOND animation and filter parameters without having to manually search for the corresponding values."
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
