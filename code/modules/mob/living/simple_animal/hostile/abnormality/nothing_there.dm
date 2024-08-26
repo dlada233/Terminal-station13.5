@@ -158,7 +158,7 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			been_hit = HurtInTurf(TF, been_hit, hello_damage, MELEE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+			been_hit = HurtInTurf(TF, been_hit, hello_damage, BRUTE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
 			L.gib()
@@ -177,7 +177,7 @@
 	SLEEP_CHECK_DEATH(8, src)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/nt_goodbye(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), goodbye_damage, MELEE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), goodbye_damage, BRUTE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
 			if(L.health < 0)
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)

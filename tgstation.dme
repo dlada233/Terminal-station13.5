@@ -911,6 +911,7 @@
 #include "code\datums\voice_of_god_command.dm"
 #include "code\datums\weakrefs.dm"
 #include "code\datums\world_topic.dm"
+#include "code\datums\abnormality\datum\abnormality.dm"
 #include "code\datums\achievements\_achievement_data.dm"
 #include "code\datums\achievements\_awards.dm"
 #include "code\datums\achievements\boss_achievements.dm"
@@ -1684,6 +1685,7 @@
 #include "code\datums\keybinding\movement.dm"
 #include "code\datums\keybinding\robot.dm"
 #include "code\datums\looping_sounds\_looping_sound.dm"
+#include "code\datums\looping_sounds\abnormality.dm"
 #include "code\datums\looping_sounds\acid.dm"
 #include "code\datums\looping_sounds\burning.dm"
 #include "code\datums\looping_sounds\choking.dm"
@@ -8430,6 +8432,4 @@
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\sentinel.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\spitter.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\warrior.dm"
-#include "code\datums\abnormality\datum\abnormality.dm"
-#include "code\datums\looping_sounds\abnormality.dm"
 // END_INCLUDE
