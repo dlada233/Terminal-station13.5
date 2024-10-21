@@ -2,11 +2,10 @@ import { Antagonist, Category } from '../base';
 
 const ParadoxClone: Antagonist = {
   key: 'paradoxclone',
-  name: 'Paradox Clone',
+  name: '悖论克隆体',
   description: [
     `
-    A freak time-space anomaly has teleported you into another reality!
-    Now you have to find your counterpart and kill and replace them.
+    时空异常将你传送到了另一个世界! 你必须找到另一个自己，然后杀死并取而代之.
     `,
   ],
   category: Category.Midround,

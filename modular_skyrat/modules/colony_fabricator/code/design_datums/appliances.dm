@@ -156,7 +156,7 @@
 // CO2 cracker, portable machines that takes CO2 and turns it into oxygen
 
 /datum/design/co2_cracker
-	name = "Portable Carbon Dioxide Cracker"
+	name = "Portable Carbon Dioxide-二氧化碳 Cracker"
 	id = "co2_cracker"
 	build_type = COLONY_FABRICATOR
 	materials = list(

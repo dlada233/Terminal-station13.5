@@ -110,7 +110,7 @@
 	if(atom_integrity < max_integrity)
 		user.visible_message(span_notice("[user] starts to repair [src]."),
 							span_notice("You begin repairing [src]..."),
-							span_hear("You hear welding."))
+							span_hear("你听到焊接声."))
 		if(tool.use_tool(src, user, 4 SECONDS, volume=40))
 			atom_integrity = max_integrity
 			user.visible_message(span_notice("[user] repairs [src]."), \
@@ -118,14 +118,14 @@
 	else if(!anchored)
 		user.visible_message(span_notice("[user] starts to weld [src] to the floor."),
 							span_notice("You start to weld [src] to the floor..."),
-							span_hear("You hear welding."))
+							span_hear("你听到焊接声."))
 		if (tool.use_tool(src, user, 2 SECONDS, volume=50))
 			set_anchored(TRUE)
 			to_chat(user, span_notice("You weld [src] to the floor."))
 	else
 		user.visible_message(span_notice("[user] starts to cut [src] free from the floor."),
 							span_notice("You start to cut [src] free from the floor..."),
-							span_hear("You hear welding."))
+							span_hear("你听到焊接声."))
 		if (tool.use_tool(src, user, 2 SECONDS, volume=50))
 			set_anchored(FALSE)
 			to_chat(user, span_notice("You cut [src] free from the floor."))

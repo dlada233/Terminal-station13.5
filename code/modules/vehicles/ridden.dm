@@ -33,7 +33,7 @@
 	if(!key_type || is_key(inserted_key) || !is_key(I))
 		return ..()
 	if(!user.transferItemToLoc(I, src))
-		to_chat(user, span_warning("[I] seems to be stuck to your hand!"))
+		to_chat(user, span_warning("[I] seems to be 粘在了你的手上!"))
 		return
 	to_chat(user, span_notice("You insert \the [I] into \the [src]."))
 	if(inserted_key) //just in case there's an invalid key

@@ -232,7 +232,7 @@
 	if(weapon.GetID())
 		if(!allowed(user))
 			if(mecha_flags & ID_LOCK_ON)
-				balloon_alert(user, "access denied!")
+				balloon_alert(user, "访问被拒绝!")
 			else
 				balloon_alert(user, "unable to set id lock!")
 			return
@@ -372,7 +372,7 @@
 			balloon_alert(user, "access with this DNA denied!")
 			return
 	if((mecha_flags & ID_LOCK_ON) && !allowed(user))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝!")
 		return
 
 	var/list/stock_parts = list()
@@ -409,13 +409,13 @@
 	if(!W.tool_start_check(user, amount=1))
 		return
 	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
-	audible_message(span_hear("You hear welding."))
+	audible_message(span_hear("你听到焊接声."))
 	var/did_the_thing
 	while(atom_integrity < max_integrity)
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50))
 			did_the_thing = TRUE
 			atom_integrity += min(10, (max_integrity - atom_integrity))
-			audible_message(span_hear("You hear welding."))
+			audible_message(span_hear("你听到焊接声."))
 		else
 			break
 	if(did_the_thing)

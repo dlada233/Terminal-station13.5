@@ -16,7 +16,7 @@
 			var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.loc)
 			user.visible_message(span_notice("[user] shaped [src] into [new_item] with [W]."), \
 				span_notice("You shaped [src] into [new_item] with [W]."), \
-				span_hear("You hear welding."))
+				span_hear("你听到焊接声."))
 			var/holding = user.is_holding(src)
 			use(4)
 			if(holding && QDELETED(src))

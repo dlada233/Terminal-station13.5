@@ -5,8 +5,8 @@
 
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "navbeacon0"
-	name = "navigation beacon"
-	desc = "A radio beacon used for bot navigation."
+	name = "导航信标"
+	desc = "用于机器人寻路的."
 	layer = LOW_OBJ_LAYER
 	max_integrity = 500
 	armor_type = /datum/armor/machinery_navbeacon
@@ -111,7 +111,7 @@
 
 /obj/machinery/navbeacon/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!panel_open && cover_locked)
-		balloon_alert(user, "hatch locked!")
+		balloon_alert(user, "盖口锁住了!")
 		return TRUE
 	return default_deconstruction_screwdriver(user, "navbeacon1","navbeacon0",tool)
 
@@ -124,12 +124,12 @@
 		if(!panel_open)
 			if (allowed(user))
 				controls_locked = !controls_locked
-				balloon_alert(user, "controls [controls_locked ? "locked" : "unlocked"]")
+				balloon_alert(user, "控制[controls_locked ? "已上锁" : "未解锁"]")
 				SStgui.update_uis(src)
 			else
-				balloon_alert(user, "access denied")
+				balloon_alert(user, "访问被拒绝")
 		else
-			balloon_alert(user, "panel open!")
+			balloon_alert(user, "盖口开启!")
 		return
 
 	return ..()
@@ -210,7 +210,7 @@
 			toggle_code(NAVBEACON_DELIVERY_MODE)
 			return TRUE
 		if("set_location")
-			var/input_text = tgui_input_text(usr, "Enter the beacon's location tag", "Beacon Location", location, 20)
+			var/input_text = tgui_input_text(usr, "输入坐标的位置标签", "信标位置", location, 20)
 			if (!input_text || location == input_text)
 				return
 			glob_lists_deregister()
@@ -219,7 +219,7 @@
 			return TRUE
 		if("set_patrol_next")
 			var/next_patrol = codes[NAVBEACON_PATROL_NEXT]
-			var/input_text = tgui_input_text(usr, "Enter the tag of the next patrol location", "Beacon Location", next_patrol, 20)
+			var/input_text = tgui_input_text(usr, "输入下一个导航地点的标签", "信标位置", next_patrol, 20)
 			if (!input_text || location == input_text)
 				return
 			codes[NAVBEACON_PATROL_NEXT] = input_text

@@ -56,7 +56,7 @@
 		. += span_notice("It's [EXAMINE_HINT("anchored")] in place.")
 	else
 		. += span_warning("Needs to be [EXAMINE_HINT("anchored")] to start operations.")
-		. += span_notice("It can be [EXAMINE_HINT("welded")] apart.")
+		. += span_notice("It can be [EXAMINE_HINT("已焊接")] apart.")
 
 	. += span_notice("An [EXAMINE_HINT("plunger")] can be used to flush out reagents.")
 

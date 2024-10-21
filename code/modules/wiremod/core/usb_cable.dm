@@ -83,7 +83,7 @@
 	return FALSE
 
 /obj/item/usb_cable/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is wrapping [src] around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is wrapping [src] around [user.p_their()] neck! 看起来是在尝试自杀!"))
 	return OXYLOSS
 
 /obj/item/usb_cable/proc/register_circuit_signals()

@@ -596,7 +596,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 		return
 	var/mob/the_user = ui.user
 	if(!allowed(the_user))
-		balloon_alert(the_user, "access denied!")
+		balloon_alert(the_user, "访问被拒绝!")
 		return
 
 	if(action == "lock")

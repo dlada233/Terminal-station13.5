@@ -1666,7 +1666,7 @@ GLOBAL_LIST_EMPTY(vending_machines_to_restock)
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(panel_open && held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "解除固定" : "Secure"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(panel_open && held_item?.tool_behaviour == TOOL_CROWBAR)

@@ -6,9 +6,9 @@
  * They'll link to servers if bus is not present, with some delay added to it.
  */
 /obj/machinery/telecomms/processor
-	name = "processor unit"
+	name = "处理单元"
 	icon_state = "processor"
-	desc = "This machine is used to process large quantities of information."
+	desc = "这台机器用于处理大量数据."
 	telecomms_type = /obj/machinery/telecomms/processor
 	density = TRUE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.01

@@ -2,7 +2,7 @@
 // CENTCOM
 // CentCom itself
 /area/centcom
-	name = "CentCom"
+	name = "CentCom-中央指挥部"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "centcom"
 	static_lighting = TRUE
@@ -13,78 +13,78 @@
 
 // This is just to define the category
 /area/centcom/central_command_areas
-	name = "Central Command Areas"
+	name = "中央指挥部区域"
 
 /area/centcom/central_command_areas/control
-	name = "CentCom Central Control"
+	name = "CentCom-控制区"
 	icon_state = "centcom_control"
 
 /area/centcom/central_command_areas/evacuation
-	name = "CentCom Recovery Wing"
+	name = "CentCom-回收处"
 	icon_state = "centcom_evacuation"
 
 /area/centcom/central_command_areas/evacuation/ship
-	name = "CentCom Recovery Ship"
+	name = "CentCom-回收船"
 	icon_state = "centcom_evacuation_ship"
 
 /area/centcom/central_command_areas/fore
-	name = "Fore CentCom Dock"
+	name = "CentCom-站首码头"
 	icon_state = "centcom_fore"
 
 /area/centcom/central_command_areas/supply
-	name = "CentCom Supply Wing"
+	name = "CentCom-后勤处"
 	icon_state = "centcom_supply"
 
 /area/centcom/central_command_areas/ferry
-	name = "CentCom Transport Shuttle Dock"
+	name = "CentCom-运输码头"
 	icon_state = "centcom_ferry"
 
 /area/centcom/central_command_areas/briefing
-	name = "CentCom Briefing Room"
+	name = "CentCom-简报室"
 	icon_state = "centcom_briefing"
 
 /area/centcom/central_command_areas/armory
-	name = "CentCom Armory"
+	name = "CentCom-军械室"
 	icon_state = "centcom_armory"
 
 /area/centcom/central_command_areas/admin
-	name = "CentCom Administrative Office"
+	name = "CentCom-行政办公室"
 	icon_state = "centcom_admin"
 
 /area/centcom/central_command_areas/admin/storage
-	name = "CentCom Administrative Office Storage"
+	name = "CentCom-行政办公仓库"
 	icon_state = "centcom_admin_storage"
 
 /area/centcom/central_command_areas/prison
-	name = "Admin Prison"
+	name = "Admin Prison-管理员监狱"
 	icon_state = "centcom_prison"
 
 /area/centcom/central_command_areas/prison/cells
-	name = "Admin Prison Cells"
+	name = "Admin Prison-管理员监狱牢房"
 	icon_state = "centcom_cells"
 
 /area/centcom/central_command_areas/courtroom
-	name = "Nanotrasen Grand Courtroom"
+	name = "Courtroom-纳米传讯最高法院"
 	icon_state = "centcom_court"
 
 /area/centcom/central_command_areas/holding
-	name = "Holding Facility"
+	name = "Holding Facility-收容设施"
 	icon_state = "centcom_holding"
 
 /area/centcom/central_command_areas/supplypod/supplypod_temp_holding
-	name = "Supplypod Shipping Lane"
+	name = "Supplypod-补给舱运输通道"
 	icon_state = "supplypod_flight"
 
 /area/centcom/central_command_areas/supplypod
-	name = "Supplypod Facility"
+	name = "Supplypod-补给舱"
 	icon_state = "supplypod"
 
 /area/centcom/central_command_areas/supplypod/pod_storage
-	name = "Supplypod Storage"
+	name = "Supplypod-补给舱仓库"
 	icon_state = "supplypod_holding"
 
 /area/centcom/central_command_areas/supplypod/loading
-	name = "Supplypod Loading Facility"
+	name = "Supplypod-补给舱装载区"
 	icon_state = "supplypod_loading"
 	var/loading_id = ""
 	// SKYRAT EDIT START - Dynamic lights on CentCom
@@ -123,27 +123,27 @@
 
 //THUNDERDOME
 /area/centcom/tdome
-	name = "Thunderdome"
+	name = "Thunderdome-雷霆竞技场"
 	icon_state = "thunder"
 
 /area/centcom/tdome/arena
-	name = "Thunderdome Arena"
+	name = "Thunderdome-雷霆竞技场"
 	icon_state = "thunder"
 
 /area/centcom/tdome/tdome1
-	name = "Thunderdome (Team 1)"
+	name = "Thunderdome-雷霆竞技场(Team 1)"
 	icon_state = "thunder_team_one"
 
 /area/centcom/tdome/tdome2
-	name = "Thunderdome (Team 2)"
+	name = "Thunderdome-雷霆竞技场(Team 2)"
 	icon_state = "thunder_team_two"
 
 /area/centcom/tdome/administration
-	name = "Thunderdome Administration"
+	name = "Thunderdome-雷霆竞技场管理处"
 	icon_state = "thunder_admin"
 
 /area/centcom/tdome/observation
-	name = "Thunderdome Observation"
+	name = "Thunderdome-雷霆竞技场观众席"
 	icon_state = "thunder_observe"
 
 
@@ -151,7 +151,7 @@
 
 // Wizard
 /area/centcom/wizard_station
-	name = "Wizard's Den"
+	name = "Wizard's Den-巫师藏身处"
 	icon_state = "wizards_den"
 	static_lighting = TRUE
 	requires_power = FALSE
@@ -162,7 +162,7 @@
 
 //Abductors
 /area/centcom/abductor_ship
-	name = "Abductor Ship"
+	name = "Abductor Ship-外星人飞船"
 	icon_state = "abductor_ship"
 	requires_power = FALSE
 	area_flags = UNIQUE_AREA | NOTELEPORT
@@ -173,7 +173,7 @@
 
 //Syndicates
 /area/centcom/syndicate_mothership
-	name = "Syndicate Mothership"
+	name = "Syndicate Mothership-辛迪加母舰"
 	icon_state = "syndie-ship"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
@@ -182,40 +182,40 @@
 	ambience_index = AMBIENCE_DANGER
 
 /area/centcom/syndicate_mothership/control
-	name = "Syndicate Control Room"
+	name = "Syndicate-控制室"
 	icon_state = "syndie-control"
 	static_lighting = TRUE
 
 /area/centcom/syndicate_mothership/expansion_bombthreat
-	name = "Syndicate Ordnance Laboratory"
+	name = "Syndicate-军械研究所"
 	icon_state = "syndie-elite"
 	static_lighting = TRUE
 	ambience_index = AMBIENCE_ENGI
 
 /area/centcom/syndicate_mothership/expansion_bioterrorism
-	name = "Syndicate Bio-Weapon Laboratory"
+	name = "Syndicate-生化武器研究所"
 	icon_state = "syndie-elite"
 	static_lighting = TRUE
 	ambience_index = AMBIENCE_MEDICAL
 
 /area/centcom/syndicate_mothership/expansion_chemicalwarfare
-	name = "Syndicate Chemical Weapon Manufacturing Plant"
+	name = "Syndicate-化学武器制造厂"
 	icon_state = "syndie-elite"
 	static_lighting = TRUE
 	ambience_index = AMBIENCE_REEBE
 
 /area/centcom/syndicate_mothership/expansion_fridgerummage
-	name = "Syndicate Perishables and Foodstuffs Storage"
+	name = "Syndicate-易腐品及食物仓库"
 	icon_state = "syndie-elite"
 	static_lighting = TRUE
 
 /area/centcom/syndicate_mothership/elite_squad
-	name = "Syndicate Elite Squad"
+	name = "Syndicate-精锐小队处"
 	icon_state = "syndie-elite"
 
 //MAFIA
 /area/centcom/mafia
-	name = "Mafia Minigame"
+	name = "Mafia Minigame-狼人杀场地"
 	icon_state = "mafia"
 	static_lighting = FALSE
 
@@ -274,7 +274,7 @@
 
 // Asteroid area stuff
 /area/centcom/asteroid
-	name = "\improper Asteroid"
+	name = "\improper Asteroid-小行星"
 	icon_state = "asteroid"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
@@ -293,4 +293,4 @@
 	area_flags = UNIQUE_AREA | BLOBS_ALLOWED
 
 /area/centcom/asteroid/nearstation/bomb_site
-	name = "\improper Bomb Testing Asteroid"
+	name = "\improper Bomb Testing Asteroid-炸弹试验小行星"

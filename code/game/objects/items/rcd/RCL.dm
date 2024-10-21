@@ -78,7 +78,7 @@
 
 		if(!loaded)
 			if(!user.transferItemToLoc(W, src))
-				to_chat(user, span_warning("[src] is stuck to your hand!"))
+				to_chat(user, span_warning("[src] is 粘在了你的手上!"))
 				return
 			else
 				loaded = W //W.loc is src at this point.

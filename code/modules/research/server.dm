@@ -109,7 +109,7 @@
 	if(!stored_research)
 		return
 	tool.set_buffer(stored_research)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return TRUE
 
 /// Master R&D server. As long as this still exists and still holds the HDD for the theft objective, research points generate at normal speed. Destroy it or an antag steals the HDD? Half research speed.

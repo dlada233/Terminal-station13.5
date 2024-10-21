@@ -7,14 +7,14 @@
 /datum/status_effect/organ_set_bonus/goliath
 	id = "organ_set_bonus_goliath"
 	organs_needed = 4
-	bonus_activate_text = span_notice("goliath DNA is deeply infused with you! You can now endure walking on lava!")
-	bonus_deactivate_text = span_notice("You feel your muscle mass shrink and the tendrils around your skin wither. Your Goliath DNA is mostly gone and so is your ability to survive lava.")
+	bonus_activate_text = span_notice("歌利亚DNA与你深度融合，你可以在岩浆上行走了!")
+	bonus_deactivate_text = span_notice("你的肌肉萎缩了，皮肤上的触须枯萎，歌利亚DNA大部分消失，你在岩浆中行走的能力也消失了.")
 	bonus_traits = list(TRAIT_LAVA_IMMUNE)
 
 ///goliath eyes, simple night vision
 /obj/item/organ/internal/eyes/night_vision/goliath
-	name = "goliath eyes"
-	desc = "goliath DNA infused into what was once some normal eyes."
+	name = "变异歌利亚眼"
+	desc = "将歌利亚DNA注入正常眼的产物."
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "eyes"
@@ -31,13 +31,13 @@
 
 /obj/item/organ/internal/eyes/night_vision/goliath/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their eyes are blood red and stone-like.", BODY_ZONE_PRECISE_EYES)
+	AddElement(/datum/element/noticable_organ, "它的眼睛形似岩石，发出血红光芒.", BODY_ZONE_PRECISE_EYES)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/goliath)
 
 ///goliath lungs! You can breathe lavaland air mix but can't breath pure O2 from a tank anymore.
 /obj/item/organ/internal/lungs/lavaland/goliath
-	name = "mutated goliath-lungs"
-	desc = "goliath DNA infused into what was once some normal lungs."
+	name = "变异歌利亚肺"
+	desc = "将歌利亚DNA注入正常肺的产物."
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "lungs"
@@ -46,13 +46,13 @@
 
 /obj/item/organ/internal/lungs/lavaland/goliath/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their back is covered in small tendrils.", BODY_ZONE_CHEST)
+	AddElement(/datum/element/noticable_organ, "它的背部长满了小触须.", BODY_ZONE_CHEST)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/goliath)
 
 ///goliath brain. you can't use gloves but one of your arms becomes a tendril hammer that can be used to mine!
 /obj/item/organ/internal/brain/goliath
-	name = "mutated goliath-brain"
-	desc = "goliath DNA infused into what was once a normal brain."
+	name = "变异歌利亚脑"
+	desc = "将歌利亚DNA注入正常脑的产物."
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "brain"
@@ -63,7 +63,7 @@
 
 /obj/item/organ/internal/brain/goliath/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their arm is just a mass of plate and tendrils.", BODY_ZONE_CHEST)
+	AddElement(/datum/element/noticable_organ, "它的手臂是覆盖着装甲的触须", BODY_ZONE_CHEST)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/goliath)
 
 /obj/item/organ/internal/brain/goliath/on_mob_insert(mob/living/carbon/brain_owner)
@@ -89,12 +89,12 @@
 	var/datum/species/rec_species = human_receiver.dna.species
 	rec_species.update_no_equip_flags(brain_owner, initial(rec_species.no_equip_flags))
 	if(hammer)
-		brain_owner.visible_message(span_warning("\The [hammer] disintegrates!"))
+		brain_owner.visible_message(span_warning("[hammer]瓦解!"))
 		QDEL_NULL(hammer)
 
 /obj/item/goliath_infuser_hammer
-	name = "tendril hammer"
-	desc = "A mass of plates held by tendrils has replaced an arm."
+	name = "触须锤"
+	desc = "覆盖有装甲的卷须替代了手臂."
 	icon = 'icons/obj/weapons/goliath_hammer.dmi'
 	icon_state = "goliath_hammer"
 	inhand_icon_state = "goliath_hammer"
@@ -106,8 +106,8 @@
 	throwforce = 0
 	throw_range = 0
 	throw_speed = 0
-	attack_verb_continuous = list("smashes", "bashes", "hammers", "crunches", "punches")
-	attack_verb_simple = list("smash", "bash", "hammer", "crunch")
+	attack_verb_continuous = list("撞击", "猛砸", "猛锤", "击打", "敲击")
+	attack_verb_simple = list("撞击", "猛砸", "猛锤", "击打")
 	hitsound = 'sound/effects/bamf.ogg'
 	tool_behaviour = TOOL_MINING
 	toolspeed = 0.1
@@ -122,7 +122,7 @@
 
 /obj/item/goliath_infuser_hammer/examine(mob/user)
 	. = ..()
-	. += "You can use your tendril hammer arm to deliver a devastating blow against mining fauna, but only once every two seconds."
+	. += "你可以使用触须锤对拉瓦兰生物发动毁灭性打击，但有冷却时间2秒."
 
 /obj/item/goliath_infuser_hammer/attack(mob/living/target, mob/living/carbon/human/user, click_parameters)
 	. = ..()
@@ -158,8 +158,8 @@
 
 /// goliath heart gives you the ability to survive ash storms.
 /obj/item/organ/internal/heart/goliath
-	name = "mutated goliath-heart"
-	desc = "goliath DNA infused into what was once a normal heart."
+	name = "变异歌利亚心"
+	desc = "将歌利亚DNA注入正常心的产物."
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "heart"
@@ -170,7 +170,7 @@
 
 /obj/item/organ/internal/heart/goliath/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their skin has visible hard plates growing from within.", BODY_ZONE_CHEST)
+	AddElement(/datum/element/noticable_organ, "它的皮肤覆盖有装甲.", BODY_ZONE_CHEST)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/goliath)
 	AddElement(/datum/element/update_icon_blocker)
 

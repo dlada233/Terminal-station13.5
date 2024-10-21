@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/security
 	name = "安保摄像监控台"
-	desc = "Used to access the various cameras on the station."
+	desc = "用于访问空间站各个摄像头."
 	icon_screen = "cameras"
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/security
@@ -183,7 +183,7 @@
 
 /obj/machinery/computer/security/wooden_tv
 	name = "安保监控屏"
-	desc = "An old TV hooked into the station's camera network."
+	desc = "连上了空间站摄像机网络的旧屏幕."
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
@@ -191,7 +191,7 @@
 
 /obj/machinery/computer/security/mining
 	name = "前哨监控屏"
-	desc = "Used to access the various cameras on the outpost."
+	desc = "用于访问前哨站摄像头的屏幕."
 	icon_screen = "mining"
 	icon_keyboard = "mining_key"
 	network = list(CAMERANET_NETWORK_MINE, CAMERANET_NETWORK_AUXBASE)
@@ -199,25 +199,25 @@
 
 /obj/machinery/computer/security/research
 	name = "科研监控屏"
-	desc = "Used to access the various cameras in science."
+	desc = "用于访问科研部门摄像头的屏幕."
 	network = list(CAMERANET_NETWORK_RD)
 	circuit = /obj/item/circuitboard/computer/research
 
 /obj/machinery/computer/security/hos
 	name = "\improper 安保部长监控屏"
-	desc = "A custom security console with added access to the labor camp network."
+	desc = "定制的安保终端，可以访问劳改营网络."
 	network = list(CAMERANET_NETWORK_SS13, CAMERANET_NETWORK_LABOR)
 	circuit = null
 
 /obj/machinery/computer/security/labor
 	name = "劳改营监控屏"
-	desc = "Used to access the various cameras on the labor camp."
+	desc = "用于访问劳改营摄像头."
 	network = list(CAMERANET_NETWORK_LABOR)
 	circuit = null
 
 /obj/machinery/computer/security/qm
 	name = "\improper 军需官监控屏"
-	desc = "A console with access to the mining, auxiliary base and vault camera networks."
+	desc = "用于访问采矿基地、辅助基地以及金库摄像头."
 	network = list(CAMERANET_NETWORK_MINE, CAMERANET_NETWORK_AUXBASE, CAMERANET_NETWORK_VAULT)
 	circuit = null
 

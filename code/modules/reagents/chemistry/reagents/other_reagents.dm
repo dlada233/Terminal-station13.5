@@ -805,8 +805,8 @@
 	return ..()
 
 /datum/reagent/mutationtoxin/golem
-	name = "Golem Mutation Toxin-傀儡突变素"
-	description = "与格罗姆这种石傀儡生物有关."
+	name = "Golem Mutation Toxin-石人突变素"
+	description = "与格罗姆这种石人生物有关."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/golem
 	taste_description = "岩石"
@@ -969,7 +969,7 @@
 	metal.use(reac_volume)
 
 /datum/reagent/nitrogen
-	name = "Nitrogen-氮"
+	name = "Nitrogen-氮气-氮"
 	description = "无色、无嗅、无味的气体，一种简单的窒息."
 	reagent_state = GAS
 	color = COLOR_GRAY
@@ -1539,7 +1539,7 @@
 		myseed.adjust_instability(-round(volume))
 
 /datum/reagent/carbondioxide
-	name = "Carbon Dioxide-二氧化碳"
+	name = "Carbon Dioxide-二氧化碳-二氧化碳"
 	reagent_state = GAS
 	description = "通常由燃烧碳燃料产生的气体，你的肺部会不断产生这种物质."
 	color = "#B0B0B0" // rgb : 192, 192, 192
@@ -1553,7 +1553,7 @@
 	return ..()
 
 /datum/reagent/nitrous_oxide
-	name = "Nitrous Oxide-一氧化二氮"
+	name = "Nitrous Oxide-一氧化二氮-一氧化二氮"
 	description = "一种强效氧化剂，用作火箭燃料和外科手术中的麻醉剂. \
 		由于它是一种抗凝剂，最好与桑吉里特一起使用，以使血液继续凝固."
 	reagent_state = LIQUID

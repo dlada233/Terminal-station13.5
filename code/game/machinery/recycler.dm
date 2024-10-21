@@ -1,8 +1,8 @@
 #define SAFETY_COOLDOWN 100
 
 /obj/machinery/recycler
-	name = "recycler"
-	desc = "A large crushing machine used to recycle small items inefficiently. There are lights on the side."
+	name = "回收粉碎机"
+	desc = "用于回收小件物品的大型粉碎机，表面有指示灯."
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "grinder-o0"
 	layer = ABOVE_ALL_MOB_LAYER // Overhead
@@ -60,10 +60,10 @@
 
 /obj/machinery/recycler/examine(mob/user)
 	. = ..()
-	. += span_notice("Reclaiming <b>[amount_produced]%</b> of materials salvaged.")
-	. += {"The power light is [(machine_stat & NOPOWER) ? "off" : "on"].
-	The safety-mode light is [safety_mode ? "on" : "off"].
-	The safety-sensors status light is [obj_flags & EMAGGED ? "off" : "on"]."}
+	. += span_notice("已回收<b>[amount_produced]%</b>材料.")
+	. += {"电源灯[(machine_stat & NOPOWER) ? "灭着" : "亮着"].
+	安全模式指示灯[safety_mode ? "亮着" : "灭着"].
+	安全传感器状态灯[obj_flags & EMAGGED ? "灭着" : "亮着"]."}
 
 /obj/machinery/recycler/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -72,7 +72,7 @@
 
 /obj/machinery/recycler/can_be_unfasten_wrench(mob/user, silent)
 	if(!(isfloorturf(loc) || isindestructiblefloor(loc)) && !anchored)
-		to_chat(user, span_warning("[src] needs to be on the floor to be secured!"))
+		to_chat(user, span_warning("[src]需要放在地板上才能固定!"))
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
@@ -95,7 +95,7 @@
 		safety_mode = FALSE
 		update_appearance()
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	balloon_alert(user, "safeties disabled")
+	balloon_alert(user, "安全装置已禁用")
 	return FALSE
 
 /obj/machinery/recycler/update_icon_state()
@@ -129,7 +129,7 @@
 	if(morsel.resistance_flags & INDESTRUCTIBLE)
 		return
 	if(morsel.flags_1 & HOLOGRAM_1)
-		visible_message(span_notice("[morsel] fades away!"))
+		visible_message(span_notice("[morsel]逐渐消失!"))
 		qdel(morsel)
 		return
 
@@ -238,7 +238,7 @@
 	safety_mode = TRUE
 
 /obj/machinery/recycler/deathtrap
-	name = "dangerous old crusher"
+	name = "危险的老旧破碎机"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	crush_damage = 120
 
@@ -249,7 +249,7 @@
 	return NONE
 
 /obj/item/paper/guides/recycler
-	name = "paper - 'garbage duty instructions'"
-	default_raw_text = "<h2>New Assignment</h2> You have been assigned to collect garbage from trash bins, located around the station. The crewmembers will put their trash into it and you will collect said trash.<br><br>There is a recycling machine near your closet, inside maintenance; use it to recycle the trash for a small chance to get useful minerals. Then, deliver these minerals to cargo or engineering. You are our last hope for a clean station. Do not screw this up!"
+	name = "'废物回收任务说明'"
+	default_raw_text = "<h2>新任务</h2> 你已经被分配了一项从站点垃圾桶中回收垃圾的任务. 船员把垃圾丢入垃圾桶中，而你从垃圾桶中回收垃圾.<br><br>你的衣柜附近的维护管道里有一台回收粉碎机; 使用这台机器来回收垃圾，获得有用的材料，然后将这些材料送至货仓或工程部. 你是我们保持站点清洁的最后希望. 别搞砸了!"
 
 #undef SAFETY_COOLDOWN

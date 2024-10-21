@@ -271,5 +271,5 @@
 	custom_materials = null
 
 /obj/item/knife/shiv/carrot/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! 看起来是在尝试自杀!"))
 	return BRUTELOSS

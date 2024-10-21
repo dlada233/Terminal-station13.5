@@ -1,6 +1,6 @@
 /obj/machinery/digital_clock
-	name = "digital clock"
-	desc = "An ultra-futuristic, sleek, advanced, next-gen normal digital clock that tells the time. Powered by bluespace. Despite supposedly being better in every way to classic clocks, it just doesn't feel the same. They just don't make them the way they used to..."
+	name = "数字时钟"
+	desc = "超前卫、时尚与先进的下一代数字时钟，据说由蓝空提供动力. 尽管在任何方面都比经典时钟好，但感觉总是不同，只是再也不像从前那样了..."
 	icon_state = "digital_clock_base"
 	icon = 'icons/obj/digital_clock.dmi'
 	verb_say = "beeps"
@@ -11,8 +11,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/wallframe/digital_clock
-	name = "digital clock frame"
-	desc = "Used to build digital clocks, just secure to the wall."
+	name = "数字时钟框架"
+	desc = "用于建造数字时钟，它一般被挂在墙上."
 	icon_state = "digital_clock_base"
 	icon = 'icons/obj/digital_clock.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 4)
@@ -21,11 +21,11 @@
 
 /obj/machinery/digital_clock/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "解除" : ""]固定...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, "[anchored ? "un" : ""]secured")
+		balloon_alert(user, "[anchored ? "解除" : ""]固定完成")
 		deconstruct()
 		return TRUE
 
@@ -33,12 +33,12 @@
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理!")
 		return TRUE
-	balloon_alert(user, "repairing display...")
+	balloon_alert(user, "修理显示...")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "修理完成")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -49,7 +49,7 @@
 		return
 	if(!(obj_flags & EMAGGED))
 		return
-	balloon_alert(user, "resetting...")
+	balloon_alert(user, "重置...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)

@@ -89,7 +89,7 @@
 		return FALSE
 
 	if (HAS_TRAIT(equipping, TRAIT_NODROP))
-		to_chat(user, span_warning("You can't put [equipping] on [source], it's stuck to your hand!"))
+		to_chat(user, span_warning("You can't put [equipping] on [source], it's 粘在了你的手上!"))
 		return FALSE
 
 	if (equipping.item_flags & ABSTRACT)

@@ -1,6 +1,6 @@
 /obj/machinery/computer/atmos_alert
 	name = "空气警报控制台"
-	desc = "Used to monitor the station's air alarms."
+	desc = "监视全空间站的大气警报情况."
 	circuit = /obj/item/circuitboard/computer/atmos_alert
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"

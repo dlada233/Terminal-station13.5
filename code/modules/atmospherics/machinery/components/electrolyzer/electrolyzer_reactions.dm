@@ -63,14 +63,14 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 /datum/electrolyzer_reaction/nob_conversion
 	name = "Hypernob conversion"
 	id = "nob_conversion"
-	desc = "Conversion of Hypernoblium into Antinoblium"
+	desc = "Conversion of Hypernoblium-超铌 into Antinoblium-反铌"
 	requirements = list(
 		/datum/gas/hypernoblium = MINIMUM_MOLE_COUNT,
 		"MAX_TEMP" = 150
 	)
 	factor = list(
-		/datum/gas/hypernoblium = "1 mole of Hypernoblium gets consumed",
-		/datum/gas/antinoblium = "0.5 moles of Antinoblium get produced",
+		/datum/gas/hypernoblium = "1 mole of Hypernoblium-超铌 gets consumed",
+		/datum/gas/antinoblium = "0.5 moles of Antinoblium-反铌 get produced",
 		"Temperature" = "Can only occur under 150 kelvin.",
 		"Location" = "Can only happen on turfs with an active Electrolyzer.",
 	)
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 		air_mixture.temperature = max(air_mixture.temperature * old_heat_capacity / new_heat_capacity, TCMB)
 
 /datum/electrolyzer_reaction/halon_generation
-	name = "Halon generation"
+	name = "Halon-哈龙 generation"
 	id = "halon_generation"
 	desc = "Production of halon from the electrolysis of BZ."
 	requirements = list(
@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 	factor = list(
 		/datum/gas/bz = "Consumed during reaction.",
 		/datum/gas/oxygen = "0.2 moles of oxygen gets produced per mole of BZ consumed.",
-		/datum/gas/halon = "2 moles of Halon gets produced per mole of BZ consumed.",
+		/datum/gas/halon = "2 moles of Halon-哈龙 gets produced per mole of BZ consumed.",
 		"Energy" = "91.2321 kJ of thermal energy is released per mole of BZ consumed.",
 		"Temperature" = "Reaction efficiency is proportional to temperature.",
 		"Location" = "Can only happen on turfs with an active Electrolyzer.",

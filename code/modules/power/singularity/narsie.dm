@@ -74,7 +74,7 @@
 	if(area)
 		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/cult.dmi', "ghostalertsie")
 		notify_ghosts(
-			"Nar'Sie自[area]崛起. 找到次元几何血尊来获得新的躯体.",
+			"Nar'Sie自[area]崛起. 找到次元几何之血尊来获得新的躯体.",
 			source = src,
 			header = "Nar'Sie归位!",
 			click_interact = TRUE,

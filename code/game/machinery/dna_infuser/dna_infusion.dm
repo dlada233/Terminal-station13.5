@@ -7,18 +7,18 @@
 
 /mob/living/can_infuse(mob/feedback_target)
 	if(feedback_target)
-		balloon_alert(feedback_target, "dna too simple!")
+		balloon_alert(feedback_target, "dna太简单!")
 	return FALSE
 
 /mob/living/carbon/human/can_infuse(mob/feedback_target)
 	// Checked by can_mutate but explicit feedback for this issue is good
 	if(HAS_TRAIT(src, TRAIT_BADDNA))
 		if(feedback_target)
-			balloon_alert(feedback_target, "dna is corrupted!")
+			balloon_alert(feedback_target, "dna已损坏!")
 		return FALSE
 	if(!can_mutate())
 		if(feedback_target)
-			balloon_alert(feedback_target, "dna is missing!")
+			balloon_alert(feedback_target, "dna紊乱!")
 		return FALSE
 	return TRUE
 

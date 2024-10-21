@@ -1,7 +1,7 @@
 /// Wall mounted mining weather tracker
 /obj/machinery/mining_weather_monitor
-	name = "barometric monitor"
-	desc = "A machine monitoring atmospheric data from mining environments. Provides warnings about incoming weather fronts."
+	name = "大气压检测仪"
+	desc = "一台监测采矿环境大气数据的机器，能提供对恶劣天气的警报."
 	icon = 'icons/obj/devices/miningradio.dmi'
 	icon_state = "wallmount"
 	light_power = 1

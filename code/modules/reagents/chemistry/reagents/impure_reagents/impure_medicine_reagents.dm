@@ -638,7 +638,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 
 /datum/reagent/inverse/neurine
 	name = "Neruwhine-逆神经液"
-	description = "通过改变神经元活动的方向，在病人体内诱发暂时性脑损伤."
+	description = "通过改变神经元活动的方向，在病人体内诱发暂时性的脑神经创伤."
 	color = "#DCDCAA"
 	ph = 13.4
 	addiction_types = list(/datum/addiction/medicine = 8)

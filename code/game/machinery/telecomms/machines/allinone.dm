@@ -3,9 +3,9 @@
  * very flexible, but it gets the job done.
  */
 /obj/machinery/telecomms/allinone
-	name = "telecommunications mainframe"
+	name = "电信主机"
 	icon_state = "comm_server"
-	desc = "A compact machine used for portable subspace telecommunications processing."
+	desc = "用于处理子空间通信处理的紧凑型机器."
 	density = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
@@ -13,8 +13,8 @@
 	var/syndicate = FALSE
 
 /obj/machinery/telecomms/allinone/nuclear
-	name = "advanced telecommunications mainframe"
-	desc = "A modified mainframe that allows for the processing of priority syndicate subspace telecommunications."
+	name = "先进电信主机"
+	desc = "经过改进的大型机，允许优先处理辛迪加子空间通信."
 	freq_listening = list(FREQ_SYNDICATE)
 	syndicate = TRUE
 

@@ -1,6 +1,6 @@
 /obj/structure/emergency_shield
-	name = "emergency energy shield"
-	desc = "An energy shield used to contain hull breaches."
+	name = "应急能量护盾"
+	desc = "用于弥补船体裂口的能量护盾."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-old"
 	integrity_failure = 0.5
@@ -50,8 +50,8 @@
 
 /// Subtype of shields that repair over time after sustaining integrity damage
 /obj/structure/emergency_shield/regenerating
-	name = "energy shield"
-	desc = "An energy shield used to let ships through, but keep out the void of space."
+	name = "应急护盾"
+	desc = "一种用于阻挡真空，只让船只通过的护盾."
 	max_integrity = 400
 	/// How much integrity is healed per second (per process multiplied by seconds per tick)
 	var/heal_rate_per_second = 5
@@ -77,8 +77,8 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/structure/emergency_shield/cult
-	name = "cult barrier"
-	desc = "A shield summoned by cultists to keep heretics away."
+	name = "血教屏障"
+	desc = "血教的护盾，阻挡不信Nar-Sie之徒."
 	max_integrity = 100
 	icon_state = "shield-red"
 
@@ -87,13 +87,13 @@
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/structure/emergency_shield/cult/narsie
-	name = "sanguine barrier"
-	desc = "A potent shield summoned by cultists to defend their rites."
+	name = "血红屏障"
+	desc = "血教徒为了捍卫他们的伟大仪式而召唤的强大护盾."
 	max_integrity = 60
 
 /obj/structure/emergency_shield/cult/weak
-	name = "Invoker's Shield"
-	desc = "A weak shield summoned by cultists to protect them while they carry out delicate rituals."
+	name = "祈求者之盾"
+	desc = "血教徒召唤出的一块脆弱护盾，用来在进行仪式时保护他们."
 	color = COLOR_RED
 	max_integrity = 20
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -116,7 +116,7 @@
 
 /obj/structure/emergency_shield/cult/barrier/Destroy()
 	if(parent_rune)
-		parent_rune.visible_message(span_danger("The [parent_rune] fades away as [src] is destroyed!"))
+		parent_rune.visible_message(span_danger("[parent_rune]散去，因为[src]已被摧毁!"))
 		QDEL_NULL(parent_rune)
 	return ..()
 
@@ -136,8 +136,8 @@
 		RemoveInvisibility(type)
 
 /obj/machinery/shieldgen
-	name = "anti-breach shielding projector"
-	desc = "Used to seal minor hull breaches."
+	name = "防破裂护盾投影仪"
+	desc = "用于弥补轻微破损的船体."
 	icon = 'icons/obj/machines/shield_generator.dmi'
 	icon_state = "shieldoff"
 	density = TRUE
@@ -281,8 +281,8 @@
 #define ACTIVE_SETUPFIELDS 1
 #define ACTIVE_HASFIELDS 2
 /obj/machinery/power/shieldwallgen
-	name = "shield wall generator"
-	desc = "A shield generator."
+	name = "护盾墙发生器"
+	desc = "一台护盾发生器."
 	icon ='icons/obj/machines/shield_generator.dmi' //SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "shield_wall_gen"
 	base_icon_state = "shield_wall_gen"
@@ -304,8 +304,8 @@
 	var/obj/structure/cable/attached
 
 /obj/machinery/power/shieldwallgen/xenobiologyaccess //use in xenobiology containment
-	name = "xenobiology shield wall generator"
-	desc = "A shield generator meant for use in xenobiology."
+	name = "异种学护盾墙发生器"
+	desc = "一台用于异种生命学研究的护盾发生器."
 	req_access = list(ACCESS_XENOBIOLOGY)
 
 /obj/machinery/power/shieldwallgen/anchored
@@ -524,8 +524,8 @@
 
 //////////////Containment Field START
 /obj/machinery/shieldwall
-	name = "shield wall"
-	desc = "An energy shield."
+	name = "护盾墙"
+	desc = "能量构成的墙."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldwall"
 	density = TRUE

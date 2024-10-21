@@ -621,7 +621,7 @@
 
 
 	if((interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SIGHT) && user.is_blind())
-		to_chat(user, span_warning("This machine requires sight to use."))
+		to_chat(user, span_warning("这台机器需要视力才能使用."))
 		return FALSE
 
 	// machines have their own lit up display screens and LED buttons so we don't need to check for light
@@ -644,16 +644,16 @@
 	var/mob/living/occupant_mob = occupant
 	var/obj/item/card/id/occupant_id = occupant_mob.get_idcard(TRUE)
 	if(!occupant_id)
-		say("[market_verb] NAP Violation: No ID card found.")
+		say("[market_verb] NAP 违规: 找不到ID卡.")
 		nap_violation(occupant_mob)
 		return FALSE
 	var/datum/bank_account/insurance = occupant_id.registered_account
 	if(!insurance)
-		say("[market_verb] NAP Violation: No bank account found.")
+		say("[market_verb] NAP 违规: 找不到银行账户.")
 		nap_violation(occupant_mob)
 		return FALSE
 	if(!insurance.adjust_money(-fair_market_price))
-		say("[market_verb] NAP Violation: Unable to pay.")
+		say("[market_verb] NAP 违规: 无法支付.")
 		nap_violation(occupant_mob)
 		return FALSE
 	var/datum/bank_account/department_account = SSeconomy.get_dep_account(payment_department)
@@ -675,7 +675,7 @@
 	add_fingerprint(usr)
 	update_last_used(usr)
 	if(HAS_AI_ACCESS(usr) && !GLOB.cameranet.checkTurfVis(get_turf(src))) //We check if they're an AI specifically here, so borgs can still access off-camera stuff.
-		to_chat(usr, span_warning("You can no longer connect to this device!"))
+		to_chat(usr, span_warning("你无法再连接到此设备!"))
 		return FALSE
 	return ..()
 
@@ -707,9 +707,9 @@
 			hit_with_what_noun += plural_s(hit_with_what_noun) // hit with "their hands"
 
 	user.visible_message(
-		span_danger("[user] smashes [src] with [user.p_their()] [hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
-		span_danger("You smash [src] with your [hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
-		span_hear("You hear a [damage ? "smash" : "thud"]."),
+		span_danger("[user]猛砸[src]用[user.p_their()] [hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
+		span_danger("你猛砸[src]用你的[hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
+		span_hear("你听到[damage ? "猛砸声" : "砰砰声"]."),
 		COMBAT_MESSAGE_RANGE,
 	)
 	return TRUE
@@ -735,7 +735,7 @@
 		if(user_unbuckle_mob(buckled_mobs[1],user))
 			return TRUE
 
-	var/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?", "Unbuckle", sort_names(buckled_mobs))
+	var/unbuckled = tgui_input_list(user, "你想解开谁?", "解开", sort_names(buckled_mobs))
 	if(isnull(unbuckled))
 		return FALSE
 	if(user_unbuckle_mob(unbuckled,user))
@@ -812,7 +812,7 @@
 	if(!.)
 		return
 	crowbar.play_tool_sound(src, 50)
-	visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open \the [src]."))
+	visible_message(span_notice("[usr]打开[src]."), span_notice("你打开了[src]."))
 	open_machine(density_to_set = open_density)
 	if (close_after_pry) //Should it immediately close after prying? (If not, it must be closed elsewhere)
 		close_machine(density_to_set = closed_density)
@@ -943,10 +943,10 @@
 	toggle_panel_open()
 	if(panel_open)
 		icon_state = icon_state_open
-		to_chat(user, span_notice("You open the maintenance hatch of [src]."))
+		to_chat(user, span_notice("你打开了[src]的检修舱口."))
 	else
 		icon_state = icon_state_closed
-		to_chat(user, span_notice("You close the maintenance hatch of [src]."))
+		to_chat(user, span_notice("你关闭了[src]的检修舱口."))
 	return TRUE
 
 /obj/machinery/proc/default_change_direction_wrench(mob/user, obj/item/wrench)
@@ -955,7 +955,7 @@
 
 	wrench.play_tool_sound(src, 50)
 	setDir(turn(dir,-90))
-	to_chat(user, span_notice("You rotate [src]."))
+	to_chat(user, span_notice("你转动了[src]."))
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
 	return TRUE
 
@@ -1049,7 +1049,7 @@
 					physical_part = primary_part_base
 
 				replacer_tool.atom_storage.attempt_insert(physical_part, user, TRUE, force = STORAGE_SOFT_LOCKED)
-				to_chat(user, span_notice("[capitalize(physical_part.name)] replaced with [secondary_part_name]."))
+				to_chat(user, span_notice("[capitalize(physical_part.name)]被替换了用[secondary_part_name]."))
 				shouldplaysound = TRUE //Only play the sound when parts are actually replaced!
 				break
 
@@ -1094,7 +1094,7 @@
 				part_count[component] = board.req_components[component]
 
 
-	var/text = span_notice("It contains the following parts:")
+	var/text = span_notice("它包含以下部分:")
 	for(var/component_part in part_count)
 		var/part_name
 		var/icon/html_icon
@@ -1118,16 +1118,16 @@
 /obj/machinery/examine(mob/user)
 	. = ..()
 	if(machine_stat & BROKEN)
-		. += span_notice("It looks broken and non-functional.")
+		. += span_notice("它看起来坏了，无法使用.")
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		var/healthpercent = (atom_integrity/max_integrity) * 100
 		switch(healthpercent)
 			if(50 to 99)
-				. += "It looks slightly damaged."
+				. += "它看起来轻微受损."
 			if(25 to 50)
-				. += "It appears heavily damaged."
+				. += "它看起来严重受损."
 			if(0 to 25)
-				. += span_warning("It's falling apart!")
+				. += span_warning("它接近报废!")
 
 /obj/machinery/examine_more(mob/user)
 	. = ..()
@@ -1188,7 +1188,7 @@
  * However, the proc may also be used elsewhere.
  */
 /obj/machinery/proc/AI_notify_hack()
-	var/alertstr = span_userdanger("Network Alert: Hacking attempt detected[get_area(src)?" in [get_area_name(src, TRUE)]":". Unable to pinpoint location"].")
+	var/alertstr = span_userdanger("网络警报: 骇入行为被检测到[get_area(src)?" 于[get_area_name(src, TRUE)]":". 无法确定位置"].")
 	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		to_chat(AI, alertstr)
 

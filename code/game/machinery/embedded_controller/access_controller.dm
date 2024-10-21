@@ -27,15 +27,15 @@
 	req_access = list()
 	req_one_access = list()
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "access controller shorted")
+	balloon_alert(user, "访问控制器短路")
 	return TRUE
 
 /obj/machinery/door_buttons/access_button
 	icon = 'icons/obj/machines/wallmounts.dmi' // SKYRAT EDIT CHANGE - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	icon_state = "access_button_standby"
 	base_icon_state = "access_button"
-	name = "access button"
-	desc = "A button used for the explicit purpose of opening an airlock."
+	name = "访问按钮"
+	desc = "用于打开气闸的明确按钮."
 	var/idDoor
 	var/obj/machinery/door/airlock/door
 	var/obj/machinery/door_buttons/airlock_controller/controller
@@ -57,7 +57,7 @@
 	if(busy)
 		return
 	if(!allowed(user))
-		to_chat(user, span_warning("Access denied."))
+		to_chat(user, span_warning("访问被拒绝."))
 		return
 	if(controller && !controller.busy && door)
 		if(controller.machine_stat & NOPOWER)
@@ -103,8 +103,8 @@
 	return ..()
 
 /obj/machinery/door_buttons/airlock_controller
-	name = "access console"
-	desc = "A small console that can cycle opening between two airlocks."
+	name = "访问终端"
+	desc = "可以在两个气闸之间循环打开的小型控制台."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "access_control_standby"
 	base_icon_state = "access_control"

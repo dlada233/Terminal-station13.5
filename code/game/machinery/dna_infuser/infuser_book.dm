@@ -1,7 +1,7 @@
 
 /obj/item/infuser_book
-	name = "DNA infusion book"
-	desc = "An entire book on how to not turn yourself into a fly mutant."
+	name = "DNA注入手册"
+	desc = "用于指导如何不把自己变成苍蝇的手册."
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="book"
 	worn_icon_state = "book"

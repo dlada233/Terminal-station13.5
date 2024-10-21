@@ -2,20 +2,18 @@
 import { Antagonist, Category } from '../base';
 
 export const OPERATIVE_MECHANICAL_DESCRIPTION = `
-  Attain all possible GoldenEye authentication keys and use them to activate
-  the GoldenEye. These keys use mindfragments of Nanotrasen heads to generate
-  the key. Use the interrogator to extract these mindfragments.
+  设法取得所有GoldenEye-黄金眼的认证密钥，并最终使用密钥激活GoldenEye-黄金眼.
+  密钥被分成了思维碎片藏在纳米传讯员工的头脑内，使用审问者提取这些思维碎片.
 `;
 
 const AssaultOperative: Antagonist = {
   key: 'assaultoperative',
-  name: 'Assault Operative',
+  name: '突击特工',
   description: [
     `
-      Good afternoon 0013, you have been selected to join an elite strike team
-      designated to locating and forging GoldenEye keys. Your mission is to
-      get these keys and use them to turn Nanotrasens GoldenEye defence
-      network against them. The GoldenEye network requires 3 keys to activate.
+      下午好, 0013, 你已被选中进入到一支精英突击队，专门负责获取GoldenEye-黄金眼
+      的认证密钥. 你的任务是获取这些钥匙，然后让纳米传讯的GoldenEye-黄金眼的防御网络
+      反过来对付他们自己，GoldenEye-黄金眼防御网络需要三把钥匙才能激活.
     `,
 
     OPERATIVE_MECHANICAL_DESCRIPTION,

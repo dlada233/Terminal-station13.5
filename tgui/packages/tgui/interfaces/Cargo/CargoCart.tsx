@@ -22,7 +22,7 @@ export function CargoCart(props) {
   return (
     <Stack fill vertical>
       <Stack.Item grow>
-        <Section fill scrollable title="Cart" buttons={<CargoCartButtons />}>
+        <Section fill scrollable title="购物车" buttons={<CargoCartButtons />}>
           <CheckoutItems />
         </Section>
       </Stack.Item>
@@ -40,7 +40,7 @@ export function CargoCart(props) {
                   onClick={() => act('send')}
                   px={2}
                   py={1}
-                  tooltip={sendable ? '' : `Shuttle is at ${location}`}
+                  tooltip={sendable ? '' : `货船位于 ${location}`}
                 >
                   Confirm the order
                 </Button>
@@ -58,18 +58,18 @@ function CheckoutItems(props) {
   const { amount_by_name = {}, can_send, cart = [], max_order } = data;
 
   if (cart.length === 0) {
-    return <NoticeBox>Nothing in cart</NoticeBox>;
+    return <NoticeBox>板条箱里是空的</NoticeBox>;
   }
 
   return (
     <Table>
       <Table.Row header color="gray">
         <Table.Cell collapsing>ID</Table.Cell>
-        <Table.Cell>Supply Type</Table.Cell>
-        <Table.Cell>Amount</Table.Cell>
+        <Table.Cell>供货类型</Table.Cell>
+        <Table.Cell>数量</Table.Cell>
         <Table.Cell collapsing />
         <Table.Cell collapsing textAlign="right">
-          Cost
+          花费
         </Table.Cell>
       </Table.Row>
 

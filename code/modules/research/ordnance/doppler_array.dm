@@ -56,7 +56,7 @@
 			inserted_disk = disk
 			return
 		else
-			balloon_alert(user, "it's stuck to your hand!")
+			balloon_alert(user, "it's 粘在了你的手上!")
 			return ..()
 	return ..()
 

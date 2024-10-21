@@ -67,7 +67,7 @@
 	projectile_type = /obj/projectile/bullet/rebar/syndie
 
 /obj/item/ammo_casing/rebar/zaukerite
-	name = "Zaukerite Sliver"
+	name = "Zauker-扎克ite Sliver"
 	desc = "A sliver of a zaukerite crystal. Due to its irregular, jagged edges, removal of an embedded zaukerite sliver should only be done by trained surgeons."
 	caliber = CALIBER_REBAR
 	icon_state = "rod_zaukerite"
@@ -83,7 +83,7 @@
 	projectile_type = /obj/projectile/bullet/rebar/hydrogen
 
 /obj/item/ammo_casing/rebar/healium
-	name = "Healium Crystal Bolt"
+	name = "Healium-疗气 Crystal Bolt"
 	desc = "Who needs a syringe gun, anyway?"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_healium"

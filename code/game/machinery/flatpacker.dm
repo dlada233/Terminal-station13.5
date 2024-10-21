@@ -2,8 +2,8 @@
 #define CREATE_AND_INCREMENT(L, I, increment) if(!(I in L)) { L[I] = 0; } L[I] += increment;
 
 /obj/machinery/flatpacker
-	name = "flatpacker"
-	desc = "It produces items using iron, glass, plastic and maybe some more."
+	name = "封装机"
+	desc = "它使用铁、玻璃、塑料等材料生产物品."
 	icon = 'icons/obj/machines/lathes.dmi'
 	base_icon_state = "flatpacker"
 	icon_state = "flatpacker"
@@ -54,7 +54,7 @@
 
 	if(!isnull(held_item))
 		if(istype(held_item, /obj/item/circuitboard/machine))
-			context[SCREENTIP_CONTEXT_LMB] = "Insert board"
+			context[SCREENTIP_CONTEXT_LMB] = "插入电路板"
 			return CONTEXTUAL_SCREENTIP_SET
 		else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
 			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
@@ -327,8 +327,8 @@
 #undef CREATE_AND_INCREMENT
 
 /obj/item/flatpack
-	name = "flatpack"
-	desc = "A box containing a compactly packed machine. Use multitool to deploy."
+	name = "封装包"
+	desc = "装有紧凑封装机器的盒子，使用多功能机器进行部署."
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "flatpack"
 	density = TRUE
@@ -410,8 +410,8 @@
 #define MAX_FLAT_PACKS 3
 
 /obj/structure/flatpack_cart
-	name = "flatpack cart"
-	desc = "A cart specifically made to hold flatpacks from a flatpacker, evenly distributing weight. Convenient!"
+	name = "封装包推车"
+	desc = "用来装封装包的推车，可以均匀分配重量，方便运送."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "flatcart"
 	density = TRUE

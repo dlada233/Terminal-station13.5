@@ -3,7 +3,7 @@
 
 /obj/machinery/computer/teleporter
 	name = "teleportation-传送控制终端"
-	desc = "Used to control a linked teleportation Hub and Station."
+	desc = "用于管理传送台."
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
 	light_color = LIGHT_COLOR_BLUE

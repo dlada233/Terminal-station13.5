@@ -14,8 +14,8 @@
  * has a popup window when used, allowing to set the timer.
  */
 /obj/machinery/status_display/door_timer
-	name = "door timer"
-	desc = "A remote control for a door."
+	name = "门计时器"
+	desc = "用于远程控制门."
 	current_mode = SD_MESSAGE
 	req_access = list(ACCESS_SECURITY)
 	text_color = "#F44"
@@ -141,7 +141,7 @@
 
 	if(!forced)
 		sec_radio.set_frequency(FREQ_SECURITY)
-		sec_radio.talk_into(src, "Timer has expired. Releasing prisoner.", FREQ_SECURITY)
+		sec_radio.talk_into(src, "计时器已到，释放囚犯.", FREQ_SECURITY)
 
 	timing = FALSE
 	activation_time = 0

@@ -28,7 +28,7 @@
 	var/forced_glass_color = FALSE
 
 /obj/item/clothing/glasses/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is stabbing \the [src] into [user.p_their()] eyes! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/examine(mob/user)
@@ -107,7 +107,7 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/meson/night
@@ -154,7 +154,7 @@
 		return 1
 
 /obj/item/clothing/glasses/science/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is tightening \the [src]'s straps around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is tightening \the [src]'s straps around [user.p_their()] neck! 看起来是在尝试自杀!"))
 	return OXYLOSS
 
 /obj/item/clothing/glasses/science/night

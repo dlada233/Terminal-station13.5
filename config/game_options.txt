@@ -71,12 +71,12 @@ HUMANS_NEED_SURNAMES
 
 
 ## ALERT LEVELS ###
-ALERT_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
-ALERT_BLUE_UPTO The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted.
-ALERT_BLUE_DOWNTO The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed.
-ALERT_RED_UPTO There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised. Additionally, access requirements on some doors have been lifted.
-ALERT_RED_DOWNTO The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.
-ALERT_DELTA Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
+ALERT_GREEN 空间站及其附近没有任何已出现或潜在的威胁，安保相关人员必须收起武器，个人隐私将得到充分保障.
+ALERT_BLUE_UPTO 空间站及其附近可能存在敌对活动，安保人员只允许携带非致命武器，允许进行随机搜查.
+ALERT_BLUE_DOWNTO 迫在眉睫的威胁已经过去，安保人员只允许携带非致命武器，仍然允许进行随机搜查.
+ALERT_RED_UPTO 空间站面临迫在眉睫的严重威胁，安保人员允许全程持有致命武器，允许并建议进行随机搜查. 此外, 一些气闸门的权限限制已经被取消.
+ALERT_RED_DOWNTO 空间站的毁灭暂时避免，但仍然面临严重威胁，安保人员允许全程持有致命武器，允许并建议进行随机搜查.
+ALERT_DELTA 空间站即将被摧毁，所有船员必须遵守部门部长的所有指示，任何违反命令的行为都可能被判处死刑，这不是演习.
 
 ## The total weight of station goals possible for a round (allows multiple goals)
 STATION_GOAL_BUDGET 1

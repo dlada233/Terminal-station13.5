@@ -1,6 +1,6 @@
 /obj/machinery/computer/apc_control
 	name = "电力分配终端"
-	desc = "Used to remotely control the flow of power to different parts of the station."
+	desc = "用于远程控制空间站不同区域的电力流量."
 	icon_screen = "solar"
 	icon_keyboard = "power_key"
 	req_access = list(ACCESS_CE)
@@ -139,7 +139,7 @@
 					auth_id = "[ID.registered_name] ([ID.assignment]):"
 					log_activity("[auth_id] attempted to log into the terminal")
 					playsound(src, 'sound/machines/terminal_error.ogg', 50, FALSE)
-					say("ID rejected, access denied!")
+					say("ID rejected, 访问被拒绝!")
 				return
 			auth_id = "Unknown (Unknown):"
 			log_activity("[auth_id] attempted to log into the terminal")

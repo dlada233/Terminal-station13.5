@@ -2,18 +2,15 @@ import { Antagonist, Category } from '../base';
 
 const SentientCreature: Antagonist = {
   key: 'sentiencepotionspawn',
-  name: 'Sentient Creature',
+  name: '感知动物',
   description: [
     `
-		Either by cosmic happenstance, or due to crew's shenanigans, you have been
-		given sentience!
+		要么是宇宙间的偶然，要么是船员们的恶作剧，你被赋予了感知!
 	  `,
 
     `
-		This is a blanket preference. The more benign ones include random human
-		level intelligence events, the cargorilla, and creatures uplifted via sentience
-		potions. The less friendly ones include the regal rat, and the boosted
-		mining elite mobs.
+		善恶上下限较为宽泛的扮演角色，较为温和的有随机事件、感知药水产生的普通高智商动物，
+    不太友好的有鼠王和强化的拉瓦兰生物.
 	  `,
   ],
   category: Category.Midround,

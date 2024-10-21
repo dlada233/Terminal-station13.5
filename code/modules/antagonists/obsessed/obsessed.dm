@@ -18,10 +18,10 @@
 /datum/antagonist/obsessed/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/C = new_owner.current
 	if(!istype(C))
-		to_chat(admin, "[roundend_category]由脑损伤产生，所以起码得是个碳基生物!")
+		to_chat(admin, "[roundend_category]由脑神经创伤产生，所以起码得是个碳基生物!")
 		return
 	if(!C.get_organ_by_type(/obj/item/organ/internal/brain)) // If only I had a brain
-		to_chat(admin, "[roundend_category]由脑损伤产生，所以起码得有个大脑.")
+		to_chat(admin, "[roundend_category]由脑神经创伤产生，所以起码得有个大脑.")
 		return
 	message_admins("[key_name_admin(admin)]将[key_name_admin(new_owner)]转变为[name].")
 	log_admin("[key_name(admin)]将[key_name(new_owner)]转变为[name].")

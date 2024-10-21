@@ -1,8 +1,8 @@
 #define ORION_TRAIL_WINTURN 9
 
 /obj/machinery/computer/arcade/orion_trail
-	name = "The Orion Trail"
-	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+	name = "猎户座小径"
+	desc = "在了解我们的祖先是如何到达猎户座的同时收获快乐."
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/orion_trail
 

@@ -159,7 +159,7 @@
 			if(!istype(part, /obj/item/mod/core))
 				return
 			if(!user.transferItemToLoc(part, src))
-				balloon_alert(user, "core stuck to your hand!")
+				balloon_alert(user, "core 粘在了你的手上!")
 				return
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 			balloon_alert(user, "core inserted")
@@ -178,7 +178,7 @@
 		if(SCREWED_CORE_STEP)
 			if(istype(part, /obj/item/mod/construction/helmet)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "helmet stuck to your hand!")
+					balloon_alert(user, "helmet 粘在了你的手上!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 				balloon_alert(user, "helmet added")
@@ -191,7 +191,7 @@
 		if(HELMET_STEP)
 			if(istype(part, /obj/item/mod/construction/chestplate)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "chestplate stuck to your hand!")
+					balloon_alert(user, "chestplate 粘在了你的手上!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 				balloon_alert(user, "chestplate added")
@@ -206,7 +206,7 @@
 		if(CHESTPLATE_STEP)
 			if(istype(part, /obj/item/mod/construction/gauntlets)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "gauntlets stuck to your hand!")
+					balloon_alert(user, "gauntlets 粘在了你的手上!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 				balloon_alert(user, "gauntlets added")

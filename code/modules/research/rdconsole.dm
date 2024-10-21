@@ -72,7 +72,7 @@ Nothing else in the console has ID requirements.
 				to_chat(user, span_warning("A technology disk is already loaded!"))
 				return
 			if(!user.transferItemToLoc(D, src))
-				to_chat(user, span_warning("[D] is stuck to your hand!"))
+				to_chat(user, span_warning("[D] is 粘在了你的手上!"))
 				return
 			t_disk = D
 		else if (istype(D, /obj/item/disk/design_disk))
@@ -80,7 +80,7 @@ Nothing else in the console has ID requirements.
 				to_chat(user, span_warning("A design disk is already loaded!"))
 				return
 			if(!user.transferItemToLoc(D, src))
-				to_chat(user, span_warning("[D] is stuck to your hand!"))
+				to_chat(user, span_warning("[D] is 粘在了你的手上!"))
 				return
 			d_disk = D
 		else

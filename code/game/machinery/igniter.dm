@@ -1,6 +1,6 @@
 /obj/machinery/igniter
-	name = "igniter"
-	desc = "It's useful for igniting plasma."
+	name = "点火器"
+	desc = "它对点燃等离子气体很有用."
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "igniter0"
 	base_icon_state = "igniter"
@@ -25,32 +25,32 @@
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Connect [src]"
+		context[SCREENTIP_CONTEXT_LMB] = "连接[src]"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_LMB] = "Unweld"
+		context[SCREENTIP_CONTEXT_LMB] = "焊开"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
 
 /obj/machinery/igniter/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a [EXAMINE_HINT("multitool")] to set its ID to match your ignition controller's ID.")
-	. += span_notice("It could be [EXAMINE_HINT("welded")] apart.")
+	. += span_notice("使用[EXAMINE_HINT("多功能工具")]设置其ID以匹配点火控制器的ID.")
+	. += span_notice("它可以被[EXAMINE_HINT("焊接")]拆开.")
 
 /obj/machinery/igniter/welder_act(mob/living/user, obj/item/tool)
 	if(on)
 		return
 
 	if(!tool.tool_start_check(user, amount = 2))
-		balloon_alert(user, "not enough fuel!")
+		balloon_alert(user, "没有足够的燃料!")
 		return
 
-	loc.balloon_alert(user, "dismantling [src]")
+	loc.balloon_alert(user, "拆卸[src]")
 	if(!tool.use_tool(src, user, delay = 2.5 SECONDS, amount = 2, volume = 50))
 		return
-	loc.balloon_alert(user, "[src] dismantled")
+	loc.balloon_alert(user, "[src]已拆卸")
 
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -60,12 +60,12 @@
 	new /obj/item/assembly/igniter(loc)
 
 /obj/machinery/igniter/multitool_act(mob/living/user, obj/item/tool)
-	var/change_id = tgui_input_number(user, "Set the igniter controller's ID", "Igniter ID", id, 100)
+	var/change_id = tgui_input_number(user, "设置点火控制器的ID", "点火器ID", id, 100)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	id = change_id
-	balloon_alert(user, "id set to [id]")
-	to_chat(user, span_notice("You change the ID to [id]."))
+	balloon_alert(user, "id设置为[id]")
+	to_chat(user, span_notice("你改变ID为[id]."))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/igniter/incinerator_ordmix
@@ -131,16 +131,16 @@
 // Wall mounted remote-control igniter.
 
 /obj/item/wallframe/sparker
-	name = "Sparker WallFrame"
-	desc = "An unmounted sparker. Attach it to a wall to use."
+	name = "壁挂式点火器框架"
+	desc = "未安装的壁挂式点火器."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "migniter"
 	result_path = /obj/machinery/sparker
 	pixel_shift = 26
 
 /obj/machinery/sparker
-	name = "mounted igniter"
-	desc = "A wall-mounted ignition device."
+	name = "壁挂式点火器"
+	desc = "壁挂式的点火设备."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "migniter"
 	base_icon_state = "migniter"
@@ -172,29 +172,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Connect [src]"
+		context[SCREENTIP_CONTEXT_LMB] = "连接[src]"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_LMB] = "Unweld"
+		context[SCREENTIP_CONTEXT_LMB] = "焊开"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
 
 /obj/machinery/sparker/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a [EXAMINE_HINT("multitool")] to set its ID to match your ignition controller's ID.")
-	. += span_notice("It could be [EXAMINE_HINT("welded")] apart.")
+	. += span_notice("使用[EXAMINE_HINT("多功能工具")]设置其ID以匹配点火控制器的ID.")
+	. += span_notice("它可以被[EXAMINE_HINT("焊接")]拆开.")
 
 /obj/machinery/sparker/welder_act(mob/living/user, obj/item/tool)
 	if(!tool.tool_start_check(user, amount = 1))
-		balloon_alert(user, "not enough fuel!")
+		balloon_alert(user, "燃料不足!")
 		return TRUE
 
-	loc.balloon_alert(user, "dismantling [src]")
+	loc.balloon_alert(user, "拆卸[src]")
 	if(!tool.use_tool(src, user, delay = 1.5 SECONDS, amount = 1, volume = 50))
 		return
-	loc.balloon_alert(user, "[src] dismantled")
+	loc.balloon_alert(user, "[src]已拆卸")
 
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -203,12 +203,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
 	new /obj/item/wallframe/sparker(loc)
 
 /obj/machinery/sparker/multitool_act(mob/living/user, obj/item/tool)
-	var/change_id = tgui_input_number(user, "Set the sparker controller's ID", "Sparker ID", id, 100)
+	var/change_id = tgui_input_number(user, "设定点火控制器的ID", "点火器ID", id, 100)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	id = change_id
-	balloon_alert(user, "id set to [id]")
-	to_chat(user, span_notice("You change the ID to [id]."))
+	balloon_alert(user, "id设置为[id]")
+	to_chat(user, span_notice("你改变了ID为[id]."))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/sparker/update_icon_state()
@@ -228,9 +228,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/sparker, 26)
 	tool.play_tool_sound(src, 50)
 	disable = !disable
 	if (disable)
-		user.visible_message(span_notice("[user] disables \the [src]!"), span_notice("You disable the connection to \the [src]."))
+		user.visible_message(span_notice("[user]禁用了[src]!"), span_notice("你禁用了[src]的连接."))
 	if (!disable)
-		user.visible_message(span_notice("[user] reconnects \the [src]!"), span_notice("You fix the connection to \the [src]."))
+		user.visible_message(span_notice("[user]重连[src]!"), span_notice("你修复了[src]的连接."))
 	update_appearance()
 	return TRUE
 

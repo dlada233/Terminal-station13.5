@@ -1,24 +1,24 @@
 /obj/machinery/mechpad
-	name = "orbital mech pad"
-	desc = "A slab of heavy plating designed to withstand orbital-drop impacts. Through some sort of advanced bluespace tech, this one seems able to send and receive Mechs. Requires linking to a console to function."
+	name = "轨道机甲平台"
+	desc = "一块用于承受轨道降落冲击的重型平台，通过某种先进的蓝空技术，这个似乎能够发送和接收机甲，需要连接控制终端才能使用."
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "mechpad"
 	circuit = /obj/item/circuitboard/machine/mechpad
 	///ID of the console, used for linking up
 	var/id = "roboticsmining"
 	///Name of the mechpad in a mechpad console
-	var/display_name = "Orbital Pad"
+	var/display_name = "轨道机甲平台"
 	///Can we carry mobs or just mechs?
 	var/mech_only = FALSE
 
 /obj/machinery/mechpad/Initialize(mapload)
 	. = ..()
-	display_name = "Orbital Pad - [get_area_name(src)]"
+	display_name = "轨道机甲平台 - [get_area_name(src)]"
 
 /obj/machinery/mechpad/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a multitool with the panel open to save id to buffer.")
-	. += span_notice("Use wirecutters with the panel open to [mech_only ? "cut" : "mend"] the lifeform restriction wire.")
+	. += span_notice("在检修盖打开的情况下使用多功能工具将其ID保存到缓冲区.")
+	. += span_notice("在检修盖打开的情况下用剪线钳[mech_only ? "剪断" : "连接"]活物限制线缆.")
 
 /obj/machinery/mechpad/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
@@ -37,14 +37,14 @@
 		return
 	var/obj/item/multitool/multitool = tool
 	multitool.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return TRUE
 
 /obj/machinery/mechpad/wirecutter_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
 		return
 	mech_only = !mech_only
-	to_chat(user, span_notice("You [mech_only ? "mend" : "cut"] the lifeform restriction wire."))
+	to_chat(user, span_notice("你[mech_only ? "连接" : "切断"]了活物限制线缆."))
 	return TRUE
 
 /**

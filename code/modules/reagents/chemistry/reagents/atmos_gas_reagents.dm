@@ -130,7 +130,7 @@
 			. = UPDATE_MOB_HEALTH
 
 /datum/reagent/zauker
-	name = "Zauker-瘴气"
+	name = "Zauker-扎克"
 	description = "一种对所有生物都有毒的不稳定气体."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5

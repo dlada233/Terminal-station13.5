@@ -75,7 +75,7 @@
 /obj/machinery/nebula_shielding/emergency/examine(mob/user)
 	. = ..()
 
-	. += span_notice("[p_They()] will block the nebula for [round(detonate_in / (1 MINUTES))] minute\s with a shield strength of [shielding_strength].")
+	. += span_notice("它将以[shielding_strength]的强度屏蔽星云[round(detonate_in / (1 MINUTES))]分钟.")
 
 /obj/machinery/nebula_shielding/emergency/get_nebula_shielding()
 	return shielding_strength //no strings attached, we will always produce shielding
@@ -85,8 +85,8 @@
 
 ///We shield against the radioactive nebula and passively generate tritium
 /obj/machinery/nebula_shielding/radiation
-	name = "radioactive nebula shielder"
-	desc = "Generates a field around the station, protecting it from a radioactive nebula."
+	name = "放射性星云屏蔽仪"
+	desc = "在产生一个磁场，保护空间站免受放射性星云影响."
 
 	icon_state = "radioactive_shielding"
 	active_icon_state = "radioactive_shielding_on"
@@ -102,7 +102,7 @@
 /obj/machinery/nebula_shielding/radiation/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Passively generates tritium. Provides [shielding_strength] levels of nebula shielding when active.")
+	. += span_notice("被动地产生氚. 激活时提供[shielding_strength]级别的星云屏蔽.")
 
 /obj/machinery/nebula_shielding/radiation/generate_reward()
 	var/turf/open/turf = get_turf(src)
@@ -120,8 +120,8 @@
 
 ///Emergency shielding so people aren't permanently in a radstorm if shit goes very wrong in engineering
 /obj/machinery/nebula_shielding/emergency/radiation
-	name = "emergency nebula radiation shielder"
-	desc = "Generates a field around the station to protect it from a radioactive nebula."
+	name = "应急放射性星云屏蔽仪"
+	desc = "在产生一个磁场，保护空间站免受放射性星云影响."
 
 	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "portgen1_1"
@@ -138,17 +138,17 @@
 
 /// Small explanation for engineering on how to set-up the radioactive nebula shielding
 /obj/item/paper/fluff/radiation_nebula
-	name = "radioactive nebula shielding"
-	default_raw_text = {"EXTREME IMPORTANCE!!!! <br>
-		Set up these radioactive nebula shielding units before the gravity generators native shielding is overwhelmed! <br>
-		Shielding units passively generate tritium, so make sure to properly ventilate/isolate the area before setting up a shielding unit!
-		More circuit boards can be ordered through cargo. Consider setting up auxillary shielding units in-case of destruction, power loss or sabotage.
+	name = "有关放射性星云屏蔽"
+	default_raw_text = {"超级重要!!!! <br>
+		在重力发生器的天然屏蔽场被压垮前，设置好这些放射性星云屏蔽装置! <br>
+		放射性星云屏蔽装置会不停地产生氚，因此在安装前确保对区域内做了适当的通风或隔离准备!
+		从货仓处能订购来更多屏蔽装置的电路板，考虑下设置备用的屏蔽装置，以应对认为破坏、断电等情况.
 	"}
 
 /// Warns medical that they can't use radioactive resonance
 /obj/item/paper/fluff/radiation_nebula_virologist
-	name = "radioactive resonance"
-	default_raw_text = {"EXTREME IMPORTANCE!!!! <br>
-		During routine bloodscreening on employees working in the nebula, we found no traces of the sympton called 'Radioactive Resonance'. <br>
-		Something inside the nebula is interfering with it, be wary of a more shallow viral genepool.
+	name = "放射性共振"
+	default_raw_text = {"重要!!!! <br>
+		对身处星云中员工进行常规血液筛查时, 我们找不到任何有关名为'放射性共振'症状的痕迹. <br>
+		星云内部有东西在干扰它, 要警惕更浅的病毒基因库.
 	"}

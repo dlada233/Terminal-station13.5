@@ -313,7 +313,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	to_chat(convertee, span_cult_bold_italic("你的血液涌动. 你的头脑抽痛. 世界溶入红色. \
 		你意识到一件非常非常可怕的事实. 现实的帷幕被无情地撕开，而邪恶扎下了根."))
 	to_chat(convertee, span_cult_bold_italic("协助你的新同伴们进行黑暗事业. \
-		你的目标就是他们的目标，而他们的目标也是你的目标. 服侍几何血尊的使命高于一切，将它带回来."))
+		你的目标就是他们的目标，而他们的目标也是你的目标. 服侍几何之血尊的使命高于一切，将它带回来."))
 
 	if(istype(human_convertee))
 		human_convertee.uncuff()
@@ -573,7 +573,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Ritual of Dimensional Rending: Calls forth the avatar of Nar'Sie upon the station.
 /obj/effect/rune/narsie
 	cultist_name = "Nar'Sie"
-	cultist_desc = "撕裂维度的阻隔，召唤出几何血尊，需要九名教徒来激活符文."
+	cultist_desc = "撕裂维度的阻隔，召唤出几何之血尊，需要九名教徒来激活符文."
 	invocation = "TOK-LYR RQA-NAP G'OLT-ULOFT!!"
 	req_cultists = 9
 	icon = 'icons/effects/96x96.dmi'
@@ -659,7 +659,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
 	var/area/place = get_area(src)
 	if(!(place in summon_objective.summon_spots))
-		to_chat(user, span_cult_large("几何血尊只能在帷幕薄弱的地方被召唤 - 比如[english_list(summon_objective.summon_spots)]!"))
+		to_chat(user, span_cult_large("几何之血尊只能在帷幕薄弱的地方被召唤 - 比如[english_list(summon_objective.summon_spots)]!"))
 		return
 	if(locate(/obj/narsie) in SSpoints_of_interest.narsies)
 		for(var/invoker in invokers)
@@ -825,7 +825,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		to_chat(user, span_warning("无血教徒可召唤!"))
 		fail_invoke()
 		return
-	var/mob/living/cultist_to_summon = tgui_input_list(user, "你想要呼唤谁至[src]?", "几何血尊追随者", cultists)
+	var/mob/living/cultist_to_summon = tgui_input_list(user, "你想要呼唤谁至[src]?", "几何之血尊追随者", cultists)
 	var/fail_logmsg = "[user]于[COORD(src)]激活召唤血教徒符文失败 - "
 	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
 		return
@@ -848,7 +848,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		fail_invoke()
 		return
 	if(!IS_CULTIST(cultist_to_summon))
-		to_chat(user, "<span class='cult italic'>[cultist_to_summon]不是几何血尊的追随者!</span>")
+		to_chat(user, "<span class='cult italic'>[cultist_to_summon]不是几何之血尊的追随者!</span>")
 		fail_logmsg += "目标不是血教徒."
 		log_game(fail_logmsg)
 		fail_invoke()
@@ -934,7 +934,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 //Rite of Spectral Manifestation: Summons a ghost on top of the rune as a cultist human with no items. User must stand on the rune at all times, and takes damage for each summoned ghost.
 /obj/effect/rune/manifest
 	cultist_name = "灵魂世界"
-	cultist_desc = "显化一个几何血尊仆人的灵魂，也允许你自己化成恶鬼. 激活者自己必须一直位于符文上，并且每召唤一个灵魂自身都会受到伤害."
+	cultist_desc = "显化一个几何之血尊的仆人的灵魂，也允许你自己化成恶鬼. 激活者自己必须一直位于符文上，并且每召唤一个灵魂自身都会受到伤害."
 	invocation = "Gal'h'rfikk harfrandid mud'gib!" //how the fuck do you pronounce this
 	icon_state = "7"
 	invoke_damage = 10
@@ -1015,7 +1015,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		new_human.key = ghost_to_spawn.key
 		var/datum/antagonist/cult/created_cultist = new_human.mind?.add_antag_datum(/datum/antagonist/cult)
 		created_cultist?.silent = TRUE
-		to_chat(new_human, span_cult_italic("<b>你是几何血尊的仆人. Nar'Sie血教让你变成了半物质的形态，你要不惜一切代价为他们服务.</b>"))
+		to_chat(new_human, span_cult_italic("<b>你是几何之血尊的仆人. Nar'Sie血教让你变成了半物质的形态，你要不惜一切代价为他们服务.</b>"))
 
 		while(!QDELETED(src) && !QDELETED(user) && !QDELETED(new_human) && (user in T))
 			if(user.stat != CONSCIOUS || HAS_TRAIT(new_human, TRAIT_CRITICAL_CONDITION))

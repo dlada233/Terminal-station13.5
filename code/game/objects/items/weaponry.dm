@@ -138,7 +138,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	)
 
 /obj/item/claymore/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is falling on [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is falling on [src]! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
@@ -463,7 +463,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	tool_behaviour = (active ? TOOL_KNIFE : NONE)
 
 /obj/item/switchblade/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is slitting [user.p_their()] own throat with [src]! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/switchblade/extended
@@ -485,9 +485,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/phone/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in user.loc)
-		user.visible_message(span_suicide("[user] begins to tie a noose with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] begins to tie a noose with [src]'s cord! 看起来是在尝试自杀!"))
 	else
-		user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]'s cord! 看起来是在尝试自杀!"))
 	return OXYLOSS
 
 /obj/item/cane

@@ -1,6 +1,6 @@
 /obj/machinery/computer/camera_advanced
 	name = "高级摄像监控台"
-	desc = "Used to access the various cameras on the station."
+	desc = "用于访问空间站的各个摄像头"
 	icon_screen = "cameras"
 	icon_keyboard = "security_key"
 	light_color = COLOR_SOFT_RED
@@ -189,7 +189,7 @@
 	return //AIs would need to disable their own camera procs to use the console safely. Bugs happen otherwise.
 
 /mob/camera/ai_eye/remote
-	name = "Inactive Camera Eye"
+	name = "未激活的摄像头视野"
 	ai_detector_visible = FALSE
 	var/sprint = 10
 	var/cooldown = 0
@@ -256,7 +256,7 @@
 		sprint = initial
 
 /datum/action/innate/camera_off
-	name = "End Camera View"
+	name = "退出摄像头视野"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 
@@ -268,7 +268,7 @@
 	console.remove_eye_control(owner)
 
 /datum/action/innate/camera_jump
-	name = "Jump To Camera"
+	name = "转跳至特定摄像头"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_jump"
 
@@ -313,7 +313,7 @@
 		playsound(origin, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE)
 
 /datum/action/innate/camera_multiz_up
-	name = "Move up a floor"
+	name = "向上一层"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "move_up"
 
@@ -327,7 +327,7 @@
 		to_chat(owner, span_notice("You couldn't move upwards!"))
 
 /datum/action/innate/camera_multiz_down
-	name = "Move down a floor"
+	name = "向下一层"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "move_down"
 

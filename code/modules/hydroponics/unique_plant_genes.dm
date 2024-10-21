@@ -607,7 +607,7 @@
 /// Corpseflower's miasma production.
 /// Can be generalized in the future to spawn any gas, but I don't think that's necessarily a good idea.
 /datum/plant_gene/trait/gas_production
-	name = "Miasma Gas Production"
+	name = "Miasma-瘴气 Gas Production"
 	description = "This plant stinks when grown."
 	icon = "wind"
 	/// The location of our tray, if we have one.

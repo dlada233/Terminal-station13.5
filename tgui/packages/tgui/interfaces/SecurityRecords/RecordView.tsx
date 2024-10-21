@@ -88,17 +88,17 @@ const RecordInfo = (props) => {
                   height="1.7rem"
                   icon="print"
                   onClick={() => setOpen(true)}
-                  tooltip="Print a rapsheet or poster."
+                  tooltip="打印记录表或者海报."
                 >
-                  Print
+                  打印
                 </Button>
               </Stack.Item>
               <Stack.Item>
                 <Button.Confirm
-                  content="Delete"
+                  content="删除"
                   icon="trash"
                   onClick={() => act('delete_record', { crew_ref: crew_ref })}
-                  tooltip="Delete record data."
+                  tooltip="删除档案数据."
                 />
               </Stack.Item>
             </Stack>
@@ -134,7 +134,7 @@ const RecordInfo = (props) => {
                   </Button>
                 );
               })}
-              label="Status"
+              label="状态"
             >
               <Box color={CRIMESTATUS2COLOR[wanted_status]}>
                 {wanted_status}
@@ -146,15 +146,15 @@ const RecordInfo = (props) => {
       <Stack.Item grow={2}>
         <Section fill scrollable>
           <LabeledList>
-            <LabeledList.Item label="Name">
+            <LabeledList.Item label="姓名">
               <EditableText field="name" target_ref={crew_ref} text={name} />
             </LabeledList.Item>
-            <LabeledList.Item label="Job">
+            <LabeledList.Item label="职业">
               <EditableText field="rank" target_ref={crew_ref} text={rank} />
             </LabeledList.Item>
             {/* <LabeledList.Item label="Age"> // ORIGINAL */}
             {/* SKYRAT EDIT CHANGE BEGIN - Chronological age */}
-            <LabeledList.Item label="Physical Age">
+            <LabeledList.Item label="生理年龄">
               {/* SKYRAT EDIT CHANGE END */}
               <RestrictedInput
                 minValue={min_age}
@@ -170,7 +170,7 @@ const RecordInfo = (props) => {
               />
             </LabeledList.Item>
             {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
-            <LabeledList.Item label="Chronological Age">
+            <LabeledList.Item label="实际年龄">
               <RestrictedInput
                 minValue={min_age}
                 maxValue={max_chrono_age}
@@ -185,21 +185,21 @@ const RecordInfo = (props) => {
               />
             </LabeledList.Item>
             {/* SKYRAT EDIT ADDITION END */}
-            <LabeledList.Item label="Species">
+            <LabeledList.Item label="种族">
               <EditableText
                 field="species"
                 target_ref={crew_ref}
                 text={species}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Gender">
+            <LabeledList.Item label="性别">
               <EditableText
                 field="gender"
                 target_ref={crew_ref}
                 text={gender}
               />
             </LabeledList.Item>
-            <LabeledList.Item color="good" label="Fingerprint">
+            <LabeledList.Item color="good" label="指纹">
               <EditableText
                 color="good"
                 field="fingerprint"
@@ -207,10 +207,10 @@ const RecordInfo = (props) => {
                 text={fingerprint}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Voice">
+            <LabeledList.Item label="声音">
               <EditableText field="voice" target_ref={crew_ref} text={voice} />
             </LabeledList.Item>
-            <LabeledList.Item label="Note">
+            <LabeledList.Item label="注释">
               <EditableText
                 field="security_note"
                 target_ref={crew_ref}
@@ -218,12 +218,12 @@ const RecordInfo = (props) => {
               />
             </LabeledList.Item>
             {/* SKYRAT EDIT START - RP Records (Not pretty but it's there) */}
-            <LabeledList.Item label="General Records">
+            <LabeledList.Item label="一般档案">
               <Box maxWidth="100%" preserveWhitespace>
                 {past_general_records || 'N/A'}
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Past Security Records">
+            <LabeledList.Item label="过往安保档案记录">
               <Box maxWidth="100%" preserveWhitespace>
                 {past_security_records || 'N/A'}
               </Box>

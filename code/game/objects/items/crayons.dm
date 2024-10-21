@@ -201,7 +201,7 @@
 	return isfloorturf(surface)
 
 /obj/item/toy/crayon/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. 看起来是在尝试自杀!"))
 	user.add_atom_colour(paint_color, ADMIN_COLOUR_PRIORITY)
 	return (BRUTELOSS|OXYLOSS)
 

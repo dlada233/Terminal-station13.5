@@ -1,5 +1,5 @@
 /area/station/holodeck
-	name = "Holodeck"
+	name = "Holodeck-全息投影室"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "Holodeck"
 	static_lighting = FALSE
@@ -47,8 +47,8 @@
 	spheres at holes, or bludgeoning people.
 */
 /area/station/holodeck/rec_center
-	name = "\improper Recreational Holodeck"
+	name = "\improper Recreational Holodeck-全息投影休闲室"
 
 // Don't move this to be organized like with most areas, theres too much touching holodeck code as is
 /area/station/holodeck/rec_center/offstation_one
-	name = "\improper Recreational Holodeck"
+	name = "\improper Recreational Holodeck-全息投影休闲室"

@@ -194,7 +194,7 @@
 			to_chat(user, span_warning("There's too many fishes, flush them down first."))
 			return
 		if(!user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("\The [attacking_item] is stuck to your hand!"))
+			to_chat(user, span_warning("\The [attacking_item] is 粘在了你的手上!"))
 			return
 		var/obj/item/fish/the_fish = attacking_item
 		if(the_fish.status == FISH_DEAD)
@@ -212,7 +212,7 @@
 			to_chat(user, span_warning("The cistern is full!"))
 			return
 		if(!user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("\The [attacking_item] is stuck to your hand, you cannot put it in the cistern!"))
+			to_chat(user, span_warning("\The [attacking_item] is 粘在了你的手上, you cannot put it in the cistern!"))
 			return
 		LAZYADD(cistern_items, attacking_item)
 		w_items += attacking_item.w_class

@@ -2,8 +2,8 @@
 //You can activate the mount with an empty hand to grab the paddles
 //Not being adjacent will cause the paddles to snap back
 /obj/machinery/defibrillator_mount
-	name = "除颤器壁挂"
-	desc = "Holds defibrillators. You can grab the paddles if one is mounted."
+	name = "除颤器壁挂架"
+	desc = "可装载除颤器. 如果安装好你能取下电极板用."
 	icon = 'icons/obj/machines/defib_mount.dmi'
 	icon_state = "defibrillator_mount"
 	density = FALSE
@@ -43,11 +43,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 /obj/machinery/defibrillator_mount/examine(mob/user)
 	. = ..()
 	if(defib)
-		. += span_notice("There is a defib unit hooked up. Alt-click to remove it.")
+		. += span_notice("除颤器安装在里面. Alt加左键取下它.")
 		if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED)
-			. += span_notice("Due to a security situation, its locking clamps can be toggled by swiping any ID.")
+			. += span_notice("由于安全情况，你可以刷动任何ID来解锁其锁定夹.")
 		else
-			. += span_notice("Its locking clamps can be [clamps_locked ? "dis" : ""]engaged by swiping an ID with access.")
+			. += span_notice("滑动任何带有访问权限的ID可以[clamps_locked ? "解锁" : "锁定"]其锁定夹.")
 
 /obj/machinery/defibrillator_mount/update_overlays()
 	. = ..()
@@ -73,30 +73,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 /obj/machinery/defibrillator_mount/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!defib)
-		to_chat(user, span_warning("There's no defibrillator unit loaded!"))
+		to_chat(user, span_warning("里面没有装载除颤器设备!"))
 		return
 	if(defib.paddles.loc != defib)
-		to_chat(user, span_warning("[defib.paddles.loc == user ? "You are already" : "Someone else is"] holding [defib]'s paddles!"))
+		to_chat(user, span_warning("[defib.paddles.loc == user ? "你已经" : "其他人"]使用了[defib]的电极板!"))
 		return
 	if(!in_range(src, user))
-		to_chat(user, span_warning("[defib]'s paddles overextend and come out of your hands!"))
+		to_chat(user, span_warning("[defib]的电极板伸的太远，从你手中脱落!"))
 		return
 	user.put_in_hands(defib.paddles)
 
 /obj/machinery/defibrillator_mount/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/defibrillator))
 		if(defib)
-			to_chat(user, span_warning("There's already a defibrillator in [src]!"))
+			to_chat(user, span_warning("[src]里已经有一台除颤器了!"))
 			return
 		var/obj/item/defibrillator/D = I
 		if(!D.get_cell())
-			to_chat(user, span_warning("Only defibrilators containing a cell can be hooked up to [src]!"))
+			to_chat(user, span_warning("只有包含电池的除颤器可以连接到[src]!"))
 			return
 		if(HAS_TRAIT(I, TRAIT_NODROP) || !user.transferItemToLoc(I, src))
-			to_chat(user, span_warning("[I] is stuck to your hand!"))
+			to_chat(user, span_warning("[I]粘在了你的手上!"))
 			return
-		user.visible_message(span_notice("[user] hooks up [I] to [src]!"), \
-		span_notice("You press [I] into the mount, and it clicks into place."))
+		user.visible_message(span_notice("[user]将[I]连接到[src]!"), \
+		span_notice("你将[I]放回支架, 卡入到位."))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		// Make sure the defib is set before processing begins.
 		defib = I
@@ -110,31 +110,31 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 	if(id)
 		if(check_access(id) || SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED) //anyone can toggle the clamps in red alert!
 			if(!defib)
-				to_chat(user, span_warning("You can't engage the clamps on a defibrillator that isn't there."))
+				to_chat(user, span_warning("没有除颤器，也无法使用锁定夹."))
 				return
 			clamps_locked = !clamps_locked
-			to_chat(user, span_notice("Clamps [clamps_locked ? "" : "dis"]engaged."))
+			to_chat(user, span_notice("锁定夹[clamps_locked ? "" : "解除"]接合."))
 			update_appearance()
 		else
-			to_chat(user, span_warning("Insufficient access."))
+			to_chat(user, span_warning("访问权限不足."))
 		return
 	..()
 
 /obj/machinery/defibrillator_mount/multitool_act(mob/living/user, obj/item/multitool)
 	..()
 	if(!defib)
-		to_chat(user, span_warning("There isn't any defibrillator to clamp in!"))
+		to_chat(user, span_warning("没有除颤器可以夹住!"))
 		return TRUE
 	if(!clamps_locked)
-		to_chat(user, span_warning("[src]'s clamps are disengaged!"))
+		to_chat(user, span_warning("[src]的锁定夹已经松开了!"))
 		return TRUE
-	user.visible_message(span_notice("[user] presses [multitool] into [src]'s ID slot..."), \
-	span_notice("You begin overriding the clamps on [src]..."))
+	user.visible_message(span_notice("[user]将[multitool]放入[src]的ID卡槽内..."), \
+	span_notice("你开始超驰[src]的锁定夹..."))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	if(!do_after(user, 10 SECONDS, target = src) || !clamps_locked)
 		return
-	user.visible_message(span_notice("[user] pulses [multitool], and [src]'s clamps slide up."), \
-	span_notice("You override the locking clamps on [src]!"))
+	user.visible_message(span_notice("[user]脉冲[multitool], [src]的锁定夹向上滑动."), \
+	span_notice("你超驰了[src]的锁定夹!"))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	clamps_locked = FALSE
 	update_appearance()
@@ -146,35 +146,35 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 	if(user.combat_mode)
 		return ..()
 	if(defib)
-		to_chat(user, span_warning("The mount can't be deconstructed while a defibrillator unit is loaded!"))
+		to_chat(user, span_warning("当里面装载有除颤器时，壁挂框架不能被拆除."))
 		..()
 		return TRUE
 	new wallframe_type(get_turf(src))
 	qdel(src)
 	tool.play_tool_sound(user)
-	to_chat(user, span_notice("You remove [src] from the wall."))
+	to_chat(user, span_notice("你从墙上取下[src]."))
 	return TRUE
 
 /obj/machinery/defibrillator_mount/click_alt(mob/living/carbon/user)
 	if(!defib)
-		to_chat(user, span_warning("It'd be hard to remove a defib unit from a mount that has none."))
+		to_chat(user, span_warning("里面压根没有除颤器."))
 		return CLICK_ACTION_BLOCKING
 	if(clamps_locked)
-		to_chat(user, span_warning("You try to tug out [defib], but the mount's clamps are locked tight!"))
+		to_chat(user, span_warning("你试图取出[defib], 但里面的锁定夹锁得很紧!"))
 		return CLICK_ACTION_BLOCKING
 	if(!user.put_in_hands(defib))
-		to_chat(user, span_warning("You need a free hand!"))
-		user.visible_message(span_notice("[user] unhooks [defib] from [src], dropping it on the floor."), \
-		span_notice("You slide out [defib] from [src] and unhook the charging cables, dropping it on the floor."))
+		to_chat(user, span_warning("你需要一只空手!"))
+		user.visible_message(span_notice("[user]将[defib]从[src]上取下, 并将其扔到了地板上."), \
+		span_notice("你从[src]取出[defib], 断开充电线，并将其扔到了地板上."))
 	else
-		user.visible_message(span_notice("[user] unhooks [defib] from [src]."), \
-		span_notice("You slide out [defib] from [src] and unhook the charging cables."))
+		user.visible_message(span_notice("[user]将[defib]与[src]断开."), \
+		span_notice("你将[defib]从[src]里取下，并断开了充电线."))
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/defibrillator_mount/charging
-	name = "PENLITE defibrillator mount"
-	desc = "Holds defibrillators. You can grab the paddles if one is mounted. This PENLITE variant also allows for slow, passive recharging of the defibrillator."
+	name = "PENLITE除颤器壁挂架"
+	desc = "可装载除颤器，方便快捷使用. PENLITE版本还能让内部除颤器缓慢充电."
 	icon_state = "penlite_mount"
 	use_power = IDLE_POWER_USE
 	wallframe_type = /obj/item/wallframe/defib_mount/charging
@@ -203,8 +203,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 
 //wallframe, for attaching the mounts easily
 /obj/item/wallframe/defib_mount
-	name = "unhooked defibrillator mount"
-	desc = "A frame for a defibrillator mount. Once placed, it can be removed with a wrench."
+	name = "未连接的除颤器壁挂架"
+	desc = "除颤器壁挂框架，一旦放置，可以用扳手将其拆除."
 	icon = 'icons/obj/machines/defib_mount.dmi'
 	icon_state = "defibrillator_mount"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
@@ -213,8 +213,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 	pixel_shift = 28
 
 /obj/item/wallframe/defib_mount/charging
-	name = "unhooked PENLITE defibrillator mount"
-	desc = "A frame for a PENLITE defibrillator mount. Unlike the normal mount, it can passively recharge the unit inside."
+	name = "未连接的PENLITE除颤器壁挂架"
+	desc = "PENLITE除颤器框架. 这个版本可以为内部除颤器缓慢充电."
 	icon_state = "penlite_mount"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 0.5)
 	result_path = /obj/machinery/defibrillator_mount/charging
@@ -222,7 +222,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 //mobile defib
 
 /obj/machinery/defibrillator_mount/mobile
-	name = "mobile defibrillator mount"
+	name = "移动式除颤器支架"
 	icon_state = "mobile"
 	anchored = FALSE
 	density = TRUE
@@ -235,10 +235,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 	if(user.combat_mode)
 		return ..()
 	if(defib)
-		to_chat(user, span_warning("The mount can't be deconstructed while a defibrillator unit is loaded!"))
+		to_chat(user, span_warning("装载除颤器时，支架无法被拆除!"))
 		..()
 		return TRUE
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "拆除中...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 5 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)

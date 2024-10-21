@@ -1,17 +1,15 @@
 import { Antagonist, Category } from '../base';
 
 export const CHANGELING_MECHANICAL_DESCRIPTION = `
-Transform yourself or others into different identities, and buy from an
-arsenal of biological weaponry with the DNA you collect.
+通过变形将自己伪装成不同的身份, 运用收集到的DNA从一整个生物武器库中选择进化.
 `;
 
 const Changeling: Antagonist = {
   key: 'changeling',
-  name: 'Changeling',
+  name: '化形',
   description: [
     `
-      A highly intelligent alien predator that is capable of altering their
-      shape to flawlessly resemble a human.
+      一种拥有高度智能的外星捕食者，能够随意改变自己外形，完美地模仿人类.
     `,
     CHANGELING_MECHANICAL_DESCRIPTION,
   ],

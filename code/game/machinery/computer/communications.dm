@@ -7,16 +7,16 @@
 #define STATE_MESSAGES "messages"
 //SKYRAT EDIT ADDITION
 GLOBAL_VAR_INIT(cops_arrived, FALSE)
-#define EMERGENCY_RESPONSE_POLICE "WOOP WOOP THAT'S THE SOUND OF THE POLICE"
-#define EMERGENCY_RESPONSE_ATMOS "DISCO INFERNO"
-#define EMERGENCY_RESPONSE_EMT "AAAAAUGH, I'M DYING, I NEEEEEEEEEED A MEDIC BAG"
+#define EMERGENCY_RESPONSE_POLICE "呜~呜~呜~ 是警察的声音"
+#define EMERGENCY_RESPONSE_ATMOS "迪斯科地狱"
+#define EMERGENCY_RESPONSE_EMT "啊啊啊, 要死了, 我需需需需需需需需需需要医疗包"
 #define EMERGENCY_RESPONSE_EMAG "AYO THE PIZZA HERE"
 //SKYRAT EDIT END
 
 // The communications computer
 /obj/machinery/computer/communications
 	name = "通讯终端"
-	desc = "A console used for high-priority announcements and emergencies."
+	desc = "用于对外联络、对内发布通知的终端."
 	icon_screen = "comm"
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_COMMAND)
@@ -134,17 +134,17 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		var/obj/item/card/emag/battlecruiser/caller_card = emag_card
 		if (user)
 			if(!IS_TRAITOR(user))
-				to_chat(user, span_danger("You get the feeling this is a bad idea."))
+				to_chat(user, span_danger("你觉得这是一个坏注意."))
 				return FALSE
 		if(battlecruiser_called)
 			if (user)
-				to_chat(user, span_danger("The card reports a long-range message already sent to the Syndicate fleet...?"))
+				to_chat(user, span_danger("卡片上显示一条远程信息已经发给了辛迪加舰队...?"))
 			return FALSE
 		battlecruiser_called = TRUE
 		caller_card.use_charge(user)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(summon_battlecruiser), caller_card.team), rand(20 SECONDS, 1 MINUTES))
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, FALSE)
-		priority_announce("Attention crew: deep-space sensors detect a Syndicate battlecruiser-class signature subspace rift forming near your station. Estimated time until arrival: three to five minutes.", "[command_name()] High-Priority Update") //SKYRAT EDIT ADDITION: announcement on battlecruiser call
+		priority_announce("全体船员请注意：深空探测器检测到辛迪加战列巡洋舰正在你方太空站附近打开子空间裂缝，预计三分钟至五分钟内到达.", "[command_name()]高优先级传讯") //SKYRAT EDIT ADDITION: announcement on battlecruiser call
 		return TRUE
 
 	if(obj_flags & EMAGGED)
@@ -152,7 +152,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 	obj_flags |= EMAGGED
 	if (authenticated)
 		authorize_access = SSid_access.get_region_access_list(list(REGION_ALL_STATION))
-	balloon_alert(user, "routing circuits scrambled")
+	balloon_alert(user, "路径回路被扰频")
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 	return TRUE
 
@@ -205,11 +205,11 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				var/obj/item/held_item = usr.get_active_held_item()
 				var/obj/item/card/id/id_card = held_item?.GetID()
 				if (!istype(id_card))
-					to_chat(usr, span_warning("You need to swipe your ID!"))
+					to_chat(usr, span_warning("你需要刷一下ID卡!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
 				if (!(ACCESS_CAPTAIN in id_card.access))
-					to_chat(usr, span_warning("You are not authorized to do this!"))
+					to_chat(usr, span_warning("你无权这么做!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
 
@@ -221,13 +221,13 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 
 			SSsecurity_level.set_level(new_sec_level)
 
-			to_chat(usr, span_notice("Authorization confirmed. Modifying security level."))
+			to_chat(usr, span_notice("授权已确认，修改安保等级."))
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
 			// Only notify people if an actual change happened
 			usr.log_message("changed the security level to [params["newSecurityLevel"]] with [src].", LOG_GAME)
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the security level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
-			deadchat_broadcast(" has changed the security level to [params["newSecurityLevel"]] with [src] at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type=DEADCHAT_ANNOUNCEMENT)
+			deadchat_broadcast(" 修改了安保等级至[params["newSecurityLevel"]]用[src]位于[span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type=DEADCHAT_ANNOUNCEMENT)
 
 			alert_level_tick += 1
 		if ("deleteMessage")
@@ -253,17 +253,17 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			var/emagged = obj_flags & EMAGGED
 			if (emagged)
 				message_syndicate(message, usr)
-				to_chat(usr, span_danger("SYSERR @l(19833)of(transmit.dm): !@$ MESSAGE TRANSMITTED TO SYNDICATE COMMAND."))
+				to_chat(usr, span_danger("SYSERR @l(19833)of(transmit.dm): !@$ 发送至辛迪加指挥部的消息."))
 			else if(syndicate)
 				message_syndicate(message, usr)
-				to_chat(usr, span_danger("Message transmitted to Syndicate Command."))
+				to_chat(usr, span_danger("发送至辛迪加指挥部的消息."))
 			else
 				message_centcom(message, usr)
-				to_chat(usr, span_notice("Message transmitted to Central Command."))
+				to_chat(usr, span_notice("发送至中央指挥部的消息."))
 
-			var/associates = (emagged || syndicate) ? "the Syndicate": "CentCom"
-			usr.log_talk(message, LOG_SAY, tag = "message to [associates]")
-			deadchat_broadcast(" has messaged [associates], \"[message]\" at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
+			var/associates = (emagged || syndicate) ? "辛迪加": "中央指挥部"
+			usr.log_talk(message, LOG_SAY, tag = "消息至 [associates]")
+			deadchat_broadcast(" 发送了消息至[associates], \"[message]\" 位于[span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("purchaseShuttle")
 			var/can_buy_shuttles_or_fail_reason = can_buy_shuttles(usr)
@@ -278,7 +278,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			if (!can_purchase_this_shuttle(shuttle))
 				return
 			if (!shuttle.prerequisites_met())
-				to_chat(usr, span_alert("You have not met the requirements for purchasing this shuttle."))
+				to_chat(usr, span_alert("你尚未达到购买此撤离飞船的要求."))
 				return
 			var/datum/bank_account/bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if (bank_account.account_balance < shuttle.credit_cost)
@@ -291,8 +291,8 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			SSshuttle.action_load(shuttle, replace = TRUE)
 			bank_account.adjust_money(-shuttle.credit_cost)
 
-			var/purchaser_name = (obj_flags & EMAGGED) ? scramble_message_replace_chars("AUTHENTICATION FAILURE: CVE-2018-17107", 60) : usr.real_name
-			minor_announce("[purchaser_name] has purchased [shuttle.name] for [shuttle.credit_cost] credits.[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Shuttle Purchase")
+			var/purchaser_name = (obj_flags & EMAGGED) ? scramble_message_replace_chars("认证失败: CVE-2018-17107", 60) : usr.real_name
+			minor_announce("[purchaser_name]购买了[shuttle.name]，花费[shuttle.credit_cost]CR.[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "撤离飞船购买")
 
 			message_admins("[ADMIN_LOOKUPFLW(usr)] purchased [shuttle.name].")
 			log_shuttle("[key_name(usr)] has purchased [shuttle.name].")
@@ -310,9 +310,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				return
 			var/reason = trim(html_encode(params["reason"]), MAX_MESSAGE_LEN)
 			nuke_request(reason, usr)
-			to_chat(usr, span_notice("Request sent."))
-			usr.log_message("has requested the nuclear codes from CentCom with reason \"[reason]\"", LOG_SAY)
-			priority_announce("The codes for the on-station nuclear self-destruct have been requested by [usr]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self-Destruct Codes Requested", SSstation.announcer.get_rand_report_sound())
+			to_chat(usr, span_notice("请求发送."))
+			usr.log_message("以 \"[reason]\" 为理由从中央指挥部处请求核自毁代码", LOG_SAY)
+			priority_announce("[usr]已请求空间站核自毁代码. 答复将很快送来.", "核自毁代码请求", SSstation.announcer.get_rand_report_sound())
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("restoreBackupRoutingData")
@@ -320,7 +320,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				return
 			if (!(obj_flags & EMAGGED))
 				return
-			to_chat(usr, span_notice("Backup routing data restored."))
+			to_chat(usr, span_notice("备份回路数据恢复."))
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			obj_flags &= ~EMAGGED
 		if ("sendToOtherSector")
@@ -432,7 +432,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				authenticated = TRUE
 				authorize_access = SSid_access.get_region_access_list(list(REGION_ALL_STATION))
 				authorize_name = "Unknown"
-				to_chat(usr, span_warning("[src] lets out a quiet alarm as its login is overridden."))
+				to_chat(usr, span_warning("[src]因其登录程序被超驰而发出一声安静的警报."))
 				playsound(src, 'sound/machines/terminal_alert.ogg', 25, FALSE)
 			else if(isliving(usr))
 				var/mob/living/L = usr
@@ -444,7 +444,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 
 			state = STATE_MAIN
 			playsound(src, 'sound/machines/terminal_on.ogg', 50, FALSE)
-			imprint_gps(gps_tag = "Encrypted Communications Channel")
+			imprint_gps(gps_tag = "加密通信频道")
 
 		if ("toggleEmergencyAccess")
 			if(emergency_access_cooldown(usr)) //if were in cooldown, dont allow the following code
@@ -455,28 +455,28 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				revoke_maint_all_access()
 				usr.log_message("disabled emergency maintenance access.", LOG_GAME)
 				message_admins("[ADMIN_LOOKUPFLW(usr)] disabled emergency maintenance access.")
-				deadchat_broadcast(" disabled emergency maintenance access at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast("关闭了应急通道权限于[span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
 			else
 				make_maint_all_access()
 				usr.log_message("enabled emergency maintenance access.", LOG_GAME)
 				message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
-				deadchat_broadcast(" enabled emergency maintenance access at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast("开启了应急通道权限于[span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
 		// Request codes for the Captain's Spare ID safe.
 		if("requestSafeCodes")
 			if(SSjob.assigned_captain)
-				to_chat(usr, span_warning("There is already an assigned Captain or Acting Captain on deck!"))
+				to_chat(usr, span_warning("已有指定的舰长和代理舰长!"))
 				return
 
 			if(SSjob.safe_code_timer_id)
-				to_chat(usr, span_warning("The safe code has already been requested and is being delivered to your station!"))
+				to_chat(usr, span_warning("安全密码请求已经确认，正在发往你方站点!"))
 				return
 
 			if(SSjob.safe_code_requested)
-				to_chat(usr, span_warning("The safe code has already been requested and delivered to your station!"))
+				to_chat(usr, span_warning("安全密码请求已经确认，已经发送至你方站点!"))
 				return
 
 			if(!SSid_access.spare_id_safe_code)
-				to_chat(usr, span_warning("There is no safe code to deliver to your station!"))
+				to_chat(usr, span_warning("没有安全密码发送至你方站点!"))
 				return
 
 			var/turf/pod_location = get_turf(src)
@@ -484,20 +484,20 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			SSjob.safe_code_request_loc = pod_location
 			SSjob.safe_code_requested = TRUE
 			SSjob.safe_code_timer_id = addtimer(CALLBACK(SSjob, TYPE_PROC_REF(/datum/controller/subsystem/job, send_spare_id_safe_code), pod_location), 120 SECONDS, TIMER_UNIQUE | TIMER_STOPPABLE)
-			minor_announce("Due to staff shortages, your station has been approved for delivery of access codes to secure the Captain's Spare ID. Delivery via drop pod at [get_area(pod_location)]. ETA 120 seconds.")
+			minor_announce("由于人员短缺, 你方站点将被提供安全密码来获取舰长备用ID. 运输仓将在[get_area(pod_location)]降落. ETA 120 秒.")
 		// SKYRAT EDIT ADDITION START
 		if ("callThePolice")
 			if(!pre_911_check(usr))
 				return
-			calling_911(usr, "Marshals", EMERGENCY_RESPONSE_POLICE)
+			calling_911(usr, "警察", EMERGENCY_RESPONSE_POLICE)
 		if ("callTheCatmos")
 			if(!pre_911_check(usr))
 				return
-			calling_911(usr, "Advanced Atmospherics", EMERGENCY_RESPONSE_ATMOS)
+			calling_911(usr, "高级大气工程师", EMERGENCY_RESPONSE_ATMOS)
 		if ("callTheParameds")
 			if(!pre_911_check(usr))
 				return
-			calling_911(usr, "EMTs", EMERGENCY_RESPONSE_EMT)
+			calling_911(usr, "应急医疗团队", EMERGENCY_RESPONSE_EMT)
 		if("callThePizza")
 			if(!(obj_flags & EMAGGED))
 				return
@@ -506,10 +506,10 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			GLOB.cops_arrived = TRUE
 			log_game("[key_name(usr)] has dialed for a pizza order from Dogginos using an emagged communications console.")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has dialed for a pizza order from Dogginos using an emagged communications console.")
-			deadchat_broadcast(" has dialed for a pizza order from Dogginos using an emagged communications console.", span_name("[usr.real_name]"), usr, message_type=DEADCHAT_ANNOUNCEMENT)
+			deadchat_broadcast("用被骇的通讯终端订了Dogginos的披萨.", span_name("[usr.real_name]"), usr, message_type=DEADCHAT_ANNOUNCEMENT)
 			GLOB.pizza_order = pick(GLOB.pizza_names)
 			call_911(EMERGENCY_RESPONSE_EMAG)
-			to_chat(usr, span_notice("Thank you for choosing Dogginos, [GLOB.pizza_order]!"))
+			to_chat(usr, span_notice("感谢您选择Dogginos, [GLOB.pizza_order]!"))
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 		if("toggleEngOverride")
 			if(emergency_access_cooldown(usr)) //if were in cooldown, dont allow the following code
@@ -519,22 +519,22 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			if (GLOB.force_eng_override)
 				toggle_eng_override()
 				usr.log_message("disabled airlock engineering override.", LOG_GAME)
-				deadchat_broadcast(" disabled airlock engineering override at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast("关闭了气闸工程超驰于[span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
 			else
 				toggle_eng_override()
 				usr.log_message("enabled airlock engineering override.", LOG_GAME)
-				deadchat_broadcast(" enabled airlock engineering override at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast("开启了气闸工程超驰于[span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr, message_type = DEADCHAT_ANNOUNCEMENT)
 		// SKYRAT EDIT ADDITION END
 /obj/machinery/computer/communications/proc/emergency_access_cooldown(mob/user)
 	if(toggle_uses == toggle_max_uses) //you have used up free uses already, do it one more time and start a cooldown
-		to_chat(user, span_warning("This was your last free use without cooldown, you will not be able to use this again for [DisplayTimeText(EMERGENCY_ACCESS_COOLDOWN)]."))
+		to_chat(user, span_warning("这是最后一次没有冷却时间的自由使用, 在[DisplayTimeText(EMERGENCY_ACCESS_COOLDOWN)]内你将无法再次使用."))
 		COOLDOWN_START(src, emergency_access_cooldown, EMERGENCY_ACCESS_COOLDOWN)
 		++toggle_uses //add a use so that this if() is false the next time you try this button
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, emergency_access_cooldown))
 		var/time_left = DisplayTimeText(COOLDOWN_TIMELEFT(src, emergency_access_cooldown), 1)
-		to_chat(user, span_warning("Emergency Access is still in cooldown for [time_left]!"))
+		to_chat(user, span_warning("应急权限仍在冷却中：[time_left]!"))
 		return TRUE //dont use the button, we are in cooldown
 	else if((last_toggled + EMERGENCY_ACCESS_COOLDOWN) < world.time)
 		toggle_uses = 0 //either cooldown is done, or we just havent touched it in 30 seconds, either way reset uses
@@ -558,10 +558,10 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 	var/name_to_send = "[CONFIG_GET(string/cross_comms_name)]([station_name()])" //SKYRAT EDIT ADDITION
 
 	send2otherserver(html_decode(name_to_send), message, "Comms_Console", destination == "all" ? null : list(destination), additional_data = payload) //SKYRAT EDIT END
-	minor_announce(message, title = "Outgoing message to allied station")
-	usr.log_talk(message, LOG_SAY, tag = "message to the other server")
+	minor_announce(message, title = "向友方空间站发送消息")
+	usr.log_talk(message, LOG_SAY, tag = "向其他服务器发送消息")
 	message_admins("[ADMIN_LOOKUPFLW(usr)] has sent a message to the other server\[s].")
-	deadchat_broadcast(" has sent an outgoing message to the other station(s).</span>", "<span class='bold'>[usr.real_name]", usr, message_type = DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("向其他空间站发送了消息(s).</span>", "<span class='bold'>[usr.real_name]", usr, message_type = DEADCHAT_ANNOUNCEMENT)
 	GLOB.communications_controller.soft_filtering = FALSE // set it to false at the end of the proc to ensure that everything prior reads as intended
 
 /obj/machinery/computer/communications/ui_data(mob/user)
@@ -616,7 +616,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				data["canLogOut"] = !HAS_SILICON_ACCESS(user)
 				data["shuttleCanEvacOrFailReason"] = SSshuttle.canEvac()
 				if(syndicate)
-					data["shuttleCanEvacOrFailReason"] = "You cannot summon the shuttle from this console!"
+					data["shuttleCanEvacOrFailReason"] = "从这个终端你无法生成飞船!"
 
 				if (authenticated_as_non_silicon_captain(user))
 					data["canMessageAssociates"] = TRUE
@@ -723,7 +723,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			return
 
 		if (isnull(send_cross_comms_message_timer))
-			to_chat(usr, span_warning("It's too late!"))
+			to_chat(usr, span_warning("太迟了!"))
 			return
 
 		deltimer(send_cross_comms_message_timer)
@@ -770,11 +770,11 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		return FALSE
 
 	if (SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE)
-		return "The shuttle is already in transit."
+		return "撤离飞船已经在路上了."
 	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_PURCHASED)
-		return "A replacement shuttle has already been purchased."
+		return "一艘替代撤离飞船已经被购买了."
 	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_FORCED)
-		return "Due to unforseen circumstances, shuttle purchasing is no longer available."
+		return "由于不可预计的情况，撤离飞船购买不可用."
 	return TRUE
 
 /// Returns whether we are authorized to buy this specific shuttle.
@@ -801,9 +801,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 /obj/machinery/computer/communications/proc/make_announcement(mob/living/user)
 	var/is_ai = HAS_SILICON_ACCESS(user)
 	if(!GLOB.communications_controller.can_announce(user, is_ai))
-		to_chat(user, span_alert("Intercomms recharging. Please stand by."))
+		to_chat(user, span_alert("无线电台充电中，请稍等."))
 		return
-	var/input = tgui_input_text(user, "Message to announce to the station crew", "Announcement")
+	var/input = tgui_input_text(user, "向空间站全体人员发布公告", "公告")
 	if(!input || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(user.try_speak(input))
@@ -814,15 +814,15 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		//No cheating, mime/random mute guy!
 		input = "..."
 		user.visible_message(
-			span_notice("[user] holds down [src]'s announcement button, leaving the mic on in awkward silence."),
-			span_notice("You leave the mic on in awkward silence..."),
-			span_hear("You hear an awkward silence, somehow."),
+			span_notice("[user]按住[src]的公告按钮, 让麦克风在尴尬的沉默中打开."),
+			span_notice("你让麦克风开着，陷入了尴尬的沉默..."),
+			span_hear("不知怎的，你听到一声尴尬的沉默."),
 			vision_distance = 4,
 		)
 
 	var/list/players = get_communication_players()
 	GLOB.communications_controller.make_announcement(user, is_ai, input, syndicate || (obj_flags & EMAGGED), players)
-	deadchat_broadcast(" made a priority announcement from [span_name("[get_area_name(usr, TRUE)]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("发送了优先公告从[span_name("[get_area_name(usr, TRUE)]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
 
 /obj/machinery/computer/communications/proc/get_communication_players()
 	return GLOB.player_list
@@ -862,10 +862,10 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 	LAZYADD(messages, new_message)
 
 /// Defines for the various hack results.
-#define HACK_PIRATE "Pirates"
-#define HACK_FUGITIVES "Fugitives"
-#define HACK_SLEEPER "Sleeper Agents"
-#define HACK_THREAT "Threat Boost"
+#define HACK_PIRATE "Pirates-海盗"
+#define HACK_FUGITIVES "Fugitives-逃亡者"
+#define HACK_SLEEPER "Sleeper Agents-潜伏特工"
+#define HACK_THREAT "Threat Boost-威胁增加"
 
 /// The minimum number of ghosts / observers to have the chance of spawning pirates.
 #define MIN_GHOSTS_FOR_PIRATES 4
@@ -890,12 +890,12 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 /obj/machinery/computer/communications/proc/can_hack(mob/living/hacker, feedback = FALSE)
 	if(machine_stat & (NOPOWER|BROKEN))
 		if(feedback && hacker)
-			balloon_alert(hacker, "can't hack!")
+			balloon_alert(hacker, "无法骇入!")
 		return FALSE
 	var/area/console_area = get_area(src)
 	if(!console_area || !(console_area.area_flags & VALID_TERRITORY))
 		if(feedback && hacker)
-			balloon_alert(hacker, "signal too weak!")
+			balloon_alert(hacker, "信号太弱!")
 		return FALSE
 	return TRUE
 
@@ -939,23 +939,23 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				/datum/dynamic_ruleset/midround/dangerous_pirates,
 			)
 			priority_announce(
-				"Attention crew: sector monitoring reports a massive jump-trace from an enemy vessel destined for your system. Prepare for imminent hostile contact.",
-				"[command_name()] High-Priority Update",
+				"全体船员请注意: 星区监控报告一艘敌舰向你们所在的星系发送了巨大的跃迁信号. 准备迎接即将到来的敌对接触.",
+				"[command_name()]高优先级传讯",
 			)
 			SSdynamic.picking_specific_rule(pick(pirate_rulesets), forced = TRUE, ignore_cost = TRUE)
 
 		if(HACK_FUGITIVES) // Triggers fugitives, which can cause confusion / chaos as the crew decides which side help
 			priority_announce(
-				"Attention crew: sector monitoring reports a jump-trace from an unidentified vessel destined for your system. Prepare for probable contact.",
-				"[command_name()] High-Priority Update",
+				"全体船员请注意: 星区监控报告一艘不明船只向你们所在星系发送了跃迁信号. 请为可能的接触做好准备",
+				"[command_name()]高优先级传讯",
 			)
 
-			force_event_after(/datum/round_event_control/fugitives, "[hacker] hacking a communications console", rand(20 SECONDS, 1 MINUTES))
+			force_event_after(/datum/round_event_control/fugitives, "[hacker]骇入通讯终端", rand(20 SECONDS, 1 MINUTES))
 
 		if(HACK_THREAT) // Force an unfavorable situation on the crew
 			priority_announce(
-				"Attention crew, the Nanotrasen Department of Intelligence has received intel suggesting increased enemy activity in your sector beyond that initially reported in today's threat advisory.",
-				"[command_name()] High-Priority Update",
+				"全体船员请注意: 纳米传讯情报部门根据情报分析，你们所在的区域内的敌对活动将比早先时候预计的要多.",
+				"[command_name()]高优先级传讯",
 			)
 
 			for(var/mob/crew_member as anything in GLOB.player_list)
@@ -981,8 +981,8 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			else
 				// We spawned some sleeper agents, nice - give them a report to kickstart the paranoia
 				priority_announce(
-					"Attention crew, it appears that someone on your station has hijacked your telecommunications and broadcasted an unknown signal.",
-					"[command_name()] High-Priority Update",
+					"全体船员请注意: 你们站上的通讯设备遭到某人劫持并向站内广播了一条未知信号.",
+					"[command_name()]高优先级传讯",
 				)
 
 #undef HACK_PIRATE

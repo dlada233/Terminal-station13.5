@@ -490,7 +490,7 @@
 
 /obj/item/shuttle_curse
 	name = "诅咒之球"
-	desc = "你凝视着这颗烟雾弥漫的球体，瞥见了应急逃生穿梭机的可怕命运."
+	desc = "你凝视着这颗烟雾弥漫的球体，瞥见了撤离飞船的可怕命运."
 	icon = 'icons/obj/antags/cult/items.dmi'
 	icon_state = "shuttlecurse"
 	///how many times has the shuttle been cursed so far?
@@ -508,7 +508,7 @@
 		return
 	if(totalcurses >= MAX_SHUTTLE_CURSES)
 		to_chat(user, span_warning("你试图打碎这颗球体，但它如岩石一样坚固!"))
-		to_chat(user, span_danger(span_big("看来血教已经耗尽了诅咒应急逃生穿梭机的能力，制造更多魔法球或者继续试图粉碎这个魔法球都是没有用的.")))
+		to_chat(user, span_danger(span_big("看来血教已经耗尽了诅咒撤离飞船的能力，制造更多魔法球或者继续试图粉碎这个魔法球都是没有用的.")))
 		return
 	if(locate(/obj/narsie) in SSpoints_of_interest.narsies)
 		to_chat(user, span_warning("Nar'Sie已经在这架穿梭机上了，结局不会有延误."))
@@ -543,14 +543,14 @@
 
 		var/curse_message = pick_n_take(remaining_curses) || "有些事情出现了可怕的问题..."
 
-		curse_message += " 穿梭机将晚点三分钟."
+		curse_message += " 撤离飞船将晚点三分钟."
 		priority_announce("[curse_message]", "系统错误", 'sound/misc/notice1.ogg')
 		if(MAX_SHUTTLE_CURSES-totalcurses <= 0)
-			to_chat(user, span_danger(span_big("你感到应急逃生穿梭机已经不能再被诅咒了，制造更多的诅咒魔法球也没有用了.")))
+			to_chat(user, span_danger(span_big("你感到撤离飞船已经不能再被诅咒了，制造更多的诅咒魔法球也没有用了.")))
 		else if(MAX_SHUTTLE_CURSES-totalcurses == 1)
-			to_chat(user, span_danger(span_big("你感到应急逃生穿梭机只能再被诅咒一次了.")))
+			to_chat(user, span_danger(span_big("你感到撤离飞船只能再被诅咒一次了.")))
 		else
-			to_chat(user, span_danger(span_big("你感到应急逃生穿梭机只能再被诅咒[MAX_SHUTTLE_CURSES-totalcurses]次了.")))
+			to_chat(user, span_danger(span_big("你感到撤离飞船只能再被诅咒[MAX_SHUTTLE_CURSES-totalcurses]次了.")))
 
 		if(totalcurses >= MAX_SHUTTLE_CURSES && (world.time < first_curse_time + SHUTTLE_CURSE_OMFG_TIMESPAN))
 			var/omfg_message = pick_list(CULT_SHUTTLE_CURSE, "omfg_announce") || "别来烦我!"
@@ -657,7 +657,7 @@
 		if(cult_mind.current?.stat != DEAD)
 			cultists |= cult_mind.current
 
-	var/mob/living/cultist_to_receive = tgui_input_list(user, "你希望呼唤谁到[src]?", "几何血尊追随者", (cultists - user))
+	var/mob/living/cultist_to_receive = tgui_input_list(user, "你希望呼唤谁到[src]?", "几何之血尊追随者", (cultists - user))
 	if(QDELETED(src) || loc != user || user.incapacitated())
 		return ITEM_INTERACT_BLOCKING
 	if(isnull(cultist_to_receive))
@@ -667,7 +667,7 @@
 		to_chat(user, span_cult_italic("[cultist_to_receive]已经死了!"))
 		return ITEM_INTERACT_BLOCKING
 	if(!(cultist_to_receive.mind in cult_team.members))
-		to_chat(user, span_cult_italic("[cultist_to_receive]不是几何血尊追随者!"))
+		to_chat(user, span_cult_italic("[cultist_to_receive]不是几何之血尊追随者!"))
 		return ITEM_INTERACT_BLOCKING
 	if(!isturf(interacting_with.loc))
 		to_chat(user, span_cult_italic("[interacting_with]必须在一个表面上才能传送它!"))

@@ -1,6 +1,6 @@
 /obj/machinery/recharge_station
 	name = "充电站"
-	desc = "This device recharges energy dependent lifeforms, like cyborgs, ethereals and MODsuit users."
+	desc = "这台装置能为依赖电能的生命形式充电，如赛博、光灵还有模块服使用者."
 	icon = 'icons/obj/machines/borg_charger.dmi'
 	icon_state = "borgcharger0"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.1
@@ -81,11 +81,11 @@
 /obj/machinery/recharge_station/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Recharging: <b>[display_power(recharge_speed, convert = FALSE)]</b>.")
+		. += span_notice("状态读数显示: 充电效率: <b>[display_power(recharge_speed, convert = FALSE)]</b>.")
 		if(materials.silo)
-			. += span_notice("The ore silo link indicator is lit, and cyborg restocking can be toggled by <b>Right-Clicking</b> [src].")
+			. += span_notice("矿石筒仓连接指示灯亮起, <b>右键</b>[src]补进存货.")
 		if(repairs)
-			. += span_notice("[src] has been upgraded to support automatic repairs.")
+			. += span_notice("[src]已升级为支持自动维修.")
 
 /obj/machinery/recharge_station/on_set_is_operational(old_value)
 	if(old_value) //Turned off
@@ -129,20 +129,20 @@
 /obj/machinery/recharge_station/proc/toggle_restock(mob/user)
 	if(sendmats)
 		sendmats = FALSE
-		say("Restocking from ore silo: disabled.")
+		say("从矿石筒仓补货: 关闭.")
 		return
 	if(state_open || !occupant)
 		return
 	if(!iscyborg(occupant))
 		return
 	if(!materials.silo)
-		say("Error: ore silo connection offline.")
+		say("错误: 矿石筒仓连接离线.")
 		return
 	if(materials.on_hold())
-		say("Error: ore silo access denied.")
+		say("错误: 矿石筒仓访问被拒绝.")
 		return FALSE
 	sendmats = TRUE
-	say("Restocking from ore silo: enabled.")
+	say("从矿石筒仓补货: 开启.")
 
 /obj/machinery/recharge_station/interact(mob/user)
 	toggle_open()

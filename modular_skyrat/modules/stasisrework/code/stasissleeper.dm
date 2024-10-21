@@ -122,7 +122,7 @@
 	if(.)
 		return
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src]当前已被占用!"))
 		return
 	if(state_open)
 		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))

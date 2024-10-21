@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/order_console/mining
 	name = "采矿设备订货终端"
-	desc = "An equipment shop for miners, points collected at an ore redemption machine can be spent here."
+	desc = "采矿装备商店，在矿石熔炼机中获得的点数可以在这里消费."
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "mining"
 	icon_keyboard = null

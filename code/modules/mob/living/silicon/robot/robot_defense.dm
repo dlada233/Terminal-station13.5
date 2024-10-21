@@ -168,7 +168,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 			to_chat(user, span_warning("The headlamp is already functional!"))
 			return
 		if(!user.temporarilyRemoveItemFromInventory(W))
-			to_chat(user, span_warning("[W] seems to be stuck to your hand. You'll have to find a different light."))
+			to_chat(user, span_warning("[W] seems to be 粘在了你的手上. You'll have to find a different light."))
 			return
 		lamp_functional = TRUE
 		qdel(W)

@@ -52,7 +52,7 @@
 	var/n2o_sleep_min = 5 //Sleeping agent
 	var/BZ_trip_balls_min = 1 //BZ gas
 	var/BZ_brain_damage_min = 10 //Give people some room to play around without killing the station
-	var/gas_stimulation_min = 0.002 // For, Pluoxium, Nitrium and Freon
+	var/gas_stimulation_min = 0.002 // For, Pluoxium-钷, Nitrium-亚硝基兴奋气体 and Freon-氟利昂
 	///Minimum amount of healium to make you unconscious for 4 seconds
 	var/healium_para_min = 3
 	///Minimum amount of healium to knock you down for good
@@ -281,7 +281,7 @@
 		var/existing = breather.reagents.get_reagent_amount(/datum/reagent/pluoxium)
 		breather.reagents.add_reagent(/datum/reagent/pluoxium, max(0, 1 - existing))
 
-/// If the lungs need Nitrogen to breathe properly, N2 is exchanged with CO2.
+/// If the lungs need Nitrogen-氮气 to breathe properly, N2 is exchanged with CO2.
 /obj/item/organ/internal/lungs/proc/breathe_nitro(mob/living/carbon/breather, datum/gas_mixture/breath, nitro_pp, old_nitro_pp)
 	if(nitro_pp < safe_nitro_min && !HAS_TRAIT(src, TRAIT_SPACEBREATHING))
 		// Suffocation side-effects.
@@ -386,7 +386,7 @@
 
 /// Breathing in refridgerator coolent, shit's caustic
 /obj/item/organ/internal/lungs/proc/too_much_freon(mob/living/carbon/breather, datum/gas_mixture/breath, freon_pp, old_freon_pp)
-	// Inhale Freon. Exhale nothing.
+	// Inhale Freon-氟利昂. Exhale nothing.
 	breathe_gas_volume(breath, /datum/gas/freon)
 	if (freon_pp > gas_stimulation_min)
 		breather.reagents.add_reagent(/datum/reagent/freon, 1)
@@ -403,7 +403,7 @@
 
 /// Breathing in halon, convert it to a reagent
 /obj/item/organ/internal/lungs/proc/too_much_halon(mob/living/carbon/breather, datum/gas_mixture/breath, halon_pp, old_halon_pp)
-	// Inhale Halon. Exhale nothing.
+	// Inhale Halon-哈龙. Exhale nothing.
 	breathe_gas_volume(breath, /datum/gas/halon)
 	// Metabolize to reagent.
 	if(halon_pp > gas_stimulation_min)
@@ -546,7 +546,7 @@
 
 	// Random chance to inflict side effects increases with pressure.
 	if((prob(nitrium_pp) && (nitrium_pp > 15)))
-		// Nitrium side-effect.
+		// Nitrium-亚硝基兴奋气体 side-effect.
 		breather.adjustOrganLoss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
 		to_chat(breather, "<span class='notice'>You feel a burning sensation in your chest</span>")
 	// Metabolize to reagents.
@@ -561,7 +561,7 @@
 /obj/item/organ/internal/lungs/proc/too_much_tritium(mob/living/carbon/breather, datum/gas_mixture/breath, trit_pp, old_trit_pp)
 	var/gas_breathed = breathe_gas_volume(breath, /datum/gas/tritium)
 	var/moles_visible = GLOB.meta_gas_info[/datum/gas/tritium][META_GAS_MOLES_VISIBLE] * BREATH_PERCENTAGE
-	// Tritium side-effects.
+	// Tritium-氚 side-effects.
 	if(gas_breathed > moles_visible)
 		var/ratio = gas_breathed * 15
 		breather.adjustToxLoss(clamp(ratio, MIN_TOXIC_GAS_DAMAGE, MAX_TOXIC_GAS_DAMAGE))

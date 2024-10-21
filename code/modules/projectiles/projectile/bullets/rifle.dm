@@ -109,7 +109,7 @@
 	shrapnel_type = /obj/item/ammo_casing/rebar/hydrogen
 
 /obj/projectile/bullet/rebar/healium
-	name = "healium bolt"
+	name = "healium-疗气 bolt"
 	icon_state = "rebar_healium"
 	damage = 0
 	speed = 0.4

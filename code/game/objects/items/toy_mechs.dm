@@ -216,7 +216,7 @@
 		to_chat(user, span_notice("[src] is in battle, let it finish first."))
 		return
 
-	user.visible_message(span_suicide("[user] begins a fight [user.p_they()] can't win with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins a fight [user.p_they()] can't win with [src]! 看起来是在尝试自杀!"))
 
 	in_combat = TRUE
 	sleep(1.5 SECONDS)

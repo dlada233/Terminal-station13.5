@@ -27,7 +27,7 @@
 	var/datum/weakref/toppaper_ref
 
 /obj/item/clipboard/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins putting [user.p_their()] head into the clip of \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins putting [user.p_their()] head into the clip of \the [src]! 看起来是在尝试自杀!"))
 	return BRUTELOSS //The clipboard's clip is very strong. Industrial duty. Can kill a man easily.
 
 /obj/item/clipboard/Initialize(mapload)

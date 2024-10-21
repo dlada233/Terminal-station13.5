@@ -417,7 +417,7 @@
 	update_appearance()
 
 /obj/item/shockpaddles/suicide_act(mob/living/user)
-	user.visible_message(span_danger("[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_danger("[user] is putting the live paddles on [user.p_their()] chest! 看起来是在尝试自杀!"))
 	if(req_defib)
 		defib.deductcharge(revivecost)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, TRUE, -1)

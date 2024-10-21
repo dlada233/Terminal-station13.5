@@ -2,8 +2,8 @@
  * Simple admin tool that enables players to be assigned to a VERY SHITTY, very visually distinct team, quickly and affordably.
  */
 /obj/machinery/teambuilder
-	name = "Teambuilding Machine"
-	desc = "A machine that, when passed, colors you based on the color of your team. Lead free!"
+	name = "组队机"
+	desc = "当你通过它时，会根据团队颜色给你上色! 无毒无害!"
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "lpad-idle"
 	density = FALSE
@@ -45,15 +45,15 @@
 		Radio.set_frequency(team_radio)
 
 /obj/machinery/teambuilder/red
-	name = "Teambuilding Machine (Red)"
-	desc = "A machine that, when passed, colors you based on the color of your team. Go red team!"
+	name = "组队机 (红)"
+	desc = "当你通过它时，会根据团队颜色给你上色! 红队加油!"
 	humans_only = TRUE
 	team_color = COLOR_RED
 	team_radio = FREQ_CTF_RED
 
 /obj/machinery/teambuilder/blue
-	name = "Teambuilding Machine (Blue)"
-	desc = "A machine that, when passed, colors you based on the color of your team. Go blue team!"
+	name = "组队机 (蓝)"
+	desc = "当你通过它时，会根据团队颜色给你上色! 蓝队加油!"
 	humans_only = TRUE
 	team_color = COLOR_BLUE
 	team_radio = FREQ_CTF_BLUE

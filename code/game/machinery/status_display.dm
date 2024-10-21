@@ -12,7 +12,7 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /// Status display which can show images and scrolling text.
 /obj/machinery/status_display
-	name = "status display"
+	name = "状态显示板"
 	desc = null
 	icon = 'icons/obj/machines/status_display.dmi' //// SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "frame"
@@ -38,8 +38,8 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 	var/header_text_color = COLOR_DISPLAY_PURPLE
 
 /obj/item/wallframe/status_display
-	name = "status display frame"
-	desc = "Used to build status displays, just secure to the wall."
+	name = "状态显示板框架"
+	desc = "等待组装为状态显示板，挂到墙上使用."
 	icon_state = "unanchoredstatusdisplay"
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 7, /datum/material/glass= SHEET_MATERIAL_AMOUNT * 4)
 	result_path = /obj/machinery/status_display/evac
@@ -52,11 +52,11 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /obj/machinery/status_display/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "解除" : ""]固定...")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		balloon_alert(user, "[anchored ? "un" : ""]secured")
+		balloon_alert(user, "已[anchored ? "解除" : ""]固定")
 		deconstruct()
 		return TRUE
 
@@ -64,12 +64,12 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理!")
 		return TRUE
-	user.balloon_alert_to_viewers("repairing display...", "repairing...")
+	user.balloon_alert_to_viewers("修理显示器...", "修理中...")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "修理完成")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -440,7 +440,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 
 /// General-purpose shuttle status display.
 /obj/machinery/status_display/shuttle
-	name = "shuttle display"
+	name = "飞船显示板"
 	current_mode = SD_MESSAGE
 	var/shuttle_id
 
@@ -471,8 +471,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 
 /// Pictograph display which the AI can use to emote.
 /obj/machinery/status_display/ai
-	name = "\improper AI display"
-	desc = "A small screen which the AI can use to present itself."
+	name = "\improper AI显示板"
+	desc = "一面AI用来展示自己的小屏幕."
 	current_mode = SD_PICTURE
 	var/emotion = AI_DISPLAY_DONT_GLOW
 
@@ -502,8 +502,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, 32)
 	return PROCESS_KILL
 
 /obj/item/circuit_component/status_display
-	display_name = "Status Display"
-	desc = "Output text and pictures to a status display."
+	display_name = "状态显示板"
+	desc = "输出显示文本或图片."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	var/datum/port/input/option/command
@@ -522,32 +522,32 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, 32)
 
 /obj/item/circuit_component/status_display/populate_options()
 	var/static/list/command_options = list(
-		"Blank" = "blank",
-		"Shuttle" = "shuttle",
-		"Message" = "message",
-		"Alert" = "alert"
+		"空白" = "blank",
+		"撤离飞船" = "shuttle",
+		"信息" = "message",
+		"警报" = "alert"
 	)
 
 	var/static/list/picture_options = list(
-		"Default" = "default",
-		"Delta Alert" = "deltaalert",
-		"Red Alert" = "redalert",
-		"Blue Alert" = "bluealert",
-		"Green Alert" = "greenalert",
-		"Violet Alert" = "violetalert", // SKYRAT EDIT ADD - Alert Levels
-		"Orange Alert" = "orangealert", // SKYRAT EDIT ADD - Alert Levels
-		"Amber Alert" = "amberalert", // SKYRAT EDIT ADD - Alert Levels
-		"Gamma Alert" = "gammaalert", // SKYRAT EDIT ADD - Alert Levels
-		"Biohazard" = "biohazard",
-		"Lockdown" = "lockdown",
-		"Radiation" = "radiation",
-		"Happy" = "ai_happy",
-		"Neutral" = "ai_neutral",
-		"Very Happy" = "ai_veryhappy",
-		"Sad" = "ai_sad",
-		"Unsure" = "ai_unsure",
-		"Confused" = "ai_confused",
-		"Surprised" = "ai_surprised",
+		"默认" = "default",
+		"Delta警报" = "deltaalert",
+		"红色警报" = "redalert",
+		"蓝色警报" = "bluealert",
+		"绿色警报" = "greenalert",
+		"紫罗兰色警报" = "violetalert", // SKYRAT EDIT ADD - Alert Levels
+		"橙色警报" = "orangealert", // SKYRAT EDIT ADD - Alert Levels
+		"琥珀色警报" = "amberalert", // SKYRAT EDIT ADD - Alert Levels
+		"伽马警报" = "gammaalert", // SKYRAT EDIT ADD - Alert Levels
+		"生物危害" = "biohazard",
+		"封锁" = "lockdown",
+		"辐射" = "radiation",
+		"开心" = "ai_happy",
+		"一般" = "ai_neutral",
+		"非常开心" = "ai_veryhappy",
+		"悲伤" = "ai_sad",
+		"不确定" = "ai_unsure",
+		"困惑" = "ai_confused",
+		"惊喜" = "ai_surprised",
 		"BSOD" = "ai_bsod"
 	)
 

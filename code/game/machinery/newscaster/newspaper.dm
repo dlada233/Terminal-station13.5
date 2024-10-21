@@ -5,15 +5,15 @@
  */
 /obj/item/newspaper
 	name = "报纸"
-	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
+	desc = "《狮鹫报》的某一期，只在纳米传讯空间站上发行."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "newspaper"
 	inhand_icon_state = "newspaper"
 	lefthand_file = 'icons/mob/inhands/items/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/books_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb_continuous = list("baps")
-	attack_verb_simple = list("bap")
+	attack_verb_continuous = list("拍")
+	attack_verb_simple = list("拍")
 	resistance_flags = FLAMMABLE
 
 	///List of news feeed channels the newspaper can see.
@@ -56,22 +56,21 @@
 /obj/item/newspaper/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(held_item)
 		if(IS_WRITING_UTENSIL(held_item))
-			context[SCREENTIP_CONTEXT_LMB] = "Scribble"
+			context[SCREENTIP_CONTEXT_LMB] = "乱写"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(held_item.get_temperature())
-			context[SCREENTIP_CONTEXT_LMB] = "Burn"
+			context[SCREENTIP_CONTEXT_LMB] = "烧毁"
 			return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/newspaper/suicide_act(mob/living/user)
 	user.visible_message(span_suicide(\
-		"[user] is focusing intently on [src]! It looks like [user.p_theyre()] trying to commit sudoku... \
-		until [user.p_their()] eyes light up with realization!"\
+		"[user]正专注于[src]! 看起来正在填写数独游戏...直到其眼睛亮了起来!"\
 	))
 	user.say(";JOURNALISM IS MY CALLING! EVERYBODY APPRECIATES UNBIASED REPORTI-GLORF", forced = "newspaper suicide")
 	var/obj/item/reagent_containers/cup/glass/bottle/whiskey/last_drink = new(user.loc)
 	playsound(user, 'sound/items/drink.ogg', vol = rand(10, 50), vary = TRUE)
 	last_drink.reagents.trans_to(user, last_drink.reagents.total_volume, transferred_by = user)
-	user.visible_message(span_suicide("[user] downs the contents of [last_drink.name] in one gulp! Shoulda stuck to sudoku!"))
+	user.visible_message(span_suicide("[user]一口气下载了[last_drink.name]的内容! 沉迷数独，不可自拔!"))
 	return TOXLOSS
 
 /obj/item/newspaper/attackby(obj/item/attacking_item, mob/user, params)
@@ -82,16 +81,16 @@
 	if(!user.can_write(attacking_item))
 		return ..()
 	if(scribble_page == current_page)
-		user.balloon_alert(user, "already scribbled!")
+		user.balloon_alert(user, "已经被乱写了!")
 		return
-	var/new_scribble_text = tgui_input_text(user, "What do you want to scribble?", "Write something")
+	var/new_scribble_text = tgui_input_text(user, "你想乱写些什么上去?", "写点什么")
 	if(isnull(new_scribble_text))
 		return
 	add_fingerprint(user)
-	user.balloon_alert(user, "scribbling...")
+	user.balloon_alert(user, "乱涂乱画中...")
 	if(!do_after(user, 2 SECONDS, src))
 		return
-	user.balloon_alert(user, "scribbled!")
+	user.balloon_alert(user, "完成了!")
 	scribble_page = current_page
 	scribble_text = new_scribble_text
 

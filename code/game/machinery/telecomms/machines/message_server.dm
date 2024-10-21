@@ -1,6 +1,6 @@
 // A decorational representation of SSblackbox, usually placed alongside the message server. Also contains a traitor theft item.
 /obj/machinery/blackbox_recorder
-	name = "Blackbox Recorder"
+	name = "黑匣子记录仪"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "blackbox"
 	density = TRUE
@@ -27,20 +27,20 @@
 		if(Adjacent(user))
 			user.put_in_hands(stored)
 		stored = null
-		to_chat(user, span_notice("You remove the blackbox from [src]. The tapes stop spinning."))
+		to_chat(user, span_notice("你从[src]移除了黑匣子. 磁带停止了转动."))
 		update_appearance()
 		return
 	else
-		to_chat(user, span_warning("It seems that the blackbox is missing..."))
+		to_chat(user, span_warning("黑匣子不见了..."))
 		return
 
 /obj/machinery/blackbox_recorder/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(istype(attacking_item, /obj/item/blackbox))
 		if(HAS_TRAIT(attacking_item, TRAIT_NODROP) || !user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("[attacking_item] is stuck to your hand!"))
+			to_chat(user, span_warning("[attacking_item]粘在了你的手上!"))
 			return
-		user.visible_message(span_notice("[user] clicks [attacking_item] into [src]!"), \
-		span_notice("You press the device into [src], and it clicks into place. The tapes begin spinning again."))
+		user.visible_message(span_notice("[user]把[attacking_item]安进[src]!"), \
+		span_notice("你将设备安进[src]. 磁带又开始转动."))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		stored = attacking_item
 		update_appearance()
@@ -58,8 +58,8 @@
 	return ..()
 
 /obj/item/blackbox
-	name = "\proper the blackbox"
-	desc = "A strange relic, capable of recording data on extradimensional vertices. It lives inside the blackbox recorder for safe keeping."
+	name = "\proper 黑匣子"
+	desc = "奇怪的“relic”, 能够记录超纬度至高点的数据，为了安全起见，它放在黑匣子记录仪里."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "blackcube"
 	inhand_icon_state = "blackcube"
@@ -76,8 +76,8 @@
  * require the message server.
  */
 /obj/machinery/telecomms/message_server
-	name = "Messaging Server"
-	desc = "A machine that processes and routes PDA and request console messages."
+	name = "消息服务器"
+	desc = "处理和路由PDA以及请求控制台消息的机器."
 	icon_state = "message_server"
 	telecomms_type = /obj/machinery/telecomms/message_server
 	density = TRUE
@@ -97,16 +97,16 @@
 	var/calibrating = 15 MINUTES
 
 
-#define MESSAGE_SERVER_FUNCTIONING_MESSAGE "This is an automated message. The messaging system is functioning correctly."
+#define MESSAGE_SERVER_FUNCTIONING_MESSAGE "这是一条自动消息. 消息系统工作正常."
 
 /obj/machinery/telecomms/message_server/Initialize(mapload)
 	. = ..()
 	if (calibrating)
 		calibrating += world.time
-		say("Calibrating... Estimated wait time: [rand(3, 9)] minutes.")
-		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", "This is an automated message. System calibration started at [station_time_timestamp()].")
+		say("正在校准... 预计等待时间: [rand(3, 9)] 分钟.")
+		pda_msgs += new /datum/data_tablet_msg("系统管理员", "系统", "这是一条自动消息. 系统校准开始于[station_time_timestamp()].")
 	else
-		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
+		pda_msgs += new /datum/data_tablet_msg("系统管理员", "系统", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
 
 /obj/machinery/telecomms/message_server/Destroy()
 	for(var/obj/machinery/computer/message_monitor/monitor in GLOB.telecomms_list)
@@ -117,13 +117,13 @@
 /obj/machinery/telecomms/message_server/examine(mob/user)
 	. = ..()
 	if(calibrating)
-		. += span_warning("It's still calibrating.")
+		. += span_warning("它仍在校准中.")
 
 /obj/machinery/telecomms/message_server/process()
 	. = ..()
 	if(calibrating && calibrating <= world.time)
 		calibrating = 0
-		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
+		pda_msgs += new /datum/data_tablet_msg("系统管理员", "系统", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
 
 #undef MESSAGE_SERVER_FUNCTIONING_MESSAGE
 
@@ -155,7 +155,7 @@
 
 // Preset messaging server
 /obj/machinery/telecomms/message_server/preset
-	id = "Messaging Server"
+	id = "消息服务器"
 	network = "tcommsat"
 	autolinkers = list("messaging")
 	calibrating = 0
@@ -171,8 +171,8 @@ GLOBAL_VAR(preset_station_message_server_key)
 		decryptkey = GLOB.preset_station_message_server_key
 		return
 	//Generate a random password for the message server
-	decryptkey = pick("the", "if", "of", "as", "in", "a", "you", "from", "to", "an", "too", "little", "snow", "dead", "drunk", "rosebud", "duck", "al", "le")
-	decryptkey += pick("diamond", "beer", "mushroom", "assistant", "clown", "captain", "twinkie", "security", "nuke", "small", "big", "escape", "yellow", "gloves", "monkey", "engine", "nuclear", "ai")
+	decryptkey = pick("此", "如果", "之", "因为", "之于", "双", "你我", "来自", "去往", "单", "也", "微小", "落雪", "死亡", "醉酒", "玫瑰", "小鸭", "哎", "嘞")
+	decryptkey += pick("钻石", "狗熊", "蘑菇", "助手", "小丑", "舰长", "蛋糕", "安保", "核武", "小", "大", "撤离", "明黄", "手套", "猿猴", "引擎", "核弹", "AI")
 	decryptkey += "[rand(0, 9)]"
 	if(is_on_station)
 		GLOB.preset_station_message_server_key = decryptkey
@@ -200,7 +200,7 @@ GLOBAL_VAR(preset_station_message_server_key)
 /// Returns a string representing the target of this message, formatted properly.
 /datum/signal/subspace/messaging/tablet_message/proc/format_target()
 	if (data["everyone"])
-		return "Everyone"
+		return "每个人"
 
 	var/datum/computer_file/program/messenger/target_app = data["targets"][1]
 	var/obj/item/modular_computer/target = target_app.computer
@@ -235,11 +235,11 @@ GLOBAL_VAR(preset_station_message_server_key)
 /// Log datums stored by the message server.
 /datum/data_tablet_msg
 	/// Who sent the message.
-	var/sender = "Unspecified"
+	var/sender = "未指定"
 	/// Who was targeted by the message.
-	var/recipient = "Unspecified"
+	var/recipient = "未指定"
 	/// The transfered message.
-	var/message = "Blank"
+	var/message = "空白"
 	/// The attached photo path, if any.
 	var/picture_asset_key
 	/// Whether or not it's an automated message. Defaults to `FALSE`.
@@ -257,23 +257,23 @@ GLOBAL_VAR(preset_station_message_server_key)
 		picture_asset_key = param_photo
 
 
-#define REQUEST_PRIORITY_NORMAL "Normal"
-#define REQUEST_PRIORITY_HIGH "High"
-#define REQUEST_PRIORITY_EXTREME "Extreme"
-#define REQUEST_PRIORITY_UNDETERMINED "Undetermined"
+#define REQUEST_PRIORITY_NORMAL "正常"
+#define REQUEST_PRIORITY_HIGH "高"
+#define REQUEST_PRIORITY_EXTREME "极度"
+#define REQUEST_PRIORITY_UNDETERMINED "未确定"
 
 
 /datum/data_rc_msg
 	/// The department that sent the request.
-	var/sender_department = "Unspecified"
+	var/sender_department = "未指定"
 	/// The department that was targeted by the request.
-	var/receiving_department = "Unspecified"
+	var/receiving_department = "未指定"
 	/// The message of the request.
-	var/message = "Blank"
+	var/message = "空白"
 	/// The stamp that authenticated this message, if any.
-	var/stamp = "Unstamped"
+	var/stamp = "未盖章的"
 	/// The ID that authenticated this message, if any.
-	var/id_auth = "Unauthenticated"
+	var/id_auth = "未经验证的"
 	/// The priority of this request.
 	var/priority = REQUEST_PRIORITY_NORMAL
 

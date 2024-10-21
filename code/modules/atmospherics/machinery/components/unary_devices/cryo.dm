@@ -536,8 +536,8 @@
 	if(do_after(user, CRYO_BREAKOUT_TIME, target = src, hidden = TRUE))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功突破了[src]!"), \
+			span_notice("你成功突破了[src]!"))
 		open_machine()
 
 /obj/machinery/cryo_cell/ui_state(mob/user)

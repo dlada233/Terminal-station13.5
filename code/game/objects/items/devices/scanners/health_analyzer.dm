@@ -212,7 +212,7 @@
 					var/datum/brain_trauma/severe/death_consequences/consequences_trauma = trauma
 					death_consequences_status_text = consequences_trauma.get_health_analyzer_link_text(user)
 				// SKYRAT EDIT ADDITION END: Death Consequences Quirk
-			render_list += "<span class='alert ml-1'>检测到颅脑损伤,该对象可能患有[english_list(trauma_text)].</span>\n"
+			render_list += "<span class='alert ml-1'>检测到神经创伤,该对象可能患有[english_list(trauma_text)].</span>\n"
 		if(carbontarget.quirks.len)
 			render_list += "<span class='info ml-1'>主要障碍: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY, from_scan = TRUE)].</span>\n"
 			if(advanced)

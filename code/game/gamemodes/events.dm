@@ -7,7 +7,7 @@
  * but the crew themselves can return power via the engine, solars, or other means of creating power.
  */
 /proc/power_failure()
-	priority_announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", ANNOUNCER_POWEROFF)
+	priority_announce("在 [station_name()] 的电网中检测到异常活动，出于预防目的，站点电力将被关闭一段不确定的时间.", "重大电源故障", ANNOUNCER_POWEROFF)
 	var/list/all_smes = SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/smes)
 	for(var/obj/machinery/power/smes/smes as anything in all_smes)
 		if(istype(get_area(smes), /area/station/ai_monitored/turret_protected) || !is_station_level(smes.z))
@@ -45,7 +45,7 @@
  * Magically fills ALL APCs and SMESs to capacity, and restores power to depowered areas.
  */
 /proc/power_restore()
-	priority_announce("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal", ANNOUNCER_POWERON)
+	priority_announce("已对 [station_name()] 的所有供电设备进行充能. 对于给你带来的不便，我们深表歉意.", "电力系统充能", ANNOUNCER_POWERON)
 	for(var/obj/machinery/power/apc/C as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/apc))
 		if(C.cell && is_station_level(C.z))
 			C.cell.charge = C.cell.maxcharge
@@ -81,7 +81,7 @@
  * Great as a less magical / more IC way to return power to a sapped station.
  */
 /proc/power_restore_quick()
-	priority_announce("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", ANNOUNCER_POWERON)
+	priority_announce("已对 [station_name()] 上的所有SMES进行充电. 对于给你带来的不便，我们深表歉意.", "电力系统充能", ANNOUNCER_POWERON)
 	var/list/all_smes = SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/smes)
 	for(var/obj/machinery/power/smes/smes as anything in all_smes)
 		if(!is_station_level(smes.z))

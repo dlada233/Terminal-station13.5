@@ -41,7 +41,7 @@
 		return TRUE
 	visible_message(span_notice("[user] slices apart \the [src]."),
 		span_notice("You cut \the [src] apart with \the [tool]."),
-		span_hear("You hear welding."))
+		span_hear("你听到焊接声."))
 	new /obj/item/stack/sheet/iron(loc, MEATSPIKE_IRONROD_REQUIREMENT)
 	qdel(src)
 	return TRUE

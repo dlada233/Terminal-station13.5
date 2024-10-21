@@ -17,9 +17,9 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	circuit = /obj/item/circuitboard/machine/announcement_system
 
 	var/obj/item/radio/headset/radio
-	var/arrival = "%PERSON has signed up as %RANK"
+	var/arrival = "%PERSON 现已作为 %RANK 参与工作."
 	var/arrivalToggle = 1
-	var/newhead = "%PERSON, %RANK, is the department head."
+	var/newhead = "%PERSON, %RANK, 是部门部长."
 	var/newheadToggle = 1
 
 	var/greenlight = "Light_Green"
@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 /obj/machinery/announcement_system/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	toggle_panel_open()
-	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
+	to_chat(user, span_notice("你[panel_open ? "打开" : "关上"][src]的检修舱口."))
 	update_appearance()
 	return TRUE
 
@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 /obj/machinery/announcement_system/multitool_act(mob/living/user, obj/item/tool)
 	if(!panel_open || !(machine_stat & BROKEN))
 		return FALSE
-	to_chat(user, span_notice("You reset [src]'s firmware."))
+	to_chat(user, span_notice("你重置了[src]的固件."))
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
 
@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	else if(message_type == "NEWHEAD" && newheadToggle)
 		message = CompileText(newhead, user, rank)
 	else if(message_type == "ARRIVALS_BROKEN")
-		message = "The arrivals shuttle has been damaged. Docking for repairs..."
+		message = "登站班轮已损坏. 正在停靠进行维修..."
 
 	broadcast(message, channels)
 
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if (!is_operational)
 		return
 
-	broadcast("Officer [officer.real_name] has been assigned to [department].", list(RADIO_CHANNEL_SECURITY))
+	broadcast("官员 [officer.real_name] 已被指派到 [department].", list(RADIO_CHANNEL_SECURITY))
 
 /// Sends a message to the appropriate channels.
 /obj/machinery/announcement_system/proc/broadcast(message, list/channels)
@@ -127,7 +127,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!usr.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(machine_stat & BROKEN)
-		visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
+		visible_message(span_warning("[src]嗡嗡响."), span_hear("你听到微弱的嗡嗡声."))
 		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, TRUE)
 		return
 	switch(action)
@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning("[src]'s firmware appears to be malfunctioning!"))
+		to_chat(user, span_warning("[src]的固件似乎出现故障!"))
 		return
 	interact(user)
 
@@ -168,8 +168,8 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!atom_break()) // if badmins flag this unbreakable or its already broken
 		return
 
-	arrival = pick("#!@%ERR-34%2 CANNOT LOCAT@# JO# F*LE!", "CRITICAL ERROR 99.", "ERR)#: DA#AB@#E NOT F(*ND!")
-	newhead = pick("OV#RL()D: \[UNKNOWN??\] DET*#CT)D!", "ER)#R - B*@ TEXT F*O(ND!", "AAS.exe is not responding. NanoOS is searching for a solution to the problem.")
+	arrival = pick("#!@%ERR-34%2 无法定位到@# JO# F*LE!", "严重错误 99.", "ERR)#: DA#AB@#E NOT F(*ND!")
+	newhead = pick("OV#RL()D: \[UNKNOWN??\] DET*#CT)D!", "ER)#R - B*@ TEXT F*O(ND!", "AAS.exe 未响应. NanoOS 正在检索解决方案.")
 
 /obj/machinery/announcement_system/emp_act(severity)
 	. = ..()
@@ -181,5 +181,5 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		return FALSE
 	obj_flags |= EMAGGED
 	act_up()
-	balloon_alert(user, "announcement strings corrupted")
+	balloon_alert(user, "公告字符串已损坏")
 	return TRUE

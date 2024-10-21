@@ -16,7 +16,7 @@
 	var/content_overlays = FALSE //If this is true, the belt will gain overlays based on what it's holding
 
 /obj/item/storage/belt/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/storage/belt/update_overlays()
@@ -554,7 +554,7 @@
 
 /obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
-	var/sponsor = pick("杜客公司.", "Waffle公司.", "Roffle公司.", "Gorlax掠夺者", "Tiger合作社")
+	var/sponsor = pick("Donk-杜客公司.", "Waffle公司.", "Roffle公司.", "Gorlax掠夺者", "Tiger合作社")
 	desc = "一套由[sponsor]虚拟现实部门赞助的战术零食胸挂."
 	atom_storage.max_slots = 6
 	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL

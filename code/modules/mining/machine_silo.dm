@@ -93,7 +93,7 @@
 
 /obj/machinery/ore_silo/multitool_act(mob/living/user, obj/item/multitool/I)
 	I.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/ore_silo/ui_assets(mob/user)

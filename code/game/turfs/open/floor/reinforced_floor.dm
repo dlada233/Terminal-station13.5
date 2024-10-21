@@ -123,15 +123,15 @@
 	initial_gas_mix = ATMOS_TANK_BZ
 
 /turf/open/floor/engine/freon
-	name = "\improper Freon floor"
+	name = "\improper Freon-氟利昂 floor"
 	initial_gas_mix = ATMOS_TANK_FREON
 
 /turf/open/floor/engine/halon
-	name = "\improper Halon floor"
+	name = "\improper Halon-哈龙 floor"
 	initial_gas_mix = ATMOS_TANK_HALON
 
 /turf/open/floor/engine/healium
-	name = "\improper Healium floor"
+	name = "\improper Healium-疗气 floor"
 	initial_gas_mix = ATMOS_TANK_HEALIUM
 
 /turf/open/floor/engine/h2
@@ -140,11 +140,11 @@
 	initial_gas_mix = ATMOS_TANK_H2
 
 /turf/open/floor/engine/hypernoblium
-	name = "\improper Hypernoblium floor"
+	name = "\improper Hypernoblium-超铌 floor"
 	initial_gas_mix = ATMOS_TANK_HYPERNOBLIUM
 
 /turf/open/floor/engine/miasma
-	name = "\improper Miasma floor"
+	name = "\improper Miasma-瘴气 floor"
 	initial_gas_mix = ATMOS_TANK_MIASMA
 
 /turf/open/floor/engine/nitrium
@@ -152,15 +152,15 @@
 	initial_gas_mix = ATMOS_TANK_NITRIUM
 
 /turf/open/floor/engine/pluoxium
-	name = "\improper Pluoxium floor"
+	name = "\improper Pluoxium-钷 floor"
 	initial_gas_mix = ATMOS_TANK_PLUOXIUM
 
 /turf/open/floor/engine/proto_nitrate
-	name = "\improper Proto-Nitrate floor"
+	name = "\improper Proto-Nitrate-原硝酸 floor"
 	initial_gas_mix = ATMOS_TANK_PROTO_NITRATE
 
 /turf/open/floor/engine/tritium
-	name = "\improper Tritium floor"
+	name = "\improper Tritium-氚 floor"
 	initial_gas_mix = ATMOS_TANK_TRITIUM
 
 /turf/open/floor/engine/h2o
@@ -169,15 +169,15 @@
 	initial_gas_mix = ATMOS_TANK_H2O
 
 /turf/open/floor/engine/zauker
-	name = "\improper Zauker floor"
+	name = "\improper Zauker-扎克 floor"
 	initial_gas_mix = ATMOS_TANK_ZAUKER
 
 /turf/open/floor/engine/helium
-	name = "\improper Helium floor"
+	name = "\improper Helium-氦 floor"
 	initial_gas_mix = ATMOS_TANK_HELIUM
 
 /turf/open/floor/engine/antinoblium
-	name = "\improper Antinoblium floor"
+	name = "\improper Antinoblium-反铌 floor"
 	initial_gas_mix = ATMOS_TANK_ANTINOBLIUM
 
 /turf/open/floor/engine/air

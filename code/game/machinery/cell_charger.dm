@@ -1,6 +1,6 @@
 /obj/machinery/cell_charger
 	name = "电池充电器"
-	desc = "It charges power cells."
+	desc = "它能为电池充电."
 	icon = 'icons/obj/machines/cell_charger.dmi'
 	icon_state = "ccharger"
 	power_channel = AREA_USAGE_EQUIP
@@ -29,11 +29,11 @@
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
-	. += "There's [charging ? "\a [charging]" : "no cell"] in the charger."
+	. += "里面[charging ? "有一个[charging]" : "没有电池"]."
 	if(charging)
-		. += "Current charge: [round(charging.percent(), 1)]%."
+		. += "当前充能: [round(charging.percent(), 1)]%."
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Charging power: <b>[display_power(charge_rate, convert = FALSE)]</b>.")
+		. += span_notice("状态读数显示: 充电功率: <b>[display_power(charge_rate, convert = FALSE)]</b>.")
 
 /obj/machinery/cell_charger/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -46,18 +46,18 @@
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stock_parts/cell) && !panel_open)
 		if(machine_stat & BROKEN)
-			to_chat(user, span_warning("[src] is broken!"))
+			to_chat(user, span_warning("[src]坏了!"))
 			return
 		if(!anchored)
-			to_chat(user, span_warning("[src] isn't attached to the ground!"))
+			to_chat(user, span_warning("[src]没有连接到地面上!"))
 			return
 		if(charging)
-			to_chat(user, span_warning("There is already a cell in the charger!"))
+			to_chat(user, span_warning("充电器里已经有一个电池了!"))
 			return
 		//SKYRAT EDIT ADDITION
 		var/obj/item/stock_parts/cell/inserting_cell = W
 		if(inserting_cell.chargerate <= 0)
-			to_chat(user, span_warning("[inserting_cell] cannot be recharged!"))
+			to_chat(user, span_warning("[inserting_cell]无法被充能!"))
 			return
 		//SKYRAT EDIT END
 		else
@@ -65,13 +65,13 @@
 			if(!isarea(a))
 				return
 			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-				to_chat(user, span_warning("[src] blinks red as you try to insert the cell!"))
+				to_chat(user, span_warning("当你插入电池时，[src]闪烁红灯!"))
 				return
 			if(!user.transferItemToLoc(W,src))
 				return
 
 			charging = W
-			user.visible_message(span_notice("[user] inserts a cell into [src]."), span_notice("You insert a cell into [src]."))
+			user.visible_message(span_notice("[user]插入电池到[src]."), span_notice("你插入电池到[src]."))
 			update_appearance()
 	else
 		if(!charging && default_deconstruction_screwdriver(user, icon_state, icon_state, W))
@@ -103,7 +103,7 @@
 	user.put_in_hands(charging)
 	charging.add_fingerprint(user)
 
-	user.visible_message(span_notice("[user] removes [charging] from [src]."), span_notice("You remove [charging] from [src]."))
+	user.visible_message(span_notice("[user]取出了[charging]从[src]."), span_notice("你取出了[charging]从[src]."))
 
 	removecell()
 
@@ -113,7 +113,7 @@
 		return
 
 	charging.forceMove(loc)
-	to_chat(user, span_notice("You telekinetically remove [charging] from [src]."))
+	to_chat(user, span_notice("你以念力取出了[charging]从[src]."))
 
 	removecell()
 	return COMPONENT_CANCEL_ATTACK_CHAIN

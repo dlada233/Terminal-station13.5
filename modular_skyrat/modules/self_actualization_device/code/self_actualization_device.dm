@@ -257,16 +257,16 @@
 	to_chat(user, span_notice("The emergency release is not responding! You start pushing against the door!"))
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(BREAKOUT_TIME)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看到[user]正在踹[src]的门!"), \
+		span_notice("你背靠[src]，尝试将门推开... (this will take about [DisplayTimeText(BREAKOUT_TIME)].)"), \
+		span_hear("你听到金属摩擦声."))
 	user.emote("scream")
 
 	if(do_after(user, BREAKOUT_TIME, target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功突破了[src]!"), \
+			span_notice("你成功突破了[src]!"))
 		eject_old_you(damaged_goods = TRUE)
 
 /obj/machinery/self_actualization_device/screwdriver_act(mob/living/user, obj/item/used_item)
@@ -275,7 +275,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src]当前已被占用!"))
 		return
 
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, used_item))
@@ -286,7 +286,7 @@
 
 /obj/machinery/self_actualization_device/crowbar_act(mob/living/user, obj/item/used_item)
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src]当前已被占用!"))
 		return
 
 	if(default_deconstruction_crowbar(used_item))

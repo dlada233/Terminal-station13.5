@@ -1,6 +1,6 @@
 /obj/machinery/sleeper
 	name = "冬眠仓"
-	desc = "An enclosed machine used to stabilize and heal patients."
+	desc = "用于稳定伤情和进一步治疗的封闭睡眠舱."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	base_icon_state = "sleeper"
@@ -22,7 +22,7 @@
 	///Whether this sleeper can be deconstructed and drop the board, if its on mapload.
 	var/deconstructable = FALSE
 	///Message sent when a user enters the machine.
-	var/enter_message = span_boldnotice("You feel cool air surround you. You go numb as your senses turn inward.")
+	var/enter_message = span_boldnotice("你感到周围有寒凉的空气，你感官内敛收缩，身体变得麻木.")
 
 	///List of currently available chems.
 	var/list/available_chems = list()
@@ -123,10 +123,10 @@
 /obj/machinery/sleeper/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(occupant)
-		to_chat(user, span_warning("[src] is currently occupied!"))
+		to_chat(user, span_warning("[src]当前已被占用!"))
 		return TRUE
 	if(state_open)
-		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
+		to_chat(user, span_warning("[src]必须先关闭来[panel_open ? "盖上" : "打开"]它的检修舱盖!"))
 		return TRUE
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
 		return TRUE
@@ -150,7 +150,7 @@
 	. = !(state_open || panel_open) && I.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		I.play_tool_sound(src, 50)
-		visible_message(span_notice("[usr] pries open [src]."), span_notice("You pry open [src]."))
+		visible_message(span_notice("[usr]撬开了[src]."), span_notice("你撬开了[src]."))
 		open_machine()
 
 /obj/machinery/sleeper/ui_state(mob/user)
@@ -173,7 +173,7 @@
 
 /obj/machinery/sleeper/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click [src] to [state_open ? "close" : "open"] it.")
+	. += span_notice("Alt加左键[src]来[state_open ? "关闭" : "开启"]它.")
 
 /obj/machinery/sleeper/process()
 	use_energy(idle_power_usage)
@@ -204,17 +204,17 @@
 		data["occupant"]["name"] = mob_occupant.name
 		switch(mob_occupant.stat)
 			if(CONSCIOUS)
-				data["occupant"]["stat"] = "Conscious"
-				data["occupant"]["statstate"] = "good"
+				data["occupant"]["stat"] = "意识清醒"
+				data["occupant"]["statstate"] = "良好"
 			if(SOFT_CRIT)
-				data["occupant"]["stat"] = "Conscious"
-				data["occupant"]["statstate"] = "average"
+				data["occupant"]["stat"] = "意识清醒"
+				data["occupant"]["statstate"] = "一般"
 			if(UNCONSCIOUS, HARD_CRIT)
-				data["occupant"]["stat"] = "Unconscious"
-				data["occupant"]["statstate"] = "average"
+				data["occupant"]["stat"] = "无意识"
+				data["occupant"]["statstate"] = "一般"
 			if(DEAD)
-				data["occupant"]["stat"] = "Dead"
-				data["occupant"]["statstate"] = "bad"
+				data["occupant"]["stat"] = "死亡"
+				data["occupant"]["statstate"] = "糟糕"
 		data["occupant"]["health"] = mob_occupant.health
 		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
 		data["occupant"]["minHealth"] = HEALTH_THRESHOLD_DEAD
@@ -260,13 +260,13 @@
 			if(inject_chem(chem, usr))
 				. = TRUE
 				if((obj_flags & EMAGGED) && prob(5))
-					to_chat(usr, span_warning("Chemical system re-route detected, results may not be as expected!"))
+					to_chat(usr, span_warning("检测到化学系统改线，结果可能与预期不符!"))
 
 /obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 
-	balloon_alert(user, "interface scrambled")
+	balloon_alert(user, "接口干扰")
 	obj_flags |= EMAGGED
 
 	var/list/av_chem = available_chems.Copy()
@@ -323,14 +323,14 @@
 	base_icon_state = "oldpod"
 
 /obj/machinery/sleeper/party
-	name = "party pod"
-	desc = "'Sleeper' units were once known for their healing properties, until a lengthy investigation revealed they were also dosing patients with deadly lead acetate. This appears to be one of those old 'sleeper' units repurposed as a 'Party Pod'. It’s probably not a good idea to use it."
+	name = "派对仓"
+	desc = "'冬眠仓'装置曾以其自动治疗特性而闻名，直到一项调查指出它们一直在给患者错误地服用致命的醋酸铅. 这台就是曾经的问题机器，现在被改造成了所谓的派对仓，使用它可能不是个好注意."
 	icon_state = "partypod"
 	base_icon_state = "partypod"
 	circuit = /obj/item/circuitboard/machine/sleeper/party
 	controls_inside = TRUE
 	deconstructable = TRUE
-	enter_message = span_boldnotice("You're surrounded by some funky music inside the chamber. You zone out as you feel waves of krunk vibe within you.")
+	enter_message = span_boldnotice("在仓内你被时髦音乐包围住了，内心涌动出krunk氛围，心情也随之放松下来.")
 
 	//Exclusively uses non-lethal, "fun" chems. At an obvious downside.
 	possible_chems = list(

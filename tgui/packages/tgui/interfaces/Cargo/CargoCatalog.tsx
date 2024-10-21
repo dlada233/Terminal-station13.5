@@ -56,7 +56,7 @@ export function CargoCatalog(props: Props) {
   return (
     <Section
       fill
-      title="Catalog"
+      title="目录"
       buttons={
         !express && (
           <>
@@ -66,9 +66,9 @@ export function CargoCatalog(props: Props) {
               icon={self_paid ? 'check-square-o' : 'square-o'}
               ml={2}
               onClick={() => act('toggleprivate')}
-              tooltip="Use your own funds to purchase items."
+              tooltip="使用个人资金来进行购物."
             >
-              Buy Privately
+              个人购买
             </Button>
           </>
         )
@@ -125,7 +125,7 @@ function CatalogTabs(props: CatalogTabsProps) {
           <Stack.Item grow>
             <Input
               fluid
-              placeholder="Search..."
+              placeholder="搜索中..."
               value={searchText}
               onInput={(e, value) => {
                 if (value === searchText) {
@@ -195,14 +195,14 @@ function CatalogList(props: CatalogListProps) {
               <Table.Cell color="label">{pack.name}</Table.Cell>
               <Table.Cell collapsing>
                 {!!pack.small_item && (
-                  <Tooltip content="Small Item">
+                  <Tooltip content="小件商品">
                     <Icon color="purple" name="compress-alt" />
                   </Tooltip>
                 )}
               </Table.Cell>
               <Table.Cell collapsing>
                 {!!pack.access && (
-                  <Tooltip content="Restricted">
+                  <Tooltip content="权限限制">
                     <Icon color="average" name="lock" />
                   </Tooltip>
                 )}

@@ -252,7 +252,7 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 	if(istype(atom_poi, /obj/item/disk/nuclear))
 		var/obj/item/disk/nuclear/disk = atom_poi
 		var/mob/holder = disk.pulledby || get(disk, /mob)
-		misc["extra"] = "Location: [holder?.real_name || "Unsecured"]"
+		misc["extra"] = "Location: [holder?.real_name || "解除固定d"]"
 
 		return list(misc, critical)
 

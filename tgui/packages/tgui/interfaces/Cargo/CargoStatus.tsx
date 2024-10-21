@@ -39,14 +39,12 @@ export function CargoStatus(props) {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Shuttle">
+        <LabeledList.Item label="货船">
           {!!docked && !requestonly && !!can_send ? (
             <Button
               color={grocery ? 'orange' : 'green'}
               tooltip={
-                grocery
-                  ? 'The kitchen is waiting for their grocery supply delivery!'
-                  : ''
+                grocery ? '厨房已订购了产品，请确保它们被尽快送达厨房!' : ''
               }
               tooltipPosition="right"
               onClick={() => act('send')}
@@ -57,15 +55,17 @@ export function CargoStatus(props) {
             String(location)
           )}
         </LabeledList.Item>
-        <LabeledList.Item label="CentCom Message">{message}</LabeledList.Item>
+        <LabeledList.Item label="CentCom-中央指挥部消息">
+          {message}
+        </LabeledList.Item>
         {!!loan && !requestonly && (
-          <LabeledList.Item label="Loan">
+          <LabeledList.Item label="租借">
             {!loan_dispatched ? (
               <Button disabled={!(away && docked)} onClick={() => act('loan')}>
-                Loan Shuttle
+                借出货船
               </Button>
             ) : (
-              <Box color="bad">Loaned to Centcom</Box>
+              <Box color="bad">已借出给CentCom</Box>
             )}
           </LabeledList.Item>
         )}

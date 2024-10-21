@@ -1,6 +1,6 @@
 /obj/machinery/computer/aifixer
 	name = "\improper AI系统完整性恢复台"
-	desc = "Used with intelliCards containing nonfunctional AIs to restore them to working order."
+	desc = "将载有失灵AI的英特利储存卡插入其中来修复AI程序."
 	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_COMMAND)
 	circuit = /obj/item/circuitboard/computer/aifixer
 	icon_keyboard = "tech_key"
