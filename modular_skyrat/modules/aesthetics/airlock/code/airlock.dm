@@ -103,7 +103,7 @@
 	if(panel_open)
 		. += get_airlock_overlay("panel_[frame_state][security_level ? "_protected" : null]", overlays_file, src, em_block = TRUE)
 	if(frame_state == AIRLOCK_FRAME_CLOSED && welded)
-		. += get_airlock_overlay("welded", overlays_file, src, em_block = TRUE)
+		. += get_airlock_overlay("已焊接", overlays_file, src, em_block = TRUE)
 
 	if(airlock_state == AIRLOCK_EMAG)
 		. += get_airlock_overlay("sparks", overlays_file, src, em_block = FALSE)

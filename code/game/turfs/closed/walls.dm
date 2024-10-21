@@ -1,8 +1,8 @@
 #define LEANING_OFFSET 11
 
 /turf/closed/wall
-	name = "wall"
-	desc = "A huge chunk of iron used to separate rooms." //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
+	name = "墙壁"
+	desc = "用于分隔空间的大块金属." //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -67,8 +67,8 @@
 	animate(src, 0.2 SECONDS, pixel_x = new_x, pixel_y = new_y)
 	add_traits(list(TRAIT_UNDENSE, TRAIT_EXPANDED_FOV), LEANING_TRAIT)
 	visible_message(
-		span_notice("[src] leans against [wall]."),
-		span_notice("You lean against [wall]."),
+		span_notice("[src]倚靠在[wall]上."),
+		span_notice("你倚靠在[wall]上."),
 	)
 	RegisterSignals(src, list(
 		COMSIG_MOB_CLIENT_PRE_MOVE,
@@ -123,7 +123,7 @@
 	. += deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
-	return span_notice("The outer plating is <b>welded</b> firmly in place.")
+	return span_notice("外部镀板被牢牢地<b>焊死</b>.")
 
 /turf/closed/wall/attack_tk()
 	return
@@ -206,9 +206,9 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 		add_dent(WALL_DENT_HIT)
-		user.visible_message(span_danger("[user] smashes \the [src]!"), \
-					span_danger("You smash \the [src]!"), \
-					span_hear("You hear a booming smash!"))
+		user.visible_message(span_danger("[user]重击了[src]!"), \
+					span_danger("你重击了[src]!"), \
+					span_hear("你听到巨大的重击声!"))
 	return TRUE
 
 /**
@@ -234,14 +234,14 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, span_notice("You push the wall but nothing happens!"))
+	to_chat(user, span_notice("你推了推墙，什么都没有发生!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 25, TRUE)
 	add_fingerprint(user)
 
 /turf/closed/wall/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你不够灵巧来做这个事情!"))
 		return
 
 	//get the user's location
@@ -264,10 +264,10 @@
 		if(!W.tool_start_check(user, amount=1))
 			return FALSE
 
-		to_chat(user, span_notice("You begin fixing dents on the wall..."))
+		to_chat(user, span_notice("你开始修复墙上的凹痕..."))
 		if(W.use_tool(src, user, 0, volume=100))
 			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, span_notice("You fix some dents on the wall."))
+				to_chat(user, span_notice("你修好了墙上的凹痕."))
 				cut_overlay(dent_decals)
 				dent_decals.Cut()
 			return TRUE
@@ -293,10 +293,10 @@
 		if(!I.tool_start_check(user, amount=round(slicing_duration / 50)))
 			return FALSE
 
-		to_chat(user, span_notice("You begin slicing through the outer plating..."))
+		to_chat(user, span_notice("你开始切割外部镀板..."))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			if(iswallturf(src))
-				to_chat(user, span_notice("You remove the outer plating."))
+				to_chat(user, span_notice("你移除了外部镀板."))
 				dismantle_wall()
 			return TRUE
 

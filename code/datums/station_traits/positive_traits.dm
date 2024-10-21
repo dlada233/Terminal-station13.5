@@ -357,7 +357,7 @@
 /obj/item/card/id/advanced/technician_id
 	name = "Repair Technician ID"
 	desc = "Repair Technician? We don't have those in this sector, just a bunch of lazy engineers! This must have been from the between-shift crew..."
-	registered_name = "Pluoxium LXVII"
+	registered_name = "Pluoxium-钷 LXVII"
 	registered_age = 67
 	trim = /datum/id_trim/technician_id
 

@@ -1,6 +1,6 @@
 /obj/machinery/autolathe
 	name = "自动车床"
-	desc = "It produces items using iron, glass, plastic and maybe some more."
+	desc = "它用铁、玻璃、塑料等材料生产物品."
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "autolathe"
 	density = TRUE
@@ -61,31 +61,31 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("Material usage cost at <b>[creation_efficiency * 100]%</b>")
+	. += span_notice("材料利用率为 <b>[creation_efficiency * 100]%</b>")
 	if(drop_direction)
-		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
-		. += span_notice("[EXAMINE_HINT("Alt-click")] to reset.")
+		. += span_notice("当前配置为产出打印对象到<b>[dir2text(drop_direction)]</b>.")
+		. += span_notice("[EXAMINE_HINT("Alt加左键")]来重置.")
 	else
-		. += span_notice("[EXAMINE_HINT("Drag")] towards a direction (while next to it) to change drop direction.")
+		. += span_notice("[EXAMINE_HINT("拖拽")]朝向某个方向 (紧邻地块) 来改变产出方向.")
 
-	. += span_notice("Its maintainence panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("检修盖子的[EXAMINE_HINT("螺丝")][panel_open ? "被拧开了" : "齐全"].")
 	if(panel_open)
-		. += span_notice("The machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("机器可以被[EXAMINE_HINT("撬")]开了.")
 
 /obj/machinery/autolathe/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(drop_direction)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Reset Drop"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "重置产出方向"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(isnull(held_item))
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_RMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_RMB] = "[panel_open ? "关闭" : "打开"]盖子"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/autolathe/crowbar_act(mob/living/user, obj/item/tool)
@@ -217,10 +217,10 @@
 		stack_trace("unknown autolathe ui_act: [action]")
 		return
 	if(disabled)
-		say("Unable to print, voltage mismatch in internal wiring.")
+		say("无法打印，内部线缆电压不匹配.")
 		return
 	if(busy)
-		say("currently printing.")
+		say("正在打印中.")
 		return
 
 	//validate design
@@ -237,7 +237,7 @@
 		stack_trace("got passed an invalid design id: [design_id] and somehow made it past all checks")
 		return
 	if(!(design.build_type & AUTOLATHE))
-		say("This fabricator does not have the necessary keys to decrypt this design.")
+		say("该制造机没有解密此设计所需的解密密钥.")
 		return
 
 	//validate print quantity
@@ -260,12 +260,12 @@
 					continue
 				choices[valid_candidate.name] = valid_candidate
 			if(!length(choices))
-				say("No valid materials with applicable amounts detected for design.")
+				say("未检测到足够的打印设计所需的材料.")
 				return
 			var/chosen = tgui_input_list(
 				ui.user,
-				"Select the material to use",
-				"Material Selection",
+				"选择使用的材料",
+				"材料选择",
 				sort_list(choices),
 			)
 			if(isnull(chosen))
@@ -280,7 +280,7 @@
 	//checks for available materials
 	var/material_cost_coefficient = ispath(design.build_path, /obj/item/stack) ? 1 : creation_efficiency
 	if(!materials.has_materials(materials_needed, material_cost_coefficient, build_count))
-		say("Not enough materials to begin production.")
+		say("没有足够的材料开始生产.")
 		return
 
 	//compute power & time to print 1 item
@@ -327,7 +327,7 @@
 		return
 
 	if(!is_operational)
-		say("Unable to continue production, power failure.")
+		say("无法继续生产，电源故障.")
 		finalize_build()
 		return
 
@@ -337,17 +337,17 @@
 		if(!QDELETED(my_apc))
 			var/charging_wait = my_apc.time_to_charge(charge_per_item)
 			if(!isnull(charging_wait))
-				say("Unable to continue production, APC overload. Wait [DisplayTimeText(charging_wait, round_seconds_to = 1)] and try again.")
+				say("无法继续生产, APC过载. 请等待[DisplayTimeText(charging_wait, round_seconds_to = 1)]然后再试.")
 			else
-				say("Unable to continue production, power grid overload.")
+				say("无法继续生产, 电网过载.")
 		else
-			say("Unable to continue production, no APC in area.")
+			say("无法继续生产, 该区域没有APC.")
 		finalize_build()
 		return
 
 	var/is_stack = ispath(design.build_path, /obj/item/stack)
 	if(!materials.has_materials(materials_needed, material_cost_coefficient, is_stack ? items_remaining : 1))
-		say("Unable to continue production, missing materials.")
+		say("无法继续生产, 缺失材料.")
 		finalize_build()
 		return
 	materials.use_materials(materials_needed, material_cost_coefficient, is_stack ? items_remaining : 1)
@@ -402,21 +402,21 @@
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(busy)
-		balloon_alert(user, "printing started!")
+		balloon_alert(user, "打印已开始!")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(user, "产出[dir2text(drop_direction)]")
 
 /obj/machinery/autolathe/click_alt(mob/user)
 	if(!drop_direction)
 		return CLICK_ACTION_BLOCKING
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "忙于打印!")
 		return CLICK_ACTION_SUCCESS
-	balloon_alert(user, "drop direction reset")
+	balloon_alert(user, "产出方向重置")
 	drop_direction = 0
 	return CLICK_ACTION_SUCCESS
 
@@ -425,7 +425,7 @@
 		return ..()
 
 	if(busy)
-		balloon_alert(user, "it's busy!")
+		balloon_alert(user, "忙碌中!")
 		return TRUE
 
 	if(panel_open && is_wire_tool(attacking_item))
@@ -436,9 +436,9 @@
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/disk/design_disk))
-		user.visible_message(span_notice("[user] begins to load \the [attacking_item] in \the [src]..."),
-			balloon_alert(user, "uploading design..."),
-			span_hear("You hear the chatter of a floppy drive."))
+		user.visible_message(span_notice("[user]开始加载[attacking_item]到[src]..."),
+			balloon_alert(user, "上传设计中..."),
+			span_hear("你听到软盘驱动运作声."))
 		busy = TRUE
 		if(do_after(user, 14.4, target = src))
 			var/obj/item/disk/design_disk/disky = attacking_item
@@ -451,13 +451,13 @@
 				else
 					LAZYADD(not_imported, blueprint.name)
 			if(not_imported)
-				to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
+				to_chat(user, span_warning("以下设计无法导入: [english_list(not_imported)]"))
 		busy = FALSE
 		update_static_data_for_all_viewers()
 		return TRUE
 
 	if(panel_open)
-		balloon_alert(user, "close the panel first!")
+		balloon_alert(user, "先关闭检修盖!")
 		return FALSE
 
 	return ..()

@@ -58,15 +58,14 @@
 	if(emag_sound)
 		playsound(game, emag_sound, 100, TRUE)
 
-#define BUTTON_FIX_ENGINE "Fix Engine"
-#define BUTTON_WAIT "Wait"
+#define BUTTON_FIX_ENGINE "修复引擎"
+#define BUTTON_WAIT "等待"
 
 ///Engine Breakdown - spend one engine part or wait 3 days (harmless emag effect)
 /datum/orion_event/engine_part
-	name = "Engine Breakdown"
-	text = "Oh no! The engine has broken down! \
-	You can repair it with an engine part, or you \
-	can make repairs for 3 days."
+	name = "引擎故障"
+	text = "啊哦!引擎故障了! \
+	用一个引擎组件立即修复, 或等待三天修复原引擎."
 	emag_message = "<span class='warning'>You hear some large object lurch to a halt right behind you! When you go to look, nothing's there...</span>"
 	emag_sound = 'sound/effects/creak1.ogg'
 	weight = 2

@@ -186,7 +186,7 @@
 	. = ..()
 	if (istype(I))
 		I.set_buffer(src)
-		balloon_alert(user, "已保存到多功能工具缓存区内")
+		balloon_alert(user, "已保存到多功能工具区内")
 		return TRUE
 
 /obj/machinery/piratepad/screwdriver_act_secondary(mob/living/user, obj/item/screwdriver/screw)
@@ -231,7 +231,7 @@
 /obj/machinery/computer/piratepad_control/multitool_act(mob/living/user, obj/item/multitool/I)
 	. = ..()
 	if (istype(I) && istype(I.buffer,/obj/machinery/piratepad))
-		to_chat(user, span_notice("你将[src]连接到[I]的缓存区内."))
+		to_chat(user, span_notice("你将[src]连接到[I]的区内."))
 		pad_ref = WEAKREF(I.buffer)
 		return TRUE
 

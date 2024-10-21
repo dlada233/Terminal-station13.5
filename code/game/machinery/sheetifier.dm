@@ -1,6 +1,6 @@
 /obj/machinery/sheetifier
-	name = "Sheet-meister 2000"
-	desc = "A very sheety machine"
+	name = "板材压造大师 2000"
+	desc = "一台很板正的机器."
 	icon = 'icons/obj/machines/sheetifier.dmi'
 	icon_state = "base_machine"
 	density = TRUE

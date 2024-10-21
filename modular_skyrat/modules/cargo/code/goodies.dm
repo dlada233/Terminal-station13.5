@@ -3,7 +3,7 @@
 */
 
 /datum/supply_pack/goody/airsuppliesnitrogen
-	name = "Emergency Air Supplies (Nitrogen)"
+	name = "Emergency Air Supplies (Nitrogen-氮气)"
 	desc = "A vox breathing mask and nitrogen tank."
 	cost = PAYCHECK_CREW
 	contains = list(

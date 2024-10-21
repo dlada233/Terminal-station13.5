@@ -269,8 +269,8 @@
 
 ///Upon completion of a civilian bounty, one of these is created. It is sold to cargo to give the cargo budget bounty money, and the person who completed it cash.
 /obj/item/bounty_cube
-	name = "bounty cube"
-	desc = "A bundle of compressed hardlight data, containing a completed bounty. Sell this on the cargo shuttle to claim it!"
+	name = "赏金方块"
+	desc = "压缩后的硬光数据，包含完整的赏金，你需要靠货运穿梭机卖掉它来得到钱!"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "bounty_cube"
 	///Value of the bounty that this bounty cube sells for.
@@ -397,8 +397,8 @@
 
 ///Beacon to launch a new bounty setup when activated.
 /obj/item/civ_bounty_beacon
-	name = "civilian bounty beacon"
-	desc = "N.T. approved civilian bounty beacon, toss it down and you will have a bounty pad and computer delivered to you."
+	name = "民用赏金信标"
+	desc = "N.T. 提供民用赏金信标, 使用后你会得到赏金发射平台和终端."
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beacon"
 	var/uses = 2

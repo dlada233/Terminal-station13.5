@@ -503,7 +503,7 @@
 				. = TRUE
 
 /obj/item/radio/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] starts bouncing [src] off [user.p_their()] head! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/radio/examine(mob/user)
@@ -546,7 +546,7 @@
 	addtimer(CALLBACK(src, PROC_REF(end_emp_effect), curremp), 20 SECONDS)
 
 /obj/item/radio/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] starts bouncing [src] off [user.p_their()] head! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/radio/proc/end_emp_effect(curremp)

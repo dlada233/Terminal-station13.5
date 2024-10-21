@@ -90,7 +90,7 @@
  */
 /datum/gas_reaction/water_vapor
 	priority_group = PRIORITY_POST_FORMATION
-	name = "Water Vapor Condensation"
+	name = "Water Vapor-水蒸气 Condensation"
 	id = "vapor"
 	desc = "Water vapor condensation that can make things slippery."
 
@@ -130,7 +130,7 @@
 	priority_group = PRIORITY_POST_FORMATION
 	name = "Dry Heat Sterilization"
 	id = "sterilization"
-	desc = "Pathogens cannot survive in a hot environment. Miasma decomposes on high temperature."
+	desc = "Pathogens cannot survive in a hot environment. Miasma-瘴气 decomposes on high temperature."
 
 /datum/gas_reaction/miaster/init_reqs()
 	requirements = list(
@@ -245,7 +245,7 @@
  */
 /datum/gas_reaction/h2fire
 	priority_group = PRIORITY_FIRE
-	name = "Hydrogen Combustion"
+	name = "Hydrogen-氢气 Combustion"
 	id = "h2fire"
 	expands_hotspot = TRUE
 	desc = "Combustion of hydrogen with oxygen. Can be extremely fast and energetic if a few conditions are fulfilled."
@@ -290,7 +290,7 @@
 
 
 /**
- * Tritium combustion:
+ * Tritium-氚 combustion:
  *
  * Combustion of oxygen and tritium (treated as hydrogen).
  * Highly exothermic.
@@ -299,7 +299,7 @@
  */
 /datum/gas_reaction/tritfire
 	priority_group = PRIORITY_FIRE
-	name = "Tritium Combustion"
+	name = "Tritium-氚 Combustion"
 	id = "tritfire"
 	expands_hotspot = TRUE
 	desc = "Combustion of tritium with oxygen. Can be extremely fast and energetic if a few conditions are fulfilled."
@@ -354,14 +354,14 @@
 
 
 /**
- * Freon combustion:
+ * Freon-氟利昂 combustion:
  *
  * Combustion of oxygen and freon.
  * Endothermic.
  */
 /datum/gas_reaction/freonfire
 	priority_group = PRIORITY_FIRE
-	name = "Freon Combustion"
+	name = "Freon-氟利昂 Combustion"
 	id = "freonfire"
 	expands_hotspot = TRUE
 	desc = "Reaction between oxygen and freon that consumes a huge amount of energy and can cool things significantly. Also able to produce hot ice."
@@ -433,7 +433,7 @@
  */
 /datum/gas_reaction/nitrousformation //formation of n2o, exothermic, requires bz as catalyst
 	priority_group = PRIORITY_FORMATION
-	name = "Nitrous Oxide Formation"
+	name = "Nitrous Oxide-一氧化二氮 Formation"
 	id = "nitrousformation"
 	desc = "Production of nitrous oxide with BZ as a catalyst."
 
@@ -467,14 +467,14 @@
 
 
 /**
- * Nitrous Oxide Decomposition
+ * Nitrous Oxide-一氧化二氮 Decomposition
  *
  * Decomposition of N2O.
  * Exothermic.
  */
 /datum/gas_reaction/nitrous_decomp
 	priority_group = PRIORITY_POST_FORMATION
-	name = "Nitrous Oxide Decomposition"
+	name = "Nitrous Oxide-一氧化二氮 Decomposition"
 	id = "nitrous_decomp"
 	desc = "Decomposition of nitrous oxide under high temperature."
 
@@ -570,17 +570,17 @@
 	return REACTING
 
 
-// Pluoxium
+// Pluoxium-钷
 
 /**
- * Pluoxium Formation:
+ * Pluoxium-钷 Formation:
  *
  * Consumes a tiny amount of tritium to convert CO2 and oxygen to pluoxium.
  * Exothermic.
  */
 /datum/gas_reaction/pluox_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Pluoxium Formation"
+	name = "Pluoxium-钷 Formation"
 	id = "pluox_formation"
 	desc = "Alternate production for pluoxium which uses tritium."
 
@@ -616,10 +616,10 @@
 	return REACTING
 
 
-// Nitrium
+// Nitrium-亚硝基兴奋气体
 
 /**
- * Nitrium Formation:
+ * Nitrium-亚硝基兴奋气体 Formation:
  *
  * The formation of nitrium.
  * Endothermic.
@@ -627,7 +627,7 @@
  */
 /datum/gas_reaction/nitrium_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Nitrium Formation"
+	name = "Nitrium-亚硝基兴奋气体 Formation"
 	id = "nitrium_formation"
 	desc = "Production of nitrium from BZ, tritium, and nitrogen."
 
@@ -663,7 +663,7 @@
 
 
 /**
- * Nitrium Decomposition:
+ * Nitrium-亚硝基兴奋气体 Decomposition:
  *
  * The decomposition of nitrium.
  * Exothermic.
@@ -671,7 +671,7 @@
  */
 /datum/gas_reaction/nitrium_decomposition
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Nitrium Decomposition"
+	name = "Nitrium-亚硝基兴奋气体 Decomposition"
 	id = "nitrium_decomp"
 	desc = "Decomposition of nitrium when exposed to oxygen under normal temperatures."
 
@@ -707,14 +707,14 @@
 
 
 /**
- * Freon formation:
+ * Freon-氟利昂 formation:
  *
  * The formation of freon.
  * Endothermic.
  */
 /datum/gas_reaction/freonformation
 	priority_group = PRIORITY_FORMATION
-	name = "Freon Formation"
+	name = "Freon-氟利昂 Formation"
 	id = "freonformation"
 	desc = "Production of freon using plasma, carbon dioxide, and BZ under high temperature."
 
@@ -802,10 +802,10 @@
 	return REACTING
 
 
-// Halon
+// Halon-哈龙
 
 /**
- * Halon Combustion:
+ * Halon-哈龙 Combustion:
  *
  * Consumes a large amount of oxygen relative to the amount of halon consumed.
  * Produces carbon dioxide.
@@ -813,9 +813,9 @@
  */
 /datum/gas_reaction/halon_o2removal
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Halon Oxygen Absorption"
+	name = "Halon-哈龙 Oxygen Absorption"
 	id = "halon_o2removal"
-	desc = "Halon interaction with oxygen that can be used to snuff fires out."
+	desc = "Halon-哈龙 interaction with oxygen that can be used to snuff fires out."
 
 /datum/gas_reaction/halon_o2removal/init_reqs()
 	requirements = list(
@@ -865,9 +865,9 @@
  */
 /datum/gas_reaction/healium_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Healium Formation"
+	name = "Healium-疗气 Formation"
 	id = "healium_formation"
-	desc = "Production of healium using BZ and freon."
+	desc = "Production of healium-疗气 using BZ and freon."
 
 /datum/gas_reaction/healium_formation/init_reqs()
 	requirements = list(
@@ -898,14 +898,14 @@
 	return REACTING
 
 /**
- * Zauker Formation:
+ * Zauker-扎克 Formation:
  *
  * Exothermic.
- * Requires Hypernoblium.
+ * Requires Hypernoblium-超铌.
  */
 /datum/gas_reaction/zauker_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Zauker Formation"
+	name = "Zauker-扎克 Formation"
 	id = "zauker_formation"
 	desc = "Production of zauker using hyper-noblium and nitrium under very high temperatures."
 
@@ -940,14 +940,14 @@
 
 
 /**
- * Zauker Decomposition:
+ * Zauker-扎克 Decomposition:
  *
  * Occurs in the presence of nitrogen to prevent zauker floods.
  * Exothermic.
  */
 /datum/gas_reaction/zauker_decomp
 	priority_group = PRIORITY_POST_FORMATION
-	name = "Zauker Decomposition"
+	name = "Zauker-扎克 Decomposition"
 	id = "zauker_decomp"
 	desc = "Decomposition of zauker when exposed to nitrogen."
 
@@ -978,10 +978,10 @@
 	return REACTING
 
 
-// Proto-Nitrate
+// Proto-Nitrate-原硝酸
 
 /**
- * Proto-Nitrate formation:
+ * Proto-Nitrate-原硝酸 formation:
  *
  * Exothermic.
  */
@@ -989,7 +989,7 @@
 	priority_group = PRIORITY_FORMATION
 	name = "Proto Nitrate Formation"
 	id = "proto_nitrate_formation"
-	desc = "Production of proto-nitrate from pluoxium and hydrogen under high temperatures."
+	desc = "Production of proto-nitrate from pluoxium and hydrogen-氢气 under high temperatures."
 
 /datum/gas_reaction/proto_nitrate_formation/init_reqs()
 	requirements = list(
@@ -1021,14 +1021,14 @@
 	return REACTING
 
 /**
- * Proto-Nitrate Hydrogen Conversion
+ * Proto-Nitrate-原硝酸 Hydrogen Conversion
  *
  * Converts hydrogen into proto-nitrate.
  * Endothermic.
  */
 /datum/gas_reaction/proto_nitrate_hydrogen_response
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Proto Nitrate Hydrogen Response"
+	name = "Proto Nitrate Hydrogen-氢气 Response"
 	id = "proto_nitrate_hydrogen_response"
 	desc = "Conversion of hydrogen into proto nitrate."
 
@@ -1056,7 +1056,7 @@
 	return REACTING
 
 /**
- * Proto-Nitrate Tritium De-irradiation
+ * Proto-Nitrate-原硝酸 Tritium-氚 De-irradiation
  *
  * Converts tritium to hydrogen.
  * Releases radiation.
@@ -1064,9 +1064,9 @@
  */
 /datum/gas_reaction/proto_nitrate_tritium_response
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Proto Nitrate Tritium Response"
+	name = "Proto Nitrate Tritium-氚 Response"
 	id = "proto_nitrate_tritium_response"
-	desc = "Conversion of tritium into hydrogen that consumes a small amount of proto-nitrate."
+	desc = "Conversion of tritium into hydrogen-氢气 that consumes a small amount of proto-nitrate."
 
 /datum/gas_reaction/proto_nitrate_tritium_response/init_reqs()
 	requirements = list(
@@ -1107,7 +1107,7 @@
 	return REACTING
 
 /**
- * Proto-Nitrate BZase Action
+ * Proto-Nitrate-原硝酸 BZase Action
  *
  * Breaks BZ down into nitrogen, helium, and plasma in the presence of proto-nitrate.
  */

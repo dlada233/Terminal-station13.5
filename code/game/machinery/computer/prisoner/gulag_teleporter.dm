@@ -1,7 +1,7 @@
 //computer that handle the points and teleports the prisoner
 /obj/machinery/computer/prisoner/gulag_teleporter_computer
 	name = "劳改营传送控制终端"
-	desc = "Used to send criminals to the Labor Camp."
+	desc = "用来把囚犯送到劳改营去."
 	icon_screen = "explosive"
 	icon_keyboard = "security_key"
 	req_access = list(ACCESS_BRIG)

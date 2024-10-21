@@ -16,7 +16,7 @@
 /// Maximum range a radiation pulse is allowed to be from a gas reaction.
 #define GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE 20
 
-// Water Vapor:
+// Water Vapor-水蒸气:
 /// The temperature required for water vapor to condense.
 #define WATER_VAPOR_CONDENSATION_POINT (T20C + 10)
 /// The temperature required for water vapor to condense as ice instead of water.
@@ -66,7 +66,7 @@
 /// The divisor for the maximum hydrogen burn rate. (1/2 of the hydrogen can burn in one reaction tick.)
 #define FIRE_HYDROGEN_BURN_RATE_DELTA 2
 
-// - Tritium:
+// - Tritium-氚:
 /// The minimum temperature tritium combusts at.
 #define TRITIUM_MINIMUM_BURN_TEMPERATURE FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 /// The amount of energy released by burning one mole of tritium.
@@ -84,7 +84,7 @@
 /// The threshold of the tritium combustion's radiation. Lower values means it will be able to penetrate through more structures.
 #define TRITIUM_RADIATION_THRESHOLD 0.3
 
-// - Freon:
+// - Freon-氟利昂:
 /// The maximum temperature freon can combust at.
 #define FREON_MAXIMUM_BURN_TEMPERATURE 283
 ///Minimum temperature allowed for the burn to go at max speed, we would have negative pressure otherwise
@@ -133,7 +133,7 @@
 /// The amount of energy 1 mole of BZ forming from N2O and plasma releases.
 #define BZ_FORMATION_ENERGY 80000
 
-// Pluoxium:
+// Pluoxium-钷:
 /// The minimum temperature pluoxium can form from carbon dioxide, oxygen, and tritium at.
 #define PLUOXIUM_FORMATION_MIN_TEMP 50
 /// The maximum temperature pluoxium can form from carbon dioxide, oxygen, and tritium at.
@@ -143,7 +143,7 @@
 /// The amount of energy one mole of pluoxium forming from carbon dioxide, oxygen, and tritium releases.
 #define PLUOXIUM_FORMATION_ENERGY 250
 
-// Nitrium:
+// Nitrium-亚硝基兴奋气体:
 /// The minimum temperature necessary for nitrium to form from tritium, nitrogen, and BZ.
 #define NITRIUM_FORMATION_MIN_TEMP 1500
 /// A scaling divisor for the rate of nitrium formation relative to mix temperature.
@@ -158,7 +158,7 @@
 /// The amount of energy released when a mole of nitrium decomposes into nitrogen and hydrogen.
 #define NITRIUM_DECOMPOSITION_ENERGY 30000
 
-// Freon:
+// Freon-氟利昂:
 /// The minimum temperature freon can form from plasma, CO2, and BZ at.
 #define FREON_FORMATION_MIN_TEMPERATURE (FIRE_MINIMUM_TEMPERATURE_TO_EXIST + 100)
 /// The amount of energy 2.5 moles of freon forming from plasma, CO2, and BZ consumes.
@@ -175,7 +175,7 @@
 /// The number of moles of hyper-noblium required to prevent reactions.
 #define REACTION_OPPRESSION_THRESHOLD 5
 
-// Halon:
+// Halon-哈龙:
 /// Energy released per mole of BZ consumed during halon formation.
 #define HALON_FORMATION_ENERGY 91232.1
 
@@ -198,7 +198,7 @@
 /// The amount of energy three moles of healium forming from BZ and freon releases.
 #define HEALIUM_FORMATION_ENERGY 9000
 
-// Zauker:
+// Zauker-扎克:
 /// The minimum temperature zauker can form from hyper-noblium and nitrium at.
 #define ZAUKER_FORMATION_MIN_TEMPERATURE 50000
 /// The maximum temperature zauker can form from hyper-noblium and nitrium at.
@@ -213,7 +213,7 @@
 /// The amount of energy a mole of zauker decomposing in the presence of nitrogen releases.
 #define ZAUKER_DECOMPOSITION_ENERGY 460
 
-// Proto-Nitrate:
+// Proto-Nitrate-原硝酸:
 /// The minimum temperature proto-nitrate can form from pluoxium and hydrogen at.
 #define PN_FORMATION_MIN_TEMPERATURE 5000
 /// The maximum temperature proto-nitrate can form from pluoxium and hydrogen at.

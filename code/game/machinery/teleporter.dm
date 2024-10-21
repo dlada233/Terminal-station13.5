@@ -1,11 +1,11 @@
 /obj/machinery/teleport
-	name = "teleport"
+	name = "传送"
 	icon = 'icons/obj/machines/teleporter.dmi'
 	density = TRUE
 
 /obj/machinery/teleport/hub
-	name = "teleporter hub"
-	desc = "It's the hub of a teleporting machine."
+	name = "传送枢纽"
+	desc = "远距离传送机器的枢纽."
 	icon_state = "tele0"
 	base_icon_state = "tele"
 	circuit = /obj/item/circuitboard/machine/teleporter_hub
@@ -33,7 +33,7 @@
 /obj/machinery/teleport/hub/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Probability of malfunction decreased by <b>[(accuracy*25)-25]%</b>.")
+		. += span_notice("状态显示: 故障概率降低了 <b>[(accuracy*25)-25]%</b>.")
 
 /obj/machinery/teleport/hub/proc/link_power_station()
 	if(power_station)
@@ -47,7 +47,7 @@
 
 /obj/machinery/teleport/hub/Bumped(atom/movable/AM)
 	if(is_centcom_level(z))
-		to_chat(AM, span_warning("You can't use this here!"))
+		to_chat(AM, span_warning("你不能使用这个!"))
 		return
 	if(is_ready())
 		teleport(AM)
@@ -71,7 +71,7 @@
 		target = com.target_ref.resolve()
 	if (!target)
 		com.target_ref = null
-		visible_message(span_alert("Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
+		visible_message(span_alert("无法对锁定的坐标进行验证，请恢复坐标网络."))
 		return
 	if(!ismovable(M))
 		return
@@ -88,7 +88,7 @@
 			if(check_holidays(MOTH_WEEK))
 				species_to_transform = /datum/species/moth
 			if(human.dna && human.dna.species.id != initial(species_to_transform.id))
-				to_chat(M, span_hear("You hear a buzzing in your ears."))
+				to_chat(M, span_hear("你听到耳边嗡嗡响."))
 				human.set_species(species_to_transform)
 				human.log_message("was turned into a [initial(species_to_transform.name)] through [src].", LOG_GAME)
 	calibrated = FALSE
@@ -107,8 +107,8 @@
 	RefreshParts()
 
 /obj/machinery/teleport/station
-	name = "teleporter station"
-	desc = "The power control station for a bluespace teleporter. Used for toggling power, and can activate a test-fire to prevent malfunctions."
+	name = "传送站"
+	desc = "蓝空传送机的电源控制站，用于切换电源，可以进行试传送来防止故障."
 	icon_state = "controller"
 	base_icon_state = "controller"
 	circuit = /obj/item/circuitboard/machine/teleporter_station
@@ -132,11 +132,11 @@
 /obj/machinery/teleport/station/examine(mob/user)
 	. = ..()
 	if(!panel_open)
-		. += span_notice("The panel is <i>screwed</i> in, obstructing the linking device and wiring panel.")
+		. += span_notice("检修盖被<i>螺丝</i>锁住了.")
 	else
-		. += span_notice("The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.")
+		. += span_notice("<i>连接</i>设备现在能够用多功能工具<i>扫描到</i>.")
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: This station can be linked to <b>[efficiency]</b> other station(s).")
+		. += span_notice("状态显示: 此传送站可以连接到<b>[efficiency]</b>个其他传送站.")
 
 /obj/machinery/teleport/station/proc/link_console_and_hub()
 	for(var/direction in GLOB.cardinals)
@@ -169,15 +169,15 @@
 		var/obj/item/multitool/M = W
 		if(panel_open)
 			M.set_buffer(src)
-			balloon_alert(user, "saved to multitool buffer")
+			balloon_alert(user, "已保存到多功能工具缓冲区")
 		else
 			if(M.buffer && istype(M.buffer, /obj/machinery/teleport/station) && M.buffer != src)
 				if(linked_stations.len < efficiency)
 					linked_stations.Add(M.buffer)
 					M.set_buffer(null)
-					balloon_alert(user, "data uploaded from buffer")
+					balloon_alert(user, "已从缓冲区上传数据")
 				else
-					to_chat(user, span_alert("This station can't hold more information, try to use better parts."))
+					to_chat(user, span_alert("本传送站无法容纳更多信息，请尝试更换更好的组件."))
 		return
 	else if(default_deconstruction_screwdriver(user, "controller-o", "controller", W))
 		update_appearance()
@@ -196,14 +196,14 @@
 		return
 	if (teleporter_console.target_ref?.resolve())
 		if(teleporter_hub.panel_open || teleporter_hub.machine_stat & (BROKEN|NOPOWER))
-			to_chat(user, span_alert("The teleporter hub isn't responding."))
+			to_chat(user, span_alert("传送枢纽没有响应."))
 		else
 			engaged = !engaged
 			use_energy(active_power_usage)
-			to_chat(user, span_notice("Teleporter [engaged ? "" : "dis"]engaged!"))
+			to_chat(user, span_notice("传送功能[engaged ? "开启" : "关闭"]!"))
 	else
 		teleporter_console.target_ref = null
-		to_chat(user, span_alert("No target detected."))
+		to_chat(user, span_alert("未检测到目标."))
 		engaged = FALSE
 	teleporter_hub.update_appearance()
 	add_fingerprint(user)

@@ -66,7 +66,7 @@
 	if(.)
 		return TRUE
 	if(!allowed(usr) && !(obj_flags & EMAGGED))
-		balloon_alert(usr, "access denied!")
+		balloon_alert(usr, "访问被拒绝!")
 		playsound(src, 'sound/machines/click.ogg', 20, TRUE)
 		return TRUE
 

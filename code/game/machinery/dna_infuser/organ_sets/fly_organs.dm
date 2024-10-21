@@ -1,4 +1,4 @@
-#define FLY_INFUSED_ORGAN_DESC "You have no idea what the hell this is, or how it manages to keep something alive in any capacity."
+#define FLY_INFUSED_ORGAN_DESC "你搞不清楚这东西到底是什么，也不知道它维持生命的方式是什么."
 #define FLY_INFUSED_ORGAN_ICON pick("brain-x-d", "liver-x", "kidneys-x", "spinner-x", "lungs-x", "random_fly_1", "random_fly_2", "random_fly_3", "random_fly_4", "random_fly_5")
 
 ///bonus of the fly: you... are a flyperson now. sorry.
@@ -16,12 +16,12 @@
 	if(isflyperson(new_fly))
 		return
 	//okay you NEED to be a fly
-	to_chat(new_fly, span_danger("Too much fly DNA! Your skin begins to discolor into a horrible black as you become more fly than person!"))
+	to_chat(new_fly, span_danger("苍蝇DNA太多了，你的皮肤开始变成可怕的黑色，你变得像苍蝇!"))
 	new_fly.set_species(/datum/species/fly)
 
 /obj/item/organ/internal/eyes/fly
-	name = "fly eyes"
-	desc = "These eyes seem to stare back no matter the direction you look at it from."
+	name = "苍蝇眼"
+	desc = "无论从哪个方向看，这眼睛都在回看你."
 	eye_icon_state = "flyeyes"
 	icon_state = "eyeballs-fly"
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
@@ -32,8 +32,8 @@
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/fly)
 
 /obj/item/organ/internal/tongue/fly
-	name = "proboscis"
-	desc = "A freakish looking meat tube that apparently can take in liquids."
+	name = "苍蝇嘴"
+	desc = "看起来很奇怪的肉管，可以用来吸入液体."
 	icon = 'icons/obj/medical/organs/fly_organs.dmi'
 	say_mod = "buzzes"
 	taste_sensitivity = 25 // you eat vomit, this is a mercy
@@ -115,8 +115,8 @@
 	body.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_FORCE | MOB_VOMIT_HARM), lost_nutrition = 0, distance = 2, purge_ratio = 0.67)
 	playsound(get_turf(owner), 'sound/effects/splat.ogg', 50, TRUE)
 	body.visible_message(
-		span_danger("[body] vomits on the floor!"),
-		span_userdanger("You throw up on the floor!"),
+		span_danger("[body]吐在了地板上!"),
+		span_userdanger("你吐在了地板上!"),
 	)
 	return ..()
 

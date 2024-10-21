@@ -118,7 +118,7 @@
 
 			user.visible_message(span_notice("[user.name] starts to weld the [name] to the floor."), \
 				span_notice("You start to weld \the [src] to the floor..."), \
-				span_hear("You hear welding."))
+				span_hear("你听到焊接声."))
 
 			if(tool.use_tool(src, user, ENGINE_WELDTIME, volume=50))
 				engine_state = ENGINE_WELDED
@@ -131,7 +131,7 @@
 
 			user.visible_message(span_notice("[user.name] starts to cut the [name] free from the floor."), \
 				span_notice("You start to cut \the [src] free from the floor..."), \
-				span_hear("You hear welding."))
+				span_hear("你听到焊接声."))
 
 			if(tool.use_tool(src, user, ENGINE_WELDTIME, volume=50))
 				engine_state = ENGINE_WRENCHED

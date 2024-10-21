@@ -15,7 +15,7 @@
 
 /datum/orderable_item/consumables/medkit_fire
 	item_path = /obj/item/storage/medkit/fire
-	desc = "For emergency magmatic burn relief."
+	desc = "针对因岩浆烧伤的紧急恢复."
 	cost_per_order = 500
 
 /datum/orderable_item/consumables/whiskey
@@ -44,5 +44,5 @@
 
 /datum/orderable_item/consumables/space_cash
 	item_path = /obj/item/stack/spacecash/c1000
-	desc = "A stack of space cash worth 1000 credits."
+	desc = "价值1000CR的现金."
 	cost_per_order = 2000

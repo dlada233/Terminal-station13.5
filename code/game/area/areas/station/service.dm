@@ -6,31 +6,31 @@
 */
 
 /area/station/service/cafeteria
-	name = "\improper Cafeteria"
+	name = "\improper Cafeteria-自主餐厅"
 	icon_state = "cafeteria"
 
 /area/station/service/kitchen
-	name = "\improper Kitchen"
+	name = "\improper Kitchen-厨房"
 	icon_state = "kitchen"
 
 /area/station/service/kitchen/coldroom
-	name = "\improper Kitchen Cold Room"
+	name = "\improper Kitchen Cold Room-厨房冷库"
 	icon_state = "kitchen_cold"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/service/kitchen/diner
-	name = "\improper Diner"
+	name = "\improper Diner-餐馆"
 	icon_state = "diner"
 
 /area/station/service/kitchen/kitchen_backroom
-	name = "\improper Kitchen Backroom"
+	name = "\improper Kitchen Backroom-厨房后室"
 	icon_state = "kitchen_backroom"
 
 /area/station/service/bar
-	name = "\improper Bar"
+	name = "\improper Bar-酒吧"
 	icon_state = "bar"
 	mood_bonus = 5
-	mood_message = "I love being in the bar!"
+	mood_message = "我喜欢呆在酒吧里!"
 	mood_trait = TRAIT_EXTROVERT
 	airlock_wires = /datum/wires/airlock/service
 	sound_environment = SOUND_AREA_WOODFLOOR
@@ -40,12 +40,12 @@
 	GLOB.bar_areas += src
 
 /area/station/service/bar/atrium
-	name = "\improper Atrium"
+	name = "\improper Atrium-中庭"
 	icon_state = "bar"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/service/bar/backroom
-	name = "\improper Bar Backroom"
+	name = "\improper Bar Backroom-酒吧后室"
 	icon_state = "bar_backroom"
 
 /*
@@ -53,47 +53,47 @@
 */
 
 /area/station/service/theater
-	name = "\improper Theater"
+	name = "\improper Theater-剧院"
 	icon_state = "theatre"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/service/greenroom
-	name = "\improper Greenroom"
+	name = "\improper Greenroom-温室"
 	icon_state = "theatre"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/service/library
-	name = "\improper Library"
+	name = "\improper Library-图书馆"
 	icon_state = "library"
 	mood_bonus = 5
-	mood_message = "I love being in the library!"
+	mood_message = "我很喜欢图书馆!"
 	mood_trait = TRAIT_INTROVERT
 	area_flags = CULT_PERMITTED | BLOBS_ALLOWED | UNIQUE_AREA
 	sound_environment = SOUND_AREA_LARGE_SOFTFLOOR
 
 /area/station/service/library/garden
-	name = "\improper Library Garden"
+	name = "\improper Library-图书馆花园"
 	icon_state = "library_garden"
 
 /area/station/service/library/lounge
-	name = "\improper Library Lounge"
+	name = "\improper Library-图书馆休息室"
 	icon_state = "library_lounge"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/service/library/artgallery
-	name = "\improper  Art Gallery"
+	name = "\improper  Art Gallery-艺术画廊"
 	icon_state = "library_gallery"
 
 /area/station/service/library/private
-	name = "\improper Library Private Study"
+	name = "\improper Library-图书馆私人书房"
 	icon_state = "library_gallery_private"
 
 /area/station/service/library/upper
-	name = "\improper Library Upper Floor"
+	name = "\improper Library-图书馆上层"
 	icon_state = "library"
 
 /area/station/service/library/printer
-	name = "\improper Library Printer Room"
+	name = "\improper Library-图书馆打印机室"
 	icon_state = "library"
 
 /*
@@ -101,44 +101,44 @@
 */
 
 /area/station/service/chapel
-	name = "\improper Chapel"
+	name = "\improper Chapel-教堂"
 	icon_state = "chapel"
 	mood_bonus = 5
-	mood_message = "Being in the chapel brings me peace."
+	mood_message = "教堂使我心静神宁."
 	mood_trait = TRAIT_SPIRITUAL
 	ambience_index = AMBIENCE_HOLY
 	flags_1 = NONE
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/station/service/chapel/monastery
-	name = "\improper Monastery"
+	name = "\improper Monastery-寺庙"
 
 /area/station/service/chapel/office
-	name = "\improper Chapel Office"
+	name = "\improper Chapel-教堂办公室"
 	icon_state = "chapeloffice"
 
 /area/station/service/chapel/asteroid
-	name = "\improper Chapel Asteroid"
+	name = "\improper Chapel-小行星教堂"
 	icon_state = "explored"
 	sound_environment = SOUND_AREA_ASTEROID
 
 /area/station/service/chapel/asteroid/monastery
-	name = "\improper Monastery Asteroid"
+	name = "\improper Monastery-小行星寺庙"
 
 /area/station/service/chapel/dock
-	name = "\improper Chapel Dock"
+	name = "\improper Chapel-教堂码头"
 	icon_state = "construction"
 
 /area/station/service/chapel/storage
-	name = "\improper Chapel Storage"
+	name = "\improper Chapel-教堂仓库"
 	icon_state = "chapelstorage"
 
 /area/station/service/chapel/funeral
-	name = "\improper Chapel Funeral Room"
+	name = "\improper Chapel-教堂葬礼堂"
 	icon_state = "chapelfuneral"
 
 /area/station/service/hydroponics/garden/monastery
-	name = "\improper Monastery Garden"
+	name = "\improper Monastery-寺庙花园"
 	icon_state = "hydro"
 
 /*
@@ -146,17 +146,17 @@
 */
 
 /area/station/service/hydroponics
-	name = "Hydroponics"
+	name = "Hydroponics-水培室"
 	icon_state = "hydro"
 	airlock_wires = /datum/wires/airlock/service
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/station/service/hydroponics/upper
-	name = "Upper Hydroponics"
+	name = "Upper Hydroponics-水培室上层"
 	icon_state = "hydro"
 
 /area/station/service/hydroponics/garden
-	name = "Garden"
+	name = "Garden-花园"
 	icon_state = "garden"
 
 /*
@@ -164,18 +164,18 @@
 */
 
 /area/station/service/lawoffice
-	name = "\improper Law Office"
+	name = "\improper Law Office-律师事务所"
 	icon_state = "law"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/station/service/janitor
-	name = "\improper Custodial Closet"
+	name = "\improper Custodial Closet-保管柜"
 	icon_state = "janitor"
 	area_flags = CULT_PERMITTED | BLOBS_ALLOWED | UNIQUE_AREA
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/service/barber
-	name = "\improper Barber"
+	name = "\improper Barber-理发店"
 	icon_state = "barber"
 
 /*
@@ -183,30 +183,30 @@
 */
 
 /area/station/service/hydroponics/garden/abandoned
-	name = "\improper Abandoned Garden"
+	name = "\improper Abandoned Garden-废弃花园"
 	icon_state = "abandoned_garden"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/service/kitchen/abandoned
-	name = "\improper Abandoned Kitchen"
+	name = "\improper Abandoned Kitchen-废弃厨房"
 	icon_state = "abandoned_kitchen"
 
 /area/station/service/electronic_marketing_den
-	name = "\improper Electronic Marketing Den"
+	name = "\improper Electronic Marketing Den-废弃电商窝点"
 	icon_state = "abandoned_marketing_den"
 
 /area/station/service/abandoned_gambling_den
-	name = "\improper Abandoned Gambling Den"
+	name = "\improper Abandoned Gambling Den-废弃赌博窝点"
 	icon_state = "abandoned_gambling_den"
 
 /area/station/service/abandoned_gambling_den/gaming
-	name = "\improper Abandoned Gaming Den"
+	name = "\improper Abandoned Gaming Den-废弃游戏窝点"
 	icon_state = "abandoned_gaming_den"
 
 /area/station/service/theater/abandoned
-	name = "\improper Abandoned Theater"
+	name = "\improper Abandoned Theater-废弃剧院"
 	icon_state = "abandoned_theatre"
 
 /area/station/service/library/abandoned
-	name = "\improper Abandoned Library"
+	name = "\improper Abandoned Library-废弃图书馆"
 	icon_state = "abandoned_library"

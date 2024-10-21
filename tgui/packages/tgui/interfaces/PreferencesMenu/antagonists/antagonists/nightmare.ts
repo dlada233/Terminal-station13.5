@@ -2,11 +2,11 @@ import { Antagonist, Category } from '../base';
 
 const Nightmare: Antagonist = {
   key: 'nightmare',
-  name: 'Nightmare',
+  name: '夜魇',
   description: [
     `
-      Use your light eater to break sources of light to survive and thrive.
-      Jaunt through the darkness and seek your prey with night vision.
+      运用名为消光的臂刃来打碎光源以在黑暗中生存和成长.
+      在黑暗中穿行，运用夜视寻找猎物.
     `,
   ],
   category: Category.Midround,

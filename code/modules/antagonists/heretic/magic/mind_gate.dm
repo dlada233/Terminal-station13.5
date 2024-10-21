@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/mind_gate
 	name = "心灵之门"
-	desc = "对你造成20点脑损伤，让目标产生幻觉、混乱10秒、并遭受缺氧和脑损伤.area"
+	desc = "对你造成20点脑损伤，让目标产生幻觉、混乱10秒、并遭受缺氧和脑损伤."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

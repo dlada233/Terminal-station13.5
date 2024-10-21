@@ -8,8 +8,8 @@ Buildable meters
 //...otherwise construction will stop working
 
 /obj/item/pipe
-	name = "pipe"
-	desc = "A pipe."
+	name = "管道"
+	desc = "一段管道."
 	var/pipe_type
 	var/pipename
 	force = 7
@@ -166,7 +166,7 @@ Buildable meters
 
 /obj/item/pipe/verb/flip()
 	set category = "物件"
-	set name = "Invert Pipe"
+	set name = "倒置管道"
 	set src in view(1)
 
 	if ( usr.incapacitated() )
@@ -229,7 +229,7 @@ Buildable meters
 	for(var/obj/machinery/atmospherics/machine in loc)
 		// Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
 		if(machine.pipe_flags & flags & PIPING_ONE_PER_TURF)
-			to_chat(user, span_warning("Something is hogging the tile!"))
+			to_chat(user, span_warning("该地块被某物占住!"))
 			return TRUE
 		// skip checks if we don't overlap layers, either by being on the same layer or by something being on all layers
 		if(machine.piping_layer != piping_layer && !((machine.pipe_flags | flags) & PIPING_ALL_LAYER))
@@ -244,7 +244,7 @@ Buildable meters
 			// We have a conflict!
 			if (length(potentially_conflicting_machines) != 1 || !try_smart_reconfiguration(machine, our_init_dirs, user))
 				// No solutions found
-				to_chat(user, span_warning("There is already a pipe at that location!"))
+				to_chat(user, span_warning("该位置已经有了一段管道!"))
 				return TRUE
 	// no conflicts found
 
@@ -255,9 +255,9 @@ Buildable meters
 
 	wrench.play_tool_sound(src)
 	user.visible_message( \
-		"[user] fastens \the [src].", \
-		span_notice("You fasten \the [src]."), \
-		span_hear("You hear ratcheting."))
+		"[user]固定[src].", \
+		span_notice("你固定[src]."), \
+		span_hear("你听到扳手拧动声."))
 
 	qdel(src)
 
@@ -272,9 +272,9 @@ Buildable meters
 	if(welder.use_tool(src, user, 2 SECONDS, volume=2))
 		new /obj/item/sliced_pipe(drop_location())
 		user.visible_message( \
-			"[user] welds \the [src] in two.", \
-			span_notice("You weld \the [src] in two."), \
-			span_hear("You hear welding."))
+			"[user]焊接[src]成两半.", \
+			span_notice("你焊接[src]成两半."), \
+			span_hear("你听到焊接声."))
 
 		qdel(src)
 
@@ -369,7 +369,7 @@ Buildable meters
 	T.flipped = flipped
 
 /obj/item/pipe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] shoves [src] in [user.p_their()] mouth and turns it on! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]把[src]塞进自己嘴里! 看起来是在尝试自杀!"))
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		for(var/i in 1 to 20)
@@ -382,8 +382,8 @@ Buildable meters
 
 /obj/item/pipe/examine(mob/user)
 	. = ..()
-	. += span_notice("The pipe layer is set to [piping_layer].")
-	. += span_notice("You can change the pipe layer by Right-Clicking the device.")
+	. += span_notice("管道层级被设定在[piping_layer].")
+	. += span_notice("右键设备以改变层级.")
 
 /obj/item/pipe/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -391,25 +391,25 @@ Buildable meters
 		return
 	var/layer_to_set = (piping_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (piping_layer + 1)
 	set_piping_layer(layer_to_set)
-	balloon_alert(user, "pipe layer set to [piping_layer]")
+	balloon_alert(user, "管道层级设定到[piping_layer]")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /obj/item/pipe/trinary/flippable/examine(mob/user)
 	. = ..()
-	. += span_notice("You can flip the device by Right-Clicking it.")
+	. += span_notice("你可以通过右键来翻转设备.")
 
 /obj/item/pipe/trinary/flippable/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	do_a_flip()
-	balloon_alert(user, "pipe was flipped")
+	balloon_alert(user, "管道被翻转")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/pipe_meter
-	name = "meter"
-	desc = "A meter that can be wrenched on pipes, or attached to the floor with screws."
+	name = "计量表"
+	desc = "可以用螺丝固定在地板上，或用扳手拧在管道上."
 	icon = 'icons/obj/pipes_n_cables/pipe_item.dmi'
 	icon_state = "meter"
 	inhand_icon_state = "buildpipe"
@@ -424,11 +424,11 @@ Buildable meters
 			pipe = P
 			break
 	if(!pipe)
-		to_chat(user, span_warning("You need to fasten it to a pipe!"))
+		to_chat(user, span_warning("你需要把它固定在管道上!"))
 		return TRUE
 	new /obj/machinery/meter(loc, piping_layer)
 	W.play_tool_sound(src)
-	to_chat(user, span_notice("You fasten the meter to the pipe."))
+	to_chat(user, span_notice("你把计量表固定在管道上."))
 	qdel(src)
 
 /obj/item/pipe_meter/screwdriver_act(mob/living/user, obj/item/S)
@@ -437,12 +437,12 @@ Buildable meters
 		return TRUE
 
 	if(!isturf(loc))
-		to_chat(user, span_warning("You need to fasten it to the floor!"))
+		to_chat(user, span_warning("你需要把它固定在地板上!"))
 		return TRUE
 
 	new /obj/machinery/meter/turf(loc, piping_layer)
 	S.play_tool_sound(src)
-	to_chat(user, span_notice("You fasten the meter to the [loc.name]."))
+	to_chat(user, span_notice("你把计量表固定在了[loc.name]."))
 	qdel(src)
 
 /obj/item/pipe_meter/dropped()

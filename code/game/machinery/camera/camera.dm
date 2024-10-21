@@ -3,8 +3,8 @@
  * Putting this on a wall will put a deconstructed camera machine on the wall.
  */
 /obj/item/wallframe/camera
-	name = "camera assembly"
-	desc = "The basic construction for Nanotrasen-Always-Watching-You cameras."
+	name = "摄像头框架"
+	desc = "“纳米在看着你”型摄像头的基本构造框架."
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "cameracase"
 	custom_materials = list(
@@ -15,8 +15,8 @@
 	wall_external = TRUE
 
 /obj/machinery/camera
-	name = "security camera"
-	desc = "It's used to monitor rooms."
+	name = "安保摄像头"
+	desc = "它被用于监视房间."
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "camera"
 	base_icon_state = "camera"

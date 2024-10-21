@@ -11,7 +11,7 @@
 */
 /datum/reagent/eigenstate
 	name = "Eigenstasium-本征态波动液"
-	description = "由蓝色空间与等离子体的受控反应形成的一种奇怪的混合物，在受试对象体内引起局域特征态流动."
+	description = "由蓝空与等离子体的受控反应形成的一种奇怪的混合物，在受试对象体内引起局域特征态流动."
 	taste_description = "摇摆的宇宙尘埃."
 	color = "#5020F4"
 	overdose_threshold = 15

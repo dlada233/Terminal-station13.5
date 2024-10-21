@@ -1,6 +1,6 @@
 /obj/machinery/computer/launchpad
 	name = "发射台控制终端"
-	desc = "Used to teleport objects to and from a launchpad."
+	desc = "用于将物体传送到发射台"
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
 	circuit = /obj/item/circuitboard/computer/launchpad_console
@@ -18,7 +18,7 @@
 
 /obj/item/circuit_component/bluespace_launchpad/console
 	display_name = "蓝空发射台控制终端"
-	desc = "Teleports anything to and from any location on the station. Doesn't use actual GPS coordinates, but rather offsets from the launchpad itself. Can only go as far as the launchpad can go, which depends on its parts."
+	desc = "能把任意物体传送到范围内任何地方，不使用GPS坐标，而是使用发射台本身的偏移量，其传送范围取决于自身组件."
 
 	var/datum/port/input/launchpad_id
 
@@ -39,7 +39,7 @@
 
 /obj/item/circuit_component/bluespace_launchpad/console/input_received(datum/port/input/port)
 	if(!attached_console || length(attached_console.launchpads) == 0)
-		why_fail.set_output("No launchpads connected!")
+		why_fail.set_output("无发射台连接!")
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
@@ -49,13 +49,13 @@
 	attached_launchpad = KEYBYINDEX(attached_console.launchpads, launchpad_id.value)
 
 	if(isnull(attached_launchpad))
-		why_fail.set_output("Invalid launchpad selected!")
+		why_fail.set_output("选择了不可用的发射台!")
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 	..()
 
 /obj/machinery/computer/launchpad/attack_paw(mob/user, list/modifiers)
-	to_chat(user, span_warning("You are too primitive to use this computer!"))
+	to_chat(user, span_warning("你太原始了，不会用这台电脑!"))
 	return
 
 /obj/machinery/computer/launchpad/attackby(obj/item/W, mob/user, params)
@@ -67,9 +67,9 @@
 			if(LAZYLEN(launchpads) < maximum_pads)
 				launchpads |= M.buffer
 				M.set_buffer(null)
-				to_chat(user, span_notice("You upload the data from the [W.name]'s buffer."))
+				to_chat(user, span_notice("你上传了[W.name]缓冲区内数据."))
 			else
-				to_chat(user, span_warning("[src] cannot handle any more connections!"))
+				to_chat(user, span_warning("[src]无法处理更多的连接了!"))
 	else
 		return ..()
 
@@ -155,7 +155,7 @@
 				return
 			current_pad.display_name = new_name
 		if("remove")
-			if(usr && tgui_alert(usr, "Are you sure?", "Unlink Launchpad", list("I'm Sure", "Abort")) == "I'm Sure")
+			if(usr && tgui_alert(usr, "你确定?", "发射台断连", list("确定", "中止")) == "确定")
 				launchpads -= current_pad
 				selected_id = null
 			. = TRUE

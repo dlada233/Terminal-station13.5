@@ -55,7 +55,7 @@
 				return
 
 		if(!user.transferItemToLoc(loaded_organ, src))
-			to_chat(user, span_alert("[loaded_organ] is stuck to your hand!"))
+			to_chat(user, span_alert("[loaded_organ] is 粘在了你的手上!"))
 			return
 
 	stored_organ = loaded_organ

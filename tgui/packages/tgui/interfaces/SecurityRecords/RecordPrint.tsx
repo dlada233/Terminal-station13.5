@@ -80,10 +80,10 @@ export const RecordPrint = (props) => {
             icon="question"
             onClick={() => swapTabs(PRINTOUT.Missing)}
             selected={printType === PRINTOUT.Missing}
-            tooltip="Prints a poster with mugshot and description."
+            tooltip="打印带有肖像和描述的海报."
             tooltipPosition="bottom"
           >
-            Missing
+            寻人
           </Button>
           <Button
             // SKYRAT EDIT REMOVE START - REMOVE INNOCENT CHECK, ALLOWS RAPSHEETS TO BE PRINTED WITHOUT ANY CRIMES HAVING BEEN LOGGED
@@ -92,37 +92,37 @@ export const RecordPrint = (props) => {
             icon="file-alt"
             onClick={() => swapTabs(PRINTOUT.Rapsheet)}
             selected={printType === PRINTOUT.Rapsheet}
-            tooltip={`Prints a standard paper with the record on it.`} // SKYRAT EDIT CHANGE START - ORIGINAL:
+            tooltip={`打印前科记录.`} // SKYRAT EDIT CHANGE START - ORIGINAL:
             // tooltip={`Prints a standard paper with the record on it.${
             //  innocent ? ' (Requires crimes)' : ''
             // }`}
             // SKYRAT EDIT CHANGE END
             tooltipPosition="bottom"
           >
-            Rapsheet
+            前科记录
           </Button>
           <Button
             disabled={innocent}
             icon="handcuffs"
             onClick={() => swapTabs(PRINTOUT.Wanted)}
             selected={printType === PRINTOUT.Wanted}
-            tooltip={`Prints a poster with mugshot and crimes.${
-              innocent ? ' (Requires crimes)' : ''
+            tooltip={`打印带有肖像和罪名的海报.${
+              innocent ? ' (需要罪名)' : ''
             }`}
             tooltipPosition="bottom"
           >
-            Wanted
+            通缉
           </Button>
           <Button color="bad" icon="times" onClick={reset} />
         </>
       }
       fill
       scrollable
-      title="Print Record"
+      title="打印档案"
     >
       <Stack color="label" fill vertical>
         <Stack.Item>
-          <Box>Enter a Header:</Box>
+          <Box>输入标题:</Box>
           <Input
             onChange={(event, value) => setHeader(value)}
             maxLength={7}
@@ -131,11 +131,11 @@ export const RecordPrint = (props) => {
           <Button
             icon="sync"
             onClick={() => clearField('header')}
-            tooltip="Reset"
+            tooltip="重置"
           />
         </Stack.Item>
         <Stack.Item>
-          <Box>Enter an Alias:</Box>
+          <Box>输入别名:</Box>
           <Input
             onChange={(event, value) => setAlias(value)}
             maxLength={42}
@@ -145,11 +145,11 @@ export const RecordPrint = (props) => {
           <Button
             icon="sync"
             onClick={() => clearField('alias')}
-            tooltip="Reset"
+            tooltip="重置"
           />
         </Stack.Item>
         <Stack.Item>
-          <Box>Enter a Description:</Box>
+          <Box>输入描述内容:</Box>
           <Stack fill>
             <Stack.Item grow>
               <Input
@@ -163,7 +163,7 @@ export const RecordPrint = (props) => {
               <Button
                 icon="sync"
                 onClick={() => clearField('description')}
-                tooltip="Reset"
+                tooltip="重置"
               />
             </Stack.Item>
           </Stack>
@@ -171,10 +171,10 @@ export const RecordPrint = (props) => {
         <Stack.Item mt={2}>
           <Box align="right">
             <Button color="bad" onClick={() => setOpen(false)}>
-              Cancel
+              取消
             </Button>
             <Button color="good" onClick={printSheet}>
-              Print
+              打印
             </Button>
           </Box>
         </Stack.Item>

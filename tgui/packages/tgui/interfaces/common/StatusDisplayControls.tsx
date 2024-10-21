@@ -29,19 +29,19 @@ export const StatusDisplayControls = (props) => {
       <Section>
         <Button
           icon="toggle-off"
-          content="Off"
+          content="关闭"
           color="bad"
           onClick={() => act('setStatusPicture', { picture: 'blank' })}
         />
         <Button
           icon="space-shuttle"
-          content="Shuttle ETA / Off"
+          content="撤离飞船 ETA / Off"
           color=""
           onClick={() => act('setStatusPicture', { picture: 'shuttle' })}
         />
       </Section>
 
-      <Section title="Graphics">
+      <Section title="图像">
         <Button
           icon="flag"
           content="Logo"
@@ -50,30 +50,30 @@ export const StatusDisplayControls = (props) => {
 
         <Button
           icon="exclamation"
-          content="Security Alert Level"
+          content="安全警报等级"
           onClick={() => act('setStatusPicture', { picture: 'currentalert' })}
         />
 
         <Button
           icon="exclamation-triangle"
-          content="Lockdown"
+          content="封锁"
           onClick={() => act('setStatusPicture', { picture: 'lockdown' })}
         />
 
         <Button
           icon="biohazard"
-          content="Biohazard"
+          content="生物危害"
           onClick={() => act('setStatusPicture', { picture: 'biohazard' })}
         />
 
         <Button
           icon="radiation"
-          content="Radiation"
+          content="辐射"
           onClick={() => act('setStatusPicture', { picture: 'radiation' })}
         />
       </Section>
 
-      <Section title="Message">
+      <Section title="信息">
         <Flex direction="column" align="stretch">
           <Flex.Item mb={1}>
             <Input

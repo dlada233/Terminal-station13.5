@@ -1,10 +1,10 @@
 /obj/item/electronics/firealarm
-	name = "fire alarm electronics"
-	desc = "A fire alarm circuit. Can handle heat levels up to 40 degrees celsius."
+	name = "火警铃电路板"
+	desc = "火警电路，可以应对高达40摄氏度的热量."
 
 /obj/item/wallframe/firealarm
-	name = "fire alarm frame"
-	desc = "Used for building fire alarms."
+	name = "火警铃框架"
+	desc = "等待建造成火警铃."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "fire_bitem"
 	result_path = /obj/machinery/firealarm
@@ -12,7 +12,7 @@
 
 /obj/machinery/firealarm
 	name = "火警铃"
-	desc = "Pull this in case of emergency. Thus, keep pulling it forever."
+	desc = "紧急情况才拉，也就是说，一直拉它."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "fire0"
 	max_integrity = 250
@@ -61,21 +61,21 @@
 
 	AddElement( \
 		/datum/element/contextual_screentip_bare_hands, \
-		lmb_text = "Turn on", \
-		rmb_text = "Turn off", \
+		lmb_text = "开启", \
+		rmb_text = "关闭", \
 	)
 
 	AddComponent( \
 		/datum/component/redirect_attack_hand_from_turf, \
 		screentip_texts = list( \
-			lmb_text = "Turn on alarm", \
-			rmb_text = "Turn off alarm", \
+			lmb_text = "开启警铃", \
+			rmb_text = "关闭警铃", \
 		), \
 	)
 
 	var/static/list/hovering_mob_typechecks = list(
 		/mob/living/silicon = list(
-			SCREENTIP_CONTEXT_CTRL_LMB = "Toggle thermal sensors, which control auto-deploy",
+			SCREENTIP_CONTEXT_CTRL_LMB = "开关自动温度感应",
 		)
 	)
 	AddElement(/datum/element/contextual_screentip_mob_typechecks, hovering_mob_typechecks)
@@ -232,9 +232,9 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	update_appearance()
-	visible_message(span_warning("Sparks fly out of [src]!"))
+	visible_message(span_warning("[src]里飞溅出火花!"))
 	if(user)
-		balloon_alert(user, "speaker disabled")
+		balloon_alert(user, "扬声器已禁用")
 		user.log_message("emagged [src].", LOG_ATTACK)
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	set_status()
@@ -270,7 +270,7 @@
 	for(var/obj/machinery/door/firedoor/firelock in my_area.firedoors)
 		firelock.activate(FIRELOCK_ALARM_TYPE_GENERIC)
 	if(user)
-		balloon_alert(user, "triggered alarm!")
+		balloon_alert(user, "警报触发!")
 		user.log_message("triggered a fire alarm.", LOG_GAME)
 	my_area.fault_status = AREA_FAULT_MANUAL
 	my_area.fault_location = name
@@ -293,7 +293,7 @@
 	for(var/obj/machinery/door/firedoor/firelock in my_area.firedoors)
 		firelock.crack_open()
 	if(user)
-		balloon_alert(user, "reset alarm")
+		balloon_alert(user, "重置火警铃")
 		user.log_message("reset a fire alarm.", LOG_GAME)
 	soundloop.stop()
 	SEND_SIGNAL(src, COMSIG_FIREALARM_ON_RESET)
@@ -331,7 +331,7 @@
 	if(tool.tool_behaviour == TOOL_SCREWDRIVER && buildstage == FIRE_ALARM_BUILD_SECURED)
 		tool.play_tool_sound(src)
 		toggle_panel_open()
-		to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
+		to_chat(user, span_notice("线缆被[panel_open ? "暴露在外" : "隐藏得很好"]."))
 		update_appearance()
 		return
 
@@ -342,12 +342,12 @@
 				if(!tool.tool_start_check(user, amount=1))
 					return
 
-				to_chat(user, span_notice("You begin repairing [src]..."))
+				to_chat(user, span_notice("你开始修理[src]..."))
 				if(tool.use_tool(src, user, 40, volume=50))
 					atom_integrity = max_integrity
-					to_chat(user, span_notice("You repair [src]."))
+					to_chat(user, span_notice("你修理好了[src]."))
 			else
-				to_chat(user, span_warning("[src] is already in good condition!"))
+				to_chat(user, span_warning("[src]状态良好!"))
 			return
 
 		switch(buildstage)
@@ -359,7 +359,7 @@
 					buildstage = FIRE_ALARM_BUILD_NO_WIRES
 					tool.play_tool_sound(src)
 					new /obj/item/stack/cable_coil(user.loc, 5)
-					to_chat(user, span_notice("You cut the wires from \the [src]."))
+					to_chat(user, span_notice("你剪断[src]的线缆."))
 					update_appearance()
 					return
 
@@ -374,31 +374,31 @@
 				if(istype(tool, /obj/item/stack/cable_coil))
 					var/obj/item/stack/cable_coil/coil = tool
 					if(coil.get_amount() < 5)
-						to_chat(user, span_warning("You need more cable for this!"))
+						to_chat(user, span_warning("你需要更多的电线来做这个!"))
 					else
 						coil.use(5)
 						buildstage = FIRE_ALARM_BUILD_SECURED
-						to_chat(user, span_notice("You wire \the [src]."))
+						to_chat(user, span_notice("你为[src]接线."))
 						update_appearance()
 					return
 
 				else if(tool.tool_behaviour == TOOL_CROWBAR)
-					user.visible_message(span_notice("[user.name] removes the electronics from [src.name]."), \
-										span_notice("You start prying out the circuit..."))
+					user.visible_message(span_notice("[user.name]移除了[src.name]的电子元件."), \
+										span_notice("你开始撬出电子元件..."))
 					if(tool.use_tool(src, user, 20, volume=50))
 						if(buildstage == FIRE_ALARM_BUILD_NO_WIRES)
 							if(machine_stat & BROKEN)
-								to_chat(user, span_notice("You remove the destroyed circuit."))
+								to_chat(user, span_notice("你取出了损坏的电路板."))
 								set_machine_stat(machine_stat & ~BROKEN)
 							else
-								to_chat(user, span_notice("You pry out the circuit."))
+								to_chat(user, span_notice("你撬出了电路板."))
 								new /obj/item/electronics/firealarm(user.loc)
 							buildstage = FIRE_ALARM_BUILD_NO_CIRCUIT
 							update_appearance()
 					return
 			if(0)
 				if(istype(tool, /obj/item/electronics/firealarm))
-					to_chat(user, span_notice("You insert the circuit."))
+					to_chat(user, span_notice("你插入电路板."))
 					qdel(tool)
 					buildstage = FIRE_ALARM_BUILD_NO_WIRES
 					update_appearance()
@@ -408,15 +408,15 @@
 					var/obj/item/electroadaptive_pseudocircuit/pseudoc = tool
 					if(!pseudoc.adapt_circuit(user, circuit_cost = 0.015 * STANDARD_CELL_CHARGE))
 						return
-					user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
-					span_notice("You adapt a fire alarm circuit and slot it into the assembly."))
+					user.visible_message(span_notice("[user]生产了一块电路板并将其放入[src]."), \
+					span_notice("你编写了火警铃电路板并将其插入框架中."))
 					buildstage = FIRE_ALARM_BUILD_NO_WIRES
 					update_appearance()
 					return
 
 				else if(tool.tool_behaviour == TOOL_WRENCH)
-					user.visible_message(span_notice("[user] removes the fire alarm assembly from the wall."), \
-						span_notice("You remove the fire alarm assembly from the wall."))
+					user.visible_message(span_notice("[user]移除了墙上的火警铃框架."), \
+						span_notice("你移除了墙上的火警铃框架."))
 					var/obj/item/wallframe/firealarm/frame = new /obj/item/wallframe/firealarm()
 					frame.forceMove(user.drop_location())
 					tool.play_tool_sound(src)
@@ -432,7 +432,7 @@
 /obj/machinery/firealarm/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
 	switch(rcd_data["[RCD_DESIGN_MODE]"])
 		if(RCD_WALLFRAME)
-			balloon_alert(user, "circuit installed")
+			balloon_alert(user, "电路板已安装")
 			buildstage = FIRE_ALARM_BUILD_NO_WIRES
 			update_appearance()
 			return TRUE
@@ -468,17 +468,17 @@
 /obj/machinery/firealarm/examine(mob/user)
 	. = ..()
 	if((my_area?.fire || LAZYLEN(my_area?.active_firelocks)))
-		. += "The local area hazard light is flashing."
-		. += "The fault location display is [my_area.fault_location] ([my_area.fault_status == AREA_FAULT_AUTOMATIC ? "Automatic Detection" : "Manual Trigger"])."
+		. += "局部地区警示灯在闪烁."
+		. += "问题地区位于[my_area.fault_location] ([my_area.fault_status == AREA_FAULT_AUTOMATIC ? "自动检测" : "手动触发"])."
 		if(is_station_level(z))
-			. += "The station security alert level is [SSsecurity_level.get_current_level_as_text()]."
-		. += "<b>Left-Click</b> to activate all firelocks in this area."
-		. += "<b>Right-Click</b> to reset firelocks in this area."
+			. += "空间站的安全警报等级为[SSsecurity_level.get_current_level_as_text()]."
+		. += "<b>左键</b>启动该区域的所有防火门."
+		. += "<b>右键</b>重置该区域的所有防火门."
 	else
 		if(is_station_level(z))
-			. += "The station security alert level is [SSsecurity_level.get_current_level_as_text()]."
-		. += "The local area thermal detection light is [my_area.fire_detect ? "lit" : "unlit"]."
-		. += "<b>Left-Click</b> to activate all firelocks in this area."
+			. += "空间站的安全警报等级为[SSsecurity_level.get_current_level_as_text()]."
+		. += "局部地区温度检测灯[my_area.fire_detect ? "亮起" : "熄灭着"]."
+		. += "<b>左键</b>启动该区域的所有防火门."
 
 // Allows Silicons to disable thermal sensor
 /obj/machinery/firealarm/BorgCtrlClick(mob/living/silicon/robot/user)
@@ -489,7 +489,7 @@
 
 /obj/machinery/firealarm/AICtrlClick(mob/living/silicon/robot/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("The control circuitry of [src] appears to be malfunctioning."))
+		to_chat(user, span_warning("[src]的控制电路似乎出现了故障."))
 		return
 	toggle_fire_detect(user)
 
@@ -498,7 +498,7 @@
 	for(var/obj/machinery/firealarm/fire_panel in my_area.firealarms)
 		fire_panel.update_icon()
 	if (user)
-		balloon_alert(user, "thermal sensors [my_area.fire_detect ? "enabled" : "disabled"]")
+		balloon_alert(user, "温度传感器[my_area.fire_detect ? "已开启" : "已关闭"]")
 		user.log_message("[ my_area.fire_detect ? "enabled" : "disabled" ] firelock sensors using [src].", LOG_GAME)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 26)
@@ -511,8 +511,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 26)
 	var/party = FALSE
 
 /obj/machinery/firealarm/partyalarm
-	name = "\improper PARTY BUTTON"
-	desc = "Cuban Pete is in the house!"
+	name = "\improper 趴体按钮"
+	desc = "古巴皮特在屋里!"
 	var/static/party_overlay
 
 /obj/machinery/firealarm/partyalarm/reset()
@@ -528,7 +528,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 26)
 	if (machine_stat & (NOPOWER|BROKEN))
 		return
 	var/area/area = get_area(src)
-	if (!area || area.party || area.name == "Space")
+	if (!area || area.party || area.name == "太空")
 		return
 	area.party = TRUE
 	if (!party_overlay)
@@ -536,8 +536,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 26)
 	area.add_overlay(party_overlay)
 
 /obj/item/circuit_component/firealarm
-	display_name = "Fire Alarm"
-	desc = "Allows you to interface with the Fire Alarm."
+	display_name = "火警铃"
+	desc = "允许你与火警铃进行交互."
 
 	var/datum/port/input/alarm_trigger
 	var/datum/port/input/reset_trigger

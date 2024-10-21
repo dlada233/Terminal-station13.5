@@ -498,7 +498,7 @@ GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department
 			return CONTEXTUAL_SCREENTIP_SET
 		if (TOOL_WRENCH)
 			if (anchored)
-				context[SCREENTIP_CONTEXT_LMB] = "Unsecure"
+				context[SCREENTIP_CONTEXT_LMB] = "解除固定"
 				return CONTEXTUAL_SCREENTIP_SET
 			context[SCREENTIP_CONTEXT_LMB] = "Secure"
 			return CONTEXTUAL_SCREENTIP_SET

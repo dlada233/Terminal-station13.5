@@ -73,7 +73,7 @@
 
 	var/obj/item/multitool/M = I
 	M.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return TRUE
 
 /obj/machinery/plumbing/receiver/process(seconds_per_tick)

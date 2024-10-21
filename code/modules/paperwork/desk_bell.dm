@@ -66,7 +66,7 @@
 		balloon_alert(user, "repairing...")
 		tool.play_tool_sound(src)
 		if(tool.use_tool(src, user, 5 SECONDS))
-			balloon_alert_to_viewers("repaired")
+			balloon_alert_to_viewers("修理完成")
 			playsound(user, 'sound/items/change_drill.ogg', 50, vary = TRUE)
 			broken_ringer = FALSE
 			times_rang = 0

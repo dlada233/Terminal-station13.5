@@ -202,8 +202,8 @@
 	contains = list(/obj/item/storage/box/mothic_rations)
 
 /datum/supply_pack/goody/ready_donk
-	name = "杜客快捷餐单品包"
-	desc = "专为终极懒汉设计的完整餐饮套餐. 含一份杜客快捷餐."
+	name = "Donk-杜客快捷餐单品包"
+	desc = "专为终极懒汉设计的完整餐饮套餐. 含一份Donk-杜客快捷餐."
 	cost = PAYCHECK_CREW * 2
 	contains = list(/obj/item/food/ready_donk)
 

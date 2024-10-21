@@ -28,7 +28,7 @@
 	base_lighting_color = null
 
 /area/misc/start
-	name = "start area"
+	name = "start area-太空区域"
 	icon_state = "start"
 	requires_power = FALSE
 	static_lighting = FALSE
@@ -46,6 +46,6 @@
 	icon_state = "test_room"
 
 /area/misc/testroom/gateway_room
-	name = "Gateway Room"
+	name = "Gateway Room-星门"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "gateway"

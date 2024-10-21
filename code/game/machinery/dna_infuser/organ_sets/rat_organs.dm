@@ -7,14 +7,14 @@
 /datum/status_effect/organ_set_bonus/rat
 	id = "organ_set_bonus_rat"
 	organs_needed = 4
-	bonus_activate_text = span_notice("Rodent DNA is deeply infused with you! You've learned how to traverse ventilation!")
-	bonus_deactivate_text = span_notice("Your DNA is no longer majority rat, and so fades your ventilation skills...")
+	bonus_activate_text = span_notice("啮齿动物DNA深深地融入了你，你获得了钻通风管道的能力!")
+	bonus_deactivate_text = span_notice("啮齿动物DNA从你体内褪下，你不再能钻通风管道...")
 	bonus_traits = list(TRAIT_VENTCRAWLER_NUDE)
 
 ///way better night vision, super sensitive. lotta things work like this, huh?
 /obj/item/organ/internal/eyes/night_vision/rat
-	name = "mutated rat-eyes"
-	desc = "Rat DNA infused into what was once a normal pair of eyes."
+	name = "变异老鼠眼"
+	desc = "将老鼠DNA注入到正常器官的产物."
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 	eye_color_left = COLOR_BLACK
 	eye_color_right = COLOR_BLACK
@@ -29,13 +29,13 @@
 
 /obj/item/organ/internal/eyes/night_vision/rat/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their eyes have deep, shifty black pupils, surrounded by a sickening yellow sclera.", BODY_ZONE_PRECISE_EYES)
+	AddElement(/datum/element/noticable_organ, "它的眼睛瞳孔呈现深黑而灵活的样子，周围是让人恶心的黄色巩膜.", BODY_ZONE_PRECISE_EYES)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/rat)
 
 ///increases hunger, disgust recovers quicker, expands what is defined as "food"
 /obj/item/organ/internal/stomach/rat
-	name = "mutated rat-stomach"
-	desc = "Rat DNA infused into what was once a normal stomach."
+	name = "变异老鼠胃"
+	desc = "将老鼠DNA注入到正常器官的产物."
 	disgust_metabolism = 3
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
@@ -47,12 +47,12 @@
 /obj/item/organ/internal/stomach/rat/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/rat)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their mouth is drooling excessively.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "它的嘴流下太多口水.", BODY_ZONE_PRECISE_MOUTH)
 
 /// makes you smaller, walk over tables, and take 1.5x damage
 /obj/item/organ/internal/heart/rat
-	name = "mutated rat-heart"
-	desc = "Rat DNA infused into what was once a normal heart."
+	name = "变异老鼠心"
+	desc = "将老鼠DNA注入到正常器官的产物."
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "heart"
 	greyscale_config = /datum/greyscale_config/mutant_organ
@@ -61,7 +61,7 @@
 /obj/item/organ/internal/heart/rat/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/rat)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_They hunch%PRONOUN_es over unnaturally!")
+	AddElement(/datum/element/noticable_organ, "它的身姿不太自然!")
 	AddElement(/datum/element/update_icon_blocker)
 
 /obj/item/organ/internal/heart/rat/on_mob_insert(mob/living/carbon/receiver)
@@ -85,8 +85,8 @@
 
 /// you occasionally squeak, and have some rat related verbal tics
 /obj/item/organ/internal/tongue/rat
-	name = "mutated rat-tongue"
-	desc = "Rat DNA infused into what was once a normal tongue."
+	name = "变异老鼠舌"
+	desc = "将老鼠DNA注入到正常器官的产物."
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "tongue"
 	say_mod = "squeaks"
@@ -99,16 +99,16 @@
 
 /obj/item/organ/internal/tongue/rat/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their teeth are oddly shaped and yellowing.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "它的牙齿形状奇怪且泛黄", BODY_ZONE_PRECISE_MOUTH)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/rat)
 
 /obj/item/organ/internal/tongue/rat/modify_speech(datum/source, list/speech_args)
 	. = ..()
 	var/message = LOWER_TEXT(speech_args[SPEECH_MESSAGE])
 	if(message == "hi" || message == "hi.")
-		speech_args[SPEECH_MESSAGE] = "Cheesed to meet you!"
+		speech_args[SPEECH_MESSAGE] = "很糕心见到你!"
 	if(message == "hi?")
-		speech_args[SPEECH_MESSAGE] = "Um... cheesed to meet you?"
+		speech_args[SPEECH_MESSAGE] = "Um... 很糕心见到你?"
 
 /obj/item/organ/internal/tongue/rat/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
 	. = ..()

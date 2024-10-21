@@ -663,7 +663,7 @@
 
 		target.narsie_act()
 		uses--
-		user.visible_message(span_warning("Black ribbons suddenly emanate from [user]'s hand and cling to the airlock - twisting and corrupting it!"))
+		user.visible_message(span_warning("黑色气焰从[user]的手中散发出来，覆盖了眼前的气闸 - 然后扭曲并占据了它!"))
 		SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		channeling = FALSE
 		return ..()
@@ -801,7 +801,7 @@
 		blood_donor = TRUE
 		human_bloodbag.blood_volume = BLOOD_VOLUME_SAFE
 		uses -= round(blood_needed / USES_TO_BLOOD)
-		to_chat(user,span_warning("你的血仪式将[human_bloodbag == user ? "你的" : "目标的"]血液水平恢复到安全水平!"))
+		to_chat(user,span_warning("你的血仪式将[human_bloodbag == user ? "你的" : "目标的"]血含量恢复到安全水平!"))
 
 	var/overall_damage = human_bloodbag.getBruteLoss() + human_bloodbag.getFireLoss() + human_bloodbag.getToxLoss() + human_bloodbag.getOxyLoss()
 	if(overall_damage == 0)

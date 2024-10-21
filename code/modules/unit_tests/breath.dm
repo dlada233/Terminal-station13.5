@@ -39,7 +39,7 @@
 	lab_rat.breathe()
 	TEST_ASSERT(lab_rat.failed_last_breath && lab_rat.has_alert(ALERT_NOT_ENOUGH_OXYGEN), "Humans should suffocate from empty o2 tanks")
 
-	// Nitrogen internals suffocation.
+	// Nitrogen-氮气 internals suffocation.
 	lab_rat = allocate(/mob/living/carbon/human/consistent)
 	source = equip_labrat_internals(lab_rat, /obj/item/tank/internals/emergency_oxygen/empty)
 	source.air_contents.assert_gas(/datum/gas/nitrogen)
@@ -73,7 +73,7 @@
 	lab_rat.breathe()
 	TEST_ASSERT(lab_rat.failed_last_breath && lab_rat.has_alert(ALERT_NOT_ENOUGH_PLASMA), "Plasmamen should suffocate from empty o2 tanks")
 
-	// Nitrogen internals suffocation.
+	// Nitrogen-氮气 internals suffocation.
 	lab_rat = allocate(/mob/living/carbon/human/species/plasma)
 	source = equip_labrat_internals(lab_rat, /obj/item/tank/internals/emergency_oxygen/empty)
 	source.air_contents.assert_gas(/datum/gas/nitrogen)

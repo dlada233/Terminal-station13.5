@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 
 /obj/machinery/computer/order_console
 	name = "订货终端"
-	desc = "An interface for ordering specific ingredients from Cargo, with an express option at the cost of more money."
+	desc = "用于从货仓订购特别原料，还可以通过加钱来快捷运送."
 	icon_screen = "request"
 	icon_keyboard = "generic_key"
 	light_color = LIGHT_COLOR_ORANGE

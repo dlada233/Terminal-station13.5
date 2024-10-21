@@ -11,7 +11,7 @@ export const SecurityRecords = (props) => {
   const { authenticated } = data;
 
   return (
-    <Window title="Security Records" width={750} height={550}>
+    <Window title="安保档案" width={750} height={550}>
       <Window.Content>
         <Stack fill>{!authenticated ? <RestrictedView /> : <AuthView />}</Stack>
       </Window.Content>
@@ -32,14 +32,14 @@ const RestrictedView = (props) => {
         </Stack.Item>
         <Stack.Item align="center" grow>
           <Box color="red" fontSize="18px" bold mt={5}>
-            Nanotrasen SecurityHUB
+            纳米传讯 安保HUB
           </Box>
         </Stack.Item>
         <Stack.Item>
           <NoticeBox align="right">
-            You are not logged in.
+            你尚未登录.
             <Button ml={2} icon="lock-open" onClick={() => act('login')}>
-              Login
+              登录
             </Button>
           </NoticeBox>
         </Stack.Item>
@@ -64,7 +64,7 @@ const AuthView = (props) => {
           </Stack.Item>
           <Stack.Item>
             <NoticeBox align="right" info>
-              Secure Your Workspace.
+              确保你的工作空间安全.
               <Button
                 align="right"
                 icon="lock"
@@ -72,7 +72,7 @@ const AuthView = (props) => {
                 ml={2}
                 onClick={() => act('logout')}
               >
-                Log Out
+                登出
               </Button>
             </NoticeBox>
           </Stack.Item>

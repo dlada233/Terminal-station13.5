@@ -29,7 +29,7 @@ export function SearchBar(props: Props) {
     autoFocus,
     noIcon = false,
     onSearch,
-    placeholder = 'Search...',
+    placeholder = '搜索中...',
     query = '',
     style,
   } = props;

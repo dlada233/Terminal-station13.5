@@ -82,7 +82,7 @@
 			to_chat(user, span_warning("There is already a core in [src]."))
 			return
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("[tool] is stuck to your hand."))
+			to_chat(user, span_warning("[tool] is 粘在了你的手上."))
 			return
 		var/obj/item/raw_anomaly_core/raw_core = tool
 		if(!get_required_radius(raw_core.anomaly_type))
@@ -100,7 +100,7 @@
 			to_chat(user, span_warning("[valve] is incomplete."))
 			return
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("[tool] is stuck to your hand."))
+			to_chat(user, span_warning("[tool] is 粘在了你的手上."))
 			return
 		inserted_bomb = tool
 		tank_to_target = inserted_bomb.tank_two

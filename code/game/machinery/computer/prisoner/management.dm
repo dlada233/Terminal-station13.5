@@ -2,8 +2,8 @@
 GLOBAL_LIST_EMPTY_TYPED(tracked_implants, /obj/item/implant)
 
 /obj/machinery/computer/prisoner/management
-	name = "prisoner management console"
-	desc = "Used to modify prisoner IDs, as well as manage security implants placed inside convicts and parolees."
+	name = "囚犯管理终端"
+	desc = "用于管理囚犯ID卡以及植入到囚犯以及假释犯体内的安全植入物."
 	icon_screen = "explosive"
 	icon_keyboard = "security_key"
 	req_access = list(ACCESS_BRIG)

@@ -1,6 +1,6 @@
 /obj/machinery/computer/cargo
 	name = "供应控制台"
-	desc = "用来订购物资，批准请求，控制穿梭机."
+	desc = "用来订购物资，批准请购，控制穿梭机."
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
 	light_color = COLOR_BRIGHT_ORANGE
@@ -36,8 +36,8 @@
 	var/interface_type = "Cargo"
 
 /obj/machinery/computer/cargo/request
-	name = "供应请求控制台"
-	desc = "用来向货舱请求物资."
+	name = "供应请购控制台"
+	desc = "用来向货舱请购物资."
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
 	can_send = FALSE
@@ -272,7 +272,7 @@
 	if(self_paid)
 		say("订单已处理。费用将从[account.account_holder]的银行账户中扣除.")
 	if(requestonly && message_cooldown < world.time)
-		var/message = amount == 1 ? "有新的订单请求." : "有[amount]件新的订单请求."
+		var/message = amount == 1 ? "有新的订单请购." : "有[amount]件新的订单请购."
 		radio.talk_into(src, message, RADIO_CHANNEL_SUPPLY)
 		message_cooldown = world.time + 30 SECONDS
 	. = TRUE

@@ -68,12 +68,12 @@
 	chamber_id = ATMOS_GAS_MONITOR_TARKON_MIX
 
 /obj/machinery/computer/atmos_control/tarkon/nitrogen_tank
-	name = "Tarkon Nitrogen Supply Control"
+	name = "Tarkon Nitrogen-氮气 Supply Control"
 	circuit = /obj/item/circuitboard/computer/atmos_control/tarkon/nitrogen_tank
-	atmos_chambers = list(ATMOS_GAS_MONITOR_TARKON_N2 = "Nitrogen Supply")
+	atmos_chambers = list(ATMOS_GAS_MONITOR_TARKON_N2 = "Nitrogen-氮气 Supply")
 
 /obj/item/circuitboard/computer/atmos_control/tarkon/nitrogen_tank
-	name = "Tarkon Nitrogen Supply Control"
+	name = "Tarkon Nitrogen-氮气 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/tarkon/nitrogen_tank
 
 /obj/machinery/air_sensor/tarkon/nitrogen_tank
@@ -87,12 +87,12 @@
 	chamber_id = ATMOS_GAS_MONITOR_TARKON_N2
 
 /obj/machinery/computer/atmos_control/tarkon/nitrous_tank
-	name = "Tarkon Nitrous Oxide Supply Control"
+	name = "Tarkon Nitrous Oxide-一氧化二氮 Supply Control"
 	circuit = /obj/item/circuitboard/computer/atmos_control/tarkon/nitrous_tank
-	atmos_chambers = list(ATMOS_GAS_MONITOR_TARKON_N2O = "Nitrous Oxide Supply")
+	atmos_chambers = list(ATMOS_GAS_MONITOR_TARKON_N2O = "Nitrous Oxide-一氧化二氮 Supply")
 
 /obj/item/circuitboard/computer/atmos_control/tarkon/nitrous_tank
-	name = "Tarkon Nitrous Oxide Supply Control"
+	name = "Tarkon Nitrous Oxide-一氧化二氮 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/tarkon/nitrous_tank
 
 /obj/machinery/air_sensor/tarkon/nitrous_tank
@@ -106,12 +106,12 @@
 	chamber_id = ATMOS_GAS_MONITOR_TARKON_N2O
 
 /obj/machinery/computer/atmos_control/tarkon/carbon_tank
-	name = "Tarkon Carbon Dioxide Supply Control"
+	name = "Tarkon Carbon Dioxide-二氧化碳 Supply Control"
 	circuit = /obj/item/circuitboard/computer/atmos_control/tarkon/carbon_tank
-	atmos_chambers = list(ATMOS_GAS_MONITOR_TARKON_CO2 = "Carbon Dioxide Supply")
+	atmos_chambers = list(ATMOS_GAS_MONITOR_TARKON_CO2 = "Carbon Dioxide-二氧化碳 Supply")
 
 /obj/item/circuitboard/computer/atmos_control/tarkon/carbon_tank
-	name = "Tarkon Carbon Dioxide Supply Control"
+	name = "Tarkon Carbon Dioxide-二氧化碳 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/tarkon/carbon_tank
 
 /obj/machinery/air_sensor/tarkon/carbon_tank

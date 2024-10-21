@@ -99,12 +99,12 @@
 			toggled = !toggled
 			update_power()
 			update_appearance()
-			current_user.log_message("toggled [toggled ? "On" : "Off"] [src].", LOG_GAME)
+			current_user.log_message("开关 [toggled ? "开启" : "关闭"] [src].", LOG_GAME)
 			. = TRUE
 		if("id")
 			if(params["value"])
 				if(length(params["value"]) > 32)
-					to_chat(current_user, span_warning("Error: Machine ID too long!"))
+					to_chat(current_user, span_warning("错误: 机器ID太长!"))
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 					return
 				else
@@ -114,7 +114,7 @@
 		if("network")
 			if(params["value"])
 				if(length(params["value"]) > 15)
-					to_chat(current_user, span_warning("Error: Network name too long!"))
+					to_chat(current_user, span_warning("错误: 网络名称太长!"))
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 					return
 				else
@@ -122,23 +122,23 @@
 						remove_link(linked_machine)
 					network = params["value"]
 					links = list()
-					current_user.log_message("has changed the network for [src] to [network].", LOG_GAME)
+					current_user.log_message("改变了[src]的网络到[network].", LOG_GAME)
 					. = TRUE
 		if("tempfreq")
 			if(params["value"])
 				tempfreq = text2num(params["value"]) * 10
 		if("freq")
 			if(tempfreq in banned_frequencies)
-				to_chat(current_user, span_warning("Error: Interference preventing filtering frequency: \"[tempfreq / 10] kHz\""))
+				to_chat(current_user, span_warning("错误: 防干扰滤波频率: \"[tempfreq / 10] kHz\""))
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 			else
 				if(!(tempfreq in freq_listening))
 					freq_listening.Add(tempfreq)
-					current_user.log_message("added frequency [tempfreq] for [src].", LOG_GAME)
+					current_user.log_message("添加频率 [tempfreq] 为 [src].", LOG_GAME)
 					. = TRUE
 		if("delete")
 			freq_listening.Remove(params["value"])
-			current_user.log_message("removed frequency [params["value"]] for [src].", LOG_GAME)
+			current_user.log_message("移除频率 [params["value"]] 为 [src].", LOG_GAME)
 			. = TRUE
 		if("unlink")
 			var/obj/machinery/telecomms/machine_to_unlink = links[text2num(params["value"])]

@@ -14,7 +14,7 @@
 #define SMES_INPUT_ATTEMPT 9
 
 /obj/machinery/power/smes
-	name = "电源存储单元"
+	name = "电力存储单元"
 	desc = "一种高容量超导磁能存储装置."
 	icon_state = "smes"
 	density = TRUE

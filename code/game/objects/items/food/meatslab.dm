@@ -79,7 +79,7 @@
 	blood_decal_type = null
 
 /obj/item/food/meat/slab/human/mutant/golem
-	icon_state = "傀儡肉"
+	icon_state = "石人肉"
 	desc = "可食用石头,欢迎来到未来."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -91,7 +91,7 @@
 	blood_decal_type = null
 
 /obj/item/food/meat/slab/human/mutant/golem/adamantine
-	icon_state = "精金傀儡肉" // agolemeat
+	icon_state = "精金石人肉" // agolemeat
 	desc = "从史莱姆到符文再到厨房,这就是科学."
 	foodtypes = MEAT | RAW | GROSS
 

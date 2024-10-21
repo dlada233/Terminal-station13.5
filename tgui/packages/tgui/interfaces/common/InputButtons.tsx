@@ -46,7 +46,7 @@ export const InputButtons = (props: InputButtonsProps) => {
       tooltip={large_buttons && message}
       width={!large_buttons && 6}
     >
-      {large_buttons ? 'SUBMIT' : 'Submit'}
+      {large_buttons ? '提 交' : '提交'}
     </Button>
   );
   const cancelButton = (
@@ -62,7 +62,7 @@ export const InputButtons = (props: InputButtonsProps) => {
       textAlign="center"
       width={!large_buttons && 6}
     >
-      {large_buttons ? 'CANCEL' : 'Cancel'}
+      {large_buttons ? '取 消' : '取消'}
     </Button>
   );
 

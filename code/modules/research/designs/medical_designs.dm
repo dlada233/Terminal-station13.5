@@ -1161,7 +1161,7 @@
 
 /datum/design/surgery/cortex_imprint
 	name = "Cortex Imprint-皮层印迹"
-	desc = "一种将大脑皮层改造为冗余神经模式的增强手术，使大脑能够避免较微脑损伤带来的不必要麻烦."
+	desc = "一种将大脑皮层改造为冗余神经模式的增强手术，使大脑能够避免较微脑神经创伤带来的不必要麻烦."
 	id = "surgery_cortex_imprint"
 	surgery = /datum/surgery/advanced/bioware/cortex_imprint
 	research_icon_state = "surgery_head"

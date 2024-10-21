@@ -1,13 +1,13 @@
 /// Some defines for items the cult archives can create.
 #define CULT_BLINDFOLD "狂热者眼罩"
-#define CURSE_ORB "穿梭机诅咒"
+#define CURSE_ORB "撤离飞船诅咒"
 #define VEIL_WALKER "帷幕行者套装"
 
 // Cult archives. Gives out utility items.
 /obj/structure/destructible/cult/item_dispenser/archives
 	name = "文献台"
 	desc = "一张堆满了晦涩难懂的手稿和用未知语言写成的大部头书的桌子. 上面的文字会让你起鸡皮疙瘩."
-	cult_examine_tip = "可以用来创造狂热者眼罩，穿梭机诅咒法球以及帷幕行者套装."
+	cult_examine_tip = "可以用来创造狂热者眼罩，撤离飞船诅咒法球以及帷幕行者套装."
 	icon_state = "tomealtar"
 	light_range = 1.5
 	light_color = LIGHT_COLOR_FIRE

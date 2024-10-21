@@ -1,6 +1,6 @@
 /obj/machinery/botpad
-	name = "Bot pad"
-	desc = "A lighter version of the orbital mech pad modified to launch bots. Requires linking to a remote to function."
+	name = "机器人台"
+	desc = "轨道机甲发射台的轻量化版本，可以发射机器人，需要远程连接才能运行."
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "botpad"
 	circuit = /obj/item/circuitboard/machine/botpad
@@ -28,7 +28,7 @@
 		return
 	var/obj/item/multitool/multitool = tool
 	multitool.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "保存到多功能缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -38,15 +38,15 @@
 	var/atom/possible_bot
 	for(var/mob/living/robot in get_turf(src))
 		if(!isbot(robot))
-			user.balloon_alert(user, "unidentified life form on the pad!")
+			user.balloon_alert(user, "台上有不明生命体!")
 			return
 		if(!isnull(possible_bot))
-			user.balloon_alert(user, "too many bots on the pad!")
+			user.balloon_alert(user, "台上机器人过多!")
 			return
 		possible_bot = robot  // We don't change the launched_bot var here because we are not sure if there is another bot on the pad.
 
 	if(!use_energy(active_power_usage, force = FALSE))
-		balloon_alert(user, "not enough energy!")
+		balloon_alert(user, "能量不足!")
 		return
 	launched_bot = WEAKREF(possible_bot)
 	podspawn(list(
@@ -59,9 +59,9 @@
 /obj/machinery/botpad/proc/recall(mob/living/user)
 	var/atom/our_bot = launched_bot?.resolve()
 	if(isnull(our_bot))
-		user.balloon_alert(user, "no bots sent from the pad!")
+		user.balloon_alert(user, "没有机器人发射从台上!")
 		return
-	user.balloon_alert(user, "bot sent back to pad")
+	user.balloon_alert(user, "机器人返回发射台")
 	if(isbasicbot(our_bot))
 		var/mob/living/basic/bot/basic_bot = our_bot
 		basic_bot.summon_bot(src)

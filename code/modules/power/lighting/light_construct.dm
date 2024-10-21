@@ -83,7 +83,7 @@
 			to_chat(user, span_warning("This [name] can't support a power cell!"))
 			return
 		if(HAS_TRAIT(tool, TRAIT_NODROP))
-			to_chat(user, span_warning("[tool] is stuck to your hand!"))
+			to_chat(user, span_warning("[tool] is 粘在了你的手上!"))
 			return
 		if(cell)
 			to_chat(user, span_warning("There is a power cell already installed!"))

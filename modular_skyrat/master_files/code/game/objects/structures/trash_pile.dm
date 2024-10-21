@@ -121,7 +121,7 @@
 					if(user.transferItemToLoc(hidden_item, src))
 						balloon_alert(user, "item hidden")
 					else
-						balloon_alert(user, "it's stuck to your hand!")
+						balloon_alert(user, "it's 粘在了你的手上!")
 		else
 			balloon_alert(user, "it's full!")
 		return

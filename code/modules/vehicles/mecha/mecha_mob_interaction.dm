@@ -88,7 +88,7 @@
 
 	var/mob/living/brain/brain_mob = brain_obj.brainmob
 	if(!user.transferItemToLoc(brain_obj, src))
-		to_chat(user, span_warning("[brain_obj] is stuck to your hand, you cannot put it in [src]!"))
+		to_chat(user, span_warning("[brain_obj] is 粘在了你的手上, you cannot put it in [src]!"))
 		return FALSE
 
 	brain_obj.set_mecha(src)

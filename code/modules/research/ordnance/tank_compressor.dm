@@ -54,7 +54,7 @@
 				balloon_alert(user, "it's stuck inside!")
 				return ..()
 		if(!user.transferItemToLoc(tank_item, src))
-			balloon_alert(user, "it's stuck to your hand!")
+			balloon_alert(user, "it's 粘在了你的手上!")
 			return ..()
 		inserted_tank = tank_item
 		last_recorded_pressure = 0
@@ -67,7 +67,7 @@
 		if(user.transferItemToLoc(attacking_disk, src))
 			inserted_disk = attacking_disk
 		else
-			balloon_alert(user, "it's stuck to your hand!")
+			balloon_alert(user, "it's 粘在了你的手上!")
 		return
 	return ..()
 

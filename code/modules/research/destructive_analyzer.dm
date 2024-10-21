@@ -44,7 +44,7 @@
 	if(!is_insertion_ready(user))
 		return ..()
 	if(!user.transferItemToLoc(weapon, src))
-		to_chat(user, span_warning("\The [weapon] is stuck to your hand, you cannot put it in the [name]!"))
+		to_chat(user, span_warning("\The [weapon] is 粘在了你的手上, you cannot put it in the [name]!"))
 		return TRUE
 	busy = TRUE
 	loaded_item = weapon

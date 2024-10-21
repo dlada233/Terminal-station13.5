@@ -1,6 +1,6 @@
 /obj/machinery/wish_granter
-	name = "wish granter"
-	desc = "You're not so sure about this, anymore..."
+	name = "许愿机"
+	desc = "万事皆有可能..."
 	icon = 'icons/obj/machines/beacon.dmi'
 	icon_state = "syndbeacon"
 
@@ -15,29 +15,29 @@
 	if(.)
 		return
 	if(charges <= 0)
-		to_chat(user, span_boldnotice("The Wish Granter lies silent."))
+		to_chat(user, span_boldnotice("许愿机沉默不语."))
 		return
 
 	else if(!ishuman(user))
-		to_chat(user, span_boldnotice("You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's."))
+		to_chat(user, span_boldnotice("你感到许愿机内部的黑暗在涌动，这可能不是你想要的东西，此时你比世界上任何人都强烈地感觉到!"))
 		return
 
 	else if(is_special_character(user))
-		to_chat(user, span_boldnotice("Even to a heart as dark as yours, you know nothing good will come of this. Something instinctual makes you pull away."))
+		to_chat(user, span_boldnotice("你直面着内心突然翻涌上来的黑暗欲望，你知道这不会有什么好结果，某种本能在让你收手."))
 
 	else if (!insisting)
-		to_chat(user, span_boldnotice("Your first touch makes the Wish Granter stir, listening to you. Are you really sure you want to do this?"))
+		to_chat(user, span_boldnotice("你的第一次触碰就会让许愿机苏醒, 倾听你的愿望. 你真的确定要这么做吗?"))
 		insisting++
 
 	else
-		to_chat(user, span_boldnotice("You speak. [pick("I want the station to disappear","Humanity is corrupt, mankind must be destroyed","I want to be rich", "I want to rule the world","I want immortality.")]. The Wish Granter answers."))
-		to_chat(user, span_boldnotice("Your head pounds for a moment, before your vision clears. You are the avatar of the Wish Granter, and your power is LIMITLESS! And it's all yours. You need to make sure no one can take it from you. No one can know, first."))
+		to_chat(user, span_boldnotice("你说，[pick("我希望空间站消失","人类太过肮脏，必须被毁灭","我希望变得有钱", "我想统治世界","我想要永生.")]. 许愿机答复了."))
+		to_chat(user, span_boldnotice("你的头砰砰直跳，视力艰难地恢复着. 你成为了许愿机的化身, 拥有了无穷的力量! 所有的一切都属于你. 你只需要确保没人能夺走它."))
 
 		charges--
 		insisting = 0
 
 		user.mind.add_antag_datum(/datum/antagonist/wishgranter)
 
-		to_chat(user, span_warning("You have a very bad feeling about this."))
+		to_chat(user, span_warning("你有非常糟糕的预感."))
 
 	return

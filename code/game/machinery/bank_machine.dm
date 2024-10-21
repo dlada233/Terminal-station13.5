@@ -1,6 +1,6 @@
 /obj/machinery/computer/bank_machine
 	name = "提款机"
-	desc = "A machine used to deposit and withdraw station funds."
+	desc = "用于存取站点资金的机器."
 	circuit = /obj/item/circuitboard/computer/bankmachine
 	icon_screen = "vault"
 	icon_keyboard = "security_key"
@@ -36,7 +36,7 @@
 	synced_bank_account = SSeconomy.get_dep_account(account_department)
 
 	if(!mapload)
-		AddComponent(/datum/component/gps, "Forbidden Cash Signal")
+		AddComponent(/datum/component/gps, "禁守现金信号")
 
 /obj/machinery/computer/bank_machine/Destroy()
 	QDEL_NULL(radio)
@@ -54,7 +54,7 @@
 	if(value)
 		if(synced_bank_account)
 			synced_bank_account.adjust_money(value)
-			say("Credits deposited! The [synced_bank_account.account_holder] is now [synced_bank_account.account_balance] cr.")
+			say("信用点已存入! [synced_bank_account.account_holder]先有[synced_bank_account.account_balance] cr.")
 		qdel(weapon)
 		return
 	return ..()
@@ -64,12 +64,12 @@
 	if(!siphoning || !synced_bank_account)
 		return
 	if (machine_stat & (BROKEN | NOPOWER))
-		say("Insufficient power. Halting siphon.")
+		say("功率不足. 转移停止.")
 		end_siphon()
 		return
 	var/siphon_am = 100 * seconds_per_tick
 	if(!synced_bank_account.has_money(siphon_am))
-		say("[synced_bank_account.account_holder] depleted. Halting siphon.")
+		say("[synced_bank_account.account_holder]耗尽. 转移停止.")
 		end_siphon()
 		return
 
@@ -78,7 +78,7 @@
 	synced_bank_account.adjust_money(-siphon_am)
 	if(next_warning < world.time && prob(15))
 		var/area/A = get_area(loc)
-		var/message = "[unauthorized ? "Unauthorized c" : "C"]redit withdrawal underway in [initial(A.name)][unauthorized ? "!!" : "..."]"
+		var/message = "[unauthorized ? "未经授权的" : ""]信用点取款在[initial(A.name)]进行中[unauthorized ? "!!" : "..."]"
 		radio.talk_into(src, message, radio_channel)
 		next_warning = world.time + minimum_time_between_warnings
 
@@ -106,20 +106,20 @@
 	switch(action)
 		if("siphon")
 			if(is_station_level(src.z) || is_centcom_level(src.z))
-				say("Siphon of station credits has begun!")
+				say("站点信用点转移已经开始!")
 				start_siphon(ui.user)
 			else
-				say("Error: Console not in reach of station, withdrawal cannot begin.")
+				say("错误: 终端不在站点范围内，无法开始撤离.")
 			. = TRUE
 		if("halt")
-			say("Station credit withdrawal halted.")
+			say("站点信用点取款已中止.")
 			end_siphon()
 			. = TRUE
 
 /obj/machinery/computer/bank_machine/on_changed_z_level()
 	. = ..()
 	if(siphoning && !(is_station_level(src.z) || is_centcom_level(src.z)))
-		say("Error: Console not in reach of station. Siphon halted.")
+		say("错误: 终端不在站点范围内. 转移已停止.")
 		end_siphon()
 
 /obj/machinery/computer/bank_machine/proc/end_siphon()

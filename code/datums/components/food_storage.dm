@@ -68,7 +68,7 @@
 		return
 
 	if(HAS_TRAIT(inserted_item, TRAIT_NODROP))
-		to_chat(user, span_warning("\the [inserted_item] is stuck to your hand, you can't put into \the [parent]!"))
+		to_chat(user, span_warning("\the [inserted_item] is 粘在了你的手上, you can't put into \the [parent]!"))
 		return
 
 	user.visible_message(span_notice("[user.name] begins inserting [inserted_item.name] into \the [parent]."), \

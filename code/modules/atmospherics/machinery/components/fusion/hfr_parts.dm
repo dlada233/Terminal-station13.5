@@ -49,7 +49,7 @@
 		return FALSE
 	balloon_alert(user, "repairing...")
 	if(tool.use_tool(src, user, 10 SECONDS, volume=30))
-		balloon_alert(user, "repaired")
+		balloon_alert(user, "修理完成")
 		cracked = FALSE
 		update_appearance()
 
@@ -79,7 +79,7 @@
 
 /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
 	name = "HFR fuel input port"
-	desc = "Input port for the Hypertorus Fusion Reactor, designed to take in only Hydrogen and Tritium in gas forms."
+	desc = "Input port for the Hypertorus Fusion Reactor, designed to take in only Hydrogen-氢气 and Tritium-氚 in gas forms."
 	icon_state = "fuel_input_off"
 	icon_state_open = "fuel_input_open"
 	icon_state_off = "fuel_input_off"
@@ -403,7 +403,7 @@
 	name = "paper- 'Quick guide to safe handling of the HFR'"
 	default_raw_text = "<B>How to safely(TM) operate the Hypertorus</B><BR>\
 	-Build the machine as it�s shown in the main guide.<BR>\
-	-Make a 50/50 gasmix of tritium and hydrogen totalling around 2000 moles.<BR>\
+	-Make a 50/50 gasmix of tritium and hydrogen-氢气 totalling around 2000 moles.<BR>\
 	-Start the machine, fill up the cooling loop with plasma/hypernoblium and use space or freezers to cool it.<BR>\
 	-Connect the fuel mix into the fuel injector port, allow only 1000 moles into the machine to ease the kickstart of the reaction<BR>\
 	-Set the Heat conductor to 500 when starting the reaction, reset it to 100 when power level is higher than 1<BR>\
@@ -415,8 +415,8 @@
 	-You cannot power of the machine if the power level is over 0<BR>\
 	-You cannot dispose of waste gases if power level is over 5<BR>\
 	-You cannot remove gases from the fusion mix if they are not helium and antinoblium<BR>\
-	-Hypernoblium will decrease the power of the mix by a lot<BR>\
-	-Antinoblium will INCREASE the power of the mix by a lot more<BR>\
+	-Hypernoblium-超铌 will decrease the power of the mix by a lot<BR>\
+	-Antinoblium-反铌 will INCREASE the power of the mix by a lot more<BR>\
 	-High heat capacity gases are harder to heat/cool<BR>\
 	-Low heat capacity gases are easier to heat/cool<BR>\
 	-The machine consumes 50 KW per power level, reaching 350 KW at power level 6 so prepare the SM accordingly<BR>\

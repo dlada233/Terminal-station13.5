@@ -2,7 +2,7 @@
 
 /obj/item/storage/box/donkpockets
 	name = "口袋饼盒"
-	desc = "最佳食用方法为微波炉加热后食用，杜客公司的尖端技术将使得产品永远保持热气腾腾."
+	desc = "最佳食用方法为微波炉加热后食用，Donk-杜客公司的尖端技术将使得产品永远保持热气腾腾."
 	icon_state = "donkpocketbox"
 	illustration = null
 	/// What type of donk pocket are we gonna cram into this box?

@@ -55,7 +55,7 @@
 	RegisterSignal(src, COMSIG_ITEM_USED_AS_INGREDIENT, PROC_REF(on_used_as_ingredient))
 
 /obj/item/grenade/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] primes [src], then eats it! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] primes [src], then eats it! 看起来是在尝试自杀!"))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	arm_grenade(user, det_time)
 	user.transferItemToLoc(src, user, TRUE)//>eat a grenade set to 5 seconds >rush captain
@@ -97,7 +97,7 @@
  */
 /obj/item/grenade/proc/botch_check(mob/living/carbon/human/user)
 	if(sticky && prob(50)) // to add risk to sticky tape grenade cheese, no return cause we still prime as normal after.
-		to_chat(user, span_warning("What the... [src] is stuck to your hand!"))
+		to_chat(user, span_warning("What the... [src] is 粘在了你的手上!"))
 		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 
 	var/clumsy = HAS_TRAIT(user, TRAIT_CLUMSY)

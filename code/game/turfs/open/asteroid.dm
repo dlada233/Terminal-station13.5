@@ -127,7 +127,7 @@
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/misc/asteroid/lavaland_atmos
 
-/// Used by ashstorms to replenish basalt tiles that have been dug up without going through all of them.
+/// Used by ashstorms-灰尘暴 to replenish basalt tiles that have been dug up without going through all of them.
 GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/basalt

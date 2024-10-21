@@ -26,7 +26,7 @@
 	// 这会带来问题，因为革命（目前）需要一个动态的数据来处理其胜利/失败条件
 	if(!(locate(/datum/team/revolution) in GLOB.antagonist_teams))
 		var/confirm = tgui_alert(admin, "注意：通过叛徒面板创建的革命不会完全起作用.  \
-			领袖将能够像平常一样进行转变，但是逃生穿梭机不会被阻止，而且任何一方获胜时都不会有任何公告.  \
+			领袖将能够像平常一样进行转变，但是撤离飞船不会被阻止，而且任何一方获胜时都不会有任何公告.  \
 			你确定吗？", "慎重选择", list("是", "否"))
 		if(QDELETED(src) || QDELETED(new_owner.current) || confirm != "是")
 			return

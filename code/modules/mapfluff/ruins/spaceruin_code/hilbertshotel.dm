@@ -102,7 +102,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 			to_chat(user, span_warning("You try to drop \the [src], but it's too late! It's no longer in your hands! Prepare for unforeseen consequences..."))
 		// Okay, so they HAVE to be holding it here, because it's in their hand from the above check. Try to drop the item and if it fails, oh dear...
 		else if(!user.dropItemToGround(src))
-			to_chat(user, span_warning("You can't seem to drop \the [src]! It must be stuck to your hand somehow! Prepare for unforeseen consequences..."))
+			to_chat(user, span_warning("You can't seem to drop \the [src]! It must be 粘在了你的手上 somehow! Prepare for unforeseen consequences..."))
 
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE
 	var/chosen_room = "Nothing"

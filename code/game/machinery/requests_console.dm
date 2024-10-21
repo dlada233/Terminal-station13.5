@@ -4,15 +4,15 @@ GLOBAL_LIST_EMPTY(req_console_information)
 GLOBAL_LIST_EMPTY(req_console_all)
 GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
-#define REQ_EMERGENCY_SECURITY "Security"
-#define REQ_EMERGENCY_ENGINEERING "Engineering"
-#define REQ_EMERGENCY_MEDICAL "Medical"
+#define REQ_EMERGENCY_SECURITY "安保"
+#define REQ_EMERGENCY_ENGINEERING "工程"
+#define REQ_EMERGENCY_MEDICAL "医疗"
 
 #define ANNOUNCEMENT_COOLDOWN_TIME (30 SECONDS)
 
 /obj/machinery/requests_console
 	name = "请求终端"
-	desc = "A console intended to send requests to different departments on the station."
+	desc = "用于向空间站各个部门发送请求事项的终端."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "req_comp_off"
 	base_icon_state = "req_comp"
@@ -405,8 +405,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console, 30)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 
 /obj/item/wallframe/requests_console
-	name = "requests console"
-	desc = "An unmounted requests console. Attach it to a wall to use."
+	name = "请求终端"
+	desc = "未安装的请求终端，将其挂在墙上使用."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "req_comp_off"
 	result_path = /obj/machinery/requests_console/auto_name

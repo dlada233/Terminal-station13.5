@@ -20,7 +20,7 @@
 ///Machine that lets you play roulette. Odds are pre-defined to be the same as European Roulette without the "En Prison" rule
 /obj/machinery/roulette
 	name = "轮盘赌桌"
-	desc = "A computerized roulette table. Swipe your ID to play or register yourself as owner!"
+	desc = "电算化的轮盘赌桌，刷动你的ID即可参与游戏或注册成为所有者."
 	icon = 'icons/obj/machines/roulette.dmi'
 	icon_state = "idle"
 	density = TRUE
@@ -438,7 +438,7 @@
 
 /obj/item/roulette_wheel_beacon
 	name = "轮盘信标"
-	desc = "N.T. approved roulette wheel beacon, toss it down and you will have a complementary roulette wheel delivered to you."
+	desc = "N.T.提供的轮盘赌桌信标, 将其扔下，你将收到一张补充的轮盘赌桌."
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beacon"
 	var/used

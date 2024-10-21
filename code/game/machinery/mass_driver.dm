@@ -1,6 +1,6 @@
 /obj/machinery/mass_driver
-	name = "mass driver"
-	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
+	name = "质量发射器"
+	desc = "最先进的弹簧加荷活塞技术此刻就在你的空间站上."
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "mass_driver"
 	circuit = /obj/item/circuitboard/machine/mass_driver
@@ -49,7 +49,7 @@
 				continue
 			O_limit++
 			if(O_limit >= 20)
-				audible_message(span_notice("[src] lets out a screech, it doesn't seem to be able to handle the load."))
+				audible_message(span_notice("[src]发出刺耳声音，似乎无法处理这个装载量."))
 				break
 			use_energy(power_per_obj)
 			O.throw_at(target, drive_range * power, power)

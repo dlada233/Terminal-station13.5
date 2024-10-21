@@ -504,7 +504,7 @@
 		. += span_warning("The electronics panel is sparking occasionally. It can be reset with a [EXAMINE_HINT("multitool.")]")
 
 	if(malfunctioning)
-		. += span_warning("The spoiler is [EXAMINE_HINT("welded")] in place!")
+		. += span_warning("The spoiler is [EXAMINE_HINT("已焊接")] in place!")
 	else
 		. += span_notice("The spoiler can be locked in to place with a [EXAMINE_HINT("welder.")]")
 

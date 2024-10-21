@@ -36,7 +36,7 @@
 		radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION)
 
 /obj/item/nuke_core/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is rubbing [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is rubbing [src] against [user.p_them()]self! 看起来是在尝试自杀!"))
 	return TOXLOSS
 
 //nuke core box, for carrying the core
@@ -75,7 +75,7 @@
 /obj/item/nuke_core_container/attackby(obj/item/nuke_core/core, mob/user)
 	if(istype(core))
 		if(!user.temporarilyRemoveItemFromInventory(core))
-			to_chat(user, span_warning("The [core] is stuck to your hand!"))
+			to_chat(user, span_warning("The [core] is 粘在了你的手上!"))
 			return
 		else
 			load(core, user)

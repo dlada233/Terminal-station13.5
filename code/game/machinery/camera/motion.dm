@@ -64,7 +64,7 @@
 			newTarget(AM)
 
 /obj/machinery/camera/motion/thunderdome
-	name = "entertainment camera"
+	name = "娱乐摄像头"
 	network = list(CAMERANET_NETWORK_THUNDERDOME)
 	c_tag = "Arena"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF

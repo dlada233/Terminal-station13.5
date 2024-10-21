@@ -435,7 +435,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 
 // It's basically adamantine, but it isn't!
 /datum/material/metalhydrogen
-	name = "Metal Hydrogen"
+	name = "氢金属"
 	desc = "Solid metallic hydrogen. Some say it should be impossible"
 	color = "#62708A"
 	greyscale_colors = "#62708A"

@@ -81,8 +81,8 @@
 	sanitized_reactions = FALSE
 
 /datum/experiment/ordnance/explosive/hydrogenbomb
-	name = "Hydrogen Explosives"
-	description = "Combustion of Hydrogen and it's derivatives can be very powerful. Capture any tank explosion with a Doppler Array and publish the data in a paper. Only Hydrogen or Tritium Fires are allowed."
+	name = "Hydrogen-氢气 Explosives"
+	description = "Combustion of Hydrogen and it's derivatives can be very powerful. Capture any tank explosion with a Doppler Array and publish the data in a paper. Only Hydrogen or Tritium-氚 Fires are allowed."
 	gain = list(15,40,60)
 	target_amount = list(50,75,150)
 	experiment_proper = TRUE
@@ -111,7 +111,7 @@
 	sanitized_reactions = TRUE
 
 /datum/experiment/ordnance/gaseous/nitrous_oxide
-	name = "Nitrous Oxide Gas Shells"
+	name = "Nitrous Oxide-一氧化二氮 Gas Shells"
 	description = "The delivery of N2O into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a Tank Compressor. Publish the data in a paper."
 	gain = list(10,40)
 	target_amount = list(200,600)
@@ -135,16 +135,16 @@
 	required_gas = /datum/gas/bz
 
 /datum/experiment/ordnance/gaseous/noblium
-	name = "Hypernoblium Gas Shells"
-	description = "The delivery of Hypernoblium gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a Tank Compressor. Publish the data in a paper."
+	name = "Hypernoblium-超铌 Gas Shells"
+	description = "The delivery of Hypernoblium-超铌 gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a Tank Compressor. Publish the data in a paper."
 	gain = list(10,40,80)
 	target_amount = list(15,55,250)
 	experiment_proper = TRUE
 	required_gas = /datum/gas/hypernoblium
 
 /datum/experiment/ordnance/gaseous/halon
-	name = "Halon Gas Shells"
-	description = "The delivery of Halon gas into an area of operation might prove useful. Perform research and publish papers on this field."
+	name = "Halon-哈龙 Gas Shells"
+	description = "The delivery of Halon-哈龙 gas into an area of operation might prove useful. Perform research and publish papers on this field."
 	gain = list(10,30,60)
 	target_amount = list(15,55,250)
 	experiment_proper = TRUE

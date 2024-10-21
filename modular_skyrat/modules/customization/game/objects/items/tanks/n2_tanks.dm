@@ -1,5 +1,5 @@
 /*
- * Nitrogen Tanks for Vox
+ * Nitrogen-氮气 Tanks for Vox
  */
 
 /obj/item/tank/internals/nitrogen

@@ -157,22 +157,22 @@
 /datum/config_entry/flag/arrivals_shuttle_require_safe_latejoin //Require the arrivals shuttle to be operational in order for latejoiners to join
 
 /datum/config_entry/string/alert_green
-	default = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	default = "空间站及其附近没有任何已出现或潜在的威胁，安保相关人员必须收起武器，个人隐私将得到充分保障."
 
 /datum/config_entry/string/alert_blue_upto
-	default = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	default = "空间站及其附近可能存在敌对活动，安保人员只允许携带非致命武器，允许进行随机搜查."
 
 /datum/config_entry/string/alert_blue_downto
-	default = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	default = "迫在眉睫的威胁已经过去，安保人员只允许携带非致命武器，仍然允许进行随机搜查."
 
 /datum/config_entry/string/alert_red_upto
-	default = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	default = "空间站面临迫在眉睫的严重威胁，安保人员允许全程持有致命武器，允许并建议进行随机搜查."
 
 /datum/config_entry/string/alert_red_downto
-	default = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	default = "空间站的毁灭暂时避免，但仍然面临严重威胁，安保人员允许全程持有致命武器，允许并建议进行随机搜查."
 
 /datum/config_entry/string/alert_delta
-	default = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	default = "空间站即将被摧毁，所有船员必须遵守部门部长的所有指示，任何违反命令的行为都可能被判处死刑，这不是演习."
 
 /datum/config_entry/flag/revival_pod_plants
 

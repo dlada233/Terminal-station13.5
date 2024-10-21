@@ -8,15 +8,15 @@
  * - when completing a tier, add the bonus to an xp system for unlocking new tiers. so instead of getting/giving a tier 1 bonus and unlocking tier 2, tier 1 would add "1" to a total. when you have a total of say, 3, you get the next tier
 */
 /datum/infuser_entry/gondola
-	name = "Gondola"
-	infuse_mob_name = "gondolid"
-	desc = "Gondolas, rare creatures that choose to simply observe instead of act have quite a set of interesting qualities to take advantage of. You know. Zen, peace, happiness... shrugging off a raging plasma fire..."
-	threshold_desc = "you can shrug off most environmental conditions!"
+	name = "贡多拉"
+	infuse_mob_name = "贡多拉"
+	desc = "贡多拉，一种只是观察外界而不采取行动的稀有生物，有一系列有趣的特性可以利用. 比如:禅、平和、幸福...对肆虐的等离子火不屑一顾..."
+	threshold_desc = "你能无视大多数环境条件!"
 	qualities = list(
-		"pacify people with your hugs",
-		"enter a bliss-like state of zen",
-		"become too weak to pick up anything larger than a pen",
-		"stop caring about temperature... or pressure, or atmos... or much of anything...",
+		"你的拥抱能安抚人们",
+		"进入禅宗信仰的极乐状态",
+		"太过虚弱以至于拿不起比钢笔更大的东西",
+		"不再关心温度...压力...大气...或任何东西...",
 	)
 	input_obj_or_mob = list(
 		/obj/item/food/meat/slab/gondola,
@@ -26,6 +26,6 @@
 		/obj/item/organ/internal/tongue/gondola,
 		/obj/item/organ/internal/liver/gondola,
 	)
-	infusion_desc = "observant"
+	infusion_desc = "善于观察的"
 	tier = DNA_MUTANT_TIER_TWO
 	status_effect_type = /datum/status_effect/organ_set_bonus/gondola

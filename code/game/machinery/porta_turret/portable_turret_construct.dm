@@ -9,36 +9,36 @@
 #define PTURRET_EXTERNAL_ARMOUR_ON  8
 
 /obj/machinery/porta_turret_construct
-	name = "turret frame"
+	name = "炮塔框架"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "turret_frame"
-	desc = "An unfinished covered turret frame."
+	desc = "未完工的炮塔框架."
 	anchored = FALSE
 	density = TRUE
 	use_power = NO_POWER_USE
 	var/build_step = PTURRET_UNSECURED //the current step in the building process
-	var/finish_name = "turret" //the name applied to the product turret
+	var/finish_name = "炮塔" //the name applied to the product turret
 	var/obj/item/gun/installed_gun = null
 
 /obj/machinery/porta_turret_construct/examine(mob/user)
 	. = ..()
 	switch(build_step)
 		if(PTURRET_UNSECURED)
-			. += span_notice("The external bolts are <b>unwrenched</b>, and the frame could be <i>pried</i> apart.")
+			. += span_notice("外部螺栓未用扳手拧紧, 框架可以被撬棍撬开.")
 		if(PTURRET_BOLTED)
-			. += span_notice("The frame requires <b>metal</b> for its internal armor, the external bolts are <i>wrenched</i> in place.")
+			. += span_notice("需要金属作为内部装甲, 外部螺栓可以被扳手拧开.")
 		if(PTURRET_START_INTERNAL_ARMOUR)
-			. += span_notice("The turret's armor needs to be <b>bolted</b> in place, the armor looked like it could be <i>welded</i> out.")
+			. += span_notice("装甲需要用螺栓固定到位, 用焊枪焊接以拆下装甲.")
 		if(PTURRET_INTERNAL_ARMOUR_ON)
-			. += span_notice("The turret requires an <b>energy based gun</b> to function, the armor is secured by <i>bolts</i>.")
+			. += span_notice("炮塔需要一把能量武器才能工作, 装甲上的螺栓可以被拧开.")
 		if(PTURRET_GUN_EQUIPPED)
-			. += span_notice("The turret requires an <b>proximity sensor</b> to function. The energy gun could <i>be removed</i>.")
+			. += span_notice("炮塔需要一个距离传感器才能工作, 内部能量武器可以被移除.")
 		if(PTURRET_SENSORS_ON)
-			. += span_notice("The turret's access hatch is <b>unscrewed</b>. The proximity sensor could <i>be removed</i>.")
+			. += span_notice("炮塔检修口盖子未用螺丝固定, 距离传感器可以被移除.")
 		if(PTURRET_CLOSED)
-			. += span_notice("The turret requires <b>metal</b> for its external armor, the access hatch could be <i>unscrewed</i>.")
+			. += span_notice("炮塔需要金属作为外部装甲, 检修口盖子可以通过拧螺丝打开.")
 		if(PTURRET_START_EXTERNAL_ARMOUR)
-			. += span_notice("The turret's armor needs to be <b>welded</b> in place, the armor looks like it could be <i>pried</i> off.")
+			. += span_notice("炮塔外部装甲需要焊接到位, 现在看起来能被撬开.")
 
 /obj/machinery/porta_turret_construct/attackby(obj/item/used, mob/user, params)
 	//this is a bit unwieldy but self-explanatory
@@ -46,14 +46,14 @@
 		if(PTURRET_UNSECURED) //first step
 			if(used.tool_behaviour == TOOL_WRENCH && !anchored)
 				used.play_tool_sound(src, 100)
-				to_chat(user, span_notice("You secure the external bolts."))
+				to_chat(user, span_notice("你固定了外部螺栓."))
 				set_anchored(TRUE)
 				build_step = PTURRET_BOLTED
 				return
 
 			else if(used.tool_behaviour == TOOL_CROWBAR && !anchored)
 				used.play_tool_sound(src, 75)
-				to_chat(user, span_notice("You dismantle the turret construction."))
+				to_chat(user, span_notice("你拆除了炮塔结构."))
 				new /obj/item/stack/sheet/iron(loc, 5)
 				qdel(src)
 				return
@@ -62,16 +62,16 @@
 			if(istype(used, /obj/item/stack/sheet/iron))
 				var/obj/item/stack/sheet/iron/sheet = used
 				if(sheet.use(2))
-					to_chat(user, span_notice("You add some metal armor to the interior frame."))
+					to_chat(user, span_notice("你添加了一些金属作为炮塔内部装甲."))
 					build_step = PTURRET_START_INTERNAL_ARMOUR
 					icon_state = "turret_frame2"
 				else
-					to_chat(user, span_warning("You need two sheets of iron to continue construction!"))
+					to_chat(user, span_warning("你需要2份铁进行建造!"))
 				return
 
 			else if(used.tool_behaviour == TOOL_WRENCH)
 				used.play_tool_sound(src, 75)
-				to_chat(user, span_notice("You unfasten the external bolts."))
+				to_chat(user, span_notice("你拧开了外部螺栓."))
 				set_anchored(FALSE)
 				build_step = PTURRET_UNSECURED
 				return
@@ -80,7 +80,7 @@
 		if(PTURRET_START_INTERNAL_ARMOUR)
 			if(used.tool_behaviour == TOOL_WRENCH)
 				used.play_tool_sound(src, 100)
-				to_chat(user, span_notice("You bolt the metal armor into place."))
+				to_chat(user, span_notice("你将内部装甲固定到位."))
 				build_step = PTURRET_INTERNAL_ARMOUR_ON
 				return
 
@@ -88,11 +88,11 @@
 				if(!used.tool_start_check(user, amount = 5)) //uses up 5 fuel
 					return
 
-				to_chat(user, span_notice("You start to remove the turret's interior metal armor..."))
+				to_chat(user, span_notice("你开始移除炮塔内部装甲..."))
 
 				if(used.use_tool(src, user, 20, volume = 50, amount = 5)) //uses up 5 fuel
 					build_step = PTURRET_BOLTED
-					to_chat(user, span_notice("You remove the turret's interior metal armor."))
+					to_chat(user, span_notice("你移除了炮塔内部装甲."))
 					new /obj/item/stack/sheet/iron(drop_location(), 2)
 					return
 
@@ -101,17 +101,17 @@
 			if(istype(used, /obj/item/gun/energy)) //the gun installation part
 				var/obj/item/gun/energy/egun = used
 				if(egun.gun_flags & TURRET_INCOMPATIBLE)
-					to_chat(user, span_notice("You don't think it would be right to add [used] to the turret"))
+					to_chat(user, span_notice("你觉得在炮塔上加[used]是不对的"))
 					return
 				if(!user.transferItemToLoc(egun, src))
 					return
 				installed_gun = egun
-				to_chat(user, span_notice("You add [used] to the turret."))
+				to_chat(user, span_notice("你添加[used]到炮塔上."))
 				build_step = PTURRET_GUN_EQUIPPED
 				return
 			else if(used.tool_behaviour == TOOL_WRENCH)
 				used.play_tool_sound(src, 100)
-				to_chat(user, span_notice("You remove the turret's metal armor bolts."))
+				to_chat(user, span_notice("你拧开了炮塔的内部装甲螺栓."))
 				build_step = PTURRET_START_INTERNAL_ARMOUR
 				return
 
@@ -120,7 +120,7 @@
 				build_step = PTURRET_SENSORS_ON
 				if(!user.temporarilyRemoveItemFromInventory(used))
 					return
-				to_chat(user, span_notice("You add the proximity sensor to the turret."))
+				to_chat(user, span_notice("你添加距离传感器到炮塔上."))
 				qdel(used)
 				return
 
@@ -129,7 +129,7 @@
 			if(used.tool_behaviour == TOOL_SCREWDRIVER)
 				used.play_tool_sound(src, 100)
 				build_step = PTURRET_CLOSED
-				to_chat(user, span_notice("You close the internal access hatch."))
+				to_chat(user, span_notice("你关上了炮塔内部检修口."))
 				return
 
 
@@ -137,16 +137,16 @@
 			if(istype(used, /obj/item/stack/sheet/iron))
 				var/obj/item/stack/sheet/iron/sheet = used
 				if(sheet.use(2))
-					to_chat(user, span_notice("You add some metal armor to the exterior frame."))
+					to_chat(user, span_notice("你添加一些金属到炮塔外部框架上."))
 					build_step = PTURRET_START_EXTERNAL_ARMOUR
 				else
-					to_chat(user, span_warning("You need two sheets of iron to continue construction!"))
+					to_chat(user, span_warning("你需要2份铁来继续建造!"))
 				return
 
 			else if(used.tool_behaviour == TOOL_SCREWDRIVER)
 				used.play_tool_sound(src, 100)
 				build_step = PTURRET_SENSORS_ON
-				to_chat(user, span_notice("You open the internal access hatch."))
+				to_chat(user, span_notice("你打开了炮塔内部检修口."))
 				return
 
 		if(PTURRET_START_EXTERNAL_ARMOUR)
@@ -154,10 +154,10 @@
 				if(!used.tool_start_check(user, amount = 5))
 					return
 
-				to_chat(user, span_notice("You begin to weld the turret's armor down..."))
+				to_chat(user, span_notice("你开始焊接炮塔装甲..."))
 				if(used.use_tool(src, user, 30, volume = 50, amount = 5))
 					build_step = PTURRET_EXTERNAL_ARMOUR_ON
-					to_chat(user, span_notice("You weld the turret's armor down."))
+					to_chat(user, span_notice("你完成了焊接炮塔装甲."))
 
 					//The final step: create a full turret
 
@@ -176,13 +176,13 @@
 
 			else if(used.tool_behaviour == TOOL_CROWBAR)
 				used.play_tool_sound(src, 75)
-				to_chat(user, span_notice("You pry off the turret's exterior armor."))
+				to_chat(user, span_notice("你撬开了炮塔外部装甲."))
 				new /obj/item/stack/sheet/iron(loc, 2)
 				build_step = PTURRET_CLOSED
 				return
 
 	if(used.get_writing_implement_details()?["interaction_mode"] == MODE_WRITING) //you can rename turrets like bots!
-		var/choice = tgui_input_text(user, "Enter a new turret name", "Turret Classification", finish_name, MAX_NAME_LEN)
+		var/choice = tgui_input_text(user, "输入炮塔名称", "炮塔编目", finish_name, MAX_NAME_LEN)
 		if(!choice)
 			return
 		if(!user.can_perform_action(src))
@@ -202,11 +202,11 @@
 			build_step = PTURRET_INTERNAL_ARMOUR_ON
 
 			installed_gun.forceMove(loc)
-			to_chat(user, span_notice("You remove [installed_gun] from the turret frame."))
+			to_chat(user, span_notice("你移除了[installed_gun]从炮塔框架."))
 			installed_gun = null
 
 		if(PTURRET_SENSORS_ON)
-			to_chat(user, span_notice("You remove the prox sensor from the turret frame."))
+			to_chat(user, span_notice("你移除了距离传感器从炮塔框架."))
 			new /obj/item/assembly/prox_sensor(loc)
 			build_step = PTURRET_GUN_EQUIPPED
 
