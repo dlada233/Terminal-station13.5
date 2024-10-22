@@ -165,7 +165,7 @@ const ChoicedSelection = (props: {
         <Stack.Item overflowX="hidden" overflowY="scroll">
           <Autofocus>
             <Input
-              placeholder="Search..."
+              placeholder="搜索中..."
               style={{
                 margin: '0px 5px',
                 width: '95%',
@@ -422,7 +422,7 @@ export const PreferenceList = (props: {
             if (feature === undefined) {
               return (
                 <Stack.Item key={featureId}>
-                  <b>Feature {featureId} is not recognized.</b>
+                  <b>特征 {featureId} 无法辨认.</b>
                 </Stack.Item>
               );
             }
@@ -727,7 +727,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                       page={PrefPage.Visual}
                       setPage={setCurrentPrefPage}
                     >
-                      Character Visuals
+                      人物外观
                     </PageButton>
                     <Box my={0.5}>
                       <Button
@@ -739,7 +739,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                         } // check if existing chars more than one
                         onClick={() => setDeleteCharacterPopupOpen(true)}
                       >
-                        Delete Character
+                        删除角色
                       </Button>
                     </Box>
                   </Stack.Item>
@@ -749,7 +749,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                       page={PrefPage.Lore}
                       setPage={setCurrentPrefPage}
                     >
-                      Character Lore
+                      人物背景
                     </PageButton>
                   </Stack.Item>
                 </Stack>

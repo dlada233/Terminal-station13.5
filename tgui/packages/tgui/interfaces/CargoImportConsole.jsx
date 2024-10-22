@@ -17,14 +17,9 @@ export const CargoImportConsole = (props) => {
     cant_buy_restricted,
   } = data;
   return (
-    <Window
-      theme="armament"
-      title="Company Import Requisition Console"
-      width={1000}
-      height={600}
-    >
+    <Window theme="armament" title="公司进口申请窗口" width={1000} height={600}>
       <Window.Content>
-        <Section grow height="100%" title="Company Import Requisition Console">
+        <Section grow height="100%" title="公司进口申请窗口">
           <Stack>
             <Stack.Item grow fill>
               <Button.Checkbox
@@ -33,17 +28,17 @@ export const CargoImportConsole = (props) => {
                 onClick={() => act('toggleprivate')}
               />
               <Box>
-                <b>Current Budget:</b> {budget_name}
+                <b>使用预算:</b> {budget_name}
               </Box>
               <Box>
-                <b>Budget Remaining:</b> {budget_points}
+                <b>剩余预算:</b> {budget_points}
               </Box>
             </Stack.Item>
           </Stack>
           <Divider />
           <Stack fill grow>
             <Stack.Item mr={1}>
-              <Section title="Companies">
+              <Section title="公司目录">
                 <Stack vertical>
                   {armaments_list.map((armament_category) => (
                     <Stack.Item key={armament_category.category}>
@@ -100,7 +95,7 @@ export const CargoImportConsole = (props) => {
             </Stack.Item>
             <Divider vertical />
             <Stack.Item width="20%">
-              <Section title="Selected Item">
+              <Section title="已选择的物品">
                 {armaments_list.map((armament_category) =>
                   armament_category.subcategories.map((subcat) =>
                     subcat.items.map(
@@ -121,9 +116,7 @@ export const CargoImportConsole = (props) => {
                             <Stack.Item>{item.description}</Stack.Item>
                             {!!cant_buy_restricted && !!item.restricted && (
                               <Stack.Item textColor={'red'}>
-                                {
-                                '你无法通过此控制台购买限制物品!'
-                                }
+                                {'你无法通过此控制台购买限制物品!'}
                               </Stack.Item>
                             )}
                             <Stack.Item
@@ -131,11 +124,11 @@ export const CargoImportConsole = (props) => {
                                 item.cost > budget_points ? 'red' : 'green'
                               }
                             >
-                              {'Cost: ' + item.cost}
+                              {'花费: ' + item.cost}
                             </Stack.Item>
                             <Stack.Item>
                               <Button
-                                content="Buy"
+                                content="购买"
                                 textAlign="center"
                                 width="100%"
                                 disabled={

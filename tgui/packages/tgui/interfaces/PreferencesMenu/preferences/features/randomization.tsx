@@ -29,19 +29,19 @@ export const random_body: Feature<RandomSetting> = {
                   setRandomToggle(false);
                 }}
               >
-                Randomize
+                随机化
               </Button>
             </Stack.Item>
 
             <Stack.Item>
               <Button color="red" onClick={() => setRandomToggle(false)}>
-                Cancel
+                取消
               </Button>
             </Stack.Item>
           </>
         ) : (
           <Stack.Item>
-            <Button onClick={() => setRandomToggle(true)}>Randomize</Button>
+            <Button onClick={() => setRandomToggle(true)}>随机化</Button>
           </Stack.Item>
         )}
       </Stack>
@@ -50,7 +50,7 @@ export const random_body: Feature<RandomSetting> = {
 };
 
 export const random_hardcore: FeatureToggle = {
-  name: 'Hardcore random',
+  name: '完全随机',
   component: CheckboxInput,
 };
 

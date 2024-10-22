@@ -340,15 +340,15 @@ export function QuirksPage(props) {
               maxPositiveQuirks !== -1 &&
               positiveQuirks >= maxPositiveQuirks
             ) {
-              return "You can't have any more positive quirks!";
+              return '你无法再拥有更多的正面特质了!';
             } else if (pointsEnabled && balance + quirk.value > 0) {
-              return 'You need a negative quirk to balance this out!';
+              return '你需要一项负面特质来平衡!';
             }
           }
 
           // SKYRAT EDIT START - Veteran quirks
           if (quirk.veteran_only && !data.is_veteran) {
-            return 'You need to be a veteran to select this quirk, apply today!';
+            return '这是老手限定的特质.';
           }
           // SKYRAT EDIT END
 
@@ -366,7 +366,7 @@ export function QuirksPage(props) {
                 incompatibleQuirk !== quirk.name &&
                 selectedQuirkNames.indexOf(incompatibleQuirk) !== -1
               ) {
-                return `This is incompatible with ${incompatibleQuirk}!`;
+                return `这个于 ${incompatibleQuirk} 不兼容!`;
               }
             }
           }
@@ -378,7 +378,7 @@ export function QuirksPage(props) {
           const quirk = quirkInfo[quirkName];
 
           if (pointsEnabled && balance - quirk.value > 0) {
-            return 'You need to remove a positive quirk first!';
+            return '你需要先移除一项正面特质!';
           }
 
           return undefined;
@@ -390,7 +390,7 @@ export function QuirksPage(props) {
               <Stack vertical fill align="center">
                 <Stack.Item>
                   {maxPositiveQuirks > 0 ? (
-                    <Box fontSize="1.3em">Positive Quirks</Box>
+                    <Box fontSize="1.3em">正面特质</Box>
                   ) : (
                     <Box mt={pointsEnabled ? 3.4 : 0} />
                   )}
@@ -408,7 +408,7 @@ export function QuirksPage(props) {
 
                 <Stack.Item>
                   <Box as="b" fontSize="1.6em">
-                    Available Quirks
+                    可用特质
                   </Box>
                 </Stack.Item>
 
@@ -452,7 +452,7 @@ export function QuirksPage(props) {
               <Stack vertical fill align="center">
                 <Stack.Item>
                   {pointsEnabled ? (
-                    <Box fontSize="1.3em">Quirk Balance</Box>
+                    <Box fontSize="1.3em">特质点数平衡</Box>
                   ) : (
                     <Box mt={maxPositiveQuirks > 0 ? 3.4 : 0} />
                   )}
@@ -468,7 +468,7 @@ export function QuirksPage(props) {
 
                 <Stack.Item>
                   <Box as="b" fontSize="1.6em">
-                    Current Quirks
+                    已选特质
                   </Box>
                 </Stack.Item>
 

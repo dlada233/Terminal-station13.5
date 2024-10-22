@@ -54,7 +54,7 @@ export const PortableBasicInfo = (props) => {
         </LabeledList>
       </Section>
       <Section
-        title="气罐"
+        title="气瓶"
         minHeight="82px"
         buttons={
           <Button

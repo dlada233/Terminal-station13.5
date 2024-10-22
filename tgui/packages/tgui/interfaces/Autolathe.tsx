@@ -52,13 +52,13 @@ export const Autolathe = (props) => {
   }
 
   return (
-    <Window title="Autolathe" width={670} height={600}>
+    <Window title="自动车床" width={670} height={600}>
       <Window.Content scrollable>
         <Stack vertical fill>
           <Stack.Item>
-            <Section title="Total Materials">
+            <Section title="总材料量">
               <LabeledList>
-                <LabeledList.Item label="Total Materials">
+                <LabeledList.Item label="总材料量">
                   <ProgressBar
                     value={materialtotal}
                     minValue={0}
@@ -72,12 +72,12 @@ export const Autolathe = (props) => {
                     {materialtotal / SHEET_MATERIAL_AMOUNT +
                       '/' +
                       materialsmax / SHEET_MATERIAL_AMOUNT +
-                      ' sheets'}
+                      ' 块/份/板'}
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item>
                   {filteredMaterials.length > 0 && (
-                    <Collapsible title="Materials">
+                    <Collapsible title="材料">
                       <LabeledList>
                         {filteredMaterials.map((material) => (
                           <LabeledList.Item
@@ -95,7 +95,7 @@ export const Autolathe = (props) => {
                             >
                               <div style={{ transform: 'scaleX(-1)' }}>
                                 {material.amount / SHEET_MATERIAL_AMOUNT +
-                                  ' sheets'}
+                                  ' 块/份/板'}
                               </div>
                             </ProgressBar>
                           </LabeledList.Item>

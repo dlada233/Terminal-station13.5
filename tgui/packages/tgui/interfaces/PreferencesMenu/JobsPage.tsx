@@ -94,13 +94,13 @@ const PriorityHeaders = () => {
     <Stack>
       <Stack.Item grow />
 
-      <Stack.Item className={className}>Off</Stack.Item>
+      <Stack.Item className={className}>关</Stack.Item>
 
-      <Stack.Item className={className}>Low</Stack.Item>
+      <Stack.Item className={className}>低</Stack.Item>
 
-      <Stack.Item className={className}>Medium</Stack.Item>
+      <Stack.Item className={className}>中</Stack.Item>
 
-      <Stack.Item className={className}>High</Stack.Item>
+      <Stack.Item className={className}>高</Stack.Item>
     </Stack>
   );
 };
@@ -204,7 +204,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>{hoursNeeded}h</b> as {experience_type}
+          <b>{hoursNeeded}h</b> 作为 {experience_type}
         </Stack.Item>
       </Stack>
     );
@@ -212,7 +212,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>{daysLeft}</b> day{daysLeft === 1 ? '' : 's'} left
+          <b>{daysLeft}</b> 天剩余
         </Stack.Item>
       </Stack>
     );
@@ -220,7 +220,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>Banned</b>
+          <b>被封禁</b>
         </Stack.Item>
       </Stack>
     );
@@ -229,7 +229,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>Veteran Only</b>
+          <b>仅限老手</b>
         </Stack.Item>
       </Stack>
     );
@@ -240,7 +240,7 @@ const JobRow = (props: { className?: string; job: Job; name: string }) => {
     rightSide = (
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
-          <b>Bad species</b>
+          <b>糟糕的种族</b>
         </Stack.Item>
       </Stack>
     );
@@ -361,15 +361,15 @@ const JoblessRoleDropdown = (props) => {
 
   const options = [
     {
-      displayText: `Join as ${data.overflow_role} if unavailable`,
+      displayText: `如果都不可用则作为 ${data.overflow_role} 加入`,
       value: JoblessRole.BeOverflow,
     },
     {
-      displayText: `Join as a random job if unavailable`,
+      displayText: `如果都不可用则作为随机职业加入`,
       value: JoblessRole.BeRandomJob,
     },
     {
-      displayText: `Return to lobby if unavailable`,
+      displayText: `如果都不可用则返回大厅`,
       value: JoblessRole.ReturnToLobby,
     },
   ];

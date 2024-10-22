@@ -21,16 +21,16 @@ export const AtmosPump = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="电源">
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
+                content={on ? '开' : '关'}
                 selected={on}
                 onClick={() => act('power')}
               />
             </LabeledList.Item>
             {max_rate ? (
-              <LabeledList.Item label="Transfer Rate">
+              <LabeledList.Item label="输送效率">
                 <NumberInput
                   animated
                   value={rate}
@@ -58,7 +58,7 @@ export const AtmosPump = (props) => {
                 />
               </LabeledList.Item>
             ) : (
-              <LabeledList.Item label="Output Pressure">
+              <LabeledList.Item label="输出压力">
                 <NumberInput
                   animated
                   value={pressure}

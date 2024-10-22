@@ -22,11 +22,11 @@ export const DeleteCharacterPopup = (props: { close: () => void }) => {
     <Modal>
       <Stack vertical textAlign="center" align="center">
         <Stack.Item>
-          <Box fontSize="3em">Wait!</Box>
+          <Box fontSize="3em">等等!</Box>
         </Stack.Item>
 
         <Stack.Item maxWidth="300px">
-          <Box>{`You're about to delete ${data.character_preferences.names[data.name_to_use]} forever. Are you sure you want to do this?`}</Box>
+          <Box>{`你将永久删除 ${data.character_preferences.names[data.name_to_use]} . 你确定这么做吗?`}</Box>
         </Stack.Item>
 
         <Stack.Item>
@@ -42,12 +42,12 @@ export const DeleteCharacterPopup = (props: { close: () => void }) => {
                   close();
                 }}
               >
-                {secondsLeft <= 0 ? 'Delete' : `Delete (${secondsLeft})`}
+                {secondsLeft <= 0 ? '删除' : `删除 (${secondsLeft})`}
               </Button>
             </Stack.Item>
 
             <Stack.Item>
-              <Button onClick={close}>{"No, don't delete"}</Button>
+              <Button onClick={close}>{'不，不要删除'}</Button>
             </Stack.Item>
           </Stack>
         </Stack.Item>

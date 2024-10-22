@@ -52,7 +52,8 @@ export const InterfaceLockNoticeBox = (props) => {
   // For everyone else
   return (
     <NoticeBox>
-      刷卡以 {accessText} to {locked ? '解锁' : '锁定'} 该面板.
+      刷{accessText}
+      {locked ? '解锁' : '锁定'}该面板.
     </NoticeBox>
   );
 };
