@@ -26,8 +26,7 @@ const STATE_MESSAGES = 'messages';
 // Used for whether or not you need to swipe to confirm an alert level change
 const SWIPE_NEEDED = 'SWIPE_NEEDED';
 
-const EMAG_SHUTTLE_NOTICE =
-  '这艘穿梭机对船员极其危险，并且仅由辛迪加供货.';
+const EMAG_SHUTTLE_NOTICE = '这艘飞船对船员极其危险，由辛迪加提供.';
 
 const sortShuttles = (shuttles) =>
   sortBy(
@@ -101,7 +100,7 @@ const MessageModal = (props) => {
             content={props.buttonText}
             color="good"
             disabled={!longEnough}
-            tooltip={!longEnough ? 'You need a longer reason.' : ''}
+            tooltip={!longEnough ? '你需要一段更长的理由.' : ''}
             tooltipPosition="right"
             onClick={() => {
               if (longEnough) {
@@ -113,7 +112,7 @@ const MessageModal = (props) => {
 
           <Button
             icon="times"
-            content="Cancel"
+            content="取消"
             color="bad"
             onClick={props.onBack}
           />
@@ -149,9 +148,7 @@ const NoConnectionModal = () => {
           </Blink>
         </Flex.Item>
 
-        <Flex.Item fontSize="16px">
-          A connection to the station cannot be established.
-        </Flex.Item>
+        <Flex.Item fontSize="16px">无法建立与站点的联系.</Flex.Item>
       </Flex>
     </Dimmer>
   );
@@ -165,13 +162,13 @@ const PageBuyingShuttle = (props) => {
       <Section>
         <Button
           icon="chevron-left"
-          content="Back"
+          content="返回"
           onClick={() => act('setState', { state: STATE_MAIN })}
         />
       </Section>
 
       <Section>
-        Budget: <b>{data.budget.toLocaleString()}</b> credits
+        预算: <b>{data.budget.toLocaleString()}</b>信用点
       </Section>
 
       {sortShuttles(data.shuttles).map((shuttle) => (
@@ -189,7 +186,7 @@ const PageBuyingShuttle = (props) => {
           key={shuttle.ref}
           buttons={
             <Button
-              content={`${shuttle.creditCost.toLocaleString()} credits`}
+              content={`${shuttle.creditCost.toLocaleString()}信用点`}
               color={shuttle.emagOnly ? 'red' : 'default'}
               disabled={data.budget < shuttle.creditCost}
               onClick={() =>
@@ -199,7 +196,7 @@ const PageBuyingShuttle = (props) => {
               }
               tooltip={
                 data.budget < shuttle.creditCost
-                  ? `You need ${shuttle.creditCost - data.budget} more credits.`
+                  ? `你还需要${shuttle.creditCost - data.budget}信用点.`
                   : shuttle.emagOnly
                     ? EMAG_SHUTTLE_NOTICE
                     : undefined
@@ -210,11 +207,11 @@ const PageBuyingShuttle = (props) => {
         >
           <Box>{shuttle.description}</Box>
           <Box color="teal" fontSize="10px" italic>
-            Occupancy Limit: {shuttle.occupancy_limit}
+            容纳限制: {shuttle.occupancy_limit}
           </Box>
           <Box color="violet" fontSize="10px" bold>
             {shuttle.prerequisites ? (
-              <b>Prerequisites: {shuttle.prerequisites}</b>
+              <b>前提条件: {shuttle.prerequisites}</b>
             ) : null}
           </Box>
         </Section>
@@ -231,7 +228,7 @@ const PageChangingStatus = (props) => {
       <Section>
         <Button
           icon="chevron-left"
-          content="Back"
+          content="返回"
           onClick={() => act('setState', { state: STATE_MAIN })}
         />
       </Section>
@@ -283,18 +280,18 @@ const PageMain = (props) => {
   return (
     <Box>
       {!syndicate && (
-        <Section title="Emergency Shuttle">
+        <Section title="应急撤离飞船">
           {(!!shuttleCalled && (
             <Button.Confirm
               icon="space-shuttle"
-              content="Recall Emergency Shuttle"
+              content="召回撤离飞船"
               color="bad"
               disabled={!canRecallShuttles || !shuttleRecallable}
               tooltip={
                 (canRecallShuttles &&
                   !shuttleRecallable &&
-                  "It's too late for the emergency shuttle to be recalled.") ||
-                'You do not have permission to recall the emergency shuttle.'
+                  '现在召回撤离飞船已经太晚了.') ||
+                '你无权召回撤离飞船.'
               }
               tooltipPosition="bottom-end"
               onClick={() => act('recallShuttle')}
@@ -302,7 +299,7 @@ const PageMain = (props) => {
           )) || (
             <Button
               icon="space-shuttle"
-              content="Call Emergency Shuttle"
+              content="呼叫撤离飞船"
               disabled={shuttleCanEvacOrFailReason !== 1}
               tooltip={
                 shuttleCanEvacOrFailReason !== 1
@@ -316,52 +313,49 @@ const PageMain = (props) => {
           {!!shuttleCalledPreviously &&
             ((shuttleLastCalled && (
               <Box>
-                Most recent shuttle call/recall traced to:{' '}
-                <b>{shuttleLastCalled}</b>
+                最近的撤离飞船呼叫/召回被追踪到: <b>{shuttleLastCalled}</b>
               </Box>
-            )) || (
-              <Box>Unable to trace most recent shuttle/recall signal.</Box>
-            ))}
+            )) || <Box>无法追踪到最近的撤离飞船呼叫/召回信号.</Box>)}
         </Section>
       )}
 
       {!!canSetAlertLevel && (
-        <Section title="Alert Level">
+        <Section title="警报等级">
           <Flex justify="space-between">
             <Flex.Item>
               <Box>
-                Currently on <b>{capitalize(alertLevel)}</b> Alert
+                当前处于<b>{capitalize(alertLevel)}</b>警报
               </Box>
             </Flex.Item>
 
             <Flex.Item>
               <AlertButton
-                alertLevel="green"
+                alertLevel="绿色"
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
 
               <AlertButton
-                alertLevel="blue"
+                alertLevel="蓝色"
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
 
               <AlertButton
                 // SKYRAT EDIT ADDTION BEGIN - ALERTS
-                alertLevel="violet"
+                alertLevel="紫罗兰色"
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
 
               <AlertButton
-                alertLevel="orange"
+                alertLevel="橙色"
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
 
               <AlertButton
-                alertLevel="amber"
+                alertLevel="琥珀色"
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
                 // SKYRAT EDIT END
@@ -371,21 +365,19 @@ const PageMain = (props) => {
         </Section>
       )}
 
-      <Section title="Functions">
+      <Section title="功能">
         <Flex direction="column">
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Make Priority Announcement"
+              content="发布全站公告"
               onClick={() => act('makePriorityAnnouncement')}
             />
           )}
           {!!canToggleEmergencyAccess && (
             <Button.Confirm
               icon="id-card-o"
-              content={`${
-                emergencyAccess ? 'Disable' : 'Enable'
-              } Emergency Maintenance Access`}
+              content={`${emergencyAccess ? '关闭' : '开启'} 维护通道应急权限`}
               color={emergencyAccess ? 'bad' : undefined}
               onClick={() => act('toggleEmergencyAccess')}
             />
@@ -395,9 +387,7 @@ const PageMain = (props) => {
           {!!canToggleEngineeringOverride && (
             <Button.Confirm
               icon="wrench"
-              content={`${
-                engineeringOverride ? 'Disable' : 'Enable'
-              } Engineering Override Access`}
+              content={`${engineeringOverride ? '关闭' : '开启'} 工程超驰权限`}
               color={engineeringOverride ? 'bad' : undefined}
               onClick={() => act('toggleEngOverride')}
             />
@@ -407,21 +397,21 @@ const PageMain = (props) => {
           {!syndicate && (
             <Button
               icon="desktop"
-              content="Set Status Display"
+              content="设定状态显示"
               onClick={() => act('setState', { state: STATE_CHANGING_STATUS })}
             />
           )}
 
           <Button
             icon="envelope-o"
-            content="Message List"
+            content="消息列表"
             onClick={() => act('setState', { state: STATE_MESSAGES })}
           />
 
           {canBuyShuttles !== 0 && (
             <Button
               icon="shopping-cart"
-              content="Purchase Shuttle"
+              content="购买撤离飞船"
               disabled={canBuyShuttles !== 1}
               // canBuyShuttles is a string detailing the fail reason
               // if one can be given
@@ -434,7 +424,7 @@ const PageMain = (props) => {
           {!!canMessageAssociates && (
             <Button
               icon="comment-o"
-              content={`Send message to ${emagged ? '[UNKNOWN]' : 'CentCom'}`}
+              content={`发送消息至 ${emagged ? '[UNKNOWN]' : 'CentCom'}`}
               disabled={!importantActionReady}
               onClick={() => setMessagingAssociates(true)}
             />
@@ -443,7 +433,7 @@ const PageMain = (props) => {
           {!!canRequestNuke && (
             <Button
               icon="radiation"
-              content="Request Nuclear Authentication Codes"
+              content="请求核认证代码"
               disabled={!importantActionReady}
               onClick={() => setRequestingNukeCodes(true)}
             />
@@ -452,7 +442,7 @@ const PageMain = (props) => {
           {!!emagged && !syndicate && (
             <Button
               icon="undo"
-              content="Restore Backup Routing Data"
+              content="恢复备份路由数据"
               onClick={() => act('restoreBackupRoutingData')}
             />
           )}
@@ -462,28 +452,28 @@ const PageMain = (props) => {
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Call Sol Federation 911: Marshals Response"
+              content="拨打911: 司法援助响应"
               onClick={() => act('callThePolice')}
             />
           )}
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Call Sol Federation 811: Advanced Atmospherics Response"
+              content="拨打811: 大气工程响应"
               onClick={() => act('callTheCatmos')}
             />
           )}
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
-              content="Call Sol Federation 911: Medical Response"
+              content="拨打911: 医疗援助响应"
               onClick={() => act('callTheParameds')}
             />
           )}
           {!!emagged && (
             <Button
               icon="bullhorn"
-              content="Place an Order with Dogginos Pizza"
+              content="点一份Dogginos披萨"
               onClick={() => act('callThePizza')}
             />
           )}
@@ -495,10 +485,8 @@ const PageMain = (props) => {
 
       {!!canMessageAssociates && messagingAssociates && (
         <MessageModal
-          label={`Message to transmit to ${
-            emagged ? '[ABNORMAL ROUTING COORDINATES]' : 'CentCom'
-          } via quantum entanglement`}
-          notice="Please be aware that this process is very expensive, and abuse will lead to...termination. Transmission does not guarantee a response."
+          label={`量子传输信息至 ${emagged ? '[路径坐标异常]' : 'CentCom'}`}
+          notice="请注意，信息传输成本十分昂贵，滥用将导致...结束. 此外，不保证有回复."
           icon="bullhorn"
           buttonText="Send"
           onBack={() => setMessagingAssociates(false)}
@@ -513,10 +501,10 @@ const PageMain = (props) => {
 
       {!!canRequestNuke && requestingNukeCodes && (
         <MessageModal
-          label="Reason for requesting nuclear self-destruct codes"
-          notice="Misuse of the nuclear request system will not be tolerated under any circumstances. Transmission does not guarantee a response."
+          label="请求核弹自毁程序代码的理由"
+          notice="在任何情况下都不能容忍滥用核自毁程序. 不保证有回复."
           icon="bomb"
-          buttonText="Request Codes"
+          buttonText="请求代码"
           onBack={() => setRequestingNukeCodes(false)}
           onSubmit={(reason) => {
             setRequestingNukeCodes(false);
@@ -529,9 +517,9 @@ const PageMain = (props) => {
 
       {!!callingShuttle && (
         <MessageModal
-          label="Nature of emergency"
+          label="紧急情况性质"
           icon="space-shuttle"
-          buttonText="Call Shuttle"
+          buttonText="呼叫撤离飞船"
           minLength={callShuttleReasonMinLength}
           onBack={() => setCallingShuttle(false)}
           onSubmit={(reason) => {
@@ -549,13 +537,13 @@ const PageMain = (props) => {
           <Modal>
             <Flex direction="column" textAlign="center" width="300px">
               <Flex.Item fontSize="16px" mb={2}>
-                Swipe ID to confirm change
+                刷动ID来确认更改
               </Flex.Item>
 
               <Flex.Item mr={2} mb={1}>
                 <Button
                   icon="id-card-o"
-                  content="Swipe ID"
+                  content="刷动ID卡"
                   color="good"
                   fontSize="16px"
                   onClick={() =>
@@ -567,7 +555,7 @@ const PageMain = (props) => {
 
                 <Button
                   icon="times"
-                  content="Cancel"
+                  content="取消"
                   color="bad"
                   fontSize="16px"
                   onClick={() => setShowAlertLevelConfirm(false)}
@@ -578,12 +566,12 @@ const PageMain = (props) => {
         )}
 
       {!!canSendToSectors && sectors.length > 0 && (
-        <Section title="Allied Sectors">
+        <Section title="友方星区">
           <Flex direction="column">
             {sectors.map((sectorName) => (
               <Flex.Item key={sectorName}>
                 <Button
-                  content={`Send a message to station in ${sectorName} sector`}
+                  content={`发送消息给 ${sectorName} 星区的空间站.`}
                   disabled={!importantActionReady}
                   onClick={() => setMessagingSector(sectorName)}
                 />
@@ -593,7 +581,7 @@ const PageMain = (props) => {
             {sectors.length > 2 && (
               <Flex.Item>
                 <Button
-                  content="Send a message to all allied stations"
+                  content="给所有友方空间站发送消息."
                   disabled={!importantActionReady}
                   onClick={() => setMessagingSector('all')}
                 />
@@ -605,8 +593,8 @@ const PageMain = (props) => {
 
       {!!canSendToSectors && sectors.length > 0 && messagingSector && (
         <MessageModal
-          label="Message to send to allied station"
-          notice="Please be aware that this process is very expensive, and abuse will lead to...termination."
+          label="给所有友方空间站发送消息"
+          notice="请注意，这个传输过程非常昂贵，滥用将导致...结束."
           icon="bullhorn"
           buttonText="Send"
           onBack={() => setMessagingSector(null)}
@@ -634,7 +622,7 @@ const PageMessages = (props) => {
     <Section>
       <Button
         icon="chevron-left"
-        content="Back"
+        content="返回"
         onClick={() => act('setState', { state: STATE_MAIN })}
       />
     </Section>,
@@ -679,7 +667,7 @@ const PageMessages = (props) => {
         buttons={
           <Button.Confirm
             icon="trash"
-            content="Delete"
+            content="删除"
             color="red"
             onClick={() =>
               act('deleteMessage', {
@@ -721,13 +709,13 @@ export const CommunicationsConsole = (props) => {
         {!hasConnection && <NoConnectionModal />}
 
         {(canLogOut || !authenticated) && (
-          <Section title="Authentication">
+          <Section title="身份验证">
             <Button
               icon={authenticated ? 'sign-out-alt' : 'sign-in-alt'}
               content={
                 authenticated
-                  ? `Log Out${authorizeName ? ` (${authorizeName})` : ''}`
-                  : 'Log In'
+                  ? `注销${authorizeName ? ` (${authorizeName})` : ''}`
+                  : '登录'
               }
               color={authenticated ? 'bad' : 'good'}
               onClick={() => act('toggleAuthentication')}
@@ -736,19 +724,19 @@ export const CommunicationsConsole = (props) => {
         )}
 
         {(!!canRequestSafeCode && (
-          <Section title="Emergency Safe Code">
+          <Section title="应急安全密码">
             <Button
               icon="key"
-              content="Request Safe Code"
+              content="请求安全密码"
               color="good"
               onClick={() => act('requestSafeCodes')}
             />
           </Section>
         )) ||
           (!!safeCodeDeliveryWait && (
-            <Section title="Emergency Safe Code Delivery">
-              {`Drop pod to ${safeCodeDeliveryArea} in \
-            ${Math.round(safeCodeDeliveryWait / 10)}s`}
+            <Section title="应急安全密码送达">
+              {`投放补给舱至${safeCodeDeliveryArea}在\
+            ${Math.round(safeCodeDeliveryWait / 10)}秒内`}
             </Section>
           ))}
 
@@ -757,7 +745,7 @@ export const CommunicationsConsole = (props) => {
             (page === STATE_CHANGING_STATUS && <PageChangingStatus />) ||
             (page === STATE_MAIN && <PageMain />) ||
             (page === STATE_MESSAGES && <PageMessages />) || (
-              <Box>Page not implemented: {page}</Box>
+              <Box>页面未实现: {page}</Box>
             ))}
       </Window.Content>
     </Window>

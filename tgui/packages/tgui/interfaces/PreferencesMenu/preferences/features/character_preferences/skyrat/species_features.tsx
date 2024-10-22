@@ -34,15 +34,15 @@ export const feature_mcolor3: Feature<string> = {
 };
 
 export const flavor_text: Feature<string> = {
-  name: 'Flavor Text',
+  name: '描述文本',
   description:
-    "Appears when your character is examined (but only if they're identifiable - try a gas mask).",
+    '当你的角色被检视时会显示 (但只会出现在该角色可被辨认的情况下 - 比如没有面罩遮脸).',
   component: FeatureTextInput,
 };
 
 export const silicon_flavor_text: Feature<string> = {
-  name: 'Flavor Text (Silicon)',
-  description: "Only appears if you're playing as a borg/AI.",
+  name: '描述文本 (硅基)',
+  description: '只会在你扮演赛博格/AI时显示.',
   component: FeatureTextInput,
 };
 
@@ -53,86 +53,83 @@ export const ooc_notes: Feature<string> = {
 
 export const custom_species: Feature<string> = {
   name: '自定义种族名',
-  description:
-    'Appears on examine. If left blank, you will use your default species name (E.g. Human, Lizardperson).',
+  description: '在检视时显示，如果为空，就使用默认名称，如:人类、蜥蜴人等等.',
   component: FeatureShortTextInput,
 };
 
 export const custom_species_lore: Feature<string> = {
   name: '自定义种族历史',
-  description: "Won't show up if there's no custom species.",
+  description: '当你没有自定义种族时就不会出现.',
   component: FeatureTextInput,
 };
 
 export const custom_taste: Feature<string> = {
-  name: 'Character Taste',
-  description: 'How does your character taste if someone licks them.',
+  name: '角色味道',
+  description: '如果有东西舔你的角色会尝到什么味道.',
   component: FeatureShortTextInput,
 };
 
 export const custom_smell: Feature<string> = {
-  name: 'Character Smell',
-  description: 'How does your character smell if someone sniffs them.',
+  name: '角色气味',
+  description: '如果有东西嗅你的角色会闻到什么味道.',
   component: FeatureShortTextInput,
 };
 
 export const general_record: Feature<string> = {
-  name: '记录 - 通用',
+  name: '档案 - 通用',
   description:
-    '可通过任何信息查询端查询. \
-  用于一般查询, 就业, 资格等.',
+    '可通过任何档案台查询. \
+  内容关于就业履历, 能力资格等.',
   component: FeatureTextInput,
 };
 
 export const security_record: Feature<string> = {
-  name: '记录 - 安保',
+  name: '档案 - 安保',
   description:
-    '可通过安全信息端查询. \
-  关于犯罪记录, 案底等.',
+    '可通过安全档案台查询. \
+  内容关于犯罪记录, 前科案底等.',
   component: FeatureTextInput,
 };
 
 export const medical_record: Feature<string> = {
-  name: '记录 - 医疗',
+  name: '档案 - 医疗',
   description:
-    '可通过医疗信息端查询. \
-  关于病史, 处方, DNR(不要复活)预定等.',
+    '可通过医疗档案台查询. \
+  内容关于病史, 正在进行的治疗, DNR(不要复活)告知等.',
   component: FeatureTextInput,
 };
 
 export const exploitable_info: Feature<string> = {
-  name: '记录 - 可利用',
+  name: '信息 - 可被利用',
   description:
-    'Can be IC or OOC. Viewable by certain antagonists/OPFOR users, as well as ghosts. Generally contains \
-  things like weaknesses, strengths, important background, trigger words, etc. It ALSO may contain things like \
-  antagonist preferences, e.g. if you want to be antagonized, by whom, with what, etc.',
+    '可以是IC或OOC内容. 反派/自定义反派以及幽灵可以看到. 一般是你的弱点、优势或重要背景等.\
+  也可以是你的反派偏好，例如: 你是否想遭遇反派，遭遇何种反派，以什么方式被反派袭击.',
   component: FeatureTextInput,
 };
 
 export const background_info: Feature<string> = {
-  name: '记录 - 背景',
+  name: '信息 - 背景',
   description:
-    'Only viewable by yourself and ghosts. You can have whatever you want in here - it may be valuable as a way to orient yourself to what your character is.',
+    '只有你和幽灵可以看到，在这里你可以写下任何你想要的东西，这一般用于提醒你自己如何扮演.',
   component: FeatureTextInput,
 };
 
 export const pda_ringer: Feature<string> = {
   name: 'PDA拟声词',
-  description:
-    'Want your PDA to say something other than "beep"? Accepts the first 20 characters.',
+  description: '你想让PDA发出"beep"以外的声音吗? 限定20个字符长度.',
   component: FeatureShortTextInput,
 };
 
 export const allow_mismatched_parts_toggle: FeatureToggle = {
   name: '允许非同种族的身体部件',
-  description: 'Allows parts from any species to be picked.',
+  description: '允许你身上出现其他种族的身体部位.',
   component: CheckboxInput,
 };
 
 export const allow_mismatched_hair_color_toggle: FeatureToggle = {
   name: '允许不匹配发色',
   description:
-    'Allows species who normally have a fixed hair color to have different hair colors. This includes in-round sources such as dyeing hair, alter form, etc. Currently only applicable to slimes.',
+    '允许让固定发色的种族也能拥有不同发色，这也包括局内来源，比如染发、理发等，目前只有史莱姆人需要用到.',
   component: CheckboxInput,
 };
 
@@ -144,13 +141,13 @@ export const allow_genitals_toggle: FeatureToggle = {
 
 export const allow_emissives_toggle: FeatureToggle = {
   name: '允许自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: CheckboxInput,
 };
 
 export const eye_emissives: FeatureToggle = {
   name: '瞳孔自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: CheckboxInput,
 };
 
@@ -204,7 +201,7 @@ export const tail_color: Feature<string[]> = {
 
 export const tail_emissive: Feature<boolean[]> = {
   name: '尾巴自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -229,7 +226,7 @@ export const snout_color: Feature<string[]> = {
 
 export const snout_emissive: Feature<boolean[]> = {
   name: '鼻子自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -254,7 +251,7 @@ export const horns_color: Feature<string[]> = {
 
 export const horns_emissive: Feature<boolean[]> = {
   name: '角自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -279,7 +276,7 @@ export const ears_color: Feature<string[]> = {
 
 export const ears_emissive: Feature<boolean[]> = {
   name: '耳朵自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -304,7 +301,7 @@ export const wings_color: Feature<string[]> = {
 
 export const wings_emissive: Feature<boolean[]> = {
   name: '翅膀自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -329,7 +326,7 @@ export const frills_color: Feature<string[]> = {
 
 export const frills_emissive: Feature<boolean[]> = {
   name: '褶边自发光',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -354,7 +351,7 @@ export const spines_color: Feature<string[]> = {
 
 export const spines_emissive: Feature<boolean[]> = {
   name: 'Spines Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -388,7 +385,7 @@ export const caps_color: Feature<string[]> = {
 
 export const caps_emissive: Feature<boolean[]> = {
   name: 'Caps Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -413,7 +410,7 @@ export const moth_antennae_color: Feature<string[]> = {
 
 export const moth_antennae_emissive: Feature<boolean[]> = {
   name: 'Moth Antenna Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -438,7 +435,7 @@ export const moth_markings_color: Feature<string[]> = {
 
 export const moth_markings_emissive: Feature<boolean[]> = {
   name: 'Moth Markings Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -463,7 +460,7 @@ export const fluff_color: Feature<string[]> = {
 
 export const fluff_emissive: Feature<boolean[]> = {
   name: 'Fluff Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -488,7 +485,7 @@ export const head_acc_color: Feature<string[]> = {
 
 export const head_acc_emissive: Feature<boolean[]> = {
   name: 'Head Accessories Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -509,7 +506,7 @@ export const ipc_screen_color: Feature<string> = {
 
 export const ipc_screen_emissive: Feature<boolean> = {
   name: 'IPC Screen Emissive',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: CheckboxInput,
 };
 
@@ -534,7 +531,7 @@ export const ipc_antenna_color: Feature<string[]> = {
 
 export const ipc_antenna_emissive: Feature<boolean[]> = {
   name: 'Synth Antenna Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -625,7 +622,7 @@ export const skrell_hair_color: Feature<string[]> = {
 
 export const skrell_hair_emissive: Feature<boolean[]> = {
   name: 'Skrell Hair Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -650,7 +647,7 @@ export const taur_color: Feature<string[]> = {
 
 export const taur_emissive: Feature<boolean[]> = {
   name: 'Taur Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -682,7 +679,7 @@ export const xenodorsal_color: Feature<string[]> = {
 
 export const xenodorsal_emissive: Feature<boolean[]> = {
   name: 'Xenodorsal Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -707,7 +704,7 @@ export const xenohead_color: Feature<string[]> = {
 
 export const xenohead_emissive: Feature<boolean[]> = {
   name: 'Xeno Head Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -742,7 +739,7 @@ export const heterochromia_color: Feature<string[]> = {
 
 export const heterochromia_emissive: Feature<boolean[]> = {
   name: 'Heterochromia Emissives',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: FeatureTriBoolInput,
 };
 
@@ -762,6 +759,6 @@ export const pod_hair_color: Feature<string[]> = {
 
 export const pod_hair_emissive: Feature<boolean> = {
   name: 'Floral Hair Emissive',
-  description: 'Emissive parts glow in the dark.',
+  description: '会在黑暗中发光.',
   component: CheckboxInput,
 };

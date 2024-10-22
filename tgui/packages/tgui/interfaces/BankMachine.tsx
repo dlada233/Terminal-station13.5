@@ -25,14 +25,14 @@ export const BankMachine = (props) => {
     <Window width={350} height={155}>
       <Window.Content>
         <NoticeBox danger>Authorized personnel only</NoticeBox>
-        <Section title={station_name + ' Vault'}>
+        <Section title={station_name + '金库'}>
           <LabeledList>
             <LabeledList.Item
-              label="Current Balance"
+              label="当前余额"
               buttons={
                 <Button
                   icon={siphoning ? 'times' : 'sync'}
-                  content={siphoning ? 'Stop Siphoning' : 'Siphon Credits'}
+                  content={siphoning ? '停止取出' : '取出信用点'}
                   selected={siphoning}
                   onClick={() => act(siphoning ? 'halt' : 'siphon')}
                 />

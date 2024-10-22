@@ -119,7 +119,7 @@ const CameraSelector = (props) => {
           expensive
           fluid
           mt={1}
-          placeholder="Search for a camera"
+          placeholder="搜索摄像头"
           onInput={(e, value) => setSearchText(value)}
           value={searchText}
         />
@@ -174,7 +174,7 @@ const CameraControls = (props: { searchText: string }) => {
               {activeCamera?.status ? (
                 <NoticeBox info>{activeCamera.name}</NoticeBox>
               ) : (
-                <NoticeBox danger>No input signal</NoticeBox>
+                <NoticeBox danger>无输出信号</NoticeBox>
               )}
             </Stack.Item>
 
@@ -182,7 +182,7 @@ const CameraControls = (props: { searchText: string }) => {
               {!!can_spy && (
                 <Button
                   icon="magnifying-glass"
-                  tooltip="Track Person"
+                  tooltip="追踪个人"
                   onClick={() => act('start_tracking')}
                 />
               )}

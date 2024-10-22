@@ -67,10 +67,10 @@ export const MultiNameInput = (props: {
               <Section
                 buttons={
                   <Button color="red" onClick={props.handleClose}>
-                    Close
+                    关闭
                   </Button>
                 }
-                title="Alternate names"
+                title="备用姓名"
               >
                 <LabeledList>
                   {sortNameWithKeyEntries(Object.entries(namesIntoGroups)).map(
@@ -126,7 +126,7 @@ export const MultiNameInput = (props: {
                                   <Stack.Item>
                                     <Button
                                       icon="dice"
-                                      tooltip="Randomize"
+                                      tooltip="随机化"
                                       tooltipPosition="right"
                                       onClick={() => {
                                         props.handleRandomizeName(key);
@@ -227,7 +227,7 @@ export const NameInput = (props: {
               <Stack.Item>
                 <Button
                   as="span"
-                  tooltip="Alternate Names"
+                  tooltip="备用姓名"
                   tooltipPosition="bottom"
                   style={{
                     background: 'rgba(0, 0, 0, 0.7)',

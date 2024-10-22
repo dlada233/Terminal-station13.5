@@ -19,14 +19,14 @@ export const RotateCharacterButtons = (props) => {
         onClick={() => act('rotate', { backwards: false })}
         fontSize="22px"
         icon="redo"
-        tooltip="Rotate Clockwise"
+        tooltip="顺时针旋转"
         tooltipPosition="bottom"
       />
       <Button
         onClick={() => act('rotate', { backwards: true })}
         fontSize="22px"
         icon="undo"
-        tooltip="Rotate Counter-Clockwise"
+        tooltip="逆时针旋转"
         tooltipPosition="bottom"
       />
     </Box>
@@ -70,7 +70,7 @@ export const Markings = (props) => {
             <Stack.Item>
               <Button
                 color={marking.emissive ? 'good' : 'bad'}
-                tooltip="The 'E' is for 'Emissive', meaning does it glow or not. Green for glow, red for no glow."
+                tooltip="'E'代表'自发光', 意思代表它会不会发光，绿色代表发光，红色不发光."
                 onClick={() =>
                   act('change_emissive', {
                     limb_slot: props.limb.slot,

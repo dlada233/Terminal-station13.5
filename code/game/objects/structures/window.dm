@@ -919,8 +919,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 	update_appearance()
 
 /obj/structure/window/bronze
-	name = "黄铜窗"
-	desc = "嵌着一块坚固的半透明黄铜，相信我，这就是弱黄铜."
+	name = "青铜窗"
+	desc = "嵌着一块坚固的半透明青铜，相信我，弱青铜是这样的."
 	icon = 'icons/obj/smooth_structures/structure_variations.dmi'
 	icon_state = "clockwork_window-single"
 	glass_type = /obj/item/stack/sheet/bronze

@@ -19,7 +19,7 @@ import { AreaCharge, powerRank } from './PowerMonitor';
 export const ApcControl = (props) => {
   const { data } = useBackend();
   return (
-    <Window title="APC Controller" width={550} height={500}>
+    <Window title="APC控制器" width={550} height={500}>
       <Window.Content>
         {data.authenticated === 1 && <ApcLoggedIn />}
         {data.authenticated === 0 && <ApcLoggedOut />}
@@ -31,7 +31,7 @@ export const ApcControl = (props) => {
 const ApcLoggedOut = (props) => {
   const { act, data } = useBackend();
   const { emagged } = data;
-  const text = emagged === 1 ? 'Open' : 'Log In';
+  const text = emagged === 1 ? '开启' : '登录';
   return (
     <Section>
       <Button
@@ -74,7 +74,7 @@ const ApcLoggedIn = (props) => {
       {restoring === 1 && (
         <Dimmer fontSize="32px">
           <Icon name="cog" spin />
-          {' Resetting...'}
+          {' 重置中...'}
         </Dimmer>
       )}
       {tabIndex === 1 && (
@@ -114,17 +114,17 @@ const ControlPanel = (props) => {
         </Box>
         <Button.Checkbox
           checked={sortByField === 'name'}
-          content="Name"
+          content="名称"
           onClick={() => setSortByField(sortByField !== 'name' && 'name')}
         />
         <Button.Checkbox
           checked={sortByField === 'charge'}
-          content="Charge"
+          content="充入"
           onClick={() => setSortByField(sortByField !== 'charge' && 'charge')}
         />
         <Button.Checkbox
           checked={sortByField === 'draw'}
-          content="Draw"
+          content="汲取"
           onClick={() => setSortByField(sortByField !== 'draw' && 'draw')}
         />
       </Stack.Item>
@@ -134,19 +134,16 @@ const ControlPanel = (props) => {
           <>
             <Button
               color={logging === 1 ? 'bad' : 'good'}
-              content={logging === 1 ? 'Stop Logging' : 'Restore Logging'}
+              content={logging === 1 ? '停止记录' : '重置记录'}
               onClick={() => act('toggle-logs')}
             />
-            <Button
-              content="Reset Console"
-              onClick={() => act('restore-console')}
-            />
+            <Button content="重置终端" onClick={() => act('restore-console')} />
           </>
         )}
         <Button
           icon="sign-out-alt"
           color="bad"
-          content="Log Out"
+          content="注销"
           onClick={() => act('log-out')}
         />
       </Stack.Item>
@@ -186,13 +183,13 @@ const ApcControlScene = (props) => {
           <Table.Cell collapsing textAlign="right">
             Draw
           </Table.Cell>
-          <Table.Cell collapsing title="Equipment">
+          <Table.Cell collapsing title="设备">
             Eqp
           </Table.Cell>
-          <Table.Cell collapsing title="Lighting">
+          <Table.Cell collapsing title="照明">
             Lgt
           </Table.Cell>
-          <Table.Cell collapsing title="Environment">
+          <Table.Cell collapsing title="环境">
             Env
           </Table.Cell>
         </Table.Row>

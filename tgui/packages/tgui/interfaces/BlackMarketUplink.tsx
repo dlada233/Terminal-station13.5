@@ -57,7 +57,7 @@ export const BlackMarketUplink = (props) => {
       <ShipmentSelector />
       <Window.Content scrollable>
         <Section
-          title="Black Market Uplink"
+          title="黑市上行链路"
           buttons={
             <Box inline bold>
               <AnimatedNumber
@@ -109,12 +109,12 @@ export const BlackMarketUplink = (props) => {
                     {item.name}
                   </Stack.Item>
                   <Stack.Item color="label">
-                    {item.amount ? item.amount + ' in stock' : 'Out of stock'}
+                    {item.amount ? item.amount + ' 有现货' : '缺货'}
                   </Stack.Item>
                   <Stack.Item>{formatMoney(item.cost) + ' cr'}</Stack.Item>
                   <Stack.Item>
                     <Button
-                      content="Buy"
+                      content="购买"
                       disabled={!item.amount || item.cost > money}
                       onClick={() =>
                         act('select', {
@@ -172,7 +172,7 @@ const ShipmentSelector = (props) => {
           );
         })}
       </Stack>
-      <Button content="Cancel" color="bad" onClick={() => act('cancel')} />
+      <Button content="取消" color="bad" onClick={() => act('cancel')} />
     </Modal>
   );
 };
