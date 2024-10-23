@@ -3,19 +3,19 @@ import { Box, Button, Dimmer, Icon, Section, Stack } from '../../components';
 import { MainData } from './data';
 
 export const InternalDamageToDamagedDesc = {
-  MECHA_INT_FIRE: 'Internal fire detected',
-  MECHA_INT_TEMP_CONTROL: 'Thermoregulator offline',
-  MECHA_CABIN_AIR_BREACH: 'Cabin breach detected',
-  MECHA_INT_CONTROL_LOST: 'Motors damaged',
-  MECHA_INT_SHORT_CIRCUIT: 'Circuits shorted',
+  MECHA_INT_FIRE: '检测到内部起火',
+  MECHA_INT_TEMP_CONTROL: '调温器离线',
+  MECHA_CABIN_AIR_BREACH: '检测到驾驶舱破裂',
+  MECHA_INT_CONTROL_LOST: '发动机受损',
+  MECHA_INT_SHORT_CIRCUIT: '电路短路',
 };
 
 export const InternalDamageToNormalDesc = {
-  MECHA_INT_FIRE: 'No internal fires detected',
-  MECHA_INT_TEMP_CONTROL: 'Thermoregulator active',
-  MECHA_CABIN_AIR_BREACH: 'Cabin sealing intact',
-  MECHA_INT_CONTROL_LOST: 'Motors active',
-  MECHA_INT_SHORT_CIRCUIT: 'Circuits operational',
+  MECHA_INT_FIRE: '未检测到内部起火',
+  MECHA_INT_TEMP_CONTROL: '调温器运作中',
+  MECHA_CABIN_AIR_BREACH: '驾驶舱气密完好',
+  MECHA_INT_CONTROL_LOST: '发动机启动',
+  MECHA_INT_SHORT_CIRCUIT: '电路正常',
 };
 
 export const AlertPane = (props) => {
@@ -34,7 +34,7 @@ export const AlertPane = (props) => {
   } = data;
   return (
     <Section
-      title="Status"
+      title="状况"
       buttons={
         (!!overclock_mode || !!can_use_overclock) && (
           <>
@@ -51,10 +51,8 @@ export const AlertPane = (props) => {
               }
             >
               {overclock_mode
-                ? `Overclocking (${Math.round(
-                    overclock_temp_percentage * 100,
-                  )}%)`
-                : 'Overclock'}
+                ? `超频 (${Math.round(overclock_temp_percentage * 100)}%)`
+                : '超频'}
             </Button>
             {!!overclock_safety_available && (
               <Button
@@ -66,9 +64,7 @@ export const AlertPane = (props) => {
                 onClick={() => act('toggle_overclock_safety')}
                 color={overclock_safety ? 'good' : 'bad'}
                 tooltip={
-                  overclock_safety
-                    ? 'OC safety prevents overheat.'
-                    : 'OC safety disabled.'
+                  overclock_safety ? 'OC安全装置防止过热.' : 'OC安全装置关闭.'
                 }
               />
             )}
@@ -79,7 +75,7 @@ export const AlertPane = (props) => {
       <Stack vertical>
         {!scanmod_rating ? (
           <Box height={8}>
-            <Dimmer>Scanning module missing.</Dimmer>
+            <Dimmer>扫描模块缺失.</Dimmer>
           </Box>
         ) : (
           Object.keys(internal_damage_keys).map((t) => (
@@ -117,7 +113,7 @@ export const AlertPane = (props) => {
                       }
                       color={'red'}
                     >
-                      Repair
+                      修理
                     </Button>
                   </Stack.Item>
                 )}

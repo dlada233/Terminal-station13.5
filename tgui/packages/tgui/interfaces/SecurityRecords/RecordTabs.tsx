@@ -22,7 +22,9 @@ export const SecurityRecordTabs = (props) => {
   const { act, data } = useBackend<SecurityRecordsData>();
   const { higher_access, records = [] } = data;
 
-  const errorMessage = !records.length ? '找不到档案.' : '不匹配，请优化检索.';
+  const errorMessage = !records.length
+    ? '找不到档案.'
+    : '未匹配到，请优化检索.';
 
   const [search, setSearch] = useState('');
 
@@ -59,7 +61,7 @@ export const SecurityRecordTabs = (props) => {
             <Button
               disabled
               icon="plus"
-              tooltip="通过在终端中插入1x1米的照片来添加新档案，不需要保持此屏幕打开."
+              tooltip="通过在终端中插入1x1米的照片来添加新档案，过程中不需要保持此屏幕打开."
             >
               创建
             </Button>

@@ -51,14 +51,14 @@ export const DnaConsole = (props) => {
               <DnaConsoleEnzymes
                 subjectBlock={subjectUNI}
                 type="ui"
-                name="Enzymes"
+                name="DNA酶"
               />
             )}
             {consoleMode === CONSOLE_MODE_FEATURES && (
               <DnaConsoleEnzymes
                 subjectBlock={subjectUF}
                 type="uf"
-                name="Features"
+                name="特征码"
               />
             )}
           </Stack.Item>
@@ -85,7 +85,7 @@ const DnaConsoleCommands = (props) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Mode">
+        <LabeledList.Item label="模式">
           <Button
             content="存储"
             selected={consoleMode === CONSOLE_MODE_STORAGE}
@@ -106,7 +106,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="酶"
+            content="DNA酶"
             selected={consoleMode === CONSOLE_MODE_ENZYMES}
             onClick={() =>
               act('set_view', {
@@ -115,7 +115,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="特征"
+            content="特征码"
             selected={consoleMode === CONSOLE_MODE_FEATURES}
             onClick={() =>
               act('set_view', {

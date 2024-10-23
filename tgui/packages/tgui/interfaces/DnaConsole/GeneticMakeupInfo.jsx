@@ -12,13 +12,13 @@ export const GeneticMakeupInfo = (props) => {
         <LabeledList.Item label="血型">
           {makeup.blood_type || 'None'}
         </LabeledList.Item>
-        <LabeledList.Item label="Unique Enzyme">
+        <LabeledList.Item label="唯一DNA酶">
           {makeup.UE || 'None'}
         </LabeledList.Item>
-        <LabeledList.Item label="Unique Identifier">
+        <LabeledList.Item label="唯一识别码">
           {makeup.UI || 'None'}
         </LabeledList.Item>
-        <LabeledList.Item label="Unique Features">
+        <LabeledList.Item label="唯一特征码">
           {makeup.UF || 'None'}
         </LabeledList.Item>
       </LabeledList>

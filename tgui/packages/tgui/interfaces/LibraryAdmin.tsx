@@ -20,12 +20,7 @@ import { PageSelect } from './LibraryConsole';
 export const LibraryAdmin = (props) => {
   const [modifyMethod, setModifyMethod] = useLocalState('ModifyMethod', null);
   return (
-    <Window
-      title="Admin Library Console"
-      theme="admin"
-      width={800}
-      height={600}
-    >
+    <Window title="图书管理终端" theme="admin" width={800} height={600}>
       {modifyMethod ? <ModifyPage /> : <BookListing />}
     </Window>
   );
@@ -43,10 +38,7 @@ const BookListing = (props) => {
   const { can_connect, can_db_request, our_page, page_count } = data;
   if (!can_connect) {
     return (
-      <NoticeBox>
-        Unable to retrieve book listings. Please contact your system
-        administrator for assistance.
-      </NoticeBox>
+      <NoticeBox>无法检索书籍目录，请联系你的系统管理员进行协助.</NoticeBox>
     );
   }
   return (
@@ -211,7 +203,7 @@ const SearchAndDisplay = (props) => {
                 color={params_changed ? 'good' : ''}
                 icon="rotate-right"
               >
-                Refresh
+                刷新
               </Button>
               <Button
                 disabled={!can_db_request}
@@ -220,7 +212,7 @@ const SearchAndDisplay = (props) => {
                 color="bad"
                 icon="fire"
               >
-                Reset Search
+                重置搜索
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -229,14 +221,14 @@ const SearchAndDisplay = (props) => {
                 onClick={() => act('toggle_raw')}
                 color={view_raw ? 'purple' : 'blue'}
                 icon={view_raw ? 'theater-masks' : 'glasses'}
-                content={view_raw ? 'Raw' : 'Normal'}
+                content={view_raw ? '未处理' : '正常'}
               />
               <Button
                 textAlign="right"
                 onClick={() => act('toggle_deleted')}
                 color={show_deleted ? 'purple' : 'green'}
                 icon={show_deleted ? 'trash' : 'mountain-sun'}
-                content={show_deleted ? 'All' : 'Undeleted'}
+                content={show_deleted ? '全部' : '恢复'}
               />
             </Stack.Item>
           </Stack>
@@ -245,9 +237,9 @@ const SearchAndDisplay = (props) => {
       <Table>
         <Table.Row>
           <Table.Cell fontSize={1.5}>#</Table.Cell>
-          <Table.Cell fontSize={1.5}>Category</Table.Cell>
-          <Table.Cell fontSize={1.5}>Title</Table.Cell>
-          <Table.Cell fontSize={1.5}>Author</Table.Cell>
+          <Table.Cell fontSize={1.5}>目录</Table.Cell>
+          <Table.Cell fontSize={1.5}>标题</Table.Cell>
+          <Table.Cell fontSize={1.5}>作者</Table.Cell>
           <Table.Cell fontSize={1.5}>C-Key</Table.Cell>
           <Table.Cell fontSize={1.5}>Un/Delete</Table.Cell>
         </Table.Row>
@@ -282,7 +274,7 @@ const SearchAndDisplay = (props) => {
                   icon="undo"
                   color="blue"
                 >
-                  Restore
+                  恢复
                 </Button>
               ) : (
                 <Button
@@ -296,7 +288,7 @@ const SearchAndDisplay = (props) => {
                   icon="hammer"
                   color="violet"
                 >
-                  Delete
+                  删除
                 </Button>
               )}
             </Table.Cell>
@@ -354,17 +346,15 @@ const ModifyPage = (props) => {
   return (
     <Window.Content scrollable>
       <NoticeBox>
-        Heads Up! We do not allow you to fully delete books in game
+        注意! 我们不会让你在游戏中完全删除书籍
         <br />
-        What you&apos;re doing here is a &quot;don&apos;t show this to
-        anyone&quot; button
+        你现在所做的事情只是让其他在本局内看不到此书籍.
         <br />
-        If you for whatever reason need to fully wipe a book, please speak to
-        your database administrator
+        如果你出于某种原因需要在游戏中完全删除书籍，请与数据库管理员联系.
       </NoticeBox>
       <Stack>
         <Stack.Item fontSize="25px" pb={2}>
-          Why do you want to {modifyMethod} this book?
+          为什么你想要 {modifyMethod} 这本书?
         </Stack.Item>
         <Stack.Item fontSize="17px">
           <Button
@@ -375,7 +365,7 @@ const ModifyPage = (props) => {
             }
             icon="book-reader"
           >
-            View
+            浏览
           </Button>
         </Stack.Item>
         <Stack.Item fontSize="17px">
@@ -384,7 +374,7 @@ const ModifyPage = (props) => {
             onClick={() => act('toggle_raw')}
             color={view_raw ? 'purple' : 'blue'}
             icon={view_raw ? 'theater-masks' : 'glasses'}
-            content={view_raw ? 'Raw' : 'Normal'}
+            content={view_raw ? '未处理' : '正常'}
           />
         </Stack.Item>
       </Stack>
@@ -428,7 +418,7 @@ const ModifyPage = (props) => {
         <Stack.Item>
           <Button
             icon="times"
-            content="Return"
+            content="返回"
             fontSize="18px"
             color="bad"
             onClick={() => {
@@ -442,13 +432,13 @@ const ModifyPage = (props) => {
       <Table>
         <Table.Row backgroundColor="rgba(0,0,0, 0.4)" header>
           <Table.Cell className="LibraryAdmin_RecordHeader">ID</Table.Cell>
-          <Table.Cell className="LibraryAdmin_RecordHeader">Action</Table.Cell>
-          <Table.Cell className="LibraryAdmin_RecordHeader">Reason</Table.Cell>
+          <Table.Cell className="LibraryAdmin_RecordHeader">行为</Table.Cell>
+          <Table.Cell className="LibraryAdmin_RecordHeader">原因</Table.Cell>
           <Table.Cell className="LibraryAdmin_RecordHeader">
-            Admin Key
+            管理员Key
           </Table.Cell>
           <Table.Cell className="LibraryAdmin_RecordHeader">
-            Datetime
+            日期时间
           </Table.Cell>
         </Table.Row>
         {entries.map((entry) => (

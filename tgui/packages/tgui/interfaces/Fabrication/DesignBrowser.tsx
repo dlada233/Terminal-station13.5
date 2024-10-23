@@ -63,7 +63,7 @@ export type DesignBrowserProps<T extends Design = Design> = {
 /**
  * A meta-category that, when selected, renders all designs to the output.
  */
-const ALL_CATEGORY = 'All Designs';
+const ALL_CATEGORY = '所有设计图';
 
 /**
  * A meta-category that collects all designs without a single category.
@@ -206,7 +206,7 @@ export const DesignBrowser = <T extends Design = Design>(
         <Section fill>
           <Stack vertical fill>
             <Stack.Item>
-              <Section title="Categories" fitted />
+              <Section title="目录" fitted />
             </Stack.Item>
             <Stack.Item grow>
               <Section fill style={{ overflow: 'auto' }}>
@@ -221,7 +221,7 @@ export const DesignBrowser = <T extends Design = Design>(
                   >
                     <div className="FabricatorTabs__Label">
                       <div className="FabricatorTabs__CategoryName">
-                        All Designs
+                        所有设计图
                       </div>
                       <div className="FabricatorTabs__CategoryCount">
                         ({Object.entries(root.descendants).length})
@@ -252,9 +252,9 @@ export const DesignBrowser = <T extends Design = Design>(
         <Section
           title={
             searchText.length > 0
-              ? `Results for "${searchText}"`
+              ? `"${searchText}"的搜索结果`
               : selectedCategory === ALL_CATEGORY
-                ? 'All Designs'
+                ? '所有设计图'
                 : selectedCategory
           }
           fill
@@ -265,7 +265,7 @@ export const DesignBrowser = <T extends Design = Design>(
                 <SearchBar
                   query={searchText}
                   onSearch={setSearchText}
-                  placeholder={'Search all designs...'}
+                  placeholder={'搜索所有设计图...'}
                 />
               </Section>
             </Stack.Item>
@@ -324,7 +324,7 @@ export const DesignBrowser = <T extends Design = Design>(
                 }}
               >
                 <Icon name="cog" spin />
-                {' Building items...'}
+                {'组建物品...'}
               </Dimmer>
             )}
           </Stack>

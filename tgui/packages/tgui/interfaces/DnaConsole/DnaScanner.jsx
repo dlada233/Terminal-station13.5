@@ -29,26 +29,20 @@ const DnaScannerButtons = (props) => {
   } = data;
   if (!isScannerConnected) {
     return (
-      <Button
-        content="连接扫描仪"
-        onClick={() => act('connect_scanner')}
-      />
+      <Button content="连接扫描仪" onClick={() => act('connect_scanner')} />
     );
   }
   return (
     <>
       {!!hasDelayedAction && (
-        <Button
-          content="Cancel Delayed Action"
-          onClick={() => act('cancel_delay')}
-        />
+        <Button content="取消稍后行动" onClick={() => act('cancel_delay')} />
       )}
       {!!isViableSubject && (
         <Button
           disabled={!isScrambleReady || isPulsing}
           onClick={() => act('scramble_dna')}
         >
-          重排 DNA
+          重排DNA
           {!isScrambleReady && ` (${scrambleSeconds}s)`}
         </Button>
       )}
@@ -77,28 +71,28 @@ const SubjectStatus = (props) => {
   if (status === SUBJECT_CONCIOUS) {
     return (
       <Box inline color="good">
-        Conscious
+        意识清醒
       </Box>
     );
   }
   if (status === SUBJECT_UNCONSCIOUS) {
     return (
       <Box inline color="average">
-        Unconscious
+        无意识
       </Box>
     );
   }
   if (status === SUBJECT_SOFT_CRIT) {
     return (
       <Box inline color="average">
-        Critical
+        濒死
       </Box>
     );
   }
   if (status === SUBJECT_DEAD) {
     return (
       <Box inline color="bad">
-        Dead
+        死亡
       </Box>
     );
   }
@@ -109,7 +103,7 @@ const SubjectStatus = (props) => {
       </Box>
     );
   }
-  return <Box inline>Unknown</Box>;
+  return <Box inline>未知</Box>;
 };
 
 const DnaScannerContent = (props) => {
@@ -123,10 +117,10 @@ const DnaScannerContent = (props) => {
     subjectStatus,
   } = data;
   if (!isScannerConnected) {
-    return <Box color="bad">DNA Scanner is not connected.</Box>;
+    return <Box color="bad">DNA扫描仪未连接.</Box>;
   }
   if (!isViableSubject) {
-    return <Box color="average">No viable subject found in DNA Scanner.</Box>;
+    return <Box color="average">DNA扫描仪中未检测到存活对象.</Box>;
   }
   return (
     <LabeledList>

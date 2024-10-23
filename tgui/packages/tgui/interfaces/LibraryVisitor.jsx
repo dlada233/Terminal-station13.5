@@ -16,7 +16,7 @@ import { PageSelect } from './LibraryConsole';
 
 export const LibraryVisitor = (props) => {
   return (
-    <Window title="Library Lookup Console" width={702} height={421}>
+    <Window title="图书馆查阅终端" width={702} height={421}>
       <BookListing />
     </Window>
   );
@@ -26,12 +26,7 @@ const BookListing = (props) => {
   const { act, data } = useBackend();
   const { can_connect, can_db_request, our_page, page_count } = data;
   if (!can_connect) {
-    return (
-      <NoticeBox>
-        Unable to retrieve book listings. Please contact your system
-        administrator for assistance.
-      </NoticeBox>
-    );
+    return <NoticeBox>无法检索书籍目录，请与你的系统管理员取得联系</NoticeBox>;
   }
   return (
     <Stack fill vertical justify="space-between">
@@ -141,7 +136,7 @@ const SearchAndDisplay = (props) => {
             color={params_changed ? 'good' : ''}
             icon="book"
           >
-            Search
+            搜索
           </Button>
           <Button
             disabled={!can_db_request}
@@ -150,16 +145,16 @@ const SearchAndDisplay = (props) => {
             color="bad"
             icon="fire"
           >
-            Reset Search
+            重置搜索
           </Button>
         </Stack.Item>
       </Stack>
       <Table>
         <Table.Row>
           <Table.Cell fontSize={1.5}>#</Table.Cell>
-          <Table.Cell fontSize={1.5}>Category</Table.Cell>
-          <Table.Cell fontSize={1.5}>Title</Table.Cell>
-          <Table.Cell fontSize={1.5}>Author</Table.Cell>
+          <Table.Cell fontSize={1.5}>目录</Table.Cell>
+          <Table.Cell fontSize={1.5}>标题</Table.Cell>
+          <Table.Cell fontSize={1.5}>作者</Table.Cell>
         </Table.Row>
         {records.map((record) => (
           <Table.Row key={record.key}>

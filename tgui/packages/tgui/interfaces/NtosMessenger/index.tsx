@@ -161,10 +161,10 @@ const ContactsScreen = (props: any) => {
           <Stack vertical textAlign="center">
             <Box bold>
               <Icon name="address-card" mr={1} />
-              SpaceMessenger V6.5.3
+              太空短信 V6.5.3
             </Box>
             <Box italic opacity={0.3} mt={1}>
-              Bringing you spy-proof communications since 2467.
+              从2467年开始为您服务至今
             </Box>
             <Divider hidden />
             <Box>
@@ -172,34 +172,32 @@ const ContactsScreen = (props: any) => {
                 icon="bell"
                 disabled={!alert_able}
                 content={
-                  alert_able && !alert_silenced ? 'Ringer: On' : 'Ringer: Off'
+                  alert_able && !alert_silenced ? '铃声: 开' : '铃声: 关'
                 }
                 onClick={() => act('PDA_toggleAlerts')}
               />
               <Button
                 icon="address-card"
                 content={
-                  sending_and_receiving
-                    ? 'Send / Receive: On'
-                    : 'Send / Receive: Off'
+                  sending_and_receiving ? '发送/接收: 开' : '发送/接收: 关'
                 }
                 onClick={() => act('PDA_toggleSendingAndReceiving')}
               />
               <Button
                 icon="bell"
-                content="Set Ringtone"
+                content="设置铃声"
                 onClick={() => act('PDA_ringSet')}
               />
               <Button
                 icon="sort"
-                content={`Sort by: ${sort_by_job ? 'Job' : 'Name'}`}
+                content={`排序方式: ${sort_by_job ? '职位' : '姓名'}`}
                 onClick={() => act('PDA_changeSortStyle')}
               />
               {!!virus_attach && (
                 <Button
                   icon="bug"
                   color="bad"
-                  content={`Attach Virus: ${sending_virus ? 'Yes' : 'No'}`}
+                  content={`附加病毒: ${sending_virus ? '是' : '否'}`}
                   onClick={() => act('PDA_toggleVirus')}
                 />
               )}
@@ -209,11 +207,11 @@ const ContactsScreen = (props: any) => {
           <Stack justify="space-between">
             <Box m={0.5}>
               <Icon name="magnifying-glass" mr={1} />
-              Search For User
+              搜索用户
             </Box>
             <Input
               width="220px"
-              placeholder="Search by name or job..."
+              placeholder="姓名或职业名搜索..."
               value={searchUser}
               onInput={(_, value) => setSearchUser(value)}
             />
@@ -225,7 +223,7 @@ const ContactsScreen = (props: any) => {
           <Stack vertical fill>
             <Section>
               <Icon name="comments" mr={1} />
-              Previous Messages
+              过往消息
             </Section>
             <Section fill scrollable>
               <Stack vertical>{filteredChatButtons}</Stack>
@@ -239,7 +237,7 @@ const ContactsScreen = (props: any) => {
             <Stack>
               <Box m={0.5}>
                 <Icon name="address-card" mr={1} />
-                Detected Messengers
+                已发现用户
               </Box>
             </Stack>
           </Section>
@@ -249,7 +247,7 @@ const ContactsScreen = (props: any) => {
                 <Stack align="center" justify="center" fill pl={4}>
                   <Icon color="gray" name="user-slash" size={2} />
                   <Stack.Item fontSize={1.5} ml={3}>
-                    No users found.
+                    未找到用户.
                   </Stack.Item>
                 </Stack>
               )}
@@ -288,7 +286,7 @@ const ChatButton = (props: ChatButtonProps) => {
       }}
     >
       {hasUnreads &&
-        `[${unreadMessages <= 9 ? unreadMessages : '9+'} unread message${
+        `[${unreadMessages <= 9 ? unreadMessages : '9+'} 未读消息${
           unreadMessages !== 1 ? 's' : ''
         }]`}{' '}
       {props.name}
@@ -308,20 +306,20 @@ const SendToAllSection = (props) => {
         <Stack justify="space-between">
           <Stack.Item align="center">
             <Icon name="satellite-dish" mr={1} ml={0.5} />
-            Send To All
+            发送至所有人
           </Stack.Item>
           <Stack.Item>
             <Button
               icon="arrow-right"
               disabled={on_spam_cooldown || message === ''}
-              tooltip={on_spam_cooldown && 'Wait before sending more messages!'}
+              tooltip={on_spam_cooldown && '发送更多消息前请等待!'}
               tooltipPosition="auto-start"
               onClick={() => {
                 act('PDA_sendEveryone', { message: message });
                 setmessage('');
               }}
             >
-              Send
+              发送
             </Button>
           </Stack.Item>
         </Stack>
@@ -330,7 +328,7 @@ const SendToAllSection = (props) => {
         <TextArea
           height={6}
           value={message}
-          placeholder="Send message to everyone..."
+          placeholder="发送消息至所有人..."
           onChange={(event, value: string) => setmessage(value)}
         />
       </Section>
@@ -345,9 +343,7 @@ const NoIDDimmer = () => {
         <Stack ml={-2}>
           <Icon color="red" name="address-card" size={10} />
         </Stack>
-        <Stack.Item fontSize="18px">
-          Please imprint an ID to continue.
-        </Stack.Item>
+        <Stack.Item fontSize="18px">请插入ID张卡以继续.</Stack.Item>
       </Stack>
     </Dimmer>
   );

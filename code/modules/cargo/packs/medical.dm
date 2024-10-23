@@ -74,11 +74,11 @@
 	crate_type = /obj/structure/closet/crate/medical
 
 /datum/supply_pack/medical/iv_drip
-	name = "输液架"
+	name = "静脉输液架"
 	desc = "内含输液架两台."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/machinery/iv_drip)
-	crate_name = "输液架箱"
+	crate_name = "静脉输液架箱"
 	crate_type = /obj/structure/closet/crate/medical
 
 /datum/supply_pack/medical/supplies
