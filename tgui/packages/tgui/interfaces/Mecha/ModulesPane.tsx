@@ -98,7 +98,7 @@ export const ModulesPane = (props) => {
                       textOverflow: 'ellipsis',
                     }}
                   >
-                    {`${moduleSlotLabel(module.slot)} Slot`}
+                    {`${moduleSlotLabel(module.slot)}槽位`}
                   </Stack.Item>
                 </Stack>
               </Button>

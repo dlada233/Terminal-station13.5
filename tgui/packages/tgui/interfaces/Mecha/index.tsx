@@ -277,7 +277,7 @@ const CabinSeal = (props) => {
     >
       <Button
         icon={cabin_sealed ? 'mask-ventilator' : 'wind'}
-        content={cabin_sealed ? 'Sealed' : 'Exposed'}
+        content={cabin_sealed ? '隔绝外部' : '接通外部'}
         disabled={!enclosed}
         onClick={() => act('toggle_cabin_seal')}
         selected={cabin_sealed}
