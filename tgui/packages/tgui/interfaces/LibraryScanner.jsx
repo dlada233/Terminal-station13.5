@@ -4,7 +4,7 @@ import { Window } from '../layouts';
 
 export const LibraryScanner = (props) => {
   return (
-    <Window title="Library Scanner" width={350} height={150}>
+    <Window title="图书馆扫描仪" width={350} height={150}>
       <BookScanning />
     </Window>
   );
@@ -14,7 +14,7 @@ const BookScanning = (props) => {
   const { act, data } = useBackend();
   const { has_book, has_cache, book } = data;
   if (!has_book && !has_cache) {
-    return <NoticeBox>Insert a book to scan</NoticeBox>;
+    return <NoticeBox>插入一本书来扫描</NoticeBox>;
   }
   return (
     <Stack direction="column" height="100%" justify="flex-end">
@@ -33,7 +33,7 @@ const BookScanning = (props) => {
               onClick={() => act('eject')}
               disabled={!has_book}
             >
-              Eject Book
+              取出书籍
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -45,7 +45,7 @@ const BookScanning = (props) => {
               icon="qrcode"
               disabled={!has_book}
             >
-              Scan Book
+              扫描书籍
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -57,7 +57,7 @@ const BookScanning = (props) => {
               color="bad"
               disabled={!has_cache}
             >
-              Clear Cache
+              清除缓存
             </Button>
           </Stack.Item>
         </Stack>

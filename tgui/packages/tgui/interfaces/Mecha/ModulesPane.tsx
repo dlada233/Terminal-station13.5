@@ -38,17 +38,17 @@ const moduleSlotIcon = (param) => {
 const moduleSlotLabel = (param) => {
   switch (param) {
     case 'mecha_l_arm':
-      return 'Left arm module';
+      return '左臂模块';
     case 'mecha_r_arm':
-      return 'Right arm module';
+      return '右臂模块';
     case 'mecha_utility':
-      return 'Utility module';
+      return '工具模块';
     case 'mecha_power':
-      return 'Power module';
+      return '电源模块';
     case 'mecha_armor':
-      return 'Armor module';
+      return '装甲模块';
     default:
-      return 'Common module';
+      return '通用模块';
   }
 };
 
@@ -57,7 +57,7 @@ export const ModulesPane = (props) => {
   const { modules, selected_module_index, weapons_safety } = data;
   return (
     <Section
-      title="Equipment"
+      title="装备"
       fill
       style={{ overflowY: 'auto' }}
       buttons={
@@ -65,11 +65,7 @@ export const ModulesPane = (props) => {
           icon={!weapons_safety ? 'triangle-exclamation' : 'helmet-safety'}
           color={!weapons_safety ? 'red' : 'default'}
           onClick={() => act('toggle_safety')}
-          content={
-            !weapons_safety
-              ? 'Safety Protocols Disabled'
-              : 'Safety Protocols Enabled'
-          }
+          content={!weapons_safety ? '安全协议禁用' : '安全协议开启'}
         />
       }
     >
@@ -171,7 +167,7 @@ export const ModuleDetails = (props) => {
                   <Button
                     color="transparent"
                     icon="eject"
-                    tooltip="Detach"
+                    tooltip="分离"
                     fontSize={1.5}
                     onClick={() =>
                       act('equip_act', {
@@ -225,10 +221,10 @@ const ModuleDetailsBasic = (props) => {
     <>
       {integrity < 1 && (
         <LabeledList.Item
-          label="Integrity"
+          label="完整性"
           buttons={
             <Button
-              content="Repair"
+              content="修理"
               icon="wrench"
               onClick={() =>
                 act('equip_act', {
@@ -250,25 +246,25 @@ const ModuleDetailsBasic = (props) => {
         </LabeledList.Item>
       )}
       {!weapons_safety && ['mecha_l_arm', 'mecha_r_arm'].includes(slot) && (
-        <LabeledList.Item label="Safety" color="red">
-          <NoticeBox danger>SAFETY OFF</NoticeBox>
+        <LabeledList.Item label="安全保险" color="red">
+          <NoticeBox danger>保险:关</NoticeBox>
         </LabeledList.Item>
       )}
       {!!energy_per_use && (
-        <LabeledList.Item label="Power Cost">
+        <LabeledList.Item label="电力消耗">
           {`${formatPower(energy_per_use)}, ${
             power_level ? toFixed(power_level / energy_per_use) : 0
-          } uses left`}
+          } 次使用剩余`}
         </LabeledList.Item>
       )}
       {!!equip_cooldown && (
-        <LabeledList.Item label="Cooldown">{equip_cooldown}</LabeledList.Item>
+        <LabeledList.Item label="冷却">{equip_cooldown}</LabeledList.Item>
       )}
       {!!can_be_toggled && (
         <LabeledList.Item label={active_label}>
           <Button
             icon="power-off"
-            content={active ? 'Enabled' : 'Disabled'}
+            content={active ? '开启' : '关闭'}
             onClick={() =>
               act('equip_act', {
                 ref: ref,
@@ -283,7 +279,7 @@ const ModuleDetailsBasic = (props) => {
         <LabeledList.Item label={active_label}>
           <Button
             icon="power-off"
-            content="Activate"
+            content="激活"
             disabled={active}
             onClick={() =>
               act('equip_act', {
@@ -355,10 +351,10 @@ const SnowflakeWeaponBallistic = (props) => {
   return (
     <>
       {!!ammo_type && (
-        <LabeledList.Item label="Ammo">{ammo_type}</LabeledList.Item>
+        <LabeledList.Item label="弹药">{ammo_type}</LabeledList.Item>
       )}
       <LabeledList.Item
-        label="Loaded"
+        label="已装载"
         buttons={
           !disabledreload &&
           projectiles_cache > 0 && (
@@ -372,19 +368,19 @@ const SnowflakeWeaponBallistic = (props) => {
                 })
               }
             >
-              Reload
+              换弹
             </Button>
           )
         }
       >
         <ProgressBar value={projectiles / max_magazine}>
-          {`${projectiles} of ${max_magazine}`}
+          {`${projectiles} / ${max_magazine}`}
         </ProgressBar>
       </LabeledList.Item>
       {!!projectiles_cache_max && (
-        <LabeledList.Item label="Stored">
+        <LabeledList.Item label="储存">
           <ProgressBar value={projectiles_cache / projectiles_cache_max}>
-            {`${projectiles_cache} of ${projectiles_cache_max}`}
+            {`${projectiles_cache} / ${projectiles_cache_max}`}
           </ProgressBar>
         </LabeledList.Item>
       )}
@@ -404,15 +400,15 @@ const SnowflakeSleeper = (props) => {
     has_traumas,
   } = props.module.snowflake;
   return !patient ? (
-    <LabeledList.Item label="Patient">None</LabeledList.Item>
+    <LabeledList.Item label="患者">None</LabeledList.Item>
   ) : (
     <>
       <LabeledList.Item
-        label="Patient"
+        label="患者"
         buttons={
           <Button
             icon="eject"
-            tooltip="Eject"
+            tooltip="弹出"
             onClick={() =>
               act('equip_act', {
                 ref: ref,
@@ -424,7 +420,7 @@ const SnowflakeSleeper = (props) => {
       >
         {patient.patient_name}
       </LabeledList.Item>
-      <LabeledList.Item label="Health">
+      <LabeledList.Item label="健康">
         <ProgressBar
           ranges={{
             good: [0.75, Infinity],
@@ -434,35 +430,35 @@ const SnowflakeSleeper = (props) => {
           value={patient.patient_health}
         />
       </LabeledList.Item>
-      <LabeledList.Item className="candystripe" label="State">
+      <LabeledList.Item className="candystripe" label="状况">
         {patient.patient_state}
       </LabeledList.Item>
-      <LabeledList.Item className="candystripe" label="Temperature">
+      <LabeledList.Item className="candystripe" label="体温">
         {patient.core_temp} C
       </LabeledList.Item>
-      <LabeledList.Item className="candystripe" label="Brute Damage">
+      <LabeledList.Item className="candystripe" label="创伤">
         {patient.brute_loss}
       </LabeledList.Item>
-      <LabeledList.Item className="candystripe" label="Burn Severity">
+      <LabeledList.Item className="candystripe" label="烧伤程度">
         {patient.burn_loss}
       </LabeledList.Item>
-      <LabeledList.Item className="candystripe" label="Toxin Content">
+      <LabeledList.Item className="candystripe" label="毒素含量">
         {patient.toxin_loss}
       </LabeledList.Item>
-      <LabeledList.Item className="candystripe" label="Respiratory Damage">
+      <LabeledList.Item className="candystripe" label="呼吸系统损伤">
         {patient.oxygen_loss}
       </LabeledList.Item>
       {!!has_brain_damage && (
-        <LabeledList.Item className="candystripe" label="Detected">
-          Brain Damage
+        <LabeledList.Item className="candystripe" label="检测到">
+          脑损伤
         </LabeledList.Item>
       )}
       {!!has_traumas && (
-        <LabeledList.Item className="candystripe" label="Detected">
-          Traumatic Damage
+        <LabeledList.Item className="candystripe" label="检测到">
+          脑神经性损伤
         </LabeledList.Item>
       )}
-      <LabeledList.Item label="Reagent Details">
+      <LabeledList.Item label="试剂细节">
         {contained_reagents.map((reagent) => (
           <LabeledList.Item
             key={reagent.name}
@@ -473,7 +469,7 @@ const SnowflakeSleeper = (props) => {
           </LabeledList.Item>
         ))}
       </LabeledList.Item>
-      <LabeledList.Item label="Reagent Injection">
+      <LabeledList.Item label="试剂注入">
         {injectible_reagents
           ? injectible_reagents.map((reagent) => (
               <LabeledList.Item
@@ -490,12 +486,12 @@ const SnowflakeSleeper = (props) => {
                       })
                     }
                   >
-                    Inject
+                    注入
                   </Button>
                 </LabeledList.Item>
               </LabeledList.Item>
             ))
-          : 'Unavailable'}
+          : '不可用'}
       </LabeledList.Item>
     </>
   );
@@ -527,17 +523,17 @@ const SnowflakeSyringe = (props) => {
   } = props.module.snowflake;
   return (
     <>
-      <LabeledList.Item label="Syringes">
+      <LabeledList.Item label="注射器">
         <ProgressBar value={syringe / max_syringe}>
-          {`${syringe} of ${max_syringe}`}
+          {`${syringe} / ${max_syringe}`}
         </ProgressBar>
       </LabeledList.Item>
-      <LabeledList.Item label="Reagents">
+      <LabeledList.Item label="试剂">
         <ProgressBar value={reagents / total_reagents}>
-          {`${reagents} of ${total_reagents} units`}
+          {`${reagents} / ${total_reagents} 单位（u)`}
         </ProgressBar>
       </LabeledList.Item>
-      <LabeledList.Item label="Mode">
+      <LabeledList.Item label="模式">
         <Button
           content={mode}
           onClick={() =>
@@ -548,7 +544,7 @@ const SnowflakeSyringe = (props) => {
           }
         />
       </LabeledList.Item>
-      <LabeledList.Item label="Synthesizing">
+      <LabeledList.Item label="合成">
         {analyzed_reagents.map((reagent) => (
           <LabeledList.Item key={reagent.name} label={reagent.name}>
             <Button.Checkbox
@@ -572,7 +568,7 @@ const SnowflakeSyringe = (props) => {
             })
           }
         >
-          Purge All
+          清除所有
         </Button>
       </LabeledList.Item>
       {contained_reagents.map((reagent) => (
@@ -586,7 +582,7 @@ const SnowflakeSyringe = (props) => {
                 })
               }
             >
-              Purge
+              清除
             </Button>
           </LabeledList.Item>
         </LabeledList.Item>
@@ -621,7 +617,7 @@ const SnowflakeRadio = (props) => {
     props.module.snowflake;
   return (
     <>
-      <LabeledList.Item label="Microphone">
+      <LabeledList.Item label="麦克风">
         <Button
           onClick={() =>
             act('equip_act', {
@@ -632,10 +628,10 @@ const SnowflakeRadio = (props) => {
           selected={microphone}
           icon={microphone ? 'microphone' : 'microphone-slash'}
         >
-          {(microphone ? 'En' : 'Dis') + 'abled'}
+          {microphone ? '开启' : '关闭'}
         </Button>
       </LabeledList.Item>
-      <LabeledList.Item label="Speaker">
+      <LabeledList.Item label="扬声器">
         <Button
           onClick={() =>
             act('equip_act', {
@@ -646,10 +642,10 @@ const SnowflakeRadio = (props) => {
           selected={speaker}
           icon={speaker ? 'volume-up' : 'volume-mute'}
         >
-          {(speaker ? 'En' : 'Dis') + 'abled'}
+          {speaker ? '开启' : '关闭'}
         </Button>
       </LabeledList.Item>
-      <LabeledList.Item label="Frequency">
+      <LabeledList.Item label="频率">
         <NumberInput
           animated
           unit="kHz"
@@ -695,10 +691,10 @@ const SnowflakeAirTank = (props) => {
       <LabeledList>
         {integrity < 1 && (
           <LabeledList.Item
-            label="Integrity"
+            label="完整度"
             buttons={
               <Button
-                content="Repair"
+                content="维修"
                 icon="wrench"
                 onClick={() =>
                   act('equip_act', {
@@ -721,16 +717,12 @@ const SnowflakeAirTank = (props) => {
         )}
       </LabeledList>
       <Section
-        title="Tank"
+        title="气罐"
         buttons={
           <Button
             icon="power-off"
             content={
-              active
-                ? !cabin_sealed
-                  ? 'Release Paused'
-                  : 'Pressurizing Cabin'
-                : 'Release Off'
+              active ? (!cabin_sealed ? '释放暂停' : '加压驾驶舱') : '释放关闭'
             }
             onClick={() =>
               act('equip_act', {
@@ -743,11 +735,9 @@ const SnowflakeAirTank = (props) => {
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Automation">
+          <LabeledList.Item label="自动调节">
             <Button
-              content={
-                auto_pressurize_on_seal ? 'Pressurize on Seal' : 'Manual'
-              }
+              content={auto_pressurize_on_seal ? '密封加压' : '手动'}
               selected={auto_pressurize_on_seal}
               onClick={() =>
                 act('equip_act', {
@@ -757,7 +747,7 @@ const SnowflakeAirTank = (props) => {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Cabin Pressure">
+          <LabeledList.Item label="驾驶舱气压">
             <NumberInput
               value={tank_release_pressure}
               unit="kPa"
@@ -786,12 +776,12 @@ const SnowflakeAirTank = (props) => {
             />
           </LabeledList.Item>
           <LabeledList.Item
-            label="Pipenet Port"
+            label="管道端口"
             buttons={
               <Button
                 icon="info"
                 color="transparent"
-                tooltip="Park above atmospherics connector port to connect inernal air tank with a gas network."
+                tooltip="停在在气体连接端口上，将内部气罐与气体网络连接起来."
               />
             }
           >
@@ -804,13 +794,13 @@ const SnowflakeAirTank = (props) => {
               }
               selected={port_connected}
             >
-              {port_connected ? 'Connected' : 'Disconnected'}
+              {port_connected ? '已连接' : '连接断开'}
             </Button>
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section
-        title="External Pump"
+        title="外部气泵"
         buttons={
           <Button
             icon="power-off"
@@ -825,9 +815,9 @@ const SnowflakeAirTank = (props) => {
           />
         }
       >
-        <LabeledList.Item label="Direction">
+        <LabeledList.Item label="方向">
           <Button
-            content={tank_pump_direction ? 'Area → Tank' : 'Tank → Area'}
+            content={tank_pump_direction ? '外部 → 气罐' : '气罐 → 外部'}
             onClick={() =>
               act('equip_act', {
                 ref: ref,
@@ -836,7 +826,7 @@ const SnowflakeAirTank = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Target Pressure">
+        <LabeledList.Item label="目标气压">
           <NumberInput
             value={tank_pump_pressure}
             unit="kPa"
@@ -866,18 +856,18 @@ const SnowflakeAirTank = (props) => {
           />
         </LabeledList.Item>
       </Section>
-      <Section title="Sensors">
-        <Collapsible title="Tank Air">
+      <Section title="传感器">
+        <Collapsible title="气罐空气">
           <GasmixParser gasmix={tank_air} />
         </Collapsible>
         {cabin_sealed ? (
-          <Collapsible title="Cabin Air">
+          <Collapsible title="驾驶舱空气">
             <GasmixParser gasmix={cabin_air} />
           </Collapsible>
         ) : (
           <NoticeBox>
             <Icon name="wind" mr={1} />
-            Cabin Open
+            驾驶舱开启
           </NoticeBox>
         )}
       </Section>
@@ -891,11 +881,11 @@ const SnowflakeOrebox = (props) => {
   const { contents } = props.module.snowflake;
   return (
     <Section
-      title="Contents"
+      title="内容空间"
       buttons={
         <Button
           icon="arrows-down-to-line"
-          content="Dump"
+          content="丢弃"
           onClick={() =>
             act('equip_act', {
               ref: ref,
@@ -931,7 +921,7 @@ const SnowflakeOrebox = (props) => {
           </Stack>
         ))
       ) : (
-        <NoticeBox info>Ore box is empty</NoticeBox>
+        <NoticeBox info>矿石箱是空的</NoticeBox>
       )}
     </Section>
   );
@@ -943,12 +933,9 @@ const SnowflakeCargo = (props) => {
   const { cargo, cargo_capacity } = props.module.snowflake;
   return (
     <Box>
-      <Section
-        title="Contents"
-        buttons={`${cargo.length} of ${cargo_capacity}`}
-      >
+      <Section title="内容空间" buttons={`${cargo.length} / ${cargo_capacity}`}>
         {!cargo.length ? (
-          <NoticeBox info>Compartment is empty</NoticeBox>
+          <NoticeBox info>容室是空的</NoticeBox>
         ) : (
           cargo.map((item, i) => (
             <Button
@@ -984,10 +971,10 @@ const SnowflakeExtinguisher = (props) => {
   return (
     <>
       <LabeledList.Item
-        label="Water"
+        label="水"
         buttons={
           <Button
-            content="Refill"
+            content="重注满"
             icon="fill"
             onClick={() =>
               act('equip_act', {
@@ -1002,9 +989,9 @@ const SnowflakeExtinguisher = (props) => {
           {reagents}
         </ProgressBar>
       </LabeledList.Item>
-      <LabeledList.Item label="Extinguisher">
+      <LabeledList.Item label="灭火器">
         <Button
-          content="Activate"
+          content="激活"
           color="red"
           disabled={reagents < reagents_required}
           icon="fire-extinguisher"
@@ -1026,9 +1013,9 @@ const SnowflakeGeneraor = (props) => {
   const { ref, active, name } = props.module;
   const { fuel } = props.module.snowflake;
   return (
-    <LabeledList.Item label="Fuel Amount">
+    <LabeledList.Item label="燃料量">
       {fuel === null
-        ? 'None'
+        ? '无'
         : toFixed(fuel * sheet_material_amount, 0.1) + ' cm³'}
     </LabeledList.Item>
   );
@@ -1039,9 +1026,9 @@ const SnowflakeOreScanner = (props) => {
   const { ref } = props.module;
   const { cooldown } = props.module.snowflake;
   return (
-    <LabeledList.Item label="Vent Scanner">
+    <LabeledList.Item label="通风口扫描仪">
       <NoticeBox info={cooldown <= 0 ? true : false}>
-        {cooldown / 10 > 0 ? 'Recharging...' : 'Ready to scan vents'}
+        {cooldown / 10 > 0 ? '充能中...' : '已准备好扫描'}
         <Button
           my={1}
           width="100%"
@@ -1055,7 +1042,7 @@ const SnowflakeOreScanner = (props) => {
           }
           disabled={cooldown <= 0 ? false : true}
         >
-          Scan all nearby vents
+          扫描附近所有通风口
         </Button>
       </NoticeBox>
     </LabeledList.Item>
@@ -1068,10 +1055,10 @@ const SnowflakeLawClaw = (props) => {
   const { autocuff } = props.module.snowflake;
   return (
     <LabeledList.Item
-      label="Handcuff Suspects"
+      label="手铐嫌犯"
       buttons={
         <Button
-          content="Toggle"
+          content="开关"
           color={autocuff ? 'green' : 'blue'}
           icon="handcuffs"
           onClick={() =>
@@ -1092,7 +1079,7 @@ const SnowflakeRCD = (props) => {
   const { scan_ready, deconstructing, mode } = props.module.snowflake;
   return (
     <>
-      <LabeledList.Item label="Destruction Scan">
+      <LabeledList.Item label="破坏性扫描">
         <Button
           icon="satellite-dish"
           color={scan_ready ? 'green' : 'transparent'}
@@ -1104,10 +1091,10 @@ const SnowflakeRCD = (props) => {
           }
         />
       </LabeledList.Item>
-      <LabeledList.Item label="Deconstructing">
+      <LabeledList.Item label="解构中">
         <Button
           icon="power-off"
-          content={deconstructing ? 'On' : 'Off'}
+          content={deconstructing ? '开' : '关'}
           color={deconstructing ? 'green' : 'blue'}
           onClick={() =>
             act('equip_act', {
@@ -1117,7 +1104,7 @@ const SnowflakeRCD = (props) => {
           }
         />
       </LabeledList.Item>
-      <LabeledList.Item label="Construction Mode">
+      <LabeledList.Item label="建筑模式">
         <Button
           content={mode}
           onClick={() =>

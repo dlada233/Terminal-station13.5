@@ -13,10 +13,10 @@ export const PHYSICALSTATUS2COLOR = {
 } as const;
 
 export const PHYSICALSTATUS2DESC = {
-  Active: 'Active. Individual is conscious and healthy.',
-  Debilitated: 'Debilitated. Individual is conscious, but unhealthy.',
-  Unconscious: 'Unconscious. Individual may require medical attention.',
-  Deceased: 'Deceased. Individual has died and begun to decay.',
+  Active: '正常, 身体健康且意识清醒.',
+  Debilitated: '虚弱. 意识清醒但身体抱恙.',
+  Unconscious: '无意识. 可能需要医疗照顾.',
+  Deceased: '已故. 已经死亡并开始腐烂.',
 } as const;
 
 export const MENTALSTATUS2ICON = {
@@ -34,9 +34,8 @@ export const MENTALSTATUS2COLOR = {
 } as const;
 
 export const MENTALSTATUS2DESC = {
-  Stable: 'Stable. Individual is sane and free from psychological disorders.',
-  Watch:
-    'Watch. Individual has symptoms of mental illness. Monitor them closely.',
-  Unstable: 'Unstable. Individual has one or more mental illnesses.',
-  Insane: 'Insane. Individual exhibits severe, abnormal mental behaviors.',
+  Stable: '稳定，心智健全，无心理问题.',
+  Watch: '关注. 有精神疾病症状，需要密切关注.',
+  Unstable: '不稳定. 有一种或多种精神疾病.',
+  Insane: '疯狂. 表现出严重的异常行为.',
 } as const;

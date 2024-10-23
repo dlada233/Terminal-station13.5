@@ -50,11 +50,11 @@ export const LoadoutManager = (props) => {
       : selectedTab?.contents;
 
   return (
-    <Window title="Loadout Manager" width={500} height={650}>
+    <Window title="服装管理器" width={500} height={650}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
-            <Section title="Loadout Categories" align="center">
+            <Section title="服装目录" align="center">
               <Dropdown
                 width="100%"
                 selected={selectedTabName}
@@ -71,7 +71,7 @@ export const LoadoutManager = (props) => {
                     bottom="5%"
                     height="20px"
                     width="150px"
-                    placeholder="Search..."
+                    placeholder="搜索中..."
                     value={searchItem}
                     onChange={(e, value) => {
                       setSearchItem(value);
@@ -86,7 +86,7 @@ export const LoadoutManager = (props) => {
                     color="good"
                     align="center"
                     content="Confirm"
-                    tooltip="Confirm loadout and exit UI."
+                    tooltip="确认着装并退出UI."
                     onClick={() => act('close_ui', { revert: 0 })}
                   />
                 </Stack.Item>
@@ -106,8 +106,8 @@ export const LoadoutManager = (props) => {
                         icon="times"
                         color="red"
                         align="center"
-                        content="Clear All Items"
-                        tooltip="Clears ALL selected items from all categories."
+                        content="清除所有物品"
+                        tooltip="清除所有目录下所有所选物品."
                         width={10}
                         onClick={() => act('clear_all_items')}
                       />
@@ -230,7 +230,7 @@ export const LoadoutManager = (props) => {
                   </Section>
                 ) : (
                   <Section fill>
-                    <Box>No contents for selected tab.</Box>
+                    <Box>所选栏目中无内容.</Box>
                   </Section>
                 )}
               </Stack.Item>

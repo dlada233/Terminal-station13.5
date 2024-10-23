@@ -15,7 +15,7 @@
 
 ///Universal IV that can drain blood or feed reagents over a period of time from or to a replaceable container
 /obj/machinery/iv_drip
-	name = "\improper 输液架"
+	name = "\improper 静脉输液架"
 	desc = "带有高级输液泵，既可以抽取血液，也可以注射液体."
 	icon = 'icons/obj/medical/iv_drip.dmi'
 	icon_state = "iv_drip"
@@ -370,7 +370,7 @@
 	. += span_notice("[attached ? attached : "没有什么"]已连接.")
 
 /datum/crafting_recipe/iv_drip
-	name = "输液架"
+	name = "静脉输液架"
 	result = /obj/machinery/iv_drip
 	time = 30
 	tool_behaviors = list(TOOL_SCREWDRIVER)
