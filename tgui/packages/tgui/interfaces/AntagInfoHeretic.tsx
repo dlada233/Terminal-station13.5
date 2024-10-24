@@ -67,7 +67,7 @@ const IntroductionSection = (props) => {
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
-        <Section title="You are the Heretic!" fill fontSize="14px">
+        <Section title="你是异教徒!" fill fontSize="14px">
           <Stack vertical>
             <FlavorSection />
             <Stack.Divider />
@@ -88,17 +88,17 @@ const IntroductionSection = (props) => {
                   fill
                   titleMessage={
                     can_change_objective
-                      ? 'Your OPFOR objectives are your primary ones, but in order to ascend, you have these tasks to fulfill' /* SKYRAT EDIT CHANGE - opfor objectives */
-                      : 'Your OPFOR objectives are your primary ones. Use your dark knowledge to fulfill your personal goal' /* SKYRAT EDIT CHANGE - opfor objectives  */
+                      ? '你的OPFOR目标是你的主要目标，但为了飞升，你仍有这些目标需要完成' /* SKYRAT EDIT CHANGE - opfor objectives */
+                      : '你的OPFOR目标是你的主要目标，运用你的黑暗学识来完成你的目标' /* SKYRAT EDIT CHANGE - opfor objectives  */
                   }
                   objectives={objectives}
                   objectiveFollowup={
                     <ReplaceObjectivesButton
                       can_change_objective={can_change_objective}
-                      button_title={'Reject Ascension'}
+                      button_title={'拒绝飞升'}
                       button_colour={'red'}
                       button_tooltip={
-                        'Turn your back on the Mansus to accomplish a task of your choosing. Selecting this option will prevent you from ascending!'
+                        '背弃漫宿来完成你自定的目标，此选项将导致你无法飞升!'
                       }
                     />
                   }
@@ -118,18 +118,18 @@ const FlavorSection = () => {
       <Stack vertical textAlign="center" fontSize="14px">
         <Stack.Item>
           <i>
-            Another day at a meaningless job. You feel a&nbsp;
-            <span style={hereticBlue}>shimmer</span>
-            &nbsp;around you, as a realization of something&nbsp;
-            <span style={hereticRed}>strange</span>
-            &nbsp;in the air unfolds. You look inwards and discover something
-            that will change your life.
+            又是平凡无奇的一天，在一份毫无意义的工作中度过.
+            你感到周围有一丝&nbsp;
+            <span style={hereticBlue}>微光</span>
+            &nbsp;闪烁，空气中似乎弥漫着某种&nbsp;
+            <span style={hereticRed}>奇异</span>
+            &nbsp;的氛围. 你向内审视， 发现了一个将改变生活的秘密.
           </i>
         </Stack.Item>
         <Stack.Item>
           <b>
-            The <span style={hereticPurple}>Gates of Mansus</span>
-            &nbsp;open up to your mind.
+            <span style={hereticPurple}>漫宿的大门</span>
+            &nbsp;向你的思维敞开.
           </b>
         </Stack.Item>
       </Stack>
@@ -140,51 +140,45 @@ const FlavorSection = () => {
 const GuideSection = () => {
   return (
     <Stack.Item>
-      <Stack vertical fontSize="12px">
+      <Stack vertical fontSize="14px">
         <Stack.Item>
-          - Find reality smashing&nbsp;
-          <span style={hereticPurple}>influences</span>
-          &nbsp;around the station invisible to the normal eye and&nbsp;
-          <b>right click</b> on them to harvest them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>. Tapping them makes
-          them visible to all after a short time.
+          - 在空间站里寻找那些无法被普通肉眼察觉，但撕裂了现实的&nbsp;
+          <span style={hereticPurple}>异响</span>
+          &nbsp;，&nbsp;
+          <b>右键</b>它们将为你提供&nbsp;
+          <span style={hereticBlue}>知识点</span>. 点击后它们将对所有人可见.
         </Stack.Item>
         <Stack.Item>
-          - Use your&nbsp;
-          <span style={hereticRed}>Living Heart action</span>
-          &nbsp;to track down&nbsp;
-          <span style={hereticRed}>sacrifice targets</span>, but be careful:
-          Pulsing it will produce a heartbeat sound that nearby people may hear.
-          This action is tied to your <b>heart</b> - if you lose it, you must
-          complete a ritual to regain it.
+          - 使用的&nbsp;
+          <span style={hereticRed}>活体之心</span>
+          &nbsp;来追踪&nbsp;
+          <span style={hereticRed}>献祭目标</span>，但请注意:
+          使用它将发出强烈的心跳声，附近的人可能会有所察觉. 这个能力与你
+          <b>心脏</b>相关连 - 如果你失去了心脏,
+          你需要完成某个仪式来重新获取一颗.
         </Stack.Item>
         <Stack.Item>
-          - Draw a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> by using a
-          drawing tool (a pen or crayon) on the floor while having&nbsp;
-          <span style={hereticGreen}>Mansus Grasp</span>
-          &nbsp;active in your other hand. This rune allows you to complete
-          rituals and sacrifices.
+          - 要画出献祭和仪式用的&nbsp;
+          <span style={hereticGreen}>嬗变符文</span>&nbsp; 需要你一只手激活
+          <span style={hereticGreen}>漫宿之握</span>
+          &nbsp;，同时另一只手持有书写工具(笔或蜡笔)对地板进行刻画.
         </Stack.Item>
         <Stack.Item>
-          - Follow your <span style={hereticRed}>Living Heart</span> to find
-          your targets. Bring them back to a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> in critical or
-          worse condition to&nbsp;
-          <span style={hereticRed}>sacrifice</span> them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>. The Mansus{' '}
-          <b>ONLY</b> accepts targets pointed to by the&nbsp;
-          <span style={hereticRed}>Living Heart</span>.
+          - 依靠<span style={hereticRed}>活体之心</span>来找到 你的目标.
+          将濒死或更糟糕的他们带回&nbsp;
+          <span style={hereticGreen}>嬗变符文</span>处 进行&nbsp;
+          <span style={hereticRed}>献祭</span>来获得&nbsp;
+          <span style={hereticBlue}>知识点数</span>. 漫宿
+          <b>只</b>接受被&nbsp;
+          <span style={hereticRed}>活体之心</span>所标记的目标.
         </Stack.Item>
         <Stack.Item>
-          - Make yourself a <span style={hereticYellow}>focus</span> to be able
-          to cast various advanced spells to assist you in acquiring harder and
-          harder sacrifices.
+          - 为你自己创造一个<span style={hereticYellow}>焦点</span>
+          ，焦点能让你释 放更多的高级法术.
         </Stack.Item>
         <Stack.Item>
-          - Accomplish all of your objectives to be able to learn the{' '}
-          <span style={hereticYellow}>final ritual</span>. Complete the ritual
-          to become all powerful!
+          - 完成所有目标，你将能进行
+          <span style={hereticYellow}>最终仪式</span>. 完成它来获得无上力量!
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -203,7 +197,7 @@ const InformationSection = (props) => {
               <Stack.Item>You have</Stack.Item>
               <Stack.Item fontSize="24px">
                 <Box inline color="yellow">
-                  ASCENDED
+                  飞升
                 </Box>
                 !
               </Stack.Item>
@@ -211,16 +205,13 @@ const InformationSection = (props) => {
           </Stack.Item>
         )}
         <Stack.Item>
-          You have <b>{charges || 0}</b>&nbsp;
-          <span style={hereticBlue}>
-            knowledge point{charges !== 1 ? 's' : ''}
-          </span>
-          .
+          你拥有<b>{charges || 0}</b>&nbsp;
+          <span style={hereticBlue}>知识点数</span>.
         </Stack.Item>
         <Stack.Item>
-          You have made a total of&nbsp;
+          你总共完成了&nbsp;
           <b>{total_sacrifices || 0}</b>&nbsp;
-          <span style={hereticRed}>sacrifices</span>.
+          <span style={hereticRed}>献祭</span>.
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -233,9 +224,9 @@ const ResearchedKnowledge = (props) => {
 
   return (
     <Stack.Item grow>
-      <Section title="Researched Knowledge" fill scrollable>
+      <Section title="已获取知识" fill scrollable>
         <Stack vertical>
-          {(!learnedKnowledge.length && 'None!') ||
+          {(!learnedKnowledge.length && '无!') ||
             learnedKnowledge.map((learned) => (
               <Stack.Item key={learned.name}>
                 <Button
@@ -258,7 +249,7 @@ const KnowledgeShop = (props) => {
 
   return (
     <Stack.Item grow>
-      <Section title="Potential Knowledge" fill scrollable>
+      <Section title="潜在可用的知识" fill scrollable>
         {(!learnableKnowledge.length && 'None!') ||
           learnableKnowledge.map((toLearn) => (
             <Stack.Item key={toLearn.name} mb={1}>
@@ -269,7 +260,7 @@ const KnowledgeShop = (props) => {
                 content={`${toLearn.hereticPath} - ${
                   toLearn.cost > 0
                     ? `${toLearn.name}: ${toLearn.cost}
-                  point${toLearn.cost !== 1 ? 's' : ''}`
+                  点数`
                     : toLearn.name
                 }`}
                 tooltip={toLearn.desc}
@@ -296,11 +287,9 @@ const ResearchInfo = (props) => {
       <Stack.Item grow>
         <Stack vertical height="100%">
           <Stack.Item fontSize="20px" textAlign="center">
-            You have <b>{charges || 0}</b>&nbsp;
-            <span style={hereticBlue}>
-              knowledge point{charges !== 1 ? 's' : ''}
-            </span>{' '}
-            to spend.
+            你拥有<b>{charges || 0}</b>&nbsp;
+            <span style={hereticBlue}>知识点数</span>
+            来花费.
           </Stack.Item>
           <Stack.Item grow>
             <Stack height="100%">
@@ -338,14 +327,14 @@ export const AntagInfoHeretic = (props) => {
                 selected={currentTab === 0}
                 onClick={() => setTab(0)}
               >
-                Information
+                信息栏
               </Tabs.Tab>
               <Tabs.Tab
                 icon={currentTab === 1 ? 'book-open' : 'book'}
                 selected={currentTab === 1}
                 onClick={() => setTab(1)}
               >
-                Research
+                研究栏
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>

@@ -144,7 +144,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		caller_card.use_charge(user)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(summon_battlecruiser), caller_card.team), rand(20 SECONDS, 1 MINUTES))
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, FALSE)
-		priority_announce("全体船员请注意：深空探测器检测到辛迪加战列巡洋舰正在你方太空站附近打开子空间裂缝，预计三分钟至五分钟内到达.", "[command_name()]高优先级传讯") //SKYRAT EDIT ADDITION: announcement on battlecruiser call
+		priority_announce("全体船员请注意：深空探测器检测到辛迪加战列巡洋舰正在你方太空站附近打开子空间裂缝，预计三分钟至五分钟内到达.", "[command_name()]优先信息") //SKYRAT EDIT ADDITION: announcement on battlecruiser call
 		return TRUE
 
 	if(obj_flags & EMAGGED)
@@ -940,14 +940,14 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			)
 			priority_announce(
 				"全体船员请注意: 星区监控报告一艘敌舰向你们所在的星系发送了巨大的跃迁信号. 准备迎接即将到来的敌对接触.",
-				"[command_name()]高优先级传讯",
+				"[command_name()]优先信息",
 			)
 			SSdynamic.picking_specific_rule(pick(pirate_rulesets), forced = TRUE, ignore_cost = TRUE)
 
 		if(HACK_FUGITIVES) // Triggers fugitives, which can cause confusion / chaos as the crew decides which side help
 			priority_announce(
 				"全体船员请注意: 星区监控报告一艘不明船只向你们所在星系发送了跃迁信号. 请为可能的接触做好准备",
-				"[command_name()]高优先级传讯",
+				"[command_name()]优先信息",
 			)
 
 			force_event_after(/datum/round_event_control/fugitives, "[hacker]骇入通讯终端", rand(20 SECONDS, 1 MINUTES))
@@ -955,7 +955,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 		if(HACK_THREAT) // Force an unfavorable situation on the crew
 			priority_announce(
 				"全体船员请注意: 纳米传讯情报部门根据情报分析，你们所在的区域内的敌对活动将比早先时候预计的要多.",
-				"[command_name()]高优先级传讯",
+				"[command_name()]优先信息",
 			)
 
 			for(var/mob/crew_member as anything in GLOB.player_list)
@@ -982,7 +982,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				// We spawned some sleeper agents, nice - give them a report to kickstart the paranoia
 				priority_announce(
 					"全体船员请注意: 你们站上的通讯设备遭到某人劫持并向站内广播了一条未知信号.",
-					"[command_name()]高优先级传讯",
+					"[command_name()]优先信息",
 				)
 
 #undef HACK_PIRATE

@@ -127,7 +127,7 @@
 		explosion(epicenter, devastation_range = 3, heavy_impact_range = 6, light_impact_range = 9, explosion_cause = src)
 	priority_announce(
 				"全体人员请注意，一枚高能炸弹在你们空间站的结构薄弱点被爆破，对结构造成了重大破坏.",
-				"[command_name()] 高优先级传讯"
+				"[command_name()]优先信息"
 				)
 
 	succeed_objective()

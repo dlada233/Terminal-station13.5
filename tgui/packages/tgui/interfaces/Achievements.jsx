@@ -12,7 +12,7 @@ export const Achievements = (props) => {
     (x) => x.category === selectedCategory,
   );
   return (
-    <Window title="Achievements" width={540} height={680}>
+    <Window title="成绩" width={540} height={680}>
       <Window.Content scrollable>
         <Tabs>
           {categories.map((category) => (
@@ -28,7 +28,7 @@ export const Achievements = (props) => {
             selected={selectedCategory === 'High Scores'}
             onClick={() => setSelectedCategory('High Scores')}
           >
-            High Scores
+            高分
           </Tabs.Tab>
         </Tabs>
         {(selectedCategory === 'High Scores' && <HighScoreTable />) || (
@@ -71,12 +71,10 @@ const Achievement = (props) => {
         {desc}
         {(score && (
           <Box color={value > 0 ? 'good' : 'bad'}>
-            {value > 0 ? `Earned ${value} times` : 'Locked'}
+            {value > 0 ? `获得 ${value} 次` : '锁定'}
           </Box>
         )) || (
-          <Box color={value ? 'good' : 'bad'}>
-            {value ? 'Unlocked' : 'Locked'}
-          </Box>
+          <Box color={value ? 'good' : 'bad'}>{value ? '未锁定' : '锁定'}</Box>
         )}
         {!!achieve_info && (
           <Tooltip position="bottom" content={achieve_tooltip}>

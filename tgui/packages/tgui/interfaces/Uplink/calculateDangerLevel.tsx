@@ -20,52 +20,52 @@ export type Rank = {
 export const ranks: Rank[] = [
   {
     minutesLessThan: 5,
-    title: 'None',
+    title: '毫无威胁',
     gradient: badGradient,
   },
   {
     minutesLessThan: 10,
-    title: 'Miniscule',
+    title: '不值一提',
     gradient: normalGradient,
   },
   {
     minutesLessThan: 20,
-    title: 'Insignificant',
+    title: '无足轻重',
     gradient: normalGradient,
   },
   {
     minutesLessThan: 30,
-    title: 'Low',
+    title: '小有妨碍',
     gradient: goodGradient,
   },
   {
     minutesLessThan: 50,
-    title: 'Standard',
+    title: '隐患重重',
     gradient: goodGradient,
   },
   {
     minutesLessThan: 70,
-    title: 'Moderate',
+    title: '如芒在背',
     gradient: veryGoodGradient,
   },
   {
     minutesLessThan: 90,
-    title: 'Significant',
+    title: '咄咄逼人',
     gradient: veryGoodGradient,
   },
   {
     minutesLessThan: 110,
-    title: 'High',
+    title: '气势汹汹',
     gradient: ultraGoodGradient,
   },
   {
     minutesLessThan: 140,
-    title: 'Extreme',
+    title: '势不可挡',
     gradient: ultraGoodGradient,
   },
   {
     minutesLessThan: -1,
-    title: 'Pinnacle',
+    title: '灭顶之灾',
     gradient: bestGradient,
   },
 ];
