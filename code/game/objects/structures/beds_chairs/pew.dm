@@ -1,6 +1,6 @@
 /obj/structure/chair/pew
-	name = "wooden pew"
-	desc = "Kneel here and pray."
+	name = "木制长椅"
+	desc = "跪在这里, 并开始祈祷."
 	icon = 'icons/obj/chairs_wide.dmi'
 	icon_state = "pewmiddle"
 	resistance_flags = FLAMMABLE
@@ -14,7 +14,7 @@
 	AddComponent(/datum/component/simple_rotation, ROTATION_REQUIRE_WRENCH|ROTATION_IGNORE_ANCHORED)
 
 /obj/structure/chair/pew/left
-	name = "left wooden pew end"
+	name = "左侧木制长椅端"
 	icon_state = "pewend_left"
 	var/mutable_appearance/leftpewarmrest
 
@@ -57,7 +57,7 @@
 	update_leftpewarmrest()
 
 /obj/structure/chair/pew/right
-	name = "right wooden pew end"
+	name = "右侧木制长椅端"
 	icon_state = "pewend_right"
 	var/mutable_appearance/rightpewarmrest
 

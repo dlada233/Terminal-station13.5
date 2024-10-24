@@ -14,7 +14,7 @@ path/corner/color_name {\
 }
 
 /obj/structure/chair/sofa
-	name = "old ratty sofa"
+	name = "老旧的沙发"
 	icon_state = "error"
 	icon = 'icons/obj/chairs_wide.dmi'
 	buildstackamount = 1
@@ -77,8 +77,8 @@ COLORED_SOFA(/obj/structure/chair/sofa, maroon, SOFA_MAROON)
 
 // Original icon ported from Eris(?) and updated to work here.
 /obj/structure/chair/sofa/corp
-	name = "sofa"
-	desc = "Soft and cushy."
+	name = "沙发"
+	desc = "柔软, 且舒适."
 	icon_state = "corp_sofamiddle"
 
 /obj/structure/chair/sofa/corp/left
@@ -95,8 +95,8 @@ COLORED_SOFA(/obj/structure/chair/sofa, maroon, SOFA_MAROON)
 
 // Ported from Skyrat
 /obj/structure/chair/sofa/bench
-	name = "bench"
-	desc = "Perfectly designed to be comfortable to sit on, and hellish to sleep on."
+	name = "长椅"
+	desc = "完美的设计于用来坐在上面, 以及睡在上面像睡在地狱里一样."
 	icon_state = "bench_middle"
 	greyscale_config = /datum/greyscale_config/bench_middle
 	greyscale_colors = "#af7d28"
@@ -120,8 +120,8 @@ COLORED_SOFA(/obj/structure/chair/sofa, maroon, SOFA_MAROON)
 
 // Bamboo benches
 /obj/structure/chair/sofa/bamboo
-	name = "bamboo bench"
-	desc = "A makeshift bench with a rustic aesthetic."
+	name = "竹子长椅"
+	desc = "一张带有乡村美感的, 临时拼凑出来的竹子长椅."
 	icon_state = "bamboo_sofamiddle"
 	resistance_flags = FLAMMABLE
 	max_integrity = 60
