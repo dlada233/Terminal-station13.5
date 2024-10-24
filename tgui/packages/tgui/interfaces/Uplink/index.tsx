@@ -230,9 +230,7 @@ export class Uplink extends Component<{}, UplinkState> {
             {item.desc}
             {(item.lock_other_purchases && (
               <Box color="orange" bold>
-                Taking this item will lock you from further purchasing from the
-                marketplace. Additionally, if you have already purchased an
-                item, you will not be able to purchase this.
+                获取这个物品将导致你再也无法购买其他东西，反之如果你购买了其他物品，这个物品将无法被购买.
               </Box>
             )) ||
               null}
@@ -284,11 +282,11 @@ export class Uplink extends Component<{}, UplinkState> {
                     <Box fontSize={0.8}>
                       SyndOS Version 3.17 &nbsp;
                       <Box color="green" as="span">
-                        Connection Secure
+                        连接安全
                       </Box>
                     </Box>
                     <Box color="green" bold fontSize={1.2}>
-                      WELCOME, AGENT.
+                      欢迎你, 特工.
                     </Box>
                   </Stack.Item>
                   <Stack.Item align="center">
@@ -298,29 +296,31 @@ export class Uplink extends Component<{}, UplinkState> {
                           (!!has_progression && (
                             <Box>
                               <Box>
-                                <Box>Your current level of threat.</Box> Threat
-                                determines
+                                <Box>你当前的威胁程度.</Box> 威胁程度决定了
                                 {has_objectives
-                                  ? ' the severity of secondary objectives you get and '
-                                  : ' '}
-                                what items you can purchase.&nbsp;
+                                  ? '可接取的次要目标的级别以及'
+                                  : ''}
+                                你是否购买某些物品.&nbsp;
                                 <Box mt={0.5}>
                                   {/* A minute in deciseconds */}
-                                  Threat passively increases by{' '}
+                                  威胁程度会每分钟自动增加
                                   <Box color="green" as="span">
                                     {calculateProgression(
                                       current_progression_scaling,
                                     )}
                                   </Box>
-                                  &nbsp;every minute
+                                  &nbsp;
                                 </Box>
                                 {Math.abs(progressionPercentage) > 0 && (
                                   <Box mt={0.5}>
-                                    Because your threat level is
+                                    因为你的威胁等级
                                     {progressionPercentage < 0
-                                      ? ' ahead '
-                                      : ' behind '}
-                                    of where it should be, you are getting
+                                      ? '超出了'
+                                      : '落后了'}
+                                    应有的水平, 所以你每分钟
+                                    {progressionPercentage < 0
+                                      ? '降低'
+                                      : '增加'}
                                     <Box
                                       as="span"
                                       color={
@@ -333,17 +333,14 @@ export class Uplink extends Component<{}, UplinkState> {
                                     >
                                       {progressionPercentage}%
                                     </Box>
-                                    {progressionPercentage < 0
-                                      ? 'less'
-                                      : 'more'}{' '}
-                                    threat every minute
+                                    威胁程度
                                   </Box>
                                 )}
                                 {dangerLevelsTooltip}
                               </Box>
                             </Box>
                           )) ||
-                          "Your current threat level. You are a killing machine and don't need to improve your threat level."
+                          '你当前的威胁等级，你是一台杀人机器，不需要提高你的威胁等级.'
                         }
                       >
                         {/* If we have no progression,
@@ -371,13 +368,13 @@ export class Uplink extends Component<{}, UplinkState> {
                             selected={currentTab === 0}
                             onClick={() => this.setState({ currentTab: 0 })}
                           >
-                            Primary Objectives
+                            主要目标
                           </Tabs.Tab>
                           <Tabs.Tab
                             selected={currentTab === 1}
                             onClick={() => this.setState({ currentTab: 1 })}
                           >
-                            Secondary Objectives
+                            次要目标
                           </Tabs.Tab>
                         </>
                       )}
@@ -385,7 +382,7 @@ export class Uplink extends Component<{}, UplinkState> {
                         selected={currentTab === 2 || !has_objectives}
                         onClick={() => this.setState({ currentTab: 2 })}
                       >
-                        Market
+                        市场
                       </Tabs.Tab>
                     </Tabs>
                   </Stack.Item>
@@ -393,7 +390,7 @@ export class Uplink extends Component<{}, UplinkState> {
                     <Stack.Item mr={1}>
                       <Button
                         icon="times"
-                        content="Lock"
+                        content="加密退出"
                         color="transparent"
                         onClick={() => act('lock')}
                       />
@@ -466,7 +463,7 @@ export class Uplink extends Component<{}, UplinkState> {
                           align={'top'}
                           as="span"
                         >
-                          SHOP LOCKED
+                          商店上锁
                         </Box>
                       </Dimmer>
                     )) ||

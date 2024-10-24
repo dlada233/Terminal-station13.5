@@ -52,13 +52,13 @@ export const AccountingConsole = (props) => {
                 selected={screenmode === SCREENS.users}
                 onClick={() => setScreenmode(SCREENS.users)}
               >
-                Users
+                用户
               </Tabs.Tab>
               <Tabs.Tab
                 selected={screenmode === SCREENS.audit}
                 onClick={() => setScreenmode(SCREENS.audit)}
               >
-                Audit
+                审计
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
@@ -77,19 +77,16 @@ const UsersScreen = (props) => {
   const { PlayerAccounts } = data;
 
   return (
-    <Section fill scrollable title="Crew Account Summary">
+    <Section fill scrollable title="船员账户汇总">
       {PlayerAccounts.map((account) => (
-        <Collapsible
-          key={account.index}
-          title={account.name + ' the ' + account.job}
-        >
+        <Collapsible key={account.index} title={account.name + account.job}>
           <Stack vertical>
             <BlockQuote>
               <Stack.Item textColor={'green'}>
-                {account.balance} credit balance
+                {account.balance} 信用点余额
               </Stack.Item>
               <Stack.Item>
-                Employee has {account.modifier * 100}% pay modifier
+                员工薪酬调整系数为{account.modifier * 100}%
               </Stack.Item>
             </BlockQuote>
           </Stack>
@@ -107,7 +104,7 @@ const AuditScreen = (props) => {
     <Section fill scrollable>
       {AuditLog.map((purchase) => (
         <BlockQuote key={purchase.index} p={1}>
-          <b>{purchase.account}</b> spent <b>{purchase.cost}</b> cr at{' '}
+          <b>{purchase.account}</b>花费<b>{purchase.cost}</b> cr 于{' '}
           <i>{purchase.vendor}.</i>
         </BlockQuote>
       ))}
@@ -125,7 +122,7 @@ const MarketCrashing = (props) => {
   }
   return (
     <Modal textAlign="center" mr={1.5}>
-      <blink>OH GOD THE ECONOMY IS RUINED.</blink>
+      <blink>老天爷啊经济崩溃了.</blink>
     </Modal>
   );
 };

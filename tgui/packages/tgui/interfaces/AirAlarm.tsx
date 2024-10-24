@@ -80,35 +80,35 @@ const AirAlarmStatus = (props) => {
   const dangerMap = {
     0: {
       color: 'good',
-      localStatusText: 'Optimal',
+      localStatusText: '最佳',
     },
     1: {
       color: 'average',
-      localStatusText: 'Caution',
+      localStatusText: '注意',
     },
     2: {
       color: 'bad',
-      localStatusText: 'Danger (Internals Required)',
+      localStatusText: '危险 (室内需求)',
     },
   };
   const faultMap = {
     0: {
       color: 'green',
-      areaFaultText: 'None',
+      areaFaultText: '无',
     },
     1: {
       color: 'purple',
-      areaFaultText: 'Manual Trigger',
+      areaFaultText: '手动触发',
     },
     2: {
       color: 'average',
-      areaFaultText: 'Automatic Detection',
+      areaFaultText: '自动检测',
     },
   };
   const localStatus = dangerMap[data.dangerLevel] || dangerMap[0];
   const areaFault = faultMap[data.faultStatus] || faultMap[0];
   return (
-    <Section title="Air Status">
+    <Section title="空气状况">
       <LabeledList>
         {(envData.length > 0 && (
           <>
@@ -124,35 +124,35 @@ const AirAlarmStatus = (props) => {
                 </LabeledList.Item>
               );
             })}
-            <LabeledList.Item label="Local Status" color={localStatus.color}>
+            <LabeledList.Item label="本地状况" color={localStatus.color}>
               {localStatus.localStatusText}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Area Status"
+              label="区域状况"
               color={data.atmosAlarm || data.fireAlarm ? 'bad' : 'good'}
             >
-              {(data.atmosAlarm && 'Atmosphere Alarm') ||
-                (data.fireAlarm && 'Fire Alarm') ||
-                'Nominal'}
+              {(data.atmosAlarm && '大气警报') ||
+                (data.fireAlarm && '火灾警报') ||
+                '运行正常'}
             </LabeledList.Item>
-            <LabeledList.Item label="Fault Status" color={areaFault.color}>
+            <LabeledList.Item label="故障状况" color={areaFault.color}>
               {areaFault.areaFaultText}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Fault Location"
+              label="故障定位"
               color={data.faultLocation ? 'blue' : 'green'}
             >
-              {data.faultLocation || 'None'}
+              {data.faultLocation || '无'}
             </LabeledList.Item>
           </>
         )) || (
-          <LabeledList.Item label="Warning" color="bad">
-            Cannot obtain air sample for analysis.
+          <LabeledList.Item label="警告" color="bad">
+            无法获得空气样本进行分析.
           </LabeledList.Item>
         )}
         {!!data.emagged && (
-          <LabeledList.Item label="Warning" color="bad">
-            Safety measures offline. Device may exhibit abnormal behavior.
+          <LabeledList.Item label="警告" color="bad">
+            安全措施离线，设备可能出现异常行为.
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -162,23 +162,23 @@ const AirAlarmStatus = (props) => {
 
 const AIR_ALARM_ROUTES = {
   home: {
-    title: 'Air Controls',
+    title: '空气控制',
     component: () => AirAlarmControlHome,
   },
   vents: {
-    title: 'Vent Controls',
+    title: '通风口控制',
     component: () => AirAlarmControlVents,
   },
   scrubbers: {
-    title: 'Scrubber Controls',
+    title: '抽气口控制',
     component: () => AirAlarmControlScrubbers,
   },
   modes: {
-    title: 'Operating Mode',
+    title: '运行模式',
     component: () => AirAlarmControlModes,
   },
   thresholds: {
-    title: 'Alarm Thresholds',
+    title: '警报阈值',
     component: () => AirAlarmControlThresholds,
   },
 } as const;
@@ -196,7 +196,7 @@ const AirAlarmControl = (props) => {
         screen && (
           <Button
             icon="arrow-left"
-            content="Back"
+            content="返回"
             onClick={() => setScreen('home')}
           />
         )
@@ -227,14 +227,14 @@ const AirAlarmControlHome = (props) => {
       <Button
         icon={atmosAlarm ? 'exclamation-triangle' : 'exclamation'}
         color={atmosAlarm && 'caution'}
-        content="Area Atmosphere Alarm"
+        content="区域大气警报"
         onClick={() => act(atmosAlarm ? 'reset' : 'alarm')}
       />
       <Box mt={1} />
       <Button
         icon={isPanicSiphoning ? 'exclamation-triangle' : 'exclamation'}
         color={isPanicSiphoning && 'danger'}
-        content="Panic Siphon"
+        content="恐慌性抽气"
         onClick={() =>
           act('mode', {
             mode: isPanicSiphoning ? filteringPath : panicSiphonPath,
@@ -244,32 +244,32 @@ const AirAlarmControlHome = (props) => {
       <Box mt={2} />
       <Button
         icon="sign-out-alt"
-        content="Vent Controls"
+        content="通风口控制"
         onClick={() => setScreen('vents')}
       />
       <Box mt={1} />
       <Button
         icon="filter"
-        content="Scrubber Controls"
+        content="抽气口控制"
         onClick={() => setScreen('scrubbers')}
       />
       <Box mt={1} />
       <Button
         icon="cog"
-        content="Operating Mode"
+        content="运行模式"
         onClick={() => setScreen('modes')}
       />
       <Box mt={1} />
       <Button
         icon="chart-bar"
-        content="Alarm Thresholds"
+        content="警报阈值"
         onClick={() => setScreen('thresholds')}
       />
       {!!sensor && !!allowLinkChange && (
         <Box mt={1}>
           <Button.Confirm
             icon="link-slash"
-            content="Disconnect Sensor"
+            content="断开传感器"
             color="danger"
             onClick={() => act('disconnect_sensor')}
           />
@@ -286,7 +286,7 @@ const AirAlarmControlVents = (props) => {
   const { data } = useBackend<AirAlarmData>();
   const { vents } = data;
   if (!vents || vents.length === 0) {
-    return <span>Nothing to show</span>;
+    return <span>无可显示内容</span>;
   }
   return (
     <VirtualList>
@@ -304,7 +304,7 @@ const AirAlarmControlScrubbers = (props) => {
   const { data } = useBackend<AirAlarmData>();
   const { scrubbers } = data;
   if (!scrubbers || scrubbers.length === 0) {
-    return <span>Nothing to show</span>;
+    return <span>无可显示内容</span>;
   }
   return (
     <VirtualList>
@@ -322,7 +322,7 @@ const AirAlarmControlModes = (props) => {
   const { act, data } = useBackend<AirAlarmData>();
   const { modes, selectedModePath } = data;
   if (!modes || modes.length === 0) {
-    return <span>Nothing to show</span>;
+    return <span>无可显示内容</span>;
   }
   return (
     <>
@@ -365,11 +365,11 @@ const EditingModal = (props: EditingModalProps) => {
   return (
     <Modal>
       <Section
-        title={'Threshold Value Editor'}
+        title={'阈值编辑器'}
         buttons={<Button onClick={() => finish()} icon="times" color="red" />}
       >
         <Box mb={1.5}>
-          {`Editing the ${typeName.toLowerCase()} value for ${name.toLowerCase()}...`}
+          {`编辑${name.toLowerCase()}的${typeName.toLowerCase()}值...`}
         </Box>
         {oldValue === -1 ? (
           <Button
@@ -381,7 +381,7 @@ const EditingModal = (props: EditingModalProps) => {
               })
             }
           >
-            {'Enable'}
+            {'开启'}
           </Button>
         ) : (
           <>
@@ -408,7 +408,7 @@ const EditingModal = (props: EditingModalProps) => {
                 })
               }
             >
-              {'Disable'}
+              {'关闭'}
             </Button>
           </>
         )}
@@ -430,16 +430,16 @@ const AirAlarmControlThresholds = (props) => {
         <Table.Row>
           <Table.Cell bold>Threshold</Table.Cell>
           <Table.Cell bold color="bad">
-            Danger Below
+            低于时危险
           </Table.Cell>
           <Table.Cell bold color="average">
-            Warning Below
+            低于时警告
           </Table.Cell>
           <Table.Cell bold color="average">
-            Warning Above
+            高于时警告
           </Table.Cell>
           <Table.Cell bold color="bad">
-            Danger Above
+            高于时危险
           </Table.Cell>
           <Table.Cell bold>Actions</Table.Cell>
         </Table.Row>
@@ -462,7 +462,7 @@ const AirAlarmControlThresholds = (props) => {
                 }
               >
                 {tlv.hazard_min === -1
-                  ? 'Disabled'
+                  ? '关闭'
                   : tlv.hazard_min + ' ' + tlv.unit}
               </Button>
             </Table.Cell>
@@ -482,7 +482,7 @@ const AirAlarmControlThresholds = (props) => {
                 }
               >
                 {tlv.warning_min === -1
-                  ? 'Disabled'
+                  ? '关闭'
                   : tlv.warning_min + ' ' + tlv.unit}
               </Button>
             </Table.Cell>
@@ -502,7 +502,7 @@ const AirAlarmControlThresholds = (props) => {
                 }
               >
                 {tlv.warning_max === -1
-                  ? 'Disabled'
+                  ? '关闭'
                   : tlv.warning_max + ' ' + tlv.unit}
               </Button>
             </Table.Cell>
@@ -522,7 +522,7 @@ const AirAlarmControlThresholds = (props) => {
                 }
               >
                 {tlv.hazard_max === -1
-                  ? 'Disabled'
+                  ? '关闭'
                   : tlv.hazard_max + ' ' + tlv.unit}
               </Button>
             </Table.Cell>
