@@ -8,8 +8,8 @@
 
 /// Beds
 /obj/structure/bed
-	name = "bed"
-	desc = "This is used to lie in, sleep in or strap on."
+	name = "床"
+	desc = "用来躺在上面, 睡觉或者绑在上面."
 	icon_state = "bed"
 	icon = 'icons/obj/bed.dmi'
 	anchored = TRUE
@@ -34,14 +34,14 @@
 
 /obj/structure/bed/examine(mob/user)
 	. = ..()
-	. += span_notice("It's held together by a couple of <b>bolts</b>.")
+	. += span_notice("它由几个<b>螺栓</b>固定在一起.")
 
 /obj/structure/bed/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(held_item)
 		if(held_item.tool_behaviour != TOOL_WRENCH)
 			return
 
-		context[SCREENTIP_CONTEXT_RMB] = "Dismantle"
+		context[SCREENTIP_CONTEXT_RMB] = "拆除"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	else if(has_buckled_mobs())
@@ -63,9 +63,9 @@
 
 /// Medical beds
 /obj/structure/bed/medical
-	name = "medical bed"
+	name = "医疗床"
 	icon = 'icons/obj/medical/medical_bed.dmi'
-	desc = "A medical bed with wheels for assisted patient movement or medbay racing tournaments."
+	desc = "一张带有轮子的医疗床, 用于辅助患者移动或举办医疗部漂移大赛."
 	icon_state = "med_down"
 	base_icon_state = "med"
 	anchored = FALSE
@@ -80,8 +80,8 @@
 	anchored = TRUE
 
 /obj/structure/bed/medical/emergency
-	name = "emergency medical bed"
-	desc = "A compact medical bed. This emergency version can be folded and carried for quick transport."
+	name = "紧急医疗床"
+	desc = "一张紧凑的医疗床. 这款紧急版本可以折叠并放进包里携带, 以便快速运输."
 	icon_state = "emerg_down"
 	base_icon_state = "emerg"
 	foldable_type = /obj/item/emergency_bed
@@ -94,28 +94,28 @@
 
 /obj/structure/bed/medical/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[anchored ? "Release brakes" : "Apply brakes"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[anchored ? "关闭制动器" : "启动制动器"]"
 	if(!isnull(foldable_type) && !has_buckled_mobs())
-		context[SCREENTIP_CONTEXT_RMB] = "Fold up"
+		context[SCREENTIP_CONTEXT_RMB] = "折起"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/bed/medical/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice("The brakes are applied. They can be released with an Alt-click.")
+		. += span_notice("制动器被启动了. 可以通过Alt+LMB关闭制动器.")
 	else
-		. += span_notice("The brakes can be applied with an Alt-click.")
+		. += span_notice("制动器可以通过Alt+LMB启动.")
 
 	if(!isnull(foldable_type))
-		. += span_notice("You can fold it up with a Right-click.")
+		. += span_notice("你可以通过RMB将它折叠起来.")
 
 /obj/structure/bed/medical/click_alt(mob/user)
 	if(has_buckled_mobs() && (user in buckled_mobs))
 		return CLICK_ACTION_BLOCKING
 
 	anchored = !anchored
-	balloon_alert(user, "brakes [anchored ? "applied" : "released"]")
+	balloon_alert(user, "制动器 [anchored ? "启动" : "关闭"]")
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -158,7 +158,7 @@
 	if(istype(item, /obj/item/emergency_bed/silicon))
 		var/obj/item/emergency_bed/silicon/silicon_bed = item
 		if(silicon_bed.loaded)
-			to_chat(user, span_warning("You already have a medical bed docked!"))
+			to_chat(user, span_warning("你的床坞内已经储存了一张医疗床!"))
 			return
 
 		if(has_buckled_mobs())
@@ -170,7 +170,7 @@
 		else
 			silicon_bed.loaded = src
 			forceMove(silicon_bed)
-			user.visible_message(span_notice("[user] collects [src]."), span_notice("You collect [src]."))
+			user.visible_message(span_notice("[user] 收集了 [src]."), span_notice("你收集了 [src]."))
 		return TRUE
 	else
 		return ..()
@@ -191,8 +191,8 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/emergency_bed
-	name = "roller bed"
-	desc = "A collapsed medical bed that can be carried around."
+	name = "滚轮床"
+	desc = "一张可随身携带的折叠医疗床."
 	icon = 'icons/obj/medical/medical_bed.dmi'
 	icon_state = "emerg_folded"
 	inhand_icon_state = "emergencybed"
@@ -231,8 +231,8 @@
 	qdel(src)
 
 /obj/item/emergency_bed/silicon // ROLLER ROBO DA!
-	name = "emergency bed dock"
-	desc = "A collapsed medical bed that can be ejected for emergency use. Must be collected or replaced after use."
+	name = "紧急医疗床坞"
+	desc = "一个存储紧急医疗床的床坞, 可以弹出床以备紧急使用. 弹出后须收集或更换."
 	var/obj/structure/bed/medical/emergency/loaded = null
 
 /obj/item/emergency_bed/silicon/Initialize(mapload)
@@ -241,7 +241,7 @@
 
 /obj/item/emergency_bed/silicon/examine(mob/user)
 	. = ..()
-	. += "The dock is [loaded ? "loaded" : "empty"]."
+	. += "床坞内 [loaded ? "储存了一张床" : "是空的"]."
 
 /obj/item/emergency_bed/silicon/deploy_bed(mob/user, atom/location)
 	if(loaded)
@@ -249,13 +249,13 @@
 		user.visible_message(span_notice("[user] deploys [loaded]."), span_notice("You deploy [loaded]."))
 		loaded = null
 	else
-		to_chat(user, span_warning("The dock is empty!"))
+		to_chat(user, span_warning("床坞是空的!"))
 
 /// Dog bed
 /obj/structure/bed/dogbed
-	name = "dog bed"
+	name = "狗床"
 	icon_state = "dogbed"
-	desc = "A comfy-looking dog bed. You can even strap your pet in, in case the gravity turns off."
+	desc = "一张看起来很舒服的狗床. 你可以将你的宠物绑在上面, 防止重力发生器暂时停机的情况出现."
 	anchored = FALSE
 	build_stack_type = /obj/item/stack/sheet/mineral/wood
 	build_stack_amount = 10
@@ -263,37 +263,37 @@
 	var/owned = FALSE
 
 /obj/structure/bed/dogbed/ian
-	desc = "Ian's bed! Looks comfy."
-	name = "Ian's bed"
+	desc = "Ian的床! 看起来很舒服."
+	name = "Ian的床"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/cayenne
 	desc = "Seems kind of... fishy."
-	name = "Cayenne's bed"
+	name = "Cayenne的床"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/misha
-	desc = "There is fur all over it, and some blood..."
-	name = "Misha's bed"
+	desc = "这上面到处都是绒毛, 以及一些血迹..."
+	name = "Misha的床"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/lia
-	desc = "Seems kind of... fishy."
-	name = "Lia's bed"
+	desc = "似乎有股... 可疑的鱼腥味."
+	name = "Lia的床"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/renault
-	desc = "Renault's bed! Looks comfy. A foxy person needs a foxy pet."
-	name = "Renault's bed"
+	desc = "Renault的床! 看起来很舒服. 一个狡猾的人需要一个像狐狸一样狡猾的宠物."
+	name = "Renault的床"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/mcgriff
-	desc = "McGriff's bed, because even crimefighters sometimes need a nap."
-	name = "McGriff's bed"
+	desc = "McGriff'的床, 有时候罪犯打击者也需要打个盹."
+	name = "McGriff的床"
 
 /obj/structure/bed/dogbed/runtime
-	desc = "A comfy-looking cat bed. You can even strap your pet in, in case the gravity turns off."
-	name = "Runtime's bed"
+	desc = "一张看起来很舒服的猫床. 你可以将你的宠物绑在上面, 防止重力发生器暂时停机的情况出现."
+	name = "Runtime的床"
 	anchored = TRUE
 
 ///Used to set the owner of a dogbed, returns FALSE if called on an owned bed or an invalid one, TRUE if the possesion succeeds
@@ -302,8 +302,8 @@
 		return FALSE //Failed
 
 	owned = TRUE
-	name = "[furball]'s bed"
-	desc = "[furball]'s bed! Looks comfy."
+	name = "[furball]的床"
+	desc = "[furball]的床! 看起来很舒服."
 	return TRUE // Let any callers know that this bed is ours now
 
 /obj/structure/bed/dogbed/buckle_mob(mob/living/furball, force, check_loc)
@@ -311,8 +311,8 @@
 	update_owner(furball)
 
 /obj/structure/bed/maint
-	name = "dirty mattress"
-	desc = "An old grubby mattress. You try to not think about what could be the cause of those stains."
+	name = "脏床垫"
+	desc = "一张肮脏的旧床垫. 你试着不去想是什么造成了那些污渍."
 	icon_state = "dirty_mattress"
 	elevation = 7
 
@@ -322,8 +322,8 @@
 
 // Double Beds, for luxurious sleeping, i.e. the captain and maybe heads- if people use this for ERP, send them to skyrat
 /obj/structure/bed/double
-	name = "double bed"
-	desc = "A luxurious double bed, for those too important for small dreams."
+	name = "双人床"
+	desc = "一张豪华的双人床, 对于那些不屑于做小梦的人."
 	icon_state = "bed_double"
 	build_stack_amount = 4
 	max_buckled_mobs = 2

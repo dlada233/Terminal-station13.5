@@ -1,6 +1,6 @@
 /obj/structure/chair
-	name = "chair"
-	desc = "You sit in this. Either by will or force."
+	name = "椅子"
+	desc = "你坐在这上面. 不管是自愿还是被迫的."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chair"
 	anchored = TRUE
@@ -20,14 +20,14 @@
 
 /obj/structure/chair/examine(mob/user)
 	. = ..()
-	. += span_notice("It's held together by a couple of <b>bolts</b>.")
+	. += span_notice("它由几个<b>螺栓</b>固定在一起.")
 	if(!has_buckled_mobs() && can_buckle)
-		. += span_notice("While standing on [src], drag and drop your sprite onto [src] to buckle to it.")
+		. += span_notice("站在 [src] 上时, 将你的贴图拖拽到 [src] 上来将自己扣在上面.")
 
 /obj/structure/chair/Initialize(mapload)
 	. = ..()
 	if(prob(0.2))
-		name = "tactical [name]"
+		name = "战术 [name]"
 	MakeRotate()
 
 ///This proc adds the rotate component, overwrite this if you for some reason want to change some specific args.
@@ -72,10 +72,10 @@
 		AddComponent(/datum/component/electrified_buckle, (SHOCK_REQUIREMENT_ITEM | SHOCK_REQUIREMENT_LIVE_CABLE | SHOCK_REQUIREMENT_SIGNAL_RECEIVED_TOGGLE), input_shock_kit, overlays_from_child_procs, FALSE)
 
 	if(HAS_TRAIT(src, TRAIT_ELECTRIFIED_BUCKLE))
-		to_chat(user, span_notice("You connect the shock kit to the [name], electrifying it "))
+		to_chat(user, span_notice("你将电击背包连接到了 [name], 并通上了电."))
 	else
 		user.put_in_active_hand(input_shock_kit)
-		to_chat(user, "<span class='notice'> You cannot fit the shock kit onto the [name]!")
+		to_chat(user, "<span class='notice'> 你无法将电击背包安装到 [name]!")
 
 
 /obj/structure/chair/wrench_act_secondary(mob/living/user, obj/item/weapon)
@@ -109,7 +109,7 @@
 	handle_layer()
 	//SKYRAT EDIT ADDITION
 	if(HAS_TRAIT(M, TRAIT_OVERSIZED))
-		visible_message(span_warning("[src] buckles under the weight of [M] causing it to break!"))
+		visible_message(span_warning("[src] 被 [M] 的重量所压弯, 导致其最终断裂了!"))
 		playsound(src, 'modular_skyrat/modules/oversized/sound/chair_break.ogg', 70, TRUE)
 		deconstruct()
 	//SKYRAT EDIT END
@@ -132,8 +132,8 @@
 
 /obj/structure/chair/wood
 	icon_state = "wooden_chair"
-	name = "wooden chair"
-	desc = "Old is never too old to not be in fashion."
+	name = "木椅子"
+	desc = "无论它有多老也不会老到不流行."
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 	buildstacktype = /obj/item/stack/sheet/mineral/wood
@@ -148,8 +148,8 @@
 	item_chair = /obj/item/chair/wood/wings
 
 /obj/structure/chair/comfy
-	name = "comfy chair"
-	desc = "It looks comfy."
+	name = "康乐椅"
+	desc = "看起来很舒适."
 	icon_state = "comfychair"
 	color = rgb(255, 255, 255)
 	resistance_flags = FLAMMABLE
@@ -213,8 +213,8 @@
 	color = rgb(193, 248, 104)
 
 /obj/structure/chair/comfy/shuttle
-	name = "shuttle seat"
-	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system, for smoother flights."
+	name = "太空穿梭机椅"
+	desc = "一个舒适, 安全的座椅. 拥有一个更牢固的安全带系统, 带来更舒适的飞行体验."
 	icon_state = "shuttle_chair"
 	buildstacktype = /obj/item/stack/sheet/mineral/titanium
 
@@ -224,11 +224,11 @@
 	. = ..()
 
 /obj/structure/chair/comfy/shuttle/tactical
-	name = "tactical chair"
+	name = "战术椅"
 
 /obj/structure/chair/comfy/carp
-	name = "carpskin chair"
-	desc = "A luxurious chair, the many purple scales reflect the light in a most pleasing manner."
+	name = "鲤鱼皮椅"
+	desc = "一把豪华的椅子, 上面的紫色鳞片用一种很舒适的方式反射着光线. "
 	icon_state = "carp_chair"
 	buildstacktype = /obj/item/stack/sheet/animalhide/carp
 
@@ -248,7 +248,7 @@
 	. = ..()
 
 /obj/structure/chair/office/tactical
-	name = "tactical swivel chair"
+	name = "战术转椅"
 
 /obj/structure/chair/office/light
 	icon_state = "officechair_white"
@@ -256,8 +256,8 @@
 //Stool
 
 /obj/structure/chair/stool
-	name = "stool"
-	desc = "Apply butt."
+	name = "凳子"
+	desc = "对他使用你的屁股."
 	icon_state = "stool"
 	can_buckle = FALSE
 	buildstackamount = 1
@@ -283,16 +283,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool, 0)
 	return ..()
 
 /obj/structure/chair/stool/bar
-	name = "bar stool"
-	desc = "It has some unsavory stains on it..."
+	name = "酒吧高脚凳"
+	desc = "上面有一些令人讨厌的污渍..."
 	icon_state = "bar"
 	item_chair = /obj/item/chair/stool/bar
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/structure/chair/stool/bamboo
-	name = "bamboo stool"
-	desc = "A makeshift bamboo stool with a rustic look."
+	name = "竹凳子"
+	desc = "一把临时拼凑出来的竹凳子, 看起来带有一点乡村气息."
 	icon_state = "bamboo_stool"
 	resistance_flags = FLAMMABLE
 	max_integrity = 60
@@ -301,8 +301,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	item_chair = /obj/item/chair/stool/bamboo
 
 /obj/item/chair
-	name = "chair"
-	desc = "Bar brawl essential."
+	name = "椅子"
+	desc = "酒吧斗殴的利器."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chair_toppled"
 	inhand_icon_state = "chair"
@@ -321,7 +321,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	var/obj/structure/chair/origin_type = /obj/structure/chair
 
 /obj/item/chair/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins hitting [user.p_them()]self with \the [src]! 看起来是在尝试自杀!"))
+	user.visible_message(span_suicide("[user] 开始用 [src] 殴打[user.p_them()] ! 看起来 [user.p_theyre()] 在试着自杀!"))
+  
 	playsound(src,hitsound,50,TRUE)
 	return BRUTELOSS
 
@@ -336,17 +337,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/item/chair/proc/plant(mob/user)
 	var/turf/T = get_turf(loc)
 	if(isgroundlessturf(T))
-		to_chat(user, span_warning("You need ground to plant this on!"))
+		to_chat(user, span_warning("你需要足够的空间来放下它!"))
 		return
 	for(var/obj/A in T)
 		if(istype(A, /obj/structure/chair))
-			to_chat(user, span_warning("There is already a chair here!"))
+			to_chat(user, span_warning("这里已经放了一把椅子了!"))
 			return
 		if(A.density && !(A.flags_1 & ON_BORDER_1))
-			to_chat(user, span_warning("There is already something here!"))
+			to_chat(user, span_warning("这里已经放了别的东西了!"))
 			return
 
-	user.visible_message(span_notice("[user] rights \the [src.name]."), span_notice("You right \the [name]."))
+	user.visible_message(span_notice("[user] 扶正了 \the [src.name]."), span_notice("你扶正了 \the [name]."))
 	var/obj/structure/chair/C = new origin_type(get_turf(loc))
 	C.set_custom_materials(custom_materials)
 	TransferComponents(C)
@@ -368,14 +369,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/item/chair/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == UNARMED_ATTACK && prob(hit_reaction_chance) || attack_type == LEAP_ATTACK && prob(hit_reaction_chance))
-		owner.visible_message(span_danger("[owner] fends off [attack_text] with [src]!"))
+		owner.visible_message(span_danger("[owner] 用 [src] 挡开了 [attack_text]!"))
 		return TRUE
 	return FALSE
 
 /obj/item/chair/afterattack(atom/target, mob/user, click_parameters)
 	if(!prob(break_chance))
 		return
-	user.visible_message(span_danger("[user] smashes [src] to pieces against [target]"))
+	user.visible_message(span_danger("[user] 用 [src] 猛击 [target], 将[src]砸成了碎片! "))
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		if(C.health < C.maxHealth*0.5)
@@ -387,20 +388,20 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	origin_type = /obj/structure/chair/greyscale
 
 /obj/item/chair/stool
-	name = "stool"
+	name = "凳子"
 	icon_state = "stool_toppled"
 	inhand_icon_state = "stool"
 	origin_type = /obj/structure/chair/stool
 	break_chance = 0 //It's too sturdy.
 
 /obj/item/chair/stool/bar
-	name = "bar stool"
+	name = "酒吧高脚凳"
 	icon_state = "bar_toppled"
 	inhand_icon_state = "stool_bar"
 	origin_type = /obj/structure/chair/stool/bar
 
 /obj/item/chair/stool/bamboo
-	name = "bamboo stool"
+	name = "竹凳子"
 	icon_state = "bamboo_stool"
 	inhand_icon_state = "stool_bamboo"
 	hitsound = 'sound/weapons/genhit1.ogg'
@@ -411,7 +412,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	return //sturdy enough to ignore a god
 
 /obj/item/chair/wood
-	name = "wooden chair"
+	name = "木椅子"
 	icon_state = "wooden_chair_toppled"
 	inhand_icon_state = "woodenchair"
 	resistance_flags = FLAMMABLE
@@ -429,14 +430,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	origin_type = /obj/structure/chair/wood/wings
 
 /obj/structure/chair/old
-	name = "strange chair"
-	desc = "You sit in this. Either by will or force. Looks REALLY uncomfortable."
+	name = "奇怪的椅子"
+	desc = "你坐在这上面, 不管是被迫的还是自愿的. 看起来 非常 不舒服."
 	icon_state = "chairold"
 	item_chair = null
 
 /obj/structure/chair/bronze
-	name = "brass chair"
-	desc = "A spinny chair made of bronze. It has little cogs for wheels!"
+	name = "黄铜椅子"
+	desc = "一把用青铜制作的转来转去的椅子. 它上面有一些小齿轮方便旋转!"
 	anchored = FALSE
 	icon_state = "brass_chair"
 	buildstacktype = /obj/item/stack/sheet/bronze
@@ -463,18 +464,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/structure/chair/bronze/click_alt(mob/user)
 	turns = 0
 	if(!(datum_flags & DF_ISPROCESSING))
-		user.visible_message(span_notice("[user] spins [src] around, and the last vestiges of Ratvarian technology keeps it spinning FOREVER."), \
-		span_notice("Automated spinny chairs. The pinnacle of ancient Ratvarian technology."))
+		user.visible_message(span_notice("[user] 将 [src] 转来转去, Ratvarian的科技在这世上留下的最后一丝痕迹让它保持转动, 直到永远."), \
+		span_notice("会自动旋转的椅子. 远古Ratvarian科技的巅峰之作."))
 		START_PROCESSING(SSfastprocess, src)
 	else
-		user.visible_message(span_notice("[user] stops [src]'s uncontrollable spinning."), \
-		span_notice("You grab [src] and stop its wild spinning."))
+		user.visible_message(span_notice("[user] 停下了 [src]的不可操控的旋转."), \
+		span_notice("你抓住了 [src] 并停下了它疯狂的旋转."))
 		STOP_PROCESSING(SSfastprocess, src)
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/chair/mime
-	name = "invisible chair"
-	desc = "The mime needs to sit down and shut up."
+	name = "隐形椅子"
+	desc = "默剧需要坐在这上面, 并闭上他的嘴."
 	anchored = FALSE
 	icon_state = null
 	buildstacktype = null
@@ -493,9 +494,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 
 /obj/structure/chair/plastic
-	icon_state = "plastic_chair"
+	icon_state = "塑料椅子"
 	name = "folding plastic chair"
-	desc = "No matter how much you squirm, it'll still be uncomfortable."
+	desc = "不管你如何改变坐姿, 它依然坐起来不舒服."
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
 	custom_materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT)
@@ -514,15 +515,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 
 /obj/structure/chair/plastic/proc/snap_check(mob/living/carbon/Mob)
 	if (Mob.nutrition >= NUTRITION_LEVEL_FAT)
-		to_chat(Mob, span_warning("The chair begins to pop and crack, you're too heavy!"))
+		to_chat(Mob, span_warning("椅子开始发出嘎吱声并断裂, 你太重了!"))
 		if(do_after(Mob, 6 SECONDS, progress = FALSE))
-			Mob.visible_message(span_notice("The plastic chair snaps under [Mob]'s weight!"))
+			Mob.visible_message(span_notice("塑料椅子在 [Mob] 的重量下折断了!"))
 			new /obj/effect/decal/cleanable/plastic(loc)
 			qdel(src)
 
 /obj/item/chair/plastic
-	name = "folding plastic chair"
-	desc = "Somehow, you can always find one under the wrestling ring."
+	name = "折起来的塑料椅子"
+	desc = "不知为何, 你总能在摔跤场下面找到一个."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "folded_chair"
 	inhand_icon_state = "folded_chair"
@@ -536,13 +537,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	origin_type = /obj/structure/chair/plastic
 
 /obj/structure/chair/musical
-	name = "musical chair"
-	desc = "You listen to this. Either by will or by force."
+	name = "音乐椅子"
+	desc = "你听着这个. 不管是被迫的还是自愿的."
 	item_chair = /obj/item/chair/musical
 	particles = new /particles/musical_notes
 
 /obj/item/chair/musical
-	name = "musical chair"
-	desc = "Oh, so this is like the fucked up Monopoly rules where there are no rules and you can pick up and place the musical chairs as you please."
+	name = "音乐椅子"
+	desc = "哦, 所以这就像是一团糟的大富翁游戏, 完全没有规则, 你可以随意捡起或放下音乐椅子, 太妙了."
 	particles = new /particles/musical_notes
 	origin_type = /obj/structure/chair/musical
