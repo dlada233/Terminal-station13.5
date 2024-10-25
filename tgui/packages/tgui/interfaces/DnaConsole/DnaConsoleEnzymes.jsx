@@ -21,17 +21,17 @@ const GeneticMakeupBufferInfo = (props) => {
   // Type of the action for applying makeup
   const ACTION_MAKEUP_APPLY = isViableSubject ? 'makeup_apply' : 'makeup_delay';
   if (!makeup) {
-    return <Box color="average">No stored subject data.</Box>;
+    return <Box color="average">未储存对象数据.</Box>;
   }
   return (
     <>
       <GeneticMakeupInfo makeup={makeup} />
       <Divider />
       <Box bold color="label" mb={1}>
-        Makeup Actions
+        改换行为
       </Box>
       <LabeledList>
-        <LabeledList.Item label="酶">
+        <LabeledList.Item label="DNA酶">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
@@ -52,15 +52,15 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转变
+            {!isViableSubject && ' (延后)'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Identity">
+        <LabeledList.Item label="识别码">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
-            content="Print"
+            content="打印"
             onClick={() =>
               act('makeup_injector', {
                 index,
@@ -77,15 +77,15 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转变
+            {!isViableSubject && ' (延后)'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="特征">
+        <LabeledList.Item label="特征码">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
-            content="Print"
+            content="打印"
             onClick={() =>
               act('makeup_injector', {
                 index,
@@ -102,15 +102,15 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转变
+            {!isViableSubject && ' (延后)'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Full Makeup">
+        <LabeledList.Item label="完全改换">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
-            content="Print"
+            content="打印"
             onClick={() =>
               act('makeup_injector', {
                 index,
@@ -127,8 +127,8 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转变
+            {!isViableSubject && ' (延后)'}
           </Button>
         </LabeledList.Item>
         <LabeledList.Item>
@@ -163,7 +163,7 @@ const GeneticMakeupBuffers = (props) => {
     const makeup = makeupStorage[i];
     const element = (
       <Collapsible
-        title={makeup ? makeup.label || makeup.name : `Slot ${i}`}
+        title={makeup ? makeup.label || makeup.name : `槽位 ${i}`}
         buttons={
           <>
             {!!(hasDisk && diskHasMakeup) && (
@@ -180,7 +180,7 @@ const GeneticMakeupBuffers = (props) => {
             )}
             <Button
               disabled={!isViableSubject}
-              content="Save"
+              content="保存"
               onClick={() =>
                 act('save_makeup_console', {
                   index: i,
@@ -207,11 +207,11 @@ const GeneticMakeupBuffers = (props) => {
     elements.push(element);
   }
   return (
-    <Section title="Genetic Makeup Buffers">
+    <Section title="基因组成缓存">
       {!!geneticMakeupCooldown && (
         <Dimmer fontSize="14px" textAlign="center">
           <Icon mr={1} name="spinner" spin />
-          Genetic makeup transfer ready in...
+          基因改换转变就绪...
           <Box mt={1} />
           {geneticMakeupCooldown}s
         </Dimmer>
@@ -225,9 +225,9 @@ const PulseEmitterProbs = (props) => {
   const { data } = useBackend();
   const { stdDevAcc, stdDevStr } = data;
   return (
-    <Section title="Probabilities" minHeight="100%">
+    <Section title="概率" minHeight="100%">
       <LabeledList>
-        <LabeledList.Item label="Accuracy" textAlign="right">
+        <LabeledList.Item label="精度" textAlign="right">
           {stdDevAcc}
         </LabeledList.Item>
         <LabeledList.Item label={`P(±${stdDevStr})`} textAlign="right">
@@ -278,7 +278,7 @@ const PulseBoard = (props) => {
     }
   }
   return (
-    <Section title={'Unique ' + name} minHeight="100%" position="relative">
+    <Section title={'唯一' + name} minHeight="100%" position="relative">
       <Box mx="-1px">{blocks}</Box>
     </Section>
   );
@@ -288,9 +288,9 @@ const PulseSettings = (props) => {
   const { data, act } = useBackend();
   const { pulseStrength, pulseDuration } = data;
   return (
-    <Section title="发射器 配置" minHeight="100%">
+    <Section title="发射器配置" minHeight="100%">
       <LabeledList>
-        <LabeledList.Item label="Output level">
+        <LabeledList.Item label="输出等级">
           <NumberInput
             animated
             width="32px"
@@ -306,7 +306,7 @@ const PulseSettings = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Pulse duration">
+        <LabeledList.Item label="脉冲持续时间">
           <NumberInput
             animated
             width="32px"

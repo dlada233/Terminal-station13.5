@@ -15,9 +15,9 @@ import {
 import { FeatureDropdownInput } from '../dropdowns';
 
 export const ghost_accs: FeatureChoiced = {
-  name: 'Ghost accessories',
+  name: '幽灵附件',
   category: 'GHOST',
-  description: 'Determines what adjustments your ghost will have.',
+  description: '决定你的幽灵会有什么调整项目.',
   component: FeatureDropdownInput,
 };
 
@@ -92,25 +92,25 @@ const GhostFormInput = (
 };
 
 export const ghost_form: FeatureChoiced = {
-  name: 'Ghosts form',
+  name: '幽灵外表',
   category: 'GHOST',
-  description: 'The appearance of your ghost. Requires BYOND membership.',
+  description: '幽灵的外表. 需要BYOND注册用户.',
   component: GhostFormInput,
 };
 
 export const ghost_hud: FeatureToggle = {
-  name: 'Ghost HUD',
+  name: '幽灵HUD',
   category: 'GHOST',
-  description: 'Enable HUD buttons for ghosts.',
+  description: '开启幽灵HUD.',
   component: CheckboxInput,
 };
 
 export const ghost_orbit: FeatureChoiced = {
-  name: 'Ghost orbit',
+  name: '幽灵运动',
   category: 'GHOST',
   description: `
-    The shape in which your ghost will orbit.
-    Requires BYOND membership.
+    你的幽灵将以怎样形式环绕运动.
+    需要BYOND注册用户.
   `,
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
@@ -124,30 +124,26 @@ export const ghost_orbit: FeatureChoiced = {
 };
 
 export const ghost_others: FeatureChoiced = {
-  name: 'Ghosts of others',
+  name: '其他幽灵',
   category: 'GHOST',
   description: `
-    Do you want the ghosts of others to show up as their own setting, as
-    their default sprites, or always as the default white ghost?
+    是否希望能看到其他人为自己设置的幽灵外表，否则将全部显示默认白色幽灵.
   `,
   component: FeatureDropdownInput,
 };
 
 export const inquisitive_ghost: FeatureToggle = {
-  name: 'Ghost inquisitiveness',
+  name: '好奇幽灵',
   category: 'GHOST',
-  description: 'Clicking on something as a ghost will examine it.',
+  description: '点击某物会检视它.',
   component: CheckboxInput,
 };
 
 export const ghost_roles: FeatureToggle = {
-  name: 'Get ghost roles',
+  name: '获取幽灵角色',
   category: 'GHOST',
   description: `
-    If you de-select this, you will not get any ghost role pop-ups what-so-ever!
-    Every single type of these pop-ups WILL be muted for you when you are
-    ghosted. Very useful for those who find ghost roles or the
-    pop-ups annoying, use at your own peril.
+    如果你取消此项，那么当扮演幽灵时你不会得到任何弹出信息.
 `,
   component: CheckboxInput,
 };

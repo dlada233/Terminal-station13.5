@@ -1,6 +1,6 @@
 /obj/machinery/computer/station_alert
 	name = "站点警报终端"
-	desc = "Used to access the station's automated alert system."
+	desc = "访问全站的警报系统."
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"
 	circuit = /obj/item/circuitboard/computer/stationalert

@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	var/material_drop_amount = 2
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 	var/anchorable = TRUE
-	var/icon_welded = "welded"
+	var/icon_welded = "已焊接"
 	var/icon_broken = "sparking"
 	/// Whether a skittish person can dive inside this closet. Disable if opening the closet causes "bad things" to happen or that it leads to a logical inconsistency.
 	var/divable = TRUE
@@ -331,9 +331,9 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(id_card)
 		. += span_notice("It can be [EXAMINE_HINT("marked")] with a pen.")
 	if(can_weld_shut && !welded)
-		. += span_notice("Its can be [EXAMINE_HINT("welded")] shut.")
+		. += span_notice("Its can be [EXAMINE_HINT("已焊接")] shut.")
 	if(welded)
-		. += span_notice("Its [EXAMINE_HINT("welded")] shut.")
+		. += span_notice("Its [EXAMINE_HINT("已焊接")] shut.")
 	if(anchorable && !anchored)
 		. += span_notice("It can be [EXAMINE_HINT("bolted")] to the ground.")
 	if(anchored)
@@ -860,7 +860,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 						return
 					user.visible_message(span_notice("[user] slices apart \the [src]."),
 									span_notice("You cut \the [src] apart with \the [weapon]."),
-									span_hear("You hear welding."))
+									span_hear("你听到焊接声."))
 					deconstruct(TRUE)
 				return
 			else // for example cardboard box is cut with wirecutters
@@ -882,10 +882,10 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 				return
 			welded = !welded
 			after_weld(welded)
-			user.visible_message(span_notice("[user] [welded ? "welds shut" : "unwelded"] \the [src]."),
-							span_notice("You [welded ? "weld" : "unwelded"] \the [src] with \the [weapon]."),
-							span_hear("You hear welding."))
-			user.log_message("[welded ? "welded":"unwelded"] closet [src] with [weapon]", LOG_GAME)
+			user.visible_message(span_notice("[user] [welded ? "welds shut" : "已焊开"] \the [src]."),
+							span_notice("You [welded ? "weld" : "已焊开"] \the [src] with \the [weapon]."),
+							span_hear("你听到焊接声."))
+			user.log_message("[welded ? "已焊接":"已焊开"] closet [src] with [weapon]", LOG_GAME)
 			update_appearance()
 
 	else if(!user.combat_mode)
@@ -955,7 +955,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src]的门纹丝不动!"))
 		return
 	container_resist_act(user)
 
@@ -1032,7 +1032,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(span_warning("[src] begins to shake violently!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
+		span_notice("你背靠[src]，尝试将门推开... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_hear("You hear banging from [src]."))
 
 	addtimer(CALLBACK(src, PROC_REF(check_if_shake)), 1 SECONDS)
@@ -1041,8 +1041,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		if(!user || user.stat != CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
 			return
 		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
-		user.visible_message(span_danger("[user] successfully broke out of [src]!"),
-							span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_danger("[user]成功突破了[src]!"),
+							span_notice("你成功突破了[src]!"))
 		bust_open()
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
@@ -1116,7 +1116,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 			if(!can_unlock(user, user.get_idcard(), registered_id))
 				error_msg = "not your locker!"
 		else if(!can_unlock(user, user.get_idcard()))
-			error_msg = "access denied!"
+			error_msg = "访问被拒绝!"
 		if(error_msg)
 			if(!silent)
 				balloon_alert(user, error_msg)

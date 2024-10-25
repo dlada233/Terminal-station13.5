@@ -170,7 +170,7 @@
 	var/list/id_card_access = id_card?.GetAccess() || list()
 
 	if(length(use_access & id_card_access) <= 0)
-		computer.physical.balloon_alert(orderer, "access denied!")
+		computer.physical.balloon_alert(orderer, "访问被拒绝!")
 		playsound(computer, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return TRUE
 

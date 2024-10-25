@@ -48,7 +48,7 @@
 	return ..()
 
 /obj/item/fireaxe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] axes [user.p_them()]self from head to toe! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] axes [user.p_them()]self from head to toe! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/fireaxe/afterattack(atom/target, mob/user, click_parameters)
@@ -76,7 +76,7 @@
 /obj/item/fireaxe/metal_h2_axe
 	icon_state = "metalh2_axe0"
 	base_icon_state = "metalh2_axe"
-	name = "metallic hydrogen axe"
+	name = "metallic hydrogen-氢气 axe"
 	desc = "A lightweight crowbar with an extreme sharp fire axe head attached. It trades it's hefty as a weapon by making it easier to carry around when holstered to suits without having to sacrifice your backpack."
 	force_unwielded = 5
 	force_wielded = 15

@@ -25,13 +25,13 @@ DEFINE_BITFIELD(turret_flags, list(
 ))
 
 /obj/machinery/porta_turret
-	name = "turret"
+	name = "炮塔"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "turretCover"
 	layer = OBJ_LAYER
 	invisibility = INVISIBILITY_OBSERVER //the turret is invisible if it's inside its cover
 	density = TRUE
-	desc = "A covered turret that shoots at its enemies."
+	desc = "向敌人射击的装甲炮塔."
 	req_access = list(ACCESS_SECURITY) /// Only people with Security access
 	power_channel = AREA_USAGE_EQUIP //drains power from the EQUIPMENT channel
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.15
@@ -275,7 +275,7 @@ DEFINE_BITFIELD(turret_flags, list(
 				toggle_on(!on)
 				return TRUE
 			else
-				to_chat(usr, span_warning("It has to be secured first!"))
+				to_chat(usr, span_warning("需要先固定!"))
 		if("authweapon")
 			turret_flags ^= TURRET_FLAG_AUTH_WEAPONS
 			return TRUE
@@ -322,19 +322,19 @@ DEFINE_BITFIELD(turret_flags, list(
 		if(I.tool_behaviour == TOOL_CROWBAR)
 			//If the turret is destroyed, you can remove it with a crowbar to
 			//try and salvage its components
-			to_chat(user, span_notice("You begin prying the metal coverings off..."))
+			to_chat(user, span_notice("开始撬开其覆盖装甲..."))
 			if(I.use_tool(src, user, 20))
 				if(prob(70))
 					if(stored_gun)
 						stored_gun.forceMove(loc)
 						stored_gun = null
-					to_chat(user, span_notice("You remove the turret and salvage some components."))
+					to_chat(user, span_notice("你拆下炮塔，获得了一些零件."))
 					if(prob(50))
 						new /obj/item/stack/sheet/iron(loc, rand(1,4))
 					if(prob(50))
 						new /obj/item/assembly/prox_sensor(loc)
 				else
-					to_chat(user, span_notice("You remove the turret but did not manage to salvage anything."))
+					to_chat(user, span_notice("你拆除了炮塔，但没回收任何东西."))
 				qdel(src)
 
 	else if((I.tool_behaviour == TOOL_WRENCH) && (!on))
@@ -346,13 +346,13 @@ DEFINE_BITFIELD(turret_flags, list(
 			set_anchored(TRUE)
 			RemoveInvisibility(id=type)
 			update_appearance()
-			to_chat(user, span_notice("You secure the exterior bolts on the turret."))
+			to_chat(user, span_notice("你固定了炮塔的外部螺栓"))
 			if(has_cover)
 				cover = new /obj/machinery/porta_turret_cover(loc) //create a new turret. While this is handled in process(), this is to workaround a bug where the turret becomes invisible for a split second
 				cover.parent_turret = src //make the cover's parent src
 		else if(anchored)
 			set_anchored(FALSE)
-			to_chat(user, span_notice("You unsecure the exterior bolts on the turret."))
+			to_chat(user, span_notice("你接触了炮塔的外部螺栓固定."))
 			power_change()
 			SetInvisibility(INVISIBILITY_NONE, id=type)
 			qdel(cover) //deletes the cover, and the turret instance itself becomes its own cover.
@@ -369,7 +369,7 @@ DEFINE_BITFIELD(turret_flags, list(
 			return
 		var/obj/item/multitool/M = I
 		M.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
+		balloon_alert(user, "已保存到多功能工具缓冲区")
 	else
 		return ..()
 

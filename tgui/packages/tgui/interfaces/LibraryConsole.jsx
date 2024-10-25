@@ -26,7 +26,7 @@ export const LibraryConsole = (props) => {
   return (
     <Window
       theme={display_lore ? 'spookyconsole' : ''}
-      title="Library Terminal"
+      title="图书馆终端"
       width={880}
       height={520}
     >
@@ -56,20 +56,20 @@ export const PopoutMenu = (props) => {
             fontSize="13px"
             onClick={() => act('toggle_dropdown')}
             icon={show_dropdown === 1 ? 'chevron-left' : 'chevron-right'}
-            tooltip={!show_dropdown && 'Expand'}
-            content={!!show_dropdown && 'Collapse'}
+            tooltip={!show_dropdown && '扩展'}
+            content={!!show_dropdown && '折叠'}
           />
         </Stack.Item>
-        <PopoutEntry id={1} icon="list" text="Inventory" />
-        <PopoutEntry id={2} icon="calendar" text="Checkout" />
-        <PopoutEntry id={3} icon="server" text="Archive" />
-        <PopoutEntry id={4} icon="upload" text="Upload" />
-        <PopoutEntry id={5} icon="print" text="Print" />
+        <PopoutEntry id={1} icon="list" text="库存" />
+        <PopoutEntry id={2} icon="calendar" text="借书" />
+        <PopoutEntry id={3} icon="server" text="存档" />
+        <PopoutEntry id={4} icon="upload" text="上传" />
+        <PopoutEntry id={5} icon="print" text="打印" />
         {!!display_lore && (
           <PopoutEntry
             id={6}
             icon="question"
-            text={screen_state === 6 ? 'Gur Fbeprere' : 'Forbidden Lore'}
+            text={screen_state === 6 ? 'Gur Fbeprere' : '禁忌学识'}
             color="black"
             font="copperplate"
           />
@@ -105,17 +105,12 @@ export const Inventory = (props) => {
   const { act, data } = useBackend();
   const { inventory_page_count, inventory_page, has_inventory } = data;
   if (!has_inventory) {
-    return (
-      <NoticeBox>No Book Records detected. Update your inventory!</NoticeBox>
-    );
+    return <NoticeBox>找不到书籍档案. 更新你的库存!</NoticeBox>;
   }
   return (
     <Stack vertical justify="space-between" height="100%">
       <Stack.Item grow>
-        <ScrollableSection
-          header="Library Inventory"
-          contents={<InventoryDetails />}
-        />
+        <ScrollableSection header="书籍库存" contents={<InventoryDetails />} />
       </Stack.Item>
       <Stack.Item align="center">
         <PageSelect
@@ -147,9 +142,9 @@ export const InventoryDetails = (props) => {
     <Section>
       <Table>
         <Table.Row header>
-          <Table.Cell>Remove</Table.Cell>
-          <Table.Cell>Title</Table.Cell>
-          <Table.Cell>Author</Table.Cell>
+          <Table.Cell>移除</Table.Cell>
+          <Table.Cell>标题</Table.Cell>
+          <Table.Cell>作者</Table.Cell>
         </Table.Row>
         {inventory.map((book) => (
           <Table.Row key={book.key}>
@@ -163,7 +158,7 @@ export const InventoryDetails = (props) => {
                 }
                 icon="times"
               >
-                Clear Record
+                清除记录
               </Button>
             </Table.Cell>
             <Table.Cell>{book.title}</Table.Cell>
@@ -186,7 +181,7 @@ export const Checkout = (props) => {
         <Stack vertical height="100%">
           <Stack.Item grow>
             <ScrollableSection
-              header="Checked Out Books"
+              header="借出书籍"
               contents={<CheckoutEntries />}
             />
           </Stack.Item>
@@ -208,7 +203,7 @@ export const Checkout = (props) => {
         <Button
           fluid
           icon="barcode"
-          content="Check-Out Book"
+          content="借出书籍"
           fontSize="20px"
           onClick={() => setCheckoutBook(true)}
         />
@@ -228,11 +223,11 @@ export const CheckoutEntries = (props) => {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell>Check-In</Table.Cell>
-        <Table.Cell>Title</Table.Cell>
-        <Table.Cell>Author</Table.Cell>
-        <Table.Cell>Borrower</Table.Cell>
-        <Table.Cell>Time Left</Table.Cell>
+        <Table.Cell>登记</Table.Cell>
+        <Table.Cell>标题</Table.Cell>
+        <Table.Cell>作者</Table.Cell>
+        <Table.Cell>借书人</Table.Cell>
+        <Table.Cell>时间剩余</Table.Cell>
       </Table.Row>
       {checkouts.map((entry) => (
         <Table.Row key={entry.id}>
@@ -250,7 +245,7 @@ export const CheckoutEntries = (props) => {
           <Table.Cell>{entry.author}</Table.Cell>
           <Table.Cell>{entry.borrower}</Table.Cell>
           <Table.Cell backgroundColor={entry.overdue ? 'bad' : 'good'}>
-            {entry.overdue ? 'Overdue' : entry.due_in_minutes + ' Minutes'}
+            {entry.overdue ? '超时' : entry.due_in_minutes + ' 分钟'}
           </Table.Cell>
         </Table.Row>
       ))}
@@ -270,13 +265,13 @@ const CheckoutModal = (props) => {
   );
 
   const [checkoutBook, setCheckoutBook] = useLocalState('CheckoutBook', false);
-  const [bookName, setBookName] = useState('Insert Book name...');
-  const [checkoutee, setCheckoutee] = useState('Recipient');
+  const [bookName, setBookName] = useState('插入书籍名称...');
+  const [checkoutee, setCheckoutee] = useState('接收方');
   const [checkoutPeriod, setCheckoutPeriod] = useState(5);
   return (
     <Modal width="500px">
       <Box fontSize="20px" pb={1}>
-        Are you sure you want to loan out this book?
+        你确定要借出这本书吗?
       </Box>
       <Dropdown
         over
@@ -288,17 +283,17 @@ const CheckoutModal = (props) => {
         onSelected={(e) => setBookName(e)}
       />
       <LabeledList>
-        <LabeledList.Item label="Loan To">
+        <LabeledList.Item label="借给">
           <Input
             width="160px"
             value={checkoutee}
             onChange={(e, value) => setCheckoutee(value)}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Loan Period">
+        <LabeledList.Item label="借阅期限">
           <NumberInput
             value={checkoutPeriod}
-            unit=" Minutes"
+            unit=" 分钟"
             minValue={1}
             step={1}
             stepPixelSize={10}
@@ -310,7 +305,7 @@ const CheckoutModal = (props) => {
         <Stack.Item>
           <Button
             icon="upload"
-            content="Loan Out"
+            content="借出"
             fontSize="16px"
             color="good"
             onClick={() => {
@@ -327,7 +322,7 @@ const CheckoutModal = (props) => {
         <Stack.Item>
           <Button
             icon="times"
-            content="Return"
+            content="返回"
             fontSize="16px"
             color="bad"
             onClick={() => setCheckoutBook(false)}
@@ -343,20 +338,12 @@ export const Archive = (props) => {
   const { act, data } = useBackend();
   const { can_connect, can_db_request, page_count, our_page } = data;
   if (!can_connect) {
-    return (
-      <NoticeBox>
-        Unable to retrieve book listings. Please contact your system
-        administrator for assistance.
-      </NoticeBox>
-    );
+    return <NoticeBox>无法检索书籍目录，请与你的系统管理员取得联系.</NoticeBox>;
   }
   return (
     <Stack vertical justify="space-between" height="100%">
       <Stack.Item grow>
-        <ScrollableSection
-          header="Remote Archive"
-          contents={<SearchAndDisplay />}
-        />
+        <ScrollableSection header="远程存档" contents={<SearchAndDisplay />} />
       </Stack.Item>
       <Stack.Item align="center">
         <PageSelect
@@ -428,7 +415,7 @@ export const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={title}
-                placeholder={title || 'Title'}
+                placeholder={title || '标题'}
                 mt={0.5}
                 onChange={(e, value) =>
                   act('set_search_title', {
@@ -440,7 +427,7 @@ export const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={author}
-                placeholder={author || 'Author'}
+                placeholder={author || '作者'}
                 mt={0.5}
                 onChange={(e, value) =>
                   act('set_search_author', {
@@ -475,9 +462,9 @@ export const SearchAndDisplay = (props) => {
       <Table>
         <Table.Row>
           <Table.Cell fontSize={1.5}>#</Table.Cell>
-          <Table.Cell fontSize={1.5}>Category</Table.Cell>
-          <Table.Cell fontSize={1.5}>Title</Table.Cell>
-          <Table.Cell fontSize={1.5}>Author</Table.Cell>
+          <Table.Cell fontSize={1.5}>目录</Table.Cell>
+          <Table.Cell fontSize={1.5}>标题</Table.Cell>
+          <Table.Cell fontSize={1.5}>作者</Table.Cell>
         </Table.Row>
         {records.map((record) => (
           <Table.Row key={record.key}>
@@ -517,14 +504,10 @@ export const Upload = (props) => {
   } = data;
   const [uploadToDB, setUploadToDB] = useLocalState('UploadDB', false);
   if (!has_scanner) {
-    return (
-      <NoticeBox>
-        No nearby scanner detected, construct one to continue.
-      </NoticeBox>
-    );
+    return <NoticeBox>附近没有检测到扫描仪，请建造一台以继续.</NoticeBox>;
   }
   if (!has_cache) {
-    return <NoticeBox>Scan in a book to upload.</NoticeBox>;
+    return <NoticeBox>扫描一本书上传.</NoticeBox>;
   }
   const contentHtml = {
     __html: sanitizeText(cache_content),
@@ -534,7 +517,7 @@ export const Upload = (props) => {
       <Stack vertical height="100%">
         <Stack.Item>
           <Box fontSize="20px" textAlign="center" pt="6px">
-            Current Scan Cache
+            当前扫描缓存
           </Box>
         </Stack.Item>
         <Stack.Item grow>
@@ -543,7 +526,7 @@ export const Upload = (props) => {
               <Stack justify="center">
                 <Stack.Item>
                   <Box pt={1} fontSize={'20px'}>
-                    Title:
+                    标题:
                   </Box>
                 </Stack.Item>
                 <Stack.Item>
@@ -562,7 +545,7 @@ export const Upload = (props) => {
                 </Stack.Item>
                 <Stack.Item>
                   <Box pt={1} fontSize="20px">
-                    Author:
+                    作者:
                   </Box>
                 </Stack.Item>
                 <Stack.Item>
@@ -586,7 +569,7 @@ export const Upload = (props) => {
                 scrollable
                 preserveWhitespace
                 fontSize="15px"
-                title="Content:"
+                title="内容:"
               >
                 <Box dangerouslySetInnerHTML={contentHtml} />
               </Section>
@@ -601,14 +584,12 @@ export const Upload = (props) => {
                 fluid
                 tooltip={
                   active_newscaster_cooldown
-                    ? "Send your book to the station's newscaster's channel."
-                    : 'Please wait ' +
-                      cooldown_string +
-                      ' before sending your book to the newscaster!'
+                    ? '发送你的书到新闻广播频道.'
+                    : '请等待 ' + cooldown_string + ' 在将书发送至新闻广播前!'
                 }
                 tooltipPosition="top"
                 icon="newspaper"
-                content="Newscaster"
+                content="新闻广播"
                 fontSize="30px"
                 lineHeight={2}
                 textAlign="center"
@@ -620,7 +601,7 @@ export const Upload = (props) => {
                 disabled={!can_db_request}
                 fluid
                 icon="server"
-                content="Archive"
+                content="存档"
                 fontSize="30px"
                 lineHeight={2}
                 textAlign="center"
@@ -646,7 +627,7 @@ const UploadModal = (props) => {
   return (
     <Modal width="650px">
       <Box fontSize="20px" pb={2}>
-        Are you sure you want to upload this book to the database?
+        你确定想将这本书上传到数据库中吗?
       </Box>
       <LabeledList>
         <LabeledList.Item label="Category">
@@ -662,7 +643,7 @@ const UploadModal = (props) => {
           <Button
             disabled={!can_db_request}
             icon="upload"
-            content="Upload To DB"
+            content="上传至数据库"
             fontSize="18px"
             color="good"
             onClick={() => {
@@ -677,7 +658,7 @@ const UploadModal = (props) => {
         <Stack.Item>
           <Button
             icon="times"
-            content="Return"
+            content="返回"
             fontSize="18px"
             color="bad"
             onClick={() => setUploadToDB(false)}
@@ -732,10 +713,10 @@ export const Print = (props) => {
                 {bible_name}
               </Stack.Item>
               <Stack.Item textAlign="center" fontSize="22px" textColor="purple">
-                In the Name of {deity}
+                以{deity}的名义
               </Stack.Item>
               <Stack.Item textAlign="center" fontSize="22px" textColor="purple">
-                For the Sake of {religion}
+                看在{religion}的份上
               </Stack.Item>
               <Stack.Item align="center">
                 <Box className={classes(['bibles224x224', bible_sprite])} />
@@ -750,7 +731,7 @@ export const Print = (props) => {
             <Button
               fluid
               icon="scroll"
-              content="Poster"
+              content="海报"
               fontSize="30px"
               lineHeight={2}
               textAlign="center"
@@ -765,7 +746,7 @@ export const Print = (props) => {
             <Button
               fluid
               icon="cross"
-              content="Bible"
+              content="圣经"
               fontSize="30px"
               lineHeight={2}
               textAlign="center"
@@ -783,13 +764,13 @@ const ForbiddenModal = (props) => {
   return (
     <Modal>
       <Box className="LibraryComputer__CultText" fontSize="28px">
-        Accessing Forbidden Lore Vault v 1.3:
+        访问禁忌知识库 v 1.3:
       </Box>
       <Box className="LibraryComputer__CultText" pt={0.4}>
-        Are you absolutely sure you want to proceed?
+        你确定要继续吗?
       </Box>
       <Box className="LibraryComputer__CultText" pt={0.2} bold>
-        EldritchRelics Inc. will take no responsibility for this choice
+        EldritchRelics Inc. 不对此选择引发的可能后果负责
       </Box>
       <Stack justify="center" align="center">
         <Stack.Item>
@@ -797,7 +778,7 @@ const ForbiddenModal = (props) => {
             className="LibraryComputer__CultText"
             fluid
             icon="check"
-            content="Assent"
+            content="同意"
             color="good"
             fontSize="20px"
             onClick={() => act('lore_spawn')}
@@ -809,7 +790,7 @@ const ForbiddenModal = (props) => {
             className="LibraryComputer__CultText"
             fluid
             icon="times"
-            content="Decline"
+            content="拒绝"
             color="bad"
             fontSize="20px"
             onClick={() => act('lore_deny')}

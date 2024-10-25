@@ -1,6 +1,6 @@
 /obj/machinery/computer/accounting
-	name = "account lookup console"
-	desc = "Used to view crew member accounts and purchases."
+	name = "账户查询终端"
+	desc = "用于调查船员账户以及花销记录."
 	icon_screen = "accounts"
 	icon_keyboard = "id_key"
 	circuit = /obj/item/circuitboard/computer/accounting

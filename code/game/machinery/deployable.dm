@@ -54,8 +54,8 @@
 
 /////BARRICADE TYPES///////
 /obj/structure/barricade/wooden
-	name = "wooden barricade"
-	desc = "This space is blocked off by a wooden barricade."
+	name = "木制路障"
+	desc = "这个地方被木制路障所阻挡."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodenbarricade"
 	resistance_flags = FLAMMABLE
@@ -65,7 +65,7 @@
 /obj/structure/barricade/wooden/Initialize(mapload)
 	. = ..()
 
-	var/static/list/tool_behaviors = list(TOOL_CROWBAR = list(SCREENTIP_CONTEXT_LMB = "Deconstruct"))
+	var/static/list/tool_behaviors = list(TOOL_CROWBAR = list(SCREENTIP_CONTEXT_LMB = "拆解"))
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 	register_context()
 
@@ -73,10 +73,10 @@
 	if(istype(I,/obj/item/stack/sheet/mineral/wood))
 		var/obj/item/stack/sheet/mineral/wood/W = I
 		if(W.amount < 5)
-			to_chat(user, span_warning("You need at least five wooden planks to make a wall!"))
+			to_chat(user, span_warning("你至少需要五块木板来构建一堵墙!"))
 			return
 		else
-			to_chat(user, span_notice("You start adding [I] to [src]..."))
+			to_chat(user, span_notice("你添加[I]到[src]..."))
 			playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 			if(do_after(user, 5 SECONDS, target=src))
 				W.use(5)
@@ -87,18 +87,18 @@
 	return ..()
 
 /obj/structure/barricade/wooden/crowbar_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "deconstructing barricade...")
+	balloon_alert(user, "拆解路障...")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume=50))
 		return
-	balloon_alert(user, "barricade deconstructed")
+	balloon_alert(user, "路障已拆解")
 	tool.play_tool_sound(src)
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/barricade/wooden/crude
-	name = "crude plank barricade"
-	desc = "This space is blocked off by a crude assortment of planks."
+	name = "木板封条"
+	desc = "这地方被粗糙木板封条阻挡了."
 	icon_state = "plankbarricade"
 	drop_amount = 1
 	max_integrity = 50
@@ -106,7 +106,7 @@
 	layer = SIGN_LAYER
 
 /obj/structure/barricade/wooden/crude/snow
-	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
+	desc = "这地方被粗糙木板封条阻挡了，上面还覆盖了一层雪."
 	icon_state = "plankbarricade_snow"
 	max_integrity = 75
 
@@ -114,8 +114,8 @@
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
 
 /obj/structure/barricade/sandbags
-	name = "sandbags"
-	desc = "Bags of sand. Self explanatory."
+	name = "沙袋"
+	desc = "装满沙子的袋子，不言自明."
 	icon = 'icons/obj/smooth_structures/sandbags.dmi'
 	icon_state = "sandbags-0"
 	base_icon_state = "sandbags"
@@ -133,8 +133,8 @@
 	AddElement(/datum/element/elevation, pixel_shift = 12)
 
 /obj/structure/barricade/security
-	name = "security barrier"
-	desc = "A deployable barrier. Provides good cover in fire fights."
+	name = "安保路障"
+	desc = "可展开的路障，在枪战时提供良好的掩护"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barrier0"
 	density = FALSE
@@ -168,8 +168,8 @@
 
 
 /obj/item/grenade/barrier
-	name = "barrier grenade"
-	desc = "Instant cover."
+	name = "路障手雷"
+	desc = "即时掩护."
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "wallbang"
 	inhand_icon_state = "flashbang"
@@ -178,7 +178,7 @@
 
 /obj/item/grenade/barrier/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to toggle modes.")
+	. += span_notice("Alt加左键改变模式.")
 
 /obj/item/grenade/barrier/click_alt(mob/living/carbon/user)
 	toggle_mode(user)
@@ -193,7 +193,7 @@
 		if(HORIZONTAL)
 			mode = SINGLE
 
-	to_chat(user, span_notice("[src] is now in [mode] mode."))
+	to_chat(user, span_notice("[src]当前处于[mode]模式."))
 
 /obj/item/grenade/barrier/detonate(mob/living/lanced_by)
 	. = ..()
@@ -224,8 +224,8 @@
 	toggle_mode(user)
 
 /obj/item/deployable_turret_folded
-	name = "folded heavy machine gun"
-	desc = "A folded and unloaded heavy machine gun, ready to be deployed and used."
+	name = "折叠式重机枪"
+	desc = "可以折叠并拆卸的重机枪, 同样能很方便地部署和使用."
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "folded_hmg"
 	inhand_icon_state = "folded_hmg"

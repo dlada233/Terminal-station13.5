@@ -20,31 +20,32 @@ export const PortableBasicInfo = (props) => {
   return (
     <>
       <Section
-        title="Status"
+        title="状态"
         buttons={
           <Button
             icon={on ? 'power-off' : 'times'}
-            content={on ? 'On' : 'Off'}
+            content={on ? '开启' : '关闭'}
             selected={on}
             onClick={() => act('power')}
           />
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Pressure">
+          <LabeledList.Item label="气压">
             <AnimatedNumber value={pressure} />
             {' kPa'}
           </LabeledList.Item>
-          <LabeledList.Item label="Port" color={connected ? 'good' : 'average'}>
-            {connected ? 'Connected' : 'Not Connected'}
+          <LabeledList.Item
+            label="输气口"
+            color={connected ? 'good' : 'average'}
+          >
+            {connected ? '已连接' : '未连接'}
           </LabeledList.Item>
           {!!hasHypernobCrystal && (
-            <LabeledList.Item label="Reaction Suppression">
+            <LabeledList.Item label="反应抑制">
               <Button
                 icon={data.reactionSuppressionEnabled ? 'snowflake' : 'times'}
-                content={
-                  data.reactionSuppressionEnabled ? 'Enabled' : 'Disabled'
-                }
+                content={data.reactionSuppressionEnabled ? '开启' : '关闭'}
                 selected={data.reactionSuppressionEnabled}
                 onClick={() => act('reaction_suppression')}
               />
@@ -53,12 +54,12 @@ export const PortableBasicInfo = (props) => {
         </LabeledList>
       </Section>
       <Section
-        title="Holding Tank"
+        title="气瓶"
         minHeight="82px"
         buttons={
           <Button
             icon="eject"
-            content="Eject"
+            content="取出"
             disabled={!holding}
             onClick={() => act('eject')}
           />
@@ -66,8 +67,8 @@ export const PortableBasicInfo = (props) => {
       >
         {holding ? (
           <LabeledList>
-            <LabeledList.Item label="Label">{holding.name}</LabeledList.Item>
-            <LabeledList.Item label="Pressure">
+            <LabeledList.Item label="标签">{holding.name}</LabeledList.Item>
+            <LabeledList.Item label="气压">
               <AnimatedNumber value={holding.pressure} />
               {' kPa'}
             </LabeledList.Item>

@@ -199,7 +199,7 @@
 
 /datum/supply_pack/service/randomized/donkpockets
 	name = "多味口袋饼组合"
-	desc = "Donk Co-杜克公司最受欢迎的产品，\
+	desc = "Donk Co-杜客公司最受欢迎的产品，\
 		现在订购即可随机获得四种口味."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy,
@@ -217,14 +217,14 @@
 		new item(C)
 
 /datum/supply_pack/service/randomized/ready_donk
-	name = "杜客快捷餐组合包"
-	desc = "包含三种随机口味的杜客快捷餐."
+	name = "Donk-杜客快捷餐组合包"
+	desc = "包含三种随机口味的Donk-杜客快捷餐."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/food/ready_donk,
 					/obj/item/food/ready_donk/mac_n_cheese,
 					/obj/item/food/ready_donk/donkhiladas,
 				)
-	crate_name = "\improper 杜客快捷餐箱"
+	crate_name = "\improper Donk-杜客快捷餐箱"
 	crate_type = /obj/structure/closet/crate/freezer/food
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 

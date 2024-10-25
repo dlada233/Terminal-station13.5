@@ -13,13 +13,13 @@
 #define SPELL_MP_COST 10
 
 ///The player is currently in the Shop.
-#define UI_PANEL_SHOP "Shop"
+#define UI_PANEL_SHOP "商店"
 ///The player is currently in the World Map.
-#define UI_PANEL_WORLD_MAP "World Map"
+#define UI_PANEL_WORLD_MAP "世界地图"
 ///The player is currently in Batle.
-#define UI_PANEL_BATTLE "Battle"
+#define UI_PANEL_BATTLE "战斗"
 ///The player is currently between battles.
-#define UI_PANEL_BETWEEN_FIGHTS "Between Battle"
+#define UI_PANEL_BETWEEN_FIGHTS "战斗间"
 ///The player is currently Game Overed.
 #define UI_PANEL_GAMEOVER "Game Over"
 
@@ -29,17 +29,17 @@
 #define BATTLE_ATTACK_FLAG_DEFEND (1<<1)
 
 ///The player is trying to Attack the Enemy.
-#define BATTLE_ARCADE_PLAYER_ATTACK "Attack"
+#define BATTLE_ARCADE_PLAYER_ATTACK "攻击"
 ///The player is trying to Attack the Enemy with an MP boost.
-#define BATTLE_ARCADE_PLAYER_HEAVY_ATTACK "Heavy Attack"
+#define BATTLE_ARCADE_PLAYER_HEAVY_ATTACK "重攻击"
 ///The player is setting themselves to counterattack a potential incoming Enemy attack.
-#define BATTLE_ARCADE_PLAYER_COUNTERATTACK "Counterattack"
+#define BATTLE_ARCADE_PLAYER_COUNTERATTACK "反击"
 ///The player is defending against the Enemy and restoring MP.
-#define BATTLE_ARCADE_PLAYER_DEFEND "Defend"
+#define BATTLE_ARCADE_PLAYER_DEFEND "防御"
 
 /obj/machinery/computer/arcade/battle
-	name = "battle arcade"
-	desc = "Explore vast worlds and conquer."
+	name = "战斗街机"
+	desc = "征服并探索广阔的异世界."
 	icon_state = "arcade"
 	icon_screen = "fighters"
 	circuit = /obj/item/circuitboard/computer/arcade/battle

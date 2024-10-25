@@ -162,7 +162,7 @@ const StorageButtons = (props) => {
           />
           <Button
             selected={storageDiskSubMode === STORAGE_DISK_SUBMODE_ENZYMES}
-            content="酶"
+            content="DNA酶"
             onClick={() =>
               act('set_view', {
                 storageDiskSubMode: STORAGE_DISK_SUBMODE_ENZYMES,
@@ -173,7 +173,7 @@ const StorageButtons = (props) => {
       )}
       <Box inline mr={1} />
       <Button
-        content="控制台"
+        content="终端"
         selected={storageMode === STORAGE_MODE_CONSOLE}
         onClick={() =>
           act('set_view', {
@@ -242,7 +242,7 @@ const StorageChromosomes = (props) => {
       </Stack.Item>
       <Stack.Item grow>
         <Section title="染色体信息">
-          {(!chromo && <Box color="label">Nothing to show.</Box>) || (
+          {(!chromo && <Box color="label">无可显示内容.</Box>) || (
             <>
               <LabeledList>
                 <LabeledList.Item label="名称">{chromo.Name}</LabeledList.Item>

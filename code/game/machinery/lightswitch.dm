@@ -1,6 +1,6 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
-	name = "light switch"
+	name = "照明开关"
 	icon = 'icons/obj/machines/wallmounts.dmi' //SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "light-nopower"
 	base_icon_state = "light"
@@ -32,7 +32,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	if(!area)
 		area = get_area(src)
 	if(autoname)
-		name = "light switch ([area.name])"
+		name = "照明开关 ([area.name])"
 	find_and_hang_on_wall(custom_drop_callback = CALLBACK(src, PROC_REF(deconstruct), TRUE))
 	register_context()
 	update_appearance()
@@ -40,10 +40,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 /obj/machinery/light_switch/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = area.lightswitch ? "Flick off" : "Flick on"
+		context[SCREENTIP_CONTEXT_LMB] = area.lightswitch ? "关灯" : "开灯"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour != TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_RMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
@@ -68,7 +68,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
-	. += "It is [(machine_stat & NOPOWER) ? "unpowered" : (area.lightswitch ? "on" : "off")]."
+	. += "[(machine_stat & NOPOWER) ? "无电力" : (area.lightswitch ? "打开着" : "关闭着")]."
 
 /obj/machinery/light_switch/interact(mob/user)
 	. = ..()
@@ -76,7 +76,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 
 /obj/machinery/light_switch/attackby_secondary(obj/item/weapon, mob/user, params)
 	if(weapon.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, "You pop \the [src] off the wall.")
+		to_chat(user, "你把墙上的[src]关掉了.")
 		deconstruct()
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	return ..()
@@ -111,16 +111,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	new /obj/item/wallframe/light_switch(loc)
 
 /obj/item/wallframe/light_switch
-	name = "light switch"
-	desc = "An unmounted light switch. Attach it to a wall to use."
+	name = "照明开关"
+	desc = "尚未安装完成的照明开关，需要放在上墙使用."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "light-nopower"
 	result_path = /obj/machinery/light_switch
 	pixel_shift = 26
 
 /obj/item/circuit_component/light_switch
-	display_name = "Light Switch"
-	desc = "Allows to control the lights of an area."
+	display_name = "照明开关"
+	desc = "控制一个区域的灯光照明."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	///If the lights should be turned on or off when the trigger is triggered.

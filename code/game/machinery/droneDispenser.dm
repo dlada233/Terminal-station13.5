@@ -3,8 +3,8 @@
 #define DRONE_READY "ready"
 
 /obj/machinery/drone_dispenser //Most customizable machine 2015
-	name = "无人机分配机"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a drone shell. Does not need to be manually operated."
+	name = "无人机制造机"
+	desc = "重型机器，当内有足够的铁和玻璃时，会自动制造无人机，无需手动操作."
 
 	icon = 'icons/obj/machines/drone_dispenser.dmi'
 	icon_state = "on"
@@ -73,8 +73,8 @@
 	starting_amount = SHEET_MATERIAL_AMOUNT * 2.5
 
 /obj/machinery/drone_dispenser/syndrone //Please forgive me
-	name = "syndrone shell dispenser"
-	desc = "A suspicious machine that will create Syndicate exterminator drones when supplied with iron and glass. Disgusting."
+	name = "辛迪机制造机"
+	desc = "可疑机器，当内部有足够的铁和玻璃时，会制造辛迪加灭除无人机."
 	dispense_type = /obj/effect/mob_spawn/ghost_role/drone/syndrone
 	//If we're gonna be a jackass, go the full mile - 10 second recharge timer
 	cooldownTime = 100
@@ -82,15 +82,15 @@
 	starting_amount = SHEET_MATERIAL_AMOUNT * 12.5
 
 /obj/machinery/drone_dispenser/syndrone/badass //Please forgive me
-	name = "badass syndrone shell dispenser"
-	desc = "A suspicious machine that will create Syndicate exterminator drones when supplied with iron and glass. Disgusting. This one seems ominous."
+	name = "badass辛迪机制造机"
+	desc = "可疑机器，当内部有足够的铁和玻璃时，会制造辛迪加灭除无人机，这个看起来很不详"
 	dispense_type = /obj/effect/mob_spawn/ghost_role/drone/syndrone/badass
 	end_create_message = "dispenses an ominous suspicious drone shell."
 
 // I don't need your forgiveness, this is awesome.
 /obj/machinery/drone_dispenser/snowflake
-	name = "snowflake drone shell dispenser"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a snowflake drone shell. Does not need to be manually operated."
+	name = "雪花无人机制造机"
+	desc = "重型机器，当内有足够的铁和玻璃时，会自动制造雪花无人机，无需手动操作."
 	dispense_type = /obj/effect/mob_spawn/ghost_role/drone/snowflake
 	end_create_message = "dispenses a snowflake drone shell."
 	// Those holoprojectors aren't cheap
@@ -101,8 +101,8 @@
 
 // If the derelict gets lonely, make more friends.
 /obj/machinery/drone_dispenser/derelict
-	name = "derelict drone shell dispenser"
-	desc = "A rusty machine that, when supplied with iron and glass, will periodically create a derelict drone shell. Does not need to be manually operated."
+	name = "废弃无人机制造机"
+	desc = "生锈机器，当内有足够的铁和玻璃时，会自动制造废弃无人机，无需手动操作.."
 	dispense_type = /obj/effect/mob_spawn/ghost_role/drone/derelict
 	end_create_message = "dispenses a derelict drone shell."
 	iron_cost = SHEET_MATERIAL_AMOUNT * 5
@@ -111,16 +111,16 @@
 	cooldownTime = 600
 
 /obj/machinery/drone_dispenser/classic
-	name = "classic drone shell dispenser"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a classic drone shell. Does not need to be manually operated."
+	name = "经典无人机制造机"
+	desc = "重型机器，当内有足够的铁和玻璃时，会自动制造经典无人机，无需手动操作."
 	dispense_type = /obj/effect/mob_spawn/ghost_role/drone/classic
 	end_create_message = "dispenses a classic drone shell."
 
 // An example of a custom drone dispenser.
 // This one requires no materials and creates basic hivebots
 /obj/machinery/drone_dispenser/hivebot
-	name = "hivebot fabricator"
-	desc = "A large, bulky machine that whirs with activity, steam hissing from vents in its sides."
+	name = "蜂巢机制造厂"
+	desc = "笨重的大型机器，运作时嗡嗡作响，两侧通风口发出蒸汽嘶鸣声.."
 	icon = 'icons/obj/machines/hivebot_fabricator.dmi'
 	icon_state = "hivebot_fab"
 	icon_off = "hivebot_fab"
@@ -139,8 +139,8 @@
 
 // A dispenser that produces binoculars, for the MediSim shuttle.
 /obj/machinery/drone_dispenser/binoculars
-	name = "binoculars fabricator"
-	desc = "A hefty machine that periodically creates a pair of binoculars. Really, Nanotrasen? We're getting this lazy?"
+	name = "双筒望远镜制造厂"
+	desc = "一种自动制造双筒望远镜的重型机器，真的吗，纳米传讯? 我们已经懒到如此地步了吗?"
 	dispense_type = /obj/item/binoculars
 	starting_amount = SHEET_MATERIAL_AMOUNT * 2.5 //Redudant
 	maximum_idle = 1

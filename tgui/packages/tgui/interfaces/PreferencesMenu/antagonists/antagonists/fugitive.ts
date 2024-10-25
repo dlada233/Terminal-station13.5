@@ -2,11 +2,11 @@ import { Antagonist, Category } from '../base';
 
 const Fugitive: Antagonist = {
   key: 'fugitive',
-  name: 'Fugitive',
+  name: '逃亡者',
   description: [
     `
-    Wherever you come from, you're being hunted. You have 10 minutes to prepare
-    before fugitive hunters arrive and start hunting you and your friends down!
+    有众多逃亡出身，但无论哪一种，你都在被追捕. 在追捕你和你朋友的赏金猎人到来前，你
+    有十分钟的准备时间!
     `,
   ],
   category: Category.Midround,

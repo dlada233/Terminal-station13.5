@@ -31,7 +31,7 @@
 		return STOP_PLAYING
 
 /obj/item/instrument/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins to play 'Gloomy Sunday'! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins to play 'Gloomy Sunday'! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/instrument/ui_interact(mob/user, datum/tgui/ui)

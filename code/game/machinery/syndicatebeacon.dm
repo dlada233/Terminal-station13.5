@@ -3,7 +3,7 @@
 ////////////////////////////////////////
 /obj/machinery/power/singularity_beacon
 	name = "不详的信标"
-	desc = "This looks suspicious..."
+	desc = "看起来很可疑..."
 	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "beacon0"
 
@@ -20,7 +20,7 @@
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1500)
 		if(user)
-			to_chat(user, span_notice("The connected wire doesn't have enough current."))
+			to_chat(user, span_notice("所连电缆没有足够的电流."))
 		return
 	for (var/datum/component/singularity/singulo as anything in GLOB.singularities)
 		var/atom/singulo_atom = singulo.parent
@@ -29,7 +29,7 @@
 	icon_state = "[icontype]1"
 	active = TRUE
 	if(user)
-		to_chat(user, span_notice("You activate the beacon."))
+		to_chat(user, span_notice("你激活了信标."))
 
 
 /obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
@@ -40,7 +40,7 @@
 	icon_state = "[icontype]0"
 	active = FALSE
 	if(user)
-		to_chat(user, span_notice("You deactivate the beacon."))
+		to_chat(user, span_notice("你关闭了信标."))
 
 
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user)
@@ -54,33 +54,33 @@
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
-		to_chat(user, span_warning("You need to screw \the [src] to the floor first!"))
+		to_chat(user, span_warning("你需要先用扳手固定[src]到地板上!"))
 
 /obj/machinery/power/singularity_beacon/wrench_act(mob/living/user, obj/item/tool)
 	. = TRUE
 	if(active)
-		to_chat(user, span_warning("You need to deactivate \the [src] first!"))
+		to_chat(user, span_warning("你需要先关闭[src]!"))
 		return
 
 	if(anchored)
 		tool.play_tool_sound(src, 50)
 		set_anchored(FALSE)
-		to_chat(user, span_notice("You unbolt \the [src] from the floor and detach it from the cable."))
+		to_chat(user, span_notice("你拆到地板上[src]的螺栓，并切断了连接的电缆."))
 		disconnect_from_network()
 		return
 	else
 		if(!connect_to_network())
-			to_chat(user, span_warning("\The [src] must be placed over an exposed, powered cable node!"))
+			to_chat(user, span_warning("[src]必须被放置到暴露的通电电缆上!"))
 			return
 		tool.play_tool_sound(src, 50)
 		set_anchored(TRUE)
-		to_chat(user, span_notice("You bolt \the [src] to the floor and attach it to the cable."))
+		to_chat(user, span_notice("你固定[src]的螺栓到地板上并连接电缆."))
 		return
 
 /obj/machinery/power/singularity_beacon/screwdriver_act(mob/living/user, obj/item/tool)
 	user.visible_message( \
-			"[user] messes with \the [src] for a bit.", \
-			span_notice("You can't fit the screwdriver into \the [src]'s bolts! Try using a wrench."))
+			"[user]对[src]乱怼一通.", \
+			span_notice("你没法用螺丝刀拧动[src]的螺栓! 尝试用扳手."))
 	return TRUE
 
 /obj/machinery/power/singularity_beacon/Destroy()
@@ -101,10 +101,10 @@
 				var/datum/component/singularity/singulo_component = _singulo_component
 				var/atom/singulo = singulo_component.parent
 				if(singulo.z == z)
-					say("[singulo] is now [get_dist(src,singulo)] standard lengths away to the [dir2text(get_dir(src,singulo))]")
+					say("[singulo]现在是[get_dist(src,singulo)]到[dir2text(get_dir(src,singulo))]的标准长度.")
 	else
 		Deactivate()
-		say("Insufficient charge detected - powering down")
+		say("电量不足 - 功率下降")
 
 
 /obj/machinery/power/singularity_beacon/syndicate
@@ -118,7 +118,7 @@
 	icon_state = "beacon"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	desc = "A label on it reads: <i>Warning: Activating this device will send a special beacon to your location</i>."
+	desc = "标签上写着: <i>警告: 激活此设备将向你的位置发送一台特殊信标.</i>."
 	w_class = WEIGHT_CLASS_SMALL
 	var/droptype = /obj/machinery/power/singularity_beacon/syndicate
 
@@ -132,21 +132,21 @@
 	return
 
 /obj/item/sbeacondrop/bomb
-	desc = "A label on it reads: <i>Warning: Activating this device will send a high-ordinance explosive to your location</i>."
+	desc = "标签上写着: <i>警告: 激活此设备将向你的位置发送一台高浓度炸药</i>."
 	droptype = /obj/machinery/syndicatebomb
 
 /obj/item/sbeacondrop/emp
-	desc = "A label on it reads: <i>Warning: Activating this device will send a high-powered electromagnetic device to your location</i>."
+	desc = "标签上写着: <i>警告: 激活此设备将向你的位置发送一台高功率电磁装置</i>."
 	droptype = /obj/machinery/syndicatebomb/emp
 
 /obj/item/sbeacondrop/powersink
-	desc = "A label on it reads: <i>Warning: Activating this device will send a power draining device to your location</i>."
+	desc = "标签上写着: <i>警告: 激活此设备将向你的位置发送一台电力汲取装置</i>."
 	droptype = /obj/item/powersink
 
 /obj/item/sbeacondrop/clownbomb
-	desc = "A label on it reads: <i>Warning: Activating this device will send a silly explosive to your location</i>."
+	desc = "标签上写着: <i>警告: 激活此设备将向你的位置发送一台傻瓜炸药</i>."
 	droptype = /obj/machinery/syndicatebomb/badmin/clown
 
 /obj/item/sbeacondrop/horse
-	desc = "A label on it reads: <i>Warning: Activating this device will send a live horse to your location.</i>"
+	desc = "标签上写着: <i>警告: 激活此设备将向你的位置发送一匹马.</i>"
 	droptype = /mob/living/basic/pony/syndicate

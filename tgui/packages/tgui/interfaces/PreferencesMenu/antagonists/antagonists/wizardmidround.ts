@@ -3,9 +3,9 @@ import { WIZARD_MECHANICAL_DESCRIPTION } from './wizard';
 
 const WizardMidround: Antagonist = {
   key: 'wizardmidround',
-  name: 'Wizard (Midround)',
+  name: '巫师 (中局)',
   description: [
-    'A form of wizard that is offered to ghosts in the middle of the shift.',
+    '可以在中局加入，由幽灵扮演的巫师.',
     WIZARD_MECHANICAL_DESCRIPTION,
   ],
   category: Category.Midround,

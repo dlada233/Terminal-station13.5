@@ -1,8 +1,8 @@
 #define BEAM_FADE_TIME (1 SECONDS)
 
 /obj/machinery/launchpad
-	name = "bluespace launchpad"
-	desc = "A bluespace pad able to thrust matter through bluespace, teleporting it to or from nearby locations."
+	name = "蓝空发射台"
+	desc = "一种将物质送入蓝空空间，然后将其传送到指定或附近位置的传送台."
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "lpad-idle"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 2.5
@@ -266,8 +266,8 @@
 
 //Starts in the briefcase. Don't spawn this directly, or it will runtime when closing.
 /obj/machinery/launchpad/briefcase
-	name = "briefcase launchpad"
-	desc = "A portable bluespace pad able to thrust matter through bluespace, teleporting it to or from nearby locations. Controlled via remote."
+	name = "公文包发射台"
+	desc = "便携式的蓝空发射台，能将物质送入蓝空空间，从而实现远距离传送."
 	icon_state = "blpad-idle"
 	icon_teleport = "blpad-beam"
 	anchored = FALSE
@@ -362,8 +362,8 @@
 	return TRUE
 
 /obj/item/launchpad_remote
-	name = "folder"
-	desc = "A folder."
+	name = "文件夹"
+	desc = "一个文件夹."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = WEIGHT_CLASS_SMALL
@@ -460,8 +460,8 @@
 #undef BEAM_FADE_TIME
 
 /obj/item/circuit_component/bluespace_launchpad
-	display_name = "Bluespace Launchpad"
-	desc = "Teleports anything to and from any location on the station. Doesn't use actual GPS coordinates, but rather offsets from the launchpad itself. Can only go as far as the launchpad can go, which depends on its parts."
+	display_name = "蓝空发射台"
+	desc = "能把任意物体传送到范围内任何地方，不使用GPS坐标，而是使用发射台本身的偏移量，其传送范围取决于自身组件."
 
 	var/datum/port/input/x_pos
 	var/datum/port/input/y_pos

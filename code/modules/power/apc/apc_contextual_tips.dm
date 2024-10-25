@@ -50,7 +50,7 @@
 		context[SCREENTIP_CONTEXT_LMB] = "Create wire terminal"
 
 	else if(istype(held_item, /obj/item/electronics/apc) && opened == APC_COVER_OPENED)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert board"
+		context[SCREENTIP_CONTEXT_LMB] = "插入电路板"
 
 	else if(istype(held_item, /obj/item/electroadaptive_pseudocircuit) && opened == APC_COVER_OPENED)
 		if (!has_electronics)

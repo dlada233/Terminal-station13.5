@@ -48,11 +48,11 @@ export const isRecordMatch = (record: GenericRecord, search: string) => {
 export const getDefaultPrintHeader = (printType: PRINTOUT) => {
   switch (printType) {
     case PRINTOUT.Rapsheet:
-      return 'Record';
+      return '记录在案';
     case PRINTOUT.Wanted:
-      return 'WANTED';
+      return '通缉';
     case PRINTOUT.Missing:
-      return 'MISSING';
+      return '失踪';
   }
 };
 
@@ -63,10 +63,10 @@ export const getDefaultPrintDescription = (
 ) => {
   switch (printType) {
     case PRINTOUT.Rapsheet:
-      return `A standard security record for ${name}.`;
+      return `一份${name}的前科记录.`;
     case PRINTOUT.Wanted:
-      return `A poster declaring ${name} to be a wanted criminal, wanted by Nanotrasen. Report any sightings to security immediately.`;
+      return `一张针对${name}的纳米传讯通缉令, 由任何发现请立即向安保部门报告.`;
     case PRINTOUT.Missing:
-      return `A poster declaring ${name} to be a missing individual, missed by Nanotrasen. Report any sightings to security immediately.`;
+      return `一张针对${name}的寻人令, 此人现已失踪，有任何发现请立即向安保部门报告.`;
   }
 };

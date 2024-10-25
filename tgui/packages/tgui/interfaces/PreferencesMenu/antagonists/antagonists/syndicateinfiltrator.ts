@@ -3,11 +3,8 @@ import { TRAITOR_MECHANICAL_DESCRIPTION } from './traitor';
 
 const SyndicateInfiltrator: Antagonist = {
   key: 'syndicateinfiltrator',
-  name: 'Syndicate Infiltrator',
-  description: [
-    'A form of traitor that can activate when joining an ongoing shift.',
-    TRAITOR_MECHANICAL_DESCRIPTION,
-  ],
+  name: '辛迪加渗透者',
+  description: ['一种中局加入的叛徒.', TRAITOR_MECHANICAL_DESCRIPTION],
   category: Category.Latejoin,
   priority: -1,
 };

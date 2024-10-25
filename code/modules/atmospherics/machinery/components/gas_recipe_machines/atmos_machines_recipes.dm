@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/hypern_crystalium
 	id = "hyper_crystalium"
-	name = "Hypernoblium Crystal"
+	name = "Hypernoblium-超铌 Crystal"
 	min_temp = 3
 	max_temp = 250
 	energy_release = -250000
@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/metallic_hydrogen
 	id = "metal_h"
-	name = "Metallic hydrogen"
+	name = "Metallic hydrogen-氢气"
 	min_temp = 50000
 	max_temp = 150000
 	energy_release = -2500000
@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/healium_grenade
 	id = "healium_g"
-	name = "Healium crystal"
+	name = "Healium-疗气 crystal"
 	min_temp = 200
 	max_temp = 400
 	energy_release = -2000000
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/zaukerite
 	id = "zaukerite"
-	name = "Zaukerite sheet"
+	name = "Zauker-扎克ite sheet"
 	min_temp = 5
 	max_temp = 20
 	energy_release = 2900000
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/crystallized_nitrium
 	id = "crystallized_nitrium"
-	name = "Nitrium crystal"
+	name = "Nitrium-亚硝基兴奋气体 crystal"
 	min_temp = 10
 	max_temp = 25
 	energy_release = -45000

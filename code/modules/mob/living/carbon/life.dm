@@ -214,7 +214,7 @@
 	/// Maximum Plasma before side-effects.
 	var/safe_plas_max = 0.05
 	/// Maximum Pluoxum before side-effects.
-	var/gas_stimulation_min = 0.002 // For Pluoxium
+	var/gas_stimulation_min = 0.002 // For Pluoxium-钷
 	// Vars for N2O induced euphoria, stun, and sleep.
 	var/n2o_euphoria = EUPHORIA_LAST_FLAG
 	var/n2o_para_min = 1
@@ -263,7 +263,7 @@
 	//-- PLUOXIUM --//
 	// Behaves like Oxygen with 8X efficacy, but metabolizes into a reagent.
 	if(pluoxium_pp)
-		// Inhale Pluoxium. Exhale nothing.
+		// Inhale Pluoxium-钷. Exhale nothing.
 		breath_gases[/datum/gas/pluoxium][MOLES] = 0
 		// Metabolize to reagent.
 		if(pluoxium_pp > gas_stimulation_min)

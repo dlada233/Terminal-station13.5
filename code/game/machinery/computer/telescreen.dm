@@ -1,6 +1,6 @@
 /obj/machinery/computer/security/telescreen
-	name = "\improper Telescreen"
-	desc = "Used for watching an empty arena."
+	name = "\improper 监控屏"
+	desc = "用于观看空旷的竞技场."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "telescreen"
 	icon_keyboard = null
@@ -14,8 +14,8 @@
 	var/frame_type = /obj/item/wallframe/telescreen
 
 /obj/item/wallframe/telescreen
-	name = "telescreen frame"
-	desc = "A wall-mountable telescreen frame. Apply to wall to use."
+	name = "监控屏框架"
+	desc = "壁挂式的监控屏框架."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "telescreen"
 	result_path = /obj/machinery/computer/security/telescreen
@@ -31,8 +31,8 @@
 	return ..()
 
 /obj/machinery/computer/security/telescreen/entertainment
-	name = "entertainment monitor"
-	desc = "Damn, they better have the /tg/ channel on these things."
+	name = "观影屏"
+	desc = "妈的, 这东西最好有 /tg/ 频道可看."
 	icon = 'icons/obj/machines/status_display.dmi'
 	icon_state = "entertainment_blank"
 	network = list()
@@ -46,7 +46,7 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertainment, 32)
 
 /obj/item/wallframe/telescreen/entertainment
-	name = "entertainment telescreen frame"
+	name = "观影屏框架"
 	icon = 'icons/obj/machines/status_display.dmi'
 	icon_state = "entertainment_blank"
 	result_path = /obj/machinery/computer/security/telescreen/entertainment
@@ -135,8 +135,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertai
 		)
 
 /obj/machinery/computer/security/telescreen/rd
-	name = "\improper Research Director's telescreen"
-	desc = "Used for watching the AI and the RD's goons from the safety of his office."
+	name = "\improper 科研主管的监控屏"
+	desc = "用来在安全的办公室监视AI和科研部门的怪胎们."
 	network = list(
 		CAMERANET_NETWORK_RD,
 		CAMERANET_NETWORK_AI_CORE,
@@ -149,144 +149,144 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertai
 	frame_type = /obj/item/wallframe/telescreen/rd
 
 /obj/item/wallframe/telescreen/rd
-	name = "\improper Research Director's telescreen frame"
+	name = "\improper 科研主管监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/rd
 
 /obj/machinery/computer/security/telescreen/research
-	name = "research telescreen"
-	desc = "A telescreen with access to the research division's camera network."
+	name = "科研监控屏"
+	desc = "可以接入科研部门摄像头网络的监控屏."
 	network = list(CAMERANET_NETWORK_RD)
 	frame_type = /obj/item/wallframe/telescreen/research
 
 /obj/item/wallframe/telescreen/research
-	name = "research telescreen frame"
+	name = "科研监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/research
 
 /obj/machinery/computer/security/telescreen/ce
-	name = "\improper Chief Engineer's telescreen"
-	desc = "Used for watching the engine, telecommunications and the minisat."
+	name = "\improper 工程部长的监控屏"
+	desc = "用于监控发电引擎，电信以及迷你卫星."
 	network = list(CAMERANET_NETWORK_ENGINE, CAMERANET_NETWORK_TELECOMMS, CAMERANET_NETWORK_MINISAT)
 	frame_type = /obj/item/wallframe/telescreen/ce
 
 /obj/item/wallframe/telescreen/ce
-	name = "\improper Chief Engineer's telescreen frame"
+	name = "\improper 工程部长监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/ce
 
 /obj/machinery/computer/security/telescreen/cmo
-	name = "\improper Chief Medical Officer's telescreen"
-	desc = "A telescreen with access to the medbay's camera network."
+	name = "\improper 医疗部长的监控屏"
+	desc = "用于访问医疗部门摄像头网络."
 	network = list(CAMERANET_NETWORK_MEDBAY)
 	frame_type = /obj/item/wallframe/telescreen/cmo
 
 /obj/item/wallframe/telescreen/cmo
-	name = "\improper Chief Engineer'stelescreen frame"
+	name = "\improper 医疗部长监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/cmo
 
 /obj/machinery/computer/security/telescreen/vault
-	name = "vault monitor"
-	desc = "A telescreen that connects to the vault's camera network."
+	name = "金库监控屏"
+	desc = "可以访问金库内的摄像头."
 	network = list(CAMERANET_NETWORK_VAULT)
 	frame_type = /obj/item/wallframe/telescreen/vault
 
 /obj/item/wallframe/telescreen/vault
-	name = "vault telescreen frame"
+	name = "金库监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/vault
 
 /obj/machinery/computer/security/telescreen/ordnance
-	name = "bomb test site monitor"
-	desc = "A telescreen that connects to the bomb test site's camera."
+	name = "炸弹试验场地监控屏"
+	desc = "可以访问炸弹试验场地内的摄像头."
 	network = list(CAMERANET_NETWORK_ORDNANCE)
 	frame_type = /obj/item/wallframe/telescreen/ordnance
 
 /obj/item/wallframe/telescreen/ordnance
-	name = "bomb test site telescreen frame"
+	name = "炸弹试验场地监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/ordnance
 
 /obj/machinery/computer/security/telescreen/engine
-	name = "engine monitor"
-	desc = "A telescreen that connects to the engine's camera network."
+	name = "发电引擎监控屏"
+	desc = "可以访问发电引擎摄像头的监控屏."
 	network = list(CAMERANET_NETWORK_ENGINE)
 	frame_type = /obj/item/wallframe/telescreen/engine
 
 /obj/item/wallframe/telescreen/engine
-	name = "engine telescreen frame"
+	name = "发电引擎监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/engine
 
 /obj/machinery/computer/security/telescreen/turbine
-	name = "turbine monitor"
-	desc = "A telescreen that connects to the turbine's camera."
+	name = "涡轮机监控屏"
+	desc = "可以访问涡轮机摄像头的监控屏."
 	network = list(CAMERANET_NETWORK_TURBINE)
 	frame_type = /obj/item/wallframe/telescreen/turbine
 
 /obj/item/wallframe/telescreen/turbine
-	name = "turbine telescreen frame"
+	name = "涡轮机监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/turbine
 
 /obj/machinery/computer/security/telescreen/interrogation
-	name = "interrogation room monitor"
-	desc = "A telescreen that connects to the interrogation room's camera."
+	name = "审讯室监控屏"
+	desc = "用来访问审讯室内的摄像头."
 	network = list(CAMERANET_NETWORK_INTERROGATION)
 	frame_type = /obj/item/wallframe/telescreen/interrogation
 
 /obj/item/wallframe/telescreen/interrogation
-	name = "interrogation telescreen frame"
+	name = "审讯室监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/interrogation
 
 /obj/machinery/computer/security/telescreen/prison
-	name = "prison monitor"
-	desc = "A telescreen that connects to the permabrig's camera network."
+	name = "监狱监控屏"
+	desc = "用来访问监狱摄像头."
 	network = list(CAMERANET_NETWORK_PRISON)
 	frame_type = /obj/item/wallframe/telescreen/prison
 
 /obj/item/wallframe/telescreen/prison
-	name = "prison telescreen frame"
+	name = "监狱监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/prison
 
 /obj/machinery/computer/security/telescreen/auxbase
-	name = "auxiliary base monitor"
-	desc = "A telescreen that connects to the auxiliary base's camera."
+	name = "辅助基地监控屏"
+	desc = "用于访问辅助基地的摄像头."
 	network = list(CAMERANET_NETWORK_AUXBASE)
 	frame_type = /obj/item/wallframe/telescreen/auxbase
 
 /obj/item/wallframe/telescreen/auxbase
-	name = "auxiliary base telescreen frame"
+	name = "辅助基地监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/auxbase
 
 /obj/machinery/computer/security/telescreen/minisat
-	name = "minisat monitor"
-	desc = "A telescreen that connects to the minisat's camera network."
+	name = "迷你卫星监控屏"
+	desc = "用于访问迷你卫星的摄像头."
 	network = list(CAMERANET_NETWORK_MINISAT)
 	frame_type = /obj/item/wallframe/telescreen/minisat
 
 /obj/item/wallframe/telescreen/minisat
-	name = "minisat telescreen frame"
+	name = "迷你卫星监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/minisat
 
 /obj/machinery/computer/security/telescreen/aiupload
-	name = "\improper AI upload monitor"
-	desc = "A telescreen that connects to the AI upload's camera network."
+	name = "\improper AI上传监控屏"
+	desc = "用于访问AI上传摄像头."
 	network = list(CAMERANET_NETWORK_AI_UPLOAD)
 	frame_type = /obj/item/wallframe/telescreen/aiupload
 
 /obj/item/wallframe/telescreen/aiupload
-	name = "\improper AI upload telescreen frame"
+	name = "\improper AI上传监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/aiupload
 
 /obj/machinery/computer/security/telescreen/bar
-	name = "bar monitor"
-	desc = "A telescreen that connects to the bar's camera network. Perfect for checking on customers."
+	name = "酒吧监控屏"
+	desc = "用于访问酒吧内摄像头."
 	network = list(CAMERANET_NETWORK_BAR)
 	frame_type = /obj/item/wallframe/telescreen/bar
 
 /obj/item/wallframe/telescreen/bar
-	name = "bar telescreen frame"
+	name = "酒吧监控屏框架"
 	result_path = /obj/machinery/computer/security/telescreen/bar
 
 
 /// A button that adds a camera network to the entertainment monitors
 /obj/machinery/button/showtime
-	name = "thunderdome showtime button"
-	desc = "Use this button to allow entertainment monitors to broadcast the big game."
+	name = "雷霆竞技场开播按钮"
+	desc = "按下按钮允许观影屏开始播放大型比赛."
 	device_type = /obj/item/assembly/control/showtime
 	req_access = list()
 	id = "showtime_1"
@@ -298,31 +298,31 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertai
 		ours.id = id
 
 /obj/item/assembly/control/showtime
-	name = "showtime controller"
-	desc = "A remote controller for entertainment monitors."
+	name = "开播控制器"
+	desc = "用于远程控制观影屏."
 	/// Stores if the show associated with this controller is active or not
 	var/is_show_active = FALSE
 	/// The camera network id this controller toggles
 	var/tv_network_id = "thunder"
 	/// The display TV show name
-	var/tv_show_name = "Thunderdome"
+	var/tv_show_name = "雷霆竞技场"
 	/// List of phrases the entertainment console may say when the show begins
 	var/list/tv_starters = list(
-		"Feats of bravery live now at the thunderdome!",
-		"Two enter, one leaves! Tune in now!",
-		"Violence like you've never seen it before!",
-		"Spears! Camera! Action! LIVE NOW!",
+		"勇敢的壮举在雷霆竞技场上演!",
+		"两边人进去，只有一边出来! 现在加入观看!",
+		"你从未见过的暴力!",
+		"场景! 镜头! 观众! 现在加入观看!",
 	)
 	/// List of phrases the entertainment console may say when the show ends
 	var/list/tv_enders = list(
-		"Thank you for tuning in to the slaughter!",
-		"What a show! And we guarantee next one will be bigger!",
-		"Celebrate the results with Thundermerch!",
-		"This show was brought to you by Nanotrasen.",
+		"感谢您收看这场厮杀!",
+		"多么精彩!我们保证下一场会更好!",
+		"为雷霆竞技场之战欢庆吧!",
+		"这场表演由纳米传讯冠名播出.",
 	)
 
 /obj/item/assembly/control/showtime/activate()
 	is_show_active = !is_show_active
-	say("The [tv_show_name] show has [is_show_active ? "begun" : "ended"]")
+	say("[tv_show_name]节目[is_show_active ? "开始了" : "结束了"]")
 	var/announcement = is_show_active ? pick(tv_starters) : pick(tv_enders)
 	set_network_broadcast_status(tv_network_id, is_show_active, announcement)

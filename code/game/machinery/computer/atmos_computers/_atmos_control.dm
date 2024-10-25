@@ -1,7 +1,7 @@
 /// GENERAL AIR CONTROL (a.k.a atmos computer)
 /obj/machinery/computer/atmos_control
-	name = "atmospherics monitoring"
-	desc = "Used to monitor the station's atmospherics sensors."
+	name = "大气监测站"
+	desc = "用以收集显示并管理来自空间站气体传感器的大气数据."
 	icon_screen = "tank"
 	icon_keyboard = "atmos_key"
 	circuit = /obj/item/circuitboard/computer/atmos_control

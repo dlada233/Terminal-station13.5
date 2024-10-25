@@ -116,7 +116,7 @@
 				return
 			user.visible_message(span_notice("[user] is repairing [src]."), \
 							span_notice("You begin repairing [src]..."), \
-							span_hear("You hear welding."))
+							span_hear("你听到焊接声."))
 			if(O.use_tool(src, user, 40, volume=50))
 				if(!(machine_stat & BROKEN))
 					return

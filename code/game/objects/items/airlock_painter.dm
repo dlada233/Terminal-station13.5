@@ -76,7 +76,7 @@
 	var/obj/item/organ/internal/lungs/L = user.get_organ_slot(ORGAN_SLOT_LUNGS)
 
 	if(can_use(user) && L)
-		user.visible_message(span_suicide("[user] is inhaling toner from [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] is inhaling toner from [src]! 看起来是在尝试自杀!"))
 		use(user)
 
 		// Once you've inhaled the toner, you throw up your lungs

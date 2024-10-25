@@ -5,7 +5,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 
 // Away Missions
 /area/awaymission
-	name = "Strange Location"
+	name = "Strange Location-奇怪的地方"
 	icon = 'icons/area/areas_away_missions.dmi'
 	icon_state = "away"
 	has_gravity = STANDARD_GRAVITY
@@ -14,7 +14,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	area_flags = NOTELEPORT|UNIQUE_AREA //SKYRAT EDIT CHANGE
 
 /area/awaymission/beach
-	name = "Beach"
+	name = "Beach-沙滩"
 	icon_state = "away"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
@@ -24,7 +24,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	ambientsounds = list('sound/ambience/shore.ogg', 'sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag2.ogg','sound/ambience/ambiodd.ogg','sound/ambience/ambinice.ogg')
 
 /area/awaymission/museum
-	name = "Nanotrasen Museum"
+	name = "Nanotrasen Museum-纳米传讯博物馆"
 	icon_state = "awaycontent28"
 	sound_environment = SOUND_ENVIRONMENT_CONCERT_HALL
 
@@ -36,11 +36,11 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	ambientsounds = list('sound/ambience/shore.ogg', 'sound/ambience/ambiodd.ogg','sound/ambience/ambinice.ogg')
 
 /area/awaymission/museum/cafeteria
-	name = "Nanotrasen Museum Cafeteria"
+	name = "Nanotrasen Museum Cafeteria-纳米传讯博物馆自助餐厅"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/awaymission/errorroom
-	name = "Super Secret Room"
+	name = "Super Secret Room-秘密房间"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	area_flags = UNIQUE_AREA|NOTELEPORT

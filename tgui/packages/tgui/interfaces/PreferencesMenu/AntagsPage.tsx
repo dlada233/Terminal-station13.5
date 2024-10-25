@@ -91,11 +91,11 @@ const AntagSelection = (props: { antagonists: Antagonist[]; name: string }) => {
       buttons={
         <>
           <Button color="good" onClick={() => enableAntags(antagonistKeys)}>
-            Enable All
+            全部开启
           </Button>
 
           <Button color="bad" onClick={() => disableAntags(antagonistKeys)}>
-            Disable All
+            全部关闭
           </Button>
         </>
       }
@@ -138,7 +138,7 @@ const AntagSelection = (props: { antagonists: Antagonist[]; name: string }) => {
                   <Tooltip
                     content={
                       isBanned
-                        ? `You are banned from ${antagonist.name}.`
+                        ? `你被禁止使用 ${antagonist.name}.`
                         : antagonist.description.map((text, index) => {
                             return (
                               <div key={antagonist.key + index}>
@@ -179,7 +179,7 @@ const AntagSelection = (props: { antagonists: Antagonist[]; name: string }) => {
 
                       {daysLeft > 0 && (
                         <Box className="antagonist-days-left">
-                          <b>{daysLeft}</b> days left
+                          还剩 <b>{daysLeft}</b> 天
                         </Box>
                       )}
                     </Box>
@@ -198,17 +198,17 @@ export const AntagsPage = () => {
   return (
     <Box className="PreferencesMenu__Antags">
       <AntagSelection
-        name="Roundstart"
+        name="开局生成"
         antagonists={antagsByCategory.get(Category.Roundstart)!}
       />
 
       <AntagSelection
-        name="Midround"
+        name="中局生成"
         antagonists={antagsByCategory.get(Category.Midround)!}
       />
 
       <AntagSelection
-        name="Latejoin"
+        name="加入时生成"
         antagonists={antagsByCategory.get(Category.Latejoin)!}
       />
     </Box>

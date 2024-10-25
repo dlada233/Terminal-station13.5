@@ -17,7 +17,7 @@
 	var/shut_off_on_unequip = TRUE
 
 /obj/item/t_scanner/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins to emit terahertz-rays into [user.p_their()] brain with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins to emit terahertz-rays into [user.p_their()] brain with [src]! 看起来是在尝试自杀!"))
 	return TOXLOSS
 
 /obj/item/t_scanner/proc/toggle_on()

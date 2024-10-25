@@ -212,7 +212,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
       sendingBar = (
         <Section fill>
           <Box width="100%" italic color="gray" ml={1}>
-            You cannot reply to this user.
+            你无法回复该用户.
           </Box>
         </Section>
       );
@@ -236,7 +236,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
         <Section fill>
           <Button
             icon="arrow-left"
-            content="Back"
+            content="返回"
             onClick={() => this.setState({ selectingPhoto: false })}
           />
           {photos.length > 0 ? (
@@ -245,7 +245,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
             </Section>
           ) : (
             <Box as="span" ml={1}>
-              No photos found
+              未找到照片
             </Box>
           )}
         </Section>
@@ -253,13 +253,13 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
     } else {
       const attachmentButton = sendingVirus ? (
         <Button
-          tooltip="ERROR: File signature is unverified. Please contact an NT support intern."
+          tooltip="错误: 文件签名未经验证, 请联系NT技术支持实习生."
           icon="triangle-exclamation"
           color="red"
         />
       ) : (
         <Button
-          tooltip="Add attachment"
+          tooltip="移除附件"
           icon="image"
           onClick={this.handleSelectPicture}
         />
@@ -270,7 +270,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
           <Stack.Item>{attachmentButton}</Stack.Item>
           <Stack.Item>
             <Button
-              tooltip="Send"
+              tooltip="发送"
               icon="arrow-right"
               onClick={this.handleSendMessage}
               disabled={!canSend}
@@ -289,7 +289,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
                 <Button
                   pt={1}
                   onClick={() => act('PDA_clearPhoto')}
-                  tooltip="Remove attachment"
+                  tooltip="移除附件"
                   tooltipPosition="auto-end"
                 >
                   <Image src={selectedPhoto} />
@@ -300,7 +300,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
               <Stack fill align="center">
                 <Stack.Item grow={1}>
                   <Input
-                    placeholder={`Send message to ${recipient.name}...`}
+                    placeholder={`发送消息至 ${recipient.name}...`}
                     fluid
                     autoFocus
                     width="100%"
@@ -323,19 +323,19 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
         <Section>
           <Button
             icon="arrow-left"
-            content="Back"
+            content="返回"
             onClick={() => act('PDA_viewMessages', { ref: null })}
           />
           {chatRef && (
             <>
               <Button
                 icon="box-archive"
-                content="Close chat"
+                content="关闭会话"
                 onClick={() => act('PDA_closeMessages', { ref: chatRef })}
               />
               <Button.Confirm
                 icon="trash-can"
-                content="Delete chat"
+                content="删除会话"
                 onClick={() => act('PDA_clearMessages', { ref: chatRef })}
               />
             </>
@@ -354,7 +354,7 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
               {!!(messages.length > 0 && canReply) && (
                 <>
                   <Stack.Item textAlign="center" fontSize={1}>
-                    This is the beginning of your chat with {recipient.name}.
+                    此处已是 {recipient.name} 对话的最顶部.
                   </Stack.Item>
                   <Stack.Divider />
                 </>
@@ -369,11 +369,11 @@ export class ChatScreen extends Component<ChatScreenProps, ChatScreenState> {
         {previewingImage && (
           <Modal className="NtosChatLog__ImagePreview">
             <Section
-              title="Photo Preview"
+              title="照片预览"
               buttons={
                 <Button
                   icon="arrow-left"
-                  content="Back"
+                  content="返回"
                   tooltipPosition="left"
                   onClick={() => this.setState({ previewingImage: undefined })}
                 />
@@ -422,7 +422,7 @@ const ChatMessage = (props: ChatMessageProps) => {
       )}
       {!!photoPath && (
         <Button
-          tooltip="View image"
+          tooltip="浏览图像"
           className="NtosChatMessage__image"
           color="transparent"
           onClick={onPreviewImage}

@@ -1,6 +1,6 @@
 /obj/structure/frame/computer
 	name = "电脑框架"
-	desc = "A frame for constructing your own computer. Or console. Whichever name you prefer."
+	desc = "等待构建成电脑或者终端的计算机框架."
 	icon_state = "0"
 	base_icon_state = ""
 	state = FRAME_COMPUTER_STATE_EMPTY
@@ -51,7 +51,7 @@
 				return CONTEXTUAL_SCREENTIP_SET
 		if(FRAME_COMPUTER_STATE_BOARD_SECURED)
 			if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-				context[SCREENTIP_CONTEXT_LMB] = "Unsecure board"
+				context[SCREENTIP_CONTEXT_LMB] = "解除固定 board"
 				return CONTEXTUAL_SCREENTIP_SET
 			else if(istype(held_item, /obj/item/stack/cable_coil))
 				context[SCREENTIP_CONTEXT_LMB] = "Install cable"
@@ -68,7 +68,7 @@
 				context[SCREENTIP_CONTEXT_LMB] = "Pry out glass"
 				return CONTEXTUAL_SCREENTIP_SET
 			else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-				context[SCREENTIP_CONTEXT_LMB] = "Complete frame"
+				context[SCREENTIP_CONTEXT_LMB] = "完成框架"
 				return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/frame/computer/examine(user)
@@ -80,7 +80,7 @@
 			if(anchored)
 				. += span_warning("It's missing a circuit board.")
 			else
-				. += span_notice("It can be [EXAMINE_HINT("welded")] or [EXAMINE_HINT("screwed")] apart.")
+				. += span_notice("It can be [EXAMINE_HINT("已焊接")] or [EXAMINE_HINT("screwed")] apart.")
 		if(FRAME_COMPUTER_STATE_BOARD_INSTALLED)
 			. += span_warning("An [circuit.name] is installed and should be [EXAMINE_HINT("screwed")] in place.")
 			. += span_notice("The circuit board can be [EXAMINE_HINT("pried")] out.")
@@ -340,26 +340,26 @@
 
 /obj/structure/frame/computer/rcd/Initialize(mapload)
 	// yeah...
-	name = "computer frame"
+	name = "电脑框架"
 	icon = 'icons/obj/devices/stock_parts.dmi'
 	return ..()
 
 /obj/structure/frame/computer/rcd/north
 	dir = NORTH
-	name = "Computer North"
+	name = "朝北电脑"
 	icon_state = "cnorth"
 
 /obj/structure/frame/computer/rcd/south
 	dir = SOUTH
-	name = "Computer South"
+	name = "朝南电脑"
 	icon_state = "csouth"
 
 /obj/structure/frame/computer/rcd/east
 	dir = EAST
-	name = "Computer East"
+	name = "朝东电脑"
 	icon_state = "ceast"
 
 /obj/structure/frame/computer/rcd/west
 	dir = WEST
-	name = "Computer West"
+	name = "朝西电脑"
 	icon_state = "cwest"

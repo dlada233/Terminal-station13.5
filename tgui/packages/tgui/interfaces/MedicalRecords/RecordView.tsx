@@ -26,7 +26,7 @@ import { MedicalRecordData } from './types';
 /** Views a selected record. */
 export const MedicalRecordView = (props) => {
   const foundRecord = getMedicalRecord();
-  if (!foundRecord) return <NoticeBox>No record selected.</NoticeBox>;
+  if (!foundRecord) return <NoticeBox>未选择档案.</NoticeBox>;
 
   const { act, data } = useBackend<MedicalRecordData>();
   const { assigned_view, physical_statuses, mental_statuses, station_z } = data;
@@ -75,7 +75,7 @@ export const MedicalRecordView = (props) => {
         <Section
           buttons={
             <Button.Confirm
-              content="Delete"
+              content="删除"
               icon="trash"
               disabled={!station_z}
               onClick={() => act('expunge_record', { crew_ref: crew_ref })}
@@ -87,15 +87,15 @@ export const MedicalRecordView = (props) => {
           title={name}
         >
           <LabeledList>
-            <LabeledList.Item label="Name">
+            <LabeledList.Item label="姓名">
               <EditableText field="name" target_ref={crew_ref} text={name} />
             </LabeledList.Item>
-            <LabeledList.Item label="Job">
+            <LabeledList.Item label="职业">
               <EditableText field="job" target_ref={crew_ref} text={rank} />
             </LabeledList.Item>
             {/* <LabeledList.Item label="Age"> // ORIGINAL */}
             {/* SKYRAT EDIT CHANGE BEGIN - Chronological age */}
-            <LabeledList.Item label="Physical Age">
+            <LabeledList.Item label="生理年龄">
               {/* SKYRAT EDIT CHANGE END */}
               <RestrictedInput
                 minValue={min_age}
@@ -111,7 +111,7 @@ export const MedicalRecordView = (props) => {
               />
             </LabeledList.Item>
             {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
-            <LabeledList.Item label="Chronological Age">
+            <LabeledList.Item label="存在年龄">
               <RestrictedInput
                 minValue={min_age}
                 maxValue={max_chrono_age}
@@ -126,14 +126,14 @@ export const MedicalRecordView = (props) => {
               />
             </LabeledList.Item>
             {/* SKYRAT EDIT ADDITION END */}
-            <LabeledList.Item label="Species">
+            <LabeledList.Item label="种族">
               <EditableText
                 field="species"
                 target_ref={crew_ref}
                 text={species}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Gender">
+            <LabeledList.Item label="性别">
               <EditableText
                 field="gender"
                 target_ref={crew_ref}
@@ -148,7 +148,7 @@ export const MedicalRecordView = (props) => {
                 text={dna}
               />
             </LabeledList.Item>
-            <LabeledList.Item color="bad" label="Blood Type">
+            <LabeledList.Item color="bad" label="血型">
               <EditableText
                 field="blood_type"
                 target_ref={crew_ref}
@@ -179,7 +179,7 @@ export const MedicalRecordView = (props) => {
                   </Button>
                 );
               })}
-              label="Physical Status"
+              label="身体状况"
             >
               <Box color={PHYSICALSTATUS2COLOR[physical_status]}>
                 {physical_status}
@@ -209,34 +209,34 @@ export const MedicalRecordView = (props) => {
                   </Button>
                 );
               })}
-              label="Mental Status"
+              label="精神状况"
             >
               <Box color={MENTALSTATUS2COLOR[mental_status]}>
                 {mental_status}
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Minor Disabilities">
+            <LabeledList.Item label="次要障碍">
               {minor_disabilities_array.map((disability, index) => (
                 <Box key={index}>&#8226; {disability}</Box>
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Major Disabilities">
+            <LabeledList.Item label="主要障碍">
               {major_disabilities_array.map((disability, index) => (
                 <Box key={index}>&#8226; {disability}</Box>
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Quirks">
+            <LabeledList.Item label="特质">
               {quirk_notes_array.map((quirk, index) => (
                 <Box key={index}>&#8226; {quirk}</Box>
               ))}
             </LabeledList.Item>
             {/* SKYRAT EDIT START - RP Records (Not pretty but it's there) */}
-            <LabeledList.Item label="General Records">
+            <LabeledList.Item label="一般档案">
               <Box maxWidth="100%" preserveWhitespace>
                 {past_general_records || 'N/A'}
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Past Medical Records">
+            <LabeledList.Item label="过往医疗档案">
               <Box maxWidth="100%" preserveWhitespace>
                 {past_medical_records || 'N/A'}
               </Box>

@@ -15,7 +15,7 @@ export const AtmosControlPanel = (props) => {
     (group) => group.id,
   );
   return (
-    <Window title="SSAir Control Panel" width={900} height={500}>
+    <Window title="SSAir 控制面板" width={900} height={500}>
       <Section m={1}>
         <Flex justify="space-between" align="baseline">
           <Flex.Item>

@@ -84,8 +84,8 @@
 	return FALSE
 
 /obj/machinery/computer/shuttle/arrivals
-	name = "arrivals shuttle control"
-	desc = "The terminal used to control the arrivals interlink shuttle."
+	name = "登站班轮控制台"
+	desc = "用于控制登站班轮的控制台."
 	shuttleId = "arrivals_shuttle"
 	possible_destinations = "arrivals_stationary;arrivals_shuttle"
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/computer.dmi'
@@ -103,8 +103,8 @@
 	var/last_cancel_announce
 
 /obj/machinery/computer/shuttle/arrivals/recall
-	name = "arrivals shuttle recall terminal"
-	desc = "Use this if your friends left you behind."
+	name = "登站班轮召回终端"
+	desc = "使用该控制台将你的朋友丢在身后."
 	possible_destinations = "arrivals_stationary;arrivals_shuttle"
 
 /*

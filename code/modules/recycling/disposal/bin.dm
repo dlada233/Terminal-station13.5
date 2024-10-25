@@ -349,7 +349,7 @@
 			balloon_alert(user, "already has a tagger!")
 			return
 		if(HAS_TRAIT(new_tagger, TRAIT_NODROP) || !user.transferItemToLoc(new_tagger, src))
-			balloon_alert(user, "stuck to your hand!")
+			balloon_alert(user, "粘在了你的手上!")
 			return
 		new_tagger.moveToNullspace()
 		user.visible_message(span_notice("[user] snaps \the [new_tagger] onto [src]!"))

@@ -32,14 +32,14 @@ export const ShuttleConsole = (props) => {
               <Icon name="minus-circle" />
             </Flex.Item>
             <Flex.Item mt={2} ml={2} color="bad">
-              {type === 'shuttle' ? 'SHUTTLE LOCKED' : 'BASE LOCKED'}
+              {type === 'shuttle' ? '飞船被锁定' : '基地被锁定'}
             </Flex.Item>
           </Flex>
           <Box fontSize="18px" mt={4}>
             <Button
               lineHeight="40px"
               icon="arrow-circle-right"
-              content="Request Authorization"
+              content="请求授权"
               color="bad"
               onClick={() => act('request')}
             />
@@ -62,12 +62,12 @@ const getLocationIdByName = (locations, name) => {
 };
 
 const STATUS_COLOR_KEYS = {
-  'In Transit': 'good',
+  在途中: 'good',
   Idle: 'average',
   Igniting: 'average',
   Recharging: 'average',
   Missing: 'bad',
-  'Unauthorized Access': 'bad',
+  访问未经授权: 'bad',
   Locked: 'bad',
 };
 
@@ -90,22 +90,22 @@ export const ShuttleConsoleContent = (props) => {
       </Box>
       <Box textAlign="center" fontSize="14px" mb={1}>
         <Box inline bold>
-          STATUS:
+          状态:
         </Box>
         <Box inline color={STATUS_COLOR_KEYS[status] || 'bad'} ml={1}>
-          {status || 'Not Available'}
+          {status || '不可用'}
         </Box>
       </Box>
       <Section
-        title={type === 'shuttle' ? 'Shuttle Controls' : 'Base Launch Controls'}
+        title={type === 'shuttle' ? '飞船控制台' : '基地发射控制台'}
         level={2}
       >
         <LabeledList>
-          <LabeledList.Item label="Location">
-            {docked_location || 'Not Available'}
+          <LabeledList.Item label="出发地">
+            {docked_location || '不可用'}
           </LabeledList.Item>
           <LabeledList.Item
-            label="Destination"
+            label="目的地"
             buttons={
               type !== 'shuttle' &&
               locations.length === 0 &&
@@ -114,7 +114,7 @@ export const ShuttleConsoleContent = (props) => {
                   color="bad"
                   icon="exclamation-triangle"
                   disabled={authorization_required || !blind_drop}
-                  content={'Blind Drop'}
+                  content={'盲降'}
                   onClick={() => act('random')}
                 />
               )
@@ -137,8 +137,7 @@ export const ShuttleConsoleContent = (props) => {
                   options={locations.map((location) => location.name)}
                   disabled={locked || authorization_required}
                   selected={
-                    getLocationNameById(locations, destination) ||
-                    'Select a Destination'
+                    getLocationNameById(locations, destination) || '选择目的地'
                   }
                   onSelected={(value) =>
                     act('set_destination', {
@@ -151,7 +150,7 @@ export const ShuttleConsoleContent = (props) => {
         </LabeledList>
         <Button
           fluid
-          content="Depart"
+          content="出发"
           disabled={
             !getLocationNameById(locations, destination) ||
             locked ||

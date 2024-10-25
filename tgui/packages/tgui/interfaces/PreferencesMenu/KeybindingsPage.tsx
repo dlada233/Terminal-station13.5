@@ -382,7 +382,7 @@ export class KeybindingsPage extends Component<{}, KeybindingsPageState> {
     const keybindings = this.state.keybindings;
 
     if (!keybindings) {
-      return <Box>Loading keybindings...</Box>;
+      return <Box>加载快捷键...</Box>;
     }
 
     const keybindingEntries = sortKeybindingsByCategory(
@@ -458,7 +458,7 @@ export class KeybindingsPage extends Component<{}, KeybindingsPageState> {
 
           <Stack.Item align="center">
             <Button.Confirm
-              content="Reset all keybindings"
+              content="重置所有快捷键"
               onClick={() => act('reset_all_keybinds')}
             />
           </Stack.Item>

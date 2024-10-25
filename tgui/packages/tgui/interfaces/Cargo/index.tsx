@@ -54,7 +54,7 @@ export function CargoContent(props) {
             selected={tab === TAB.Catalog}
             onClick={() => setTab(TAB.Catalog)}
           >
-            Catalog
+            目录
           </Tabs.Tab>
           {/* SKYRAT EDIT START - Company imports */}
           <Tabs.Tab
@@ -62,7 +62,7 @@ export function CargoContent(props) {
             selected={tab === TAB.Imports}
             onClick={() => act(TAB.Imports)}
           >
-            Company Imports
+            进口目录
           </Tabs.Tab>
           {/* SKYRAT EDIT END */}
           <Tabs.Tab
@@ -71,7 +71,7 @@ export function CargoContent(props) {
             selected={tab === TAB.Requests}
             onClick={() => setTab(TAB.Requests)}
           >
-            Requests ({requests.length})
+            请购列表 ({requests.length})
           </Tabs.Tab>
           {!requestonly && (
             <>
@@ -81,14 +81,14 @@ export function CargoContent(props) {
                 selected={tab === TAB.Cart}
                 onClick={() => setTab(TAB.Cart)}
               >
-                Checkout ({amount})
+                购物车 ({amount})
               </Tabs.Tab>
               <Tabs.Tab
                 icon="question"
                 selected={tab === TAB.Help}
                 onClick={() => setTab(TAB.Help)}
               >
-                Help
+                帮助
               </Tabs.Tab>
             </>
           )}

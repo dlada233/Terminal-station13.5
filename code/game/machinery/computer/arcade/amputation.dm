@@ -1,7 +1,7 @@
 /obj/machinery/computer/arcade/amputation
-	name = "Mediborg's Amputation Adventure"
-	desc = "A picture of a blood-soaked medical cyborg flashes on the screen. \
-		The mediborg has a speech bubble that says, \"Put your hand in the machine if you aren't a <b>coward!</b>\""
+	name = "医疗博格的截肢大冒险"
+	desc = "屏幕上显示出一台浸染鲜血的医疗赛博. \
+		它上方的对话气泡写道, \"把手伸进机器里来，如果你不是<b>懦夫!</b>的话.\""
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/amputation
 	interaction_flags_machine = NONE //borgs can't play, but the illiterate can.
@@ -42,6 +42,7 @@
 
 ///Dispenses wrapped gifts instead of arcade prizes, also known as the ancap christmas tree
 /obj/machinery/computer/arcade/amputation/festive
-	name = "Mediborg's Festive Amputation Adventure"
-	desc = "A picture of a blood-soaked medical cyborg wearing a Santa hat flashes on the screen. The mediborg has a speech bubble that says, \"Put your hand in the machine if you aren't a <b>coward!</b>\""
+	name = "医疗博格的节日截肢大冒险"
+	desc = "屏幕上显示出一台浸染鲜血还带着圣诞帽的医疗赛博. \
+		它上方的对话气泡写道, \"把手伸进机器里来，如果你不是<b>懦夫!</b>的话.\""
 	prize_override = list(/obj/item/gift/anything = 1)

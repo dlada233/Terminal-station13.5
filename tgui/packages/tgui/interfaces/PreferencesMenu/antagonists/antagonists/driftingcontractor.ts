@@ -3,16 +3,15 @@
 import { Antagonist, Category } from '../base';
 
 export const CONTRACTOR_MECHANICAL_DESCRIPTION = `
-      Float onto the station and complete as many
-      contracts for your employer as you can!
+      潜入进空间站，完成尽可能多的契约合同!
     `;
 
 const DriftingContractor: Antagonist = {
   key: 'driftingcontractor',
-  name: 'Drifting Contractor',
+  name: '契约特工',
   description: [
-    `A Syndicate agent that can spawn near the station, equipped with
-    top-of-the-line contractor gear, to complete contracts for the Syndicate.`,
+    `会在站点附近生成的辛迪加特工，装备了顶级的契约特工装备，目的在于完成尽可能多的
+    契约合同.`,
     CONTRACTOR_MECHANICAL_DESCRIPTION,
   ],
   category: Category.Midround,

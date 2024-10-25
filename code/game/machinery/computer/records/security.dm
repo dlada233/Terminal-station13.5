@@ -7,7 +7,7 @@
 
 /obj/machinery/computer/records/security
 	name = "安保档案台"
-	desc = "Used to view and edit personnel's security records."
+	desc = "用于查看个人安保档案."
 	icon_screen = "security"
 	icon_keyboard = "security_key"
 	req_one_access = list(ACCESS_SECURITY, ACCESS_HOP)
@@ -22,14 +22,14 @@
 
 /obj/machinery/computer/records/security/laptop
 	name = "安保电脑"
-	desc = "A cheap Nanotrasen security laptop, it functions as a security records console. It's bolted to the table."
+	desc = "固定在桌子上的廉价笔记本电脑，用于查看个人安保档案."
 	icon_state = "laptop"
 	icon_screen = "seclaptop"
 	icon_keyboard = "laptop_key"
 	pass_flags = PASSTABLE
 
 /obj/machinery/computer/records/security/laptop/syndie
-	desc = "A cheap, jailbroken security laptop. It functions as a security records console. It's bolted to the table."
+	desc = "固定在桌子上的廉价笔记本电脑，用于查看个人安保档案，这台已经遭到了破解."
 	req_one_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/records/security/Initialize(mapload, obj/item/circuitboard/C)
@@ -52,7 +52,7 @@
 					target.name = generate_random_name()
 
 				if(2)
-					target.gender = pick("Male", "Female", "Other")
+					target.gender = pick("Male-男", "Female-女", "Other-其他")
 				if(3)
 					target.age = rand(5, 85)
 				if(4)

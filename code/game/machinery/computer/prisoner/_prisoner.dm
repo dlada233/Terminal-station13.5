@@ -19,7 +19,7 @@
 /obj/machinery/computer/prisoner/examine(mob/user)
 	. = ..()
 	if(contained_id)
-		. += span_notice("<b>Alt-click</b> to eject the ID card.")
+		. += span_notice("<b>Alt加左键</b>以取出ID卡.")
 
 /obj/machinery/computer/prisoner/click_alt(mob/user)
 	id_eject(user)
@@ -29,17 +29,17 @@
 	if(!istype(new_id))
 		return
 	if(!isnull(contained_id))
-		balloon_alert(user, "no empty slot!")
+		balloon_alert(user, "无空卡槽!")
 		return
 	if(!user.transferItemToLoc(new_id, src))
 		return
 	contained_id = new_id
-	balloon_alert_to_viewers("id inserted")
+	balloon_alert_to_viewers("ID已插入")
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 
 /obj/machinery/computer/prisoner/proc/id_eject(mob/user)
 	if(isnull(contained_id))
-		balloon_alert(user, "no id!")
+		balloon_alert(user, "无ID!")
 		return
 
 	if(!issilicon(user) && Adjacent(user))
@@ -47,7 +47,7 @@
 	else
 		contained_id.forceMove(drop_location())
 
-	balloon_alert_to_viewers("id ejected")
+	balloon_alert_to_viewers("ID已取出")
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 
 /obj/machinery/computer/prisoner/attackby(obj/item/weapon, mob/user, params)

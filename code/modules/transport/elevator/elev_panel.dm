@@ -310,7 +310,7 @@
 	switch(action)
 		if("move_lift")
 			if(!allowed(usr))
-				balloon_alert(usr, "access denied!")
+				balloon_alert(usr, "访问被拒绝!")
 				return
 
 			var/desired_z = params["z"]

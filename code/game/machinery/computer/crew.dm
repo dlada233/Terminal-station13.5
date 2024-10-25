@@ -5,7 +5,7 @@
 
 /obj/machinery/computer/crew
 	name = "船员监控终端"
-	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
+	desc = "用于监测船员衣服上的健康传感器."
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/crew
@@ -18,8 +18,8 @@
 	))
 
 /obj/item/circuit_component/medical_console_data
-	display_name = "Crew Monitoring Data"
-	desc = "Outputs the medical statuses of people on the crew monitoring computer, where it can then be filtered with a Select Query component."
+	display_name = "船员监控数据"
+	desc = "在船员监控终端上输出人员的健康状态，使用选择查询组件来进行筛选."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The records retrieved
@@ -28,7 +28,7 @@
 	var/obj/machinery/computer/crew/attached_console
 
 /obj/item/circuit_component/medical_console_data/populate_ports()
-	records = add_output_port("Crew Monitoring Data", PORT_TYPE_TABLE)
+	records = add_output_port("船员监控数据", PORT_TYPE_TABLE)
 
 /obj/item/circuit_component/medical_console_data/register_usb_parent(atom/movable/shell)
 	. = ..()

@@ -5,17 +5,17 @@ import { RandomSetting } from './data';
 
 const options = [
   {
-    displayText: 'Do not randomize',
+    displayText: '不要随机化',
     value: RandomSetting.Disabled,
   },
 
   {
-    displayText: 'Always randomize',
+    displayText: '总是随机化',
     value: RandomSetting.Enabled,
   },
 
   {
-    displayText: 'Randomize when antagonist',
+    displayText: '扮演反派时随机化',
     value: RandomSetting.AntagOnly,
   },
 ];

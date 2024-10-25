@@ -54,7 +54,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 			if(attacking_item.use_tool(src, user, 4 SECONDS, volume= 50, amount = 2))
 				repair_damage(max_integrity - get_integrity())
 				update_appearance()
-				balloon_alert(user, "repaired")
+				balloon_alert(user, "修理完成")
 		else
 			balloon_alert(user, "already repaired!")
 		return

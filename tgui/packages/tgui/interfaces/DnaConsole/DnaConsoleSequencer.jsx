@@ -79,14 +79,10 @@ const GeneCycler = (props) => {
 const GenomeSequencer = (props) => {
   const { mutation } = props;
   if (!mutation) {
-    return <Box color="average">No genome selected for sequencing.</Box>;
+    return <Box color="average">未选择基因进行测序.</Box>;
   }
   if (mutation.Scrambled) {
-    return (
-      <Box color="average">
-        Sequence unreadable due to unpredictable mutation.
-      </Box>
-    );
+    return <Box color="average">由于不可预测的突变，序列无法读取.</Box>;
   }
   // Create gene cycler buttons
   const sequence = mutation.Sequence;
@@ -149,8 +145,7 @@ const GenomeSequencer = (props) => {
     <>
       <Box m={-0.5}>{pairs}</Box>
       <Box color="label" mt={1}>
-        <b>Tip:</b> Ctrl+Click on the gene to set it to X. Right Click to cycle
-        in reverse.
+        <b>提示:</b> Ctrl加右键基因键重置它为X. 单击右键基因键可返回上一键.
       </Box>
     </>
   );
@@ -197,14 +192,10 @@ export const DnaConsoleSequencer = (props) => {
         </Stack.Item>
       </Stack>
       {(subjectStatus === SUBJECT_DEAD && (
-        <Section color="bad">
-          Genetic sequence corrupted. Subject diagnostic report: DECEASED.
-        </Section>
+        <Section color="bad">基因序列损坏，对象诊断报告: 死亡.</Section>
       )) ||
         (isMonkey && mutation?.Name !== 'Monkified' && (
-          <Section color="bad">
-            Genetic sequence corrupted. Subject diagnostic report: MONKEY.
-          </Section>
+          <Section color="bad">基因序列损坏，对象诊断报告：猴子.</Section>
         )) ||
         (subjectStatus === SUBJECT_TRANSFORMING && (
           <Section color="bad">
@@ -216,13 +207,13 @@ export const DnaConsoleSequencer = (props) => {
             buttons={
               (!isJokerReady && (
                 <Box lineHeight="20px" color="label">
-                  Joker on cooldown ({jokerSeconds}s)
+                  小丑牌冷却中 ({jokerSeconds}秒)
                 </Box>
               )) ||
               (jokerActive && (
                 <>
                   <Box mr={1} inline color="label">
-                    Click on a gene to reveal it.
+                    点击一个基因来揭示它.
                   </Box>
                   <Button
                     content="取消小丑牌"

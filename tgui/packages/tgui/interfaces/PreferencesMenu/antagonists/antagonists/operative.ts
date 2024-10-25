@@ -1,19 +1,17 @@
 import { Antagonist, Category } from '../base';
 
 export const OPERATIVE_MECHANICAL_DESCRIPTION = `
-  Retrieve the nuclear authentication disk, use it to activate the nuclear
-  fission explosive, and destroy the station.
+  找回核认证磁盘，用它来启动核裂变炸弹摧毁整个空间站.
 `;
 
 const Operative: Antagonist = {
   key: 'operative',
-  name: 'Nuclear Operative',
+  name: '核特工',
   description: [
     `
-      Congratulations, agent. You have been chosen to join the Syndicate
-      Nuclear Operative strike team. Your mission, whether or not you choose
-      to accept it, is to destroy Nanotrasen's most advanced research facility!
-      That's right, you're going to Space Station 13.
+      恭喜你，特工. 你已经被选入辛迪加核行动突击队.
+      不管你愿不愿意接受，你的任务就是摧毁纳米传讯最先进的研究设施.
+      没错，你将前往13号空间站.
     `,
 
     OPERATIVE_MECHANICAL_DESCRIPTION,

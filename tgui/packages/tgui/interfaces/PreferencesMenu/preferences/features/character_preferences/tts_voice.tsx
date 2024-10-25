@@ -41,11 +41,11 @@ const FeatureTTSDropdownInput = (
 };
 
 export const tts_voice: FeatureChoiced = {
-  name: 'Voice',
+  name: '声音',
   component: FeatureTTSDropdownInput,
 };
 
 export const tts_voice_pitch: FeatureNumeric = {
-  name: 'Voice Pitch Adjustment',
+  name: '音量调节',
   component: FeatureSliderInput,
 };

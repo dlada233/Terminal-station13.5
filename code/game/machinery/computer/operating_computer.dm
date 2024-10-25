@@ -51,9 +51,9 @@
 
 /obj/machinery/computer/operating/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/disk/surgery))
-		user.visible_message(span_notice("[user] begins to load \the [O] in \the [src]..."), \
-			span_notice("You begin to load a surgery protocol from \the [O]..."), \
-			span_hear("You hear the chatter of a floppy drive."))
+		user.visible_message(span_notice("[user]开始加载[O]在[src]中..."), \
+			span_notice("你开始从[O]中加载手术程序..."), \
+			span_hear("你听到软盘驱动的声音."))
 		var/obj/item/disk/surgery/D = O
 		if(do_after(user, 1 SECONDS, target = src))
 			advanced_surgeries |= D.surgeries
@@ -110,17 +110,17 @@
 
 	switch(patient.stat)
 		if(CONSCIOUS)
-			data["patient"]["stat"] = "Conscious"
-			data["patient"]["statstate"] = "good"
+			data["patient"]["stat"] = "意识尚存"
+			data["patient"]["statstate"] = "良好"
 		if(SOFT_CRIT)
-			data["patient"]["stat"] = "Conscious"
-			data["patient"]["statstate"] = "average"
+			data["patient"]["stat"] = "意识尚存"
+			data["patient"]["statstate"] = "一般"
 		if(UNCONSCIOUS, HARD_CRIT)
-			data["patient"]["stat"] = "Unconscious"
-			data["patient"]["statstate"] = "average"
+			data["patient"]["stat"] = "意识不存在"
+			data["patient"]["statstate"] = "一般"
 		if(DEAD)
-			data["patient"]["stat"] = "Dead"
-			data["patient"]["statstate"] = "bad"
+			data["patient"]["stat"] = "死亡"
+			data["patient"]["statstate"] = "糟糕"
 	data["patient"]["health"] = patient.health
 
 	// check here to see if the patient has standard blood reagent, or special blood (like how ethereals bleed liquid electricity) to show the proper name in the computer
@@ -149,7 +149,7 @@
 					alternative_step = capitalize(next_step.name)
 					alt_chems_needed = next_step.get_chem_list()
 				else
-					alternative_step = "Finish operation"
+					alternative_step = "结束手术"
 			data["procedures"] += list(list(
 				"name" = capitalize("[patient.parse_zone_with_bodypart(procedure.location)] [procedure.name]"),
 				"next_step" = capitalize(surgery_step.name),

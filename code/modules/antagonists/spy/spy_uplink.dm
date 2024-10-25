@@ -142,7 +142,7 @@
 		to_chat(spy, span_warning("Your uplinks blinks red: The bounty for [stealing] has been claimed by another spy!"))
 		return FALSE
 	if(spy.is_holding(stealing) && !spy.dropItemToGround(stealing))
-		to_chat(spy, span_warning("Your uplinks blinks red: [stealing] seems stuck to your hand!"))
+		to_chat(spy, span_warning("Your uplinks blinks red: [stealing] seems 粘在了你的手上!"))
 		return FALSE
 
 	var/bounty_key = bounty.get_dupe_protection_key(stealing)

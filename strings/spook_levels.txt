@@ -1,30 +1,30 @@
-moderate
-regular
-okay
-somewhat irregular
-weird
-offputting
-ungodly
-off the charts
-earth-shattering
-station-shaking
-REDACTED
-annoying
-nuisance heavy
-intern
-clown
+一般
+常规
+还行
+有点怪
+异常
+恼人
+邪恶
+破记录
+惊天动地
+震撼站点
+数据删除
+有病
+严重妨碍
+实习生
+小丑
 Poly
-low
-medium
-high
-medium rare
-golem
-cheesy horror flick
-SKELLY TONE
-chair-moving
-hair-raising
-RUNTIME ERROR
-help
-IT COMES
+低
+中等
+高
+三分熟
+石人
+劣质恐怖片
+柜子动了
+吓掉椅子
+毛骨悚然
+运行错误
+救命
+它来了
 NAR
-hi
+你好

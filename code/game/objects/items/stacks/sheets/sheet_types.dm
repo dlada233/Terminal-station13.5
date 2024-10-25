@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	. += GLOB.metal_recipes
 
 /obj/item/stack/sheet/iron/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self over the head with \the [src]! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/stack/sheet/iron/welder_act(mob/living/user, obj/item/tool)
@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		var/obj/item/stack/rods/two/new_item = new(user.loc)
 		user.visible_message(
 			span_notice("[user.name] shaped [src] into floor rods with [tool]."),
-			blind_message = span_hear("You hear welding."),
+			blind_message = span_hear("你听到焊接声."),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		var/obj/item/stack/tile/iron/four/new_item = new(user.loc)
 		user.visible_message(
 			span_notice("[user.name] shaped [src] into floor tiles with [tool]."),
-			blind_message = span_hear("You hear welding."),
+			blind_message = span_hear("你听到焊接声."),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)

@@ -35,7 +35,7 @@
 	new picked(src)
 
 /obj/item/storage/dice/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is gambling with death! 看起来是在尝试自杀!"))
 	return OXYLOSS
 
 /obj/item/storage/dice/hazard
@@ -132,7 +132,7 @@
 	return original
 
 /obj/item/dice/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is gambling with death! 看起来是在尝试自杀!"))
 	return OXYLOSS
 
 /obj/item/dice/d1

@@ -151,7 +151,7 @@
 		swap_failed = TRUE
 	else if(!user.transferItemToLoc(temp_cell, chest))
 		swap_failed = TRUE
-		to_chat(user, span_warning("[temp_cell] is stuck to your hand, you can't put it in [src]!"))
+		to_chat(user, span_warning("[temp_cell] is 粘在了你的手上, you can't put it in [src]!"))
 
 	if(chest.cell) //drop the chest's current cell no matter what.
 		put_in_hand_or_drop(user, chest.cell)
@@ -349,7 +349,7 @@
 				to_chat(user, span_warning("You cannot install [M], the frame has to be standing on the ground to be perfectly precise!"))
 				return
 			if(!user.temporarilyRemoveItemFromInventory(M))
-				to_chat(user, span_warning("[M] is stuck to your hand!"))
+				to_chat(user, span_warning("[M] is 粘在了你的手上!"))
 				return
 			qdel(M)
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot/shell(get_turf(src))

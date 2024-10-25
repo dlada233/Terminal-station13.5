@@ -14,7 +14,7 @@ export function CargoRequests(props) {
     <Section
       fill
       scrollable
-      title="Active Requests"
+      title="活跃请购"
       buttons={
         !requestonly && (
           <Button
@@ -32,12 +32,12 @@ export function CargoRequests(props) {
         <Table>
           <TableRow header color="gray">
             <TableCell>ID</TableCell>
-            <TableCell>Object</TableCell>
-            <TableCell>Orderer</TableCell>
-            <TableCell>Reason</TableCell>
-            <TableCell>Cost</TableCell>
+            <TableCell>物品</TableCell>
+            <TableCell>请购人</TableCell>
+            <TableCell>原因</TableCell>
+            <TableCell>花费</TableCell>
             {(!requestonly || !!can_send) && !!can_approve_requests && (
-              <TableCell>Actions</TableCell>
+              <TableCell>是否批准</TableCell>
             )}
           </TableRow>
 

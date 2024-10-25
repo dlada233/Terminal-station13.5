@@ -77,7 +77,7 @@
 		user.visible_message(
 			span_notice("[user.name] starts to cut the [name] free from the floor."),
 			span_notice("You start to cut [src] free from the floor..."),
-			span_hear("You hear welding."),
+			span_hear("你听到焊接声."),
 		)
 		if(!tool.use_tool(src, user, 10 SECONDS, volume=100))
 			return FALSE
@@ -92,7 +92,7 @@
 	user.visible_message(
 		span_notice("[user.name] starts to weld the [name] to the floor."),
 		span_notice("You start to weld [src] to the floor..."),
-		span_hear("You hear welding."),
+		span_hear("你听到焊接声."),
 	)
 	if(!tool.use_tool(src, user, 10 SECONDS, volume=100))
 		balloon_alert(user, "cancelled!")
@@ -227,7 +227,7 @@
 
 	if(istype(attacking_item, /obj/item/reagent_containers/cup))
 		if(panel_open)
-			to_chat(user, span_warning("Close the maintenance panel first."))
+			to_chat(user, span_warning("先关上检修盖."))
 		else
 			insert_beaker(user, attacking_item)
 

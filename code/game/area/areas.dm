@@ -4,7 +4,7 @@
  * A grouping of tiles into a logical space, mostly used by map editors
  */
 /area
-	name = "Space"
+	name = "Space-太空"
 	icon = 'icons/area/areas_misc.dmi'
 	icon_state = "unknown"
 	layer = AREA_LAYER

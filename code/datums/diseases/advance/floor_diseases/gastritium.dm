@@ -1,7 +1,7 @@
-/// Caused by dirty food. Makes you burp out Tritium, sometimes burning hot!
+/// Caused by dirty food. Makes you burp out Tritium-氚, sometimes burning hot!
 /datum/disease/advance/gastritium
 	name = "Gastritium"
-	desc = "If left untreated, may manifest in severe Tritium heartburn."
+	desc = "If left untreated, may manifest in severe Tritium-氚 heartburn."
 	form = "Infection"
 	agent = "Atmobacter Polyri"
 	cures = list(/datum/reagent/consumable/milk)

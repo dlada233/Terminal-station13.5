@@ -24,7 +24,7 @@
 	addtimer(CALLBACK(src, PROC_REF(detonate)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/gas_crystal/healium_crystal
-	name = "Healium crystal"
+	name = "疗气 crystal"
 	desc = "A crystal made from the Healium gas, it's cold to the touch."
 	icon_state = "healium_crystal"
 	///Range of the grenade that will cool down and affect mobs
@@ -51,7 +51,7 @@
 	icon_state = "proto_nitrate_crystal"
 	///Range of the grenade air refilling
 	var/refill_range = 5
-	///Amount of Nitrogen gas released (close to the grenade)
+	///Amount of Nitrogen-氮气 gas released (close to the grenade)
 	var/n2_gas_amount = 80
 	///Amount of Oxygen gas released (close to the grenade)
 	var/o2_gas_amount = 30

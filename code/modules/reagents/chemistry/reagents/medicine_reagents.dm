@@ -897,7 +897,7 @@
 
 /datum/reagent/medicine/strange_reagent
 	name = "Strange Reagent-奇异试剂"
-	description = "一种神奇的药物，可以使尸体起死回生；仅对口服有效，所需数量的增加取决于身体受到的创伤+烧伤的程度（200伤害时最多10u）；额外的量将在成功复活后部分治愈器官损伤和血液水平，该药物对超过200点创伤+烧伤的尸体不起作用."
+	description = "一种神奇的药物，可以使尸体起死回生；仅对口服有效，所需数量的增加取决于身体受到的创伤+烧伤的程度（200伤害时最多10u）；额外的量将在成功复活后部分治愈器官损伤和血含量，该药物对超过200点创伤+烧伤的尸体不起作用."
 	reagent_state = LIQUID
 	color = "#A0E85E"
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM

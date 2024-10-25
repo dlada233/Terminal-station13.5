@@ -81,7 +81,7 @@
 /datum/gas/nitrogen
 	id = GAS_N2
 	specific_heat = 20
-	name = "Nitrogen"
+	name = "Nitrogen-氮气"
 	rarity = 1000
 	purchaseable = TRUE
 	base_value = 0.1
@@ -91,7 +91,7 @@
 /datum/gas/carbon_dioxide //what the fuck is this?
 	id = GAS_CO2
 	specific_heat = 30
-	name = "Carbon Dioxide"
+	name = "Carbon Dioxide-二氧化碳"
 	dangerous = TRUE
 	rarity = 700
 	purchaseable = TRUE
@@ -114,7 +114,7 @@
 /datum/gas/water_vapor
 	id = GAS_WATER_VAPOR
 	specific_heat = 40
-	name = "Water Vapor"
+	name = "Water Vapor-水蒸气"
 	gas_overlay = "water_vapor"
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 8
@@ -139,7 +139,7 @@
 /datum/gas/nitrous_oxide
 	id = GAS_N2O
 	specific_heat = 40
-	name = "Nitrous Oxide"
+	name = "Nitrous Oxide-一氧化二氮"
 	gas_overlay = "nitrous_oxide"
 	moles_visible = MOLES_GAS_VISIBLE * 2
 	fusion_power = 10
@@ -153,20 +153,20 @@
 /datum/gas/nitrium
 	id = GAS_NITRIUM
 	specific_heat = 10
-	name = "Nitrium"
+	name = "Nitrium-亚硝基兴奋气体"
 	fusion_power = 7
 	gas_overlay = "nitrium"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
 	rarity = 1
 	base_value = 6
-	desc = "An experimental performance enhancing gas. Nitrium can have amplified effects as more of it gets into your bloodstream."
+	desc = "An experimental performance enhancing gas. Nitrium-亚硝基兴奋气体 can have amplified effects as more of it gets into your bloodstream."
 	primary_color = "#a52a2a"
 
 /datum/gas/tritium
 	id = GAS_TRITIUM
 	specific_heat = 10
-	name = "Tritium"
+	name = "Tritium-氚"
 	gas_overlay = "tritium"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
@@ -191,7 +191,7 @@
 /datum/gas/pluoxium
 	id = GAS_PLUOXIUM
 	specific_heat = 80
-	name = "Pluoxium"
+	name = "Pluoxium-钷"
 	fusion_power = -10
 	rarity = 200
 	base_value = 2.5
@@ -201,7 +201,7 @@
 /datum/gas/miasma
 	id = GAS_MIASMA
 	specific_heat = 20
-	name = "Miasma"
+	name = "Miasma-瘴气"
 	dangerous = TRUE
 	gas_overlay = "miasma"
 	moles_visible = MOLES_GAS_VISIBLE * 60
@@ -213,7 +213,7 @@
 /datum/gas/freon
 	id = GAS_FREON
 	specific_heat = 600
-	name = "Freon"
+	name = "Freon-氟利昂"
 	dangerous = TRUE
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE *30
@@ -226,7 +226,7 @@
 /datum/gas/hydrogen
 	id = GAS_HYDROGEN
 	specific_heat = 15
-	name = "Hydrogen"
+	name = "Hydrogen-氢气"
 	dangerous = TRUE
 	fusion_power = 2
 	rarity = 600
@@ -237,7 +237,7 @@
 /datum/gas/healium
 	id = GAS_HEALIUM
 	specific_heat = 10
-	name = "Healium"
+	name = "Healium-疗气"
 	dangerous = TRUE
 	gas_overlay = "healium"
 	moles_visible = MOLES_GAS_VISIBLE
@@ -261,7 +261,7 @@
 /datum/gas/zauker
 	id = GAS_ZAUKER
 	specific_heat = 350
-	name = "Zauker"
+	name = "Zauker-扎克"
 	dangerous = TRUE
 	gas_overlay = "zauker"
 	moles_visible = MOLES_GAS_VISIBLE
@@ -273,7 +273,7 @@
 /datum/gas/halon
 	id = GAS_HALON
 	specific_heat = 175
-	name = "Halon"
+	name = "Halon-哈龙"
 	dangerous = TRUE
 	gas_overlay = "halon"
 	moles_visible = MOLES_GAS_VISIBLE
@@ -285,17 +285,17 @@
 /datum/gas/helium
 	id = GAS_HELIUM
 	specific_heat = 15
-	name = "Helium"
+	name = "Helium-氦"
 	fusion_power = 7
 	rarity = 50
 	base_value = 3.5
-	desc = "A very inert gas produced by the fusion of hydrogen and it's derivatives."
+	desc = "A very inert gas produced by the fusion of hydrogen-氢气 and it's derivatives."
 	primary_color = "#f0f8ff"
 
 /datum/gas/antinoblium
 	id = GAS_ANTINOBLIUM
 	specific_heat = 1
-	name = "Antinoblium"
+	name = "Antinoblium-反铌"
 	dangerous = TRUE
 	gas_overlay = "antinoblium"
 	moles_visible = MOLES_GAS_VISIBLE

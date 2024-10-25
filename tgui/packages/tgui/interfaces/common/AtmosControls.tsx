@@ -60,7 +60,7 @@ export const Vent = (props: VentProps) => {
             icon={power ? 'power-off' : 'times'}
             selected={power}
             disabled={integrity <= 0}
-            content={power ? 'On' : 'Off'}
+            content={power ? '开启' : '关闭'}
             onClick={() =>
               act('power', {
                 ref: refID,
@@ -77,25 +77,25 @@ export const Vent = (props: VentProps) => {
                 ref: refID,
               })
             }
-            tooltip={`${overclock ? 'Disable' : 'Enable'} overclocking`}
+            tooltip={`${overclock ? '关闭' : '开启'} 超频`}
           />
         </>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Integrity">
+        <LabeledList.Item label="完整性">
           <p
             title={
-              'Overclocking will allow the vent to overpower extreme pressure conditions. However, it will also cause the vent to become damaged over time and eventually fail. The lower the integrity, the less effective the vent will be when in normal operation.'
+              '超频将使通风口能够克服极端压力条件，但将导致通风口随着时间损坏并最终失效. 完整性越低，正常运行时通风口的效果就越弱.'
             }
           >
             {(integrity * 100).toFixed(2)}%
           </p>
         </LabeledList.Item>
-        <LabeledList.Item label="Mode">
+        <LabeledList.Item label="模式">
           <Button
             icon="sign-in-alt"
-            content={direction ? 'Pressurizing' : 'Siphoning'}
+            content={direction ? '加压' : '抽气'}
             color={!direction && 'danger'}
             onClick={() =>
               act('direction', {
@@ -105,10 +105,10 @@ export const Vent = (props: VentProps) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Pressure Regulator">
+        <LabeledList.Item label="压力调节器">
           <Button
             icon="sign-in-alt"
-            content="Internal"
+            content="内部"
             selected={incheck}
             onClick={() =>
               act('incheck', {
@@ -119,7 +119,7 @@ export const Vent = (props: VentProps) => {
           />
           <Button
             icon="sign-out-alt"
-            content="External"
+            content="外部"
             selected={excheck}
             onClick={() =>
               act('excheck', {
@@ -130,7 +130,7 @@ export const Vent = (props: VentProps) => {
           />
         </LabeledList.Item>
         {!!incheck && (
-          <LabeledList.Item label="Internal Target">
+          <LabeledList.Item label="内部目标">
             <NumberInput
               value={Math.round(internal)}
               unit="kPa"
@@ -148,7 +148,7 @@ export const Vent = (props: VentProps) => {
             <Button
               icon="undo"
               disabled={intdefault}
-              content="Reset"
+              content="重置"
               onClick={() =>
                 act('reset_internal_pressure', {
                   ref: refID,
@@ -158,7 +158,7 @@ export const Vent = (props: VentProps) => {
           </LabeledList.Item>
         )}
         {!!excheck && (
-          <LabeledList.Item label="External Target">
+          <LabeledList.Item label="外部">
             <NumberInput
               value={Math.round(external)}
               unit="kPa"
@@ -176,7 +176,7 @@ export const Vent = (props: VentProps) => {
             <Button
               icon="undo"
               disabled={extdefault}
-              content="Reset"
+              content="重置"
               onClick={() =>
                 act('reset_external_pressure', {
                   ref: refID,
@@ -199,7 +199,7 @@ export const Scrubber = (props: ScrubberProps) => {
       buttons={
         <Button
           icon={power ? 'power-off' : 'times'}
-          content={power ? 'On' : 'Off'}
+          content={power ? '开启' : '关闭'}
           selected={power}
           onClick={() =>
             act('power', {
@@ -211,11 +211,11 @@ export const Scrubber = (props: ScrubberProps) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Mode">
+        <LabeledList.Item label="模式">
           <Button
             icon={scrubbing ? 'filter' : 'sign-in-alt'}
             color={scrubbing || 'danger'}
-            content={scrubbing ? 'Scrubbing' : 'Siphoning'}
+            content={scrubbing ? '全抽气' : '抽气'}
             onClick={() =>
               act('scrubbing', {
                 ref: refID,
@@ -226,7 +226,7 @@ export const Scrubber = (props: ScrubberProps) => {
           <Button
             icon={widenet ? 'expand' : 'compress'}
             selected={widenet}
-            content={widenet ? 'Expanded range' : 'Normal range'}
+            content={widenet ? '扩展范围' : '正常范围'}
             onClick={() =>
               act('widenet', {
                 ref: refID,
@@ -235,7 +235,7 @@ export const Scrubber = (props: ScrubberProps) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Filters">
+        <LabeledList.Item label="过滤器">
           {(scrubbing &&
             filter_types.map((filter) => (
               <Button

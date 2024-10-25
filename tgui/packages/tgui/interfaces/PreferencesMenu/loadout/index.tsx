@@ -29,7 +29,7 @@ export const LoadoutPage = () => {
     <ServerPreferencesFetcher
       render={(serverData) => {
         if (!serverData) {
-          return <NoticeBox>Loading...</NoticeBox>;
+          return <NoticeBox>加载中...</NoticeBox>;
         }
         const loadoutServerData: ServerData = serverData;
         return (
@@ -66,7 +66,7 @@ const LoadoutPageInner = (props: { loadout_tabs: LoadoutCategory[] }) => {
             <Input
               width="200px"
               onInput={(_, value) => setSearchLoadout(value)}
-              placeholder="Search for an item..."
+              placeholder="检索物品..."
               value={searchLoadout}
             />
           }
@@ -145,7 +145,7 @@ const LoadoutTabs = (props: {
       <Stack.Item grow>
         {searching || activeCategory?.contents ? (
           <Section
-            title={searching ? 'Searching...' : 'Catalog'}
+            title={searching ? '检索中...' : '目录'}
             fill
             scrollable
             buttons={
@@ -262,10 +262,10 @@ const LoadoutSelectedSection = (props: {
           color="red"
           align="center"
           disabled={!loadout_list || Object.keys(loadout_list).length === 0}
-          tooltip="Clears ALL selected items from all categories."
+          tooltip="清除所有已选择的物品."
           onClick={() => act('clear_all_items')}
         >
-          Clear All
+          清除所有
         </Button.Confirm>
       }
     >
@@ -298,7 +298,7 @@ const LoadoutPreviewSection = () => {
           checked={data.job_clothes}
           onClick={() => act('toggle_job_clothes')}
         >
-          Job Clothes
+          工作服装
         </Button.Checkbox>
       }
     >

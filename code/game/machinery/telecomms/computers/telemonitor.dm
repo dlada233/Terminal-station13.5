@@ -3,8 +3,8 @@
 #define MAX_NETWORK_ID_LENGTH 15
 
 /obj/machinery/computer/telecomms/monitor
-	name = "telecommunications monitoring console"
-	desc = "Monitors the details of the telecommunications network it's synced with."
+	name = "电信监控终端"
+	desc = "监控与其同步的电信网络的详细信息."
 	circuit = /obj/item/circuitboard/computer/comm_monitor
 
 	icon_screen = "comm_monitor"
@@ -117,20 +117,20 @@
 				screen = MACHINE_VIEW
 
 			if(isnull(selected_machine_ref))
-				status_message = "OPERATION FAILED: UNABLE TO LOCATE MACHINERY."
+				status_message = "操作失败: 无法定位到机器."
 
 			return TRUE
 
 		if("probe")
 			var/network_id = params["id"]
 			if(length(network_id) > MAX_NETWORK_ID_LENGTH)
-				status_message = "OPERATION FAILED: NETWORK ID TOO LONG."
+				status_message = "操作失败: 网络ID过长."
 				return TRUE
 
 			list_clear_empty_weakrefs(machine_refs)
 
 			if(length(machine_refs) > 0)
-				status_message = "OPERATION FAILED: CANNOT PROBE WHEN BUFFER FULL."
+				status_message = "操作失败: 缓冲区已满，无法监控."
 				return TRUE
 
 			network = network_id
@@ -143,10 +143,10 @@
 				machine_refs += WEAKREF(machine)
 
 			if(length(machine_refs) == 0)
-				status_message = "OPERATION FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN [network]."
+				status_message = "操作失败: 无法在[network]中定位网络实体."
 				return TRUE
 
-			status_message = "[length(machine_refs)] ENTITIES LOCATED & BUFFERED"
+			status_message = "[length(machine_refs)] 实体 已定位 & 已缓冲"
 			return TRUE
 
 	return TRUE

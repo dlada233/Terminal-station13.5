@@ -7,15 +7,15 @@
 /datum/status_effect/organ_set_bonus/carp
 	id = "organ_set_bonus_carp"
 	organs_needed = 4
-	bonus_activate_text = span_notice("Carp DNA is deeply infused with you! You've learned how to propel yourself through space!")
-	bonus_deactivate_text = span_notice("Your DNA is once again mostly yours, and so fades your ability to space-swim...")
+	bonus_activate_text = span_notice("你融入了鲤鱼DNA，你已学会如何在太空中推进自己!")
+	bonus_deactivate_text = span_notice("你的DNA变得以原始为主，所以太空游泳能力将变得很弱...")
 	bonus_traits = list(TRAIT_SPACEWALK)
 
 ///Carp lungs! You can breathe in space! Oh... you can't breathe on the station, you need low oxygen environments.
 /// Inverts behavior of lungs. Bypasses suffocation due to space / lack of gas, but also allows Oxygen to suffocate.
 /obj/item/organ/internal/lungs/carp
-	name = "mutated carp-lungs"
-	desc = "Carp DNA infused into what was once some normal lungs."
+	name = "变异鲤鱼肺"
+	desc = "将鲤鱼DNA注入正常肺的产物."
 	// Oxygen causes suffocation.
 	safe_oxygen_min = 0
 	safe_oxygen_max = 15
@@ -27,16 +27,16 @@
 
 /obj/item/organ/internal/lungs/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their neck has odd gills.", BODY_ZONE_HEAD)
+	AddElement(/datum/element/noticable_organ, "它的脖子上有奇怪的腮.", BODY_ZONE_HEAD)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 	ADD_TRAIT(src, TRAIT_SPACEBREATHING, REF(src))
 
 ///occasionally sheds carp teeth, stronger melee (bite) attacks, but you can't cover your mouth anymore.
 /obj/item/organ/internal/tongue/carp
-	name = "mutated carp-jaws"
-	desc = "Carp DNA infused into what was once some normal teeth."
+	name = "变异鲤鱼嘴"
+	desc = "将鲤鱼DNA注入正常嘴的产物."
 
-	say_mod = "gnashes"
+	say_mod = "叫道"
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "tongue"
@@ -45,7 +45,7 @@
 
 /obj/item/organ/internal/tongue/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their teeth are big and sharp.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "它的牙齿锋利且巨大.", BODY_ZONE_PRECISE_MOUTH)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 
 /obj/item/organ/internal/tongue/carp/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
@@ -91,14 +91,14 @@
 		new /obj/item/knife/carp(tooth_fairy)
 
 /obj/item/knife/carp
-	name = "carp tooth"
-	desc = "Looks sharp. Sharp enough to poke someone's eye out. Holy fuck it's big."
+	name = "变异鲤鱼齿"
+	desc = "又大又锋利，足以戳到别人眼睛."
 	icon_state = "carptooth"
 
 ///carp brain. you need to occasionally go to a new zlevel. think of it as... walking your dog!
 /obj/item/organ/internal/brain/carp
-	name = "mutated carp-brain"
-	desc = "Carp DNA infused into what was once a normal brain."
+	name = "变异鲤鱼脑"
+	desc = "将鲤鱼DNA注入正常大脑的产物."
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "brain"
@@ -113,7 +113,7 @@
 /obj/item/organ/internal/brain/carp/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_They seem%PRONOUN_s unable to stay still.")
+	AddElement(/datum/element/noticable_organ, "它看起来不能一直待在同一个地方.")
 
 /obj/item/organ/internal/brain/carp/on_mob_insert(mob/living/carbon/brain_owner)
 	. = ..()
@@ -139,8 +139,8 @@
 
 /// makes you cold resistant, but heat-weak.
 /obj/item/organ/internal/heart/carp
-	name = "mutated carp-heart"
-	desc = "Carp DNA infused into what was once a normal heart."
+	name = "变异鲤鱼心"
+	desc = "将鲤鱼DNA注入正常心脏的产物."
 
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "heart"
@@ -151,7 +151,7 @@
 
 /obj/item/organ/internal/heart/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their skin has small patches of scales growing on it.", BODY_ZONE_CHEST)
+	AddElement(/datum/element/noticable_organ, "皮肤上排列着细小的鳞片.", BODY_ZONE_CHEST)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 	AddElement(/datum/element/update_icon_blocker)
 

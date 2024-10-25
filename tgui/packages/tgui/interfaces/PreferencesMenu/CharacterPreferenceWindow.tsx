@@ -49,7 +49,7 @@ const CharacterProfiles = (props: {
           displayText={profiles[activeSlot]}
           options={profiles.map((profile, slot) => ({
             value: slot,
-            displayText: profile ?? 'New Character',
+            displayText: profile ?? '新角色',
           }))}
           onSelected={(slot) => {
             onClick(slot);
@@ -123,7 +123,7 @@ export const CharacterPreferenceWindow = (props) => {
           </Stack.Item>
           {!data.content_unlocked && (
             <Stack.Item align="center">
-              Buy BYOND premium for more slots!
+              当角色图像不显示时，请尝试旋转刷新图像!
             </Stack.Item>
           )}
 
@@ -148,7 +148,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Loadout}
                   setPage={setCurrentPage}
                 >
-                  Loadout
+                  服装
                 </PageButton>
               </Stack.Item>
 

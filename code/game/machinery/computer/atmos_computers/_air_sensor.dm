@@ -1,7 +1,7 @@
 /// Gas tank air sensor.
 /// These always hook to monitors, be mindful of them
 /obj/machinery/air_sensor
-	name = "gas sensor"
+	name = "气体传感器"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "gsensor1"
 	resistance_flags = FIRE_PROOF
@@ -121,8 +121,8 @@
  * The logic is same as meters
  */
 /obj/item/air_sensor
-	name = "Air Sensor"
-	desc = "A device designed to detect gases and their concentration in an area."
+	name = "空气传感器"
+	desc = "一种用于检测某一区域内气体及其浓度的装置."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "gsensor0"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
@@ -157,7 +157,7 @@
 		. += span_notice("It's [EXAMINE_HINT("wrenched")] in place")
 	else
 		. += span_notice("It should be [EXAMINE_HINT("wrenched")] in place to turn it on.")
-	. +=  span_notice("It could be [EXAMINE_HINT("welded")] apart.")
+	. +=  span_notice("It could be [EXAMINE_HINT("焊开")] .")
 	. +=  span_notice("Click with hand to turn it on.")
 
 /obj/item/air_sensor/attack_hand(mob/user, list/modifiers)

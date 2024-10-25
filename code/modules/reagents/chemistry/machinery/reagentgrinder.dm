@@ -82,7 +82,7 @@
 /obj/machinery/reagentgrinder/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_warning("You're too far away to examine [src]'s contents and display!")
+		. += span_warning("你离的太远，无法看清[src]的情况!")
 		return
 
 	var/total_weight = 0

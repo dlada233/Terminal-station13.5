@@ -1264,7 +1264,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/coconut_milk
-	name = "Coconut Milk"
+	name = "Coconut Milk-椰奶"
 	description = "A versatile milk substitute that's perfect for everything from cooking to making cocktails."
 	color = "#DFDFDF"
 	taste_description = "milky coconut"

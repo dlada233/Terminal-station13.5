@@ -83,7 +83,7 @@
 	build_path = /obj/machinery/computer/atmos_control/plasma_tank
 
 /obj/item/circuitboard/computer/atmos_control/air_tank
-	name = "Mixed Air Supply Control"
+	name = "Mixed Air-混合空气 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/air_tank
 
 /obj/item/circuitboard/computer/atmos_control/mix_tank
@@ -91,15 +91,15 @@
 	build_path = /obj/machinery/computer/atmos_control/mix_tank
 
 /obj/item/circuitboard/computer/atmos_control/nitrous_tank
-	name = "Nitrous Oxide Supply Control"
+	name = "Nitrous Oxide-一氧化二氮 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/nitrous_tank
 
 /obj/item/circuitboard/computer/atmos_control/nitrogen_tank
-	name = "Nitrogen Supply Control"
+	name = "Nitrogen-氮气 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/nitrogen_tank
 
 /obj/item/circuitboard/computer/atmos_control/carbon_tank
-	name = "Carbon Dioxide Supply Control"
+	name = "Carbon Dioxide-二氧化碳 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/carbon_tank
 
 /obj/item/circuitboard/computer/atmos_control/bz_tank
@@ -107,59 +107,59 @@
 	build_path = /obj/machinery/computer/atmos_control/bz_tank
 
 /obj/item/circuitboard/computer/atmos_control/freon_tank
-	name = "Freon Supply Control"
+	name = "Freon-氟利昂 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/freon_tank
 
 /obj/item/circuitboard/computer/atmos_control/halon_tank
-	name = "Halon Supply Control"
+	name = "Halon-哈龙 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/halon_tank
 
 /obj/item/circuitboard/computer/atmos_control/healium_tank
-	name = "Healium Supply Control"
+	name = "Healium-疗气 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/healium_tank
 
 /obj/item/circuitboard/computer/atmos_control/hydrogen_tank
-	name = "Hydrogen Supply Control"
+	name = "Hydrogen-氢气 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/hydrogen_tank
 
 /obj/item/circuitboard/computer/atmos_control/hypernoblium_tank
-	name = "Hypernoblium Supply Control"
+	name = "Hypernoblium-超铌 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/hypernoblium_tank
 
 /obj/item/circuitboard/computer/atmos_control/miasma_tank
-	name = "Miasma Supply Control"
+	name = "Miasma-瘴气 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/miasma_tank
 
 /obj/item/circuitboard/computer/atmos_control/nitrium_tank
-	name = "Nitrium Supply Control"
+	name = "Nitrium-亚硝基兴奋气体 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/nitrium_tank
 
 /obj/item/circuitboard/computer/atmos_control/pluoxium_tank
-	name = "Pluoxium Supply Control"
+	name = "Pluoxium-钷 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/pluoxium_tank
 
 /obj/item/circuitboard/computer/atmos_control/proto_nitrate_tank
-	name = "Proto-Nitrate Supply Control"
+	name = "Proto-Nitrate-原硝酸 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/proto_nitrate_tank
 
 /obj/item/circuitboard/computer/atmos_control/tritium_tank
-	name = "Tritium Supply Control"
+	name = "Tritium-氚 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/tritium_tank
 
 /obj/item/circuitboard/computer/atmos_control/water_vapor
-	name = "Water Vapor Supply Control"
+	name = "Water Vapor-水蒸气 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/water_vapor
 
 /obj/item/circuitboard/computer/atmos_control/zauker_tank
-	name = "Zauker Supply Control"
+	name = "Zauker-扎克 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/zauker_tank
 
 /obj/item/circuitboard/computer/atmos_control/helium_tank
-	name = "Helium Supply Control"
+	name = "Helium-氦 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/helium_tank
 
 /obj/item/circuitboard/computer/atmos_control/antinoblium_tank
-	name = "Antinoblium Supply Control"
+	name = "Antinoblium-反铌 Supply Control"
 	build_path = /obj/machinery/computer/atmos_control/antinoblium_tank
 
 /obj/item/circuitboard/computer/auxiliary_base

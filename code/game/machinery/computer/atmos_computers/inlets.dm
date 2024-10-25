@@ -9,103 +9,103 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/plasma_input
-	name = "plasma tank input injector"
+	name = "plasma-等离子气体罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_PLAS
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/oxygen_input
-	name = "oxygen tank input injector"
+	name = "oxygen-氧气罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_O2
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/nitrogen_input
-	name = "nitrogen tank input injector"
+	name = "nitrogen-氮气罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_N2
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/mix_input
-	name = "mix tank input injector"
+	name = "mix-混合气体罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_MIX
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/nitrous_input
-	name = "nitrous oxide tank input injector"
+	name = "nitrous oxide-一氧化二氮罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_N2O
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/air_input
-	name = "air mix tank input injector"
+	name = "air mix-混合空气罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_AIR
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/carbon_input
-	name = "carbon dioxide tank input injector"
+	name = "carbon dioxide-二氧化氮罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_CO2
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/bz_input
-	name = "bz tank input injector"
+	name = "bz罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_BZ
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/freon_input
-	name = "freon tank input injector"
+	name = "freon-氟利昂罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_FREON
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/halon_input
-	name = "halon tank input injector"
+	name = "halon-哈龙罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_HALON
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/healium_input
-	name = "healium tank input injector"
+	name = "healium-疗气罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_HEALIUM
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/hydrogen_input
-	name = "hydrogen tank input injector"
+	name = "hydrogen-氢气罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_H2
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/hypernoblium_input
-	name = "hypernoblium tank input injector"
+	name = "hypernoblium-超铌罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_HYPERNOBLIUM
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/miasma_input
-	name = "miasma tank input injector"
+	name = "miasma-瘴气罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_MIASMA
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/nitrium_input
-	name = "nitrium tank input injector"
+	name = "nitrium-亚硝基兴奋气体罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_NITRIUM
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/pluoxium_input
-	name = "pluoxium tank input injector"
+	name = "pluoxium-钷罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_PLUOXIUM
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/proto_nitrate_input
-	name = "proto-nitrate tank input injector"
+	name = "proto-nitrate-原硝酸罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_PROTO_NITRATE
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/tritium_input
-	name = "tritium tank input injector"
+	name = "tritium-氚罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_TRITIUM
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/water_vapor_input
-	name = "water vapor tank input injector"
+	name = "water vapor-水蒸气罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_H2O
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/zauker_input
-	name = "zauker tank input injector"
+	name = "zauker-扎克罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_ZAUKER
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/helium_input
-	name = "helium tank input injector"
+	name = "helium-氦罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_HELIUM
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/antinoblium_input
-	name = "antinoblium tank input injector"
+	name = "antinoblium-反铌罐体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_ANTINOBLIUM
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/incinerator_input
-	name = "incinerator chamber input injector"
+	name = "燃烧室气体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_INCINERATOR
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/ordnance_burn_chamber_input
 	on = FALSE
-	name = "ordnance burn chamber input injector"
+	name = "军械燃烧室气体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_ORDNANCE_BURN
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/ordnance_freezer_chamber_input
 	on = FALSE
-	name = "ordnance freezer chamber input injector"
+	name = "军械冷却室气体注入器"
 	chamber_id = ATMOS_GAS_MONITOR_ORDNANCE_FREEZER

@@ -209,7 +209,7 @@
 	merge_type = /obj/item/stack/medical/bruise_pack
 
 /obj/item/stack/medical/bruise_pack/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is bludgeoning [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is bludgeoning [user.p_them()]self with [src]! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/stack/medical/gauze

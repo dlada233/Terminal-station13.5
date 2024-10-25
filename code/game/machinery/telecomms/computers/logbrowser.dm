@@ -3,9 +3,9 @@
 #define MAX_NETWORK_ID_LENGTH 15
 
 /obj/machinery/computer/telecomms/server
-	name = "telecommunications server monitoring console"
+	name = "电信服务器监控终端"
 	icon_screen = "comm_logs"
-	desc = "Has full access to all details and record of the telecommunications network it's monitoring."
+	desc = "可以访问其下的电信网络内所有的细节和记录."
 
 	/// Current screen the user is viewing
 	var/screen = MAIN_VIEW
@@ -109,11 +109,11 @@
 			var/new_network = params["network_id"]
 
 			if(length(new_network) > MAX_NETWORK_ID_LENGTH)
-				error_message = "OPERATION FAILED: NETWORK ID TOO LONG."
+				error_message = "操作失败: 网络ID过长."
 				return
 
 			if(servers.len > 0)
-				error_message = "OPERATION FAILED: BUFFER ALREADY POPULATED. PLEASE CLEAR THE BUFFER."
+				error_message = "操作失败: 缓冲区已填入，请清空缓冲区."
 				return
 
 			network = new_network
@@ -122,7 +122,7 @@
 				if(server.network == network)
 					servers.Add(server)
 			if(servers.len == 0)
-				error_message = "OPERATION FAILED: UNABLE TO LOCATE ANY SERVERS IN NETWORK [network]."
+				error_message = "操作失败: 无法在网络[network]中定位任何服务器."
 				return
 			return
 		if("clear_buffer")
@@ -132,7 +132,7 @@
 		if("view_server")
 			SelectedServer = locate(params["server"])
 			if(!SelectedServer)
-				error_message = "OPERATION FAILED: UNABLE TO LOCATE SERVER."
+				error_message = "操作失败: 无法定位到服务器."
 				return
 			screen = SERVER_VIEW
 			return
@@ -146,13 +146,13 @@
 			// Delete a packet from server logs
 			var/datum/comm_log_entry/packet = locate(params["ref"])
 			if(!(packet in SelectedServer.log_entries))
-				error_message = "OPERATION FAILED: PACKET NOT FOUND."
+				error_message = "操作失败: 未找到数据包."
 				return
 			if(!src.allowed(usr) && !(obj_flags & EMAGGED))
-				error_message = "OPERATION FAILED: ACCESS DENIED."
+				error_message = "操作失败: 访问被拒绝."
 				return
 			SelectedServer.log_entries.Remove(packet)
-			error_message = "SUCCESSFULLY DELETED [packet.name]."
+			error_message = "成功删除 [packet.name]."
 			qdel(packet)
 			return
 	return FALSE

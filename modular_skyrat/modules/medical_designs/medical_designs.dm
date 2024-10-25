@@ -23,7 +23,7 @@
 
 //Limb Grower
 /datum/design/nitrogen_lungs
-	name = "Standard Nitrogen Lungs"
+	name = "Standard Nitrogen-氮气 Lungs"
 	id = "nitrogenlunggeneric"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -31,7 +31,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/vox_nitrogen_lungs
-	name = "Vox Nitrogen Lungs"
+	name = "Vox Nitrogen-氮气 Lungs"
 	id = "nitrogenlungvox"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)

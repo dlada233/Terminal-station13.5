@@ -67,9 +67,9 @@ export const CodexGigas = (props) => {
             <Titles />
             <Names />
             <Suffixes />
-            <LabeledList.Item label="Submit">
+            <LabeledList.Item label="提交">
               <Button
-                content="Search"
+                content="搜索"
                 disabled={currentSection < 4}
                 onClick={() => act('search')}
               />

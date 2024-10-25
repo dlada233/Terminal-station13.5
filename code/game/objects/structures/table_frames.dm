@@ -10,8 +10,8 @@
  */
 
 /obj/structure/table_frame
-	name = "table frame"
-	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
+	name = "桌子框架"
+	desc = "四根金属桌腿再加上四根金属框架条，你可以轻易越过它."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "table_frame"
 	density = FALSE
@@ -23,7 +23,7 @@
 
 
 /obj/structure/table_frame/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice("You start disassembling [src]..."))
+	to_chat(user, span_notice("你开始拆解[src]..."))
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 3 SECONDS))
 		return TRUE
@@ -37,23 +37,23 @@
 		var/obj/item/stack/material = I
 		if(material.tableVariant)
 			if(material.get_amount() < 1)
-				to_chat(user, span_warning("You need one [material.name] sheet to do this!"))
+				to_chat(user, span_warning("你需要一块[material.name]板来做这个!"))
 				return
 			if(locate(/obj/structure/table) in loc)
-				to_chat(user, span_warning("There's already a table built here!"))
+				to_chat(user, span_warning("这里已经建了一张桌子了!"))
 				return
-			to_chat(user, span_notice("You start adding [material] to [src]..."))
+			to_chat(user, span_notice("你开始添加[material]到[src]..."))
 			if(!do_after(user, 2 SECONDS, target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
 				return
 			make_new_table(material.tableVariant)
 		else if(istype(material, /obj/item/stack/sheet))
 			if(material.get_amount() < 1)
-				to_chat(user, span_warning("You need one sheet to do this!"))
+				to_chat(user, span_warning("你需要一块板材来做这个!"))
 				return
 			if(locate(/obj/structure/table) in loc)
-				to_chat(user, span_warning("There's already a table built here!"))
+				to_chat(user, span_warning("这里已经建了一张桌子了!"))
 				return
-			to_chat(user, span_notice("You start adding [material] to [src]..."))
+			to_chat(user, span_notice("你开始添加[material]到[src]..."))
 			if(!do_after(user, 2 SECONDS, target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
 				return
 			var/list/material_list = list()
@@ -87,8 +87,8 @@
  */
 
 /obj/structure/table_frame/wood
-	name = "wooden table frame"
-	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
+	name = "木桌框架"
+	desc = "四根木桌腿再加上四根木框架条，你可以轻易越过它."
 	icon_state = "wood_frame"
 	framestack = /obj/item/stack/sheet/mineral/wood
 	framestackamount = 2
@@ -106,9 +106,9 @@
 			carpet_type = I.type
 		if (toConstruct)
 			if(material.get_amount() < 1)
-				to_chat(user, span_warning("You need one [material.name] sheet to do this!"))
+				to_chat(user, span_warning("你需要一块[material.name]板来做这个!"))
 				return
-			to_chat(user, span_notice("You start adding [material] to [src]..."))
+			to_chat(user, span_notice("你开始添加[material]到[src]..."))
 			if(do_after(user, 2 SECONDS, target = src) && material.use(1))
 				make_new_table(toConstruct, null, carpet_type)
 	else

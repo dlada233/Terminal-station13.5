@@ -11,7 +11,7 @@ export const MedicalRecords = (props) => {
   const { authenticated } = data;
 
   return (
-    <Window title="Medical Records" width={750} height={550}>
+    <Window title="医疗档案" width={750} height={550}>
       <Window.Content>
         <Stack fill>
           {!authenticated ? <UnauthorizedView /> : <AuthView />}
@@ -33,14 +33,14 @@ const UnauthorizedView = (props) => {
         </Stack.Item>
         <Stack.Item align="center" grow>
           <Box color="good" fontSize="18px" bold mt={5}>
-            Nanotrasen HealthPRO
+            纳米传讯 健康管理系统
           </Box>
         </Stack.Item>
         <Stack.Item>
           <NoticeBox align="right">
-            You are not logged in.
+            你尚未登录.
             <Button ml={2} icon="lock-open" onClick={() => act('login')}>
-              Login
+              登录
             </Button>
           </NoticeBox>
         </Stack.Item>
@@ -64,7 +64,7 @@ const AuthView = (props) => {
           </Stack.Item>
           <Stack.Item>
             <NoticeBox align="right" info>
-              Secure Your Workspace.
+              确保你的工作环境安全.
               <Button
                 align="right"
                 icon="lock"

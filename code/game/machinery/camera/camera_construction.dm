@@ -3,25 +3,25 @@
 		if(CAMERA_STATE_WRENCHED, CAMERA_STATE_WELDED)
 			if(!tool.tool_start_check(user, amount = 1))
 				return ITEM_INTERACT_BLOCKING
-			user.balloon_alert_to_viewers("[camera_construction_state == CAMERA_STATE_WELDED ? "un" : null]welding...")
-			audible_message(span_hear("You hear welding."))
+			user.balloon_alert_to_viewers("焊[camera_construction_state == CAMERA_STATE_WELDED ? "开" : "接"]...")
+			audible_message(span_hear("你听到焊接声."))
 			if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
-				user.balloon_alert_to_viewers("stopped [camera_construction_state == CAMERA_STATE_WELDED ? "un" : null]welding!")
+				user.balloon_alert_to_viewers("焊[camera_construction_state == CAMERA_STATE_WELDED ? "开" : "接"]被停止!")
 				return
 			camera_construction_state = ((camera_construction_state == CAMERA_STATE_WELDED) ? CAMERA_STATE_WRENCHED : CAMERA_STATE_WELDED)
 			set_anchored(camera_construction_state == CAMERA_STATE_WELDED)
-			user.balloon_alert_to_viewers(camera_construction_state == CAMERA_STATE_WELDED ? "welded" : "unwelded")
+			user.balloon_alert_to_viewers(camera_construction_state == CAMERA_STATE_WELDED ? "已焊接" : "已焊开")
 			return ITEM_INTERACT_SUCCESS
 		if(CAMERA_STATE_FINISHED)
 			if(!panel_open)
 				return ITEM_INTERACT_BLOCKING
 			if(!tool.tool_start_check(user, amount=2))
 				return ITEM_INTERACT_BLOCKING
-			audible_message(span_hear("You hear welding."))
+			audible_message(span_hear("你听到焊接声."))
 			if(!tool.use_tool(src, user, 100, volume=50))
 				return ITEM_INTERACT_BLOCKING
-			user.visible_message(span_warning("[user] unwelds [src], leaving it as just a frame bolted to the wall."),
-				span_warning("You unweld [src], leaving it as just a frame bolted to the wall"))
+			user.visible_message(span_warning("[user]焊开[src], 它的框架现在只是拴在墙上."),
+				span_warning("你焊开[src], 它的框架现在只是拴在墙上"))
 			deconstruct(TRUE)
 			return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -30,12 +30,12 @@
 	switch(camera_construction_state)
 		if(CAMERA_STATE_WIRED)
 			tool.play_tool_sound(src)
-			var/input = tgui_input_text(user, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret", "Set Network", "SS13")
+			var/input = tgui_input_text(user, "你希望将该摄像头连接到哪个网络? 用逗号分隔网络名. 不要用空格!\n如: SS13,Security,Secret", "设置网络", "SS13")
 			if(isnull(input))
 				return ITEM_INTERACT_BLOCKING
 			var/list/tempnetwork = splittext(input, ",")
 			if(!length(tempnetwork))
-				to_chat(user, span_warning("No network found, please hang up and try your call again!"))
+				to_chat(user, span_warning("找不到网络, 请挂机后再拨!"))
 				return ITEM_INTERACT_BLOCKING
 			for(var/i in tempnetwork)
 				tempnetwork -= i
@@ -46,7 +46,7 @@
 			return ITEM_INTERACT_SUCCESS
 		if(CAMERA_STATE_FINISHED)
 			toggle_panel_open()
-			to_chat(user, span_notice("You screw the camera's panel [panel_open ? "open" : "closed"]."))
+			to_chat(user, span_notice("你[panel_open ? "打开" : "关上"]了摄像头的盖板."))
 			tool.play_tool_sound(src)
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
@@ -57,7 +57,7 @@
 		if(CAMERA_STATE_WIRED)
 			new /obj/item/stack/cable_coil(drop_location(), 2)
 			tool.play_tool_sound(src)
-			to_chat(user, span_notice("You cut the wires from the circuits."))
+			to_chat(user, span_notice("你把电路里的电线剪断了."))
 			camera_construction_state = CAMERA_STATE_WELDED
 			return ITEM_INTERACT_SUCCESS
 		if(CAMERA_STATE_FINISHED)
@@ -73,7 +73,7 @@
 /obj/machinery/camera/wrench_act(mob/user, obj/item/tool)
 	if(camera_construction_state == CAMERA_STATE_WRENCHED)
 		tool.play_tool_sound(src)
-		to_chat(user, span_notice("You detach [src] from its place."))
+		to_chat(user, span_notice("你拆下[src]."))
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -91,12 +91,12 @@
 			droppable_parts += proximity_monitor
 		if(!length(droppable_parts))
 			return ITEM_INTERACT_BLOCKING
-		var/obj/item/choice = tgui_input_list(user, "Select a part to remove", "Part Removal", sort_names(droppable_parts))
+		var/obj/item/choice = tgui_input_list(user, "选择移除部分", "部分移除", sort_names(droppable_parts))
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You remove [choice] from [src]."))
+		to_chat(user, span_notice("你从[src]移除了[choice]."))
 		if(choice == xray_module)
 			drop_upgrade(xray_module)
 			removeXRay()
@@ -115,7 +115,7 @@
 		if(!panel_open)
 			return ITEM_INTERACT_BLOCKING
 		setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
-		to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
+		to_chat(user, span_notice("你[(view_range == initial(view_range)) ? "修复了" : "弄乱了"]摄像头的焦点."))
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 
@@ -126,38 +126,38 @@
 				if(!user.temporarilyRemoveItemFromInventory(attacking_item))
 					return
 				upgradeXRay(FALSE, TRUE)
-				to_chat(user, span_notice("You attach [attacking_item] into [name]'s inner circuits."))
+				to_chat(user, span_notice("你将[attacking_item]连接到[name]的内部电路上."))
 				qdel(attacking_item)
 			else
-				to_chat(user, span_warning("[src] already has that upgrade!"))
+				to_chat(user, span_warning("[src]已经升级过该项了!"))
 			return
 		else if(istype(attacking_item, /obj/item/stack/sheet/mineral/plasma))
 			if(!isEmpProof(TRUE)) //don't reveal it was already upgraded if was done via MALF AI Upgrade Camera Network ability
 				if(attacking_item.use_tool(src, user, 0, amount=1))
 					upgradeEmpProof(FALSE, TRUE)
-					to_chat(user, span_notice("You attach [attacking_item] into [name]'s inner circuits."))
+					to_chat(user, span_notice("你将[attacking_item]连接到[name]的内部电路上."))
 			else
-				to_chat(user, span_warning("[src] already has that upgrade!"))
+				to_chat(user, span_warning("[src]已经升级过该项了!"))
 			return
 		else if(isprox(attacking_item))
 			if(!isMotion())
 				if(!user.temporarilyRemoveItemFromInventory(attacking_item))
 					return
 				upgradeMotion()
-				to_chat(user, span_notice("You attach [attacking_item] into [name]'s inner circuits."))
+				to_chat(user, span_notice("你将[attacking_item]连接到[name]的内部电路上."))
 				qdel(attacking_item)
 			else
-				to_chat(user, span_warning("[src] already has that upgrade!"))
+				to_chat(user, span_warning("[src]已经升级过该项了!"))
 			return
 	switch(camera_construction_state)
 		if(CAMERA_STATE_WELDED)
 			if(istype(attacking_item, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/attacking_cable = attacking_item
 				if(attacking_cable.use(2))
-					to_chat(user, span_notice("You add wires to [src]."))
+					to_chat(user, span_notice("你添加电线到[src]."))
 					camera_construction_state = CAMERA_STATE_WIRED
 				else
-					to_chat(user, span_warning("You need two lengths of cable to wire a camera!"))
+					to_chat(user, span_warning("你需要2段电缆连接摄像头!"))
 				return
 		if(CAMERA_STATE_FINISHED)
 			if(istype(attacking_item, /obj/item/modular_computer))
@@ -175,8 +175,8 @@
 				itemname = computer.name
 				itemname = sanitize(itemname)
 				info = sanitize(info)
-				to_chat(user, span_notice("You hold \the [itemname] up to the camera..."))
-				user.log_talk(itemname, LOG_GAME, log_globally=TRUE, tag="Pressed to camera")
+				to_chat(user, span_notice("你将[itemname]举到镜头前..."))
+				user.log_talk(itemname, LOG_GAME, log_globally=TRUE, tag="按至镜头")
 				user.changeNext_move(CLICK_CD_MELEE)
 
 				for(var/mob/potential_viewer as anything in GLOB.player_list)
@@ -185,18 +185,18 @@
 						if(ai.control_disabled || (ai.stat == DEAD))
 							continue
 
-						ai.log_talk(itemname, LOG_VICTIM, tag="Pressed to camera from [key_name(user)]", log_globally=FALSE)
+						ai.log_talk(itemname, LOG_VICTIM, tag="按至镜头来自[key_name(user)]", log_globally=FALSE)
 						ai.last_tablet_note_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 
 						if(user.name == "Unknown")
-							to_chat(ai, "[span_name(user)] holds <a href='?_src_=usr;show_tablet=1;'>\a [itemname]</a> up to one of your cameras ...")
+							to_chat(ai, "[span_name(user)]将<a href='?_src_=usr;show_tablet=1;'>[itemname]</a>举到你其中一台摄像头前...")
 						else
-							to_chat(ai, "<b><a href='?src=[REF(ai)];track=[html_encode(user.name)]'>[user]</a></b> holds <a href='?_src_=usr;last_shown_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
+							to_chat(ai, "<b><a href='?src=[REF(ai)];track=[html_encode(user.name)]'>[user]</a></b>将<a href='?_src_=usr;last_shown_paper=1;'>[itemname]</a>举到你其中一台摄像头前...")
 						continue
 
 					if (potential_viewer.client?.eye == src)
-						to_chat(potential_viewer, "[span_name("[user]")] holds \a [itemname] up to one of the cameras ...")
-						potential_viewer.log_talk(itemname, LOG_VICTIM, tag="Pressed to camera from [key_name(user)]", log_globally=FALSE)
+						to_chat(potential_viewer, "[span_name("[user]")]将[itemname]举到你其中一台摄像头前...")
+						potential_viewer.log_talk(itemname, LOG_VICTIM, tag="按至摄像头来自[key_name(user)]", log_globally=FALSE)
 						potential_viewer << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
 				return
 
@@ -211,8 +211,8 @@
 				var/item_name = sanitize(last_shown_paper.name)
 
 				// Start the process of holding it up to the camera.
-				to_chat(user, span_notice("You hold \the [item_name] up to the camera..."))
-				user.log_talk(item_name, LOG_GAME, log_globally=TRUE, tag="Pressed to camera")
+				to_chat(user, span_notice("你将[item_name]举到镜头前..."))
+				user.log_talk(item_name, LOG_GAME, log_globally=TRUE, tag="按至摄像头")
 				user.changeNext_move(CLICK_CD_MELEE)
 
 				// And make a weakref we can throw around to all potential viewers.
@@ -228,20 +228,20 @@
 						if(ai.control_disabled || (ai.stat == DEAD))
 							continue
 
-						ai.log_talk(item_name, LOG_VICTIM, tag="Pressed to camera from [key_name(user)]", log_globally=FALSE)
-						log_paper("[key_name(user)] held [last_shown_paper] up to [src], requesting [key_name(ai)] read it.")
+						ai.log_talk(item_name, LOG_VICTIM, tag="按至摄像头来自[key_name(user)]", log_globally=FALSE)
+						log_paper("[key_name(user)]将[last_shown_paper]举到了[src]前, 需要[key_name(ai)]来阅读它.")
 
 						if(user.name == "Unknown")
-							to_chat(ai, "[span_name(user.name)] holds <a href='?_src_=usr;show_paper_note=[REF(last_shown_paper)];'>\a [item_name]</a> up to one of your cameras ...")
+							to_chat(ai, "[span_name(user.name)]将<a href='?_src_=usr;show_paper_note=[REF(last_shown_paper)];'>[item_name]</a>举到你其中一台摄像头前...")
 						else
-							to_chat(ai, "<b><a href='?src=[REF(ai)];track=[html_encode(user.name)]'>[user]</a></b> holds <a href='?_src_=usr;show_paper_note=[REF(last_shown_paper)];'>\a [item_name]</a> up to one of your cameras ...")
+							to_chat(ai, "<b><a href='?src=[REF(ai)];track=[html_encode(user.name)]'>[user]</a></b>将<a href='?_src_=usr;show_paper_note=[REF(last_shown_paper)];'>[item_name]</a>举到你其中一台摄像头前...")
 						continue
 
 					// If it's not an AI, eye if the client's eye is set to the camera. I wonder if this even works anymore with tgui camera apps and stuff?
 					if (potential_viewer.client?.eye == src)
-						log_paper("[key_name(user)] held [last_shown_paper] up to [src], and [key_name(potential_viewer)] may read it.")
-						potential_viewer.log_talk(item_name, LOG_VICTIM, tag="Pressed to camera from [key_name(user)]", log_globally=FALSE)
-						to_chat(potential_viewer, "[span_name(user)] holds <a href='?_src_=usr;show_paper_note=[REF(last_shown_paper)];'>\a [item_name]</a> up to your camera...")
+						log_paper("[key_name(user)]将[last_shown_paper]举到[src]前, [key_name(potential_viewer)]可以读一下.")
+						potential_viewer.log_talk(item_name, LOG_VICTIM, tag="按至摄像头来自[key_name(user)]", log_globally=FALSE)
+						to_chat(potential_viewer, "[span_name(user)] holds <a href='?_src_=usr;show_paper_note=[REF(last_shown_paper)];'>将[item_name]</a>举到你的摄像头前...")
 				return
 
 	return ..()

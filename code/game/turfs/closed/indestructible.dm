@@ -1,6 +1,6 @@
 /turf/closed/indestructible
-	name = "wall"
-	desc = "Effectively impervious to conventional methods of destruction."
+	name = "墙壁"
+	desc = "一般的方法无法摧毁它."
 	icon = 'icons/turf/walls.dmi'
 	explosive_resistance = 50
 	rust_resistance = RUST_RESISTANCE_ABSOLUTE
@@ -25,13 +25,13 @@
 	return ..()
 
 /turf/closed/indestructible/oldshuttle
-	name = "strange shuttle wall"
+	name = "奇怪的飞船墙壁"
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "block"
 
 /turf/closed/indestructible/weeb
-	name = "paper wall"
-	desc = "Reinforced paper walling. Someone really doesn't want you to leave."
+	name = "纸墙"
+	desc = "加固纸墙，有人真的不想让你离开."
 	icon = 'icons/obj/smooth_structures/paperframes.dmi'
 	icon_state = "paperframes-0"
 	base_icon_state = "paperframes"
@@ -49,8 +49,8 @@
 	. += indestructible_paper
 
 /turf/closed/indestructible/sandstone
-	name = "sandstone wall"
-	desc = "A wall with sandstone plating. Rough."
+	name = "砂石墙"
+	desc = "粗糙的砂石墙."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
 	icon_state = "sandstone_wall-0"
 	base_icon_state = "sandstone_wall"
@@ -110,8 +110,8 @@ SKYRAT EDIT REMOVAL END */
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /turf/closed/indestructible/reinforced
-	name = "reinforced wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms. Effectively impervious to conventional methods of destruction."
+	name = "加固墙壁"
+	desc = "用于分隔空间的巨大金属块，一般的方法无法摧毁它."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
 	icon_state = "reinforced_wall-0"
 	base_icon_state = "reinforced_wall"
@@ -120,8 +120,8 @@ SKYRAT EDIT REMOVAL END */
 	canSmoothWith = SMOOTH_GROUP_WALLS
 
 /turf/closed/indestructible/reinforced/titanium
-	name = "reinforced titanium imitation wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms. Naturally, to cut down on costs, this is just a really good paint job to resemble titanium. Effectively impervious to conventional methods of destruction."
+	name = "加固仿钛墙壁"
+	desc = "用于分隔空间的巨大金属块，这个为了降低成本只是用刷漆刷成了钛墙的样子. 一般的方法无法摧毁它."
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
 	icon_state = "shuttle_wall-0"
 	base_icon_state = "shuttle_wall"
@@ -153,8 +153,8 @@ SKYRAT EDIT REMOVAL END */
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/riveted/plastinum
-	name = "plastinum wall"
-	desc = "A luxurious wall made out of a plasma-platinum alloy. Effectively impervious to conventional methods of destruction."
+	name = "塑钢墙壁"
+	desc = "用珍贵的塑钢合金制造铸造而成的墙壁. 一般的方法无法摧毁它."
 	icon = 'icons/turf/walls/plastinum_wall.dmi'
 	icon_state = "plastinum_wall-0"
 	base_icon_state = "plastinum_wall"
@@ -176,8 +176,8 @@ SKYRAT EDIT REMOVAL END */
 
 
 /turf/closed/indestructible/alien
-	name = "alien wall"
-	desc = "A wall with alien alloy plating."
+	name = "外星墙壁"
+	desc = "外星合金筑造而成的墙壁."
 	icon = 'icons/turf/walls/abductor_wall.dmi'
 	icon_state = "abductor_wall-0"
 	base_icon_state = "abductor_wall"
@@ -187,8 +187,8 @@ SKYRAT EDIT REMOVAL END */
 
 
 /turf/closed/indestructible/cult
-	name = "runed metal wall"
-	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound. Effectively impervious to conventional methods of destruction."
+	name = "符文金属墙壁"
+	desc = "刻着难懂符号的冰冷金属墙壁，尝试研究只会让你头疼. 一般的方法无法摧毁它."
 	icon = 'icons/turf/walls/cult_wall.dmi'
 	icon_state = "cult_wall-0"
 	base_icon_state = "cult_wall"
@@ -205,7 +205,7 @@ SKYRAT EDIT REMOVAL END */
 
 
 /turf/closed/indestructible/fakeglass
-	name = "window"
+	name = "窗户"
 	icon = MAP_SWITCH('icons/obj/smooth_structures/reinforced_window.dmi', 'icons/obj/smooth_structures/structure_variations.dmi')
 	icon_state = MAP_SWITCH("reinforced_window-0", "fake_window")
 	base_icon_state = "reinforced_window"
@@ -220,7 +220,7 @@ SKYRAT EDIT REMOVAL END */
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02) //add the plating underlay, below the grille
 
 /turf/closed/indestructible/opsglass
-	name = "window"
+	name = "窗户"
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window-0"
 	base_icon_state = "plastitanium_window"
@@ -236,7 +236,7 @@ SKYRAT EDIT REMOVAL END */
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02)
 
 /turf/closed/indestructible/fakedoor
-	name = "airlock"
+	name = "气闸"
 	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	icon_state = "fake_door"
 
@@ -251,22 +251,22 @@ SKYRAT EDIT REMOVAL END */
 	icon = 'icons/obj/doors/airlocks/station/engineering.dmi'
 
 /turf/closed/indestructible/rock
-	name = "dense rock"
-	desc = "An extremely densely-packed rock, most mining tools or explosives would never get through this."
+	name = "紧密岩石"
+	desc = "密度极高的岩石，大多数采矿工具或炸药都无法穿透."
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock"
 
 /turf/closed/indestructible/rock/snow
-	name = "mountainside"
-	desc = "An extremely densely-packed rock, sheeted over with centuries worth of ice and snow."
+	name = "山坡"
+	desc = "密度极高的岩石, 覆盖着留存了几个世纪的冰雪."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "snowrock"
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
 
 /turf/closed/indestructible/rock/snow/ice
-	name = "iced rock"
-	desc = "Extremely densely-packed sheets of ice and rock, forged over the years of the harsh cold."
+	name = "紧密冻岩"
+	desc = "多年严寒下形成的含有冰块和岩石的高密度冻岩."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock"
 
@@ -280,14 +280,14 @@ SKYRAT EDIT REMOVAL END */
 	pixel_y = -4
 
 /turf/closed/indestructible/paper
-	name = "thick paper wall"
-	desc = "A wall layered with impenetrable sheets of paper."
+	name = "厚纸墙"
+	desc = "一堵由无法穿透的纸张构成的墙."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "paperwall"
 
 /turf/closed/indestructible/necropolis
-	name = "necropolis wall"
-	desc = "A seemingly impenetrable wall."
+	name = "墓地墙壁"
+	desc = "一堵似乎无法逾越的墙."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "necro"
 	explosive_resistance = 50
@@ -299,8 +299,8 @@ SKYRAT EDIT REMOVAL END */
 	return TRUE
 
 /turf/closed/indestructible/iron
-	name = "impervious iron wall"
-	desc = "A wall with tough iron plating."
+	name = "致密铁墙"
+	desc = "一堵铁筑成的坚硬墙壁."
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron_wall-0"
 	base_icon_state = "iron_wall"
@@ -310,8 +310,8 @@ SKYRAT EDIT REMOVAL END */
 	opacity = FALSE
 
 /turf/closed/indestructible/riveted/boss
-	name = "necropolis wall"
-	desc = "A thick, seemingly indestructible stone wall."
+	name = "墓地墙壁"
+	desc = "一堵似乎坚不可摧的墙壁."
 	icon = 'icons/turf/walls/boss_wall.dmi'
 	icon_state = "boss_wall-0"
 	base_icon_state = "boss_wall"
@@ -333,8 +333,8 @@ SKYRAT EDIT REMOVAL END */
 	return TRUE
 
 /turf/closed/indestructible/riveted/hierophant
-	name = "wall"
-	desc = "A wall made out of a strange metal. The squares on it pulse in a predictable pattern."
+	name = "墙壁"
+	desc = "一堵由奇怪金属制成的墙壁，上面的方块图案以某种规律模式律动着."
 	icon = 'icons/turf/walls/hierophant_wall.dmi'
 	icon_state = "wall"
 	smoothing_flags = SMOOTH_CORNERS
@@ -342,7 +342,7 @@ SKYRAT EDIT REMOVAL END */
 	canSmoothWith = SMOOTH_GROUP_HIERO_WALL
 
 /turf/closed/indestructible/resin
-	name = "resin wall"
+	name = "脂墙"
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "resin_wall-0"
 	base_icon_state = "resin_wall"
@@ -351,7 +351,7 @@ SKYRAT EDIT REMOVAL END */
 	canSmoothWith = SMOOTH_GROUP_ALIEN_WALLS
 
 /turf/closed/indestructible/resin/membrane
-	name = "resin membrane"
+	name = "脂膜"
 	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
 	icon_state = "resin_membrane-0"
 	base_icon_state = "resin_membrane"
@@ -364,7 +364,7 @@ SKYRAT EDIT REMOVAL END */
 	underlays += mutable_appearance('icons/turf/floors.dmi', "engine") // add the reinforced floor underneath
 
 /turf/closed/indestructible/grille
-	name = "grille"
+	name = "格栅"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
 	base_icon_state = "grille"
@@ -374,8 +374,8 @@ SKYRAT EDIT REMOVAL END */
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating")
 
 /turf/closed/indestructible/meat
-	name = "dense meat wall"
-	desc = "A huge chunk of dense, packed meat. Effectively impervious to conventional methods of destruction."
+	name = "紧实肉墙"
+	desc = "一大块紧实的肉. 一般的方法无法摧毁它."
 	icon = 'icons/turf/walls/meat_wall.dmi'
 	icon_state = "meat_wall-0"
 	base_icon_state = "meat_wall"

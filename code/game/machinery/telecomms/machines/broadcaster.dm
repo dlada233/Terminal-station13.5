@@ -10,9 +10,9 @@ GLOBAL_VAR_INIT(message_delay, FALSE)
  * They receive their message from a server after the message has been logged.
  */
 /obj/machinery/telecomms/broadcaster
-	name = "subspace broadcaster"
+	name = "子空间广播"
 	icon_state = "broadcaster"
-	desc = "A dish-shaped machine used to broadcast processed subspace signals."
+	desc = "用于广播处理过的子空间信号的碟形机器."
 	telecomms_type = /obj/machinery/telecomms/broadcaster
 	density = TRUE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.01
@@ -89,4 +89,4 @@ GLOBAL_VAR_INIT(message_delay, FALSE)
 	autolinkers = list("broadcasterB")
 
 /obj/machinery/telecomms/broadcaster/preset_left/birdstation
-	name = "Broadcaster"
+	name = "广播"

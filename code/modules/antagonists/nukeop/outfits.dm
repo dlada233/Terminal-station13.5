@@ -140,12 +140,12 @@
 	faction = "赛博森工业集团"
 
 /datum/outfit/syndicate/reinforcement/donk
-	name = "辛迪加特工 - 杜客增援部队"
+	name = "辛迪加特工 - Donk-杜客增援部队"
 	suit = /obj/item/clothing/suit/hazardvest
 	head = /obj/item/clothing/head/utility/hardhat/orange
 	shoes = /obj/item/clothing/shoes/workboots
 	glasses = /obj/item/clothing/glasses/meson
-	faction = "杜客公司"
+	faction = "Donk-杜客公司"
 
 /datum/outfit/syndicate/reinforcement/waffle
 	name = "辛迪加特工 - 华夫增援部队"

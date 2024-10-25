@@ -60,7 +60,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/urinal, 32)
 			to_chat(user, span_warning("[attacking_item] is too large for the drain enclosure."))
 			return
 		if(!user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("[attacking_item] is stuck to your hand, you cannot put it in the drain enclosure!"))
+			to_chat(user, span_warning("[attacking_item] is 粘在了你的手上, you cannot put it in the drain enclosure!"))
 			return
 		hidden_item = attacking_item
 		to_chat(user, span_notice("You place [attacking_item] into the drain enclosure."))

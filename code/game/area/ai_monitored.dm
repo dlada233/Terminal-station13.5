@@ -1,5 +1,5 @@
 /area/station/ai_monitored
-	name = "\improper AI Monitored Area"
+	name = "\improper AI Monitored Area-AI监视区"
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 	var/list/obj/machinery/camera/motioncameras
 	var/list/datum/weakref/motionTargets = list()

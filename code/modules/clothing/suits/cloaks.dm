@@ -15,7 +15,7 @@
 	AddComponent(/datum/component/surgery_initiator)
 
 /obj/item/clothing/neck/cloak/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! 看起来是在尝试自杀!"))
 	return OXYLOSS
 
 /obj/item/clothing/neck/cloak/hos

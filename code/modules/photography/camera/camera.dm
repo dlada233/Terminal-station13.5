@@ -93,7 +93,7 @@
 	if(istype(I, /obj/item/disk/holodisk))
 		if (!disk)
 			if(!user.transferItemToLoc(I, src))
-				to_chat(user, span_warning("[I] is stuck to your hand!"))
+				to_chat(user, span_warning("[I] is 粘在了你的手上!"))
 				return TRUE
 			to_chat(user, span_notice("You slide [I] into the back of [src]."))
 			disk = I

@@ -169,7 +169,7 @@ export const FeatureNumberInput = (
   props: FeatureValueProps<number, number, FeatureNumericData>,
 ) => {
   if (!props.serverData) {
-    return <Box>Loading...</Box>;
+    return <Box>加载中...</Box>;
   }
 
   return (
@@ -189,7 +189,7 @@ export const FeatureSliderInput = (
   props: FeatureValueProps<number, number, FeatureNumericData>,
 ) => {
   if (!props.serverData) {
-    return <Box>Loading...</Box>;
+    return <Box>加载中...</Box>;
   }
 
   return (
@@ -254,7 +254,7 @@ export const FeatureShortTextInput = (
   props: FeatureValueProps<string, string, FeatureShortTextData>,
 ) => {
   if (!props.serverData) {
-    return <Box>Loading...</Box>;
+    return <Box>加载中...</Box>;
   }
 
   return (
@@ -272,7 +272,7 @@ export const FeatureTextInput = (
   props: FeatureValueProps<string, string, FeatureShortTextData>,
 ) => {
   if (!props.serverData) {
-    return <Box>Loading...</Box>;
+    return <Box>加载中...</Box>;
   }
 
   return (

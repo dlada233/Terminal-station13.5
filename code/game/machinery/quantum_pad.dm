@@ -1,6 +1,6 @@
 /obj/machinery/quantumpad
-	name = "quantum pad"
-	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
+	name = "量子传送平台"
+	desc = "用于将物体传送到其他与之相连的量子传送平台."
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "qpad-idle"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 10
@@ -63,7 +63,7 @@
 				return
 			var/obj/item/multitool/M = I
 			M.set_buffer(src)
-			balloon_alert(user, "saved to multitool buffer")
+			balloon_alert(user, "已保存到多功能工具缓冲区")
 			to_chat(user, span_notice("You save the data in [I]'s buffer. It can now be saved to pads with closed panels."))
 			return TRUE
 	else if(I.tool_behaviour == TOOL_MULTITOOL)
@@ -197,12 +197,12 @@
 		. = TRUE
 
 /obj/item/paper/guides/quantumpad
-	name = "Quantum Pad For Dummies"
-	default_raw_text = "<center><b>Dummies Guide To Quantum Pads</b></center><br><br><center>Do you hate the concept of having to use your legs, let alone <i>walk</i> to places? Well, with the Quantum Pad (tm), never again will the fear of cardio keep you from going places!<br><br><c><b>How to set up your Quantum Pad(tm)</b></center><br><br>1.Unscrew the Quantum Pad(tm) you wish to link.<br>2. Use your multi-tool to cache the buffer of the Quantum Pad(tm) you wish to link.<br>3. Apply the multi-tool to the secondary Quantum Pad(tm) you wish to link to the first Quantum Pad(tm)<br><br><center>If you followed these instructions carefully, your Quantum Pad(tm) should now be properly linked together for near-instant movement across the station! Bear in mind that this is technically a one-way teleport, so you'll need to do the same process with the secondary pad to the first one if you wish to travel between both.</center>"
+	name = "量子传送平台傻瓜指南"
+	default_raw_text = "<center><b>量子传送平台傻瓜指南</b></center><br><br><center>你对移动必用腿这件事感到厌烦吗, 更不用说<i>走</i>到某个地方了? 好吧, 有了量子传送平台 (tm), 对有氧运动的恐惧再也不会让你止步不前了!<br><br><c><b>如何设置你的量子传送平台(tm)</b></center><br><br>1.用螺丝刀拧开需要连接的量子传送平台(tm).<br>2. 用你的多功能工具缓冲要连接的量子传送平台(tm).<br>3. 应用多功能工具在另一台量子传送平台(tm)上 <br><br><center>如果你仔细遵循以上步骤，那么这时你的量子传送平台应该已经连接在了一起，你可以做到几乎瞬间移动，然而要注意，这只是一次单向传送，如果你想要双向传送，你需要反过来再重复一次以上步骤.</center>"
 
 /obj/item/circuit_component/quantumpad
-	display_name = "Quantum Pad"
-	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
+	display_name = "量子传送平台"
+	desc = "用于将物体传送到其他与之相连的量子传送平台."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	var/datum/port/input/target_pad

@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(locked)
 		if(COOLDOWN_FINISHED(src, breakout_message_cooldown))
 			COOLDOWN_START(src, breakout_message_cooldown, BREAKOUT_COOLDOWN)
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src]的门纹丝不动!"))
 		return
 	open()
 
@@ -117,14 +117,14 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(null, \
 		span_notice("You lean on the back of [src] and start pushing the tray open... (this will take about [DisplayTimeText(BREAKDOWN_TIME)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+		span_hear("你听到金属摩擦声."))
 	if(!do_after(user, BREAKDOWN_TIME, target = src))
 		return
 	if(!user || user.stat != CONSCIOUS || user.loc != src)
 		return
 	user.visible_message(
-		span_warning("[user] successfully broke out of [src]!"),
-		span_notice("You successfully break out of [src]!"),
+		span_warning("[user]成功突破了[src]!"),
+		span_notice("你成功突破了[src]!"),
 	)
 	open()
 

@@ -1,5 +1,5 @@
 /area/station/maintenance
-	name = "Generic Maintenance"
+	name = "Maintenance-维护管道"
 	ambience_index = AMBIENCE_MAINT
 	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED | PERSISTENT_ENGRAVINGS
 	airlock_wires = /datum/wires/airlock/maint
@@ -13,87 +13,87 @@
 */
 
 /area/station/maintenance/department/chapel
-	name = "Chapel Maintenance"
+	name = "Maintenance-教堂维护管道"
 	icon_state = "maint_chapel"
 
 /area/station/maintenance/department/chapel/monastery
-	name = "Monastery Maintenance"
+	name = "Maintenance-寺庙维护管道"
 	icon_state = "maint_monastery"
 
 /area/station/maintenance/department/crew_quarters/bar
-	name = "Bar Maintenance"
+	name = "Maintenance-酒吧维护管道"
 	icon_state = "maint_bar"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/maintenance/department/crew_quarters/dorms
-	name = "Dormitory Maintenance"
+	name = "Maintenance-宿舍维护管道"
 	icon_state = "maint_dorms"
 
 /area/station/maintenance/department/eva
-	name = "EVA Maintenance"
+	name = "Maintenance-EVA维护管道"
 	icon_state = "maint_eva"
 
 /area/station/maintenance/department/eva/abandoned
-	name = "Abandoned EVA Storage"
+	name = "Abandoned EVA Storage-废弃EVA仓库"
 
 /area/station/maintenance/department/electrical
-	name = "Electrical Maintenance"
+	name = "Maintenance-供电维护管道"
 	icon_state = "maint_electrical"
 
 /area/station/maintenance/department/engine/atmos
-	name = "Atmospherics Maintenance"
+	name = "Maintenance-大气维护管道"
 	icon_state = "maint_atmos"
 
 /area/station/maintenance/department/security
-	name = "Security Maintenance"
+	name = "Maintenance-安保维护管道"
 	icon_state = "maint_sec"
 
 /area/station/maintenance/department/security/upper
-	name = "Upper Security Maintenance"
+	name = "Upper Maintenance-上层安保维护管道"
 
 /area/station/maintenance/department/security/brig
-	name = "Brig Maintenance"
+	name = "Maintenance-安保大门维护管道"
 	icon_state = "maint_brig"
 
 /area/station/maintenance/department/medical
-	name = "Medbay Maintenance"
-	icon_state = "medbay_maint"
+	name = "Maintenance-医疗部维护管道"
+	icon_state = "medbay_维修通道"
 
 /area/station/maintenance/department/medical/central
-	name = "Central Medbay Maintenance"
+	name = "Maintenance-医疗部中央维护管道"
 	icon_state = "medbay_maint_central"
 
 /area/station/maintenance/department/medical/morgue
-	name = "Morgue Maintenance"
-	icon_state = "morgue_maint"
+	name = "Maintenance-停尸房维护管道"
+	icon_state = "morgue_维修通道"
 
 /area/station/maintenance/department/science
-	name = "Science Maintenance"
+	name = "Maintenance-科研部维护管道"
 	icon_state = "maint_sci"
 
 /area/station/maintenance/department/science/central
-	name = "Central Science Maintenance"
+	name = "Maintenance-科研部中央维护管道"
 	icon_state = "maint_sci_central"
 
 /area/station/maintenance/department/cargo
-	name = "Cargo Maintenance"
+	name = "Maintenance-货仓维护管道"
 	icon_state = "maint_cargo"
 
 /area/station/maintenance/department/bridge
-	name = "Bridge Maintenance"
+	name = "Maintenance-舰桥维护管道"
 	icon_state = "maint_bridge"
 
 /area/station/maintenance/department/engine
-	name = "Engineering Maintenance"
+	name = "Maintenance-工程部维护管道"
 	icon_state = "maint_engi"
 
 /area/station/maintenance/department/prison
-	name = "Prison Maintenance"
+	name = "Maintenance-监狱维护管道"
 	icon_state = "sec_prison"
 
 /area/station/maintenance/department/science/xenobiology
-	name = "Xenobiology Maintenance"
-	icon_state = "xenomaint"
+	name = "Maintenance-异种学维护管道"
+	icon_state = "xeno维修通道"
 	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | XENOBIOLOGY_COMPATIBLE | CULT_PERMITTED
 
 /*
@@ -101,123 +101,123 @@
 */
 
 /area/station/maintenance/aft
-	name = "Aft Maintenance"
-	icon_state = "aftmaint"
+	name = "Maintenance-站尾维护管道"
+	icon_state = "aft维修通道"
 
 /area/station/maintenance/aft/upper
-	name = "Upper Aft Maintenance"
-	icon_state = "upperaftmaint"
+	name = "Upper Maintenance-上层站尾维护管道"
+	icon_state = "upperaft维修通道"
 
-/* Use greater variants of area definitions for when the station has two different sections of maintenance on the same z-level.
+/* Use 远variants of area definitions for when the station has two different sections of maintenance on the same z-level.
 * Can stand alone without "lesser".
 * This one means that this goes more fore/north than the "lesser" maintenance area.
 */
 /area/station/maintenance/aft/greater
-	name = "Greater Aft Maintenance"
-	icon_state = "greateraftmaint"
+	name = "Maintenance-远站尾维护管道"
+	icon_state = "greateraft维修通道"
 
-/* Use lesser variants of area definitions for when the station has two different sections of maintenance on the same z-level in conjunction with "greater".
+/* Use 近variants of area definitions for when the station has two different sections of maintenance on the same z-level in conjunction with "greater".
 * (just because it follows better).
 * This one means that this goes more aft/south than the "greater" maintenance area.
 */
 
 /area/station/maintenance/aft/lesser
-	name = "Lesser Aft Maintenance"
-	icon_state = "lesseraftmaint"
+	name = "Maintenance-近站尾维护管道"
+	icon_state = "lesseraft维修通道"
 
 /area/station/maintenance/central
-	name = "Central Maintenance"
-	icon_state = "centralmaint"
+	name = "Maintenance-中央维护管道"
+	icon_state = "central维修通道"
 
 /area/station/maintenance/central/greater
-	name = "Greater Central Maintenance"
-	icon_state = "greatercentralmaint"
+	name = "Maintenance-远中央维护管道"
+	icon_state = "greatercentral维修通道"
 
 /area/station/maintenance/central/lesser
-	name = "Lesser Central Maintenance"
-	icon_state = "lessercentralmaint"
+	name = "Maintenance-近中央维护管道"
+	icon_state = "lessercentral维修通道"
 
 /area/station/maintenance/fore
-	name = "Fore Maintenance"
-	icon_state = "foremaint"
+	name = "Maintenance-站首维护管道"
+	icon_state = "fore维修通道"
 
 /area/station/maintenance/fore/upper
-	name = "Upper Fore Maintenance"
-	icon_state = "upperforemaint"
+	name = "Upper Maintenance-上层站首维护管道"
+	icon_state = "upperfore维修通道"
 
 /area/station/maintenance/fore/greater
-	name = "Greater Fore Maintenance"
-	icon_state = "greaterforemaint"
+	name = "Maintenance-远站首维护通道"
+	icon_state = "greaterfore维修通道"
 
 /area/station/maintenance/fore/lesser
-	name = "Lesser Fore Maintenance"
-	icon_state = "lesserforemaint"
+	name = "Maintenance-近站首维护通道"
+	icon_state = "lesserfore维修通道"
 
 /area/station/maintenance/starboard
-	name = "Starboard Maintenance"
-	icon_state = "starboardmaint"
+	name = "Maintenance-右舷维护通道"
+	icon_state = "starboard维修通道"
 
 /area/station/maintenance/starboard/upper
-	name = "Upper Starboard Maintenance"
-	icon_state = "upperstarboardmaint"
+	name = "Upper Maintenance-右舷维护通道"
+	icon_state = "upperstarboard维修通道"
 
 /area/station/maintenance/starboard/central
-	name = "Central Starboard Maintenance"
-	icon_state = "centralstarboardmaint"
+	name = "Maintenance-中央右舷维护通道"
+	icon_state = "centralstarboard维修通道"
 
 /area/station/maintenance/starboard/greater
-	name = "Greater Starboard Maintenance"
-	icon_state = "greaterstarboardmaint"
+	name = "Maintenance-远右舷维护通道"
+	icon_state = "greaterstarboard维修通道"
 
 /area/station/maintenance/starboard/lesser
-	name = "Lesser Starboard Maintenance"
-	icon_state = "lesserstarboardmaint"
+	name = "Maintenance-近右舷维护通道"
+	icon_state = "lesserstarboard维修通道"
 
 /area/station/maintenance/starboard/aft
-	name = "Aft Starboard Maintenance"
-	icon_state = "asmaint"
+	name = "Maintenance-站尾右舷维护通道"
+	icon_state = "as维修通道"
 
 /area/station/maintenance/starboard/fore
-	name = "Fore Starboard Maintenance"
-	icon_state = "fsmaint"
+	name = "Maintenance-站首右舷维护通道"
+	icon_state = "fs维修通道"
 
 /area/station/maintenance/port
-	name = "Port Maintenance"
-	icon_state = "portmaint"
+	name = "Maintenance-左舷维护通道"
+	icon_state = "port维修通道"
 
 /area/station/maintenance/port/central
-	name = "Central Port Maintenance"
-	icon_state = "centralportmaint"
+	name = "Maintenance-中央左舷维护通道"
+	icon_state = "centralport维修通道"
 
 /area/station/maintenance/port/greater
-	name = "Greater Port Maintenance"
-	icon_state = "greaterportmaint"
+	name = "Maintenance-远左舷维护通道"
+	icon_state = "greaterport维修通道"
 
 /area/station/maintenance/port/lesser
-	name = "Lesser Port Maintenance"
-	icon_state = "lesserportmaint"
+	name = "Maintenance-近左舷维护通道"
+	icon_state = "lesserport维修通道"
 
 /area/station/maintenance/port/aft
-	name = "Aft Port Maintenance"
-	icon_state = "apmaint"
+	name = "Maintenance-站尾左舷维护通道"
+	icon_state = "ap维修通道"
 
 /area/station/maintenance/port/fore
-	name = "Fore Port Maintenance"
-	icon_state = "fpmaint"
+	name = "Maintenance-站首左舷维护通道"
+	icon_state = "fp维修通道"
 
 /area/station/maintenance/tram
-	name = "Primary Tram Maintenance"
+	name = "Maintenance-主电车维护通道"
 
 /area/station/maintenance/tram/left
-	name = "\improper Port Tram Underpass"
+	name = "\improper Maintenance-左舷电车地下通道"
 	icon_state = "mainttramL"
 
 /area/station/maintenance/tram/mid
-	name = "\improper Central Tram Underpass"
+	name = "\improper Maintenance-中央电车地下通道"
 	icon_state = "mainttramM"
 
 /area/station/maintenance/tram/right
-	name = "\improper Starboard Tram Underpass"
+	name = "\improper Maintenance-右舷电车地下通道"
 	icon_state = "mainttramR"
 
 /*
@@ -225,76 +225,76 @@
 */
 
 /area/station/maintenance/disposal
-	name = "Waste Disposal"
+	name = "Waste Disposal-废气处理"
 	icon_state = "disposal"
 
 /area/station/maintenance/hallway/abandoned_command
-	name = "\improper Abandoned Command Hallway"
+	name = "\improper Maintenance-废弃指挥部走廊"
 	icon_state = "maint_bridge"
 
 /area/station/maintenance/hallway/abandoned_recreation
-	name = "\improper Abandoned Recreation Hallway"
+	name = "\improper Maintenance-废弃休闲走廊"
 	icon_state = "maint_dorms"
 
 /area/station/maintenance/disposal/incinerator
-	name = "\improper Incinerator"
+	name = "\improper Incinerator-焚化炉"
 	icon_state = "incinerator"
 
 /area/station/maintenance/space_hut
-	name = "\improper Space Hut"
+	name = "\improper Space Hut-太空小屋"
 	icon_state = "spacehut"
 
 /area/station/maintenance/space_hut/cabin
-	name = "Abandoned Cabin"
+	name = "Abandoned Cabin-废弃小屋"
 
 /area/station/maintenance/space_hut/plasmaman
 	name = "\improper Abandoned Plasmaman Friendly Startup"
 
 /area/station/maintenance/space_hut/observatory
-	name = "\improper Space Observatory"
+	name = "\improper Space Observatory-太空天文台"
 
 /*
 * Radation Storm Shelters
 */
 
 /area/station/maintenance/radshelter
-	name = "\improper Radstorm Shelter"
+	name = "\improper Shelter-放射性风暴避难所"
 	icon_state = "radstorm_shelter"
 
 /area/station/maintenance/radshelter/medical
-	name = "\improper Medical Radstorm Shelter"
+	name = "\improper Shelter-医疗部放射性风暴避难所"
 
 /area/station/maintenance/radshelter/sec
-	name = "\improper Security Radstorm Shelter"
+	name = "\improper Shelter-安保部放射性风暴避难所"
 
 /area/station/maintenance/radshelter/service
-	name = "\improper Service Radstorm Shelter"
+	name = "\improper Shelter-服务部放射性风暴避难所"
 
 /area/station/maintenance/radshelter/civil
-	name = "\improper Civilian Radstorm Shelter"
+	name = "\improper Shelter-民用放射性风暴避难所"
 
 /area/station/maintenance/radshelter/sci
-	name = "\improper Science Radstorm Shelter"
+	name = "\improper Shelter-科研部放射性风暴避难所"
 
 /area/station/maintenance/radshelter/cargo
-	name = "\improper Cargo Radstorm Shelter"
+	name = "\improper Shelter-货仓放射性风暴避难所"
 
 /*
 * External Hull Access Areas
 */
 
 /area/station/maintenance/external
-	name = "\improper External Hull Access"
-	icon_state = "amaint"
+	name = "\improper External Hull Access-外部船体通道"
+	icon_state = "a维修通道"
 
 /area/station/maintenance/external/aft
-	name = "\improper Aft External Hull Access"
+	name = "\improper External Hull Access-站尾外部船体通道"
 
 /area/station/maintenance/external/port
-	name = "\improper Port External Hull Access"
+	name = "\improper External Hull Access-左舷外部船体通道"
 
 /area/station/maintenance/external/port/bow
-	name = "\improper Port Bow External Hull Access"
+	name = "\improper Bow External Hull Access-站头两侧外部船体通道"
 
 /*
 * Station Specific Areas
@@ -305,107 +305,107 @@
 
 //1
 /area/station/maintenance/floor1
-	name = "\improper 1st Floor Maint"
+	name = "\improper Maint-一楼维修通道"
 
 /area/station/maintenance/floor1/port
-	name = "\improper 1st Floor Central Port Maint"
+	name = "\improper Maint-一楼中央左舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor1/port/fore
-	name = "\improper 1st Floor Fore Port Maint"
+	name = "\improper Maint-一楼站首左舷维修通道"
 	icon_state = "maintfore"
 /area/station/maintenance/floor1/port/aft
-	name = "\improper 1st Floor Aft Port Maint"
+	name = "\improper Maint-一楼站尾左舷维修通道"
 	icon_state = "maintaft"
 
 /area/station/maintenance/floor1/starboard
-	name = "\improper 1st Floor Central Starboard Maint"
+	name = "\improper Maint-一楼中央右舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor1/starboard/fore
-	name = "\improper 1st Floor Fore Starboard Maint"
+	name = "\improper Maint-一楼站首右舷维修通道"
 	icon_state = "maintfore"
 
 /area/station/maintenance/floor1/starboard/aft
-	name = "\improper 1st Floor Aft Starboard Maint"
+	name = "\improper Maint-一楼站尾右舷维修通道"
 	icon_state = "maintaft"
 //2
 /area/station/maintenance/floor2
-	name = "\improper 2nd Floor Maint"
+	name = "\improper Maint-二楼维修通道"
 /area/station/maintenance/floor2/port
-	name = "\improper 2nd Floor Central Port Maint"
+	name = "\improper Maint-二楼中央左舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor2/port/fore
-	name = "\improper 2nd Floor Fore Port Maint"
+	name = "\improper Maint-二楼站首左舷维修通道"
 	icon_state = "maintfore"
 
 /area/station/maintenance/floor2/port/aft
-	name = "\improper 2nd Floor Aft Port Maint"
+	name = "\improper Maint-二楼站尾左舷维修通道"
 	icon_state = "maintaft"
 
 /area/station/maintenance/floor2/starboard
-	name = "\improper 2nd Floor Central Starboard Maint"
+	name = "\improper Maint-二楼中央右舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor2/starboard/fore
-	name = "\improper 2nd Floor Fore Starboard Maint"
+	name = "\improper Maint-二楼站首右舷维修通道"
 	icon_state = "maintfore"
 
 /area/station/maintenance/floor2/starboard/aft
-	name = "\improper 2nd Floor Aft Starboard Maint"
+	name = "\improper Maint-二楼站尾右舷维修通道"
 	icon_state = "maintaft"
 //3
 /area/station/maintenance/floor3
-	name = "\improper 3rd Floor Maint"
+	name = "\improper Maint-三楼维修通道"
 
 /area/station/maintenance/floor3/port
-	name = "\improper 3rd Floor Central Port Maint"
+	name = "\improper Maint-三楼中央左舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor3/port/fore
-	name = "\improper 3rd Floor Fore Port Maint"
+	name = "\improper Maint-三楼站首左舷维修通道"
 	icon_state = "maintfore"
 
 /area/station/maintenance/floor3/port/aft
-	name = "\improper 3rd Floor Aft Port Maint"
+	name = "\improper Maint-三楼站尾左舷维修通道"
 	icon_state = "maintaft"
 
 /area/station/maintenance/floor3/starboard
-	name = "\improper 3rd Floor Central Starboard Maint"
+	name = "\improper Maint-三楼中央右舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor3/starboard/fore
-	name = "\improper 3rd Floor Fore Starboard Maint"
+	name = "\improper Maint-三楼站首右舷维修通道"
 	icon_state = "maintfore"
 
 /area/station/maintenance/floor3/starboard/aft
-	name = "\improper 3rd Floor Aft Starboard Maint"
+	name = "\improper Maint-三楼站尾右舷维修通道"
 	icon_state = "maintaft"
 //4
 /area/station/maintenance/floor4
-	name = "\improper 4th Floor Maint"
+	name = "\improper Maint-四楼维修通道"
 
 /area/station/maintenance/floor4/port
-	name = "\improper 4th Floor Central Port Maint"
+	name = "\improper Maint-四楼中央左舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor4/port/fore
-	name = "\improper 4th Floor Fore Port Maint"
+	name = "\improper Maint-四楼站首左舷维修通道"
 	icon_state = "maintfore"
 
 /area/station/maintenance/floor4/port/aft
-	name = "\improper 4th Floor Aft Port Maint"
+	name = "\improper Maint-四楼站尾左舷维修通道"
 	icon_state = "maintaft"
 
 /area/station/maintenance/floor4/starboard
-	name = "\improper 4th Floor Central Starboard Maint"
+	name = "\improper Maint-四楼中央右舷维修通道"
 	icon_state = "maintcentral"
 
 /area/station/maintenance/floor4/starboard/fore
-	name = "\improper 4th Floor Fore Starboard Maint"
+	name = "\improper Maint-四楼站首右舷维修通道"
 	icon_state = "maintfore"
 
 /area/station/maintenance/floor4/starboard/aft
-	name = "\improper 4th Floor Aft Starboard Maint"
+	name = "\improper Maint-四楼站尾右舷维修通道"
 	icon_state = "maintaft"

@@ -13,13 +13,13 @@ DEFINE_BITFIELD(sign_features, list(
 #define TREND_RISING "rising"
 #define TREND_FALLING "falling"
 
-#define NAME_DUAL "safety incident display"
-#define NAME_DELAM "delamination incident display"
-#define NAME_TRAM "tram incident display"
+#define NAME_DUAL "安全事故公告板"
+#define NAME_DELAM "分层事故公告板"
+#define NAME_TRAM "电车事故公告板"
 
-#define DESC_DUAL "A display that provides information on the station's safety record. Features an advert for SAFETY MOTH."
-#define DESC_DELAM "A signs describe how long it's been since the last delamination incident. Features an advert for SAFETY MOTH."
-#define DESC_TRAM "A display that provides the number of tram related safety incidents this shift. Features an advert for SAFETY MOTH."
+#define DESC_DUAL "公告站点安全事故记录的显示器，有名为“安全蛾”的特色角色在播报."
+#define DESC_DELAM "公告距离上一次分层事故已经过去了多长时间，有名为“安全蛾”的特色角色在播报."
+#define DESC_TRAM "公告本次轮班电车事故数量的显示器，有名为“安全蛾”的特色角色在播报."
 
 /**
  * List of safety statistic signs on the map that have delam counting enabled.
@@ -97,14 +97,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return FALSE
 
 	if(atom_integrity >= max_integrity && !(machine_stat & BROKEN))
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理!")
 		return TRUE
 
-	balloon_alert(user, "repairing display...")
+	balloon_alert(user, "修理显示器...")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
 
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "修理完成")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -117,7 +117,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 
 	if(sign_features == DISPLAY_TRAM)
 		tool.play_tool_sound(src)
-		balloon_alert(user, "set to dual")
+		balloon_alert(user, "设置为双类")
 		name = NAME_DUAL
 		desc = DESC_DUAL
 		icon_state = "stat_display_dual"
@@ -128,7 +128,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return TRUE
 	else if(sign_features == DISPLAY_DELAM)
 		tool.play_tool_sound(src)
-		balloon_alert(user, "set to tram")
+		balloon_alert(user, "设置为电车")
 		name = NAME_TRAM
 		desc = DESC_TRAM
 		icon_state = "stat_display_tram"
@@ -138,7 +138,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return TRUE
 	else if(sign_features == (DISPLAY_DELAM + DISPLAY_TRAM))
 		tool.play_tool_sound(src)
-		balloon_alert(user, "set to delam")
+		balloon_alert(user, "设置为分层")
 		name = NAME_DELAM
 		desc = DESC_DELAM
 		icon_state = "stat_display_delam"
@@ -323,36 +323,36 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 
 	if(sign_features & DISPLAY_DELAM)
 		if(last_delam >= 0)
-			. += span_info("It has been [last_delam] shift\s since the last delamination event at this Nanotrasen facility.")
+			. += span_info("距离上一次分层事件，已经经过[last_delam]次轮班.")
 			switch(last_delam)
 				if(0)
-					. += span_info("Let's do better today.<br/>")
+					. += span_info("这次我们会做得更好.<br/>")
 				if(1 to 5)
-					. += span_info("There's room for improvement.<br/>")
+					. += span_info("还能再接再厉.<br/>")
 				if(6 to 10)
-					. += span_info("Good work!<br/>")
+					. += span_info("干得好!<br/>")
 				if(69)
-					. += span_info("Nice.<br/>")
+					. += span_info("漂亮.<br/>")
 				else
-					. += span_info("Incredible!<br/>")
+					. += span_info("真是不可思议!<br/>")
 		else
-			. += span_info("The supermatter crystal has delaminated, in case you didn't notice.")
+			. += span_info("以防你不知道，现在超物质晶体已经分层了.")
 
 	if(sign_features & DISPLAY_TRAM)
-		. += span_info("The station has had [hit_count] tram incident\s this shift.")
+		. += span_info("本次轮班发生了[hit_count]次电车事故.")
 		switch(hit_count)
 			if(0)
-				. += span_info("Fantastic! Champions of safety.<br/>")
+				. += span_info("了不起! 交通安全的榜样.<br/>")
 			if(1)
-				. += span_info("Let's do better tomorrow.<br/>")
+				. += span_info("明天还能做得更好.<br/>")
 			if(2 to 5)
-				. += span_info("There's room for improvement.<br/>")
+				. += span_info("还有提升空间.<br/>")
 			if(6 to 10)
-				. += span_info("Good work! Nanotrasen's finest!<br/>")
+				. += span_info("干得好! 纳米传讯的骄傲!<br/>")
 			if(69)
-				. += span_info("Nice.<br/>")
+				. += span_info("漂亮.<br/>")
 			else
-				. += span_info("Incredible! You're probably reading this from medbay.<br/>")
+				. += span_info("不可思议! 你可能就在医疗部阅读此信息.<br/>")
 
 #undef DISPLAY_DELAM
 #undef DISPLAY_TRAM

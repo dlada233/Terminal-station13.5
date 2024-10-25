@@ -39,15 +39,15 @@ export const CrimeWatcher = (props) => {
             onClick={() => setSelectedTab(SECURETAB.Crimes)}
             selected={selectedTab === SECURETAB.Crimes}
           >
-            Crimes: {crimes.length}
+            罪名: {crimes.length}
           </Tabs.Tab>
           <Tabs.Tab
             onClick={() => setSelectedTab(SECURETAB.Citations)}
             selected={selectedTab === SECURETAB.Citations}
           >
-            Citations: {citations.length}
+            传讯: {citations.length}
           </Tabs.Tab>
-          <Tooltip content="Add a new crime or citation" position="bottom">
+          <Tooltip content="添加新的罪名或传讯" position="bottom">
             <Tabs.Tab
               onClick={() => setSelectedTab(SECURETAB.Add)}
               selected={selectedTab === SECURETAB.Add}
@@ -83,9 +83,7 @@ const CrimeList = (props) => {
     <Stack fill vertical>
       {!toDisplay.length ? (
         <Stack.Item>
-          <NoticeBox>
-            No {tab === SECURETAB.Crimes ? 'crimes' : 'citations'} found.
-          </NoticeBox>
+          <NoticeBox>无{tab === SECURETAB.Crimes ? '罪名' : '传讯'}.</NoticeBox>
         </Stack.Item>
       ) : (
         toDisplay.map((item, index) => <CrimeDisplay key={index} item={item} />)
@@ -123,17 +121,17 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
     <Stack.Item>
       <Collapsible color={collapsibleColor} open={editing} title={displayTitle}>
         <LabeledList>
-          <LabeledList.Item label="Time">{time}</LabeledList.Item>
-          <LabeledList.Item label="Author">{author}</LabeledList.Item>
-          <LabeledList.Item color={!valid ? 'bad' : 'good'} label="Status">
-            {!valid ? 'Void' : 'Active'}
+          <LabeledList.Item label="时间">{time}</LabeledList.Item>
+          <LabeledList.Item label="发起人">{author}</LabeledList.Item>
+          <LabeledList.Item color={!valid ? 'bad' : 'good'} label="状态">
+            {!valid ? '无效' : '生效'}
           </LabeledList.Item>
           {fine && (
             <>
-              <LabeledList.Item color="bad" label="Fine">
+              <LabeledList.Item color="bad" label="罚款">
                 {fine}cr <Icon color="gold" name="coins" />
               </LabeledList.Item>
-              <LabeledList.Item color="good" label="Paid">
+              <LabeledList.Item color="good" label="交纳">
                 {paid}cr <Icon color="gold" name="coins" />
               </LabeledList.Item>
             </>
@@ -154,7 +152,7 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
               Edit
             </Button>
             <Button.Confirm
-              content="Invalidate"
+              content="使之无效"
               disabled={!higher_access || !valid}
               icon="ban"
               onClick={() =>
@@ -179,7 +177,7 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
                   name: value,
                 });
               }}
-              placeholder="Enter a new name"
+              placeholder="输入新名称"
             />
             <Input
               fluid
@@ -194,7 +192,7 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
                   description: value,
                 });
               }}
-              placeholder="Enter a new description"
+              placeholder="输入新描述"
             />
           </>
         )}
@@ -249,7 +247,7 @@ const CrimeAuthor = (props) => {
           fluid
           maxLength={25}
           onChange={(_, value) => setCrimeName(value)}
-          placeholder="Brief overview"
+          placeholder="简要概述"
         />
       </Stack.Item>
       <Stack.Item color="label">
@@ -259,7 +257,7 @@ const CrimeAuthor = (props) => {
           height={4}
           maxLength={1025}
           onChange={(_, value) => setCrimeDetails(value)}
-          placeholder="Type some details..."
+          placeholder="输入详细信息..."
         />
       </Stack.Item>
       <Stack.Item color="label">
@@ -272,11 +270,11 @@ const CrimeAuthor = (props) => {
       </Stack.Item>
       <Stack.Item>
         <Button.Confirm
-          content="Create"
+          content="创建"
           disabled={!nameMeetsReqs}
           icon="plus"
           onClick={createCrime}
-          tooltip={!nameMeetsReqs ? 'Name must be at least 3 characters.' : ''}
+          tooltip={!nameMeetsReqs ? '名字至少需要3个字符.' : ''}
         />
       </Stack.Item>
     </Stack>

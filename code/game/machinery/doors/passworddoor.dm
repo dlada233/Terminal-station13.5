@@ -1,6 +1,6 @@
 /obj/machinery/door/password
-	name = "door"
-	desc = "This door only opens when provided a password."
+	name = "门"
+	desc = "只有当你提供密码时才会开启."
 	icon = 'icons/obj/doors/blastdoor.dmi'
 	icon_state = "closed"
 	explosion_block = 3
@@ -81,7 +81,7 @@
 			playsound(src, door_deny, 30, TRUE)
 
 /obj/machinery/door/password/proc/ask_for_pass(mob/user)
-	var/guess = tgui_input_text(user, "Enter the password", "Password")
+	var/guess = tgui_input_text(user, "输入密码", "密码")
 	if(guess == password)
 		return TRUE
 	return FALSE

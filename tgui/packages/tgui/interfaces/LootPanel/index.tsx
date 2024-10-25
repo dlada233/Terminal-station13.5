@@ -24,7 +24,7 @@ export function LootPanel(props) {
   const total = contents.length ? contents.length - 1 : 0;
 
   return (
-    <Window height={275} width={190} title={`Contents: ${total}`}>
+    <Window height={275} width={190} title={`内容: ${total}`}>
       <Window.Content
         onKeyDown={(event) => {
           if (isEscape(event.key)) {
@@ -42,7 +42,7 @@ export function LootPanel(props) {
                   autoFocus
                   fluid
                   onInput={(event, value) => setSearchText(value)}
-                  placeholder="Search"
+                  placeholder="搜索"
                 />
               </Stack.Item>
               <Stack.Item>
@@ -50,7 +50,7 @@ export function LootPanel(props) {
                   icon={grouping ? 'layer-group' : 'object-ungroup'}
                   selected={grouping}
                   onClick={() => setGrouping(!grouping)}
-                  tooltip="Toggle Grouping"
+                  tooltip="切换分组"
                 />
               </Stack.Item>
               <Stack.Item>
@@ -58,7 +58,7 @@ export function LootPanel(props) {
                   disabled={!!searching}
                   icon="sync"
                   onClick={() => act('refresh')}
-                  tooltip="Refresh"
+                  tooltip="刷新"
                 />
               </Stack.Item>
             </Stack>

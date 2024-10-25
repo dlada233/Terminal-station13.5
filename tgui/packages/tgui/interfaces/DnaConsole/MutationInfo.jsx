@@ -30,11 +30,11 @@ const ChromosomeInfo = (props) => {
   const { mutation, disabled } = props;
   const { data, act } = useBackend();
   if (mutation.CanChromo === CHROMOSOME_NEVER) {
-    return <Box color="label">No compatible chromosomes</Box>;
+    return <Box color="label">无相容染色体</Box>;
   }
   if (mutation.CanChromo === CHROMOSOME_NONE) {
     if (disabled) {
-      return <Box color="label">No chromosome applied.</Box>;
+      return <Box color="label">无以应用染色体.</Box>;
     }
     return (
       <>
@@ -55,15 +55,13 @@ const ChromosomeInfo = (props) => {
           }
         />
         <Box color="label" mt={1}>
-          Compatible with: {mutation.ValidChromos}
+          相容染色体: {mutation.ValidChromos}
         </Box>
       </>
     );
   }
   if (mutation.CanChromo === CHROMOSOME_USED) {
-    return (
-      <Box color="label">Applied chromosome: {mutation.AppliedChromo}</Box>
-    );
+    return <Box color="label">已应用染色体: {mutation.AppliedChromo}</Box>;
   }
   return null;
 };
@@ -133,9 +131,7 @@ export const MutationInfo = (props) => {
             {mutation.Name}
           </Box>
         </LabeledList.Item>
-        <LabeledList.Item label="描述">
-          {mutation.Description}
-        </LabeledList.Item>
+        <LabeledList.Item label="描述">{mutation.Description}</LabeledList.Item>
         <LabeledList.Item label="不稳定性">
           {mutation.Instability}
         </LabeledList.Item>
@@ -230,7 +226,7 @@ export const MutationInfo = (props) => {
                 <Button
                   icon="save"
                   disabled={savedToConsole || !mutation.Active}
-                  content="Save to Console"
+                  content="保存至终端"
                   onClick={() =>
                     act('save_console', {
                       mutref: mutation.ByondRef,
@@ -251,7 +247,7 @@ export const MutationInfo = (props) => {
                     diskReadOnly ||
                     !mutation.Active
                   }
-                  content="Save to Disk"
+                  content="保存至磁盘"
                   onClick={() =>
                     act('save_disk', {
                       mutref: mutation.ByondRef,
@@ -266,7 +262,7 @@ export const MutationInfo = (props) => {
                 <Button
                   icon="times"
                   color="red"
-                  content={`Delete from ${mutation.Source}`}
+                  content={`从${mutation.Source}中删除`}
                   onClick={() =>
                     act(`delete_${mutation.Source}_mut`, {
                       mutref: mutation.ByondRef,
@@ -279,7 +275,7 @@ export const MutationInfo = (props) => {
               (!!mutation.Scrambled && mutation.Source === 'occupant')) && (
               <Stack.Item>
                 <Button
-                  content="Nullify"
+                  content="取消"
                   onClick={() =>
                     act('nullify', {
                       mutref: mutation.ByondRef,

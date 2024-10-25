@@ -13,12 +13,12 @@
 	var/written_note = "祝贺您的站点升级并体验全新的NtOS & Thinktronic的联合协作技术, \
 		为您带来自2467年以来最好的电子和软件解决方案!\n\
 		为了方便您导航，我们提供了以下术语定义:\n\
-		Fore - 站体前端\n\
-		Aft - 站体后端\n\
-		Port - 站体左侧\n\
-		Starboard - 站体右侧\n\
-		Quarter - 站尾两测\n\
-		Bow - 站头两侧"
+		Fore - 站体前部/站头/站首\n\
+		Aft - 站体后部/站尾\n\
+		Port - 站体左侧/左舷\n\
+		Starboard - 站体右侧/右舷\n\
+		Quarter - 站尾两侧\n\
+		Bow - 站头两侧/站首两侧"
 
 /datum/computer_file/program/notepad/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

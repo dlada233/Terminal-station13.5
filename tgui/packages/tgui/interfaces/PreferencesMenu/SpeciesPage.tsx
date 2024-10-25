@@ -43,23 +43,23 @@ const FOOD_ICONS = {
 };
 
 const FOOD_NAMES: Record<keyof typeof FOOD_ICONS, string> = {
-  [Food.Bugs]: 'Bugs',
-  [Food.Cloth]: 'Clothing',
-  [Food.Dairy]: 'Dairy',
-  [Food.Fried]: 'Fried food',
-  [Food.Fruit]: 'Fruit',
-  [Food.Gore]: 'Gore',
-  [Food.Grain]: 'Grain',
-  [Food.Gross]: 'Gross food',
-  [Food.Junkfood]: 'Junk food',
-  [Food.Meat]: 'Meat',
-  [Food.Nuts]: 'Nuts',
-  [Food.Raw]: 'Raw',
-  [Food.Seafood]: 'Seafood',
-  [Food.Stone]: 'Rocks',
-  [Food.Sugar]: 'Sugar',
-  [Food.Toxic]: 'Toxic food',
-  [Food.Vegetables]: 'Vegetables',
+  [Food.Bugs]: '虫子',
+  [Food.Cloth]: '衣物',
+  [Food.Dairy]: '乳制品',
+  [Food.Fried]: '油炸食品',
+  [Food.Fruit]: '水果',
+  [Food.Gore]: '血制品',
+  [Food.Grain]: '谷物',
+  [Food.Gross]: '恶心食品',
+  [Food.Junkfood]: '垃圾食品',
+  [Food.Meat]: '肉类',
+  [Food.Nuts]: '坚果类',
+  [Food.Raw]: '生食',
+  [Food.Seafood]: '海鲜',
+  [Food.Stone]: '岩石',
+  [Food.Sugar]: '糖类',
+  [Food.Toxic]: '有毒食品',
+  [Food.Vegetables]: '蔬菜',
 };
 
 const IGNORE_UNLESS_LIKED: Set<Food> = new Set([
@@ -136,7 +136,7 @@ const Diet = (props: { diet: Species['diet'] }) => {
         <FoodList
           food={liked_food}
           icon="heart"
-          name="Liked food"
+          name="喜好食物"
           className="color-pink"
         />
       </Stack.Item>
@@ -145,7 +145,7 @@ const Diet = (props: { diet: Species['diet'] }) => {
         <FoodList
           food={disliked_food.filter(notIn(IGNORE_UNLESS_LIKED))}
           icon="thumbs-down"
-          name="Disliked food"
+          name="厌恶食物"
           className="color-red"
         />
       </Stack.Item>
@@ -154,7 +154,7 @@ const Diet = (props: { diet: Species['diet'] }) => {
         <FoodList
           food={toxic_food.filter(notIn(IGNORE_UNLESS_LIKED))}
           icon="biohazard"
-          name="Toxic food"
+          name="有毒食物"
           className="color-olive"
         />
       </Stack.Item>
@@ -259,11 +259,7 @@ const SpeciesPageInner = (props: {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <Button
-          icon="arrow-left"
-          onClick={props.handleClose}
-          content="Go Back"
-        />
+        <Button icon="arrow-left" onClick={props.handleClose} content="返回" />
       </Stack.Item>
 
       <Stack.Item grow>
@@ -299,8 +295,7 @@ const SpeciesPageInner = (props: {
                 );
                 if (species.veteran_only && !data.is_veteran) {
                   let tooltipContent =
-                    species.name +
-                    ' - You need to be a veteran to select this race, apply today!';
+                    species.name + ' - 这是有经验的老手限定种族，欢迎申请成为!';
                   speciesPage = (
                     <Tooltip content={tooltipContent}>{speciesPage}</Tooltip>
                   );
@@ -388,7 +383,7 @@ export const SpeciesPage = (props: { closeSpecies: () => void }) => {
             />
           );
         } else {
-          return <Box>Loading species...</Box>;
+          return <Box>加载种族...</Box>;
         }
       }}
     />

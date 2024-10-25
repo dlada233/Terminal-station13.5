@@ -5,8 +5,8 @@
  * Links to buttons for remote control.
  */
 /obj/machinery/photobooth
-	name = "photobooth"
-	desc = "A machine with some drapes and a camera, used to update security record photos. Requires Law Office access to use."
+	name = "快照亭"
+	desc = "带有照相机和摄像头的机器，用于更新安保档案里的照片，需要律师事务所的访问权限才能使用."
 	icon = 'icons/obj/machines/photobooth.dmi'
 	icon_state = "booth_open"
 	base_icon_state = "booth"
@@ -32,8 +32,8 @@
  * Good for people you plan on putting in the permabrig.
  */
 /obj/machinery/photobooth/security
-	name = "security photobooth"
-	desc = "A machine with some drapes and a camera, used to update security record photos. Requires Security access to use, and adds a height chart to the person."
+	name = "安保快照亭"
+	desc = "带有照相机和摄像头的机器，用于更新安保档案里的照片并添加身高尺码标注，需要安保部访问权限才能使用."
 	circuit = /obj/item/circuitboard/machine/photobooth/security
 	req_one_access = list(ACCESS_SECURITY)
 	color = COLOR_LIGHT_GRAYISH_RED
@@ -47,7 +47,7 @@
 /obj/machinery/photobooth/interact(mob/living/user, list/modifiers)
 	. = ..()
 	if(taking_pictures)
-		balloon_alert(user, "machine busy!")
+		balloon_alert(user, "机器忙碌中!")
 		return
 	if(state_open)
 		close_machine()
@@ -56,13 +56,13 @@
 
 /obj/machinery/photobooth/attack_hand_secondary(mob/user, list/modifiers)
 	if(taking_pictures)
-		balloon_alert(user, "machine busy!")
+		balloon_alert(user, "机器忙碌中!")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(occupant)
 		if(allowed(user))
 			start_taking_pictures()
 		else
-			balloon_alert(user, "access denied!")
+			balloon_alert(user, "访问被拒绝!")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return ..()
 
@@ -173,8 +173,8 @@
 
 
 /obj/machinery/button/photobooth
-	name = "photobooth control button"
-	desc = "Operates the photobooth from a distance, allowing people to update their security record photos."
+	name = "快照亭控制按钮"
+	desc = "远程操作快照亭，允许人们更新他们的安保档案照片."
 	device_type = /obj/item/assembly/control/photobooth_control
 	req_one_access = list(ACCESS_SECURITY, ACCESS_LAWYER)
 	id = "photobooth_machine_default"
@@ -196,8 +196,8 @@
 	balloon_alert(user, "linked to [tool.buffer]")
 
 /obj/item/assembly/control/photobooth_control
-	name = "photobooth controller"
-	desc = "A remote controller for the HoP's photobooth."
+	name = "快照亭控制器"
+	desc = "远程控制HoP的快照亭."
 	///Weakref to the photobooth we're connected to.
 	var/datum/weakref/booth_machine_ref
 
@@ -224,6 +224,6 @@
 	if(!machine)
 		return
 	if(machine.taking_pictures)
-		balloon_alert(activator, "machine busy!")
+		balloon_alert(activator, "机器忙碌中!")
 		return
 	machine.start_taking_pictures()

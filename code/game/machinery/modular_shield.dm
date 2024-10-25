@@ -1,6 +1,6 @@
 /obj/machinery/modular_shield_generator
-	name = "modular shield generator"
-	desc = "A forcefield generator, it seems more stationary than its cousins. It cant handle G-force and will require frequent reboots when built on mobile craft."
+	name = "模块化护盾发生器"
+	desc = "一台力场发生器，比同类更加固定化，无法处理G力，在移动的飞船上建造时需要频繁重启."
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "gen_recovering_closed"
 	density = TRUE
@@ -104,7 +104,7 @@
 		activate_shields()
 
 /datum/wires/modular_shield_generator
-	proper_name = "Modular shield generator"
+	proper_name = "模块化护盾发生器"
 	randomize = FALSE
 	holder_type = /obj/machinery/modular_shield_generator
 
@@ -506,8 +506,8 @@
 
 /obj/machinery/modular_shield/module/node
 
-	name = "modular shield node"
-	desc = "A waist high mess of humming pipes and wires that extend the modular shield network."
+	name = "模块化护盾节点"
+	desc = "齐腰高的管道与线缆，能够延伸模块化护盾网络."
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "node_off_closed"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.5
@@ -587,8 +587,8 @@
 
 /obj/machinery/modular_shield/module/charger
 
-	name = "modular shield charger"
-	desc = "A machine that somehow fabricates hardlight using electrons."
+	name = "模块化护盾充电器"
+	desc = "一种利用电子通过未知方法制造硬光的机器."
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "charger_off_closed"
 
@@ -615,8 +615,8 @@
 
 /obj/machinery/modular_shield/module/relay
 
-	name = "modular shield relay"
-	desc = "It helps the shield generator project farther out."
+	name = "模块化护盾继电器"
+	desc = "它有助于将护盾投射到更换的地方."
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "relay_off_closed"
 
@@ -643,8 +643,8 @@
 
 /obj/machinery/modular_shield/module/well
 
-	name = "modular shield well"
-	desc = "A device used to hold more hardlight for the modular shield generator."
+	name = "模块化护盾井"
+	desc = "能为模块化护盾提供更多硬光的设备."
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "well_off_closed"
 
@@ -672,13 +672,13 @@
 
 //The shield itself
 /obj/structure/emergency_shield/modular
-	name = "modular energy shield"
-	desc = "An energy shield with varying configurations."
+	name = "模块化能量护盾"
+	desc = "具有不同构造的能量护盾."
 	color = "#00ffff"
 	density = FALSE
 	alpha = 100
 	resistance_flags = INDESTRUCTIBLE //the shield itself is indestructible or atleast should be
-	no_damage_feedback = "weakening the generator sustaining it"
+	no_damage_feedback = "正削弱维持它的发电机"
 
 	///The shield generator sustaining us
 	var/obj/machinery/modular_shield_generator/shield_generator

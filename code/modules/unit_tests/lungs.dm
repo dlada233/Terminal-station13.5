@@ -30,12 +30,12 @@
 	// Test one breath of nothing. Suffocate due to the breath being null.
 	lungs_test_check_breath("null", lab_rat, test_lungs, null, expect_failure = TRUE)
 
-	// Suffocation with Nitrogen.
+	// Suffocation with Nitrogen-氮气.
 	var/datum/gas_mixture/nitro_test_mix = create_nitrogen_mix()
 	lab_rat = allocate(/mob/living/carbon/human/consistent)
 	test_lungs = allocate(/obj/item/organ/internal/lungs)
-	// Test one breath of Nitrogen. Suffocate due to the breath being 100% N2.
-	lungs_test_check_breath("pure Nitrogen", lab_rat, test_lungs, nitro_test_mix, expect_failure = TRUE)
+	// Test one breath of Nitrogen-氮气. Suffocate due to the breath being 100% N2.
+	lungs_test_check_breath("pure Nitrogen-氮气", lab_rat, test_lungs, nitro_test_mix, expect_failure = TRUE)
 
 /// Tests the Plasmaman lungs organ to ensure Plasma breathing and suffocation behave as expected.
 /datum/unit_test/lungs/lungs_sanity_plasmaman
@@ -48,12 +48,12 @@
 	// Test one breath of Plasma on Plasmaman lungs.
 	lungs_test_check_breath("pure Plasma", lab_rat, test_lungs, plasma_test_mix)
 
-	// Tests suffocation with Nitrogen.
+	// Tests suffocation with Nitrogen-氮气.
 	var/datum/gas_mixture/nitro_test_mix = create_nitrogen_mix()
 	lab_rat = allocate(/mob/living/carbon/human/consistent)
 	test_lungs = allocate(/obj/item/organ/internal/lungs/plasmaman)
-	// Test one breath of Nitrogen on Plasmaman lungs.
-	lungs_test_check_breath("pure Nitrogen", lab_rat, test_lungs, nitro_test_mix, expect_failure = TRUE)
+	// Test one breath of Nitrogen-氮气 on Plasmaman lungs.
+	lungs_test_check_breath("pure Nitrogen-氮气", lab_rat, test_lungs, nitro_test_mix, expect_failure = TRUE)
 
 /// Tests the lavaland/Ashwalker lungs organ.
 /// Ensures they can breathe from the lavaland air mixture properly, and suffocate on inadequate mixture.
@@ -148,8 +148,8 @@
 		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/oxygen), expected_oxygen), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should consume all Oxygen initially present in the breath."))
 		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/carbon_dioxide), expected_co2), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should convert Oxygen into an equivalent volume of CO2."))
 	if(min_nitro)
-		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/nitrogen), expected_nitro), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should consume all Nitrogen initially present in the breath."))
-		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/carbon_dioxide), expected_co2), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should convert Nitrogen into an equivalent volume of CO2."))
+		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/nitrogen), expected_nitro), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should consume all Nitrogen-氮气 initially present in the breath."))
+		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/carbon_dioxide), expected_co2), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should convert Nitrogen-氮气 into an equivalent volume of CO2."))
 	if(min_plasma)
 		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/plasma), expected_plasma), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should consume all Plasma initially present in the breath."))
 		TEST_ASSERT(molar_cmp_equals(GET_MOLES(test_breath, /datum/gas/carbon_dioxide), expected_co2), TEST_CHECK_BREATH_MESSAGE(test_lungs, "should convert Plasma into an equivalent volume of CO2."))
@@ -181,7 +181,7 @@
 /datum/unit_test/lungs/proc/create_standard_mix()
 	return create_gas_mix(list(/datum/gas/oxygen = O2STANDARD, /datum/gas/nitrogen = N2STANDARD))
 
-/// Set up a pure Nitrogen gas mix.
+/// Set up a pure Nitrogen-氮气 gas mix.
 /datum/unit_test/lungs/proc/create_nitrogen_mix()
 	return create_gas_mix(list(/datum/gas/nitrogen = 1))
 

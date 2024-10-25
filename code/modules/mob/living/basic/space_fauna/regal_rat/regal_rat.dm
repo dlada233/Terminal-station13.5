@@ -141,7 +141,7 @@
 		"Cheese",
 		"Garbage",
 		"Maintenance",
-		"Miasma",
+		"瘴气",
 		"Plague",
 		"Trash",
 		"Vermin",

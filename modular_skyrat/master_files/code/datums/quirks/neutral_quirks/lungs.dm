@@ -68,7 +68,7 @@
 	examine_list += "The dogtag reads: I breathe [breath_type]."
 
 /datum/quirk/equipping/lungs/nitrogen
-	name = "Nitrogen Breather"
+	name = "Nitrogen-氮气 Breather"
 	desc = "You breathe nitrogen, even if you might not normally breathe it. Oxygen is poisonous."
 	icon = FA_ICON_LUNGS_VIRUS
 	medical_record_text = "Patient can only breathe nitrogen."

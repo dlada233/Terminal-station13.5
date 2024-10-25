@@ -259,7 +259,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/the_owl, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/no_erp, 32)
 
 /obj/structure/sign/poster/official/wtf_is_co2
-	name = "Carbon Dioxide"
+	name = "Carbon Dioxide-二氧化碳"
 	desc = "This informational poster teaches the viewer what carbon dioxide is."
 	icon_state = "wtf_is_co2"
 
@@ -282,7 +282,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/there_is_no_gas_
 
 /obj/structure/sign/poster/official/periodic_table
 	name = "Periodic Table of the Elements"
-	desc = "A periodic table of the elements, from Hydrogen to Oganesson, and everything inbetween."
+	desc = "A periodic table of the elements, from Hydrogen-氢气 to Oganesson, and everything inbetween."
 	icon_state = "periodic_table"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/periodic_table, 32)

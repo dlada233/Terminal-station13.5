@@ -99,7 +99,7 @@
 
 /obj/item/storage/box/rndboards
 	name = "\proper 解放者的遗产"
-	desc = "一个盒子，里面装着给傀儡们的礼物."
+	desc = "一个盒子，里面装着给石人们的礼物."
 	illustration = "scicircuit"
 
 /obj/item/storage/box/rndboards/PopulateContents()
