@@ -1,7 +1,5 @@
-import { toTitleCase } from 'common/string';
-
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section, Table } from '../components';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const LaborClaimConsole = (props) => {
@@ -12,20 +10,20 @@ export const LaborClaimConsole = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Status">{status_info}</LabeledList.Item>
-            <LabeledList.Item label="Shuttle controls">
+            <LabeledList.Item label="状态">{status_info}</LabeledList.Item>
+            <LabeledList.Item label="飞船控制">
               <Button
-                content="Move shuttle"
+                content="移动飞船"
                 disabled={!can_go_home}
                 onClick={() => act('move_shuttle')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Points">{id_points}</LabeledList.Item>
+            <LabeledList.Item label="点数">{id_points}</LabeledList.Item>
             <LabeledList.Item
-              label="Unclaimed points"
+              label="无主点数"
               buttons={
                 <Button
-                  content="Claim points"
+                  content="认领点数"
                   disabled={!unclaimed_points}
                   onClick={() => act('claim_points')}
                 />
@@ -35,14 +33,10 @@ export const LaborClaimConsole = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Directions">
-          The nearby stacking machine will unload crates and collect smelted
-          materials, points will be calculated based on volume of delivered
-          materials.
+        <Section title="用法说明">
+          附近的堆垛机将卸载板条箱并收集冶炼材料，根据交付材料的体积来计算分数.
           <br />
-          Please note that only sheets printed with our manufacturer's seal of
-          quality, such as those produced from the work camp furnace, will be
-          accepted as proof of labour.
+          请注意，只有印有我们的生存质量印章的板材，例如由营地冶炼炉生产的板材，才会被接受为劳改证明.
         </Section>
       </Window.Content>
     </Window>

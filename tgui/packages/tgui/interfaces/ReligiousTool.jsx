@@ -30,7 +30,7 @@ export const ReligiousTool = (props) => {
           <Stack.Item>
             <Tabs textAlign="center" fluid>
               <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-                Sect{' '}
+                教派{' '}
                 <Icon
                   name="place-of-worship"
                   color={ALIGNMENT2COLOR[alignment]}
@@ -38,7 +38,7 @@ export const ReligiousTool = (props) => {
               </Tabs.Tab>
               {!sects && (
                 <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-                  Rites <Icon name="pray" color={ALIGNMENT2COLOR[alignment]} />
+                  仪式 <Icon name="pray" color={ALIGNMENT2COLOR[alignment]} />
                 </Tabs.Tab>
               )}
             </Tabs>
@@ -84,9 +84,9 @@ const SectTab = (props) => {
           <BlockQuote>{desc}</BlockQuote>
         </Stack.Item>
         <Stack.Item>
-          <Section mx={3} mt={-1} title="Wanted Sacrifices">
-            {(!wanted && deity + " doesn't want any sacrifices.") ||
-              deity + ' wishes for ' + wanted + '.'}
+          <Section mx={3} mt={-1} title="需要祭品">
+            {(!wanted && deity + '不需要任何祭品.') ||
+              deity + '希望得到' + wanted + '.'}
           </Section>
         </Stack.Item>
       </Stack>
@@ -98,7 +98,7 @@ const SectSelectTab = (props) => {
   const { act, data } = useBackend();
   const { sects } = data;
   return (
-    <Section fill title="Sect Select" scrollable>
+    <Section fill title="教派选择" scrollable>
       <Stack vertical>
         {sects.map((sect) => (
           <>
@@ -131,7 +131,7 @@ const SectSelectTab = (props) => {
                     })
                   }
                 >
-                  Select {sect.name}
+                  选择 {sect.name}
                 </Button>
               </Stack.Item>
             </Collapsible>
@@ -160,7 +160,7 @@ const RiteTab = (props) => {
                 />
               </Stack.Item>
               <Stack.Item fontSize="18px" color={ALIGNMENT2COLOR[alignment]}>
-                {deity} does not have any invocations.
+                {deity} 没有任何祈祷仪式.
               </Stack.Item>
             </Stack>
           </Dimmer>
@@ -184,13 +184,13 @@ const RiteTab = (props) => {
                     })
                   }
                 >
-                  Invoke
+                  祈祷
                 </Button>
               }
             >
               <Box color={favor < rite.favor ? 'red' : 'grey'} mb={0.5}>
-                <Icon name="star" color={ALIGNMENT2COLOR[alignment]} /> Costs{' '}
-                {rite.favor} favor.
+                <Icon name="star" color={ALIGNMENT2COLOR[alignment]} /> 花费
+                {rite.favor}点眷顾.
               </Box>
               <BlockQuote>{rite.desc}</BlockQuote>
             </Section>

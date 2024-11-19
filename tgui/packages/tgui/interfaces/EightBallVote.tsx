@@ -24,9 +24,9 @@ export function EightBallVote(props) {
   return (
     <Window width={400} height={600}>
       <Window.Content>
-        {(shaking && (
-          <NoticeBox>No question is currently being asked.</NoticeBox>
-        )) || <EightBallVoteQuestion />}
+        {(shaking && <NoticeBox>目前无人提出任何问题.</NoticeBox>) || (
+          <EightBallVoteQuestion />
+        )}
       </Window.Content>
     </Window>
   );

@@ -412,7 +412,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = tgui_input_text(usr, "写入罪犯姓名", "通缉警报处理程序", "未知", MAX_BROADCAST_LEN, multiline = TRUE)
+			var/temp_desc = tgui_input_text(usr, "写入犯罪说明", "通缉警报处理程序", "未知", MAX_BROADCAST_LEN, multiline = TRUE)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc

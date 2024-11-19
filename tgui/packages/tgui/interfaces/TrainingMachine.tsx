@@ -22,7 +22,7 @@ export const TrainingMachine = () => {
   return (
     <Window width={230} height={150} title="AURUMILL">
       <Window.Content>
-        <Section fill title="Training Machine">
+        <Section fill title="对练机">
           <TrainingControls />
         </Section>
       </Window.Content>
@@ -37,7 +37,7 @@ const TrainingControls = (props) => {
 
   return (
     <LabeledControls m={1}>
-      <LabeledControls.Item label="Speed">
+      <LabeledControls.Item label="速度">
         <Knob
           inline
           size={1.2}
@@ -49,7 +49,7 @@ const TrainingControls = (props) => {
           onDrag={(_, value) => act('movespeed', { movespeed: value })}
         />
       </LabeledControls.Item>
-      <LabeledControls.Item label="Range">
+      <LabeledControls.Item label="范围">
         <Knob
           inline
           size={1.2}
@@ -67,7 +67,7 @@ const TrainingControls = (props) => {
       <Stack.Item>
         <Button fluid selected={moving} onClick={() => act('toggle')}>
           <Box bold fontSize="1.4em" lineHeight={3}>
-            {moving ? 'END' : 'BEGIN'}
+            {moving ? '结束' : '开始'}
           </Box>
         </Button>
       </Stack.Item>

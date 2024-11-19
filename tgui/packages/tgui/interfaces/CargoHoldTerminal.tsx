@@ -26,26 +26,26 @@ export const CargoHoldTerminal = (props) => {
       <Window.Content scrollable>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Current Cargo Value">
+            <LabeledList.Item label="当前货物价值">
               <Box inline bold>
-                <AnimatedNumber value={Math.round(points)} /> credits
+                <AnimatedNumber value={Math.round(points)} /> 信用点
               </Box>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section
-          title="Cargo Pad"
+          title="发射平台"
           buttons={
             <>
               <Button
                 icon={'sync'}
-                content={'Recalculate Value'}
+                content={'重新计算价值'}
                 disabled={!pad}
                 onClick={() => act('recalc')}
               />
               <Button
                 icon={sending ? 'times' : 'arrow-up'}
-                content={sending ? 'Stop Sending' : 'Send Goods'}
+                content={sending ? '停止发送' : '发送货物'}
                 selected={sending}
                 disabled={!pad}
                 onClick={() => act(sending ? 'stop' : 'send')}
@@ -54,10 +54,10 @@ export const CargoHoldTerminal = (props) => {
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Status" color={pad ? 'good' : 'bad'}>
-              {pad ? 'Online' : 'Not Found'}
+            <LabeledList.Item label="状态" color={pad ? 'good' : 'bad'}>
+              {pad ? '在线' : '未找到'}
             </LabeledList.Item>
-            <LabeledList.Item label="Cargo Report">
+            <LabeledList.Item label="货物报告">
               {status_report}
             </LabeledList.Item>
           </LabeledList>

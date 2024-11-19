@@ -29,7 +29,7 @@ export const ExosuitFabricator = (props) => {
   }
 
   return (
-    <Window title="Exosuit Fabricator" width={1100} height={600}>
+    <Window title="外骨骼制造机" width={1100} height={600}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>
@@ -54,7 +54,7 @@ export const ExosuitFabricator = (props) => {
                         });
                       }}
                     >
-                      Queue All
+                      队列所有
                     </Button>
                   )}
                 />
@@ -214,20 +214,20 @@ const Queue = (props: QueueProps) => {
                   disabled={!queue.length}
                   color="bad"
                   icon="minus-circle"
-                  content="Clear Queue"
+                  content="清除队列"
                   onClick={() => act('clear_queue')}
                 />
                 {(!!processing && (
                   <Button
                     disabled={!queue.length}
-                    content="Stop"
+                    content="停止"
                     icon="stop"
                     onClick={() => act('stop_queue')}
                   />
                 )) || (
                   <Button
                     disabled={!queue.length}
-                    content="Build Queue"
+                    content="建造队列"
                     icon="play"
                     onClick={() => act('build_queue')}
                   />
@@ -354,7 +354,7 @@ const QueueList = (props: QueueListProps) => {
                   });
                 }}
               >
-                <Tooltip content={'Remove from Queue'}>
+                <Tooltip content={'从队列中移除'}>
                   <Icon name="minus-circle" />
                 </Tooltip>
               </div>

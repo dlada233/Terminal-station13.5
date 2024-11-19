@@ -4,11 +4,11 @@
 #define DESTRUCTIVE_ANALYZER_DESTROY_POINTS "research_points"
 
 /**
- * ## Destructive Analyzer
+ * ## 解构分析仪
  * It is used to destroy hand-held objects and advance technological research.
  */
 /obj/machinery/rnd/destructive_analyzer
-	name = "destructive analyzer"
+	name = "解构分析仪"
 	desc = "Learn science by destroying things!"
 	icon_state = "d_analyzer"
 	base_icon_state = "d_analyzer"
@@ -181,7 +181,7 @@
 	if(isliving(thing))
 		var/mob/living/mob_thing = thing
 		if(mob_thing.stat != DEAD)
-			mob_thing.investigate_log("has been killed by a destructive analyzer.", INVESTIGATE_DEATHS)
+			mob_thing.investigate_log("has been killed by a 解构分析仪.", INVESTIGATE_DEATHS)
 		mob_thing.death()
 	var/list/point_value = techweb_item_point_check(thing)
 	if(point_value && !stored_research.deconstructed_items[thing.type])

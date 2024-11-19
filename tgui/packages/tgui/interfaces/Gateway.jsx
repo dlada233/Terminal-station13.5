@@ -31,9 +31,9 @@ const GatewayContent = (props) => {
   if (!gateway_present) {
     return (
       <Section>
-        <NoticeBox>No linked gateway</NoticeBox>
+        <NoticeBox>没有星门连接</NoticeBox>
         <Button fluid onClick={() => act('linkup')}>
-          Linkup
+          连接
         </Button>
       </Section>
     );
@@ -54,17 +54,17 @@ const GatewayContent = (props) => {
           fluid
           onClick={() => act('deactivate')}
         >
-          Deactivate
+          禁用
         </Button>
       </Section>
     );
   }
   if (!destinations.length) {
-    return <Section>No gateway nodes detected.</Section>;
+    return <Section>未检测到星门节点.</Section>;
   }
   return (
     <>
-      {!gateway_status && <NoticeBox>Gateway Unpowered</NoticeBox>}
+      {!gateway_status && <NoticeBox>星门无电力</NoticeBox>}
       {destinations.map((dest) => (
         <Section key={dest.ref} title={dest.name}>
           {(dest.available && (
@@ -76,7 +76,7 @@ const GatewayContent = (props) => {
                 })
               }
             >
-              Activate
+              激活
             </Button>
           )) || (
             <>
@@ -84,7 +84,7 @@ const GatewayContent = (props) => {
                 {dest.reason}
               </Box>
               {!!dest.timeout && (
-                <ProgressBar value={dest.timeout}>Calibrating...</ProgressBar>
+                <ProgressBar value={dest.timeout}>校正...</ProgressBar>
               )}
             </>
           )}

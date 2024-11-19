@@ -19,14 +19,14 @@
 		if(sm_gas.power_transmission)
 			var/list/si_derived_data = siunit_isolated(sm_gas.power_transmission * BASE_POWER_TRANSMISSION_RATE, "W/MeV", 2)
 			numeric_data += list(list(
-				"name" = "电力输送增幅",
+				"name" = "能量外溢增幅",
 				"amount" = si_derived_data["系数"],
 				"unit" = si_derived_data["单位"],
 				"positive" = TRUE,
 			))
 		if(sm_gas.heat_modifier)
 			numeric_data += list(list(
-				"name" = "浪费乘数",
+				"name" = "排废乘数",
 				"amount" = 100 * sm_gas.heat_modifier,
 				"unit" = "%",
 				"positive" = FALSE,
@@ -48,7 +48,7 @@
 			))
 		if(sm_gas.powerloss_inhibition)
 			numeric_data += list(list(
-				"name" = "Power Decay Negation-功率衰减否定",
+				"name" = "能量衰减抗性",
 				"amount" = 100 * sm_gas.powerloss_inhibition,
 				"unit" = "%",
 				"positive" = TRUE,

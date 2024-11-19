@@ -42,12 +42,7 @@ export const NtosPayContent = (props) => {
   const { name } = data;
 
   if (!name) {
-    return (
-      <NoticeBox>
-        You need to insert your ID card into the card slot in order to use this
-        application.
-      </NoticeBox>
-    );
+    return <NoticeBox>你需要将ID卡插入卡槽中来使用该应用.</NoticeBox>;
   }
 
   return (
@@ -72,11 +67,9 @@ const Introduction = (props) => {
   return (
     <Section textAlign="center">
       <Table>
-        <Table.Row>Hi, {name}.</Table.Row>
-        <Table.Row>Your pay token is {owner_token}.</Table.Row>
-        <Table.Row>
-          Account balance: {money} credit{money === 1 ? '' : 's'}
-        </Table.Row>
+        <Table.Row>您好，{name}.</Table.Row>
+        <Table.Row>您的支付令牌是{owner_token}.</Table.Row>
+        <Table.Row>账户余额: {money} 信用点</Table.Row>
       </Table>
     </Section>
   );
@@ -92,10 +85,7 @@ const TransferSection = (props) => {
       <Stack.Item>
         <Section title="转账">
           <Box>
-          <Tooltip
-              content="输入转账收款方的支付令牌."
-              position="top"
-            >
+            <Tooltip content="输入转账收款方的支付令牌." position="top">
               <Input
                 placeholder="支付令牌"
                 width="190px"
@@ -103,10 +93,7 @@ const TransferSection = (props) => {
               />
             </Tooltip>
           </Box>
-          <Tooltip
-            content="输入转出信用点的数额."
-            position="top"
-          >
+          <Tooltip content="输入转出信用点的数额." position="top">
             <RestrictedInput
               width="83px"
               minValue={1}
@@ -185,10 +172,10 @@ const TableHeaders = (props) => {
     <Table>
       <Table.Row>
         <Table.Cell color="label" width="100px">
-          Amount
+          金额
         </Table.Cell>
         <Table.Cell color="label" textAlign="center">
-          Reason
+          理由
         </Table.Cell>
       </Table.Row>
     </Table>

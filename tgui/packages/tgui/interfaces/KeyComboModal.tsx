@@ -25,17 +25,17 @@ const isStandardKey = (event: React.KeyboardEvent<HTMLDivElement>): boolean => {
 };
 
 const KEY_CODE_TO_BYOND: Record<string, string> = {
-  DEL: 'Delete',
-  DOWN: 'South',
-  END: 'Southwest',
-  HOME: 'Northwest',
-  INSERT: 'Insert',
-  LEFT: 'West',
-  PAGEDOWN: 'Southeast',
-  PAGEUP: 'Northeast',
-  RIGHT: 'East',
-  SPACEBAR: 'Space',
-  UP: 'North',
+  DEL: '删除',
+  DOWN: '南',
+  END: '西南',
+  HOME: '西北',
+  INSERT: '插入',
+  LEFT: '西',
+  PAGEDOWN: '东南',
+  PAGEUP: '东北',
+  RIGHT: '东',
+  SPACEBAR: '太空',
+  UP: '北',
 };
 
 const DOM_KEY_LOCATION_NUMPAD = 3;
@@ -126,7 +126,7 @@ export const KeyComboModal = (props) => {
               <Button
                 disabled={binding}
                 content={
-                  binding && binding !== null ? 'Awaiting input...' : '' + input
+                  binding && binding !== null ? '等待输入...' : '' + input
                 }
                 width="100%"
                 textAlign="center"

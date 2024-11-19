@@ -40,7 +40,7 @@ export const TelecommsMonitor = (props: any) => {
   const { screen, statusMessage } = data;
 
   return (
-    <Window width={350} height={500} title="T-comms Monitoring Console">
+    <Window width={350} height={500} title="电信监控终端">
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
@@ -72,12 +72,12 @@ const MainScreen = (props: any) => {
                 fluid
                 value={networkId}
                 onChange={(_, value) => setNetworkId(value)}
-                placeholder="Enter Network ID..."
+                placeholder="输入网络ID..."
               />
             </Stack.Item>
             <Stack.Item>
               <Button onClick={() => act('probe', { id: networkId })}>
-                Probe Network
+                探测网络
               </Button>
             </Stack.Item>
           </Stack>
@@ -85,12 +85,12 @@ const MainScreen = (props: any) => {
       </Stack.Item>
       <Stack.Item grow>
         <MachineList
-          title="Detected Network Entities"
+          title="已检测网络实体"
           buttons={
             <Button
               icon="trash"
               color="red"
-              tooltip="Flush Buffer"
+              tooltip="刷新缓存"
               disabled={machines.length === 0}
               onClick={() => act('flush')}
             />
@@ -111,17 +111,17 @@ const MachineScreen = (props: any) => {
     <Stack fill vertical>
       <Stack.Item>
         <Section
-          title="Entity Information"
+          title="实体信息"
           buttons={
             <Button icon="home" onClick={() => act('home')}>
-              Main Menu
+              主菜单
             </Button>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Network">{network}</LabeledList.Item>
-            <LabeledList.Item label="Network ID">{id}</LabeledList.Item>
-            <LabeledList.Item label="Network Entity">
+            <LabeledList.Item label="网络">{network}</LabeledList.Item>
+            <LabeledList.Item label="网络ID">{id}</LabeledList.Item>
+            <LabeledList.Item label="网络实体">
               {toTitleCase(name)}
             </LabeledList.Item>
           </LabeledList>
@@ -129,7 +129,7 @@ const MachineScreen = (props: any) => {
       </Stack.Item>
       <Stack.Item grow>
         <MachineList
-          title="Linked Entities"
+          title="已连接实体"
           machines={linkedMachines}
           onSelect={(machine) => act('view', { id: machine.id })}
         />
@@ -169,7 +169,7 @@ const MachineList = (props: MachineListProps) => {
             icon="magnifying-glass"
             selected={searching}
             disabled={machines.length === 0}
-            tooltip="Search by ID"
+            tooltip="以ID搜索"
             onClick={() => setSearching(!searching)}
           />
           {buttons}
@@ -209,14 +209,14 @@ const MachineList = (props: MachineListProps) => {
                 autoFocus
                 value={search}
                 verticalAlign="middle"
-                placeholder="Enter machine ID..."
+                placeholder="输入机器ID..."
                 onChange={(_e, value) => setSearch(value)}
               />
             </Stack.Item>
           )}
         </Stack>
       ) : (
-        <NoticeBox>No machines connected!</NoticeBox>
+        <NoticeBox>未连接到机器!</NoticeBox>
       )}
     </Section>
   );

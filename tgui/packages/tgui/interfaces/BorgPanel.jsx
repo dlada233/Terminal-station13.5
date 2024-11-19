@@ -13,20 +13,20 @@ export const BorgPanel = (props) => {
   const ais = data.ais || [];
   const laws = data.laws || [];
   return (
-    <Window title="Borg Panel" theme="admin" width={700} height={700}>
+    <Window title="赛博格面板" theme="admin" width={700} height={700}>
       <Window.Content scrollable>
         <Section
           title={borg.name}
           buttons={
             <Button
               icon="pencil-alt"
-              content="Rename"
+              content="重命名"
               onClick={() => act('rename')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Status">
+            <LabeledList.Item label="状态">
               <Button
                 icon={borg.emagged ? 'check-square-o' : 'square-o'}
                 content="Emagged"
@@ -35,18 +35,18 @@ export const BorgPanel = (props) => {
               />
               <Button
                 icon={borg.lockdown ? 'check-square-o' : 'square-o'}
-                content="Locked Down"
+                content="锁定"
                 selected={borg.lockdown}
                 onClick={() => act('toggle_lockdown')}
               />
               <Button
                 icon={borg.scrambledcodes ? 'check-square-o' : 'square-o'}
-                content="Scrambled Codes"
+                content="代码遭扰乱"
                 selected={borg.scrambledcodes}
                 onClick={() => act('toggle_scrambledcodes')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Charge">
+            <LabeledList.Item label="充能">
               {!cell.missing ? (
                 <ProgressBar value={cellPercent}>
                   {cell.charge + ' / ' + cell.maxcharge}
@@ -57,22 +57,22 @@ export const BorgPanel = (props) => {
               <br />
               <Button
                 icon="pencil-alt"
-                content="Set"
+                content="设置"
                 onClick={() => act('set_charge')}
               />
               <Button
                 icon="eject"
-                content="Change"
+                content="更换"
                 onClick={() => act('change_cell')}
               />
               <Button
                 icon="trash"
-                content="Remove"
+                content="移除"
                 color="bad"
                 onClick={() => act('remove_cell')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Radio Channels">
+            <LabeledList.Item label="无线电频道">
               {channels.map((channel) => (
                 <Button
                   key={channel.name}
@@ -87,7 +87,7 @@ export const BorgPanel = (props) => {
                 />
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Model">
+            <LabeledList.Item label="模式">
               {modules.map((module) => (
                 <Button
                   key={module.type}
@@ -106,7 +106,7 @@ export const BorgPanel = (props) => {
                 />
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Upgrades">
+            <LabeledList.Item label="升级">
               {upgrades.map((upgrade) => (
                 <Button
                   key={upgrade.type}
@@ -121,7 +121,7 @@ export const BorgPanel = (props) => {
                 />
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Master AI">
+            <LabeledList.Item label="上级AI">
               {ais.map((ai) => (
                 <Button
                   key={ai.ref}
@@ -139,7 +139,7 @@ export const BorgPanel = (props) => {
           </LabeledList>
         </Section>
         <Section
-          title="Laws"
+          title="法律"
           buttons={
             <Button
               icon={borg.lawupdate ? 'check-square-o' : 'square-o'}

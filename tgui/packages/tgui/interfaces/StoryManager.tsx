@@ -33,42 +33,42 @@ export const StoryManager = (props) => {
   const [id, setID] = useLocalState('id', '');
 
   return (
-    <Window width={600} height={800} title="Lorecaster Manager">
+    <Window width={600} height={800} title="背景故事管理器">
       <Window.Content scrollable>
         <Section textAlign="center">
-          Lorecaster story manager
+          背景故事管理器
           <br />
-          <i>Anything published here will not appear until the next round!</i>
+          <i>在这里发表的任何内容将在下一回合才会出现!</i>
           <br />
           <span style={{ color: 'red' }}>
-            Do not mess with this unless you know what you&apos;re doing.
+            除非你知道自己在做什么，否则不要乱来.
           </span>
         </Section>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Title">
+            <LabeledList.Item label="标题">
               <TextArea
                 height="20px"
-                placeholder="A short, consise title/author for the article."
+                placeholder="简洁的文章标题或作者."
                 onChange={(_e, value) => setTitle(value)}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Body Text">
+            <LabeledList.Item label="正文">
               <TextArea
                 height="100px"
-                placeholder="The contents of the article itself."
+                placeholder="文章本身."
                 onChange={(_e, value) => setText(value)}
               />
             </LabeledList.Item>
             <LabeledList.Item label="ID">
               <TextArea
                 height="20px"
-                placeholder="A unique id for the article. Article will not publish if set ID is in use."
+                placeholder="文章的唯一ID，如果设置的ID正在被使用，文章不会发表."
                 onChange={(_e, value) => setID(value)}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Date">
-              <i>Publishing Date: {current_date}</i>
+            <LabeledList.Item label="日期">
+              <i>发表日期: {current_date}</i>
             </LabeledList.Item>
           </LabeledList>
           <Button
@@ -83,17 +83,17 @@ export const StoryManager = (props) => {
               });
             }}
           >
-            Publish
+            发表
           </Button>
         </Section>
-        <Collapsible title="Current Stories">
+        <Collapsible title="当前故事">
           {current_stories.map((story) => (
             <Collapsible
               bold
               key={story.id}
               title={
                 story.title +
-                ' | Published ' +
+                ' | 已发表 ' +
                 story.month +
                 '/' +
                 story.day +
@@ -114,20 +114,20 @@ export const StoryManager = (props) => {
                     });
                   }}
                 >
-                  Archive
+                  存档
                 </Button>
               </Section>
             </Collapsible>
           ))}
         </Collapsible>
-        <Collapsible title="Archived Stories">
+        <Collapsible title="已存档故事">
           {archived_stories.map((story) => (
             <Collapsible
               bold
               key={story.id}
               title={
                 story.title +
-                ' | Published ' +
+                ' | 已发表 ' +
                 story.month +
                 '/' +
                 story.day +
@@ -148,7 +148,7 @@ export const StoryManager = (props) => {
                     });
                   }}
                 >
-                  Circulate
+                  传阅
                 </Button>
               </Section>
             </Collapsible>

@@ -75,7 +75,7 @@ class SurgeryInitiatorInner extends Component<
     const { selected_zone, surgeries, target_name } = this.props;
 
     return (
-      <Window width={400} height={350} title={`Surgery on ${target_name}`}>
+      <Window width={400} height={350} title={`${target_name}手术操作`}>
         <Window.Content>
           <Stack fill height="100%">
             <Stack.Item width="30%">
@@ -98,8 +98,7 @@ class SurgeryInitiatorInner extends Component<
                     selected={index === this.state.selectedSurgeryIndex}
                     tooltip={
                       surgery.blocked
-                        ? surgery.blocked_reason ??
-                          'That surgery is unavailable!'
+                        ? surgery.blocked_reason ?? '该手术不可用!'
                         : undefined
                     } // SKYRAT EDIT - ORIGINAL: tooltip={surgery.blocked ? "Their body is covered!" : undefined}
                     key={surgery.name}

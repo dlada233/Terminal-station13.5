@@ -125,7 +125,7 @@ const DnaConsoleCommands = (props) => {
           />
         </LabeledList.Item>
         {!!hasDisk && (
-          <LabeledList.Item label="磁盘">
+          <LabeledList.Item label="软盘">
             <Button
               icon="eject"
               content="弹出"

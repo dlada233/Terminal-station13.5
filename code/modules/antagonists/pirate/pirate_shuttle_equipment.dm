@@ -157,8 +157,8 @@
 
 /// Surgery disk for the space IRS (I don't know where to dump them anywhere else)
 /obj/item/disk/surgery/irs
-	name = "先进手术磁盘"
-	desc = "磁盘内包含先进手术程序，需要插入手术控制台以使用."
+	name = "先进手术软盘"
+	desc = "软盘内包含先进手术程序，需要插入手术控制台以使用."
 	surgeries = list(
 		/datum/surgery/advanced/lobotomy,
 		/datum/surgery/advanced/bioware/vein_threading,

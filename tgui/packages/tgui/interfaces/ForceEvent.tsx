@@ -67,7 +67,7 @@ type ForceEventData = {
 
 export const ForceEvent = (props) => {
   return (
-    <Window theme="admin" title="Force Event" width={450} height={450}>
+    <Window theme="admin" title="强制事件" width={450} height={450}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
@@ -97,7 +97,7 @@ export const PanelOptions = (props) => {
           autoFocus
           fluid
           onInput={(e, value) => setSearchQuery(value)}
-          placeholder="Search..."
+          placeholder="搜索..."
           value={searchQuery}
         />
       </Stack.Item>
@@ -107,7 +107,7 @@ export const PanelOptions = (props) => {
           checked={announce}
           onClick={() => setAnnounce(!announce)}
         >
-          Announce
+          公告
         </Button.Checkbox>
       </Stack.Item>
     </Stack>
@@ -144,7 +144,7 @@ export const EventSection = (props) => {
     EVENT_PAGE_ITEMS,
   );
 
-  const sectionTitle = searchQuery ? 'Searching...' : category.name + ' Events';
+  const sectionTitle = searchQuery ? '搜索...' : category.name + '事件';
 
   return (
     <Section scrollable fill title={sectionTitle} buttons={<PanelOptions />}>
@@ -158,9 +158,7 @@ export const EventSection = (props) => {
                     className="Button__rightIcon"
                     tooltip={
                       event.description +
-                      (event.has_customization
-                        ? ' Includes admin customization.'
-                        : '')
+                      (event.has_customization ? ' 包括管理员自定义.' : '')
                     }
                     fluid
                     icon={event.has_customization ? 'gear' : undefined}

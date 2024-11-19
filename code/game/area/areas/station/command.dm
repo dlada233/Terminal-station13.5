@@ -70,7 +70,7 @@
 	icon_state = "hos_office"
 
 /area/station/command/heads_quarters/rd
-	name = "\improper Research Director's Office-科研部长办公室"
+	name = "\improper Research Director's Office-科研主管办公室"
 	icon_state = "rd_office"
 
 /area/station/command/heads_quarters/qm

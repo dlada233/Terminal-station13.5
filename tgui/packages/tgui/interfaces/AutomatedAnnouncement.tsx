@@ -20,22 +20,22 @@ export const AutomatedAnnouncement = (props) => {
   const { act, data } = useBackend<Data>();
   const { arrivalToggle, arrival, newheadToggle, newhead } = data;
   return (
-    <Window title="Automated Announcement System" width={500} height={225}>
+    <Window title="自动公告系统" width={500} height={225}>
       <Window.Content>
         <Section
-          title="Arrival Announcement"
+          title="登站公告"
           buttons={
             <Button
               icon={arrivalToggle ? 'power-off' : 'times'}
               selected={arrivalToggle}
-              content={arrivalToggle ? 'On' : 'Off'}
+              content={arrivalToggle ? '开' : '关'}
               onClick={() => act('ArrivalToggle')}
             />
           }
         >
           <LabeledList>
             <LabeledList.Item
-              label="Message"
+              label="消息"
               buttons={
                 <Button
                   icon="info"
@@ -57,19 +57,19 @@ export const AutomatedAnnouncement = (props) => {
           </LabeledList>
         </Section>
         <Section
-          title="Departmental Head Announcement"
+          title="部门主管公告"
           buttons={
             <Button
               icon={newheadToggle ? 'power-off' : 'times'}
               selected={newheadToggle}
-              content={newheadToggle ? 'On' : 'Off'}
+              content={newheadToggle ? '开' : '关'}
               onClick={() => act('NewheadToggle')}
             />
           }
         >
           <LabeledList>
             <LabeledList.Item
-              label="Message"
+              label="消息"
               buttons={
                 <Button
                   icon="info"

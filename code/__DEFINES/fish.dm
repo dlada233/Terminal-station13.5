@@ -142,8 +142,8 @@
 #define AQUARIUM_FLUID_SALTWATER "海水"
 #define AQUARIUM_FLUID_SULPHWATEVER "硫磺水"
 #define AQUARIUM_FLUID_AIR "空气"
-#define AQUARIUM_FLUID_ANADROMOUS "广盐性鱼类"
-#define AQUARIUM_FLUID_ANY_WATER "全水域鱼类"
+#define AQUARIUM_FLUID_ANADROMOUS "广盐性"
+#define AQUARIUM_FLUID_ANY_WATER "全水域"
 
 ///Fluff. The name of the aquarium company shown in the fish catalog
 #define AQUARIUM_COMPANY "水族科技有限公司."

@@ -21,13 +21,13 @@ export const PaintingMachine = (props) => {
     <Window width={500} height={620}>
       <Window.Content scrollable>
         <Section
-          title="PDA Painter"
+          title="PDA打印"
           buttons={
             <>
               <Button.Confirm
                 disabled={!hasPDA}
-                content="Paint PDA"
-                confirmContent="Confirm?"
+                content="涂装PDA"
+                confirmContent="确定?"
                 onClick={() =>
                   act('trim_pda', {
                     selection: selectedPDA,
@@ -36,7 +36,7 @@ export const PaintingMachine = (props) => {
               />
               <Button.Confirm
                 disabled={!hasPDA}
-                content="Reset Imprint"
+                content="重置认证印码"
                 confirmContent="Confirm?"
                 onClick={() => {
                   act('reset_pda');
@@ -58,19 +58,19 @@ export const PaintingMachine = (props) => {
           </Stack>
         </Section>
         <Section
-          title="ID Trim Imprinter"
+          title="ID剪裁加印机"
           buttons={
             <>
               <Button.Confirm
                 disabled={!hasID}
-                content="Reset ID Account"
-                confirmContent="Confirm?"
+                content="重置ID账户"
+                confirmContent="确定?"
                 onClick={() => act('reset_card')}
               />
               <Button.Confirm
                 disabled={!hasID}
-                content="Imprint ID Trim"
-                confirmContent="Confirm?"
+                content="ID剪裁"
+                confirmContent="确定?"
                 onClick={(sel) =>
                   act('trim_card', {
                     selection: selectedTrim,
@@ -79,10 +79,7 @@ export const PaintingMachine = (props) => {
               />
               <Button
                 icon="question-circle"
-                tooltip={
-                  'WARNING: This is destructive' +
-                  ' and will wipe ALL access on the card.'
-                }
+                tooltip={'警告: 这将取消' + '卡上的所有权限.'}
                 tooltipPosition="left"
               />
             </>

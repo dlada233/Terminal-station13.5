@@ -982,7 +982,7 @@
 	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 
 /obj/item/circuitboard/machine/destructive_analyzer
-	name = "Destructive Analyzer"
+	name = "解构分析仪"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/rnd/destructive_analyzer
 	req_components = list(

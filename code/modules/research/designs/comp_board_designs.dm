@@ -364,8 +364,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/exoscanner_console
-	name = "Scanner Array Control Console Board"
-	desc = "Allows for the construction of circuit boards used to build a new scanner array control console."
+	name = "扫描阵列 Control Console Board"
+	desc = "Allows for the construction of circuit boards used to build a new 扫描阵列 control console."
 	id = "exoscanner_console"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/computer/exoscanner_console

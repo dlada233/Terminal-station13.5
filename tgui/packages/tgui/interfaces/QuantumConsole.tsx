@@ -94,7 +94,7 @@ export const QuantumConsole = (props) => {
   const { data } = useBackend<Data>();
 
   return (
-    <Window title="Quantum Console" width={500} height={500}>
+    <Window title="量子终端" width={500} height={500}>
       <Window.Content>
         {!!data.connected && !data.ready && <LoadingScreen />}
         <AccessView />
@@ -108,7 +108,7 @@ const AccessView = (props) => {
   const [tab, setTab] = useSharedState('tab', 0);
 
   if (!isConnected(data)) {
-    return <NoticeBox danger>No server connected!</NoticeBox>;
+    return <NoticeBox danger>无服务器连接!</NoticeBox>;
   }
 
   const {
@@ -134,7 +134,7 @@ const AccessView = (props) => {
       ? '???'
       : sorted.find(({ id }) => id === generated_domain)?.name;
   } else {
-    selected = 'Nothing loaded';
+    selected = '未装载';
   }
 
   return (
@@ -147,10 +147,9 @@ const AccessView = (props) => {
                 checked={broadcasting}
                 disabled={broadcasting_on_cd}
                 onClick={() => act('broadcast')}
-                tooltip="Toggles whether you broadcast your
-                  bitrun to station Entertainment Monitors."
+                tooltip="切换是否在观影屏直播比特矿工的工作内容."
               >
-                Broadcast
+                直播
               </Button.Checkbox>
               <Button
                 disabled={
@@ -159,12 +158,12 @@ const AccessView = (props) => {
                 icon="random"
                 onClick={() => act('random_domain')}
                 mr={1}
-                tooltip="Get a random domain for more rewards.
-                  Weighted towards your current points. Minimum: 1 point."
+                tooltip="随机进入虚拟域可以获得更多奖励.
+                  会基于你当前的积分进行加权. 最小: 1积分."
               >
-                Randomize
+                随机
               </Button>
-              <Tooltip content="Accrued points for purchasing domains.">
+              <Tooltip content="用累积积分购买虚拟域.">
                 <Icon color="pink" name="star" mr={1} />
                 {points}
               </Tooltip>
@@ -172,7 +171,7 @@ const AccessView = (props) => {
           }
           fill
           scrollable
-          title="Virtual Domains"
+          title="虚拟域"
         >
           <Tabs fluid>
             <Tabs.Tab
@@ -182,7 +181,7 @@ const AccessView = (props) => {
               onClick={() => setTab(0)}
               icon="chevron-down"
             >
-              Peaceful
+              和平
             </Tabs.Tab>
             <Tabs.Tab
               backgroundColor={getColor(Difficulty.Low)}
@@ -191,7 +190,7 @@ const AccessView = (props) => {
               onClick={() => setTab(1)}
               icon="chevron-down"
             >
-              Easy
+              简单
             </Tabs.Tab>
             <Tabs.Tab
               backgroundColor={getColor(Difficulty.Medium)}
@@ -200,7 +199,7 @@ const AccessView = (props) => {
               onClick={() => setTab(2)}
               icon="chevron-down"
             >
-              Medium
+              中级
             </Tabs.Tab>
             <Tabs.Tab
               backgroundColor={getColor(Difficulty.High)}
@@ -209,7 +208,7 @@ const AccessView = (props) => {
               onClick={() => setTab(3)}
               icon="chevron-down"
             >
-              Hard <Icon name="skull" ml={1} />{' '}
+              困难 <Icon name="skull" ml={1} />{' '}
             </Tabs.Tab>
           </Tabs>
           {filtered.map((domain) => (
@@ -228,10 +227,10 @@ const AccessView = (props) => {
             </Stack.Item>
             <Stack.Item>
               <Button.Confirm
-                content="Stop Domain"
+                content="终止虚拟域"
                 disabled={!ready || !generated_domain}
                 onClick={() => act('stop_domain')}
-                tooltip="Begins shutdown. Will notify anyone connected."
+                tooltip="开始终止，将通知所有连接人员."
               />
             </Stack.Item>
           </Stack>
@@ -269,10 +268,10 @@ const DomainEntry = (props: DomainEntryProps) => {
     buttonName = '???';
   } else if (current) {
     buttonIcon = 'download';
-    buttonName = 'Deployed';
+    buttonName = '已展开';
   } else {
     buttonIcon = 'coins';
-    buttonName = 'Deploy';
+    buttonName = '展开';
   }
 
   return (
@@ -282,7 +281,7 @@ const DomainEntry = (props: DomainEntryProps) => {
           disabled={!!generated_domain || !ready || occupied || points < cost}
           icon={buttonIcon}
           onClick={() => act('set_domain', { id })}
-          tooltip={!!generated_domain && 'Stop current domain first.'}
+          tooltip={!!generated_domain && '先终止当前虚拟域.'}
         >
           {buttonName}
         </Button>
@@ -301,19 +300,19 @@ const DomainEntry = (props: DomainEntryProps) => {
       <Stack height={5}>
         <Stack.Item color="label" grow={4}>
           {desc}
-          {!!is_modular && ' (Modular)'}
-          {!!has_secondary_objectives && ' (Secondary Objective Available)'}
+          {!!is_modular && ' (模块)'}
+          {!!has_secondary_objectives && ' (可用次要目标)'}
         </Stack.Item>
         <Stack.Divider />
         <Stack.Item grow>
           <Table>
             <TableRow>
-              <Tooltip content="Points cost for deploying domain.">
+              <Tooltip content="展开虚拟域的花费.">
                 <DisplayDetails amount={cost} color="pink" icon="star" />
               </Tooltip>
             </TableRow>
             <TableRow>
-              <Tooltip content="Reward for competing domain.">
+              <Tooltip content="通关虚拟域奖励.">
                 <DisplayDetails amount={reward} color="gold" icon="coins" />
               </Tooltip>
             </TableRow>
@@ -334,12 +333,12 @@ const AvatarDisplay = (props) => {
 
   return (
     <Section
-      title="Connected Clients"
+      title="已连接客户端"
       buttons={
         <Stack align="center">
           {!!generated_domain && (
             <Stack.Item>
-              <Tooltip content="Available bandwidth for new connections.">
+              <Tooltip content="新连接的可用带宽.">
                 <DisplayDetails
                   color="green"
                   icon="broadcast-tower"
@@ -352,9 +351,9 @@ const AvatarDisplay = (props) => {
             <Button
               icon="sync"
               onClick={() => act('refresh')}
-              tooltip="Refresh avatar data."
+              tooltip="刷新虚拟角色数据."
             >
-              Refresh
+              刷新
             </Button>
           </Stack.Item>
         </Stack>
@@ -414,7 +413,7 @@ const DisplayDetails = (props: DisplayDetailsProps) => {
   const { amount = 0, color, icon = 'star' } = props;
 
   if (amount === 0) {
-    return <TableCell color="label">None</TableCell>;
+    return <TableCell color="label">无</TableCell>;
   }
 
   if (typeof amount === 'string') {

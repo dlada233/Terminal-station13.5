@@ -19,7 +19,7 @@ export const NoticeBoard = (props) => {
         {!items.length ? (
           <Section>
             <Box color="white" align="center">
-              The notice board is empty!
+              布告栏是空的!
             </Box>
           </Section>
         ) : (

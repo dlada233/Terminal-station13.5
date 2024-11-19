@@ -108,10 +108,10 @@ export const StackCrafting = (_props) => {
     <Window width={400} height={height}>
       <Window.Content scrollable>
         <Section
-          title={'Amount: ' + amount}
+          title={'数量: ' + amount}
           buttons={
             <>
-              Search
+              搜索
               <Input
                 autoFocus
                 value={searchText}
@@ -124,7 +124,7 @@ export const StackCrafting = (_props) => {
           {filteredRecipes ? (
             <RecipeListBox recipes={filteredRecipes} />
           ) : (
-            <NoticeBox>No recipes found.</NoticeBox>
+            <NoticeBox>未找到配方.</NoticeBox>
           )}
         </Section>
       </Window.Content>

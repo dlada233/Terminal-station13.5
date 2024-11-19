@@ -55,7 +55,7 @@ export const AtmosFilter = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
+                content="最大值"
                 disabled={rate === max_rate}
                 onClick={() =>
                   act('rate', {

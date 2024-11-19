@@ -48,7 +48,7 @@ export const LightSpawn = (props) => {
   const category_keys = category_ids ? Object.keys(category_ids) : [];
 
   return (
-    <Window title={'Light Spawn'} width={600} height={400}>
+    <Window title={'灯光生成'} width={600} height={400}>
       <Window.Content scrollable>
         <Stack vertical>
           <Stack.Item>
@@ -118,12 +118,12 @@ const LightInfo = (props: LightInfoProps) => {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <Section title="Direction" textAlign="center" fontSize="11px">
+              <Section title="方向" textAlign="center" fontSize="11px">
                 <DirectionSelect />
               </Section>
             </Stack.Item>
             <Stack.Item>
-              <Section title="Angle" textAlign="center" fontSize="11px">
+              <Section title="角度" textAlign="center" fontSize="11px">
                 <AngleSelect angle={light_info.angle} />
               </Section>
             </Stack.Item>
@@ -133,7 +133,7 @@ const LightInfo = (props: LightInfoProps) => {
           <Stack justify="space-between">
             <Stack.Item>
               <Box fontSize="16px" mt={0.5}>
-                Template: {light_info.name}
+                模板: {light_info.name}
               </Box>
               <Box fontSize="12px" ml={1} color="#aaaaaa">
                 {light.description}
@@ -146,7 +146,7 @@ const LightInfo = (props: LightInfoProps) => {
               <Button
                 fontSize="16px"
                 icon="wrench"
-                tooltip="Spawn template"
+                tooltip="生成模板"
                 onClick={() =>
                   act('spawn_template', {
                     id: light.id,
@@ -159,7 +159,7 @@ const LightInfo = (props: LightInfoProps) => {
         </Stack.Item>
         <Stack.Item align="end">
           <Slider
-            unit="tiles"
+            unit="格"
             value={light_info.range}
             color="blue"
             minValue={0}
@@ -167,7 +167,7 @@ const LightInfo = (props: LightInfoProps) => {
             step={0}
           />
           <Slider
-            unit="intensity"
+            unit="强度"
             value={light_info.power}
             color="olive"
             minValue={-1}

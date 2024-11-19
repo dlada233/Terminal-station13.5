@@ -117,7 +117,7 @@
 	greyscale_colors = "#2b2793#dca01b"
 
 /obj/item/encryptionkey/heads/rd
-	name = "\proper 科研部长加密密钥"
+	name = "\proper 科研主管加密密钥"
 	icon_state = "cypherkey_research"
 	channels = list(RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_COMMAND = 1)
 	greyscale_config = /datum/greyscale_config/encryptionkey_research

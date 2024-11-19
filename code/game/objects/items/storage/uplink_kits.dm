@@ -787,7 +787,7 @@
 	nuke_datum.nukeop_outfit = null
 	human_target.mind?.add_antag_datum(nuke_datum)
 	human_target.faction |= ROLE_SYNDICATE
-	to_chat(human_target, span_warning("你现在是一名核特工。你的主要目标，如果你是反派并且愿意的话，应该是协助核行动小组夺取磁盘."))
+	to_chat(human_target, span_warning("你现在是一名核特工。你的主要目标，如果你是反派并且愿意的话，应该是协助核行动小组夺取软盘."))
 	to_chat(human_target, span_userdanger("这种植入不会以任何方式给你洗脑，如果你之前是一名正常的船员，被强行植入，记住你仍然是一名守法公民，不能协助核特工."))
 	return TRUE
 
@@ -799,7 +799,7 @@
 	living_target.mind.remove_antag_datum(/datum/antagonist/nukeop)
 	living_target.faction -= ROLE_SYNDICATE
 	to_chat(target, span_notice("你觉得自己没那么有核力了."))
-	to_chat(target, span_userdanger("你不再是核特工了!您可以自由地遵循您希望的任何有效目标，甚至可以继续保护磁盘，只要确保没有炮塔和核特工一看到你就杀了你."))
+	to_chat(target, span_userdanger("你不再是核特工了!您可以自由地遵循您希望的任何有效目标，甚至可以继续保护软盘，只要确保没有炮塔和核特工一看到你就杀了你."))
 	return TRUE
 
 /obj/item/storage/box/syndie_kit/poster_box

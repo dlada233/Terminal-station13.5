@@ -135,7 +135,7 @@ export const NtosMain = (props) => {
                     fluid
                     icon="eject"
                     color="transparent"
-                    content="弹出个人人工智能"
+                    content="弹出pAI"
                     onClick={() =>
                       act('PC_Pai_Interact', {
                         option: 'eject',
@@ -150,7 +150,7 @@ export const NtosMain = (props) => {
                     fluid
                     icon="cat"
                     color="transparent"
-                    content="Configure pAI"
+                    content="配置pAI"
                     onClick={() =>
                       act('PC_Pai_Interact', {
                         option: 'interact',

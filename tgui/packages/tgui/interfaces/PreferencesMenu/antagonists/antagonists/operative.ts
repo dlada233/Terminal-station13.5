@@ -1,7 +1,7 @@
 import { Antagonist, Category } from '../base';
 
 export const OPERATIVE_MECHANICAL_DESCRIPTION = `
-  找回核认证磁盘，用它来启动核裂变炸弹摧毁整个空间站.
+  找回核认证软盘，用它来启动核裂变炸弹摧毁整个空间站.
 `;
 
 const Operative: Antagonist = {

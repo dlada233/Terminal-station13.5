@@ -609,7 +609,7 @@
 		new /obj/item/reagent_containers/pill/neurine(src)
 
 /obj/item/storage/pill_bottle/maintenance_pill
-	name = "维护管道药瓶"
+	name = "维护通道药瓶"
 	desc = "一个旧药瓶，闻起来有霉味."
 
 /obj/item/storage/pill_bottle/maintenance_pill/Initialize(mapload)

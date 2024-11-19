@@ -349,7 +349,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/telescreen_turbine
-	name = "Turbine Telescreen-涡轮机电幕"
+	name = "Turbine Telescreen-涡轮机监控屏"
 	id = "telescreen_turbine"
 	build_type = PROTOLATHE
 	materials = list(
@@ -364,7 +364,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/telescreen_engine
-	name = "Engine Telescreen-工程电幕"
+	name = "Engine Telescreen-工程监控屏"
 	id = "telescreen_engine"
 	build_type = PROTOLATHE
 	materials = list(
@@ -379,7 +379,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/telescreen_auxbase
-	name = "Auxiliary Base Telescreen-辅助基地电幕"
+	name = "Auxiliary Base Telescreen-辅助基地监控屏"
 	id = "telescreen_auxbase"
 	build_type = PROTOLATHE
 	materials = list(

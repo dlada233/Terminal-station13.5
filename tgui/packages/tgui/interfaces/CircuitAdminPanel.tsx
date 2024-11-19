@@ -17,7 +17,7 @@ export const CircuitAdminPanel = (props) => {
   const { act, data } = useBackend<CircuitAdminPanelData>();
 
   return (
-    <Window title="Circuit Admin Panel" width={1200} height={500}>
+    <Window title="集成电路管理面板" width={1200} height={500}>
       <Window.Content>
         <Stack vertical>
           <Stack.Item>
@@ -29,7 +29,7 @@ export const CircuitAdminPanel = (props) => {
                     act('disable_circuit_sound');
                   }}
                 >
-                  Disable all circuit sound emitters
+                  关闭所有集成电路声音发射器
                 </Button>
               </Stack.Item>
             </Stack>
@@ -37,11 +37,11 @@ export const CircuitAdminPanel = (props) => {
           <Stack.Item>
             <Table>
               <Table.Row header>
-                <Table.Cell>Circuit name</Table.Cell>
+                <Table.Cell>集成电路名称</Table.Cell>
 
-                <Table.Cell>Creator</Table.Cell>
+                <Table.Cell>创建者</Table.Cell>
 
-                <Table.Cell>Actions</Table.Cell>
+                <Table.Cell>动作</Table.Cell>
               </Table.Row>
 
               {data.circuits.map((circuit) => {
@@ -57,22 +57,22 @@ export const CircuitAdminPanel = (props) => {
 
                     <Table.Cell>
                       <Button onClick={createAct('follow_circuit')}>
-                        Follow
+                        跟随
                       </Button>
 
-                      <Button onClick={createAct('open_circuit')}>Open</Button>
+                      <Button onClick={createAct('open_circuit')}>打开</Button>
 
                       <Button onClick={createAct('vv_circuit')}>VV</Button>
 
-                      <Button onClick={createAct('save_circuit')}>Save</Button>
+                      <Button onClick={createAct('save_circuit')}>保存</Button>
 
                       <Button onClick={createAct('duplicate_circuit')}>
-                        Duplicate
+                        复制
                       </Button>
 
                       {!!circuit.has_inserter && (
                         <Button onClick={createAct('open_player_panel')}>
-                          Player Panel
+                          玩家面板
                         </Button>
                       )}
                     </Table.Cell>

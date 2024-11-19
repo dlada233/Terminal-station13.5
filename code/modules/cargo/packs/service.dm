@@ -60,11 +60,11 @@
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/service/mule
-	name = "MULE 骡机器人"
+	name = "MULE 骡子机器人"
 	desc = "被称为MULE骡子的机器人可以自动配送货物至指定地点."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/mob/living/simple_animal/bot/mulebot)
-	crate_name = "\improper MULE 骡机器人箱"
+	crate_name = "\improper MULE 骡子机器人箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/party

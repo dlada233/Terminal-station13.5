@@ -28,10 +28,9 @@ type HoloPayData = {
   user: { name: string; balance: number };
 };
 
-const COPYRIGHT_SCROLLER = `Nanotrasen (c) 2525-2562. All sales final.
-Use of departmental funds is prohibited. For more information, visit
-the Head of Personnel. All rights reserved. All trademarks are property
-of their respective owners.`;
+const COPYRIGHT_SCROLLER = `Nanotrasen (c) 2525-2562. 一经出售，概不退款.
+不可挪用部门资金支付. 欲了解更多信息，请询问人事部长.
+保留所有权利. 所有商标均为其各自所有者财产.`;
 
 export const HoloPay = (props) => {
   const { data } = useBackend<HoloPayData>();
@@ -43,10 +42,10 @@ export const HoloPay = (props) => {
   };
 
   return (
-    <Window height={300} width={250} title="Holo Pay">
+    <Window height={300} width={250} title="全息支付">
       <Window.Content>
         {!owner ? (
-          <NoticeBox>Error! Swipe an ID first.</NoticeBox>
+          <NoticeBox>错误! 请先刷ID卡.</NoticeBox>
         ) : (
           <Stack fill vertical>
             <Stack.Item>
@@ -73,7 +72,7 @@ const AccountDisplay = (props) => {
   const { data } = useBackend<HoloPayData>();
   const { user } = data;
   if (!user) {
-    return <NoticeBox>Error! No account detected.</NoticeBox>;
+    return <NoticeBox>错误! 未找到账户.</NoticeBox>;
   }
 
   return (
@@ -114,12 +113,12 @@ const TerminalDisplay = (props) => {
       buttons={
         is_owner && (
           <Button icon="edit" onClick={onClick}>
-            Setup
+            设置
           </Button>
         )
       }
       fill
-      title="Terminal"
+      title="终端"
     >
       <Stack fill vertical>
         <Stack.Item align="center">
@@ -138,7 +137,7 @@ const TerminalDisplay = (props) => {
               content={
                 <>
                   <Icon name="coins" />
-                  Pay {force_fee + ' cr'}
+                  支付 {force_fee + ' cr'}
                 </>
               }
               disabled={cannot_pay}
@@ -153,7 +152,7 @@ const TerminalDisplay = (props) => {
               content={
                 <>
                   <Icon name="coins" />
-                  Pay
+                  支付
                 </>
               }
               disabled={cannot_pay}
@@ -197,17 +196,17 @@ const SetupDisplay = (props) => {
             onClick();
           }}
         >
-          Done
+          完成
         </Button>
       }
       fill
       scrollable
-      title="Settings"
+      title="设置"
     >
       <Stack fill vertical>
         <Stack.Item>
           <Box bold color="label">
-            Shop Logo
+            商标
           </Box>
           <Dropdown
             onSelected={(value) => act('logo', { logo: value })}
@@ -218,7 +217,7 @@ const SetupDisplay = (props) => {
         </Stack.Item>
         <Stack.Item>
           <Box bold color="label">
-            Name (3 - 42 chars)
+            名称 (3 - 42字符)
           </Box>
           <TextArea
             fluid
@@ -231,9 +230,9 @@ const SetupDisplay = (props) => {
           />
         </Stack.Item>
         <Stack.Item>
-          <Tooltip content="Set a forced fee rather than pay what you want.">
+          <Tooltip content="设定固定费用，而非随意支付.">
             <Box bold color="label">
-              Forced Fee
+              固定费用
             </Box>
             <RestrictedInput
               fluid

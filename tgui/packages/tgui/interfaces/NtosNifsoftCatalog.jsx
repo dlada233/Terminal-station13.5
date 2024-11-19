@@ -30,10 +30,10 @@ export const NtosNifsoftCatalog = (props) => {
       <NtosWindow.Content scrollable>
         <Section>
           <LabeledList>
-            <LabeledList.Item label={'Credits in account'}>
+            <LabeledList.Item label={'账户信用点'}>
               {current_balance}
             </LabeledList.Item>
-            <LabeledList.Item label="Rewards Points">
+            <LabeledList.Item label="奖励积分">
               <b>{rewards_points}</b>
             </LabeledList.Item>
           </LabeledList>
@@ -75,7 +75,7 @@ const ProductCategory = (props) => {
               }
               fill={false}
             >
-              <Collapsible title="Product Notes">
+              <Collapsible title="产品笔记">
                 <BlockQuote>{product.desc}</BlockQuote>
               </Collapsible>
               <Button
@@ -91,7 +91,7 @@ const ProductCategory = (props) => {
                 }
                 fluid
               >
-                Purchase for {product.price}cr
+                购买 {product.price}cr
               </Button>
               <Button
                 icon="piggy-bank"
@@ -108,15 +108,15 @@ const ProductCategory = (props) => {
                 }
                 fluid
               >
-                Purchase for {product.price} rewards points
+                购买 {product.price}奖励积分
               </Button>
               <Box opacity={0.85} textAlign="center">
-                Purchasing this item will give you:{' '}
-                {product.rewards_points_rate * product.price} rewards points
+                购买这个物品会给你:{' '}
+                {product.rewards_points_rate * product.price}奖励点数
               </Box>
               {product.keepable ? (
                 <Box opacity={0.85} textAlign="center" bold>
-                  This NIFSoft carries between shifts
+                  NIF软件会在不同轮班间携带
                 </Box>
               ) : (
                 <> </>

@@ -67,16 +67,16 @@ export const AntagInfoWizard = (props) => {
             <Section scrollable fill>
               <Stack vertical>
                 <Stack.Item textColor="red" fontSize="20px">
-                  You are the Space Wizard!
+                  你是太空巫师!
                 </Stack.Item>
                 <Stack.Item>
                   <ObjectivePrintout
                     objectives={objectives}
-                    titleMessage="The Space Wizard Federation has given you the following tasks:"
+                    titleMessage="太空巫师联盟给了你以下任务:"
                     objectiveFollowup={
                       <ReplaceObjectivesButton
                         can_change_objective={can_change_objective}
-                        button_title={'Declare Personal Quest'}
+                        button_title={'进行个人追求'}
                         button_colour={'violet'}
                       />
                     }
@@ -94,68 +94,57 @@ export const AntagInfoWizard = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item>
-            <Section fill title="Spellbook">
+            <Section fill title="魔法书">
               <Stack vertical fill>
                 <Stack.Item>
-                  You have a spellbook which is bound to you. You can use it to
-                  choose a magical arsenal.
+                  你手上有本魔法书，能让你浏览魔法库.
                   <br />
                   <span style={destructionstyle}>
-                    The deadly page has the offensive spells, to destroy your
-                    enemies.
+                    致命页具有攻击性的法术，能摧毁你的敌人.
                   </span>
                   <br />
                   <span style={defensestyle}>
-                    The defensive page has defensive spells, to keep yourself
-                    alive. Remember, you may be powerful, but you are still only
-                    human.
+                    防御页具有防御性的法术，帮助你活下去.
+                    记住，你可能可以毁灭灭地，但仍是肉躯.
                   </span>
                   <br />
                   <span style={transportstyle}>
-                    The transport page has mobility spells, very important
-                    aspect of staying alive and getting things done.
+                    位移页具有位移法术，这对持续存活和完成任务非常重要.
                   </span>
                   <br />
                   <span style={summonstyle}>
-                    The summoning page has summoning and other helpful spells
-                    for not fighting alone. Careful, not every summon is on your
-                    side.
+                    辅助页具有召唤和辅助法术，注意，不是所有的召唤物都对你抱有善意.
                   </span>
                   <br />
                   <span style={ritualstyle}>
-                    The rituals page has powerful global effects, that will pit
-                    the station against itself. Do mind that these are either
-                    expensive, or just for panache.
+                    仪式页具有能对整个全局施加影响的强大仪式，能让空间站自我崩坏.
+                    注意， 仪式要么代价昂贵，要么意义大于效果.
                   </span>
                 </Stack.Item>
                 <Stack.Item textColor="lightgreen">
-                  (If you are unsure what to get or are new to the Federation,
-                  go to the &quot;Wizard Approved Loadouts&quot; section. There
-                  you will find some kits that work fairly well for new
-                  wizards.)
+                  (如果你不确定选什么或者你是新手巫师, 请翻至
+                  &quot;预设配装&quot; 页. 在
+                  那里你能发现一些套装组合，很适合新手巫师发挥.)
                 </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item>
-            <Section title="Misc Gear">
+            <Section title="杂项装备">
               <Stack>
                 <Stack.Item>
-                  <span style={teleportstyle}>Teleport scroll:</span> 4 uses to
-                  teleport wherever you want. You will not be able to come back
-                  to the den, so be sure you have everything ready before
-                  departing.
+                  <span style={teleportstyle}>传送卷轴:</span> 使用来传送到
+                  任何你想要的地方，但是无法回到藏身处，所以确保你在出发前做足了准备.
                   <br />
-                  <span style={robestyle}>Wizard robes:</span> Used to cast most
-                  spells. Your spellbook will let you know which spells cannot
-                  be cast without a garb.
+                  <span style={robestyle}>巫师袍:</span> 用于释放大部分法术. 你
+                  的魔法书会告诉你哪些法术不穿巫师袍就无法释放.
                 </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item>
             <Section textAlign="center" textColor="red" fontSize="20px">
-              Remember: Do not forget to prepare your spells.
+              记住: 别忘了准备法术.
             </Section>
           </Stack.Item>
         </Stack>
@@ -171,14 +160,14 @@ const RitualPrintout = (props: { ritual: GrandRitual }) => {
   }
   return (
     <Box>
-      Alternately, complete the{' '}
-      <span style={grandritualstyle}>Grand Ritual </span>
-      by invoking a ritual circle at several nexuses of power.
+      或者, 通过在几处魔力汇聚地上利用法阵来举行{' '}
+      <span style={grandritualstyle}>大仪式 </span>
+      .
       <br />
-      You must complete the ritual
-      <span style={grandritualstyle}> {ritual.remaining}</span> more times.
+      你必须完成
+      <span style={grandritualstyle}> {ritual.remaining}</span>次以上的仪式.
       <br />
-      Your next ritual location is the
+      你的下一处仪式地点是
       <span style={grandritualstyle}> {ritual.next_area}</span>.
     </Box>
   );

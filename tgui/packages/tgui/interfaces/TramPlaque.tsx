@@ -19,12 +19,7 @@ export const TramPlaque = (props) => {
   const { currentTram = [], previousTrams = [] } = data;
 
   return (
-    <Window
-      title="Tram Information Plaque"
-      width={600}
-      height={360}
-      theme="dark"
-    >
+    <Window title="电车信息牌" width={600} height={360} theme="dark">
       <Window.Content>
         <NoticeBox info>SkyyTram Mk VI by Nakamura Engineering</NoticeBox>
         <Section
@@ -35,30 +30,30 @@ export const TramPlaque = (props) => {
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Distance Travelled">
+            <LabeledList.Item label="行驶距离">
               {currentTram.map(
                 (serialNumber) => serialNumber.distanceTravelled / 1000,
               )}{' '}
               km
             </LabeledList.Item>
-            <LabeledList.Item label="Collisions">
+            <LabeledList.Item label="碰撞事故">
               {currentTram.map((serialNumber) => serialNumber.tramCollisions)}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Tram History">
+        <Section title="电车记录">
           <Stack fill>
             <Stack.Item m={1} grow>
-              <b>Serial</b>
+              <b>运行</b>
             </Stack.Item>
             <Stack.Item m={1} grow>
-              <b>Constructed</b>
+              <b>建造</b>
             </Stack.Item>
             <Stack.Item m={1} grow>
-              <b>Distance</b>
+              <b>距离</b>
             </Stack.Item>
             <Stack.Item m={1} grow>
-              <b>Collisions</b>
+              <b>碰撞</b>
             </Stack.Item>
           </Stack>
           <Stack vertical fill>

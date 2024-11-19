@@ -7,10 +7,10 @@ export const MicrofusionGunControl = (props) => {
   const { act, data } = useBackend();
   const { current_players, servers = [] } = data;
   return (
-    <Window title="Server Control Panel" width={500} height={700}>
+    <Window title="服务器控制面板" width={500} height={700}>
       <Window.Content>
         {servers.len === 0 ? (
-          <NoticeBox>No server is currently online.</NoticeBox>
+          <NoticeBox>当前没有服务器在线.</NoticeBox>
         ) : (
           servers.map((server) => (
             <Section
@@ -19,7 +19,7 @@ export const MicrofusionGunControl = (props) => {
               buttons={
                 <Button
                   icon="connect"
-                  content="Connect"
+                  content="连接"
                   onClick={() =>
                     act('connect', {
                       server_ref: server.name,
@@ -29,7 +29,7 @@ export const MicrofusionGunControl = (props) => {
               }
             >
               <LabeledList>
-                <LabeledList.Item label="Players">
+                <LabeledList.Item label="玩家">
                   {server.players}/{server.max_players}
                 </LabeledList.Item>
               </LabeledList>

@@ -22,7 +22,7 @@ export const BluespaceArtillery = (props) => {
         {connected ? (
           <>
             <Section
-              title="Target"
+              title="目标"
               buttons={
                 <Button
                   icon="crosshairs"
@@ -32,7 +32,7 @@ export const BluespaceArtillery = (props) => {
               }
             >
               <Box color={target ? 'average' : 'bad'} fontSize="25px">
-                {target || 'No Target Set'}
+                {target || '未设定目标'}
               </Box>
             </Section>
             <Section>
@@ -40,7 +40,7 @@ export const BluespaceArtillery = (props) => {
                 <Box style={{ margin: 'auto' }}>
                   <Button
                     fluid
-                    content="FIRE"
+                    content="射击"
                     color="bad"
                     disabled={!target}
                     fontSize="30px"
@@ -52,12 +52,9 @@ export const BluespaceArtillery = (props) => {
               ) : (
                 <>
                   <Box color="bad" fontSize="18px">
-                    Bluespace artillery is currently locked.
+                    蓝空大炮目前处于锁定状态.
                   </Box>
-                  <Box mt={1}>
-                    Awaiting authorization via keycard reader from at minimum
-                    two station heads.
-                  </Box>
+                  <Box mt={1}>需要至少两名站点部长级别的ID卡授权.</Box>
                 </>
               )}
             </Section>
@@ -65,10 +62,10 @@ export const BluespaceArtillery = (props) => {
         ) : (
           <Section>
             <LabeledList>
-              <LabeledList.Item label="Maintenance">
+              <LabeledList.Item label="检修">
                 <Button
                   icon="wrench"
-                  content="Complete Deployment"
+                  content="完成部署"
                   onClick={() => act('build')}
                 />
               </LabeledList.Item>

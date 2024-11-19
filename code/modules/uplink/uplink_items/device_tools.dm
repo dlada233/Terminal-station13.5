@@ -76,7 +76,7 @@
 
 /datum/uplink_item/device_tools/camera_app
 	name = "SyndEye-辛迪之眼"
-	desc = "一个包含应用程序的数据磁盘，该应用程序可以让您观看摄像头并跟踪船员."
+	desc = "一个包含应用程序的数据软盘，该应用程序可以让您观看摄像头并跟踪船员."
 	item = /obj/item/computer_disk/syndicate/camera_app
 	cost = 1
 	surplus = 90
@@ -95,18 +95,18 @@
 	cost = 3
 
 /datum/uplink_item/device_tools/fakenucleardisk
-	name = "诱饵核磁盘"
-	desc = "这只是一个普通的磁盘，远看它和真的一模一样，但在舰长的仔细检查下，它就站不住脚了；不要试图用这个来完成你的目标，糊弄鬼呢!"
+	name = "诱饵核软盘"
+	desc = "这只是一个普通的软盘，远看它和真的一模一样，但在舰长的仔细检查下，它就站不住脚了；不要试图用这个来完成你的目标，糊弄鬼呢!"
 	item = /obj/item/disk/nuclear/fake
 	cost = 1
 	surplus = 1
 	illegal_tech = FALSE
 
 /datum/uplink_item/device_tools/frame
-	name = "F.R.A.M.E.磁盘"
-	desc = "当你把F.R.A.M.E.磁盘插入一台具有发信功能的设备上时，将能在短信界面发送五次病毒. \
+	name = "F.R.A.M.E.软盘"
+	desc = "当你把F.R.A.M.E.软盘插入一台具有发信功能的设备上时，将能在短信界面发送五次病毒. \
 			当你发送携带病毒的短信后，收到短信的设备将会被植入一个0Tc的上行链路，并立刻进入链路页面. \
-			而你则会立刻收到进入链路页面的解锁密码，一般在短信铃声中输入，此外，你可以将Tc存入磁盘，这样发送病毒时生成的上行链路就将自带Tc.\
+			而你则会立刻收到进入链路页面的解锁密码，一般在短信铃声中输入，此外，你可以将Tc存入软盘，这样发送病毒时生成的上行链路就将自带Tc.\
 			这个物品常用于特工创建备用上行链路."
 	item = /obj/item/computer_disk/virus/frame
 	cost = 4

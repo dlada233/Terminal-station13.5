@@ -432,7 +432,7 @@
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(inserted_disk)
-		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "移除磁盘"
+		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "移除软盘"
 		. = CONTEXTUAL_SCREENTIP_SET
 	return . || NONE
 
@@ -922,7 +922,7 @@
 		return ITEM_INTERACT_BLOCKING
 	if(inserted_disk)
 		user.put_in_hands(inserted_disk)
-		balloon_alert(user, "磁盘交换")
+		balloon_alert(user, "软盘交换")
 	inserted_disk = disk
 	playsound(src, 'sound/machines/card_slide.ogg', 50)
 	return ITEM_INTERACT_SUCCESS

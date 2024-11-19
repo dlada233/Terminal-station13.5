@@ -36,9 +36,7 @@ export const TurbineComputer = (props) => {
         textAlign="center"
         minHeight="39px"
       >
-        {
-          'Parts not connected, use a multitool on the core rotor before trying again'
-        }
+        {'部件未连接，使用多功能工具对核心转子再试一次'}
       </Box>
     </Modal>
   );
@@ -50,9 +48,7 @@ export const TurbineComputer = (props) => {
         textAlign="center"
         minHeight="39px"
       >
-        {
-          'Some parts have open maintenance hatchet, please close them before starting'
-        }
+        {'部分部件有开启检修舱门，请关闭后再启动'}
       </Box>
     </Modal>
   );
@@ -60,11 +56,11 @@ export const TurbineComputer = (props) => {
     <Window width={310} height={240}>
       <Window.Content>
         <Section
-          title="Status"
+          title="状态"
           buttons={
             <Button
               icon={data.active ? 'power-off' : 'times'}
-              content={data.active ? 'Online' : 'Offline'}
+              content={data.active ? '在线' : '离线'}
               selected={data.active}
               disabled={!!(data.rpm >= 1000) || !data.parts_linked}
               onClick={() => act('toggle_power')}
@@ -74,7 +70,7 @@ export const TurbineComputer = (props) => {
           {parts_not_connected}
           {parts_not_ready}
           <LabeledList>
-            <LabeledList.Item label="Intake Regulator">
+            <LabeledList.Item label="进入调节器">
               <NumberInput
                 animated
                 value={data.regulator * 100}
@@ -89,7 +85,7 @@ export const TurbineComputer = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Turbine Integrity">
+            <LabeledList.Item label="涡轮机完整性y">
               <ProgressBar
                 value={data.integrity}
                 minValue={0}
@@ -101,19 +97,17 @@ export const TurbineComputer = (props) => {
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Turbine Speed">
+            <LabeledList.Item label="涡轮机速度">
               {data.rpm} RPM
             </LabeledList.Item>
-            <LabeledList.Item label="Max Turbine Speed">
+            <LabeledList.Item label="最大涡轮机速度">
               {data.max_rpm} RPM
             </LabeledList.Item>
-            <LabeledList.Item label="Input Temperature">
-              {data.temp} K
-            </LabeledList.Item>
-            <LabeledList.Item label="Max Temperature">
+            <LabeledList.Item label="进入温度">{data.temp} K</LabeledList.Item>
+            <LabeledList.Item label="最大温度">
               {data.max_temperature} K
             </LabeledList.Item>
-            <LabeledList.Item label="Generated Power">
+            <LabeledList.Item label="发电功率">
               {data.power * 4 * 0.001} kW
             </LabeledList.Item>
           </LabeledList>

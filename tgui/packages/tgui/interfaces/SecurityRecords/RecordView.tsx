@@ -170,7 +170,7 @@ const RecordInfo = (props) => {
               />
             </LabeledList.Item>
             {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
-            <LabeledList.Item label="实际年龄">
+            <LabeledList.Item label="存在年龄">
               <RestrictedInput
                 minValue={min_age}
                 maxValue={max_chrono_age}

@@ -2507,7 +2507,7 @@
 	},
 /obj/effect/turf_decal/tile/dark/full,
 /obj/machinery/rnd/destructive_analyzer{
-	name = "Interdyne destructive analyzer";
+	name = "Interdyne 解构分析仪";
 	color = "#adadcd";
 	light_color = "#adadcd"
 	},

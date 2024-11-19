@@ -103,7 +103,7 @@ const ShoppingTab = (props) => {
                 autoFocus
                 mt={0.5}
                 width="150px"
-                placeholder="Search item..."
+                placeholder="搜索物品..."
                 value={searchItem}
                 onInput={(e, value) => {
                   setSearchItem(value);
@@ -150,7 +150,7 @@ const ShoppingTab = (props) => {
                   </Stack.Item>
                   <Stack.Item mt={-1.5} align="right">
                     <Box fontSize="10px" color="label">
-                      {item.cost + credit_type + ' per order.'}
+                      {item.cost + credit_type + '每单.'}
                     </Box>
                     <Button
                       icon="minus"
@@ -217,16 +217,16 @@ const CheckoutTab = (props) => {
       <Stack.Item grow>
         <Section fill scrollable>
           <Stack vertical fill>
-            <Stack.Item textAlign="center">Checkout list:</Stack.Item>
+            <Stack.Item textAlign="center">购物列表:</Stack.Item>
             <Divider />
             {!checkout_list.length && (
               <>
                 <Box align="center" mt="15%" fontSize="40px">
-                  Nothing!
+                  空无一物!
                 </Box>
                 <br />
                 <Box align="center" mt={2} fontSize="15px">
-                  (Go order something, will ya?)
+                  (去买点什么，好吗?)
                 </Box>
               </>
             )}
@@ -240,10 +240,10 @@ const CheckoutTab = (props) => {
                       <br />
                       <Box textAlign="right">
                         {item.name +
-                          ' costs ' +
+                          ' 花费 ' +
                           item.cost +
                           credit_type +
-                          ' per order.'}
+                          ' 每单.'}
                       </Box>
                     </Stack.Item>
                     <Stack.Item mt={-0.5}>
@@ -273,7 +273,7 @@ const CheckoutTab = (props) => {
         <Section>
           <Stack>
             <Stack.Item grow mt={0.5}>
-              Total:{total_cargo_cost}&#40;Express:
+              总计:{total_cargo_cost}&#40;快运:
               {total_cost * express_cost_multiplier}&#41;
             </Stack.Item>
             {!forced_express && (
@@ -281,11 +281,11 @@ const CheckoutTab = (props) => {
                 <Button
                   fluid
                   icon="plane-departure"
-                  content="Purchase"
+                  content="购买"
                   disabled={total_cargo_cost < cargo_value}
                   tooltip={
                     total_cargo_cost < cargo_value
-                      ? `Total must be above or equal to ${cargo_value}`
+                      ? `总计必须大于等于${cargo_value}`
                       : purchase_tooltip
                   }
                   tooltipPosition="top"
@@ -298,11 +298,9 @@ const CheckoutTab = (props) => {
                 fluid
                 icon="parachute-box"
                 color="yellow"
-                content="Express"
+                content="快运"
                 disabled={total_cost <= 0}
-                tooltip={
-                  total_cost <= 0 ? 'Order atleast 1 item' : express_tooltip
-                }
+                tooltip={total_cost <= 0 ? '至少下单一件物品' : express_tooltip}
                 tooltipPosition="top-start"
                 onClick={() => act('express')}
               />
@@ -322,7 +320,7 @@ const OrderSent = (props) => {
           <Icon ml="28%" color="green" name="plane-arrival" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="18px" color="green">
-          Order sent! Machine on cooldown...
+          订单已发送! 机器冷却中...
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -350,7 +348,7 @@ export const ProduceConsole = (props) => {
                     color="green"
                     lineHeight={buttonWidth}
                     icon="cart-plus"
-                    content="Shopping"
+                    content="采购"
                     onClick={() => setTabIndex(1)}
                   />
                 </Stack.Item>
@@ -360,7 +358,7 @@ export const ProduceConsole = (props) => {
                     color="green"
                     lineHeight={buttonWidth}
                     icon="dollar-sign"
-                    content="Checkout"
+                    content="结账"
                     onClick={() => setTabIndex(2)}
                   />
                 </Stack.Item>
@@ -370,12 +368,12 @@ export const ProduceConsole = (props) => {
           <Section>
             <Stack direction="column">
               <Stack.Item grow>
-                Currently available balance: {points || 0} {credit_type}
+                当前可用余额: {points || 0} {credit_type}
               </Stack.Item>
               <Stack.Item textAlign="right">
                 <Button
                   color={condensed ? 'green' : 'red'}
-                  content={condensed ? 'Uncondense' : 'Condense'}
+                  content={condensed ? '详细' : '简洁'}
                   onClick={() => setCondensed(!condensed)}
                 />
               </Stack.Item>

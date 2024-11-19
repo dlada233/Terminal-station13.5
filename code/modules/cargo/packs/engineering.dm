@@ -226,7 +226,7 @@
 /// Engine Construction
 
 /datum/supply_pack/engine
-	group = "工程建设"
+	group = "电力建设"
 	access_view = ACCESS_ENGINEERING
 	crate_type = /obj/structure/closet/crate/engineering
 

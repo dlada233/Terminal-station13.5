@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 			items_to_grant = list(
 				/obj/item/gun/magic/staff/healing,
 			)
-			to_chat(owner, span_bold("你的忠心一直被看在眼里，在[master.current.real_name]的教导下，你学会了拯救生命的生存法术.你能够施放充能和力场，同时拥有一根治疗法杖."))
+			to_chat(owner, span_bold("你的忠心一直被看在眼里，在[master.current.real_name]的教导下，你学会了拯救生命的生存法术.你能够施放充能和力场，同时拥有一根治愈法杖."))
 		if(APPRENTICE_ROBELESS)
 			spells_to_grant = list(
 				/datum/action/cooldown/spell/aoe/knock,

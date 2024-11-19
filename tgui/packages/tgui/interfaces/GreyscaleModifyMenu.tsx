@@ -46,14 +46,14 @@ type GreyscaleMenuData = {
 };
 
 enum Direction {
-  North = 'north',
-  NorthEast = 'northeast',
-  East = 'east',
-  SouthEast = 'southeast',
-  South = 'south',
-  SouthWest = 'southwest',
-  West = 'west',
-  NorthWest = 'northwest',
+  North = '北',
+  NorthEast = '东北',
+  East = '东',
+  SouthEast = '东南',
+  South = '南',
+  SouthWest = '西南',
+  West = '西',
+  NorthWest = '西北',
 }
 
 const DirectionAbbreviation: Record<Direction, string> = {
@@ -70,9 +70,9 @@ const DirectionAbbreviation: Record<Direction, string> = {
 const ConfigDisplay = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title="Designs">
+    <Section title="设计">
       <LabeledList>
-        <LabeledList.Item label="Design Type">
+        <LabeledList.Item label="设计类型">
           <Button icon="cogs" onClick={() => act('select_config')} />
           <Input
             value={data.greyscale_config}
@@ -90,13 +90,13 @@ const ColorDisplay = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   const colors = data.colors || [];
   return (
-    <Section title="Colors">
+    <Section title="颜色">
       <LabeledList>
-        <LabeledList.Item label="Full Color String">
+        <LabeledList.Item label="整体颜色码">
           <Button
             icon="dice"
             onClick={() => act('random_all_colors')}
-            tooltip="Randomizes all color groups."
+            tooltip="随机所有部位颜色."
           />
           <Input
             value={colors.map((item) => item.value).join('')}
@@ -108,19 +108,19 @@ const ColorDisplay = (props) => {
         {colors.map((item) => (
           <LabeledList.Item
             key={`colorgroup${item.index}${item.value}`}
-            label={`Color Group ${item.index}`}
+            label={`颜色部位${item.index}`}
             color={item.value}
           >
             <ColorBox color={item.value} />{' '}
             <Button
               icon="palette"
               onClick={() => act('pick_color', { color_index: item.index })}
-              tooltip="Brings up a color pick window to replace this color group."
+              tooltip="弹出颜色编辑器来选择颜色."
             />
             <Button
               icon="dice"
               onClick={() => act('random_color', { color_index: item.index })}
-              tooltip="Randomizes the color for this color group."
+              tooltip="随机该部位的颜色."
             />
             <Input
               value={item.value}
@@ -172,7 +172,7 @@ const SingleDirection = (props) => {
     <Flex.Item grow={1} basis={0}>
       <Button
         content={DirectionAbbreviation[dir]}
-        tooltip={`Sets the direction of the preview sprite to ${dir}`}
+        tooltip={`将预览贴图方向设为朝${dir}`}
         disabled={`${dir}` === data.sprites_dir ? true : false}
         textAlign="center"
         onClick={() => act('change_dir', { new_sprite_dir: dir })}
@@ -187,13 +187,13 @@ const SingleDirection = (props) => {
 const IconStatesDisplay = (props) => {
   const { data, act } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title="Icon States">
+    <Section title="图标状态">
       <Flex>
         {data.sprites.icon_states.map((item) => (
           <Flex.Item key={item}>
             <Button
               mx={0.5}
-              content={item ? item : 'Blank State'}
+              content={item ? item : '空白状态'}
               disabled={item === data.icon_state}
               onClick={() => act('select_icon_state', { new_icon_state: item })}
             />
@@ -207,7 +207,7 @@ const IconStatesDisplay = (props) => {
 const PreviewDisplay = (props) => {
   const { data } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title={`Preview (${data.sprites_dir})`}>
+    <Section title={`预览 (${data.sprites_dir})`}>
       <Table>
         <Table.Row>
           <Table.Cell width="50%">
@@ -226,7 +226,7 @@ const PreviewDisplay = (props) => {
           )}
         </Table.Row>
       </Table>
-      {!!data.unlocked && `Time Spent: ${data.sprites.time_spent}ms`}
+      {!!data.unlocked && `耗时: ${data.sprites.time_spent}ms`}
       <Divider />
       {!data.refreshing && (
         <Table>
@@ -280,7 +280,7 @@ const LoadingAnimation = () => {
 export const GreyscaleModifyMenu = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   return (
-    <Window title="Color Configuration" width={325} height={800}>
+    <Window title="色彩配置" width={325} height={800}>
       <Window.Content scrollable>
         <ConfigDisplay />
         <ColorDisplay />
@@ -292,34 +292,34 @@ export const GreyscaleModifyMenu = (props) => {
                 content={
                   <Icon name="file-image-o" spin={data.monitoring_files} />
                 }
-                tooltip="Continuously checks files for changes and reloads when necessary. WARNING: Very expensive"
+                tooltip="持续检查文件的更改并在必要时重新加载，警告：高占用."
                 selected={data.monitoring_files}
                 onClick={() => act('toggle_mass_refresh')}
                 width={1.9}
                 mr={-0.2}
               />
               <Button
-                content="Refresh Icon File"
-                tooltip="Loads the json configuration and icon file fresh from disk. This is useful to avoid restarting the server to see changes. WARNING: Expensive"
+                content="刷新图标文件"
+                tooltip="从硬盘加载json配置和图标文件，这有助于避免重启服务器以检查更改，警告：高占用."
                 onClick={() => act('refresh_file')}
               />
               <Button
-                content="Save Icon File"
-                tooltip="Saves the icon to a temp file in tmp/. This is useful if you want to use a generated icon elsewhere or just view a more accurate representation"
+                content="保存图标文件"
+                tooltip="将图标文件保存到tmp/中的临时文件中，如果你想在其他地方生成该图标，或者查看更精准的表示，这非常有用."
                 onClick={() => act('save_dmi')}
               />
             </Flex.Item>
           )}
           <Flex.Item>
             <Button
-              content="Apply"
-              tooltip="Applies changes made to the object this menu was created from."
+              content="应用"
+              tooltip="将所做更改应用于创建此菜单的对象."
               color="red"
               onClick={() => act('apply')}
             />
             <Button.Checkbox
-              content="Full Preview"
-              tooltip="Generates and displays the full sprite generation process instead of just the final output."
+              content="完整预览"
+              tooltip="生成并完整显示贴图生成过程，而不仅仅是最终输出."
               disabled={!data.generate_full_preview && !data.unlocked}
               checked={data.generate_full_preview}
               onClick={() => act('toggle_full_preview')}

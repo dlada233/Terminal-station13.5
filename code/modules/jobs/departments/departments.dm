@@ -89,7 +89,7 @@
 		/area/station/security/brig,
 		/area/station/security/brig/upper,
 	)
-	associated_cargo_groups = list("Security", "Armory")
+	associated_cargo_groups = list("安保用品", "军械用品")
 	head_of_staff_access = ACCESS_HOS
 	department_access = REGION_ACCESS_SECURITY
 
@@ -106,7 +106,7 @@
 		/area/station/engineering/main,
 		/area/station/engineering/lobby,
 	)
-	associated_cargo_groups = list("Engineering", "Engine Construction", "Canisters & Materials")
+	associated_cargo_groups = list("工程用品", "电力建设", "储罐&材料")
 	head_of_staff_access = ACCESS_CE
 	department_access = REGION_ACCESS_ENGINEERING
 
@@ -125,7 +125,7 @@
 		/area/station/medical/treatment_center,
 		/area/station/medical/storage,
 	)
-	associated_cargo_groups = list("Medical")
+	associated_cargo_groups = list("医疗用品")
 	head_of_staff_access = ACCESS_CMO
 	department_access = REGION_ACCESS_MEDBAY
 
@@ -143,7 +143,7 @@
 		/area/station/science/lobby,
 		/area/station/science/lab,
 	)
-	associated_cargo_groups = list("Science", "Livestock", "Canisters & Materials")
+	associated_cargo_groups = list("科研用品", "活物", "储罐&材料")
 	head_of_staff_access = ACCESS_RD
 	department_access = REGION_ACCESS_RESEARCH
 
@@ -170,7 +170,7 @@
 	ui_color = "#7cc46a"
 	nation_prefixes = list("Honka", "Boozo", "Fatu", "Danka", "Mimi", "Libra", "Jani", "Religi")
 	department_delivery_areas = list(/area/station/hallway/secondary/service, /area/station/service/bar/atrium)
-	associated_cargo_groups = list("Service", "Food & Hydroponics", "Livestock", "Costumes & Toys")
+	associated_cargo_groups = list("服务用品", "食品&农业", "活物", "服装&玩具")
 	head_of_staff_access = ACCESS_HOP
 	department_access = list(ACCESS_SERVICE)
 

@@ -11,7 +11,7 @@ export const CircuitModule = (props) => {
         <Stack vertical>
           <Stack.Item>
             <Button
-              content="View Internal Circuit"
+              content="查看内部电路"
               textAlign="center"
               fluid
               onClick={() => act('open_internal_circuit')}
@@ -20,7 +20,7 @@ export const CircuitModule = (props) => {
           <Stack.Item>
             <Stack width="100%">
               <Stack.Item basis="50%">
-                <Section title="Input Ports">
+                <Section title="输入端口">
                   <Stack vertical>
                     {input_ports.map((val, index) => (
                       <PortEntry
@@ -52,7 +52,7 @@ export const CircuitModule = (props) => {
                     <Stack.Item>
                       <Button
                         fluid
-                        content="Add Input Port"
+                        content="添加输入端口"
                         color="good"
                         icon="plus"
                         onClick={() => act('add_input_port')}
@@ -62,7 +62,7 @@ export const CircuitModule = (props) => {
                 </Section>
               </Stack.Item>
               <Stack.Item basis="50%">
-                <Section title="Output Ports">
+                <Section title="输出端口">
                   <Stack vertical>
                     {output_ports.map((val, index) => (
                       <PortEntry
@@ -94,7 +94,7 @@ export const CircuitModule = (props) => {
                     <Stack.Item>
                       <Button
                         fluid
-                        content="Add Output Port"
+                        content="添加输出端口"
                         color="good"
                         icon="plus"
                         onClick={() => act('add_output_port')}
@@ -126,7 +126,7 @@ const PortEntry = (props) => {
     <Stack.Item {...rest}>
       <Stack>
         <Stack.Item grow>
-          <Input placeholder="Name" value={name} onChange={onEnter} fluid />
+          <Input placeholder="名称" value={name} onChange={onEnter} fluid />
         </Stack.Item>
         <Stack.Item>
           <Dropdown

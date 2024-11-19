@@ -142,7 +142,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
         >
           <Stack vertical>
             <SupermatterEntry
-              title="Integrity"
+              title="完整性"
               alwaysShowChevron
               content={
                 <ProgressBar
@@ -175,7 +175,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
               }
             />
             <SupermatterEntry
-              title="Internal Energy"
+              title="内部能量"
               alwaysShowChevron
               content={
                 <ProgressBar
@@ -211,7 +211,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
               }
             />
             <SupermatterEntry
-              title="Zap Power Transmission"
+              title="激活能量溢出"
               alwaysShowChevron
               content={
                 <ProgressBar
@@ -244,7 +244,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
               }
             />
             <SupermatterEntry
-              title="Absorbed Moles"
+              title="吸收摩尔"
               content={
                 <ProgressBar
                   value={gas_total_moles}
@@ -256,12 +256,12 @@ export const SupermatterContent = (props: SupermatterProps) => {
                     bad: [1800, Infinity],
                   }}
                 >
-                  {toFixed(gas_total_moles, 2) + ' Moles'}
+                  {toFixed(gas_total_moles, 2) + 'Mole'}
                 </ProgressBar>
               }
             />
             <SupermatterEntry
-              title="Temperature"
+              title="温度"
               content={
                 <ProgressBar
                   value={logScale(gas_temperature)}
@@ -279,7 +279,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
               }
             />
             <SupermatterEntry
-              title="Temperature Limit"
+              title="温度限制"
               alwaysShowChevron
               content={temp_limit + ' K'}
               detail={
@@ -297,7 +297,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
               }
             />
             <SupermatterEntry
-              title="Waste Multiplier"
+              title="排废乘数"
               alwaysShowChevron
               content={
                 <ProgressBar
@@ -328,7 +328,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
               }
             />
             <SupermatterEntry
-              title="Absorption Ratio"
+              title="吸收系数"
               content={absorbed_ratio * 100 + '%'}
             />
           </Stack>
@@ -338,13 +338,13 @@ export const SupermatterContent = (props: SupermatterProps) => {
         <Section
           fill
           scrollable
-          title="Gases"
+          title="气体"
           buttons={
             <Button
               icon={allGasActive ? 'times' : 'book-open'}
               onClick={() => setAllGasActive(!allGasActive)}
             >
-              {allGasActive ? 'Hide Gases' : 'Show All Gases'}
+              {allGasActive ? '隐藏气体' : '显示所有气体'}
             </Button>
           }
         >
@@ -352,7 +352,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
             {gas_composition.map(([gas_path, amount]) => (
               <SupermatterEntry
                 key={gas_path}
-                title={getGasFromPath(gas_path)?.label || 'Unknown'}
+                title={getGasFromPath(gas_path)?.label || '未知'}
                 content={
                   <ProgressBar
                     color={getGasFromPath(gas_path)?.color}
@@ -370,7 +370,7 @@ export const SupermatterContent = (props: SupermatterProps) => {
                       {gas_metadata[gas_path].numeric_data.length ? (
                         <>
                           <Box mb={1}>
-                            At <b>100% Composition</b> gives:
+                            到达<b>100%构成时</b>获得:
                           </Box>
                           <LabeledList>
                             {gas_metadata[gas_path].numeric_data.map(
@@ -398,11 +398,11 @@ export const SupermatterContent = (props: SupermatterProps) => {
                           </LabeledList>
                         </>
                       ) : (
-                        'Has no composition effects'
+                        '无构成效果'
                       )}
                     </>
                   ) : (
-                    'Has no effects'
+                    '无效果'
                   )
                 }
               />

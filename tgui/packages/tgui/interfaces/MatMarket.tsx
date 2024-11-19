@@ -59,51 +59,43 @@ export const MatMarket = (props) => {
       <Window.Content scrollable>
         {!!catastrophe && <MarketCrashModal />}
         <Section
-          title="Materials for sale"
+          title="出售材料"
           buttons={
             !!canOrderCargo && (
               <Button
                 icon="dollar"
-                tooltip="Place order from cargo budget."
+                tooltip="使用货仓预算订购."
                 color={orderingPrive ? '' : 'green'}
-                content={
-                  orderingPrive
-                    ? 'Order via Cargo Budget?'
-                    : 'Ordering via Cargo Budget'
-                }
+                content={orderingPrive ? '用货仓预算订购?' : '用货仓预算订购'}
                 onClick={() => act('toggle_budget')}
               />
             )
           }
         >
           <NoticeBox info>
-            <Collapsible title="Instructions" color="blue">
-              Buy orders for material sheets placed here will be ordered on the
-              next cargo shipment.
+            <Collapsible title="使用说明" color="blue">
+              在此订购的材料将在下次货船到港时运达.
               <br /> <br />
-              To sell materials, please insert sheets or similar stacks of
-              materials. All minerals sold on the market directly are subject to
-              an 20% market fee. To prevent market manipulation, all registered
-              traders can buy a total of 10 full stacks of materials at a time.
+              要销售材料，请直接放入材料，所有出售到市场上的材料都需要缴纳20%的市场费.
+              并且
+              为了防止恶意操纵市场，所有注册的交易者一次最多可以购买10组材料.
               <br /> <br />
-              All new purchases will include the cost of the shipped crate,
-              which may be recycled afterwards.
+              最终购买价格将包含回收价格的板条箱运费.
             </Collapsible>
           </NoticeBox>
           <Section>
             <Stack>
               <Stack.Item width="15%">
-                Balance: <b>{formatMoney(creditBalance)}</b> cr.
+                余额: <b>{formatMoney(creditBalance)}</b> cr.
               </Stack.Item>
               <Stack.Item width="15%">
-                Order: <b>{formatMoney(orderBalance)}</b> cr.
+                订购: <b>{formatMoney(orderBalance)}</b> cr.
               </Stack.Item>
               <Stack.Item
                 width="20%"
                 color={data.updateTime > 150 ? 'green' : '#ad7526'}
               >
-                <b>{Math.round(data.updateTime / 10)} seconds</b> until next
-                update
+                <b>{Math.round(data.updateTime / 10)} 秒</b>直到下次更新
               </Stack.Item>
               <Stack.Item>
                 <Button
@@ -112,7 +104,7 @@ export const MatMarket = (props) => {
                   ml={66}
                   onClick={() => act('clear')}
                 >
-                  Clear
+                  清除
                 </Button>
               </Stack.Item>
             </Stack>
@@ -134,32 +126,32 @@ export const MatMarket = (props) => {
                     </Stack.Item>
 
                     <Stack.Item width="15%" pr="2%">
-                      Trading at <b>{formatMoney(material.price)}</b> cr.
+                      交易以<b>{formatMoney(material.price)}</b>cr.
                     </Stack.Item>
                     {material.price < material.threshold ? (
                       <Stack.Item width="33%" ml={2} textColor="grey">
-                        Material price critical!
-                        <br /> <b>Trading temporarily suspended.</b>
+                        材料价格触发熔断!
+                        <br /> <b>交易暂时停止.</b>
                       </Stack.Item>
                     ) : (
                       <Stack.Item width="33%" ml={2}>
-                        <b>{material.quantity || 'Zero'}</b> sheets of{' '}
-                        <b>{material.name}</b> trading.{' '}
-                        {material.requested || 'Zero'} sheets ordered.
+                        <b>{material.quantity || '零'}</b>份
+                        <b>{material.name}</b>交易中.{' '}
+                        {material.requested || '零'} 份材料已订购.
                       </Stack.Item>
                     )}
 
                     <Stack.Item
                       width="40%"
                       color={
-                        material.trend === 'up'
+                        material.trend === '上升趋势'
                           ? 'green'
-                          : material.trend === 'down'
+                          : material.trend === '下降趋势'
                             ? 'red'
                             : 'white'
                       }
                     >
-                      <b>{toTitleCase(material.name)}</b> is trending{' '}
+                      <b>{toTitleCase(material.name)}</b>价格呈
                       <b>{material.trend}</b>.
                     </Stack.Item>
                   </Stack>
@@ -181,7 +173,7 @@ export const MatMarket = (props) => {
                       })
                     }
                   >
-                    Buy 1
+                    购买 1
                   </Button>
                   <Button
                     disabled={
@@ -271,13 +263,13 @@ export const MatMarket = (props) => {
 const MarketCrashModal = (props) => {
   return (
     <Modal textAlign="center" mr={1.5}>
-      ATTENTION! THE MARKET HAS CRASHED
+      注意! 市场崩溃了
       <br /> <br />
-      ALL MATERIALS ARE NOW WORTHLESS
+      所有的材料现在一文不值
       <br /> <br />
-      TRADING CIRCUIT BREAKER HAS BEEN ENGAGED FOR ALL TRADERS
+      所有交易者均已启用交易熔断机制
       <br /> <br />
-      <b>DO NOT PANIC, WE ARE FIXING THIS</b>
+      <b>不要惊慌，我们将进行技术性调整</b>
     </Modal>
   );
 };

@@ -71,7 +71,7 @@ export const JobEntry = (data: {
         (job.prioritized ? (
           <>
             <p style={{ marginTop: '0px' }}>
-              <b>The HoP wants more people in this job!</b>
+              <b>人事部长（HoP）希望该岗位能有更多的人!</b>
             </p>
             {job.description}
           </>
@@ -131,7 +131,7 @@ export const JobSelection = (props) => {
                 </NoticeBox>
               }
               <span style={{ color: 'grey' }}>
-                It is currently {data.round_duration} into the shift.
+                此次轮班已经进行了 {data.round_duration} .
               </span>
               <Button
                 style={{ position: 'absolute', right: '1em' }}

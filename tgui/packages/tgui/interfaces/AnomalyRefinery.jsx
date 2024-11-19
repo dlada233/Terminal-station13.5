@@ -13,7 +13,7 @@ import { GasmixParser } from './common/GasmixParser';
 
 export const AnomalyRefinery = (props) => {
   return (
-    <Window title="Anomaly Refinery" width={550} height={350}>
+    <Window title="异常精炼器" width={550} height={350}>
       <Window.Content>
         <AnomalyRefineryContent />
       </Window.Content>
@@ -40,7 +40,7 @@ const AnomalyRefineryContent = (props) => {
               disabled={!core || active}
               onClick={() => act('eject_core')}
             >
-              {'Eject Core'}
+              {'取出核心'}
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -50,7 +50,7 @@ const AnomalyRefineryContent = (props) => {
               icon={currentTab === 1 ? 'server' : 'compress-arrows-alt'}
               onClick={() => changeTab(currentTab === 1 ? 2 : 1)}
             >
-              {currentTab === 1 ? 'Run Simulations' : 'Implosion Control'}
+              {currentTab === 1 ? '运行模拟' : '内爆控制'}
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -61,7 +61,7 @@ const AnomalyRefineryContent = (props) => {
               disabled={!valvePresent || active}
               onClick={() => act('eject_bomb')}
             >
-              {'Eject Bomb'}
+              {'取出炸弹'}
             </Button>
           </Stack.Item>
         </Stack>
@@ -79,7 +79,7 @@ const CoreCompressorContent = (props) => {
       <Stack.Item grow>
         <Section
           fill
-          title="Inserted Core"
+          title="已放置核心"
           buttons={
             <Button
               icon="compress-arrows-alt"
@@ -87,19 +87,17 @@ const CoreCompressorContent = (props) => {
               onClick={() => act('start_implosion')}
               disabled={active || !valveReady || !core}
             >
-              {'Implode Core'}
+              {'内爆核心'}
             </Button>
           }
         >
-          {!core && <Modal textAlign="center">{'No Core Inserted!'}</Modal>}
+          {!core && <Modal textAlign="center">{'未放置核心!'}</Modal>}
           <LabeledList>
-            <LabeledList.Item label={'Name'}>
+            <LabeledList.Item label={'名称'}>
               {core ? core : '-'}
             </LabeledList.Item>
-            <LabeledList.Item label={'Required Radius'}>
-              {requiredRadius
-                ? requiredRadius + ' tiles'
-                : 'Implosion not possible.'}
+            <LabeledList.Item label={'需求半径'}>
+              {requiredRadius ? requiredRadius + ' 格' : '不可能发生内爆.'}
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -107,20 +105,18 @@ const CoreCompressorContent = (props) => {
       <Stack.Item grow>
         <Section
           fill
-          title="Inserted Bomb"
+          title="已放置核心"
           buttons={
             <Button
               disabled={!valveReady}
               icon="exchange-alt"
               onClick={() => act('swap')}
             >
-              {'Swap Merging Order'}
+              {'互换合并指令'}
             </Button>
           }
         >
-          {!valvePresent && (
-            <Modal textAlign="center">{'No Bomb Inserted!'}</Modal>
-          )}
+          {!valvePresent && <Modal textAlign="center">{'未放置炸弹!'}</Modal>}
           <Stack align="center">
             <Stack.Item grow textAlign="center">
               <Box height={2} width="100%" bold>

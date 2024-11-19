@@ -6,29 +6,29 @@ export const OutfitManager = (props) => {
   const { act, data } = useBackend();
   const { outfits } = data;
   return (
-    <Window title="Outfit Manager" width={300} height={300} theme="admin">
+    <Window title="套装管理器" width={300} height={300} theme="admin">
       <Window.Content>
         <Section
           fill
           scrollable
-          title="Custom Outfit Manager"
+          title="自定义套装管理器"
           buttons={
             <>
               <Button
                 icon="file-upload"
-                tooltip="Load an outfit from a file"
+                tooltip="从文件中加载套装"
                 tooltipPosition="left"
                 onClick={() => act('load')}
               />
               <Button
                 icon="copy"
-                tooltip="Copy an already existing outfit"
+                tooltip="复制当前存在套装"
                 tooltipPosition="left"
                 onClick={() => act('copy')}
               />
               <Button
                 icon="plus"
-                tooltip="Create a new outfit"
+                tooltip="创建新套装"
                 tooltipPosition="left"
                 onClick={() => act('new')}
               />
@@ -62,7 +62,7 @@ export const OutfitManager = (props) => {
                   <Stack.Item ml={0.5}>
                     <Button
                       icon="save"
-                      tooltip="Save this outfit to a file"
+                      tooltip="保存套装到文件中"
                       tooltipPosition="left"
                       onClick={() => act('save', { outfit: outfit.ref })}
                     />
@@ -71,7 +71,7 @@ export const OutfitManager = (props) => {
                     <Button
                       color="bad"
                       icon="trash-alt"
-                      tooltip="Delete this outfit"
+                      tooltip="删除该套装"
                       tooltipPosition="left"
                       onClick={() => act('delete', { outfit: outfit.ref })}
                     />

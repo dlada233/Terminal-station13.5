@@ -28,14 +28,14 @@ export const BorgShaker = (props) => {
   return (
     <Window width={650} height={dynamicHeight} theme={theme}>
       <Window.Content>
-        <Section title={'Non-Alcoholic'}>
+        <Section title={'无酒精'}>
           <ReagentDisplay
             reagents={sodas}
             selected={selectedReagent}
             minimum={minVolume}
           />
         </Section>
-        <Section title={'Alcoholic'}>
+        <Section title={'酒精'}>
           <ReagentDisplay
             reagents={alcohols}
             selected={selectedReagent}
@@ -51,7 +51,7 @@ const ReagentDisplay = (props) => {
   const { act } = useBackend();
   const { reagents, selected, minimum } = props;
   if (reagents.length === 0) {
-    return <NoticeBox>No reagents available!</NoticeBox>;
+    return <NoticeBox>无试剂可用!</NoticeBox>;
   }
   return reagents.map((reagent) => (
     <Button

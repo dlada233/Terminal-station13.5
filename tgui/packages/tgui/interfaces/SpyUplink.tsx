@@ -48,7 +48,7 @@ const BountyDisplay = (props: { bounty: Bounty }) => {
       {!bounty.can_claim && !bounty.claimed && (
         <BountyDimmer
           color="average"
-          text="Your benefactors see you unfit to complete this."
+          text="你的赞助人认为你不适合完成这件事."
         />
       )}
       <Stack vertical ml={1}>
@@ -65,7 +65,7 @@ const BountyDisplay = (props: { bounty: Bounty }) => {
         <Stack.Item>
           <BlockQuote italic>{bounty.help}</BlockQuote>
         </Stack.Item>
-        <Stack.Item italic>Reward: {bounty.reward}</Stack.Item>
+        <Stack.Item italic>奖励: {bounty.reward}</Stack.Item>
       </Stack>
     </Section>
   );
@@ -98,12 +98,10 @@ export const SpyUplink = () => {
       >
         <Section
           fill
-          title="Spy Bounties"
+          title="间谍奖励"
           scrollable
           buttons={
-            <Box mt={0.4}>
-              Time until refresh: {format_deciseconds(time_left)}
-            </Box>
+            <Box mt={0.4}>距离刷新时间: {format_deciseconds(time_left)}</Box>
           }
         >
           <Stack vertical fill>

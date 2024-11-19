@@ -22,22 +22,17 @@ import { Window } from '../layouts';
 export const AmmoWorkbench = (props) => {
   const [tab, setTab] = useSharedState('tab', 1);
   return (
-    <Window
-      width={600}
-      height={600}
-      theme="hackerman"
-      title="Ammunitions Workbench"
-    >
+    <Window width={600} height={600} theme="hackerman" title="弹药工作台">
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-            Ammunitions
+            弹药
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-            Materials
+            材料
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-            Datadisks
+            数据盘
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <AmmunitionsTab />}
@@ -72,9 +67,9 @@ export const AmmunitionsTab = (props) => {
           {error}
         </NoticeBox>
       )}
-      <Section title="Machine Settings">
+      <Section title="机器设置">
         <Box inline mr={4}>
-          Current Efficiency:{' '}
+          当前效率:{' '}
           <RoundGauge
             value={efficiency}
             minValue={1.6}
@@ -82,17 +77,17 @@ export const AmmunitionsTab = (props) => {
             format={() => null}
           />
         </Box>
-        <Box>Time Per Round: {time} seconds</Box>
+        <Box>每发生产时间: {time} 秒</Box>
         <Button.Checkbox
           textAlign="right"
           checked={turboBoost}
           onClick={() => act('turboBoost')}
         >
-          Turbo Boost
+          涡轮增压
         </Button.Checkbox>
       </Section>
       <Section
-        title="Loaded Magazine"
+        title="已装载弹匣"
         buttons={
           <>
             {!!mag_loaded && (
@@ -106,7 +101,7 @@ export const AmmunitionsTab = (props) => {
             )}
             <Button
               icon="eject"
-              content="Eject"
+              content="取出"
               disabled={!mag_loaded}
               onClick={() => act('EjectMag')}
             />
@@ -120,7 +115,7 @@ export const AmmunitionsTab = (props) => {
           </Box>
         )}
       </Section>
-      <Section title="Available Ammunition Types">
+      <Section title="可用弹药类型">
         {!!mag_loaded && (
           <Flex.Item grow={1} basis={0}>
             {available_rounds.map((available_round) => (
@@ -153,9 +148,8 @@ export const AmmunitionsTab = (props) => {
       </Section>
       {!!hacked && (
         <NoticeBox textAlign="center" color="bad">
-          !WARNING! - ARMADYNE SAFETY PROTOCOLS ARE NOT ENGAGED! MISUSE IS NOT
-          COVERED UNDER WARRANTY. SOME MUNITION TYPES MAY CONSTITUTE A WAR CRIME
-          IN YOUR AREA. PLEASE CONTACT AN ARMADYNE ADMINISTRATOR IMMEDIATELY.
+          !警告! - ARMADYNE安全协议未启用! 可能造成的误用后果将不在保修范围内.
+          某些弹药类型可能在您所在区域构成战争罪.请立刻联系ARMADYNE管理人员.
         </NoticeBox>
       )}
     </>
@@ -166,7 +160,7 @@ export const MaterialsTab = (props) => {
   const { act, data } = useBackend();
   const { materials = [] } = data;
   return (
-    <Section title="Materials">
+    <Section title="材料">
       <Table>
         {materials.map((material) => (
           <MaterialRow
@@ -203,18 +197,18 @@ export const DatadiskTab = (props) => {
         </NoticeBox>
       )}
       <Section
-        title="Datadisk"
+        title="数据盘"
         buttons={
           <>
             <Button
               icon="save"
-              content="Load Disk"
+              content="加载数据盘"
               disabled={!datadisk_loaded}
               onClick={() => act('ReadDisk')}
             />
             <Button
               icon="eject"
-              content="Eject"
+              content="取出"
               disabled={!datadisk_loaded}
               onClick={() => act('EjectDisk')}
             />
@@ -223,18 +217,18 @@ export const DatadiskTab = (props) => {
       >
         {!!datadisk_loaded && (
           <Box>
-            Inserted Datadisk: {datadisk_name}
-            <Box>Description: {datadisk_desc}</Box>
+            已插入数据盘: {datadisk_name}
+            <Box>描述: {datadisk_desc}</Box>
           </Box>
         )}
       </Section>
-      <Section title="Loaded Datadisks">
+      <Section title="已加载数据盘">
         <Table>
           {loaded_datadisks.map((loaded_datadisk) => (
             <Box key={loaded_datadisk.loaded_disk_name}>
               {loaded_datadisk.loaded_disk_name}
               <Box textAlign="right">
-                Description: {loaded_datadisk.loaded_disk_desc}
+                描述: {loaded_datadisk.loaded_disk_desc}
               </Box>
             </Box>
           ))}
@@ -255,7 +249,7 @@ const MaterialRow = (props) => {
       <Table.Cell>{toTitleCase(material.name)}</Table.Cell>
       <Table.Cell collapsing textAlign="right">
         <Box mr={2} color="label" inline>
-          {amountAvailable} sheets
+          {amountAvailable} 板材
         </Box>
       </Table.Cell>
       <Table.Cell collapsing>
@@ -270,7 +264,7 @@ const MaterialRow = (props) => {
         />
         <Button
           disabled={amountAvailable < 1}
-          content="Release"
+          content="释放"
           onClick={() => onRelease(amount)}
         />
       </Table.Cell>

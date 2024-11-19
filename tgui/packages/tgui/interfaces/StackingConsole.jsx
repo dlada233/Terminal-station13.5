@@ -9,7 +9,7 @@ export const StackingConsole = (props) => {
     <Window width={320} height={340}>
       <Window.Content scrollable>
         {!machine ? (
-          <NoticeBox>No connected stacking machine</NoticeBox>
+          <NoticeBox>未连接到堆垛机</NoticeBox>
         ) : (
           <StackingConsoleContent />
         )}
@@ -30,15 +30,15 @@ export const StackingConsoleContent = (props) => {
     <>
       <Section>
         <LabeledList>
-          <LabeledList.Item label="Stacking Amount">
-            {stacking_amount || 'Unknown'}
+          <LabeledList.Item label="堆垛数量">
+            {stacking_amount || '未知'}
           </LabeledList.Item>
           <LabeledList.Item
-            label="Input"
+            label="输入"
             buttons={
               <Button
                 icon="rotate"
-                content="Rotate"
+                content="转向"
                 onClick={() =>
                   act('rotate', {
                     input: 1,
@@ -50,11 +50,11 @@ export const StackingConsoleContent = (props) => {
             <Box style={{ textTransform: 'capitalize' }}>{input_direction}</Box>
           </LabeledList.Item>
           <LabeledList.Item
-            label="Output"
+            label="输出"
             buttons={
               <Button
                 icon="rotate"
-                content="Rotate"
+                content="转向"
                 onClick={() =>
                   act('rotate', {
                     input: 0,
@@ -69,9 +69,9 @@ export const StackingConsoleContent = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Stored Materials">
+      <Section title="存储材料">
         {!contents.length ? (
-          <NoticeBox>No stored materials</NoticeBox>
+          <NoticeBox>无存储材料</NoticeBox>
         ) : (
           <LabeledList>
             {contents.map((sheet) => (
@@ -81,7 +81,7 @@ export const StackingConsoleContent = (props) => {
                 buttons={
                   <Button
                     icon="eject"
-                    content="Release"
+                    content="放出"
                     onClick={() =>
                       act('release', {
                         type: sheet.type,
@@ -90,7 +90,7 @@ export const StackingConsoleContent = (props) => {
                   />
                 }
               >
-                {sheet.amount || 'Unknown'}
+                {sheet.amount || '未知'}
               </LabeledList.Item>
             ))}
           </LabeledList>

@@ -33,9 +33,7 @@ export const MatterItem = (props) => {
   const { data } = useBackend<Data>();
   const { matterLeft } = data;
   return (
-    <LabeledList.Item label="Units Left">
-      &nbsp;{matterLeft} Units
-    </LabeledList.Item>
+    <LabeledList.Item label="单位剩余">&nbsp;{matterLeft}单位</LabeledList.Item>
   );
 };
 
@@ -43,9 +41,9 @@ export const SiloItem = (props) => {
   const { act, data } = useBackend<Data>();
   const { silo_enabled } = data;
   return (
-    <LabeledList.Item label="Silo Link">
+    <LabeledList.Item label="筒仓连接">
       <Button.Checkbox
-        content={silo_enabled ? 'Silo Online' : 'Silo Offline'}
+        content={silo_enabled ? '筒仓在线' : '筒仓离线'}
         checked={silo_enabled}
         color="transparent"
         onClick={() => act('toggle_silo')}
@@ -58,7 +56,7 @@ const CategoryItem = (props) => {
   const { act, data } = useBackend<Data>();
   const { root_categories = [], selected_root } = data;
   return (
-    <LabeledList.Item label="Category">
+    <LabeledList.Item label="类型">
       {root_categories.map((root) => (
         <Button
           key={root}
@@ -132,9 +130,9 @@ const DesignSection = (props) => {
             className={classes(['rcd-tgui32x32', design.icon])}
             style={{
               transform:
-                design.title === 'full tile window' ||
-                design.title === 'full tile reinforced window' ||
-                design.title === 'catwalk'
+                design.title === '全地块窗' ||
+                design.title === '全地块加固窗' ||
+                design.title === '脚手架'
                   ? 'scale(0.7)'
                   : 'scale(1.0)',
             }}
@@ -152,7 +150,7 @@ const ConfigureSection = (props) => {
 
   return (
     <Stack.Item grow>
-      {selected_root === 'Airlock Access' ? (
+      {selected_root === '气闸权限' ? (
         <AirLockMainSection />
       ) : (
         <DesignSection />

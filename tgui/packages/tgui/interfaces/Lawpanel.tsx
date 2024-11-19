@@ -23,23 +23,23 @@ const lawtype_to_color = {
 } as const;
 
 const lawtype_to_tooltip = {
-  inherent: `Core laws.
-    Inherent laws are the "core" laws of the AI.
-    Resetting the AI will not remove these,
-    these are intrinsic to whatever lawset they are running.`,
-  supplied: `Supplied laws.
-    Supplied laws are, well, supplied in addition to the inherent laws.
-    These laws will go away when an AI is reset.`,
-  ion: `Ion laws.
-    Special, (usually) randomized laws which are above all over laws.
-    These laws will go away when an AI is reset.`,
-  hacked: `Hacked laws.
-    Syndicate uploaded laws which are above all other laws.
-    These laws will go away when an AI is reset.`,
-  zeroth: `Zeroth law.
-    A lawset can only have 1 zeroth law, it's the top dog.
-    Given out by malfunctioning AIs to allow them to do whatever.
-    Nothing will remove this, allegedly, unless it's admin forced.`,
+  inherent: `核心法律.
+    AI的固有法律被称为"核心法律"，
+    重置AI也无法将其消除，
+    无论运行于何种法律体系中都会固定存在.`,
+  supplied: `附加法律.
+    附加法律是在固有法律的基础上额外设置的，
+    会随着AI重置而被移除.`,
+  ion: `离子法律.
+    通常而言是随机生成的特殊法律，凌驾于其他所有法律之上，
+    会随着AI重置而被移除.`,
+  hacked: `骇入法律.
+    辛迪加上传的法律，凌驾于其他所有法律之上，
+    会随着AI重置而被移除.`,
+  zeroth: `零号法律.
+    每个法律体系只能拥有一条零号法律，它的地位至高无上；
+    这产生于故障AI，允许它为所欲为，
+    除非管理员强制干预，否则没有任何东西能够移除零号法律.`,
 } as const;
 
 type Law = {
@@ -78,9 +78,9 @@ const SyncedBorgDimmer = (props: { master: string }) => {
           <Icon color="green" name="wifi" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="18px">
-          This cyborg is linked to &quot;{props.master}&quot;.
+          这台赛博被连接到 &quot;{props.master}&quot;.
         </Stack.Item>
-        <Stack.Item fontSize="14px">Modify their laws instead.</Stack.Item>
+        <Stack.Item fontSize="14px">修改它的法律.</Stack.Item>
       </Stack>
     </Dimmer>
   );
@@ -114,9 +114,7 @@ export const LawPrintout = (props: { cyborg_ref: string; lawset: Law[] }) => {
                     icon="question"
                     tooltip={
                       lawtype_to_tooltip[law.lawtype] ||
-                      `This lawtype is unrecognized for some reason,
-                        that reason probably being "a bug".
-                        Make an issue report with this please.`
+                      `由于某种原因，这种法律类型未被识别，可能是bug，请上报问题.`
                     }
                     color={lawtype_to_color[law.lawtype] || 'pink'}
                   />
@@ -140,7 +138,7 @@ export const LawPrintout = (props: { cyborg_ref: string; lawset: Law[] }) => {
                   <Button
                     icon="pen-ruler"
                     color={'green'}
-                    tooltip={'Edit the text of the law.'}
+                    tooltip={'编辑法律文本.'}
                     onClick={() =>
                       act('edit_law_text', {
                         ref: cyborg_ref,
@@ -191,7 +189,7 @@ export const LawPrintout = (props: { cyborg_ref: string; lawset: Law[] }) => {
                     <Button
                       icon="pen-to-square"
                       color={'green'}
-                      tooltip={'Edit the priority of the law.'}
+                      tooltip={'编辑法律优先级.'}
                       onClick={() =>
                         act('edit_law_prio', {
                           ref: cyborg_ref,
@@ -213,7 +211,7 @@ export const LawPrintout = (props: { cyborg_ref: string; lawset: Law[] }) => {
         <Button
           icon="plus"
           color={'green'}
-          content={'Add Law'}
+          content={'添加法律'}
           onClick={() => act('add_law', { ref: cyborg_ref })}
         />
       </LabeledList.Item>
@@ -241,9 +239,7 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                     fluid
                     textAlign="center"
                     color="danger"
-                    content={`This silicon has a null law datum. This isn't
-                      supposed to ever happen! Issue report
-                      and then click this this give them one.`}
+                    content={`这台硅基有一个null law datum，这不应该出现，请点击这个生成报告并发送.`}
                     onClick={() => act('give_law_datum', { ref: cyborg.ref })}
                   />
                 ) : (
@@ -255,9 +251,9 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                   <Stack.Item>
                     <Button
                       icon="bullhorn"
-                      content={'Force State Laws'}
-                      tooltip={`Forces the silicon to state laws.
-                        Only states inherent / core laws.`}
+                      content={'强制陈述法律'}
+                      tooltip={`强迫这台硅基陈述法律，
+                        只陈述固有/核心法律.`}
                       onClick={() =>
                         act('force_state_laws', { ref: cyborg.ref })
                       }
@@ -266,10 +262,8 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                   <Stack.Item>
                     <Button
                       icon="message"
-                      content={'Privately Announce Laws'}
-                      tooltip={`Displays all of the silicon's laws
-                        in their chat box. Also shows to all
-                        linked cyborgs for AIs.`}
+                      content={'秘密显示法律'}
+                      tooltip={`在硅基的聊天框中显示所有法律，也向所有与AI连接的赛博显示.`}
                       onClick={() =>
                         act('announce_law_changes', { ref: cyborg.ref })
                       }
@@ -278,10 +272,8 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                   <Stack.Item>
                     <Button
                       icon="bell"
-                      content={'"Laws Updated" Alert'}
-                      tooltip={`Throws a screen alert to the silicon that their
-                        laws have been updated. Also displays the laws in chat
-                        and alerts deadchat.`}
+                      content={'"法律上传"警报'}
+                      tooltip={`想硅基抛出警报，通知它们法律已经更新了. 还会通知死后聊天频道和在聊天频道显示.`}
                       onClick={() =>
                         act('laws_updated_alert', { ref: cyborg.ref })
                       }
@@ -302,16 +294,16 @@ export const Lawpanel = (props) => {
   const { all_silicons } = data;
 
   return (
-    <Window title="Law Panel" theme="admin" width={800} height={600}>
+    <Window title="法律面板" theme="admin" width={800} height={600}>
       <Window.Content>
         <Section
           fill
-          title="All Silicon Laws"
+          title="全部硅基法律"
           scrollable
           buttons={
             <Button
               icon="robot"
-              content="Logs"
+              content="日志"
               onClick={() => act('lawchange_logs')}
             />
           }
@@ -325,7 +317,7 @@ export const Lawpanel = (props) => {
               ))
             ) : (
               <Stack.Item>
-                <NoticeBox>There are no silicons in existence.</NoticeBox>
+                <NoticeBox>硅基生命未存在.</NoticeBox>
               </Stack.Item>
             )}
           </Stack>

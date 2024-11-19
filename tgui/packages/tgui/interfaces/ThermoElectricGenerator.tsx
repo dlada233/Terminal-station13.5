@@ -28,7 +28,7 @@ export const ThermoElectricGenerator = (props) => {
     return (
       <Window width={320} height={100}>
         <Window.Content>
-          <Section>ERROR: {error_message}</Section>
+          <Section>故障: {error_message}</Section>
         </Window.Content>
       </Window>
     );
@@ -38,19 +38,19 @@ export const ThermoElectricGenerator = (props) => {
       <Window.Content>
         <Section>
           <Box>
-            <Box>Last Output: {last_power_output}</Box>
+            <Box>最后输出: {last_power_output}</Box>
             <Divider />
             <Box m={1} textColor="cyan" bold>
-              Cold Loop
+              冷回路
             </Box>
             {cold_data.map((data, index) => (
               <Box key={index}>
                 <Box>
-                  Temperature Inlet: {data.temperature_inlet} K / Outlet:{' '}
+                  进气温度: {data.temperature_inlet} K / 出气温度:{' '}
                   {data.temperature_outlet} K
                 </Box>
                 <Box>
-                  Pressure Inlet: {data.pressure_inlet} kPa / Outlet:{' '}
+                  进气压力: {data.pressure_inlet} kPa / 出气压力:{' '}
                   {data.pressure_outlet} kPa
                 </Box>
               </Box>
@@ -58,16 +58,16 @@ export const ThermoElectricGenerator = (props) => {
           </Box>
           <Box>
             <Box m={1} textColor="red" bold>
-              Hot loop{' '}
+              热回路{' '}
             </Box>
             {hot_data.map((data, index) => (
               <Box key={index}>
                 <Box>
-                  Temperature Inlet: {data.temperature_inlet} K / Outlet:{' '}
+                  进气温度: {data.temperature_inlet} K / 出气温度:{' '}
                   {data.temperature_outlet} K
                 </Box>
                 <Box>
-                  Pressure Inlet: {data.pressure_inlet} kPa / Outlet:{' '}
+                  进气压力: {data.pressure_inlet} kPa / 出气压力:{' '}
                   {data.pressure_outlet} kPa
                 </Box>
               </Box>

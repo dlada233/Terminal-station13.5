@@ -15,12 +15,10 @@ export const NtosRecords = (props) => {
   return (
     <NtosWindow width={600} height={800}>
       <NtosWindow.Content scrollable>
-        <Section textAlign="center">
-          NANOTRASEN PERSONNEL RECORDS (CLASSIFIED)
-        </Section>
+        <Section textAlign="center">纳米传讯人事档案 (机密)</Section>
         <Section>
           <Input
-            placeholder={'Filter results...'}
+            placeholder={'筛选结果...'}
             value={searchTerm}
             fluid
             textAlign="center"
@@ -59,24 +57,24 @@ export const NtosRecords = (props) => {
                 {record.name}
               </Box>
               <br />
-              Rank: {record.rank}
+              等级: {record.rank}
               <br />
-              Species: {record.species}
+              种族: {record.species}
               <br />
-              Gender: {record.gender}
+              性别: {record.gender}
               <br />
               {/* SKYRAT EDIT CHANGE - Chronological age, ORIGINAL: Age: {record.age} */}
-              Physical Age: {record.age}
+              生理年龄: {record.age}
               {/* SKYRAT EDIT CHANGE END */}
               <br />
               {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
-              Chronological Age: {record.chrono_age}
+              存在年龄: {record.chrono_age}
               <br />
               {/* SKYRAT EDIT ADDITION END */}
-              Fingerprint Hash: {record.fingerprint}
+              指纹码: {record.fingerprint}
               <br />
               <br />
-              Criminal Status: {record.wanted || 'DELETED'}
+              犯罪情况: {record.wanted || '被删除'}
             </Section>
           ))}
         {mode === 'medical' &&
@@ -104,21 +102,21 @@ export const NtosRecords = (props) => {
               </Box>
               <br />
               {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
-              Physical Age: {record.age}
+              生理年龄: {record.age}
               <br />
-              Chronological Age: {record.chrono_age}
+              存在年龄: {record.chrono_age}
               <br />
               {/* SKYRAT EDIT ADDITION END */}
-              Bloodtype: {record.bloodtype}
+              血型: {record.bloodtype}
               <br />
-              Minor Disabilities: {record.mi_dis}
+              次要障碍: {record.mi_dis}
               <br />
-              Major Disabilities: {record.ma_dis}
+              主要障碍: {record.ma_dis}
               <br />
               <br />
-              Notes: {record.notes}
+              病历注释: {record.notes}
               <br />
-              Notes Contd: {record.cnotes}
+              病历注释续: {record.cnotes}
             </Section>
           ))}
       </NtosWindow.Content>

@@ -36,7 +36,7 @@ export const RaptorDex = (props) => {
     raptor_color,
   } = data;
   return (
-    <Window title="Raptor Data" width={625} height={370} theme="hackerman">
+    <Window title="迅猛龙数据" width={625} height={370} theme="hackerman">
       <Window.Content>
         <Stack>
           <Stack.Item width="33%">
@@ -56,23 +56,23 @@ export const RaptorDex = (props) => {
           <Stack.Item width="33%" textAlign="center">
             <Section title="Stats">
               <LabeledList>
-                <LabeledList.Item label="Health">
+                <LabeledList.Item label="健康">
                   {raptor_health}
                 </LabeledList.Item>
-                <LabeledList.Item label="Attack">
+                <LabeledList.Item label="攻击">
                   {raptor_attack}
                 </LabeledList.Item>
-                <LabeledList.Item label="Speed">
+                <LabeledList.Item label="速度">
                   {10 - raptor_speed}
                 </LabeledList.Item>
-                <LabeledList.Item label="Gender">
+                <LabeledList.Item label="性别">
                   {raptor_gender}
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-            <Section title="Inherit Modifiers">
+            <Section title="继承修改">
               <LabeledList>
-                <LabeledList.Item label="Health">
+                <LabeledList.Item label="健康">
                   <ProgressBar
                     value={inherited_health}
                     maxValue={inherited_health_max}
@@ -86,7 +86,7 @@ export const RaptorDex = (props) => {
                     }}
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Attack">
+                <LabeledList.Item label="攻击">
                   <ProgressBar
                     value={inherited_attack}
                     maxValue={inherited_attack_max}
@@ -104,7 +104,7 @@ export const RaptorDex = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item width="33%">
-            <Section textAlign="center" title="Friendship bond">
+            <Section textAlign="center" title="友谊关系">
               <Image
                 mt={-7}
                 src={`data:image/jpeg;base64,${raptor_happiness}`}
@@ -112,7 +112,7 @@ export const RaptorDex = (props) => {
                 width="72px"
               />
             </Section>
-            <Section textAlign="center" title="Inherited Traits">
+            <Section textAlign="center" title="继承特质">
               <Stack vertical>
                 {inherited_traits.map((trait, index) => (
                   <Stack.Item key={index}>{trait}</Stack.Item>
@@ -121,7 +121,7 @@ export const RaptorDex = (props) => {
             </Section>
           </Stack.Item>
         </Stack>
-        <Section fill title="Desc">
+        <Section fill title="描述">
           {raptor_description}
         </Section>
       </Window.Content>

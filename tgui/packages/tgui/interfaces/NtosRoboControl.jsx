@@ -22,7 +22,7 @@ export const NtosRoboControl = (props) => {
   return (
     <NtosWindow width={550} height={550}>
       <NtosWindow.Content scrollable>
-        <Section title="Robot Control Console">
+        <Section title="机器人控制终端">
           <LabeledList>
             <LabeledList.Item label="ID 卡">{id_owner}</LabeledList.Item>
             <LabeledList.Item label="范围内的机器人">
@@ -69,18 +69,18 @@ export const NtosRoboControl = (props) => {
             <Section>
               <Button
                 icon="address-card"
-                tooltip="Grant/Remove Drone access to interact with machines and wires that would otherwise be deemed dangerous."
+                tooltip="授予/撤销无人机访问权限，以使其能够与通常被视为危险的机器和电线进行交互."
                 color={droneaccess ? 'good' : 'bad'}
                 onClick={() => act('changedroneaccess')}
               >
-                {droneaccess ? 'Grant Drone Access' : 'Revoke Drone Access'}
+                {droneaccess ? '授予无人机权限' : '撤销无人机权限'}
               </Button>
               <Box my={1}>Drone Pings</Box>
               {dronepingtypes.map((ping_type) => (
                 <Button
                   key={ping_type}
                   icon="bullhorn"
-                  tooltip="Issue a drone ping."
+                  tooltip="发出无人机测试信号."
                   onClick={() => act('ping_drones', { ping_type })}
                 >
                   {ping_type}

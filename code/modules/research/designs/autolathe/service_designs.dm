@@ -564,7 +564,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/telescreen_bar
-	name = "Bar Telescreen-酒吧电幕"
+	name = "Bar Telescreen-酒吧监控屏"
 	id = "telescreen_bar"
 	build_type = PROTOLATHE
 	materials = list(
@@ -579,7 +579,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/telescreen_entertainment
-	name = "Entertainment Telescreen-娱乐电幕"
+	name = "Entertainment Telescreen-观影屏"
 	id = "telescreen_entertainment"
 	build_type = PROTOLATHE
 	materials = list(

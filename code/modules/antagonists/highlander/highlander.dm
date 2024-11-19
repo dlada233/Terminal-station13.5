@@ -29,7 +29,7 @@
 /datum/antagonist/highlander/forge_objectives()
 	var/datum/objective/steal/steal_objective = new
 	steal_objective.owner = owner
-	steal_objective.set_target(new /datum/objective_item/steal/nukedisc) // 设置目标为核弹认证磁盘
+	steal_objective.set_target(new /datum/objective_item/steal/nukedisc) // 设置目标为核弹认证软盘
 	objectives += steal_objective
 	var/datum/objective/elimination/highlander/elimination_objective = new
 	elimination_objective.owner = owner
@@ -43,7 +43,7 @@
 
 /datum/antagonist/highlander/greet()
 	to_chat(owner, "<span class='boldannounce'>你的[sword.name]渴望鲜血. 夺取他人的生命，你的生命也会恢复！\n\
-	激活手中的它，它会引导你找到最近的目标. 用它攻击核认证磁盘能将磁盘存起来. </span>")
+	激活手中的它，它会引导你找到最近的目标. 用它攻击核认证软盘能将软盘存起来. </span>")
 
 	owner.announce_objectives()
 
@@ -87,7 +87,7 @@
 
 /datum/antagonist/highlander/robot/greet()
 	to_chat(owner, "<span class='boldannounce'>你内部集成的双手大剑渴望鲜血. 夺取他人的生命，你的生命也会恢复！！\n\
-	激活手中的它，它会引导你找到最近的目标. 用它攻击核认证磁盘能将磁盘存起来.</span>")
+	激活手中的它，它会引导你找到最近的目标. 用它攻击核认证软盘能将软盘存起来.</span>")
 
 /datum/antagonist/highlander/robot/give_equipment()
 	var/mob/living/silicon/robot/robotlander = owner.current

@@ -119,7 +119,7 @@
 	icon_state = "ce"
 
 /obj/structure/statue/gold/rd
-	name = "科研部长雕像"
+	name = "科研主管雕像"
 	icon_state = "rd"
 
 /obj/structure/statue/gold/qm

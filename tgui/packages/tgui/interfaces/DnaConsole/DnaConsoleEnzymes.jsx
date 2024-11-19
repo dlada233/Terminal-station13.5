@@ -135,7 +135,7 @@ const GeneticMakeupBufferInfo = (props) => {
           <Button
             icon="save"
             disabled={!hasDisk || diskReadOnly}
-            content="上传至磁盘"
+            content="上传至软盘"
             onClick={() =>
               act('save_makeup_disk', {
                 index,
@@ -170,7 +170,7 @@ const GeneticMakeupBuffers = (props) => {
               <Button
                 mr={1}
                 disabled={!hasDisk || !diskHasMakeup}
-                content="从磁盘下载"
+                content="从软盘下载"
                 onClick={() =>
                   act('load_makeup_disk', {
                     index: i,

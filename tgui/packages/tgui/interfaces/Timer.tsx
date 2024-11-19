@@ -19,18 +19,18 @@ export const Timer = (props) => {
     <Window width={275} height={115}>
       <Window.Content>
         <Section
-          title="Timing Unit"
+          title="计时单位"
           buttons={
             <>
               <Button
                 icon={'sync'}
-                content={loop ? 'Repeating' : 'Repeat'}
+                content={loop ? '循环中' : '循环'}
                 selected={loop}
                 onClick={() => act('repeat')}
               />
               <Button
                 icon={'clock-o'}
-                content={timing ? 'Stop' : 'Start'}
+                content={timing ? '停止' : '开始'}
                 selected={timing}
                 onClick={() => act('time')}
               />

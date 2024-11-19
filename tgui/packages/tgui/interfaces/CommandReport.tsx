@@ -28,12 +28,7 @@ type Data = {
 
 export const CommandReport = () => {
   return (
-    <Window
-      title="Create Command Report"
-      width={325}
-      height={685}
-      theme="admin"
-    >
+    <Window title="创建命令报告" width={325} height={685} theme="admin">
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
@@ -65,7 +60,7 @@ const CentComName = (props) => {
   };
 
   return (
-    <Section title="Set Central Command name" textAlign="center">
+    <Section title="设定中央指挥名称" textAlign="center">
       <Dropdown
         width="100%"
         selected={command_name}
@@ -91,7 +86,7 @@ const SubHeader = (props) => {
   const { subheader } = data;
 
   return (
-    <Section title="Set report subheader" textAlign="center">
+    <Section title="设定命令报告子标题" textAlign="center">
       <Box>Keep blank to not include a subheader</Box>
       <Input
         width="100%"
@@ -114,7 +109,7 @@ const AnnouncementColor = (props) => {
   const { announcement_colors = [], announcement_color } = data;
 
   return (
-    <Section title="Set announcement color" textAlign="center">
+    <Section title="设置公告颜色" textAlign="center">
       <Dropdown
         width="100%"
         selected={announcement_color}
@@ -135,7 +130,7 @@ const AnnouncementSound = (props) => {
   const { announcer_sounds = [], played_sound } = data;
 
   return (
-    <Section title="Set announcement sound" textAlign="center">
+    <Section title="设定公告音效" textAlign="center">
       <Dropdown
         width="100%"
         selected={played_sound}
@@ -157,7 +152,7 @@ const ReportText = (props) => {
   const [commandReport, setCommandReport] = useState(command_report_content);
 
   return (
-    <Section title="Set report text" textAlign="center">
+    <Section title="设定公告文本" textAlign="center">
       <TextArea
         height="200px"
         mb={1}
@@ -171,7 +166,7 @@ const ReportText = (props) => {
             checked={!!announce_contents}
             onClick={() => act('toggle_announce')}
           >
-            Announce Contents
+            公告内容
           </Button.Checkbox>
           <Button.Checkbox
             fluid
@@ -180,11 +175,11 @@ const ReportText = (props) => {
             onClick={() => act('toggle_printing')}
             tooltip={
               !announce_contents &&
-              "Printing the report is required since we aren't announcing its contents."
+              '由于我们不会公布报告内容，所以需要打印出来.'
             }
             tooltipPosition="top"
           >
-            Print Report
+            打印报告
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
@@ -192,7 +187,7 @@ const ReportText = (props) => {
             fluid
             icon="check"
             textAlign="center"
-            content="Submit Report"
+            content="提交报告"
             onClick={() => act('submit_report', { report: commandReport })}
           />
         </Stack.Item>

@@ -15,7 +15,7 @@ export const Electropack = (props) => {
             <LabeledList.Item label="电源">
               <Button
                 icon={power ? 'power-off' : 'times'}
-                content={power ? 'On' : 'Off'}
+                content={power ? '开' : '关'}
                 selected={power}
                 onClick={() => act('power')}
               />

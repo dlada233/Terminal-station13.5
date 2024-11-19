@@ -45,12 +45,12 @@ export const ExaminePanel = (props) => {
     headshot,
   } = data;
   return (
-    <Window title="Examine Panel" width={900} height={670} theme="admin">
+    <Window title="检视面板" width={900} height={670} theme="admin">
       <Window.Content>
         <Stack fill>
           <Stack.Item width="30%">
             {!headshot ? (
-              <Section fill title="Character Preview">
+              <Section fill title="角色预览">
                 <ByondUi
                   height="100%"
                   width="100%"
@@ -63,7 +63,7 @@ export const ExaminePanel = (props) => {
               </Section>
             ) : (
               <>
-                <Section height="310px" title="Character Preview">
+                <Section height="310px" title="角色预览">
                   <ByondUi
                     height="260px"
                     width="100%"
@@ -74,7 +74,7 @@ export const ExaminePanel = (props) => {
                     }}
                   />
                 </Section>
-                <Section height="310px" title="Headshot">
+                <Section height="310px" title="头像">
                   <img
                     src={resolveAsset(headshot)}
                     height="250px"
@@ -90,7 +90,7 @@ export const ExaminePanel = (props) => {
                 <Section
                   scrollable
                   fill
-                  title={character_name + "'s Flavor Text:"}
+                  title={character_name + '的自定义文本:'}
                   preserveWhitespace
                 >
                   {formatURLs(flavor_text)}
@@ -99,12 +99,7 @@ export const ExaminePanel = (props) => {
               <Stack.Item grow>
                 <Stack fill>
                   <Stack.Item grow basis={0}>
-                    <Section
-                      scrollable
-                      fill
-                      title="OOC Notes"
-                      preserveWhitespace
-                    >
+                    <Section scrollable fill title="OOC笔记" preserveWhitespace>
                       {formatURLs(ooc_notes)}
                     </Section>
                   </Stack.Item>
@@ -114,14 +109,14 @@ export const ExaminePanel = (props) => {
                       fill
                       title={
                         custom_species
-                          ? 'Species: ' + custom_species
-                          : 'No Custom Species!'
+                          ? '种族: ' + custom_species
+                          : '未自定义种族!'
                       }
                       preserveWhitespace
                     >
                       {custom_species
                         ? formatURLs(custom_species_lore)
-                        : 'Just a normal space dweller.'}
+                        : '只是一名普通的太空居民.'}
                     </Section>
                   </Stack.Item>
                 </Stack>

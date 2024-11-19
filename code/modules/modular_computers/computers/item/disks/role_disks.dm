@@ -18,8 +18,8 @@
 		add_file(program_type)
 
 /obj/item/computer_disk/command/captain
-	name = "舰长数据磁盘"
-	desc = "储存有舰长需要的各种应用程序的磁盘."
+	name = "舰长数据软盘"
+	desc = "储存有舰长需要的各种应用程序的软盘."
 	icon_state = "datadisk10"
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
@@ -27,38 +27,38 @@
 	)
 
 /obj/item/computer_disk/command/cmo
-	name = "首席医疗官数据磁盘"
-	desc = "储存有首席医疗官需要的各种应用程序的磁盘."
+	name = "首席医疗官数据软盘"
+	desc = "储存有首席医疗官需要的各种应用程序的软盘."
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 	)
 
 /obj/item/computer_disk/command/rd
-	name = "科研主管数据磁盘"
-	desc = "储存有科研主管需要的各种应用程序的磁盘."
+	name = "科研主管数据软盘"
+	desc = "储存有科研主管需要的各种应用程序的软盘."
 	starting_programs = list(
 		/datum/computer_file/program/signal_commander,
 	)
 
 /obj/item/computer_disk/command/hos
-	name = "安保部长数据磁盘"
-	desc = "储存有安保部长需要的各种应用程序的磁盘."
+	name = "安保部长数据软盘"
+	desc = "储存有安保部长需要的各种应用程序的软盘."
 	icon_state = "datadisk9"
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 	)
 
 /obj/item/computer_disk/command/hop
-	name = "人事部长数据磁盘"
-	desc = "储存有人事部长需要的各种应用程序的磁盘."
+	name = "人事部长数据软盘"
+	desc = "储存有人事部长需要的各种应用程序的软盘."
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/job_management,
 	)
 
 /obj/item/computer_disk/command/ce
-	name = "工程部长数据磁盘"
-	desc = "储存有首席工程师需要的各种应用程序的磁盘."
+	name = "工程部长数据软盘"
+	desc = "储存有首席工程师需要的各种应用程序的软盘."
 	starting_programs = list(
 		/datum/computer_file/program/supermatter_monitor,
 		/datum/computer_file/program/atmosscan,
@@ -69,8 +69,8 @@
  * Security
  */
 /obj/item/computer_disk/security
-	name = "安全官数据磁盘"
-	desc = "储存有安全官需要的各种应用程序的磁盘."
+	name = "安全官数据软盘"
+	desc = "储存有安全官需要的各种应用程序的软盘."
 	icon_state = "datadisk9"
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
@@ -81,8 +81,8 @@
  * Medical
  */
 /obj/item/computer_disk/medical
-	name = "医生数据磁盘"
-	desc = "储存有医生需要的各种应用程序的磁盘."
+	name = "医生数据软盘"
+	desc = "储存有医生需要的各种应用程序的软盘."
 	icon_state = "datadisk7"
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
@@ -92,8 +92,8 @@
  * Supply
  */
 /obj/item/computer_disk/quartermaster
-	name = "货仓数据磁盘"
-	desc = "储存有货仓工作需要的各种应用程序的磁盘."
+	name = "货仓数据软盘"
+	desc = "储存有货仓工作需要的各种应用程序的软盘."
 	icon_state = "cargodisk"
 	starting_programs = list(
 		/datum/computer_file/program/shipping,
@@ -105,8 +105,8 @@
  * Science
  */
 /obj/item/computer_disk/ordnance
-	name = "军械数据磁盘"
-	desc = "储存有军械室工作需要的各种应用程序的磁盘."
+	name = "军械数据软盘"
+	desc = "储存有军械室工作需要的各种应用程序的软盘."
 	icon_state = "datadisk5"
 	starting_programs = list(
 		/datum/computer_file/program/signal_commander,
@@ -117,8 +117,8 @@
  * Engineering
  */
 /obj/item/computer_disk/engineering
-	name = "工程数据磁盘"
-	desc = "储存有工程工作需要的各种应用程序的磁盘."
+	name = "工程数据软盘"
+	desc = "储存有工程工作需要的各种应用程序的软盘."
 	icon_state = "datadisk6"
 	starting_programs = list(
 		/datum/computer_file/program/alarm_monitor,

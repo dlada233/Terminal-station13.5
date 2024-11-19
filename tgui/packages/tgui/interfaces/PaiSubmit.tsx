@@ -10,14 +10,12 @@ type Data = {
   name: string;
 };
 
-const PAI_DESCRIPTION = `Personal AIs are advanced models capable of nuanced
-interaction. They are designed to assist their masters in their work. They
-do not possess hands, thus they cannot interact with equipment or items. While
-in hologram form, you cannot be directly killed, but you may be incapacitated.`;
+const PAI_DESCRIPTION = `个人人工智能是能够进行细微互动的高级模型，它们被设计用来协
+助主人的生活日常以及工作. 它们不具备与设备和物品直接交互的能力. 它们可以以全息影像形
+式出现，影像不会被杀死，但仍然能被消灭并瘫痪.`;
 
-const PAI_RULES = `You are expected to role play to some degree. Keep in mind:
-Not entering information may lead to you not being selected. Press submit to
-alert pAI cards of your candidacy.`;
+const PAI_RULES = `遵守基本的扮演原则，还有一点：空白信息可能导致你看起来没有吸引力
+从而不被机主选择. 一切完成后按“提交”按钮注册成为pAI候选者.`;
 
 export const PaiSubmit = (props) => {
   const { data } = useBackend<Data>();
@@ -29,7 +27,7 @@ export const PaiSubmit = (props) => {
   });
 
   return (
-    <Window width={400} height={460} title="pAI Candidacy Menu">
+    <Window width={400} height={460} title="pAI注册者名单">
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
@@ -50,7 +48,7 @@ export const PaiSubmit = (props) => {
 /** Displays basic info about playing pAI */
 const DetailsDisplay = (props) => {
   return (
-    <Section fill scrollable title="Details">
+    <Section fill scrollable title="详情">
       <Box color="label">
         {PAI_DESCRIPTION}
         <br />
@@ -67,11 +65,11 @@ const InputDisplay = (props) => {
   const { name, description, comments } = input;
 
   return (
-    <Section fill title="Input">
+    <Section fill title="输入">
       <Stack fill vertical>
         <Stack.Item>
           <Box bold color="label">
-            Name
+            姓名
           </Box>
           <Input
             fluid
@@ -82,7 +80,7 @@ const InputDisplay = (props) => {
         </Stack.Item>
         <Stack.Item>
           <Box bold color="label">
-            Description
+            描述
           </Box>
           <Input
             fluid
@@ -93,7 +91,7 @@ const InputDisplay = (props) => {
         </Stack.Item>
         <Stack.Item>
           <Box bold color="label">
-            OOC Comments
+            OOC注释
           </Box>
           <Input
             fluid
@@ -119,17 +117,17 @@ const ButtonsDisplay = (props) => {
         <Stack.Item>
           <Button
             onClick={() => act('save', { comments, description, name })}
-            tooltip="Saves your candidate data locally."
+            tooltip="将你的pAI注册信息保存到本地."
           >
-            SAVE
+            保存
           </Button>
         </Stack.Item>
         <Stack.Item>
           <Button
             onClick={() => act('load')}
-            tooltip="Loads saved candidate data, if any."
+            tooltip="加载已保存到本地的pAI注册信息."
           >
-            LOAD
+            加载
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -142,7 +140,7 @@ const ButtonsDisplay = (props) => {
               })
             }
           >
-            SUBMIT
+            提交
           </Button>
         </Stack.Item>
       </Stack>

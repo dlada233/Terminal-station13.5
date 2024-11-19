@@ -54,7 +54,7 @@ export const ChemSeparator = (props) => {
                   width: '57px',
                 }}
               >
-                Flask:
+                烧瓶:
               </Box>
             }
           >
@@ -74,9 +74,9 @@ export const ChemSeparator = (props) => {
                       textShadow: '1px 1px 0 black',
                     }}
                   >
-                    {`${Math.ceil(flask.total_volume)} of ${
+                    {`${Math.ceil(flask.total_volume)} / ${
                       flask.maximum_volume
-                    } units at ${Math.ceil(flask.temp)}K`}
+                    } 单位于 ${Math.ceil(flask.temp)}K`}
                   </Box>
                 </ProgressBar>
               </Stack.Item>
@@ -90,7 +90,7 @@ export const ChemSeparator = (props) => {
                   disabled={flask.total_volume <= 0 || !beaker}
                   onClick={() => act('drain')}
                 >
-                  Drain
+                  排出
                 </Button>
               </Stack.Item>
             </Stack>
@@ -104,7 +104,7 @@ export const ChemSeparator = (props) => {
                     width: '57px',
                   }}
                 >
-                  Beaker:
+                  烧杯:
                 </Box>
               }
             >
@@ -124,9 +124,9 @@ export const ChemSeparator = (props) => {
                         textShadow: '1px 1px 0 black',
                       }}
                     >
-                      {`${Math.ceil(beaker.total_volume)} of ${
+                      {`${Math.ceil(beaker.total_volume)} / ${
                         beaker.maximum_volume
-                      } units at ${Math.ceil(beaker.temp)}K`}
+                      } 单位于 ${Math.ceil(beaker.temp)}K`}
                     </Box>
                   </ProgressBar>
                 </Stack.Item>
@@ -140,7 +140,7 @@ export const ChemSeparator = (props) => {
                     disabled={beaker.total_volume <= 0}
                     onClick={() => act('filter')}
                   >
-                    Filter
+                    过滤器
                   </Button>
                 </Stack.Item>
               </Stack>
@@ -154,7 +154,7 @@ export const ChemSeparator = (props) => {
                   width: '57px',
                 }}
               >
-                Burner Knob:
+                燃烧器旋钮:
               </Box>
             }
           >
@@ -182,7 +182,7 @@ export const ChemSeparator = (props) => {
                     width: '57px',
                   }}
                 >
-                  Fuel Source:
+                  燃料来源:
                 </Box>
               }
             >
@@ -201,9 +201,9 @@ export const ChemSeparator = (props) => {
                     textShadow: '1px 1px 0 black',
                   }}
                 >
-                  {`${Math.ceil(fuel.total_volume)} of ${
+                  {`${Math.ceil(fuel.total_volume)} / ${
                     fuel.maximum_volume
-                  } units at ${Math.ceil(fuel.temp)}K`}
+                  } 单位于 ${Math.ceil(fuel.temp)}K`}
                 </Box>
               </ProgressBar>
             </LabeledList.Item>
@@ -219,7 +219,7 @@ export const ChemSeparator = (props) => {
                       width: '57px',
                     }}
                   >
-                    Cooling:
+                    冷却:
                   </Box>
                 }
               >
@@ -231,7 +231,7 @@ export const ChemSeparator = (props) => {
                   ml="25px"
                   onClick={() => act('cool')}
                 >
-                  Start
+                  开始
                 </Button>
               </LabeledList.Item>
             )}

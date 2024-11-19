@@ -35,27 +35,23 @@ export const IntensityCredits = (props) => {
   } = data;
 
   return (
-    <Window title="ICES Events Panel" width={480} height={320} theme="admin">
+    <Window title="ICES事件面板" width={480} height={320} theme="admin">
       <Window.Content>
-        <Section title="Status">
+        <Section title="状态">
           <Flex direction="column">
-            <Flex.Item>Intensity Credits: {current_credits}</Flex.Item>
-            <Flex.Item>Next Event: {next_run}</Flex.Item>
-            <Flex.Item>Active Players: {active_players}</Flex.Item>
-            <Flex.Item>Highpop Threshold: {highpop_players}</Flex.Item>
-            <Flex.Item>Highpop Multiplier: {highpop_multiplier}x</Flex.Item>
-            <Flex.Item>Midpop Threshold: {midpop_players}</Flex.Item>
-            <Flex.Item>Midpop Multiplier: {midpop_multiplier}x</Flex.Item>
-            <Flex.Item>Lowpop Threshold: {lowpop_players}</Flex.Item>
-            <Flex.Item>Lowpop Multiplier: {lowpop_multiplier}x</Flex.Item>
+            <Flex.Item>强度分数: {current_credits}</Flex.Item>
+            <Flex.Item>下次事件: {next_run}</Flex.Item>
+            <Flex.Item>活跃玩家: {active_players}</Flex.Item>
+            <Flex.Item>高人口阈值: {highpop_players}</Flex.Item>
+            <Flex.Item>高人口乘数: {highpop_multiplier}x</Flex.Item>
+            <Flex.Item>中人口阈值: {midpop_players}</Flex.Item>
+            <Flex.Item>中人口乘数: {midpop_multiplier}x</Flex.Item>
+            <Flex.Item>低人口阈值: {lowpop_players}</Flex.Item>
+            <Flex.Item>低人口乘数: {lowpop_multiplier}x</Flex.Item>
           </Flex>
         </Section>
-        <Section title="Configuration">
-          <NoticeBox>
-            You thought there would be something useful here?
-            <br />
-            Ha! What a loser. :3
-          </NoticeBox>
+        <Section title="配置">
+          <NoticeBox>这里什么都没有喵:3</NoticeBox>
         </Section>
       </Window.Content>
     </Window>

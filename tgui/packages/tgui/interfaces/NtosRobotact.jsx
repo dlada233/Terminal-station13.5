@@ -67,7 +67,7 @@ export const NtosRobotactContent = (props) => {
             selected={tab_main === 1}
             onClick={() => setTab_main(1)}
           >
-            Status
+            状态
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -75,7 +75,7 @@ export const NtosRobotactContent = (props) => {
             selected={tab_main === 2}
             onClick={() => setTab_main(2)}
           >
-            Logs
+            日志
           </Tabs.Tab>
         </Tabs>
       </Flex.Item>
@@ -83,12 +83,12 @@ export const NtosRobotactContent = (props) => {
         <>
           <Flex direction={'row'}>
             <Flex.Item width="30%">
-              <Section title="Configuration" fill>
+              <Section title="配置" fill>
                 <LabeledList>
-                  <LabeledList.Item label="Unit">
+                  <LabeledList.Item label="单位">
                     {borgName.slice(0, 17)}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Type">{borgType}</LabeledList.Item>
+                  <LabeledList.Item label="类型">{borgType}</LabeledList.Item>
                   <LabeledList.Item label="AI">
                     {masterAI.slice(0, 17)}
                   </LabeledList.Item>
@@ -96,10 +96,10 @@ export const NtosRobotactContent = (props) => {
               </Section>
             </Flex.Item>
             <Flex.Item grow={1} basis="content" ml={1}>
-              <Section title="Status">
-                Charge:
+              <Section title="状态">
+                充能:
                 <Button
-                  content="Power Alert"
+                  content="能量警报"
                   disabled={charge}
                   onClick={() => act('alertPower')}
                 />
@@ -116,7 +116,7 @@ export const NtosRobotactContent = (props) => {
                     format={(charge) => formatEnergy(charge)}
                   />
                 </ProgressBar>
-                Chassis Integrity:
+                底盘完整性:
                 <ProgressBar
                   value={integrity}
                   minValue={0}
@@ -128,7 +128,7 @@ export const NtosRobotactContent = (props) => {
                   }}
                 />
               </Section>
-              <Section title="Lamp Power">
+              <Section title="光源功率">
                 <Slider
                   value={lampIntensity}
                   step={1}
@@ -141,7 +141,7 @@ export const NtosRobotactContent = (props) => {
                     })
                   }
                 />
-                Lamp power usage: {formatPower(lampIntensity * lampConsumption)}
+                光源用电量: {formatPower(lampIntensity * lampConsumption)}
               </Section>
             </Flex.Item>
             <Flex.Item width="50%" ml={1}>
@@ -153,7 +153,7 @@ export const NtosRobotactContent = (props) => {
                     selected={tab_sub === 1}
                     onClick={() => setTab_sub(1)}
                   >
-                    Actions
+                    行动
                   </Tabs.Tab>
                   <Tabs.Tab
                     icon=""
@@ -161,7 +161,7 @@ export const NtosRobotactContent = (props) => {
                     selected={tab_sub === 2}
                     onClick={() => setTab_sub(2)}
                   >
-                    Upgrades
+                    升级
                   </Tabs.Tab>
                   <Tabs.Tab
                     icon=""
@@ -169,45 +169,45 @@ export const NtosRobotactContent = (props) => {
                     selected={tab_sub === 3}
                     onClick={() => setTab_sub(3)}
                   >
-                    Diagnostics
+                    诊断
                   </Tabs.Tab>
                 </Tabs>
               </Section>
               {tab_sub === 1 && (
                 <Section>
                   <LabeledList>
-                    <LabeledList.Item label="Maintenance Cover">
+                    <LabeledList.Item label="检修盖板">
                       <Button.Confirm
-                        content="Unlock"
-                        disabled={cover === 'UNLOCKED'}
+                        content="解锁"
+                        disabled={cover === '已解锁'}
                         onClick={() => act('coverunlock')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Sensor Overlay">
+                    <LabeledList.Item label="传感器覆盖">
                       <Button
                         content={sensors}
                         onClick={() => act('toggleSensors')}
                       />
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label={'Stored Photos (' + printerPictures + ')'}
+                      label={'存储照片 (' + printerPictures + ')'}
                     >
                       <Button
-                        content="View"
+                        content="浏览"
                         disabled={!printerPictures}
                         onClick={() => act('viewImage')}
                       />
                       <Button
-                        content="Print"
+                        content="打印"
                         disabled={!printerPictures}
                         onClick={() => act('printImage')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Printer Toner">
+                    <LabeledList.Item label="打印机墨粉">
                       <ProgressBar value={printerToner / printerTonerMax} />
                     </LabeledList.Item>
                     {!!thrustersInstalled && (
-                      <LabeledList.Item label="Toggle Thrusters">
+                      <LabeledList.Item label="切换推进器">
                         <Button
                           content={thrustersStatus}
                           onClick={() => act('toggleThrusters')}
@@ -215,9 +215,9 @@ export const NtosRobotactContent = (props) => {
                       </LabeledList.Item>
                     )}
                     {!!selfDestructAble && (
-                      <LabeledList.Item label="Self Destruct">
+                      <LabeledList.Item label="自毁">
                         <Button.Confirm
-                          content="ACTIVATE"
+                          content="启动"
                           color="red"
                           onClick={() => act('selfDestruct')}
                         />
@@ -239,11 +239,11 @@ export const NtosRobotactContent = (props) => {
                 <Section>
                   <LabeledList>
                     <LabeledList.Item
-                      label="AI Connection"
+                      label="AI连接"
                       color={
-                        wireAI === 'FAULT'
+                        wireAI === '故障'
                           ? 'red'
-                          : wireAI === 'READY'
+                          : wireAI === '就绪'
                             ? 'yellow'
                             : 'green'
                       }
@@ -251,17 +251,17 @@ export const NtosRobotactContent = (props) => {
                       {wireAI}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="LawSync"
-                      color={wireLaw === 'FAULT' ? 'red' : 'green'}
+                      label="法律同步"
+                      color={wireLaw === '故障' ? 'red' : 'green'}
                     >
                       {wireLaw}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Camera"
+                      label="摄像机"
                       color={
-                        wireCamera === 'FAULT'
+                        wireCamera === '故障'
                           ? 'red'
-                          : wireCamera === 'DISABLED'
+                          : wireCamera === '禁用'
                             ? 'yellow'
                             : 'green'
                       }
@@ -269,17 +269,17 @@ export const NtosRobotactContent = (props) => {
                       {wireCamera}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Module Controller"
-                      color={wireModule === 'FAULT' ? 'red' : 'green'}
+                      label="模块控制器"
+                      color={wireModule === '故障' ? 'red' : 'green'}
                     >
                       {wireModule}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Motor Controller"
+                      label="电机控制器"
                       color={
-                        locomotion === 'FAULT'
+                        locomotion === '故障'
                           ? 'red'
-                          : locomotion === 'DISABLED'
+                          : locomotion === '禁用'
                             ? 'yellow'
                             : 'green'
                       }
@@ -287,8 +287,8 @@ export const NtosRobotactContent = (props) => {
                       {locomotion}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Maintenance Cover"
-                      color={cover === 'UNLOCKED' ? 'red' : 'green'}
+                      label="检修盖板"
+                      color={cover === '已解锁' ? 'red' : 'green'}
                     >
                       {cover}
                     </LabeledList.Item>
@@ -299,15 +299,12 @@ export const NtosRobotactContent = (props) => {
           </Flex>
           <Flex.Item height={21} mt={1}>
             <Section
-              title="Laws"
+              title="法律"
               fill
               scrollable
               buttons={
                 <>
-                  <Button
-                    content="State Laws"
-                    onClick={() => act('lawstate')}
-                  />
+                  <Button content="状态法律" onClick={() => act('lawstate')} />
                   <Button icon="volume-off" onClick={() => act('lawchannel')} />
                 </>
               }

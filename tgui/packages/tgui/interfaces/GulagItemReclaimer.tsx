@@ -16,16 +16,16 @@ export const GulagItemReclaimer = (props) => {
   return (
     <Window width={325} height={400}>
       <Window.Content scrollable>
-        {mobs.length === 0 && <NoticeBox>No stored items</NoticeBox>}
+        {mobs.length === 0 && <NoticeBox>无储存物品</NoticeBox>}
         {mobs.length > 0 && (
-          <Section title="Stored Items">
+          <Section title="储存物品">
             <Table>
               {mobs.map((mob) => (
                 <Table.Row key={mob.mob}>
                   <Table.Cell>{mob.name}</Table.Cell>
                   <Table.Cell textAlign="right">
                     <Button
-                      content="Retrieve Items"
+                      content="取回物品"
                       disabled={!can_reclaim}
                       onClick={() =>
                         act('release_items', {

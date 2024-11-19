@@ -17,11 +17,11 @@ export const NtosCrewManifest = (props) => {
     <NtosWindow width={500} height={480}>
       <NtosWindow.Content scrollable>
         <Section
-          title="Crew Manifest"
+          title="船员名单"
           buttons={
             <Button
               icon="print"
-              content="Print"
+              content="打印"
               onClick={() => act('PRG_print')}
             />
           }

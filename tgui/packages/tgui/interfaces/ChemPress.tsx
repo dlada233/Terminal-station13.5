@@ -52,7 +52,7 @@ export const ChemPress = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Product">
+            <LabeledList.Item label="产品">
               {packaging_types.map((category, i) => (
                 <Button.Checkbox
                   key={category.cat_name}
@@ -62,7 +62,7 @@ export const ChemPress = (props) => {
                 />
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Volume">
+            <LabeledList.Item label="体积">
               <NumberInput
                 value={current_volume}
                 unit="u"
@@ -78,7 +78,7 @@ export const ChemPress = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Name">
+            <LabeledList.Item label="名称">
               <Input
                 value={product_name}
                 placeholder={product_name}
@@ -89,7 +89,7 @@ export const ChemPress = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Styles">
+            <LabeledList.Item label="样式">
               {shownCategory.products.map((design, j) => (
                 <Button
                   key={j}

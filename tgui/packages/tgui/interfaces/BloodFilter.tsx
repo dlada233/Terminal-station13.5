@@ -17,7 +17,7 @@ export const BloodFilter = (props) => {
         <Stack>
           <Stack.Item grow>
             <ChemFilterPane
-              title="Whitelist"
+              title="白名单"
               list={whitelist}
               buttonColor="green"
             />

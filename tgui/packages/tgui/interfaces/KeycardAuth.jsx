@@ -10,9 +10,7 @@ export const KeycardAuth = (props) => {
       <Window.Content>
         <Section>
           <Box>
-            {data.waiting === 1 && (
-              <span>Waiting for another device to confirm your request...</span>
-            )}
+            {data.waiting === 1 && <span>请等待另一台设备确认请求...</span>}
           </Box>
           <Box>
             {data.waiting === 0 && (
@@ -25,7 +23,7 @@ export const KeycardAuth = (props) => {
                     lineHeight="60px"
                     fluid
                     onClick={() => act('auth_swipe')}
-                    content="Authorize"
+                    content="授权"
                   />
                 )}
                 {data.auth_required === 0 && (
@@ -36,27 +34,27 @@ export const KeycardAuth = (props) => {
                       onClick={() => {
                         return act('red_alert');
                       }}
-                      content="Red Alert"
+                      content="红色警报"
                     />
                     <Button
                       icon="id-card-o"
                       fluid
                       onClick={() => act('emergency_maint')}
-                      content="Emergency Maintenance Access"
+                      content="应急维护通道权限"
                     />
                     {/* SKYRAT EDIT ADDITION START - Engineering Override */}
                     <Button
                       icon="wrench"
                       fluid
                       onClick={() => act('eng_override')}
-                      content="Engineering Override Access"
+                      content="工程超驰权限"
                     />
                     {/* SKYRAT EDIT ADDITION END */}
                     <Button
                       icon="meteor"
                       fluid
                       onClick={() => act('bsa_unlock')}
-                      content="Bluespace Artillery Unlock"
+                      content="蓝空大炮解锁"
                     />
                     {/* SKYRAT EDIT ADDITION START - Permit Pins */}
                     {!!data.permit_pins && (
@@ -64,7 +62,7 @@ export const KeycardAuth = (props) => {
                         icon="key"
                         fluid
                         onClick={() => act('pin_unrestrict')}
-                        content="Permit-Locked Firing Pin Unrestriction"
+                        content="许可证撞针取消开火限制"
                       />
                     )}
                     {/* SKYRAT EDIT ADDITION END */}
@@ -72,7 +70,7 @@ export const KeycardAuth = (props) => {
                       icon="key"
                       fluid
                       onClick={() => act('give_janitor_access')}
-                      content="Grant Janitor Access"
+                      content="授予清洁工访问权限"
                     />
                   </>
                 )}

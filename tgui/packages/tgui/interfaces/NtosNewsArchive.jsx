@@ -10,16 +10,14 @@ export const NtosNewsArchive = (props) => {
   return (
     <NtosWindow width={600} height={800}>
       <NtosWindow.Content scrollable>
-        <Section textAlign="center">
-          Archives from the Nanotrasen News Network!
-        </Section>
+        <Section textAlign="center">来自纳米传讯新闻网的归档!</Section>
         {stories.map((story) => (
           <Collapsible
             bold
             key={story.title}
             title={
               story.title +
-              ' | Published ' +
+              ' | 发表 ' +
               story.month +
               '/' +
               story.day +

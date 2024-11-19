@@ -24,15 +24,15 @@ export const Limbgrower = (props) => {
     categories.find((category) => category.name === tab)?.designs || [];
 
   return (
-    <Window title="Limb Grower" width={500} height={550}>
+    <Window title="肢体培养机" width={500} height={550}>
       {!!busy && (
         <Dimmer fontSize="32px">
           <Icon name="cog" spin={1} />
-          {' Building...'}
+          {' 培养中...'}
         </Dimmer>
       )}
       <Window.Content scrollable>
-        <Section title="Reagents">
+        <Section title="试剂">
           <Box mb={1}>
             {total_reagents} / {max_reagents} reagent capacity used.
           </Box>
@@ -45,7 +45,7 @@ export const Limbgrower = (props) => {
                   <Button.Confirm
                     textAlign="center"
                     width="120px"
-                    content="Remove Reagent"
+                    content="移除试剂"
                     color="bad"
                     onClick={() =>
                       act('empty_reagent', {
@@ -60,7 +60,7 @@ export const Limbgrower = (props) => {
             ))}
           </LabeledList>
         </Section>
-        <Section title="Designs">
+        <Section title="可用设计">
           <Tabs>
             {categories.map((category) => (
               <Tabs.Tab
@@ -80,7 +80,7 @@ export const Limbgrower = (props) => {
                 label={design.name}
                 buttons={
                   <Button
-                    content="Make"
+                    content="培养"
                     color="good"
                     onClick={() =>
                       act('make_limb', {

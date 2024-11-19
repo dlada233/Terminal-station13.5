@@ -61,7 +61,7 @@ export const IVDrip = (props) => {
         <Section fill>
           <LabeledList>
             <LabeledList.Item
-              label="Flow Rate"
+              label="流量"
               buttons={
                 <Box>
                   <Button
@@ -95,7 +95,7 @@ export const IVDrip = (props) => {
                 value={transferRate}
                 minValue={minTransferRate}
                 maxValue={maxTransferRate}
-                unit="units/sec."
+                unit="单位/秒."
                 onDrag={(e, value) =>
                   act('changeRate', {
                     rate: value,
@@ -104,7 +104,7 @@ export const IVDrip = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Direction"
+              label="用法说明"
               color={!mode ? 'bad' : ''}
               buttons={
                 <Button
@@ -114,7 +114,7 @@ export const IVDrip = (props) => {
                   align="center"
                   disabled={!canDraw}
                   color={!mode && 'bad'}
-                  content={mode ? 'Injecting' : 'Draining'}
+                  content={mode ? '注射' : '抽出'}
                   icon={mode ? 'syringe' : 'droplet'}
                   onClick={() => act('changeMode')}
                 />
@@ -122,13 +122,13 @@ export const IVDrip = (props) => {
             >
               {mode
                 ? hasInternalStorage
-                  ? 'Reagents from network'
-                  : 'Reagents from container'
-                : 'Blood into container'}
+                  ? '试剂来自网络'
+                  : '试剂来自容器'
+                : '血液进入容器'}
             </LabeledList.Item>
             {hasContainer || hasInternalStorage ? (
               <LabeledList.Item
-                label="Container"
+                label="容器"
                 buttons={
                   !hasInternalStorage &&
                   !!canRemoveContainer && (
@@ -138,7 +138,7 @@ export const IVDrip = (props) => {
                       lineHeight={2}
                       align="center"
                       icon="eject"
-                      content="Eject"
+                      content="取下"
                       onClick={() => act('eject')}
                     />
                   )
@@ -155,20 +155,20 @@ export const IVDrip = (props) => {
                       textShadow: '1px 1px 0 black',
                     }}
                   >
-                    {`${containerCurrentVolume} of ${containerMaxVolume} units`}
+                    {`${containerCurrentVolume} / ${containerMaxVolume} 单位`}
                   </span>
                 </ProgressBar>
               </LabeledList.Item>
             ) : (
-              <LabeledList.Item label="Container">
-                <Tooltip content="Click the drip with a container in hand to attach.">
-                  <NoticeBox my={0.7}>No container attached.</NoticeBox>
+              <LabeledList.Item label="容器">
+                <Tooltip content="手中拿着容器点击输液架即可挂上去.">
+                  <NoticeBox my={0.7}>无挂载容器.</NoticeBox>
                 </Tooltip>
               </LabeledList.Item>
             )}
             {hasObjectAttached ? (
               <LabeledList.Item
-                label="Object"
+                label="对象"
                 buttons={
                   <Button
                     disabled={!hasObjectAttached}
@@ -177,7 +177,7 @@ export const IVDrip = (props) => {
                     lineHeight={2}
                     align="center"
                     icon="ban"
-                    content="Disconnect"
+                    content="断连"
                     onClick={() => act('detach')}
                   />
                 }
@@ -187,9 +187,9 @@ export const IVDrip = (props) => {
                 </Box>
               </LabeledList.Item>
             ) : (
-              <LabeledList.Item label="Object">
-                <Tooltip content="Drag the cursor from the drip and drop it on an object to connect.">
-                  <NoticeBox my={0.7}>No object attached.</NoticeBox>
+              <LabeledList.Item label="对象">
+                <Tooltip content="点击输液架并拖动到要连接的对象身上">
+                  <NoticeBox my={0.7}>无对象连接.</NoticeBox>
                 </Tooltip>
               </LabeledList.Item>
             )}

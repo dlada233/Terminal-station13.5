@@ -779,8 +779,8 @@
 // Disk """fridge"""
 // ----------------------------
 /obj/machinery/smartfridge/disks
-	name = "磁盘管理器"
-	desc = "一种能储存多种磁盘的机器。用DSU(磁盘存储单元)表示."
+	name = "软盘管理器"
+	desc = "一种能储存多种软盘的机器。用DSU(软盘存储单元)表示."
 	icon_state = "disktoaster"
 	icon = 'icons/obj/machines/vending.dmi'
 	pass_flags = PASSTABLE

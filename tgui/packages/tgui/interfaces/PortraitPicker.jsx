@@ -17,14 +17,14 @@ export const PortraitPicker = (props) => {
     got_paintings && 'paintings' + '_' + paintings[listIndex]['md5'];
 
   return (
-    <Window theme="ntos" title="Portrait Picker" width={400} height={406}>
+    <Window theme="ntos" title="头像选取" width={400} height={406}>
       <Window.Content>
         <Flex height="100%" direction="column">
           <Flex.Item mb={1}>
-            <Section title="Search">
+            <Section title="搜索">
               <Input
                 fluid
-                placeholder="Search Paintings..."
+                placeholder="搜索画作..."
                 value={search_string}
                 onChange={(e, value) => {
                   act('search', {
@@ -71,7 +71,7 @@ export const PortraitPicker = (props) => {
                   </>
                 ) : (
                   <Flex.Item className="Section__titleText">
-                    No paintings found.
+                    未找到画作.
                   </Flex.Item>
                 )}
               </Flex>
@@ -99,7 +99,7 @@ export const PortraitPicker = (props) => {
                     <Flex.Item grow={3}>
                       <Button
                         icon="check"
-                        content="Select Portrait"
+                        content="选择头像"
                         disabled={!got_paintings}
                         onClick={() =>
                           act('select', {
@@ -128,17 +128,16 @@ export const PortraitPicker = (props) => {
             </Flex>
             <Flex.Item mt={1}>
               <NoticeBox info>
-                Only the 23x23 or 24x24 canvas size art can be displayed. Make
-                sure you read the warning below before embracing the wide
-                wonderful world of artistic expression!
+                只有23x23或24x24画布大小的画作可以显示，在享受自定义头像之美前，请
+                先仔细阅读下面警告.
               </NoticeBox>
             </Flex.Item>
             <Flex.Item>
               <NoticeBox danger>
-                WARNING: While Central Command loves art as much as you do,
-                choosing erotic art will lead to severe consequences.
-                Additionally, Central Command reserves the right to request you
-                change your display portrait, for any reason.
+                警告:
+                虽然中央指挥部和你一样热爱艺术，但严禁使用违反公序良俗以及服务
+                器规则的头像，违者将进行追究.
+                此外，中央指挥部保留无条件更改你的头像 显示的权利.
               </NoticeBox>
             </Flex.Item>
           </Flex.Item>

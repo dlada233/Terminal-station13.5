@@ -102,7 +102,7 @@ export function NuclearBomb(props) {
                   className="NuclearBomb__Button NuclearBomb__Button--C"
                   onClick={() => act('arm')}
                 >
-                  ARM
+                  上膛
                 </Button>
                 <Button
                   fluid
@@ -113,7 +113,7 @@ export function NuclearBomb(props) {
                   className="NuclearBomb__Button NuclearBomb__Button--E"
                   onClick={() => act('anchor')}
                 >
-                  ANCHOR
+                  固定
                 </Button>
                 <Box textAlign="center" color="#9C9987" fontSize="80px">
                   <Icon name="radiation" />

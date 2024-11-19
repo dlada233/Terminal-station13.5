@@ -76,7 +76,7 @@ const statToIcon = (life_status) => {
 
 export const CrewConsoleSkyrat = () => {
   return (
-    <Window title="Crew Monitor" width={600} height={600}>
+    <Window title="船员监控台" width={600} height={600}>
       <Window.Content scrollable>
         <Section minHeight="540px">
           <CrewTable />
@@ -93,16 +93,16 @@ const CrewTable = (props) => {
     <Table cellpadding="3">
       <Table.Row>
         <Table.Cell bold colspan="2">
-          Name
+          姓名
         </Table.Cell>
         <Table.Cell bold collapsing textAlign="center">
-          Status
+          状况
         </Table.Cell>
         <Table.Cell bold collapsing textAlign="center">
-          Vitals
+          受伤
         </Table.Cell>
         <Table.Cell bold width="180px" collapsing textAlign="center">
-          Position
+          位置
         </Table.Cell>
       </Table.Row>
       {sensors.map((sensor) => (
@@ -170,9 +170,9 @@ const CrewTableEntry = (props) => {
             <HealthStat type="brute" value={brutedam} />
           </Box>
         ) : life_status !== STAT_DEAD ? (
-          'Alive'
+          '存活'
         ) : (
-          'Dead'
+          '死亡'
         )}
       </Table.Cell>
       <Table.Cell>
@@ -185,7 +185,7 @@ const CrewTableEntry = (props) => {
       {!!link_allowed && (
         <Table.Cell collapsing>
           <Button
-            content="Track"
+            content="追踪"
             disabled={!can_track}
             onClick={() =>
               act('select_person', {

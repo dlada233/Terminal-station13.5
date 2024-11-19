@@ -325,7 +325,7 @@
 	filename = "fission360"
 	filedesc = "裂变360"
 	program_open_overlay = "radarsyndicate"
-	extended_desc = "这个程序允许追踪核磁盘和核弹头."
+	extended_desc = "这个程序允许追踪核软盘和核弹头."
 	program_flags = PROGRAM_ON_SYNDINET_STORE
 	tgui_id = "NtosRadarSyndicate"
 	program_icon = "bomb"

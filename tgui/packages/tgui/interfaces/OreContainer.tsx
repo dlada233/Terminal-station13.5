@@ -30,7 +30,7 @@ export const OreContainer = (props) => {
     searchItem.length > 0 ? ores.filter((ore) => search(ore)) : ores;
 
   return (
-    <Window title="Ore Container" width={550} height={400}>
+    <Window title="矿石容器" width={550} height={400}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
@@ -42,7 +42,7 @@ export const OreContainer = (props) => {
                 bottom="5%"
                 height="20px"
                 width="150px"
-                placeholder="Search Ore..."
+                placeholder="搜索矿石..."
                 value={searchItem}
                 onInput={(e, value) => {
                   setSearchItem(value);
@@ -52,7 +52,7 @@ export const OreContainer = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item grow>
-            <Section title="Stock" fill scrollable>
+            <Section title="存货" fill scrollable>
               <Stack wrap>
                 {ores_filtered.map((ore) => (
                   <Flex.Item key={ore.id}>
@@ -63,10 +63,10 @@ export const OreContainer = (props) => {
                       <Flex.Item>
                         <Orename ore_name={toTitleCase(ore.name)} />
                       </Flex.Item>
-                      <Flex.Item>Amount: {ore.amount}</Flex.Item>
+                      <Flex.Item>数量: {ore.amount}</Flex.Item>
                       <Flex.Item>
                         <Button
-                          content="Withdraw"
+                          content="取出"
                           color="transparent"
                           onClick={() =>
                             act('withdraw', {

@@ -10,26 +10,24 @@ export const ProbingConsole = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Machine Report">
-              {feedback}
-            </LabeledList.Item>
+            <LabeledList.Item label="机器报告">{feedback}</LabeledList.Item>
           </LabeledList>
         </Section>
         <Section
-          title="Scanner"
+          title="扫描器"
           buttons={
             <Button
               icon={open ? 'sign-out-alt' : 'sign-in-alt'}
-              content={open ? 'Close' : 'Open'}
+              content={open ? '关闭' : '开启'}
               onClick={() => act('door')}
             />
           }
         >
           {(occupant && (
             <LabeledList>
-              <LabeledList.Item label="Name">{occupant_name}</LabeledList.Item>
+              <LabeledList.Item label="姓名">{occupant_name}</LabeledList.Item>
               <LabeledList.Item
-                label="Status"
+                label="状态"
                 color={
                   occupant_status === 3
                     ? 'bad'
@@ -39,15 +37,15 @@ export const ProbingConsole = (props) => {
                 }
               >
                 {occupant_status === 3
-                  ? 'Deceased'
+                  ? '已死亡'
                   : occupant_status === 2
-                    ? 'Unconscious'
-                    : 'Conscious'}
+                    ? '无意识'
+                    : '意识清醒'}
               </LabeledList.Item>
-              <LabeledList.Item label="Experiments">
+              <LabeledList.Item label="实验">
                 <Button
                   icon="thermometer"
-                  content="Probe"
+                  content="探镜" // probe
                   onClick={() =>
                     act('experiment', {
                       experiment_type: 1,
@@ -56,7 +54,7 @@ export const ProbingConsole = (props) => {
                 />
                 <Button
                   icon="brain"
-                  content="Dissect"
+                  content="解剖" // dissect
                   onClick={() =>
                     act('experiment', {
                       experiment_type: 2,
@@ -65,7 +63,7 @@ export const ProbingConsole = (props) => {
                 />
                 <Button
                   icon="search"
-                  content="Analyze"
+                  content="分析" // analyze
                   onClick={() =>
                     act('experiment', {
                       experiment_type: 3,
@@ -74,7 +72,7 @@ export const ProbingConsole = (props) => {
                 />
               </LabeledList.Item>
             </LabeledList>
-          )) || <NoticeBox>No Subject</NoticeBox>}
+          )) || <NoticeBox>无样本</NoticeBox>}
         </Section>
       </Window.Content>
     </Window>

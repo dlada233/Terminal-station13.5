@@ -45,7 +45,7 @@ export const AtmosTempPump = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
+                content="最大值"
                 disabled={rate === max_heat_transfer_rate}
                 onClick={() =>
                   act('rate', {

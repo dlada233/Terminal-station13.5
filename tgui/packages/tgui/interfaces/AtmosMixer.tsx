@@ -53,7 +53,7 @@ export const AtmosMixer = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
+                content="最大值"
                 disabled={set_pressure === max_pressure}
                 onClick={() =>
                   act('pressure', {

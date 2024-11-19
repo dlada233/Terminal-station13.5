@@ -20,7 +20,7 @@ export const InterviewManager = (props) => {
   return (
     <Window width={500} height={600} theme="admin">
       <Window.Content scrollable>
-        <Section title="Active Interviews">
+        <Section title="激活问卷">
           {open_interviews.map(({ id, ckey, status, queued, disconnected }) => (
             <Button
               key={id}
@@ -30,7 +30,7 @@ export const InterviewManager = (props) => {
             />
           ))}
         </Section>
-        <Section title="Closed Interviews">
+        <Section title="关闭问卷">
           {closed_interviews.map(({ id, ckey, status, disconnected }) => (
             <Button
               key={id}

@@ -766,7 +766,7 @@
 //------------------------------------UPGRADES-------------------------------------//
 /obj/item/disk/cargo/bluespace_pod //Disk that can be inserted into the Express Console to allow for Advanced Bluespace Pods
 	name = "蓝空空投舱升级"
-	desc = "这张磁盘为特快供应控制台提供了固件更新，让补给部门能够使用纳米传讯的蓝空空投舱."
+	desc = "这张软盘为特快供应控制台提供了固件更新，让补给部门能够使用纳米传讯的蓝空空投舱."
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "cargodisk"
 	inhand_icon_state = "card-id"

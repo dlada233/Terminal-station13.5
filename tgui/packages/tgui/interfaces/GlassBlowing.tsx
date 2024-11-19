@@ -50,7 +50,7 @@ export const GlassBlowing = (props) => {
     <Window width={335} height={325}>
       <Window.Content scrollable>
         <Section
-          title={glass && glass.timeLeft ? 'Molten Glass' : 'Cooled Glass'}
+          title={glass && glass.timeLeft ? '熔融玻璃' : '冷却玻璃'}
           buttons={
             <Button
               icon={
@@ -70,52 +70,52 @@ export const GlassBlowing = (props) => {
               tooltipPosition="bottom"
               tooltip={
                 glass && glass.timeLeft
-                  ? 'You may want to think twice about touching this right now...'
-                  : 'It has cooled and is safe to handle.'
+                  ? '现在碰这个东西之前你可能需要三思了...'
+                  : '它已经冷却了，可以随意操作.'
               }
-              content={glass && glass.isFinished ? 'Complete Craft' : 'Remove'}
+              content={glass && glass.isFinished ? '完成制作' : '移除'}
               disabled={!glass || inUse}
               onClick={() => act('Remove')}
             />
           }
         />
         {glass && !glass.chosenItem && (
-          <Section title="Pick a craft">
+          <Section title="选择制作类型">
             <Stack fill vertical>
               <Stack.Item>
-                <Box>What will you craft?</Box>
+                <Box>你要制作什么?</Box>
               </Stack.Item>
 
               <Stack.Item>
                 <Button
-                  content="Plate"
+                  content="盘子"
                   disabled={inUse}
                   onClick={() => act('Plate')}
                 />
                 <Button
-                  content="Bowl"
+                  content="碗"
                   tooltipPosition="bottom"
                   disabled={inUse}
                   onClick={() => act('Bowl')}
                 />
                 <Button
-                  content="Globe"
+                  content="球体"
                   disabled={inUse}
                   onClick={() => act('Globe')}
                 />
                 <Button
-                  content="Cup"
+                  content="杯子"
                   disabled={inUse}
                   onClick={() => act('Cup')}
                 />
                 <Button
-                  content="Lens"
+                  content="透镜"
                   tooltipPosition="bottom"
                   disabled={inUse}
                   onClick={() => act('Lens')}
                 />
                 <Button
-                  content="Bottle"
+                  content="瓶子"
                   disabled={inUse}
                   onClick={() => act('Bottle')}
                 />
@@ -125,11 +125,11 @@ export const GlassBlowing = (props) => {
         )}
         {glass && glass.chosenItem && (
           <>
-            <Section title="Steps Remaining:">
+            <Section title="剩余步骤:">
               <Stack fill vertical>
                 <Stack.Item>
                   <Box>
-                    You are crafting a {glass.chosenItem.name}.
+                    你正在制作{glass.chosenItem.name}.
                     <br />
                     <br />
                   </Box>
@@ -139,15 +139,13 @@ export const GlassBlowing = (props) => {
                     {glass.stepsRemaining.blow !== 0 && (
                       <Table.Cell>
                         <Button
-                          content="Blow"
+                          content="吹气"
                           icon="fire"
                           color="orange"
                           disabled={inUse || !glass.timeLeft}
                           tooltipPosition="bottom"
                           tooltip={
-                            glass.timeLeft === 0
-                              ? 'Needs to be glowing hot.'
-                              : ''
+                            glass.timeLeft === 0 ? '需要加热到熔化.' : ''
                           }
                           onClick={() => act('Blow')}
                         />
@@ -157,15 +155,13 @@ export const GlassBlowing = (props) => {
                     {glass.stepsRemaining.spin !== 0 && (
                       <Table.Cell>
                         <Button
-                          content="Spin"
+                          content="旋转"
                           icon="fire"
                           color="orange"
                           disabled={inUse || !glass.timeLeft}
                           tooltipPosition="bottom"
                           tooltip={
-                            glass.timeLeft === 0
-                              ? 'Needs to be glowing hot.'
-                              : ''
+                            glass.timeLeft === 0 ? '需要加热到熔化.' : ''
                           }
                           onClick={() => act('Spin')}
                         />
@@ -175,10 +171,10 @@ export const GlassBlowing = (props) => {
                     {glass.stepsRemaining.paddle !== 0 && (
                       <Table.Cell>
                         <Button
-                          content="Paddle"
+                          content="塑形"
                           disabled={inUse}
                           tooltipPosition="bottom"
-                          tooltip={'You need to use a paddle.'}
+                          tooltip={'你需要一根塑形棒.'}
                           onClick={() => act('Paddle')}
                         />
                         &nbsp;x{glass.stepsRemaining.paddle}
@@ -187,10 +183,10 @@ export const GlassBlowing = (props) => {
                     {glass.stepsRemaining.shear !== 0 && (
                       <Table.Cell>
                         <Button
-                          content="Shears"
+                          content="剪刀"
                           disabled={inUse}
                           tooltipPosition="bottom"
-                          tooltip={'You need to use shears.'}
+                          tooltip={'你需要使用剪刀.'}
                           onClick={() => act('Shear')}
                         />
                         &nbsp;x{glass.stepsRemaining.shear}
@@ -199,10 +195,10 @@ export const GlassBlowing = (props) => {
                     {glass.stepsRemaining.jacks !== 0 && (
                       <Table.Cell>
                         <Button
-                          content="Jacks"
+                          content="镊子"
                           disabled={inUse}
                           tooltipPosition="bottom"
-                          tooltip={'You need to use jacks.'}
+                          tooltip={'你需要使用镊子.'}
                           onClick={() => act('Jacks')}
                         />
                         &nbsp;x{glass.stepsRemaining.jacks}
@@ -218,7 +214,7 @@ export const GlassBlowing = (props) => {
                   <Button
                     icon="times"
                     color={glass.timeLeft ? 'orange' : 'default'}
-                    content="Cancel craft"
+                    content="取消制作"
                     disabled={inUse}
                     onClick={() => act('Cancel')}
                   />
@@ -228,7 +224,7 @@ export const GlassBlowing = (props) => {
           </>
         )}
         {glass && glass.timeLeft !== 0 && (
-          <Section title="Heat level">
+          <Section title="热度">
             <ProgressBar
               value={glass.timeLeft / glass.totalTime}
               ranges={{
@@ -251,7 +247,7 @@ export const GlassBlowing = (props) => {
           </Section>
         )}
         {glass && glass.timeLeft === 0 && (
-          <Section title="Heat level">
+          <Section title="热度">
             <ProgressBar
               value={0 / 0}
               ranges={{}}

@@ -1,6 +1,6 @@
 /datum/bounty/item/assistant/strange_object
 	name = "奇怪的物体"
-	description = "纳米传讯公司对奇怪的物体产生了兴趣.在维护管道里找一个，并立即将其运送到中央指挥部."
+	description = "纳米传讯公司对奇怪的物体产生了兴趣.在维护通道里找一个，并立即将其运送到中央指挥部."
 	reward = CARGO_CRATE_VALUE * 2.4
 	wanted_types = list(/obj/item/relic = TRUE)
 

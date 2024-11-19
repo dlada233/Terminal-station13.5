@@ -41,18 +41,18 @@ export const ProcessingConsole = (props: any) => {
   const { state } = data;
 
   return (
-    <Window title="Processing Unit Console" width={580} height={500}>
+    <Window title="处理终端" width={580} height={500}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow basis={0}>
             <Stack fill>
               <Stack.Item grow={1.2} basis={0}>
-                <Section fill textAlign="center" title="Materials">
+                <Section fill textAlign="center" title="一般材料">
                   <MaterialSelection />
                 </Section>
               </Stack.Item>
               <Stack.Item grow basis={0}>
-                <Section fill title="Alloys" textAlign="center">
+                <Section fill title="合金材料" textAlign="center">
                   <AlloySelection />
                 </Section>
               </Stack.Item>
@@ -70,7 +70,7 @@ export const ProcessingConsole = (props: any) => {
               bold
               onClick={() => act('toggle')}
             >
-              {state ? 'Deactivate' : 'Activate'}
+              {state ? '禁用' : '激活'}
             </Button>
           </Stack.Item>
         </Stack>
@@ -98,7 +98,7 @@ const MaterialSelection = (props: any) => {
       ))}
     </Table>
   ) : (
-    <NoticeBox danger>No material recipes found!</NoticeBox>
+    <NoticeBox danger>未找到材料配方!</NoticeBox>
   );
 };
 
@@ -119,7 +119,7 @@ const AlloySelection = (props: any) => {
       ))}
     </Table>
   ) : (
-    <NoticeBox danger>No alloy recipes found!</NoticeBox>
+    <NoticeBox danger>未找到合金配方!</NoticeBox>
   );
 };
 
@@ -154,7 +154,7 @@ const DisplayRow = (props: DisplayRowProps) => {
       </Table.Cell>
       {amount !== undefined ? (
         <Box color="label">
-          {`${formatSiUnit(amount, 0)} ${amount === 1 ? 'sheet' : 'sheets'}`}
+          {`${formatSiUnit(amount, 0)} ${amount === 1 ? '份板材' : '份板材'}`}
         </Box>
       ) : null}
       <Table.Cell collapsing pr={1} textAlign="right">

@@ -37,16 +37,16 @@ export const RequestManager = (props) => {
   }
 
   return (
-    <Window title="Request Manager" width={575} height={600} theme="admin">
+    <Window title="请求管理器" width={575} height={600} theme="admin">
       <Window.Content scrollable>
         <Section
-          title="Requests"
+          title="请求"
           buttons={
             <>
               <Input
                 value={searchText}
                 onChange={(_, value) => setSearchText(value)}
-                placeholder={'Search...'}
+                placeholder={'搜索中...'}
                 mr={1}
               />
               <FilterPanel />
@@ -80,12 +80,12 @@ export const RequestManager = (props) => {
 };
 
 const displayTypeMap = {
-  request_prayer: 'PRAYER',
-  request_centcom: 'CENTCOM',
-  request_syndicate: 'SYNDICATE',
-  request_nuke: 'NUKE CODE',
-  request_fax: 'FAX',
-  request_internet_sound: 'INTERNET SOUND',
+  request_prayer: '祈祷',
+  request_centcom: '中央指挥部',
+  request_syndicate: '辛迪加',
+  request_nuke: '核代码',
+  request_fax: '传真',
+  request_internet_sound: '网络声音',
 };
 
 const RequestType = (props) => {
@@ -109,21 +109,21 @@ const RequestControls = (props) => {
       <Button onClick={() => act('sm', { id: request.id })}>SM</Button>
       <Button onClick={() => act('flw', { id: request.id })}>FLW</Button>
       <Button onClick={() => act('tp', { id: request.id })}>TP</Button>
-      <Button onClick={() => act('logs', { id: request.id })}>LOGS</Button>
-      <Button onClick={() => act('smite', { id: request.id })}>SMITE</Button>
+      <Button onClick={() => act('logs', { id: request.id })}>日志</Button>
+      <Button onClick={() => act('smite', { id: request.id })}>灾厄</Button>
       {request.req_type !== 'request_prayer' && (
-        <Button onClick={() => act('rply', { id: request.id })}>RPLY</Button>
+        <Button onClick={() => act('rply', { id: request.id })}>回应</Button>
       )}
       {request.req_type === 'request_nuke' && (
         <Button onClick={() => act('setcode', { id: request.id })}>
-          SETCODE
+          设置代码
         </Button>
       )}
       {request.req_type === 'request_fax' && (
-        <Button onClick={() => act('show', { id: request.id })}>SHOW</Button>
+        <Button onClick={() => act('show', { id: request.id })}>显示</Button>
       )}
       {request.req_type === 'request_internet_sound' && (
-        <Button onClick={() => act('play', { id: request.id })}>PLAY</Button>
+        <Button onClick={() => act('play', { id: request.id })}>播放</Button>
       )}
     </div>
   );
@@ -174,7 +174,7 @@ const FilterPanel = (props) => {
     >
       <div>
         <Button icon="cog" onClick={() => setFilterVisible(!filterVisible)}>
-          Type Filter
+          类型筛选
         </Button>
       </div>
     </Popper>

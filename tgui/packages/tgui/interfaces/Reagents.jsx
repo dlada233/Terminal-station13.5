@@ -61,22 +61,22 @@ export const Reagents = (props) => {
             <Stack fill>
               <Stack.Item grow basis={0}>
                 <Section
-                  title="Recipe lookup"
+                  title="配方查找"
                   minWidth="353px"
                   buttons={
                     <>
                       <Button
-                        content="Beaker Sync"
+                        content="同步烧杯"
                         icon="atom"
                         color={beakerSync ? 'green' : 'red'}
-                        tooltip="When enabled the displayed reaction will automatically display ongoing reactions in the associated beaker."
+                        tooltip="当启用时，将自动显示烧杯中正在进行的反应."
                         onClick={() => act('beaker_sync')}
                       />
                       <Button
-                        content="Search"
+                        content="搜索"
                         icon="search"
                         color="purple"
-                        tooltip="Search for a recipe by product name"
+                        tooltip="按产物名称搜索配方"
                         onClick={() => act('search_recipe')}
                       />
                       <Button
@@ -100,14 +100,14 @@ export const Reagents = (props) => {
               </Stack.Item>
               <Stack.Item grow basis={0}>
                 <Section
-                  title="Reagent lookup"
+                  title="试剂查找"
                   minWidth="300px"
                   buttons={
                     <>
                       <Button
-                        content="Search"
+                        content="搜索"
                         icon="search"
-                        tooltip="Search for a reagent by name"
+                        tooltip="搜索试剂名称"
                         tooltipPosition="left"
                         onClick={() => act('search_reagents')}
                       />
@@ -130,7 +130,7 @@ export const Reagents = (props) => {
             </Stack>
           </Stack.Item>
           <Stack.Item>
-            <Section title="Tags">
+            <Section title="标签">
               <TagBox bitflags={bitflags} />
             </Section>
           </Stack.Item>
@@ -150,7 +150,7 @@ const TagBox = (props) => {
   const { selectedBitflags } = data;
   return (
     <LabeledList>
-      <LabeledList.Item label="Affects">
+      <LabeledList.Item label="影响">
         <Button
           color={selectedBitflags & bitflags.BRUTE ? 'green' : 'red'}
           icon="gavel"
@@ -159,7 +159,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Brute
+          创伤
         </Button>
         <Button
           color={selectedBitflags & bitflags.BURN ? 'green' : 'red'}
@@ -169,7 +169,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Burn
+          烧伤
         </Button>
         <Button
           color={selectedBitflags & bitflags.TOXIN ? 'green' : 'red'}
@@ -179,7 +179,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Toxin
+          毒素伤
         </Button>
         <Button
           color={selectedBitflags & bitflags.OXY ? 'green' : 'red'}
@@ -189,7 +189,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Suffocation
+          窒息伤
         </Button>
         <Button
           color={selectedBitflags & bitflags.ORGAN ? 'green' : 'red'}
@@ -199,7 +199,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Organ
+          器官
         </Button>
         <Button
           icon="flask"
@@ -209,7 +209,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Chemical
+          化学物
         </Button>
         <Button
           icon="seedling"
@@ -219,7 +219,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Plants
+          植物
         </Button>
         <Button
           icon="question"
@@ -229,10 +229,10 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Other
+          其他
         </Button>
       </LabeledList.Item>
-      <LabeledList.Item label="Type">
+      <LabeledList.Item label="类型">
         <Button
           color={selectedBitflags & bitflags.DRINK ? 'green' : 'red'}
           icon="cocktail"
@@ -241,7 +241,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Drink
+          饮品
         </Button>
         <Button
           color={selectedBitflags & bitflags.FOOD ? 'green' : 'red'}
@@ -251,7 +251,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Food
+          食物
         </Button>
         <Button
           color={selectedBitflags & bitflags.HEALING ? 'green' : 'red'}
@@ -261,7 +261,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Healing
+          疗剂
         </Button>
         <Button
           icon="skull-crossbones"
@@ -271,7 +271,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Toxic
+          毒剂
         </Button>
         <Button
           icon="pills"
@@ -281,7 +281,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Drugs
+          毒品
         </Button>
         <Button
           icon="microscope"
@@ -291,7 +291,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Slime
+          史莱姆
         </Button>
         <Button
           icon="bomb"
@@ -301,7 +301,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Explosive
+          爆炸
         </Button>
         <Button
           icon="puzzle-piece"
@@ -311,10 +311,10 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Unique
+          独特
         </Button>
       </LabeledList.Item>
-      <LabeledList.Item label="Difficulty">
+      <LabeledList.Item label="难度">
         <Button
           icon="chess-pawn"
           color={selectedBitflags & bitflags.EASY ? 'green' : 'red'}
@@ -323,7 +323,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Easy
+          简单
         </Button>
         <Button
           icon="chess-knight"
@@ -333,7 +333,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Moderate
+          中等
         </Button>
         <Button
           icon="chess-queen"
@@ -343,7 +343,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Hard
+          困难
         </Button>
         <Button
           icon="exclamation-triangle"
@@ -353,7 +353,7 @@ const TagBox = (props) => {
             setPage(1);
           }}
         >
-          Dangerous
+          危险
         </Button>
         <Button
           icon="recycle"
@@ -423,12 +423,12 @@ const RecipeLibrary = (props) => {
     <Section
       fill
       scrollable
-      title={bookmarkMode ? 'Bookmarked recipes' : 'Possible recipes'}
+      title={bookmarkMode ? '收藏配方' : '可能配方'}
       buttons={
         <>
-          Beaker: {linkedBeaker + '  '}
+          烧杯: {linkedBeaker + '  '}
           <Button
-            content="Filter by reagents in beaker"
+            content="根据烧杯内容显示"
             icon="search"
             disabled={bookmarkMode}
             color={reagentFilter ? 'green' : 'red'}
@@ -438,7 +438,7 @@ const RecipeLibrary = (props) => {
             }}
           />
           <Button
-            content="Bookmarks"
+            content="收藏夹"
             icon="book"
             color={bookmarkMode ? 'green' : 'red'}
             onClick={() => {
@@ -471,16 +471,16 @@ const RecipeLibrary = (props) => {
       <Table>
         <Table.Row>
           <Table.Cell bold color="label">
-            Reaction
+            反应
           </Table.Cell>
           <Table.Cell bold color="label">
-            Required reagents
+            需要试剂
           </Table.Cell>
           <Table.Cell bold color="label">
-            Tags
+            标签
           </Table.Cell>
           <Table.Cell bold color="label" width="20px">
-            {!bookmarkMode ? 'Save' : 'Del'}
+            {!bookmarkMode ? '收藏' : '删除'}
           </Table.Cell>
         </Table.Row>
         {visibleReactions.slice(startIndex, endIndex).map((reaction) => (

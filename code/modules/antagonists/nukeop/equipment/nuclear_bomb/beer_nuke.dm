@@ -1,7 +1,7 @@
 /// A fake nuke that actually contains beer.
 /obj/machinery/nuclearbomb/beer
 	name = "\improper 纳米传讯牌核裂变炸弹"
-	desc = "纳米传讯战争部的一个相当成功的成就就是他们的核裂变炸弹，以其成本低廉和威力巨大而闻名. 标签显示，虽然该设备已经退役，但每个纳米传讯空间站都配备了另一台类似的装置以防万一. 所有舰长都小心翼翼地保管着引爆它所需的磁盘-至少标签上这样讲."
+	desc = "纳米传讯战争部的一个相当成功的成就就是他们的核裂变炸弹，以其成本低廉和威力巨大而闻名. 标签显示，虽然该设备已经退役，但每个纳米传讯空间站都配备了另一台类似的装置以防万一. 所有舰长都小心翼翼地保管着引爆它所需的软盘-至少标签上这样讲."
 	proper_bomb = FALSE
 	/// The keg located within the beer nuke.
 	var/obj/structure/reagent_dispensers/beerkeg/keg

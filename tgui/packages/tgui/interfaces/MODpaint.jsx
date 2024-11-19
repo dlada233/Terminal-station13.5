@@ -73,10 +73,7 @@ export const MODpaint = (props) => {
         <Stack fill>
           <Stack.Item fill width="30%">
             {[0, 1, 2].map((row) => (
-              <Section
-                key={row}
-                title={`${displayText(prefixes[row])} turns to:`}
-              >
+              <Section key={row} title={`${displayText(prefixes[row])}转为:`}>
                 {[0, 1, 2].map((col) => (
                   <Flex key={col}>
                     <Flex.Item align="left" width="30%">
@@ -107,7 +104,7 @@ export const MODpaint = (props) => {
             ))}
           </Stack.Item>
           <Stack.Item width="25%">
-            <Section height="70%" title="Presets">
+            <Section height="70%" title="预设">
               <Box textAlign="center">
                 {presets.map((preset) => (
                   <Button
@@ -131,7 +128,7 @@ export const MODpaint = (props) => {
                 icon="question"
                 color="average"
                 tooltipPosition="top"
-                tooltip="This is a color matrix. Think of it as editing the image in 3 layers, red, green, and blue, rather than editing the final image like with RGB."
+                tooltip="这是一个色彩矩阵。你可以将其想象为在三个图层（红色、绿色和蓝色）上编辑图像，而不是像使用RGB模式那样编辑最终的图像."
               />
               <Button
                 height="50px"
@@ -139,7 +136,7 @@ export const MODpaint = (props) => {
                 icon="check"
                 color="good"
                 tooltipPosition="top"
-                tooltip="Confirm changes!"
+                tooltip="确认更改!"
                 onClick={() => act('confirm')}
               />
             </Section>

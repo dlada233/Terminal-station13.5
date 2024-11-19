@@ -6,44 +6,44 @@ type Data = {
   help_text: string;
 };
 
-const DEFAULT_HELP = `No information available! Ask for assistance if needed.`;
+const DEFAULT_HELP = `无信息可用! 如果需要请寻求帮助.`;
 
 const boxHelp = [
   {
     color: 'purple',
-    text: 'Study the area and do what needs to be done to recover the crate. Pay close attention to domain information and context clues.',
+    text: '研究该区域，看看需要做什么来回收箱子，注意此域信息以及相关线索.',
     icon: 'search-location',
-    title: 'Search',
+    title: '搜索',
   },
   {
     color: 'green',
-    text: 'Bring the crate to the designated sending location in the safehouse. The area may seem out of place. Examine the safehouse to find it.',
+    text: '将箱子带回到安全屋的指定回收地点，这个地点可能看起来比较奇特，检查安全屋以找到它.',
     icon: 'boxes',
-    title: 'Recover',
+    title: '回收',
   },
   {
     color: 'blue',
-    text: 'The ladder represents the safest way to disconnect before the cache is recovered. Should your connection sever, the netpod offers limited resuscitation potential.',
+    text: '梯子是回收缓存前断开链接的最安全方式，如果你的连接中断，网络舱提供有限的复苏潜力.',
     icon: 'plug',
-    title: 'Disconnect',
+    title: '断开连接',
   },
   {
     color: 'yellow',
-    text: 'While connected, you are somewhat safe from environmental hazards and intrusions, but not completely. Pay close attention to alerts.',
+    text: '在连接状态下，你可以在一定程度上免受环境危害和入侵的威胁，但也并不绝对，请密切关注警报信息.',
     icon: 'id-badge',
-    title: 'Security',
+    title: '安全',
   },
   {
     color: 'gold',
-    text: 'Generating avatars costs tremendous bandwidth. Do not waste them.',
+    text: '生成虚拟角色会耗费巨大的带宽，请不要浪费它们.',
     icon: 'coins',
-    title: 'Limited Attempts',
+    title: '尝试限制',
   },
   {
     color: 'red',
-    text: 'Remember that you are physically linked to this presence. You are a foreign body in a hostile environment. It will attempt to forcefully eject you.',
+    text: '记住，你与存在体是物理相连的. 你是敌对环境中的外来物体，它会试图强行将你驱逐出去.',
     icon: 'skull-crossbones',
-    title: 'Realized Danger',
+    title: '意识危险',
   },
 ] as const;
 
@@ -52,16 +52,11 @@ export const AvatarHelp = (props) => {
   const { help_text = DEFAULT_HELP } = data;
 
   return (
-    <Window title="Domain Information" width={600} height={600}>
+    <Window title="域信息" width={600} height={600}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
-            <Section
-              color="good"
-              fill
-              scrollable
-              title="Welcome to the Virtual Domain."
-            >
+            <Section color="good" fill scrollable title="欢迎来到虚拟域.">
               {help_text}
             </Section>
           </Stack.Item>

@@ -1,6 +1,6 @@
 /obj/item/computer_disk/syndicate
-	name = "黄金数据磁盘"
-	desc = "一张装有高科技程序的数据磁盘，可能贵的要命."
+	name = "黄金数据软盘"
+	desc = "一张装有高科技程序的数据软盘，可能贵的要命."
 	icon_state = "datadisk8"
 	custom_materials = list(/datum/material/gold = SMALL_MATERIAL_AMOUNT)
 
@@ -11,7 +11,7 @@
 	starting_programs = list(/datum/computer_file/program/contract_uplink)
 
 /obj/item/computer_disk/black_market
-	desc = "用于存储数据的可移动磁盘，这个上面粘着一张污迹斑斑的纸，上面写有“PC软件”的字样."
+	desc = "用于存储数据的可移动软盘，这个上面粘着一张污迹斑斑的纸，上面写有“PC软件”的字样."
 
 /obj/item/computer_disk/black_market/Initialize(mapload)
 	icon_state = "datadisk[rand(0, 10)]"

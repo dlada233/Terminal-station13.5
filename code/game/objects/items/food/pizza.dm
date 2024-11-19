@@ -445,7 +445,7 @@
 // Ethereal Pizza, for when they want a slice
 /obj/item/food/pizza/energy
 	name = "能量披萨"
-	desc = "你可以用这个给雷普利充电. You should avoid eating this if you aren't an Ethereal."
+	desc = "你可以用这个给雷普利充电. 如果你不是光灵，不要吃这个."
 	icon_state ="energypizza"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 18,
@@ -468,7 +468,7 @@
 
 /obj/item/food/pizzaslice/energy
 	name = "能量披萨片"
-	desc = "你可以用这个给模块服充电. You should avoid eating this if you aren't an Ethereal."
+	desc = "你可以用这个给模块服充电. 如果你不是光灵，不要吃这个."
 	icon_state ="energypizzaslice"
 	tastes = list("pure electricity" = 4, "pizza" = 2)
 	foodtypes = TOXIC

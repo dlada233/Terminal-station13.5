@@ -25,13 +25,13 @@ export const Clipboard = (props) => {
   const { pen, integrated_pen, top_paper, top_paper_ref, paper, paper_ref } =
     data;
   return (
-    <Window title="Clipboard" width={400} height={500}>
+    <Window title="笔记板" width={400} height={500}>
       <Window.Content backgroundColor="#704D25" scrollable>
         <Section>
           {pen ? (
             <LabeledList>
               <LabeledList.Item
-                label="Pen"
+                label="笔"
                 buttons={
                   <Button icon="eject" onClick={() => act('remove_pen')} />
                 }
@@ -41,11 +41,11 @@ export const Clipboard = (props) => {
             </LabeledList>
           ) : integrated_pen ? (
             <Box color="white" align="center">
-              There is a pen integrated into the clipboard&apos;s clip.
+              有一支笔夹在了笔记板上.
             </Box>
           ) : (
             <Box color="white" align="center">
-              No pen attached!
+              没有笔装载!
             </Box>
           )}
         </Section>
@@ -77,7 +77,7 @@ export const Clipboard = (props) => {
         ) : (
           <Section>
             <Box color="white" align="center">
-              The clipboard is empty!
+              笔记本是空的!
             </Box>
           </Section>
         )}

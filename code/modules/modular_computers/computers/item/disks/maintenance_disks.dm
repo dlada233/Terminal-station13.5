@@ -1,6 +1,6 @@
 /obj/item/computer_disk/maintenance
-	name = "管道数据磁盘"
-	desc = "在维护过程中被遗忘的磁盘，上面可能有一些有用的程序."
+	name = "管道数据软盘"
+	desc = "在维护过程中被遗忘的软盘，上面可能有一些有用的程序."
 
 /// Medical health analyzer app
 /obj/item/computer_disk/maintenance/scanner

@@ -42,10 +42,10 @@ export const ChemReactionChamber = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section
-              title="Conditions"
+              title="情况"
               buttons={
                 <Stack>
-                  <Stack.Item mt={0.3}>{'Target:'}</Stack.Item>
+                  <Stack.Item mt={0.3}>{'目标:'}</Stack.Item>
                   <Stack.Item>
                     <NumberInput
                       width="65px"
@@ -68,9 +68,7 @@ export const ChemReactionChamber = (props) => {
               <Stack vertical>
                 <Stack.Item>
                   <Stack fill>
-                    <Stack.Item textColor="label">
-                      Current Temperature:
-                    </Stack.Item>
+                    <Stack.Item textColor="label">当前温度:</Stack.Item>
                     <Stack.Item grow>
                       <AnimatedNumber
                         value={temperature}
@@ -112,13 +110,8 @@ export const ChemReactionChamber = (props) => {
                         color="transparent"
                         icon="question"
                         tooltip={`
-                        In chemistry, pH is a scale used to specify
-                        the acidity or basicity of an aqueous solution.
-                        Acidic solutions are measured to have lower
-                        pH values than basic or alkaline solutions.
-                        The pH scale is logarithmic and inversely
-                        indicates the concentration of hydrogen ions
-                        in the solution.`}
+                        在化学中，pH值是一个用来表示水溶液酸碱性程度的标度.酸性溶液
+                        的pH值低于碱性溶液. pH标度是对数标度，与溶液中氢离子的浓度成反比关系.`}
                         tooltipPosition="bottom-start"
                       />
                     </Stack.Item>
@@ -129,13 +122,13 @@ export const ChemReactionChamber = (props) => {
           </Stack.Item>
           <Stack.Item grow>
             <Section
-              title="Settings"
+              title="设置"
               fill
               scrollable
               buttons={
                 (isReacting && (
                   <Box inline bold color={'purple'}>
-                    {'Reacting'}
+                    {'反应中'}
                   </Box>
                 )) || (
                   <Box
@@ -144,7 +137,7 @@ export const ChemReactionChamber = (props) => {
                     bold
                     color={emptying ? 'bad' : 'good'}
                   >
-                    {emptying ? 'Emptying' : 'Filling'}
+                    {emptying ? '清空' : '填充'}
                   </Box>
                 )
               }
@@ -152,7 +145,7 @@ export const ChemReactionChamber = (props) => {
               <Stack vertical fill>
                 <Stack.Item>
                   <LabeledList>
-                    <LabeledList.Item label="Acidic pH limit">
+                    <LabeledList.Item label="酸性pH极限">
                       <NumberInput
                         value={reagentAcidic}
                         minValue={0}
@@ -167,7 +160,7 @@ export const ChemReactionChamber = (props) => {
                         }
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Alkaline pH limit">
+                    <LabeledList.Item label="碱性pH极限">
                       <NumberInput
                         value={reagentAlkaline}
                         minValue={0}
@@ -189,7 +182,7 @@ export const ChemReactionChamber = (props) => {
                   <Stack fill>
                     <Stack.Item grow>
                       <Button
-                        content="Add Reagent"
+                        content="添加试剂"
                         color="good"
                         icon="plus"
                         onClick={() =>

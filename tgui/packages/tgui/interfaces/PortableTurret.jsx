@@ -22,25 +22,19 @@ export const PortableTurret = (props) => {
   return (
     <Window width={310} height={lasertag_turret ? 110 : 292}>
       <Window.Content>
-        <NoticeBox>
-          Swipe an ID card to {locked ? 'unlock' : 'lock'} this interface.
-        </NoticeBox>
+        <NoticeBox>刷动ID卡以{locked ? '解锁' : '锁定'}该面板.</NoticeBox>
         <>
           <Section>
             <LabeledList>
               <LabeledList.Item
-                label="Status"
+                label="状态"
                 buttons={
                   !lasertag_turret &&
                   (!!allow_manual_control ||
                     (!!manual_control && !!silicon_user)) && (
                     <Button
                       icon={manual_control ? 'wifi' : 'terminal'}
-                      content={
-                        manual_control
-                          ? 'Remotely Controlled'
-                          : 'Manual Control'
-                      }
+                      content={manual_control ? '远程控制' : '手动控制'}
                       disabled={manual_control}
                       color="bad"
                       onClick={() => act('manual')}
@@ -50,7 +44,7 @@ export const PortableTurret = (props) => {
               >
                 <Button
                   icon={on ? 'power-off' : 'times'}
-                  content={on ? 'On' : 'Off'}
+                  content={on ? '开' : '关'}
                   selected={on}
                   disabled={locked}
                   onClick={() => act('power')}
@@ -60,11 +54,11 @@ export const PortableTurret = (props) => {
           </Section>
           {!lasertag_turret && (
             <Section
-              title="Target Settings"
+              title="目标设置"
               buttons={
                 <Button.Checkbox
                   checked={!neutralize_heads}
-                  content="Ignore Command"
+                  content="忽略指挥人员"
                   disabled={locked}
                   onClick={() => act('shootheads')}
                 />

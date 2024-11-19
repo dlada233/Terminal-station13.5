@@ -32,12 +32,12 @@ export const InsertedSkillchip = (props) => {
   } = data;
 
   if (!skillchip_ready) {
-    return !working && <NoticeBox info>Please insert a skillchip.</NoticeBox>;
+    return !working && <NoticeBox info>请插入技能芯片.</NoticeBox>;
   }
 
   return (
     <Section
-      title="Inserted Skillchip"
+      title="已插入的技能芯片"
       buttons={
         <>
           <Button
@@ -45,14 +45,14 @@ export const InsertedSkillchip = (props) => {
             disabled={!implantable || !!working}
             color={implantable ? 'good' : 'default'}
             onClick={() => act('implant')}
-            content="Implant"
+            content="植入"
             tooltip={implantable_reason}
           />
           <Button
             icon="eject"
             disabled={!!working}
             onClick={() => act('eject')}
-            content="Eject"
+            content="取出"
           />
         </>
       }
@@ -63,23 +63,23 @@ export const InsertedSkillchip = (props) => {
         </Stack.Item>
         <Stack.Item grow basis={0}>
           <LabeledList>
-            <LabeledList.Item label="Skillchip">
+            <LabeledList.Item label="技能芯片">
               <Box bold>{skill_name}</Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Description">
+            <LabeledList.Item label="描述">
               <Box italic>{skill_desc}</Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Complexity">
+            <LabeledList.Item label="复杂度">
               <Icon name="brain" width="15px" textAlign="center" /> {complexity}
             </LabeledList.Item>
-            <LabeledList.Item label="Slot Size">
+            <LabeledList.Item label="槽位尺寸">
               <Box color={slots_used + slot_use > slots_max && 'red'}>
                 <Icon name="save" width="15px" textAlign="center" /> {slot_use}
               </Box>
             </LabeledList.Item>
             {!!implantable_reason && (
               <LabeledList.Item
-                label="Error"
+                label="故障"
                 color={implantable ? 'good' : 'bad'}
               >
                 {implantable_reason}
@@ -101,17 +101,17 @@ export const ImplantedSkillchips = (props) => {
   const current = data.current || [];
 
   return (
-    <Section title="Implanted Skillchips">
-      {!current.length && 'No skillchips detected.'}
+    <Section title="已植入技能芯片">
+      {!current.length && '未检测到技能芯片.'}
       {!!current.length && (
         <Table>
           <Table.Row header>
-            <Table.Cell>Chip</Table.Cell>
+            <Table.Cell>芯片</Table.Cell>
             <Table.Cell textAlign="center">
               <Button
                 color="transparent"
                 icon="brain"
-                tooltip="Complexity"
+                tooltip="复杂度"
                 tooltipPosition="top"
                 content={complexity_used + '/' + complexity_max}
               />
@@ -120,7 +120,7 @@ export const ImplantedSkillchips = (props) => {
               <Button
                 color="transparent"
                 icon="save"
-                tooltip="Slot Size"
+                tooltip="槽位尺寸"
                 tooltipPosition="top"
                 content={slots_used + '/' + slots_max}
               />
@@ -129,7 +129,7 @@ export const ImplantedSkillchips = (props) => {
               <Button
                 color="transparent"
                 icon="check"
-                tooltip="Is Active"
+                tooltip="是否激活"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -137,7 +137,7 @@ export const ImplantedSkillchips = (props) => {
               <Button
                 color="transparent"
                 icon="hourglass-half"
-                tooltip="Cooldown"
+                tooltip="冷却"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -145,7 +145,7 @@ export const ImplantedSkillchips = (props) => {
               <Button
                 color="transparent"
                 icon="tasks"
-                tooltip="Actions"
+                tooltip="作用"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -191,7 +191,7 @@ export const ImplantedSkillchips = (props) => {
                   onClick={() => act('remove', { ref: skill.ref })}
                   icon={skill.removable ? 'eject' : 'trash'}
                   color={skill.removable ? 'good' : 'bad'}
-                  tooltip={skill.removable ? 'Extract' : 'Destroy'}
+                  tooltip={skill.removable ? '提取' : '摧毁'}
                   tooltipPosition="left"
                   disabled={skill.cooldown || working}
                 />
@@ -203,8 +203,8 @@ export const ImplantedSkillchips = (props) => {
                     (!!skill.active_error &&
                       !skill.active &&
                       skill.active_error) ||
-                    (skill.active && 'Deactivate') ||
-                    'Activate'
+                    (skill.active && '关闭') ||
+                    '激活'
                   }
                   tooltipPosition="left"
                   disabled={
@@ -243,17 +243,15 @@ export const SkillStation = (props) => {
   const { data } = useBackend();
   const { working, timeleft, error } = data;
   return (
-    <Window title="Skillsoft Station" width={500} height={500}>
+    <Window title="技能软件站" width={500} height={500}>
       <Window.Content>
         {!!error && <NoticeBox>{error}</NoticeBox>}
         {!!working && (
           <NoticeBox danger>
             <Flex direction="column">
-              <Flex.Item mb={0.5}>
-                Operation in progress. Please do not leave the chamber.
-              </Flex.Item>
+              <Flex.Item mb={0.5}>手术进行中. 请勿离开仓室.</Flex.Item>
               <Flex.Item>
-                Time Left: <TimeFormat value={timeleft} />
+                时间剩余: <TimeFormat value={timeleft} />
               </Flex.Item>
             </Flex>
           </NoticeBox>

@@ -18,74 +18,74 @@ export const EventPanel = (props) => {
     next_low_chaos_time,
   } = data;
   return (
-    <Window title={'Event Panel'} width={500} height={900} theme={'admin'}>
+    <Window title={'事件面板'} width={500} height={900} theme={'admin'}>
       <Window.Content>
         <Stack vertical fill>
           {!!admin_mode && (
             <Stack.Item>
-              <Section title={'Event Control'}>
+              <Section title={'事件控制'}>
                 <NoticeBox color="blue">
-                  {'Next vote in ' + toFixed(next_vote_time, 0) + ' seconds.'}
+                  {'下次投票在 ' + toFixed(next_vote_time, 0) + ' 秒内.'}
                 </NoticeBox>
                 <NoticeBox color="blue">
-                  {'Low chaos event in ' +
+                  {'低混乱事件发生在 ' +
                     toFixed(next_low_chaos_time, 0) +
-                    ' seconds.'}
+                    ' 秒内.'}
                 </NoticeBox>
                 <Button
                   icon="plus"
-                  content="Start Admin Vote"
-                  tooltip="Start a vote for the next event."
+                  content="开始管理员投票"
+                  tooltip="为下个事件开启一次投票."
                   disabled={vote_in_progress}
                   onClick={() => act('start_vote_admin')}
                 />
                 <Button
                   icon="plus"
-                  content="Start Admin Chaos Vote"
-                  tooltip="Start a chaos vote for the next event."
+                  content="开始管理员混乱投票"
+                  tooltip="为下个事件开启一次混乱投票."
                   disabled={vote_in_progress}
                   onClick={() => act('start_vote_admin_chaos')}
                 />
                 <Button
                   icon="user-plus"
-                  content="Start Player Vote"
-                  tooltip="This will start a vote that will be publically visible."
+                  content="开始玩家投票"
+                  tooltip="这将开启一个公开可见的投票."
                   color="average"
                   disabled={vote_in_progress}
                   onClick={() => act('start_player_vote')}
                 />
                 <Button
                   icon="user-plus"
-                  content="Start Public Chaos Vote"
-                  tooltip="This will start a vote that will be publically visible."
+                  content="开始玩家混乱投票"
+                  tooltip="这将开启一个公开可见的投票."
                   color="average"
                   disabled={vote_in_progress}
                   onClick={() => act('start_player_vote_chaos')}
                 />
                 <Button
                   icon="stopwatch"
-                  content="End Vote"
-                  tooltip="End the current vote and execute the winning event."
+                  content="结束投票"
+                  tooltip="结束当前投票并执行获胜事件."
                   disabled={!vote_in_progress}
                   onClick={() => act('end_vote')}
                 />
                 <Button
                   icon="ban"
-                  content="Cancel Vote"
-                  tooltip="Cancel the current vote and reset the voting system."
+                  content="取消投票"
+                  tooltip="取消当前投票并重置投票系统."
                   disabled={!vote_in_progress}
                   onClick={() => act('cancel_vote')}
                 />
                 <Button
                   icon="clock"
-                  content="Rescedule Next Vote"
-                  tooltip="Rescedule the next timed vote."
+                  content="重新安排下次事件投票"
+                  tooltip="重新安排下次定时的投票."
                   onClick={() => act('reschedule')}
                 />
                 <Button
                   icon="clock"
-                  content="Rescedule Next Low Chaos Event"
-                  tooltip="Rescedule the next timed LOW CHAOS event."
+                  content="重新安排下次低混乱事件投票"
+                  tooltip="重新安排下次定时的低混乱事件投票."
                   onClick={() => act('reschedule_low_chaos')}
                 />
               </Section>
@@ -98,8 +98,8 @@ export const EventPanel = (props) => {
               grow
               title={
                 vote_in_progress
-                  ? 'Available Events (' + toFixed(end_time) + ' seconds) '
-                  : 'Available Events'
+                  ? '可用事件 (' + toFixed(end_time) + ' 秒) '
+                  : '可用事件'
               }
             >
               {vote_in_progress ? (
@@ -112,7 +112,7 @@ export const EventPanel = (props) => {
                         <Button
                           color={event.self_vote ? 'good' : 'blue'}
                           icon="vote-yea"
-                          content="Vote"
+                          content="投票"
                           onClick={() =>
                             act('register_vote', {
                               event_ref: event.ref,
@@ -126,29 +126,23 @@ export const EventPanel = (props) => {
                   ))}
                 </LabeledList>
               ) : (
-                <NoticeBox>No vote in progress.</NoticeBox>
+                <NoticeBox>没有投票进行中.</NoticeBox>
               )}
             </Section>
           </Stack.Item>
           {!!admin_mode && (
             <Stack.Item>
-              <Section
-                scrollable
-                grow
-                fill
-                height="150px"
-                title="Previous Events"
-              >
+              <Section scrollable grow fill height="150px" title="过往事件">
                 {previous_events.length > 0 ? (
                   <LabeledList>
                     {previous_events.map((event) => (
-                      <LabeledList.Item label="Event" key={event}>
+                      <LabeledList.Item label="事件" key={event}>
                         {event}
                       </LabeledList.Item>
                     ))}
                   </LabeledList>
                 ) : (
-                  <NoticeBox>No previous events.</NoticeBox>
+                  <NoticeBox>无过往事件.</NoticeBox>
                 )}
               </Section>
             </Stack.Item>

@@ -42,7 +42,7 @@
 /datum/round_event/stray_cargo/announce(fake)
 	if(fake)
 		impact_area = find_event_area()
-	priority_announce("远距雷达探测到散落的货仓: [impact_area.name].", "碰撞警报")
+	priority_announce("远距雷达探测到散落的货物舱: [impact_area.name].", "碰撞警报")
 
 /**
 * Tries to find a valid area, throws an error if none are found

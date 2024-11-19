@@ -113,7 +113,7 @@
 
 /datum/orderable_item/mining/boulder_processing
 	item_path = /obj/item/boulder_beacon
-	desc = "Bouldertech-巨石科技牌的一体式巨石加工机召唤信标，每次使用都会将巨石加工产线的一个组件传送过来，当你需要额外处理巨石时很有用."
+	desc = "Bouldertech-巨石科技牌的一体式巨石加工机召唤信标，每次使用都会将巨石加工产线的一个组件传送过来，当你需要额外处理巨大石块时很有用."
 	cost_per_order = 875
 
 /datum/orderable_item/mining/grapple_gun

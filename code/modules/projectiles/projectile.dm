@@ -361,7 +361,7 @@
 
 		var/organ_hit_text = ""
 		if(hit_limb_zone)
-			organ_hit_text = "在[living_target.parse_zone_with_bodypart(hit_limb_zone)]"
+			organ_hit_text = "[living_target.parse_zone_with_bodypart(hit_limb_zone)]"
 		if(suppressed == SUPPRESSED_VERY)
 			//playsound(loc, hitsound, 5, TRUE, -1) SKYRAT EDIT REMOVAL - IMPACT SOUNDS
 		else if(suppressed)

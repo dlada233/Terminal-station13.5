@@ -253,22 +253,22 @@
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL// variable-size trigger, get it? (abductors need this to be set so the gun is usable for them)
 
 /obj/item/paper/guides/antag/abductor
-	name = "解刨指南"
+	name = "手术指南"
 	icon_state = "alienpaper_words"
 	show_written_words = FALSE
-	default_raw_text = {"<b>傻瓜解刨指南</b><br>
+	default_raw_text = {"<b>傻瓜手术指南</b><br>
 
 <br>
 1.获取新鲜样本.<br>
 2.把样本放在手术台上.<br>
 3.铺上手术布，准备实验解刨手术.<br>
 4.在标本的躯干上使用手术刀.<br>
-5.用止血钳夹住标本躯干上的出血点.<br>
-6.用牵开器牵拉标本躯干的皮肤.<br>
+5.用牵开器牵拉标本躯干的皮肤.<br>
+6.用止血钳夹住标本躯干上的出血点.<br>
 7.再次在样本的躯干上使用手术刀.<br>
 8.用你的手摸索样本的躯干，摘除多余的器官.<br>
 9.植入替换腺体(从器官储存库中取得).<br>
-10.考虑将样本捆绑起来，以免影响居所. <br>
+10.考虑将样本捆绑起来，以免影响工作. <br>
 11.将样本放进实验机器里.<br>
 12.在机器内进行选择，目标最终将被分析并传送到选定的降落点.<br>
 13.你将获得一点补给点数，该对象也将记入你的指标.<br>

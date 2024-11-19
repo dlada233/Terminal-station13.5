@@ -20,21 +20,21 @@ export const NtosCursor = () => {
 
   const NoticeBoxText = () => {
     if (numClicked <= 2) {
-      return `There's only one option... It's the sword.`;
+      return `只有一个选项...那就是剑.`;
     } else if (numClicked === 3) {
-      return `You clicked the sword. It's still the sword.`;
+      return `你点击了剑，它仍然是剑.`;
     } else if (numClicked === 4) {
-      return `You clicked the sword again. It's still the sword.`;
+      return `你又点击了剑，它还是剑.`;
     } else if (numClicked === 5) {
-      return `Trying to click the sword again? It's still the sword.`;
+      return `又试着点了一次剑? 但它还是剑.`;
     }
-    return `You clicked the sword ${numClicked} times... It's still the sword.`;
+    return `你点击了 ${numClicked} 次剑...它依然是剑.`;
   };
 
   return (
     <NtosWindow width={350} height={300}>
       <NtosWindow.Content scrollable>
-        <Section title="Select Cursor">
+        <Section title="选择光标">
           <Stack vertical>
             <Stack.Item align={'center'}>
               <Button

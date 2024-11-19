@@ -46,7 +46,7 @@ export const EmotePanelContent = (props) => {
   return (
     <Section>
       <Section
-        title="Filters"
+        title="过滤器"
         buttons={
           <Flex>
             <Button
@@ -100,26 +100,22 @@ export const EmotePanelContent = (props) => {
         <SearchBar
           query={searchText}
           onSearch={setSearchText}
-          placeholder="Search all emotes..."
+          placeholder="搜索所有表情..."
         />
       </Section>
       <Section
-        title={
-          searchText.length > 0
-            ? `Search results of "${searchText}"`
-            : `All Emotes`
-        }
+        title={searchText.length > 0 ? `"${searchText}"搜索结果` : `所有表情`}
         buttons={
           <Flex>
             <Flex.Item>
               <Button onClick={() => toggleShowNames(!showNames)}>
-                {showNames ? 'Show Names' : 'Show Keys'}
+                {showNames ? '显示姓名' : '显示Key'}
               </Button>
               <Button
                 selected={showIcons}
                 onClick={() => toggleShowIcons(!showIcons)}
               >
-                Show Icons
+                显示图标
               </Button>
             </Flex.Item>
             <Flex.Item>
@@ -128,7 +124,7 @@ export const EmotePanelContent = (props) => {
                 selected={useParams}
                 onClick={() => toggleUseParams(!useParams)}
               >
-                Use Params
+                使用参数
               </Button>
             </Flex.Item>
           </Flex>

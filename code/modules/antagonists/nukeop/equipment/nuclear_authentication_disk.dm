@@ -10,7 +10,7 @@
 
 // DAT FUKKEN DISK.
 /obj/item/disk/nuclear
-	name = "核认证磁盘"
+	name = "核认证软盘"
 	desc = "最好保管好这个."
 	icon_state = "nucleardisk"
 	max_integrity = 250
@@ -60,7 +60,7 @@
 			loneop.weight += 1
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
 				if(disk_comfort_level >= 2)
-					visible_message(span_notice("[src]睡得很香. 晚安，小磁盘."))
+					visible_message(span_notice("[src]睡得很香. 晚安，小软盘."))
 				message_admins("[src]不再被保管了在[ADMIN_VERBOSEJMP(new_turf)]. 独狼独狼核特工权重为[loneop.weight].")
 			log_game("[src]不再被保管了在[loc_name(new_turf)]. 独狼核特工权重增加至[loneop.weight].")
 
@@ -77,7 +77,7 @@
  */
 /obj/item/disk/nuclear/on_accidental_consumption(mob/living/carbon/M, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
 	M.visible_message(span_warning("[M]好像咬到了什么重要的东西."), \
-						span_warning("等等，这是核磁盘?"))
+						span_warning("等等，这是核软盘?"))
 
 	return discover_after
 
@@ -92,7 +92,7 @@
 
 		user.visible_message(
 			span_warning("[user]夺取了[src]!"),
-			span_userdanger("你得到了磁盘!用生命去捍卫它!"),
+			span_userdanger("你得到了软盘!用生命去捍卫它!"),
 		)
 		forceMove(claymore)
 		claymore.nuke_disk = src
@@ -118,5 +118,5 @@
 	fake = TRUE
 
 /obj/item/disk/nuclear/fake/obvious
-	name = "廉价塑料仿制核认证磁盘"
+	name = "廉价塑料仿制核认证软盘"
 	desc = "真搞不懂怎么会有人把这当成真的."

@@ -23,14 +23,14 @@ export const AtmosControlPanel = (props) => {
               onClick={() => act('toggle-freeze')}
               color={data.frozen === 1 ? 'good' : 'bad'}
             >
-              {data.frozen === 1 ? 'Freeze Subsystem' : 'Unfreeze Subsystem'}
+              {data.frozen === 1 ? '冷却子系统' : '解冻子系统'}
             </Button>
           </Flex.Item>
           <Flex.Item>Fire Cnt: {data.fire_count}</Flex.Item>
-          <Flex.Item>Active Turfs: {data.active_size}</Flex.Item>
-          <Flex.Item>Excited Groups: {data.excited_size}</Flex.Item>
-          <Flex.Item>Hotspots: {data.hotspots_size}</Flex.Item>
-          <Flex.Item>Superconductors: {data.conducting_size}</Flex.Item>
+          <Flex.Item>活跃地块: {data.active_size}</Flex.Item>
+          <Flex.Item>激活组: {data.excited_size}</Flex.Item>
+          <Flex.Item>热点: {data.hotspots_size}</Flex.Item>
+          <Flex.Item>超导体: {data.conducting_size}</Flex.Item>
           <Flex.Item>
             <Button.Checkbox
               checked={data.showing_user}
@@ -44,7 +44,7 @@ export const AtmosControlPanel = (props) => {
               checked={data.show_all}
               onClick={() => act('toggle_show_all')}
             >
-              Display all
+              显示所有
             </Button.Checkbox>
           </Flex.Item>
         </Flex>
@@ -54,14 +54,14 @@ export const AtmosControlPanel = (props) => {
           <Section>
             <Table>
               <Table.Row header>
-                <Table.Cell>Area Name</Table.Cell>
-                <Table.Cell collapsing>Breakdown</Table.Cell>
-                <Table.Cell collapsing>Dismantle</Table.Cell>
-                <Table.Cell collapsing>Turfs</Table.Cell>
+                <Table.Cell>区域名称</Table.Cell>
+                <Table.Cell collapsing>冷却</Table.Cell>
+                <Table.Cell collapsing>拆除</Table.Cell>
+                <Table.Cell collapsing>地块</Table.Cell>
                 <Table.Cell collapsing>
-                  {data.display_max === 1 && 'Max Share'}
+                  {data.display_max === 1 && '最大份额'}
                 </Table.Cell>
-                <Table.Cell collapsing>Display</Table.Cell>
+                <Table.Cell collapsing>显示</Table.Cell>
               </Table.Row>
               {groups.map((group) => (
                 <tr key={group.id}>

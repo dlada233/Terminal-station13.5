@@ -42,7 +42,7 @@ const ReagentDisplay = (props) => {
   const { act } = useBackend();
   const { reagents, selected, maxVolume } = props;
   if (reagents.length === 0) {
-    return <NoticeBox>No reagents available!</NoticeBox>;
+    return <NoticeBox>无试剂可用!</NoticeBox>;
   }
   return reagents.map((reagent) => (
     <Flex key={reagent.name} m={0.5}>
@@ -67,7 +67,7 @@ const ReagentDisplay = (props) => {
         <Button
           icon={'syringe'}
           color={reagent.name === selected ? 'green' : 'default'}
-          content={'Select'}
+          content={'选择'}
           textAlign={'center'}
           onClick={() => act(reagent.name)}
         />

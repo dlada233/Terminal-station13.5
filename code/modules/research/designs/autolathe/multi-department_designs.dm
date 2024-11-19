@@ -471,7 +471,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/holodisk
-	name = "Holodisk-全息磁盘"
+	name = "Holodisk-全息软盘"
 	id = "holodisk"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT)

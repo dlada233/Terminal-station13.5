@@ -61,7 +61,7 @@ export const ReactionDisplay = (props: ReactionDisplayProps) => {
 
   return (
     <Section
-      title="Reactions"
+      title="反应"
       buttons={
         <Flex>
           <Flex.Item color="label">
@@ -96,18 +96,18 @@ export const ReactionDisplay = (props: ReactionDisplayProps) => {
       }
     >
       {(activeReactions.length === 0 && (
-        <Box color="label">No active reactions.</Box>
+        <Box color="label">无进行反应.</Box>
       )) || (
         <Table>
           <Table.Row>
             <Table.Cell bold color="label">
-              Reaction
+              反应
             </Table.Cell>
             <Table.Cell bold color="label">
-              {!highQualityDisplay ? 'Status' : 'Reaction quality'}
+              {!highQualityDisplay ? '状态' : '反应质量'}
             </Table.Cell>
             <Table.Cell bold color="label">
-              Target
+              目标
             </Table.Cell>
           </Table.Row>
           {activeReactions.map((reaction) => (
@@ -198,7 +198,7 @@ export const ChemHeater = (props) => {
     <Window width={350} height={350}>
       <Window.Content scrollable>
         <Section
-          title="Controls"
+          title="控制"
           buttons={
             <Flex>
               <Button
@@ -206,7 +206,7 @@ export const ChemHeater = (props) => {
                 selected={isActive}
                 onClick={() => act('power')}
               >
-                {isActive ? 'On' : 'Off'}
+                {isActive ? '开' : '关'}
               </Button>
             </Flex>
           }
@@ -214,11 +214,11 @@ export const ChemHeater = (props) => {
           <Table>
             <Table.Row>
               <Table.Cell bold collapsing color="label">
-                Heat
+                热量
               </Table.Cell>
               <Table.Cell />
               <Table.Cell bold collapsing color="label">
-                Buffers
+                缓冲
               </Table.Cell>
               <Table.Cell />
               <Table.Cell>
@@ -240,7 +240,7 @@ export const ChemHeater = (props) => {
             </Table.Row>
             <Table.Row>
               <Table.Cell collapsing color="label">
-                Target:
+                目标:
               </Table.Cell>
               <Table.Cell>
                 <NumberInput
@@ -259,13 +259,13 @@ export const ChemHeater = (props) => {
                 />
               </Table.Cell>
               <Table.Cell collapsing color="label">
-                Acidic:
+                酸性:
               </Table.Cell>
               <Table.Cell>
                 <Button
                   icon={'syringe'}
                   disabled={!acidicBufferVol}
-                  tooltip={'Inject'}
+                  tooltip={'注射'}
                   tooltipPosition={'left'}
                   onClick={() =>
                     act('acidBuffer', {
@@ -283,7 +283,7 @@ export const ChemHeater = (props) => {
               <Table.Cell>
                 <Button
                   icon={'upload'}
-                  tooltip={'Draw all'}
+                  tooltip={'抽出所有'}
                   tooltipPosition={'top'}
                   disabled={acidicBufferVol === 100}
                   onClick={() =>
@@ -296,7 +296,7 @@ export const ChemHeater = (props) => {
             </Table.Row>
             <Table.Row>
               <Table.Cell collapsing color="label">
-                Reading:
+                读数:
               </Table.Cell>
               <Table.Cell collapsing color="default">
                 <Box width="60px" textAlign="right">
@@ -310,12 +310,12 @@ export const ChemHeater = (props) => {
                 </Box>
               </Table.Cell>
               <Table.Cell collapsing color="label">
-                Basic:
+                碱性:
               </Table.Cell>
               <Table.Cell>
                 <Button
                   icon={'syringe'}
-                  tooltip={'Inject'}
+                  tooltip={'注射'}
                   tooltipPosition={'left'}
                   disabled={!basicBufferVol}
                   onClick={() =>
@@ -331,7 +331,7 @@ export const ChemHeater = (props) => {
               <Table.Cell>
                 <Button
                   icon={'upload'}
-                  tooltip={'Draw all'}
+                  tooltip={'抽出所有'}
                   disabled={basicBufferVol === 100}
                   onClick={() =>
                     act('basicBuffer', {

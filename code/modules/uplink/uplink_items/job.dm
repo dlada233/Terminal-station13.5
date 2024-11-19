@@ -168,7 +168,7 @@
 
 /datum/uplink_item/role_restricted/brainwash_disk
 	name = "洗脑手术资料"
-	desc = "购买此项，将获得包含洗脑手术资料的磁盘，将资料磁盘插入一台手术辅助电脑中，你将能对手术台上的病人进行洗脑手术，允许你向他灌输一条不容质疑的‘真理’."
+	desc = "购买此项，将获得包含洗脑手术资料的软盘，将资料软盘插入一台手术辅助电脑中，你将能对手术台上的病人进行洗脑手术，允许你向他灌输一条不容质疑的‘真理’."
 	item = /obj/item/disk/surgery/brainwashing
 	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CORONER, JOB_ROBOTICIST)
 	cost = 5
@@ -176,7 +176,7 @@
 
 /datum/uplink_item/role_restricted/advanced_plastic_surgery
 	name = "高级易容手术资料"
-	desc = "购买此项，将获得包含洗脑手术资料的磁盘，将资料磁盘插入一台手术辅助电脑中，你将能进行高级易容手术，该手术允许你根据你手上的照片来易容成某人的脸和声音."
+	desc = "购买此项，将获得包含洗脑手术资料的软盘，将资料软盘插入一台手术辅助电脑中，你将能进行高级易容手术，该手术允许你根据你手上的照片来易容成某人的脸和声音."
 	item = /obj/item/disk/surgery/advanced_plastic_surgery
 	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_ROBOTICIST)
 	cost = 1

@@ -4,7 +4,7 @@
 /*
 Research and Development (R&D) Console
 
-This is the main work horse of the R&D system. It contains the menus/controls for the Destructive Analyzer, Protolathe, and Circuit
+This is the main work horse of the R&D system. It contains the menus/controls for the 解构分析仪, Protolathe, and Circuit
 imprinter.
 
 Basic use: When it first is created, it will attempt to link up to related devices within 3 squares. It'll only link up if they

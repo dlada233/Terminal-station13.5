@@ -630,7 +630,7 @@ const UploadModal = (props) => {
         你确定想将这本书上传到数据库中吗?
       </Box>
       <LabeledList>
-        <LabeledList.Item label="Category">
+        <LabeledList.Item label="目录">
           <Dropdown
             options={upload_categories}
             selected={display_category}

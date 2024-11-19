@@ -69,18 +69,17 @@ const EmployerSection = (props) => {
   return (
     <Section
       fill
-      title="Employer"
+      title="雇主"
       scrollable
       buttons={
         <Button
           icon="hammer"
           tooltip={`
-            This is a gameplay suggestion for bored traitors.
-            You don't have to follow it, unless you want some
-            ideas for how to spend the round.`}
+            这是为对叛徒生活感到无聊的玩家准备的玩法建议.
+            你不必遵循它们，除非你想要一些额外的游戏乐趣.`}
           tooltipPosition="bottom-start"
         >
-          Policy
+          原则
         </Button>
       }
     >
@@ -89,7 +88,7 @@ const EmployerSection = (props) => {
           <Stack vertical>
             <Stack.Item>
               <span style={allystyle}>
-                Your allegiances:
+                效忠派别:
                 <br />
               </span>
               <BlockQuote>{allies}</BlockQuote>
@@ -97,7 +96,7 @@ const EmployerSection = (props) => {
             <Stack.Divider />
             <Stack.Item>
               <span style={goalstyle}>
-                Employer thoughts:
+                雇主想法:
                 <br />
               </span>
               <BlockQuote>{goal}</BlockQuote>
@@ -121,23 +120,23 @@ const UplinkSection = (props) => {
     replacement_frequency,
   } = data;
   return (
-    <Section title="Uplink" mb={!has_uplink && -1}>
+    <Section title="上行链路" mb={!has_uplink && -1}>
       <Stack fill>
         {(!has_uplink && (
           <Dimmer>
             <Stack.Item fontSize="16px">
               <Section textAlign="Center">
-                Your uplink is missing or destroyed. <br />
-                Craft a Syndicate Uplink Beacon and then speak
+                你的上行链路已经丢失或被摧毁. <br />
+                制作一台辛迪加上行链路信标与之同步，然后在无线电频率
+                <span style={goalstyle}>
+                  <b>{replacement_frequency}</b>
+                </span>
+                上说出
                 <br />
                 <span style={goalstyle}>
                   <b>{replacement_code}</b>
-                </span>{' '}
-                on frequency{' '}
-                <span style={goalstyle}>
-                  <b>{replacement_frequency}</b>
-                </span>{' '}
-                after synchronizing with the beacon.
+                </span>
+                .
               </Section>
             </Stack.Item>
           </Dimmer>
@@ -146,10 +145,10 @@ const UplinkSection = (props) => {
             <Stack.Item bold>
               {uplink_intro}
               <br />
-              {code && <span style={goalstyle}>Code: {code}</span>}
+              {code && <span style={goalstyle}>代码: {code}</span>}
               <br />
               {failsafe_code && (
-                <span style={badstyle}>Failsafe: {failsafe_code}</span>
+                <span style={badstyle}>失效保护: {failsafe_code}</span>
               )}
             </Stack.Item>
             <Stack.Divider />
@@ -162,16 +161,16 @@ const UplinkSection = (props) => {
       <br />
       {(has_uplink && (
         <Section textAlign="Center">
-          If you lose your uplink, you can craft a Syndicate Uplink Beacon and
-          then speak{' '}
-          <span style={goalstyle}>
-            <b>{replacement_code}</b>
-          </span>{' '}
-          on radio frequency{' '}
+          如果你丢失了你的上行链路，你可以制作一台辛迪加上行链路信标与之同步，
+          然后在无线电频率
           <span style={goalstyle}>
             <b>{replacement_frequency}</b>
-          </span>{' '}
-          after synchronizing with the beacon.
+          </span>
+          上说出
+          <span style={goalstyle}>
+            <b>{replacement_code}</b>
+          </span>
+          .
         </Section>
       )) || (
         <Section>
@@ -188,36 +187,33 @@ const CodewordsSection = (props) => {
   const { data } = useBackend<Info>();
   const { has_codewords, phrases, responses } = data;
   return (
-    <Section title="Codewords" mb={!has_codewords && -1}>
+    <Section title="暗号" mb={!has_codewords && -1}>
       <Stack fill>
         {(!has_codewords && (
           <BlockQuote>
-            You have not been supplied with codewords. You will have to use
-            alternative methods to find potential allies. Proceed with caution,
-            however, as everyone is a potential foe.
+            没有为你提供暗号，你将不得不使用其他方法来寻找潜在的盟友.
+            谨慎行事，任何人都可能是潜在的敌人.
           </BlockQuote>
         )) || (
           <>
             <Stack.Item grow basis={0}>
               <BlockQuote>
-                Your employer provided you with the following codewords to
-                identify fellow agents. Use the codewords during regular
-                conversation to identify other agents. Proceed with caution,
-                however, as everyone is a potential foe.
+                你的雇主给了你以下暗号来识别其他特工.
+                在日常的对话中巧妙地夹杂它们.
+                但仍然谨慎行事，因为任何人都可能是潜在的敌人
                 <span style={badstyle}>
-                  &ensp;You have memorized the codewords, allowing you to
-                  recognise them when heard.
+                  &ensp;你牢记暗号，听到它们的时候会高亮标识.
                 </span>
               </BlockQuote>
             </Stack.Item>
             <Stack.Divider mr={1} />
             <Stack.Item grow basis={0}>
               <Stack vertical>
-                <Stack.Item>Code Phrases:</Stack.Item>
+                <Stack.Item>呼叫暗号:</Stack.Item>
                 <Stack.Item bold textColor="blue">
                   {phrases}
                 </Stack.Item>
-                <Stack.Item>Code Responses:</Stack.Item>
+                <Stack.Item>应答暗号:</Stack.Item>
                 <Stack.Item bold textColor="red">
                   {responses}
                 </Stack.Item>

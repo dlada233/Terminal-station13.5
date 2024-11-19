@@ -29,12 +29,12 @@ export const AntagInfoGlitch = (props) => {
             <Stack.Item>FN TERMINATE_INTRUDERS (REF)</Stack.Item>
             <Divider />
             <Stack.Item mb={1} bold fontSize="16px">
-              <span style={textStyles.variable}>Initialize({antag_name})</span>
+              <span style={textStyles.variable}>初始化({antag_name})</span>
             </Stack.Item>
             <Stack.Item mb={2}>
-              <span style={textStyles.danger}>Bitrunning</span> is a crime. Your
-              mission: <span style={textStyles.variable}>Eliminate</span>{' '}
-              organic intruders to maintain the integrity of the system.
+              <span style={textStyles.danger}>潜网采矿</span>是一种犯罪. 你的
+              任务: <span style={textStyles.variable}>消除</span>
+              有机入侵者，维持系统的完整性.
             </Stack.Item>
             <SpecificInfo />
             <Stack.Item>
@@ -73,12 +73,12 @@ const SpecificInfo = (props) => {
       return (
         <>
           <Stack.Item mb={2}>
-            To assist your task, your program has been loaded with cutting edge{' '}
-            <span style={textStyles.variable}>martial arts</span> skills.
+            为了协助你，你的程序已经加载了
+            <span style={textStyles.variable}>先进武术</span>.
           </Stack.Item>
           <Stack.Item grow>
-            Ranged weaponry is <span style={textStyles.danger}>forbidden</span>.
-            Ballistic defense is frowned upon. Style is paramount.
+            远程武器<span style={textStyles.danger}>被禁止</span>.
+            射击防御不受欢迎. 风格最重要.
           </Stack.Item>
         </>
       );
@@ -86,12 +86,11 @@ const SpecificInfo = (props) => {
       return (
         <>
           <Stack.Item mb={2}>
-            You are an advanced combat unit. You have been outfitted with{' '}
-            <span style={textStyles.variable}>lethal weaponry</span>.
+            你是先进战斗单位. 你配备了{' '}
+            <span style={textStyles.variable}>致命武器</span>.
           </Stack.Item>
           <Stack.Item grow>
-            <span style={textStyles.danger}>Terminate</span> organic life at any
-            cost.
+            <span style={textStyles.danger}>终止</span>有机生命, 不惜任何代价.
           </Stack.Item>
         </>
       );
@@ -99,7 +98,7 @@ const SpecificInfo = (props) => {
       return (
         <Stack.Item grow>
           <span style={{ ...textStyles.danger, fontSize: '16px' }}>
-            ORGANIC LIFE MUST BE TERMINATED.
+            有机生命必须被终止.
           </span>
         </Stack.Item>
       );

@@ -46,7 +46,7 @@ export const AtmosTempGate = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
+                content="最大值"
                 disabled={temperature === max_temperature}
                 onClick={() =>
                   act('temperature', {

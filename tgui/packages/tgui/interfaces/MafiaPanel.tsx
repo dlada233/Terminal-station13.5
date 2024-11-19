@@ -118,15 +118,13 @@ export const MafiaPanelData = (props) => {
                           selected={mafia_tab === 'Role list'}
                           onClick={() => setMafiaMode('Role list')}
                         >
-                          Role list
+                          角色列表
                           <Button
                             color="transparent"
                             icon="address-book"
                             tooltipPosition="bottom-start"
                             tooltip={`
-                            This is the list of roles in the game. You can
-                            press the question mark to get a quick blurb
-                            about the role itself.`}
+                            这是游戏中的角色列表，你可以按下问好按钮来获得关于这个角色的简短介绍.`}
                           />
                         </Tabs.Tab>
                         <Tabs.Tab
@@ -134,15 +132,14 @@ export const MafiaPanelData = (props) => {
                           selected={mafia_tab === 'Notes'}
                           onClick={() => setMafiaMode('Notes')}
                         >
-                          Notes
+                          笔记
                           <Button
                             color="transparent"
                             icon="pencil"
                             tooltipPosition="bottom-start"
                             tooltip={`
-                            This is your notes, anything you want to write
-                            can be saved for future reference. You can
-                            also send it to chat with a button.`}
+                            这是你的笔记，你可以写下任何东西以备将来参考，你也可以按下按钮来把它
+                            发送到聊天对话中.`}
                           />
                         </Tabs.Tab>
                       </Tabs>
@@ -165,7 +162,7 @@ export const MafiaPanel = (props) => {
   const { roleinfo } = data;
   return (
     <Window
-      title="Mafia"
+      title="狼人杀"
       theme={roleinfo && roleinfo.role_theme}
       width={900}
       height={600}
@@ -185,7 +182,7 @@ const MafiaChat = (props) => {
     <Stack vertical fill>
       {!!messages && (
         <>
-          <Section fill scrollable title="Chat Logs">
+          <Section fill scrollable title="聊天日志">
             {messages.map((message) => (
               <Box key={message.msg}>{decodeHtmlEntities(message.msg)}</Box>
             ))}
@@ -196,20 +193,20 @@ const MafiaChat = (props) => {
             maxLength={300}
             className="Section__title candystripe"
             onChange={(e, value) => setMessagingBox(value)}
-            placeholder="Type to chat"
+            placeholder="输入聊天内容"
             value={message_to_send}
           />
           <Button
             color="bad"
             fluid
             textAlign="center"
-            tooltip="Sends your message to chat."
+            tooltip="发送消息至聊天对话中."
             onClick={() => {
               setMessagingBox('');
               act('send_message_to_chat', { message: message_to_send });
             }}
           >
-            Send to Chat
+            发送
           </Button>
         </>
       )}
@@ -227,27 +224,25 @@ const MafiaLobby = (props) => {
     <Section
       fill
       scrollable
-      title="Lobby"
+      title="大厅"
       buttons={
         <>
           <Button
             icon="clipboard-check"
             tooltipPosition="bottom-start"
             tooltip={`
-              Signs you up for the next game. If there
-              is an ongoing one, you will be signed up
-              for the next.
+              报名参加游戏. 如果游戏已经在进行了，你将报名下一场游戏.
             `}
-            content="Sign Up"
+            content="报名"
             onClick={() => act('mf_signup')}
           />
           <Button
             icon="arrow-right"
             tooltipPosition="bottom-start"
             tooltip={`
-              Submit a vote to start the game early.
-              Starts when half of the current signup list have voted to start.
-              Requires a bare minimum of six players.
+              投票提议提前开始游戏.
+              当有一半报名者投票后就会提前开始.
+              至少需要有六名玩家.
             `}
             content="Start Now!"
             onClick={() => act('vote_to_start')}
@@ -256,14 +251,11 @@ const MafiaLobby = (props) => {
       }
     >
       <NoticeBox info textAlign="center">
-        The lobby currently has {readyGhosts ? readyGhosts.length : '0'}/12
-        valid players signed up.
+        大厅当前有 {readyGhosts ? readyGhosts.length : '0'}/12 有效报名玩家.
       </NoticeBox>
       {!!is_observer && (
         <NoticeBox color="green" textAlign="center">
-          Players who sign up for Mafia while dead will be returned to their
-          bodies after the game finishes, allowing you to temporarily exit to
-          play a match.
+          在死亡情况下报名狼人杀的玩家将在游戏结束后返回自己的身体，允许你暂时离开游戏.
         </NoticeBox>
       )}
       {lobbydata.map((lobbyist) => (
@@ -274,10 +266,10 @@ const MafiaLobby = (props) => {
           align="baseline"
         >
           <Stack.Item grow>
-            {!is_observer ? 'Unknown Player' : lobbyist.name}
+            {!is_observer ? '未知玩家' : lobbyist.name}
           </Stack.Item>
-          <Stack.Item>Status:</Stack.Item>
-          <Stack.Item color={lobbyist.status === 'Ready' ? 'green' : 'red'}>
+          <Stack.Item>状态:</Stack.Item>
+          <Stack.Item color={lobbyist.status === '准备' ? 'green' : 'red'}>
             {lobbyist.status}
           </Stack.Item>
         </Stack>
@@ -308,7 +300,7 @@ const MafiaRole = (props) => {
     >
       <Stack align="center">
         <Stack.Item grow>
-          <Box bold>You are the {roleinfo.role}</Box>
+          <Box bold>你的身份是 {roleinfo.role}</Box>
           <Box italic>{roleinfo.desc}</Box>
         </Stack.Item>
         <Stack.Item>
@@ -372,7 +364,7 @@ const MafiaNotesTab = (props) => {
         maxLength={600}
         className="Section__title candystripe"
         onChange={(_, value) => setNotesMessage(value)}
-        placeholder="Insert Notes..."
+        placeholder="添加笔记..."
         value={note_message}
       />
 
@@ -381,14 +373,14 @@ const MafiaNotesTab = (props) => {
         fluid
         textAlign="center"
         onClick={() => act('change_notes', { new_notes: note_message })}
-        tooltip="Saves whatever is written as your notepad. This can't be done while dead."
+        tooltip="保存任何笔记上的内容，当死亡时不可用."
       >
-        Save
+        保存
       </Button>
       <Button.Confirm
         color="bad"
         fluid
-        content="Send to Chat"
+        content="发送至聊天"
         textAlign="center"
         onClick={() => act('send_notes_to_chat')}
       />
@@ -399,23 +391,23 @@ const MafiaNotesTab = (props) => {
 const MafiaJudgement = (props) => {
   const { act, data } = useBackend();
   return (
-    <Section title="Judgement">
+    <Section title="审判">
       <Flex>
         <Button
           icon="smile-beam"
           color="good"
           onClick={() => act('vote_innocent')}
         >
-          Innocent
+          无辜
         </Button>
-        <Box>It is now time to vote, vote the accused innocent or guilty!</Box>
+        <Box>现在是投票的时候，决定被告是有罪还是无辜的!</Box>
         <Button icon="angry" color="bad" onClick={() => act('vote_guilty')}>
-          Guilty
+          有罪
         </Button>
       </Flex>
       <Flex justify="center">
         <Button icon="meh" color="white" onClick={() => act('vote_abstain')}>
-          Abstain
+          弃权
         </Button>
       </Flex>
     </Section>
@@ -426,7 +418,7 @@ const MafiaPlayers = (props) => {
   const { act, data } = useBackend<MafiaData>();
   const { players = [], person_voted_up_ref } = data;
   return (
-    <Section fill scrollable title="Players">
+    <Section fill scrollable title="玩家">
       <Flex direction="column" fill justify="space-around">
         {players?.map((player) => (
           <Flex.Item className="Section__title candystripe" key={player.ref}>
@@ -439,13 +431,13 @@ const MafiaPlayers = (props) => {
                 }
               >
                 {player.name}
-                {(!!player.is_you && ' (YOU)') ||
+                {(!!player.is_you && ' (你)') ||
                   (!!player.role_revealed && ' - ' + player.role_revealed)}
               </Stack.Item>
               <Stack.Item>
                 {player.votes !== undefined &&
                   !!player.alive &&
-                  `Votes: ${player.votes}`}
+                  `投票: ${player.votes}`}
               </Stack.Item>
               <Stack.Item minWidth="42px" textAlign="center">
                 {player.possible_actions?.map((action) => (
@@ -473,36 +465,35 @@ const MafiaPlayers = (props) => {
 const MafiaAdmin = (props) => {
   const { act, data } = useBackend();
   return (
-    <Collapsible title="ADMIN CONTROLS" color="red">
+    <Collapsible title="管理控制面板" color="red">
       <Section>
-        <Collapsible title="A kind, coder warning" color="transparent">
-          Almost all of these are all built to help me debug the game (ow,
-          debugging a 12 player game!) So they are rudamentary and prone to
-          breaking at the drop of a hat. Make sure you know what you&apos;re
-          doing when you press one. Also because an admin did it: do not
-          gib/delete/dust anyone! It will runtime the game to death
+        <Collapsible title="善意的告知" color="transparent">
+          所有功能仅为帮助调试游戏 (一款12人的游戏!).
+          因此它们非常基础，而且随时可能崩溃. 在启动某个功能前确保你知道自己在做
+          什么. 因为是管理员设置：请不要随意 碎尸/删除/清除 任何人!
+          这会让游戏运行 时崩溃.
         </Collapsible>
         <Button icon="arrow-right" onClick={() => act('next_phase')}>
-          Next Phase
+          下一阶段
         </Button>
         <Button icon="home" onClick={() => act('players_home')}>
-          Send All Players Home
+          让所有玩家返回
         </Button>
         <Button icon="sync-alt" onClick={() => act('new_game')}>
-          New Game
+          新游戏
         </Button>
         <Button icon="skull" onClick={() => act('nuke')}>
           Nuke
         </Button>
         <br />
         <Button icon="paint-brush" onClick={() => act('debug_setup')}>
-          Create Custom Setup
+          创建自定义设置
         </Button>
         <Button icon="paint-roller" onClick={() => act('cancel_setup')}>
-          Reset Custom Setup
+          重置自定义设置
         </Button>
         <Button icon="magic" onClick={() => act('start_now')}>
-          Start now!
+          立即开始!
         </Button>
       </Section>
     </Collapsible>

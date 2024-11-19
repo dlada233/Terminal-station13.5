@@ -25,7 +25,7 @@ export const PortableScrubber = (props) => {
     <Window width={320} height={420}>
       <Window.Content>
         <PortableBasicInfo />
-        <Section title="Filters">
+        <Section title="过滤设置">
           {filterTypes.map((filter) => (
             <Button
               key={filter.id}

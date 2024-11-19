@@ -25,14 +25,14 @@ export const NifSoulPoem = (props) => {
   return (
     <Window width={500} height={700} theme={theme}>
       <Window.Content scrollable>
-        <Section title="Messages">
+        <Section title="消息">
           {messages.map((message) => (
             <Flex.Item key={message.key}>
               <Box textAlign="center" fontSize="14px">
                 <b>{message.sender_name} </b>
                 <Button
                   icon="trash"
-                  tooltip={'Delete this message'}
+                  tooltip={'删除这条消息'}
                   onClick={() =>
                     act('remove_message', { message_to_remove: message })
                   }
@@ -41,20 +41,20 @@ export const NifSoulPoem = (props) => {
               <Divider />
               <Box>{message.message}</Box>
               <br />
-              <BlockQuote>Time received: {message.timestamp}</BlockQuote>
+              <BlockQuote>接收时间: {message.timestamp}</BlockQuote>
             </Flex.Item>
           ))}
         </Section>
-        <Section title="Settings">
+        <Section title="设置">
           <LabeledList>
-            <LabeledList.Item label={'Display Name'}>
+            <LabeledList.Item label={'显示姓名'}>
               <Input
                 value={name_to_send}
                 onInput={(e, value) => act('change_name', { new_name: value })}
                 width="100%"
               />
             </LabeledList.Item>
-            <LabeledList.Item label={'Message'}>
+            <LabeledList.Item label={'消息'}>
               <Input
                 value={text_to_send}
                 onInput={(e, value) =>
@@ -63,7 +63,7 @@ export const NifSoulPoem = (props) => {
                 width="100%"
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Toggle transmitting">
+            <LabeledList.Item label="切换传输">
               <Button
                 fluid
                 onClick={() => act('toggle_transmitting', {})}
@@ -72,7 +72,7 @@ export const NifSoulPoem = (props) => {
                 {transmitting_data ? 'True' : 'False'}
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Toggle receiving">
+            <LabeledList.Item label="切花接收">
               <Button
                 fluid
                 onClick={() => act('toggle_receiving', {})}

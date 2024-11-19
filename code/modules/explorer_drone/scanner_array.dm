@@ -76,8 +76,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	deltimer(scan_timer)
 
 /obj/machinery/computer/exoscanner_control
-	name = "scanner array control console"
-	desc = "Controls scanner arrays to initiate scans for exodrones."
+	name = "扫描阵列 control console"
+	desc = "Controls 扫描阵列s to initiate scans for exodrones."
 	circuit = /obj/item/circuitboard/computer/exoscanner_console
 	/// If scan was interrupted show a popup until dismissed.
 	var/failed_popup = FALSE
@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE)
 
 /obj/machinery/exoscanner
-	name = "Scanner array"
+	name = "扫描阵列"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "scanner_off"
 	desc = "A sophisticated scanning array. Easily influenced by its environment."

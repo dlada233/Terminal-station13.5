@@ -23,7 +23,7 @@ export const Reflector = (props) => {
       <Window.Content>
         <Stack>
           <Stack.Item>
-            <Section title="Presets" textAlign="center" fill>
+            <Section title="预设正角" textAlign="center" fill>
               <Table mt={3.5}>
                 <Table.Cell>
                   <Table.Row>
@@ -137,12 +137,12 @@ export const Reflector = (props) => {
             </Section>
           </Stack.Item>
           <Stack>
-            <Section title="Angle" textAlign="center" fill>
+            <Section title="自定角度" textAlign="center" fill>
               <LabeledControls>
-                <LabeledControls.Item ml={0.5} label="Set rotation">
+                <LabeledControls.Item ml={0.5} label="旋转">
                   <NumberInput
                     value={rotation_angle}
-                    unit="degrees"
+                    unit="度"
                     minValue={0}
                     maxValue={359}
                     step={1}

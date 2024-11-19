@@ -1,5 +1,5 @@
 /area/station/maintenance
-	name = "Maintenance-维护管道"
+	name = "Maintenance-维护通道"
 	ambience_index = AMBIENCE_MAINT
 	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED | PERSISTENT_ENGRAVINGS
 	airlock_wires = /datum/wires/airlock/maint
@@ -13,86 +13,86 @@
 */
 
 /area/station/maintenance/department/chapel
-	name = "Maintenance-教堂维护管道"
+	name = "Maintenance-教堂维护通道"
 	icon_state = "maint_chapel"
 
 /area/station/maintenance/department/chapel/monastery
-	name = "Maintenance-寺庙维护管道"
+	name = "Maintenance-寺庙维护通道"
 	icon_state = "maint_monastery"
 
 /area/station/maintenance/department/crew_quarters/bar
-	name = "Maintenance-酒吧维护管道"
+	name = "Maintenance-酒吧维护通道"
 	icon_state = "maint_bar"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/station/maintenance/department/crew_quarters/dorms
-	name = "Maintenance-宿舍维护管道"
+	name = "Maintenance-宿舍维护通道"
 	icon_state = "maint_dorms"
 
 /area/station/maintenance/department/eva
-	name = "Maintenance-EVA维护管道"
+	name = "Maintenance-EVA维护通道"
 	icon_state = "maint_eva"
 
 /area/station/maintenance/department/eva/abandoned
 	name = "Abandoned EVA Storage-废弃EVA仓库"
 
 /area/station/maintenance/department/electrical
-	name = "Maintenance-供电维护管道"
+	name = "Maintenance-供电维护通道"
 	icon_state = "maint_electrical"
 
 /area/station/maintenance/department/engine/atmos
-	name = "Maintenance-大气维护管道"
+	name = "Maintenance-大气维护通道"
 	icon_state = "maint_atmos"
 
 /area/station/maintenance/department/security
-	name = "Maintenance-安保维护管道"
+	name = "Maintenance-安保维护通道"
 	icon_state = "maint_sec"
 
 /area/station/maintenance/department/security/upper
-	name = "Upper Maintenance-上层安保维护管道"
+	name = "Upper Maintenance-上层安保维护通道"
 
 /area/station/maintenance/department/security/brig
-	name = "Maintenance-安保大门维护管道"
+	name = "Maintenance-安保门禁维护通道"
 	icon_state = "maint_brig"
 
 /area/station/maintenance/department/medical
-	name = "Maintenance-医疗部维护管道"
+	name = "Maintenance-医疗部维护通道"
 	icon_state = "medbay_维修通道"
 
 /area/station/maintenance/department/medical/central
-	name = "Maintenance-医疗部中央维护管道"
+	name = "Maintenance-医疗部中央维护通道"
 	icon_state = "medbay_maint_central"
 
 /area/station/maintenance/department/medical/morgue
-	name = "Maintenance-停尸房维护管道"
+	name = "Maintenance-停尸房维护通道"
 	icon_state = "morgue_维修通道"
 
 /area/station/maintenance/department/science
-	name = "Maintenance-科研部维护管道"
+	name = "Maintenance-科研部维护通道"
 	icon_state = "maint_sci"
 
 /area/station/maintenance/department/science/central
-	name = "Maintenance-科研部中央维护管道"
+	name = "Maintenance-科研部中央维护通道"
 	icon_state = "maint_sci_central"
 
 /area/station/maintenance/department/cargo
-	name = "Maintenance-货仓维护管道"
+	name = "Maintenance-货仓维护通道"
 	icon_state = "maint_cargo"
 
 /area/station/maintenance/department/bridge
-	name = "Maintenance-舰桥维护管道"
+	name = "Maintenance-舰桥维护通道"
 	icon_state = "maint_bridge"
 
 /area/station/maintenance/department/engine
-	name = "Maintenance-工程部维护管道"
+	name = "Maintenance-工程部维护通道"
 	icon_state = "maint_engi"
 
 /area/station/maintenance/department/prison
-	name = "Maintenance-监狱维护管道"
+	name = "Maintenance-监狱维护通道"
 	icon_state = "sec_prison"
 
 /area/station/maintenance/department/science/xenobiology
-	name = "Maintenance-异种学维护管道"
+	name = "Maintenance-异种学维护通道"
 	icon_state = "xeno维修通道"
 	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | XENOBIOLOGY_COMPATIBLE | CULT_PERMITTED
 
@@ -101,11 +101,11 @@
 */
 
 /area/station/maintenance/aft
-	name = "Maintenance-站尾维护管道"
+	name = "Maintenance-站尾维护通道"
 	icon_state = "aft维修通道"
 
 /area/station/maintenance/aft/upper
-	name = "Upper Maintenance-上层站尾维护管道"
+	name = "Upper Maintenance-上层站尾维护通道"
 	icon_state = "upperaft维修通道"
 
 /* Use 远variants of area definitions for when the station has two different sections of maintenance on the same z-level.
@@ -113,7 +113,7 @@
 * This one means that this goes more fore/north than the "lesser" maintenance area.
 */
 /area/station/maintenance/aft/greater
-	name = "Maintenance-远站尾维护管道"
+	name = "Maintenance-远站尾维护通道"
 	icon_state = "greateraft维修通道"
 
 /* Use 近variants of area definitions for when the station has two different sections of maintenance on the same z-level in conjunction with "greater".
@@ -122,27 +122,27 @@
 */
 
 /area/station/maintenance/aft/lesser
-	name = "Maintenance-近站尾维护管道"
+	name = "Maintenance-近站尾维护通道"
 	icon_state = "lesseraft维修通道"
 
 /area/station/maintenance/central
-	name = "Maintenance-中央维护管道"
+	name = "Maintenance-中央维护通道"
 	icon_state = "central维修通道"
 
 /area/station/maintenance/central/greater
-	name = "Maintenance-远中央维护管道"
+	name = "Maintenance-远中央维护通道"
 	icon_state = "greatercentral维修通道"
 
 /area/station/maintenance/central/lesser
-	name = "Maintenance-近中央维护管道"
+	name = "Maintenance-近中央维护通道"
 	icon_state = "lessercentral维修通道"
 
 /area/station/maintenance/fore
-	name = "Maintenance-站首维护管道"
+	name = "Maintenance-站首维护通道"
 	icon_state = "fore维修通道"
 
 /area/station/maintenance/fore/upper
-	name = "Upper Maintenance-上层站首维护管道"
+	name = "Upper Maintenance-上层站首维护通道"
 	icon_state = "upperfore维修通道"
 
 /area/station/maintenance/fore/greater

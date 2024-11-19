@@ -19,7 +19,7 @@ export const ChemSplitter = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Straight">
+            <LabeledList.Item label="直路">
               <NumberInput
                 value={straight}
                 unit="u"
@@ -37,7 +37,7 @@ export const ChemSplitter = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Side">
+            <LabeledList.Item label="侧路">
               <NumberInput
                 value={side}
                 unit="u"

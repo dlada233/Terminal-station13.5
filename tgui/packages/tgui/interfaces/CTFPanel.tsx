@@ -23,7 +23,7 @@ export const CTFPanel = (props) => {
   const { act, data } = useBackend<CTFPanelData>();
 
   return (
-    <Window title="CTF Panel" width={700} height={600}>
+    <Window title="CTF 面板" width={700} height={600}>
       <Window.Content scrollable>
         {'teams' in data ? (
           <Flex align="center" wrap="wrap" textAlign="center" m={-0.5}>
@@ -33,21 +33,19 @@ export const CTFPanel = (props) => {
                   <Stack fill mb={1}>
                     <Stack.Item grow>
                       <Box>
-                        <b>{team.team_size}</b> member
-                        {team.team_size === 1 ? '' : 's'}
+                        <b>{team.team_size}</b> 成员
                       </Box>
                     </Stack.Item>
 
                     <Stack.Item grow>
                       <Box>
-                        <b>{team.score}</b> point
-                        {team.score === 1 ? '' : 's'}
+                        <b>{team.score}</b> 得分
                       </Box>
                     </Stack.Item>
                   </Stack>
 
                   <Button
-                    content="Jump"
+                    content="转到"
                     fontSize="18px"
                     fluid
                     color={team.color.toLowerCase()}
@@ -59,7 +57,7 @@ export const CTFPanel = (props) => {
                   />
 
                   <Button
-                    content="Join"
+                    content="加入"
                     fontSize="18px"
                     fluid
                     color={team.color.toLowerCase()}
@@ -81,7 +79,7 @@ export const CTFPanel = (props) => {
               </Box>
               <br />
               <Box fontSize="30px" textAlign="center">
-                CTF voters
+                CTF 投票者
               </Box>
             </Stack.Item>
 
@@ -97,7 +95,7 @@ export const CTFPanel = (props) => {
                   }
                 }}
               >
-                {data.voted ? 'Unvote for CTF' : 'Vote for CTF'}
+                {data.voted ? '不投票给CTF' : '投票给CTF'}
               </Button>
             </Stack.Item>
           </Stack>

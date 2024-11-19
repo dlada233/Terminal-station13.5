@@ -198,9 +198,7 @@ export const DnaConsoleSequencer = (props) => {
           <Section color="bad">基因序列损坏，对象诊断报告：猴子.</Section>
         )) ||
         (subjectStatus === SUBJECT_TRANSFORMING && (
-          <Section color="bad">
-            Genetic sequence corrupted. Subject diagnostic report: TRANSFORMING.
-          </Section>
+          <Section color="bad">基因序列损坏，对象诊断报告: 变形中.</Section>
         )) || (
           <Section
             title="基因测序仪™"

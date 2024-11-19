@@ -184,7 +184,7 @@ const StorageButtons = (props) => {
         }
       />
       <Button
-        content="磁盘"
+        content="软盘"
         disabled={!hasDisk}
         selected={storageMode === STORAGE_MODE_DISK}
         onClick={() =>

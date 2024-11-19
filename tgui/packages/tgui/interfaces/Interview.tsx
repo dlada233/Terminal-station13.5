@@ -76,12 +76,12 @@ export const Interview = (props) => {
     >
       <Window.Content scrollable>
         {(!read_only && (
-          <Section title="Welcome!">
+          <Section title="欢迎!">
             <p>{linkifyText(welcome_message)}</p>
           </Section>
         )) || <RenderedStatus status={status} queue_pos={queue_pos} />}
         <Section
-          title="Questionnaire"
+          title="调查问卷"
           buttons={
             <span>
               <Button
@@ -90,22 +90,22 @@ export const Interview = (props) => {
                 icon="envelope"
                 tooltip={
                   !allAnswered &&
-                  `Please answer all questions.
+                  `请回答所有问题.
                      ${numAnswered} / ${questions.length}`
                 }
               >
-                {read_only ? 'Submitted' : 'Submit'}
+                {read_only ? '已提交' : '提交'}
               </Button>
               {!!is_admin && status === 'interview_pending' && (
                 <span>
                   <Button disabled={!connected} onClick={() => act('adminpm')}>
-                    Admin PM
+                    管理员PM
                   </Button>
                   <Button color="good" onClick={() => act('approve')}>
-                    Approve
+                    赞同
                   </Button>
                   <Button color="bad" onClick={() => act('deny')}>
-                    Deny
+                    否决
                   </Button>
                 </span>
               )}
@@ -115,20 +115,15 @@ export const Interview = (props) => {
           {!read_only && (
             <>
               <Box as="p" color="label">
-                Please answer the following questions.
+                请回答以下问题.
                 <ul>
-                  <li>
-                    You can press enter key or the save button to save an
-                    answer.
-                  </li>
-                  <li>
-                    You can edit your answers until you press the submit button.
-                  </li>
-                  <li>Press SUBMIT when you are done.</li>
+                  <li>您可以按回车键或保存按钮保存回答.</li>
+                  <li>您随时可以编辑您的答案，直到按下提交按钮为止.</li>
+                  <li>当您完成后，就按下提交按钮.</li>
                 </ul>
               </Box>
               <NoticeBox info align="center">
-                You will not be able to edit your answers after submitting.
+                提交后，您将无法再编辑您的答案.
               </NoticeBox>
             </>
           )}
@@ -146,14 +141,13 @@ const RenderedStatus = (props: { status: string; queue_pos: number }) => {
 
   switch (status) {
     case STATUS.Approved:
-      return <NoticeBox success>This interview was approved.</NoticeBox>;
+      return <NoticeBox success>这项调查被批准了.</NoticeBox>;
     case STATUS.Denied:
-      return <NoticeBox danger>This interview was denied.</NoticeBox>;
+      return <NoticeBox danger>这项调查被否决了.</NoticeBox>;
     default:
       return (
         <NoticeBox info>
-          Your answers have been submitted. You are position {queue_pos} in
-          queue.
+          您的答案已经提交. 您在队列中的位置为{queue_pos}.
         </NoticeBox>
       );
   }
@@ -181,20 +175,20 @@ const QuestionArea = (props: Question) => {
 
   return (
     <Section
-      title={`Question ${qidx}`}
+      title={`问题 ${qidx}`}
       buttons={
         <Button
           disabled={!saveAvailable}
           onClick={saveResponse}
           icon={isSaved ? 'check' : 'save'}
         >
-          {isSaved ? 'Saved' : 'Save'}
+          {isSaved ? '已保存' : '保存'}
         </Button>
       }
     >
       <p>{linkifyText(question)}</p>
       {((read_only || is_admin) && (
-        <BlockQuote>{response || 'No response.'}</BlockQuote>
+        <BlockQuote>{response || '无回应.'}</BlockQuote>
       )) || (
         <TextArea
           fluid
@@ -202,7 +196,7 @@ const QuestionArea = (props: Question) => {
           maxLength={500}
           onChange={(e, input) => setUserInput(input)}
           onEnter={saveResponse}
-          placeholder="Write your response here, max of 500 characters. Press enter to submit."
+          placeholder="在这里写下您的回答，最多500字符，按回车键提交."
           value={response || undefined}
         />
       )}

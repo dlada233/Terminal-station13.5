@@ -45,7 +45,7 @@ export const PaiCard = (props) => {
   const { pai } = data;
 
   return (
-    <Window width={400} height={400} title="pAI Options Menu">
+    <Window width={400} height={400} title="pAI选项菜单">
       <Window.Content scrollable>
         {!pai ? <PaiDownload /> : <PaiOptions />}
       </Window.Content>
@@ -64,16 +64,16 @@ const PaiDownload = (props) => {
         <NoticeBox info>
           <Stack fill>
             <Stack.Item grow fontSize="16px">
-              pAI Candidates
+              pAI注册者
             </Stack.Item>
             <Stack.Item>
               <Button
                 color="good"
                 icon="bell"
                 onClick={() => act('request')}
-                tooltip="Request more candidates from beyond."
+                tooltip="从外部申请更多的注册者."
               >
-                Request
+                请求更多
               </Button>
             </Stack.Item>
           </Stack>
@@ -104,29 +104,25 @@ const CandidateDisplay = (props: { candidate: Candidate; index: number }) => {
     <Section
       buttons={
         <Button icon="save" onClick={() => act('download', { ckey })}>
-          Download
+          下载
         </Button>
       }
       overflow="hidden"
-      title={`Candidate ${index}`}
+      title={`注册者 ${index}`}
     >
       <Stack vertical>
         <Stack.Item>
           <Box color="label" mb={1}>
-            Name:
+            名称:
           </Box>
-          {name ? (
-            <Box color="green">{name}</Box>
-          ) : (
-            'None provided - name will be randomized.'
-          )}
+          {name ? <Box color="green">{name}</Box> : '未提供 - 将随机名称.'}
         </Stack.Item>
         {!!description && (
           <>
             <Stack.Divider />
             <Stack.Item>
               <Box color="label" mb={1}>
-                IC Description:
+                IC描述:
               </Box>
               {description}
             </Stack.Item>
@@ -137,7 +133,7 @@ const CandidateDisplay = (props: { candidate: Candidate; index: number }) => {
             <Stack.Divider />
             <Stack.Item>
               <Box color="label" mb={1}>
-                OOC Notes:
+                OOC注释:
               </Box>
               {comments}
             </Stack.Item>
@@ -167,15 +163,15 @@ const PaiOptions = (props) => {
       leash_enabled /* SKYRAT EDIT ADDITION */,
     },
   } = data;
-  const suppliedLaws = laws[0] ? decodeHtmlEntities(laws[0]) : 'None';
+  const suppliedLaws = laws[0] ? decodeHtmlEntities(laws[0]) : '无';
 
   return (
-    <Section fill scrollable title={`Settings: ${name.toUpperCase()}`}>
+    <Section fill scrollable title={`设置: ${name.toUpperCase()}`}>
       <LabeledList>
-        <LabeledList.Item label="Master">
+        <LabeledList.Item label="主人">
           {master || (
             <Button icon="dna" onClick={() => act('set_dna')}>
-              Imprint
+              认证加印
             </Button>
           )}
         </LabeledList.Item>
@@ -184,33 +180,33 @@ const PaiOptions = (props) => {
             {dna}
           </LabeledList.Item>
         )}
-        <LabeledList.Item label="Laws">
+        <LabeledList.Item label="法律">
           <BlockQuote>{suppliedLaws}</BlockQuote>
         </LabeledList.Item>
-        <LabeledList.Item label="Holoform">
+        <LabeledList.Item label="全息影像">
           <Button
             icon={can_holo ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_holo')}
             selected={can_holo}
           >
-            Toggle
+            开关
           </Button>
         </LabeledList.Item>
         {/* SKYRAT EDIT ADDITION START */}
         {!emagged && (
-          <LabeledList.Item label="Holoform Leashed">
+          <LabeledList.Item label="全息影像栓绳">
             <Button
               icon={leash_enabled ? 'toggle-off' : 'toggle-on'}
               onClick={() => act('toggle_leash')}
               selected={leash_enabled}
-              tooltip="Whether or not the holoform is able to roam freely outside of its range."
+              tooltip="全息影像是否能在范围外活动."
             >
-              Toggle
+              开关
             </Button>
           </LabeledList.Item>
         )}
         {/* SKYRAT EDIT ADDITION END */}
-        <LabeledList.Item label="Holoform Range">
+        <LabeledList.Item label="全息影像范围">
           {emagged ? (
             '∞'
           ) : (
@@ -235,35 +231,35 @@ const PaiOptions = (props) => {
             </Stack>
           )}
         </LabeledList.Item>
-        <LabeledList.Item label="Transmit">
+        <LabeledList.Item label="输送">
           <Button
             icon={transmit ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_radio', { option: 'transmit' })}
             selected={transmit}
           >
-            Toggle
+            开关
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Receive">
+        <LabeledList.Item label="接收">
           <Button
             icon={receive ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_radio', { option: 'receive' })}
             selected={receive}
           >
-            Toggle
+            开关
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Troubleshoot">
+        <LabeledList.Item label="进行故障排除">
           <Button icon="comment" onClick={() => act('fix_speech')}>
-            Fix Speech
+            修复发言
           </Button>
           <Button icon="edit" onClick={() => act('set_laws')}>
-            Set Laws
+            设定法律
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Personality">
+        <LabeledList.Item label="个性">
           <Button icon="trash" onClick={() => act('wipe_pai')}>
-            Erase
+            抹除
           </Button>
         </LabeledList.Item>
       </LabeledList>
@@ -274,7 +270,7 @@ const PaiOptions = (props) => {
           mt={1}
           onClick={() => act('reset_software')}
         >
-          Reset Software
+          重置软件
         </Button>
       )}
     </Section>

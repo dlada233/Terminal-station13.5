@@ -49,21 +49,21 @@ export const FoodPreferences = (props) => {
                 <Tooltip
                   position="bottom"
                   content={
-                    'You HAVE to pick at lease ONE TOXIC food and THREE Disliked foods. You Can have a maximum of THREE LIKED foods.'
+                    '你必须选择至少一种有毒的食物和三种厌恶的食物. 最多只可以有三种喜欢的食物.'
                   }
                 >
                   <Box inline>
                     <Button icon="circle-question" mr="0.5em" />
                     {data.invalid ? (
                       <Box as="span" color="#bd2020">
-                        Prefrences are Invalid!{' '}
+                        设置不可用!{' '}
                         {data.invalid.charAt(0).toUpperCase() +
                           data.invalid.slice(1)}{' '}
                         |&nbsp;
                       </Box>
                     ) : (
                       <Box as="span" color="green">
-                        Prefrences are Valid!
+                        设置有效!
                       </Box>
                     )}
                   </Box>
@@ -73,9 +73,9 @@ export const FoodPreferences = (props) => {
                   style={{ position: 'absolute', right: '20em' }}
                   color={'red'}
                   onClick={() => act('reset')}
-                  tooltip="Reset to the default values!"
+                  tooltip="重置为默认!"
                 >
-                  Reset
+                  重置
                 </Button>
 
                 <Button
@@ -86,29 +86,22 @@ export const FoodPreferences = (props) => {
                   disabled={data.race_disabled}
                   tooltip={
                     <>
-                      Toggles if these food preferences will be applied to your
-                      character on spawn.
+                      切换这些食品偏好设置是否会在角色刷出时应用.
                       <Divider />
-                      Remember, these are mostly suggestions, and you are
-                      encouraged to roleplay liking meals that your character
-                      likes, even if you don&apos;t have it&apos;s food type
-                      liked here!
+                      记住，这些大多是建议，你可以去扮演自己的角色喜欢某食物，即使它是不喜欢的食物类型!
                     </>
                   }
                 >
-                  Use Custom Food Preferences
+                  使用自定义食物偏好
                 </Button>
               </Box>
             }
           >
             {(data.race_disabled && (
-              <ErrorOverlay>
-                You&apos;re using a race which isn&apos;t affected by food
-                preferences!
-              </ErrorOverlay>
+              <ErrorOverlay>你使用的是一个不受食物偏好影响的种族!</ErrorOverlay>
             )) ||
               (!data.enabled && (
-                <ErrorOverlay>Your food preferences are disabled!</ErrorOverlay>
+                <ErrorOverlay>你的食物偏好设置被禁用了!</ErrorOverlay>
               ))}
             <Box style={{ columns: '30em' }}>
               {Object.entries(data.food_types).map((element) => {
@@ -120,7 +113,7 @@ export const FoodPreferences = (props) => {
                         <>
                           {foodName}
                           {data.obscure_food_types[foodName] && (
-                            <Tooltip content="This food doesn't count towards your maximum likes, and is free!">
+                            <Tooltip content="这种食物不会占用你的喜爱数额.">
                               <Box
                                 as="span"
                                 fontSize={0.75}
@@ -141,9 +134,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_TOXIC)
                         }
-                        content={<>Toxic</>}
+                        content={<>有毒</>}
                         color="olive"
-                        tooltip="Your character will almost immediately throw up on eating anything toxic."
+                        tooltip="你的角色吃掉有毒食物后会立刻呕吐."
                       />
                       <FoodButton
                         foodName={foodName}
@@ -153,9 +146,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_DISLIKED)
                         }
-                        content={<>Disliked</>}
+                        content={<>厌恶</>}
                         color="red"
-                        tooltip="Your character will become grossed out, before eventually throwing up after a decent intake of disliked food."
+                        tooltip="你的角色在吃下不喜欢的食物后会感到恶心，最终可能会呕吐."
                       />
                       <FoodButton
                         foodName={foodName}
@@ -165,9 +158,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_NEUTRAL)
                         }
-                        content={<>Neutral</>}
+                        content={<>中性</>}
                         color="yellow"
-                        tooltip="Your character has very little to say about something that's neutral."
+                        tooltip="你的角色对中性的食物没什么看法."
                       />
                       <FoodButton
                         foodName={foodName}
@@ -177,9 +170,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_LIKED)
                         }
-                        content={<>Liked</>}
+                        content={<>喜爱</>}
                         color="green"
-                        tooltip="Your character will enjoy anything that's liked."
+                        tooltip="你的角色喜爱并享受这些食物."
                       />
                     </Section>
                   </Box>

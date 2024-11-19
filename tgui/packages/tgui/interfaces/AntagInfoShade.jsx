@@ -18,14 +18,12 @@ export const AntagInfoShade = (props) => {
         />
         <Section fill>
           <Stack vertical fill textAlign="center">
-            <Stack.Item fontSize="20px">
-              Your soul has been captured!
-            </Stack.Item>
+            <Stack.Item fontSize="20px">你的灵魂遭到捕获!</Stack.Item>
             <Stack.Item fontSize="30px">
-              You are bound to the will of {master_name}!
+              你必须服从 {master_name} 的意志!
             </Stack.Item>
             <Stack.Item fontSize="20px">
-              Help them succeed in their goals at all costs.
+              不惜一切代价地帮助其达成目标.
             </Stack.Item>
           </Stack>
         </Section>
