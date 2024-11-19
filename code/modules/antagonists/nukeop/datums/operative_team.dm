@@ -26,31 +26,31 @@
 			parts += "<B>[syndicate_name]特工摧毁了[station_name()]!</B>"
 		if(NUKE_RESULT_NOSURVIVORS)
 			parts += "<span class='neutraltext big'>同归于尽!</span>"
-			parts += "<B>[syndicate_name]特工摧毁了[station_name()]，但未能及时撤离.</B> 下次看好磁盘吧!"
+			parts += "<B>[syndicate_name]特工摧毁了[station_name()]，但未能及时撤离.</B> 下次看好软盘吧!"
 		if(NUKE_RESULT_WRONG_STATION)
 			parts += "<span class='redtext big'>船员大胜利!</span>"
-			parts += "<B>[syndicate_name]特工搞到了核磁盘但却没炸到[station_name()].</B> 下次注意吧!"
+			parts += "<B>[syndicate_name]特工搞到了核软盘但却没炸到[station_name()].</B> 下次注意吧!"
 		if(NUKE_RESULT_WRONG_STATION_DEAD)
 			parts += "<span class='redtext big'>[syndicate_name]特工得到了达尔文奖!</span>"
 			parts += "<B>[syndicate_name]特工炸飞了自己却没炸到[station_name()].</B> 下次注意吧!"
 		if(NUKE_RESULT_HIJACK_DISK)
 			parts += "<span class='greentext big'>辛迪加小胜利!</span>"
-			parts += "<B>[syndicate_name]特工未能摧毁[station_name()]，但他们设法获取了核磁盘并劫持了撤离船，使其降落在辛迪加基地. 干得好?</B>"
+			parts += "<B>[syndicate_name]特工未能摧毁[station_name()]，但他们设法获取了核软盘并劫持了撤离船，使其降落在辛迪加基地. 干得好?</B>"
 		if(NUKE_RESULT_HIJACK_NO_DISK)
 			parts += "<span class='greentext big'>辛迪加迷你胜利!</span>"
-			parts += "<B>[syndicate_name]特工未能摧毁[station_name()]或获取核磁盘，但他们劫持了撤离船，使其降落在辛迪加基地. 干得好?</B>"
+			parts += "<B>[syndicate_name]特工未能摧毁[station_name()]或获取核软盘，但他们劫持了撤离船，使其降落在辛迪加基地. 干得好?</B>"
 		if(NUKE_RESULT_CREW_WIN_SYNDIES_DEAD)
 			parts += "<span class='redtext big'>船员大胜利!</span>"
-			parts += "<B>研究人员保住了核磁盘并杀死了[syndicate_name]特工</B>"
+			parts += "<B>研究人员保住了核软盘并杀死了[syndicate_name]特工</B>"
 		if(NUKE_RESULT_CREW_WIN)
 			parts += "<span class='redtext big'>船员大胜利!</span>"
-			parts += "<B>研究人员保住了核磁盘并拦住了[syndicate_name]特工!</B>"
+			parts += "<B>研究人员保住了核软盘并拦住了[syndicate_name]特工!</B>"
 		if(NUKE_RESULT_DISK_LOST)
 			parts += "<span class='neutraltext big'>平局!</span>"
-			parts += "<B>研究人员未能保住磁盘但杀死了大多数的[syndicate_name]特工!</B>"
+			parts += "<B>研究人员未能保住软盘但杀死了大多数的[syndicate_name]特工!</B>"
 		if(NUKE_RESULT_DISK_STOLEN)
 			parts += "<span class='greentext big'>辛迪加小胜!</span>"
-			parts += "<B>[syndicate_name]在活着完成了袭击，但未能摧毁[station_name()].</B> 下次看好磁盘吧!"
+			parts += "<B>[syndicate_name]在活着完成了袭击，但未能摧毁[station_name()].</B> 下次看好软盘吧!"
 		else
 			parts += "<span class='neutraltext big'>平局</span>"
 			parts += "<B>任务中止!</B>"
@@ -82,7 +82,7 @@
 		return "辛迪加"
 
 /datum/team/nuclear/antag_listing_entry()
-	var/disk_report = "<b>核磁盘(s)</b><br>"
+	var/disk_report = "<b>核软盘(s)</b><br>"
 	disk_report += "<table cellspacing=5>"
 	for(var/obj/item/disk/nuclear/N in SSpoints_of_interest.real_nuclear_disks)
 		disk_report += "<tr><td>[N.name], "

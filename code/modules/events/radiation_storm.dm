@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/radiation_storm
 	max_occurrences = 1
 	category = EVENT_CATEGORY_SPACE
-	description = "辐射风暴袭击整个空间站，所有船员需要躲进维护管道."
+	description = "辐射风暴袭击整个空间站，所有船员需要躲进维护通道."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 

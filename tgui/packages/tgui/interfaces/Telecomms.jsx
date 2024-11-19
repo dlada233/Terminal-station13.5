@@ -36,15 +36,15 @@ export const Telecomms = (props) => {
   return (
     <Window title={id} width={400} height={600}>
       <Window.Content scrollable>
-        {!multitool && <NoticeBox>Use a multitool to make changes.</NoticeBox>}
-        <Section title="Settings">
+        {!multitool && <NoticeBox>使用多功能工具来进行更改.</NoticeBox>}
+        <Section title="设置">
           <LabeledList>
             <LabeledList.Item
-              label="Power"
+              label="电源"
               buttons={
                 <Button
                   icon={toggled ? 'power-off' : 'times'}
-                  content={toggled ? 'On' : 'Off'}
+                  content={toggled ? '开' : '关'}
                   color={toggled ? 'good' : 'bad'}
                   disabled={!multitool}
                   onClick={() => act('toggle')}
@@ -52,7 +52,7 @@ export const Telecomms = (props) => {
               }
             />
             <LabeledList.Item
-              label="Identification String"
+              label="识别字符"
               buttons={
                 <Input
                   width={13}
@@ -62,7 +62,7 @@ export const Telecomms = (props) => {
               }
             />
             <LabeledList.Item
-              label="Network"
+              label="网络"
               buttons={
                 <Input
                   width={10}
@@ -73,7 +73,7 @@ export const Telecomms = (props) => {
               }
             />
             <LabeledList.Item
-              label="Prefabrication"
+              label="预制"
               buttons={
                 <Button
                   icon={prefab ? 'check' : 'times'}
@@ -90,7 +90,7 @@ export const Telecomms = (props) => {
               <Section title="Bus">
                 <Table>
                   <Table.Row>
-                    <Table.Cell>Change Frequency:</Table.Cell>
+                    <Table.Cell>更改频率:</Table.Cell>
                     <Table.Cell>
                       {RADIO_CHANNELS.find(
                         (channel) => channel.freq === changefrequency,
@@ -134,22 +134,22 @@ export const Telecomms = (props) => {
               </Section>
             )}
             {type === 'relay' && (
-              <Section title="Relay">
+              <Section title="转接">
                 <Button
-                  content={'Receiving'}
+                  content={'接收'}
                   icon={receiving ? 'volume-up' : 'volume-mute'}
                   color={receiving ? '' : 'bad'}
                   onClick={() => act('receive')}
                 />
                 <Button
-                  content={'Broadcasting'}
+                  content={'播送'}
                   icon={broadcasting ? 'microphone' : 'microphone-slash'}
                   color={broadcasting ? '' : 'bad'}
                   onClick={() => act('broadcast')}
                 />
               </Section>
             )}
-            <Section title="Linked Network Entities">
+            <Section title="已连接网络实体">
               <Table>
                 {linked.map((entry) => (
                   <Table.Row key={entry.id} className="candystripe">
@@ -167,7 +167,7 @@ export const Telecomms = (props) => {
                 ))}
               </Table>
             </Section>
-            <Section title="Filtered Frequencies">
+            <Section title="过滤频率">
               <Table>
                 {frequencies.map((entry) => (
                   <Table.Row key={frequencies.i} className="candystripe">
@@ -207,7 +207,7 @@ export const Telecomms = (props) => {
                 ))}
                 {!!multitool && (
                   <Table.Row className="candystripe" collapsing>
-                    <Table.Cell>Add Frequency</Table.Cell>
+                    <Table.Cell>添加频率</Table.Cell>
                     <Table.Cell>
                       {RADIO_CHANNELS.find(
                         (channel) => channel.freq === frequency,
@@ -253,28 +253,28 @@ export const Telecomms = (props) => {
               </Table>
             </Section>
             {!!multitool && (
-              <Section title="Multitool">
+              <Section title="多功能工具">
                 {!!multibuff && (
                   <Box bold m={1}>
-                    Current Buffer: {multibuff}
+                    当前缓存: {multibuff}
                   </Box>
                 )}
                 <LabeledControls m={1}>
                   <Button
                     icon={'plus'}
-                    content={'Add Machine'}
+                    content={'添加机器'}
                     disabled={!multitool}
                     onClick={() => act('buffer')}
                   />
                   <Button
                     icon={'link'}
-                    content={'Link'}
+                    content={'连接'}
                     disabled={!multibuff}
                     onClick={() => act('link')}
                   />
                   <Button
                     icon={'times'}
-                    content={'Flush'}
+                    content={'刷新'}
                     disabled={!multibuff}
                     onClick={() => act('flush')}
                   />

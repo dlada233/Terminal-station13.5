@@ -3,7 +3,7 @@
 
 /obj/machinery/computer/operating
 	name = "手术辅助终端"
-	desc = "监测病人的生命体征并显示手术步骤，可装载手术磁盘进行实验性手术，在其视线范围内自动同步到手术台."
+	desc = "监测病人的生命体征并显示手术步骤，可装载手术软盘进行实验性手术，在其视线范围内自动同步到手术台."
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/operating

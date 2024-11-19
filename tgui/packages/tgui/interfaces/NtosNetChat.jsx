@@ -32,12 +32,9 @@ const NoChannelDimmer = (props) => {
             </Stack.Item>
           </Stack>
         </Stack.Item>
-        <Stack.Item fontSize="18px">
-          Click a channel to start chatting!
-        </Stack.Item>
+        <Stack.Item fontSize="18px">点击一个频道开始聊天!</Stack.Item>
         <Stack.Item fontSize="15px">
-          (If you&apos;re new, you may want to set your name in the bottom
-          left!)
+          (如果你是新用户，可以在左下角设置姓名!)
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -97,7 +94,7 @@ export const NtosNetChat = (props) => {
                 <Stack.Item grow>
                   <Button.Input
                     fluid
-                    content="New Channel..."
+                    content="新频道..."
                     onCommit={(e, value) =>
                       act('PRG_newchannel', {
                         new_channel_name: value,
@@ -136,7 +133,7 @@ export const NtosNetChat = (props) => {
                     <Button
                       fluid
                       bold
-                      content={'ADMIN MODE: ' + (adminmode ? 'ON' : 'OFF')}
+                      content={'管理员模式: ' + (adminmode ? '开' : '关')}
                       color={adminmode ? 'bad' : 'good'}
                       onClick={() => act('PRG_toggleadmin')}
                     />
@@ -163,9 +160,9 @@ export const NtosNetChat = (props) => {
                           fontSize="40px"
                         />
                         <Box mt={1} bold fontSize="18px">
-                          THIS CHANNEL IS PASSWORD PROTECTED
+                          这个聊天频道已添加密码限制
                         </Box>
-                        <Box mt={1}>INPUT PASSWORD TO ACCESS</Box>
+                        <Box mt={1}>输入密码以访问</Box>
                       </Box>
                     ))) || <NoChannelDimmer />}
                 </Section>
@@ -175,8 +172,8 @@ export const NtosNetChat = (props) => {
                   backgroundColor={this_client && this_client.muted && 'red'}
                   height="22px"
                   placeholder={
-                    (this_client && this_client.muted && 'You are muted!') ||
-                    'Message ' + title
+                    (this_client && this_client.muted && '你被禁言了!') ||
+                    '消息 ' + title
                   }
                   fluid
                   selfClear
@@ -216,7 +213,7 @@ export const NtosNetChat = (props) => {
                                     icon="bullhorn"
                                     tooltip={
                                       (!this_client?.muted && 'Ping') ||
-                                      'You are muted!'
+                                      '你被禁言了!'
                                     }
                                     tooltipPosition="left"
                                     onClick={() =>
@@ -238,8 +235,8 @@ export const NtosNetChat = (props) => {
                                         (!client.muted && 'green') || 'red'
                                       }
                                       tooltip={
-                                        (!client.muted && 'Mute this User') ||
-                                        'Unmute this User'
+                                        (!client.muted && '禁言该用户') ||
+                                        '解除该用户禁言'
                                       }
                                       tooltipPosition="left"
                                       onClick={() =>
@@ -258,13 +255,13 @@ export const NtosNetChat = (props) => {
                     </Section>
                   </Stack.Item>
                   <Section>
-                    <Stack.Item mb="8px">Settings for {title}:</Stack.Item>
+                    <Stack.Item mb="8px">{title}设置选项:</Stack.Item>
                     <Stack.Item>
                       {!!(in_channel && authorized) && (
                         <>
                           <Button.Input
                             fluid
-                            content="Save log..."
+                            content="保存日志..."
                             defaultValue="new_log"
                             onCommit={(e, value) =>
                               act('PRG_savelog', {
@@ -274,7 +271,7 @@ export const NtosNetChat = (props) => {
                           />
                           <Button.Confirm
                             fluid
-                            content="Leave Channel"
+                            content="离开频道"
                             onClick={() => act('PRG_leavechannel')}
                           />
                         </>
@@ -284,13 +281,13 @@ export const NtosNetChat = (props) => {
                           <Button.Confirm
                             fluid
                             disabled={strong}
-                            content="Delete Channel"
+                            content="删除频道"
                             onClick={() => act('PRG_deletechannel')}
                           />
                           <Button.Input
                             fluid
                             disabled={strong}
-                            content="Rename Channel..."
+                            content="重命名频道..."
                             onCommit={(e, value) =>
                               act('PRG_renamechannel', {
                                 new_name: value,
@@ -299,7 +296,7 @@ export const NtosNetChat = (props) => {
                           />
                           <Button.Input
                             fluid
-                            content="Set Password..."
+                            content="设置密码..."
                             onCommit={(e, value) =>
                               act('PRG_setpassword', {
                                 new_password: value,

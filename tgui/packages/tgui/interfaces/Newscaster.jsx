@@ -27,8 +27,7 @@ import { BountyBoardContent } from './BountyBoard';
 import { UserDetails } from './Vending';
 
 const CENSOR_MESSAGE =
-  'This channel has been deemed as threatening to \
-  the welfare of the station, and marked with a Nanotrasen D-Notice.';
+  '这个频道被认为对空间站的安全构成威胁，已被下达纳米传讯消音令.';
 
 export const Newscaster = (props) => {
   const { act, data } = useBackend();
@@ -52,14 +51,14 @@ export const Newscaster = (props) => {
               selected={screenmode === NEWSCASTER_SCREEN}
               onClick={() => setScreenmode(NEWSCASTER_SCREEN)}
             >
-              Newscaster
+              新闻广播
             </Tabs.Tab>
             <Tabs.Tab
               Color="Blue"
               selected={screenmode === BOUNTYBOARD_SCREEN}
               onClick={() => setScreenmode(BOUNTYBOARD_SCREEN)}
             >
-              Bounty Board
+              委托板
             </Tabs.Tab>
           </Tabs>
         </Stack.Item>
@@ -87,7 +86,7 @@ const NewscasterChannelCreation = (props) => {
         <>
           <Stack.Item>
             <Box pb={1}>
-              Enter channel name here:
+              在此输入频道名称:
               <Button
                 color="red"
                 icon="times"
@@ -110,11 +109,11 @@ const NewscasterChannelCreation = (props) => {
                 })
               }
             >
-              Channel Name
+              频道名称
             </TextArea>
           </Stack.Item>
           <Stack.Item>
-            <Box pb={1}>Enter channel description here:</Box>
+            <Box pb={1}>在此输入频道描述:</Box>
             <TextArea
               fluid
               height="150px"
@@ -128,24 +127,24 @@ const NewscasterChannelCreation = (props) => {
                 })
               }
             >
-              Channel Description
+              频道描述
             </TextArea>
           </Stack.Item>
           <Stack.Item>
             <Section>
-              Set Channel as Public or Private
+              设置频道为公共或私人频道
               <Box pt={1}>
                 <Button
                   selected={!lockedmode}
                   onClick={() => setLockedmode(false)}
                 >
-                  Public
+                  公共
                 </Button>
                 <Button
                   selected={!!lockedmode}
                   onClick={() => setLockedmode(true)}
                 >
-                  Private
+                  私人
                 </Button>
               </Box>
             </Section>
@@ -159,7 +158,7 @@ const NewscasterChannelCreation = (props) => {
                   })
                 }
               >
-                Submit Channel
+                提交频道
               </Button>
             </Box>
           </Stack.Item>
@@ -181,7 +180,7 @@ const NewscasterCommentCreation = (props) => {
       <Stack vertical>
         <Stack.Item>
           <Box pb={1}>
-            Enter comment:
+            输入评论:
             <Button
               color="red"
               position="relative"
@@ -204,7 +203,7 @@ const NewscasterCommentCreation = (props) => {
               })
             }
           >
-            Channel Name
+            频道名称
           </TextArea>
         </Stack.Item>
         <Stack.Item>
@@ -216,7 +215,7 @@ const NewscasterCommentCreation = (props) => {
                 })
               }
             >
-              Submit Comment
+              提交评论
             </Button>
           </Box>
         </Stack.Item>
@@ -245,9 +244,7 @@ const NewscasterWantedScreen = (props) => {
           <Stack vertical>
             <Stack.Item>
               <Box bold color="red">
-                {activeWanted.active
-                  ? 'Active Wanted Issue:'
-                  : 'Dismissed Wanted Issue:'}
+                {activeWanted.active ? '已激活通缉令:' : '未激活通缉令:'}
                 <Button
                   color="red"
                   position="relative"
@@ -265,8 +262,7 @@ const NewscasterWantedScreen = (props) => {
                   </Section>
                   <Image src={activeWanted.image ? activeWanted.image : null} />
                   <Box italic>
-                    Posted by{' '}
-                    {activeWanted.author ? activeWanted.author : 'N/A'}
+                    由 {activeWanted.author ? activeWanted.author : 'N/A'} 发布
                   </Box>
                 </>
               )}
@@ -278,7 +274,7 @@ const NewscasterWantedScreen = (props) => {
       {security_mode ? (
         <>
           <LabeledList>
-            <LabeledList.Item label="Criminal Name">
+            <LabeledList.Item label="罪犯姓名">
               <Button
                 disabled={!security_mode}
                 icon="pen"
@@ -287,7 +283,7 @@ const NewscasterWantedScreen = (props) => {
                 {criminal_name ? criminal_name : ' N/A'}
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Criminal Activity">
+            <LabeledList.Item label="犯罪说明">
               <Button
                 nowrap={false}
                 disabled={!security_mode}
@@ -305,14 +301,14 @@ const NewscasterWantedScreen = (props) => {
               disabled={!security_mode}
               onClick={() => act('togglePhoto')}
             >
-              {photo_data ? 'Remove photo' : 'Attach photo'}
+              {photo_data ? '移除照片' : '添加照片'}
             </Button>
             <Button
               disabled={!security_mode}
               icon="volume-up"
               onClick={() => act('submitWantedIssue')}
             >
-              Set Wanted Issue
+              发布通缉令
             </Button>
             <Button
               disabled={!security_mode}
@@ -320,7 +316,7 @@ const NewscasterWantedScreen = (props) => {
               color="red"
               onClick={() => act('clearWantedIssue')}
             >
-              Clear Wanted
+              取消通缉令
             </Button>
           </Section>
         </>
@@ -328,8 +324,8 @@ const NewscasterWantedScreen = (props) => {
         <Box>
           {wanted.map((activeWanted) =>
             activeWanted.active
-              ? 'Please contact your local security officer if spotted.'
-              : 'No wanted issue posted. Have a secure day.',
+              ? '如有发现请立刻联系当地安保人员.'
+              : '未发布通缉令，祝您今天安全.',
           )}
         </Box>
       )}
@@ -392,7 +388,7 @@ const NewscasterChannelBox = (props) => {
           {channelCensored ? (
             <Section>
               <BlockQuote color="red">
-                <b>ATTENTION:</b> {CENSOR_MESSAGE}
+                <b>注意:</b> {CENSOR_MESSAGE}
               </BlockQuote>
             </Section>
           ) : (
@@ -414,7 +410,7 @@ const NewscasterChannelBox = (props) => {
               onClick={() => act('createStory', { current: viewing_channel })}
               mt={1}
             >
-              Submit Story
+              提交故事
             </Button>
             <Button
               icon="camera"
@@ -425,13 +421,12 @@ const NewscasterChannelBox = (props) => {
               }
               onClick={() => act('togglePhoto')}
             >
-              Select Photo
+              选择照片
             </Button>
             {!!admin_mode && (
               <Button
                 icon="ban"
-                tooltip="Censor the whole channel and it's \
-                  contents as dangerous to the station. Cannot be undone."
+                tooltip="审查封禁整个频道，它的内容被认定为危害空间站，无法撤销."
                 disabled={!admin_mode || !viewing_channel}
                 onClick={() =>
                   act('channelDNotice', {
@@ -440,18 +435,18 @@ const NewscasterChannelBox = (props) => {
                   })
                 }
               >
-                D-Notice
+                消音令
               </Button>
             )}
           </Box>
           <Box>
             <Button
               icon="newspaper"
-              tooltip={paper <= 0 ? 'Insert paper first!' : ''}
+              tooltip={paper <= 0 ? '先添加纸张!' : ''}
               disabled={paper <= 0}
               onClick={() => act('printNewspaper')}
             >
-              Print Newspaper
+              打印报纸
             </Button>
           </Box>
         </Stack.Item>
@@ -477,7 +472,7 @@ const NewscasterChannelSelector = (props) => {
             textColor={activeWanted.active ? 'red' : 'grey'}
             onClick={() => act('toggleWanted')}
           >
-            Wanted Issue
+            通缉令
           </Tabs.Tab>
         ))}
         {channels.map((channel) => (
@@ -506,7 +501,7 @@ const NewscasterChannelSelector = (props) => {
           color="Green"
           onClick={() => act('startCreateChannel')}
         >
-          Create Channel [+]
+          创建频道 [+]
         </Tabs.Tab>
       </Tabs>
     </Section>
@@ -528,9 +523,9 @@ const NewscasterChannelMessages = (props) => {
   if (channelCensored) {
     return (
       <Section color="red">
-        <b>ATTENTION:</b> Comments cannot be read at this time.
+        <b>注意:</b> 目前无法阅读评论.
         <br />
-        Thank you for your understanding, and have a secure day.
+        感谢您的理解，祝您今天安全.
       </Section>
     );
   }
@@ -548,11 +543,11 @@ const NewscasterChannelMessages = (props) => {
               <i>
                 {message.censored_author ? (
                   <Box textColor="red">
-                    By: [REDACTED]. <b>D-Notice Notice</b> .
+                    来自: [REDACTED]. <b>消音令通告</b> .
                   </Box>
                 ) : (
                   <>
-                    By: {message.auth} at {message.time}
+                    来自: {message.auth} 于 {message.time}
                   </>
                 )}
               </i>
@@ -562,7 +557,7 @@ const NewscasterChannelMessages = (props) => {
                 {!!admin_mode && (
                   <Button
                     icon="comment-slash"
-                    tooltip="Censor Story"
+                    tooltip="封禁文章"
                     disabled={!admin_mode}
                     onClick={() =>
                       act('storyCensor', {
@@ -574,7 +569,7 @@ const NewscasterChannelMessages = (props) => {
                 {!!admin_mode && (
                   <Button
                     icon="user-slash"
-                    tooltip="Censor Author"
+                    tooltip="封禁作者"
                     disabled={!admin_mode}
                     onClick={() =>
                       act('authorCensor', {
@@ -585,11 +580,11 @@ const NewscasterChannelMessages = (props) => {
                 )}
                 <Button
                   icon="comment"
-                  tooltip="Leave a Comment."
+                  tooltip="留下评论."
                   disabled={
                     message.censored_author ||
                     message.censored_message ||
-                    user.name === 'Unknown' ||
+                    user.name === '匿名用户' ||
                     (!!channelLocked && channelAuthor !== user.name)
                   }
                   onClick={() =>
@@ -604,8 +599,8 @@ const NewscasterChannelMessages = (props) => {
             <BlockQuote>
               {message.censored_message ? (
                 <Section textColor="red">
-                  This message was deemed dangerous to the general welfare of
-                  the station and therefore marked with a <b>D-Notice</b>.
+                  此信息已被认定对空间站公共安全造成危害，因此被下达
+                  <b>消音令</b>.
                 </Section>
               ) : (
                 <Section pl={1}>
@@ -620,7 +615,7 @@ const NewscasterChannelMessages = (props) => {
                   {message.comments.map((comment) => (
                     <BlockQuote key={comment.index}>
                       <Box italic textColor="white">
-                        By: {comment.auth} at {comment.time}
+                        来自: {comment.auth} 于 {comment.time}
                       </Box>
                       <Section ml={2.5}>
                         <Box

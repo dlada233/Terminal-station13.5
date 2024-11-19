@@ -16,25 +16,23 @@ export const BasketballPanel = (props) => {
   const { act, data } = useBackend<BasketballPanelData>();
 
   return (
-    <Window title="Basketball" width={650} height={580}>
+    <Window title="篮球" width={650} height={580}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
             <Section
               fill
               scrollable
-              title="Lobby"
+              title="大厅"
               buttons={
                 <>
                   <Button
                     icon="clipboard-check"
                     tooltipPosition="bottom-start"
                     tooltip={`
-                    Signs you up for the next game. If there
-                    is an ongoing one, you will be signed up
-                    for the next.
+                    报名参加比赛，如果已有比赛在进行，你将自动报名下场比赛.
                   `}
-                    content="Sign Up"
+                    content="报名"
                     onClick={() => act('basketball_signup')}
                   />
                   <Button
@@ -42,14 +40,14 @@ export const BasketballPanel = (props) => {
                     disabled={data.total_votes < data.players_min}
                     onClick={() => act('basketball_start')}
                   >
-                    Start
+                    开始
                   </Button>
                 </>
               }
             >
               <NoticeBox info>
-                The lobby has {data.total_votes} players signed up. The minigame
-                is for {data.players_min} to {data.players_max} players.
+                大厅有 {data.total_votes} 名玩家报名. 这个小游戏 适合{' '}
+                {data.players_min} 到 {data.players_max} 名玩家.
               </NoticeBox>
 
               {data.lobbydata.map((lobbyist) => (
@@ -60,7 +58,7 @@ export const BasketballPanel = (props) => {
                   align="baseline"
                 >
                   <Stack.Item grow>{lobbyist.ckey}</Stack.Item>
-                  <Stack.Item>Status:</Stack.Item>
+                  <Stack.Item>状态:</Stack.Item>
                   <Stack.Item
                     color={lobbyist.status === 'Ready' ? 'green' : 'red'}
                   >

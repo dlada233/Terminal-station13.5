@@ -66,34 +66,34 @@ export const TramController = (props) => {
   const [tripDestination, setTripDestination] = useState('');
 
   return (
-    <Window title="Tram Controller" width={778} height={327} theme="dark">
+    <Window title="电车控制" width={778} height={327} theme="dark">
       <Window.Content>
         <Stack>
           <Stack.Item grow={4}>
-            <Section title="System Status">
+            <Section title="系统状态">
               <LabeledList>
-                <LabeledList.Item label="System ID">
+                <LabeledList.Item label="系统ID">
                   {transportId}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Controller Queue"
+                  label="控制器队列"
                   color={controllerActive ? 'blue' : 'good'}
                 >
-                  {controllerActive ? 'Processing' : 'Ready'}
+                  {controllerActive ? '处理中' : '就绪'}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Mechanical Status"
+                  label="机器状态"
                   color={controllerOperational ? 'good' : 'bad'}
                 >
-                  {controllerOperational ? 'Normal' : 'Fault'}
+                  {controllerOperational ? '正常' : '故障'}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Processor Status"
+                  label="处理器状态"
                   color={recoveryMode ? 'average' : 'good'}
                 >
-                  {recoveryMode ? 'Overload' : 'Normal'}
+                  {recoveryMode ? '过载' : '正常'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Processor Load">
+                <LabeledList.Item label="处理器负载">
                   <ProgressBar
                     value={currentLoad}
                     minValue={0}
@@ -105,7 +105,7 @@ export const TramController = (props) => {
                     }}
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Current Speed">
+                <LabeledList.Item label="当前速度">
                   <ProgressBar
                     value={currentSpeed}
                     minValue={0}
@@ -122,19 +122,19 @@ export const TramController = (props) => {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-            <Section title="Location Data">
+            <Section title="位置数据">
               <LabeledList>
-                <LabeledList.Item label="Direction">
-                  {travelDirection === 4 ? 'Outbound' : 'Inbound'}
+                <LabeledList.Item label="方向">
+                  {travelDirection === 4 ? '出站' : '入站'}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Idle Platform"
+                  label="待命平台"
                   color={controllerActive ? '' : 'blue'}
                 >
                   {idlePlatform}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Destination Platform"
+                  label="目的地平台"
                   color={controllerActive ? 'blue' : ''}
                 >
                   {destinationPlatform}
@@ -143,10 +143,9 @@ export const TramController = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item grow={6}>
-            <Section title="Controls">
+            <Section title="控制">
               <NoticeBox>
-                Nanotrasen is not responsible for any injuries or fatalities
-                caused by usage of the tram.
+                纳米传讯不对因有轨电车而导致的任何伤害和死亡负责.
               </NoticeBox>
               <Button
                 icon="arrows-rotate"
@@ -158,7 +157,7 @@ export const TramController = (props) => {
                 textAlign="center"
                 onClick={() => act('reset', {})}
               >
-                Reset/Enable
+                重置/开启
               </Button>
               <Button
                 icon="square"
@@ -170,7 +169,7 @@ export const TramController = (props) => {
                 textAlign="center"
                 onClick={() => act('estop', {})}
               >
-                E-Stop/Disable
+                急停/关闭
               </Button>
               <Button
                 icon="play"
@@ -187,13 +186,13 @@ export const TramController = (props) => {
                   })
                 }
               >
-                Start: Destination
+                开始: 目的地
               </Button>
               <Dropdown
                 width="98.5%"
                 options={destinations.map((id) => id.name)}
                 selected={tripDestination}
-                placeholder="Pick a Destination"
+                placeholder="选择目的地"
                 onSelected={(value) => setTripDestination(value)}
               />
               <Button
@@ -206,7 +205,7 @@ export const TramController = (props) => {
                 textAlign="center"
                 onClick={() => act('dopen', {})}
               >
-                Open Doors
+                开门
               </Button>
               <Button
                 icon="bars"
@@ -218,7 +217,7 @@ export const TramController = (props) => {
                 textAlign="center"
                 onClick={() => act('dclose', {})}
               >
-                Close Doors
+                关门
               </Button>
               <Button
                 icon="bars"
@@ -230,7 +229,7 @@ export const TramController = (props) => {
                 textAlign="center"
                 onClick={() => act('togglesensors', {})}
               >
-                Bypass Door Sensors
+                旁路门传感器
               </Button>
             </Section>
             <Section title="Operational">
@@ -242,7 +241,7 @@ export const TramController = (props) => {
                 minHeight={2}
                 textAlign="center"
               >
-                ESTOP
+                急停
               </Button>
               <Button
                 color={statusSF ? 'yellow' : 'transparent'}
@@ -252,7 +251,7 @@ export const TramController = (props) => {
                 minHeight={2}
                 textAlign="center"
               >
-                FAULT
+                故障
               </Button>
               <Button
                 color={statusCE ? 'teal' : 'transparent'}
@@ -262,7 +261,7 @@ export const TramController = (props) => {
                 minHeight={2}
                 textAlign="center"
               >
-                COMMS
+                通信
               </Button>
               <Button
                 color={statusPD ? 'blue' : 'transparent'}
@@ -282,7 +281,7 @@ export const TramController = (props) => {
                 minHeight={2}
                 textAlign="center"
               >
-                DOORS
+                车门
               </Button>
               <Button
                 color={statusCL ? 'blue' : 'transparent'}
@@ -292,7 +291,7 @@ export const TramController = (props) => {
                 minHeight={2}
                 textAlign="center"
               >
-                BUSY
+                忙碌
               </Button>
             </Section>
           </Stack.Item>

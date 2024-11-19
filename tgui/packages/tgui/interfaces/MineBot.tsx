@@ -60,7 +60,12 @@ export const MineBot = (props) => {
     possibleColorList[bot_color],
   );
   return (
-    <Window title="Minebot Settings" width={625} height={328} theme="hackerman">
+    <Window
+      title="采矿机器人设置面板"
+      width={625}
+      height={328}
+      theme="hackerman"
+    >
       <Window.Content>
         <Stack>
           <Stack.Item width="50%">
@@ -76,7 +81,7 @@ export const MineBot = (props) => {
                     })
                   }
                 >
-                  Rename
+                  重命名
                 </Button.Input>
               }
             >
@@ -117,63 +122,63 @@ export const MineBot = (props) => {
                       })
                     }
                   >
-                    Apply Color
+                    应用颜色
                   </Button>
                 </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item width="50%" textAlign="center">
-            <Section title="Configurations">
+            <Section title="配置">
               <LabeledList>
-                <LabeledList.Item label="Health">
+                <LabeledList.Item label="健康">
                   <ProgressBar
                     value={bot_health}
                     maxValue={bot_maxhealth}
                     color="white"
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Mode">
+                <LabeledList.Item label="模式">
                   <Button
                     textAlign="center"
                     width="50%"
                     style={{ padding: '3px' }}
                     onClick={() => act('toggle_mode')}
                   >
-                    {bot_mode ? 'Combat' : 'Safe'}
+                    {bot_mode ? '战斗' : '安全'}
                   </Button>
                 </LabeledList.Item>
-                <LabeledList.Item label="Repair Node Drones">
+                <LabeledList.Item label="修复节点无人机">
                   <Button
                     textAlign="center"
                     width="50%"
                     style={{ padding: '3px' }}
                     onClick={() => act('toggle_repair')}
                   >
-                    {repair_node_drone ? 'Repair' : 'Ignore'}
+                    {repair_node_drone ? '修理' : '忽略'}
                   </Button>
                 </LabeledList.Item>
-                <LabeledList.Item label="Plant Mines">
+                <LabeledList.Item label="布置地雷">
                   <Button
                     textAlign="center"
                     width="50%"
                     style={{ padding: '3px' }}
                     onClick={() => act('toggle_mines')}
                   >
-                    {plant_mines ? 'On' : 'Off'}
+                    {plant_mines ? '开启' : '关闭'}
                   </Button>
                 </LabeledList.Item>
-                <LabeledList.Item label="Auto protect">
+                <LabeledList.Item label="自卫保护">
                   <Button
                     textAlign="center"
                     width="50%"
                     style={{ padding: '3px' }}
                     onClick={() => act('toggle_defend')}
                   >
-                    {auto_defend ? 'On' : 'Off'}
+                    {auto_defend ? '开启' : '关闭'}
                   </Button>
                 </LabeledList.Item>
-                <LabeledList.Item label="Distance To Maintain">
+                <LabeledList.Item label="保持距离">
                   <NumberInput
                     width="50%"
                     value={selectedDistance}

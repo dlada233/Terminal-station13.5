@@ -17,35 +17,35 @@ export const ArmamentStation = (props) => {
   const { act, data } = useBackend();
   const { armaments_list = [], card_inserted, card_points, card_name } = data;
   return (
-    <Window theme="armament" title="Armament Station" width={1000} height={600}>
+    <Window theme="armament" title="武器站" width={1000} height={600}>
       <Window.Content>
-        <Section grow height="100%" title="Armaments Station">
+        <Section grow height="100%" title="武器站">
           {card_inserted ? (
             <Stack>
               <Stack.Item grow fill>
                 <Box>
-                  <b>Inserted Card:</b> {card_name}
+                  <b>已插入的兑换卡:</b> {card_name}
                 </Box>
                 <Box>
-                  <b>Remaining Points:</b> {card_points}
+                  <b>剩余点数:</b> {card_points}
                 </Box>
               </Stack.Item>
               <Stack.Item>
                 <Button
                   icon="eject"
                   fontSize="20px"
-                  content="Eject Card"
+                  content="取出兑换卡"
                   onClick={() => act('eject_card')}
                 />
               </Stack.Item>
             </Stack>
           ) : (
-            <NoticeBox color="bad">No card inserted.</NoticeBox>
+            <NoticeBox color="bad">未插入兑换卡.</NoticeBox>
           )}
           <Divider />
           <Stack fill grow>
             <Stack.Item mr={1}>
-              <Section title="Categories">
+              <Section title="类别">
                 <Stack vertical>
                   {armaments_list.map((armament_category) => (
                     <Stack.Item key={armament_category.category}>
@@ -53,7 +53,7 @@ export const ArmamentStation = (props) => {
                         width="100%"
                         content={
                           armament_category.category +
-                          ' (Pick ' +
+                          ' (上限 ' +
                           armament_category.category_limit +
                           ')'
                         }
@@ -111,7 +111,7 @@ export const ArmamentStation = (props) => {
             </Stack.Item>
             <Divider vertical />
             <Stack.Item width="20%">
-              <Section title="Selected Armament">
+              <Section title="已选择武器">
                 {armaments_list.map((armament_category) =>
                   armament_category.subcategories.map((subcat) =>
                     subcat.items.map(
@@ -137,8 +137,7 @@ export const ArmamentStation = (props) => {
                                   : 'green'
                               }
                             >
-                              {'Quantity Remaining: ' +
-                                (item.quantity - item.purchased)}
+                              {'剩余数量: ' + (item.quantity - item.purchased)}
                             </Stack.Item>
                             <Stack.Item
                               textColor={
@@ -147,7 +146,7 @@ export const ArmamentStation = (props) => {
                                   : 'green'
                               }
                             >
-                              {'Cost: ' + item.cost}
+                              {'花费: ' + item.cost}
                             </Stack.Item>
                             {!!item.buyable_ammo && (
                               <Stack.Item
@@ -158,12 +157,12 @@ export const ArmamentStation = (props) => {
                                     : 'green'
                                 }
                               >
-                                {'Ammo Cost: ' + item.magazine_cost}
+                                {'弹药花费: ' + item.magazine_cost}
                               </Stack.Item>
                             )}
                             <Stack.Item>
                               <Button
-                                content="Buy"
+                                content="购买"
                                 textAlign="center"
                                 width="100%"
                                 disabled={
@@ -180,7 +179,7 @@ export const ArmamentStation = (props) => {
                             {!!item.buyable_ammo && (
                               <Stack.Item>
                                 <Button
-                                  content="Buy Ammo"
+                                  content="购买弹药"
                                   textAlign="center"
                                   width="100%"
                                   disabled={item.magazine_cost > card_points}

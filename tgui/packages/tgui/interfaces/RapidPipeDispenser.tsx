@@ -15,7 +15,7 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
-const ROOT_CATEGORIES = ['Atmospherics', 'Disposals', 'Transit Tubes'];
+const ROOT_CATEGORIES = ['大气管道', '处理管道', '交通管道'];
 
 export const ICON_BY_CATEGORY_NAME = {
   Atmospherics: 'wrench',
@@ -31,19 +31,19 @@ export const ICON_BY_CATEGORY_NAME = {
 
 const TOOLS = [
   {
-    name: 'Dispense',
+    name: '放置',
     bitmask: 1,
   },
   {
-    name: 'Connect',
+    name: '连接',
     bitmask: 2,
   },
   {
-    name: 'Destroy',
+    name: '摧毁',
     bitmask: 4,
   },
   {
-    name: 'Reprogram',
+    name: '重组',
     bitmask: 8,
   },
 ];
@@ -133,7 +133,7 @@ export const ColorItem = (props) => {
   const { selected_color, paint_colors } = data;
   const colorNames = Object.keys(paint_colors);
   return (
-    <LabeledList.Item label="Color">
+    <LabeledList.Item label="颜色">
       {colorNames.map((colorName) => (
         <ColorBox
           key={colorName}
@@ -163,7 +163,7 @@ const ModeItem = (props) => {
   const { act, data } = useBackend<Data>();
   const { mode } = data;
   return (
-    <LabeledList.Item label="Modes">
+    <LabeledList.Item label="模式">
       {TOOLS.map((tool) => (
         <Button.Checkbox
           key={tool.bitmask}
@@ -184,7 +184,7 @@ const CategoryItem = (props) => {
   const { act, data } = useBackend<Data>();
   const { category: rootCategoryIndex } = data;
   return (
-    <LabeledList.Item label="Category">
+    <LabeledList.Item label="类别">
       {ROOT_CATEGORIES.map((categoryName, i) => (
         <Button
           key={categoryName}
@@ -220,7 +220,7 @@ const LayerSelect = (props) => {
   const { pipe_layers } = data;
   const { multi_layer } = data;
   return (
-    <LabeledList.Item label="Layer">
+    <LabeledList.Item label="管道层级">
       {LAYERS.map((layer) => (
         <Button.Checkbox
           key={layer.bitmask}
@@ -236,8 +236,8 @@ const LayerSelect = (props) => {
       <Button.Checkbox
         key="multilayer"
         checked={multi_layer}
-        content="Multi"
-        tooltip="Build on multiple pipe layers simultaneously"
+        content="多层同构"
+        tooltip="同时构建多个层级的管道"
         onClick={() => {
           act('toggle_multi_layer');
         }}
@@ -346,10 +346,8 @@ export const SmartPipeBlockSection = (props) => {
                 color="transparent"
                 icon="info"
                 tooltipPosition="right"
-                tooltip="This is a panel for blocking certain connection
-                directions for the smart pipes.
-                The button in the center resets to
-                default (all directions can connect)"
+                tooltip="该面板用于管理管道自动相连方向，比如按灭上方按钮就会阻止管
+                道放置时自动与上方管道接通，中间按钮则是恢复默认设置."
               />
             </Stack.Item>
             <Stack.Item>

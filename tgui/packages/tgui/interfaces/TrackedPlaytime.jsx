@@ -17,7 +17,7 @@ const PlaytimeSection = (props) => {
   );
 
   if (!sortedPlaytimes.length) {
-    return 'No recorded playtime hours for this section.';
+    return '没有关于这个地方的游玩时间.';
   }
 
   const mostPlayed = sortedPlaytimes[0][1];
@@ -70,17 +70,17 @@ export const TrackedPlaytime = (props) => {
     adminTime,
   } = data;
   return (
-    <Window title="Tracked Playtime" width={550} height={650}>
+    <Window title="游玩时间" width={550} height={650}>
       <Window.Content scrollable>
         {(failReason &&
           ((failReason === JOB_REPORT_MENU_FAIL_REASON_TRACKING_DISABLED && (
-            <Box>This server has disabled tracking.</Box>
+            <Box>此服务器已禁用记录游玩时间.</Box>
           )) ||
             (failReason === JOB_REPORT_MENU_FAIL_REASON_NO_RECORDS && (
-              <Box>You have no records.</Box>
+              <Box>你没有游玩时间记录.</Box>
             )))) || (
           <Box>
-            <Section title="Total">
+            <Section title="总计">
               <PlaytimeSection
                 playtimes={{
                   Ghost: ghostTime,
@@ -90,21 +90,21 @@ export const TrackedPlaytime = (props) => {
               />
             </Section>
             <Section
-              title="Jobs"
+              title="职业"
               buttons={
                 !!isAdmin && (
                   <Button.Checkbox
                     checked={!!exemptStatus}
                     onClick={() => act('toggle_exempt')}
                   >
-                    Job Playtime Exempt
+                    职业游玩时间免除
                   </Button.Checkbox>
                 )
               }
             >
               <PlaytimeSection playtimes={jobPlaytimes} />
             </Section>
-            <Section title="Special">
+            <Section title="特殊">
               <PlaytimeSection playtimes={specialPlaytimes} />
             </Section>
           </Box>

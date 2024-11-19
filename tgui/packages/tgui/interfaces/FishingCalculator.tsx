@@ -78,17 +78,17 @@ export const FishingCalculator = (props) => {
                 })
               }
             >
-              Calculate
+              推算
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Table>
               <TableRow header>
-                <TableCell>Outcome</TableCell>
-                <TableCell>Weight</TableCell>
-                <TableCell>Probabilty</TableCell>
-                <TableCell>Difficulty</TableCell>
-                <TableCell>Count</TableCell>
+                <TableCell>结果</TableCell>
+                <TableCell>重量</TableCell>
+                <TableCell>概率</TableCell>
+                <TableCell>难度</TableCell>
+                <TableCell>数量</TableCell>
               </TableRow>
               {data.info?.map((result) => (
                 <TableRow key={result.result}>

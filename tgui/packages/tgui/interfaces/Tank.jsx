@@ -35,7 +35,7 @@ export const Tank = (props) => {
       <Window.Content>
         <Section>
           <LabeledControls>
-            <LabeledControls.Item label="Pressure">
+            <LabeledControls.Item label="压力">
               <RoundGauge
                 value={tankPressure}
                 minValue={0}
@@ -50,7 +50,7 @@ export const Tank = (props) => {
                 size={2}
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Pressure Regulator">
+            <LabeledControls.Item label="压力调节">
               <Button
                 icon="fast-backward"
                 disabled={data.ReleasePressure === data.minReleasePressure}

@@ -30,26 +30,20 @@ const ShippingHub = (props) => {
 
   return (
     <Section
-      title="NTOS Shipping Hub."
+      title="NTOS船运中心."
       buttons={
-        <Button
-          icon="eject"
-          content="Eject Id"
-          onClick={() => act('ejectid')}
-        />
+        <Button icon="eject" content="取出Id" onClick={() => act('ejectid')} />
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Current User">
+        <LabeledList.Item label="当前用户">
           {current_user || 'N/A'}
         </LabeledList.Item>
-        <LabeledList.Item label="Inserted Card">
+        <LabeledList.Item label="插入ID卡">
           {card_owner || 'N/A'}
         </LabeledList.Item>
-        <LabeledList.Item label="Available Paper">{paperamt}</LabeledList.Item>
-        <LabeledList.Item label="Profit on Sale">
-          {barcode_split}%
-        </LabeledList.Item>
+        <LabeledList.Item label="可用纸张">{paperamt}</LabeledList.Item>
+        <LabeledList.Item label="销售利润">{barcode_split}%</LabeledList.Item>
       </LabeledList>
     </Section>
   );
@@ -61,40 +55,40 @@ const ShippingOptions = (props) => {
   const { has_id_slot, current_user } = data;
 
   return (
-    <Section title="Shipping Options">
+    <Section title="船运选项">
       <Box>
         <Button
           icon="id-card"
-          tooltip="The currently ID card will become the current user."
+          tooltip="根据当前插入的ID卡更新当前用户."
           tooltipPosition="right"
           disabled={!has_id_slot}
           onClick={() => act('selectid')}
-          content="Set Current ID"
+          content="设置当前ID"
         />
       </Box>
       <Box>
         <Button
           icon="print"
-          tooltip="Print a barcode to use on a wrapped package."
+          tooltip="为包装好的物品打印条形码."
           tooltipPosition="right"
           disabled={!current_user}
           onClick={() => act('print')}
-          content="Print Barcode"
+          content="打印条形码"
         />
       </Box>
       <Box>
         <Button
           icon="tags"
-          tooltip="Set how much profit you'd like on your package."
+          tooltip="设定你想要在包裹上获得多少利润."
           tooltipPosition="right"
           onClick={() => act('setsplit')}
-          content="Set Profit Margin"
+          content="设定利润率"
         />
       </Box>
       <Box>
         <Button
           icon="sync-alt"
-          content="Reset ID"
+          content="重置ID"
           onClick={() => act('resetid')}
         />
       </Box>

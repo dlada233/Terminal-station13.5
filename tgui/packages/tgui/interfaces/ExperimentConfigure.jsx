@@ -91,9 +91,7 @@ export const TechwebServer = (props) => {
         </Flex.Item>
       </Flex>
       <Box className="ExperimentTechwebServer__WebContent">
-        <span>
-          Connectivity to this web is maintained by the following servers...
-        </span>
+        <span>连接网络由以下服务器维护...</span>
         <LabeledList>
           {server.all_servers.map((individual_servers, new_index) => (
             <Box key={new_index}>{individual_servers}</Box>
@@ -127,11 +125,11 @@ export const ExperimentConfigure = (props) => {
       <Window.Content>
         <Flex direction="column" height="100%">
           <Flex.Item mb={1}>
-            <Section title="Servers">
+            <Section title="服务器">
               <Box>
                 {webs.size > 0
-                  ? 'Please select a techweb to connect to...'
-                  : 'Found no servers connected to a techweb!'}
+                  ? '请选择要连接到的techweb...'
+                  : '未发现有服务器连接到techweb!'}
               </Box>
               {webs.size > 0 &&
                 Array.from(webs, ([techweb, techwebs]) => (
@@ -142,17 +140,16 @@ export const ExperimentConfigure = (props) => {
           <Flex.Item mb={has_start_callback ? 1 : 0} grow={1}>
             {techwebs.some((e) => e.selected) && (
               <Section
-                title="Experiments"
+                title="实验项目"
                 className="ExperimentConfigure__ExperimentsContainer"
               >
                 <Flex.Item mb={1}>
                   {(experiments.length &&
                     always_active &&
-                    'This device is configured to attempt to perform all available' +
-                      ' experiments, so no further configuration is necessary.') ||
-                    (experiments.length &&
-                      'Select one of the following experiments...') ||
-                    'No experiments found on this web'}
+                    '此设备被设置为尝试执行所有可用' +
+                      '实验，因此无需进一步配置.') ||
+                    (experiments.length && '选择下面的一项实验...') ||
+                    '科研网络中未找到实验.'}
                 </Flex.Item>
                 <Flex.Item>
                   {experiments.map((exp, i) => {
@@ -171,7 +168,7 @@ export const ExperimentConfigure = (props) => {
                 disabled={!experiments.some((e) => e.selected)}
                 icon="flask"
               >
-                Perform Experiment
+                完成实验
               </Button>
             </Flex.Item>
           )}

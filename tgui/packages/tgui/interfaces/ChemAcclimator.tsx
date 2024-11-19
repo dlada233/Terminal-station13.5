@@ -33,10 +33,8 @@ export const ChemAcclimator = (props) => {
       <Window.Content>
         <Section title="Acclimator">
           <LabeledList>
-            <LabeledList.Item label="Current Temperature">
-              {chem_temp} K
-            </LabeledList.Item>
-            <LabeledList.Item label="Target Temperature">
+            <LabeledList.Item label="当前温度">{chem_temp} K</LabeledList.Item>
+            <LabeledList.Item label="目标温度">
               <NumberInput
                 value={target_temperature}
                 unit="K"
@@ -52,7 +50,7 @@ export const ChemAcclimator = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Acceptable Temp. Difference">
+            <LabeledList.Item label="可接受温差">
               <NumberInput
                 step={1}
                 value={allowed_temperature_difference}
@@ -75,14 +73,14 @@ export const ChemAcclimator = (props) => {
           buttons={
             <Button
               icon="power-off"
-              content={enabled ? 'On' : 'Off'}
+              content={enabled ? '开启' : '关闭'}
               selected={enabled}
               onClick={() => act('toggle_power')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Volume">
+            <LabeledList.Item label="体积">
               <NumberInput
                 value={max_volume}
                 unit="u"
@@ -98,11 +96,11 @@ export const ChemAcclimator = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Current Operation">
+            <LabeledList.Item label="当前操作">
               {acclimate_state}
             </LabeledList.Item>
-            <LabeledList.Item label="Current State">
-              {emptying ? 'Emptying' : 'Filling'}
+            <LabeledList.Item label="当前阶段">
+              {emptying ? '清空' : '填充'}
             </LabeledList.Item>
           </LabeledList>
         </Section>

@@ -18,22 +18,22 @@ export const MechBayPowerConsole = (props) => {
     <Window width={400} height={200}>
       <Window.Content>
         <Section
-          title="Mech status"
+          title="机甲状态"
           textAlign="center"
           buttons={
             <Button
               icon="sync"
-              content="Sync"
+              content="同步"
               onClick={() => act('reconnect')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Integrity">
+            <LabeledList.Item label="完整性">
               {(!recharge_port && (
-                <NoticeBox>No power port detected. Please re-sync.</NoticeBox>
+                <NoticeBox>未检测到电源端口，请重新同步.</NoticeBox>
               )) ||
-                (!mech && <NoticeBox>No mech detected.</NoticeBox>) || (
+                (!mech && <NoticeBox>未检测到机甲.</NoticeBox>) || (
                   <ProgressBar
                     value={mech.health / mech.maxhealth}
                     ranges={{
@@ -44,12 +44,12 @@ export const MechBayPowerConsole = (props) => {
                   />
                 )}
             </LabeledList.Item>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="供电">
               {(!recharge_port && (
-                <NoticeBox>No power port detected. Please re-sync.</NoticeBox>
+                <NoticeBox>未检测到电源端口，请重新同步.</NoticeBox>
               )) ||
-                (!mech && <NoticeBox>No mech detected.</NoticeBox>) ||
-                (!cell && <NoticeBox>No cell is installed.</NoticeBox>) || (
+                (!mech && <NoticeBox>未检测到机甲.</NoticeBox>) ||
+                (!cell && <NoticeBox>未安装电池.</NoticeBox>) || (
                   <ProgressBar
                     value={cell.charge / cell.maxcharge}
                     ranges={{

@@ -58,23 +58,19 @@ export const ChemDispenser = (props) => {
     <Window width={565} height={620}>
       <Window.Content scrollable>
         <Section
-          title="Status"
+          title="状态"
           buttons={
             <>
               {recording && (
                 <Box inline mx={1} color="red">
                   <Icon name="circle" mr={1} />
-                  Recording
+                  记录中
                 </Box>
               )}
               <Button
                 icon="book"
                 disabled={!beaker}
-                tooltip={
-                  beaker
-                    ? 'Look up recipes and reagents!'
-                    : 'Please insert a beaker!'
-                }
+                tooltip={beaker ? '查找配方和试剂!' : '请插入烧杯!'}
                 tooltipPosition="bottom-start"
                 onClick={() => act('reaction_lookup')}
               >
@@ -82,7 +78,7 @@ export const ChemDispenser = (props) => {
               </Button>
               <Button
                 icon="cog"
-                tooltip="Color code the reagents by pH"
+                tooltip="按pH值对试剂进行颜色标记"
                 tooltipPosition="bottom-start"
                 selected={hasCol}
                 onClick={() => setHasCol(!hasCol)}
@@ -91,7 +87,7 @@ export const ChemDispenser = (props) => {
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Energy">
+            <LabeledList.Item label="能量">
               <ProgressBar value={data.energy / data.maxEnergy}>
                 {data.displayedEnergy + ' / ' + data.displayedMaxEnergy}
               </ProgressBar>
@@ -99,7 +95,7 @@ export const ChemDispenser = (props) => {
           </LabeledList>
         </Section>
         <Section
-          title="Recipes"
+          title="配方"
           buttons={
             <>
               {!recording && (
@@ -108,7 +104,7 @@ export const ChemDispenser = (props) => {
                     color="transparent"
                     onClick={() => act('clear_recipes')}
                   >
-                    Clear recipes
+                    清除配方
                   </Button>
                 </Box>
               )}
@@ -118,7 +114,7 @@ export const ChemDispenser = (props) => {
                   disabled={!beaker}
                   onClick={() => act('record_recipe')}
                 >
-                  Record
+                  记录
                 </Button>
               )}
               {recording && (
@@ -127,7 +123,7 @@ export const ChemDispenser = (props) => {
                   color="transparent"
                   onClick={() => act('cancel_recording')}
                 >
-                  Discard
+                  弃置
                 </Button>
               )}
               {recording && (
@@ -136,7 +132,7 @@ export const ChemDispenser = (props) => {
                   color="green"
                   onClick={() => act('save_recording')}
                 >
-                  Save
+                  保存
                 </Button>
               )}
             </>
@@ -163,11 +159,11 @@ export const ChemDispenser = (props) => {
         </Section>
         <Button // SKYRAT EDIT ADDITION BEGIN - CHEMISTRY QOL
           icon="pen"
-          content="Custom Amount"
+          content="自定义数量"
           onClick={() => act('custom_amount')}
         />
         <Section
-          title="Dispense"
+          title="配药"
           buttons={beakerTransferAmounts.map((amount) => (
             <Button
               key={amount}
@@ -212,7 +208,7 @@ export const ChemDispenser = (props) => {
           </Box>
         </Section>
         <Section
-          title="Beaker"
+          title="烧杯"
           buttons={beakerTransferAmounts.map((amount) => (
             <Button
               key={amount}
@@ -226,7 +222,7 @@ export const ChemDispenser = (props) => {
         >
           <BeakerDisplay
             beaker={beaker}
-            title_label={recording && 'Virtual beaker'}
+            title_label={recording && '虚拟烧杯'}
             replace_contents={recordedContents}
             showpH={data.showpH}
           />

@@ -38,9 +38,9 @@ export const Aquarium = (props) => {
   return (
     <Window width={520} height={400}>
       <Window.Content>
-        <Section title="Aquarium Controls">
+        <Section title="水族箱控制">
           <LabeledControls>
-            <LabeledControls.Item label="Temperature">
+            <LabeledControls.Item label="温度">
               <Knob
                 size={1.25}
                 mb={1}
@@ -57,7 +57,7 @@ export const Aquarium = (props) => {
                 }
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Fluid">
+            <LabeledControls.Item label="液体">
               <Flex direction="column" mb={1}>
                 {fluidTypes.map((f) => (
                   <Flex.Item key={f}>
@@ -71,21 +71,21 @@ export const Aquarium = (props) => {
                 ))}
               </Flex>
             </LabeledControls.Item>
-            <LabeledControls.Item label="Reproduction Prevention">
+            <LabeledControls.Item label="繁衍预防">
               <Button
-                content={allow_breeding ? 'Offline' : 'Online'}
+                content={allow_breeding ? '离线' : '在线'}
                 selected={!allow_breeding}
                 onClick={() => act('allow_breeding')}
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Feeding Interval">
+            <LabeledControls.Item label="投喂间隔">
               <NumberInput
                 fluid
                 value={feeding_interval}
                 minValue={1}
                 maxValue={7}
                 step={1}
-                unit="minutes"
+                unit="分钟"
                 onChange={(value) =>
                   act('feeding_interval', {
                     feeding_interval: value,
@@ -95,7 +95,7 @@ export const Aquarium = (props) => {
             </LabeledControls.Item>
           </LabeledControls>
         </Section>
-        <Section title="Contents">
+        <Section title="内容">
           {contents.map((movable) => (
             <Button
               key={movable.ref}

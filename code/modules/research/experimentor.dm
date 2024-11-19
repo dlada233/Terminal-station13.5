@@ -1,4 +1,4 @@
-//this is designed to replace the destructive analyzer
+//this is designed to replace the 解构分析仪
 
 //NEEDS MAJOR CODE CLEANUP
 
@@ -19,7 +19,7 @@
 #define FAIL 8
 /obj/machinery/rnd/experimentor//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
 	name = "\improper E.X.P.E.R.I-MENTOR"
-	desc = "A \"replacement\" for the destructive analyzer with a slight tendency to catastrophically fail."
+	desc = "A \"replacement\" for the 解构分析仪 with a slight tendency to catastrophically fail."
 	icon = 'icons/obj/machines/experimentator.dmi'
 	icon_state = "h_lathe"
 	base_icon_state = "h_lathe"

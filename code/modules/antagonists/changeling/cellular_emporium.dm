@@ -86,7 +86,7 @@
 	return TRUE
 
 /datum/action/cellular_emporium
-	name = "Cellular Emporium"
+	name = "生物商城"
 	button_icon = 'icons/obj/drinks/soda.dmi'
 	button_icon_state = "changelingsting"
 	background_icon_state = "bg_changeling"

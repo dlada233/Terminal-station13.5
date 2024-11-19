@@ -89,7 +89,7 @@ export const BotAnnouncement = (props) => {
                 setTab(TAB.Announcements);
               }}
             >
-              Announcements
+              公告
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === TAB.Shortcuts}
@@ -98,7 +98,7 @@ export const BotAnnouncement = (props) => {
                 setTab(TAB.Shortcuts);
               }}
             >
-              Shortcuts
+              快捷键
             </Tabs.Tab>
           </Tabs>
         </Section>
@@ -154,7 +154,7 @@ export const BotAnnouncement = (props) => {
                                 )?.color
                           }
                         >
-                          {val.button.channel || 'No radio channel'}
+                          {val.button.channel || '无无线电频道'}
                         </Box>
                       </Stack.Item>
                     </Stack>
@@ -171,7 +171,7 @@ export const BotAnnouncement = (props) => {
                 onInput={(event, newValue) => setSearch(newValue)}
                 fluid
                 autoFocus
-                placeholder="Search..."
+                placeholder="搜索中..."
               />
             </Stack.Item>
             <Stack.Item>
@@ -179,16 +179,16 @@ export const BotAnnouncement = (props) => {
                 {tab === TAB.Announcements ? (
                   <Stack.Item grow>
                     <Dropdown
-                      options={['No radio channel', ...channels]}
+                      options={['无无线电频道', ...channels]}
                       displayText={
                         selectedChannel === null
-                          ? 'No radio channel'
+                          ? '无无线电频道'
                           : selectedChannel
                       }
                       width="100%"
                       selected={selectedChannel}
                       onSelected={(value) => {
-                        if (value === 'No radio channel') {
+                        if (value === '无无线电频道') {
                           setSelectedChannel(null);
                         } else {
                           setSelectedChannel(value);
@@ -223,9 +223,7 @@ export const BotAnnouncement = (props) => {
                     color={tab === TAB.Announcements ? 'default' : 'red'}
                     minWidth="96px"
                   >
-                    {tab === TAB.Announcements
-                      ? 'Make Shortcut'
-                      : 'Delete Shortcut'}
+                    {tab === TAB.Announcements ? '设置快捷键' : '删除快捷键'}
                   </Button>
                 </Stack.Item>
                 <Stack.Item>
@@ -254,7 +252,7 @@ export const BotAnnouncement = (props) => {
                     disabled={cooldown_left > 0}
                     minWidth="96px"
                   >
-                    Play{' '}
+                    播放{' '}
                     {cooldown_left > 0
                       ? `(${Math.round(cooldown_left / 10)}s)`
                       : ''}

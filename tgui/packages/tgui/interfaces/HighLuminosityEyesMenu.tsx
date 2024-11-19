@@ -33,17 +33,17 @@ const LightColorDisplay = (props) => {
   const { act, data } = useBackend<Data>();
   const { lightColor } = data;
   return (
-    <LabeledList.Item label="Color">
+    <LabeledList.Item label="颜色">
       <ColorBox color={lightColor} />{' '}
       <Button
         icon="palette"
         onClick={() => act('pick_color', { to_update: ToUpdate.LightColor })}
-        tooltip="Brings up a color pick window to change the light color."
+        tooltip="调出颜色编辑器以更改发光颜色"
       />
       <Button
         icon="dice"
         onClick={() => act('random_color', { to_update: ToUpdate.LightColor })}
-        tooltip="Randomizes the light color."
+        tooltip="随机发光颜色."
       />
       <Input
         value={lightColor}
@@ -64,16 +64,16 @@ const RangeDisplay = (props) => {
   const { act, data } = useBackend<Data>();
   const { range } = data;
   return (
-    <LabeledList.Item label="Range">
+    <LabeledList.Item label="范围">
       <Button
         icon="minus-square-o"
         onClick={() => act('set_range', { new_range: range - 1 })}
-        tooltip="Reduces the light range."
+        tooltip="减少光照范围."
       />
       <Button
         icon="plus-square-o"
         onClick={() => act('set_range', { new_range: range + 1 })}
-        tooltip="Increases the light range."
+        tooltip="增加光照范围."
       />
       <NumberInput
         animated
@@ -98,28 +98,28 @@ const EyeColorDisplay = (props) => {
   const { eyeColor } = data;
   return (
     <>
-      <LabeledList.Item label="Match Color">
+      <LabeledList.Item label="颜色匹配">
         <Button.Checkbox
           checked={eyeColor.mode}
           onClick={() => act('toggle_eye_color')}
-          tooltip="Toggles whether eyecolor matches the color of the light."
+          tooltip="开关眼睛颜色是否与发光颜色匹配."
         />
       </LabeledList.Item>
       {!eyeColor.mode && (
         <>
-          <LabeledList.Item label="Left Eye">
+          <LabeledList.Item label="左眼">
             <ColorBox color={eyeColor.left} />{' '}
             <Button
               icon="palette"
               onClick={() => act('pick_color', { to_update: ToUpdate.LeftEye })}
-              tooltip="Brings up a color pick window to change the light color."
+              tooltip="调出颜色编辑器以更改发光颜色."
             />
             <Button
               icon="dice"
               onClick={() =>
                 act('random_color', { to_update: ToUpdate.LeftEye })
               }
-              tooltip="Randomizes the eye color."
+              tooltip="随机该眼睛颜色."
             />
             <Input
               value={eyeColor.left}
@@ -133,21 +133,21 @@ const EyeColorDisplay = (props) => {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Right Eye">
+          <LabeledList.Item label="右眼">
             <ColorBox color={eyeColor.right} />{' '}
             <Button
               icon="palette"
               onClick={() =>
                 act('pick_color', { to_update: ToUpdate.RightEye })
               }
-              tooltip="Brings up a color pick window to change the light color."
+              tooltip="调出颜色编辑器以更改发光颜色."
             />
             <Button
               icon="dice"
               onClick={() =>
                 act('random_color', { to_update: ToUpdate.RightEye })
               }
-              tooltip="Randomizes the eye color."
+              tooltip="随机该眼睛颜色."
             />
             <Input
               value={eyeColor.right}
@@ -172,12 +172,12 @@ export const HighLuminosityEyesMenu = (props) => {
   const { eyeColor } = data;
   return (
     <Window
-      title="High Luminosity Eyes"
+      title="高亮眼睛"
       width={eyeColor.hasOwner ? 262 : 225}
       height={eyeColor.hasOwner ? (eyeColor.mode ? 170 : 220) : 135}
     >
       <Window.Content>
-        <Section fill title="Settings">
+        <Section fill title="设置">
           <LabeledList>
             <LightColorDisplay />
             <RangeDisplay />

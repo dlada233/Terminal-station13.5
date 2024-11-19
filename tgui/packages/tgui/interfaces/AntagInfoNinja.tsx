@@ -36,22 +36,19 @@ export const AntagInfoNinja = (props) => {
         <Section scrollable fill>
           <Stack vertical textColor="green">
             <Stack.Item textAlign="center" fontSize="20px">
-              I am an elite mercenary of the Spider Clan.
-              <br />A <span style={ninja_emphasis}> SPACE NINJA</span>!
+              你是蜘蛛众的精英佣兵.
+              <br />
+              一名<span style={ninja_emphasis}>太空忍者</span>!
             </Stack.Item>
             <Stack.Item textAlign="center" italic>
-              Surprise is my weapon. Shadows are my armor. Without them, I am
-              nothing.
+              善战者，攻其所不守，守其所不攻.
             </Stack.Item>
             <Stack.Item>
               <Section fill>
-                Your advanced ninja suit contains many powerful modules.
-                <br /> It can be recharged by right clicking on station APCs or
-                other power sources, in order to drain their battery.
+                你身上的先进忍者模块服包含了多种强大的模块.
+                <br /> 右键空间站APC即可吸干其中的电力为自己所用.
                 <br />
-                Right clicking on some kinds of machines or items wearing your
-                suit will hack them, to varying effect. Experiment and find out
-                what you can do!
+                右键其他机器或物品也可以进行骇入，产生不同的效果，穿着你的忍者服多多尝试!
               </Section>
             </Stack.Item>
             {/* SKYRAT EDIT ADDITION START */}
@@ -65,7 +62,7 @@ export const AntagInfoNinja = (props) => {
                 objectiveFollowup={
                   <ReplaceObjectivesButton
                     can_change_objective={can_change_objective}
-                    button_title={'Adapt Mission Parameters'}
+                    button_title={'调整任务参数'}
                     button_colour={'green'}
                   />
                 }

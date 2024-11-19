@@ -54,7 +54,7 @@ const WireList = () => {
   return (
     <Section>
       <Button fluid icon="chevron-left" onClick={() => act('exit_legend')}>
-        Back
+        返回
       </Button>
       <Box>
         {wire_devices.map((wire) => (
@@ -82,7 +82,7 @@ const WireArea = () => {
   return (
     <Section>
       <Button fluid icon="chevron-left" onClick={() => act('view_legend')}>
-        Back
+        返回
       </Button>
       <Box bold>{wires_name} wires:</Box>
       {wire_data.map((wire) => (
@@ -100,7 +100,7 @@ const MainMenu = () => {
   const { area_notice, area_name, fluff_notice, station_name, viewing } = data;
 
   return (
-    <Section title={`${station_name} blueprints`}>
+    <Section title={`${station_name} 蓝图`}>
       <Box italic fontSize={0.9}>
         {fluff_notice}
       </Box>
@@ -117,7 +117,7 @@ const MainMenu = () => {
             icon="pencil"
             onClick={() => act('create_area')}
           >
-            Create or modify an existing area
+            创建或改造区域（area）
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -128,7 +128,7 @@ const MainMenu = () => {
             icon="font"
             onClick={() => act('edit_area')}
           >
-            Change area name
+            改变区域（area）名称
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -152,7 +152,7 @@ const MainMenu = () => {
                 icon="wrench"
                 onClick={() => act('refresh')}
               >
-                Refresh structural data
+                刷新结构（structural）数据
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -163,7 +163,7 @@ const MainMenu = () => {
                 icon="wrench"
                 onClick={() => act('hide_blueprints')}
               >
-                Hide structural data
+                隐藏结构（structural）数据
               </Button>
             </Stack.Item>
           </>
@@ -176,7 +176,7 @@ const MainMenu = () => {
               icon="wrench"
               onClick={() => act('view_blueprints')}
             >
-              View structural data
+              浏览结构（structural）数据
             </Button>
           </Stack.Item>
         )}

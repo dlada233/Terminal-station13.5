@@ -22,31 +22,29 @@ export const NtosCouponMaster = (props) => {
     <NtosWindow width={400} height={400}>
       <NtosWindow.Content scrollable>
         {!valid_id ? (
-          <NoticeBox danger>
-            No valid bank account detected. Insert a valid ID.
-          </NoticeBox>
+          <NoticeBox danger>未检测到有效的银行账户. 请插入有效ID.</NoticeBox>
         ) : (
           <>
             <NoticeBox info>
-              You can print redeemed coupons by right-clicking a photocopier.
+              您可以通过右键点击复印机来打印已兑换的优惠券.
             </NoticeBox>
             <Input
               fontSize={1.2}
-              placeholder="Insert your coupon code here"
+              placeholder="在此处输入您的优惠码."
               onEnter={(e, value) =>
                 act('redeem', {
                   code: value,
                 })
               }
             />
-            <Section title="Redeemed Coupons">
+            <Section title="兑换优惠券">
               {redeemed_coupons.map((coupon, index) => (
                 <Box key={index} className="candystripe">
                   {coupon.goody} ({coupon.discount}% OFF)
                 </Box>
               ))}
             </Section>
-            <Section title="Printed Coupons">
+            <Section title="打印优惠券">
               {printed_coupons.map((coupon, index) => (
                 <Box key={index} className="candystripe">
                   {coupon.goody} ({coupon.discount}% OFF)

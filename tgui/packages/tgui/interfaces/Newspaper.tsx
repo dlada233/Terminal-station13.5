@@ -64,7 +64,7 @@ export const Newspaper = (props) => {
             disabled={!current_page}
             onClick={() => act('prev_page')}
           >
-            Previous Page
+            上一页
           </Button>
           <Button
             icon="arrow-right"
@@ -72,7 +72,7 @@ export const Newspaper = (props) => {
             disabled={current_page === channels.length + 1}
             onClick={() => act('next_page')}
           >
-            Next Page
+            下一页
           </Button>
         </Section>
       </Window.Content>
@@ -87,20 +87,18 @@ const NewspaperIntro = (props) => {
   return (
     <Section>
       <Box bold fontSize="30px">
-        The Griffon
+        狮鹫报
       </Box>
       <Box bold fontSize="15px">
-        For use on Space Facilities only!
+        太空设施特供!
       </Box>
-      <Box fontSize="12px">Table of Contents:</Box>
+      <Box fontSize="12px">目录表:</Box>
       {channels.map((channel) => (
         <Box key={channel.page_number}>
-          Page {channel.page_number || 0}: {channel.name}
+          页 {channel.page_number || 0}: {channel.name}
         </Box>
       ))}
-      {!!wanted_criminal && (
-        <Box bold>Last Page: Important Security Announcement</Box>
-      )}
+      {!!wanted_criminal && <Box bold>尾页: 重要安全公告</Box>}
     </Section>
   );
 };
@@ -117,7 +115,7 @@ const NewspaperChannel = (props) => {
             {individual_channel.channel_name}
           </Box>
           <Box fontSize="12px">
-            Channel made by: {individual_channel.author_name}
+            频道创建者: {individual_channel.author_name}
           </Box>
           {channel_has_messages ? (
             <>
@@ -128,14 +126,14 @@ const NewspaperChannel = (props) => {
                       dangerouslySetInnerHTML={processedText(message.message)}
                     />
                     {!!message.photo && <Image src={message.photo} />}
-                    <Box>Written by: {message.author}</Box>
+                    <Box>作者: {message.author}</Box>
                   </Box>
                   <Divider />
                 </>
               ))}
             </>
           ) : (
-            'No feed stories stem from this channel...'
+            '这个频道没有提供任何资讯故事...'
           )}
         </Box>
       ))}
@@ -152,14 +150,14 @@ const NewspaperEnding = (props) => {
       {wanted_criminal ? (
         <>
           <Box bold fontSize="15px">
-            Wanted Issue
+            通缉令
           </Box>
-          <Box fontSize="12px">Criminal Name: {wanted_criminal}</Box>
-          <Box>Description: {wanted_body}</Box>
+          <Box fontSize="12px">罪犯姓名: {wanted_criminal}</Box>
+          <Box>描述: {wanted_body}</Box>
           {!!wanted_photo && <Image src={wanted_photo} />}
         </>
       ) : (
-        'Apart from some uninteresting classified ads, theres nothing in this page...'
+        '除了一些无趣的分类广告外，这一页上什么都没有...'
       )}
     </Section>
   );

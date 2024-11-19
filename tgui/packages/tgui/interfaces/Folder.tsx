@@ -16,7 +16,7 @@ export const Folder = (props) => {
 
   return (
     <Window
-      title={folder_name || 'Folder'}
+      title={folder_name || '文件夹'}
       theme={theme}
       width={400}
       height={500}
@@ -25,7 +25,7 @@ export const Folder = (props) => {
         {!contents.length && (
           <Section>
             <Box color="lightgrey" align="center">
-              This folder is empty!
+              文件夹是空的!
             </Box>
           </Section>
         )}

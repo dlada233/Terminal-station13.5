@@ -321,19 +321,19 @@ Possible to do for anyone motivated enough:
 			if(isAI(usr))
 				var/mob/living/silicon/ai/ai_user = usr
 				ai_user.eyeobj.setLoc(get_turf(src))
-				to_chat(usr, span_info("AI不能请求AI到场. 以跳跃至替代."))
+				to_chat(usr, span_info("AI不能请求AI显像. 以跳跃至替代."))
 				return
 			if(last_request + 200 < world.time)
 				last_request = world.time
-				to_chat(usr, span_info("你请求了一次AI到场."))
+				to_chat(usr, span_info("你请求了一次AI显像."))
 				var/area/area = get_area(src)
 				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 					if(!AI.client)
 						continue
-					to_chat(AI, span_info("你被请求在<a href='?src=[REF(AI)];jump_to_holopad=[REF(src)]'>[area]</a>到场现身. <a href='?src=[REF(AI)];project_to_holopad=[REF(src)]'>投影全息形象?</a>"))
+					to_chat(AI, span_info("你被请求在<a href='?src=[REF(AI)];jump_to_holopad=[REF(src)]'>[area]</a>到场显像. <a href='?src=[REF(AI)];project_to_holopad=[REF(src)]'>投影全息形象?</a>"))
 				return TRUE
 			else
-				to_chat(usr, span_info("最近已经发送了AI到场请求."))
+				to_chat(usr, span_info("最近已经发送了AI显像请求."))
 				return
 		if("holocall")
 			if(outgoing_call)

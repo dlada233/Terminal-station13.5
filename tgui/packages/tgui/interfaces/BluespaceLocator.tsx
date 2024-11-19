@@ -43,13 +43,13 @@ export const BluespaceLocator = (props) => {
             selected={tab === TAB.Implant}
             onClick={() => setTab(TAB.Implant)}
           >
-            Implants
+            植入物
           </Tabs.Tab>
           <Tabs.Tab
             selected={tab === TAB.Beacon}
             onClick={() => setTab(TAB.Beacon)}
           >
-            Teleporter Beacons
+            传送信标
           </Tabs.Tab>
         </Tabs>
         {(TAB.Beacon && <TeleporterBeacons />) ||

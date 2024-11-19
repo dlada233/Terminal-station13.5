@@ -72,7 +72,7 @@ const AuthView = (props) => {
                 ml={2}
                 onClick={() => act('logout')}
               >
-                登出
+                注销
               </Button>
             </NoticeBox>
           </Stack.Item>

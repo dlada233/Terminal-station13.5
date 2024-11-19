@@ -246,7 +246,7 @@ const LockedPage = (props) => {
           <Icon color="purple" name="lock" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="18px" color="purple">
-          The Wizard Federation has locked this page.
+          太空巫师联盟封禁了此页.
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -336,7 +336,7 @@ const Loadouts = (props) => {
             blurb={`
                 经典法师款，在2550年代疯狂流行，
                 自带火球术、魔法飞弹、
-                裂解之手和虚空漫步.
+                裂解之手和虚体化形.
                 本套装关键在于所有的东西都很简单粗暴.
               `}
           />
@@ -366,7 +366,7 @@ const Loadouts = (props) => {
             blurb={`
                 如果有人愿意为你杀人的时候，为什么还要亲自动手呢?
                 用一下装备拥抱混沌: 灵魂石碎片、变化法杖,
-                不死石、传送和虚空漫步! 记住，拒绝进攻性法术!
+                不死石、传送和虚体化形! 记住，拒绝进攻性法术!
               `}
           />
           <SingleLoadout

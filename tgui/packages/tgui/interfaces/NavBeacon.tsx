@@ -65,45 +65,45 @@ export const NavBeaconControlSection = (props: DisabledProps) => {
   const { act, data } = useBackend<Data>();
   const { controls, static_controls } = data;
   return (
-    <Section title="Controls">
+    <Section title="控制面板">
       <LabeledList>
-        <LabeledList.Item label="Location">
+        <LabeledList.Item label="地点">
           <Button
             fluid
-            content={controls.location ?? 'None set'}
+            content={controls.location ?? '无设置'}
             icon="pencil-alt"
             disabled={props.disabled}
             onClick={() => act('set_location')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Enable as Patrol Beacon">
+        <LabeledList.Item label="启用作为巡逻信标">
           <Button.Checkbox
             fluid
             checked={controls.patrol_enabled}
-            content={controls.patrol_enabled ? 'Enabled' : 'Disabled'}
+            content={controls.patrol_enabled ? '启用' : '关闭'}
             disabled={props.disabled}
             onClick={() => act('toggle_patrol')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Next patrol">
+        <LabeledList.Item label="下个巡逻地点">
           <Button
             fluid
-            content={controls.patrol_next ?? 'No next patrol location'}
+            content={controls.patrol_next ?? '无下个巡逻点'}
             icon="pencil-alt"
             disabled={props.disabled}
             onClick={() => act('set_patrol_next')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Enable as Delivery Beacon">
+        <LabeledList.Item label="启用作为运输信标">
           <Button.Checkbox
             fluid
             checked={controls.delivery_enabled}
-            content={controls.delivery_enabled ? 'Enabled' : 'Disabled'}
+            content={controls.delivery_enabled ? '启用' : '关闭'}
             disabled={props.disabled}
             onClick={() => act('toggle_delivery')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Delivery Direction">
+        <LabeledList.Item label="运输方向">
           <Dropdown
             disabled={!!props.disabled}
             options={static_controls.direction_options}
@@ -124,25 +124,25 @@ export const NavBeaconMaintenanceSection = (props: DisabledProps) => {
   const { act, data } = useBackend<Data>();
   const { controls, static_controls } = data;
   return (
-    <Section title="Maintenance">
+    <Section title="检修面板">
       <LabeledList>
-        <LabeledList.Item label="Reset codes">
+        <LabeledList.Item label="重置代码">
           {!!static_controls.has_codes && (
             <Button
               fluid
-              content={'Reset'}
+              content={'重置'}
               icon="power-off"
               disabled={props.disabled}
               onClick={() => act('reset_codes')}
             />
           )}
-          {!static_controls.has_codes && <Box>No backup codes found</Box>}
+          {!static_controls.has_codes && <Box>未找到备份代码</Box>}
         </LabeledList.Item>
-        <LabeledList.Item label="Maintenance hatch cover">
+        <LabeledList.Item label="检修舱盖">
           <Button.Checkbox
             fluid
             checked={controls.cover_locked}
-            content={controls.cover_locked ? 'Locked' : 'Unlocked'}
+            content={controls.cover_locked ? '已锁定' : '未锁定'}
             disabled={props.disabled}
             onClick={() => act('toggle_cover')}
           />

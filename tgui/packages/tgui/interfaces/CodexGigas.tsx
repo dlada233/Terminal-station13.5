@@ -8,24 +8,16 @@ type Data = {
 };
 
 const PREFIXES = [
-  'Dark',
-  'Hellish',
-  'Fallen',
-  'Fiery',
-  'Sinful',
-  'Blood',
-  'Fluffy',
+  '黑暗',
+  '地狱',
+  '堕落',
+  '恐惧',
+  '罪孽',
+  '血腥',
+  '毛茸茸',
 ] as const;
 
-const TITLES = [
-  'Lord',
-  'Prelate',
-  'Count',
-  'Viscount',
-  'Vizier',
-  'Elder',
-  'Adept',
-] as const;
+const TITLES = ['之主', '教士', '伯爵', '子爵', '宰相', '老人', '家'] as const;
 
 const NAMES = [
   'hal',
@@ -45,13 +37,7 @@ const NAMES = [
   'coa',
 ] as const;
 
-const SUFFIXES = [
-  'the Red',
-  'the Soulless',
-  'the Master',
-  'the Lord of all things',
-  'Jr.',
-] as const;
+const SUFFIXES = ['很红', '无魂者', '大师', '万物之主', 'Jr.'] as const;
 
 export const CodexGigas = (props) => {
   const { act, data } = useBackend<Data>();
@@ -86,7 +72,7 @@ const Prefixes = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Prefix">
+    <LabeledList.Item label="前缀">
       {PREFIXES.map((prefix) => (
         <Button
           key={prefix.toLowerCase()}
@@ -104,7 +90,7 @@ const Titles = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Title">
+    <LabeledList.Item label="头衔">
       {TITLES.map((title) => (
         <Button
           key={title.toLowerCase()}
@@ -122,7 +108,7 @@ const Names = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Name">
+    <LabeledList.Item label="名字">
       {NAMES.map((name) => (
         <Button
           key={name.toLowerCase()}
@@ -140,7 +126,7 @@ const Suffixes = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Suffix">
+    <LabeledList.Item label="后缀">
       {SUFFIXES.map((suffix) => (
         <Button
           key={suffix.toLowerCase()}

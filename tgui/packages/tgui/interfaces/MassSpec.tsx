@@ -64,11 +64,11 @@ export const MassSpec = (props) => {
         {!!processing && (
           <Dimmer fontSize="32px">
             <Icon name="cog" spin={1} />
-            {' Purifying... ' + round(eta, 0) + 's'}
+            {' 提纯中... ' + round(eta, 0) + 's'}
           </Dimmer>
         )}
         <Section
-          title="Mass Spectroscopy"
+          title="质谱仪"
           buttons={
             <Button
               icon="power-off"
@@ -77,17 +77,17 @@ export const MassSpec = (props) => {
               }
               tooltip={
                 !beaker_1_has_contents
-                  ? 'Missing input reagents!'
+                  ? '缺少输入试剂!'
                   : !beaker2
-                    ? 'Missing an output beaker!'
+                    ? '缺少输出烧杯!'
                     : eta <= 0
-                      ? 'No work to be done'
-                      : 'Begin purifying'
+                      ? '无工作需要进行'
+                      : '开始提纯'
               }
               tooltipPosition="left"
               onClick={() => act('activate')}
             >
-              Start
+              开始
             </Button>
           }
         >
@@ -100,11 +100,11 @@ export const MassSpec = (props) => {
               maxAbsorbance={peakHeight}
               reagentPeaks={beaker1.contents}
             />
-          )) || <Box>Please insert an input beaker with reagents!</Box>}
+          )) || <Box>请添加装有试剂的输入烧杯!</Box>}
         </Section>
 
         <Section
-          title="Input beaker"
+          title="输入烧杯"
           buttons={
             !!beaker1 && (
               <>
@@ -114,7 +114,7 @@ export const MassSpec = (props) => {
                   </Box>
                 }
                 <Button icon="eject" onClick={() => act('eject1')}>
-                  Eject
+                  取出
                 </Button>
               </>
             )
@@ -126,11 +126,11 @@ export const MassSpec = (props) => {
             beaker={beaker1}
           />
           {!!beaker_1_has_contents && (
-            <Box>{'Eta of selection: ' + round(eta, 0) + ' seconds'}</Box>
+            <Box>{'Eta所选项: ' + round(eta, 0) + ' 秒'}</Box>
           )}
         </Section>
         <Section
-          title="Output beaker"
+          title="输出烧杯"
           buttons={
             !!beaker2 && (
               <>
@@ -140,7 +140,7 @@ export const MassSpec = (props) => {
                   </Box>
                 }
                 <Button icon="eject" onClick={() => act('eject2')}>
-                  Eject
+                  取出
                 </Button>
               </>
             )
@@ -175,22 +175,22 @@ const BeakerMassProfile = (props: ProfileProps) => {
           <Table className="candystripe">
             <Table.Row>
               <Table.Cell bold collapsing color="label">
-                Reagent
+                试剂
               </Table.Cell>
               <Table.Cell bold collapsing color="label">
-                Mass
+                质量
               </Table.Cell>
               <Table.Cell bold collapsing color="label">
-                Volume
+                体积
               </Table.Cell>
               <Table.Cell bold collapsing color="label">
-                Purity
+                纯度
               </Table.Cell>
               <Table.Cell bold collapsing color="label">
-                Type
+                类型
               </Table.Cell>
               <Table.Cell bold collapsing color="label">
-                Status
+                状况
               </Table.Cell>
             </Table.Row>
             {beaker.contents.map((reagent) => {
@@ -282,7 +282,7 @@ const MassSpectroscopy = (props: SpectroscopyProps) => {
             font-weight="bold"
             font-size="16"
           >
-            Mass (G)
+            质量 (G)
           </tspan>
           <tspan x="0%" y={`${base_line + 20}px`}>
             {graphLowerRange}

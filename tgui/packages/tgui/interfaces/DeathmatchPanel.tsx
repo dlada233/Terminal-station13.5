@@ -33,13 +33,12 @@ export function DeathmatchPanel(props) {
   const { hosting } = data;
 
   return (
-    <Window title="Deathmatch Lobbies" width={360} height={400}>
+    <Window title="死亡竞赛大厅列表" width={360} height={400}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
             <NoticeBox danger>
-              If you play, you can still possibly be returned to your body (No
-              Guarantees)!
+              参与后，你仍能回到原本的身体 (不保证100%)!
             </NoticeBox>
           </Stack.Item>
           <Stack.Item grow>
@@ -53,7 +52,7 @@ export function DeathmatchPanel(props) {
               color="good"
               onClick={() => act('host')}
             >
-              Create Lobby
+              创建大厅
             </Button>
           </Stack.Item>
         </Stack>
@@ -70,10 +69,10 @@ function LobbyPane(props) {
     <Section fill scrollable>
       <Table>
         <Table.Row header>
-          <Table.Cell>Host</Table.Cell>
-          <Table.Cell>Map</Table.Cell>
+          <Table.Cell>房主</Table.Cell>
+          <Table.Cell>地图</Table.Cell>
           <Table.Cell>
-            <Tooltip content="Players">
+            <Tooltip content="玩家">
               <Icon name="users" />
             </Tooltip>
           </Table.Cell>
@@ -85,9 +84,7 @@ function LobbyPane(props) {
         {lobbies.length === 0 && (
           <Table.Row>
             <Table.Cell colSpan={4}>
-              <NoticeBox textAlign="center">
-                No lobbies found. Start one!
-              </NoticeBox>
+              <NoticeBox textAlign="center">未找到大厅. 开始一个!</NoticeBox>
             </Table.Cell>
           </Table.Row>
         )}
@@ -117,7 +114,7 @@ function LobbyDisplay(props) {
             width={10}
             noChevron
             selected={lobby.name}
-            options={['Close', 'View']}
+            options={['关闭', '浏览']}
             onSelected={(value) =>
               act('admin', {
                 id: lobby.name,
@@ -139,7 +136,7 @@ function LobbyDisplay(props) {
               color="good"
               onClick={() => act('join', { id: lobby.name })}
             >
-              {playing === lobby.name ? 'View' : 'Join'}
+              {playing === lobby.name ? '浏览' : '加入'}
             </Button>
             <Button
               color="caution"
@@ -153,7 +150,7 @@ function LobbyDisplay(props) {
             color="good"
             onClick={() => act('spectate', { id: lobby.name })}
           >
-            Spectate
+            观战
           </Button>
         )}
       </Table.Cell>

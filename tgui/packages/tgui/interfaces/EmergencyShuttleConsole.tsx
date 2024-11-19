@@ -38,14 +38,14 @@ export function EmergencyShuttleConsole(props) {
           </Box>
           <Box textAlign="center" fontSize="16px" mb={1}>
             <Box inline bold>
-              ENGINES:
+              引擎:
             </Box>
             <Box inline color={engines_started ? 'good' : 'average'} ml={1}>
-              {engines_started ? 'Online' : 'Idle'}
+              {engines_started ? '在线' : '闲置'}
             </Box>
           </Box>
           <Section
-            title="Early Launch Authorization"
+            title="提前发射授权"
             buttons={
               <Button
                 color="bad"
@@ -53,7 +53,7 @@ export function EmergencyShuttleConsole(props) {
                 icon="times"
                 onClick={() => act('abort')}
               >
-                Repeal All
+                全部撤销
               </Button>
             }
           >
@@ -66,7 +66,7 @@ export function EmergencyShuttleConsole(props) {
                   icon="exclamation-triangle"
                   onClick={() => act('authorize')}
                 >
-                  AUTHORIZE
+                  授权
                 </Button>
               </Stack.Item>
               <Stack.Item grow>
@@ -76,22 +76,22 @@ export function EmergencyShuttleConsole(props) {
                   icon="minus"
                   onClick={() => act('repeal')}
                 >
-                  REPEAL
+                  撤销
                 </Button>
               </Stack.Item>
             </Stack>
             <Section
-              title="Authorizations"
+              title="授权"
               minHeight="150px"
               buttons={
                 <Box inline bold color={emagged ? 'bad' : 'good'}>
-                  {emagged ? 'ERROR' : 'Remaining: ' + authorizations_remaining}
+                  {emagged ? '故障' : '剩余: ' + authorizations_remaining}
                 </Box>
               }
             >
               {authorizations.length === 0 ? (
                 <Box bold textAlign="center" fontSize="16px" color="average">
-                  No Active Authorizations
+                  无激活授权
                 </Box>
               ) : (
                 authorizations.map((authorization) => (

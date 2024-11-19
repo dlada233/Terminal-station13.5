@@ -207,11 +207,10 @@ const SignalLostModal = (props) => {
         fontSize={2}
         style={{ borderRadius: '-10%' }}
       >
-        CONNECTION LOST
+        连接丢失
       </Box>
       <Box p={2} italic>
-        Connection to exploration drone interrupted. Please contact nearest
-        Nanotrasen Exploration Division representative for further instructions.
+        与探索无人机连接中断，请与最近的纳米传讯勘探部门代表联系以获取进一步说明.
       </Box>
       <Icon name="exclamation-triangle" textColor="black" size={5} />
       <Box>
@@ -220,7 +219,7 @@ const SignalLostModal = (props) => {
           style={{ border: '1px solid black' }}
           onClick={() => act('confirm_signal_lost')}
         >
-          Confirm
+          确认
         </Button>
       </Box>
     </Modal>
@@ -234,7 +233,7 @@ const DroneSelectionSection = (props: {
   const { all_drones } = props;
 
   return (
-    <Section fill scrollable title="Exploration Drone Listing">
+    <Section fill scrollable title="探索无人机列表">
       <Stack vertical>
         {all_drones.map((drone) => (
           <Fragment key={drone.ref}>
@@ -250,14 +249,14 @@ const DroneSelectionSection = (props: {
                 <Stack.Item grow />
                 <Stack.Divider mr={1} />
                 <Stack.Item ml={0}>
-                  {(drone.controlled && 'Controlled by another console.') || (
+                  {(drone.controlled && '由另一台控制台控制.') || (
                     <Button
                       icon="plug"
                       onClick={() =>
                         act('select_drone', { drone_ref: drone.ref })
                       }
                     >
-                      Assume Control
+                      接管控制
                     </Button>
                   )}
                 </Stack.Item>
@@ -281,7 +280,7 @@ const ToolSelectionModal = (props) => {
   return (
     <Modal>
       <Stack fill vertical pr={2}>
-        <Stack.Item>Select Tool:</Stack.Item>
+        <Stack.Item>选择工具:</Stack.Item>
         <Stack.Item>
           <Stack textAlign="center">
             {(!!toolData &&
@@ -407,11 +406,11 @@ const EquipmentGrid = (props: { drone: ActiveDrone & DroneData }) => {
   return (
     <Stack vertical fill>
       <Stack.Item grow>
-        <Section fill title="Controls">
+        <Section fill title="控制">
           <Stack vertical textAlign="center">
             <Stack.Item>
               <Button fluid icon="plug" onClick={() => act('end_control')}>
-                Disconnect
+                断开连接
               </Button>
             </Stack.Item>
             <Stack.Divider />
@@ -422,14 +421,14 @@ const EquipmentGrid = (props: { drone: ActiveDrone & DroneData }) => {
                 color="bad"
                 onClick={() => act('self_destruct')}
               >
-                Self-Destruct
+                自毁
               </Button.Confirm>
             </Stack.Item>
           </Stack>
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Cargo">
+        <Section title="货物">
           <Stack fill vertical>
             <Stack.Item>
               {!!configurable && (
@@ -439,7 +438,7 @@ const EquipmentGrid = (props: { drone: ActiveDrone & DroneData }) => {
                   icon="wrench"
                   onClick={() => setChoosingTools(true)}
                 >
-                  Install Tool
+                  安装工具
                 </Button>
               )}
             </Stack.Item>
@@ -470,7 +469,7 @@ const DroneStatus = (props: {
   return (
     <Stack ml={-45}>
       <Stack.Item color="label" mt={0.2}>
-        Integrity:
+        完整性:
       </Stack.Item>
       <Stack.Item grow>
         <ProgressBar
@@ -496,10 +495,10 @@ const NoSiteDimmer = () => {
           <Icon color="red" name="map" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="18px" color="red">
-          No Destinations.
+          无目的地.
         </Stack.Item>
         <Stack.Item basis={0} color="red">
-          (Use the Scanner Array Console to find new locations.)
+          (使用扫描阵列控制台查找新地点.)
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -550,14 +549,14 @@ const TravelTargetSelectionScreen = (props: {
       <TravelDimmer drone={drone} />
     )) || (
       <Section
-        title="Travel Destinations"
+        title="前往目的地"
         fill
         scrollable
         buttons={
           <>
             {props.showCancelButton && (
               <Button ml={5} mr={0} onClick={() => props.onSelectionDone()}>
-                Cancel
+                取消
               </Button>
             )}
             <Box mt={props.showCancelButton && -3.5}>
@@ -573,7 +572,7 @@ const TravelTargetSelectionScreen = (props: {
         {site && (
           <Section
             mt={1}
-            title="Home"
+            title="回家"
             buttons={
               <Box>
                 ETA:{' '}
@@ -583,7 +582,7 @@ const TravelTargetSelectionScreen = (props: {
                   onClick={() => travel_to(null)}
                   disabled={!can_travel}
                 >
-                  {can_travel ? 'Launch!' : travel_error}
+                  {can_travel ? '发射!' : travel_error}
                 </Button>
               </Box>
             }
@@ -601,16 +600,16 @@ const TravelTargetSelectionScreen = (props: {
                   onClick={() => travel_to(destination.ref)}
                   disabled={!can_travel}
                 >
-                  {can_travel ? 'Launch!' : travel_error}
+                  {can_travel ? '发射!' : travel_error}
                 </Button>
               </>
             }
           >
             <LabeledList>
-              <LabeledList.Item label="Location">
+              <LabeledList.Item label="地点">
                 {destination.coordinates}
               </LabeledList.Item>
-              <LabeledList.Item label="Description">
+              <LabeledList.Item label="描述">
                 {destination.description}
               </LabeledList.Item>
               <LabeledList.Divider />
@@ -637,7 +636,7 @@ const TravelDimmer = (props: { drone: DroneTravel }) => {
             <Icon color="yellow" name="route" size={10} />
           </Stack.Item>
           <Stack.Item fontSize="18px" color="yellow">
-            Travel Time: {formatTime(travel_time_left)}
+            前往时间: {formatTime(travel_time_left)}
           </Stack.Item>
         </Stack>
       </Dimmer>
@@ -683,7 +682,7 @@ const ExplorationScreen = (props: { drone: DroneExploration & DroneData }) => {
   return (
     <Section
       fill
-      title="Exploration"
+      title="探索"
       buttons={
         <DroneStatus
           drone_integrity={drone.drone_integrity}
@@ -694,13 +693,9 @@ const ExplorationScreen = (props: { drone: DroneExploration & DroneData }) => {
       <Stack vertical fill>
         <Stack.Item grow>
           <LabeledList>
-            <LabeledList.Item label="Site">{site.name}</LabeledList.Item>
-            <LabeledList.Item label="Location">
-              {site.coordinates}
-            </LabeledList.Item>
-            <LabeledList.Item label="Description">
-              {site.description}
-            </LabeledList.Item>
+            <LabeledList.Item label="现场">{site.name}</LabeledList.Item>
+            <LabeledList.Item label="地点">{site.coordinates}</LabeledList.Item>
+            <LabeledList.Item label="描述">{site.description}</LabeledList.Item>
           </LabeledList>
         </Stack.Item>
         <Stack.Item align="center">
@@ -730,7 +725,7 @@ const EventScreen = (props: { drone: DroneData; event: FullEventData }) => {
   return (
     <Section
       fill
-      title="Exploration"
+      title="探索"
       buttons={
         <DroneStatus
           drone_integrity={drone.drone_integrity}
@@ -793,7 +788,7 @@ export const AdventureScreen = (props: {
   return (
     <Section
       fill
-      title="Exploration"
+      title="探索"
       buttons={
         !props.hide_status && (
           <DroneStatus
@@ -887,7 +882,7 @@ const ExodroneConsoleContent = (props) => {
         </Stack>
       </Stack.Item>
       <Stack.Item height={10}>
-        <Section title="Drone Log" fill scrollable>
+        <Section title="无人机日志" fill scrollable>
           <LabeledList>
             {drone_log.map((log_line, ix) => (
               <LabeledList.Item key={`log-${ix}`} label={`Entry ${ix + 1}`}>

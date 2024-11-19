@@ -41,7 +41,7 @@ export const NtosNetMonitor = (props) => {
               selected={tab_main === 2}
               onClick={() => setTab_main(2)}
             >
-              Tablets ({tablets.length})
+              平板设备 ({tablets.length})
             </Tabs.Tab>
           </Tabs>
         </Stack.Item>
@@ -72,10 +72,9 @@ const MainPage = (props) => {
   return (
     <Section>
       <NoticeBox>
-        WARNING: Disabling wireless transmitters when using a wireless device
-        may prevent you from reenabling them!
+        警告: 在使用无线设备时禁用无线发射器可能会导致您无法重新启用它们！
       </NoticeBox>
-      <Section title="Wireless Connectivity">
+      <Section title="无线连接">
         {ntnetrelays.map((relay) => (
           <Section
             key={relay.ref}
@@ -83,7 +82,7 @@ const MainPage = (props) => {
             buttons={
               <Button.Confirm
                 color={relay.is_operational ? 'good' : 'bad'}
-                content={relay.is_operational ? 'ENABLED' : 'DISABLED'}
+                content={relay.is_operational ? '已开启' : '已关闭'}
                 onClick={() =>
                   act('toggle_relay', {
                     ref: relay.ref,
@@ -94,24 +93,21 @@ const MainPage = (props) => {
           />
         ))}
       </Section>
-      <Section title="Security Systems">
+      <Section title="安全系统">
         {!!idsalarm && (
           <>
-            <NoticeBox>NETWORK INCURSION DETECTED</NoticeBox>
-            <Box italics>
-              Abnormal activity has been detected in the network. Check system
-              logs for more information
-            </Box>
+            <NoticeBox>检测到网络入侵</NoticeBox>
+            <Box italics>网络中检测到异常活动. 查看系统日志了解更多信息</Box>
           </>
         )}
         <LabeledList>
           <LabeledList.Item
-            label="IDS Status"
+            label="IDS状态"
             buttons={
               <>
                 <Button
                   icon={idsstatus ? 'power-off' : 'times'}
-                  content={idsstatus ? 'ENABLED' : 'DISABLED'}
+                  content={idsstatus ? '已开启' : '已关闭'}
                   selected={idsstatus}
                   onClick={() => act('toggleIDS')}
                 />
@@ -126,11 +122,11 @@ const MainPage = (props) => {
           />
         </LabeledList>
         <Section
-          title="System Log"
+          title="系统日志"
           buttons={
             <Button.Confirm
               icon="trash"
-              content="Clear Logs"
+              content="清除日志"
               onClick={() => act('purgelogs')}
             />
           }
@@ -150,14 +146,14 @@ const TabletPage = (props) => {
   const { tablets } = props;
   const { act, data } = useBackend();
   if (!tablets.length) {
-    return <NoticeBox>No tablets detected.</NoticeBox>;
+    return <NoticeBox>未检测到平板设备.</NoticeBox>;
   }
   return (
     <Section>
       <Stack vertical mt={1}>
         <Section fill textAlign="center">
           <Icon name="comment" mr={1} />
-          Active Tablets
+          激活平板设备
         </Section>
       </Stack>
       <Stack vertical mt={1}>
@@ -172,9 +168,7 @@ const TabletPage = (props) => {
                     icon={tablet.enabled_spam ? 'unlock' : 'lock'}
                     color={tablet.enabled_spam ? 'good' : 'default'}
                     content={
-                      tablet.enabled_spam
-                        ? 'Restrict Mass PDA'
-                        : 'Allow Mass PDA'
+                      tablet.enabled_spam ? '限制群体PDA' : '允许群体PDA'
                     }
                     onClick={() =>
                       act('toggle_mass_pda', {

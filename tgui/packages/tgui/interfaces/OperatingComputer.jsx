@@ -12,19 +12,19 @@ import { Window } from '../layouts';
 
 const damageTypes = [
   {
-    label: 'Brute',
+    label: '创伤',
     type: 'bruteLoss',
   },
   {
-    label: 'Burn',
+    label: '烧伤',
     type: 'fireLoss',
   },
   {
-    label: 'Toxin',
+    label: '毒素伤',
     type: 'toxLoss',
   },
   {
-    label: 'Respiratory',
+    label: '窒息伤',
     type: 'oxyLoss',
   },
 ];
@@ -38,14 +38,12 @@ export const OperatingComputer = (props) => {
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-            Patient State
+            病患状况
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-            Surgery Procedures
+            手术程序
           </Tabs.Tab>
-          <Tabs.Tab onClick={() => act('open_experiments')}>
-            Experiments
-          </Tabs.Tab>
+          <Tabs.Tab onClick={() => act('open_experiments')}>实验</Tabs.Tab>
         </Tabs>
         {tab === 1 && <PatientStateView />}
         {tab === 2 && <SurgeryProceduresView />}
@@ -58,21 +56,21 @@ const PatientStateView = (props) => {
   const { act, data } = useBackend();
   const { table, procedures = [], patient = {} } = data;
   if (!table) {
-    return <NoticeBox>No Table Detected</NoticeBox>;
+    return <NoticeBox>未检测到手术平台</NoticeBox>;
   }
 
   return (
     <>
-      <Section title="Patient State">
+      <Section title="病患状态">
         {Object.keys(patient).length ? (
           <LabeledList>
-            <LabeledList.Item label="State" color={patient.statstate}>
+            <LabeledList.Item label="状态" color={patient.statstate}>
               {patient.stat}
             </LabeledList.Item>
-            <LabeledList.Item label="Blood Type">
-              {patient.blood_type || 'Unable to determine blood type'}
+            <LabeledList.Item label="血型">
+              {patient.blood_type || '无法判断血型'}
             </LabeledList.Item>
-            <LabeledList.Item label="Health">
+            <LabeledList.Item label="健康">
               <ProgressBar
                 value={patient.health}
                 minValue={patient.minHealth}
@@ -94,33 +92,33 @@ const PatientStateView = (props) => {
             ))}
           </LabeledList>
         ) : (
-          'No Patient Detected'
+          '未检测到病患'
         )}
       </Section>
-      {procedures.length === 0 && <Section>No Active Procedures</Section>}
+      {procedures.length === 0 && <Section>无手术程序</Section>}
       {procedures.map((procedure) => (
         <Section key={procedure.name} title={procedure.name}>
           <LabeledList>
-            <LabeledList.Item label="Next Step">
+            <LabeledList.Item label="下一步骤">
               {procedure.next_step}
               {procedure.chems_needed && (
                 <>
                   <br />
                   <br />
-                  <b>Required Chemicals:</b>
+                  <b>所需化学物:</b>
                   <br />
                   {procedure.chems_needed}
                 </>
               )}
             </LabeledList.Item>
             {procedure.alternative_step && (
-              <LabeledList.Item label="Alternative Step">
+              <LabeledList.Item label="替代步骤">
                 {procedure.alternative_step}
                 {procedure.alt_chems_needed && (
                   <>
                     <br />
                     <br />
-                    <b>Required Chemicals:</b>
+                    <b>所需化学物:</b>
                     <br />
                     {procedure.alt_chems_needed}
                   </>
@@ -138,10 +136,10 @@ const SurgeryProceduresView = (props) => {
   const { act, data } = useBackend();
   const { surgeries = [] } = data;
   return (
-    <Section title="Advanced Surgery Procedures">
+    <Section title="高级手术程序">
       <Button
         icon="download"
-        content="Sync Research Database"
+        content="同步研究数据库"
         onClick={() => act('sync')}
       />
       {surgeries.map((surgery) => (

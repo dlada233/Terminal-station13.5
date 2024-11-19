@@ -49,12 +49,12 @@ export const BluespaceSender = (props) => {
   const gasMax = Math.max(1, ...gases.map((gas) => gas.amount));
 
   return (
-    <Window title="Bluespace Sender" width={500} height={600}>
+    <Window title="蓝空供货站" width={500} height={600}>
       <Window.Content>
         <Section
           scrollable
           fill
-          title="Bluespace Network Gases"
+          title="蓝空网络气体"
           buttons={
             <>
               <Button
@@ -63,10 +63,8 @@ export const BluespaceSender = (props) => {
                 icon="info"
                 tooltipPosition="bottom-start"
                 tooltip={`
-                Any gas you pipe into here will be added to the Bluespace
-                Network! That means any connected Bluespace Vendor (multitool)
-                will hook up to all the gas stored in this, and charge
-                this machine's price to buy it.
+                在这里用管道输入的任何气体都将被添加到蓝空网络中!
+                这意味着与其相连(多功能工具)的蓝空售货机将使用其库存，以这台机器的价格购买.
               `}
               />
               <NumberInput
@@ -86,23 +84,23 @@ export const BluespaceSender = (props) => {
               <Button
                 ml={0.5}
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
+                content={on ? '开启' : '关闭'}
                 selected={on}
                 tooltipPosition="bottom-start"
-                tooltip="Will only take in gases while on."
+                tooltip="只会吸收气体."
                 onClick={() => act('power')}
               />
               <Button
                 ml={0.5}
-                content="Retrieve gases"
+                content="收回气体"
                 tooltipPosition="bottom-start"
-                tooltip="Will transfer any gases inside to the pipe."
+                tooltip="会将内部气体收回管道中."
                 onClick={() => act('retrieve')}
               />
             </>
           }
         >
-          <Box>{'The vendors have made ' + credits + ' credits so far.'}</Box>
+          <Box>{'售货机至今为止已经售出了 ' + credits + ' 信用点.'}</Box>
           <Divider />
           <LabeledList>
             {gases.map((gas, index) => (
@@ -131,7 +129,7 @@ const GasDisplay = (props: GasDisplayProps) => {
             fluid
             value={price}
             step={1}
-            unit="per mole"
+            unit="每mole"
             minValue={0}
             maxValue={100}
             onDrag={(value) =>

@@ -32,7 +32,7 @@ export const NifPanel = (props) => {
 
   return (
     <Window
-      title={'Nanite Implant Framework'}
+      title={'纳米植入物框架-Nanite Implant Framework'}
       width={500}
       height={400}
       resizable
@@ -40,11 +40,11 @@ export const NifPanel = (props) => {
     >
       <Window.Content>
         <Section
-          title={`Welcome to your NIF, ${linked_mob_name}`}
+          title={`欢迎来到你的NIF, ${linked_mob_name}`}
           buttons={
             <Button
               icon="cogs"
-              tooltip="NIF Settings"
+              tooltip="NIF设置"
               tooltiptooltipPosition="bottom-end"
               selected={settingsOpen}
               onClick={() => setSettingsOpen(!settingsOpen)}
@@ -54,9 +54,9 @@ export const NifPanel = (props) => {
           {(settingsOpen && <NifSettings />) || <NifStats />}
           {(!settingsOpen && (
             <Section
-              title={`NIFSoft Programs (${
+              title={`NIF软件程序 (${
                 max_nifsofts - loaded_nifsofts.length
-              } Slots Remaining)`}
+              } 剩余槽位)`}
               right
             >
               {(loaded_nifsofts.length && (
@@ -88,37 +88,37 @@ export const NifPanel = (props) => {
                               <Button
                                 icon="bolt"
                                 color="yellow"
-                                tooltip="What percent of the power is used when activating the NIFSoft"
+                                tooltip="当激活NIF软件时，会使用多少百分比的能量."
                               />
                               {nifsoft.activation_cost === 0
-                                ? ' No activation cost'
+                                ? ' 无激活耗费'
                                 : ' ' +
                                   (nifsoft.activation_cost / max_power) * 100 +
-                                  '% per activation'}
+                                  '% 每次激活'}
                             </TableCell>
                             <TableCell>
                               <Button
                                 icon="battery-half"
                                 color="orange"
-                                tooltip="The power that the NIFSoft uses while active"
+                                tooltip="NIF软件在激活时使用的能量."
                                 disabled={nifsoft.active_cost === 0}
                               />
                               {nifsoft.active_cost === 0
-                                ? ' No active drain'
+                                ? ' 无激活的耗费'
                                 : ' ' +
                                   (nifsoft.active_cost / max_power) * 100 +
-                                  '% consumed while active'}
+                                  '% 每次激活耗费'}
                             </TableCell>
                             <TableCell>
                               <Button
                                 icon="exclamation"
                                 color={nifsoft.active ? 'green' : 'red'}
                                 disabled={!nifsoft.active_mode}
-                                tooltip="Shows whether or not a program is currently active or not"
+                                tooltip="显示程序当前是否处于激活状态."
                               />
                               {nifsoft.active
-                                ? ' The NIFSoft is active!'
-                                : ' The NIFSoft is inactive!'}
+                                ? ' 这个NIF软件已激活!'
+                                : ' 这个NIF软件未激活!'}
                             </TableCell>
                           </TableRow>
                         </Table>
@@ -133,12 +133,12 @@ export const NifPanel = (props) => {
                               icon="floppy-disk"
                               content={
                                 nifsoft.keep_installed
-                                  ? 'The NIFSoft will stay saved'
-                                  : "The NIFSoft won't stay saved"
+                                  ? 'NIF软件将会被保存'
+                                  : 'NIF软件不会被保存'
                               }
                               color={nifsoft.keep_installed ? 'green' : 'red'}
                               fluid
-                              tooltip="Toggle if the NIFSoft will stay saved between shifts"
+                              tooltip="切换NIF软件是否会保存到不同轮班回合."
                               onClick={() =>
                                 act('toggle_keeping_nifsoft', {
                                   nifsoft_to_keep: nifsoft.reference,
@@ -153,11 +153,11 @@ export const NifPanel = (props) => {
                           <br />
                           <Button.Confirm
                             icon="trash"
-                            content="Uninstall"
+                            content="卸载"
                             color="red"
                             fluid
-                            tooltip="Uninstall the selected NIFSoft"
-                            confirmContent="Are you sure?"
+                            tooltip="卸载所选NIF软件"
+                            confirmContent="你确定?"
                             confirmIcon="question"
                             onClick={() =>
                               act('uninstall_nifsoft', {
@@ -174,13 +174,13 @@ export const NifPanel = (props) => {
                 <Box>
                   {' '}
                   <center>
-                    <b>There are no NIFSofts currently installed</b>
+                    <b>目前没有安装NIF软件</b>
                   </center>{' '}
                 </Box>
               )}
             </Section>
           )) || (
-            <Section title={'Product Info'}>
+            <Section title={'产品信息'}>
               <NifProductNotes />
             </Section>
           )}
@@ -204,7 +204,7 @@ const NifSettings = (props) => {
   } = data;
   return (
     <LabeledList>
-      <LabeledList.Item label="NIF Theme">
+      <LabeledList.Item label="NIF主题">
         <Dropdown
           width="100%"
           selected={current_theme}
@@ -212,7 +212,7 @@ const NifSettings = (props) => {
           onSelected={(value) => act('change_theme', { target_theme: value })}
         />
       </LabeledList.Item>
-      <LabeledList.Item label="NIF Flavor Text">
+      <LabeledList.Item label="NIF自定义文本">
         <Input
           onChange={(e, value) =>
             act('change_examine_text', { new_text: value })
@@ -220,36 +220,30 @@ const NifSettings = (props) => {
           width="100%"
         />
       </LabeledList.Item>
-      <LabeledList.Item label="Nutrition Drain">
+      <LabeledList.Item label="营养供能">
         <Button
           fluid
-          content={
-            nutrition_drain === 0
-              ? 'Nutrition Drain Disabled'
-              : 'Nutrition Drain Enabled'
-          }
-          tooltip="Toggles the ability for the NIF to use your food as an energy source. Enabling this may result in increased hunger."
+          content={nutrition_drain === 0 ? '营养供能关闭' : '营养供能开启'}
+          tooltip="切换NIF是否使用食物作为能量来源，开启后可能导致身体饥饿."
           onClick={() => act('toggle_nutrition_drain')}
           disabled={nutrition_level < 26}
         />
       </LabeledList.Item>
-      <LabeledList.Item label="Blood Drain">
+      <LabeledList.Item label="血液供能">
         <Button
           fluid
-          content={
-            blood_drain === 0 ? 'Blood Drain Disabled' : 'Blood Drain Enabled'
-          }
-          tooltip="Toggles the ability for the NIF to drain blood from you. This will automatically shut off once you get close to an unsafe blood level"
+          content={blood_drain === 0 ? '血液供能关闭' : '血液供能开启'}
+          tooltip="切换NIF是否吸取身体血液作为能量来源，一旦血液水平接近危险值将会自动关闭."
           onClick={() => act('toggle_blood_drain')}
           disabled={blood_level < minimum_blood_level}
         />
       </LabeledList.Item>
       <LabeledList.Item
-        label="Rewards Points"
+        label="奖励积分"
         buttons={
           <Button
             icon="info"
-            tooltip="Rewards points are an alternative currency gained by purchasing NIFSofts, rewards points carry between shifts."
+            tooltip="奖励积分是通过购买NIF软件获得的替代货币，奖励积分可在不同轮班回合间携带."
           />
         }
       >
@@ -280,7 +274,7 @@ const NifStats = (props) => {
   return (
     <Box>
       <LabeledList>
-        <LabeledList.Item label="NIF Condition">
+        <LabeledList.Item label="NIF情况">
           <ProgressBar
             value={durability}
             minValue={0}
@@ -293,7 +287,7 @@ const NifStats = (props) => {
             alertAfter={max_durability * 0.25}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="NIF Power">
+        <LabeledList.Item label="NIF能源">
           <ProgressBar
             value={power_level}
             minValue={0}
@@ -309,16 +303,16 @@ const NifStats = (props) => {
               '%' +
               ' (' +
               (power_usage / max_power) * 100 +
-              '% Usage)'}
+              '% 用量)'}
           </ProgressBar>
         </LabeledList.Item>
         {nutrition_drain === 1 && (
-          <LabeledList.Item label="User Nutrition">
+          <LabeledList.Item label="用户营养">
             <NifNutritionBar />
           </LabeledList.Item>
         )}
         {blood_drain === 1 && (
-          <LabeledList.Item label="User Blood Level">
+          <LabeledList.Item label="用户血含量">
             <NifBloodBar />
           </LabeledList.Item>
         )}

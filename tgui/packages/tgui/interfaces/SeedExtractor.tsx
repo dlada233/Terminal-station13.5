@@ -81,107 +81,99 @@ export const SeedExtractor = (props) => {
               <Table.Cell colSpan={3} px={1} py={2}>
                 <Input
                   autoFocus
-                  placeholder={'Search...'}
+                  placeholder={'搜索...'}
                   value={searchText}
                   onInput={(e, value) => setSearchText(value)}
                   fluid
                 />
               </Table.Cell>
               <Table.Cell collapsing p={1}>
-                <Tooltip
-                  content={
-                    'Potency: Determines product mass, reagent volume and strength of effects.'
-                  }
-                >
+                <Tooltip content={'品质: 决定成品质量，试剂体积和效果强度.'}>
                   <Box
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => setSortField('potency')}
                   >
-                    PTN
+                    品质
                   </Box>
                 </Tooltip>
               </Table.Cell>
               <Table.Cell collapsing p={1}>
-                <Tooltip
-                  content={
-                    'Yield: The number of products gathered in a single harvest.'
-                  }
-                >
+                <Tooltip content={'产量: 单次收获的成品数量.'}>
                   <Box
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => setSortField('yield')}
                   >
-                    YLD
+                    产量
                   </Box>
                 </Tooltip>
               </Table.Cell>
               <Table.Cell collapsing p={1}>
                 <Tooltip
                   content={
-                    'Instability: The likelihood of the plant to randomize stats or mutate. Affects quality of resulting food & drinks.'
+                    '变异: 植物随机状态以及发生突变的可能性. 它会影响由此植物制作成的食品和饮品的品质.'
                   }
                 >
                   <Box
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => setSortField('instability')}
                   >
-                    INS
+                    变异
                   </Box>
                 </Tooltip>
               </Table.Cell>
               <Table.Cell collapsing p={1}>
                 <Tooltip
                   content={
-                    'Endurance: The health pool of the plant that delays death. Improves quality of resulting food & drinks.'
+                    '耐力: 植物的血量，能延缓死亡的到来. 它会提高由此植物制成的食品和饮料的品质.'
                   }
                 >
                   <Box
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => setSortField('endurance')}
                   >
-                    END
+                    耐力
                   </Box>
                 </Tooltip>
               </Table.Cell>
               <Table.Cell collapsing p={1}>
                 <Tooltip
-                  content={`Lifespan: The age at which the plant starts decaying, in ${data.cycle_seconds} second long cycles. Improves quality of resulting food & drinks.`}
+                  content={`寿命: 植物开始衰败时的年龄，以${data.cycle_seconds}秒为周期. 它能提高由此植物制成的食品和饮料的品质.`}
                 >
                   <Box
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => setSortField('lifespan')}
                   >
-                    LFS
+                    寿命
                   </Box>
                 </Tooltip>
               </Table.Cell>
               <Table.Cell collapsing p={1}>
                 <Tooltip
-                  content={`Maturation: The age required for the first harvest, in ${data.cycle_seconds} second long cycles.`}
+                  content={`成熟: 首次收获所需时间，以${data.cycle_seconds}秒为周期.`}
                 >
                   <Box
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => setSortField('maturation')}
                   >
-                    MTR
+                    成熟
                   </Box>
                 </Tooltip>
               </Table.Cell>
               <Table.Cell collapsing p={1}>
                 <Tooltip
-                  content={`Production: The period of product regrowth, in ${data.cycle_seconds} second long cycles.`}
+                  content={`生长周期: 再次结果所需时间，以${data.cycle_seconds}秒为周期.`}
                 >
                   <Box
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => setSortField('production')}
                   >
-                    PRD
+                    生长
                   </Box>
                 </Tooltip>
               </Table.Cell>
               <Table.Cell collapsing p={1} textAlign="right">
                 {sortField !== 'name' && (
-                  <Tooltip content="Reset sorting">
+                  <Tooltip content="重新排序">
                     <Button
                       color="transparent"
                       icon="refresh"
@@ -192,7 +184,7 @@ export const SeedExtractor = (props) => {
                 <Box align="right" />
               </Table.Cell>
               <Table.Cell collapsing p={1} textAlign="right">
-                <Tooltip content={action ? 'Scrap seeds' : 'Take seeds'}>
+                <Tooltip content={action ? '丢弃种子' : '拿取种子'}>
                   <Button
                     icon={action ? 'trash' : 'eject'}
                     color={action ? 'bad' : ''}
@@ -226,7 +218,7 @@ export const SeedExtractor = (props) => {
                     ))}
                     {!!item.mutatelist.length && (
                       <Tooltip
-                        content={`Mutates into: ${item.mutatelist.join(', ')}`}
+                        content={`突变成为: ${item.mutatelist.join(', ')}`}
                       >
                         <Icon name="dna" m={0.5} />
                       </Tooltip>
@@ -246,14 +238,12 @@ export const SeedExtractor = (props) => {
                       </Tooltip>
                     )}
                     {!!item.juice_name && (
-                      <Tooltip content={`Juicing result: ${item.juice_name}`}>
+                      <Tooltip content={`榨汁结果: ${item.juice_name}`}>
                         <Icon name="glass-water" m={0.5} />
                       </Tooltip>
                     )}
                     {!!item.distill_reagent && (
-                      <Tooltip
-                        content={`Ferments into: ${item.distill_reagent}`}
-                      >
+                      <Tooltip content={`发酵结果: ${item.distill_reagent}`}>
                         <Icon name="wine-bottle" m={0.5} />
                       </Tooltip>
                     )}
@@ -289,7 +279,7 @@ export const SeedExtractor = (props) => {
                     {action ? (
                       <Button
                         icon="eject"
-                        content="Take"
+                        content="拿取"
                         onClick={() =>
                           act('take', {
                             item: item.key,
@@ -299,7 +289,7 @@ export const SeedExtractor = (props) => {
                     ) : (
                       <Button
                         icon="trash"
-                        content="Scrap"
+                        content="丢弃"
                         color="bad"
                         onClick={() =>
                           act('scrap', {
@@ -314,7 +304,7 @@ export const SeedExtractor = (props) => {
           </Table>
           {seeds.length === 0 && (
             <NoticeBox m={1} p={1}>
-              No seeds found.
+              未找到种子.
             </NoticeBox>
           )}
         </Section>
@@ -356,7 +346,7 @@ const ReagentTooltip = (props) => {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell colSpan={2}>Reagents on grind:</Table.Cell>
+        <Table.Cell colSpan={2}>研磨试剂:</Table.Cell>
       </Table.Row>
       {props.reagents?.map((reagent, i) => (
         <Table.Row key={i}>
@@ -374,7 +364,7 @@ const ReagentTooltip = (props) => {
         <>
           <Table.Row header>
             <Table.Cell colSpan={2} pt={1}>
-              Nutriments turn into:
+              营养转化:
             </Table.Cell>
           </Table.Row>
           {props.grind_results?.map((reagent, i) => (

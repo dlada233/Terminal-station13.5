@@ -44,21 +44,21 @@ export const NetpodOutfits = (props) => {
 
   const selected =
     selectedType.outfits?.find((outfit) => outfit.path === netsuit)?.name ??
-    'None';
+    '无';
 
   return (
-    <Window title="Net Pod" height={300} width={400}>
+    <Window title="网络舱" height={300} width={400}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
             <Section
               fill
-              title="Select an outfit"
+              title="选择套装"
               buttons={
                 <Input
                   autoFocus
                   onChange={(event, value) => setSearch(value)}
-                  placeholder="Search"
+                  placeholder="搜索"
                   value={search}
                 />
               }

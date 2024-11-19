@@ -14,7 +14,7 @@ import { createLogger } from '../logging';
 
 const logger = createLogger('NtosNotepad');
 
-const DEFAULT_DOCUMENT_NAME = 'Untitled';
+const DEFAULT_DOCUMENT_NAME = '无标题';
 
 type PartiallyUnderlinedProps = {
   str: string;
@@ -131,13 +131,13 @@ const NtosNotepadMenuBar = (props: MenuBarProps) => {
       <MenuBar.Dropdown
         entry="file"
         openWidth="22rem"
-        display={<PartiallyUnderlined str="File" indexStart={0} />}
+        display={<PartiallyUnderlined str="文件" indexStart={0} />}
         {...itemProps}
       >
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('new', 'New')} />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('save', 'Save')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('new', '新建')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('save', '保存')} />
         <MenuBar.Dropdown.Separator key="firstSep" />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('exit', 'Exit...')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('exit', '退出...')} />
       </MenuBar.Dropdown>
       <MenuBar.Dropdown
         entry="edit"

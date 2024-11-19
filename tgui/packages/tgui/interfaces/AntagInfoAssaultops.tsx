@@ -64,16 +64,16 @@ export const AntagInfoAssaultops = (props) => {
             <Section>
               <Stack.Item grow={1} align="center">
                 <Box fontSize={0.8} textAlign="right">
-                  GoldeneEye Defnet &nbsp;
+                  GoldeneEye-黄金眼防御网络 &nbsp;
                   <Box color="green" as="span">
-                    Connection Secure
+                    连接确认
                   </Box>
                 </Box>
               </Stack.Item>
-              <Section title="GoldenEye Subversion Progress" fontSize="15px">
+              <Section title="黄金眼颠覆进程" fontSize="15px">
                 {uploaded_keys >= required_keys ? (
                   <Box fontSize="20px" color="green">
-                    GOLDENEYE ACTIVATED, WELL DONE OPERATIVE.
+                    黄金眼已启动，干得好.
                   </Box>
                 ) : (
                   <Stack>
@@ -86,16 +86,16 @@ export const AntagInfoAssaultops = (props) => {
                       />
                     </Stack.Item>
                     <Stack.Item color="yellow">
-                      Required Keycards: {required_keys}
+                      需求密钥: {required_keys}
                     </Stack.Item>
                     <Stack.Item color="green">
-                      Uploaded Keycards: {uploaded_keys}
+                      已上传密钥: {uploaded_keys}
                     </Stack.Item>
                   </Stack>
                 )}
               </Section>
             </Section>
-            <Section title="Objectives">
+            <Section title="目标">
               <LabeledList>
                 {objectives.map((objective) => (
                   <LabeledList.Item
@@ -118,14 +118,14 @@ export const AntagInfoAssaultops = (props) => {
                     selected={tab === 1}
                     onClick={() => setTab(1)}
                   >
-                    Targets
+                    目标
                   </Tabs.Tab>
                   <Tabs.Tab
                     width="100%"
                     selected={tab === 2}
                     onClick={() => setTab(2)}
                   >
-                    GoldenEye Keycards
+                    黄金眼密钥
                   </Tabs.Tab>
                 </Tabs>
               </Stack.Item>
@@ -148,14 +148,13 @@ const TargetPrintout = (props) => {
   return (
     <Section>
       <Box textColor="red" fontSize="20px" mb={1}>
-        Target List
+        目标列表
       </Box>
       <Stack>
         <Stack.Item grow>
-          <Section title="Available Targets">
+          <Section title="可用目标">
             <Box textColor="red" mb={2}>
-              These are targets you have not yet extracted a GoldenEye key from.
-              They can be extracted by the in-TERROR-gator.
+              这些是你还没有提取密钥的目标，它们可以被in-TERROR-gator提取出来.
             </Box>
             <LabeledList>
               {available_targets.map((target) => (
@@ -172,10 +171,9 @@ const TargetPrintout = (props) => {
         </Stack.Item>
         <Divider vertical />
         <Stack.Item grow>
-          <Section title="Extracted Targets">
+          <Section title="已提取目标">
             <Box textColor="green" mb={2}>
-              These are targets you have extracted a GoldenEye keycard from.
-              They cannot be extracted again.
+              这些是你已经提取了密钥的目标，他们无法被再次提取.
             </Box>
             <LabeledList>
               {extracted_targets.map((target) => (
@@ -203,12 +201,9 @@ const KeyPrintout = (props) => {
   return (
     <Section>
       <Box textColor="red" fontSize="20px">
-        GoldenEye Keycards
+        黄金眼密钥
       </Box>
-      <Box mb={1}>
-        A list of GoldenEye keycards currently in existence. Select one to track
-        where it is using your hud.
-      </Box>
+      <Box mb={1}>当前存在的黄金眼密钥，选择它来追踪到使用HUD位置</Box>
       <Stack vertical fill>
         <Stack.Item>
           <Section>
@@ -232,7 +227,7 @@ const KeyPrintout = (props) => {
                           ', ' +
                           key.coord_z +
                           ')' +
-                          ' (Tracking)'
+                          ' (追踪中)'
                         : key.name +
                           ' (' +
                           key.coord_x +

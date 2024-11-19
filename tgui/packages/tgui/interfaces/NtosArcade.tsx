@@ -30,7 +30,7 @@ export function NtosArcade(props) {
   return (
     <NtosWindow width={450} height={350}>
       <NtosWindow.Content>
-        <Section title="Outbomb Cuban Pete Ultra" textAlign="center">
+        <Section title="轰炸古巴皮特超级版" textAlign="center">
           <Stack fill>
             <Stack.Item>
               <PlayerStats />
@@ -53,7 +53,7 @@ function PlayerStats(props) {
   return (
     <>
       <LabeledList>
-        <LabeledList.Item label="Player Health">
+        <LabeledList.Item label="玩家健康">
           <ProgressBar
             value={PlayerHitpoints}
             minValue={0}
@@ -68,7 +68,7 @@ function PlayerStats(props) {
             {PlayerHitpoints}HP
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="Player Magic">
+        <LabeledList.Item label="玩家魔力">
           <ProgressBar
             value={PlayerMP}
             minValue={0}
@@ -124,54 +124,54 @@ function BottomButtons(props) {
     <>
       <Button
         icon="fist-raised"
-        tooltip="Go in for the kill!"
+        tooltip="全力以赴!"
         tooltipPosition="top"
         disabled={!GameActive || !!PauseState}
         onClick={() => act('Attack')}
       >
-        Attack!
+        攻击!
       </Button>
       <Button
         icon="band-aid"
-        tooltip="Heal yourself!"
+        tooltip="治愈自己!"
         tooltipPosition="top"
         disabled={!GameActive || !!PauseState}
         onClick={() => act('Heal')}
       >
-        Heal!
+        治疗!
       </Button>
       <Button
         icon="magic"
-        tooltip="Recharge your magic!"
+        tooltip="回复你的魔力!"
         tooltipPosition="top"
         disabled={!GameActive || !!PauseState}
         onClick={() => act('Recharge_Power')}
       >
-        Recharge!
+        回魔!
       </Button>
 
       <Box>
         <Button
           icon="sync-alt"
-          tooltip="One more game couldn't hurt."
+          tooltip="再来一局也无妨."
           tooltipPosition="top"
           disabled={!!GameActive}
           onClick={() => act('Start_Game')}
         >
-          Begin Game
+          开始游戏
         </Button>
         <Button
           icon="ticket-alt"
-          tooltip="Claim at your local Arcade Computer for Prizes!"
+          tooltip="在您当地的街机上兑换奖品!"
           tooltipPosition="top"
           disabled={!!GameActive}
           onClick={() => act('Dispense_Tickets')}
         >
-          Claim Tickets
+          兑换奖券
         </Button>
       </Box>
       <Box color={TicketCount >= 1 ? 'good' : 'normal'}>
-        Earned Tickets: {TicketCount}
+        获得奖券: {TicketCount}
       </Box>
     </>
   );

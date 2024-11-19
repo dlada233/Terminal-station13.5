@@ -18,26 +18,26 @@ export const CrossingSignal = (props) => {
     data;
 
   return (
-    <Window title="Crossing Signal" width={400} height={175} theme="dark">
+    <Window title="交通信号" width={400} height={175} theme="dark">
       <Window.Content>
-        <Section title="System Status">
+        <Section title="系统状态">
           <LabeledList>
             <LabeledList.Item
-              label="Operating Status"
+              label="运行状态"
               color={operatingStatus ? 'bad' : 'good'}
             >
-              {operatingStatus ? 'Degraded' : 'Normal'}
+              {operatingStatus ? '降级' : '正常'}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Sensor Status"
+              label="传感器状态"
               color={sensorStatus ? 'good' : 'bad'}
             >
-              {sensorStatus ? 'Connected' : 'Error'}
+              {sensorStatus ? '已连接' : '故障'}
             </LabeledList.Item>
-            <LabeledList.Item label="Inbound Platform">
+            <LabeledList.Item label="进入站台">
               {inboundPlatform}
             </LabeledList.Item>
-            <LabeledList.Item label="Outbound Platform">
+            <LabeledList.Item label="发送站台">
               {outboundPlatform}
             </LabeledList.Item>
           </LabeledList>

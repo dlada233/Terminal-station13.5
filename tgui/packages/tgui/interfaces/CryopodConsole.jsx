@@ -7,16 +7,15 @@ export const CryopodConsole = (props) => {
   const { data } = useBackend();
   const { account_name } = data;
 
-  const welcomeTitle = `Hello, ${account_name || '[REDACTED]'}!`;
+  const welcomeTitle = `你好, ${account_name || '[数据删除]'}!`;
 
   return (
-    <Window title="Cryopod Console" width={400} height={480}>
+    <Window title="低温仓终端" width={400} height={480}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
             <Section title={welcomeTitle}>
-              This automated cryogenic freezing unit will safely store your
-              corporeal form until your next assignment.
+              这台自动低温冷冻装置将安全地保存你的身体直到下一次任务.
             </Section>
           </Stack.Item>
           <Stack.Item grow>
@@ -46,7 +45,7 @@ const CrewList = (props) => {
           ))}
         </LabeledList>
       </Section>
-    )) || <NoticeBox>No stored crew!</NoticeBox>
+    )) || <NoticeBox>没有储藏人员!</NoticeBox>
   );
 };
 
@@ -54,7 +53,7 @@ const ItemList = (props) => {
   const { act, data } = useBackend();
   const { item_ref_list, item_ref_name, item_retrieval_allowed } = data;
   if (!item_retrieval_allowed) {
-    return <NoticeBox>You are not authorized for item management.</NoticeBox>;
+    return <NoticeBox>你没有被授权进行管理.</NoticeBox>;
   }
   return (
     (item_ref_list.length && (
@@ -64,7 +63,7 @@ const ItemList = (props) => {
             <LabeledList.Item key={item} label={item_ref_name[item]}>
               <Button
                 icon="exclamation-circle"
-                content="Retrieve"
+                content="收回"
                 color="bad"
                 onClick={() => act('item_get', { item_get: item })}
               />
@@ -72,6 +71,6 @@ const ItemList = (props) => {
           ))}
         </LabeledList>
       </Section>
-    )) || <NoticeBox>No stored items!</NoticeBox>
+    )) || <NoticeBox>没有储藏人员!</NoticeBox>
   );
 };

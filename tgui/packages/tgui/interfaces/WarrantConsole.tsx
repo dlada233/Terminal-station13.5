@@ -89,11 +89,11 @@ const RecordList = (props) => {
       }
       fill
       scrollable
-      title="Citations"
+      title="令状"
     >
       <Stack fill vertical>
         {!records?.length ? (
-          <NoticeBox>No citations issued.</NoticeBox>
+          <NoticeBox>未发出令状.</NoticeBox>
         ) : (
           <Tabs vertical>
             {sorted.map((record, index) => (
@@ -157,22 +157,22 @@ const CitationManager = (props) => {
             act('print', { crew_ref: crew_ref, fine_ref: fine_ref })
           }
         >
-          Print
+          打印
         </Button>
       }
       color={getFineColor(fine)}
       title={fine_name}
     >
       <LabeledList>
-        <LabeledList.Item label="Details">
+        <LabeledList.Item label="详情">
           <BlockQuote>{details}</BlockQuote>
         </LabeledList.Item>
-        <LabeledList.Item label="Author">{author}</LabeledList.Item>
-        <LabeledList.Item label="Time">{time}</LabeledList.Item>
-        <LabeledList.Item label="Fine">{fine}</LabeledList.Item>
-        <LabeledList.Item label="Paid">{paid}</LabeledList.Item>
+        <LabeledList.Item label="作者">{author}</LabeledList.Item>
+        <LabeledList.Item label="时间">{time}</LabeledList.Item>
+        <LabeledList.Item label="罚金">{fine}</LabeledList.Item>
+        <LabeledList.Item label="已付">{paid}</LabeledList.Item>
         {fine > 0 && (
-          <LabeledList.Item label="Pay">
+          <LabeledList.Item label="支付">
             <RestrictedInput
               maxValue={fine}
               minValue={5}
@@ -180,7 +180,7 @@ const CitationManager = (props) => {
               value={paying}
             />
             <Button.Confirm
-              content="Pay"
+              content="支付"
               onClick={() =>
                 act('pay', {
                   amount: paying,

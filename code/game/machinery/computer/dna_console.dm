@@ -922,13 +922,13 @@
 
 			// GUARD CHECK - Make sure the disk is not full
 			if(LAZYLEN(diskette.mutations) >= diskette.max_mutations)
-				to_chat(usr,span_warning("磁盘储存空间已满."))
+				to_chat(usr,span_warning("软盘储存空间已满."))
 				return
 
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("磁盘为只读模式."))
+				to_chat(usr,span_warning("软盘为只读模式."))
 				return
 
 			var/search_flags = 0
@@ -953,7 +953,7 @@
 
 			var/datum/mutation/human/A = new HM.type(MUT_EXTRA, null, HM)
 			diskette.mutations += A
-			to_chat(usr,span_notice("突变成功保存到磁盘内."))
+			to_chat(usr,span_notice("突变成功保存到软盘内."))
 			return
 
 		// Completely removes a MUT_EXTRA mutation or mutation with corrupt gene
@@ -1006,7 +1006,7 @@
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it (via deletion)
 			if(diskette.read_only)
-				to_chat(usr,span_warning("磁盘是只读模式."))
+				to_chat(usr,span_warning("软盘是只读模式."))
 				return
 
 			var/bref = params["mutref"]
@@ -1096,13 +1096,13 @@
 
 			// GUARD CHECK - Make sure the disk is not full.
 			if(LAZYLEN(diskette.mutations) >= diskette.max_mutations)
-				to_chat(usr,span_warning("磁盘储存已满."))
+				to_chat(usr,span_warning("软盘储存已满."))
 				return
 
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("磁盘设置为只读模式."))
+				to_chat(usr,span_warning("软盘设置为只读模式."))
 				return
 
 			// GUARD CHECK - We're running a research-type operation. If, for some
@@ -1132,7 +1132,7 @@
 
 			// If we got a new type, add it to our storage
 			diskette.mutations += new result_path()
-			to_chat(usr, span_boldnotice("操作成功! 新的突变已添加至磁盘."))
+			to_chat(usr, span_boldnotice("操作成功! 新的突变已添加至软盘."))
 
 			// If it's already discovered, end here. Otherwise, add it to the list of
 			//  discovered mutations
@@ -1180,7 +1180,7 @@
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("磁盘是只读模式."))
+				to_chat(usr,span_warning("软盘是只读模式."))
 				return
 
 			// Convert the index to a number and clamp within the array range
@@ -1229,7 +1229,7 @@
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write (via deletion) to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("磁盘是只读模式."))
+				to_chat(usr,span_warning("软盘是只读模式."))
 				return
 
 			diskette.genetic_makeup_buffer.Cut()

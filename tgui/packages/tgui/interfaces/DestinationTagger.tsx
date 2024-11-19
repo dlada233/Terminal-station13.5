@@ -51,8 +51,8 @@ export const DestinationTagger = (props) => {
               scrollable
               title={
                 !currentTag
-                  ? 'Please Select A Location'
-                  : `Current Destination: ${locations[currentTag - 1]}`
+                  ? '请选择位置'
+                  : `当前目的地: ${locations[currentTag - 1]}`
               }
             >
               {sortDestinations(locations).map((location) => {

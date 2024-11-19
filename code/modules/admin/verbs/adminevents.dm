@@ -251,7 +251,7 @@ ADMIN_VERB(run_weather, R_FUN, "运行天气", "Triggers specific weather on the
 	log_admin("[key_name(user)] started weather of type [weather_type] on the z-level [z_level].")
 	BLACKBOX_LOG_ADMIN_VERB("运行天气")
 
-ADMIN_VERB(command_report_footnote, R_ADMIN, "命令书补注", "Adds a footnote to the roundstart command report.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(command_report_footnote, R_ADMIN, "命令报告补注", "Adds a footnote to the roundstart command report.", ADMIN_CATEGORY_EVENTS)
 	var/datum/command_footnote/command_report_footnote = new /datum/command_footnote()
 	GLOB.communications_controller.block_command_report += 1 //Add a blocking condition to the counter until the inputs are done.
 
@@ -275,6 +275,6 @@ ADMIN_VERB(command_report_footnote, R_ADMIN, "命令书补注", "Adds a footnote
 	var/message
 	var/signature
 
-ADMIN_VERB(delay_command_report, R_FUN, "延发命令书", "Prevents the roundstart command report from being sent; or forces it to send it delayed.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(delay_command_report, R_FUN, "延发命令报告", "Prevents the roundstart command report from being sent; or forces it to send it delayed.", ADMIN_CATEGORY_EVENTS)
 	GLOB.communications_controller.block_command_report = !GLOB.communications_controller.block_command_report
 	message_admins("[key_name_admin(user)] has [(GLOB.communications_controller.block_command_report ? "delayed" : "sent")] the roundstart command report.")

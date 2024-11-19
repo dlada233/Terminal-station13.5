@@ -24,35 +24,31 @@ export const Photocopier = (props) => {
   } = data;
 
   return (
-    <Window title="Photocopier" width={320} height={512}>
+    <Window title="复印机" width={320} height={512}>
       <Window.Content>
         {has_toner ? (
           <Toner />
         ) : (
-          <Section title="Toner">
-            <Box color="average">No inserted toner cartridge.</Box>
+          <Section title="墨盒">
+            <Box color="average">未插入墨盒.</Box>
           </Section>
         )}
-        <Section title="Paper">
-          <Box color="label">Paper stored: {paper_count}</Box>
-          {!!copies_left && (
-            <Box color="label">Copies in queue: {copies_left}</Box>
-          )}
+        <Section title="纸张">
+          <Box color="label">纸张存储: {paper_count}</Box>
+          {!!copies_left && <Box color="label">复印队列: {copies_left}</Box>}
         </Section>
         {categories.length !== 0 ? (
           <Blanks />
         ) : (
-          <Section title="Blanks">
-            <Box color="average">
-              No forms found. Please contact your system administrator.
-            </Box>
+          <Section title="空白">
+            <Box color="average">未找到表单，请与系统管理员联系.</Box>
           </Section>
         )}
         {has_item ? (
           <Options />
         ) : (
-          <Section title="Options">
-            <Box color="average">No inserted item.</Box>
+          <Section title="选项">
+            <Box color="average">未插入物品.</Box>
           </Section>
         )}
         {!!isAI && <AIOptions />}
@@ -70,10 +66,10 @@ const Toner = (props) => {
 
   return (
     <Section
-      title="Toner"
+      title="墨盒"
       buttons={
         <Button onClick={() => act('remove_toner')} icon="eject">
-          Eject
+          取出
         </Button>
       }
     >
@@ -96,10 +92,10 @@ const Options = (props) => {
   const { color_mode, is_photo, num_copies } = data;
 
   return (
-    <Section title="Options">
+    <Section title="选项">
       <Flex>
         <Flex.Item mt={0.4} width={11} color="label">
-          Make copies:
+          复印:
         </Flex.Item>
         <Flex.Item>
           <NumberInput
@@ -125,7 +121,7 @@ const Options = (props) => {
             textAlign="center"
             onClick={() => act('make_copy')}
           >
-            Copy
+            复印
           </Button>
         </Flex.Item>
       </Flex>
@@ -142,7 +138,7 @@ const Options = (props) => {
                 })
               }
             >
-              Greyscale
+              灰度
             </Button>
           </Flex.Item>
           <Flex.Item ml={0.4} width="50%">
@@ -156,7 +152,7 @@ const Options = (props) => {
                 })
               }
             >
-              Color
+              色彩
             </Button>
           </Flex.Item>
         </Flex>
@@ -168,7 +164,7 @@ const Options = (props) => {
         fluid
         onClick={() => act('remove')}
       >
-        Remove item
+        移除物品
       </Button>
     </Section>
   );
@@ -186,7 +182,7 @@ const Blanks = (props) => {
   );
 
   return (
-    <Section title="Blanks">
+    <Section title="空白">
       <Dropdown
         width="100%"
         options={categories}
@@ -221,7 +217,7 @@ const AIOptions = (props) => {
   const { can_AI_print } = data;
 
   return (
-    <Section title="AI Options">
+    <Section title="AI选项">
       <Box>
         <Button
           fluid
@@ -230,7 +226,7 @@ const AIOptions = (props) => {
           disabled={!can_AI_print}
           onClick={() => act('ai_photo')}
         >
-          Print photo from database
+          从数据库中打印照片
         </Button>
       </Box>
     </Section>

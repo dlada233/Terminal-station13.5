@@ -72,44 +72,44 @@ export const FishCatalog = (props) => {
             >
               {currentFish && (
                 <LabeledList>
-                  <LabeledList.Item label="Description">
+                  <LabeledList.Item label="描述">
                     {currentFish.desc}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Water type">
+                  <LabeledList.Item label="水型">
                     {currentFish.fluid}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Temperature">
+                  <LabeledList.Item label="温度">
                     {currentFish.temp_min} to {currentFish.temp_max}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Feeding">
+                  <LabeledList.Item label="鱼食">
                     {currentFish.feed}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Acquisition">
+                  <LabeledList.Item label="获取">
                     {currentFish.source}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Average size">
+                  <LabeledList.Item label="平均尺寸">
                     {currentFish.size} cm
                   </LabeledList.Item>
-                  <LabeledList.Item label="Average weight">
+                  <LabeledList.Item label="平均重量">
                     {currentFish.weight} g
                   </LabeledList.Item>
-                  <LabeledList.Item label="Fishing and Aquarium tips">
+                  <LabeledList.Item label="垂钓与饲养提示">
                     <LabeledList>
-                      <LabeledList.Item label="Fishing locations">
+                      <LabeledList.Item label="垂钓地点">
                         {currentFish.fishing_tips.spots}
                       </LabeledList.Item>
-                      <LabeledList.Item label="Favourite bait">
+                      <LabeledList.Item label="喜好饵食">
                         {currentFish.fishing_tips.favorite_bait}
                       </LabeledList.Item>
-                      <LabeledList.Item label="Disliked bait">
+                      <LabeledList.Item label="厌恶饵食">
                         {currentFish.fishing_tips.disliked_bait}
                       </LabeledList.Item>
-                      <LabeledList.Item label="Behavior">
+                      <LabeledList.Item label="特性">
                         {currentFish.fishing_tips.traits}
                       </LabeledList.Item>
                     </LabeledList>
                   </LabeledList.Item>
-                  <LabeledList.Item label="Illustration">
+                  <LabeledList.Item label="图像">
                     <Box className={classes(['fish32x32', currentFish.icon])} />
                   </LabeledList.Item>
                 </LabeledList>

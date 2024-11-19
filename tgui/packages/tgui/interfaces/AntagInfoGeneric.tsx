@@ -19,7 +19,7 @@ export const AntagInfoGeneric = (props) => {
         <Section scrollable fill>
           <Stack vertical>
             <Stack.Item textColor="red" fontSize="20px">
-              You are the {antag_name}!
+              你是{antag_name}!
             </Stack.Item>
             {/* SKYRAT EDIT ADDITION START */}
             <Stack.Item>

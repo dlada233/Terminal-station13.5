@@ -16,14 +16,14 @@ export const LaunchpadRemote = (props) => {
 
   return (
     <Window
-      title="Briefcase Launchpad Remote"
+      title="公文包发射台遥控器"
       width={300}
       height={240}
       theme="syndicate"
     >
       <Window.Content>
-        {(!has_pad && <NoticeBox>No Launchpad Connected</NoticeBox>) ||
-          (pad_closed && <NoticeBox>Launchpad Closed</NoticeBox>) || (
+        {(!has_pad && <NoticeBox>未连接到发射平台</NoticeBox>) ||
+          (pad_closed && <NoticeBox>发射平台已关闭</NoticeBox>) || (
             <LaunchpadControl topLevel />
           )}
       </Window.Content>

@@ -6,7 +6,7 @@
 #define MIN_EVENT_FREQ 2
 
 /**
- * ICES - Intensity Credit Events System
+ *  - Intensity Credit Events System
  *
  * This file is used to denote weight and frequency
  * for events to be spawned by the system.

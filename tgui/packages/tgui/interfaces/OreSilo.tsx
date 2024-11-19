@@ -55,7 +55,7 @@ export const OreSilo = (props: any) => {
   const [currentTab, setCurrentTab] = useState<Tab>(Tab.Logs);
 
   return (
-    <Window title="Ore Silo" width={620} height={600}>
+    <Window title="矿仓" width={620} height={600}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
@@ -65,14 +65,14 @@ export const OreSilo = (props: any) => {
                 selected={currentTab === Tab.Machines}
                 onClick={() => setCurrentTab(Tab.Machines)}
               >
-                Connections
+                连接
               </Tabs.Tab>
               <Tabs.Tab
                 icon="book-bookmark"
                 selected={currentTab === Tab.Logs}
                 onClick={() => setCurrentTab(Tab.Logs)}
               >
-                Logs
+                日志
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
@@ -124,7 +124,7 @@ const MachineList = (props: MachineListProps) => {
       ))}
     </Section>
   ) : (
-    <NoticeBox>No machines connected!</NoticeBox>
+    <NoticeBox>未连接到机器!</NoticeBox>
   );
 };
 
@@ -169,8 +169,8 @@ const MachineDisplay = (props: MachineProps) => {
       <Tooltip
         content={
           machine.onHold
-            ? `Resume ${machine.name} usage.`
-            : `Put ${machine.name} on hold.`
+            ? `恢复 ${machine.name} 供应.`
+            : `搁置 ${machine.name} 使用.`
         }
       >
         <Box
@@ -185,7 +185,7 @@ const MachineDisplay = (props: MachineProps) => {
           <Icon name={machine.onHold ? 'circle-play' : 'circle-pause'} />
         </Box>
       </Tooltip>
-      <Tooltip content={`Disconnect ${machine.name}.`}>
+      <Tooltip content={`断开 ${machine.name} 连接.`}>
         <Box
           className={classes([
             'FabricatorRecipe__Button',
@@ -218,7 +218,7 @@ const LogsList = (props: LogsListProps) => {
       </VirtualList>
     </Box>
   ) : (
-    <NoticeBox>No log entries currently present!</NoticeBox>
+    <NoticeBox>当前没有日志条目!</NoticeBox>
   );
 };
 
@@ -233,15 +233,12 @@ const LogEntry = (props: LogProps) => {
       title={`${capitalize(log.action)}: x${Math.abs(log.amount)} ${log.noun}`}
     >
       <LabeledList>
-        <LabeledList.Item label="Time">{log.time}</LabeledList.Item>
-        <LabeledList.Item label="Machine">
+        <LabeledList.Item label="时间">{log.time}</LabeledList.Item>
+        <LabeledList.Item label="机器">
           {capitalize(log.machineName)}
         </LabeledList.Item>
-        <LabeledList.Item label="Location">{log.areaName}</LabeledList.Item>
-        <LabeledList.Item
-          label="Materials"
-          color={log.amount > 0 ? 'good' : 'bad'}
-        >
+        <LabeledList.Item label="地点">{log.areaName}</LabeledList.Item>
+        <LabeledList.Item label="材料" color={log.amount > 0 ? 'good' : 'bad'}>
           {log.rawMaterials}
         </LabeledList.Item>
       </LabeledList>

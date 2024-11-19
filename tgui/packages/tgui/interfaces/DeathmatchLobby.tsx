@@ -79,7 +79,7 @@ export function DeathmatchLobby(props) {
   const isObserver = observers.find((observer) => observer.key === self);
 
   return (
-    <Window title="Deathmatch Lobby" width={560} height={480}>
+    <Window title="死亡竞赛大厅" width={560} height={480}>
       {showMenu && <ModSelector />}
       <Window.Content>
         <Stack fill vertical>
@@ -103,23 +103,23 @@ export function DeathmatchLobby(props) {
                       color="caution"
                       onClick={() => act('admin', { func: 'Force start' })}
                     >
-                      Force Start
+                      强制开始
                     </Button>
                   )}
                 </Stack.Item>
                 <Stack.Item>
                   <Button color="caution" onClick={() => act('observe')}>
-                    {isObserver ? 'Join' : 'Observe'}
+                    {isObserver ? '加入' : '观战'}
                   </Button>
                   <Button color="bad" onClick={() => act('leave_game')}>
-                    Leave Game
+                    离开比赛
                   </Button>
                   <Button
                     color="good"
                     disabled={!allReady}
                     onClick={() => act('start_game')}
                   >
-                    Start Game
+                    开始比赛
                   </Button>
                 </Stack.Item>
               </Stack>
@@ -151,12 +151,10 @@ function PlayerColumn(props) {
       <Table>
         <Table.Row header>
           <Table.Cell collapsing />
-          <Table.Cell>Name</Table.Cell>
-          <Table.Cell>Loadout</Table.Cell>
+          <Table.Cell>姓名</Table.Cell>
+          <Table.Cell>配装</Table.Cell>
           <Table.Cell collapsing align="center">
-            <Tooltip
-              content={!allReady ? 'Players are preparing' : 'Press start!'}
-            >
+            <Tooltip content={!allReady ? '玩家准备中' : '按下开始!'}>
               <Icon
                 name={!allReady ? 'check' : 'check-circle'}
                 color={allReady && 'green'}
@@ -173,12 +171,12 @@ function PlayerColumn(props) {
             <Table.Row className="candystripe" key={player.key}>
               <Table.Cell align="center" collapsing verticalAlign="top">
                 {isHost && (
-                  <Tooltip content="Host">
+                  <Tooltip content="主持">
                     <Icon color="gold" name="star" pt={isSelf && 0.5} />
                   </Tooltip>
                 )}
                 {!host && isSelf && (
-                  <Tooltip content="You">
+                  <Tooltip content="你">
                     <Icon color="green" name="arrow-right" pt={0.9} />
                   </Tooltip>
                 )}
@@ -191,7 +189,7 @@ function PlayerColumn(props) {
                   <Dropdown
                     width={9}
                     selected={player.key}
-                    options={['Kick', 'Transfer host', 'Toggle observe']}
+                    options={['踢出', '转移房主', '观战开关']}
                     onSelected={(value) =>
                       act('host', {
                         id: player.key,
@@ -262,7 +260,7 @@ function PlayerColumn(props) {
                   <Dropdown
                     width={9}
                     selected={observer.key}
-                    options={['Kick', 'Transfer host', 'Toggle observe']}
+                    options={['踢出', '转移房主', '观战开关']}
                     onSelected={(value) =>
                       act('host', {
                         id: observer.key,
@@ -272,7 +270,7 @@ function PlayerColumn(props) {
                   />
                 )}
               </Table.Cell>
-              <Table.Cell color="label">Observing</Table.Cell>
+              <Table.Cell color="label">观战</Table.Cell>
             </Table.Row>
           );
         })}
@@ -298,22 +296,20 @@ function HostControls(props) {
         <>
           <Divider />
           <Button textAlign="center" fluid onClick={() => act('open_mod_menu')}>
-            Toggle Modifiers
+            切换编辑器
           </Button>
         </>
       )}
       <Divider />
       <NoticeBox info align="center">
-        Loadout Description
+        配装描述
       </NoticeBox>
 
       <Box textAlign="center">{loadoutdesc}</Box>
       {!!playing && (
         <>
           <Divider />
-          <Box textAlign="center">
-            The game is currently in progress, or loading.
-          </Box>
+          <Box textAlign="center">比赛正在进行或加载中.</Box>
         </>
       )}
     </Section>
@@ -327,7 +323,7 @@ const ModSelector = (props) => {
   return (
     <Modal>
       <Button fluid color="bad" onClick={() => act('exit_mod_menu')}>
-        Go Back
+        返回
       </Button>
       {modifiers.map((mod, index) => (
         <Button.Checkbox
@@ -355,7 +351,7 @@ function MapInfo(props) {
   const { host, maps = [], map, players } = data;
 
   if (!host && !map?.name) {
-    return <NoticeBox align="center">No map selected</NoticeBox>;
+    return <NoticeBox align="center">未选择地图</NoticeBox>;
   }
 
   return (

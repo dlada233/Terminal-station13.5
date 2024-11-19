@@ -46,7 +46,7 @@ export const NoteKeeper = (props) => {
   };
 
   return (
-    <Section buttons={<NoteTabs />} fill scrollable title="病历">
+    <Section buttons={<NoteTabs />} fill scrollable title="病历注释">
       {writing && (
         <TextArea
           height="100%"
@@ -121,7 +121,7 @@ const NoteTabs = (props) => {
         position="bottom"
       >
         <Tabs.Tab onClick={composeNew} selected={writing}>
-          <Icon name="plus" /> 新
+          <Icon name="plus" /> 新建
         </Tabs.Tab>
       </Tooltip>
     </Tabs>

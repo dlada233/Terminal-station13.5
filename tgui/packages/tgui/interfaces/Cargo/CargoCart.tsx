@@ -42,7 +42,7 @@ export function CargoCart(props) {
                   py={1}
                   tooltip={sendable ? '' : `货船位于 ${location}`}
                 >
-                  Confirm the order
+                  确认下单
                 </Button>
               </Stack.Item>
             </Stack>
@@ -58,14 +58,14 @@ function CheckoutItems(props) {
   const { amount_by_name = {}, can_send, cart = [], max_order } = data;
 
   if (cart.length === 0) {
-    return <NoticeBox>板条箱里是空的</NoticeBox>;
+    return <NoticeBox>购物车里是空的</NoticeBox>;
   }
 
   return (
     <Table>
       <Table.Row header color="gray">
         <Table.Cell collapsing>ID</Table.Cell>
-        <Table.Cell>供货类型</Table.Cell>
+        <Table.Cell>货物名称</Table.Cell>
         <Table.Cell>数量</Table.Cell>
         <Table.Cell collapsing />
         <Table.Cell collapsing textAlign="right">

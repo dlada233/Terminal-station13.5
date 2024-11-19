@@ -4,54 +4,54 @@ import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 const DISEASE_THEASHOLD_LIST = [
-  'Positive',
-  'Harmless',
-  'Minor',
-  'Medium',
-  'Harmful',
-  'Dangerous',
-  'BIOHAZARD',
+  '良性',
+  '无害',
+  '轻微',
+  '较重',
+  '有害',
+  '危险',
+  '生物危害',
 ];
 
 const TARGET_SPECIES_LIST = [
   {
-    name: 'Human',
+    name: '人类',
     value: 'human',
   },
   {
-    name: 'Lizardperson',
+    name: '蜥蜴人',
     value: 'lizard',
   },
   {
-    name: 'Flyperson',
+    name: '苍蝇人',
     value: 'fly',
   },
   {
-    name: 'Felinid',
+    name: '猫人',
     value: 'felinid',
   },
   {
-    name: 'Plasmaman',
+    name: '等离子人',
     value: 'plasma',
   },
   {
-    name: 'Mothperson',
+    name: '蛾子人',
     value: 'moth',
   },
   {
-    name: 'Jellyperson',
+    name: '凝胶人',
     value: 'jelly',
   },
   {
-    name: 'Podperson',
+    name: '豆荚人',
     value: 'pod',
   },
   {
-    name: 'Golem',
+    name: '石人',
     value: 'golem',
   },
   {
-    name: 'Zombie',
+    name: '僵尸',
     value: 'zombie',
   },
   //  SKYRAT EDIT START - MORE SCANNER GATE OPTIONS
@@ -64,7 +64,7 @@ const TARGET_SPECIES_LIST = [
     value: 'vox',
   },
   {
-    name: 'Aquatic',
+    name: '鲛人',
     value: 'aquatic',
   },
   {
@@ -72,7 +72,7 @@ const TARGET_SPECIES_LIST = [
     value: 'insect',
   },
   {
-    name: 'Xenomorph',
+    name: '异形',
     value: 'xeno',
   },
   {
@@ -88,7 +88,7 @@ const TARGET_SPECIES_LIST = [
     value: 'vulpkanin',
   },
   {
-    name: 'Synthetic Humanoid',
+    name: '合成人',
     value: 'synth',
   },
   {
@@ -100,18 +100,18 @@ const TARGET_SPECIES_LIST = [
     value: 'hemophage',
   },
   {
-    name: 'Snail',
+    name: '蜗牛人',
     value: 'snail',
   },
 ];
 
 const TARGET_GENDER_LIST = [
   {
-    name: 'Male',
+    name: '男性',
     value: 'male',
   },
   {
-    name: 'Female',
+    name: '女性',
     value: 'female',
   },
   //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
@@ -119,11 +119,11 @@ const TARGET_GENDER_LIST = [
 
 const TARGET_NUTRITION_LIST = [
   {
-    name: 'Starving',
+    name: '饥饿',
     value: 150,
   },
   {
-    name: 'Obese',
+    name: '肥胖',
     value: 600,
   },
 ];
@@ -144,36 +144,36 @@ export const ScannerGate = (props) => {
 
 const SCANNER_GATE_ROUTES = {
   Off: {
-    title: 'Scanner Mode: Off',
+    title: '扫描模式: 关',
     component: () => ScannerGateOff,
   },
   Wanted: {
-    title: 'Scanner Mode: Wanted',
+    title: '扫描模式: 通缉犯',
     component: () => ScannerGateWanted,
   },
   Guns: {
-    title: 'Scanner Mode: Guns',
+    title: '扫描模式: 枪械',
     component: () => ScannerGateGuns,
   },
   Mindshield: {
-    title: 'Scanner Mode: Mindshield',
+    title: '扫描模式: 心盾',
     component: () => ScannerGateMindshield,
   },
   Disease: {
-    title: 'Scanner Mode: Disease',
+    title: '扫描模式: 疾病',
     component: () => ScannerGateDisease,
   },
   Species: {
-    title: 'Scanner Mode: Species',
+    title: '扫描模式: 种族',
     component: () => ScannerGateSpecies,
   },
   Nutrition: {
-    title: 'Scanner Mode: Nutrition',
+    title: '扫描模式: 营养情况',
     component: () => ScannerGateNutrition,
   },
   //  SKYRAT EDIT START - MORE SCANNER GATE OPTIONS
   Gender: {
-    title: 'Scanner Mode: Gender',
+    title: '扫描模式: 性别',
     component: () => ScannerGateGender,
   },
   //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
@@ -191,7 +191,7 @@ const ScannerGateControl = (props) => {
         scan_mode !== 'Off' && (
           <Button
             icon="arrow-left"
-            content="back"
+            content="返回"
             onClick={() => act('set_mode', { new_mode: 'Off' })}
           />
         )
@@ -206,34 +206,34 @@ const ScannerGateOff = (props) => {
   const { act } = useBackend();
   return (
     <>
-      <Box mb={2}>Select a scanning mode below.</Box>
+      <Box mb={2}>选择扫描模式.</Box>
       <Box>
         <Button
-          content="Wanted"
+          content="通缉犯"
           onClick={() => act('set_mode', { new_mode: 'Wanted' })}
         />
         <Button
-          content="Guns"
+          content="枪械"
           onClick={() => act('set_mode', { new_mode: 'Guns' })}
         />
         <Button
-          content="Mindshield"
+          content="心盾"
           onClick={() => act('set_mode', { new_mode: 'Mindshield' })}
         />
         <Button
-          content="Disease"
+          content="疾病"
           onClick={() => act('set_mode', { new_mode: 'Disease' })}
         />
         <Button
-          content="Species"
+          content="种族"
           onClick={() => act('set_mode', { new_mode: 'Species' })}
         />
         <Button //  SKYRAT EDIT START - MORE SCANNER GATE OPTIONS
-          content="Gender"
+          content="性别"
           onClick={() => act('set_mode', { new_mode: 'Gender' })} //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
         />
         <Button
-          content="Nutrition"
+          content="营养情况"
           onClick={() => act('set_mode', { new_mode: 'Nutrition' })}
         />
       </Box>
@@ -246,10 +246,7 @@ const ScannerGateWanted = (props) => {
   const { reverse } = data;
   return (
     <>
-      <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} any
-        warrants for their arrest.
-      </Box>
+      <Box mb={2}>当扫描到{reverse ? '没有被通缉' : '被通缉'}的人时触发.</Box>
       <ScannerGateMode />
     </>
   );
@@ -260,10 +257,7 @@ const ScannerGateGuns = (props) => {
   const { reverse } = data;
   return (
     <>
-      <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} any
-        guns.
-      </Box>
+      <Box mb={2}>当扫描到{reverse ? '没有携带' : '携带'}枪械的人时触发.</Box>
       <ScannerGateMode />
     </>
   );
@@ -274,10 +268,7 @@ const ScannerGateMindshield = (props) => {
   const { reverse } = data;
   return (
     <>
-      <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} a
-        mindshield.
-      </Box>
+      <Box mb={2}>当扫描到{reverse ? '没有植入' : '植入'}心盾的人时触发.</Box>
       <ScannerGateMode />
     </>
   );
@@ -289,8 +280,8 @@ const ScannerGateDisease = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} a
-        disease equal or worse than {disease_threshold}.
+        当扫描到{reverse ? '未患有' : '患有'}
+        {disease_threshold}以及更严重级别疾病 的人时触发.
       </Box>
       <Box mb={2}>
         {DISEASE_THEASHOLD_LIST.map((threshold) => (
@@ -320,10 +311,10 @@ const ScannerGateSpecies = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned is {reverse ? 'not' : ''} of the{' '}
-        {species.name} species.
+        当扫描到{reverse ? '非' : ''}
+        {species.name}时触发.
         {target_species === 'zombie' &&
-          ' All zombie types will be detected, including dormant zombies.'}
+          ' 所有类型的僵尸都包括在内，包括病毒处于潜伏期的僵尸.'}
       </Box>
       <Box mb={2}>
         {TARGET_SPECIES_LIST.map((species) => (
@@ -353,8 +344,8 @@ const ScannerGateNutrition = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} the{' '}
-        {nutrition.name} nutrition level.
+        当扫描到营养水平{reverse ? '未处于' : '处于'}
+        {nutrition.name}状态的人时触发.
       </Box>
       <Box mb={2}>
         {TARGET_NUTRITION_LIST.map((nutrition) => (
@@ -385,7 +376,8 @@ const ScannerGateGender = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned is {reverse ? 'not' : ''} a {gender.name}.
+        当扫描到{reverse ? '非' : ''}
+        {gender.name}时触发.
       </Box>
       <Box mb={2}>
         {TARGET_GENDER_LIST.map((gender) => (
@@ -412,9 +404,9 @@ const ScannerGateMode = (props) => {
   const { reverse } = data;
   return (
     <LabeledList>
-      <LabeledList.Item label="Scanning Mode">
+      <LabeledList.Item label="扫描模式">
         <Button
-          content={reverse ? 'Inverted' : 'Default'}
+          content={reverse ? '反转' : '默认'}
           icon={reverse ? 'random' : 'long-arrow-alt-right'}
           onClick={() => act('toggle_reverse')}
           color={reverse ? 'bad' : 'good'}

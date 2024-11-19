@@ -105,7 +105,7 @@ const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={title}
-                placeholder={title || 'Title'}
+                placeholder={title || '标题'}
                 mt={0.5}
                 onChange={(e, value) =>
                   act('set_search_title', {
@@ -117,7 +117,7 @@ const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={author}
-                placeholder={author || 'Author'}
+                placeholder={author || '作者'}
                 mt={0.5}
                 onChange={(e, value) =>
                   act('set_search_author', {

@@ -42,29 +42,29 @@ export function DnaVault(props) {
   return (
     <Window width={350} height={400}>
       <Window.Content>
-        <Section title="DNA Vault Database">
+        <Section title="DNA数据库">
           <LabeledList>
-            <LabeledList.Item label="Human DNA">
+            <LabeledList.Item label="人类DNA">
               <ProgressBar value={dna / dna_max}>
-                {dna + ' / ' + dna_max + ' Samples'}
+                {dna + ' / ' + dna_max + ' 份样本'}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Plant DNA">
+            <LabeledList.Item label="植物DNA">
               <ProgressBar value={plants / plants_max}>
-                {plants + ' / ' + plants_max + ' Samples'}
+                {plants + ' / ' + plants_max + ' 份样本'}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Animal DNA">
+            <LabeledList.Item label="动物DNA">
               <ProgressBar value={animals / animals_max}>
-                {animals + ' / ' + animals_max + ' Samples'}
+                {animals + ' / ' + animals_max + ' 份样本'}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         {!!(completed && !used) && (
-          <Section title="Personal Gene Therapy">
+          <Section title="个体基因治疗">
             <Box bold textAlign="center" mb={1}>
-              Applicable Gene Therapy Treatments
+              适用的基因治疗措施
             </Box>
             <Stack>
               <Stack.Item grow>

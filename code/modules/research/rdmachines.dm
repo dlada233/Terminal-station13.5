@@ -16,7 +16,7 @@
 	var/disabled = FALSE
 	///Ref to global science techweb.
 	var/datum/techweb/stored_research
-	///The item loaded inside the machine, used by experimentors and destructive analyzers only.
+	///The item loaded inside the machine, used by experimentors and 解构分析仪s only.
 	var/obj/item/loaded_item
 
 /obj/machinery/rnd/Initialize(mapload)

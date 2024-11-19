@@ -45,37 +45,37 @@ type AlternateAction = {
 const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   knot: {
     icon: 'shoe-prints',
-    text: 'Knot',
+    text: '打结',
   },
 
   untie: {
     icon: 'shoe-prints',
-    text: 'Untie',
+    text: '解开',
   },
 
   unknot: {
     icon: 'shoe-prints',
-    text: 'Unknot',
+    text: '解开结子',
   },
 
   enable_internals: {
     icon: 'lungs', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank"
-    text: 'Enable internals',
+    text: '打开内脏',
   },
 
   disable_internals: {
     icon: 'lungs-virus', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank-slash"
-    text: 'Disable internals',
+    text: '关闭内脏',
   },
 
   adjust_jumpsuit: {
     icon: 'tshirt',
-    text: 'Adjust jumpsuit',
+    text: '调整内服',
   },
 
   adjust_sensor: {
     icon: 'microchip',
-    text: 'Adjust sensors',
+    text: '调整传感器',
   },
 };
 
@@ -89,97 +89,97 @@ const SLOTS: Record<
   }
 > = {
   eyes: {
-    displayName: 'eyewear',
+    displayName: '眼部',
     gridSpot: getGridSpotKey([0, 1]),
     image: 'inventory-glasses.png',
   },
 
   head: {
-    displayName: 'headwear',
+    displayName: '头部',
     gridSpot: getGridSpotKey([0, 2]),
     image: 'inventory-head.png',
   },
 
   neck: {
-    displayName: 'neckwear',
+    displayName: '脖颈',
     gridSpot: getGridSpotKey([1, 1]),
     image: 'inventory-neck.png',
   },
 
   mask: {
-    displayName: 'mask',
+    displayName: '面部',
     gridSpot: getGridSpotKey([1, 2]),
     image: 'inventory-mask.png',
   },
 
   pet_collar: {
-    displayName: 'collar',
+    displayName: '颈圈',
     gridSpot: getGridSpotKey([1, 2]),
     image: 'inventory-collar.png',
   },
 
   ears: {
-    displayName: 'earwear',
+    displayName: '耳部',
     gridSpot: getGridSpotKey([1, 3]),
     image: 'inventory-ears.png',
   },
 
   parrot_headset: {
-    displayName: 'headset',
+    displayName: '耳机',
     gridSpot: getGridSpotKey([1, 3]),
     image: 'inventory-ears.png',
   },
 
   handcuffs: {
-    displayName: 'handcuffs',
+    displayName: '手铐',
     gridSpot: getGridSpotKey([1, 4]),
   },
 
   legcuffs: {
-    displayName: 'legcuffs',
+    displayName: '脚镣',
     gridSpot: getGridSpotKey([1, 5]),
   },
 
   jumpsuit: {
-    displayName: 'uniform',
+    displayName: '内服',
     gridSpot: getGridSpotKey([2, 1]),
     image: 'inventory-uniform.png',
   },
 
   suit: {
-    displayName: 'suit',
+    displayName: '外装',
     gridSpot: getGridSpotKey([2, 2]),
     image: 'inventory-suit.png',
   },
 
   gloves: {
-    displayName: 'gloves',
+    displayName: '手套',
     gridSpot: getGridSpotKey([2, 3]),
     image: 'inventory-gloves.png',
   },
 
   right_hand: {
-    displayName: 'right hand',
+    displayName: '右手',
     gridSpot: getGridSpotKey([2, 4]),
     image: 'inventory-hand_r.png',
     additionalComponent: <CornerText align="left">R</CornerText>,
   },
 
   left_hand: {
-    displayName: 'left hand',
+    displayName: '左手',
     gridSpot: getGridSpotKey([2, 5]),
     image: 'inventory-hand_l.png',
     additionalComponent: <CornerText align="right">L</CornerText>,
   },
 
   shoes: {
-    displayName: 'shoes',
+    displayName: '脚部',
     gridSpot: getGridSpotKey([3, 2]),
     image: 'inventory-shoes.png',
   },
 
   suit_storage: {
-    displayName: 'suit storage item',
+    displayName: '外装存储物品',
     gridSpot: getGridSpotKey([4, 0]),
     image: 'inventory-suit_storage.png',
   },
@@ -191,25 +191,25 @@ const SLOTS: Record<
   },
 
   belt: {
-    displayName: 'belt',
+    displayName: '腰部',
     gridSpot: getGridSpotKey([4, 2]),
     image: 'inventory-belt.png',
   },
 
   back: {
-    displayName: 'backpack',
+    displayName: '背部',
     gridSpot: getGridSpotKey([4, 3]),
     image: 'inventory-back.png',
   },
 
   left_pocket: {
-    displayName: 'left pocket',
+    displayName: '左口袋',
     gridSpot: getGridSpotKey([4, 4]),
     image: 'inventory-pocket.png',
   },
 
   right_pocket: {
-    displayName: 'right pocket',
+    displayName: '右口袋',
     gridSpot: getGridSpotKey([4, 5]),
     image: 'inventory-pocket.png',
   },
@@ -287,7 +287,7 @@ export const StripMenu = (props) => {
   }
 
   return (
-    <Window title={`Stripping ${data.name}`} width={400} height={400}>
+    <Window title={`${data.name}脱衣`} width={400} height={400}>
       <Window.Content>
         <Stack fill vertical>
           {range(0, ROWS).map((row) => (
@@ -366,7 +366,7 @@ export const StripMenu = (props) => {
                         },
                       );
                     }
-                  } else if ('obscured' in item) {
+                  } else if ('隐藏' in item) {
                     content = (
                       <Icon
                         name={
@@ -385,7 +385,7 @@ export const StripMenu = (props) => {
                       />
                     );
 
-                    tooltip = `obscured ${slot.displayName}`;
+                    tooltip = `${slot.displayName}隐藏`;
                   }
 
                   return (

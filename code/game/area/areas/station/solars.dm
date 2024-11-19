@@ -64,29 +64,29 @@
 */
 
 /area/station/maintenance/solars
-	name = "Solar Maintenance-太阳能维护管道"
+	name = "Solar Maintenance-太阳能维护通道"
 	icon_state = "yellow"
 
 /area/station/maintenance/solars/port
-	name = "Port Solar Maintenance-左舷太阳能维护管道"
+	name = "Port Solar Maintenance-左舷太阳能维护通道"
 	icon_state = "SolarcontrolP"
 
 /area/station/maintenance/solars/port/aft
-	name = "Port Quarter Solar Maintenance-左舷站尾两侧太阳能维护管道"
+	name = "Port Quarter Solar Maintenance-左舷站尾两侧太阳能维护通道"
 	icon_state = "SolarcontrolAP"
 
 /area/station/maintenance/solars/port/fore
-	name = "Port Bow Solar Maintenance-左舷站首两侧太阳能维护管道"
+	name = "Port Bow Solar Maintenance-左舷站首两侧太阳能维护通道"
 	icon_state = "SolarcontrolFP"
 
 /area/station/maintenance/solars/starboard
-	name = "Starboard Solar Maintenance-右舷太阳能维护管道"
+	name = "Starboard Solar Maintenance-右舷太阳能维护通道"
 	icon_state = "SolarcontrolS"
 
 /area/station/maintenance/solars/starboard/aft
-	name = "Starboard Quarter Solar Maintenance-右舷站尾两侧太阳能维护管道"
+	name = "Starboard Quarter Solar Maintenance-右舷站尾两侧太阳能维护通道"
 	icon_state = "SolarcontrolAS"
 
 /area/station/maintenance/solars/starboard/fore
-	name = "Starboard Bow Solar Maintenance-右舷站首两侧太阳能维护管道"
+	name = "Starboard Bow Solar Maintenance-右舷站首两侧太阳能维护通道"
 	icon_state = "SolarcontrolFS"

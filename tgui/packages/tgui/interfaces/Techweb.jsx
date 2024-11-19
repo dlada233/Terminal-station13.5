@@ -105,10 +105,10 @@ const TechwebStart = (props) => {
     return (
       <Modal width="15em" align="center" className="Techweb__LockedModal">
         <div>
-          <b>Console Locked</b>
+          <b>终端锁定</b>
         </div>
         <Button icon="unlock" onClick={() => act('toggleLock')}>
-          Unlock
+          解锁
         </Button>
       </Modal>
     );
@@ -117,7 +117,7 @@ const TechwebStart = (props) => {
     return (
       <Modal width="25em" align="center" className="Techweb__LockedModal">
         <div>
-          <b>No research techweb found, please synchronize the console.</b>
+          <b>找不到研究技术网络，请同步终端.</b>
         </div>
       </Modal>
     );
@@ -157,7 +157,7 @@ export const TechwebContent = (props) => {
         <Flex className="Techweb__HeaderContent">
           <Flex.Item>
             <Box>
-              Available points:
+              可用点数:
               <ul className="Techweb__PointSummary">
                 {Object.keys(points).map((k) => (
                   <li key={k}>
@@ -168,20 +168,20 @@ export const TechwebContent = (props) => {
               </ul>
             </Box>
             <Box>
-              Security protocols:
+              安全协议:
               <span
                 className={`Techweb__SecProtocol ${
                   !!sec_protocols && 'engaged'
                 }`}
               >
-                {sec_protocols ? 'Engaged' : 'Disengaged'}
+                {sec_protocols ? '启用' : '解除'}
               </span>
             </Box>
           </Flex.Item>
           <Flex.Item grow={1} />
           <Flex.Item>
             <Button fluid onClick={() => act('toggleLock')} icon="lock">
-              Lock Console
+              锁定终端
             </Button>
             {d_disk && (
               <Flex.Item>
@@ -191,7 +191,7 @@ export const TechwebContent = (props) => {
                     setTechwebRoute({ route: 'disk', diskType: 'design' })
                   }
                 >
-                  Design Disk Inserted
+                  已插入设计软盘
                 </Button>
               </Flex.Item>
             )}
@@ -203,7 +203,7 @@ export const TechwebContent = (props) => {
                     setTechwebRoute({ route: 'disk', diskType: 'tech' })
                   }
                 >
-                  Tech Disk Inserted
+                  已插入技术软盘
                 </Button>
               </Flex.Item>
             )}
@@ -269,7 +269,7 @@ const TechwebOverview = (props) => {
       <Flex.Item>
         <Flex justify="space-between" className="Techweb__HeaderSectionTabs">
           <Flex.Item align="center" className="Techweb__HeaderTabTitle">
-            Web View
+            浏览网络
           </Flex.Item>
           <Flex.Item grow={1}>
             <Tabs>
@@ -277,28 +277,28 @@ const TechwebOverview = (props) => {
                 selected={!searching && tabIndex === 0}
                 onClick={() => switchTab(0)}
               >
-                Researched
+                已研究
               </Tabs.Tab>
               <Tabs.Tab
                 selected={!searching && tabIndex === 1}
                 onClick={() => switchTab(1)}
               >
-                Available
+                可研究
               </Tabs.Tab>
               <Tabs.Tab
                 selected={!searching && tabIndex === 2}
                 onClick={() => switchTab(2)}
               >
-                Future
+                未研究
               </Tabs.Tab>
-              {!!searching && <Tabs.Tab selected>Search Results</Tabs.Tab>}
+              {!!searching && <Tabs.Tab selected>搜索结果</Tabs.Tab>}
             </Tabs>
           </Flex.Item>
           <Flex.Item align={'center'}>
             <Input
               value={searchText}
               onInput={(e, value) => setSearchText(value)}
-              placeholder={'Search...'}
+              placeholder={'搜索中...'}
             />
           </Flex.Item>
         </Flex>
@@ -346,20 +346,20 @@ const TechwebDiskMenu = (props) => {
           </Flex.Item>
           <Flex.Item grow={1}>
             <Tabs>
-              <Tabs.Tab selected>Stored Data</Tabs.Tab>
+              <Tabs.Tab selected>存储数据</Tabs.Tab>
             </Tabs>
           </Flex.Item>
           <Flex.Item align="center">
             {diskType === 'tech' && (
               <Button icon="save" onClick={() => act('loadTech')}>
-                Web &rarr; Disk
+                网络 &rarr; 软盘
               </Button>
             )}
             <Button
               icon="upload"
               onClick={() => act('uploadDisk', { type: diskType })}
             >
-              Disk &rarr; Web
+              软盘 &rarr; 网络
             </Button>
             <Button
               icon="eject"
@@ -368,10 +368,10 @@ const TechwebDiskMenu = (props) => {
                 setTechwebRoute(null);
               }}
             >
-              Eject
+              取出
             </Button>
             <Button icon="home" onClick={() => setTechwebRoute(null)}>
-              Home
+              首页
             </Button>
           </Flex.Item>
         </Flex>
@@ -391,10 +391,11 @@ const TechwebDesignDisk = (props) => {
   return (
     <>
       {blueprints.map((x, i) => (
-        <Section key={i} title={`Slot ${i + 1}`}>
-          {(x === null && 'Empty') || (
+        <Section key={i} title={`槽位 ${i + 1}`}>
+          {(x === null && '空') || (
             <>
-              Contains the design for <b>{design_cache[x].name}</b>:<br />
+              包含<b>{design_cache[x].name}</b>设计:
+              <br />
               <span
                 className={`${design_cache[x].class} Techweb__DesignIcon`}
               />
@@ -436,7 +437,7 @@ const TechNodeDetail = (props) => {
       <Flex.Item shrink={1}>
         <Flex justify="space-between" className="Techweb__HeaderSectionTabs">
           <Flex.Item align="center" className="Techweb__HeaderTabTitle">
-            Node
+            节点
           </Flex.Item>
           <Flex.Item grow={1}>
             <Tabs>
@@ -444,20 +445,20 @@ const TechNodeDetail = (props) => {
                 selected={tabIndex === 0}
                 onClick={() => setTabIndex(0)}
               >
-                Required ({complPrereq}/{prereqNodes.length})
+                需求({complPrereq}/{prereqNodes.length})
               </Tabs.Tab>
               <Tabs.Tab
                 selected={tabIndex === 1}
                 disabled={unlockedNodes.length === 0}
                 onClick={() => setTabIndex(1)}
               >
-                Unlocks ({unlockedNodes.length})
+                解锁({unlockedNodes.length})
               </Tabs.Tab>
             </Tabs>
           </Flex.Item>
           <Flex.Item align="center">
             <Button icon="home" onClick={() => setTechwebRoute(null)}>
-              Home
+              首页
             </Button>
           </Flex.Item>
         </Flex>
@@ -520,7 +521,7 @@ const TechNode = (props) => {
       }}
       value={expcompl / required_experiments.length}
     >
-      Experiments ({expcompl}/{required_experiments.length})
+      实验({expcompl}/{required_experiments.length})
     </ProgressBar>
   );
 
@@ -536,7 +537,7 @@ const TechNode = (props) => {
       }}
       value={techcompl / prereq_ids.length}
     >
-      Tech ({techcompl}/{prereq_ids.length})
+      前置科技({techcompl}/{prereq_ids.length})
     </ProgressBar>
   );
 
@@ -563,7 +564,7 @@ const TechNode = (props) => {
                   setTabIndex(0);
                 }}
               >
-                Details
+                详情
               </Button>
             )}
             {tier > 0 && (
@@ -572,7 +573,7 @@ const TechNode = (props) => {
                 disabled={!can_unlock || tier > 1}
                 onClick={() => act('researchNode', { node_id: id })}
               >
-                Research
+                研究
               </Button>
             )}
           </>
@@ -631,7 +632,7 @@ const TechNode = (props) => {
       {required_experiments.length > 0 && (
         <Collapsible
           className="Techweb__NodeExperimentsRequired"
-          title="Required Experiments"
+          title="所需实验"
         >
           {required_experiments.map((k, index) => {
             const thisExp = experiments[k];
@@ -645,7 +646,7 @@ const TechNode = (props) => {
       {Object.keys(discount_experiments).length > 0 && (
         <Collapsible
           className="TechwebNodeExperimentsRequired"
-          title="Discount-Eligible Experiments"
+          title="符合条件实验"
         >
           {Object.keys(discount_experiments).map((k, index) => {
             const thisExp = experiments[k];
@@ -655,8 +656,7 @@ const TechNode = (props) => {
             return (
               <Experiment key={thisExp} exp={thisExp}>
                 <Box className="Techweb__ExperimentDiscount">
-                  Provides a discount of {discount_experiments[k]} points to all
-                  required point pools.
+                  提供{discount_experiments[k]}点数至所有所需点数池.
                 </Box>
               </Experiment>
             );
@@ -679,14 +679,13 @@ const LockedExperiment = (props) => {
         <Flex align="center" justify="space-between">
           <Flex.Item color="rgba(0, 0, 0, 0.6)">
             <Icon name="lock" />
-            Undiscovered Experiment
+            未发现实验
           </Flex.Item>
           <Flex.Item color="rgba(0, 0, 0, 0.5)">???</Flex.Item>
         </Flex>
       </Button>
       <Box className={'ExperimentConfigure__ExperimentContent'}>
-        This experiment has not been discovered yet, continue researching nodes
-        in the tree to discover the contents of this experiment.
+        这个实验还没有发现，继续研究科技树中的科技节点来发现实验内容.
       </Box>
     </Box>
   );

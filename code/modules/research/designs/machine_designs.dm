@@ -359,8 +359,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/destructive_analyzer
-	name = "Destructive Analyzer Board"
-	desc = "The circuit board for a destructive analyzer."
+	name = "解构分析仪 Board"
+	desc = "The circuit board for a 解构分析仪."
 	id = "destructive_analyzer"
 	build_path = /obj/item/circuitboard/machine/destructive_analyzer
 	category = list(
@@ -1086,8 +1086,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/exoscanner
-	name = "Scanner Array Board"
-	desc = "The circuit board for scanner array."
+	name = "扫描阵列 Board"
+	desc = "The circuit board for 扫描阵列."
 	id = "exoscanner"
 	build_path = /obj/item/circuitboard/machine/exoscanner
 	category = list(

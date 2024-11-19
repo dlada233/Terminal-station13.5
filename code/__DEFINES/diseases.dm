@@ -37,21 +37,21 @@ DEFINE_BITFIELD(spread_flags, list(
 
 //Severity Defines
 /// Diseases that buff, heal, or at least do nothing at all
-#define DISEASE_SEVERITY_POSITIVE "Positive"
+#define DISEASE_SEVERITY_POSITIVE "良性"
 /// Diseases that may have annoying effects, but nothing disruptive (sneezing)
-#define DISEASE_SEVERITY_NONTHREAT "Harmless"
+#define DISEASE_SEVERITY_NONTHREAT "无害"
 /// Diseases that can annoy in concrete ways (dizziness)
-#define DISEASE_SEVERITY_MINOR "Minor"
+#define DISEASE_SEVERITY_MINOR "轻微"
 /// Diseases that can do minor harm, or severe annoyance (vomit)
-#define DISEASE_SEVERITY_MEDIUM "Medium"
+#define DISEASE_SEVERITY_MEDIUM "较重"
 /// Diseases that can do significant harm, or severe disruption (brainrot)
-#define DISEASE_SEVERITY_HARMFUL "Harmful"
+#define DISEASE_SEVERITY_HARMFUL "有害"
 /// Diseases that can kill or maim if left untreated (flesh eating, blindness)
-#define DISEASE_SEVERITY_DANGEROUS "Dangerous"
+#define DISEASE_SEVERITY_DANGEROUS "危险"
 /// Diseases that can quickly kill an unprepared victim (fungal tb, gbs)
-#define DISEASE_SEVERITY_BIOHAZARD "BIOHAZARD"
+#define DISEASE_SEVERITY_BIOHAZARD "生物危害"
 /// Diseases that are uncurable (hms)
-#define DISEASE_SEVERITY_UNCURABLE "Uncurable"
+#define DISEASE_SEVERITY_UNCURABLE "不可治愈"
 
 //Severity Guaranteed Cycles or how long before a disease can potentially self-cure
 /// Positive diseases should not self-cure by themselves, but if they do, they cure fast

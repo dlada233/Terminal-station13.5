@@ -25,7 +25,7 @@
 //Disk boxes
 
 /obj/item/storage/box/disks
-	name = "磁盘盒"
+	name = "软盘盒"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks/PopulateContents()

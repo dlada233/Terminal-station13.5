@@ -31,7 +31,7 @@ export const OreRedemptionMachine = (props) => {
       : materials.filter((material) => material && material.category === tab);
 
   return (
-    <Window title="Ore Redemption Machine" width={435} height={500}>
+    <Window title="矿石回收机" width={435} height={500}>
       <Window.Content>
         <Stack fill vertical>
           <Section>
@@ -48,11 +48,11 @@ export const OreRedemptionMachine = (props) => {
                   </Stack.Item>
                   <Stack.Item>
                     <LabeledList>
-                      <LabeledList.Item label="Name">
-                        {user?.name || 'No Name Detected'}
+                      <LabeledList.Item label="姓名">
+                        {user?.name || '未检测到姓名'}
                       </LabeledList.Item>
-                      <LabeledList.Item label="Balance">
-                        {user?.cash || 'No Balance Detected'}
+                      <LabeledList.Item label="余额">
+                        {user?.cash || '未检测到余额'}
                       </LabeledList.Item>
                     </LabeledList>
                   </Stack.Item>
@@ -60,7 +60,7 @@ export const OreRedemptionMachine = (props) => {
                     <Button
                       textAlign="center"
                       color={compact ? 'red' : 'green'}
-                      content="Compact"
+                      content="简洁视图"
                       onClick={() => setCompact(!compact)}
                     />
                   </Stack.Item>
@@ -73,12 +73,12 @@ export const OreRedemptionMachine = (props) => {
               <Box>
                 <Icon name="coins" color="gold" />
                 <Box inline color="label" ml={1}>
-                  Unclaimed points:
+                  未认领点数:
                 </Box>
                 {unclaimedPoints}
                 <Button
                   ml={2}
-                  content="Claim"
+                  content="认领"
                   disabled={unclaimedPoints === 0 || disconnected}
                   tooltip={disconnected}
                   onClick={() => act('Claim')}
@@ -88,10 +88,7 @@ export const OreRedemptionMachine = (props) => {
           </Section>
           <Section>
             <Stack.Item>
-              <BlockQuote>
-                This machine only accepts ore. Gibtonite and Slag are not
-                accepted.
-              </BlockQuote>
+              <BlockQuote>此机器只接收矿石，爆裂闪矿和矿渣恕不接受.</BlockQuote>
             </Stack.Item>
           </Section>
           <Tabs>
@@ -107,7 +104,7 @@ export const OreRedemptionMachine = (props) => {
                 }
               }}
             >
-              Materials
+              原料
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -121,7 +118,7 @@ export const OreRedemptionMachine = (props) => {
                 }
               }}
             >
-              Alloys
+              合金
             </Tabs.Tab>
             <Input
               autofocus
@@ -130,7 +127,7 @@ export const OreRedemptionMachine = (props) => {
               bottom="5%"
               height="20px"
               width="150px"
-              placeholder="Search Material..."
+              placeholder="搜索原料..."
               value={searchItem}
               onInput={(e, value) => {
                 setSearchItem(value);
@@ -205,29 +202,26 @@ const MaterialRow = (props) => {
       )}
       <Table.Cell>{toTitleCase(material.name)}</Table.Cell>
       <Table.Cell collapsing textAlign="left">
-        <Box color="label">
-          {formatSiUnit(sheet_amounts, 0)}{' '}
-          {material.amount === 1 ? 'sheet' : 'sheets'}
-        </Box>
+        <Box color="label">{formatSiUnit(sheet_amounts, 0)} 份板材</Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="left">
         <Button
           content="x1"
           color="transparent"
-          tooltip={material.value ? material.value + ' cr' : 'No cost'}
+          tooltip={material.value ? material.value + 'cr' : '无花费'}
           onClick={() => onRelease(1)}
         />
         <Button
           content={'x' + print_amount}
           color="transparent"
           tooltip={
-            material.value ? material.value * print_amount + ' cr' : 'No cost'
+            material.value ? material.value * print_amount + 'cr' : '无花费'
           }
           onClick={() => onRelease(print_amount)}
         />
         <Button.Input
           content={
-            '[Max: ' +
+            '[最大值: ' +
             (sheet_amounts < max_sheets ? sheet_amounts : max_sheets) +
             ']'
           }

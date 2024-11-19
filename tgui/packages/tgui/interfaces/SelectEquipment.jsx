@@ -73,7 +73,7 @@ export const SelectEquipment = (props) => {
                 <Input
                   fluid
                   autoFocus
-                  placeholder="Search"
+                  placeholder="搜索"
                   value={searchText}
                   onInput={(e, value) => setSearchText(value)}
                 />
@@ -156,14 +156,14 @@ const OutfitDisplay = (props) => {
           }
         />
       ))}
-      {currentTab === 'Custom' && (
+      {currentTab === '自定义' && (
         <Button
           color="transparent"
           icon="plus"
           fluid
           onClick={() => act('customoutfit')}
         >
-          Create a custom outfit...
+          创建自定义套装...
         </Button>
       )}
     </Section>
@@ -192,7 +192,7 @@ const CurrentlySelectedDisplay = (props) => {
         </Stack.Item>
       )}
       <Stack.Item grow={1} basis={0}>
-        <Box color="label">Currently selected:</Box>
+        <Box color="label">当前选择:</Box>
         <Box
           title={entry?.path}
           style={{
@@ -215,7 +215,7 @@ const CurrentlySelectedDisplay = (props) => {
             })
           }
         >
-          Confirm
+          确认
         </Button>
       </Stack.Item>
     </Stack>

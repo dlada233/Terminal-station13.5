@@ -10,11 +10,11 @@ export const MassDriverControl = (props) => {
       <Window.Content>
         {!!connected && (
           <Section
-            title="Auto Launch"
+            title="自动发射"
             buttons={
               <Button
                 icon={'clock-o'}
-                content={timing ? 'Stop' : 'Start'}
+                content={timing ? '停止' : '开始'}
                 selected={timing}
                 onClick={() => act('time')}
               />
@@ -45,11 +45,11 @@ export const MassDriverControl = (props) => {
           </Section>
         )}
         <Section
-          title="Controls"
+          title="控制"
           buttons={
             <Button
               icon={'toggle-on'}
-              content="Toggle Outer Door"
+              content="开关外门"
               disabled={timing || !poddoor}
               onClick={() => act('door')}
             />
@@ -59,11 +59,11 @@ export const MassDriverControl = (props) => {
             <>
               <LabeledList>
                 <LabeledList.Item
-                  label="Power Level"
+                  label="电力等级"
                   buttons={
                     <Button
                       icon={'bomb'}
-                      content="Test Fire"
+                      content="发射测试"
                       disabled={timing}
                       onClick={() => act('driver_test')}
                     />
@@ -85,7 +85,7 @@ export const MassDriverControl = (props) => {
               </LabeledList>
               <Button
                 fluid
-                content="Launch"
+                content="发射"
                 disabled={timing}
                 mt={1.5}
                 icon="arrow-up"
@@ -93,7 +93,7 @@ export const MassDriverControl = (props) => {
                 onClick={() => act('launch')}
               />
             </>
-          )) || <Box color="bad">No connected mass driver</Box>}
+          )) || <Box color="bad">未连接到质量发射器</Box>}
         </Section>
       </Window.Content>
     </Window>

@@ -45,32 +45,32 @@ export const BluespaceArtillerySkyrat = (props) => {
         {!!notice && <NoticeBox>{notice}</NoticeBox>}
         {connected ? (
           <>
-            <Section title="System Status">
+            <Section title="系统状况">
               <Box
-                color={status !== 'SYSTEM READY' ? 'bad' : 'green'}
+                color={status !== '系统就绪' ? 'bad' : 'green'}
                 fontSize="25px"
               >
                 {status}
               </Box>
             </Section>
             <Section
-              title="Capacitors"
+              title="电容器"
               buttons={
                 <Button
-                  content="Charge Capacitors"
+                  content="电容器充能"
                   color="orange"
                   onClick={() => act('charge')}
                 />
               }
             >
               <LabeledList>
-                <LabeledList.Item label="Capacitor Charge">
+                <LabeledList.Item label="电容器充能">
                   {formatPower(capacitor_charge, 1)}
                 </LabeledList.Item>
-                <LabeledList.Item label="Available Power">
+                <LabeledList.Item label="可用电源">
                   {formatPower(powernet_power, 1)}
                 </LabeledList.Item>
-                <LabeledList.Item label="Target Charge">
+                <LabeledList.Item label="目标充能">
                   <Slider
                     value={target_capacitor_charge}
                     fillValue={target_capacitor_charge}
@@ -89,7 +89,7 @@ export const BluespaceArtillerySkyrat = (props) => {
               </LabeledList>
             </Section>
             <Section
-              title="Target"
+              title="目标"
               buttons={
                 <Button
                   icon="crosshairs"
@@ -99,7 +99,7 @@ export const BluespaceArtillerySkyrat = (props) => {
               }
             >
               <Box color={target ? 'average' : 'bad'} fontSize="25px">
-                {target || 'No Target Set'}
+                {target || '未设置目标'}
               </Box>
             </Section>
             <Section>
@@ -107,9 +107,9 @@ export const BluespaceArtillerySkyrat = (props) => {
                 <Box style={{ margin: 'auto' }}>
                   <Button
                     fluid
-                    content="FIRE"
+                    content="射击"
                     color="bad"
-                    disabled={!target || status !== 'SYSTEM READY'}
+                    disabled={!target || status !== '系统就绪'}
                     fontSize="30px"
                     textAlign="center"
                     lineHeight="46px"
@@ -119,12 +119,9 @@ export const BluespaceArtillerySkyrat = (props) => {
               ) : (
                 <>
                   <Box color="bad" fontSize="18px">
-                    Bluespace artillery is currently locked.
+                    蓝空大炮目前处于锁定状态.
                   </Box>
-                  <Box mt={1}>
-                    Awaiting authorization via keycard reader from at minimum
-                    two station heads.
-                  </Box>
+                  <Box mt={1}>需要至少两名站点部长级别的ID卡授权.</Box>
                 </>
               )}
             </Section>
@@ -132,10 +129,10 @@ export const BluespaceArtillerySkyrat = (props) => {
         ) : (
           <Section>
             <LabeledList>
-              <LabeledList.Item label="Maintenance">
+              <LabeledList.Item label="检修">
                 <Button
                   icon="wrench"
-                  content="Complete Deployment"
+                  content="完成部署"
                   onClick={() => act('build')}
                 />
               </LabeledList.Item>

@@ -92,7 +92,7 @@ export const Vent = (props: VentProps) => {
             {(integrity * 100).toFixed(2)}%
           </p>
         </LabeledList.Item>
-        <LabeledList.Item label="模式">
+        <LabeledList.Item label="运行模式">
           <Button
             icon="sign-in-alt"
             content={direction ? '加压' : '抽气'}
@@ -105,10 +105,10 @@ export const Vent = (props: VentProps) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="压力调节器">
+        <LabeledList.Item label="气压调节">
           <Button
             icon="sign-in-alt"
-            content="内部"
+            content="向内"
             selected={incheck}
             onClick={() =>
               act('incheck', {
@@ -119,7 +119,7 @@ export const Vent = (props: VentProps) => {
           />
           <Button
             icon="sign-out-alt"
-            content="外部"
+            content="向外"
             selected={excheck}
             onClick={() =>
               act('excheck', {
@@ -158,7 +158,7 @@ export const Vent = (props: VentProps) => {
           </LabeledList.Item>
         )}
         {!!excheck && (
-          <LabeledList.Item label="外部">
+          <LabeledList.Item label="外部目标">
             <NumberInput
               value={Math.round(external)}
               unit="kPa"

@@ -247,7 +247,7 @@ export const MutationInfo = (props) => {
                     diskReadOnly ||
                     !mutation.Active
                   }
-                  content="保存至磁盘"
+                  content="保存至软盘"
                   onClick={() =>
                     act('save_disk', {
                       mutref: mutation.ByondRef,

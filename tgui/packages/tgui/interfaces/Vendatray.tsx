@@ -27,14 +27,14 @@ export const Vendatray = (props) => {
           </Stack.Item>
         </Stack>
         {registered ? (
-          <Section italic>Pays to the account of {owner_name}.</Section>
+          <Section italic>支付到账户{owner_name}.</Section>
         ) : (
           <>
-            <Section>Tray is unregistered.</Section>
+            <Section>托盘未注册.</Section>
             <Button
               fluid
               icon="cash-register"
-              content="Register Tray"
+              content="注册托盘"
               disabled={registered}
               onClick={() => act('Register')}
             />
@@ -53,9 +53,9 @@ const ProductInfo = (props) => {
   return (
     <>
       <Section fontSize="18px" align="center">
-        <b>{product_name ? product_name : 'Empty'}</b>
+        <b>{product_name ? product_name : '空'}</b>
         <Box fontSize="16px">
-          <i>{product_name ? product_cost : 'N/A'} cr </i>
+          <i>{product_name ? product_cost : 'N/A'}cr </i>
           <Button icon="pen" onClick={() => act('Adjust')} />
         </Box>
       </Section>
@@ -63,14 +63,14 @@ const ProductInfo = (props) => {
         <Button
           fluid
           icon="window-restore"
-          content={tray_open ? 'Open' : 'Closed'}
+          content={tray_open ? '开' : '关'}
           selected={tray_open}
           onClick={() => act('Open')}
         />
         <Button.Confirm
           fluid
           icon="money-bill-wave"
-          content="Purchase Item"
+          content="购买物品"
           disabled={!product_name}
           onClick={() => act('Buy')}
         />

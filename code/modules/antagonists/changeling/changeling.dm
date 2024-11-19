@@ -451,22 +451,22 @@
  */
 /datum/antagonist/changeling/proc/readapt()
 	if(!ishuman(owner.current) || ismonkey(owner.current))
-		to_chat(owner.current, span_warning("我们不能以这种形式移除我们的进化!"))
+		to_chat(owner.current, span_warning("我们不能以这种形式重启我们的进化!"))
 		return FALSE
 
 	if(HAS_TRAIT_FROM(owner.current, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
-		to_chat(owner.current, span_warning("我们正忙着改造自己，没时间移除进化!"))
+		to_chat(owner.current, span_warning("我们正忙着改造自己，没时间重启进化!"))
 		return FALSE
 
 	if(!can_respec)
-		to_chat(owner.current, span_warning("你缺乏可重新适应进化的能力!"))
+		to_chat(owner.current, span_warning("你缺乏可重启进化的能力!"))
 		return FALSE
 
-	to_chat(owner.current, span_notice("我们已经从该形体中移除了进化，以准备好重新适应环境."))
+	to_chat(owner.current, span_notice("我们已经从该形体中重启了进化，准备好再次适应环境."))
 	remove_changeling_powers()
 	can_respec = FALSE
 	SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, "Readapt")
-	log_changeling_power("[key_name(owner)]退化能力以重新适应环境.")
+	log_changeling_power("[key_name(owner)]退化所有能力以重新适应环境.")
 	return TRUE
 
 /*

@@ -20,7 +20,7 @@ export const RecordManifest = (props) => {
   const { act } = useBackend();
 
   return (
-    <Window title="All crew with information" width={450} height={500}>
+    <Window title="全体船员信息" width={450} height={500}>
       <Window.Content scrollable>
         {Object.entries(manifest).map(([dept, crew]) => (
           <Section className={'CrewManifest--' + dept} key={dept} title={dept}>
@@ -32,7 +32,7 @@ export const RecordManifest = (props) => {
                   </Table.Cell>
                   <Table.Cell>
                     <Button
-                      content="Show exploitables"
+                      content="显示可利用信息"
                       onClick={() =>
                         act('show_exploitables', {
                           exploitable_id: crewMember.name,
@@ -40,7 +40,7 @@ export const RecordManifest = (props) => {
                       }
                     />
                     <Button
-                      content="Show background"
+                      content="显示背景信息"
                       onClick={() =>
                         act('show_background', {
                           background_id: crewMember.name,
@@ -56,7 +56,7 @@ export const RecordManifest = (props) => {
                     collapsing
                   >
                     {positions[dept].exceptions.includes(crewMember.rank) && (
-                      <Tooltip content="No position limit" position="bottom">
+                      <Tooltip content="无位置限制" position="bottom">
                         <Icon className="CrewManifest__Icon" name="infinity" />
                       </Tooltip>
                     )}
@@ -72,7 +72,7 @@ export const RecordManifest = (props) => {
                       </Tooltip>
                     )}
                     {commandJobs.includes(crewMember.rank) && (
-                      <Tooltip content="Member of command" position="bottom">
+                      <Tooltip content="指挥部成员" position="bottom">
                         <Icon
                           className={classes([
                             'CrewManifest__Icon',

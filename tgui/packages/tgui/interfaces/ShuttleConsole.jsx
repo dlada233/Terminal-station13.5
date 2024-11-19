@@ -63,12 +63,12 @@ const getLocationIdByName = (locations, name) => {
 
 const STATUS_COLOR_KEYS = {
   在途中: 'good',
-  Idle: 'average',
-  Igniting: 'average',
-  Recharging: 'average',
-  Missing: 'bad',
+  闲置: 'average',
+  点火: 'average',
+  充能: 'average',
+  失踪: 'bad',
   访问未经授权: 'bad',
-  Locked: 'bad',
+  锁定: 'bad',
 };
 
 export const ShuttleConsoleContent = (props) => {
@@ -122,7 +122,7 @@ export const ShuttleConsoleContent = (props) => {
           >
             {(locations.length === 0 && (
               <Box mb={1.7} color="bad">
-                Not Available
+                不可用
               </Box>
             )) ||
               (locations.length === 1 && (

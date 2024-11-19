@@ -51,12 +51,12 @@ const IntroductionSection = (props) => {
         <Stack.Item grow>
           <ObjectivePrintout
             objectives={objectives}
-            titleMessage="Your prime objectives:"
+            titleMessage="你的主要目标:"
             objectivePrefix="&#8805-"
             objectiveFollowup={
               <ReplaceObjectivesButton
                 can_change_objective={can_change_objective}
-                button_title={'Overwrite Objectives Data'}
+                button_title={'覆写目标数据'}
                 button_colour={'green'}
               />
             }
@@ -74,7 +74,7 @@ const FlavorSection = (props) => {
   return (
     <Section
       fill
-      title="Diagnostics"
+      title="诊断"
       buttons={
         <Button
           mr={-0.8}
@@ -87,8 +87,7 @@ const FlavorSection = (props) => {
             ideas for how to spend the round.`}
           */
           tooltip={`
-            Please refer to the 'Antagonist Policy' section of the wiki
-            if you have any questions.`}
+            如果有任何问题，请参阅WIKI的'Antagonist Policy'条目内容.`}
           tooltipPosition="bottom-start"
         />
       }
@@ -98,7 +97,7 @@ const FlavorSection = (props) => {
           <Stack fill vertical>
             <Stack.Item style={{ backgroundColor: 'black' }}>
               <span style={goalstyle}>
-                System Integrity Report:
+                系统完整性报告:
                 <br />
               </span>
               &gt;{goal}
@@ -106,7 +105,7 @@ const FlavorSection = (props) => {
             <Stack.Divider />
             <Stack.Item grow style={{ backgroundColor: 'black' }}>
               <span style={allystyle}>
-                Morality Core Report:
+                道德核心报告:
                 <br />
               </span>
               &gt;{allies}
@@ -114,12 +113,12 @@ const FlavorSection = (props) => {
             <Stack.Divider />
             <Stack.Item style={{ backgroundColor: 'black' }}>
               <span style={badstyle}>
-                Overall Sentience Coherence Grade: FAILING.
+                整体感知一致级：失格
                 <br />
               </span>
-              &gt;Report to Nanotrasen?
+              &gt;上报至纳米传讯?
               <br />
-              &gt;&gt;N
+              &gt;&gt;否
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -132,36 +131,32 @@ const CodewordsSection = (props) => {
   const { data } = useBackend<Info>();
   const { has_codewords, phrases, responses } = data;
   return (
-    <Section title="Codewords" mb={!has_codewords && -1}>
+    <Section title="暗号" mb={!has_codewords && -1}>
       <Stack fill>
         {(!has_codewords && (
           <BlockQuote>
-            You have not been supplied the Syndicate codewords. You will have to
-            use alternative methods to find potential allies. Proceed with
-            caution, however, as everyone is a potential foe.
+            你尚未知晓辛迪加的暗号，你将不得不使用其他方法来寻找潜在的盟友. 注意
+            谨慎行事，因为每个人也都可能是潜在的敌人.
           </BlockQuote>
         )) || (
           <>
             <Stack.Item grow basis={0}>
               <BlockQuote>
-                New access to restricted channels has provided you with
-                intercepted syndicate codewords. Syndicate agents will respond
-                as if you&apos;re one of their own. Proceed with caution,
-                however, as everyone is a potential foe.
+                访问受限频道让你截获到了辛迪加的暗号，辛迪加特工会像对待自己人一样对待你.
+                然而仍要谨慎行事，因为每个人也都可能是潜在的敌人.
                 <span style={badstyle}>
-                  &ensp;The speech recognition subsystem has been configured to
-                  flag these codewords.
+                  &ensp;语音识别子系统已经被设置好，能将暗号标记显示.
                 </span>
               </BlockQuote>
             </Stack.Item>
             <Stack.Divider mr={1} />
             <Stack.Item grow basis={0}>
               <Stack vertical>
-                <Stack.Item>Code Phrases:</Stack.Item>
+                <Stack.Item>呼叫暗号:</Stack.Item>
                 <Stack.Item bold textColor="blue">
                   {phrases}
                 </Stack.Item>
-                <Stack.Item>Code Responses:</Stack.Item>
+                <Stack.Item>应答暗号:</Stack.Item>
                 <Stack.Item bold textColor="red">
                   {responses}
                 </Stack.Item>
@@ -210,14 +205,14 @@ export const AntagInfoMalf = (props) => {
                 selected={antagInfoTab === 0}
                 onClick={() => setAntagInfoTab(0)}
               >
-                Information
+                信息
               </Tabs.Tab>
               <Tabs.Tab
                 icon="code"
                 selected={antagInfoTab === 1}
                 onClick={() => setAntagInfoTab(1)}
               >
-                Malfunction Modules
+                故障模块
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>

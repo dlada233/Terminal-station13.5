@@ -113,7 +113,7 @@ function Controls() {
     <Section fill>
       <LabeledList>
         <LabeledList.Item
-          label="Biomass"
+          label="生物质"
           buttons={
             <Button
               width={7}
@@ -124,7 +124,7 @@ function Controls() {
               disabled={!can_process || processing}
               onClick={() => act('activate')}
             >
-              Generate
+              生成
             </Button>
           }
         >
@@ -140,13 +140,13 @@ function Controls() {
                 textShadow: '1px 1px 0 black',
               }}
             >
-              {`${parseFloat(biomass.toFixed(2))} units`}
+              {`${parseFloat(biomass.toFixed(2))} 单位`}
             </Box>
           </ProgressBar>
         </LabeledList.Item>
         {!!beaker && (
           <LabeledList.Item
-            label="Container"
+            label="容器"
             buttons={
               <Button
                 width={7}
@@ -155,7 +155,7 @@ function Controls() {
                 icon="eject"
                 onClick={() => act('eject')}
               >
-                Eject
+                取出
               </Button>
             }
           >
@@ -172,7 +172,7 @@ function Controls() {
                   textShadow: '1px 1px 0 black',
                 }}
               >
-                {`${beakerCurrentVolume} of ${beakerMaxVolume} units`}
+                {`${beakerCurrentVolume} / ${beakerMaxVolume} 单位`}
               </Box>
             </ProgressBar>
           </LabeledList.Item>
@@ -180,7 +180,7 @@ function Controls() {
         {!beaker && (
           <LabeledList.Item label="Container">
             <NoticeBox m={0} height={2}>
-              No liquid container
+              无液体容器
             </NoticeBox>
           </LabeledList.Item>
         )}

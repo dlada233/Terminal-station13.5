@@ -12,17 +12,17 @@ export const NtosPortraitPrinter = (props) => {
   const got_paintings = !!paintings.length;
   const current_portrait_title = got_paintings && paintings[listIndex]['title'];
   const current_portrait_author =
-    got_paintings && 'By ' + paintings[listIndex]['creator'];
+    got_paintings && '来自 ' + paintings[listIndex]['creator'];
   const current_portrait_asset_name =
     got_paintings && 'paintings' + '_' + paintings[listIndex]['md5'];
   const current_portrait_ratio = got_paintings && paintings[listIndex]['ratio'];
 
   return (
-    <NtosWindow title="Art Galaxy" width={400} height={446}>
+    <NtosWindow title="艺术银河" width={400} height={446}>
       <NtosWindow.Content>
         <Stack vertical fill>
           <Stack.Item>
-            <Section title="Search">
+            <Section title="搜索">
               <Input
                 fluid
                 placeholder="Search Paintings..."
@@ -72,7 +72,7 @@ export const NtosPortraitPrinter = (props) => {
                   </>
                 ) : (
                   <Stack.Item className="Section__titleText">
-                    No paintings found.
+                    未发现画作.
                   </Stack.Item>
                 )}
               </Stack>
@@ -128,10 +128,7 @@ export const NtosPortraitPrinter = (props) => {
               </Stack.Item>
             </Stack>
             <Stack.Item mt={1} mb={-1}>
-              <NoticeBox info>
-                Printing a canvas costs 10 paper from the printer installed in
-                your machine.
-              </NoticeBox>
+              <NoticeBox info>这台打印机打印一张画布需要花费十张纸</NoticeBox>
             </Stack.Item>
           </Stack.Item>
         </Stack>

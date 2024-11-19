@@ -349,7 +349,7 @@ export class PrimaryView extends Component {
           {interactMode === InteractionType.writing && (
             <Flex.Item shrink={1} height={TEXTAREA_INPUT_HEIGHT + 'px'}>
               <Section
-                title="Insert Text"
+                title="插入文本"
                 fitted
                 fill
                 buttons={
@@ -363,7 +363,7 @@ export class PrimaryView extends Component {
                     </Box>
                     <Button.Confirm
                       disabled={!savableData || tooManyCharacters}
-                      content="Save"
+                      content="保存"
                       color="good"
                       onClick={() => {
                         if (textAreaText.length) {

@@ -110,7 +110,7 @@ export const NtosNetDownloader = (props) => {
                     tooltipPosition="left"
                     tooltip={
                       !!downloading &&
-                      `Download: ${downloadname}.prg (${downloadpercentage}%)`
+                      `下载: ${downloadname}.prg (${downloadpercentage}%)`
                     }
                   />
                 )) ||
@@ -119,7 +119,7 @@ export const NtosNetDownloader = (props) => {
                     color="good"
                     icon="download"
                     tooltipPosition="left"
-                    tooltip={`${downloadname}.prg downloaded`}
+                    tooltip={`${downloadname}.prg 已下载`}
                   />
                 ))
               }
@@ -130,7 +130,7 @@ export const NtosNetDownloader = (props) => {
                 maxValue={disk_size}
               >
                 <Box textAlign="left">
-                  {`${disk_free_space} GQ free of ${disk_size} GQ`}
+                  {` ${disk_size}GQ中的${disk_free_space}GQ可用`}
                 </Box>
               </ProgressBar>
             </LabeledList.Item>
@@ -223,7 +223,7 @@ const Program = (props) => {
                   content="下载"
                   disabled={downloading}
                   tooltipPosition="left"
-                  tooltip={!!downloading && 'Awaiting download completion...'}
+                  tooltip={!!downloading && '等待下载完成...'}
                   onClick={() =>
                     act('PRG_downloadfile', {
                       filename: program.filename,
@@ -259,8 +259,7 @@ const Program = (props) => {
       </Box>
       {!program.verifiedsource && (
         <NoticeBox mt={1} mb={0} danger fontSize="12px">
-          Unverified source. Please note that Nanotrasen does not recommend
-          download and usage of software from non-official servers.
+          未经验证的来源，请注意，纳米传讯不建议您从非官方服务器下载和使用软件.
         </NoticeBox>
       )}
     </Section>

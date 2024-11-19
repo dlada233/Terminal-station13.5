@@ -66,8 +66,8 @@ export const ColorMatrixEditor = (props) => {
               <Stack.Item grow />
               <Stack.Item align="left">
                 <Button.Confirm
-                  content="Confirm"
-                  confirmContent="Confirm?"
+                  content="确认"
+                  confirmContent="确认吗?"
                   onClick={() => act('confirm')}
                 />
               </Stack.Item>

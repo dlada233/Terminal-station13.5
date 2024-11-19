@@ -26,7 +26,7 @@
 	category = SPELLBOOK_CATEGORY_MOBILITY
 
 /datum/spellbook_entry/jaunt
-	name = "虚空漫步"
+	name = "虚体化形"
 	desc = "将你暂时转成虚无态，隐形并能穿墙而过."
 	spell_type = /datum/action/cooldown/spell/jaunt/ethereal_jaunt
 	category = SPELLBOOK_CATEGORY_MOBILITY

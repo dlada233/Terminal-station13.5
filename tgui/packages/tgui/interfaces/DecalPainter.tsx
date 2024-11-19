@@ -53,7 +53,7 @@ export const DecalPainter = (props) => {
   return (
     <Window width={550} height={400}>
       <Window.Content>
-        <Section title="Decal Color">
+        <Section title="贴画颜色">
           {data.color_list.map((color) => {
             return (
               <Button
@@ -76,11 +76,11 @@ export const DecalPainter = (props) => {
               onClick={() => act('pick custom color')}
             >
               <ColorBox color={data.current_custom_color} mr={0.5} />
-              Custom
+              自定义
             </Button>
           )}
         </Section>
-        <Section title="Decal Style">
+        <Section title="贴画样式">
           <Flex direction="row" wrap="nowrap" align="fill" justify="fill">
             {data.decal_list.map((decal) => {
               const nondirectional = data.nondirectional_decals.includes(

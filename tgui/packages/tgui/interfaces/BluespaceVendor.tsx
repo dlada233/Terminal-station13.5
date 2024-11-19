@@ -56,25 +56,25 @@ export const BluespaceVendor = (props) => {
   const gasMax = Math.max(1, ...gases.map((gas) => gas.amount));
 
   return (
-    <Window title="Bluespace Vendor" width={500} height={600}>
+    <Window title="蓝空售货机" width={500} height={600}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
             <Section
-              title="Controls"
+              title="控制"
               buttons={
                 <>
                   <Button
                     ml={1}
                     icon="plus"
-                    content="Prepare Tank"
+                    content="准备气瓶"
                     disabled={pumping || inserted_tank || !tank_amount}
                     onClick={() => act('tank_prepare')}
                   />
                   <Button
                     ml={1}
                     icon="minus"
-                    content="Remove Tank"
+                    content="取出气瓶"
                     disabled={pumping || !inserted_tank}
                     onClick={() => act('tank_expel')}
                   />
@@ -88,7 +88,7 @@ export const BluespaceVendor = (props) => {
                     value={tank_filling_amount}
                     step={1}
                     width="63px"
-                    unit="% tank filling goal"
+                    unit="% 注瓶目标"
                     minValue={0}
                     maxValue={100}
                     onDrag={(value) =>
@@ -117,16 +117,14 @@ export const BluespaceVendor = (props) => {
             <Section
               scrollable
               fill
-              title="Bluespace Network Gases"
+              title="蓝空网络气体"
               buttons={
                 <Button
                   color="transparent"
                   icon="info"
                   tooltipPosition="bottom-start"
                   tooltip={`
-                  Quick guide for machine use: Prepare a tank to create a
-                  new one in the machine, pick how much you want it filled,
-                  and finally press start on the gas of your choice!
+                  机器使用快捷指南: 准备气瓶会在机器中创建新气瓶，然后选择你想要填充多少，最后按下你选择的气体开始填充！
                 `}
                 />
               }
@@ -135,10 +133,10 @@ export const BluespaceVendor = (props) => {
                 <thead>
                   <TableRow>
                     <TableCell collapsing bold>
-                      Gas
+                      气体
                     </TableCell>
                     <TableCell bold collapsing>
-                      Price
+                      价格
                     </TableCell>
                     <TableCell bold>Total</TableCell>
                     <TableCell bold collapsing textAlign="right">
@@ -193,7 +191,7 @@ const GasDisplay = (props: GasDisplayProps) => {
           <Button
             icon="play"
             tooltipPosition="left"
-            tooltip={'Start adding ' + name + '.'}
+            tooltip={'开始添加 ' + name + '.'}
             disabled={!inserted_tank}
             onClick={() =>
               act('start_pumping', {
@@ -206,7 +204,7 @@ const GasDisplay = (props: GasDisplayProps) => {
             disabled={selected_gas !== id}
             icon="minus"
             tooltipPosition="left"
-            tooltip={'Stop adding ' + name + '.'}
+            tooltip={'停止添加 ' + name + '.'}
             onClick={() =>
               act('stop_pumping', {
                 gas_id: id,

@@ -49,12 +49,12 @@ export const Experimentator = (props: any) => {
             />
           ) : (
             <NoticeBox danger textAlign="center">
-              No item present in experimentation chamber. Please insert one.
+              实验机器内无物品，请放入一个.
             </NoticeBox>
           )
         ) : (
           <NoticeBox danger textAlign="center">
-            Not connected to a server. Please sync one using a multitool.
+            未连接到服务器，请使用多功能工具同步.
           </NoticeBox>
         )}
       </Window.Content>
@@ -63,12 +63,12 @@ export const Experimentator = (props: any) => {
 };
 
 enum Experiment {
-  Poke = 'Poke',
-  Irradiate = 'Irradiate',
-  Gas = 'Gas',
-  Heat = 'Heat',
-  Cold = 'Freeze',
-  Obliterate = 'Obliterate',
+  Poke = '戳',
+  Irradiate = '辐照',
+  Gas = '注入气体',
+  Heat = '加热',
+  Cold = '降温',
+  Obliterate = '摧毁',
 }
 
 const EXPERIMENT2ICON = {
@@ -134,7 +134,7 @@ const ItemPreview = (props: ItemPreviewProps) => {
               icon="eject"
               height="100%"
               fontSize={1.5}
-              tooltip="Eject"
+              tooltip="取出"
               textAlign="center"
               onClick={() => onEject()}
               verticalAlignContent="middle"
@@ -170,7 +170,7 @@ const NodePreview = (props: NodePreviewProps) => {
   const { nodes } = props;
 
   return (
-    <Section fill title="Affected Nodes">
+    <Section fill title="影响节点">
       {nodes.length > 0 ? (
         <LabeledList>
           {nodes.map((node, index) => (
@@ -179,7 +179,7 @@ const NodePreview = (props: NodePreviewProps) => {
               label={node.name}
               color={node.isUnlocked ? 'good' : 'bad'}
             >
-              {node.isUnlocked ? 'Unlocked' : 'Locked'}
+              {node.isUnlocked ? '已解锁' : '未解锁'}
             </LabeledList.Item>
           ))}
         </LabeledList>
@@ -237,7 +237,7 @@ const ExperimentButtons = (props: ExperimentButtonsProps) => {
             disabled={!isRelic || disabled}
             onClick={() => onExperiment(7)}
           >
-            Discover!
+            发现!
           </Button>
         </Stack.Item>
       </Stack>

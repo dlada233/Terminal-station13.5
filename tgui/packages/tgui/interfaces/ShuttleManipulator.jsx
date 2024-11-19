@@ -9,17 +9,17 @@ export const ShuttleManipulator = (props) => {
   const [tab, setTab] = useState(1);
 
   return (
-    <Window title="Shuttle Manipulator" width={800} height={600} theme="admin">
+    <Window title="飞船调制器" width={800} height={600} theme="admin">
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-            Status
+            状态
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-            Templates
+            模板
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-            Modification
+            更改
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <ShuttleManipulatorStatus />}
@@ -40,7 +40,7 @@ export const ShuttleManipulatorStatus = (props) => {
           <Table.Row key={shuttle.id}>
             <Table.Cell>
               <Button
-                content="JMP"
+                content="跳跃"
                 key={shuttle.id}
                 onClick={() =>
                   act('jump_to', {
@@ -52,7 +52,7 @@ export const ShuttleManipulatorStatus = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Button
-                content="Fly"
+                content="起飞"
                 key={shuttle.id}
                 disabled={!shuttle.can_fly}
                 onClick={() =>
@@ -71,7 +71,7 @@ export const ShuttleManipulatorStatus = (props) => {
                 <>
                   ({shuttle.timeleft})
                   <Button
-                    content="Fast Travel"
+                    content="快速航行"
                     key={shuttle.id}
                     disabled={!shuttle.can_fast_travel}
                     onClick={() =>
@@ -127,7 +127,7 @@ export const ShuttleManipulatorTemplates = (props) => {
                 key={actualTemplate.shuttle_id}
                 buttons={
                   <Button
-                    content={isSelected ? 'Selected' : 'Select'}
+                    content={isSelected ? '已选中' : '选中'}
                     selected={isSelected}
                     onClick={() =>
                       act('select_template', {
@@ -141,12 +141,12 @@ export const ShuttleManipulatorTemplates = (props) => {
                   !!actualTemplate.admin_notes) && (
                   <LabeledList>
                     {!!actualTemplate.description && (
-                      <LabeledList.Item label="Description">
+                      <LabeledList.Item label="描述">
                         {actualTemplate.description}
                       </LabeledList.Item>
                     )}
                     {!!actualTemplate.admin_notes && (
-                      <LabeledList.Item label="Admin Notes">
+                      <LabeledList.Item label="管理员注释">
                         {actualTemplate.admin_notes}
                       </LabeledList.Item>
                     )}
@@ -173,12 +173,12 @@ export const ShuttleManipulatorModification = (props) => {
             {(!!selected.description || !!selected.admin_notes) && (
               <LabeledList>
                 {!!selected.description && (
-                  <LabeledList.Item label="Description">
+                  <LabeledList.Item label="描述">
                     {selected.description}
                   </LabeledList.Item>
                 )}
                 {!!selected.admin_notes && (
-                  <LabeledList.Item label="Admin Notes">
+                  <LabeledList.Item label="管理员注释">
                     {selected.admin_notes}
                   </LabeledList.Item>
                 )}
@@ -186,16 +186,13 @@ export const ShuttleManipulatorModification = (props) => {
             )}
           </Section>
           {existingShuttle ? (
-            <Section
-              level={2}
-              title={'Existing Shuttle: ' + existingShuttle.name}
-            >
+            <Section level={2} title={'存在的飞船: ' + existingShuttle.name}>
               <LabeledList>
                 <LabeledList.Item
-                  label="Status"
+                  label="状态"
                   buttons={
                     <Button
-                      content="Jump To"
+                      content="跳至"
                       onClick={() =>
                         act('jump_to', {
                           type: 'mobile',
@@ -211,11 +208,11 @@ export const ShuttleManipulatorModification = (props) => {
               </LabeledList>
             </Section>
           ) : (
-            <Section level={2} title="Existing Shuttle: None" />
+            <Section level={2} title="存在的飞船: 无" />
           )}
-          <Section level={2} title="Status">
+          <Section level={2} title="状态">
             <Button
-              content="Load"
+              content="加载"
               color="good"
               onClick={() =>
                 act('load', {
@@ -224,7 +221,7 @@ export const ShuttleManipulatorModification = (props) => {
               }
             />
             <Button
-              content="Preview"
+              content="预览"
               onClick={() =>
                 act('preview', {
                   shuttle_id: selected.shuttle_id,
@@ -232,7 +229,7 @@ export const ShuttleManipulatorModification = (props) => {
               }
             />
             <Button
-              content="Replace"
+              content="接替"
               color="bad"
               onClick={() =>
                 act('replace', {
@@ -243,7 +240,7 @@ export const ShuttleManipulatorModification = (props) => {
           </Section>
         </>
       ) : (
-        'No shuttle selected'
+        '未选中飞船'
       )}
     </Section>
   );

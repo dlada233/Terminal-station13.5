@@ -15,7 +15,7 @@ export const NtosSkillTracker = (props) => {
   return (
     <NtosWindow width={500} height={600}>
       <NtosWindow.Content scrollable>
-        <Section title="Skill Tracker">
+        <Section title="技能追踪器">
           {skills.map((skill, idx) => (
             <Section key={idx} level={2} title={skill.name}>
               <BlockQuote>{skill.desc}</BlockQuote>
@@ -23,10 +23,10 @@ export const NtosSkillTracker = (props) => {
                 <Table>
                   <Table.Row header>
                     <Table.Cell textAlign="center" collapsing>
-                      Level
+                      等级
                     </Table.Cell>
-                    <Table.Cell textAlign="center">Level Progress</Table.Cell>
-                    <Table.Cell textAlign="center">Overall Progress</Table.Cell>
+                    <Table.Cell textAlign="center">等级进度</Table.Cell>
+                    <Table.Cell textAlign="center">整体进度</Table.Cell>
                   </Table.Row>
                   <Table.Row className="candystripe">
                     <Table.Cell textAlign="center" collapsing>
@@ -77,7 +77,7 @@ export const NtosSkillTracker = (props) => {
                             act('PRG_reward', { skill: skill.name })
                           }
                         >
-                          Contact the Professional {skill.title} Association
+                          联系专业{skill.title}协会
                         </Button>
                       </Table.Cell>
                     </Table.Row>

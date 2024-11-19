@@ -112,7 +112,7 @@ const HealthStat = (props: HealthStatProps) => {
 
 export const CrewConsole = () => {
   return (
-    <Window title="Crew Monitor" width={600} height={600}>
+    <Window title="船员监控" width={600} height={600}>
       <Window.Content scrollable>
         <Section minHeight="540px">
           <CrewTable />
@@ -185,7 +185,7 @@ const CrewTable = () => {
             />
           </Button>
           <Input
-            placeholder="Search for name..."
+            placeholder="搜索姓名..."
             onInput={(e) =>
               setSearchQuery((e.target as HTMLTextAreaElement).value)
             }
@@ -195,17 +195,17 @@ const CrewTable = () => {
     >
       <Table>
         <Table.Row>
-          <Table.Cell bold>Name</Table.Cell>
+          <Table.Cell bold>姓名</Table.Cell>
           <Table.Cell bold collapsing />
           <Table.Cell bold collapsing textAlign="center">
-            Vitals
+            状况
           </Table.Cell>
           <Table.Cell bold textAlign="center">
-            Position
+            位置
           </Table.Cell>
           {!!data.link_allowed && (
             <Table.Cell bold collapsing textAlign="center">
-              Tracking
+              追踪中
             </Table.Cell>
           )}
         </Table.Row>
@@ -275,9 +275,9 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
             <HealthStat type="brute" value={brutedam} />
           </Box>
         ) : life_status !== STAT_DEAD ? (
-          'Alive'
+          '存活'
         ) : (
-          'Dead'
+          '死亡'
         )}
       </Table.Cell>
       <Table.Cell>
@@ -297,7 +297,7 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
               })
             }
           >
-            Track
+            追踪
           </Button>
         </Table.Cell>
       )}

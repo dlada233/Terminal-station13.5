@@ -9,7 +9,7 @@
 	name = "被排斥"
 	infuse_mob_name = "排斥生物"
 	desc = "不论处于何种原因，当身体排斥DNA时，DNA酸化，最终变成某种苍蝇一样的紊乱DNA."
-	threshold_desc = "紊乱DNA接管，你成为了一个成熟的苍蝇."
+	threshold_desc = "那么紊乱DNA接管，你成为了一个成熟的苍蝇."
 	qualities = list(
 		"讲话声嗡嗡恼人",
 		"喝酒呕吐",
@@ -72,7 +72,7 @@
 /datum/infuser_entry/felinid
 	name = "猫"
 	infuse_mob_name = "猫科动物"
-	desc = "大家冷静一点! 我不是在暗指任何事情. 我们真的对这世界上有猫人这种事情感到惊讶吗?"
+	desc = "大家冷静一点! 猫娘存在难道不是理所当然的事情吗?"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
 		"哦，让我猜猜，你是那些日本旅游机器人的忠实粉丝",

@@ -21,8 +21,7 @@ const MemoryQuality = (props) => {
         color="transparent"
         tooltipPosition="right"
         tooltip={`
-          This is a key memory. It contains important information
-          you may want to double-check in the future.
+          这是关键的记忆，它包含了重要信息，你可能在将来会再次检查它.
         `}
       />
     );
@@ -34,8 +33,7 @@ const MemoryQuality = (props) => {
         color="transparent"
         tooltipPosition="right"
         tooltip={`
-          This memory is not interesting at all! It does not make for
-          good art and is unlikely to pass to future generations.
+          这段记忆一点也不有趣，它可能不会成为一段好故事，也无法代代流传下去.
         `}
       />
     );
@@ -47,8 +45,7 @@ const MemoryQuality = (props) => {
         color="transparent"
         tooltipPosition="right"
         tooltip={`
-          This memory pretty bland. It would make for some pretty
-          mediocre art and is not likely to pass to future generations.
+          这段记忆平平淡淡，它将成为一段平庸的故事，不太可能代代流传下去.
   `}
       />
     );
@@ -63,8 +60,7 @@ const MemoryQuality = (props) => {
         }}
         tooltipPosition="right"
         tooltip={`
-          This memory is not super interesting. It could turn into
-          an okay story but don't bet on it.
+          这段记忆并不算特别有趣，它可能会变成一段不错的故事，但也别抱太大期待.
     `}
       />
     );
@@ -79,8 +75,7 @@ const MemoryQuality = (props) => {
         }}
         tooltipPosition="right"
         tooltip={`
-          This memory is pretty okay! Some good stories could be told
-          from this and it might even come back in future generations.
+          这段记忆还不错! 从中可以讲出一段好故事，甚至可能流传于后世.
       `}
       />
     );
@@ -95,8 +90,7 @@ const MemoryQuality = (props) => {
         }}
         tooltipPosition="right"
         tooltip={`
-          This memory is great! You could tell a great story from it,
-          and it would have a good chanced pass to future generations!
+          这段记忆太棒了! 你可以用它讲述一个精彩的故事，将有大概率流传于后世.
       `}
       />
     );
@@ -111,8 +105,7 @@ const MemoryQuality = (props) => {
         }}
         tooltipPosition="right"
         tooltip={`
-          This memory is the stuff of legends! It would make for
-          legendary art and is likely to pass to future generations.
+          这段记忆充满传奇色彩!它将塑造一个传说，并很可能在后世广为流传.
         `}
       />
     );
@@ -123,8 +116,7 @@ const MemoryQuality = (props) => {
       icon="question"
       tooltipPosition="right"
       tooltip={`
-        This memory has no valid quality assigned. We have no idea how good
-        or bad it may be. This is a bug, and should be reported!
+        此记忆未分配有效质量，不知道它是好是坏，这是一个bug，请上报问题!
       `}
     />
   );
@@ -134,17 +126,16 @@ export const MemoryPanel = (props) => {
   const { act, data } = useBackend();
   const memories = data.memories || [];
   return (
-    <Window title="Memory Panel" width={400} height={500}>
+    <Window title="记忆面板" width={400} height={500}>
       <Window.Content>
         <Section
           maxHeight="32px"
-          title="Memories"
+          title="记忆"
           buttons={
             <Button
               color="transparent"
               tooltip={`
-                These are your memories. You gain them from doing notable things
-                and you can use them in art!
+                这些是你的记忆，你可以做值得铭记的事情来获得记忆，然后在艺术创作中你能添加这些记忆.
               `}
               tooltipPosition="bottom-start"
               icon="info"
@@ -153,7 +144,7 @@ export const MemoryPanel = (props) => {
         />
         {(!memories && (
           <Dimmer fontSize="28px" align="center">
-            You have no memories!
+            你没有记忆!
           </Dimmer>
         )) || (
           <Stack vertical>

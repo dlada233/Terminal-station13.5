@@ -41,9 +41,9 @@ const DEPARTMENT2COLOR = {
 } as const;
 
 const COLOR2BLURB = {
-  blue: "This is the tram's current location.",
-  green: 'This is the selected destination.',
-  transparent: 'Click to set destination.',
+  blue: '这是电车的当前位置.',
+  green: '这是目的地位置.',
+  transparent: '单击以设置目的地.',
 } as const;
 
 const marginNormal = 1;
@@ -62,7 +62,7 @@ export const TramControl = (props) => {
   const [transitIndex, setTransitIndex] = useState(1);
 
   return (
-    <Window title="Tram Controls" width={600} height={300}>
+    <Window title="电车控制" width={600} height={300}>
       <Window.Content>
         {(!!broken && <BrokenTramDimmer />) || (
           <Section fill>
@@ -74,7 +74,7 @@ export const TramControl = (props) => {
               justify="space-around"
               vertical
             >
-              <Stack.Item>Nanotrasen Transit System</Stack.Item>
+              <Stack.Item>纳米传讯交通运输系统</Stack.Item>
               <Stack.Item>
                 <Stack fill>
                   {destinations.map((dest) => (
@@ -97,7 +97,7 @@ export const TramControl = (props) => {
                     })
                   }
                 >
-                  Send Tram
+                  发送电车
                 </Button>
               </Stack.Item>
             </Stack>
@@ -116,7 +116,7 @@ const BrokenTramDimmer = () => {
           <Icon ml={7} color="red" name="triangle-exclamation" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="14px" color="red">
-          Check Tram Controller!
+          检查电车控制器!
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -134,7 +134,7 @@ const MovingTramDimmer = (props) => {
           <Icon ml={10} name="sync-alt" color="green" size={11} />
         </Stack.Item>
         <Stack.Item mt={5} fontSize="14px" color="green">
-          The tram is travelling to {tram_location}!
+          电车正在驶向{tram_location}!
         </Stack.Item>
       </Stack>
     </Dimmer>

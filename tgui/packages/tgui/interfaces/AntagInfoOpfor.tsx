@@ -11,22 +11,16 @@ export const AntagInfoOpfor = (props) => {
         <Section scrollable fill>
           <Stack vertical>
             <Stack.Item fontSize="20px" color={'good'}>
-              {'You are an OPFOR candidate!'}
+              {'你是一名OPFOR申请者!'}
             </Stack.Item>
-            {
-              'You are encouraged to OPFOR to perform an antagonistic action in some form.'
-            }
-            {
-              'If you do not have any ideas, check #player-submitted-opfors on the Discord for inspiration.'
-            }
-            {
-              'And if you do not wish to OPFOR, simply press the button below to remove your status.'
-            }
+            {'OPFOR可以自主发起某种形式的反派行动.'}
+            {'如果你没有任何点子，可以参考前人记录.'}
+            {'如果不想作为OPFOR, 只需按下下面的按钮即可删除你的状态.'}
             <Stack.Item align="center">
               <Button
                 color="red"
-                content={'Remove Status'}
-                tooltip={'Remove your OPFOR candidate status.'}
+                content={'移除状态'}
+                tooltip={'移除你OPFOR申请者的状态.'}
                 onClick={() => act('pass_on')}
               />
             </Stack.Item>

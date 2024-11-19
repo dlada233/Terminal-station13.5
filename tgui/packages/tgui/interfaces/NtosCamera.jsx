@@ -17,11 +17,7 @@ export const NtosCameraContent = (props) => {
   const { photo, paper_left } = data;
 
   if (!photo) {
-    return (
-      <NoticeBox>
-        Phototrasen Images - Tap (right-click) with your tablet to snap a photo!
-      </NoticeBox>
-    );
+    return <NoticeBox>Phototrasen图像 - 右键即可拍摄照片!</NoticeBox>;
   }
 
   return (
@@ -29,7 +25,7 @@ export const NtosCameraContent = (props) => {
       <Stack.Item>
         <Button
           fluid
-          content="Print photo"
+          content="打印照片"
           disabled={paper_left === 0}
           onClick={() => act('print_photo')}
         />

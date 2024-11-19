@@ -21,7 +21,7 @@ export const ImplantPad = (props) => {
       <Window.Content scrollable>
         <Flex bold>
           <Flex.Item grow color="good" align="center">
-            Implant Mini-Computer
+            植入微型计算机
           </Flex.Item>
           <Flex.Item>
             <Button
@@ -29,18 +29,17 @@ export const ImplantPad = (props) => {
               disabled={!has_case}
               onClick={() => act('eject_implant')}
             >
-              Eject Case
+              取出容器
             </Button>
           </Flex.Item>
         </Flex>
         <Divider />
         <Flex>
           <Flex.Item>
-            {!has_case &&
-              'No implant case detected. Please insert one to see its contents.'}
+            {!has_case && '未检测到植入物容器，请插入一个查看其内容.'}
             {!!has_case &&
               !has_implant &&
-              'Implant case does not have an implant. Please insert one to continue.'}
+              '植入物容器没有植入，请插入一个以继续.'}
             {!!has_case && !!has_implant && (
               <Box
                 style={{ whiteSpace: 'pre-line' }}

@@ -19,7 +19,7 @@ import { AreaCharge, powerRank } from './PowerMonitor';
 export const ApcControl = (props) => {
   const { data } = useBackend();
   return (
-    <Window title="APC控制器" width={550} height={500}>
+    <Window title="APC总控终端" width={550} height={500}>
       <Window.Content>
         {data.authenticated === 1 && <ApcLoggedIn />}
         {data.authenticated === 0 && <ApcLoggedOut />}
@@ -59,7 +59,7 @@ const ApcLoggedIn = (props) => {
             act('check-apcs');
           }}
         >
-          APC Control Panel
+          APC控制
         </Tabs.Tab>
         <Tabs.Tab
           selected={tabIndex === 2}
@@ -68,7 +68,7 @@ const ApcLoggedIn = (props) => {
             act('check-logs');
           }}
         >
-          Log View Panel
+          日志浏览
         </Tabs.Tab>
       </Tabs>
       {restoring === 1 && (
@@ -110,7 +110,7 @@ const ControlPanel = (props) => {
     <Stack justify="space-between">
       <Stack.Item>
         <Box inline mr={2} color="label">
-          Sort by:
+          排序方式:
         </Box>
         <Button.Checkbox
           checked={sortByField === 'name'}
@@ -119,12 +119,12 @@ const ControlPanel = (props) => {
         />
         <Button.Checkbox
           checked={sortByField === 'charge'}
-          content="充入"
+          content="电量"
           onClick={() => setSortByField(sortByField !== 'charge' && 'charge')}
         />
         <Button.Checkbox
           checked={sortByField === 'draw'}
-          content="汲取"
+          content="消耗"
           onClick={() => setSortByField(sortByField !== 'draw' && 'draw')}
         />
       </Stack.Item>
@@ -177,20 +177,20 @@ const ApcControlScene = (props) => {
     <Box height={30}>
       <Table>
         <Table.Row header>
-          <Table.Cell>On/Off</Table.Cell>
-          <Table.Cell>Area</Table.Cell>
-          <Table.Cell collapsing>Charge</Table.Cell>
+          <Table.Cell>开/关</Table.Cell>
+          <Table.Cell>区域</Table.Cell>
+          <Table.Cell collapsing>电量</Table.Cell>
           <Table.Cell collapsing textAlign="right">
-            Draw
+            消耗
           </Table.Cell>
           <Table.Cell collapsing title="设备">
-            Eqp
+            设备
           </Table.Cell>
           <Table.Cell collapsing title="照明">
-            Lgt
+            照明
           </Table.Cell>
           <Table.Cell collapsing title="环境">
-            Env
+            环境
           </Table.Cell>
         </Table.Row>
         {apcs.map((apc, i) => (

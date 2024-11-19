@@ -96,21 +96,21 @@ export const ChemRecipeDebug = (props) => {
               selected={controlState === 'Environment'}
               onClick={() => setControlState('Environment')}
             >
-              Environment
+              环境
             </Tabs.Tab>
             <Tabs.Tab
               key={'Reactions'}
               selected={controlState === 'Reactions'}
               onClick={() => setControlState('Reactions')}
             >
-              Reactions
+              反应
             </Tabs.Tab>
             <Tabs.Tab
               key={'Editing'}
               selected={controlState === 'Editing'}
               onClick={() => setControlState('Editing')}
             >
-              Edit Reactions
+              编辑反应
             </Tabs.Tab>
           </Tabs>
           {controlState === 'Environment' && (

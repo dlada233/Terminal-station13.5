@@ -18,18 +18,18 @@ export const InfraredEmitter = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Status">
+            <LabeledList.Item label="状态">
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
+                content={on ? '开' : '关'}
                 selected={on}
                 onClick={() => act('power')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Visibility">
+            <LabeledList.Item label="可见性">
               <Button
                 icon={visible ? 'eye' : 'eye-slash'}
-                content={visible ? 'Visible' : 'Invisible'}
+                content={visible ? '可见' : '不可见'}
                 selected={visible}
                 onClick={() => act('visibility')}
               />

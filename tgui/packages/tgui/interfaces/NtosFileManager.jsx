@@ -86,7 +86,7 @@ const FileTable = (props) => {
               <Button
                 icon={file.alert_silenced ? 'bell-slash' : 'bell'}
                 color={file.alert_silenced ? 'red' : 'default'}
-                tooltip={file.alert_silenced ? 'Unmute Alerts' : 'Mute Alerts'}
+                tooltip={file.alert_silenced ? '取消静音' : '开启静音'}
                 onClick={() => onToggleSilence(file.name)}
               />
             )}

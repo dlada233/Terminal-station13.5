@@ -120,60 +120,60 @@
 // There are a few factors that depends on other factors. So pay close attention on which values are interlinked.
 
 /// How much energy we get from external factors that are applied immediately.
-#define SM_POWER_EXTERNAL_IMMEDIATE "External Power Gain"
+#define SM_POWER_EXTERNAL_IMMEDIATE "外部能量获得"
 /// How much energy we get from external factors that are applied over time.
-#define SM_POWER_EXTERNAL_TRICKLE "External Power Trickle"
+#define SM_POWER_EXTERNAL_TRICKLE "外部能量细流"
 /// How much energy is gained from the temperature. Enabled by gas.
-#define SM_POWER_HEAT "Gas Heat Power Gain"
+#define SM_POWER_HEAT "气体热能获得"
 /// How much energy the SM loses. Happens over time.
 /// Order matters here. We depend on current power + power gained from the factors above for the loss calc.
-#define SM_POWER_POWERLOSS "Internal Power Decay"
+#define SM_POWER_POWERLOSS "内部能量衰减"
 /// How much of the energy the SM loses is recouped. From gas factors here.
 /// Order matters here. We depend on the powerloss amount.
-#define SM_POWER_POWERLOSS_GAS "Gas Power Decay Negation"
+#define SM_POWER_POWERLOSS_GAS "气体能量衰减抗性"
 /// How much of the energy the SM loses is recouped. From the psychologist this time.
 /// Order matters here. We depend on the powerloss amount.
-#define SM_POWER_POWERLOSS_SOOTHED "Psychologist Power Decay Negation"
+#define SM_POWER_POWERLOSS_SOOTHED "心理学家能量衰减抗性"
 
 // These four internal damage factors, heat, power, moles, and heal heat dont depend on each other, but they are interlinked.
 // They are going to be scaled to have a maximum damage hardcap of 1.8 per tick.
 /// How many damage we take from heat.
-#define SM_DAMAGE_HEAT "Heating Damage"
+#define SM_DAMAGE_HEAT "热量损伤"
 /// How many damage we take from too much internal energy.
-#define SM_DAMAGE_POWER "Charge Damage"
+#define SM_DAMAGE_POWER "内能损伤"
 /// How many damage we take from too much moles around us.
-#define SM_DAMAGE_MOLES "Molar Damage"
+#define SM_DAMAGE_MOLES "摩尔损伤"
 /// How many we healed. Happens when temp is low.
-#define SM_DAMAGE_HEAL_HEAT "Low Temperature Healing"
+#define SM_DAMAGE_HEAL_HEAT "低温愈合"
 /// How many damage do we take from external factors.
 /// This one is discrete.
-#define SM_DAMAGE_EXTERNAL "External Damage"
+#define SM_DAMAGE_EXTERNAL "外部损伤"
 /// How many damage do we take from space exposure. Here to prevent people from spacing SM chambers.
 /// Also discrete.
-#define SM_DAMAGE_SPACED "Space Exposure Damage"
+#define SM_DAMAGE_SPACED "太空暴露损伤"
 
 /// How much waste multiplier we get just from existing.
-#define SM_WASTE_BASE "Base Waste Multiplier"
+#define SM_WASTE_BASE "基础排废乘数"
 /// How much waste multiplier we get because of the gases around us.
-#define SM_WASTE_GAS "Gas Waste Multiplier"
+#define SM_WASTE_GAS "气体排废乘数"
 /// How much waste multiplier we (don't) get because there is a psychologist.
-#define SM_WASTE_SOOTHED "Psychologist Waste Multiplier"
+#define SM_WASTE_SOOTHED "心理学家排废乘数"
 
 /// How many kelvins we get before taking damage, Given by god.
-#define SM_TEMP_LIMIT_BASE "Base Heat Resistance"
+#define SM_TEMP_LIMIT_BASE "基础耐热性"
 /// How many extra kelvins we get before taking damage, this time from gases.
 /// Order matters, depends on base resistance.
-#define SM_TEMP_LIMIT_GAS "Gas Heat Resistance"
+#define SM_TEMP_LIMIT_GAS "气体耐热性"
 /// How many extra kelvins we get before taking damage, this time from psychologist.
-#define SM_TEMP_LIMIT_SOOTHED "Psychologist Heat Resistance"
+#define SM_TEMP_LIMIT_SOOTHED "心理学家耐热性"
 /// How many extra kelvins we get before taking damage because our moles are low. I know, this is fucking hilarious.
 /// Order matters, depends on base resistance.
-#define SM_TEMP_LIMIT_LOW_MOLES "Low Moles Heat Resistance"
+#define SM_TEMP_LIMIT_LOW_MOLES "低摩尔耐热性"
 
 /// How much we are multiplying our zap energy.
-#define SM_ZAP_BASE "Base Zap Transmission"
+#define SM_ZAP_BASE "基础激活外溢"
 /// How much we are multiplying our zap energy because of gas factors.
-#define SM_ZAP_GAS "Gas Zap Transmission Modifier"
+#define SM_ZAP_GAS "气体激活外溢修正"
 /// Delamination types.
 #define CASCADE_DELAMINATION "cascade"
 #define SINGULARITY_DELAMINATION "singularity"

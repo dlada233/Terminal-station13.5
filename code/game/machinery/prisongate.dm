@@ -61,7 +61,7 @@
 		var/list/id_access = regular_id.GetAccess()
 		if(ACCESS_BRIG in id_access)
 			if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-				say("检测到安保大门出入许可，已授予访问权限.")
+				say("检测到安保门禁出入许可，已授予访问权限.")
 				playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 				COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 			return TRUE

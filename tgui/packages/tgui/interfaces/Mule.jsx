@@ -36,19 +36,19 @@ export const Mule = (props) => {
       <Window.Content>
         <InterfaceLockNoticeBox />
         <Section
-          title="Status"
+          title="状态"
           minHeight="110px"
           buttons={
             <>
               <Button
                 icon="fa-poll-h"
-                content="Rename"
+                content="重命名"
                 onClick={() => act('rename')}
               />
               {!locked && (
                 <Button
                   icon={on ? 'power-off' : 'times'}
-                  content={on ? 'On' : 'Off'}
+                  content={on ? '开' : '关'}
                   selected={on}
                   onClick={() => act('on')}
                 />
@@ -63,7 +63,7 @@ export const Mule = (props) => {
           <Flex mt={1}>
             <Flex.Item grow={1} basis={0}>
               <LabeledList>
-                <LabeledList.Item label="Mode" color={modeStatus}>
+                <LabeledList.Item label="模式" color={modeStatus}>
                   {mode}
                 </LabeledList.Item>
               </LabeledList>
@@ -71,10 +71,10 @@ export const Mule = (props) => {
             <Flex.Item grow={1} basis={0}>
               <LabeledList>
                 <LabeledList.Item
-                  label="Load"
+                  label="装载"
                   color={load ? 'good' : 'average'}
                 >
-                  {load || 'None'}
+                  {load || '无'}
                 </LabeledList.Item>
               </LabeledList>
             </Flex.Item>
@@ -82,20 +82,20 @@ export const Mule = (props) => {
         </Section>
         {!locked && (
           <Section
-            title="Controls"
+            title="控制面板"
             buttons={
               <>
                 {!!load && (
                   <Button
                     icon="eject"
-                    content="Unload"
+                    content="卸载"
                     onClick={() => act('unload')}
                   />
                 )}
                 {!!pai_inserted && (
                   <Button
                     icon="eject"
-                    content="Eject PAI"
+                    content="取出PAI"
                     onClick={() => act('eject_pai')}
                   />
                 )}
@@ -106,60 +106,60 @@ export const Mule = (props) => {
               <LabeledList.Item label="ID">
                 <Button content={id} onClick={() => act('setid')} />
               </LabeledList.Item>
-              <LabeledList.Item label="Home">
+              <LabeledList.Item label="归位点">
                 <Button content={home} onClick={() => act('sethome')} />
               </LabeledList.Item>
-              <LabeledList.Item label="Destination">
+              <LabeledList.Item label="目的地">
                 <Dropdown
                   over
-                  selected={destination || 'None'}
+                  selected={destination || '无'}
                   options={destinations}
                   width="188px"
                   onSelected={(value) => act('destination', { value })}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Actions">
+              <LabeledList.Item label="行动">
                 <Button
                   icon="stop"
                   color="bad"
-                  content="Stop"
+                  content="停止"
                   onClick={() => act('stop')}
                 />
                 <Button
                   icon="play"
                   color="average"
-                  content="Go"
+                  content="出发"
                   onClick={() => act('go')}
                 />
                 <Button
                   icon="home"
-                  content="Go Home"
+                  content="归位"
                   onClick={() => act('home')}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Settings">
+              <LabeledList.Item label="设置">
                 <Button.Checkbox
                   checked={autoReturn}
-                  content="Auto-Return"
+                  content="自动归位"
                   onClick={() => act('autored')}
                 />
                 <br />
                 <Button.Checkbox
                   checked={autoPickup}
-                  content="Auto-Pickup"
+                  content="自动接取"
                   onClick={() => act('autopick')}
                 />
                 <br />
                 <Button.Checkbox
                   checked={reportDelivery}
-                  content="Report Delivery"
+                  content="报告交付"
                   onClick={() => act('report')}
                 />
                 <br />
                 {allow_possession && (
                   <Button.Checkbox
                     checked={possession_enabled}
-                    content="Download Personality"
+                    content="下载人格"
                     onClick={() => act('toggle_personality')}
                   />
                 )}

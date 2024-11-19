@@ -104,7 +104,7 @@
 
 	data["removable_media"] = list()
 	if(inserted_disk)
-		data["removable_media"] += "取出磁盘"
+		data["removable_media"] += "取出软盘"
 	var/datum/computer_file/program/ai_restorer/airestore_app = locate() in stored_files
 	if(airestore_app?.stored_card)
 		data["removable_media"] += "英特利储存卡"
@@ -185,7 +185,7 @@
 			var/param = params["name"]
 			var/mob/user = usr
 			switch(param)
-				if("取出磁盘")
+				if("取出软盘")
 					if(!inserted_disk)
 						return
 

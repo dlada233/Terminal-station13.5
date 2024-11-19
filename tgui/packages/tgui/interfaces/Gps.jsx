@@ -39,39 +39,39 @@ export const Gps = (props) => {
       ),
   ])(data.signals || []);
   return (
-    <Window title="Global Positioning System" width={470} height={700}>
+    <Window title="全球定位系统" width={470} height={700}>
       <Window.Content scrollable>
         <Section
-          title="Control"
+          title="控制板"
           buttons={
             <Button
               icon="power-off"
-              content={power ? 'On' : 'Off'}
+              content={power ? '开' : '关'}
               selected={power}
               onClick={() => act('power')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Tag">
+            <LabeledList.Item label="标签">
               <Button
                 icon="pencil-alt"
                 content={tag}
                 onClick={() => act('rename')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Scan Mode">
+            <LabeledList.Item label="扫描模式">
               <Button
                 icon={updating ? 'unlock' : 'lock'}
-                content={updating ? 'AUTO' : 'MANUAL'}
+                content={updating ? '自动' : '手动'}
                 color={!updating && 'bad'}
                 onClick={() => act('updating')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Range">
+            <LabeledList.Item label="距离">
               <Button
                 icon="sync"
-                content={globalmode ? 'MAXIMUM' : 'LOCAL'}
+                content={globalmode ? '最大' : '本地'}
                 selected={!globalmode}
                 onClick={() => act('globalmode')}
               />
@@ -80,17 +80,17 @@ export const Gps = (props) => {
         </Section>
         {!!power && (
           <>
-            <Section title="Current Location">
+            <Section title="当前位置">
               <Box fontSize="18px">
                 {currentArea} ({currentCoords})
               </Box>
             </Section>
-            <Section title="Detected Signals">
+            <Section title="探测到信号">
               <Table>
                 <Table.Row bold>
-                  <Table.Cell content="Name" />
-                  <Table.Cell collapsing content="Direction" />
-                  <Table.Cell collapsing content="Coordinates" />
+                  <Table.Cell content="名称" />
+                  <Table.Cell collapsing content="描述" />
+                  <Table.Cell collapsing content="坐标" />
                 </Table.Row>
                 {signals.map((signal) => (
                   <Table.Row

@@ -93,11 +93,11 @@ const CategoryBar = (props: CategoryBarProps) => {
 
   return (
     <Section
-      title="Categories"
+      title="类别"
       scrollableHorizontal
       buttons={
         <Input
-          placeholder="Search"
+          placeholder="搜索"
           value={categorySearch}
           onChange={(_, value) => setCategorySearch(value)}
         />
@@ -109,14 +109,14 @@ const CategoryBar = (props: CategoryBarProps) => {
           selected={props.active === ''}
           onClick={() => props.setActive('')}
         >
-          None
+          无
         </Button>
         <Button
-          tooltip="This can be slow!"
+          tooltip="可能会很慢!"
           selected={props.active === CATEGORY_ALL}
           onClick={() => props.setActive(CATEGORY_ALL)}
         >
-          All
+          全部
         </Button>
         {sorted
           .filter((cat) =>
@@ -165,33 +165,33 @@ const CategoryViewer = (props: CategoryViewerProps) => {
 
   return (
     <Section
-      title={`Category Viewer${
+      title={`类别查看器${
         props.activeCategory
           ? ` - ${props.activeCategory}[${props.data?.entry_count}]`
-          : ' - Select a category'
+          : ' - 选择类别'
       }`}
       buttons={
         <>
           <Input
-            placeholder="Search"
+            placeholder="搜索"
             value={search}
             onInput={(_, value) => setSearch(value)}
           />
           <Button
             icon="code"
-            tooltip="RegEx Search"
+            tooltip="RegEx 搜索"
             selected={searchRegex}
             onClick={() => setSearchRegex(!searchRegex)}
           />
           <Button
             icon="font"
             selected={caseSensitive}
-            tooltip="Case Sensitive"
+            tooltip="区分大小写"
             onClick={() => setCaseSensitive(!caseSensitive)}
           />
           <Button
             icon="trash"
-            tooltip="Clear Search"
+            tooltip="清除搜索"
             color="bad"
             onClick={() => {
               setSearch('');

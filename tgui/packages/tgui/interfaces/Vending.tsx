@@ -155,9 +155,7 @@ export const UserDetails = (props) => {
   const { user } = data;
 
   if (!user) {
-    return (
-      <NoticeBox>No ID detected! Contact the Head of Personnel.</NoticeBox>
-    );
+    return <NoticeBox>未检测到ID! 请联系人事部长.</NoticeBox>;
   } else {
     return (
       <Section>
@@ -167,9 +165,9 @@ export const UserDetails = (props) => {
           </Stack.Item>
           <Stack.Item>
             <LabeledList>
-              <LabeledList.Item label="User">{user.name}</LabeledList.Item>
-              <LabeledList.Item label="Occupation">
-                {user.job || 'Unemployed'}
+              <LabeledList.Item label="用户">{user.name}</LabeledList.Item>
+              <LabeledList.Item label="职业">
+                {user.job || '失业'}
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
@@ -199,7 +197,7 @@ const ProductDisplay = (props: {
     <Section
       fill
       scrollable
-      title="Products"
+      title="商品"
       buttons={
         !!onstation &&
         user && (
@@ -311,7 +309,7 @@ const ProductColorSelect = (props) => {
   return (
     <Button
       icon="palette"
-      tooltip="Change color"
+      tooltip="更改颜色"
       disabled={disabled}
       onClick={() => act('select_colors', { ref: product.ref })}
     />
@@ -330,7 +328,7 @@ const ProductStock = (props) => {
         'good'
       }
     >
-      {remaining} left
+      {remaining}剩余
     </Box>
   );
 };
@@ -340,10 +338,10 @@ const ProductButton = (props) => {
   const { act, data } = useBackend<VendingData>();
   const { access, displayed_currency_name } = data;
   const { custom, discount, disabled, free, product, redPrice } = props;
-  const customPrice = access ? 'FREE' : product.price;
+  const customPrice = access ? '免费' : product.price;
   let standardPrice = product.price;
   if (free) {
-    standardPrice = 'FREE';
+    standardPrice = '免费';
   } else if (discount) {
     standardPrice = redPrice;
   }

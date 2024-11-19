@@ -39,56 +39,45 @@ export const SyndContractorContent = (props) => {
   const { data, act } = useBackend();
 
   const terminalMessages = [
-    'Recording biometric data...',
-    'Analyzing embedded syndicate info...',
-    'STATUS CONFIRMED',
-    'Contacting syndicate database...',
-    'Awaiting response...',
-    'Awaiting response...',
-    'Awaiting response...',
-    'Awaiting response...',
-    'Awaiting response...',
-    'Awaiting response...',
-    'Response received, ack 4851234...',
-    'CONFIRM ACC ' + Math.round(Math.random() * 20000),
-    'Setting up private accounts...',
-    'CONTRACTOR ACCOUNT CREATED',
-    'Searching for available contracts...',
-    'Searching for available contracts...',
-    'Searching for available contracts...',
-    'Searching for available contracts...',
-    'CONTRACTS FOUND',
-    'WELCOME, AGENT',
+    '记录生物特征数据...',
+    '分析嵌入式辛迪加信息...',
+    '状态确认',
+    '连接辛迪加数据库...',
+    '等待响应...',
+    '等待响应...',
+    '等待响应...',
+    '等待响应...',
+    '等待响应...',
+    '等待响应...',
+    '收到响应, 应答 4851234...',
+    '确认ACC ' + Math.round(Math.random() * 20000),
+    '设置私人账户...',
+    '已创建契约账户',
+    '搜索可用契约...',
+    '搜索可用契约...',
+    '搜索可用契约...',
+    '搜索可用契约...',
+    '已找到契约',
+    '欢迎，特工',
   ];
 
   const infoEntries = [
     'SyndTract v2.0',
     '',
-    "We've identified potentional high-value targets that are",
-    'currently assigned to your mission area. They are believed',
-    'to hold valuable information which could be of immediate',
-    'importance to our organisation.',
+    '我们已经确定了一些你所在区域内的高价值目标. ',
+    '据信他们持有对我们组织来说极为重要的宝贵即时信息.',
     '',
-    'Listed below are all of the contracts available to you. You',
-    'are to bring the specified target to the designated',
-    'drop-off, and contact us via this uplink. We will send',
-    'a specialised extraction unit to put the body into.',
+    '下面列出的是所有你可以接取的契约. ',
+    '你需要把目标带到指定地点，然后用上行链路与我们联系，',
+    '我们会派出专门的回收单位进行回收.',
     '',
-    'We want targets alive - but we will sometimes pay slight',
-    "amounts if they're not, you just won't receive the shown",
-    'bonus. You can redeem your payment through this uplink in',
-    'the form of raw telecrystals, which can be put into your',
-    'regular Syndicate uplink to purchase whatever you may need.',
-    'We provide you with these crystals the moment you send the',
-    'target up to us, which can be collected at anytime through',
-    'this system.',
+    '我们希望目标能活着送过来 - 但尸体也可以接受，只是你的报酬将因此减少. ',
+    '一旦我们收到了目标，报酬就会立刻打给你，你在这个上行链路上可以随时领取，',
+    '报酬以TC水晶形式支付，你拿到后可以将其存入其他的上行链路消费.',
     '',
-    'Targets extracted will be ransomed back to the station once',
-    'their use to us is fulfilled, with us providing you a small',
-    'percentage cut. You may want to be mindful of them',
-    'identifying you when they come back. We provide you with',
-    'a standard contractor loadout, which will help cover your',
-    'identity.',
+    '最后，我们对送来的目标进行完必要的工作后就会要求空间站支付赎金，你也会得到',
+    '赎金中的一部分. 当他们被赎回空间站的时候，你可能要注意不被他们认出来. ',
+    '我们为你提供的契约装备里有一些可以帮助你隐藏身份.',
   ];
 
   const errorPane = !!data.error && (
@@ -112,7 +101,7 @@ export const SyndContractorContent = (props) => {
       <Section minHeight="525px">
         <Box width="100%" textAlign="center">
           <Button
-            content="REGISTER USER"
+            content="注册用户"
             color="transparent"
             onClick={() => act('PRG_login')}
           />
@@ -142,7 +131,7 @@ export const SyndContractorContent = (props) => {
         </Box>
         <Button
           fluid
-          content="CONTINUE"
+          content="继续"
           color="transparent"
           textAlign="center"
           onClick={() => act('PRG_toggle_info')}
@@ -166,9 +155,9 @@ export const StatusPane = (props) => {
     <Section
       title={
         <>
-          Contractor Status
+          契约特工状态
           <Button
-            content="View Information Again"
+            content="再次查看说明"
             color="transparent"
             mb={0}
             ml={1}
@@ -186,10 +175,10 @@ export const StatusPane = (props) => {
         <Stack.Item grow>
           <LabeledList>
             <LabeledList.Item
-              label="TC Available"
+              label="可领取TC"
               buttons={
                 <Button
-                  content="Claim"
+                  content="领取"
                   disabled={data.redeemable_tc <= 0}
                   onClick={() => act('PRG_redeem_TC')}
                 />
@@ -197,17 +186,17 @@ export const StatusPane = (props) => {
             >
               {String(data.redeemable_tc)}
             </LabeledList.Item>
-            <LabeledList.Item label="TC Earned">
+            <LabeledList.Item label="挣得TC">
               {String(data.earned_tc)}
             </LabeledList.Item>
           </LabeledList>
         </Stack.Item>
         <Stack.Item grow>
           <LabeledList>
-            <LabeledList.Item label="Contracts Completed">
+            <LabeledList.Item label="契约完成">
               {String(data.contracts_completed)}
             </LabeledList.Item>
-            <LabeledList.Item label="Current Status">ACTIVE</LabeledList.Item>
+            <LabeledList.Item label="当前状态">激活</LabeledList.Item>
           </LabeledList>
         </Stack.Item>
       </Stack>
@@ -222,7 +211,7 @@ export const SyndPane = (props) => {
       <StatusPane state={props.state} />
       <Tabs>
         <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-          Contracts
+          契约
         </Tabs.Tab>
         <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
           Hub
@@ -240,10 +229,10 @@ const ContractsTab = (props) => {
   return (
     <>
       <Section
-        title="Available Contracts"
+        title="可接取契约"
         buttons={
           <Button
-            content="Call Extraction"
+            content="呼叫回收舱"
             disabled={!data.ongoing_contract || data.extraction_enroute}
             onClick={() => act('PRG_call_extraction')}
           />
@@ -266,7 +255,7 @@ const ContractsTab = (props) => {
               title={
                 contract.target
                   ? `${contract.target} (${contract.target_rank})`
-                  : 'Invalid Target'
+                  : '无效目标'
               }
               level={active ? 1 : 2}
               buttons={
@@ -275,7 +264,7 @@ const ContractsTab = (props) => {
                     {`${contract.payout} (+${contract.payout_bonus}) TC`}
                   </Box>
                   <Button
-                    content={active ? 'Abort' : 'Accept'}
+                    content={active ? '中止' : '接取'}
                     disabled={contract.extraction_enroute}
                     color={active && 'bad'}
                     onClick={() =>
@@ -291,7 +280,7 @@ const ContractsTab = (props) => {
                 <Grid.Column>{contract.message}</Grid.Column>
                 <Grid.Column size={0.5}>
                   <Box bold mb={1}>
-                    Dropoff Location:
+                    回收位置:
                   </Box>
                   <Box>{contract.dropoff}</Box>
                 </Grid.Column>
@@ -301,7 +290,7 @@ const ContractsTab = (props) => {
         })}
       </Section>
       <Section
-        title="Dropoff Locator"
+        title="回收定位器"
         textAlign="center"
         opacity={data.ongoing_contract ? 100 : 0}
       >
@@ -317,7 +306,7 @@ const HubTab = (props) => {
   return (
     <Section>
       {contractor_hub_items.map((item) => {
-        const repInfo = item.cost ? item.cost + ' Rep' : 'FREE';
+        const repInfo = item.cost ? item.cost + ' Rep' : '免费';
         const limited = item.limited !== -1;
         return (
           <Section
@@ -328,11 +317,11 @@ const HubTab = (props) => {
               <>
                 {limited && (
                   <Box inline bold mr={1}>
-                    {item.limited} remaining
+                    {item.limited}剩余
                   </Box>
                 )}
                 <Button
-                  content="Purchase"
+                  content="购买"
                   disabled={
                     data.contract_rep < item.cost ||
                     (limited && item.limited <= 0)

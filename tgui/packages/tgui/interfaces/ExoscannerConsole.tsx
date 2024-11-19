@@ -37,10 +37,10 @@ const ScanFailedModal = (props) => {
     <Modal>
       <Stack fill vertical>
         <Stack.Item>
-          <Box color="bad">SCAN FAILURE!</Box>
+          <Box color="bad">扫描失败!</Box>
         </Stack.Item>
         <Stack.Item>
-          <Button content="Confirm" onClick={() => act('confirm_fail')} />
+          <Button content="确认" onClick={() => act('confirm_fail')} />
         </Stack.Item>
       </Stack>
     </Modal>
@@ -67,24 +67,22 @@ const ScanSelectionSection = (props) => {
       <Stack.Item grow>
         <Section
           fill
-          title="Site Data"
+          title="现场数据"
           buttons={
             <Button
-              content="Back"
+              content="返回"
               onClick={() => act('select_site', { site_ref: null })}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Name">{site.name}</LabeledList.Item>
-            <LabeledList.Item label="Description">
-              {site.revealed ? site.description : 'No Data'}
+            <LabeledList.Item label="名称">{site.name}</LabeledList.Item>
+            <LabeledList.Item label="描述">
+              {site.revealed ? site.description : '无数据'}
             </LabeledList.Item>
-            <LabeledList.Item label="Distance">
-              {site.distance}
-            </LabeledList.Item>
+            <LabeledList.Item label="距离">{site.distance}</LabeledList.Item>
             <LabeledList.Divider />
-            <LabeledList.Item label="Spectrography Data" />
+            <LabeledList.Item label="光谱数据" />
             <LabeledList.Divider />
             {Object.keys(site.band_info).map((band) => (
               <LabeledList.Item key={band} label={band}>
@@ -96,31 +94,27 @@ const ScanSelectionSection = (props) => {
       </Stack.Item>
       {scan_available && (
         <Stack.Item>
-          <Section fill title="Scans">
+          <Section fill title="扫描">
             {!point_scan_complete && (
-              <Section title="Point Scan">
+              <Section title="点扫描">
                 <BlockQuote>
-                  Point scan performs rudimentary scan of the site, revealing
-                  its general characteristics.
+                  点扫描对站点进行基本扫描，显示其一般特征.
                 </BlockQuote>
                 <Box>
                   <Button
-                    content="Scan"
+                    content="扫描"
                     disabled={scan_power <= 0}
                     onClick={() => act('start_point_scan')}
                   />
                   <Box inline pl={3}>
-                    Estimated Time: {point_cost}.
+                    预计时间: {point_cost}.
                   </Box>
                 </Box>
               </Section>
             )}
             {!deep_scan_complete && (
-              <Section title="Deep Scan">
-                <BlockQuote>
-                  Deep scan performs full scan of the site, revealing all
-                  details.
-                </BlockQuote>
+              <Section title="深度扫描">
+                <BlockQuote>深度扫描会进行全面的扫描，显示所有细节.</BlockQuote>
                 <Box>
                   <Button
                     content="Scan"
@@ -128,7 +122,7 @@ const ScanSelectionSection = (props) => {
                     onClick={() => act('start_deep_scan')}
                   />
                   <Box inline pl={3}>
-                    Estimated Time: {deep_cost}.
+                    预计时间: {deep_cost}.
                   </Box>
                 </Box>
               </Section>
@@ -152,21 +146,17 @@ const ScanInProgressModal = (props) => {
 
   return (
     <Modal ml={1}>
-      <NoticeBox>Scan in Progress!</NoticeBox>
+      <NoticeBox>扫描进行中!</NoticeBox>
       <Box color="danger" />
       <LabeledList>
-        <LabeledList.Item label="Scan summary">
-          {scan_description}
-        </LabeledList.Item>
-        <LabeledList.Item label="Time left">
+        <LabeledList.Item label="扫描结论">{scan_description}</LabeledList.Item>
+        <LabeledList.Item label="时间剩余">
           {formatTime(scan_time)}
         </LabeledList.Item>
-        <LabeledList.Item label="Scanning array power">
-          {scan_power}
-        </LabeledList.Item>
-        <LabeledList.Item label="Emergency Stop">
+        <LabeledList.Item label="扫描阵列功率">{scan_power}</LabeledList.Item>
+        <LabeledList.Item label="紧急停止">
           <Button.Confirm
-            content="STOP SCAN"
+            content="停止扫描"
             color="red"
             icon="times"
             onClick={() => act('stop_scan')}
@@ -208,7 +198,7 @@ export const ExoscannerConsole = (props) => {
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
-            <Section fill title="Available array power">
+            <Section fill title="可用阵列功率">
               <Stack>
                 <Stack.Item grow>
                   {(scan_power > 0 && (
@@ -219,10 +209,10 @@ export const ExoscannerConsole = (props) => {
                       <Icon name="satellite-dish" size={3} />
                     </>
                   )) ||
-                    'No properly configured scanner arrays detected.'}
+                    '未检测到正确配置的扫描阵列.'}
                 </Stack.Item>
               </Stack>
-              <Section title="Special Scan Condtions">
+              <Section title="特殊扫描条件">
                 {scan_conditions &&
                   scan_conditions.map((condition) => (
                     <NoticeBox key={condition}>{condition}</NoticeBox>
@@ -245,24 +235,23 @@ export const ExoscannerConsole = (props) => {
                       disabled={!can_start_wide_scan}
                       onClick={() => act('start_wide_scan')}
                     >
-                      Scan
+                      扫描
                     </Button>
                   }
                   fill
-                  title="Configure Wide Scan"
+                  title="配置广谱扫描"
                 >
                   <Stack>
                     <Stack.Item>
                       <BlockQuote>
-                        Broad spectrum scan looking for anything not matching
-                        known start charts.
+                        广谱扫描，寻找任何与已知起始图像不匹配的东西.
                       </BlockQuote>
                     </Stack.Item>
                     <Stack.Item>
                       Cost estimate:{' '}
                       {scan_power > 0
                         ? formatTime(wide_scan_eta, 'short')
-                        : '∞ minutes'}
+                        : '∞ 分钟'}
                     </Stack.Item>
                   </Stack>
                 </Section>
@@ -270,11 +259,11 @@ export const ExoscannerConsole = (props) => {
               <Stack.Item grow>
                 <Section
                   fill
-                  title="Configure Targeted Scans"
+                  title="配置目标扫描"
                   scrollable
                   buttons={
                     <Button
-                      content="View Experiments"
+                      content="浏览实验"
                       onClick={() => act('open_experiments')}
                       icon="tasks"
                     />

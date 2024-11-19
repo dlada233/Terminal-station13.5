@@ -2,7 +2,7 @@
  * Clipboard
  */
 /obj/item/clipboard
-	name = "clipboard"
+	name = "笔记板"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "clipboard"
 	inhand_icon_state = "clipboard"
@@ -27,7 +27,7 @@
 	var/datum/weakref/toppaper_ref
 
 /obj/item/clipboard/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins putting [user.p_their()] head into the clip of \the [src]! 看起来是在尝试自杀!"))
+	user.visible_message(span_suicide("[user]把自己头夹到[src]上! 看起来是在尝试自杀!"))
 	return BRUTELOSS //The clipboard's clip is very strong. Industrial duty. Can kill a man easily.
 
 /obj/item/clipboard/Initialize(mapload)
@@ -41,10 +41,10 @@
 /obj/item/clipboard/examine()
 	. = ..()
 	if(!integrated_pen && pen)
-		. += span_notice("Alt-click to remove [pen].")
+		. += span_notice("Alt加左键取出[pen].")
 	var/obj/item/paper/toppaper = toppaper_ref?.resolve()
 	if(toppaper)
-		. += span_notice("Right-click to remove [toppaper].")
+		. += span_notice("右键取出[toppaper].")
 
 /// Take out the topmost paper
 /obj/item/clipboard/proc/remove_paper(obj/item/paper/paper, mob/user)
@@ -52,7 +52,7 @@
 		return
 	paper.forceMove(user.loc)
 	user.put_in_hands(paper)
-	to_chat(user, span_notice("You remove [paper] from [src]."))
+	to_chat(user, span_notice("你取下[paper]从[src]."))
 	var/obj/item/paper/toppaper = toppaper_ref?.resolve()
 	if(paper == toppaper)
 		UnregisterSignal(toppaper, COMSIG_ATOM_UPDATED_ICON)
@@ -67,7 +67,7 @@
 /obj/item/clipboard/proc/remove_pen(mob/user)
 	pen.forceMove(user.loc)
 	user.put_in_hands(pen)
-	to_chat(user, span_notice("You remove [pen] from [src]."))
+	to_chat(user, span_notice("你取下[pen]从[src]."))
 	pen = null
 	update_icon()
 
@@ -76,7 +76,7 @@
 		return CLICK_ACTION_BLOCKING
 
 	if(integrated_pen)
-		to_chat(user, span_warning("You can't seem to find a way to remove [src]'s [pen]."))
+		to_chat(user, span_warning("你找不到办法取出[src]的[pen]."))
 		return CLICK_ACTION_BLOCKING
 
 	remove_pen(user)
@@ -109,13 +109,13 @@
 			UnregisterSignal(toppaper, COMSIG_ATOM_UPDATED_ICON)
 		RegisterSignal(weapon, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_top_paper_change))
 		toppaper_ref = WEAKREF(weapon)
-		to_chat(user, span_notice("You clip [weapon] onto [src]."))
+		to_chat(user, span_notice("你把[weapon]夹到[src]."))
 	else if(istype(weapon, /obj/item/pen) && !pen)
 		//Add a pen into the clipboard, attack (write) if there is already one
 		if(!usr.transferItemToLoc(weapon, src))
 			return
 		pen = weapon
-		to_chat(usr, span_notice("You slot [weapon] into [src]."))
+		to_chat(usr, span_notice("你将[weapon]插入[src]."))
 	else if(toppaper)
 		toppaper.attackby(user.get_active_held_item(), user)
 	update_appearance()
@@ -166,7 +166,7 @@
 				if(!integrated_pen)
 					remove_pen(usr)
 				else
-					to_chat(usr, span_warning("You can't seem to find a way to remove [src]'s [pen]."))
+					to_chat(usr, span_warning("你找不到方法取下[src]的[pen]."))
 				. = TRUE
 		// Take paper out
 		if("remove_paper")
@@ -186,7 +186,7 @@
 			var/obj/item/paper/paper = locate(params["ref"]) in src
 			if(istype(paper))
 				toppaper_ref = WEAKREF(paper)
-				to_chat(usr, span_notice("You move [paper] to the top."))
+				to_chat(usr, span_notice("你移动[paper]到顶部."))
 				update_icon()
 				. = TRUE
 		// Rename the paper (it's a verb)

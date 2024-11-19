@@ -38,31 +38,31 @@
 	icon_state = "mining_eva"
 
 /area/mine/maintenance
-	name = "Mining-采矿基地维护管道"
+	name = "Mining-采矿基地维护通道"
 
 /area/mine/maintenance/production
-	name = "Mining-采矿基地生产区维护管道"
+	name = "Mining-采矿基地生产区维护通道"
 
 /area/mine/maintenance/living
-	name = "Mining-采矿基地生活区维护管道"
+	name = "Mining-采矿基地生活区维护通道"
 
 /area/mine/maintenance/living/north
-	name = "Mining-采矿基地生活区北维护管道"
+	name = "Mining-采矿基地生活区北维护通道"
 
 /area/mine/maintenance/living/south
-	name = "Mining-采矿基地生活区南维护管道"
+	name = "Mining-采矿基地生活区南维护通道"
 
 /area/mine/maintenance/public
-	name = "Mining-采矿基地公共区维护管道"
+	name = "Mining-采矿基地公共区维护通道"
 
 /area/mine/maintenance/public/north
-	name = "Mining-采矿基地公共区北维护管道"
+	name = "Mining-采矿基地公共区北维护通道"
 
 /area/mine/maintenance/public/south
-	name = "Mining-采矿基地公共区南维护管道"
+	name = "Mining-采矿基地公共区南维护通道"
 
 /area/mine/maintenance/service
-	name = "Mining-采矿基地服务区维护管道"
+	name = "Mining-采矿基地服务区维护通道"
 
 /area/mine/maintenance/service/disposals
 	name = "Mining-采矿基地垃圾处理区"
@@ -71,7 +71,7 @@
 	name = "Mining-采矿基地通讯机房"
 
 /area/mine/maintenance/labor
-	name = "Labor-劳改营维护管道"
+	name = "Labor-劳改营维护通道"
 
 /area/mine/cafeteria
 	name = "Mining-采矿基地食堂"
@@ -114,7 +114,7 @@
 	ambience_index = AMBIENCE_DANGER
 
 /area/mine/laborcamp/security/maintenance
-	name = "Labor-劳改营安保区维护管道"
+	name = "Labor-劳改营安保区维护通道"
 	icon_state = "labor_camp_security"
 	ambience_index = AMBIENCE_DANGER
 

@@ -3,33 +3,27 @@ import { Button, Input, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 const TOOLTIP_NAME = `
-  Enter a new name for this unit. Set to blank to reset to default,
-  which means unit will be able to choose it's own name.
+  输入该单位的新名字，保持空白将重置为默认值，这意味着单位能自己选择自己的名字.
 `;
 
 const TOOLTIP_LOCOMOTION = `
-  If restricted, unit will be
-  under lockdown until released.
+  如果受到限制，该单位将被锁定直到解锁.
 `;
 
 const TOOLTIP_PANEL = `
-  If unlocked, unit's cover panel will be
-  accessible even without proper authorization.
+  如果解锁，即使没有授权，也可以打开单位的覆板.
 `;
 
 const TOOLTIP_AISYNC = `
-  If closed, this unit will
-  not be paired with any AI.
+  如果关闭，该单位将无法与任何AI配对
 `;
 
 const TOOLTIP_AI = `
-  Controls who will be the
-  master AI of this unit.
+  控制谁为该单位的上级AI.
 `;
 
 const TOOLTIP_LAWSYNC = `
-  If closed, this unit will not synchronize
-  it's laws with it's master AI.
+  如果关闭，该单位将不会与上级AI同步法律.
 `;
 
 export const CyborgBootDebug = (props) => {
@@ -38,10 +32,10 @@ export const CyborgBootDebug = (props) => {
   return (
     <Window width={master?.length > 26 ? 537 : 440} height={289}>
       <Window.Content>
-        <Section title="Basic Settings">
+        <Section title="基础设置">
           <LabeledList>
             <LabeledList.Item
-              label="Designation"
+              label="名称"
               buttons={
                 <Button
                   icon="info"
@@ -52,7 +46,7 @@ export const CyborgBootDebug = (props) => {
             >
               <Input
                 fluid
-                value={designation || 'Default Cyborg'}
+                value={designation || '默认赛博'}
                 onChange={(e, value) =>
                   act('rename', {
                     new_name: value,
@@ -61,7 +55,7 @@ export const CyborgBootDebug = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Servo Motor Functions"
+              label="伺服电机功能"
               buttons={
                 <Button
                   icon="info"
@@ -72,13 +66,13 @@ export const CyborgBootDebug = (props) => {
             >
               <Button
                 icon={locomotion ? 'unlock' : 'lock'}
-                content={locomotion ? 'Free' : 'Restricted'}
+                content={locomotion ? '自由' : '受限制'}
                 color={locomotion ? 'good' : 'bad'}
                 onClick={() => act('locomotion')}
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Cover Panel"
+              label="覆板"
               buttons={
                 <Button
                   icon="info"
@@ -89,16 +83,16 @@ export const CyborgBootDebug = (props) => {
             >
               <Button
                 icon={panel ? 'lock' : 'unlock'}
-                content={panel ? 'Locked' : 'Unlocked'}
+                content={panel ? '锁定' : '解锁'}
                 onClick={() => act('panel')}
               />
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="AI Settings">
+        <Section title="AI设置">
           <LabeledList>
             <LabeledList.Item
-              label="AI Connection Port"
+              label="AI连接端口"
               buttons={
                 <Button
                   icon="info"
@@ -109,12 +103,12 @@ export const CyborgBootDebug = (props) => {
             >
               <Button
                 icon={aisync ? 'unlock' : 'lock'}
-                content={aisync ? 'Open' : 'Closed'}
+                content={aisync ? '开启' : '关闭'}
                 onClick={() => act('aisync')}
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Master AI"
+              label="上级AI"
               buttons={
                 <Button
                   icon="info"
@@ -125,14 +119,14 @@ export const CyborgBootDebug = (props) => {
             >
               <Button
                 icon={!aisync ? 'times' : master ? 'edit' : 'sync'}
-                content={!aisync ? 'None' : master || 'Automatic'}
+                content={!aisync ? '无' : master || '自动'}
                 color={master ? 'default' : 'good'}
                 disabled={!aisync}
                 onClick={() => act('set_ai')}
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="LawSync Port"
+              label="法律同步端口"
               buttons={
                 <Button
                   icon="info"
@@ -143,7 +137,7 @@ export const CyborgBootDebug = (props) => {
             >
               <Button
                 icon={!aisync ? 'lock' : lawsync ? 'unlock' : 'lock'}
-                content={!aisync ? 'Closed' : lawsync ? 'Open' : 'Closed'}
+                content={!aisync ? '关闭' : lawsync ? '开启' : '关闭'}
                 disabled={!aisync}
                 onClick={() => act('lawsync')}
               />

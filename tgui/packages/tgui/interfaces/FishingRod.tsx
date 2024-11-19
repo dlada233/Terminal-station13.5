@@ -41,7 +41,7 @@ const FishingRodSlot = (props: Props) => {
                 )}
               </Flex.Item>
               <Flex.Item grow align="center">
-                <Box textAlign="center">{current_item_name ?? 'None'}</Box>
+                <Box textAlign="center">{current_item_name ?? '无'}</Box>
               </Flex.Item>
             </Flex>
           </Button>
@@ -68,19 +68,19 @@ export const FishingRod = (props) => {
       <Window.Content>
         <Section>
           <FishingRodSlot
-            name="Bait"
+            name="鱼饵"
             slot="bait"
             current_item_name={bait_name}
             current_item_icon={bait_icon}
           />
           <FishingRodSlot
-            name="Line"
+            name="鱼线"
             slot="line"
             current_item_name={line_name}
             current_item_icon={line_icon}
           />
           <FishingRodSlot
-            name="Hook"
+            name="鱼钩"
             slot="hook"
             current_item_name={hook_name}
             current_item_icon={hook_icon}

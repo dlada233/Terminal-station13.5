@@ -112,7 +112,7 @@
 
 /datum/market_item/tool/program_disk
 	name = "盗版数据盘"
-	desc = "包含EXCLUSIVE和LIMITED模块程序的数据磁盘，从法律上讲，我不能告诉你我是怎么得到的."
+	desc = "包含EXCLUSIVE和LIMITED模块程序的数据软盘，从法律上讲，我不能告诉你我是怎么得到的."
 	item = /obj/item/computer_disk/black_market
 	price_min = CARGO_CRATE_VALUE * 0.75
 	price_max = CARGO_CRATE_VALUE * 2

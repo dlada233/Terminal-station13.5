@@ -5,7 +5,7 @@ const Nightmare: Antagonist = {
   name: '夜魇',
   description: [
     `
-      运用名为消光的臂刃来打碎光源以在黑暗中生存和成长.
+      运用名为light eater的臂刃来打碎光源以在黑暗中生存和成长.
       在黑暗中穿行，运用夜视寻找猎物.
     `,
   ],

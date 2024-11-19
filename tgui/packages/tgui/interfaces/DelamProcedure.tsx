@@ -4,101 +4,76 @@ import { Window } from '../layouts';
 
 export const DelamProcedure = () => {
   return (
-    <Window
-      title="Safety Moth - Delamination Emergency Procedure"
-      width={666}
-      height={865}
-      theme="dark"
-    >
+    <Window title="安全蛾 - 分层紧急程序" width={666} height={865} theme="dark">
       <Window.Content>
-        <Section title="NT-approved delam emergency procedure">
+        <Section title="NT-分层应急程序">
           <NoticeBox danger m={2}>
             <b>
-              So you&apos;ve found yourself in a bit of a pickle with a
-              delamination of a supermatter reactor.
+              所以你发现自己陷入了一场超物质反应堆分层事故的困境中.
               <br />
               <br />
-              Don&apos;t worry, saving the day is just a few steps away!
+              别担心，挽救整个局面就在几步之内!
             </b>
           </NoticeBox>
           <BlockQuote m={2}>
-            Locate the ever-elusive red emergency stop button. It&apos;s
-            probably hiding in plain sight, so take your time, have a laugh, and
-            enjoy the anticipation. Remember, it&apos;s like a treasure hunt,
-            only with the added bonus of preventing a nuclear disaster.
+            找到不那么明显的红色紧急停止按钮. 它可能就隐藏在你视野里的某处，
+            所以放轻松，笑一笑，就当是在玩寻宝游戏，只是奖励是制止核灾难.
           </BlockQuote>
           <BlockQuote m={2}>
-            Once you&apos;ve uncovered the button, muster all your courage and
-            push it like there&apos;s no tomorrow. Well, actually, you&apos;re
-            pushing it to ensure there is a tomorrow. But hey, who doesn&apos;t
-            love a little paradoxical button-pushing?
+            一旦你找到了那个按钮，就义无反顾地按下它，按得好像你已经没有明天了那样；
+            但实际上，你这么做是为了有明天.
+            也许蕴含了某种二元对立转化的辩证思想?
           </BlockQuote>
           <BlockQuote m={2}>
-            Prepare for the impending suppression of the supermatter engine
-            room, because things are about to get real quiet. Just make sure
-            everyone has evacuated, or else they&apos;ll be in for a surprise.
-            The system needs its space, and it&apos;s not known for being the
-            friendliest neighbour.
+            紧急停止措施将对整个超物质反应室里进行压制，一切都将变得非常安静.
+            确保 大家都已经疏散了，否则他们可能会收到一些惊喜.
+            这个系统需要一定的空间， 并且不是一个友善的邻居.
           </BlockQuote>
           <BlockQuote m={2}>
-            After the delamination is successfully suppressed, take a moment to
-            appreciate the delicate beauty of crystal-based electricity. Take a
-            look around and fix any damage to those fragile glass components.
-            Feel free to put on your finest overalls and channel your inner
-            engiborg while doing so.
+            在分层成功被抑制后，花点时间来欣赏超物质水晶的精致之美. 检查
+            一下周围，修复那些玻璃部件，打扫一下现场.
           </BlockQuote>
           <BlockQuote m={2}>
-            Keep an eye out for fires and the infamous air mix. It&apos;s always
-            an adventure trying to strike the perfect balance between breathable
-            air and potential suffocation. Remember, oxygen plus a spark equals
-            fireworks - the kind you definitely don&apos;t want inside a
-            reactor.
+            最好穿上你最好的工作服，必须小心火灾以及有害气体.
+            记住，氧气加上火花等于
+            焰火，你绝对不想在超物质旁边看到焰火；所以做好复杂的大气管理，而不是单单
+            让不知名气体弥漫全场.
           </BlockQuote>
           <NoticeBox info m={2}>
             <b>
-              Did you know freon catches fire at low temperatures?
+              你知道氟利氧会在低温下着火吗?
               <br />
               <br />
-              It even forms hot ice between 120K and 160K!
+              它甚至在120K到160K之间会形成热冰!
               <br />
               <br />
-              Remember you can always turn the engine room air alarm to
-              contaminated to assist in removing harmful gases!
+              记住你总是可以通过设置大气警报来让通风设备帮助你清除有害气体!
             </b>
           </NoticeBox>
           <BlockQuote m={2}>
-            To avoid singeing your eyebrows off, consider enlisting the help of
-            a synth or a trusty borg. After all, nothing says &quot;safety
-            first&quot; like outsourcing your firefighting to non-living,
-            non-breathing assistants.
+            为了避免眉毛被烧焦，可以考虑找个值得信赖的合成人或者赛博帮忙.
+            或者直接把灭火工作外包给没有呼吸需求的人.
           </BlockQuote>
           <BlockQuote m={2}>
-            Clear out any lightly radioactive debris and/or hot ice (The cargo
-            department will probably love to dispose it for you.)
+            清除任何放射性残骸或热冰(货仓部门可能很乐意为你回收它们.)
           </BlockQuote>
           <BlockQuote m={2}>
-            Finally, revel in the satisfaction of knowing that you&apos;ve
-            single-handedly prevented a delamination. But, of course, don&apos;t
-            forget to feel guilty because SAFETY MOTH Knows. SAFETY MOTH knows
-            everything. It&apos;s always watching, judging, and probably taking
-            notes for its next safety briefing. So bask in the glory of your
-            heroism, but know that the all-knowing Moff is onto you.
+            最终，当你意识到你以一己之力阻止了分层时，成就感油然而生.
+            但是，当然，不要忘记感到内疚，因为安全蛾知道. 安全蛾无所不知.
+            它总是在观察、判断，还可能会为下一次安全简报做记录. 尽情
+            享受在成为英雄的荣耀吧，但要知道无所不知的蛾已经盯上你的了.
           </BlockQuote>
           <Box m={2}>
-            <b>Optional step, for the true daredevils out there</b>
+            <b>可选步骤，为那些真正的冒险者准备</b>
           </Box>
           <BlockQuote m={2}>
-            When it comes time for your second attempt at starting the SM: Take
-            this sign, give it a good toss towards the crystal, and watch it
-            soar through the air. <br />
+            当你第二次尝试启动SM时，拿起这个标志，把它朝水晶扔过去，看着它在空中飞过.{' '}
             <br />
-            Nothing says &quot;I&apos;m dealing with a potentially catastrophic
-            situation&quot; like engaging in some whimsical shenanigans.
+            <br />
+            没有人说我正在处理一个潜在的灾难性情况；比如搞一些异想天开的恶作剧.
           </BlockQuote>
           <NoticeBox m={2}>
-            <b>
-              Hopefully you&apos;ll never need to do this. However, good luck!
-            </b>
+            <b>希望你永远用不到这个，祝你好运!</b>
           </NoticeBox>
         </Section>
       </Window.Content>

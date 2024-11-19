@@ -85,7 +85,7 @@ const InputArea = (props) => {
           disabled={input === min_value}
           icon="angle-double-left"
           onClick={() => onClick(min_value)}
-          tooltip={min_value ? `Min (${min_value})` : 'Min'}
+          tooltip={min_value ? `最小 (${min_value})` : '最小'}
         />
       </Stack.Item>
       <Stack.Item grow>
@@ -107,7 +107,7 @@ const InputArea = (props) => {
           disabled={input === max_value}
           icon="angle-double-right"
           onClick={() => onClick(max_value)}
-          tooltip={max_value ? `Max (${max_value})` : 'Max'}
+          tooltip={max_value ? `最大 (${max_value})` : '最大'}
         />
       </Stack.Item>
       <Stack.Item>
@@ -115,7 +115,7 @@ const InputArea = (props) => {
           disabled={input === init_value}
           icon="redo"
           onClick={() => onClick(init_value)}
-          tooltip={init_value ? `Reset (${init_value})` : 'Reset'}
+          tooltip={init_value ? `重置 (${init_value})` : '重置'}
         />
       </Stack.Item>
     </Stack>

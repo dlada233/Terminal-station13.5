@@ -43,13 +43,13 @@ export function SimpleBot(props) {
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
-            <Section title="Settings" buttons={<TabDisplay />}>
-              {!access ? <NoticeBox>Locked!</NoticeBox> : <SettingsDisplay />}
+            <Section title="设置" buttons={<TabDisplay />}>
+              {!access ? <NoticeBox>被锁定!</NoticeBox> : <SettingsDisplay />}
             </Section>
           </Stack.Item>
           {!!access && (
             <Stack.Item grow>
-              <Section fill scrollable title="Controls">
+              <Section fill scrollable title="控制">
                 <LabeledControls wrap>
                   {Object.entries(custom_controls).map((control) => (
                     <LabeledControls.Item
@@ -90,13 +90,9 @@ function TabDisplay(props) {
           icon={emagged ? 'bug' : 'lock'}
           onClick={() => act('hack')}
           selected={!emagged}
-          tooltip={
-            !emagged
-              ? 'Unlocks the safety protocols.'
-              : 'Resets the bot operating system.'
-          }
+          tooltip={!emagged ? '解锁安全协议.' : '重置操作系统.'}
         >
-          {emagged ? 'Malfunctional' : 'Safety Lock'}
+          {emagged ? '故障' : '安全锁定'}
         </Button>
       )}
       {!!allow_possession && <PaiButton />}
@@ -104,9 +100,9 @@ function TabDisplay(props) {
         color="transparent"
         icon="fa-poll-h"
         onClick={() => act('rename')}
-        tooltip="Update the bot's name registration."
+        tooltip="更新机器人的名称."
       >
-        Rename
+        重命名
       </Button>
       <Button
         color="transparent"
@@ -114,9 +110,9 @@ function TabDisplay(props) {
         icon={locked ? 'lock' : 'lock-open'}
         onClick={() => act('lock')}
         selected={locked}
-        tooltip={`${locked ? 'Unlock' : 'Lock'} the control panel.`}
+        tooltip={`${locked ? '解锁' : '锁定'}控制面板.`}
       >
-        Controls Lock
+        控制锁定
       </Button>
     </>
   );
@@ -134,9 +130,9 @@ function PaiButton(props) {
       <Button
         color="transparent"
         icon="robot"
-        tooltip={`Insert an active PAI card to control this device.`}
+        tooltip={`插入活跃状态的PAI来控制该设备.`}
       >
-        No PAI Inserted
+        PAI未插入
       </Button>
     );
   }
@@ -146,9 +142,9 @@ function PaiButton(props) {
       disabled={!pai_inserted}
       icon="eject"
       onClick={() => act('eject_pai')}
-      tooltip={`Ejects the current PAI.`}
+      tooltip={`取出当前的PAI.`}
     >
-      Eject PAI
+      取出PAI
     </Button>
   );
 }
@@ -169,8 +165,8 @@ function SettingsDisplay(props) {
 
   return (
     <LabeledControls>
-      <LabeledControls.Item label="Power">
-        <Tooltip content={`Powers ${power ? 'off' : 'on'} the bot.`}>
+      <LabeledControls.Item label="电源">
+        <Tooltip content={`电源${power ? '关闭' : '开启'}.`}>
           <Icon
             size={2}
             name="power-off"
@@ -179,12 +175,8 @@ function SettingsDisplay(props) {
           />
         </Tooltip>
       </LabeledControls.Item>
-      <LabeledControls.Item label="Airplane Mode">
-        <Tooltip
-          content={`${
-            !airplane_mode ? 'Disables' : 'Enables'
-          } remote access via console.`}
-        >
+      <LabeledControls.Item label="飞行模式">
+        <Tooltip content={`${!airplane_mode ? '关闭' : '开启'}远程控制台访问.`}>
           <Icon
             size={2}
             name="plane"
@@ -193,12 +185,8 @@ function SettingsDisplay(props) {
           />
         </Tooltip>
       </LabeledControls.Item>
-      <LabeledControls.Item label="Patrol Station">
-        <Tooltip
-          content={`${
-            patrol_station ? 'Disables' : 'Enables'
-          } automatic station patrol.`}
-        >
+      <LabeledControls.Item label="站内巡逻">
+        <Tooltip content={`${patrol_station ? '关闭' : '开启'}自动站内巡逻.`}>
           <Icon
             size={2}
             name="map-signs"
@@ -207,13 +195,9 @@ function SettingsDisplay(props) {
           />
         </Tooltip>
       </LabeledControls.Item>
-      <LabeledControls.Item label="Maintenance Lock">
+      <LabeledControls.Item label="检修盖锁">
         <Tooltip
-          content={
-            maintenance_lock
-              ? 'Opens the maintenance hatch for repairs.'
-              : 'Closes the maintenance hatch.'
-          }
+          content={maintenance_lock ? '打开检修仓门进行维护.' : '关闭检修仓门.'}
         >
           <Icon
             size={2}
@@ -224,12 +208,12 @@ function SettingsDisplay(props) {
         </Tooltip>
       </LabeledControls.Item>
       {!!allow_possession && (
-        <LabeledControls.Item label="Personality">
+        <LabeledControls.Item label="人格">
           <Tooltip
             content={
               possession_enabled
-                ? 'Resets personality to factory default.'
-                : 'Enables download of a unique personality.'
+                ? '将人格重置为出厂默认值.'
+                : '允许从网络上下载独特人格.'
             }
           >
             <Icon
@@ -289,10 +273,7 @@ function MedbotSync(props) {
   const { act } = useBackend<Data>();
 
   return (
-    <Tooltip
-      content={`Synchronize surgical data with research network.
-       Improves Tending Efficiency.`}
-    >
+    <Tooltip content={`将手术数据与研究网络同步，提高护理效率.`}>
       <Icon
         color="purple"
         name="cloud-download-alt"
@@ -309,7 +290,7 @@ function MedbotThreshold(props: ControlProps) {
   const { control } = props;
 
   return (
-    <Tooltip content="Adjusts the sensitivity for damage treatment.">
+    <Tooltip content="调整主动治疗的伤害检测值.">
       <Slider
         minValue={5}
         maxValue={75}
@@ -337,9 +318,9 @@ function FloorbotTiles(props: ControlProps) {
       disabled={!control[1]}
       icon={control[1] ? 'eject' : ''}
       onClick={() => act('eject_tiles')}
-      tooltip="Number of floor tiles contained in the bot."
+      tooltip="一台机器人中包含的地砖数量."
     >
-      {control[1] ? `${control[1]}` : 'Empty'}
+      {control[1] ? `${control[1]}` : '空'}
     </Button>
   );
 }
@@ -350,7 +331,7 @@ function FloorbotLine(props: ControlProps) {
   const { control } = props;
 
   return (
-    <Tooltip content="Enables straight line tiling mode.">
+    <Tooltip content="启用直线平铺模式.">
       <Icon
         color={control[1] ? 'good' : 'gray'}
         name={control[1] ? 'compass' : 'toggle-off'}

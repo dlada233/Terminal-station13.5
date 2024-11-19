@@ -73,7 +73,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/telescreen_research
-	name = "Research Telescreen-科研电幕"
+	name = "Research Telescreen-科研监控屏"
 	id = "telescreen_research"
 	build_type = PROTOLATHE
 	materials = list(
@@ -88,7 +88,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/telescreen_ordnance
-	name = "Ordnance Telescreen-军械室电幕"
+	name = "Ordnance Telescreen-军械室监控屏"
 	id = "telescreen_ordnance"
 	build_type = PROTOLATHE
 	materials = list(

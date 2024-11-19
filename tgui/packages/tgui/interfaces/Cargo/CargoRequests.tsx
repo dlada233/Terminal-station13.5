@@ -37,7 +37,7 @@ export function CargoRequests(props) {
             <TableCell>原因</TableCell>
             <TableCell>花费</TableCell>
             {(!requestonly || !!can_send) && !!can_approve_requests && (
-              <TableCell>是否批准</TableCell>
+              <TableCell>批准</TableCell>
             )}
           </TableRow>
 

@@ -13,7 +13,7 @@ export const FilingCabinet = (props) => {
   const { cabinet_name, contents, contents_ref } = data;
 
   return (
-    <Window title={cabinet_name || 'Filing Cabinet'} width={350} height={300}>
+    <Window title={cabinet_name || '文件柜'} width={350} height={300}>
       <Window.Content backgroundColor="#B88F3D" scrollable>
         {contents.map((object, index) => (
           <Stack
@@ -39,7 +39,7 @@ export const FilingCabinet = (props) => {
         {contents.length === 0 && (
           <Section>
             <Box color="white" align="center">
-              The {cabinet_name} is empty!
+              {cabinet_name}是空的!
             </Box>
           </Section>
         )}

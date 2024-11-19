@@ -87,7 +87,7 @@ export const NtosCardContent = (props) => {
             <Button
               icon="question-circle"
               tooltip={
-                '此操作将尝试将模板中包含的所有权限添加到 ID 卡上.\n' +
+                '此操作将尝试将模板中包含的所有权限添加到ID卡上.\n' +
                 '自定义权限不会被添加，除非模板本身已应用.'
               }
               tooltipPosition="left"
@@ -97,7 +97,7 @@ export const NtosCardContent = (props) => {
           {hasTrim ? (
             <TemplateDropdown templates={templates} />
           ) : (
-            'Templates require a trim already applied to the card. Please use an ID Painter to apply a trim.'
+            '应用模板需要ID卡经过剪裁处理，请使用ID打印机来进行剪裁.'
           )}
         </Section>
       )}
@@ -144,18 +144,18 @@ const IdCardPage = (props) => {
 
   return (
     <Section
-      title={authenticatedUser ? '修改 ID' : '登录'}
+      title={authenticatedUser ? '修改ID' : '登录'}
       buttons={
         <>
           <Button
             icon="print"
-            content="Print"
+            content="打印"
             disabled={!has_id}
             onClick={() => act('PRG_print')}
           />
           <Button
             icon={authenticatedUser ? 'sign-out-alt' : 'sign-in-alt'}
-            content={authenticatedUser ? '登出' : '登录'}
+            content={authenticatedUser ? '注销' : '登录'}
             color={authenticatedUser ? 'bad' : 'good'}
             onClick={() => {
               act(authenticatedUser ? 'PRG_logout' : 'PRG_authenticate');
@@ -254,7 +254,7 @@ const TemplateDropdown = (props) => {
               name: sel,
             })
           }
-          selected="None"
+          selected="无"
         />
       </Stack.Item>
     </Stack>

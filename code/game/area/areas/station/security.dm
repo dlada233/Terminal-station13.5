@@ -24,7 +24,7 @@
 	icon_state = "securitylockerroom"
 
 /area/station/security/brig
-	name = "\improper Brig-安保大门"
+	name = "\improper Brig-安保门禁"
 	icon_state = "brig"
 
 /area/station/security/holding_cell
@@ -36,11 +36,11 @@
 	icon_state = "security_medical"
 
 /area/station/security/brig/upper
-	name = "\improper Brig Overlook-安保大门检查处"
+	name = "\improper Brig Overlook-安保门禁检查处"
 	icon_state = "upperbrig"
 
 /area/station/security/brig/entrance
-	name = "\improper Brig Entrance-安保大门入口"
+	name = "\improper Brig Entrance-安保门禁入口"
 	icon_state = "brigentry"
 
 /area/station/security/courtroom
@@ -66,7 +66,7 @@
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/station/security/warden
-	name = "Brig Control-安保大门控制"
+	name = "Brig Control-安保门禁控制"
 	icon_state = "warden"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 

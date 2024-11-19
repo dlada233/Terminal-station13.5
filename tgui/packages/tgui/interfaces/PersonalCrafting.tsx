@@ -253,9 +253,9 @@ export const PersonalCrafting = (props) => {
                   <Input
                     autoFocus
                     placeholder={
-                      'Search in ' +
+                      '搜索' +
                       data.recipes.length +
-                      (mode === MODE.cooking ? ' recipes...' : ' designs...')
+                      (mode === MODE.cooking ? '配方...' : '设计...')
                     }
                     value={searchText}
                     onInput={(e, value) => {
@@ -282,7 +282,7 @@ export const PersonalCrafting = (props) => {
                         );
                       }}
                     >
-                      Category
+                      目录
                     </Tabs.Tab>
                     {mode === MODE.cooking && (
                       <Tabs.Tab
@@ -300,7 +300,7 @@ export const PersonalCrafting = (props) => {
                           );
                         }}
                       >
-                        Type
+                        类型
                       </Tabs.Tab>
                     )}
                     <Tabs.Tab
@@ -425,7 +425,7 @@ export const PersonalCrafting = (props) => {
                   <Divider />
                   <Button.Checkbox
                     fluid
-                    content="Can make only"
+                    content="仅可制造"
                     checked={display_craftable_only}
                     onClick={() => {
                       act('toggle_recipes');
@@ -433,7 +433,7 @@ export const PersonalCrafting = (props) => {
                   />
                   <Button.Checkbox
                     fluid
-                    content="Compact list"
+                    content="简洁列表"
                     checked={display_compact}
                     onClick={() => act('toggle_compact')}
                   />
@@ -445,7 +445,7 @@ export const PersonalCrafting = (props) => {
                         <Button.Checkbox
                           fluid
                           lineHeight={2}
-                          content="Craft"
+                          content="制作"
                           checked={mode === MODE.crafting}
                           icon="hammer"
                           style={{
@@ -467,7 +467,7 @@ export const PersonalCrafting = (props) => {
                         <Button.Checkbox
                           fluid
                           lineHeight={2}
-                          content="Cook"
+                          content="烹饪"
                           checked={mode === MODE.cooking}
                           icon="utensils"
                           style={{
@@ -532,7 +532,7 @@ export const PersonalCrafting = (props) => {
                 </VirtualList>
               ) : (
                 <NoticeBox m={1} p={1}>
-                  No recipes found.
+                  未找到配方.
                 </NoticeBox>
               )}
               {recipes.length > displayLimit && (
@@ -542,8 +542,8 @@ export const PersonalCrafting = (props) => {
                   style={{ cursor: 'pointer' }}
                   onClick={() => setPages(pages + 1)}
                 >
-                  Load {Math.min(pageSize, recipes.length - displayLimit)}{' '}
-                  more...
+                  加载更多{Math.min(pageSize, recipes.length - displayLimit)}
+                  项...
                 </Section>
               )}
             </Box>
@@ -687,9 +687,7 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }) => {
               {!item.non_craftable ? (
                 <Box>
                   {!!item.tool_behaviors && (
-                    <Tooltip
-                      content={'Tools: ' + item.tool_behaviors.join(', ')}
-                    >
+                    <Tooltip content={'工具 ' + item.tool_behaviors.join(', ')}>
                       <Icon p={1} name="screwdriver-wrench" />
                     </Tooltip>
                   )}
@@ -697,7 +695,7 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }) => {
                     my={0.3}
                     lineHeight={2.5}
                     align="center"
-                    content="Make"
+                    content="制作"
                     disabled={!craftable || busy}
                     icon={
                       busy
@@ -719,9 +717,7 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }) => {
                       lineHeight={2.5}
                       width={'32px'}
                       align="center"
-                      tooltip={
-                        'Repeat this craft until you run out of ingredients.'
-                      }
+                      tooltip={'重复过程直到用完所有原料.'}
                       tooltipPosition={'top'}
                       disabled={!craftable || busy}
                       icon={'repeat'}
@@ -782,9 +778,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                 {item.reqs && (
                   <Box>
                     <GroupTitle
-                      title={
-                        mode === MODE.cooking ? 'Ingredients' : 'Materials'
-                      }
+                      title={mode === MODE.cooking ? '食材' : '材料'}
                     />
                     {Object.keys(item.reqs).map((atom_id) => (
                       <AtomContent
@@ -797,7 +791,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                 )}
                 {item.chem_catalysts && (
                   <Box>
-                    <GroupTitle title="Catalysts" />
+                    <GroupTitle title="催化剂" />
                     {Object.keys(item.chem_catalysts).map((atom_id) => (
                       <AtomContent
                         key={atom_id}
@@ -809,7 +803,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                 )}
                 {(item.tool_paths || item.tool_behaviors) && (
                   <Box>
-                    <GroupTitle title="Tools" />
+                    <GroupTitle title="工具" />
                     {item.tool_paths &&
                       item.tool_paths.map((tool) => (
                         <AtomContent key={tool} atom_id={tool} amount={1} />
@@ -822,7 +816,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                 )}
                 {item.machinery && (
                   <Box>
-                    <GroupTitle title="Machinery" />
+                    <GroupTitle title="机器" />
                     {item.machinery.map((atom_id) => (
                       <AtomContent key={atom_id} atom_id={atom_id} amount={1} />
                     ))}
@@ -830,7 +824,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                 )}
                 {item.structures && (
                   <Box>
-                    <GroupTitle title="Structures" />
+                    <GroupTitle title="结构" />
                     {item.structures.map((atom_id) => (
                       <AtomContent key={atom_id} atom_id={atom_id} amount={1} />
                     ))}
@@ -839,7 +833,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
               </Box>
               {!!item.steps?.length && (
                 <Box>
-                  <GroupTitle title="Steps" />
+                  <GroupTitle title="步骤" />
                   <ul style={{ paddingLeft: '20px' }}>
                     {item.steps.map((step) => (
                       <li key={step}>{step}</li>
@@ -857,7 +851,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                         <Button
                           lineHeight={2.5}
                           align="center"
-                          content="Make"
+                          content="制作"
                           fluid
                           disabled={!craftable || busy}
                           icon={
@@ -881,9 +875,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                             minWidth="30px"
                             lineHeight={2.5}
                             align="center"
-                            tooltip={
-                              'Repeat this craft until you run out of ingredients.'
-                            }
+                            tooltip={'重复这个过程直到用完所有材料.'}
                             tooltipPosition={'top'}
                             disabled={!craftable || busy}
                             icon={'repeat'}
@@ -902,7 +894,7 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }) => {
                 <Stack.Item>
                   {!!item.complexity && (
                     <Box color={'gray'} width={'104px'} lineHeight={1.5} mt={1}>
-                      Complexity: {item.complexity}
+                      复杂度: {item.complexity}
                     </Box>
                   )}
                   {item.foodtypes?.length > 0 && (

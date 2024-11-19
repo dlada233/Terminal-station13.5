@@ -219,7 +219,7 @@ class PaintCanvas extends Component<PaintCanvasProps> {
         onMouseOut={this.handleEndDrawing as any}
         onContextMenu={this.handleDropper as any}
       >
-        Canvas failed to render.
+        画布渲染失败.
       </canvas>
     );
   }
@@ -279,13 +279,11 @@ export const Canvas = (props) => {
               <Tooltip
                 content={
                   `
-                  Right-Click a pixel on the canvas to copy its color.
+                  右键画布上的像素格可以快速抽取颜色.
                 ` +
                   (data.editable
                     ? `
-                  \n Left-Click the palette at the
-                  bottom of the UI to select a color,
-                  or input a new one with Right-Click.
+                  \n 左键底部调色板可以选择预设颜色，右键单击则可以输入新的颜色.
                 `
                     : '')
                 }
@@ -297,7 +295,7 @@ export const Canvas = (props) => {
           {!!data.editable && !!data.paint_tool_color && (
             <Flex.Item>
               <Button
-                tooltip="Grid Toggle"
+                tooltip="开关网格"
                 icon="th-large"
                 backgroundColor={data.show_grid ? 'green' : 'red'}
                 onClick={() => act('toggle_grid')}
@@ -307,7 +305,7 @@ export const Canvas = (props) => {
           )}
           <Flex.Item>
             <Button
-              tooltip="Zoom Out"
+              tooltip="缩小"
               icon="search-minus"
               disabled={data.zoom <= 1}
               onClick={() => act('zoom_out')}
@@ -316,7 +314,7 @@ export const Canvas = (props) => {
           </Flex.Item>
           <Flex.Item>
             <Button
-              tooltip="Zoom In"
+              tooltip="放大"
               icon="search-plus"
               disabled={data.zoom >= data.max_zoom}
               onClick={() => act('zoom_in')}
@@ -379,7 +377,7 @@ export const Canvas = (props) => {
               <Flex.Item>
                 <Button.Confirm
                   onClick={() => act('finalize')}
-                  content="Finalize"
+                  content="完成"
                 />
               </Flex.Item>
             )}
@@ -403,7 +401,7 @@ export const Canvas = (props) => {
                 </Box>
                 <Box italic>{data.medium}</Box>
                 <Box italic>
-                  {!!data.patron && `Sponsored by ${data.patron} `}
+                  {!!data.patron && `由${data.patron}赞助`}
                   <Button
                     icon="hand-holding-usd"
                     color="transparent"

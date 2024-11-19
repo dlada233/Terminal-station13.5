@@ -68,7 +68,7 @@ export const ElevatorPanel = (props) => {
         {!lift_exists && <NoLiftDimmer />}
         <Stack height="100%" vertical>
           <Stack.Item>
-            <Section title="Floor" align="center">
+            <Section title="楼层" align="center">
               <FloorPanel />
             </Section>
           </Stack.Item>
@@ -101,13 +101,10 @@ export const ElevatorPanel = (props) => {
                 <Button
                   width="65%"
                   icon="door-closed"
-                  tooltip={
-                    'Closes all elevator doors, except \
-                    those on the level of the elevator.'
-                  }
+                  tooltip={'关闭除电梯同层之外的所有电梯门.'}
                   onClick={() => act('reset_doors')}
                 >
-                  Reset Doors
+                  重置电梯门
                 </Button>
               ) : (
                 <Button
@@ -117,12 +114,12 @@ export const ElevatorPanel = (props) => {
                   color={'bad'}
                   tooltip={
                     is_emergency
-                      ? 'In case of emergency, opens all lift doors.'
-                      : `The station is only at ${emergency_level} alert.`
+                      ? '紧急情况下，打开所有电梯门.'
+                      : `空间站处于 ${emergency_level} 警报状态.`
                   }
                   onClick={() => act('emergency_door')}
                 >
-                  Emergency
+                  紧急情况
                 </Button>
               )}
             </Section>

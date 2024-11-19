@@ -9,19 +9,19 @@ export const BorerChem = (props) => {
   const { act, data } = useBackend();
   const borerTransferAmounts = data.borerTransferAmounts || [];
   return (
-    <Window width={565} height={400} title="Injector" theme="wizard">
+    <Window width={565} height={400} title="注射器" theme="wizard">
       <Window.Content scrollable>
-        <Section title="Status">
+        <Section title="状态">
           <LabeledList>
-            <LabeledList.Item label="Storage">
+            <LabeledList.Item label="库存">
               <ProgressBar value={data.energy / data.maxEnergy}>
-                {toFixed(data.energy) + ' units'}
+                {toFixed(data.energy) + ' 单位'}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section
-          title="Inject"
+          title="注射"
           buttons={borerTransferAmounts.map((amount) => (
             <Button
               key={amount}

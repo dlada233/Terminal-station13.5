@@ -65,7 +65,7 @@ export class CircuitSignalHandler extends Component<
               <Stack fill>
                 <Stack.Item grow>
                   <Input
-                    placeholder="Signal ID"
+                    placeholder="信号ID"
                     value={signal_id}
                     fluid
                     onChange={(e, value) => this.setState({ signal_id: value })}
@@ -74,7 +74,7 @@ export class CircuitSignalHandler extends Component<
                 <Stack.Item>
                   <Button.Checkbox
                     checked={global}
-                    content="Global"
+                    content="全局"
                     onClick={(e) => this.setState({ global: !global })}
                   />
                 </Stack.Item>
@@ -83,7 +83,7 @@ export class CircuitSignalHandler extends Component<
             <Stack.Item grow>
               <Stack fill>
                 <Stack.Item grow={1} basis={0}>
-                  <Section title="Responses" fill scrollable>
+                  <Section title="响应" fill scrollable>
                     <Stack vertical>
                       {responseList.map((val, index) => (
                         <Entry
@@ -104,7 +104,7 @@ export class CircuitSignalHandler extends Component<
                       <Stack.Item>
                         <Button
                           fluid
-                          content="Add Response"
+                          content="添加响应"
                           color="good"
                           icon="plus"
                           onClick={() => {
@@ -115,7 +115,7 @@ export class CircuitSignalHandler extends Component<
                               this.bitflags,
                             ) as unknown as number[];
                             responseList.push({
-                              name: 'Response',
+                              name: '响应',
                               bitflag: bitflag_keys[responseList.length],
                             });
                             this.setState({ parameterList });
@@ -126,7 +126,7 @@ export class CircuitSignalHandler extends Component<
                   </Section>
                 </Stack.Item>
                 <Stack.Item grow={1} basis={0}>
-                  <Section title="Parameters" fill scrollable>
+                  <Section title="参数" fill scrollable>
                     <Stack vertical>
                       {parameterList.map((val, index) => (
                         <Entry
@@ -153,12 +153,12 @@ export class CircuitSignalHandler extends Component<
                       <Stack.Item>
                         <Button
                           fluid
-                          content="Add Parameter"
+                          content="添加参数"
                           color="good"
                           icon="plus"
                           onClick={() => {
                             parameterList.push({
-                              name: 'Parameter',
+                              name: '参数',
                               datatype: global_port_types[0],
                             });
                             this.setState({ parameterList });
@@ -172,7 +172,7 @@ export class CircuitSignalHandler extends Component<
             </Stack.Item>
             <Stack.Item>
               <Button
-                content="Submit"
+                content="提交"
                 textAlign="center"
                 fluid
                 onClick={() =>
@@ -216,7 +216,7 @@ const Entry = (props: EntryProps) => {
     <Stack.Item {...rest}>
       <Stack>
         <Stack.Item grow>
-          <Input placeholder="Name" value={name} onChange={onChange} fluid />
+          <Input placeholder="名称" value={name} onChange={onChange} fluid />
         </Stack.Item>
         <Stack.Item>
           {(options.length && (

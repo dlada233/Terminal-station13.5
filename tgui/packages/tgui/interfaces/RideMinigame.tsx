@@ -53,7 +53,7 @@ export const RideMinigame = (props) => {
     return () => clearInterval(intervalId);
   }, [CurrIcon, ChosenAnswer, CurrDisabled]);
   return (
-    <Window title="Click the opposite direction!" width={318} height={220}>
+    <Window title="点击相反方向!" width={318} height={220}>
       <Window.Content>
         <Stack>
           <Stack.Item>
@@ -71,10 +71,10 @@ export const RideMinigame = (props) => {
           <Stack.Item>
             <Section>
               <LabeledList>
-                <LabeledList.Item label="Attempts Left">
+                <LabeledList.Item label="尝试机会">
                   {maximum_attempts - CurrentAttempts}
                 </LabeledList.Item>
-                <LabeledList.Item label="Failures Left">
+                <LabeledList.Item label="失误机会">
                   {maximum_failures - CurrentFailures}
                 </LabeledList.Item>
               </LabeledList>

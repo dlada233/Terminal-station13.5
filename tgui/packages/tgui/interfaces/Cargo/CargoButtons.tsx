@@ -32,7 +32,7 @@ export function CargoCartButtons(props) {
         color="transparent"
         onClick={() => act('clear')}
       >
-        Clear
+        清空
       </Button>
     </>
   );

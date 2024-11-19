@@ -12,13 +12,10 @@ export const NtosPhysScanner = (props) => {
   return (
     <NtosWindow width={600} height={350}>
       <NtosWindow.Content scrollable>
-        <Section>
-          Tap something (right-click) with your tablet to use the physical
-          scanner.
-        </Section>
+        <Section>用你的平板设备右键即可扫描.</Section>
         <Section>
           <Box bold>
-            LAST SAVED RESULT
+            上次存储结果
             <br />
             <br />
           </Box>

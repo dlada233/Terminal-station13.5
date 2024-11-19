@@ -36,14 +36,14 @@ export const PaintingAdminPanel = (props) => {
   const chosenPainting = paintings.find((p) => p.ref === chosenPaintingRef);
 
   return (
-    <Window title="Painting Admin Panel" width={800} height={600}>
+    <Window title="画作管理面板" width={800} height={600}>
       <Window.Content scrollable>
         {chosenPainting && (
           <Section
-            title="Painting Information"
+            title="画作信息"
             buttons={
               <Button onClick={() => setChosenPaintingRef(undefined)}>
-                Close
+                关闭
               </Button>
             }
           >
@@ -57,7 +57,7 @@ export const PaintingAdminPanel = (props) => {
             />
             <LabeledList>
               <LabeledList.Item label="md5" content={chosenPainting.md5} />
-              <LabeledList.Item label="title">
+              <LabeledList.Item label="标题">
                 <Box inline style={{ wordBreak: 'break-all' }}>
                   {decodeHtmlEntities(chosenPainting.title)}
                 </Box>
@@ -67,10 +67,10 @@ export const PaintingAdminPanel = (props) => {
                 />
               </LabeledList.Item>
               <LabeledList.Item
-                label="creator ckey"
+                label="创作者ckey"
                 content={chosenPainting.creator_ckey}
               />
-              <LabeledList.Item label="creator name">
+              <LabeledList.Item label="创作者姓名">
                 <Box inline>{chosenPainting.creator_name}</Box>
                 <Button
                   onClick={() =>
@@ -80,18 +80,15 @@ export const PaintingAdminPanel = (props) => {
                 />
               </LabeledList.Item>
               <LabeledList.Item
-                label="creation date"
+                label="创作日期"
                 content={chosenPainting.creation_date}
               />
               <LabeledList.Item
-                label="creation round id"
+                label="创作回合id"
                 content={chosenPainting.creation_round_id}
               />
-              <LabeledList.Item
-                label="medium"
-                content={chosenPainting.medium}
-              />
-              <LabeledList.Item label="tags">
+              <LabeledList.Item label="方法" content={chosenPainting.medium} />
+              <LabeledList.Item label="标签">
                 {chosenPainting.tags?.map((tag) => (
                   <Button
                     key={tag}
@@ -111,15 +108,15 @@ export const PaintingAdminPanel = (props) => {
                 />
               </LabeledList.Item>
               <LabeledList.Item
-                label="patron ckey"
+                label="赞助人ckey"
                 content={chosenPainting.patron_ckey}
               />
               <LabeledList.Item
-                label="patron name"
+                label="赞助人姓名"
                 content={chosenPainting.patron_name}
               />
               <LabeledList.Item
-                label="credit value"
+                label="信用点金额"
                 content={chosenPainting.credit_value}
               />
               <LabeledList.Item label="width" content={chosenPainting.width} />
@@ -128,18 +125,18 @@ export const PaintingAdminPanel = (props) => {
                 content={chosenPainting.height}
               />
             </LabeledList>
-            <Section title="Actions">
+            <Section title="动作">
               <Button.Confirm
                 onClick={() => {
                   setChosenPaintingRef(undefined);
                   act('delete', { ref: chosenPainting.ref });
                 }}
-                content="Delete"
+                content="删除"
               />
               <Button
                 onClick={() => act('dumpit', { ref: chosenPainting.ref })}
               >
-                Reset Patronage
+                重置赞助
               </Button>
             </Section>
           </Section>
@@ -147,10 +144,10 @@ export const PaintingAdminPanel = (props) => {
         {!chosenPainting && (
           <Table>
             <Table.Row>
-              <Table.Cell color="label">Title</Table.Cell>
-              <Table.Cell color="label">Author</Table.Cell>
-              <Table.Cell color="label">Preview</Table.Cell>
-              <Table.Cell color="label">Actions</Table.Cell>
+              <Table.Cell color="label">标题</Table.Cell>
+              <Table.Cell color="label">作者</Table.Cell>
+              <Table.Cell color="label">预览</Table.Cell>
+              <Table.Cell color="label">动作</Table.Cell>
             </Table.Row>
             {paintings.map((painting) => (
               <Table.Row key={painting.ref} className="candystripe">
@@ -170,7 +167,7 @@ export const PaintingAdminPanel = (props) => {
                 </Table.Cell>
                 <Table.Cell>
                   <Button onClick={() => setChosenPaintingRef(painting.ref)}>
-                    Edit
+                    编辑
                   </Button>
                 </Table.Cell>
               </Table.Row>

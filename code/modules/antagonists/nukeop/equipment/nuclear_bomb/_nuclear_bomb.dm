@@ -82,7 +82,7 @@ GLOBAL_VAR(station_nuke_source)
 /// Checks if the disk inserted is a real nuke disk or not.
 /obj/machinery/nuclearbomb/proc/disk_check(obj/item/disk/nuclear/inserted_disk)
 	if(inserted_disk.fake)
-		say("身份验证失败；磁盘识别失败.")
+		say("身份验证失败；软盘识别失败.")
 		return FALSE
 
 	return TRUE
@@ -305,7 +305,7 @@ GLOBAL_VAR(station_nuke_source)
 			if(timing)
 				second_status = "时间: [get_time_left()]"
 			else
-				second_status = "等待磁盘"
+				second_status = "等待软盘"
 		if(NUKEUI_AWAIT_CODE)
 			first_status = "输入密码"
 			second_status = "密码: [current_code]"

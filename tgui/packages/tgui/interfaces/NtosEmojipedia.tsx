@@ -31,12 +31,12 @@ export const NtosEmojipedia = (props) => {
           buttons={
             <>
               <Input
-                placeholder="Search by name"
+                placeholder="搜索名称"
                 value={filter}
                 onInput={(_, value) => setFilter(value)}
               />
               <Button
-                tooltip={'Click on an emoji to copy its tag!'}
+                tooltip={'点击一个表情符号来复制它的标签!'}
                 tooltipPosition="bottom"
                 icon="circle-question"
               />

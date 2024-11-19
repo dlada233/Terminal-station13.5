@@ -42,26 +42,26 @@ export function AirLockMainSection(props) {
       <Stack.Item>
         <Section fill>
           <LabeledList>
-            <LabeledList.Item label="Integrated Circuit Shell">
+            <LabeledList.Item label="集成电路外壳">
               <Button.Checkbox
                 checked={shell}
                 onClick={() => {
                   act('set_shell', { on: !shell });
                 }}
-                tooltip="Whether this airlock can have an integrated circuit placed inside of it or not."
+                tooltip="这个气闸是否可以在里面放置集成电路."
               >
-                Shell
+                外壳
               </Button.Checkbox>
             </LabeledList.Item>
-            <LabeledList.Item label="Access Required">
+            <LabeledList.Item label="需要权限">
               <Button
                 icon={oneAccess ? 'unlock' : 'lock'}
                 onClick={() => act('one_access')}
               >
-                {oneAccess ? 'One' : 'All'}
+                {oneAccess ? '任一' : '全部'}
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Unrestricted Access">
+            <LabeledList.Item label="无需权限的开启方向">
               <Button
                 icon={unres_direction & 1 ? 'check-square-o' : 'square-o'}
                 selected={unres_direction & 1}
@@ -71,7 +71,7 @@ export function AirLockMainSection(props) {
                   })
                 }
               >
-                North
+                北
               </Button>
               <Button
                 icon={unres_direction & 2 ? 'check-square-o' : 'square-o'}
@@ -82,7 +82,7 @@ export function AirLockMainSection(props) {
                   })
                 }
               >
-                South
+                南
               </Button>
               <Button
                 icon={unres_direction & 4 ? 'check-square-o' : 'square-o'}
@@ -93,7 +93,7 @@ export function AirLockMainSection(props) {
                   })
                 }
               >
-                East
+                东
               </Button>
               <Button
                 icon={unres_direction & 8 ? 'check-square-o' : 'square-o'}
@@ -104,10 +104,10 @@ export function AirLockMainSection(props) {
                   })
                 }
               >
-                West
+                西
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Airlock Name">
+            <LabeledList.Item label="气闸名称">
               <Input
                 fluid
                 maxLength={30}
@@ -119,7 +119,7 @@ export function AirLockMainSection(props) {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Cycling Id">
+            <LabeledList.Item label="循环Id">
               <Input
                 fluid
                 maxLength={30}

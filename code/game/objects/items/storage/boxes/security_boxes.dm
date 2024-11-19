@@ -86,8 +86,8 @@
 	new /obj/item/card/id/advanced/prisoner/seven(src)
 
 /obj/item/storage/box/seccarts
-	name = "安保PDA磁盘"
-	desc = "装着安保PDA磁盘的盒."
+	name = "安保PDA软盘"
+	desc = "装着安保PDA软盘的盒."
 	icon_state = "secbox"
 	illustration = "pda"
 

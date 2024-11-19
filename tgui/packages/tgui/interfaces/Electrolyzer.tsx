@@ -20,18 +20,18 @@ export const Electrolyzer = (props) => {
     <Window width={400} height={305}>
       <Window.Content>
         <Section
-          title="Power"
+          title="电源"
           buttons={
             <>
               <Button
                 icon="eject"
-                content="Eject Cell"
+                content="取出电池"
                 disabled={!hasPowercell || !open}
                 onClick={() => act('eject')}
               />
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
+                content={on ? '开' : '关'}
                 selected={on}
                 disabled={!hasPowercell && !anchored}
                 onClick={() => act('power')}
@@ -40,7 +40,7 @@ export const Electrolyzer = (props) => {
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Cell" color={!hasPowercell ? 'bad' : ''}>
+            <LabeledList.Item label="电池" color={!hasPowercell ? 'bad' : ''}>
               {(hasPowercell && (
                 <ProgressBar
                   value={powerLevel / 100}
@@ -51,7 +51,7 @@ export const Electrolyzer = (props) => {
                   }}
                 />
               )) ||
-                'None'}
+                '无'}
             </LabeledList.Item>
           </LabeledList>
         </Section>

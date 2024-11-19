@@ -26,16 +26,16 @@ export const RestockTracker = (props) => {
       <Stack vertical>
         <Stack fill horizontal>
           <Stack.Item bold width="35%">
-            Vending Name
+            售货机名称
           </Stack.Item>
           <Stack.Item bold width="25%">
-            Location
+            位置
           </Stack.Item>
           <Stack.Item bold width="20%">
-            Stock %
+            存货 %
           </Stack.Item>
           <Stack.Item bold width="20%">
-            Credits stored
+            存储营业额
           </Stack.Item>
         </Stack>
         <hr />
@@ -91,7 +91,7 @@ export const RestockTrackerFull = (props) => {
   const { data } = useBackend();
   return (
     <Section bold textAlign="center">
-      All vending machines stocked!
+      所有的自动售货机均已完成备货!
     </Section>
   );
 };

@@ -236,7 +236,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/telescreen_interrogation
-	name = "Interrogation Telescreen-审讯室电幕"
+	name = "Interrogation Telescreen-审讯室监控屏"
 	id = "telescreen_interrogation"
 	build_type = PROTOLATHE
 	materials = list(
@@ -251,7 +251,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/telescreen_prison
-	name = "Prison Telescreen-牢房电幕"
+	name = "Prison Telescreen-牢房监控屏"
 	id = "telescreen_prison"
 	build_type = PROTOLATHE
 	materials = list(

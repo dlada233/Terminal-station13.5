@@ -27,7 +27,7 @@ export const ChemFilterPane = (props: Props) => {
       minHeight="240px"
       buttons={
         <Button
-          content="Add Reagent"
+          content="添加试剂"
           icon="plus"
           color={buttonColor}
           onClick={() =>
@@ -66,10 +66,10 @@ export const ChemFilter = (props) => {
       <Window.Content scrollable>
         <Stack>
           <Stack.Item grow>
-            <ChemFilterPane title="Left" list={left} buttonColor="yellow" />
+            <ChemFilterPane title="左" list={left} buttonColor="yellow" />
           </Stack.Item>
           <Stack.Item grow>
-            <ChemFilterPane title="Right" list={right} buttonColor="red" />
+            <ChemFilterPane title="右" list={right} buttonColor="red" />
           </Stack.Item>
         </Stack>
       </Window.Content>

@@ -74,7 +74,7 @@ export const PowerMonitorContent = (props) => {
               <Icon name="plug-circle-exclamation" size={2} />
             </Stack.Item>
             <Stack.Item>
-              <h1>No APCs found!</h1>
+              <h1>未找到APC!</h1>
             </Stack.Item>
           </Stack>
         </Dimmer>
@@ -83,7 +83,7 @@ export const PowerMonitorContent = (props) => {
         <Flex.Item mx={0.5} width="200px">
           <Section>
             <LabeledList>
-              <LabeledList.Item label="Supply">
+              <LabeledList.Item label="供电">
                 <ProgressBar
                   value={supply}
                   minValue={0}
@@ -93,7 +93,7 @@ export const PowerMonitorContent = (props) => {
                   {toFixed(supply / 1000) + ' kW'}
                 </ProgressBar>
               </LabeledList.Item>
-              <LabeledList.Item label="Draw">
+              <LabeledList.Item label="消耗">
                 <ProgressBar
                   value={demand}
                   minValue={0}
@@ -130,37 +130,37 @@ export const PowerMonitorContent = (props) => {
       <Section>
         <Box mb={1}>
           <Box inline mr={2} color="label">
-            Sort by:
+            排序方式:
           </Box>
           <Button.Checkbox
             checked={sortByField === 'name'}
-            content="Name"
+            content="名称"
             onClick={() => setSortByField(sortByField !== 'name' && 'name')}
           />
           <Button.Checkbox
             checked={sortByField === 'charge'}
-            content="Charge"
+            content="电量"
             onClick={() => setSortByField(sortByField !== 'charge' && 'charge')}
           />
           <Button.Checkbox
             checked={sortByField === 'draw'}
-            content="Draw"
+            content="消耗"
             onClick={() => setSortByField(sortByField !== 'draw' && 'draw')}
           />
         </Box>
         <Table>
           <Table.Row header>
-            <Table.Cell>Area</Table.Cell>
-            <Table.Cell collapsing>Charge</Table.Cell>
-            <Table.Cell textAlign="right">Draw</Table.Cell>
-            <Table.Cell collapsing title="Equipment">
-              Eqp
+            <Table.Cell>区域</Table.Cell>
+            <Table.Cell collapsing>电量</Table.Cell>
+            <Table.Cell textAlign="right">消耗</Table.Cell>
+            <Table.Cell collapsing title="设备">
+              设备
             </Table.Cell>
-            <Table.Cell collapsing title="Lighting">
-              Lgt
+            <Table.Cell collapsing title="照明">
+              照明
             </Table.Cell>
-            <Table.Cell collapsing title="Environment">
-              Env
+            <Table.Cell collapsing title="环境">
+              环境
             </Table.Cell>
           </Table.Row>
           {areas.map((area, i) => (
@@ -219,7 +219,7 @@ const AreaStatusColorBox = (props) => {
   const { status } = props;
   const power = Boolean(status & 2);
   const mode = Boolean(status & 1);
-  const tooltipText = (power ? 'On' : 'Off') + ` [${mode ? 'auto' : 'manual'}]`;
+  const tooltipText = (power ? '开' : '关') + ` [${mode ? '自动' : '手动'}]`;
   return (
     <ColorBox
       color={power ? 'good' : 'bad'}

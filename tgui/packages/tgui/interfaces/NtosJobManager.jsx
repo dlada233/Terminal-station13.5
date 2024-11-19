@@ -56,7 +56,7 @@ export const NtosJobManagerContent = (props) => {
             </Table.Cell>
             <Table.Cell collapsing>
               <Button
-                content="Open"
+                content="开启"
                 disabled={!slot.status_open}
                 onClick={() =>
                   act('PRG_open_job', {
@@ -65,7 +65,7 @@ export const NtosJobManagerContent = (props) => {
                 }
               />
               <Button
-                content="Close"
+                content="关闭"
                 disabled={!slot.status_close}
                 onClick={() =>
                   act('PRG_close_job', {
