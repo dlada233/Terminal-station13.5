@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/wooden
-	name = "wooden crate"
-	desc = "Works just as well as a metal one."
+	name = "木制货箱"
+	desc = "和金属箱一样好用."
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 6
 	icon_state = "wooden"
@@ -13,8 +13,8 @@
 	cutting_tool = /obj/item/crowbar
 
 /obj/structure/closet/crate/wooden/toy
-	name = "toy box"
-	desc = "It has the words \"Clown + Mime\" written underneath of it with marker."
+	name = "玩具箱"
+	desc = "下面用记号笔写着:\"小丑 + 哑剧\"."
 
 /obj/structure/closet/crate/wooden/toy/PopulateContents()
 	. = ..()

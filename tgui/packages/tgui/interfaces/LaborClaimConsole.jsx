@@ -34,7 +34,7 @@ export const LaborClaimConsole = (props) => {
           </LabeledList>
         </Section>
         <Section title="用法说明">
-          附近的堆垛机将卸载板条箱并收集冶炼材料，根据交付材料的体积来计算分数.
+          附近的堆垛机将卸载货箱并收集冶炼材料，根据交付材料的体积来计算分数.
           <br />
           请注意，只有印有我们的生存质量印章的板材，例如由营地冶炼炉生产的板材，才会被接受为劳改证明.
         </Section>

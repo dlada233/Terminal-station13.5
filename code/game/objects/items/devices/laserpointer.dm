@@ -1,6 +1,6 @@
 /obj/item/laser_pointer
 	name = "激光笔"
-	desc = "Don't shine it in your eyes!"
+	desc = "不许用它照人的眼睛!"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "pointer"
 	inhand_icon_state = "pen"

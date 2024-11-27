@@ -455,7 +455,7 @@
 
 	if(tool.use_tool(src, user, 0 SECONDS, volume=40))
 		adjustHealth(-10)
-		user.visible_message(span_notice("[user] repairs [src]!"),span_notice("You repair [src]."))
+		user.visible_message(span_notice("[user] repairs [src]!"),span_notice("你修好了[src]."))
 		return ITEM_INTERACT_SUCCESS
 
 /mob/living/simple_animal/bot/attackby(obj/item/attacking_item, mob/living/user, params)

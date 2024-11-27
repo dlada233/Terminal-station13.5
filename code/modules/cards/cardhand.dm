@@ -1,6 +1,6 @@
 /obj/item/toy/cards/cardhand
-	name = "hand of cards"
-	desc = "A number of cards not in a deck, customarily held in ones hand."
+	name = "手牌"
+	desc = "一定数量的牌不在牌堆中，通常是拿在手里."
 	icon = 'icons/obj/toys/playing_cards.dmi'
 	icon_state = "nothing"
 	w_class = WEIGHT_CLASS_TINY
@@ -13,7 +13,7 @@
 	update_appearance()
 
 /obj/item/toy/cards/cardhand/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] wrists with \the [src]! It looks like [user.p_they()] [user.p_have()] a crummy hand!"))
+	user.visible_message(span_suicide("[user]正在用[src]割腕! 看来抽了一手烂牌!"))
 	playsound(src, 'sound/items/cardshuffle.ogg', 50, TRUE)
 	return BRUTELOSS
 
@@ -21,24 +21,24 @@
 	. = ..()
 	for(var/obj/item/toy/singlecard/card in fetch_card_atoms())
 		if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-			. += span_notice("You scan the cardhand with your x-ray vision and there is a: [card.cardname]")
+			. += span_notice("你用X光透视扫描手牌，上面有: [card.cardname]")
 		var/marked_color = card.getMarkedColor(user)
 		if(marked_color)
-			. += span_notice("There is a [marked_color] mark on the corner of a card in the cardhand!")
+			. += span_notice("这幅手牌中有一张牌在边角上有[marked_color]标记!")
 
 /obj/item/toy/cards/cardhand/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(istype(held_item, /obj/item/toy/cards/deck))
 		var/obj/item/toy/cards/deck/dealer_deck = held_item
 		if(HAS_TRAIT(dealer_deck, TRAIT_WIELDED))
-			context[SCREENTIP_CONTEXT_LMB] = "Deal card"
-			context[SCREENTIP_CONTEXT_RMB] = "Deal card faceup"
+			context[SCREENTIP_CONTEXT_LMB] = "发牌"
+			context[SCREENTIP_CONTEXT_RMB] = "正面朝上发牌"
 			return CONTEXTUAL_SCREENTIP_SET
-		context[SCREENTIP_CONTEXT_LMB] = "Recycle cards"
+		context[SCREENTIP_CONTEXT_LMB] = "回收牌"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/toy/singlecard))
-		context[SCREENTIP_CONTEXT_LMB] = "Combine cards"
-		context[SCREENTIP_CONTEXT_RMB] = "Combine cards faceup"
+		context[SCREENTIP_CONTEXT_LMB] = "加入手牌"
+		context[SCREENTIP_CONTEXT_RMB] = "正面朝上加入手牌"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -79,7 +79,7 @@
 		var/obj/item/toy/cards/deck/dealer_deck = weapon
 		if(!HAS_TRAIT(dealer_deck, TRAIT_WIELDED)) // recycle cardhand into deck (if unwielded)
 			dealer_deck.insert(src)
-			user.balloon_alert_to_viewers("puts card in deck")
+			user.balloon_alert_to_viewers("将牌放入牌堆")
 			return
 		card = dealer_deck.draw(user)
 

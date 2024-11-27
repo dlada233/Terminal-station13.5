@@ -1,6 +1,6 @@
 /obj/item/radio/intercom //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
-	name = "station intercom"
-	desc = "A trusty station intercom, ready to spring into action even when the headsets go silent."
+	name = "空间站无线电"
+	desc = "一个可靠的站内无线电设备，耳机无声时能随时投入使用."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "intercom"
 	anchored = TRUE
@@ -23,8 +23,8 @@
 	unscrewed = TRUE
 
 /obj/item/radio/intercom/prison
-	name = "receive-only intercom"
-	desc = "A station intercom. It looks like it has been modified to not broadcast."
+	name = "收听无线电"
+	desc = "这是一个站内对讲设备，似乎经过改装，现在已不具备广播功能."
 	icon_state = "intercom_prison"
 	icon_off = "intercom_prison-p"
 
@@ -190,8 +190,8 @@
 
 //Created through the autolathe or through deconstructing intercoms. Can be applied to wall to make a new intercom on it!
 /obj/item/wallframe/intercom
-	name = "intercom frame"
-	desc = "A ready-to-go intercom. Just slap it on a wall and screw it in!"
+	name = "无线电框架"
+	desc = "一个随时可用的无线电，贴在墙上然后拧动螺栓！"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "intercom"
 	result_path = /obj/item/radio/intercom/unscrewed
@@ -201,8 +201,8 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 27)
 
 /obj/item/radio/intercom/chapel
-	name = "Confessional intercom"
-	desc = "Talk through this... to confess your many sins. Conceals your voice, to keep them secret."
+	name = "忏悔无线电"
+	desc = "使用这个设备...来倾诉你犯下的诸多罪行吧,它能掩盖你的声音，确保你的秘密不被泄露."
 	anonymize = TRUE
 	freqlock = RADIO_FREQENCY_EMAGGABLE_LOCK
 
@@ -212,8 +212,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 27)
 	set_broadcasting(TRUE)
 
 /obj/item/radio/intercom/command
-	name = "command intercom"
-	desc = "The command's special free-frequency intercom. It's a versatile tool that can be tuned to any frequency, granting you access to channels you're not supposed to be on. Plus, it comes equipped with a built-in voice amplifier for crystal-clear communication."
+	name = "指挥无线电"
+	desc = "这是指挥部的特制自由频段无线电，它是一个多功能设备，可以调至任何频段，让你能够接入本无权访问的频道，此外，它还配备了内置语音放大器，确保通信清晰无误."
 	icon_state = "intercom_command"
 	freerange = TRUE
 	command = TRUE

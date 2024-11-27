@@ -1,5 +1,5 @@
 /datum/surgery/advanced/bioware
-	name = "Enhancement surgery"
+	name = "增强手术"
 	/// What status effect is gained when the surgery is successful?
 	/// Used to check against other bioware types to prevent stacking.
 	var/status_effect_gained = /datum/status_effect/bioware

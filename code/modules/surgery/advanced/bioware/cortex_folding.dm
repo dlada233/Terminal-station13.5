@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/cortex_folding
-	name = "Cortex Folding"
-	desc = "A surgical procedure which modifies the cerebral cortex into a complex fold, giving space to non-standard neural patterns."
+	name = "皮层折叠"
+	desc = "一种外科手术，将大脑皮层改造成复杂的褶皱，为非标准神经模式提供空间."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -21,17 +21,17 @@
 	return ..()
 
 /datum/surgery_step/apply_bioware/fold_cortex
-	name = "fold cortex (hand)"
+	name = "皮层折叠(手)"
 
 /datum/surgery_step/apply_bioware/fold_cortex/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
 		user,
 		target,
-		span_notice("You start folding [target]'s outer cerebral cortex into a fractal pattern."),
-		span_notice("[user] starts folding [target]'s outer cerebral cortex into a fractal pattern."),
-		span_notice("[user] begins to perform surgery on [target]'s brain."),
+		span_notice("你开始将[target]的大脑外层皮层折叠成一种分形图案."),
+		span_notice("[user]开始将[target]的大脑外层皮层折叠成一种分形图案."),
+		span_notice("[user]开始对[target]的大脑进行手术."),
 	)
-	display_pain(target, "Your head throbs with gruesome pain, it's nearly too much to handle!")
+	display_pain(target, "你的头部传来阵阵剧痛，简直让人难以忍受!")
 
 /datum/surgery_step/apply_bioware/fold_cortex/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	. = ..()
@@ -41,24 +41,24 @@
 	display_results(
 		user,
 		target,
-		span_notice("You fold [target]'s outer cerebral cortex into a fractal pattern!"),
-		span_notice("[user] folds [target]'s outer cerebral cortex into a fractal pattern!"),
-		span_notice("[user] completes the surgery on [target]'s brain."),
+		span_notice("你成功将[target]的大脑外层皮层折叠成了分形图案!"),
+		span_notice("[user]成功将[target]的大脑外层皮层折叠成了分形图案!"),
+		span_notice("[user]完成了对[target]大脑的手术."),
 	)
-	display_pain(target, "Your brain feels stronger... more flexible!")
+	display_pain(target, "你的大脑感觉变得更加强大...更加灵活了!")
 
 /datum/surgery_step/apply_bioware/fold_cortex/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.get_organ_slot(ORGAN_SLOT_BRAIN))
 		display_results(
 			user,
 			target,
-			span_warning("You screw up, damaging the brain!"),
-			span_warning("[user] screws up, damaging the brain!"),
-			span_notice("[user] completes the surgery on [target]'s brain."),
+			span_warning("你搞砸了，大脑受到了损伤!"),
+			span_warning("[user]搞砸了，大脑受到了损伤!"),
+			span_notice("[user]完成了对[target]大脑的手术."),
 		)
-		display_pain(target, "Your brain throbs with intense pain; thinking hurts!")
+		display_pain(target, "你的大脑传来剧烈的疼痛，思考都变得困难了!")
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)
 		target.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 	else
-		user.visible_message(span_warning("[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore."), span_warning("You suddenly notice that the brain you were working on is not there anymore."))
+		user.visible_message(span_warning("[user]突然发现正在手术的大脑不见了."), span_warning("你突然发现刚才正在手术的大脑不见了."))
 	return FALSE

@@ -1,6 +1,6 @@
 /obj/structure/closet/syndicate
-	name = "armory closet"
-	desc = "Why is this here?"
+	name = "军械储柜"
+	desc = "这东西为什么在这里?"
 	icon_state = "syndicate"
 	armor_type = /datum/armor/closet_syndicate
 	paint_jobs = null
@@ -15,7 +15,7 @@
 	acid = 70
 
 /obj/structure/closet/syndicate/personal
-	desc = "It's a personal storage unit for operative gear."
+	desc = "这是存放个人物品的储物柜."
 
 /obj/structure/closet/syndicate/personal/PopulateContents()
 	..()
@@ -32,7 +32,7 @@
 	new /obj/item/climbing_hook/syndicate(src)
 
 /obj/structure/closet/syndicate/nuclear
-	desc = "It's a storage unit for a Syndicate boarding party."
+	desc = "这是存放辛迪加登陆小队装备的储物柜."
 
 /obj/structure/closet/syndicate/nuclear/PopulateContents()
 	for(var/i in 1 to 5)
@@ -43,7 +43,7 @@
 	new /obj/item/modular_computer/pda/syndicate(src)
 
 /obj/structure/closet/syndicate/resources
-	desc = "An old, dusty locker."
+	desc = "老旧、蒙尘的储物柜."
 
 // A lot of this stuff is objective items, and it's also only used for debugging, so init times don't matter here.
 /obj/structure/closet/syndicate/resources/populate_contents_immediate()
@@ -60,7 +60,7 @@
 	if(pickednum == 1)
 		var/obj/item/paper/paper = new /obj/item/paper(src)
 		paper.name = "\improper IOU"
-		paper.add_raw_text("Sorry man, we needed the money so we sold your stash. It's ok, we'll double our money for sure this time!")
+		paper.add_raw_text("抱歉啊伙计，我们急需用钱，所以把你的存货给卖了，没事的，这次我们肯定能赚双倍的钱！")
 		paper.update_appearance()
 
 	//Iron (common ore)
@@ -108,7 +108,7 @@
 		new /obj/item/tank/jetpack/carbondioxide(src)
 
 /obj/structure/closet/syndicate/resources/everything
-	desc = "It's an emergency storage closet for repairs."
+	desc = "存放着应急修理物资的储物柜."
 	storage_capacity = 60 // This is gonna be used for debug.
 
 // A lot of this stuff is objective items, and it's also only used for debugging, so init times don't matter here.

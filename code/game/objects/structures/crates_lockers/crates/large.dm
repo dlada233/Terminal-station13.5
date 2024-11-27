@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/large
-	name = "large crate"
-	desc = "A hefty wooden crate. You'll need a crowbar to get it open."
+	name = "大木箱"
+	desc = "一个沉重的木箱，你需要撬棍才能打开它."
 	icon_state = "largecrate"
 	base_icon_state = "largecrate"
 	density = TRUE
@@ -68,4 +68,4 @@
 		if(our_contents)
 			var/obj/item/clothing/head/lucky_hat = pick(our_contents)
 			lucky_hat.AddComponent(/datum/component/unusual_effect, color = "#FFEA0030", include_particles = TRUE)
-			lucky_hat.name = "unusual [name]"
+			lucky_hat.name = "罕见的[name]"

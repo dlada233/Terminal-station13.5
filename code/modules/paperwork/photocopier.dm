@@ -58,8 +58,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	return parsed_blanks
 
 /obj/machinery/photocopier
-	name = "photocopier"
-	desc = "Used to copy important documents and anatomy studies."
+	name = "复印机"
+	desc = "用来复制重要文件和解剖学研究资料."
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "photocopier"
 	density = TRUE
@@ -123,8 +123,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 /obj/machinery/photocopier/examine(mob/user)
 	. = ..()
 	if(object_copy)
-		. += span_notice("There is something inside the scanner tray.")
-	. += span_notice("You can put any type of blank paper inside to print a form onto it or to copy something onto it.")
+		. += span_notice("扫描托盘里已经放了东西.")
+	. += span_notice("你可以把任何类型的空白纸放进去，以便在上面打印表格或复印内容")
 
 /obj/machinery/photocopier/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -198,9 +198,9 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 			if(ass)
 				if(ishuman(ass) && (ass.get_item_by_slot(ITEM_SLOT_ICLOTHING) || ass.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 					if(ass == usr)
-						to_chat(usr, span_notice("You feel kind of silly, copying your ass with your clothes on."))
+						to_chat(usr, span_notice("你穿着衣服复印自己的屁股，感觉有点傻."))
 					else
-						to_chat(usr, span_notice("You feel kind of silly, copying [ass]\'s ass with [ass.p_their()] clothes on."))
+						to_chat(usr, span_notice("你让[ass]穿着衣服复印屁股，感觉有点傻."))
 					return FALSE
 				do_copies(CALLBACK(src, PROC_REF(make_ass_copy)), usr, ASS_PAPER_USE, ASS_TONER_USE, num_copies)
 				return TRUE
@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 				remove_photocopy(object_copy, usr)
 				object_copy = null
 			else if(check_ass())
-				to_chat(ass, span_notice("You feel a slight pressure on your ass."))
+				to_chat(ass, span_notice("你感到屁股下传来轻微的压力."))
 			return TRUE
 
 		// AI printing photos from their saved images.
@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 				return FALSE
 			var/mob/living/silicon/ai/tempAI = usr
 			if(!length(tempAI.aicamera.stored))
-				balloon_alert(usr, "no images saved!")
+				balloon_alert(usr, "无图像保存!")
 				return FALSE
 			var/datum/picture/selection = tempAI.aicamera.selectpicture(usr)
 			do_copies(CALLBACK(src, PROC_REF(make_photo_copy), selection, PHOTO_COLOR), usr, PHOTO_PAPER_USE, PHOTO_TONER_USE, 1)
@@ -308,13 +308,13 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	var/error_message = null
 	if(!toner_cartridge)
 		copies_amount = 0
-		error_message = span_warning("An error message flashes across \the [src]'s screen: \"No toner cartridge found. Aborting.\"")
+		error_message = span_warning("一条故障信息出现在[src]的屏幕上: \"找不到墨盒，中止.\"")
 	else if(toner_cartridge.charges < toner_use * copies_amount)
 		copies_amount = FLOOR(toner_cartridge.charges / toner_use, 1)
-		error_message = span_warning("An error message flashes across \the [src]'s screen: \"Not enough toner to perform [copies_amount >= 1 ? "full " : ""]operation.\"")
+		error_message = span_warning("一条故障信息出现在[src]的屏幕上: \"没有足够的墨粉来执行[copies_amount >= 1 ? "全部" : ""]操作.\"")
 	if(get_paper_count() < paper_use * copies_amount)
 		copies_amount = FLOOR(get_paper_count() / paper_use, 1)
-		error_message = span_warning("An error message flashes across \the [src]'s screen: \"Not enough paper to perform [copies_amount >= 1 ? "full " : ""]operation.\"")
+		error_message = span_warning("一条故障信息出现在[src]的屏幕上: \"没有足够的纸张来执行[copies_amount >= 1 ? "全部 " : ""]操作.\"")
 
 	copies_left = copies_amount
 
@@ -499,7 +499,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	if(isnull(temp_img))
 		return null
 	var/obj/item/photo/copied_ass = new /obj/item/photo(src)
-	var/datum/picture/toEmbed = new(name = "[ass]'s Ass", desc = "You see [ass]'s ass on the photo.", image = temp_img)
+	var/datum/picture/toEmbed = new(name = "[ass]的屁股", desc = "你看见[ass]的屁股在照片上.", image = temp_img)
 	toEmbed.psize_x = 128
 	toEmbed.psize_y = 128
 	copied_ass.set_picture(toEmbed, TRUE, TRUE)
@@ -525,7 +525,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	object.forceMove(user.loc)
 	user.put_in_hands(object)
 
-	to_chat(user, span_notice("You take [object] out of [src]. [busy ? "The [src] comes to a halt." : ""]"))
+	to_chat(user, span_notice("你从[src]中取出[object]. [busy ? "[src]停下了." : ""]"))
 
 /obj/machinery/photocopier/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -543,18 +543,18 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 
 	else if(istype(object, /obj/item/toner))
 		if(toner_cartridge)
-			balloon_alert(user, "another cartridge inside!")
+			balloon_alert(user, "里面已有墨盒!")
 			return
 		object.forceMove(src)
 		toner_cartridge = object
-		balloon_alert(user, "cartridge inserted")
+		balloon_alert(user, "墨盒已放入")
 
 	else if(istype(object, /obj/item/blueprints))
-		to_chat(user, span_warning("\The [object] is too large to put into the copier. You need to find something else to record the document."))
+		to_chat(user, span_warning("[object]太大了，无法放入复印机，你需要找其他东西来记录这份文件."))
 
 	else if(istype(object, /obj/item/paperwork))
 		if(istype(object, /obj/item/paperwork/photocopy)) //No infinite paper chain. You need the original paperwork to make more copies.
-			to_chat(user, span_warning("The [object] is far too messy to produce a good copy!"))
+			to_chat(user, span_warning("[object]太乱了，无法复印出清晰的内容!"))
 		else
 			insert_copy_object(object, user)
 
@@ -563,23 +563,23 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 	if(istype(paper, /obj/item/paper/paperslip))
 		return
 	if(get_paper_count() >= MAX_PAPER_CAPACITY)
-		balloon_alert(user, "cannot hold more paper!")
+		balloon_alert(user, "装载不下更多纸张了!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(paper))
 		return
 	paper_stack += paper
 	paper.forceMove(src)
-	balloon_alert(user, "paper inserted")
+	balloon_alert(user, "纸张插入")
 
 /obj/machinery/photocopier/proc/insert_copy_object(obj/item/object, mob/user)
 	if(!copier_empty())
-		balloon_alert(user, "scanner tray occupied!")
+		balloon_alert(user, "扫描锁盘已被占用!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(object))
 		return
 	object_copy = object
 	object.forceMove(src)
-	balloon_alert(user, "copy object inserted")
+	balloon_alert(user, "复印物品插入")
 	flick("photocopier1", src)
 
 /obj/machinery/photocopier/atom_break(damage_flag)
@@ -593,25 +593,25 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 		return
 	add_fingerprint(user)
 	if(target == user)
-		user.visible_message(span_notice("[user] starts climbing onto the photocopier!"), span_notice("You start climbing onto the photocopier..."))
+		user.visible_message(span_notice("[user]开始爬上复印机!"), span_notice("你开始爬上复印机..."))
 	else
-		user.visible_message(span_warning("[user] starts putting [target] onto the photocopier!"), span_notice("You start putting [target] onto the photocopier..."))
+		user.visible_message(span_warning("[user]开始把[target]放到复印机上!"), span_notice("你开始把[target]放到复印机上!..."))
 
 	if(do_after(user, 2 SECONDS, target = src))
 		if(!target || QDELETED(target) || QDELETED(src) || !Adjacent(target)) //check if the photocopier/target still exists.
 			return
 
 		if(target == user)
-			user.visible_message(span_notice("[user] climbs onto the photocopier!"), span_notice("You climb onto the photocopier."))
+			user.visible_message(span_notice("[user]爬上了复印机!"), span_notice("你爬上了复印机."))
 		else
-			user.visible_message(span_warning("[user] puts [target] onto the photocopier!"), span_notice("You put [target] onto the photocopier."))
+			user.visible_message(span_warning("[user]把[target]放到了复印机上!"), span_notice("你把[target]放到了复印机上."))
 
 		target.forceMove(drop_location())
 		ass = target
 
 		if(!isnull(object_copy))
 			object_copy.forceMove(drop_location())
-			visible_message(span_warning("[object_copy] is shoved out of the way by [ass]!"))
+			visible_message(span_warning("[object_copy]被[ass]挡住了!"))
 			object_copy = null
 
 /**
@@ -655,7 +655,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 
 /// Subtype of photocopier that is free to use.
 /obj/machinery/photocopier/gratis
-	desc = "Does the same important paperwork, but it's free to use! The best type of free."
+	desc = "它处理的是同样重要的文件，但使用却是免费的！这是最好的一种免费服务."
 
 /obj/machinery/photocopier/gratis/setup_components()
 	// it's free! no charge! very cool and gratis-pilled.
@@ -665,8 +665,8 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
  * Toner cartridge
  */
 /obj/item/toner
-	name = "toner cartridge"
-	desc = "A small, lightweight cartridge of Nanotrasen ValueBrand toner. Fits photocopiers and autopainters alike."
+	name = "墨盒"
+	desc = "一个小巧轻便的Nanotrasen ValueBrand碳粉盒，适用于复印机和自动绘图仪."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "tonercartridge"
 	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
@@ -675,18 +675,18 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 
 /obj/item/toner/examine(mob/user)
 	. = ..()
-	. += span_notice("The ink level gauge on the side reads [round(charges / max_charges * 100)]%")
+	. += span_notice("墨位计上写着[round(charges / max_charges * 100)]%")
 
 /obj/item/toner/large
-	name = "large toner cartridge"
-	desc = "A hefty cartridge of Nanotrasen ValueBrand toner. Fits photocopiers and autopainters alike."
+	name = "大墨盒"
+	desc = "一大盒Nanotrasen ValueBrand碳粉盒，适用于复印机和自动绘图仪."
 	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
 	charges = 25
 	max_charges = 25
 
 /obj/item/toner/extreme
-	name = "extremely large toner cartridge"
-	desc = "Why would ANYONE need THIS MUCH TONER?"
+	name = "超大墨盒"
+	desc = "为什么会有人需要这么多的墨粉?"
 	charges = 200
 	max_charges = 200
 

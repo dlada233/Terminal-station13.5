@@ -1,6 +1,6 @@
 /datum/surgery/advanced/viral_bonding
-	name = "Viral Bonding"
-	desc = "A surgical procedure that forces a symbiotic relationship between a virus and its host. The patient must be dosed with spaceacillin, virus food, and formaldehyde."
+	name = "病毒结合"
+	desc = "一种迫使病毒与其宿主之间形成共生关系的手术，患者必须接受太空西林、病毒食物和甲醛的注射."
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -20,7 +20,7 @@
 	return TRUE
 
 /datum/surgery_step/viral_bond
-	name = "viral bond (cautery)"
+	name = "病毒结合 (缝合器)"
 	implements = list(
 		TOOL_CAUTERY = 100,
 		TOOL_WELDER = 50,
@@ -38,21 +38,21 @@
 	display_results(
 		user,
 		target,
-		span_notice("You start heating [target]'s bone marrow with [tool]..."),
-		span_notice("[user] starts heating [target]'s bone marrow with [tool]..."),
-		span_notice("[user] starts heating something in [target]'s chest with [tool]..."),
+		span_notice("你开始用[tool]加热[target]的骨髓..."),
+		span_notice("[user]开始用[tool]加热[target]的骨髓..."),
+		span_notice("[user]开始用[tool]加热[target]胸部的某个部位..."),
 	)
-	display_pain(target, "You feel a searing heat spread through your chest!")
+	display_pain(target, "你感到一股炽热从你胸部蔓延开来!")
 
 /datum/surgery_step/viral_bond/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
 	display_results(
 		user,
 		target,
-		span_notice("[target]'s bone marrow begins pulsing slowly. The viral bonding is complete."),
-		span_notice("[target]'s bone marrow begins pulsing slowly."),
-		span_notice("[user] finishes the operation."),
+		span_notice("[target]的骨髓开始缓慢跳动。病毒结合完成."),
+		span_notice("[target]的骨髓开始缓慢跳动."),
+		span_notice("[user]完成了手术."),
 	)
-	display_pain(target, "You feel a faint throbbing in your chest.")
+	display_pain(target, "你感到胸部有轻微的跳动感.")
 	for(var/datum/disease/infected_disease as anything in target.diseases)
 		if(infected_disease.severity != DISEASE_SEVERITY_UNCURABLE) //no curing quirks, sweaty
 			infected_disease.carrier = TRUE

@@ -131,7 +131,7 @@
 ///Laser Eyes lets you shoot lasers from your eyes!
 /datum/mutation/human/laser_eyes
 	name = "激光眼"
-	desc = "Reflects concentrated light back from the eyes."
+	desc = "能反射集中到眼睛里的光."
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16

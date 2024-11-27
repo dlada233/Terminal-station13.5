@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/secure/syndicrate
-	name = "surplus syndicrate"
-	desc = "A conspicuous crate with the Syndicate logo on it. You don't know how to open it."
+	name = "辛迪加货箱"
+	desc = "一个醒目的箱子，上面印有“辛迪加”的标志，你并不知道如何打开它."
 	icon_state = "syndicrate"
 	base_icon_state = "syndicrate"
 	max_integrity = 500
@@ -71,8 +71,8 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/syndicrate_key
-	name = "syndicrate key"
-	desc = "A device bearing a serpentine emblem, capable of splitting itself into two keys. Can be used to open one syndicrate."
+	name = "辛迪加钥匙"
+	desc = "一个带有蛇形标志的装置，能够."
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "syndicrate_key"
 	w_class = WEIGHT_CLASS_TINY

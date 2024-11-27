@@ -244,7 +244,7 @@
 
 /datum/supply_pack/costumes_toys/stickers
 	name = "贴纸包"
-	desc = "这个板条箱里有各种各样的贴纸."
+	desc = "这个货箱里有各种各样的贴纸."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list()
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE

@@ -67,22 +67,22 @@
 	contains = list(/obj/item/storage/belt/holster/energy/disabler)
 
 /datum/supply_pack/goody/energy_single
-	name = "能量枪单品包"
+	name = "光能枪单品包"
 	desc = "包含一把能量枪，能发射非致命和致命的光束."
 	cost = PAYCHECK_COMMAND * 12
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun)
 
 /datum/supply_pack/goody/laser_single
-	name = "激光枪单品包"
-	desc = "包含一把激光枪，纳米传讯安保人员大量配发的致命主力武器."
+	name = "能量枪单品包"
+	desc = "包含一把能量枪，纳米传讯安保人员大量配发的致命主力武器."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser)
 
 /datum/supply_pack/goody/hell_single
-	name = "地狱激光枪单品包"
-	desc = "包含一套降级的地狱枪套件，这是一款老式激光枪，因其可对目标造成可怕的烧伤而臭名昭著. 对人形生物使用时，技术上违反了太空日内瓦公约."
+	name = "地狱光能枪单品包"
+	desc = "包含一套降级的地狱枪套件，这是一款老式光能枪，因其可对目标造成可怕的烧伤而臭名昭著. 对人形生物使用时，技术上违反了太空日内瓦公约."
 	cost = PAYCHECK_CREW * 2
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/weaponcrafting/gunkit/hellgun)

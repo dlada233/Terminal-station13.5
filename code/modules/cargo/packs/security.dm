@@ -57,12 +57,12 @@
 	crate_name = "头盔补给箱"
 
 /datum/supply_pack/security/laser
-	name = "激光枪补给箱"
-	desc = "内含三把致命性的大功率激光枪."
+	name = "光能枪补给箱"
+	desc = "内含三把致命性的大功率光能枪."
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/gun/energy/laser = 3)
-	crate_name = "激光枪补给箱"
+	crate_name = "光能枪补给箱"
 
 /datum/supply_pack/security/securitybarriers
 	name = "安保屏障手雷"
@@ -223,20 +223,20 @@
 	crate_name = "\improper 网枪箱"
 
 /datum/supply_pack/security/armory/energy
-	name = "SC-2 激光枪箱"
-	desc = "SC-2是具有致命和非致命两种模式的激光枪，非常先进.\
+	name = "SC-2 光能枪箱"
+	desc = "SC-2是具有致命和非致命两种模式的光能枪，非常先进.\
 		单次购买配送两把SC-2."
 	cost = CARGO_CRATE_VALUE * 18
 	contains = list(/obj/item/gun/energy/e_gun = 2)
-	crate_name = "SC-2 激光枪箱"
+	crate_name = "SC-2 光能枪箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/laser_carbine
-	name = "激光卡宾枪箱"
-	desc = "三把射速极快的激光卡宾枪，缺点是威力较低."
+	name = "光能卡宾枪箱"
+	desc = "三把射速极快的光能卡宾枪，缺点是威力较低."
 	cost = CARGO_CRATE_VALUE * 9
 	contains = list(/obj/item/gun/energy/laser/carbine = 3)
-	crate_name = "激光卡宾枪箱"
+	crate_name = "光能卡宾枪箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/disabler_smg
@@ -287,7 +287,7 @@
 /datum/supply_pack/security/armory/laserarmor
 	name = "反射背心"
 	desc = "反射背心由高反光材料制成，\
-		可以将激光的能量漫射一半以上，并有很大概率完全反射激光，\
+		可以将光能束的能量漫射一半以上，并有很大概率完全反射光束，\
 		单次购买配送两件."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/clothing/suit/armor/laserproof = 2)

@@ -3,7 +3,7 @@
 //The ammo/gun is stored in a back slot item
 /obj/item/minigunpack
 	name = "电源背包"
-	desc = "供激光加特林枪使用的巨大外部电源背包."
+	desc = "供能量加特林枪使用的巨大外部电源背包."
 	icon = 'icons/obj/weapons/guns/minigun.dmi'
 	icon_state = "holstered"
 	inhand_icon_state = "backpack"
@@ -91,8 +91,8 @@
 
 
 /obj/item/gun/energy/minigun
-	name = "激光加特林机枪"
-	desc = "先进的激光炮，射速惊人，但需要一个笨重的电源背包供电."
+	name = "能量加特林机枪"
+	desc = "先进的能量炮，射速惊人，但需要一个笨重的电源背包供电."
 	icon = 'icons/obj/weapons/guns/minigun.dmi'
 	icon_state = "minigun_spin"
 	inhand_icon_state = "minigun"

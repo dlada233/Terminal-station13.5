@@ -1,6 +1,6 @@
 /obj/item/stamp
-	name = "\improper GRANTED rubber stamp"
-	desc = "A rubber stamp for stamping important documents."
+	name = "批准印章"
+	desc = "盖重要文件的橡皮图章."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "stamp-ok"
 	worn_icon_state = "nothing"
@@ -40,51 +40,51 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, INFINITY)
 
 /obj/item/stamp/head/captain
-	name = "captain's rubber stamp"
+	name = "舰长印章"
 	icon_state = "stamp-cap"
 	dye_color = DYE_CAPTAIN
 
 /obj/item/stamp/head/hop
-	name = "head of personnel's rubber stamp"
+	name = "人事部长印章"
 	icon_state = "stamp-hop"
 	dye_color = DYE_HOP
 
 /obj/item/stamp/head/hos
-	name = "head of security's rubber stamp"
+	name = "安保部长印章"
 	icon_state = "stamp-hos"
 	dye_color = DYE_HOS
 
 /obj/item/stamp/head/ce
-	name = "chief engineer's rubber stamp"
+	name = "工程部长印章"
 	icon_state = "stamp-ce"
 	dye_color = DYE_CE
 
 /obj/item/stamp/head/rd
-	name = "research director's rubber stamp"
+	name = "研究主管印章"
 	icon_state = "stamp-rd"
 	dye_color = DYE_RD
 
 /obj/item/stamp/head/cmo
-	name = "chief medical officer's rubber stamp"
+	name = "首席医疗官印章"
 	icon_state = "stamp-cmo"
 	dye_color = DYE_CMO
 
 /obj/item/stamp/head/qm
-	name = "quartermaster's rubber stamp"
+	name = "军需官印章"
 	icon_state = "stamp-qm"
 	dye_color = DYE_QM
 
 /obj/item/stamp/denied
-	name = "\improper DENIED rubber stamp"
+	name = "否决印章"
 	icon_state = "stamp-deny"
 	dye_color = DYE_REDCOAT
 
 /obj/item/stamp/void
-	name = "VOID rubber stamp"
+	name = "无效印章"
 	icon_state = "stamp-void"
 
 /obj/item/stamp/clown
-	name = "clown's rubber stamp"
+	name = "小丑印章"
 	icon_state = "stamp-clown"
 	dye_color = DYE_CLOWN
 
@@ -94,22 +94,22 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
 
 /obj/item/stamp/mime
-	name = "mime's rubber stamp"
+	name = "默剧印章"
 	icon_state = "stamp-mime"
 	dye_color = DYE_MIME
 
 /obj/item/stamp/chap
-	name = "chaplain's rubber stamp"
+	name = "牧师印章"
 	icon_state = "stamp-chap"
 	dye_color = DYE_CHAP
 
 /obj/item/stamp/centcom
-	name = "CentCom rubber stamp"
+	name = "中央指挥部印章"
 	icon_state = "stamp-centcom"
 	dye_color = DYE_CENTCOM
 
 /obj/item/stamp/syndicate
-	name = "Syndicate rubber stamp"
+	name = "辛迪加印章"
 	icon_state = "stamp-syndicate"
 	dye_color = DYE_SYNDICATE
 

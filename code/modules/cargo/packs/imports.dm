@@ -127,7 +127,7 @@
 	contains = list(
 		/obj/effect/spawner/random/contraband = 5,
 	)
-	crate_name = "板条箱"
+	crate_name = "货箱"
 
 /datum/supply_pack/imports/wt550
 	name = "走私 WT-550自动步枪"
@@ -249,12 +249,12 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/imports/abandoned
-	name = "遗弃的板条箱"
+	name = "遗弃的货箱"
 	desc = "...等等, 怎么弄到这个?"
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list()
 	crate_type = /obj/structure/closet/crate/secure/loot
-	crate_name = "遗弃的板条箱"
+	crate_name = "遗弃的货箱"
 	contraband = TRUE
 	dangerous = TRUE //these are literally bombs so....
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE

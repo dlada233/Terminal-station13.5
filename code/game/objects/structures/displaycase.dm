@@ -137,13 +137,13 @@
 			if(!attacking_item.tool_start_check(user, amount=1))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, span_notice("你开始修理[src]..."))
 			if(attacking_item.use_tool(src, user, 40, volume=50))
 				atom_integrity = max_integrity
 				update_appearance()
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("你修好了[src]."))
 		else
-			to_chat(user, span_warning("[src] is already in good condition!"))
+			to_chat(user, span_warning("[src]状态很好，无需修理!"))
 		return
 	else if(!alert && attacking_item.tool_behaviour == TOOL_CROWBAR) //Only applies to the lab cage and player made display cases
 		if(broken)

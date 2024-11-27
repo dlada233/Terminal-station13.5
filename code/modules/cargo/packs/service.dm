@@ -191,11 +191,11 @@
 	crate_name = "银ID卡箱"
 
 /datum/supply_pack/service/emptycrate
-	name = "空板条箱"
-	desc = "就是一个空板条箱，用来储存东西."
+	name = "空货箱"
+	desc = "就是一个空货箱，用来储存东西."
 	cost = CARGO_CRATE_VALUE * 1.4 //Net Zero Profit.
 	contains = list()
-	crate_name = "板条箱"
+	crate_name = "货箱"
 
 /datum/supply_pack/service/randomized/donkpockets
 	name = "多味口袋饼组合"

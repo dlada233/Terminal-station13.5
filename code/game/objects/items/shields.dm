@@ -165,7 +165,7 @@
 		var/obj/item/stack/sheet/mineral/titanium/titanium_sheet = attackby_item
 		titanium_sheet.use(1)
 		atom_integrity = max_integrity
-		to_chat(user, span_notice("You repair [src] with [titanium_sheet]."))
+		to_chat(user, span_notice("你修好了[src] with [titanium_sheet]."))
 		return
 	return ..()
 
@@ -430,7 +430,7 @@
 		var/obj/item/stack/sheet/mineral/titanium/titanium_sheet = attackby_item
 		titanium_sheet.use(1)
 		atom_integrity = max_integrity
-		to_chat(user, span_notice("You repair [src] with [titanium_sheet]."))
+		to_chat(user, span_notice("你修好了[src] with [titanium_sheet]."))
 		return
 	return ..()
 

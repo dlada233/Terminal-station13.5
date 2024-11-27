@@ -6,7 +6,7 @@
 
 /datum/supply_pack/exploration/scrapyard
 	name = "废品箱"
-	desc = "包含各种废品的外来板条箱."
+	desc = "包含各种废品的外来货箱."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/relic,
 					/obj/item/broken_bottle,
@@ -32,7 +32,7 @@
 
 /datum/supply_pack/exploration/shrubbery
 	name = "灌木箱"
-	desc = "满是灌木的板条箱."
+	desc = "满是灌木的货箱."
 	cost = CARGO_CRATE_VALUE * 5
 	crate_name = "灌木箱"
 	var/shrub_amount = 8

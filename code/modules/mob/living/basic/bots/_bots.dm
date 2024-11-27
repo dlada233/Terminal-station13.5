@@ -418,7 +418,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 		return
 
 	heal_overall_damage(10)
-	user.visible_message(span_notice("[user] repairs [src]!"),span_notice("You repair [src]."))
+	user.visible_message(span_notice("[user] repairs [src]!"),span_notice("你修好了[src]."))
 
 /mob/living/basic/bot/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(attacking_item.GetID())

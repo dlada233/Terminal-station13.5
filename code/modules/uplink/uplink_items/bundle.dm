@@ -33,8 +33,8 @@
 		handler.purchase_item(user, uplink_item)
 
 /datum/uplink_item/bundles_tc/telecrystal
-	name = "1个Telecrystal"
-	desc = "将上行链路中Tc提取出来，你可以随时将其重新添加回去."
+	name = "1个传送晶体(Tc)"
+	desc = "将上行链路中的Tc提取出来，你可以随时将其重新添加回去."
 	item = /obj/item/stack/telecrystal
 	cost = 1
 	// Don't add telecrystals to the purchase_log since
@@ -42,14 +42,14 @@
 	purchase_log_vis = FALSE
 
 /datum/uplink_item/bundles_tc/telecrystal/five
-	name = "5个Telecrystals"
-	desc = "将上行链路中Tc提取出来，你可以随时将其重新添加回去."
+	name = "5个传送晶体(Tc)"
+	desc = "将上行链路中的Tc提取出来，你可以随时将其重新添加回去."
 	item = /obj/item/stack/telecrystal/five
 	cost = 5
 
 /datum/uplink_item/bundles_tc/telecrystal/twenty
-	name = "20个Telecrystals"
-	desc = "将上行链路中Tc提取出来，你可以随时将其重新添加回去."
+	name = "20个传送晶体(Tc)"
+	desc = "将上行链路中的Tc提取出来，你可以随时将其重新添加回去."
 	item = /obj/item/stack/telecrystal/twenty
 	cost = 20
 
@@ -76,10 +76,10 @@
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY)
 
 /datum/uplink_item/bundles_tc/surplus
-	name = "辛迪加板条箱"
-	desc = "从辛迪加仓库后面挑出一个满是灰尘的板条箱，通过补给舱直接砸给你. \
+	name = "辛迪加货箱"
+	desc = "从辛迪加仓库后面挑出一个满是灰尘的货箱，通过补给舱直接砸给你. \
 			你听说它会根据你的声誉来决定它的内容，但总价值仍是30Tc. \
-			除此之外，每个上行链路只能买一次辛迪加板条箱."
+			除此之外，每个上行链路只能买一次辛迪加货箱."
 	item = /obj/structure/closet/crate // will be replaced in purchase()
 	cost = 20
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SPY)
@@ -141,10 +141,10 @@
 	return source //For log icon
 
 /datum/uplink_item/bundles_tc/surplus/united
-	name = "合作板条箱"
-	desc = "一个闪亮的板条箱将装在补给仓里砸向你，它有一个先进的锁定系统与反篡改协议. \
-			想要打开它，建议使用另一台上行链路，购买‘合作板条箱钥匙’来打开它. \
-			这通常意味着你需要找到另一名持有上行链路的特工并与之合作，一旦你们做到了，这个板条箱里将有总计价值80TC的物品. \
+	name = "合作货箱"
+	desc = "一个闪亮的货箱将装在补给仓里砸向你，它有一个先进的锁定系统与反篡改协议. \
+			想要打开它，建议使用另一台上行链路，购买‘合作货箱钥匙’来打开它. \
+			这通常意味着你需要找到另一名持有上行链路的特工并与之合作，一旦你们做到了，这个货箱里将有总计价值80TC的物品. \
 			此外，每个上行链路只能购买一次该物品."
 	cost = 20
 	item = /obj/structure/closet/crate/secure/syndicrate
@@ -165,9 +165,9 @@
 		surplus_crate.unlock_contents += uplink_item.item
 
 /datum/uplink_item/bundles_tc/surplus_key
-	name = "合作板条箱钥匙"
-	desc = "这个看似毫无意义的物品实际上是一把钥匙，可以打开任何一个合作板条箱，它也被设定为只能使用一次. \
-			虽然最初的设计是为了鼓励合作，但特工们很快发现，有方法可以只靠自己打开板条箱.  \
+	name = "合作货箱钥匙"
+	desc = "这个看似毫无意义的物品实际上是一把钥匙，可以打开任何一个合作货箱，它也被设定为只能使用一次. \
+			虽然最初的设计是为了鼓励合作，但特工们很快发现，有方法可以只靠自己打开货箱.  \
 			此外，每个上行链路只能购买一次该物品."
 	cost = 20
 	item = /obj/item/syndicrate_key

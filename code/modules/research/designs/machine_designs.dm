@@ -1004,8 +1004,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/fax
-	name = "Fax Machine Board"
-	desc = "The circuit board for a fax machine."
+	name = "Fax Machine-传真机电路板"
+	desc = "用于建造传真机的电路板."
 	id = "fax"
 	build_path = /obj/item/circuitboard/machine/fax
 	category = list(

@@ -117,7 +117,7 @@
 	description = "这对电子眼球会带给你热视觉.带有缝状竖瞳."
 
 /datum/opposing_force_equipment/implants_illegal/armlaser
-	name = "激光臂植入物-Arm-mounted Laser Implant"
+	name = "光能臂植入物-Arm-mounted Laser Implant"
 	item_type = /obj/item/autosurgeon/syndicate/laser_arm
 	admin_note = "A basic laser gun, but no-drop."
 	description = "A variant of the arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use."

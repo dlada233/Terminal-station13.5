@@ -324,8 +324,8 @@
 // Can hold items and human size things, no other draggables
 
 /obj/machinery/disposal/bin
-	name = "disposal unit"
-	desc = "A pneumatic waste disposal unit."
+	name = "处理单元"
+	desc = "气动式垃圾处理单元."
 	icon_state = "disposal"
 	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_IGNORE_MOBILITY
 	/// Reference to the mounted destination tagger for disposal bins with one mounted.

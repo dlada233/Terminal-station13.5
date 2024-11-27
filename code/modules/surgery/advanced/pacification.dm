@@ -1,6 +1,6 @@
 /datum/surgery/advanced/pacify
-	name = "Pacification"
-	desc = "A surgical procedure which permanently inhibits the aggression center of the brain, making the patient unwilling to cause direct harm."
+	name = "神经安抚"
+	desc = "一种永久抑制大脑攻击中心的手术，使手术对象不再愿意对外物造成直接伤害."
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = NONE
 	steps = list(
@@ -19,7 +19,7 @@
 		return FALSE
 
 /datum/surgery_step/pacify
-	name = "rewire brain (hemostat)"
+	name = "重连大脑 (止血钳)"
 	implements = list(
 		TOOL_HEMOSTAT = 100,
 		TOOL_SCREWDRIVER = 35,
@@ -33,21 +33,21 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to pacify [target]..."),
-		span_notice("[user] begins to fix [target]'s brain."),
-		span_notice("[user] begins to perform surgery on [target]'s brain."),
+		span_notice("你开始安抚[target]..."),
+		span_notice("[user]开始修复[target]的大脑."),
+		span_notice("[user]开始对[target]的大脑进行手术."),
 	)
-	display_pain(target, "Your head pounds with unimaginable pain!")
+	display_pain(target, "你的头感到难以想象的疼痛!")
 
 /datum/surgery_step/pacify/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	display_results(
 		user,
 		target,
-		span_notice("You succeed in neurologically pacifying [target]."),
-		span_notice("[user] successfully fixes [target]'s brain!"),
-		span_notice("[user] completes the surgery on [target]'s brain."),
+		span_notice("你成功地从神经学上安抚了[target]."),
+		span_notice("[user]成功修复了[target]的大脑!"),
+		span_notice("[user]完成了对[target]的大脑手术."),
 	)
-	display_pain(target, "Your head pounds... the concept of violence flashes in your head, and nearly makes you hurl!")
+	display_pain(target, "你的头还在疼...暴力的概念在你的脑海中闪现，几乎让你失控!")
 	target.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_LOBOTOMY)
 	return ..()
 
@@ -55,10 +55,10 @@
 	display_results(
 		user,
 		target,
-		span_notice("You screw up, rewiring [target]'s brain the wrong way around..."),
-		span_warning("[user] screws up, causing brain damage!"),
-		span_notice("[user] completes the surgery on [target]'s brain."),
+		span_notice("你搞砸了，错误地重连了[target]的大脑..."),
+		span_warning("[user]搞砸了，造成了大脑损伤!"),
+		span_notice("[user]完成了对[target]大脑的手术."),
 	)
-	display_pain(target, "Your head pounds, and it feels like it's getting worse!")
+	display_pain(target, "你的头在疼，而且感觉越来越糟!")
 	target.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 	return FALSE

@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/cardboard
-	name = "cardboard box"
-	desc = "A box, in which you can place things. Revolutionary, I know."
+	name = "纸板箱"
+	desc = "纸板箱，你可以在这里面存放东西."
 	pass_flags_self = PASSSTRUCTURE
 	material_drop = /obj/item/stack/sheet/cardboard
 	material_drop_amount = 4
@@ -14,13 +14,13 @@
 	cutting_tool = /obj/item/wirecutters
 
 /obj/structure/closet/crate/cardboard/mothic
-	name = "\improper Mothic Fleet box"
-	desc = "For holding moths, presumably."
+	name = "飞蛾舰队箱"
+	desc = "大概是为了养蛾子吧."
 	icon_state = "cardboard_moth"
 	base_icon_state = "cardboard_moth"
 
 /obj/structure/closet/crate/cardboard/tiziran
-	name = "\improper Tiziran shipment box"
-	desc = "For holding lizards, presumably."
+	name = "缇兹兰装运箱"
+	desc = "大概是为了养蜥蜴吧."
 	icon_state = "cardboard_tiziran"
 	base_icon_state = "cardboard_tiziran"

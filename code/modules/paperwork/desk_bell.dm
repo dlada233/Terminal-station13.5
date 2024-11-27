@@ -1,8 +1,8 @@
 // A receptionist's bell
 
 /obj/structure/desk_bell
-	name = "desk bell"
-	desc = "The cornerstone of any customer service job. You feel an unending urge to ring it."
+	name = "桌铃"
+	desc = "任何客户服务工作的基础，你总有一种想要不停地敲它的冲动."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "desk_bell"
 	layer = OBJ_LAYER

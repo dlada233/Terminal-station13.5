@@ -3,10 +3,10 @@
 /obj/structure/ai_core
 	density = TRUE
 	anchored = FALSE
-	name = "\improper AI core"
+	name = "\improper AI核心"
 	icon = 'icons/mob/silicon/ai.dmi'
 	icon_state = "0"
-	desc = "The framework for an artificial intelligence core."
+	desc = "适用于人工智能核心的运行框架."
 	max_integrity = 500
 	var/state = EMPTY_CORE
 	var/datum/ai_laws/laws
@@ -72,7 +72,7 @@
 	. = ..()
 	if(. > 0 && istype(remote_ai))
 		to_chat(remote_ai, span_danger("Your core is under attack!"))
-	
+
 
 /obj/structure/ai_core/deactivated
 	icon_state = "ai-empty"

@@ -1,5 +1,5 @@
 /obj/item/gun/energy/e_gun
-	name = "激光枪"
+	name = "光能枪"
 	desc = "一种基本的多用途能量枪，有两种模式：镇暴和杀伤."
 	icon_state = "energy"
 	w_class = WEIGHT_CLASS_BULKY
@@ -29,7 +29,7 @@
 		overlay_y = 10)
 
 /obj/item/gun/energy/e_gun/mini
-	name = "微型激光枪"
+	name = "微型光能枪"
 	desc = "手枪大小的能量枪，内置手电筒，它有两种模式：镇暴和杀伤."
 	icon_state = "mini"
 	inhand_icon_state = "gun"
@@ -50,22 +50,22 @@
 		overlay_y = 13)
 
 /obj/item/gun/energy/e_gun/stun
-	name = "战术激光枪"
-	desc = "军事用途的激光器，可以发射眩晕弹."
+	name = "战术能量枪"
+	desc = "军事用途的能量枪，可以发射眩晕弹."
 	icon_state = "energytac"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/e_gun/old
-	name = "原型激光枪"
-	desc = "NT-P:01原型能量枪，激光步枪早期发展阶段的产物，它具有多用途的能量透镜，允许枪改变子弹模式."
+	name = "原型光能枪"
+	desc = "NT-P:01原型光能枪，光能步枪早期发展阶段的产物，它具有多用途的能量透镜，允许枪改变子弹模式."
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)
 
 /obj/item/gun/energy/e_gun/mini/practice_phaser
-	name = "练习相移激光枪"
-	desc = "一种基本相移激光枪的改进版本，这种枪发射的能量不太集中，专为打靶练习设计."
+	name = "练习相移光能枪"
+	desc = "一种基本相移光能枪的改进版本，这种枪发射的能量不太集中，专为打靶练习设计."
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/practice)
 	icon_state = "decloner"
 	//You have no icons for energy types, you're a decloner
@@ -73,8 +73,8 @@
 	gun_flags = NOT_A_REAL_GUN
 
 /obj/item/gun/energy/e_gun/hos
-	name = "X-01多相激光枪"
-	desc = "这是一个古董激光枪的现代复制品，这把枪有几个独特的射击模式，缺点是没有自充电的能力."
+	name = "X-01多相光能枪"
+	desc = "这是一个古董光能枪的现代复制品，这把枪有几个独特的射击模式，缺点是没有自充电的能力."
 	icon_state = "hoslaser"
 	cell_type = /obj/item/stock_parts/cell/hos_gun
 	w_class = WEIGHT_CLASS_NORMAL
@@ -145,7 +145,7 @@
 	return
 
 /obj/item/gun/energy/e_gun/nuclear // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
-	name = "先进激光枪"
+	name = "先进光能枪"
 	desc = "一种装有有实验性微型核反应堆的能量枪，可以自动为内部电池充电."
 	icon_state = "nucgun"
 	inhand_icon_state = "nucgun"

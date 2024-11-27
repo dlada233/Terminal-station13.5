@@ -1,7 +1,7 @@
 /// A mini-tool used to apply label items onto something to modify its name.
 /obj/item/hand_labeler //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "hand labeler"
-	desc = "A combined label printer, applicator, and remover, all in a single portable device. Designed to be easy to operate and use."
+	name = "手动贴标器"
+	desc = "这是一台集标签打印机、贴标器和揭标器于一体的便携式设备，设计得易于操作和使用."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "labeler0"
 	item_flags = NOBLUDGEON
@@ -144,9 +144,9 @@
 	return .
 
 /obj/item/hand_labeler_refill
-	name = "hand labeler paper roll"
+	name = "手贴标纸卷"
 	icon = 'icons/obj/service/bureaucracy.dmi'
-	desc = "A roll of paper. Use it on a hand labeler to refill it."
+	desc = "一卷纸，使用到贴标器上以重新填充."
 	icon_state = "labeler_refill"
 	inhand_icon_state = "electropack"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -161,8 +161,8 @@
 
 /// The label item applied when labelling something
 /obj/item/label
-	name = "label"
-	desc = "A strip of paper."
+	name = "标签"
+	desc = "一张纸条."
 	icon = 'icons/obj/toys/stickers.dmi'
 	icon_state = "label"
 	throw_range = 1
@@ -192,7 +192,7 @@
 /obj/item/label/update_name(updates)
 	. = ..()
 	if(label_name)
-		name = "label ([label_name])"
+		name = "标签 ([label_name])"
 
 /// Sets the lable_name var and performs any necessary updates to the label's appearance
 /obj/item/label/proc/update_label_name(new_label_name)

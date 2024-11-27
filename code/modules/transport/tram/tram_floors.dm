@@ -264,15 +264,15 @@
 
 /obj/structure/thermoplastic/welder_act(mob/living/user, obj/item/tool)
 	if(atom_integrity >= max_integrity)
-		to_chat(user, span_warning("[src] is already in good condition!"))
+		to_chat(user, span_warning("[src]状态很好，无需修理!"))
 		return ITEM_INTERACT_SUCCESS
 	if(!tool.tool_start_check(user, amount = 0))
 		return FALSE
-	to_chat(user, span_notice("You begin repairing [src]..."))
+	to_chat(user, span_notice("你开始修理[src]..."))
 	var/integrity_to_repair = max_integrity - atom_integrity
 	if(tool.use_tool(src, user, integrity_to_repair * 0.5, volume = 50))
 		atom_integrity = max_integrity
-		to_chat(user, span_notice("You repair [src]."))
+		to_chat(user, span_notice("你修好了[src]."))
 		update_appearance()
 	return ITEM_INTERACT_SUCCESS
 

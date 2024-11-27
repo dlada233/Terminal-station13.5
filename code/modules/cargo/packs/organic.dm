@@ -81,8 +81,8 @@
 
 /datum/supply_pack/organic/food
 	name = "食材包"
-	desc = "用这个板条箱里满当当的实用食材来做顿饭吧!\
-		含有一打鸡蛋、三根香蕉和一些面粉、大米、牛奶和豆浆，\
+	desc = "用这个货箱里满当当的实用食材来做顿饭吧!\
+		含有一打鸡蛋、三根香蕉和一些面粉、大米、牛奶和豆奶，\
 		以及盐、胡椒、发酵酶、糖还有猴子肉."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/reagent_containers/condiment/flour,
@@ -238,7 +238,7 @@
 /// tells crew that an infinite pizza box exists, half of the time, based on a roll in the anamolous box proc
 /datum/supply_pack/organic/pizza/proc/anomalous_pizza_report()
 	print_command_report("[station_name()], 我们的异常材料部门报告了一起物品失踪事件，据调查很可能是在一次例行送货中误送至你站. \
-	请检查所有的板条箱与货运清单，如若找到异常对象还请送回. \
+	请检查所有的货箱与货运清单，如若找到异常对象还请送回. \
 	该异常对象被列为<b>\[数据删除\]</b>项目，并且具有<b>\[数据删除\]</b>特性. 请务必注意，异常对象与打开该异常的个体将精确谐调，\
 	该个体会认为异常对象是可食用的，并且很美味.")
 

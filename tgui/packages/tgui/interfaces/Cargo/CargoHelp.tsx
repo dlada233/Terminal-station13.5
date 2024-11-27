@@ -3,7 +3,7 @@ import { Box, NoticeBox, Section, Stack } from '../../components';
 const ORDER_TEXT = `空间站内的每个部门都可以使用自己的订货终端来进行订货.
         这些部门订单是不消耗任何资金的，只是会让他们的订货终端进入冷却时间.
         此时你的任务就来了: 订单会出现在供应控制台，你需要将货物交付给订货者.
-        当货物板条箱正确得到达位置并被正确的方式打开时，货仓预算还会收到这笔部门订单
+        当货物货箱正确得到达位置并被正确的方式打开时，货仓预算还会收到这笔部门订单
         的全部价值作为奖励. 所以部门送货工作是整个货仓的良好收入来源.`;
 
 const DISPOSAL_TEXT = `除了MULE送货和人工送货外, 你还可以使用管道运输系统.
@@ -20,7 +20,7 @@ export function CargoHelp(props) {
             {ORDER_TEXT}
             <br />
             <br />
-            检视部门订货板条箱，了解板条箱目的地的具体细节.
+            检视部门订货货箱，了解货箱目的地的具体细节.
           </Section>
           <Section title="MULE机器人">
             <Box color="label">
@@ -31,9 +31,9 @@ export function CargoHelp(props) {
             <Box bold color="green">
               设置一台MULE很简单:
             </Box>
-            <b>1.</b> 将要运送的板条箱拖到MULE旁边.
+            <b>1.</b> 将要运送的货箱拖到MULE旁边.
             <br />
-            <b>2.</b> 将要运送的板条箱拖到MULE顶部. 它应该会被自动装载.
+            <b>2.</b> 将要运送的货箱拖到MULE顶部. 它应该会被自动装载.
             <br />
             <b>3.</b> 打开你的PDA.
             <br />
@@ -52,7 +52,7 @@ export function CargoHelp(props) {
             <Box bold color="green">
               使用管道运输系统会更加方便:
             </Box>
-            <b>1.</b> 用包装纸包裹要发送的物品/板条箱.
+            <b>1.</b> 用包装纸包裹要发送的物品/货箱.
             <br />
             <b>2.</b> 使用目的地标记器选择将其发送到哪里.
             <br />

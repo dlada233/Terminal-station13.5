@@ -2,24 +2,24 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 /obj/machinery/announcement_system
 	density = TRUE
-	name = "\improper 自动公告系统"
+	name = "自动公告系统"
 	desc = "一种自动广播系统，通过无线电处理小范围广播."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "AAS_On"
 	base_icon_state = "AAS"
 
-	verb_say = "coldly states"
-	verb_ask = "queries"
-	verb_exclaim = "alarms"
+	verb_say = "公告"
+	verb_ask = "询问"
+	verb_exclaim = "警告"
 
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.05
 
 	circuit = /obj/item/circuitboard/machine/announcement_system
 
 	var/obj/item/radio/headset/radio
-	var/arrival = "%PERSON 现已作为 %RANK 参与工作."
+	var/arrival = "%RANK，%PERSON已达到接送站."
 	var/arrivalToggle = 1
-	var/newhead = "%PERSON, %RANK, 是部门部长."
+	var/newhead = "%PERSON，%RANK，是部门部长."
 	var/newheadToggle = 1
 
 	var/greenlight = "Light_Green"
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if (!is_operational)
 		return
 
-	broadcast("官员 [officer.real_name] 已被指派到 [department].", list(RADIO_CHANNEL_SECURITY))
+	broadcast("官员[officer.real_name]已被指派到[department].", list(RADIO_CHANNEL_SECURITY))
 
 /// Sends a message to the appropriate channels.
 /obj/machinery/announcement_system/proc/broadcast(message, list/channels)

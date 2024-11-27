@@ -13,8 +13,8 @@
 	return
 
 /obj/item/gun/energy/laser/mounted
-	name = "激光枪臂"
-	desc = "一种可以发射致命激光的手臂加农炮."
+	name = "光能枪臂"
+	desc = "一种可以发射致命光能的手臂加农炮."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "laser_cyborg"
 	inhand_icon_state = "armcannonlase"

@@ -232,7 +232,7 @@
 
 /datum/supply_pack/engine/emitter
 	name = "发射器"
-	desc = "能在破坏板条箱锁和敌人的同时为力场投影仪提供能量.\
+	desc = "能在破坏货箱锁和敌人的同时为力场投影仪提供能量.\
 		内含两台高功率能量发生器."
 	cost = CARGO_CRATE_VALUE * 7
 	access = ACCESS_CE

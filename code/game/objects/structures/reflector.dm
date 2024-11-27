@@ -109,7 +109,7 @@
 		return
 	if(atom_integrity < max_integrity)
 		user.visible_message(span_notice("[user] starts to repair [src]."),
-							span_notice("You begin repairing [src]..."),
+							span_notice("你开始修理[src]..."),
 							span_hear("你听到焊接声."))
 		if(tool.use_tool(src, user, 4 SECONDS, volume=40))
 			atom_integrity = max_integrity

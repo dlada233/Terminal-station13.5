@@ -220,8 +220,8 @@
 	surplus = 0
 
 /datum/uplink_item/role_restricted/laser_arm
-	name = "手臂激光发射系统"
-	desc = "会给你一个小型自动手术仪，专门用来在手臂里植入激光枪，激光枪在收回时会自动充电."
+	name = "手臂光能发射系统"
+	desc = "会给你一个小型自动手术仪，专门用来在手臂里植入光能枪，光能枪在收回时会自动充电."
 	progression_minimum = 20 MINUTES
 	cost = 10
 	item = /obj/item/autosurgeon/syndicate/laser_arm

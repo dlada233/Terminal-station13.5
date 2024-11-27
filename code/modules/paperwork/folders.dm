@@ -1,6 +1,6 @@
 /obj/item/folder
-	name = "folder"
-	desc = "A folder."
+	name = "文件夹"
+	desc = "一个文件夹."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = WEIGHT_CLASS_SMALL
@@ -19,7 +19,7 @@
 	var/contents_hidden = FALSE
 
 /obj/item/folder/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins filing an imaginary death warrant! 看起来是在尝试自杀!"))
+	user.visible_message(span_suicide("[user]开始提交一份想象中的死刑执行令! 看起来是在尝试自杀!"))
 	return OXYLOSS
 
 /obj/item/folder/Initialize(mapload)
@@ -36,25 +36,25 @@
 /obj/item/folder/examine()
 	. = ..()
 	if(length(contents) && !contents_hidden)
-		. += span_notice("<b>Right-click</b> to remove [contents[1]].")
+		. += span_notice("<b>右键</b> 移除[contents[1]].")
 
 /obj/item/folder/proc/rename(mob/user, obj/item/writing_instrument)
 	if(!user.can_write(writing_instrument))
 		return
 
-	var/inputvalue = tgui_input_text(user, "What would you like to label the folder?", "Folder Labelling", max_length = MAX_NAME_LEN)
+	var/inputvalue = tgui_input_text(user, "你想给文件夹贴上什么标签?", "文件夹标签", max_length = MAX_NAME_LEN)
 
 	if(!inputvalue)
 		return
 
 	if(user.can_perform_action(src))
-		name = "folder[(inputvalue ? " - '[inputvalue]'" : null)]"
+		name = "文件夹[(inputvalue ? " - '[inputvalue]'" : null)]"
 
 /obj/item/folder/proc/remove_item(obj/item/Item, mob/user)
 	if(istype(Item))
 		Item.forceMove(user.loc)
 		user.put_in_hands(Item)
-		to_chat(user, span_notice("You remove [Item] from [src]."))
+		to_chat(user, span_notice("你取下了[Item]从[src]."))
 		update_icon()
 
 /obj/item/folder/attack_hand(mob/user, list/modifiers)
@@ -75,7 +75,7 @@
 		//Add paper, photo or documents into the folder
 		if(!user.transferItemToLoc(weapon, src))
 			return
-		to_chat(user, span_notice("You put [weapon] into [src]."))
+		to_chat(user, span_notice("你把[weapon]放进[src]."))
 		update_appearance()
 	else if(IS_WRITING_UTENSIL(weapon))
 		rename(user, weapon)

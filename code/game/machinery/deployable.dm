@@ -32,7 +32,7 @@
 			if(!I.tool_start_check(user, amount=1))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, span_notice("你开始修理[src]..."))
 			if(I.use_tool(src, user, 40, volume=40))
 				atom_integrity = clamp(atom_integrity + 20, 0, max_integrity)
 	else

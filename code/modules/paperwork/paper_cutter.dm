@@ -1,6 +1,6 @@
 /obj/item/papercutter
-	name = "paper cutter"
-	desc = "Standard office equipment. Precisely cuts paper using a large blade."
+	name = "切纸机"
+	desc = "标准的办公设备，使用大刀片精准切割纸张."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "papercutter"
 	force = 5
@@ -187,8 +187,8 @@
 	add_fingerprint(user)
 
 /obj/item/paper/paperslip
-	name = "paper slip"
-	desc = "A little slip of paper left over after a larger piece was cut. Whoa."
+	name = "纸条"
+	desc = "裁掉一大张纸后剩下的小纸条，哇哦."
 	icon_state = "paperslip"
 	inhand_icon_state = "silver_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -196,15 +196,15 @@
 	grind_results = list(/datum/reagent/cellulose = 1.5) //It's a normal paper sheet divided in 2. 3 divided by 2 equals 1.5, this way you can't magically dupe cellulose
 
 /obj/item/paper/paperslip/fortune
-	name = "fortune slip"
+	name = "幸运纸条"
 
 /obj/item/paper/paperslip/fortune/Initialize(mapload)
 	default_raw_text = pick(GLOB.wisdoms)
 	return ..()
 
 /obj/item/paper/paperslip/corporate //More fancy and sturdy paper slip which is a "plastic card", used for things like spare ID safe code
-	name = "corporate plastic card"
-	desc = "A plastic card for confidential corporate matters. Can be written on with pen somehow."
+	name = "公司塑料卡"
+	desc = "用于公司机密事项的塑料卡，可以用笔在上面写字."
 	icon_state = "corppaperslip"
 	grind_results = list(/datum/reagent/plastic_polymers = 1.5) //It's a plastic card after all
 	max_integrity = 130 //Slightly more sturdy because of being made out of a plastic
@@ -214,8 +214,8 @@
 	throw_speed = 2
 
 /obj/item/hatchet/cutterblade
-	name = "paper cutter blade"
-	desc = "The blade of a paper cutter. Most likely removed for polishing or sharpening."
+	name = "切纸机刀片"
+	desc = "切纸机的刀刃，为了打磨和锐化可以取下来."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "cutterblade"
 	inhand_icon_state = "knife"

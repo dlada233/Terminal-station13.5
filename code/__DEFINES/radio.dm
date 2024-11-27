@@ -2,58 +2,58 @@
 
 //say based modes like binary are in living/say.dm
 
-#define RADIO_CHANNEL_COMMON "Common"
+#define RADIO_CHANNEL_COMMON "公共"
 #define RADIO_KEY_COMMON ";"
 
-#define RADIO_CHANNEL_SECURITY "Security"
+#define RADIO_CHANNEL_SECURITY "安保"
 #define RADIO_KEY_SECURITY "s"
 #define RADIO_TOKEN_SECURITY ":s"
 
-#define RADIO_CHANNEL_ENGINEERING "Engineering"
+#define RADIO_CHANNEL_ENGINEERING "工程"
 #define RADIO_KEY_ENGINEERING "e"
 #define RADIO_TOKEN_ENGINEERING ":e"
 
-#define RADIO_CHANNEL_COMMAND "Command"
+#define RADIO_CHANNEL_COMMAND "指挥"
 #define RADIO_KEY_COMMAND "c"
 #define RADIO_TOKEN_COMMAND ":c"
 
-#define RADIO_CHANNEL_SCIENCE "Science"
+#define RADIO_CHANNEL_SCIENCE "科研"
 #define RADIO_KEY_SCIENCE "n"
 #define RADIO_TOKEN_SCIENCE ":n"
 
-#define RADIO_CHANNEL_MEDICAL "Medical"
+#define RADIO_CHANNEL_MEDICAL "医疗"
 #define RADIO_KEY_MEDICAL "m"
 #define RADIO_TOKEN_MEDICAL ":m"
 
-#define RADIO_CHANNEL_SUPPLY "Supply"
+#define RADIO_CHANNEL_SUPPLY "货仓"
 #define RADIO_KEY_SUPPLY "u"
 #define RADIO_TOKEN_SUPPLY ":u"
 
-#define RADIO_CHANNEL_SERVICE "Service"
+#define RADIO_CHANNEL_SERVICE "服务"
 #define RADIO_KEY_SERVICE "v"
 #define RADIO_TOKEN_SERVICE ":v"
 
-#define RADIO_CHANNEL_AI_PRIVATE "AI Private"
+#define RADIO_CHANNEL_AI_PRIVATE "AI私人"
 #define RADIO_KEY_AI_PRIVATE "o"
 #define RADIO_TOKEN_AI_PRIVATE ":o"
 
 
-#define RADIO_CHANNEL_SYNDICATE "Syndicate"
+#define RADIO_CHANNEL_SYNDICATE "辛迪加"
 #define RADIO_KEY_SYNDICATE "t"
 #define RADIO_TOKEN_SYNDICATE ":t"
 
-#define RADIO_CHANNEL_CENTCOM "CentCom"
+#define RADIO_CHANNEL_CENTCOM "中央指挥部"
 #define RADIO_KEY_CENTCOM "y"
 #define RADIO_TOKEN_CENTCOM ":y"
 
-#define RADIO_CHANNEL_UPLINK "Uplink"
+#define RADIO_CHANNEL_UPLINK "上行链路"
 #define RADIO_KEY_UPLINK "z"
 #define RADIO_TOKEN_UPLINK ":z"
 
-#define RADIO_CHANNEL_CTF_RED "Red Team"
-#define RADIO_CHANNEL_CTF_BLUE "Blue Team"
-#define RADIO_CHANNEL_CTF_GREEN "Green Team"
-#define RADIO_CHANNEL_CTF_YELLOW "Yellow Team"
+#define RADIO_CHANNEL_CTF_RED "红队"
+#define RADIO_CHANNEL_CTF_BLUE "蓝队"
+#define RADIO_CHANNEL_CTF_GREEN "绿队"
+#define RADIO_CHANNEL_CTF_YELLOW "黄队"
 
 
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
@@ -115,11 +115,11 @@
 #define REQ_HIGH_MESSAGE_PRIORITY 2
 #define REQ_EXTREME_MESSAGE_PRIORITY 3
 
-#define ASSISTANCE_REQUEST "Assistance Request"
-#define SUPPLY_REQUEST "Supplies Request"
-#define INFORMATION_REQUEST "Relay Information"
-#define ORE_UPDATE_REQUEST "Ore Update"
-#define REPLY_REQUEST "Reply"
+#define ASSISTANCE_REQUEST "援助请求"
+#define SUPPLY_REQUEST "补给请求"
+#define INFORMATION_REQUEST "传递信息"
+#define ORE_UPDATE_REQUEST "矿石更新"
+#define REPLY_REQUEST "回复"
 
 ///give this to can_receive to specify that there is no restriction on what z level this signal is sent to
 #define RADIO_NO_Z_LEVEL_RESTRICTION 0

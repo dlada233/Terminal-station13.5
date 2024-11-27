@@ -724,7 +724,7 @@
 	)
 
 /obj/item/circuitboard/machine/fax
-	name = "Fax Machine"
+	name = "传真机"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/fax
 	req_components = list(

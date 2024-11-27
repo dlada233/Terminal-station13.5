@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/secure
-	desc = "A secure crate."
-	name = "secure crate"
+	desc = "一个带锁货箱."
+	name = "带锁货箱"
 	icon_state = "securecrate"
 	base_icon_state = "securecrate"
 	secure = TRUE
@@ -39,39 +39,39 @@
 	qdel(src)
 
 /obj/structure/closet/crate/secure/weapon
-	desc = "A secure weapons crate."
-	name = "weapons crate"
+	desc = "一个带锁武器箱."
+	name = "武器箱"
 	icon_state = "weaponcrate"
 	base_icon_state = "weaponcrate"
 
 /obj/structure/closet/crate/secure/plasma
-	desc = "A secure plasma crate."
-	name = "plasma crate"
+	desc = "一个带锁等离子货箱."
+	name = "等离子货箱"
 	icon_state = "plasmacrate"
 	base_icon_state = "plasmacrate"
 
 /obj/structure/closet/crate/secure/gear
-	desc = "A secure gear crate."
-	name = "gear crate"
+	desc = "带锁装备箱."
+	name = "装备箱"
 	icon_state = "secgearcrate"
 	base_icon_state = "secgearcrate"
 
 /obj/structure/closet/crate/secure/hydroponics
-	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
-	name = "secure hydroponics crate"
+	desc = "一个带锁的货箱，配色与站点植物学家相搭."
+	name = "带锁水培货箱"
 	icon_state = "hydrosecurecrate"
 	base_icon_state = "hydrosecurecrate"
 
 /obj/structure/closet/crate/secure/freezer //for consistency with other "freezer" closets/crates
-	desc = "An icebox with a lock on it, used to secure perishables."
-	name = "secure kitchen icebox"
+	desc = "带锁的冷藏箱，用于存储易腐烂物品."
+	name = "带锁食品冷藏箱"
 	icon_state = "kitchen_secure_crate"
 	base_icon_state = "kitchen_secure_crate"
 	paint_jobs = null
 
 /obj/structure/closet/crate/secure/freezer/pizza
-	name = "secure pizza crate"
-	desc = "An insulated crate with a lock on it, used to secure pizza."
+	name = "带锁披萨箱"
+	desc = "一个带锁的保温货箱，用于确保披萨的安全."
 	tamperproof = 10
 	req_access = list(ACCESS_KITCHEN)
 
@@ -80,51 +80,51 @@
 	new /obj/effect/spawner/random/food_or_drink/pizzaparty(src)
 
 /obj/structure/closet/crate/secure/centcom
-	name = "secure centcom crate"
+	name = "带锁中央指挥部货箱"
 	icon_state = "centcom_secure"
 	base_icon_state = "centcom_secure"
 
 /obj/structure/closet/crate/secure/cargo
-	name = "secure cargo crate"
+	name = "带锁货仓货箱"
 	icon_state = "cargo_secure"
 	base_icon_state = "cargo_secure"
 
 /obj/structure/closet/crate/secure/cargo/mining
-	name = "secure mining crate"
+	name = "带锁采矿货箱"
 	icon_state = "mining_secure"
 	base_icon_state = "mining_secure"
 
 /obj/structure/closet/crate/secure/radiation
-	name = "secure radioation crate"
+	name = "带锁辐射货箱"
 	icon_state = "radiation_secure"
 	base_icon_state = "radiation_secure"
 
 /obj/structure/closet/crate/secure/engineering
-	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
-	name = "secure engineering crate"
+	desc = "一个带锁的货箱，配色和空间站工程师相搭."
+	name = "带锁工程货箱"
 	icon_state = "engi_secure_crate"
 	base_icon_state = "engi_secure_crate"
 
 /obj/structure/closet/crate/secure/engineering/atmos
-	name = "secure atmospherics crate"
-	desc = "A crate with a lock on it, painted in the scheme of the station's atmospherics engineers."
+	name = "带锁大气货箱"
+	desc = "一个带锁的货箱，配色和空间站大气技工相搭."
 	icon_state = "atmos_secure"
 	base_icon_state = "atmos_secure"
 
 /obj/structure/closet/crate/secure/science
-	name = "secure science crate"
-	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
+	name = "带锁科研货箱"
+	desc = "一个带锁的货箱，配色和空间站科学家相搭."
 	icon_state = "scisecurecrate"
 	base_icon_state = "scisecurecrate"
 
 /obj/structure/closet/crate/secure/science/robo
-	name = "robotics science crate"
+	name = "带锁机械学货箱"
 	icon_state = "robo_secure"
 	base_icon_state = "robo_secure"
 
 /obj/structure/closet/crate/secure/owned
-	name = "private crate"
-	desc = "A crate cover designed to only open for who purchased its contents."
+	name = "私人货箱"
+	desc = "一个箱子，被设计为只有买家才有权打开."
 	icon_state = "privatecrate"
 	base_icon_state = "privatecrate"
 	///Account of the person buying the crate if private purchasing.

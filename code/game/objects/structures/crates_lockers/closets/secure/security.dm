@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/captains
-	name = "captain's locker"
+	name = "舰长储物柜"
 	icon_state = "cap"
 	req_access = list(ACCESS_CAPTAIN)
 
@@ -25,7 +25,7 @@
 	new /obj/item/storage/belt/sabre(src)
 
 /obj/structure/closet/secure_closet/hop
-	name = "head of personnel's locker"
+	name = "人事部长储物柜"
 	icon_state = "hop"
 	req_access = list(ACCESS_HOP)
 
@@ -52,7 +52,7 @@
 	new /obj/item/gun/energy/e_gun(src)
 
 /obj/structure/closet/secure_closet/hos
-	name = "head of security's locker"
+	name = "安保部长储物柜"
 	icon_state = "hos"
 	req_access = list(ACCESS_HOS)
 
@@ -83,7 +83,7 @@
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 
 /obj/structure/closet/secure_closet/warden
-	name = "warden's locker"
+	name = "典狱长储物柜"
 	icon_state = "warden"
 	req_access = list(ACCESS_ARMORY)
 
@@ -101,7 +101,7 @@
 
 
 /obj/structure/closet/secure_closet/security
-	name = "security officer's locker"
+	name = "安全官储物柜"
 	icon_state = "sec"
 	req_access = list(ACCESS_BRIG)
 
@@ -124,7 +124,7 @@
 
 // SKYRAT EDIT CHANGE -- GOOFSEC DEP GUARDS
 /obj/structure/closet/secure_closet/security/cargo
-	name = "\proper customs agent's locker"
+	name = "自定义特工储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_CARGO)
 	icon_state = "qm"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -135,7 +135,7 @@
 	new /obj/item/assembly/flash/handheld(src)
 
 /obj/structure/closet/secure_closet/security/engine
-	name = "\proper engineering guard's locker"
+	name = "工程安保储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_ENGINEERING)
 	icon_state = "eng_secure"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -146,7 +146,7 @@
 	new /obj/item/assembly/flash/handheld(src)
 
 /obj/structure/closet/secure_closet/security/science
-	name = "\proper science guard's locker"
+	name = "科研安保储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_RESEARCH)
 	icon_state = "science"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -157,7 +157,7 @@
 	new /obj/item/assembly/flash/handheld(src)
 
 /obj/structure/closet/secure_closet/security/med
-	name = "\proper orderly's locker"
+	name = "医护员储物柜"
 	req_access = list(ACCESS_BRIG_ENTRANCE, ACCESS_MEDICAL)
 	icon_state = "med_secure"
 	icon = 'icons/obj/storage/closet.dmi'
@@ -169,7 +169,7 @@
 // SKYRAT EDIT CHANGE END -- GOOFSEC DEP GUARDS
 
 /obj/structure/closet/secure_closet/detective
-	name = "\improper detective's cabinet"
+	name = "侦探衣柜"
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
@@ -194,7 +194,7 @@
 	new /obj/item/clothing/head/fedora/inspector_hat(src)
 
 /obj/structure/closet/secure_closet/injection
-	name = "lethal injections locker"
+	name = "死刑注射柜"
 	req_access = list(ACCESS_HOS)
 
 /obj/structure/closet/secure_closet/injection/PopulateContents()
@@ -203,14 +203,14 @@
 		new /obj/item/reagent_containers/syringe/lethal/execution(src)
 
 /obj/structure/closet/secure_closet/brig
-	name = "brig locker"
+	name = "关押储物柜"
 	anchored = TRUE
 	req_one_access = list(ACCESS_BRIG)
 	var/id = null
 
 /obj/structure/closet/secure_closet/brig/genpop
-	name = "genpop storage locker"
-	desc = "Used for storing the belongings of genpop's tourists visiting the locals."
+	name = "游客储物柜"
+	desc = "用于存放普通游客访问本地时携带的物品."
 	access_choices = FALSE
 	paint_jobs = null
 
@@ -246,7 +246,7 @@
 
 /obj/structure/closet/secure_closet/evidence
 	anchored = TRUE
-	name = "secure evidence closet"
+	name = "带锁证据柜"
 	req_one_access = list(ACCESS_ARMORY, ACCESS_DETECTIVE)
 
 /obj/structure/closet/secure_closet/brig/PopulateContents()
@@ -257,7 +257,7 @@
 	new /obj/item/clothing/shoes/sneakers/orange( src )
 
 /obj/structure/closet/secure_closet/courtroom
-	name = "courtroom locker"
+	name = "法庭储物柜"
 	req_access = list(ACCESS_COURT)
 
 /obj/structure/closet/secure_closet/courtroom/PopulateContents()
@@ -274,16 +274,16 @@
 
 /obj/structure/closet/secure_closet/contraband/armory
 	anchored = TRUE
-	name = "contraband locker"
+	name = "违禁品储物柜"
 	req_access = list(ACCESS_ARMORY)
 
 /obj/structure/closet/secure_closet/contraband/heads
-	name = "contraband locker"
+	name = "违禁品储物柜"
 	req_access = list(ACCESS_COMMAND)
 	anchored = TRUE
 
 /obj/structure/closet/secure_closet/armory1
-	name = "armory armor locker"
+	name = "军械护甲储物柜"
 	req_access = list(ACCESS_ARMORY)
 
 /obj/structure/closet/secure_closet/armory1/PopulateContents()
@@ -302,7 +302,7 @@
 	new /obj/item/clothing/suit/hooded/ablative(src)
 
 /obj/structure/closet/secure_closet/armory2
-	name = "armory ballistics locker"
+	name = "军械实弹武器储物柜"
 	icon_state = "tac"
 	icon_door = "armory_shotgun"
 	req_access = list(ACCESS_ARMORY)
@@ -318,7 +318,7 @@
 		new /obj/item/gun/ballistic/shotgun/riot(src)
 
 /obj/structure/closet/secure_closet/armory3
-	name = "armory energy gun locker"
+	name = "军械能量武器储物柜"
 	icon_state = "tac"
 	icon_door = "armory_energy"
 	req_access = list(ACCESS_ARMORY)
@@ -337,7 +337,7 @@
 		new /obj/item/gun/energy/laser(src)
 
 /obj/structure/closet/secure_closet/tac
-	name = "armory tac locker"
+	name = "军械战术储物柜"
 	icon_state = "tac"
 	req_access = list(ACCESS_ARMORY)
 
@@ -349,7 +349,7 @@
 	new /obj/item/clothing/suit/armor/bulletproof(src)
 
 /obj/structure/closet/secure_closet/labor_camp_security
-	name = "labor camp security locker"
+	name = "劳改营安保储物柜"
 	icon_state = "sec"
 	req_access = list(ACCESS_SECURITY)
 

@@ -1,5 +1,5 @@
 /obj/item/paper/carbon
-	name = "sheet of carbon"
+	name = "复写纸"
 	icon_state = "paper_stack"
 	inhand_icon_state = "paper"
 	show_written_words = FALSE
@@ -18,22 +18,22 @@
 	. = ..()
 	if(copied)
 		return
-	. += span_notice("Right-click to tear off the carbon-copy (you must use both hands).")
+	. += span_notice("右键撕下复写件(必须用双手).")
 
 /obj/item/paper/carbon/click_alt(mob/living/user)
 	if(!copied)
-		to_chat(user, span_notice("Take off the carbon copy first."))
+		to_chat(user, span_notice("先撕下复写件."))
 		return CLICK_ACTION_BLOCKING
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/paper/carbon/proc/removecopy(mob/living/user)
 	if(copied)
-		to_chat(user, span_notice("There are no more carbon copies attached to this paper!"))
+		to_chat(user, span_notice("已经没有更多的复写纸了!"))
 		return
 
 	var/obj/item/paper/carbon/copy = copy(/obj/item/paper/carbon_copy, loc.drop_location(), FALSE)
-	copy.name = "\improper Copy - [name]"
-	to_chat(user, span_notice("You tear off the carbon-copy!"))
+	copy.name = "复件 - [name]"
+	to_chat(user, span_notice("你撕下复写件!"))
 	copied = TRUE
 	update_icon_state()
 	user.put_in_hands(copy)

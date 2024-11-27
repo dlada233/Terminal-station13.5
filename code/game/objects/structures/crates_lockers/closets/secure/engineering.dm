@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/engineering_chief
-	name = "chief engineer's locker"
+	name = "工程部长储物柜"
 	req_access = list(ACCESS_CE)
 	icon_state = "ce"
 
@@ -31,7 +31,7 @@
 	new /obj/item/pipe_dispenser/bluespace(src) // SKYRAT EDIT -- BLUESPACE RPD -- ORIGINAL: new /obj/item/pipe_dispenser(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
-	name = "electrical supplies locker"
+	name = "电力补给储物柜"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng"
 	icon_door = "eng_elec"
@@ -52,7 +52,7 @@
 	new /obj/item/clothing/gloves/color/yellow(src)
 
 /obj/structure/closet/secure_closet/engineering_welding
-	name = "welding supplies locker"
+	name = "焊接补给储物柜"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng"
 	icon_door = "eng_weld"
@@ -65,7 +65,7 @@
 		new /obj/item/weldingtool(src)
 
 /obj/structure/closet/secure_closet/engineering_personal
-	name = "engineer's locker"
+	name = "工程师储物柜"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng_secure"
 
@@ -83,7 +83,7 @@
 
 
 /obj/structure/closet/secure_closet/atmospherics
-	name = "atmospheric technician's locker"
+	name = "大气技工储物柜"
 	req_access = list(ACCESS_ATMOSPHERICS)
 	icon_state = "atmos"
 

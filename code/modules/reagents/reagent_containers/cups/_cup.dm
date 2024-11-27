@@ -23,7 +23,7 @@
 	. = ..()
 	if(drink_type)
 		var/list/types = bitfield_to_list(drink_type, FOOD_FLAGS)
-		. += span_notice("It is [LOWER_TEXT(english_list(types))].")
+		. += span_notice("它是[LOWER_TEXT(english_list(types))].")
 
 /**
  * Checks if the mob actually liked drinking this cup.
@@ -44,15 +44,15 @@
 	var/food_taste_reaction = gourmand.get_food_taste_reaction(src, drink_type)
 	switch(food_taste_reaction)
 		if(FOOD_TOXIC)
-			to_chat(gourmand,span_warning("What the hell was that thing?!"))
+			to_chat(gourmand,span_warning("那是什么鬼东西?!"))
 			gourmand.adjust_disgust(25 + 30 * fraction)
 			gourmand.add_mood_event("toxic_food", /datum/mood_event/disgusting_food)
 		if(FOOD_DISLIKED)
-			to_chat(gourmand,span_notice("That didn't taste very good..."))
+			to_chat(gourmand,span_notice("味道不太好..."))
 			gourmand.adjust_disgust(11 + 15 * fraction)
 			gourmand.add_mood_event("gross_food", /datum/mood_event/gross_food)
 		if(FOOD_LIKED)
-			to_chat(gourmand,span_notice("I love this taste!"))
+			to_chat(gourmand,span_notice("我爱这个味道!"))
 			gourmand.adjust_disgust(-5 + -2.5 * fraction)
 			gourmand.add_mood_event("fav_food", /datum/mood_event/favorite_food)
 
@@ -64,24 +64,24 @@
 		return
 
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src]是空的!"))
 		return
 
 	if(!istype(target_mob))
 		return
 
 	if(target_mob != user)
-		target_mob.visible_message(span_danger("[user] attempts to feed [target_mob] something from [src]."), \
-					span_userdanger("[user] attempts to feed you something from [src]."))
+		target_mob.visible_message(span_danger("[user]尝试用[src]喂给[target_mob]一些东西."), \
+					span_userdanger("[user]尝试用[src]喂给你一些东西."))
 		if(!do_after(user, 3 SECONDS, target_mob))
 			return
 		if(!reagents || !reagents.total_volume)
 			return // The drink might be empty after the delay, such as by spam-feeding
-		target_mob.visible_message(span_danger("[user] feeds [target_mob] something from [src]."), \
-					span_userdanger("[user] feeds you something from [src]."))
+		target_mob.visible_message(span_danger("[user]用[src]喂给了[target_mob]一些东西."), \
+					span_userdanger("[user]用[src]喂给了你一些东西."))
 		log_combat(user, target_mob, "fed", reagents.get_reagent_log_string())
 	else
-		to_chat(user, span_notice("You swallow a gulp of [src]."))
+		to_chat(user, span_notice("你拿着[src]喝下一大口"))
 
 	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target_mob, user)
 	SEND_SIGNAL(target_mob, COMSIG_GLASS_DRANK, src, user) // SKYRAT EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
@@ -110,31 +110,31 @@
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
-			to_chat(user, span_warning("[src] is empty!"))
+			to_chat(user, span_warning("[src]是空的!"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(target.reagents.holder_full())
-			to_chat(user, span_warning("[target] is full."))
+			to_chat(user, span_warning("[target]是满的."))
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user)
 		playsound(target.loc, pick('sound/effects/liquid_pour1.ogg', 'sound/effects/liquid_pour2.ogg', 'sound/effects/liquid_pour3.ogg'), 50)
-		to_chat(user, span_notice("You transfer [trans] unit\s of the solution to [target]."))
+		to_chat(user, span_notice("你将[trans]单位液体转移到[target]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_TO, target)
 		target.update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
-			to_chat(user, span_warning("[target] is empty and can't be refilled!"))
+			to_chat(user, span_warning("[target]是空的，且无法被重新填装!"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
+			to_chat(user, span_warning("[src]是满的."))
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
-		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
+		to_chat(user, span_notice("你用[target]里[trans]单位内容物填装了[src]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
 		target.update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -151,15 +151,15 @@
 
 	if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
-			to_chat(user, span_warning("[target] is empty!"))
+			to_chat(user, span_warning("[target]是空的!"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
+			to_chat(user, span_warning("[src]是满的."))
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
-		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
+		to_chat(user, span_notice("你用[target]里[trans]单位内容物填装了[src]."))
 
 	target.update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -168,7 +168,7 @@
 	var/hotness = attacking_item.get_temperature()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
-		to_chat(user, span_notice("You heat [name] with [attacking_item]!"))
+		to_chat(user, span_notice("你用[attacking_item]加热[name]!"))
 		return TRUE
 
 	//Cooling method
@@ -177,11 +177,11 @@
 		if(extinguisher.safety)
 			return TRUE
 		if (extinguisher.reagents.total_volume < 1)
-			to_chat(user, span_warning("\The [extinguisher] is empty!"))
+			to_chat(user, span_warning("[extinguisher]是空的!"))
 			return TRUE
 		var/cooling = (0 - reagents.chem_temp) * extinguisher.cooling_power * 2
 		reagents.expose_temperature(cooling)
-		to_chat(user, span_notice("You cool the [name] with the [attacking_item]!"))
+		to_chat(user, span_notice("你用[attacking_item]冷却[name]!"))
 		playsound(loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
 		extinguisher.reagents.remove_all(1)
 		return TRUE
@@ -191,9 +191,9 @@
 		if(!reagents)
 			return TRUE
 		if(reagents.holder_full())
-			to_chat(user, span_notice("[src] is full."))
+			to_chat(user, span_notice("[src]是满的."))
 		else
-			to_chat(user, span_notice("You break [attacking_egg] in [src]."))
+			to_chat(user, span_notice("你打[attacking_egg]到[src]."))
 			attacking_egg.reagents.trans_to(src, attacking_egg.reagents.total_volume, transferred_by = user)
 			qdel(attacking_egg)
 		return TRUE
@@ -219,8 +219,8 @@
 	drink_type = NONE
 
 /obj/item/reagent_containers/cup/beaker
-	name = "beaker"
-	desc = "A beaker. It can hold up to 60 units." //SKYRAT EDIT: Used to say can hold up to 50 units.
+	name = "烧杯"
+	desc = "一杯烧杯，最多可以容纳60单位试剂." //SKYRAT EDIT: Used to say can hold up to 50 units.
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "beaker"
 	inhand_icon_state = "beaker"
@@ -240,14 +240,14 @@
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/cup/beaker/jar
-	name = "honey jar"
-	desc = "A jar for honey. It can hold up to 50 units of sweet delight."
+	name = "蜂蜜罐"
+	desc = "装蜂蜜的罐子，可以容纳50单位的香甜蜂蜜."
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "vapour"
 
 /obj/item/reagent_containers/cup/beaker/large
-	name = "large beaker"
-	desc = "A large beaker. Can hold up to 120 units." //SKYRAT EDIT: Used to say Can hold up to 100 units.
+	name = "大烧杯"
+	desc = "一杯大烧杯. 可以容纳120单位的试剂." //SKYRAT EDIT: Used to say Can hold up to 100 units.
 	icon_state = "beakerlarge"
 	custom_materials = list(/datum/material/glass= SHEET_MATERIAL_AMOUNT*1.25)
 	volume = 120 //SKYRAT EDIT: Original value (100)
@@ -257,8 +257,8 @@
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/cup/beaker/plastic
-	name = "x-large beaker"
-	desc = "An extra-large beaker. Can hold up to 150 units." //SKYRAT EDIT: Used to say Can hold up to 120 units
+	name = "特大烧杯"
+	desc = "一杯特大号的烧杯. 可以容纳150单位的试剂." //SKYRAT EDIT: Used to say Can hold up to 120 units
 	icon_state = "beakerwhite"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5)
 	volume = 150 //SKYRAT EDIT: Original Value (120)
@@ -268,8 +268,8 @@
 	fill_icon_thresholds = list(0, 1, 10, 20, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/cup/beaker/meta
-	name = "metamaterial beaker"
-	desc = "A large beaker. Can hold up to 180 units."
+	name = "超材料烧杯"
+	desc = "一杯大号烧杯，可以容纳180单位的试剂."
 	icon_state = "beakergold"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold=HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium=HALF_SHEET_MATERIAL_AMOUNT)
 	volume = 180
@@ -278,9 +278,8 @@
 	fill_icon_thresholds = list(0, 1, 10, 25, 35, 50, 60, 80, 100)
 
 /obj/item/reagent_containers/cup/beaker/noreact
-	name = "cryostasis beaker"
-	desc = "A cryostasis beaker that allows for chemical storage without \
-		reactions. Can hold up to 50 units."
+	name = "低温保存烧杯"
+	desc = "一种允许存储化学物质而不发生反应的低温保存烧杯，最多可以容纳50单位的试剂."
 	icon_state = "beakernoreact"
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	reagent_flags = OPENCONTAINER | NO_REACT
@@ -288,10 +287,8 @@
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_containers/cup/beaker/bluespace
-	name = "bluespace beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology \
-		and Element Cuban combined with the Compound Pete. Can hold up to \
-		300 units."
+	name = "蓝空烧杯"
+	desc = "一杯蓝空烧杯，由蓝空技术、古巴皮特混合物制成，最多可以容纳300单位的试剂."
 	icon_state = "beakerbluespace"
 	custom_materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/plasma =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/diamond =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT)
 	volume = 300
@@ -329,27 +326,27 @@
 	list_reagents = list(/datum/reagent/toxin/slimejelly = 50)
 
 /obj/item/reagent_containers/cup/beaker/large/libital
-	name = "libital reserve tank (diluted)"
+	name = "利比特备用杯(稀释)"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 10,/datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/aiuri
-	name = "aiuri reserve tank (diluted)"
+	name = "艾尤里备用杯(稀释)"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/multiver
-	name = "multiver reserve tank (diluted)"
+	name = "木太尔备用杯(稀释)"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/epinephrine
-	name = "epinephrine reserve tank (diluted)"
+	name = "肾上腺素备用杯(稀释)"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 50)
 
 /obj/item/reagent_containers/cup/beaker/synthflesh
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
 
 /obj/item/reagent_containers/cup/bucket
-	name = "bucket"
-	desc = "It's a bucket. You can squeeze a mop's contents into it by using right-click." //SKYRAT EDIT CHANGE - ORIGINAL: desc = "It's a bucket."
+	name = "水桶"
+	desc = "这是一个水桶，用拖把右键水桶可以挤干拖把." //SKYRAT EDIT CHANGE - ORIGINAL: desc = "It's a bucket."
 	icon = 'icons/obj/service/janitor.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "bucket"
@@ -384,7 +381,7 @@
 	acid = 50
 
 /obj/item/reagent_containers/cup/bucket/wooden
-	name = "wooden bucket"
+	name = "木桶"
 	icon_state = "woodbucket"
 	inhand_icon_state = "woodbucket"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
@@ -412,24 +409,24 @@
 		var/is_right_clicking = LAZYACCESS(params2list(params), RIGHT_CLICK)
 		if(is_right_clicking)
 			if(mop.reagents.total_volume == 0)
-				user.balloon_alert(user, "mop is dry!")
+				user.balloon_alert(user, "拖把是干的!")
 				return
 			if(reagents.total_volume == reagents.maximum_volume)
-				user.balloon_alert(user, "mop is full!")
+				user.balloon_alert(user, "拖把是满的!")
 				return
 			mop.reagents.remove_all(mop.reagents.total_volume * SQUEEZING_DISPERSAL_RATIO)
 			mop.reagents.trans_to(src, mop.reagents.total_volume, transferred_by = user)
-			user.balloon_alert(user, "mop squeezed")
+			user.balloon_alert(user, "挤干拖把")
 		else
 			if(reagents.total_volume < 1)
-				user.balloon_alert(user, "container empty!")
+				user.balloon_alert(user, "容器是空的!")
 			else
 				reagents.trans_to(mop, 5, transferred_by = user)
-				user.balloon_alert(user, "mop wet")
+				user.balloon_alert(user, "浸润拖把")
 				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 
 	else if(isprox(mop)) //This works with wooden buckets for now. Somewhat unintended, but maybe someone will add sprites for it soon(TM)
-		to_chat(user, span_notice("You add [mop] to [src]."))
+		to_chat(user, span_notice("你添加[mop]到[src]."))
 		qdel(mop)
 		var/obj/item/bot_assembly/cleanbot/new_cleanbot_ass = new(null, src)
 		user.put_in_hands(new_cleanbot_ass)
@@ -440,7 +437,7 @@
 	. = ..()
 	if (slot & ITEM_SLOT_HEAD)
 		if(reagents.total_volume)
-			to_chat(user, span_userdanger("[src]'s contents spill all over you!"))
+			to_chat(user, span_userdanger("[src]里面的东西洒了你一身!"))
 			reagents.expose(user, TOUCH)
 			reagents.clear_reagents()
 		reagents.flags = NONE
@@ -459,17 +456,17 @@
 	return ..()
 
 /obj/item/pestle
-	name = "pestle"
-	desc = "An ancient, simple tool used in conjunction with a mortar to grind or juice items."
+	name = "研磨杵"
+	desc = "研磨杵是一种古老的、简单的工具，与研钵结合使用来研磨榨汁."
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pestle"
 	force = 7
 
 /obj/item/reagent_containers/cup/mortar
-	name = "mortar"
-	desc = "A specially formed bowl of ancient design. It is possible to crush or juice items placed in it using a pestle; however the process, unlike modern methods, is slow and physically exhausting."
-	desc_controls = "Alt click to eject the item."
+	name = "研钵"
+	desc = "研钵是一种特殊形状的碗，与研磨杵结合使用可以研磨榨汁，只是费力而且缓慢."
+	desc_controls = "Alt加左键取出物品."
 	icon_state = "mortar"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50, 100)
@@ -493,11 +490,11 @@
 	if(istype(I,/obj/item/pestle))
 		if(grinded)
 			if(user.getStaminaLoss() > 50)
-				to_chat(user, span_warning("You are too tired to work!"))
+				to_chat(user, span_warning("你太累了，无法工作!"))
 				return
 			var/list/choose_options = list(
-				"Grind" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_grind"),
-				"Juice" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_juice")
+				"研磨" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_grind"),
+				"榨汁" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_juice")
 			)
 			var/picked_option = show_radial_menu(user, src, choose_options, radius = 38, require_near = TRUE)
 			if(grinded && in_range(src, user) && user.is_holding(I) && picked_option)
@@ -505,75 +502,75 @@
 				if(do_after(user, 2.5 SECONDS, target = src))
 					user.adjustStaminaLoss(40)
 					switch(picked_option)
-						if("Juice")
+						if("榨汁")
 							return juice_item(grinded, user)
-						if("Grind")
+						if("研磨")
 							return grind_item(grinded, user)
 						else
-							to_chat(user, span_notice("You try to grind the mortar itself instead of [grinded]. You failed."))
+							to_chat(user, span_notice("你试着研磨研钵本身而不是[grinded]. 你失败了."))
 							return
 			return
 		else
-			to_chat(user, span_warning("There is nothing to grind!"))
+			to_chat(user, span_warning("没有什么可研磨的!"))
 			return
 	if(grinded)
-		to_chat(user, span_warning("There is something inside already!"))
+		to_chat(user, span_warning("里面已经有东西了!"))
 		return
 	if(I.juice_typepath || I.grind_results)
 		I.forceMove(src)
 		grinded = I
 		return
-	to_chat(user, span_warning("You can't grind this!"))
+	to_chat(user, span_warning("你无法研磨这个!"))
 
 /obj/item/reagent_containers/cup/mortar/proc/grind_item(obj/item/item, mob/living/carbon/human/user)
 	if(item.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice("You try to grind [item], but it fades away!"))
+		to_chat(user, span_notice("你尝试研磨[item]，但它消失了"))
 		qdel(item)
 		return
 
 	if(!item.grind(reagents, user))
 		if(isstack(item))
-			to_chat(usr, span_notice("[src] attempts to grind as many pieces of [item] as possible."))
+			to_chat(usr, span_notice("[src]尝试尽可能将[item]磨碎."))
 		else
-			to_chat(user, span_danger("You fail to grind [item]."))
+			to_chat(user, span_danger("你没能研磨[item]."))
 		return
-	to_chat(user, span_notice("You grind [item] into a nice powder."))
+	to_chat(user, span_notice("你把[item]磨成细粉."))
 	grinded = null
 	QDEL_NULL(item)
 
 /obj/item/reagent_containers/cup/mortar/proc/juice_item(obj/item/item, mob/living/carbon/human/user)
 	if(item.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice("You try to juice [item], but it fades away!"))
+		to_chat(user, span_notice("你尝试榨取[item]，但它消失了!"))
 		qdel(item)
 		return
 
 	if(!item.juice(reagents, user))
-		to_chat(user, span_notice("You fail to juice [item]."))
+		to_chat(user, span_notice("你没能榨取[item]."))
 		return
-	to_chat(user, span_notice("You juice [item] into a fine liquid."))
+	to_chat(user, span_notice("你将[item]榨成液体."))
 	grinded = null
 	QDEL_NULL(item)
 
 //Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
 /obj/item/reagent_containers/cup/coffeepot
-	name = "coffeepot"
-	desc = "A large pot for dispensing that ambrosia of corporate life known to mortals only as coffee. Contains 4 standard cups."
+	name = "咖啡壶"
+	desc = "一个大咖啡壶，用来煮公司生活必备的咖啡，煮一次能倒满4杯标准咖啡杯."
 	volume = 120
 	icon_state = "coffeepot"
 	fill_icon_state = "coffeepot"
 	fill_icon_thresholds = list(0, 1, 30, 60, 100)
 
 /obj/item/reagent_containers/cup/coffeepot/bluespace
-	name = "bluespace coffeepot"
-	desc = "The most advanced coffeepot the eggheads could cook up: sleek design; graduated lines; connection to a pocket dimension for coffee containment; yep, it's got it all. Contains 8 standard cups."
+	name = "蓝空咖啡壶"
+	desc = "书呆子们能做出的最先进的咖啡壶: 外观时尚；刻度线；适配咖啡机；是的，它什么都有. 煮一次能倒满8杯标准咖啡杯."
 	volume = 240
 	icon_state = "coffeepot_bluespace"
 	fill_icon_thresholds = list(0)
 
 ///Test tubes created by chem master and pandemic and placed in racks
 /obj/item/reagent_containers/cup/tube
-	name = "tube"
-	desc = "A small test tube."
+	name = "试管"
+	desc = "小型试管."
 	icon_state = "test_tube"
 	fill_icon_state = "tube"
 	inhand_icon_state = "atoxinbottle"

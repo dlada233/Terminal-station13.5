@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/medical1
-	name = "medicine closet"
-	desc = "Filled to the brim with medical junk."
+	name = "医用储物柜"
+	desc = "装满了医疗垃圾."
 	icon_state = "med"
 	req_access = list(ACCESS_MEDICAL)
 
@@ -19,8 +19,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/secure_closet/medical2
-	name = "anesthetic closet"
-	desc = "Used to knock people out."
+	name = "解刨储物柜"
+	desc = "用于打开人心."
 	icon_state = "med_secure"
 	req_access = list(ACCESS_SURGERY)
 
@@ -32,7 +32,7 @@
 		new /obj/item/clothing/mask/muzzle/breath(src)
 
 /obj/structure/closet/secure_closet/medical3
-	name = "medical doctor's locker"
+	name = "医生储物柜"
 	req_access = list(ACCESS_SURGERY)
 	icon_state = "med_secure"
 
@@ -46,7 +46,7 @@
 	return
 
 /obj/structure/closet/secure_closet/psychology
-	name = "psychology locker"
+	name = "心理学家储物柜"
 	req_access = list(ACCESS_PSYCHOLOGY)
 	icon_state = "cabinet"
 	door_anim_time = 0 // no animation
@@ -70,7 +70,7 @@
 	new /obj/item/clothing/glasses/blindfold(src)
 
 /obj/structure/closet/secure_closet/chief_medical
-	name = "chief medical officer's locker"
+	name = "首席医疗官储物柜"
 	req_access = list(ACCESS_CMO)
 	icon_state = "cmo"
 
@@ -105,7 +105,7 @@
 	new /obj/item/storage/hypospraykit/cmo/preloaded(src) //SKYRAT EDIT ADDITION - New Hyposprays
 
 /obj/structure/closet/secure_closet/animal
-	name = "animal control locker"
+	name = "野兽控制储物柜"
 	icon_door = "chemical"
 	req_access = list(ACCESS_SURGERY)
 
@@ -116,8 +116,8 @@
 		new /obj/item/electropack(src)
 
 /obj/structure/closet/secure_closet/chemical
-	name = "chemical closet"
-	desc = "Store dangerous chemicals in here."
+	name = "化学储物柜"
+	desc = "里面存放有危险的化学品."
 	req_access = list(ACCESS_PHARMACY)
 	icon_state = "chem_secure"
 
@@ -134,7 +134,7 @@
 	new /obj/item/reagent_containers/cup/bottle/acidic_buffer(src) //hopefully they get the hint
 
 /obj/structure/closet/secure_closet/chemical/heisenberg //contains one of each beaker, syringe etc.
-	name = "advanced chemical closet"
+	name = "高级化学储物柜"
 	req_access = list(ACCESS_PLUMBING)
 
 /obj/structure/closet/secure_closet/chemical/heisenberg/PopulateContents()

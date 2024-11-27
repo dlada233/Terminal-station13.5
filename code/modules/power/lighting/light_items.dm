@@ -43,15 +43,15 @@
 
 /obj/item/light/suicide_act(mob/living/carbon/user)
 	if (status == LIGHT_BROKEN)
-		user.visible_message(span_suicide("[user] begins to stab [user.p_them()]self with \the [src]! 看起来是在尝试自杀!"))
+		user.visible_message(span_suicide("[user]开始用[src]捅自己! 看起来是在尝试自杀!"))
 	else
-		user.visible_message(span_suicide("[user] begins to eat \the [src]! It looks like [user.p_theyre()] not very bright!"))
+		user.visible_message(span_suicide("[user]开始吞[src]! 看起来像个弱智!"))
 		shatter()
 	return BRUTELOSS
 
 /obj/item/light/tube
-	name = "light tube"
-	desc = "A replacement light tube."
+	name = "灯管"
+	desc = "一根可用灯管."
 	icon_state = "ltube"
 	base_state = "ltube"
 	inhand_icon_state = "ltube"
@@ -71,8 +71,8 @@
 	sharpness = SHARP_POINTY
 
 /obj/item/light/bulb
-	name = "light bulb"
-	desc = "A replacement light bulb."
+	name = "灯泡"
+	desc = "一颗可用灯泡."
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	inhand_icon_state = "contvapour"
@@ -105,11 +105,11 @@
 	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			desc = "A replacement [name]."
+			desc = "可用的[name]."
 		if(LIGHT_BURNED)
-			desc = "A burnt-out [name]."
+			desc = "烧坏的[name]."
 		if(LIGHT_BROKEN)
-			desc = "A broken [name]."
+			desc = "破裂的[name]."
 
 /obj/item/light/proc/on_entered(datum/source, atom/movable/moving_atom)
 	SIGNAL_HANDLER
@@ -131,12 +131,12 @@
 
 /obj/item/light/proc/shatter(target)
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		visible_message(span_danger("[src] shatters."),span_hear("You hear a small glass object shatter."))
+		visible_message(span_danger("[src]破裂."),span_hear("你听到微小的玻璃破裂声音."))
 		status = LIGHT_BROKEN
 		force = 5
 		sharpness = SHARP_POINTY
 		playsound(loc, 'sound/effects/glasshit.ogg', 75, TRUE)
 		if(length(reagents.reagent_list))
-			visible_message(span_danger("The contents of [src] splash onto you as you step on it!"),span_hear("You feel the contents of [src] splash onto you as you step on it!."))
+			visible_message(span_danger("[src]的内容物会因为踩踏溅到你的身上!"),span_hear("你感觉[src]的内容物会因为踩踏溅到你的身上!."))
 			reagents.expose(target, TOUCH)
 		update_appearance(UPDATE_DESC | UPDATE_ICON)

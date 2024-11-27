@@ -2,11 +2,11 @@
 //Simply set this up in the hopline and you can serve people based on ticket numbers
 
 /obj/machinery/ticket_machine
-	name = "ticket machine"
+	name = "取票机"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "ticketmachine"
 	base_icon_state = "ticketmachine"
-	desc = "A marvel of bureaucratic engineering encased in an efficient plastic shell. It can be refilled with a hand labeler refill roll and linked to buttons with a multitool."
+	desc = "这是一个行政工程的杰作，被包裹在一个高效的塑料外壳中，它可以使用手动标签机的替换卷进行补充，并通过多用途工具与按钮进行连接."
 	density = FALSE
 	maptext_height = 26
 	maptext_width = 32
@@ -73,8 +73,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine, 32)
 	return TRUE
 
 /obj/item/wallframe/ticket_machine
-	name = "ticket machine frame"
-	desc = "An unmounted ticket machine. Attach it to a wall to use."
+	name = "取票机框架"
+	desc = "一台未安装的取票机，安装在墙上即可使用."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "ticketmachine_off"
 	result_path = /obj/machinery/ticket_machine
@@ -97,8 +97,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine, 32)
 		update_appearance() //Update our icon here rather than when they take a ticket to show the current ticket number being served
 
 /obj/machinery/button/ticket_machine
-	name = "increment ticket counter"
-	desc = "Use this button after you've served someone to tell the next person to come forward."
+	name = "推进票列"
+	desc = "在办理服务完成后，请按此按钮通知下一位持票人上前."
 	device_type = /obj/item/assembly/control/ticket_machine
 	req_access = list()
 	id = "ticket_machine_default"
@@ -122,8 +122,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine, 32)
 		to_chat(user, span_warning("You've linked [src] to [M.buffer]."))
 
 /obj/item/assembly/control/ticket_machine
-	name = "ticket machine controller"
-	desc = "A remote controller for the HoP's ticket machine."
+	name = "取票机控制"
+	desc = "远程控制HoP的取票机."
 	///Weakref to our ticket machine
 	var/datum/weakref/ticket_machine_ref
 
@@ -235,8 +235,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/ticket_machine, 32)
 	update_appearance()
 
 /obj/item/ticket_machine_ticket
-	name = "\improper ticket"
-	desc = "A ticket which shows your place in the Head of Personnel's line. Made from Nanotrasen patented NanoPaper®. Though solid, its form seems to shimmer slightly. Feels (and burns) just like the real thing."
+	name = "票"
+	desc = "一张显示您在人事部门队列中的位置的票据，由纳米传讯专利的NanoPaper®制成，尽管质地坚固，但其外观似乎略有闪烁，感觉与真纸无异（包括燃烧效果）."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "ticket"
 	maptext_x = 7

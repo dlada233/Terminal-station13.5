@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/bin
-	desc = "A trash bin, place your trash here for the janitor to collect."
-	name = "trash bin"
+	desc = "一个垃圾桶，把你的垃圾扔进去，让清洁工来回收."
+	name = "垃圾桶"
 	icon_state = "trashbin"
 	base_icon_state = "trashbin"
 	open_sound = 'sound/effects/bin_open.ogg'

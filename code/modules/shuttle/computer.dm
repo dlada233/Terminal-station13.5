@@ -7,7 +7,7 @@
 #define SHUTTLE_CONSOLE_ERROR "error"
 
 /obj/machinery/computer/shuttle
-	name = "shuttle console"
+	name = "飞船终端"
 	desc = "A shuttle control computer."
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
@@ -67,29 +67,29 @@
 /obj/machinery/computer/shuttle/ui_data(mob/user)
 	var/list/data = list()
 	var/obj/docking_port/mobile/mobile_docking_port = SSshuttle.getShuttle(shuttleId)
-	data["docked_location"] = mobile_docking_port ? mobile_docking_port.get_status_text_tgui() : "Unknown"
+	data["docked_location"] = mobile_docking_port ? mobile_docking_port.get_status_text_tgui() : "未知"
 	data["locations"] = list()
 	data["locked"] = locked
 	data["authorization_required"] = admin_controlled
 	data["timer_str"] = mobile_docking_port ? mobile_docking_port.getTimerStr() : "00:00"
 	data["destination"] = destination
 	if(!mobile_docking_port)
-		data["status"] = "Missing"
+		data["status"] = "失踪"
 		return data
 	if(admin_controlled)
-		data["status"] = "Unauthorized Access"
+		data["status"] = "未授权访问"
 	else if(locked)
-		data["status"] = "Locked"
+		data["status"] = "被锁定"
 	else
 		switch(mobile_docking_port.mode)
 			if(SHUTTLE_IGNITING)
-				data["status"] = "Igniting"
+				data["status"] = "点火"
 			if(SHUTTLE_IDLE)
-				data["status"] = "Idle"
+				data["status"] = "闲置"
 			if(SHUTTLE_RECHARGING)
-				data["status"] = "Recharging"
+				data["status"] = "充能"
 			else
-				data["status"] = "In Transit"
+				data["status"] = "在途中"
 	data["locations"] = get_valid_destinations()
 	if(length(data["locations"]) == 1)
 		for(var/location in data["locations"])
@@ -168,7 +168,7 @@
 		return SHUTTLE_CONSOLE_DESTINVALID
 	switch(SSshuttle.moveShuttle(shuttleId, dest_id, TRUE))
 		if(DOCKING_SUCCESS)
-			say("Shuttle departing. Please stand away from the doors.")
+			say("飞船驶离，请远离门口.")
 			log_shuttle("[key_name(user)] has sent shuttle \"[shuttleId]\" towards \"[dest_id]\", using [src].")
 			return SHUTTLE_CONSOLE_SUCCESS
 		else
@@ -179,29 +179,29 @@
 	if(.)
 		return
 	if(!allowed(usr))
-		to_chat(usr, span_danger("Access denied."))
+		to_chat(usr, span_danger("访问被拒绝."))
 		return
 
 	switch(action)
 		if("move")
 			switch (send_shuttle(params["shuttle_id"], usr)) //Try to send the shuttle, tell the user what happened
 				if (SHUTTLE_CONSOLE_ACCESSDENIED)
-					to_chat(usr, span_warning("Access denied."))
+					to_chat(usr, span_warning("访问被拒绝."))
 					return
 				if (SHUTTLE_CONSOLE_ENDGAME)
-					to_chat(usr, span_warning("You've already escaped. Never going back to that place again!"))
+					to_chat(usr, span_warning("你已经逃离了，再也不回到那个地方了!"))
 					return
 				if (SHUTTLE_CONSOLE_RECHARGING)
-					to_chat(usr, span_warning("Shuttle engines are not ready for use."))
+					to_chat(usr, span_warning("飞船引擎尚未就绪."))
 					return
 				if (SHUTTLE_CONSOLE_INTRANSIT)
-					to_chat(usr, span_warning("Shuttle already in transit."))
+					to_chat(usr, span_warning("飞船已经在航行途中了."))
 					return
 				if (SHUTTLE_CONSOLE_DESTINVALID)
-					to_chat(usr, span_warning("Invalid destination."))
+					to_chat(usr, span_warning("无效目的地."))
 					return
 				if (SHUTTLE_CONSOLE_ERROR)
-					to_chat(usr, span_warning("Unable to comply."))
+					to_chat(usr, span_warning("无法执行."))
 					return
 				if (SHUTTLE_CONSOLE_SUCCESS)
 					return TRUE //No chat message here because the send_shuttle proc makes the console itself speak
@@ -212,11 +212,11 @@
 				return TRUE
 		if("request")
 			if(!COOLDOWN_FINISHED(src, request_cooldown))
-				to_chat(usr, span_warning("CentCom is still processing last authorization request!"))
+				to_chat(usr, span_warning("中央指挥部仍然在处理最近的授权请求!"))
 				return
 			COOLDOWN_START(src, request_cooldown, 1 MINUTES)
-			to_chat(usr, span_notice("Your request has been received by CentCom."))
-			to_chat(GLOB.admins, "<b>SHUTTLE: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='?_src_=holder;[HrefToken()];move_shuttle=[shuttleId]'>Move Shuttle</a>)(<A HREF='?_src_=holder;[HrefToken()];unlock_shuttle=[REF(src)]'>Lock/Unlock Shuttle</a>)</b> is requesting to move or unlock the shuttle.</font>")
+			to_chat(usr, span_notice("中央指挥部已经收到了你的请求."))
+			to_chat(GLOB.admins, "<b>飞船: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='?_src_=holder;[HrefToken()];move_shuttle=[shuttleId]'>Move Shuttle</a>)(<A HREF='?_src_=holder;[HrefToken()];unlock_shuttle=[REF(src)]'>Lock/Unlock Shuttle</a>)</b> is requesting to move or unlock the shuttle.</font>")
 			return TRUE
 
 /obj/machinery/computer/shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)

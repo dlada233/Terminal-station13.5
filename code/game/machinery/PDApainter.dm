@@ -115,12 +115,12 @@
 			if(!O.tool_start_check(user, amount=1))
 				return
 			user.visible_message(span_notice("[user] is repairing [src]."), \
-							span_notice("You begin repairing [src]..."), \
+							span_notice("你开始修理[src]..."), \
 							span_hear("你听到焊接声."))
 			if(O.use_tool(src, user, 40, volume=50))
 				if(!(machine_stat & BROKEN))
 					return
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("你修好了[src]."))
 				set_machine_stat(machine_stat & ~BROKEN)
 				atom_integrity = max_integrity
 				update_appearance(UPDATE_ICON)

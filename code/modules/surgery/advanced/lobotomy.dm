@@ -1,6 +1,6 @@
 /datum/surgery/advanced/lobotomy
-	name = "Lobotomy"
-	desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
+	name = "脑叶切除术"
+	desc = "一种侵入性手术，确保移除几乎所有的大脑创伤，但可能会导致另一种永久性创伤作为代价."
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = NONE
 	steps = list(
@@ -22,7 +22,7 @@
 	return TRUE
 
 /datum/surgery_step/lobotomize
-	name = "perform lobotomy (scalpel)"
+	name = "执行脑叶切除 (手术刀)"
 	implements = list(
 		TOOL_SCALPEL = 85,
 		/obj/item/melee/energy/sword = 55,
@@ -45,21 +45,21 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to perform a lobotomy on [target]'s brain..."),
-		span_notice("[user] begins to perform a lobotomy on [target]'s brain."),
-		span_notice("[user] begins to perform surgery on [target]'s brain."),
+		span_notice("你开始对[target]的大脑进行脑叶切除..."),
+		span_notice("[user]开始对[target]的大脑进行脑叶切除."),
+		span_notice("[user]开始对[target]的大脑进行手术."),
 	)
-	display_pain(target, "Your head pounds with unimaginable pain!")
+	display_pain(target, "你的头部感到难以想象的剧痛!")
 
 /datum/surgery_step/lobotomize/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	display_results(
 		user,
 		target,
-		span_notice("You succeed in lobotomizing [target]."),
-		span_notice("[user] successfully lobotomizes [target]!"),
-		span_notice("[user] completes the surgery on [target]'s brain."),
+		span_notice("你成功地对[target]进行了脑叶切除."),
+		span_notice("[user]成功地对[target]进行了脑叶切除！"),
+		span_notice("[user]完成了对[target]大脑的手术."),
 	)
-	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming!")
+	display_pain(target, "你的头部瞬间完全麻木，疼痛难以忍受!")
 
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
@@ -83,11 +83,11 @@
 		display_results(
 			user,
 			target,
-			span_warning("You remove the wrong part, causing more damage!"),
-			span_notice("[user] successfully lobotomizes [target]!"),
-			span_notice("[user] completes the surgery on [target]'s brain."),
+			span_warning("你切除了错误的部位，造成了更多伤害!"),
+			span_notice("[user]成功脑叶切除了[target]!"),
+			span_notice("[user]完成了对[target]大脑的手术."),
 		)
-		display_pain(target, "The pain in your head only seems to get worse!")
+		display_pain(target, "你头部的疼痛似乎更加剧烈了!")
 		target_brain.apply_organ_damage(80)
 		switch(rand(1,3))
 			if(1)
@@ -100,5 +100,5 @@
 			if(3)
 				target.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_MAGIC)
 	else
-		user.visible_message(span_warning("[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore."), span_warning("You suddenly notice that the brain you were working on is not there anymore."))
+		user.visible_message(span_warning("[user]突然发现正在手术的大脑不见了."), span_warning("你突然发现刚才正在手术的大脑不见了."))
 	return FALSE

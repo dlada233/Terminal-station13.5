@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/cortex_imprint
-	name = "Cortex Imprint"
-	desc = "A surgical procedure which modifies the cerebral cortex into a redundant neural pattern, making the brain able to bypass impediments caused by minor brain traumas."
+	name = "皮层印记"
+	desc = "一种外科手术，将大脑皮层修改为冗余的神经模式，使大脑能够绕过由轻微脑创伤引起的障碍."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -21,17 +21,17 @@
 	return ..()
 
 /datum/surgery_step/apply_bioware/imprint_cortex
-	name = "imprint cortex (hand)"
+	name = "皮层印记(手)"
 
 /datum/surgery_step/apply_bioware/imprint_cortex/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
 		user,
 		target,
-		span_notice("You start carving [target]'s outer cerebral cortex into a self-imprinting pattern."),
-		span_notice("[user] starts carving [target]'s outer cerebral cortex into a self-imprinting pattern."),
-		span_notice("[user] begins to perform surgery on [target]'s brain."),
+		span_notice("你开始将[target]的大脑外层皮层雕刻成自我印记模式."),
+		span_notice("[user]开始将[target]的大脑外层皮层雕刻成自我印记模式."),
+		span_notice("[user]开始对[target]的大脑进行手术."),
 	)
-	display_pain(target, "Your head throbs with gruesome pain, it's nearly too much to handle!")
+	display_pain(target, "你的头部传来剧烈的疼痛，简直让人难以忍受!")
 
 /datum/surgery_step/apply_bioware/imprint_cortex/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	. = ..()
@@ -41,24 +41,24 @@
 	display_results(
 		user,
 		target,
-		span_notice("You reshape [target]'s outer cerebral cortex into a self-imprinting pattern!"),
-		span_notice("[user] reshapes [target]'s outer cerebral cortex into a self-imprinting pattern!"),
-		span_notice("[user] completes the surgery on [target]'s brain."),
+		span_notice("你将[target]的大脑外层皮层雕刻成了自我印记模式!"),
+		span_notice("[user]将[target]的大脑外层皮层雕刻成了自我印记模式."),
+		span_notice("[user]对[target]的大脑进行了手术."),
 	)
-	display_pain(target, "Your brain feels stronger... more resillient!")
+	display_pain(target, "你的大脑感觉变得更加强大...更加坚韧了!")
 
 /datum/surgery_step/apply_bioware/imprint_cortex/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.get_organ_slot(ORGAN_SLOT_BRAIN))
 		display_results(
 			user,
 			target,
-			span_warning("You screw up, damaging the brain!"),
-			span_warning("[user] screws up, damaging the brain!"),
-			span_notice("[user] completes the surgery on [target]'s brain."),
+			span_warning("你搞砸了，大脑受到了损伤!"),
+			span_warning("[user]搞砸了，大脑受到了损伤!"),
+			span_notice("[user]完成了对[target]大脑的手术."),
 		)
-		display_pain(target, "Your brain throbs with intense pain; Thinking hurts!")
+		display_pain(target, "你的大脑传来剧烈的疼痛，思考都变得困难了!")
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)
 		target.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 	else
-		user.visible_message(span_warning("[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore."), span_warning("You suddenly notice that the brain you were working on is not there anymore."))
+		user.visible_message(span_warning("[user]突然发现正在手术的大脑不见了."), span_warning("你突然发现刚才正在手术的大脑不见了."))
 	return FALSE

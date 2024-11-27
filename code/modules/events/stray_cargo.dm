@@ -16,8 +16,8 @@
 	event.admin_override_turf = chosen_turf
 
 /datum/event_admin_setup/listed_options/stray_cargo
-	input_text = "选择一个货运板条箱来装载."
-	normal_run_option = "随机板条箱"
+	input_text = "选择一个货运货箱来装载."
+	normal_run_option = "随机货箱"
 
 /datum/event_admin_setup/listed_options/stray_cargo/get_list()
 	return sort_list(subtypesof(/datum/supply_pack), /proc/cmp_typepaths_asc)
@@ -158,7 +158,7 @@
 ///This proc prompts admins to set a TC value and uplink type for the crate, those values are then passed to a new syndicate pack's setup_contents() to generate the contents before spawning it.
 /datum/event_admin_setup/syndicate_cargo_pod/proc/override_contents()
 	var/datum/supply_pack/misc/syndicate/custom_value/syndicate_pack = new
-	var/pack_telecrystals = tgui_input_number(usr, "请输入里面货物价值多少TC.", "Set Telecrystals.", 30)
+	var/pack_telecrystals = tgui_input_number(usr, "请输入里面货物价值多少TC.", "设定传送晶体.", 30)
 	if(isnull(pack_telecrystals))
 		return ADMIN_CANCEL_EVENT
 	var/list/possible_uplinks = list("叛徒" = UPLINK_TRAITORS, "核队" = UPLINK_NUKE_OPS, "小丑" = UPLINK_CLOWN_OPS)

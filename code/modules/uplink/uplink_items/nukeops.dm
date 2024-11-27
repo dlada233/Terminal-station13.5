@@ -796,8 +796,8 @@
 // It is fundamental for the game's health for there to be a hat crate for nuclear operatives.
 
 /datum/uplink_item/badass/hats
-	name = "帽子板条箱"
-	desc = "帽子板条箱，帽子！！！"
+	name = "帽子货箱"
+	desc = "帽子货箱，帽子！！！"
 	item = /obj/structure/closet/crate/large/hats
 	cost = 5
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS

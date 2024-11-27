@@ -1,14 +1,14 @@
 /obj/item/disk/surgery/brainwashing
-	name = "Surgery Disk" //SKYRAT EDIT: Formerly "Brainwashing Surgery Disk" //Finally I can upload the funny surgery disk without letting everyone in the room know about it!
-	desc = "The disk provides instructions on some kind of surgery, but the label has been scratched off..." //Skyrat edit: Moved to Special Desc.
+	name = "手术软盘" //SKYRAT EDIT: Formerly "Brainwashing Surgery Disk" //Finally I can upload the funny surgery disk without letting everyone in the room know about it!
+	desc = "软盘上有关于某种手术的说明，但是标签已经被刮掉了..." //Skyrat edit: Moved to Special Desc.
 	surgeries = list(/datum/surgery/advanced/brainwashing)
 	special_desc_requirement = EXAMINE_CHECK_JOB // SKYRAT EDIT
-	special_desc_jobs = list("Medical Doctor, Chief Medical Officer, Roboticist") // SKYRAT EDIT CHANGE //You mean to tell me the roles that get this role-exclusive item know what it does?
-	special_desc = "The disk provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
+	special_desc_jobs = list("医生, 首席医疗官, 机械学家") // SKYRAT EDIT CHANGE //You mean to tell me the roles that get this role-exclusive item know what it does?
+	special_desc = "这张软盘提供了如何在大脑中植入指令的说明，让被植入者不惜一切代价地遵守指令."
 
 /datum/surgery/advanced/brainwashing
-	name = "Brainwashing"
-	desc = "A surgical procedure which directly implants a directive into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
+	name = "洗脑"
+	desc = "将指令植入大脑，被植入者将不惜一切代价地遵守指令，植入心盾可以清除它."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -28,7 +28,7 @@
 	return TRUE
 
 /datum/surgery_step/brainwash
-	name = "brainwash (hemostat)"
+	name = "洗脑 (止血钳)"
 	implements = list(
 		TOOL_HEMOSTAT = 85,
 		TOOL_WIRECUTTER = 50,
@@ -41,38 +41,38 @@
 	var/objective
 
 /datum/surgery_step/brainwash/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	objective = tgui_input_text(user, "Choose the objective to imprint on your victim's brain", "Brainwashing")
+	objective = tgui_input_text(user, "选择要在手术患者中留下的指令目标", "洗脑")
 	if(!objective)
 		return SURGERY_STEP_FAIL
 	display_results(
 		user,
 		target,
-		span_notice("You begin to brainwash [target]..."),
-		span_notice("[user] begins to fix [target]'s brain."),
-		span_notice("[user] begins to perform surgery on [target]'s brain."),
+	span_notice("你开始对[target]进行洗脑..."),
+	span_notice("[user]开始修理[target]的大脑."),
+	span_notice("[user]开始对[target]的大脑进行手术."),
 	)
-	display_pain(target, "Your head pounds with unimaginable pain!") // Same message as other brain surgeries
+	display_pain(target, "你的头感到难以想象的剧痛！")// Same message as other brain surgeries
 
 /datum/surgery_step/brainwash/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(!target.mind)
-		to_chat(user, span_warning("[target] doesn't respond to the brainwashing, as if [target.p_they()] lacked a mind..."))
+		to_chat(user, span_warning("[target]没有回应洗脑，这个人似乎根本没有思想意识..."))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		to_chat(user, span_warning("You hear a faint buzzing from a device inside [target]'s brain, and the brainwashing is erased."))
+		to_chat(user, span_warning("你听到[target]大脑里有一个微弱的嗡嗡声，洗脑被消除了."))
 		return FALSE
 	display_results(
 		user,
 		target,
-		span_notice("You succeed in brainwashing [target]."),
-		span_notice("[user] successfully fixes [target]'s brain!"),
-		span_notice("[user] completes the surgery on [target]'s brain."),
+		span_notice("你成功地洗脑了[target]."),
+		span_notice("[user]成功地修理了[target]的大脑！"),
+		span_notice("[user]完成了对[target]大脑的手术."),
 	)
-	to_chat(target, span_userdanger("A new compulsion fills your mind... you feel forced to obey it!"))
+	to_chat(target, span_userdanger("你的脑海中充满了新的强迫感...你感到不得不服从它！"))
 	brainwash(target, objective)
-	message_admins("[ADMIN_LOOKUPFLW(user)] surgically brainwashed [ADMIN_LOOKUPFLW(target)] with the objective '[objective]'.")
-	user.log_message("has brainwashed [key_name(target)] with the objective '[objective]' using brainwashing surgery.", LOG_ATTACK)
-	target.log_message("has been brainwashed with the objective '[objective]' by [key_name(user)] using brainwashing surgery.", LOG_VICTIM, log_globally=FALSE)
-	user.log_message("surgically brainwashed [key_name(target)] with the objective '[objective]'.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(user)]通过手术对[ADMIN_LOOKUPFLW(target)]进行了洗脑，目标为'[objective]'.")
+	user.log_message("使用洗脑手术对[key_name(target)]进行了洗脑，目标为'[objective]'。", LOG_ATTACK)
+	target.log_message("被[key_name(user)]使用洗脑手术洗脑，目标为'[objective]'。", LOG_VICTIM, log_globally=FALSE)
+	user.log_message("通过手术对[key_name(target)]进行了洗脑，目标为'[objective]'。", LOG_GAME)
 	return ..()
 
 /datum/surgery_step/brainwash/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -80,12 +80,12 @@
 		display_results(
 			user,
 			target,
-			span_warning("You screw up, bruising the brain tissue!"),
-			span_warning("[user] screws up, causing brain damage!"),
-			span_notice("[user] completes the surgery on [target]'s brain."),
+			span_warning("你搞砸了，损伤了脑组织！"),
+			span_warning("[user]搞砸了，造成了脑损伤！"),
+			span_notice("[user]完成了对[target]大脑的手术."),
 		)
-		display_pain(target, "Your head throbs with horrible pain!")
+		display_pain(target, "你的头感到剧烈的疼痛!")
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 40)
 	else
-		user.visible_message(span_warning("[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore."), span_warning("You suddenly notice that the brain you were working on is not there anymore."))
+		user.visible_message(span_warning("[user]突然发现正在手术的大脑不见了."), span_warning("你突然发现刚才正在手术的大脑不见了."))
 	return FALSE

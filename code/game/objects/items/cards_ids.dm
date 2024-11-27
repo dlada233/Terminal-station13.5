@@ -19,8 +19,8 @@
  */
 
 /obj/item/card
-	name = "card"
-	desc = "Does card things."
+	name = "识别卡"
+	desc = "做卡片该做的事情."
 	icon = 'icons/obj/card.dmi'
 	inhand_icon_state = "card-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -51,8 +51,8 @@
 
 /// "Retro" ID card that renders itself as the icon state with no overlays.
 /obj/item/card/id
-	name = "retro identification card"
-	desc = "A card used to provide ID and determine access across the station."
+	name = "复古识别卡"
+	desc = "一种卡，用于提供身份并确定空间站的通行权限."
 	icon_state = "card_grey"
 	worn_icon_state = "nothing"
 	slot_flags = ITEM_SLOT_ID
@@ -84,7 +84,7 @@
 	/// Minimum forced fee for holopay stations. Registers as "pay what you want."
 	var/holopay_min_fee = 0
 	/// The holopay name chosen by the user
-	var/holopay_name = "holographic pay stand"
+	var/holopay_name = "全息支付台"
 
 	/// Registered owner's age.
 	var/registered_age = 18 //SKYRAT EDIT - ORIGINAL (13)
@@ -841,56 +841,56 @@
 	return trim?.sechud_icon_state || SECHUD_UNKNOWN
 
 /obj/item/card/id/away
-	name = "\proper a perfectly generic identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor."
+	name = "一张完全通用的识别卡"
+	desc = "一张完全通用的身份证，还能加点内容上去."
 	trim = /datum/id_trim/away
 	icon_state = "retro"
 	registered_age = null
 
 /obj/item/card/id/away/hotel
-	name = "Staff ID"
-	desc = "A staff ID used to access the hotel's doors."
+	name = "员工ID卡"
+	desc = "一个用来进入酒店大门的员工ID卡."
 	trim = /datum/id_trim/away/hotel
 
 /obj/item/card/id/away/hotel/security
-	name = "Officer ID"
+	name = "安全官ID卡"
 	trim = /datum/id_trim/away/hotel/security
 
 /obj/item/card/id/away/old
-	name = "\proper a perfectly generic identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor."
+	name = "一张完全通用的识别卡"
+	desc = "一张完全通用的身份证，还能加点内容上去."
 
 /obj/item/card/id/away/old/sec
-	name = "Charlie Station Security Officer's ID card"
-	desc = "A faded Charlie Station ID card. You can make out the rank \"Security Officer\"."
+	name = "查理站安全官ID卡"
+	desc = "一张属于查理站的识别卡. 你可以辨认出身份 \"安全官\"."
 	trim = /datum/id_trim/away/old/sec
 
 /obj/item/card/id/away/old/sci
-	name = "Charlie Station Scientist's ID card"
-	desc = "A faded Charlie Station ID card. You can make out the rank \"Scientist\"."
+	name = "查理站科学家ID卡"
+	desc = "一张属于查理站的识别卡. 你可以辨认出身份 \"科学家\"."
 	trim = /datum/id_trim/away/old/sci
 
 /obj/item/card/id/away/old/eng
-	name = "Charlie Station Engineer's ID card"
-	desc = "A faded Charlie Station ID card. You can make out the rank \"Station Engineer\"."
+	name = "查理站工程师ID卡"
+	desc = "一张属于查理站的识别卡. 你可以辨认出身份 \"工程师\"."
 	trim = /datum/id_trim/away/old/eng
 
 /obj/item/card/id/away/old/equipment
-	name = "Engineering Equipment Access"
-	desc = "A special ID card that allows access to engineering equipment."
+	name = "工程装备权限卡"
+	desc = "一种特殊的身份证，允许访问工程装备."
 	trim = /datum/id_trim/away/old/equipment
 
 /obj/item/card/id/away/old/robo
-	name = "Delta Station Roboticist's ID card"
-	desc = "An ID card that allows access to bots maintenance protocols."
+	name = "德尔塔站机械学家ID卡"
+	desc = "一张可以访问机器人维护协议的ID卡."
 	trim = /datum/id_trim/away/old/robo
 
 /obj/item/card/id/away/deep_storage //deepstorage.dmm space ruin
-	name = "bunker access ID"
+	name = "地堡访问ID卡"
 
 /obj/item/card/id/departmental_budget
-	name = "departmental card (ERROR)"
-	desc = "Provides access to the departmental budget."
+	name = "部门卡 (故障)"
+	desc = "提供部门预算."
 	icon_state = "budgetcard"
 	var/department_ID = ACCOUNT_CIV
 	var/department_name = ACCOUNT_CIV_NAME
@@ -903,8 +903,8 @@
 		registered_account = B
 		if(!B.bank_cards.Find(src))
 			B.bank_cards += src
-		name = "departmental card ([department_name])"
-		desc = "Provides access to the [department_name]."
+		name = "部门卡 ([department_name])"
+		desc = "提供[department_name]的访问权限."
 	SSeconomy.dep_cards += src
 
 /obj/item/card/id/departmental_budget/Destroy()
@@ -924,8 +924,8 @@
 	return CLICK_ACTION_BLOCKING
 
 /obj/item/card/id/advanced
-	name = "identification card"
-	desc = "A card used to provide ID and determine access across the station. Has an integrated digital display and advanced microchips."
+	name = "识别卡"
+	desc = "这是一张用于在整个站点内提供身份验证并确定访问权限的卡片，它集成了数字显示屏和先进的微芯片."
 	icon_state = "card_grey"
 
 	wildcard_slots = WILDCARD_LIMIT_GREY
@@ -971,7 +971,7 @@
 	if(our_crayon.is_capped)
 		balloon_alert(user, "take the cap off first!")
 		return ITEM_INTERACT_BLOCKING
-	var/choice = tgui_alert(usr, "Recolor Department or Subdepartment?", "Recoloring ID...", list("Department", "Subdepartment"))
+	var/choice = tgui_alert(usr, "重涂部门还是子部门?", "重涂ID...", list("部门", "子部门"))
 	if(isnull(choice) \
 		|| QDELETED(user) \
 		|| QDELETED(src) \
@@ -1091,21 +1091,21 @@
 	return sechud_icon_state_override || ..()
 
 /obj/item/card/id/advanced/rainbow
-	name = "rainbow identification card"
-	desc = "A rainbow card, promoting fun in a 'business proper' sense!"
+	name = "彩虹识别卡"
+	desc = "一张彩虹卡，以'正式商务'之名，传递欢乐之情!"
 	icon_state = "card_rainbow"
 
 /obj/item/card/id/advanced/silver
-	name = "silver identification card"
-	desc = "A silver card which shows honour and dedication."
+	name = "银识别卡"
+	desc = "展示了荣誉与重大责任的银卡."
 	icon_state = "card_silver"
 	inhand_icon_state = "silver_id"
 	assigned_icon_state = "assigned_silver"
 	wildcard_slots = WILDCARD_LIMIT_SILVER
 
 /obj/item/card/id/advanced/robotic
-	name = "magnetic identification card"
-	desc = "An integrated card which shows the work poured into opening doors."
+	name = "磁性识别卡"
+	desc = "这是一张集成卡，展现了为打开成功之门所付出的努力与心血."
 	icon_state = "card_carp" //im not a spriter
 	inhand_icon_state = "silver_id"
 	assigned_icon_state = "assigned_silver"
@@ -1117,13 +1117,13 @@
 	assignment = "Reaper"
 
 /obj/item/card/id/advanced/silver/reaper
-	name = "Thirteen's ID Card (Reaper)"
+	name = "十三的ID卡 (Reaper)"
 	trim = /datum/id_trim/maint_reaper
 	registered_name = "Thirteen"
 
 /obj/item/card/id/advanced/gold
-	name = "gold identification card"
-	desc = "A golden card which shows power and might."
+	name = "金识别卡"
+	desc = "展现了权力和威能的金识别卡."
 	icon_state = "card_gold"
 	inhand_icon_state = "gold_id"
 	assigned_icon_state = "assigned_gold"
@@ -1134,8 +1134,8 @@
 	ADD_TRAIT(src, TRAIT_TASTEFULLY_THICK_ID_CARD, ROUNDSTART_TRAIT)
 
 /obj/item/card/id/advanced/gold/captains_spare
-	name = "captain's spare ID"
-	desc = "The spare ID of the High Lord himself."
+	name = "舰长备用ID卡"
+	desc = "最高领主本人的备用ID卡."
 	registered_name = "Captain"
 	trim = /datum/id_trim/job/captain
 	registered_age = null
@@ -1148,8 +1148,8 @@
 		..()
 
 /obj/item/card/id/advanced/centcom
-	name = "\improper CentCom ID"
-	desc = "An ID straight from Central Command."
+	name = "中央指挥部ID卡"
+	desc = "来自中央指挥部的识别卡."
 	icon_state = "card_centcom"
 	assigned_icon_state = "assigned_centcom"
 	registered_name = JOB_CENTCOM
@@ -1158,10 +1158,10 @@
 	wildcard_slots = WILDCARD_LIMIT_CENTCOM
 
 /obj/item/card/id/advanced/centcom/ert
-	name = "\improper CentCom ID"
-	desc = "An ERT ID card."
+	name = "中央指挥部ID卡"
+	desc = "一张ERT的ID卡."
 	registered_age = null
-	registered_name = "Emergency Response Intern"
+	registered_name = "应急部队实习生"
 	trim = /datum/id_trim/centcom/ert
 
 /obj/item/card/id/advanced/centcom/ert
@@ -1193,57 +1193,57 @@
 	trim = /datum/id_trim/centcom/ert/clown
 
 /obj/item/card/id/advanced/centcom/ert/militia
-	registered_name = "Frontier Militia"
+	registered_name = "边境义勇兵"
 	trim = /datum/id_trim/centcom/ert/militia
 
 /obj/item/card/id/advanced/centcom/ert/militia/general
-	registered_name = "Frontier Militia General"
+	registered_name = "边境义勇兵将军"
 	trim = /datum/id_trim/centcom/ert/militia/general
 
 /obj/item/card/id/advanced/black
-	name = "black identification card"
-	desc = "This card is telling you one thing and one thing alone. The person holding this card is an utter badass."
+	name = "黑识别卡"
+	desc = "这张卡片只告诉你一件事，那就是：持有这张卡片的人是个绝对的狠角色."
 	icon_state = "card_black"
 	assigned_icon_state = "assigned_syndicate"
 	wildcard_slots = WILDCARD_LIMIT_GOLD
 
 /obj/item/card/id/advanced/black/deathsquad
-	name = "\improper Death Squad ID"
-	desc = "A Death Squad ID card."
+	name = "行刑队ID卡"
+	desc = "一张行刑队的ID卡."
 	registered_name = JOB_ERT_DEATHSQUAD
 	trim = /datum/id_trim/centcom/deathsquad
 	wildcard_slots = WILDCARD_LIMIT_DEATHSQUAD
 
 /obj/item/card/id/advanced/black/syndicate_command
-	name = "syndicate ID card"
-	desc = "An ID straight from the Syndicate."
-	registered_name = "Syndicate"
+	name = "辛迪加ID卡"
+	desc = "一张直接来自辛迪加的ID卡."
+	registered_name = "辛迪加"
 	registered_age = null
 	trim = /datum/id_trim/syndicom
 	wildcard_slots = WILDCARD_LIMIT_SYNDICATE
 
 /obj/item/card/id/advanced/black/syndicate_command/crew_id
-	name = "syndicate ID card"
-	desc = "An ID straight from the Syndicate."
-	registered_name = "Syndicate"
+	name = "辛迪加ID卡"
+	desc = "一张直接来自辛迪加的ID卡."
+	registered_name = "辛迪加"
 	trim = /datum/id_trim/syndicom/crew
 
 /obj/item/card/id/advanced/black/syndicate_command/captain_id
-	name = "syndicate captain ID card"
-	desc = "An ID straight from the Syndicate."
-	registered_name = "Syndicate"
+	name = "辛迪加舰长ID卡"
+	desc = "一张直接来自辛迪加的舰长ID卡."
+	registered_name = "辛迪加"
 	trim = /datum/id_trim/syndicom/captain
 
 
 /obj/item/card/id/advanced/black/syndicate_command/captain_id/syndie_spare
-	name = "syndicate captain's spare ID"
-	desc = "The spare ID of the Dark Lord himself."
-	registered_name = "Captain"
+	name = "辛迪加舰长备用ID卡"
+	desc = "黑暗魔王大人的备用ID卡."
+	registered_name = "舰长"
 	registered_age = null
 
 /obj/item/card/id/advanced/black/syndicate_command/captain_id/syndie_spare/update_label()
-	if(registered_name == "Captain")
-		name = "[initial(name)][(!assignment || assignment == "Captain") ? "" : " ([assignment])"]"
+	if(registered_name == "舰长")
+		name = "[initial(name)][(!assignment || assignment == "舰长") ? "" : " ([assignment])"]"
 		update_appearance(UPDATE_ICON)
 		return
 
@@ -1251,7 +1251,7 @@
 
 /obj/item/card/id/advanced/debug
 	name = "\improper Debug ID"
-	desc = "A debug ID card. Has ALL the all access and a boatload of money, you really shouldn't have this."
+	desc = "调试ID卡，拥有所有权限和大笔钱."
 	icon_state = "card_centcom"
 	assigned_icon_state = "assigned_centcom"
 	trim = /datum/id_trim/admin
@@ -1281,11 +1281,11 @@
 	return TRUE
 
 /obj/item/card/id/advanced/prisoner
-	name = "prisoner ID card"
-	desc = "You are a number, you are not a free man."
+	name = "囚犯ID卡"
+	desc = "只以编号相称，而无贵贱之别."
 	icon_state = "card_prisoner"
 	inhand_icon_state = "orange-id"
-	registered_name = "Scum"
+	registered_name = "渣滓"
 	registered_age = null
 	trim = /datum/id_trim/job/prisoner
 
@@ -1324,7 +1324,7 @@
 		time_to_assign = initial(time_to_assign)
 		registered_name = initial(registered_name)
 		STOP_PROCESSING(SSobj, src)
-		to_chat(user, "Resetting prisoner ID to default parameters.")
+		to_chat(user, "Resetting 囚犯ID to default parameters.")
 		return ITEM_INTERACT_SUCCESS
 
 	var/choice = tgui_input_number(user, "Sentence time in seconds", "Sentencing")
@@ -1346,7 +1346,7 @@
 
 	if(timed)
 		if(time_to_assign > 0)
-			. += span_notice("The digital timer on the card is set to [DisplayTimeText(time_to_assign * 10)]. The timer will start once the prisoner passes through the prison gate scanners.")
+			. += span_notice("The digital timer on the card is set to [DisplayTimeText(time_to_assign * 10)]. The timer will start once the 囚犯passes through the prison gate scanners.")
 		else if(time_left <= 0)
 			. += span_notice("The digital timer on the card has zero seconds remaining. You leave a changed man, but a free man nonetheless.")
 		else
@@ -1367,57 +1367,56 @@
 	to_chat(usr, span_notice("You have accumulated [points] out of the [goal] points you need for freedom."))
 
 /obj/item/card/id/advanced/prisoner/one
-	name = "Prisoner #13-001"
-	registered_name = "Prisoner #13-001"
+	name = "囚犯#13-001"
+	registered_name = "囚犯#13-001"
 	trim = /datum/id_trim/job/prisoner/one
 
 /obj/item/card/id/advanced/prisoner/two
-	name = "Prisoner #13-002"
-	registered_name = "Prisoner #13-002"
+	name = "囚犯#13-002"
+	registered_name = "囚犯#13-002"
 	trim = /datum/id_trim/job/prisoner/two
 
 /obj/item/card/id/advanced/prisoner/three
-	name = "Prisoner #13-003"
-	registered_name = "Prisoner #13-003"
+	name = "囚犯#13-003"
+	registered_name = "囚犯#13-003"
 	trim = /datum/id_trim/job/prisoner/three
 
 /obj/item/card/id/advanced/prisoner/four
-	name = "Prisoner #13-004"
-	registered_name = "Prisoner #13-004"
+	name = "囚犯#13-004"
+	registered_name = "囚犯#13-004"
 	trim = /datum/id_trim/job/prisoner/four
 
 /obj/item/card/id/advanced/prisoner/five
-	name = "Prisoner #13-005"
-	registered_name = "Prisoner #13-005"
+	name = "囚犯#13-005"
+	registered_name = "囚犯#13-005"
 	trim = /datum/id_trim/job/prisoner/five
 
 /obj/item/card/id/advanced/prisoner/six
-	name = "Prisoner #13-006"
-	registered_name = "Prisoner #13-006"
+	name = "囚犯#13-006"
+	registered_name = "囚犯#13-006"
 	trim = /datum/id_trim/job/prisoner/six
 
 /obj/item/card/id/advanced/prisoner/seven
-	name = "Prisoner #13-007"
-	registered_name = "Prisoner #13-007"
+	name = "囚犯#13-007"
+	registered_name = "囚犯#13-007"
 	trim = /datum/id_trim/job/prisoner/seven
 
 /obj/item/card/id/advanced/mining
-	name = "mining ID"
+	name = "采矿ID卡"
 	trim = /datum/id_trim/job/shaft_miner/spare
 
 /obj/item/card/id/advanced/highlander
-	name = "highlander ID"
-	registered_name = "Highlander"
-	desc = "There can be only one!"
+	name = "高地人ID卡"
+	registered_name = "高地人"
+	desc = "只能活下来一个人!"
 	icon_state = "card_black"
 	assigned_icon_state = "assigned_syndicate"
 	trim = /datum/id_trim/highlander
 	wildcard_slots = WILDCARD_LIMIT_ADMIN
 
 /obj/item/card/id/advanced/chameleon
-	name = "agent card"
-	desc = "A highly advanced chameleon ID card. Touch this card on another ID card or player to choose which accesses to copy. \
-		Has special magnetic properties which force it to the front of wallets."
+	name = "特工卡"
+	desc = "这是一张高度先进的变色龙身份证，将这张卡与另一张身份证或玩家接触，即可选择要复制的权限。它具有特殊的磁性属性，可以使其自动吸附在钱包的最前面."
 	trim = /datum/id_trim/chameleon
 	wildcard_slots = WILDCARD_LIMIT_CHAMELEON_PLUS // SKYRAT EDIT - Original WILDCARD_LIMIT_CHAMELEON
 	actions_types = list(/datum/action/item_action/chameleon/change/id, /datum/action/item_action/chameleon/change/id_trim)
@@ -1605,14 +1604,14 @@
 /obj/item/card/id/advanced/chameleon/attack_self(mob/user)
 	if(!user.can_perform_action(user, NEED_DEXTERITY| FORBID_TELEKINESIS_REACH))
 		return ..()
-	var/popup_input = tgui_input_list(user, "Choose Action", "Agent ID", list("Show", "Forge/Reset", "Change Account ID"))
+	var/popup_input = tgui_input_list(user, "选择行为", "特工卡", list("展示", "伪装/重置", "更改账户ID"))
 	if(!popup_input || !after_input_check(user))
 		return TRUE
 	switch(popup_input)
-		if ("Change Account ID")
+		if ("更改ID账户")
 			set_new_account(user)
 			return
-		if("Show")
+		if("展示")
 			return ..()
 
 	///"Forge/Reset", kept outside the switch() statement to reduce indentation.
@@ -1629,7 +1628,7 @@
 		return
 
 	///forge the ID if not forged.
-	var/input_name = tgui_input_text(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+	var/input_name = tgui_input_text(user, "您想在这张卡上写什么名字？留空将随机.", "特工卡姓名", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
 	if(!after_input_check(user))
 		return TRUE
 	if(input_name)
@@ -1643,7 +1642,7 @@
 		else
 			input_name = "[pick(GLOB.first_names)] [pick(GLOB.last_names)]"
 
-	var/change_trim = tgui_alert(user, "Adjust the appearance of your card's trim?", "Modify Trim", list("Yes", "No"))
+	var/change_trim = tgui_alert(user, "调整识别卡的标志?", "更改标志", list("Yes", "No"))
 	if(!after_input_check(user))
 		return TRUE
 	var/selected_trim_path
@@ -1655,19 +1654,19 @@
 			if(trim && trim.trim_state && trim.assignment)
 				var/fake_trim_name = "[trim.assignment] ([trim.trim_state])"
 				trim_list[fake_trim_name] = trim_path
-		selected_trim_path = tgui_input_list(user, "Select trim to apply to your card.\nNote: This will not grant any trim accesses.", "Forge Trim", sort_list(trim_list, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		selected_trim_path = tgui_input_list(user, "选择标志应用到你的卡上.\n注意: 这并不会给予标志所属权限.", "伪装标志", sort_list(trim_list, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!after_input_check(user))
 			return TRUE
 
-	var/target_occupation = tgui_input_text(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_NAME_LEN)
+	var/target_occupation = tgui_input_text(user, "你想在卡上填写什么职业?\n注意: 这并不会给予职业所属权限.", "特工卡工作伪装", assignment ? assignment : "助手", MAX_NAME_LEN)
 	if(!after_input_check(user))
 		return TRUE
 
-	var/new_age = tgui_input_number(user, "Choose the ID's age", "Agent card age", AGE_MIN, AGE_MAX, AGE_MIN)
+	var/new_age = tgui_input_number(user, "选择ID年龄", "特工卡年龄", AGE_MIN, AGE_MAX, AGE_MIN)
 	if(!after_input_check(user))
 		return TRUE
 
-	var/wallet_spoofing = tgui_alert(user, "Activate wallet ID spoofing, allowing this card to force itself to occupy the visible ID slot in wallets?", "Wallet ID Spoofing", list("Yes", "No"))
+	var/wallet_spoofing = tgui_alert(user, "激活钱包ID卡欺骗功能，使此卡能够强制占据钱包中可见的ID卡槽位", "钱包ID欺骗", list("Yes", "No"))
 	if(!after_input_check(user))
 		return
 
@@ -1721,34 +1720,34 @@
 	wildcard_slots = WILDCARD_LIMIT_GOLD
 
 /obj/item/card/id/advanced/engioutpost
-	registered_name = "George 'Plastic' Miller"
-	desc = "A card used to provide ID and determine access across the station. There's blood dripping from the corner. Ew."
+	registered_name = "乔治 '塑料' 米勒"
+	desc = "一种卡，用于提供身份并确定车站的通行权限，血从边角滴下来，呃唔."
 	trim = /datum/id_trim/engioutpost
 	registered_age = 47
 
 /obj/item/card/id/advanced/simple_bot
-	name = "simple bot ID card"
+	name = "简单机器ID卡"
 	desc = "An internal ID card used by the station's non-sentient bots. You should report this to a coder if you're holding it."
 	wildcard_slots = WILDCARD_LIMIT_ADMIN
 
 /obj/item/card/id/red
-	name = "Red Team identification card"
-	desc = "A card used to identify members of the red team for CTF"
+	name = "红队识别卡"
+	desc = "CTF游戏时的红队识别卡"
 	icon_state = "ctf_red"
 
 /obj/item/card/id/blue
-	name = "Blue Team identification card"
-	desc = "A card used to identify members of the blue team for CTF"
+	name = "蓝队识别卡"
+	desc = "CTF游戏时的蓝队识别卡"
 	icon_state = "ctf_blue"
 
 /obj/item/card/id/yellow
-	name = "Yellow Team identification card"
-	desc = "A card used to identify members of the yellow team for CTF"
+	name = "黄队识别卡"
+	desc = "CTF游戏时的黄队识别卡"
 	icon_state = "ctf_yellow"
 
 /obj/item/card/id/green
-	name = "Green Team identification card"
-	desc = "A card used to identify members of the green team for CTF"
+	name = "绿队识别卡"
+	desc = "CTF游戏时的绿队识别卡"
 	icon_state = "ctf_green"
 
 #undef INTERN_THRESHOLD_FALLBACK_HOURS
@@ -1765,8 +1764,8 @@
  * Etcetera etcetera. Furthermore, talking, or getting examined on will pretty much give it away.
  */
 /obj/item/card/cardboard
-	name = "cardboard identification card"
-	desc = "A card used to provide ID and det- Heeeey, wait a second, this is just a piece of cut cardboard!"
+	name = "纸板识别卡"
+	desc = "这是一张用于提供身份识别的卡片，等等，慢着，这只不过是一块被裁剪过的纸板！"
 	icon_state = "cardboard_id"
 	inhand_icon_state = "cardboard-id"
 	worn_icon_state = "nothing"
@@ -1813,26 +1812,26 @@
 /obj/item/card/cardboard/proc/modify_card(mob/living/user, obj/item/item)
 	if(!user.mind)
 		return
-	var/popup_input = tgui_input_list(user, "What To Change", "Cardboard ID", list("Name", "Assignment", "Trim", "Reset"))
+	var/popup_input = tgui_input_list(user, "更改什么", "纸板ID", list("姓名", "职业", "标志", "重置"))
 	if(!after_input_check(user, item, popup_input))
 		return
 	switch(popup_input)
-		if("Name")
-			var/input_name = tgui_input_text(user, "What name would you like to put on this card?", "Cardboard card name", scribbled_name || (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+		if("姓名")
+			var/input_name = tgui_input_text(user, "在卡上写什么姓名?", "纸板卡姓名", scribbled_name || (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
 			input_name = sanitize_name(input_name, allow_numbers = TRUE)
 			if(!after_input_check(user, item, input_name, scribbled_name))
 				return
 			scribbled_name = input_name
 			var/list/details = item.get_writing_implement_details()
 			details_colors[INDEX_NAME_COLOR] = details["color"] || COLOR_BLACK
-		if("Assignment")
-			var/input_assignment = tgui_input_text(user, "What assignment would you like to put on this card?", "Cardboard card job ssignment", scribbled_assignment || "Assistant", MAX_NAME_LEN)
+		if("职业")
+			var/input_assignment = tgui_input_text(user, "你想在卡上写什么职业?", "纸板卡职业", scribbled_assignment || "助手", MAX_NAME_LEN)
 			if(!after_input_check(user, item, input_assignment, scribbled_assignment))
 				return
 			scribbled_assignment = sanitize(input_assignment)
 			var/list/details = item.get_writing_implement_details()
 			details_colors[INDEX_ASSIGNMENT_COLOR] = details["color"] || COLOR_BLACK
-		if("Trim")
+		if("标志")
 			var/static/list/possible_trims
 			if(!possible_trims)
 				possible_trims = list()
@@ -1841,13 +1840,13 @@
 					if(trim?.trim_state && trim.assignment)
 						possible_trims |= replacetext(trim.trim_state, "trim_", "")
 				sortTim(possible_trims, GLOBAL_PROC_REF(cmp_typepaths_asc))
-			var/input_trim = tgui_input_list(user, "Select trim to apply to your card.\nNote: This will not grant any trim accesses.", "Forge Trim", possible_trims)
+			var/input_trim = tgui_input_list(user, "选择应用到卡片上的标志.\n注意: 不会获得任何权限.", "伪装标志", possible_trims)
 			if(!input_trim || !after_input_check(user, item, input_trim, scribbled_trim))
 				return
 			scribbled_trim = "cardboard_[input_trim]"
 			var/list/details = item.get_writing_implement_details()
 			details_colors[INDEX_TRIM_COLOR] = details["color"] || COLOR_BLACK
-		if("Reset")
+		if("重置")
 			scribbled_name = null
 			scribbled_assignment = null
 			scribbled_trim = null
@@ -1874,7 +1873,7 @@
 	if(!scribbled_name)
 		name = initial(name)
 		return
-	name = "[scribbled_name]'s ID Card ([scribbled_assignment])"
+	name = "[scribbled_name]的识别卡([scribbled_assignment])"
 
 /obj/item/card/cardboard/update_overlays()
 	. = ..()

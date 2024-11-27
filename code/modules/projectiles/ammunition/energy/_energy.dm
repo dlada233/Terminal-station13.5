@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/energy
 	name = "能量武器透镜"
-	desc = "枪中使激光发射的部分."
+	desc = "枪中使光能发射的部分."
 	caliber = ENERGY
 	projectile_type = /obj/projectile/energy
 	slot_flags = null

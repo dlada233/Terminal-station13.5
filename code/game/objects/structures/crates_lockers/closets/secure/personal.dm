@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/personal
-	desc = "It's a secure locker for personnel. The first person to swipe their ID gains control."
-	name = "personal closet"
+	desc = "个人衣柜，首个刷ID卡的人获得权限."
+	name = "私人衣柜"
 	req_access = list(ACCESS_ALL_PERSONAL_LOCKERS)
 	card_reader_installed = TRUE
 
@@ -8,7 +8,7 @@
 	. = ..()
 	var/static/list/choices
 	if(isnull(choices))
-		choices = list("Personal")
+		choices = list("私人")
 	access_choices = choices
 
 /obj/structure/closet/secure_closet/personal/can_unlock(mob/living/user, obj/item/card/id/player_id, obj/item/card/id/registered_id)
@@ -30,7 +30,7 @@
 	new /obj/item/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/patient
-	name = "patient's closet"
+	name = "患者衣柜"
 
 /obj/structure/closet/secure_closet/personal/patient/PopulateContents()
 	new /obj/item/clothing/under/color/white( src )

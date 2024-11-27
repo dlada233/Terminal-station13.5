@@ -1,6 +1,6 @@
 /obj/structure/closet/wardrobe
-	name = "wardrobe"
-	desc = "It's a storage unit for standard-issue Nanotrasen attire."
+	name = "衣柜"
+	desc = "存放了纳米传讯标准服装"
 	icon_door = "blue"
 
 /obj/structure/closet/wardrobe/PopulateContents()
@@ -14,7 +14,7 @@
 	return
 
 /obj/structure/closet/wardrobe/pink
-	name = "pink wardrobe"
+	name = "粉色衣柜"
 	icon_door = "pink"
 
 /obj/structure/closet/wardrobe/pink/PopulateContents()
@@ -27,7 +27,7 @@
 	return
 
 /obj/structure/closet/wardrobe/black
-	name = "black wardrobe"
+	name = "黑色衣柜"
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/black/PopulateContents()
@@ -53,7 +53,7 @@
 
 
 /obj/structure/closet/wardrobe/green
-	name = "green wardrobe"
+	name = "绿色衣柜"
 	icon_door = "green"
 
 /obj/structure/closet/wardrobe/green/PopulateContents()
@@ -69,8 +69,8 @@
 
 
 /obj/structure/closet/wardrobe/orange
-	name = "prison wardrobe"
-	desc = "It's a storage unit for Nanotrasen-regulation prisoner attire."
+	name = "监狱衣柜"
+	desc = "这是一个储存纳米传讯关押囚犯服装的储物柜."
 	icon_door = "orange"
 
 /obj/structure/closet/wardrobe/orange/PopulateContents()
@@ -84,7 +84,7 @@
 
 
 /obj/structure/closet/wardrobe/yellow
-	name = "yellow wardrobe"
+	name = "黄色储柜"
 	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/yellow/PopulateContents()
@@ -100,7 +100,7 @@
 
 
 /obj/structure/closet/wardrobe/white
-	name = "white wardrobe"
+	name = "白色储柜"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/white/PopulateContents()
@@ -117,7 +117,7 @@
 	return
 
 /obj/structure/closet/wardrobe/pjs
-	name = "pajama wardrobe"
+	name = "睡衣衣柜"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/pjs/PopulateContents()
@@ -135,7 +135,7 @@
 
 
 /obj/structure/closet/wardrobe/grey
-	name = "grey wardrobe"
+	name = "灰色衣柜"
 	icon_door = "grey"
 
 /obj/structure/closet/wardrobe/grey/PopulateContents()
@@ -165,7 +165,7 @@
 
 
 /obj/structure/closet/wardrobe/mixed
-	name = "mixed wardrobe"
+	name = "混合衣柜"
 	icon_door = "mixed"
 
 /obj/structure/closet/wardrobe/mixed/PopulateContents()

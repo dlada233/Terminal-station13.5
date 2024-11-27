@@ -1,7 +1,7 @@
 /datum/chemical_reaction/drink/drunken_espatier
 	results = list(/datum/reagent/consumable/ethanol/drunken_espatier = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 2, /datum/reagent/consumable/ethanol/moonshine = 2, /datum/reagent/consumable/berryjuice = 1)
-	mix_message = "The drink seems to let out a grim sigh..."
+	mix_message = "这杯饮料似乎发出了一声沉重的叹息..."
 
 /datum/chemical_reaction/drink/mushi_kombucha
 	results = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5)
@@ -23,7 +23,7 @@
 /datum/chemical_reaction/drink/triumphal_arch
 	results = list(/datum/reagent/consumable/ethanol/triumphal_arch = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5, /datum/reagent/consumable/ethanol/grappa = 2, /datum/reagent/consumable/lemonjuice = 2, /datum/reagent/gold = 1)
-	mix_message = "The mixture turns a deep golden hue."
+	mix_message = "混合物变成了深金黄色."
 
 /datum/chemical_reaction/drink/white_tiziran
 	results = list(/datum/reagent/consumable/ethanol/white_tiziran = 8)

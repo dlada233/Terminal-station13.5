@@ -320,7 +320,7 @@
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "激光步枪"
+	name = "光能步枪"
 	desc = "虽然有时被嘲笑能量武器的火力相对较弱，但可充电弹药带来的后勤优势是无可比拟的."
 	icon_state = "oldrifle"
 	w_class = WEIGHT_CLASS_BULKY

@@ -5,8 +5,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 
 /obj/structure/closet
-	name = "closet"
-	desc = "It's a basic storage unit."
+	name = "储物柜"
+	desc = "基本的存储单元."
 	icon = 'icons/obj/storage/closet.dmi'
 	icon_state = "generic"
 	density = TRUE
@@ -331,9 +331,9 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(id_card)
 		. += span_notice("It can be [EXAMINE_HINT("marked")] with a pen.")
 	if(can_weld_shut && !welded)
-		. += span_notice("Its can be [EXAMINE_HINT("已焊接")] shut.")
+		. += span_notice("Its can be [EXAMINE_HINT("焊接")] shut.")
 	if(welded)
-		. += span_notice("Its [EXAMINE_HINT("已焊接")] shut.")
+		. += span_notice("Its [EXAMINE_HINT("焊接")] shut.")
 	if(anchorable && !anchored)
 		. += span_notice("It can be [EXAMINE_HINT("bolted")] to the ground.")
 	if(anchored)
@@ -792,21 +792,21 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		if(num_choices == 1)
 			choice = access_choices[1]
 		else
-			choice = tgui_input_list(user, "Set Access Type", "Access Type", access_choices)
+			choice = tgui_input_list(user, "设定权限类型", "权限类型", access_choices)
 		if(isnull(choice))
 			return
 
 		id_card = null
 		switch(choice)
-			if("Personal") //only the player who swiped their id has access.
+			if("私人") //only the player who swiped their id has access.
 				id_card = WEAKREF(id)
-				name = "[id.registered_name] locker"
-				desc = "now owned by [id.registered_name]. [initial(desc)]"
-			if("Departmental") //anyone who has the same access permissions as this id has access
-				name = "[id.assignment] closet"
-				desc = "Its a [id.assignment] closet. [initial(desc)]"
+				name = "[id.registered_name]的储物柜"
+				desc = "现在属于[id.registered_name]. [initial(desc)]"
+			if("部门") //anyone who has the same access permissions as this id has access
+				name = "[id.assignment]储物柜"
+				desc = "这是[id.assignment]储物柜. [initial(desc)]"
 				set_access(id.GetAccess())
-			if("None") //free for all
+			if("无") //free for all
 				name = initial(name)
 				desc = initial(desc)
 				req_access = list()

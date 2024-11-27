@@ -1,6 +1,6 @@
 /obj/structure/railing
-	name = "railing"
-	desc = "Basic railing meant to protect idiots like you from falling."
+	name = "栏杆"
+	desc = "用来保护你这种白痴的基本栏杆."
 	icon = 'icons/obj/railings.dmi'
 	icon_state = "railing"
 	flags_1 = ON_BORDER_1
@@ -49,13 +49,13 @@
 
 	var/static/list/tool_behaviors = list(
 		TOOL_WELDER = list(
-			SCREENTIP_CONTEXT_LMB = "Repair",
+			SCREENTIP_CONTEXT_LMB = "修理",
 		),
 		TOOL_WRENCH = list(
-			SCREENTIP_CONTEXT_LMB = "Anchor/Unanchor",
+			SCREENTIP_CONTEXT_LMB = "固定/解除固定",
 		),
 		TOOL_WIRECUTTER = list(
-			SCREENTIP_CONTEXT_LMB = "Deconstruct",
+			SCREENTIP_CONTEXT_LMB = "拆解",
 		),
 	)
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
@@ -65,9 +65,9 @@
 /obj/structure/railing/examine(mob/user)
 	. = ..()
 	if(anchored == TRUE)
-		. += span_notice("The railing is <b>bolted</b> to the floor.")
+		. += span_notice("栏杆被<b>螺栓固定</b>在了地板上.")
 	else
-		. += span_notice("The railing is <i>unbolted</i> from the floor and can be deconstructed with <b>wirecutters</b>.")
+		. += span_notice("栏杆的<i>地面螺丝未固定</i>，可以<b>剪线钳</b>拆解.")
 
 /obj/structure/railing/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -78,18 +78,18 @@
 			if(!I.tool_start_check(user, amount=1))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, span_notice("你开始修理[src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
 				atom_integrity = max_integrity
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("你修好了[src]."))
 		else
-			to_chat(user, span_warning("[src] is already in good condition!"))
+			to_chat(user, span_warning("[src]状态很好，无需修理!"))
 		return
 
 
 /obj/structure/railing/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user, span_warning("You cut apart the railing."))
+	to_chat(user, span_warning("你拆解了栏杆."))
 	I.play_tool_sound(src, 100)
 	deconstruct()
 	return TRUE
@@ -102,10 +102,10 @@
 ///Implements behaviour that makes it possible to unanchor the railing.
 /obj/structure/railing/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user, span_notice("You begin to [anchored ? "unfasten the railing from":"fasten the railing to"] the floor..."))
+	to_chat(user, span_notice("你开始[anchored ? "把栏杆从地板上拆开":"把栏杆固定到地板上"]..."))
 	if(I.use_tool(src, user, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 		set_anchored(!anchored)
-		to_chat(user, span_notice("You [anchored ? "fasten the railing to":"unfasten the railing from"] the floor."))
+		to_chat(user, span_notice("你[anchored ? "把栏杆固定到地板上":"把栏杆从地板上拆开"]."))
 	return TRUE
 
 /obj/structure/railing/CanPass(atom/movable/mover, border_dir)
@@ -149,8 +149,8 @@
 
 
 /obj/structure/railing/wooden_fence
-	name = "wooden fence"
-	desc = "wooden fence meant to keep animals in."
+	name = "木栅栏"
+	desc = "用来关动物的木栅栏."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "wooden_railing"
 	item_deconstruct = /obj/item/stack/sheet/mineral/wood

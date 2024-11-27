@@ -49,7 +49,7 @@
 	view_range = 4.5
 
 /obj/structure/closet/crate/eva
-	name = "EVA板条箱"
+	name = "EVA货箱"
 	icon_state = "o2crate"
 	base_icon_state = "o2crate"
 

@@ -42,7 +42,7 @@
 			var/datum/emote/emote = GLOB.emote_list[emote_key][1]
 			var/emote_param
 			if(emote.message_param && use_params)
-				emote_param = tgui_input_text(ui.user, "Add params to the emote...", emote.message_param)
+				emote_param = tgui_input_text(ui.user, "向感情添加参数...", emote.message_param)
 			ui.user.emote(emote_key, message = emote_param, intentional = TRUE)
 
 /datum/emote_panel/ui_interact(mob/user, datum/tgui/ui)
@@ -55,7 +55,7 @@
 	return GLOB.always_state
 
 /mob/living/verb/emote_panel()
-	set name = "Emote Panel"
+	set name = "感情面板"
 	set category = "IC"
 
 	var/static/datum/emote_panel/emote_panel

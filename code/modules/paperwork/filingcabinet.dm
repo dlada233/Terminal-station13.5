@@ -11,20 +11,20 @@
  * Filing Cabinets
  */
 /obj/structure/filingcabinet
-	name = "filing cabinet"
-	desc = "A large cabinet with drawers."
+	name = "文件柜"
+	desc = "有抽屉的柜子."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
 
 /obj/structure/filingcabinet/chestdrawer
-	name = "chest drawer"
+	name = "抽屉柜"
 	icon_state = "chestdrawer"
 
 /obj/structure/filingcabinet/chestdrawer/wheeled
-	name = "rolling chest drawer"
-	desc = "A small cabinet with drawers. This one has wheels!"
+	name = "可移动抽屉柜"
+	desc = "这个抽屉柜下面有四个小轮子!"
 	anchored = FALSE
 
 /obj/structure/filingcabinet/filingcabinet //not changing the path to avoid unnecessary map issues, but please don't name stuff like this in the future -Pete

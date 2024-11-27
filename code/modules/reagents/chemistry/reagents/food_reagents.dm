@@ -692,7 +692,7 @@
 
 /datum/reagent/consumable/bluecherryjelly
 	name = "Blue Cherry Jelly-蓝樱桃果酱"
-	description = "蓝色的更美味的樱桃果冻."
+	description = "蓝色的更美味的樱桃果酱."
 	color = "#00F0FF"
 	taste_description = "蓝樱桃"
 
@@ -1182,7 +1182,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/creamer
-	name = "Coffee Creamer-咖啡奶油"
+	name = "Coffee Creamer-咖啡奶精"
 	description = "廉价咖啡的奶粉，多么令人愉快."
 	taste_description = "milk"
 	color = "#efeff0"

@@ -1,5 +1,5 @@
 /obj/projectile/beam
-	name = "激光"
+	name = "光能束"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 22 // SKYRAT EDIT: 20
@@ -34,13 +34,13 @@
 	damage = 10
 
 /obj/projectile/beam/laser/carbine/practice
-	name = "练习激光"
+	name = "练习光束"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
 	damage = 0
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/projectile/beam/laser/hellfire
-	name = "地狱火激光"
+	name = "地狱火光束"
 	wound_bonus = 0
 	damage = 30
 	speed = 0.6 // higher power = faster, that's how light works right
@@ -50,7 +50,7 @@
 	transform *= 2
 
 /obj/projectile/beam/laser/heavylaser
-	name = "重激光"
+	name = "重光束"
 	icon_state = "heavylaser"
 	damage = 40
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
@@ -66,7 +66,7 @@
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 
 /obj/projectile/beam/laser/musket
-	name = "低能激光"
+	name = "低能光束"
 	icon_state = "laser_musket"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	damage = 25
@@ -75,7 +75,7 @@
 	weak_against_armour = TRUE
 
 /obj/projectile/beam/laser/musket/prime
-	name = "中能激光"
+	name = "中能光束"
 	damage = 30
 	stamina = 45
 	weak_against_armour = FALSE
@@ -87,7 +87,7 @@
 	armour_penetration = 50
 
 /obj/projectile/beam/practice
-	name = "练习激光"
+	name = "练习光束"
 	damage = 0
 
 /obj/projectile/beam/scatter
@@ -170,7 +170,7 @@
 	damage = 30
 
 /obj/projectile/beam/pulse/heavy
-	name = "重脉冲激光"
+	name = "重脉冲光束"
 	icon_state = "pulse1_bl"
 	projectile_piercing = ALL
 	var/pierce_hits = 2

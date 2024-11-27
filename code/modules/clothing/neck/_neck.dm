@@ -209,8 +209,8 @@
 	icon_state = "maid_neck"
 
 /obj/item/clothing/neck/stethoscope
-	name = "stethoscope"
-	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
+	name = "听诊器"
+	desc = "这是一种已经过时的医疗听诊设备，用于探听人体内部的声音，而且戴上它还能让你显得非常专业."
 	icon_state = "stethoscope"
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)

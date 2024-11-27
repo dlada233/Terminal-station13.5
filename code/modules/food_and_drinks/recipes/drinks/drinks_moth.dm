@@ -25,7 +25,7 @@
 /datum/chemical_reaction/drink/tiltaellen
 	results = list(/datum/reagent/consumable/ethanol/tiltaellen = 10)
 	required_reagents = list(/datum/reagent/consumable/yoghurt = 8, /datum/reagent/consumable/vinegar = 1, /datum/reagent/consumable/salt = 1)
-	mix_message = "The mixture curdles and thickens."
+	mix_message = "混合物凝结并变稠."
 
 /datum/chemical_reaction/drink/tropical_storm
 	results = list(/datum/reagent/consumable/ethanol/tropical_storm = 10)

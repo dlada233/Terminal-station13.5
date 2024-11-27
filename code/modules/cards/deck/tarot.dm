@@ -2,8 +2,8 @@
 
 //These cards certainly won't tell the future, but you can play some nice games with them.
 /obj/item/toy/cards/deck/tarot
-	name = "tarot game deck"
-	desc = "A full 78 card game deck of tarot cards. Complete with 4 suites of 14 cards, and a full suite of trump cards."
+	name = "塔罗牌"
+	desc = "一副完整的78张塔罗牌游戏牌组，包含4组各14张的小阿尔卡那牌，以及一组完整的大阿尔卡那牌."
 	cardgame_desc = "tarot card reading"
 	icon_state = "deck_tarot_full"
 	deckstyle = "tarot"
@@ -31,8 +31,8 @@
 		card.transform = M
 
 /obj/item/toy/cards/deck/tarot/haunted
-	name = "haunted tarot game deck"
-	desc = "A spooky looking tarot deck. You can sense a supernatural presence linked to the cards..."
+	name = "灵异塔罗牌"
+	desc = "一副诡异的塔罗牌，你可以感受到其中与超自然存在的某种联系..."
 	/// ghost notification cooldown
 	COOLDOWN_DECLARE(ghost_alert_cooldown)
 
@@ -47,22 +47,22 @@
 
 /obj/item/toy/cards/deck/tarot/haunted/proc/on_wield(obj/item/source, mob/living/carbon/user)
 	ADD_TRAIT(user, TRAIT_SIXTHSENSE, MAGIC_TRAIT)
-	to_chat(user, span_notice("The veil to the underworld is opened. You can sense the dead souls calling out..."))
+	to_chat(user, span_notice("冥界的面纱被揭开. 你能感受到到死去的灵魂在呼唤..."))
 
 	if(!COOLDOWN_FINISHED(src, ghost_alert_cooldown))
 		return
 
 	COOLDOWN_START(src, ghost_alert_cooldown, TAROT_GHOST_TIMER)
 	notify_ghosts(
-		"Someone has begun playing with a [src.name] in [get_area(src)]!",
+		"有人开始在[get_area(src)]玩[src.name]!",
 		source = src,
-		header = "Haunted Tarot Deck",
+		header = "灵异塔罗牌",
 		ghost_sound = 'sound/effects/ghost2.ogg',
 		notify_volume = 75,
 	)
 
 /obj/item/toy/cards/deck/tarot/haunted/proc/on_unwield(obj/item/source, mob/living/carbon/user)
 	REMOVE_TRAIT(user, TRAIT_SIXTHSENSE, MAGIC_TRAIT)
-	to_chat(user, span_notice("The veil to the underworld closes shut. You feel your senses returning to normal."))
+	to_chat(user, span_notice("冥界的面纱合上了，你感受到感官恢复了正常."))
 
 #undef TAROT_GHOST_TIMER

@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	. = TRUE
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!getBruteLoss())
-		to_chat(user, span_warning("[src] is already in good condition!"))
+		to_chat(user, span_warning("[src]状态很好，无需修理!"))
 		return
 	if (!tool.tool_start_check(user, amount=1)) //The welder has 1u of fuel consumed by it's afterattack, so we don't need to worry about taking any away.
 		return

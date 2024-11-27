@@ -1,6 +1,6 @@
 /obj/structure/extinguisher_cabinet
-	name = "extinguisher cabinet"
-	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
+	name = "灭火器柜"
+	desc = "灭火器装在墙上的小柜子，用来装灭火器."
 	icon = 'icons/obj/wallmounts.dmi' //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "extinguisher_closed"
 	anchored = TRUE
@@ -183,8 +183,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 		stored_extinguisher = null
 
 /obj/item/wallframe/extinguisher_cabinet
-	name = "extinguisher cabinet frame"
-	desc = "Used for building wall-mounted extinguisher cabinets."
+	name = "灭火器柜框架"
+	desc = "用于建造壁挂式灭火器柜."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "extinguisher_assembly"
 	result_path = /obj/structure/extinguisher_cabinet

@@ -1,6 +1,6 @@
 /obj/structure/closet/cabinet
-	name = "cabinet"
-	desc = "Old will forever be in fashion."
+	name = "衣柜"
+	desc = "老派永远是时尚."
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	open_sound = 'sound/machines/wooden_closet_open.ogg'
@@ -11,19 +11,19 @@
 	door_anim_time = 0 // no animation
 
 /obj/structure/closet/acloset
-	name = "strange closet"
-	desc = "It looks alien!"
+	name = "奇怪的储物柜"
+	desc = "看起来来自外星!"
 	icon_state = "alien"
 	material_drop = /obj/item/stack/sheet/mineral/abductor
 
 /obj/structure/closet/gimmick
-	name = "administrative supply closet"
-	desc = "It's a storage unit for things that have no right being here."
+	name = "管理储物柜"
+	desc = "这是一个储物柜，用来存放那些不应该存在的东西."
 	icon_state = "syndicate"
 
 /obj/structure/closet/gimmick/russian
-	name = "\improper Russian surplus closet"
-	desc = "It's a storage unit for Russian standard-issue surplus."
+	name = "俄罗斯储物柜"
+	desc = "存放着俄罗斯标准储备物资."
 
 /obj/structure/closet/gimmick/russian/PopulateContents()
 	..()
@@ -33,8 +33,8 @@
 		new /obj/item/clothing/under/costume/soviet(src)
 
 /obj/structure/closet/gimmick/tacticool
-	name = "tacticool gear closet"
-	desc = "It's a storage unit for Tacticool gear."
+	name = "战术装备柜"
+	desc = "存放着战术装备."
 
 /obj/structure/closet/gimmick/tacticool/PopulateContents()
 	..()
@@ -56,12 +56,12 @@
 	new /obj/item/clothing/glasses/sunglasses(src)
 
 /obj/structure/closet/thunderdome
-	name = "\improper Thunderdome closet"
-	desc = "Everything you need!"
+	name = "雷霆竞技场储柜"
+	desc = "所有你需要的东西!"
 	anchored = TRUE
 
 /obj/structure/closet/thunderdome/tdred
-	name = "red-team Thunderdome closet"
+	name = "雷霆竞技场红队储柜"
 	icon_door = "red"
 
 /obj/structure/closet/thunderdome/tdred/PopulateContents()
@@ -82,7 +82,7 @@
 		new /obj/item/gun/energy/laser(src)
 
 /obj/structure/closet/thunderdome/tdgreen
-	name = "green-team Thunderdome closet"
+	name = "雷霆竞技场绿队储柜"
 	icon_door = "green"
 
 /obj/structure/closet/thunderdome/tdgreen/PopulateContents()
@@ -103,7 +103,7 @@
 		new /obj/item/gun/energy/laser(src)
 
 /obj/structure/closet/malf/suits
-	desc = "It's a storage unit for operational gear."
+	desc = "存有作战装备."
 	icon_state = "syndicate"
 
 /obj/structure/closet/malf/suits/PopulateContents()
@@ -117,8 +117,8 @@
 	new /obj/item/multitool(src)
 
 /obj/structure/closet/mini_fridge
-	name = "grimy mini-fridge"
-	desc = "A small contraption designed to imbue a few drinks with a pleasant chill."
+	name = "肮脏的迷你冰箱"
+	desc = "这是一个小巧的装置，设计用来让几杯饮料带上宜人的冰爽感."
 	icon_state = "mini_fridge"
 	icon_welded = "welded_small"
 	max_mob_size = MOB_SIZE_SMALL
@@ -137,8 +137,8 @@
 		new /obj/item/reagent_containers/cup/glass/bottle/beer(src)
 
 /obj/structure/closet/mini_fridge/grimy
-	name = "grimy mini-fridge"
-	desc = "A small contraption designed to imbue a few drinks with a pleasant chill. This antiquated unit however seems to serve no purpose other than keeping the roaches company."
+	name = "肮脏的迷你冰箱"
+	desc = "这是一个小巧的装置，设计用来让几杯饮料带上宜人的冰爽感，然而，这个老旧的装置似乎除了让蟑螂安家之外，没有其他任何作用。"
 
 /obj/structure/closet/mini_fridge/grimy/PopulateContents()
 	. = ..()

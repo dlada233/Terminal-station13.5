@@ -1,9 +1,9 @@
 // the standard tube light fixture
 /obj/machinery/light
-	name = "light fixture"
+	name = "灯具"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube"
-	desc = "A lighting fixture."
+	desc = "一台照明装置."
 	layer = WALL_OBJ_LAYER
 	max_integrity = 100
 	use_power = ACTIVE_POWER_USE
@@ -33,7 +33,7 @@
 	///The type of light item
 	var/light_type = /obj/item/light/tube
 	///String of the light type, used in descriptions and in examine
-	var/fitting = "tube"
+	var/fitting = "灯管"
 	///Count of number of times switched on/off, this is used to calculate the probability the light burns out
 	var/switchcount = 0
 	///Cell reference
@@ -125,10 +125,10 @@
 	. = ..()
 #ifndef MAP_TEST
 	switch(fitting)
-		if("tube")
+		if("管")
 			if(prob(2))
 				break_light_tube(TRUE)
-		if("bulb")
+		if("泡")
 			if(prob(5))
 				break_light_tube(TRUE)
 #endif
@@ -373,18 +373,18 @@
 	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			. += "It is turned [on? "on" : "off"]."
+			. += "它是[on? "打开的" : "关闭的"]."
 		if(LIGHT_EMPTY)
-			. += "The [fitting] has been removed."
+			. += "[fitting]已经被移除了."
 		if(LIGHT_BURNED)
-			. += "The [fitting] is burnt out."
+			. += "[fitting]已经烧坏了."
 		if(LIGHT_BROKEN)
-			. += "The [fitting] has been smashed."
+			. += "[fitting]已经破裂了."
 	if(cell || has_mock_cell)
-		. += "Its backup power charge meter reads [has_mock_cell ? 100 : round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
+		. += "备用电力读数[has_mock_cell ? 100 : round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
 	//SKYRAT EDIT ADDITION
 	if(constant_flickering)
-		. += span_danger("The lighting ballast appears to be damaged, this could be fixed with a multitool.")
+		. += span_danger("灯具镇流器似乎损坏了，可以用多功能工具修复.")
 	//SKYRAT EDIT END
 
 
@@ -395,12 +395,12 @@
 	// attempt to insert light
 	if(istype(tool, /obj/item/light))
 		if(status == LIGHT_OK)
-			to_chat(user, span_warning("There is a [fitting] already inserted!"))
+			to_chat(user, span_warning("里面已经装着[fitting]了!"))
 			return
 		add_fingerprint(user)
 		var/obj/item/light/light_object = tool
 		if(!istype(light_object, light_type))
-			to_chat(user, span_warning("This type of light requires a [fitting]!"))
+			to_chat(user, span_warning("这种类型的灯具需要[fitting]!"))
 			return
 		if(!user.temporarilyRemoveItemFromInventory(light_object))
 			return
@@ -408,9 +408,9 @@
 		add_fingerprint(user)
 		if(status != LIGHT_EMPTY)
 			drop_light_tube(user)
-			to_chat(user, span_notice("You replace [light_object]."))
+			to_chat(user, span_notice("你替换了[light_object]."))
 		else
-			to_chat(user, span_notice("You insert [light_object]."))
+			to_chat(user, span_notice("你装入了[light_object]."))
 		if(length(light_object.reagents.reagent_list))
 			create_reagents(LIGHT_REAGENT_CAPACITY, SEALED_CONTAINER | TRANSPARENT)
 			light_object.reagents.trans_to(reagents, LIGHT_REAGENT_CAPACITY)
@@ -429,15 +429,15 @@
 		return ..()
 	if(tool.tool_behaviour == TOOL_SCREWDRIVER) //If it's a screwdriver open it.
 		tool.play_tool_sound(src, 75)
-		user.visible_message(span_notice("[user.name] opens [src]'s casing."), \
-			span_notice("You open [src]'s casing."), span_hear("You hear a noise."))
+		user.visible_message(span_notice("[user.name]打开了[src]的电盒."), \
+			span_notice("你打开了[src]的电盒."), span_hear("你听到一声响."))
 		deconstruct()
 		return
 
 	if(tool.item_flags & ABSTRACT)
 		return
 
-	to_chat(user, span_userdanger("You stick \the [tool] into the light socket!"))
+	to_chat(user, span_userdanger("你将[tool]插到灯具插槽里!"))
 	if(has_power() && (tool.obj_flags & CONDUCTS_ELECTRICITY))
 		do_sparks(3, TRUE, src)
 		if (prob(75))
@@ -570,7 +570,7 @@
 
 /obj/machinery/light/attack_ai(mob/user)
 	no_low_power = !no_low_power
-	to_chat(user, span_notice("Emergency lights for this fixture have been [no_low_power ? "disabled" : "enabled"]."))
+	to_chat(user, span_notice("该灯具的应急照明是[no_low_power ? "关闭" : "开启"]着的."))
 	update(FALSE)
 	return
 
@@ -585,12 +585,12 @@
 	add_fingerprint(user)
 
 	if(status == LIGHT_EMPTY)
-		to_chat(user, span_warning("There is no [fitting] in this light!"))
+		to_chat(user, span_warning("灯具里没有[fitting]!"))
 		return
 
 	// make it burn hands unless you're wearing heat insulated gloves or have the RESISTHEAT/RESISTHEATHANDS traits
 	if(!on)
-		to_chat(user, span_notice("You remove the light [fitting]."))
+		to_chat(user, span_notice("你移除了[fitting]."))
 		// create a light tube/bulb item and put it in the user's hand
 		drop_light_tube(user)
 		return
@@ -603,15 +603,15 @@
 			var/obj/item/organ/internal/stomach/ethereal/stomach = maybe_stomach
 			if(stomach.drain_time > world.time)
 				return
-			to_chat(user, span_notice("You start channeling some power through the [fitting] into your body."))
+			to_chat(user, span_notice("你引导一些能量从[fitting]进入身体."))
 			stomach.drain_time = world.time + LIGHT_DRAIN_TIME
 			while(do_after(user, LIGHT_DRAIN_TIME, target = src))
 				stomach.drain_time = world.time + LIGHT_DRAIN_TIME
 				if(istype(stomach))
-					to_chat(user, span_notice("You receive some charge from the [fitting]."))
+					to_chat(user, span_notice("你在[fitting]处得到些许充能."))
 					stomach.adjust_charge(LIGHT_POWER_GAIN)
 				else
-					to_chat(user, span_warning("You can't receive charge from the [fitting]!"))
+					to_chat(user, span_warning("你无法在[fitting]处得到充能!"))
 			return
 
 		if(user.gloves)
@@ -622,23 +622,23 @@
 		protected = TRUE
 
 	if(protected || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
-		to_chat(user, span_notice("You remove the light [fitting]."))
+		to_chat(user, span_notice("你移除了[fitting]."))
 	else if(istype(user) && user.dna.check_mutation(/datum/mutation/human/telekinesis))
-		to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
+		to_chat(user, span_notice("你用念力移除了[fitting]."))
 	else
 		var/obj/item/bodypart/affecting = user.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		if(affecting?.receive_damage( 0, 5 )) // 5 burn damage
 			user.update_damage_overlays()
 		if(HAS_TRAIT(user, TRAIT_LIGHTBULB_REMOVER))
-			to_chat(user, span_notice("You feel your [affecting] burning, and the light beginning to budge."))
+			to_chat(user, span_notice("你感觉[affecting]被烧伤，灯光也开始晃动."))
 			if(!do_after(user, 5 SECONDS, target = src))
 				return
 			if(affecting?.receive_damage( 0, 10 )) // 10 more burn damage
 				user.update_damage_overlays()
-			to_chat(user, span_notice("You manage to remove the light [fitting], shattering it in process."))
+			to_chat(user, span_notice("[fitting]在移除时碎裂了."))
 			break_light_tube()
 		else
-			to_chat(user, span_warning("You try to remove the light [fitting], but you burn your hand on it!"))
+			to_chat(user, span_warning("你尝试移除[fitting]，但它烫伤了你的手!"))
 			return
 	// create a light tube/bulb item and put it in the user's hand
 	drop_light_tube(user)
@@ -676,10 +676,10 @@
 
 /obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
-		to_chat(user, span_warning("There is no [fitting] in this light!"))
+		to_chat(user, span_warning("灯具里没有[fitting]!"))
 		return
 
-	to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
+	to_chat(user, span_notice("你用念力移除了灯具里的[fitting]."))
 	// create a light tube/bulb item and put it in the user's hand
 	var/obj/item/light/light_tube = drop_light_tube()
 	return light_tube.attack_tk(user)
@@ -765,8 +765,8 @@
 	qdel(src)
 
 /obj/machinery/light/floor
-	name = "floor light"
-	desc = "A lightbulb you can walk on without breaking it, amazing."
+	name = "地板灯"
+	desc = "一颗你可以踩上去而不会破碎的灯泡，太神奇了."
 	icon = 'icons/obj/lighting.dmi'
 	base_state = "floor" // base description and icon_state
 	icon_state = "floor"

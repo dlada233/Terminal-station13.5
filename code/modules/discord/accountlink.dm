@@ -1,8 +1,8 @@
 // IF you have linked your account, this will trigger a verify of the user
 /client/verb/verify_in_discord()
 	set category = "OOC"
-	set name = "Verify Discord Account"
-	set desc = "Verify your discord account with your BYOND account"
+	set name = "认证Discord账户"
+	set desc = "用你的BYOND账号认证你的Discord账号"
 
 	// Safety checks
 	if(!CONFIG_GET(flag/sql_enabled))

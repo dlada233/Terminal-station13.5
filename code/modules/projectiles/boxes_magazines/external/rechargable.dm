@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/recharge
 	name = "电池包"
-	desc = "一种可充电、可拆卸的电池，用作激光步枪的弹匣."
+	desc = "一种可充电、可拆卸的电池，用作光能步枪的弹匣."
 	icon_state = "oldrifle-20"
 	base_icon_state = "oldrifle"
 	ammo_type = /obj/item/ammo_casing/laser

@@ -1,6 +1,6 @@
 /datum/surgery/advanced/wing_reconstruction
-	name = "Wing Reconstruction"
-	desc = "An experimental surgical procedure that reconstructs the damaged wings of moth people. Requires Synthflesh."
+	name = "翅膀重建手术"
+	desc = "一种实验性手术，用于重建飞蛾人受损的翅膀。需要合成肉."
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -18,7 +18,7 @@
 	return ..() && wings?.burnt
 
 /datum/surgery_step/wing_reconstruction
-	name = "start wing reconstruction (hemostat)"
+	name = "开始翅膀重建 (止血钳)"
 	implements = list(
 		TOOL_HEMOSTAT = 85,
 		TOOL_SCREWDRIVER = 35,
@@ -31,11 +31,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to fix [target]'s charred wing membranes..."),
-		span_notice("[user] begins to fix [target]'s charred wing membranes."),
-		span_notice("[user] begins to perform surgery on [target]'s charred wing membranes."),
+		span_notice("你开始修复[target]烧焦的翅膀膜..."),
+		span_notice("[user]开始修复[target]烧焦的翅膀膜."),
+		span_notice("[user]开始对[target]烧焦的翅膀膜进行手术."),
 	)
-	display_pain(target, "Your wings sting like hell!")
+	display_pain(target, "你的翅膀剧痛无比！")
 
 /datum/surgery_step/wing_reconstruction/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(ishuman(target))
@@ -43,11 +43,11 @@
 		display_results(
 			user,
 			target,
-			span_notice("You succeed in reconstructing [target]'s wings."),
-			span_notice("[user] successfully reconstructs [target]'s wings!"),
-			span_notice("[user] completes the surgery on [target]'s wings."),
+			span_notice("你成功重建了[target]的翅膀."),
+			span_notice("[user]成功重建了[target]的翅膀！"),
+			span_notice("[user]完成了对[target]翅膀的手术."),
 		)
-		display_pain(target, "You can feel your wings again!")
+		display_pain(target, "你能再次感受到你的翅膀了！")
 		var/obj/item/organ/external/wings/moth/wings = target.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 		if(istype(wings, /obj/item/organ/external/wings/moth)) //make sure we only heal moth wings.
 			wings.heal_wings(user, ALL)

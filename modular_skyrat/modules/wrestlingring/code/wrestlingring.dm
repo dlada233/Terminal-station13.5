@@ -97,12 +97,12 @@
 			if(!I.tool_start_check(user, amount=0))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, span_notice("你开始修理[src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
 				atom_integrity = max_integrity
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("你修好了[src]."))
 		else
-			to_chat(user, span_warning("[src] is already in good condition!"))
+			to_chat(user, span_warning("[src]状态很好，无需修理!"))
 		return
 
 /obj/structure/wrestling_corner/wirecutter_act(mob/living/user, obj/item/tool)

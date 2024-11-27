@@ -111,8 +111,8 @@
 	variance = 35
 
 /obj/item/ammo_casing/shotgun/scatterlaser
-	name = "散射激光弹"
-	desc = "一颗先进的霰弹，使用微型激光来复制散射激光武器的效果."
+	name = "散射光能弹"
+	desc = "一颗先进的霰弹，使用微型光能来复制散射光能武器的效果."
 	icon_state = "lshell"
 	projectile_type = /obj/projectile/beam/scatter
 	pellets = 6
@@ -122,8 +122,8 @@
 	. = ..()
 	if(isnull(loaded_projectile) || !prob(40/severity))
 		return
-	name = "故障散射激光弹"
-	desc = "一颗先进的霰弹，使用微型激光来复制散射激光武器的效果，但这颗里用于供电的电容器似乎在冒烟."
+	name = "故障散射光能弹"
+	desc = "一颗先进的霰弹，使用微型光能来复制散射光能武器的效果，但这颗里用于供电的电容器似乎在冒烟."
 	projectile_type = /obj/projectile/beam/scatter/pathetic
 	loaded_projectile = new projectile_type(src)
 

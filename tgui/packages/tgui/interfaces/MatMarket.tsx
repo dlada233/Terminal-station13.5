@@ -80,7 +80,7 @@ export const MatMarket = (props) => {
               并且
               为了防止恶意操纵市场，所有注册的交易者一次最多可以购买10组材料.
               <br /> <br />
-              最终购买价格将包含回收价格的板条箱运费.
+              最终购买价格将包含回收价格的货箱运费.
             </Collapsible>
           </NoticeBox>
           <Section>
