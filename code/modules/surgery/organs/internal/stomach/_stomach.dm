@@ -3,22 +3,22 @@
 
 /obj/item/organ/internal/stomach
 	name = "胃-stomach"
-	desc = "Onaka ga suite imasu."
+	desc = "お腹すいてます."
 	icon_state = "stomach"
 	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_STOMACH
-	attack_verb_continuous = list("gores", "squishes", "slaps", "digests")
-	attack_verb_simple = list("gore", "squish", "slap", "digest")
+	attack_verb_continuous = list("割裂", "挤压", "拍打", "消化")
+	attack_verb_simple = list("割裂", "挤压", "拍打", "消化")
 
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY * 1.15 // ~13 minutes, the stomach is one of the first organs to die
 
-	low_threshold_passed = "<span class='info'>Your stomach flashes with pain before subsiding. Food doesn't seem like a good idea right now.</span>"
-	high_threshold_passed = "<span class='warning'>Your stomach flares up with constant pain- you can hardly stomach the idea of food right now!</span>"
-	high_threshold_cleared = "<span class='info'>The pain in your stomach dies down for now, but food still seems unappealing.</span>"
-	low_threshold_cleared = "<span class='info'>The last bouts of pain in your stomach have died out.</span>"
+	low_threshold_passed = "<span class='info'>你的胃突然一痛，随后疼痛逐渐缓解。现在食物看起来并不那么诱人.</span>"
+	high_threshold_passed = "<span class='warning'>你的胃持续剧痛- 你现在几乎无法忍受食物的想法!</span>"
+	high_threshold_cleared = "<span class='info'>你胃部的疼痛现在暂时缓解了，但食物仍然不太吸引人.</span>"
+	low_threshold_cleared = "<span class='info'>你胃部最后一阵疼痛已经消失了.</span>"
 
 	food_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue = 5)
 	//This is a reagent user and needs more then the 10u from edible component
@@ -111,13 +111,13 @@
 	//The stomach is damage has nutriment but low on theshhold, lo prob of vomit
 	if(SPT_PROB(0.0125 * damage * nutri_vol * nutri_vol, seconds_per_tick))
 		body.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = damage)
-		to_chat(body, span_warning("Your stomach reels in pain as you're incapable of holding down all that food!"))
+		to_chat(body, span_warning("你的胃部剧痛，你无法忍受这么多食物!"))
 		return
 
 	// the change of vomit is now high
 	if(damage > high_threshold && SPT_PROB(0.05 * damage * nutri_vol * nutri_vol, seconds_per_tick))
 		body.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = damage)
-		to_chat(body, span_warning("Your stomach reels in pain as you're incapable of holding down all that food!"))
+		to_chat(body, span_warning("你的胃部剧痛，你无法忍受这么多食物!"))
 
 /obj/item/organ/internal/stomach/proc/handle_hunger(mob/living/carbon/human/human, seconds_per_tick, times_fired)
 	if(HAS_TRAIT(human, TRAIT_NOHUNGER))
@@ -126,12 +126,12 @@
 	//The fucking TRAIT_FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
 	if(HAS_TRAIT_FROM(human, TRAIT_FAT, OBESITY))//I share your pain, past coder.
 		if(human.overeatduration < (200 SECONDS))
-			to_chat(human, span_notice("You feel fit again!"))
+			to_chat(human, span_notice("你又感觉健康了!"))
 			human.remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 
 	else
 		if(human.overeatduration >= (200 SECONDS))
-			to_chat(human, span_danger("You suddenly feel blubbery!"))
+			to_chat(human, span_danger("你突然感觉臃肿了!"))
 			human.add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 
 	// nutrition decrease and satiety
@@ -169,15 +169,15 @@
 		human.metabolism_efficiency = 1
 	else if(nutrition > NUTRITION_LEVEL_FED && human.satiety > 80)
 		if(human.metabolism_efficiency != 1.25)
-			to_chat(human, span_notice("You feel vigorous."))
+			to_chat(human, span_notice("你感到精力充沛."))
 			human.metabolism_efficiency = 1.25
 	else if(nutrition < NUTRITION_LEVEL_STARVING + 50)
 		if(human.metabolism_efficiency != 0.8)
-			to_chat(human, span_notice("You feel sluggish."))
+			to_chat(human, span_notice("你感到有些迟钝的."))
 		human.metabolism_efficiency = 0.8
 	else
 		if(human.metabolism_efficiency == 1.25)
-			to_chat(human, span_notice("You no longer feel vigorous."))
+			to_chat(human, span_notice("你不在感到精力充沛."))
 		human.metabolism_efficiency = 1
 
 	//Hunger slowdown for if mood isn't enabled
@@ -211,7 +211,7 @@
 				disgusted.adjust_stutter(2 SECONDS)
 				disgusted.adjust_confusion(2 SECONDS)
 			if(SPT_PROB(5, seconds_per_tick) && !disgusted.stat)
-				to_chat(disgusted, span_warning("You feel kind of iffy..."))
+				to_chat(disgusted, span_warning("你觉得有点不确定..."))
 			disgusted.adjust_jitter(-6 SECONDS)
 		if(disgust >= DISGUST_LEVEL_VERYGROSS)
 			if(SPT_PROB(pukeprob, seconds_per_tick)) //iT hAndLeS mOrE ThaN PukInG
@@ -267,15 +267,15 @@
 
 /obj/item/organ/internal/stomach/bone/plasmaman
 	name = "消化晶体-digestive crystal"
-	desc = "A strange crystal that is responsible for metabolizing the unseen energy force that feeds plasmamen."
+	desc = "一种奇怪的晶体，负责代谢等离子人赖以生存的看不见的能量."
 	icon_state = "stomach-p"
 	metabolism_efficiency = 0.06
 	organ_traits = null
 
 /obj/item/organ/internal/stomach/cybernetic
 	name = "初级电子胃-basic cybernetic stomach"
-	desc = "A basic device designed to mimic the functions of a human stomach"
-	failing_desc = "seems to be broken."
+	desc = "一个用来模仿人类胃功能的基本装置."
+	failing_desc = "似乎坏了."
 	icon_state = "stomach-c"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
@@ -311,7 +311,7 @@
 	metabolism_efficiency = 0.1
 
 /obj/item/organ/internal/stomach/cybernetic/surplus
-	name = "盈余人工胃-surplus prosthetic stomach"
+	name = "廉价人工胃-surplus prosthetic stomach"
 	desc = "一块塑料制成的椭圆形机械装置，使用硫酸代替胃酸.脆弱不堪，且新陈代谢极其缓慢.完全无法抵御电磁脉冲的攻击."
 	icon_state = "stomach-c-s"
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.35

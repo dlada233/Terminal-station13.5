@@ -3,7 +3,7 @@ import { TRAITOR_MECHANICAL_DESCRIPTION } from './traitor';
 
 const SyndicateSleeperAgent: Antagonist = {
   key: 'syndicatesleeperagent',
-  name: '辛迪加潜伏特工',
+  name: '辛迪加沉睡特工',
   description: [
     `
       一种中局加入的叛徒.

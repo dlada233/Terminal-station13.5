@@ -18,7 +18,7 @@
 /obj/item/bodypart/arm/left/lizard
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
-	unarmed_attack_verbs = list("slash", "scratch", "claw")
+	unarmed_attack_verbs = list("抓挠", "撕扯")
 	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
@@ -27,7 +27,7 @@
 /obj/item/bodypart/arm/right/lizard
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
-	unarmed_attack_verbs = list("slash", "scratch", "claw")
+	unarmed_attack_verbs = list("抓挠", "撕扯")
 	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'

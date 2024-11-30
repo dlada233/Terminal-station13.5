@@ -1,5 +1,5 @@
 /datum/surgery/organ_manipulation
-	name = "Organ manipulation"
+	name = "器官操作"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB | SURGERY_MORBID_CURIOSITY
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	steps = list(
@@ -24,7 +24,7 @@
 	)
 
 /datum/surgery/organ_manipulation/external
-	name = "Feature manipulation"
+	name = "特征操作"
 	possible_locs = list(
 		BODY_ZONE_CHEST,
 		BODY_ZONE_HEAD,
@@ -42,7 +42,7 @@
 	)
 
 /datum/surgery/organ_manipulation/alien
-	name = "Alien organ manipulation"
+	name = "异形器官操作"
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	target_mobtypes = list(/mob/living/carbon/alien/adult)
 	steps = list(
@@ -55,7 +55,7 @@
 	)
 
 /datum/surgery/organ_manipulation/mechanic
-	name = "Prosthesis organ manipulation"
+	name = "义体器官操作"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_LIMB
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
@@ -88,7 +88,7 @@
 	if(step.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
 		return TRUE
 	if(tool && tool.tool_behaviour) //Mechanic organ manipulation isn't done with just surgery tools
-		to_chat(user, span_warning("This step requires a different tool!"))
+		to_chat(user, span_warning("这一步需要不同的工具!"))
 		return TRUE
 
 	return FALSE
@@ -110,7 +110,7 @@
 	)
 
 /datum/surgery/organ_manipulation/mechanic/external
-	name = "Prosthetic feature manipulation"
+	name = "义体特征操作"
 	possible_locs = list(
 		BODY_ZONE_CHEST,
 		BODY_ZONE_HEAD,
@@ -130,7 +130,7 @@
 
 ///Organ manipulation base class. Do not use, it wont work. Use it's subtypes
 /datum/surgery_step/manipulate_organs
-	name = "manipulate organs"
+	name = "操作器官"
 	repeatable = TRUE
 	implements = list(
 		/obj/item/organ = 100,
@@ -152,13 +152,13 @@
 		preop_sound = initial(preop_sound)
 		success_sound = initial(success_sound)
 		if(!length(tool.contents))
-			to_chat(user, span_warning("There is nothing inside [tool]!"))
+			to_chat(user, span_warning("[tool]里面什么也没有!"))
 			return SURGERY_STEP_FAIL
 		target_organ = tool.contents[1]
 		if(!isorgan(target_organ))
 			if (target_zone == BODY_ZONE_PRECISE_EYES)
 				target_zone = check_zone(target_zone)
-			to_chat(user, span_warning("You cannot put [target_organ] into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"))
+			to_chat(user, span_warning("你无法把[target_organ]放入[target]的[target.parse_zone_with_bodypart(target_zone)]!"))
 			return SURGERY_STEP_FAIL
 		tool = target_organ
 	if(isorgan(tool))
@@ -167,11 +167,11 @@
 		success_sound = 'sound/surgery/organ2.ogg'
 		target_organ = tool
 		if(target_zone != target_organ.zone || target.get_organ_slot(target_organ.slot))
-			to_chat(user, span_warning("There is no room for [target_organ] in [target]'s [target.parse_zone_with_bodypart(target_zone)]!"))
+			to_chat(user, span_warning("[target_organ]没有空间放入[target]的[target.parse_zone_with_bodypart(target_zone)]!"))
 			return SURGERY_STEP_FAIL
 		var/obj/item/organ/meatslab = tool
 		if(!meatslab.useable)
-			to_chat(user, span_warning("[target_organ] seems to have been chewed on, you can't use this!"))
+			to_chat(user, span_warning("[target_organ]似乎被咬过，无法使用!"))
 			return SURGERY_STEP_FAIL
 
 		if(!can_use_organ(user, meatslab))
@@ -182,11 +182,11 @@
 		display_results(
 			user,
 			target,
-			span_notice("You begin to insert [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-			span_notice("[user] begins to insert [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-			span_notice("[user] begins to insert something into [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+			span_notice("你开始将[tool]放入[target]的[target.parse_zone_with_bodypart(target_zone)]..."),
+			span_notice("[user]开始将[tool]放入[target]的[target.parse_zone_with_bodypart(target_zone)]."),
+			span_notice("[user]开始往[target]的[target.parse_zone_with_bodypart(target_zone)]里放入某物."),
 		)
-		display_pain(target, "You can feel something being placed in your [target.parse_zone_with_bodypart(target_zone)]!")
+		display_pain(target, "你感到有东西被放入了你的[target.parse_zone_with_bodypart(target_zone)]！")
 
 
 	else if(implement_type in implements_extract)
@@ -199,7 +199,7 @@
 		if (target_zone == BODY_ZONE_PRECISE_EYES)
 			target_zone = check_zone(target_zone)
 		if(!length(organs))
-			to_chat(user, span_warning("There are no removable organs in [target]'s [target.parse_zone_with_bodypart(target_zone)]!"))
+			to_chat(user, span_warning("[target]的[target.parse_zone_with_bodypart(target_zone)]里没有可移除的器官！"))
 			return SURGERY_STEP_FAIL
 		else
 			for(var/obj/item/organ/organ in organs)
@@ -207,7 +207,7 @@
 				organs -= organ
 				organs[organ.name] = organ
 
-			var/chosen_organ = tgui_input_list(user, "Remove which organ?", "Surgery", sort_list(organs))
+			var/chosen_organ = tgui_input_list(user, "移除哪个器官？", "手术", sort_list(organs))
 			if(isnull(chosen_organ))
 				return SURGERY_STEP_FAIL
 			target_organ = chosen_organ
@@ -216,16 +216,16 @@
 				if(!target_organ)
 					return SURGERY_STEP_FAIL
 				if(target_organ.organ_flags & ORGAN_UNREMOVABLE)
-					to_chat(user, span_warning("[target_organ] is too well connected to take out!"))
+					to_chat(user, span_warning("[target_organ]连接得太紧密，无法取出！"))
 					return SURGERY_STEP_FAIL
 				display_results(
 					user,
 					target,
-					span_notice("You begin to extract [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-					span_notice("[user] begins to extract [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-					span_notice("[user] begins to extract something from [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+					span_notice("你开始从[target]的[target.parse_zone_with_bodypart(target_zone)]里取出[target_organ]..."),
+					span_notice("[user]开始从[target]的[target.parse_zone_with_bodypart(target_zone)]里取出[target_organ]."),
+					span_notice("[user]开始从[target]的[target.parse_zone_with_bodypart(target_zone)]里取出某物."),
 				)
-				display_pain(target, "You can feel your [target_organ.name] being removed from your [target.parse_zone_with_bodypart(target_zone)]!")
+				display_pain(target, "你感到你的[target_organ.name]正在从你的[target.parse_zone_with_bodypart(target_zone)]里被取出！")
 			else
 				return SURGERY_STEP_FAIL
 
@@ -247,11 +247,11 @@
 			display_results(
 				user,
 				target,
-				span_notice("You insert [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-				span_notice("[user] inserts [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
-				span_notice("[user] inserts something into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+				span_notice("你把[tool]插入了[target]的[target.parse_zone_with_bodypart(target_zone)]."),
+				span_notice("[user]把[tool]插入了[target]的[target.parse_zone_with_bodypart(target_zone)]！"),
+				span_notice("[user]把某物插入了[target]的[target.parse_zone_with_bodypart(target_zone)]！"),
 			)
-			display_pain(target, "Your [target.parse_zone_with_bodypart(target_zone)] throbs with pain as your new [tool.name] comes to life!")
+			display_pain(target, "你的[target.parse_zone_with_bodypart(target_zone)]剧痛，你的新[tool.name]开始活跃！")
 			target_organ.on_surgical_insertion(user, target, target_zone, tool)
 		else
 			target_organ.forceMove(target.loc)
@@ -261,12 +261,12 @@
 			display_results(
 				user,
 				target,
-				span_notice("You successfully extract [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-				span_notice("[user] successfully extracts [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
-				span_notice("[user] successfully extracts something from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+				span_notice("你成功地从[target]的[target.parse_zone_with_bodypart(target_zone)]中提取了[target_organ]."),
+				span_notice("[user]成功地从[target]的[target.parse_zone_with_bodypart(target_zone)]中提取了[target_organ]！"),
+				span_notice("[user]成功地从[target]的[target.parse_zone_with_bodypart(target_zone)]中提取了某物！"),
 			)
-			display_pain(target, "Your [target.parse_zone_with_bodypart(target_zone)] throbs with pain, you can't feel your [target_organ.name] anymore!")
-			log_combat(user, target, "surgically removed [target_organ.name] from", addition="COMBAT MODE: [uppertext(user.combat_mode)]")
+			display_pain(target, "你的[target.parse_zone_with_bodypart(target_zone)]剧痛，你再也感觉不到你的[target_organ.name]了！")
+			log_combat(user, target, "从[target]身上外科移除了[target_organ.name]", addition="COMBAT MODE：[uppertext(user.combat_mode)]")
 			target_organ.Remove(target)
 			target_organ.forceMove(get_turf(target))
 			target_organ.on_surgical_removal(user, target, target_zone, tool)
@@ -274,9 +274,9 @@
 			display_results(
 				user,
 				target,
-				span_warning("You can't extract anything from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
-				span_notice("[user] can't seem to extract anything from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
-				span_notice("[user] can't seem to extract anything from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+				span_warning("你不能从[target]的[target.parse_zone_with_bodypart(target_zone)]中提取任何东西！"),
+				span_notice("[user]似乎不能从[target]的[target.parse_zone_with_bodypart(target_zone)]中提取任何东西！"),
+				span_notice("[user]似乎不能从[target]的[target.parse_zone_with_bodypart(target_zone)]中提取任何东西！"),
 			)
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID) && ishuman(user))
 		var/mob/living/carbon/human/morbid_weirdo = user
@@ -290,7 +290,7 @@
 ///Surgery step for internal organs, like hearts and brains
 /datum/surgery_step/manipulate_organs/internal
 	time = 6.4 SECONDS
-	name = "manipulate organs (hemostat/organ)"
+	name = "操作器官 (止血钳/器官)"
 
 ///only operate on internal organs
 /datum/surgery_step/manipulate_organs/internal/can_use_organ(mob/user, obj/item/organ/organ)
@@ -299,12 +299,12 @@
 ///prosthetic surgery gives full effectiveness to crowbars (and hemostats)
 /datum/surgery_step/manipulate_organs/internal/mechanic
 	implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 100, /obj/item/kitchen/fork = 35)
-	name = "manipulate prosthetic organs (hemostat or crowbar/organ)"
+	name = "操作人造器官 (止血钳或撬棍/器官)"
 
 ///Surgery step for external organs/features, like tails, frills, wings etc
 /datum/surgery_step/manipulate_organs/external
 	time = 3.2 SECONDS
-	name = "manipulate features (hemostat/feature)"
+	name = "操作特征 (止血钳/特征)"
 
 ///Only operate on external organs
 /datum/surgery_step/manipulate_organs/external/can_use_organ(mob/user, obj/item/organ/organ)
@@ -313,4 +313,4 @@
 ///prosthetic surgery gives full effectiveness to crowbars (and hemostats)
 /datum/surgery_step/manipulate_organs/external/mechanic
 	implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 100, /obj/item/kitchen/fork = 35)
-	name = "manipulate prosthetic features (hemostat or crowbar/feature)"
+	name = "操作人造特征 (止血钳或撬棍/特征)"

@@ -16,7 +16,7 @@
 
 /obj/item/bodypart/arm/left/snail
 	limb_id = SPECIES_SNAIL
-	unarmed_attack_verbs = list("slap")
+	unarmed_attack_verbs = list("抓挠")
 	unarmed_attack_effect = ATTACK_EFFECT_DISARM
 	unarmed_damage_low = 1
 	unarmed_damage_high = 2 //snails are soft and squishy
@@ -25,7 +25,7 @@
 
 /obj/item/bodypart/arm/right/snail
 	limb_id = SPECIES_SNAIL
-	unarmed_attack_verbs = list("slap")
+	unarmed_attack_verbs = list("抓挠")
 	unarmed_attack_effect = ATTACK_EFFECT_DISARM
 	unarmed_damage_low = 1
 	unarmed_damage_high = 2 //snails are soft and squishy
@@ -223,7 +223,7 @@
 
 /obj/item/bodypart/arm/left/pod
 	limb_id = SPECIES_PODPERSON
-	unarmed_attack_verbs = list("slash", "lash")
+	unarmed_attack_verbs = list("抓挠", "抽打")
 	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slice.ogg'
@@ -232,7 +232,7 @@
 
 /obj/item/bodypart/arm/right/pod
 	limb_id = SPECIES_PODPERSON
-	unarmed_attack_verbs = list("slash", "lash")
+	unarmed_attack_verbs = list("抓挠", "抽打")
 	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slice.ogg'

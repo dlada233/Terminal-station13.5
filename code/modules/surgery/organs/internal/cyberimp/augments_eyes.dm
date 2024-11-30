@@ -10,7 +10,7 @@
 // HUD implants
 /obj/item/organ/internal/cyberimp/eyes/hud
 	name = "HUD implant-HUD植入物"
-	desc = "These cybernetic eyes will display a HUD over everything you see. Maybe."
+	desc = "这双机械眼会在你所看到的一切之上显示一个平视显示器."
 	slot = ORGAN_SLOT_HUD
 	actions_types = list(/datum/action/item_action/toggle_hud)
 	var/HUD_type = 0
@@ -25,13 +25,13 @@
 			var/datum/atom_hud/hud = GLOB.huds[HUD_type]
 			hud.hide_from(eye_owner)
 		toggled_on = FALSE
-		balloon_alert(eye_owner, "hud disabled")
+		balloon_alert(eye_owner, "hud关闭")
 	else
 		if(HUD_type)
 			var/datum/atom_hud/hud = GLOB.huds[HUD_type]
 			hud.show_to(eye_owner)
 		toggled_on = TRUE
-		balloon_alert(eye_owner, "hud enabled")
+		balloon_alert(eye_owner, "hud开启")
 
 /obj/item/organ/internal/cyberimp/eyes/hud/Insert(mob/living/carbon/eye_owner, special = FALSE, movement_flags)
 	. = ..()

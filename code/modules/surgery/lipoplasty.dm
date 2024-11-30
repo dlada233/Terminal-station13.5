@@ -1,5 +1,5 @@
 /datum/surgery/lipoplasty
-	name = "Lipoplasty"
+	name = "抽脂手术"
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -17,7 +17,7 @@
 
 //cut fat
 /datum/surgery_step/cut_fat
-	name = "cut excess fat (circular saw)"
+	name = "切割多余脂肪 (圆锯)"
 	implements = list(
 		TOOL_SAW = 100,
 		/obj/item/shovel/serrated = 75,
@@ -31,30 +31,30 @@
 	)
 
 /datum/surgery_step/cut_fat/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message(span_notice("[user] begins to cut away [target]'s excess fat."), span_notice("You begin to cut away [target]'s excess fat..."))
+	user.visible_message(span_notice("[user]开始切割[target]的多余脂肪."), span_notice("你开始切割[target]的多余脂肪..."))
 	display_results(
 		user,
 		target,
-		span_notice("You begin to cut away [target]'s excess fat..."),
-		span_notice("[user] begins to cut away [target]'s excess fat."),
-		span_notice("[user] begins to cut [target]'s [target_zone] with [tool]."),
+		span_notice("你开始切割[target]的多余脂肪..."),
+		span_notice("[user]开始切割[target]的多余脂肪."),
+		span_notice("[user]开始用[tool]切割[target]的[target_zone]."),
 	)
-	display_pain(target, "You feel a stabbing in your [target_zone]!")
+	display_pain(target, "你感到[target_zone]传来一阵刺痛！")
 
 /datum/surgery_step/cut_fat/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
 	display_results(
 		user,
 		target,
-		span_notice("You cut [target]'s excess fat loose."),
-		span_notice("[user] cuts [target]'s excess fat loose!"),
-		span_notice("[user] finishes the cut on [target]'s [target_zone]."),
+		span_notice("你把[target]的多余脂肪切了下来."),
+		span_notice("[user]把[target]的多余脂肪切了下来！"),
+		span_notice("[user]完成了对[target]的[target_zone]的切割."),
 	)
-	display_pain(target, "The fat in your [target_zone] comes loose, dangling and hurting like hell!")
+	display_pain(target, "[target_zone]的脂肪松了下来，晃动着，疼得要命！")
 	return TRUE
 
 //remove fat
 /datum/surgery_step/remove_fat
-	name = "remove loose fat (retractor)"
+	name = "移除松弛脂肪 (牵开器)"
 	implements = list(
 		TOOL_RETRACTOR = 100,
 		TOOL_SCREWDRIVER = 45,
@@ -67,19 +67,19 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to extract [target]'s loose fat..."),
-		span_notice("[user] begins to extract [target]'s loose fat!"),
-		span_notice("[user] begins to extract something from [target]'s [target_zone]."),
+		span_notice("你开始抽取[target]的松弛脂肪..."),
+		span_notice("[user]开始抽取[target]的松弛脂肪！"),
+		span_notice("[user]开始从[target]的[target_zone]中抽取东西."),
 	)
-	display_pain(target, "You feel an oddly painless tugging on your loose fat!")
+	display_pain(target, "你感到松弛的脂肪被奇怪而无痛地拉了出来！")
 
 /datum/surgery_step/remove_fat/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	display_results(
 		user,
 		target,
-		span_notice("You extract [target]'s fat."),
-		span_notice("[user] extracts [target]'s fat!"),
-		span_notice("[user] extracts [target]'s fat!"),
+		span_notice("你从[target]身上抽出了脂肪."),
+		span_notice("[user]从[target]身上抽出了脂肪！"),
+		span_notice("[user]从[target]身上抽出了脂肪！"),
 	)
 	target.overeatduration = 0 //patient is unfatted
 	var/removednutriment = target.nutrition
@@ -95,8 +95,8 @@
 
 	if(typeofmeat)
 		var/obj/item/food/meat/slab/human/newmeat = new typeofmeat
-		newmeat.name = "fatty meat"
-		newmeat.desc = "Extremely fatty tissue taken from a patient."
+		newmeat.name = "肥肉"
+		newmeat.desc = "从病人身上取出的极度肥厚的组织."
 		newmeat.subjectname = human.real_name
 		newmeat.subjectjob = human.job
 		newmeat.reagents.add_reagent (/datum/reagent/consumable/nutriment, (removednutriment / 15)) //To balance with nutriment_factor of nutriment

@@ -1,11 +1,11 @@
 /obj/item/disk/surgery/sleeper_protocol
-	name = "Suspicious Surgery Disk"
-	desc = "The disk provides instructions on how to turn someone into a sleeper agent for the Syndicate."
+	name = "可疑的手术磁盘"
+	desc = "磁盘提供了如何将某人变成辛迪加组织的沉睡特工的指示."
 	surgeries = list(/datum/surgery/advanced/brainwashing_sleeper)
 
 /datum/surgery/advanced/brainwashing_sleeper
-	name = "Sleeper Agent Surgery"
-	desc = "A surgical procedure which implants the sleeper protocol into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
+	name = "沉睡特工手术"
+	desc = "一种将沉睡协议植入患者大脑的手术过程，使其成为他们的绝对首要任务. 可以使用心灵防护植入物清除."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -28,18 +28,18 @@
 /datum/surgery_step/brainwash/sleeper_agent
 	time = 25 SECONDS
 	var/static/list/possible_objectives = list(
-		"You love the Syndicate.",
-		"Do not trust Nanotrasen.",
-		"The Captain is a lizardperson.",
-		"Nanotrasen isn't real.",
-		"They put something in the food to make you forget.",
-		"You are the only real person on the station.",
-		"Things would be a lot better on the station if more people were screaming, someone should do something about that.",
-		"The people in charge around here have only ill intentions for the crew.",
-		"Help the crew? What have they ever done for you anyways?",
-		"Does your bag feel lighter? I bet those guys in Security stole something from it. Go get it back.",
-		"Command is incompetent, someone with some REAL authority should take over around here.",
-		"The cyborgs and the AI are stalking you. What are they planning?",
+		"你爱辛迪加.",
+		"不要信任纳米公司.",
+		"船长是蜥蜴人.",
+		"纳米公司不存在.",
+		"他们在食物里放了东西让你健忘.",
+		"你是站上唯一真实的人.",
+		"如果更多人尖叫的话站上情况会好很多，应该有人去做点什么.",
+		"这里管事的人对船员只有恶意.",
+		"帮助船员？他们为你做过什么？",
+		"你的包感觉轻了吗？我打赌那些安保人员从你包里偷了东西.去拿回来.",
+		"指挥层无能，应该有人用真正的权力来接管这里.",
+		"赛博和AI在跟踪你.他们计划了什么？",
 	)
 
 /datum/surgery_step/brainwash/sleeper_agent/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -47,15 +47,15 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to brainwash [target]..."),
-		span_notice("[user] begins to fix [target]'s brain."),
-		span_notice("[user] begins to perform surgery on [target]'s brain."),
+		span_notice("你开始洗脑[target]..."),
+		span_notice("[user]开始修复[target]的大脑."),
+		span_notice("[user]开始对[target]的大脑进行手术."),
 	)
-	display_pain(target, "Your head pounds with unimaginable pain!") // Same message as other brain surgeries
+	display_pain(target, "你的头感到难以想象的疼痛!") // Same message as other brain surgeries
 
 /datum/surgery_step/brainwash/sleeper_agent/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(target.stat == DEAD)
-		to_chat(user, span_warning("They need to be alive to perform this surgery!"))
+		to_chat(user, span_warning("他们必须活着才能进行这项手术!"))
 		return FALSE
 	. = ..()
 	if(!.)

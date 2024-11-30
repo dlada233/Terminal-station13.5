@@ -1,6 +1,6 @@
 ///hud action for starting and stopping flight
 /datum/action/innate/flight
-	name = "Toggle Flight"
+	name = "切换飞行"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_IMMOBILE|AB_CHECK_INCAPACITATED
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "flight"
@@ -11,9 +11,9 @@
 	if(wings?.can_fly(human))
 		wings.toggle_flight(human)
 		if(!(human.movement_type & FLYING))
-			to_chat(human, span_notice("You settle gently back onto the ground..."))
+			to_chat(human, span_notice("你轻轻地回到地上..."))
 		else
-			to_chat(human, span_notice("You beat your wings and begin to hover gently above the ground..."))
+			to_chat(human, span_notice("你拍打着翅膀，开始在地面上轻轻地盘旋..."))
 			human.set_resting(FALSE, TRUE)
 
 ///The true wings that you can use to fly and shit (you cant actually shit with them)
@@ -67,7 +67,7 @@
 		return FALSE
 	//Jumpsuits have tail holes, so it makes sense they have wing holes too
 	if(human.wear_suit && ((human.wear_suit.flags_inv & HIDEJUMPSUIT) && (!human.wear_suit.species_exception || !is_type_in_list(src, human.wear_suit.species_exception))))
-		to_chat(human, span_warning("Your suit blocks your wings from extending!"))
+		to_chat(human, span_warning("你的外装挡住了你的翅膀!"))
 		return FALSE
 	var/turf/location = get_turf(human)
 	if(!location)
@@ -75,7 +75,7 @@
 
 	var/datum/gas_mixture/environment = location.return_air()
 	if(environment?.return_pressure() < HAZARD_LOW_PRESSURE + 10)
-		to_chat(human, span_warning("The atmosphere is too thin for you to fly!"))
+		to_chat(human, span_warning("大气环境太稀薄了，你飞不起来!"))
 		return FALSE
 	else
 		return TRUE
@@ -86,7 +86,7 @@
 	if(human.buckled)
 		buckled_obj = human.buckled
 
-	to_chat(human, span_notice("Your wings spazz out and launch you!"))
+	to_chat(human, span_notice("你张开翅膀飞了起来!"))
 
 	playsound(human.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
@@ -174,29 +174,29 @@
 
 ///angel wings, which relate to humans. comes with holiness.
 /obj/item/organ/external/wings/functional/angel
-	name = "angel wings"
-	desc = "Holier-than-thou attitude not included."
+	name = "天使翅膀"
+	desc = "不包括自以为是的态度."
 	sprite_accessory_override = /datum/sprite_accessory/wings_open/angel
 
 	organ_traits = list(TRAIT_HOLY)
 
 ///dragon wings, which relate to lizards.
 /obj/item/organ/external/wings/functional/dragon
-	name = "dragon wings"
-	desc = "Hey, HEY- NOT lizard wings. Dragon wings. Mighty dragon wings."
+	name = "龙翼"
+	desc = "嘿，嘿-不是蜥蜴的翅膀，龙的翅膀，巨龙的翅膀."
 	sprite_accessory_override = /datum/sprite_accessory/wings/dragon
 
 ///robotic wings, which relate to androids.
 /obj/item/organ/external/wings/functional/robotic
-	name = "robotic wings"
-	desc = "Using microscopic hover-engines, or \"microwings,\" as they're known in the trade, these tiny devices are able to lift a few grams at a time. Gathering enough of them, and you can lift impressively large things."
+	name = "机械翅膀"
+	desc = "这些微型装置利用微型悬浮引擎，在业内也被称为“微翅”，能够一次提起几克重的物体；如果聚集足够多的这种装置，就能举起令人惊叹的大件物品."
 	organ_flags = ORGAN_ROBOTIC
 	sprite_accessory_override = /datum/sprite_accessory/wings/robotic
 
 ///skeletal wings, which relate to skeletal races.
 /obj/item/organ/external/wings/functional/skeleton
-	name = "skeletal wings"
-	desc = "Powered by pure edgy-teenager-notebook-scribblings. Just kidding. But seriously, how do these keep you flying?!"
+	name = "骨翼"
+	desc = "靠青春期少年的笔记本涂鸦提供动力？开个玩笑。，说真的，这些是怎么让你飞起来的？！"
 	sprite_accessory_override = /datum/sprite_accessory/wings/skeleton
 
 /obj/item/organ/external/wings/functional/moth/make_flap_sound(mob/living/carbon/wing_owner)
@@ -204,24 +204,24 @@
 
 ///mothra wings, which relate to moths.
 /obj/item/organ/external/wings/functional/moth/mothra
-	name = "mothra wings"
-	desc = "Fly like the mighty mothra of legend once did."
+	name = "飞蛾翅膀"
+	desc = "像传说中伟大的母亲那样飞翔."
 	sprite_accessory_override = /datum/sprite_accessory/wings/mothra
 
 ///megamoth wings, which relate to moths as an alternate choice. they're both pretty cool.
 /obj/item/organ/external/wings/functional/moth/megamoth
-	name = "megamoth wings"
-	desc = "Don't get murderous."
+	name = "大飞蛾翅膀"
+	desc = "不要这么扑棱."
 	sprite_accessory_override = /datum/sprite_accessory/wings/megamoth
 
 ///fly wings, which relate to flies.
 /obj/item/organ/external/wings/functional/fly
-	name = "fly wings"
-	desc = "Fly as a fly."
+	name = "苍蝇翅膀"
+	desc = "像苍蝇一样飞."
 	sprite_accessory_override = /datum/sprite_accessory/wings/fly
 
 ///slime wings, which relate to slimes.
 /obj/item/organ/external/wings/functional/slime
-	name = "slime wings"
-	desc = "How does something so squishy even fly?"
+	name = "史莱姆翅膀"
+	desc = "这么软的东西是怎么飞起来的?"
 	sprite_accessory_override = /datum/sprite_accessory/wings/slime

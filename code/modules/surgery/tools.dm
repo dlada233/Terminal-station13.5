@@ -1,6 +1,6 @@
 /obj/item/retractor
-	name = "retractor"
-	desc = "Retracts stuff."
+	name = "牵开器"
+	desc = "用于牵开物体."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "retractor"
 	inhand_icon_state = "retractor"
@@ -19,7 +19,7 @@
 	return surgical_tray_overlay
 
 /obj/item/retractor/augment
-	desc = "Micro-mechanical manipulator for retracting stuff."
+	desc = "微机械操作器，用于牵开物体."
 	toolspeed = 0.5
 
 /obj/item/retractor/cyborg
@@ -27,8 +27,8 @@
 	icon_state = "toolkit_medborg_retractor"
 
 /obj/item/hemostat
-	name = "hemostat"
-	desc = "You think you have seen this before."
+	name = "止血钳"
+	desc = "你觉得你之前见过这个."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "hemostat"
 	inhand_icon_state = "hemostat"
@@ -38,8 +38,8 @@
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb_continuous = list("attacks", "pinches")
-	attack_verb_simple = list("attack", "pinch")
+	attack_verb_continuous = list("夹击", "夹紧")
+	attack_verb_simple = list("夹击", "夹紧")
 	tool_behaviour = TOOL_HEMOSTAT
 	toolspeed = 1
 	/// How this looks when placed in a surgical tray
@@ -49,7 +49,7 @@
 	return surgical_tray_overlay
 
 /obj/item/hemostat/augment
-	desc = "Tiny servos power a pair of pincers to stop bleeding."
+	desc = "微型伺服器驱动一对钳子以止血."
 	toolspeed = 0.5
 
 /obj/item/hemostat/cyborg
@@ -57,8 +57,8 @@
 	icon_state = "toolkit_medborg_hemostat"
 
 /obj/item/cautery
-	name = "cautery"
-	desc = "This stops bleeding."
+	name = "缝合器"
+	desc = "这个用于止血."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "cautery"
 	inhand_icon_state = "cautery"
@@ -68,8 +68,8 @@
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb_continuous = list("burns")
-	attack_verb_simple = list("burn")
+	attack_verb_continuous = list("灼烧")
+	attack_verb_simple = list("灼烧")
 	tool_behaviour = TOOL_CAUTERY
 	toolspeed = 1
 	heat = 500
@@ -80,10 +80,10 @@
 	return surgical_tray_overlay
 
 /obj/item/cautery/ignition_effect(atom/ignitable_atom, mob/user)
-	. = span_notice("[user] touches the end of [src] to \the [ignitable_atom], igniting it with a puff of smoke.")
+	. = span_notice("[user]将[src]的末端触碰到[ignitable_atom]，伴随着一缕烟雾将其点燃。")
 
 /obj/item/cautery/augment
-	desc = "A heated element that cauterizes wounds."
+	desc = "加热元件，用于烧灼伤口."
 	toolspeed = 0.5
 
 /obj/item/cautery/cyborg
@@ -91,8 +91,8 @@
 	icon_state = "toolkit_medborg_cautery"
 
 /obj/item/cautery/advanced
-	name = "searing tool"
-	desc = "It projects a high power laser used for medical applications."
+	name = "高级缝合器"
+	desc = "它投射出用于医疗应用的高功率激光."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "e_cautery"
 	inhand_icon_state = "e_cautery"
@@ -138,17 +138,17 @@
 		tool_behaviour = TOOL_CAUTERY
 		set_light_color(LIGHT_COLOR_ORANGE)
 
-	balloon_alert(user, "lenses set to [active ? "drill" : "mend"]")
+	balloon_alert(user, "聚焦透镜设置为[active ? "钻孔" : "修补"]模式")
 	playsound(user ? user : src, 'sound/weapons/tap.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/cautery/advanced/examine()
 	. = ..()
-	. += span_notice("It's set to [tool_behaviour == TOOL_CAUTERY ? "mending" : "drilling"] mode.")
+	. += span_notice("它当前设置为[tool_behaviour == TOOL_CAUTERY ? "修补" : "钻孔"]模式.")
 
 /obj/item/surgicaldrill
-	name = "surgical drill"
-	desc = "You can drill using this item. You dig?"
+	name = "外科电钻"
+	desc = "你可以使用这个物品进行钻孔作业，洞了没?"
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "drill"
 	inhand_icon_state = "drill"
@@ -161,8 +161,8 @@
 	force = 15
 	demolition_mod = 0.5
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("drills")
-	attack_verb_simple = list("drill")
+	attack_verb_continuous = list("钻孔")
+	attack_verb_simple = list("钻孔")
 	tool_behaviour = TOOL_DRILL
 	toolspeed = 1
 	sharpness = SHARP_POINTY
@@ -179,7 +179,7 @@
 	return surgical_tray_overlay
 
 /obj/item/surgicaldrill/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] rams [src] into [user.p_their()] chest! 看起来是在尝试自杀!"))
+	user.visible_message(span_suicide("[user]用[src]狠狠地撞向自己胸口! 看起来是在尝试自杀!"))
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, gib), null, null, TRUE, TRUE), 2.5 SECONDS)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
@@ -190,14 +190,14 @@
 	icon_state = "toolkit_medborg_drill"
 
 /obj/item/surgicaldrill/augment
-	desc = "Effectively a small power drill contained within your arm. May or may not pierce the heavens."
+	desc = "实际上是你手臂内的小型电钻，可能会，也可能不会穿透天际."
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 0.5
 
 /obj/item/scalpel
-	name = "scalpel"
-	desc = "Cut, cut, and once more cut."
+	name = "手术刀"
+	desc = "切啊切啊，然后继续切啊."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "scalpel"
 	inhand_icon_state = "scalpel"
@@ -212,8 +212,8 @@
 	throw_speed = 3
 	throw_range = 5
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "切割", "刺", "划", "撕扯", "割裂")
+	attack_verb_simple = list("攻击", "切割", "刺", "划", "撕扯", "割裂")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	tool_behaviour = TOOL_SCALPEL
@@ -236,7 +236,7 @@
 	return surgical_tray_overlay
 
 /obj/item/scalpel/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! 看起来是在尝试自杀!"))
+	user.visible_message(span_suicide("[user]在用[src]割自己的[pick("手腕", "喉咙", "腹部")]! 看起来是在尝试自杀!"))
 	return BRUTELOSS
 
 /obj/item/scalpel/cyborg
@@ -244,12 +244,12 @@
 	icon_state = "toolkit_medborg_scalpel"
 
 /obj/item/scalpel/augment
-	desc = "Ultra-sharp blade attached directly to your bone for extra-accuracy."
+	desc = "超锋利刀片直接连接至骨骼以提供超高精确度."
 	toolspeed = 0.5
 
 /obj/item/circular_saw
-	name = "circular saw"
-	desc = "For heavy duty cutting."
+	name = "圆锯"
+	desc = "用于重型切割."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "saw"
 	inhand_icon_state = "saw"
@@ -265,8 +265,8 @@
 	throw_speed = 2
 	throw_range = 5
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*5, /datum/material/glass = SHEET_MATERIAL_AMOUNT*3)
-	attack_verb_continuous = list("attacks", "slashes", "saws", "cuts")
-	attack_verb_simple = list("attack", "slash", "saw", "cut")
+	attack_verb_continuous = list("攻击","切割","锯","锯割")
+	attack_verb_simple = list("攻击","切割","锯","锯割")
 	sharpness = SHARP_EDGED
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
@@ -299,14 +299,14 @@
 	icon_state = "toolkit_medborg_saw"
 
 /obj/item/circular_saw/augment
-	desc = "A small but very fast spinning saw. It rips and tears until it is done."
+	desc = "小型但旋转速度极快的锯，它会一直撕扯切割直到完成."
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 0.5
 
 
 /obj/item/surgical_drapes
-	name = "surgical drapes"
-	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
+	name = "手术布"
+	desc = "纳米传讯品牌手术布提供最佳的安全性和感染防护."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "surgical_drapes"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -326,8 +326,8 @@
 	icon_state = "toolkit_medborg_surgicaldrapes"
 
 /obj/item/surgical_processor //allows medical cyborgs to scan and initiate advanced surgeries
-	name = "surgical processor"
-	desc = "A device for scanning and initiating surgeries from a disk or operating computer."
+	name = "手术处理器"
+	desc = "用于从磁盘或操作计算机扫描和启动手术的设备."
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "surgical_processor"
 	item_flags = NOBLUDGEON
@@ -342,8 +342,8 @@
 
 /obj/item/surgical_processor/examine(mob/user)
 	. = ..()
-	. += span_notice("Equip the processor in one of your active modules to access downloaded advanced surgeries.")
-	. += span_boldnotice("Advanced surgeries available:")
+	. += span_notice("将处理器安装到你的一个激活模块中以访问已下载的高级手术.")
+	. += span_boldnotice("可用的高级手术:")
 	//list of downloaded surgeries' names
 	var/list/surgeries_names = list()
 	for(var/datum/surgery/downloaded_surgery as anything in loaded_surgeries)
@@ -370,7 +370,7 @@
 /obj/item/surgical_processor/interact_with_atom(atom/design_holder, mob/living/user, list/modifiers)
 	if(!istype(design_holder, /obj/item/disk/surgery) && !istype(design_holder, /obj/machinery/computer/operating))
 		return NONE
-	balloon_alert(user, "copying designs...")
+	balloon_alert(user, "复制设计中...")
 	playsound(src, 'sound/machines/terminal_processing.ogg', 25, TRUE)
 	if(do_after(user, 1 SECONDS, target = design_holder))
 		if(istype(design_holder, /obj/item/disk/surgery))
@@ -399,8 +399,8 @@
 		return COMPONENT_FORCE_SURGERY
 
 /obj/item/scalpel/advanced
-	name = "laser scalpel"
-	desc = "An advanced scalpel which uses laser technology to cut."
+	name = "激光手术刀"
+	desc = "使用激光技术切割的高级手术刀."
 	icon_state = "e_scalpel"
 	inhand_icon_state = "e_scalpel"
 	surgical_tray_overlay = "scalpel_advanced"
@@ -449,17 +449,17 @@
 		tool_behaviour = TOOL_SCALPEL
 		set_light_color(LIGHT_COLOR_BLUE)
 
-	balloon_alert(user, "[active ? "enabled" : "disabled"] bone-cutting mode")
+	balloon_alert(user, "[active ? "已启用" : "已禁用"] 锯骨模式")
 	playsound(user ? user : src, 'sound/machines/click.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/scalpel/advanced/examine()
 	. = ..()
-	. += span_notice("It's set to [tool_behaviour == TOOL_SCALPEL ? "scalpel" : "saw"] mode.")
+	. += span_notice("它当前设置为[tool_behaviour == TOOL_SCALPEL ? "手术刀" : "锯骨"]模式.")
 
 /obj/item/retractor/advanced
-	name = "mechanical pinches"
-	desc = "An agglomerate of rods and gears."
+	name = "机械夹持器"
+	desc = "杆和齿轮的组合体."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6, /datum/material/glass = SHEET_MATERIAL_AMOUNT*2, /datum/material/silver = SHEET_MATERIAL_AMOUNT*2, /datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2.5)
 	icon_state = "adv_retractor"
@@ -494,17 +494,17 @@
 	SIGNAL_HANDLER
 
 	tool_behaviour = (active ? TOOL_HEMOSTAT : TOOL_RETRACTOR)
-	balloon_alert(user, "gears set to [active ? "clamp" : "retract"]")
+	balloon_alert(user, "装备设定为[active ? "夹具" : "牵开"]模式")
 	playsound(user ? user : src, 'sound/items/change_drill.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/retractor/advanced/examine()
 	. = ..()
-	. += span_notice("It resembles a [tool_behaviour == TOOL_RETRACTOR ? "retractor" : "hemostat"].")
+	. += span_notice("它可以用作[tool_behaviour == TOOL_RETRACTOR ? "牵开器" : "止血钳"].")
 
 /obj/item/shears
-	name = "amputation shears"
-	desc = "A type of heavy duty surgical shears used for achieving a clean separation between limb and patient. Keeping the patient still is imperative to be able to secure and align the shears."
+	name = "截肢剪"
+	desc = "一种重型外科剪，用于实现肢体与患者的干净分离，保持患者静止对于固定和对齐剪刀至关重要."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "shears"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -516,8 +516,8 @@
 	throw_speed = 2
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*4, /datum/material/titanium=SHEET_MATERIAL_AMOUNT*3)
-	attack_verb_continuous = list("shears", "snips")
-	attack_verb_simple = list("shear", "snip")
+	attack_verb_continuous = list("剪","剪切")
+	attack_verb_simple = list("剪","剪切")
 	sharpness = SHARP_EDGED
 	custom_premium_price = PAYCHECK_CREW * 14
 
@@ -531,7 +531,7 @@
 	var/mob/living/carbon/patient = amputee
 
 	if(HAS_TRAIT(patient, TRAIT_NODISMEMBER))
-		to_chat(user, span_warning("The patient's limbs look too sturdy to amputate."))
+		to_chat(user, span_warning("病人的四肢看起来太结实，无法截肢。"))
 		return
 
 	var/candidate_name
@@ -541,20 +541,20 @@
 	if(user.zone_selected == BODY_ZONE_PRECISE_GROIN)
 		tail_snip_candidate = patient.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 		if(!tail_snip_candidate)
-			to_chat(user, span_warning("[patient] does not have a tail."))
+			to_chat(user, span_warning("[patient]没有尾巴."))
 			return
 		candidate_name = tail_snip_candidate.name
 
 	else
 		limb_snip_candidate = patient.get_bodypart(check_zone(user.zone_selected))
 		if(!limb_snip_candidate)
-			to_chat(user, span_warning("[patient] is already missing that limb, what more do you want?"))
+			to_chat(user, span_warning("[patient]已经缺失那条肢体了，你还想怎样？"))
 			return
 		candidate_name = limb_snip_candidate.name
 
 	var/amputation_speed_mod = 1
 
-	patient.visible_message(span_danger("[user] begins to secure [src] around [patient]'s [candidate_name]."), span_userdanger("[user] begins to secure [src] around your [candidate_name]!"))
+	patient.visible_message(span_danger("[user]开始用[src]固定住[patient]的[candidate_name]."), span_userdanger("[user]开始用[src]固定住你的[candidate_name]!"))
 	playsound(get_turf(patient), 'sound/items/ratchet.ogg', 20, TRUE)
 	if(patient.stat >= UNCONSCIOUS || HAS_TRAIT(patient, TRAIT_INCAPACITATED)) //if you're incapacitated (due to paralysis, a stun, being in staminacrit, etc.), critted, unconscious, or dead, it's much easier to properly line up a snip
 		amputation_speed_mod *= 0.5
@@ -568,15 +568,15 @@
 			tail_snip_candidate.forceMove(get_turf(patient))
 		else
 			limb_snip_candidate.dismember()
-		user.visible_message(span_danger("[src] violently slams shut, amputating [patient]'s [candidate_name]."), span_notice("You amputate [patient]'s [candidate_name] with [src]."))
-		user.log_message("[user] has amputated [patient]'s [candidate_name] with [src]", LOG_GAME)
-		patient.log_message("[patient]'s [candidate_name] has been amputated by [user] with [src]", LOG_GAME)
+		user.visible_message(span_danger("[src]猛地合上，截断了[patient]的[candidate_name]."), span_notice("你用[src]截断了[patient]的[candidate_name]."))
+		user.log_message("[user]用[src]截断了[patient]的[candidate_name]", LOG_GAME)
+		patient.log_message("[patient]的[candidate_name]被[user]用[src]截断了", LOG_GAME)
 
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID)) //Freak
 		user.add_mood_event("morbid_dismemberment", /datum/mood_event/morbid_dismemberment)
 
 /obj/item/shears/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is pinching [user.p_them()]self with \the [src]! 看起来是在尝试自杀!"))
+	user.visible_message(span_suicide("[user]正用[src]夹住自己！看起来是在尝试自杀!"))
 	var/timer = 1 SECONDS
 	for(var/obj/item/bodypart/thing in user.bodyparts)
 		if(thing.body_part == CHEST)
@@ -588,8 +588,8 @@
 	return BRUTELOSS
 
 /obj/item/bonesetter
-	name = "bonesetter"
-	desc = "For setting things right."
+	name = "接骨器"
+	desc = "用于将事物恢复原状."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "bonesetter"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -598,8 +598,8 @@
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb_continuous = list("corrects", "properly sets")
-	attack_verb_simple = list("correct", "properly set")
+	attack_verb_continuous = list("矫正")
+	attack_verb_simple = list("矫正")
 	tool_behaviour = TOOL_BONESET
 	toolspeed = 1
 
@@ -611,8 +611,8 @@
 	icon_state = "toolkit_medborg_bonesetter"
 
 /obj/item/blood_filter
-	name = "blood filter"
-	desc = "For filtering the blood."
+	name = "血液过滤器"
+	desc = "用于过滤血液."
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "bloodfilter"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -620,8 +620,8 @@
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver=SMALL_MATERIAL_AMOUNT*5)
 	item_flags = SURGICAL_TOOL
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("pumps", "siphons")
-	attack_verb_simple = list("pump", "siphon")
+	attack_verb_continuous = list("泵送", "吸取")
+	attack_verb_simple = list("泵送", "吸取")
 	tool_behaviour = TOOL_BLOODFILTER
 	toolspeed = 1
 	/// Assoc list of chem ids to names, used for deciding which chems to filter when used for surgery
@@ -651,7 +651,7 @@
 	. = TRUE
 	switch(action)
 		if("add")
-			var/selected_reagent = tgui_input_list(usr, "Select reagent to filter", "Whitelist reagent", GLOB.name2reagent)
+			var/selected_reagent = tgui_input_list(usr, "选择要过滤的试剂", "白名单试剂", GLOB.name2reagent)
 			if(!selected_reagent)
 				return FALSE
 
@@ -680,29 +680,29 @@
  */
 
 /obj/item/retractor/cruel
-	name = "twisted retractor"
-	desc = "Helps reveal secrets that would rather stay buried."
+	name = "扭曲牵开器"
+	desc = "帮助揭露宁愿深埋的秘密."
 	icon_state = "cruelretractor"
 	surgical_tray_overlay = "retractor_cruel"
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
 /obj/item/hemostat/cruel
-	name = "cruel hemostat"
-	desc = "Clamping bleeders, but not so good at fixing breathers."
+	name = "残酷止血钳"
+	desc = "夹紧出血处，但对拯救生命不太擅长."
 	icon_state = "cruelhemostat"
 	surgical_tray_overlay = "hemostat_cruel"
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
 /obj/item/cautery/cruel
-	name = "savage cautery"
-	desc = "Chalk this one up as another successful vivisection."
+	name = "野蛮烧灼器"
+	desc = "把这算作又一次成功的活体解剖."
 	icon_state = "cruelcautery"
 	surgical_tray_overlay = "cautery_cruel"
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT
 
 /obj/item/scalpel/cruel
-	name = "hungry scalpel"
-	desc = "I remember every time I hold you. My born companion..."
+	name = "饥渴手术刀"
+	desc = "我记得每次握住你。我天生的伴侣..."
 	icon_state = "cruelscalpel"
 	surgical_tray_overlay = "scalpel_cruel"
 	item_flags = SURGICAL_TOOL | CRUEL_IMPLEMENT

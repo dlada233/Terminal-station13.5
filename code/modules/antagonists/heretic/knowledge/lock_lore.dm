@@ -184,7 +184,7 @@
 /datum/heretic_knowledge/ultimate/lock_final
 	name = "启封迷城-Lock final"
 	desc = "锁之路的最终仪式. \
-		带三具躯干部位没有器官的尸体到嬗变符文处以完成仪式. \
+		带三具胸部没有器官的尸体到嬗变符文处以完成仪式. \
 		一旦完成，你将获得变身成四只强大的邪恶生物的能力. 而你完成仪式的嬗变符文将打开一道连通迷宫心脏的裂口， \
 		无穷无尽的邪恶生物将从这道裂口中涌出，而且它们还会听从你的指示."
 	gain_text = "管家们为我引路，而我也带领它们. \
@@ -202,7 +202,7 @@
 		if(body.stat != DEAD)
 			continue
 		if(LAZYLEN(body.get_organs_for_zone(BODY_ZONE_CHEST)))
-			to_chat(user, span_hierophant_warning("[body]躯干部位有器官."))
+			to_chat(user, span_hierophant_warning("[body]胸部部位有器官."))
 			continue
 
 		selected_atoms += body

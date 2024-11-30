@@ -1,10 +1,10 @@
 
 /obj/item/organ/internal/cyberimp
 	name = "cybernetic implant-电子植入物"
-	desc = "A state-of-the-art implant that improves a baseline's functionality."
+	desc = "一种能够提高基线功能的最先进植入物."
 	visual = FALSE
 	organ_flags = ORGAN_ROBOTIC
-	failing_desc = "seems to be broken."
+	failing_desc = "看起来坏了."
 	var/implant_color = COLOR_WHITE
 	var/implant_overlay
 
@@ -33,7 +33,7 @@
 		return
 	var/stun_amount = 200/severity
 	owner.Stun(stun_amount)
-	to_chat(owner, span_warning("Your body seizes up!"))
+	to_chat(owner, span_warning("你的身体卡住了!"))
 
 
 /obj/item/organ/internal/cyberimp/brain/anti_drop
@@ -50,19 +50,19 @@
 	if(active)
 		var/list/hold_list = owner.get_empty_held_indexes()
 		if(LAZYLEN(hold_list) == owner.held_items.len)
-			to_chat(owner, span_notice("You are not holding any items, your hands relax..."))
+			to_chat(owner, span_notice("你的手没有拿着任何东西，于是放松下来..."))
 			active = FALSE
 			return
 		for(var/obj/item/held_item as anything in owner.held_items)
 			if(!held_item)
 				continue
 			stored_items += held_item
-			to_chat(owner, span_notice("Your [owner.get_held_index_name(owner.get_held_index_of_item(held_item))]'s grip tightens."))
+			to_chat(owner, span_notice("你的[owner.get_held_index_name(owner.get_held_index_of_item(held_item))]开始紧紧抓握."))
 			ADD_TRAIT(held_item, TRAIT_NODROP, IMPLANT_TRAIT)
 			RegisterSignal(held_item, COMSIG_ITEM_DROPPED, PROC_REF(on_held_item_dropped))
 	else
 		release_items()
-		to_chat(owner, span_notice("Your hands relax..."))
+		to_chat(owner, span_notice("你的手放松了下来..."))
 
 
 /obj/item/organ/internal/cyberimp/brain/anti_drop/emp_act(severity)
@@ -76,7 +76,7 @@
 	for(var/obj/item/stored_item as anything in stored_items)
 		throw_target = pick(oview(range))
 		stored_item.throw_at(throw_target, range, 2)
-		to_chat(owner, span_warning("Your [owner.get_held_index_name(owner.get_held_index_of_item(stored_item))] spasms and throws the [stored_item.name]!"))
+		to_chat(owner, span_warning("你的[owner.get_held_index_name(owner.get_held_index_of_item(stored_item))]痉挛并扔掉了[stored_item.name]!"))
 	stored_items = list()
 
 
@@ -100,7 +100,7 @@
 
 /obj/item/organ/internal/cyberimp/brain/anti_stun
 	name = "CNS Rebooter implant-中枢神经重启植入物"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	desc = "这种植入物将自动让你重新控制你的中枢神经系统，从而减少在眩晕状态下的恢复时间."
 	implant_color = COLOR_YELLOW
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
 
@@ -161,7 +161,7 @@
 
 /obj/item/organ/internal/cyberimp/brain/anti_stun/proc/implant_ready()
 	if(owner)
-		to_chat(owner, span_purple("Your rebooter implant is ready."))
+		to_chat(owner, span_purple("你的重启植入物准备就绪."))
 
 /obj/item/organ/internal/cyberimp/brain/anti_stun/emp_act(severity)
 	. = ..()
@@ -190,14 +190,14 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 	if(prob(60/severity))
-		to_chat(owner, span_warning("Your breathing tube suddenly closes!"))
+		to_chat(owner, span_warning("你的呼吸管突然关闭了!"))
 		owner.losebreath += 2
 
 //BOX O' IMPLANTS
 
 /obj/item/storage/box/cyber_implants
 	name = "boxed cybernetic implants-盒装电子植入物"
-	desc = "A sleek, sturdy box."
+	desc = "光滑、结实的盒子."
 	icon_state = "cyber_implants"
 
 /obj/item/storage/box/cyber_implants/PopulateContents()

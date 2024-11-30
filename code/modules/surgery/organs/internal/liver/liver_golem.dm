@@ -6,8 +6,8 @@
  * Actually consuming golem food is handled by /obj/item/organ/internal/stomach/golem!
  **/
 /obj/item/organ/internal/liver/golem
-	name = "porous rock"
-	desc = "A spongy rock capable of absorbing chemicals."
+	name = "多孔岩石"
+	desc = "能吸收化学物质的海绵状岩石."
 	icon_state = "liver-p"
 	organ_flags = ORGAN_MINERAL
 	color = COLOR_GOLEM_GRAY

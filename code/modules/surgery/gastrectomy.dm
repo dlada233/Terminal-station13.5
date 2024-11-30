@@ -1,5 +1,5 @@
 /datum/surgery/gastrectomy
-	name = "Gastrectomy"
+	name = "胃切除术"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
 	organ_to_manipulate = ORGAN_SLOT_STOMACH
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -23,7 +23,7 @@
 ////Gastrectomy, because we truly needed a way to repair stomachs.
 //95% chance of success to be consistent with most organ-repairing surgeries.
 /datum/surgery_step/gastrectomy
-	name = "remove lower duodenum (scalpel)"
+	name = "切除下十二指肠 (手术刀)"
 	implements = list(
 		TOOL_SCALPEL = 95,
 		/obj/item/melee/energy/sword = 65,
@@ -39,11 +39,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to cut out a damaged piece of [target]'s stomach..."),
-		span_notice("[user] begins to make an incision in [target]."),
-		span_notice("[user] begins to make an incision in [target]."),
+		span_notice("你开始切除[target]胃部的受损部分..."),
+		span_notice("[user]开始在[target]身上做切口."),
+		span_notice("[user]开始在[target]身上做切口."),
 	)
-	display_pain(target, "You feel a horrible stab in your gut!")
+	display_pain(target, "你感到胃部一阵剧痛!")
 
 /datum/surgery_step/gastrectomy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/target_human = target
@@ -54,11 +54,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You successfully remove the damaged part of [target]'s stomach."),
-		span_notice("[user] successfully removes the damaged part of [target]'s stomach."),
-		span_notice("[user] successfully removes the damaged part of [target]'s stomach."),
+		span_notice("你成功切除了[target]胃部的受损部分."),
+		span_notice("[user]成功切除了[target]胃部的受损部分."),
+		span_notice("[user]成功切除了[target]胃部的受损部分."),
 	)
-	display_pain(target, "The pain in your gut ebbs and fades somewhat.")
+	display_pain(target, "你胃部的疼痛逐渐减轻.")
 	return ..()
 
 /datum/surgery_step/gastrectomy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery)
@@ -67,8 +67,8 @@
 	display_results(
 		user,
 		target,
-		span_warning("You cut the wrong part of [target]'s stomach!"),
-		span_warning("[user] cuts the wrong part of [target]'s stomach!"),
-		span_warning("[user] cuts the wrong part of [target]'s stomach!"),
+		span_warning("你切错了[target]的胃部位置!"),
+		span_warning("[user]切错了[target]的胃部位置!"),
+		span_warning("[user]切错了[target]的胃部位置!"),
 	)
-	display_pain(target, "Your stomach throbs with pain; it's not getting any better!")
+	display_pain(target, "你的胃部剧烈疼痛；情况并没有好转!")

@@ -1,5 +1,5 @@
 /datum/surgery/lobectomy
-	name = "Lobectomy" //not to be confused with lobotomy
+	name = "肺叶切除" //not to be confused with lobotomy
 	organ_to_manipulate = ORGAN_SLOT_LUNGS
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
@@ -20,7 +20,7 @@
 
 //lobectomy, removes the most damaged lung lobe with a 95% base success chance
 /datum/surgery_step/lobectomy
-	name = "excise damaged lung node (scalpel)"
+	name = "切除受损肺叶 (手术刀)"
 	implements = list(
 		TOOL_SCALPEL = 95,
 		/obj/item/melee/energy/sword = 65,
@@ -36,11 +36,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to make an incision in [target]'s lungs..."),
-		span_notice("[user] begins to make an incision in [target]."),
-		span_notice("[user] begins to make an incision in [target]."),
+		span_notice("你开始在[target]的肺部做切口..."),
+		span_notice("[user]开始在[target]身上做切口."),
+		span_notice("[user]开始在[target]身上做切口."),
 	)
-	display_pain(target, "You feel a stabbing pain in your chest!")
+	display_pain(target, "你感到胸部一阵刺痛！")
 
 /datum/surgery_step/lobectomy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(ishuman(target))
@@ -51,11 +51,11 @@
 		display_results(
 			user,
 			target,
-			span_notice("You successfully excise [human_target]'s most damaged lobe."),
-			span_notice("Successfully removes a piece of [human_target]'s lungs."),
+			span_notice("你成功切除了[human_target]最受损的肺叶."),
+			span_notice("成功移除了[human_target]的部分肺."),
 			"",
 		)
-		display_pain(target, "Your chest hurts like hell, but breathing becomes slightly easier.")
+		display_pain(target, "你的胸部剧痛，但呼吸变得稍微轻松了一些.")
 	return ..()
 
 /datum/surgery_step/lobectomy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -64,11 +64,11 @@
 		display_results(
 			user,
 			target,
-			span_warning("You screw up, failing to excise [human_target]'s damaged lobe!"),
-			span_warning("[user] screws up!"),
-			span_warning("[user] screws up!"),
+			span_warning("你搞错了，未能切除[human_target]的受损肺叶！"),
+			span_warning("[user]搞错了！"),
+			span_warning("[user]搞错了！"),
 		)
-		display_pain(target, "You feel a sharp stab in your chest; the wind is knocked out of you and it hurts to catch your breath!")
+		display_pain(target, "你感到胸部一阵剧痛；你喘不过气来，呼吸变得异常疼痛！")
 		human_target.losebreath += 4
 		human_target.adjustOrganLoss(ORGAN_SLOT_LUNGS, 10)
 	return FALSE

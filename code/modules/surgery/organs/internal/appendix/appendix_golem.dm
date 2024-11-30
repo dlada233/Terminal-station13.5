@@ -1,7 +1,7 @@
 
 /obj/item/organ/internal/appendix/golem
-	name = "internal forge"
-	desc = "This expanded digestive chamber allows golems to smelt minerals, provided that they are immersed in lava."
+	name = "内部熔炉"
+	desc = "这个扩展的消化腔室使得石人能够在浸入熔岩的情况下熔炼矿物."
 	icon_state = "ethereal_heart-off"
 	color = COLOR_GOLEM_GRAY
 	organ_flags = ORGAN_MINERAL
@@ -36,8 +36,8 @@
 
 /// Lets golems smelt ore with their organs
 /datum/action/cooldown/internal_smelting
-	name = "Internal Forge"
-	desc = "While stood in lava you can use your internal forge to smelt ores into processed bars."
+	name = "内部熔炉"
+	desc = "当你站在熔岩中时，你可以使用你的内部熔炉将矿石熔炼成加工后的金属条."
 	button_icon = 'icons/obj/stack_objects.dmi'
 	button_icon_state = "sheet-adamantine_2"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING | AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED

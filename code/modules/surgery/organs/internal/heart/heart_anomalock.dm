@@ -4,8 +4,8 @@
 #define DOAFTER_IMPLANTING_HEART "implanting"
 
 /obj/item/organ/internal/heart/cybernetic/anomalock
-	name = "Voltaic Combat Cyberheart"
-	desc = "A cutting-edge cyberheart, originally designed for Nanotrasen killsquad usage but later declassified for normal research. Voltaic technology allows the heart to keep the body upright in dire circumstances, alongside redirecting anomalous flux energy to fully shield the user from shocks and electro-magnetic pulses. Requires a refined Flux core as a power source."
+	name = "流电战斗型电子心脏"
+	desc = "这是一款尖端的电子心脏，最初是为纳米传讯的杀手小队设计的，但后来被解密用于正常研究. 伏特技术使这款心脏能够在极端情况下保持身体直立，同时还能将异常能量流重定向，以完全保护使用者免受电击和电磁脉冲的伤害,它需要一个精炼的能量流核心作为电源."
 	icon_state = "anomalock_heart"
 
 	COOLDOWN_DECLARE(survival_cooldown)
@@ -194,8 +194,8 @@
 
 
 /atom/movable/screen/alert/status_effect/anomalock_active
-	name = "voltaic overdrive"
+	name = "流电超频"
 	icon_state = "anomalock_heart"
-	desc = "Voltaic energy is flooding your muscles, keeping your body upright. You have 30 seconds before it falters!"
+	desc = "伏打能量充斥着你的肌肉，让你的身体保持直立，你有30秒的时间!"
 
 #undef DOAFTER_IMPLANTING_HEART

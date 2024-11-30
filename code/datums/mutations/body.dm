@@ -457,7 +457,7 @@
 		span_warning("随着背部一阵令人作呕的720°扭曲, [owner]消失于空气之中."),
 		span_warning("[owner]做了一个奇怪的后空翻，进入了另一个维度. 看起来很疼"),
 		span_warning("[owner]向左跳一步，向右走一步，扭曲了现实."),
-		span_warning("[owner]的躯干开始向内折叠直至从现实中消失,将[owner]带走了."),
+		span_warning("[owner]的胸部开始向内折叠直至从现实中消失,将[owner]带走了."),
 		span_warning("一瞬间，你看到了[owner]. 下一秒， [owner]消失了."))
 		owner.visible_message(warpmessage, span_userdanger("你感到一阵恶心，仿佛穿越了现实！!"))
 		var/warpdistance = rand(10, 15) * GET_MUTATION_POWER(src)

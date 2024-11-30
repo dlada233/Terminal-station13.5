@@ -1,5 +1,5 @@
 /datum/surgery/stomach_pump
-	name = "Stomach Pump"
+	name = "洗胃"
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -20,7 +20,7 @@
 
 //Working the stomach by hand in such a way that you induce vomiting.
 /datum/surgery_step/stomach_pump
-	name = "pump stomach (hand)"
+	name = "洗胃 (手)"
 	accept_hand = TRUE
 	repeatable = TRUE
 	time = 20
@@ -30,11 +30,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin pumping [target]'s stomach..."),
-		span_notice("[user] begins to pump [target]'s stomach."),
-		span_notice("[user] begins to press on [target]'s chest."),
+		span_notice("你开始给[target]洗胃..."),
+		span_notice("[user]开始给[target]洗胃。"),
+		span_notice("[user]开始按压[target]的胸部."),
 	)
-	display_pain(target, "You feel a horrible sloshing feeling in your gut! You're going to be sick!")
+	display_pain(target, "你感到肚子里一阵可怕的晃动！你要吐了！")
 
 /datum/surgery_step/stomach_pump/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(ishuman(target))
@@ -42,9 +42,9 @@
 		display_results(
 			user,
 			target,
-			span_notice("[user] forces [target_human] to vomit, cleansing their stomach of some chemicals!"),
-			span_notice("[user] forces [target_human] to vomit, cleansing their stomach of some chemicals!"),
-			span_notice("[user] forces [target_human] to vomit!"),
+			span_notice("[user]迫使[target_human]呕吐，清空了胃部的一些化学物质！"),
+			span_notice("[user]迫使[target_human]呕吐，清空了胃部的一些化学物质！"),
+			span_notice("[user]迫使[target_human]呕吐！"),
 		)
 		target_human.vomit((MOB_VOMIT_MESSAGE | MOB_VOMIT_STUN), lost_nutrition = 20, purge_ratio = 0.67) //higher purge ratio than regular vomiting
 	return ..()
@@ -55,9 +55,9 @@
 		display_results(
 			user,
 			target,
-			span_warning("You screw up, bruising [target_human]'s chest!"),
-			span_warning("[user] screws up, brusing [target_human]'s chest!"),
-			span_warning("[user] screws up!"),
+			span_warning("你搞砸了，弄伤了[target_human]的胸部！"),
+			span_warning("[user]搞砸了，弄伤了[target_human]的胸部！"),
+			span_warning("[user]搞砸了！"),
 		)
 		target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5)
 		target_human.adjustBruteLoss(5)

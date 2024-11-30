@@ -14,8 +14,8 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
-	now_failing = "<span class='warning'>An explosion of pain erupts in your lower right abdomen!</span>"
-	now_fixed = "<span class='info'>The pain in your abdomen has subsided.</span>"
+	now_failing = "<span class='warning'>你的右下腹突然一阵剧痛！</span>"
+	now_fixed = "<span class='info'>你腹部的疼痛已经减轻了.</span>"
 
 	var/inflamation_stage = 0
 
@@ -47,9 +47,9 @@
 		ADD_TRAIT(owner, TRAIT_DISEASELIKE_SEVERITY_MEDIUM, type)
 		owner.med_hud_set_status()
 		notify_ghosts(
-			"[owner] has developed spontaneous appendicitis!",
+			"[owner]患上了自发性阑尾炎!",
 			source = owner,
-			header = "Whoa, Sick!",
+			header = "哇，生病了!",
 		)
 
 /obj/item/organ/internal/appendix/proc/inflamation(seconds_per_tick)
@@ -63,7 +63,7 @@
 				organ_owner.emote("cough")
 		if(2)
 			if(SPT_PROB(1.5, seconds_per_tick))
-				to_chat(organ_owner, span_warning("You feel a stabbing pain in your abdomen!"))
+				to_chat(organ_owner, span_warning("你感到腹部刺痛!"))
 				organ_owner.adjustOrganLoss(ORGAN_SLOT_APPENDIX, 5)
 				organ_owner.Stun(rand(40, 60))
 				organ_owner.adjustToxLoss(1, forced = TRUE)
@@ -89,7 +89,7 @@
 
 /obj/item/organ/internal/appendix/get_status_text(advanced)
 	if((!(organ_flags & ORGAN_FAILING)) && inflamation_stage)
-		return "<font color='#ff9933'>Inflamed</font>"
+		return "<font color='#ff9933'>发炎</font>"
 	else
 		return ..()
 

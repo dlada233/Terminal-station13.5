@@ -864,7 +864,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 /// Defines for the various hack results.
 #define HACK_PIRATE "Pirates-海盗"
 #define HACK_FUGITIVES "Fugitives-逃亡者"
-#define HACK_SLEEPER "Sleeper Agents-潜伏特工"
+#define HACK_SLEEPER "Sleeper Agents-沉睡特工"
 #define HACK_THREAT "Threat Boost-威胁增加"
 
 /// The minimum number of ghosts / observers to have the chance of spawning pirates.

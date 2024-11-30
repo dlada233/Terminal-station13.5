@@ -5,7 +5,7 @@
 
 /obj/item/organ/internal/liver
 	name = "肝-liver"
-	desc = "Pairing suggestion: chianti and fava beans."
+	desc = "搭配建议：基安蒂葡萄酒和蚕豆."
 	icon_state = "liver"
 	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
@@ -85,29 +85,29 @@
 
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER) || isobserver(user))
 		if(HAS_TRAIT(src, TRAIT_LAW_ENFORCEMENT_METABOLISM))
-			. += span_info("Fatty deposits and sprinkle residue, imply that this is the liver of someone in <em>security</em>.")
+			. += span_info("脂肪沉积和零星残留物表明，这是<em>安保人员</em>的肝脏.")
 		if(HAS_TRAIT(src, TRAIT_CULINARY_METABOLISM))
-			. += span_info("The high iron content and slight smell of garlic, implies that this is the liver of a <em>cook</em>.")
+			. += span_info("高含铁量和轻微的蒜味表明，这是<em>厨师</em>的肝脏.")
 		if(HAS_TRAIT(src, TRAIT_COMEDY_METABOLISM))
-			. += span_info("A smell of bananas, a slippery sheen and [span_clown("honking")] when depressed, implies that this is the liver of a <em>clown</em>.")
+			. += span_info("一股香蕉味，光滑的表面，按压时会[span_clown("honking")]，表明这是<em>小丑</em>的肝脏.")
 		if(HAS_TRAIT(src, TRAIT_MEDICAL_METABOLISM))
-			. += span_info("Marks of stress and a faint whiff of medicinal alcohol, imply that this is the liver of a <em>medical worker</em>.")
+			. += span_info("压力痕迹和淡淡的医用酒精味表明，这是<em>医疗工作者</em>的肝脏.")
 		if(HAS_TRAIT(src, TRAIT_ENGINEER_METABOLISM))
-			. += span_info("Signs of radiation exposure and space adaption, implies that this is the liver of an <em>engineer</em>.")
+			. += span_info("有辐射暴露和太空适应的迹象表明，这是<em>工程师</em>的肝脏.")
 		if(HAS_TRAIT(src, TRAIT_BALLMER_SCIENTIST))
-			. += span_info("Strange glowing residues, sprinklings of congealed solid plasma, and what seem to be tumors indicate this is the radiated liver of a <em>scientist</em>.")
+			. += span_info("奇怪的发光残留物、凝固的固体等离子碎片以及看似肿瘤的物质表明，这是受到辐射的<em>科学家</em>的肝脏.")
 		if(HAS_TRAIT(src, TRAIT_MAINTENANCE_METABOLISM))
-			. += span_info("A half-digested rat's tail (somehow), disgusting sludge, and the faint smell of Grey Bull imply this is what remains of an <em>assistant</em>'s liver.")
+			. += span_info("半消化的老鼠尾巴（怎么会）、恶心的污泥和淡淡的灰牛味表明，这是<em>助手</em>的肝脏残留物.")
 		if(HAS_TRAIT(src, TRAIT_CORONER_METABOLISM))
-			. += span_info("An aroma of pickles and sea water, along with being remarkably well-preserved, imply this is what remains of a <em>coroner</em>'s liver.")
+			. += span_info("泡菜和海水的气味，以及出奇完好的保存状态表明，这是<em>验尸官</em>的肝脏残留物.")
 		if(HAS_TRAIT(src, TRAIT_HUMAN_AI_METABOLISM))
-			. += span_info("The liver appears barely human and entirely self-sufficient, implying this is what remains of a <em>human AI</em>'s liver.")
+			. += span_info("肝脏看起来几乎不像人类的，完全自给自足，这表明这是<em>人类AI</em>的肝脏残留物.")
 
 		// royal trumps pretender royal
 		if(HAS_TRAIT(src, TRAIT_ROYAL_METABOLISM))
-			. += span_info("A rich diet of luxury food, suppleness from soft beds, implies that this is the liver of a <em>head of staff</em>.")
+			. += span_info("奢华食物的丰富饮食、软床带来的柔软度表明，这是<em>员工部长</em>的肝脏.")
 		else if(HAS_TRAIT(src, TRAIT_PRETENDER_ROYAL_METABOLISM))
-			. += span_info("A diet of imitation caviar, and signs of insomnia, implies that this is the liver of <em>someone who wants to be a head of staff</em>.")
+			. += span_info("仿制鱼子酱的饮食和失眠的迹象表明，这是<em>想成为部长的人</em>的肝脏.")
 
 /obj/item/organ/internal/liver/before_organ_replacement(obj/item/organ/replacement)
 	. = ..()
@@ -160,7 +160,7 @@
 		apply_organ_damage(min(liver_damage * seconds_per_tick , MAX_TOXIN_LIVER_DAMAGE * seconds_per_tick))
 
 	if(provide_pain_message && damage > 10 && SPT_PROB(damage/6, seconds_per_tick)) //the higher the damage the higher the probability
-		to_chat(owner, span_warning("You feel a dull pain in your abdomen."))
+		to_chat(owner, span_warning("你感到腹部隐隐作痛."))
 
 
 /obj/item/organ/internal/liver/handle_failing_organs(seconds_per_tick)
@@ -171,20 +171,20 @@
 /obj/item/organ/internal/liver/organ_failure(seconds_per_tick)
 	switch(failure_time/LIVER_FAILURE_STAGE_SECONDS)
 		if(1)
-			to_chat(owner, span_userdanger("You feel stabbing pain in your abdomen!"))
+			to_chat(owner, span_userdanger("你感到腹部刺痛!"))
 		if(2)
-			to_chat(owner, span_userdanger("You feel a burning sensation in your gut!"))
+			to_chat(owner, span_userdanger("你感到肠胃有灼烧感!"))
 			owner.vomit(VOMIT_CATEGORY_DEFAULT)
 		if(3)
-			to_chat(owner, span_userdanger("You feel painful acid in your throat!"))
+			to_chat(owner, span_userdanger("你感到喉咙里有酸痛感!"))
 			owner.vomit(VOMIT_CATEGORY_BLOOD)
 		if(4)
-			to_chat(owner, span_userdanger("Overwhelming pain knocks you out!"))
+			to_chat(owner, span_userdanger("剧痛使你昏倒!"))
 			owner.vomit(VOMIT_CATEGORY_BLOOD, distance = rand(1,2))
 			owner.emote("Scream")
 			owner.AdjustUnconscious(2.5 SECONDS)
 		if(5)
-			to_chat(owner, span_userdanger("You feel as if your guts are about to melt!"))
+			to_chat(owner, span_userdanger("你感觉内脏仿佛要融化!"))
 			owner.vomit(VOMIT_CATEGORY_BLOOD, distance = rand(1,3))
 			owner.emote("Scream")
 			owner.AdjustUnconscious(5 SECONDS)
@@ -227,11 +227,11 @@
 		return
 	switch(failure_time)
 		if(0 to 3 * LIVER_FAILURE_STAGE_SECONDS - 1)
-			examine_list += span_notice("[owner]'s eyes are slightly yellow.")
+			examine_list += span_notice("[owner]的眼睛微微发黄.")
 		if(3 * LIVER_FAILURE_STAGE_SECONDS to 4 * LIVER_FAILURE_STAGE_SECONDS - 1)
-			examine_list += span_notice("[owner]'s eyes are completely yellow, and [owner.p_they()] [owner.p_are()] visibly suffering.")
+			examine_list += span_notice("[owner]的眼睛完全发黄，而且显然很痛苦.")
 		if(4 * LIVER_FAILURE_STAGE_SECONDS to INFINITY)
-			examine_list += span_danger("[owner]'s eyes are completely yellow and swelling with pus. [owner.p_They()] [owner.p_do()]n't look like [owner.p_they()] will be alive for much longer.")
+			examine_list += span_danger("[owner]的眼睛完全发黄并且肿胀流脓，看起来活不了多久了.")
 
 /obj/item/organ/internal/liver/get_availability(datum/species/owner_species, mob/living/owner_mob)
 	return owner_species.mutantliver
@@ -239,15 +239,15 @@
 // alien livers can ignore up to 15u of toxins, but they take x3 liver damage
 /obj/item/organ/internal/liver/alien
 	name = "异星肝-alien liver" // doesnt matter for actual aliens because they dont take toxin damage
-	desc = "A liver that used to belong to a killer alien, who knows what it used to eat."
+	desc = "一个曾经属于杀手外星人的肝脏，谁知道它以前吃过什么."
 	icon_state = "liver-x" // Same sprite as fly-person liver.
 	liver_resistance = 0.333 * LIVER_DEFAULT_TOX_RESISTANCE // -66%
 	toxTolerance = 15 // complete toxin immunity like xenos have would be too powerful
 
 /obj/item/organ/internal/liver/cybernetic
 	name = "初级电子肝-basic cybernetic liver"
-	desc = "A very basic device designed to mimic the functions of a human liver. Handles toxins slightly worse than an organic liver."
-	failing_desc = "seems to be broken."
+	desc = "一个非常基础的设备，旨在模仿人类肝脏的功能，处理毒素的能力略逊于有机肝脏."
+	failing_desc = "似乎坏了."
 	icon_state = "liver-c"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD*0.5
@@ -267,7 +267,7 @@
 
 /obj/item/organ/internal/liver/cybernetic/tier2
 	name = "电子肝-cybernetic liver"
-	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins slightly better than an organic liver."
+	desc = "一种模仿人类肝脏功能的电子设备，处理毒素的能力比有机肝脏稍强."
 	icon_state = "liver-c-u"
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	toxTolerance = 5 //can shrug off up to 5u of toxins
@@ -285,7 +285,7 @@
 	emp_vulnerability = 20
 
 /obj/item/organ/internal/liver/cybernetic/surplus
-	name = "盈余人工肝-surplus prosthetic liver"
+	name = "廉价人工肝-surplus prosthetic liver"
 	desc = "一种非常便宜的人工肝脏，大量生产用于肝功能低下的酗酒者……它看起来更像一个过滤器，而不是真正的肝脏.非常脆弱，排毒能力极差，而且对酒精非常耐受性低.完全无法抵御电磁脉冲的攻击."
 	icon_state = "liver-c-s"
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.35

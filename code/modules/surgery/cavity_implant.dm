@@ -1,5 +1,5 @@
 /datum/surgery/cavity_implant
-	name = "Cavity implant"
+	name = "腔体植入"
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -11,7 +11,7 @@
 
 //handle cavity
 /datum/surgery_step/handle_cavity
-	name = "implant item"
+	name = "植入物品"
 	accept_hand = 1
 	implements = list(/obj/item = 100)
 	repeatable = TRUE
@@ -32,33 +32,33 @@
 		display_results(
 			user,
 			target,
-			span_notice("You begin to insert [tool] into [target]'s [target_zone]..."),
-			span_notice("[user] begins to insert [tool] into [target]'s [target_zone]."),
-			span_notice("[user] begins to insert [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [target]'s [target_zone]."),
+			span_notice("你开始将[tool]植入[target]的[target_zone]..."),
+			span_notice("[user]开始将[tool]植入[target]的[target_zone]."),
+			span_notice("[user]开始将[tool.w_class > WEIGHT_CLASS_SMALL ? tool : "某物"]植入[target]的[target_zone]."),
 		)
-		display_pain(target, "You can feel something being inserted into your [target_zone], it hurts like hell!")
+		display_pain(target, "你能感觉到有东西被放入你的[target_zone]，疼死了!")
 	else
 		display_results(
 			user,
 			target,
-			span_notice("You check for items in [target]'s [target_zone]..."),
-			span_notice("[user] checks for items in [target]'s [target_zone]."),
-			span_notice("[user] looks for something in [target]'s [target_zone]."),
+			span_notice("你检查[target]的[target_zone]里是否有物品..."),
+			span_notice("[user]检查[target]的[target_zone]里是否有物品."),
+			span_notice("[user]在[target]的[target_zone]里寻找某物."),
 		)
 
 /datum/surgery_step/handle_cavity/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery = FALSE)
 	var/obj/item/bodypart/chest/target_chest = target.get_bodypart(BODY_ZONE_CHEST)
 	if(tool)
 		if(item_for_cavity || tool.w_class > WEIGHT_CLASS_NORMAL || HAS_TRAIT(tool, TRAIT_NODROP) || isorgan(tool))
-			to_chat(user, span_warning("You can't seem to fit [tool] in [target]'s [target_zone]!"))
+			to_chat(user, span_warning("你似乎无法将[tool]放入[target]的[target_zone]!"))
 			return FALSE
 		else
 			display_results(
 				user,
 				target,
-				span_notice("You stuff [tool] into [target]'s [target_zone]."),
-				span_notice("[user] stuffs [tool] into [target]'s [target_zone]!"),
-				span_notice("[user] stuffs [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [target]'s [target_zone]."),
+				span_notice("你将[tool]塞入[target]的[target_zone]."),
+				span_notice("[user]将[tool]塞入[target]的[target_zone]!"),
+				span_notice("[user]将[tool.w_class > WEIGHT_CLASS_SMALL ? tool : "某物"]塞入[target]的[target_zone]."),
 			)
 			user.transferItemToLoc(tool, target, TRUE)
 			target_chest.cavity_item = tool
@@ -68,14 +68,14 @@
 			display_results(
 				user,
 				target,
-				span_notice("You pull [item_for_cavity] out of [target]'s [target_zone]."),
-				span_notice("[user] pulls [item_for_cavity] out of [target]'s [target_zone]!"),
-				span_notice("[user] pulls [item_for_cavity.w_class > WEIGHT_CLASS_SMALL ? item_for_cavity : "something"] out of [target]'s [target_zone]."),
+				span_notice("你从[target]的[target_zone]里取出了[item_for_cavity]."),
+				span_notice("[user]从[target]的[target_zone]里取出了[item_for_cavity]!"),
+				span_notice("[user]从[target]的[target_zone]里取出了[item_for_cavity.w_class > WEIGHT_CLASS_SMALL ? item_for_cavity : "某物"]."),
 			)
-			display_pain(target, "Something is pulled out of your [target_zone]! It hurts like hell!")
+			display_pain(target, "有东西从你的[target_zone]里被取出来了! 疼死了!")
 			user.put_in_hands(item_for_cavity)
 			target_chest.cavity_item = null
 			return ..()
 		else
-			to_chat(user, span_warning("You don't find anything in [target]'s [target_zone]."))
+			to_chat(user, span_warning("你在[target]的[target_zone]里没有找到任何东西."))
 			return FALSE

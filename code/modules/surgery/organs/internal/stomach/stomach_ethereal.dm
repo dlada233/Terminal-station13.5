@@ -1,7 +1,7 @@
 /obj/item/organ/internal/stomach/ethereal
-	name = "biological battery"
+	name = "生物电池"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
-	desc = "A crystal-like organ that stores the electric charge of ethereals."
+	desc = "晶体状器官，储存以太体的电荷."
 	organ_traits = list(TRAIT_NOHUNGER) // We have our own hunger mechanic.
 	/// Where the energy of the stomach is stored.
 	var/obj/item/stock_parts/cell/cell
@@ -47,7 +47,7 @@
 	if(flags & SHOCK_ILLUSION)
 		return
 	adjust_charge(shock_damage * siemens_coeff * 2)
-	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
+	to_chat(owner, span_notice("你的身体吸收了一些震动!"))
 
 /**Changes the energy of the crystal stomach.
 * Args:
@@ -91,8 +91,8 @@
 			carbon.clear_alert(ALERT_ETHEREAL_OVERCHARGE)
 
 /obj/item/organ/internal/stomach/ethereal/proc/discharge_process(mob/living/carbon/carbon)
-	to_chat(carbon, span_warning("You begin to lose control over your charge!"))
-	carbon.visible_message(span_danger("[carbon] begins to spark violently!"))
+	to_chat(carbon, span_warning("你开始失去对你所负责对象的控制!"))
+	carbon.visible_message(span_danger("[carbon]开始剧烈地迸发火花!"))
 
 	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell
 	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
@@ -110,12 +110,12 @@
 		// Only a small amount of the energy gets discharged as the zap. The rest dissipates as heat. Keeps the damage and energy from the zap the same regardless of what STANDARD_CELL_CHARGE is.
 		var/discharged_energy = -adjust_charge(ETHEREAL_CHARGE_FULL - cell.charge()) * min(7500 / STANDARD_CELL_CHARGE, 1)
 		tesla_zap(source = carbon, zap_range = 2, power = discharged_energy, cutoff = 1 KILO JOULES, zap_flags = ZAP_OBJ_DAMAGE | ZAP_LOW_POWER_GEN | ZAP_ALLOW_DUPLICATES)
-		carbon.visible_message(span_danger("[carbon] violently discharges energy!"), span_warning("You violently discharge energy!"))
+		carbon.visible_message(span_danger("[carbon]猛烈地释放能量!"), span_warning("你猛烈地释放能量!"))
 
 		if(prob(10)) //chance of developing heart disease to dissuade overcharging oneself
 			var/datum/disease/D = new /datum/disease/heart_failure
 			carbon.ForceContractDisease(D)
-			to_chat(carbon, span_userdanger("You're pretty sure you just felt your heart stop for a second there.."))
+			to_chat(carbon, span_userdanger("你确信刚才你的心脏停跳了一下.."))
 			carbon.playsound_local(carbon, 'sound/effects/singlebeat.ogg', 100, 0)
 
 		carbon.Paralyze(100)

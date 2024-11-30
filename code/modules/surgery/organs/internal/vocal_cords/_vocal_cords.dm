@@ -1,5 +1,5 @@
 /obj/item/organ/internal/vocal_cords //organs that are activated through speech with the :x/MODE_KEY_VOCALCORDS channel
-	name = "vocal cords"
+	name = "声带"
 	icon_state = "appendix"
 	visual = FALSE
 	zone = BODY_ZONE_PRECISE_MOUTH
@@ -20,17 +20,17 @@
 
 //Colossus drop, forces the listeners to obey certain commands
 /obj/item/organ/internal/vocal_cords/colossus
-	name = "divine vocal cords"
-	desc = "They carry the voice of an ancient god."
+	name = "神圣声带"
+	desc = "传递古代神灵的声音."
 	icon_state = "voice_of_god"
 	actions_types = list(/datum/action/item_action/organ_action/colossus)
 	var/next_command = 0
 	var/cooldown_mod = 1
 	var/base_multiplier = 1
-	spans = list("colossus","yell")
+	spans = list("高声道","呐喊道")
 
 /datum/action/item_action/organ_action/colossus
-	name = "Voice of God"
+	name = "上帝之声"
 	var/obj/item/organ/internal/vocal_cords/colossus/cords = null
 
 /datum/action/item_action/organ_action/colossus/New()
@@ -42,18 +42,18 @@
 		return FALSE
 	if(world.time < cords.next_command)
 		if (feedback)
-			owner.balloon_alert(owner, "wait [DisplayTimeText(cords.next_command - world.time)]!")
+			owner.balloon_alert(owner, "等待[DisplayTimeText(cords.next_command - world.time)]!")
 		return FALSE
 	if(isliving(owner))
 		var/mob/living/living = owner
 		if(!living.can_speak())
 			if (feedback)
-				owner.balloon_alert(owner, "can't speak!")
+				owner.balloon_alert(owner, "无法讲话!")
 			return FALSE
 	if(check_flags & AB_CHECK_CONSCIOUS)
 		if(owner.stat)
 			if (feedback)
-				owner.balloon_alert(owner, "unconscious!")
+				owner.balloon_alert(owner, "无意识!")
 			return FALSE
 	return TRUE
 
@@ -61,7 +61,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/command = tgui_input_text(owner, "Speak with the Voice of God", "Command")
+	var/command = tgui_input_text(owner, "用上帝之声讲话", "下令")
 	if(!command)
 		return
 	if(QDELETED(src) || QDELETED(owner))
@@ -73,7 +73,7 @@
 		return FALSE
 
 	if(world.time < next_command)
-		to_chat(owner, span_notice("You must wait [DisplayTimeText(next_command - world.time)] before Speaking again."))
+		to_chat(owner, span_notice("你必须等待[DisplayTimeText(next_command - world.time)]才能再次讲话."))
 		return FALSE
 
 	return owner.can_speak()
@@ -88,22 +88,22 @@
 
 /obj/item/organ/internal/adamantine_resonator
 	visual = FALSE
-	name = "adamantine resonator"
-	desc = "Fragments of adamantine exist in all golems, stemming from their origins as purely magical constructs. These are used to \"hear\" messages from their leaders."
+	name = "精金共鸣器"
+	desc = "所有石人中都含有精金碎片，这些碎片源自它们作为纯粹魔法构造物的起源；它们被用来“接收”来自领导者的信息."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_ADAMANTINE_RESONATOR
 	icon_state = "adamantine_resonator"
 
 /obj/item/organ/internal/vocal_cords/adamantine
-	name = "adamantine vocal cords"
-	desc = "When adamantine resonates, it causes all nearby pieces of adamantine to resonate as well. Golems containing these formations use this to broadcast messages to nearby golems."
+	name = "精金声带"
+	desc = "当精金发生共振时，它会引发附近所有精金也产生共鸣，含有这种结构的石人利用这一特性向附近的其他石人传递信息."
 	actions_types = list(/datum/action/item_action/organ_action/use/adamantine_vocal_cords)
 	icon_state = "adamantine_cords"
 
 /datum/action/item_action/organ_action/use/adamantine_vocal_cords/Trigger(trigger_flags)
 	if(!IsAvailable(feedback = TRUE))
 		return
-	var/message = tgui_input_text(owner, "Resonate a message to all nearby golems", "Resonate")
+	var/message = tgui_input_text(owner, "向附近的石人共振一条信息", "共振")
 	if(!message)
 		return
 	if(QDELETED(src) || QDELETED(owner))
@@ -111,7 +111,7 @@
 	owner.say(".x[message]")
 
 /obj/item/organ/internal/vocal_cords/adamantine/handle_speech(message)
-	var/msg = span_resonate("[span_name("[owner.real_name]")] resonates, \"[message]\"")
+	var/msg = span_resonate("[span_name("[owner.real_name]")]共振, \"[message]\"")
 	for(var/player in GLOB.player_list)
 		if(iscarbon(player))
 			var/mob/living/carbon/speaker = player

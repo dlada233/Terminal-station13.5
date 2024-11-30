@@ -1,6 +1,6 @@
 /datum/surgery
 	///The name of the surgery operation
-	var/name = "surgery"
+	var/name = "手术"
 	///The description of the surgery, what it does.
 	var/desc
 
@@ -131,7 +131,7 @@
 	if(step.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
 		return TRUE
 	if(tool && tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
-		to_chat(user, span_warning("This step requires a different tool!"))
+		to_chat(user, span_warning("这一步需要不同的工具!"))
 		return TRUE
 
 	return FALSE
@@ -168,19 +168,19 @@
 	return operating_computer
 
 /datum/surgery/advanced
-	name = "advanced surgery"
+	name = "高级手术"
 	requires_tech = TRUE
 
 /obj/item/disk/surgery
-	name = "Surgery Procedure Disk"
-	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
+	name = "手术程序软盘"
+	desc = "包含高级手术程序的光盘，必须加载到手术控制台中."
 	icon_state = "datadisk1"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass=SMALL_MATERIAL_AMOUNT)
 	var/list/surgeries
 
 /obj/item/disk/surgery/debug
-	name = "Debug Surgery Disk"
-	desc = "A disk that contains all existing surgery procedures."
+	name = "调试手术软盘"
+	desc = "包含所有现有手术程序的光盘."
 	icon_state = "datadisk1"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass=SMALL_MATERIAL_AMOUNT)
 

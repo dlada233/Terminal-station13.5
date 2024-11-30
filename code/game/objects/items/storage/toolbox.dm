@@ -381,7 +381,7 @@
 	extra_to_spawn = /obj/item/ammo_box/a357
 
 /obj/item/storage/toolbox/guncase/sword_and_board
-	name = "激光剑盾武器箱"
+	name = "能量剑盾武器箱"
 	weapon_to_spawn = /obj/item/melee/energy/sword
 	extra_to_spawn = /obj/item/shield/energy
 

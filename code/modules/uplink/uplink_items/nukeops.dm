@@ -357,7 +357,7 @@
 	item = /obj/item/ammo_box/magazine/sniper_rounds/marksman
 
 /datum/uplink_item/weapon_kits/high_cost/doublesword
-	name = "双刃激光剑 (Very Hard)"
+	name = "双刃能量剑 (Very Hard)"
 	desc = "购买后得到的补给箱里有一把双刃能量剑、防滑模块、冰毒注射器还有一块肥皂. \
 		有人说，最臭名昭著的核特工利用这种设备组合屠杀了数百名纳米员工. \
 		这其中肥皂起了很大作用，以及我们赠送的囚服."
@@ -445,7 +445,7 @@
 
 /datum/uplink_item/reinforcements/assault_borg
 	name = "辛迪加突击赛博格"
-	desc = "一个被设计和编程用于系统消灭非辛迪加人员的赛博格，配有自填装轻机枪、榴弹发射器、激光剑、EMAG、闪光灯和撬棍."
+	desc = "一个被设计和编程用于系统消灭非辛迪加人员的赛博格，配有自填装轻机枪、榴弹发射器、能量剑、EMAG、闪光灯和撬棍."
 	item = /obj/item/antag_spawner/nuke_ops/borg_tele/assault
 
 /datum/uplink_item/reinforcements/medical_borg

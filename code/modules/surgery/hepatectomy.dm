@@ -1,5 +1,5 @@
 /datum/surgery/hepatectomy
-	name = "Hepatectomy"
+	name = "肝切除术"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
 	organ_to_manipulate = ORGAN_SLOT_LIVER
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -22,7 +22,7 @@
 ////hepatectomy, removes damaged parts of the liver so that the liver may regenerate properly
 //95% chance of success, not 100 because organs are delicate
 /datum/surgery_step/hepatectomy
-	name = "remove damaged liver section (scalpel)"
+	name = "除受损肝脏 (手术刀)"
 	implements = list(
 		TOOL_SCALPEL = 95,
 		/obj/item/melee/energy/sword = 65,
@@ -38,26 +38,26 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to cut out a damaged piece of [target]'s liver..."),
-		span_notice("[user] begins to make an incision in [target]."),
-		span_notice("[user] begins to make an incision in [target]."),
+		span_notice("你开始切除[target]受损的肝脏部分..."),
+		span_notice("[user]开始对[target]进行切口。"),
+		span_notice("[user]开始对[target]进行切口。"),
 	)
-	display_pain(target, "Your abdomen burns in horrific stabbing pain!")
+	display_pain(target, "你的腹部感到剧烈的刺痛！")
 
 /datum/surgery_step/hepatectomy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/human_target = target
 	var/obj/item/organ/internal/liver/target_liver = target.get_organ_slot(ORGAN_SLOT_LIVER)
-	human_target.setOrganLoss(ORGAN_SLOT_LIVER, 10) //not bad, not great
+	human_target.setOrganLoss(ORGAN_SLOT_LIVER, 10) //不算坏，也不算好
 	if(target_liver)
 		target_liver.operated = TRUE
 	display_results(
 		user,
 		target,
-		span_notice("You successfully remove the damaged part of [target]'s liver."),
-		span_notice("[user] successfully removes the damaged part of [target]'s liver."),
-		span_notice("[user] successfully removes the damaged part of [target]'s liver."),
+		span_notice("你成功切除了[target]受损的肝脏部分。"),
+		span_notice("[user]成功切除了[target]受损的肝脏部分。"),
+		span_notice("[user]成功切除了[target]受损的肝脏部分。"),
 	)
-	display_pain(target, "The pain receeds slightly.")
+	display_pain(target, "疼痛稍微减轻了一些。")
 	return ..()
 
 /datum/surgery_step/hepatectomy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery)
@@ -66,8 +66,8 @@
 	display_results(
 		user,
 		target,
-		span_warning("You cut the wrong part of [target]'s liver!"),
-		span_warning("[user] cuts the wrong part of [target]'s liver!"),
-		span_warning("[user] cuts the wrong part of [target]'s liver!"),
+		span_warning("你切错了[target]的肝脏部分！"),
+		span_warning("[user]切错了[target]的肝脏部分！"),
+		span_warning("[user]切错了[target]的肝脏部分！"),
 	)
-	display_pain(target, "You feel a sharp stab inside your abdomen!")
+	display_pain(target, "你感到腹部一阵剧痛！")

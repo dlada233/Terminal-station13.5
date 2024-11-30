@@ -1,7 +1,7 @@
 ///Tail parent, it doesn't do very much.
 /obj/item/organ/external/tail
-	name = "tail"
-	desc = "A severed tail. What did you cut this off of?"
+	name = "尾巴"
+	desc = "被割断的尾巴，你把它从什么地方上剪下来的?"
 	icon_state = "severedtail"
 
 	zone = BODY_ZONE_PRECISE_GROIN
@@ -161,7 +161,7 @@
 	return TRUE
 
 /obj/item/organ/external/tail/cat
-	name = "tail"
+	name = "尾巴"
 	preference = "feature_human_tail"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/cat
@@ -180,7 +180,7 @@
 	// color_source = ORGAN_COLOR_HAIR // SKYRAT EDIT REMOVAL
 
 /obj/item/organ/external/tail/monkey
-	name = "monkey tail"
+	name = "猴子尾巴"
 	preference = "feature_monkey_tail"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/monkey
@@ -196,8 +196,8 @@
 	return SSaccessories.tails_list_monkey
 
 /obj/item/organ/external/tail/lizard
-	name = "lizard tail"
-	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
+	name = "蜥蜴尾巴"
+	desc = "一只被切断的蜥蜴尾巴. 毫无疑问，某个讨厌蜥蜴的人此刻一定非常得意."
 	preference = "feature_lizard_tail"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/lizard
@@ -213,8 +213,8 @@
 	return SSaccessories.sprite_accessories["tail"] // SKYRAT EDIT - Customization - ORIGINAL: return SSaccessories.tails_list_lizard
 
 /obj/item/organ/external/tail/lizard/fake
-	name = "fabricated lizard tail"
-	desc = "A fabricated severed lizard tail. This one's made of synthflesh. Probably not usable for lizard wine."
+	name = "合成蜥蜴尾巴"
+	desc = "一条人造的断掉的蜥蜴尾巴，这个是用合成肉做的，可能不能用来制作蜥蜴酒."
 
 ///Bodypart overlay for tail spines. Handled by the tail - has no actual organ associated.
 /datum/bodypart_overlay/mutant/tail_spines

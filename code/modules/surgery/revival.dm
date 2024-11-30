@@ -1,7 +1,7 @@
 /datum/surgery/revival
-	name = "Revival"
-	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. \
-		The body must still be able to sustain life."
+	name = "复活"
+	desc = "一种实验性的手术程序，涉及在死亡后很长时间重建和激活患者的大脑. \
+		身体必须仍然能够维持生命."
 	requires_bodypart_type = NONE
 	possible_locs = list(BODY_ZONE_CHEST)
 	target_mobtypes = list(/mob/living)
@@ -36,7 +36,7 @@
 	return TRUE
 
 /datum/surgery_step/revive
-	name = "shock brain (defibrillator)"
+	name = "电击大脑 (除颤器)"
 	implements = list(
 		/obj/item/shockpaddles = 100,
 		/obj/item/melee/touch_attack/shock = 100,
@@ -52,30 +52,30 @@
 	if(istype(tool, /obj/item/shockpaddles))
 		var/obj/item/shockpaddles/paddles = tool
 		if((paddles.req_defib && !paddles.defib.powered) || !HAS_TRAIT(paddles, TRAIT_WIELDED) || paddles.cooldown || paddles.busy)
-			to_chat(user, span_warning("You need to wield both paddles, and [paddles.defib] must be powered!"))
+			to_chat(user, span_warning("你需要同时握住两块电极板，并且[paddles.defib]必须通电！"))
 			return FALSE
 	if(istype(tool, /obj/item/melee/baton/security))
 		var/obj/item/melee/baton/security/baton = tool
 		if(!baton.active)
-			to_chat(user, span_warning("[baton] needs to be active!"))
+			to_chat(user, span_warning("[baton]需要激活！"))
 			return FALSE
 	if(istype(tool, /obj/item/gun/energy))
 		var/obj/item/gun/energy/egun = tool
 		if(egun.chambered && istype(egun.chambered, /obj/item/ammo_casing/energy/electrode))
 			return TRUE
 		else
-			to_chat(user, span_warning("You need an electrode for this!"))
+			to_chat(user, span_warning("你需要一个电极！"))
 			return FALSE
 
 /datum/surgery_step/revive/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
 		user,
 		target,
-		span_notice("You prepare to give [target]'s brain the spark of life with [tool]."),
-		span_notice("[user] prepares to shock [target]'s brain with [tool]."),
-		span_notice("[user] prepares to shock [target]'s brain with [tool]."),
+		span_notice("你准备用[tool]给[target]的大脑带来生命的火花."),
+		span_notice("[user]准备用[tool]电击[target]的大脑."),
+		span_notice("[user]准备用[tool]电击[target]的大脑."),
 	)
-	target.notify_revival("Someone is trying to zap your brain.", source = target)
+	target.notify_revival("有人正在试图电击你的大脑.", source = target)
 
 /datum/surgery_step/revive/play_preop_sound(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/shockpaddles))
@@ -87,9 +87,9 @@
 	display_results(
 		user,
 		target,
-		span_notice("You successfully shock [target]'s brain with [tool]..."),
-		span_notice("[user] send a powerful shock to [target]'s brain with [tool]..."),
-		span_notice("[user] send a powerful shock to [target]'s brain with [tool]..."),
+		span_notice("你成功地用[tool]电击了[target]的大脑..."),
+		span_notice("[user]用[tool]向[target]的大脑发送了强烈的电击..."),
+		span_notice("[user]用[tool]向[target]的大脑发送了强烈的电击..."),
 	)
 	target.grab_ghost()
 	target.adjustOxyLoss(-50, 0)
@@ -103,15 +103,15 @@
 
 	//SKYRAT EDIT CHANGE - DNR TRAIT - need this so that people don't just keep spamming the revival surgery; it runs success just bc the surgery steps are done
 	if(HAS_TRAIT(target, TRAIT_DNR))
-		target.visible_message(span_warning("...[target.p_they()] lie[target.p_s()] still, unaffected. Further attempts are futile, target.p_theyre() gone."))
+		target.visible_message(span_warning("...病患仍然躺着，毫无反应. 进一步的尝试是徒劳的，这个人已经永远地离开了."))
 	else
-		target.visible_message(span_warning("...[target.p_they()] convulse[target.p_s()], then lie[target.p_s()] still."))
+		target.visible_message(span_warning("...病患抽搐了一下，然后躺着不动了."))
 	//SKYRAT EDIT CHANGE END - DNR TRAIT - ORIGINAL: target.visible_message(span_warning("...[target.p_they()] convulse[target.p_s()], then lie[target.p_s()] still."))
 	return FALSE
 
 /// Called when you have been successfully raised from the dead
 /datum/surgery_step/revive/proc/on_revived(mob/surgeon, mob/living/patient)
-	patient.visible_message(span_notice("...[patient] wakes up, alive and aware!"))
+	patient.visible_message(span_notice("...[patient]醒来了，活着并且意识到了!"))
 	patient.emote("gasp")
 	to_chat(patient, "<span class='userdanger'>[CONFIG_GET(string/blackoutpolicy)]</span>") //SKYRAT EDIT ADDITION - BLACKOUT POLICY
 	if(HAS_MIND_TRAIT(surgeon, TRAIT_MORBID) && ishuman(surgeon)) // Contrary to their typical hatred of resurrection, it wouldn't be very thematic if morbid people didn't love playing god
@@ -122,9 +122,9 @@
 	display_results(
 		user,
 		target,
-		span_notice("You shock [target]'s brain with [tool], but [target.p_they()] doesn't react."),
-		span_notice("[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react."),
-		span_notice("[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react."),
+		span_notice("你用[tool]电击了[target]的大脑，但病患没有反应."),
+		span_notice("[user]用[tool]向[target]的大脑发送了强烈的电击，但病患没有反应."),
+		span_notice("[user]用[tool]向[target]的大脑发送了强烈的电击，但病患没有反应."),
 	)
 	return FALSE
 

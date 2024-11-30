@@ -56,12 +56,12 @@
 	// 用于表示中途加入的叛徒，因此无法访问次要目标
 	// 进展元素最好留给回合开始的对抗者
 	// 上行链路项目仍将有时间锁定
-	name = "\improper 潜伏人员"
+	name = "\improper 沉睡人员"
 	give_secondary_objectives = FALSE
 	uplink_flag_given = UPLINK_INFILTRATORS
 
 /datum/antagonist/traitor/infiltrator/sleeper_agent
-	name = "\improper 辛迪加潜伏特工"
+	name = "\improper 辛迪加沉睡特工"
 
 /datum/antagonist/traitor/New(give_objectives = TRUE)
 	. = ..()

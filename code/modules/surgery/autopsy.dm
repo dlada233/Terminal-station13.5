@@ -1,5 +1,5 @@
 /datum/surgery/autopsy
-	name = "Autopsy"
+	name = "尸检解刨"
 	surgery_flags = SURGERY_IGNORE_CLOTHES | SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
@@ -19,7 +19,7 @@
 	return TRUE
 
 /datum/surgery_step/autopsy
-	name = "Perform Autopsy (autopsy scanner)"
+	name = "执行尸检 (尸检扫描仪)"
 	implements = list(/obj/item/autopsy_scanner = 100)
 	time = 10 SECONDS
 	success_sound = 'sound/machines/printer.ogg'
@@ -28,11 +28,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begins performing an autopsy on [target]..."),
-		span_notice("[user] uses [tool] to perform an autopsy on [target]."),
-		span_notice("[user] uses [tool] on [target]'s chest."),
+		span_notice("你开始对[target]进行尸检..."),
+		span_notice("[user]使用[tool]对[target]进行尸检."),
+		span_notice("[user]将[tool]放在[target]的胸口上."),
 	)
-	display_pain(target, "You feel a burning sensation in your chest!")
+	display_pain(target, "你感到胸口有灼烧感!")
 
 /datum/surgery_step/autopsy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/autopsy_scanner/tool, datum/surgery/surgery, default_display_results = FALSE)
 	ADD_TRAIT(target, TRAIT_DISSECTED, AUTOPSY_TRAIT)
@@ -51,8 +51,8 @@
 	display_results(
 		user,
 		target,
-		span_warning("You screw up, bruising [target]'s chest!"),
-		span_warning("[user] screws up, brusing [target]'s chest!"),
-		span_warning("[user] screws up!"),
+		span_warning("你搞砸了，弄伤了[target]的胸口!"),
+		span_warning("[user]搞砸了，弄伤了[target]的胸口!"),
+		span_warning("[user]搞砸了!"),
 	)
 	target.adjustBruteLoss(5)

@@ -3,8 +3,8 @@
  * Makes plasma and hot ice heal wounds, also makes gunpowder a hallucinogen.
  **/
 /obj/item/organ/internal/liver/bone/plasmaman
-	name = "reagent processing crystal"
-	desc = "A large crystal that is somehow capable of metabolizing chemicals, these are found in plasmamen."
+	name = "试剂处理晶体"
+	desc = "等离子体是一种能够代谢化学物质的大晶体，存在于等离子体中."
 	icon_state = "liver-p"
 	organ_flags = ORGAN_MINERAL
 	organ_traits = list(TRAIT_PLASMA_LOVER_METABOLISM)

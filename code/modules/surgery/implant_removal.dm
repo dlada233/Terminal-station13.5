@@ -1,5 +1,5 @@
 /datum/surgery/implant_removal
-	name = "Implant Removal"
+	name = "移除植入物"
 	target_mobtypes = list(/mob/living)
 	possible_locs = list(BODY_ZONE_CHEST)
 	surgery_flags = SURGERY_REQUIRE_RESTING
@@ -13,7 +13,7 @@
 
 //extract implant
 /datum/surgery_step/extract_implant
-	name = "extract implant (hemostat)"
+	name = "移除植入物 (止血钳)"
 	implements = list(
 		TOOL_HEMOSTAT = 100,
 		TOOL_CROWBAR = 65,
@@ -30,18 +30,18 @@
 		display_results(
 			user,
 			target,
-			span_notice("You begin to extract [implant] from [target]'s [target_zone]..."),
-			span_notice("[user] begins to extract [implant] from [target]'s [target_zone]."),
-			span_notice("[user] begins to extract something from [target]'s [target_zone]."),
+			span_notice("你开始从[target]的[target_zone]中取出[implant]..."),
+			span_notice("[user]开始从[target]的[target_zone]中取出[implant]."),
+			span_notice("[user]开始从[target]的[target_zone]中取出某物."),
 		)
-		display_pain(target, "You feel a serious pain in your [target_zone]!")
+		display_pain(target, "你感到[target_zone]传来剧烈的疼痛!")
 	else
 		display_results(
 			user,
 			target,
-			span_notice("You look for an implant in [target]'s [target_zone]..."),
-			span_notice("[user] looks for an implant in [target]'s [target_zone]."),
-			span_notice("[user] looks for something in [target]'s [target_zone]."),
+			span_notice("你在[target]的[target_zone]中寻找植入物..."),
+			span_notice("[user]在[target]的[target_zone]中寻找植入物."),
+			span_notice("[user]在[target]的[target_zone]中寻找某物."),
 		)
 
 /datum/surgery_step/extract_implant/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
@@ -49,11 +49,11 @@
 		display_results(
 			user,
 			target,
-			span_notice("You successfully remove [implant] from [target]'s [target_zone]."),
-			span_notice("[user] successfully removes [implant] from [target]'s [target_zone]!"),
-			span_notice("[user] successfully removes something from [target]'s [target_zone]!"),
+			span_notice("你成功地从[target]的[target_zone]中取出[implant]."),
+			span_notice("[user]成功地从[target]的[target_zone]中取出[implant]!"),
+			span_notice("[user]成功地从[target]的[target_zone]中取出某物!"),
 		)
-		display_pain(target, "You can feel your [implant.name] pulled out of you!")
+		display_pain(target, "你能感觉到[implant.name]被从你体内拔出!")
 		implant.removed(target)
 
 		if (QDELETED(implant))
@@ -72,19 +72,19 @@
 			display_results(
 				user,
 				target,
-				span_notice("You place [implant] into [case]."),
-				span_notice("[user] places [implant] into [case]!"),
-				span_notice("[user] places it into [case]!"),
+				span_notice("你将[implant]放入[case]中."),
+				span_notice("[user]将[implant]放入[case]中!"),
+				span_notice("[user]将它放入[case]中!"),
 			)
 		else
 			qdel(implant)
 
 	else
-		to_chat(user, span_warning("You can't find anything in [target]'s [target_zone]!"))
+		to_chat(user, span_warning("你在[target]的[target_zone]中什么也没找到!"))
 	return ..()
 
 /datum/surgery/implant_removal/mechanic
-	name = "Implant Removal"
+	name = "移除植入物"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	target_mobtypes = list(/mob/living/carbon/human) // Simpler mobs don't have bodypart types
 	surgery_flags = parent_type::surgery_flags | SURGERY_REQUIRE_LIMB

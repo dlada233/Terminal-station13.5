@@ -1,5 +1,5 @@
 /obj/item/organ/internal/lungs
-	name = "lungs"
+	name = "肺"
 	icon_state = "lungs"
 	visual = FALSE
 	zone = BODY_ZONE_CHEST
@@ -12,11 +12,11 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY * 0.9 // fails around 16.5 minutes, lungs are one of the last organs to die (of the ones we have)
 
-	low_threshold_passed = "<span class='warning'>You feel short of breath.</span>"
-	high_threshold_passed = "<span class='warning'>You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.</span>"
-	now_fixed = "<span class='warning'>Your lungs seem to once again be able to hold air.</span>"
-	low_threshold_cleared = "<span class='info'>You can breathe normally again.</span>"
-	high_threshold_cleared = "<span class='info'>The constriction around your chest loosens as your breathing calms down.</span>"
+	low_threshold_passed = "<span class='warning'>你感到呼吸急促.</span>"
+	high_threshold_passed = "<span class='warning'>你感到胸部周围有种压迫感，呼吸变得浅而急促.</span>"
+	now_fixed = "<span class='warning'>你的肺似乎又能留住空气了.</span>"
+	low_threshold_cleared = "<span class='info'>你可以再次正常呼吸了.</span>"
+	high_threshold_cleared = "<span class='info'>随着呼吸平复，你胸部的压迫感减轻了.</span>"
 
 	var/failed = FALSE
 	var/operated = FALSE //whether we can still have our damages fixed through surgery
@@ -84,7 +84,7 @@
 	var/tritium_irradiation_probability_min = 10
 	var/tritium_irradiation_probability_max = 60
 
-	var/cold_message = "your face freezing and an icicle forming"
+	var/cold_message = "你的脸冻得发麻，并且开始结冰"
 	var/cold_level_1_threshold = 260
 	var/cold_level_2_threshold = 200
 	var/cold_level_3_threshold = 120
@@ -93,7 +93,7 @@
 	var/cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_3
 	var/cold_damage_type = BURN
 
-	var/hot_message = "your face burning and a searing heat"
+	var/hot_message = "你的脸火辣辣地疼，并且感到一股炽热的灼烧感"
 	var/heat_level_1_threshold = 360
 	var/heat_level_2_threshold = 400
 	var/heat_level_3_threshold = 1000
@@ -391,12 +391,12 @@
 	if (freon_pp > gas_stimulation_min)
 		breather.reagents.add_reagent(/datum/reagent/freon, 1)
 	if (prob(freon_pp))
-		to_chat(breather, span_alert("Your mouth feels like it's burning!"))
+		to_chat(breather, span_alert("你的嘴巴感觉像是被火烧一样!"))
 	if (freon_pp > 40)
 		breather.emote("gasp")
 		breather.adjustFireLoss(15)
 		if (prob(freon_pp / 2))
-			to_chat(breather, span_alert("Your throat closes up!"))
+			to_chat(breather, span_alert("你的喉咙收紧了!"))
 			breather.set_silence_if_lower(6 SECONDS)
 	else
 		breather.adjustFireLoss(freon_pp / 4)
@@ -416,7 +416,7 @@
 	// Euphoria side-effect.
 	if(healium_pp > gas_stimulation_min)
 		if(prob(15))
-			to_chat(breather, span_alert("Your head starts spinning and your lungs burn!"))
+			to_chat(breather, span_alert("你的头开始天旋地转，并且你的肺部有灼烧感!"))
 			healium_euphoria = EUPHORIA_ACTIVE
 			breather.emote("gasp")
 	else
@@ -470,22 +470,22 @@
 			// At lower pp, give out a little warning
 			breather.clear_mood_event("smell")
 			if(prob(5))
-				to_chat(breather, span_notice("There is an unpleasant smell in the air."))
+				to_chat(breather, span_notice("空气中弥漫着一股难闻的气味."))
 		if(5 to 15)
 			//At somewhat higher pp, warning becomes more obvious
 			if(prob(15))
-				to_chat(breather, span_warning("You smell something horribly decayed inside this room."))
+				to_chat(breather, span_warning("你闻到了这个房间内极度腐烂的气味."))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/bad_smell)
 		if(15 to 30)
 			//Small chance to vomit. By now, people have internals on anyway
 			if(prob(5))
-				to_chat(breather, span_warning("The stench of rotting carcasses is unbearable!"))
+				to_chat(breather, span_warning("腐烂尸体的臭味令人难以忍受!"))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 				breather.vomit(VOMIT_CATEGORY_DEFAULT)
 		if(30 to INFINITY)
 			//Higher chance to vomit. Let the horror start
 			if(prob(15))
-				to_chat(breather, span_warning("The stench of rotting carcasses is unbearable!"))
+				to_chat(breather, span_warning("腐烂尸体的臭味令人难以忍受!"))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 				breather.vomit(VOMIT_CATEGORY_DEFAULT)
 		else
@@ -548,7 +548,7 @@
 	if((prob(nitrium_pp) && (nitrium_pp > 15)))
 		// Nitrium-亚硝基兴奋气体 side-effect.
 		breather.adjustOrganLoss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
-		to_chat(breather, "<span class='notice'>You feel a burning sensation in your chest</span>")
+		to_chat(breather, "<span class='notice'>你感到胸部有灼烧感</span>")
 	// Metabolize to reagents.
 	if (nitrium_pp > 5)
 		var/existing = breather.reagents.get_reagent_amount(/datum/reagent/nitrium_low_metabolization)
@@ -770,7 +770,7 @@
 			breath_effect_prob = 25
 		if(breath_temperature < cold_level_1_threshold)
 			if(prob(sqrt(breath_effect_prob) * 4))
-				to_chat(breather, span_warning("You feel [cold_message] in your [name]!"))
+				to_chat(breather, span_warning("你感到[name]传来[cold_message]!"))
 				if(prob(50))
 					breather.emote("shiver")
 			if(prob(breath_effect_prob))
@@ -796,7 +796,7 @@
 			heat_message_prob = 25
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(sqrt(heat_message_prob) * 4))
-				to_chat(breather, span_warning("You feel [hot_message] in your [name]!"))
+				to_chat(breather, span_warning("你感到[name]传来[cold_message]!"))
 
 	// The air you breathe out should match your body temperature
 	breath.temperature = breather.bodytemperature
@@ -847,7 +847,7 @@
 		if(do_i_cough)
 			owner.emote("cough")
 	if(organ_flags & ORGAN_FAILING && owner.stat == CONSCIOUS)
-		owner.visible_message(span_danger("[owner] grabs [owner.p_their()] throat, struggling for breath!"), span_userdanger("You suddenly feel like you can't breathe!"))
+		owner.visible_message(span_danger("[owner]掐住了自己的喉咙，呼吸困难!"), span_userdanger("你突然感觉自己不能呼吸了!"))
 		failed = TRUE
 
 /obj/item/organ/internal/lungs/get_availability(datum/species/owner_species, mob/living/owner_mob)
@@ -857,8 +857,8 @@
 #define SMOKER_LUNG_HEALING (STANDARD_ORGAN_HEALING * 0.75)
 
 /obj/item/organ/internal/lungs/plasmaman
-	name = "plasma filter"
-	desc = "A spongy rib-shaped mass for filtering plasma from the air."
+	name = "等离子过滤肺"
+	desc = "一个海绵状、肋骨形状的团块，用于从空气中过滤等离子."
 	icon_state = "lungs-plasma"
 	organ_traits = list(TRAIT_NOHUNGER) // A fresh breakfast of plasma is a great start to any morning.
 
@@ -867,16 +867,16 @@
 	safe_plasma_max = 0
 
 /obj/item/organ/internal/lungs/plasmaman/plasmaman_smoker
-	name = "smoker plasma filter"
-	desc = "A plasma filter that look discolored, a result from smoking a lot."
+	name = "吸烟者的等离子过滤肺"
+	desc = "一个因大量吸烟而变色的离子过滤肺."
 	icon_state = "lungs_plasma_smoker"
 
 	maxHealth = SMOKER_ORGAN_HEALTH
 	healing_factor = SMOKER_LUNG_HEALING
 
 /obj/item/organ/internal/lungs/slime
-	name = "vacuole"
-	desc = "A large organelle designed to store oxygen and other important gasses."
+	name = "液泡"
+	desc = "一个大型细胞器，用于储存氧气和其他重要气体."
 
 	safe_plasma_max = 0 //We breathe this to gain POWER.
 
@@ -887,16 +887,16 @@
 		breather_slime.blood_volume += (0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
 
 /obj/item/organ/internal/lungs/smoker_lungs
-	name = "smoker lungs"
-	desc = "A pair of lungs that look sickly, a result from smoking a lot."
+	name = "吸烟者的肺"
+	desc = "一对看起来病态的肺，这是大量吸烟的结果."
 	icon_state = "lungs_smoker"
 
 	maxHealth = SMOKER_ORGAN_HEALTH
 	healing_factor = SMOKER_LUNG_HEALING
 
 /obj/item/organ/internal/lungs/cybernetic
-	name = "basic cybernetic lungs"
-	desc = "A basic cybernetic version of the lungs found in traditional humanoid entities."
+	name = "初级电子肺"
+	desc = "传统类人生物体内肺部的机械版本."
 	failing_desc = "seems to be broken."
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_ROBOTIC
@@ -914,16 +914,16 @@
 		organ_flags |= ORGAN_EMP //Starts organ faliure - gonna need replacing soon.
 
 /obj/item/organ/internal/lungs/cybernetic/tier2
-	name = "cybernetic lungs"
-	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Allows for greater intakes of oxygen than organic lungs, requiring slightly less pressure."
+	name = "电子肺"
+	desc = "传统类人生物体内肺部的机械版本，相比有机肺，能够吸入更多的氧气，所需压力略小."
 	icon_state = "lungs-c-u"
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	safe_oxygen_min = 13
 	emp_vulnerability = 40
 
 /obj/item/organ/internal/lungs/cybernetic/tier3
-	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs. Features the ability to filter out lower levels of plasma and carbon dioxide."
+	name = "高级电子肺"
+	desc = "基础机械肺的更高级版本，具有过滤更低浓度的血浆和二氧化碳的能力."
 	icon_state = "lungs-c-u2"
 	safe_plasma_max = 20
 	safe_co2_max = 20
@@ -936,9 +936,8 @@
 	cold_level_3_threshold = 100
 
 /obj/item/organ/internal/lungs/cybernetic/surplus
-	name = "surplus prosthetic lungs"
-	desc = "Two fragile, inflatable sacks of air that only barely mimic the function of human lungs. \
-		Offer no protection against EMPs."
+	name = "廉价人工肺"
+	desc = "个脆弱的、可充气的气囊，只能勉强模仿人类肺部的功能，无法抵御电磁脉冲."
 	icon_state = "lungs-c-s"
 	maxHealth = 0.35 * STANDARD_ORGAN_THRESHOLD
 	emp_vulnerability = 100
@@ -949,8 +948,8 @@
 	AddElement(/datum/element/dangerous_surgical_removal)
 
 /obj/item/organ/internal/lungs/lavaland
-	name = "blackened frilled lungs" // blackened from necropolis exposure
-	desc = "Exposure to the necropolis has mutated these lungs to breathe the air of Indecipheres, the lava-covered moon."
+	name = "焦黑卷边肺" // blackened from necropolis exposure
+	desc = "暴露于亡灵之地已使这些肺部发生变异，能够呼吸位于熔岩覆盖的卫星Indecipheres上的空气."
 	icon_state = "lungs-ashwalker"
 
 // Normal oxygen is 21 kPa partial pressure, but SS13 humans can tolerate down
@@ -1009,16 +1008,16 @@
 #undef GAS_TOLERANCE
 
 /obj/item/organ/internal/lungs/ethereal
-	name = "aeration reticulum"
-	desc = "These exotic lungs seem crunchier than most."
+	name = "灵体通气网"
+	desc = "这些奇异的肺似乎比其他肺更加易碎."
 	icon_state = "lungs_ethereal"
 	heat_level_1_threshold = FIRE_MINIMUM_TEMPERATURE_TO_SPREAD // 150C or 433k, in line with ethereal max safe body temperature
 	heat_level_2_threshold = 473
 	heat_level_3_threshold = 1073
 
 /obj/item/organ/internal/lungs/ethereal/ethereal_smoker
-	name = "smoker aeration reticulum"
-	desc = "A pair of exotic lungs that look pale and sickly, a result from smoking a lot."
+	name = "吸烟者的灵体通气网"
+	desc = "一对看起来苍白且病态的奇异肺，这是大量吸烟的结果."
 	icon_state = "lungs_ethereal_smoker"
 
 	maxHealth = SMOKER_ORGAN_HEALTH

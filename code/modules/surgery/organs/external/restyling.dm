@@ -51,7 +51,7 @@
 			else
 				return
 		else
-			to_chat(trimmer, span_warning("There are no restylable features there!"))
+			to_chat(trimmer, span_warning("那里没有任何可以重新设计的特征!"))
 			return
 
 	target_organ.attempt_feature_restyle(source, trimmer, original_target, body_zone, restyle_type, style_speed)
@@ -63,21 +63,21 @@
 	if(restyle_flags & restyle_type)
 		INVOKE_ASYNC(src, PROC_REF(attempt_feature_restyle), source, trimmer, original_target, body_zone, restyle_type, style_speed)
 	else
-		to_chat(trimmer, span_warning("This tool is incompatible with the [src.name]!"))
+		to_chat(trimmer, span_warning("这个工具与[src.name]不兼容"))
 
 ///Restyles the external organ from a list of valid options
 /obj/item/organ/external/proc/attempt_feature_restyle(atom/source, mob/living/trimmer, atom/movable/original_target, body_zone, restyle_type, style_speed)
 	var/list/restyles = get_valid_restyles()
-	var/new_style = tgui_input_list(trimmer, "Select a new style", "Grooming", restyles)
+	var/new_style = tgui_input_list(trimmer, "选择新样式", "梳理", restyles)
 
 	trimmer.visible_message(
-		span_notice("[trimmer] tries to change [original_target == trimmer ? trimmer.p_their() : original_target.name + "'s"] [name]."),
-		span_notice("You try to change [original_target == trimmer ? "your" : original_target.name + "'s"] [name].")
+		span_notice("[trimmer]尝试去更改自己的[name]."),
+		span_notice("你尝试去更改你的[name].")
 	)
 	if(new_style && do_after(trimmer, style_speed, target = original_target))
 		trimmer.visible_message(
-			span_notice("[trimmer] successfully changes [original_target == trimmer ? trimmer.p_their() : original_target.name + "'s"] [name]."),
-			span_notice("You successfully change [original_target == trimmer ? "your" : original_target.name + "'s"] [name].")
+			span_notice("[trimmer]成功更改了自己的[name]."),
+			span_notice("你尝试去更改你的[name].")
 		)
 
 

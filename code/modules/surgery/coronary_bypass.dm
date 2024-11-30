@@ -1,5 +1,5 @@
 /datum/surgery/coronary_bypass
-	name = "Coronary Bypass"
+	name = "冠状动脉旁路手术"
 	organ_to_manipulate = ORGAN_SLOT_HEART
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
@@ -21,7 +21,7 @@
 
 //an incision but with greater bleed, and a 90% base success chance
 /datum/surgery_step/incise_heart
-	name = "incise heart (scalpel)"
+	name = "切割心脏 (手术刀)"
 	implements = list(
 		TOOL_SCALPEL = 90,
 		/obj/item/melee/energy/sword = 45,
@@ -37,11 +37,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to make an incision in [target]'s heart..."),
-		span_notice("[user] begins to make an incision in [target]'s heart."),
-		span_notice("[user] begins to make an incision in [target]'s heart."),
+		span_notice("你开始在[target]的心脏部位做切口..."),
+		span_notice("[user]开始在[target]的心脏部位做切口."),
+		span_notice("[user]开始在[target]的心脏部位做切口."),
 	)
-	display_pain(target, "You feel a horrendous pain in your heart, it's almost enough to make you pass out!")
+	display_pain(target, "你感到心脏部位传来剧烈的疼痛，几乎要让你昏厥过去!")
 
 /datum/surgery_step/incise_heart/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(ishuman(target))
@@ -50,9 +50,9 @@
 			display_results(
 				user,
 				target,
-				span_notice("Blood pools around the incision in [target_human]'s heart."),
-				span_notice("Blood pools around the incision in [target_human]'s heart."),
-				span_notice("Blood pools around the incision in [target_human]'s heart."),
+				span_notice("[target_human]心脏部位的切口周围开始积聚血液."),
+				span_notice("[target_human]心脏部位的切口周围开始积聚血液."),
+				span_notice("[target_human]心脏部位的切口周围开始积聚血液."),
 			)
 			var/obj/item/bodypart/target_bodypart = target_human.get_bodypart(target_zone)
 			target_bodypart.adjustBleedStacks(10)
@@ -65,9 +65,9 @@
 		display_results(
 			user,
 			target,
-			span_warning("You screw up, cutting too deeply into the heart!"),
-			span_warning("[user] screws up, causing blood to spurt out of [target_human]'s chest!"),
-			span_warning("[user] screws up, causing blood to spurt out of [target_human]'s chest!"),
+			span_warning("你失误了，切得太深，切入了心脏!"),
+			span_warning("[user]失误了，导致[target_human]的胸口鲜血喷涌而出!"),
+			span_warning("[user]失误了，导致[target_human]的胸口鲜血喷涌而出!"),
 		)
 		var/obj/item/bodypart/target_bodypart = target_human.get_bodypart(target_zone)
 		target_bodypart.adjustBleedStacks(10)
@@ -76,7 +76,7 @@
 
 //grafts a coronary bypass onto the individual's heart, success chance is 90% base again
 /datum/surgery_step/coronary_bypass
-	name = "graft coronary bypass (hemostat)"
+	name = "移植冠状动脉旁路 (止血钳)"
 	implements = list(
 		TOOL_HEMOSTAT = 90,
 		TOOL_WIRECUTTER = 35,
@@ -91,11 +91,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to graft a bypass onto [target]'s heart..."),
-		span_notice("[user] begins to graft something onto [target]'s heart!"),
-		span_notice("[user] begins to graft something onto [target]'s heart!"),
+		span_notice("你开始在[target]的心脏上移植旁路..."),
+		span_notice("[user]开始在[target]的心脏上移植什么东西！"),
+		span_notice("[user]开始在[target]的心脏上移植什么东西！"),
 	)
-	display_pain(target, "The pain in your chest is unbearable! You can barely take it anymore!")
+	display_pain(target, "你胸口的疼痛难以忍受！你几乎无法再承受了!")
 
 /datum/surgery_step/coronary_bypass/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	target.setOrganLoss(ORGAN_SLOT_HEART, 60)
@@ -105,11 +105,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You successfully graft a bypass onto [target]'s heart."),
-		span_notice("[user] finishes grafting something onto [target]'s heart."),
-		span_notice("[user] finishes grafting something onto [target]'s heart."),
+		span_notice("你成功地在[target]的心脏上移植了旁路."),
+		span_notice("[user]完成了在[target]的心脏上的移植."),
+		span_notice("[user]完成了在[target]的心脏上的移植."),
 	)
-	display_pain(target, "The pain in your chest throbs, but your heart feels better than ever!")
+	display_pain(target, "你胸口的疼痛跳动着，但你的心脏感觉比以前更好了!")
 	return ..()
 
 /datum/surgery_step/coronary_bypass/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -118,11 +118,11 @@
 		display_results(
 			user,
 			target,
-			span_warning("You screw up in attaching the graft, and it tears off, tearing part of the heart!"),
-			span_warning("[user] screws up, causing blood to spurt out of [target_human]'s chest profusely!"),
-			span_warning("[user] screws up, causing blood to spurt out of [target_human]'s chest profusely!"),
+			span_warning("你在连接移植物时失误了，它脱落了，并撕扯了一部分心脏！"),
+			span_warning("[user]失误了，导致[target_human]的胸口鲜血大量喷涌而出！"),
+			span_warning("[user]失误了，导致[target_human]的胸口鲜血大量喷涌而出！"),
 		)
-		display_pain(target, "Your chest burns; you feel like you're going insane!")
+		display_pain(target, "你的胸口灼烧着；你感觉自己要疯了!")
 		target_human.adjustOrganLoss(ORGAN_SLOT_HEART, 20)
 		var/obj/item/bodypart/target_bodypart = target_human.get_bodypart(target_zone)
 		target_bodypart.adjustBleedStacks(30)

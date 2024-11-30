@@ -1,6 +1,6 @@
 /obj/item/organ/internal/heart
 	name = "heart-心脏"
-	desc = "I feel bad for the heartless bastard who lost this."
+	desc = "我为那个输掉比赛的无情混蛋感到难过."
 	icon_state = "heart-on"
 	base_icon_state = "heart"
 	visual = FALSE
@@ -10,13 +10,13 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = 2.5 * STANDARD_ORGAN_DECAY //designed to fail around 6 minutes after death
 
-	low_threshold_passed = span_info("Prickles of pain appear then die out from within your chest...")
-	high_threshold_passed = span_warning("Something inside your chest hurts, and the pain isn't subsiding. You notice yourself breathing far faster than before.")
-	now_fixed = span_info("Your heart begins to beat again.")
-	high_threshold_cleared = span_info("The pain in your chest has died down, and your breathing becomes more relaxed.")
+	low_threshold_passed = span_info("你的胸口开始出现刺痛感，随后又逐渐消失...")
+	high_threshold_passed = span_warning("你胸口的某个部位开始疼痛，并且疼痛并未减轻,你发现自己呼吸变得异常急促.")
+	now_fixed = span_info("你的心脏重新开始跳动.")
+	high_threshold_cleared = span_info("你胸口的疼痛感已经消失，呼吸也变得平稳起来.")
 
-	attack_verb_continuous = list("beats", "thumps")
-	attack_verb_simple = list("beat", "thump")
+	attack_verb_continuous = list("击打", "重击")
+	attack_verb_simple = list("击打", "重击")
 
 	// Heart attack code is in code/modules/mob/living/carbon/human/life.dm
 
@@ -55,8 +55,8 @@
 
 	if(!beating)
 		user.visible_message(
-			span_notice("[user] squeezes [src] to make it beat again!"),
-			span_notice("You squeeze [src] to make it beat again!"),
+			span_notice("[user]挤压着[src]，试图让它再次跳动!"),
+			span_notice("你挤压着[src]，试图让它再次跳动!"),
 		)
 		Restart()
 		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 8 SECONDS)
@@ -100,8 +100,8 @@
 	if(!beating || (organ_flags & ORGAN_FAILING))
 		if(owner.can_heartattack() && Stop())
 			if(owner.stat == CONSCIOUS)
-				owner.visible_message(span_danger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
-			to_chat(owner, span_userdanger("You feel a terrible pain in your chest, as if your heart has stopped!"))
+				owner.visible_message(span_danger("[owner]紧捂着胸口，仿佛心脏停止跳动了!"))
+			to_chat(owner, span_userdanger("你感到胸口传来一阵剧痛，仿佛你的心脏已经停止了跳动!"))
 		return
 
 	// Beyond deals with sound effects, so nothing needs to be done if no client
@@ -111,7 +111,7 @@
 	if(owner.stat == SOFT_CRIT)
 		if(beat != BEAT_SLOW)
 			beat = BEAT_SLOW
-			to_chat(owner, span_notice("You feel your heart slow down..."))
+			to_chat(owner, span_notice("你感到你的心跳慢了下来..."))
 			SEND_SOUND(owner, sound('sound/health/slowbeat.ogg', repeat = TRUE, channel = CHANNEL_HEARTBEAT, volume = 40))
 
 	else if(owner.stat == HARD_CRIT)
@@ -158,12 +158,12 @@
 
 /obj/item/organ/internal/heart/cybernetic
 	name = "basic cybernetic heart-初级电子心"
-	desc = "A basic electronic device designed to mimic the functions of an organic human heart."
+	desc = "一种旨在模仿人类有机心脏功能的初级电子设备."
 	icon_state = "heart-c-on"
 	base_icon_state = "heart-c"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD*0.75 //This also hits defib timer, so a bit higher than its less important counterparts
-	failing_desc = "seems to be broken."
+	failing_desc = "似乎坏了."
 
 	var/dose_available = FALSE
 	var/rid = /datum/reagent/medicine/epinephrine
@@ -188,8 +188,8 @@
 		addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
 		if(owner_needs_us)
 			owner.visible_message(
-				span_danger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"),
-				span_userdanger("You feel a terrible pain in your chest, as if your heart has stopped!"),
+				span_danger("[owner]紧捂着胸口，仿佛心脏停止跳动了!"),
+				span_userdanger("你感到胸口传来一阵剧痛，仿佛你的心脏已经停止了跳动!"),
 			)
 
 /obj/item/organ/internal/heart/cybernetic/on_life(seconds_per_tick, times_fired)
@@ -203,7 +203,7 @@
 
 /obj/item/organ/internal/heart/cybernetic/tier2
 	name = "cybernetic heart-电子心"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma."
+	desc = "一种旨在模仿人类有机心脏功能的电子设备；同时，它还内置了一剂紧急肾上腺素，在遭遇严重创伤后会自动释放使用."
 	icon_state = "heart-c-u-on"
 	base_icon_state = "heart-c-u"
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD

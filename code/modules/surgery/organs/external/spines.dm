@@ -1,7 +1,7 @@
 ///A lizards spines (those things on their back), but also including tail spines (gasp)
 /obj/item/organ/external/spines
-	name = "lizard spines"
-	desc = "Not an actual spine, obviously."
+	name = "蜥蜴脊刺"
+	desc = "显然不是真正的脊椎."
 	icon_state = "spines"
 
 	zone = BODY_ZONE_CHEST

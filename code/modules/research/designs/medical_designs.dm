@@ -966,7 +966,7 @@
 
 /datum/design/cybernetic_eyes
 	name = "Basic Cybernetic Eyes-初级电子耳"
-	desc = "一对基础电子眼."
+	desc = "一对初级电子眼."
 	id = "cybernetic_eyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 3 SECONDS

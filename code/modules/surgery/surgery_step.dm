@@ -30,7 +30,7 @@
 /datum/surgery_step/proc/try_op(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	var/success = FALSE
 	if(surgery.organ_to_manipulate && !target.get_organ_slot(surgery.organ_to_manipulate))
-		to_chat(user, span_warning("[target] seems to be missing the organ necessary to complete this surgery!"))
+		to_chat(user, span_warning("[target]似乎缺少完成手术所需的器官!"))
 		return FALSE
 
 	if(accept_hand)
@@ -65,7 +65,7 @@
 			if(get_location_accessible(target, target_zone) || (surgery.surgery_flags & SURGERY_IGNORE_CLOTHES))
 				initiate(user, target, target_zone, tool, surgery, try_to_fail)
 			else
-				to_chat(user, span_warning("You need to expose [target]'s [target.parse_zone_with_bodypart(target_zone)] to perform surgery on it!"))
+				to_chat(user, span_warning("你需要将[target]的[target.parse_zone_with_bodypart(target_zone)]暴露出来才能进行手术!"))
 			return TRUE //returns TRUE so we don't stab the guy in the dick or wherever.
 
 	if(repeatable)
@@ -138,7 +138,7 @@
 	// Skyrat Edit Addition - reward for doing surgery on calm patients, and for using surgery rooms(ie. surgerying alone)
 	if(was_sleeping || HAS_TRAIT(target, TRAIT_ANALGESIA) || target.stat == DEAD)
 		modded_time *= SURGERY_SPEEDUP_AREA
-		to_chat(user, span_notice("You are able to work faster due to the patient's calm attitude!"))
+		to_chat(user, span_notice("由于病患冷静的状态，你可以更快地工作"))
 	var/quiet_enviromnent = TRUE
 	for(var/mob/living/carbon/loud_person in view(2, get_turf(user)))
 		if(loud_person != user && loud_person != target && loud_person.stat == CONSCIOUS)
@@ -146,7 +146,7 @@
 			break
 	if(quiet_enviromnent)
 		modded_time *= SURGERY_SPEEDUP_AREA
-		to_chat(user, span_notice("You are able to work faster due to the quiet environment!"))
+		to_chat(user, span_notice("安静的环境能让你更快地工作!"))
 	// Skyrat Edit End
 
 	if(do_after(user, modded_time, target = target, interaction_key = user.has_status_effect(/datum/status_effect/hippocratic_oath) ? target : DOAFTER_SOURCE_SURGERY)) //If we have the hippocratic oath, we can perform one surgery on each target, otherwise we can only do one surgery in total.
@@ -211,9 +211,9 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to perform surgery on [target]..."),
-		span_notice("[user] begins to perform surgery on [target]."),
-		span_notice("[user] begins to perform surgery on [target]."),
+		span_notice("你开始给[target]做手术..."),
+		span_notice("[user]开始对[target]进行手术."),
+		span_notice("[user]开始对[target]进行手术."),
 	)
 
 /datum/surgery_step/proc/play_preop_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -235,9 +235,9 @@
 		display_results(
 			user,
 			target,
-			span_notice("You succeed."),
-			span_notice("[user] succeeds!"),
-			span_notice("[user] finishes."),
+			span_notice("你成功了."),
+			span_notice("[user]成功了!"),
+			span_notice("[user]结束工作了."),
 		)
 	return TRUE
 
@@ -250,18 +250,18 @@
 	var/screwedmessage = ""
 	switch(fail_prob)
 		if(0 to 24)
-			screwedmessage = " You almost had it, though."
+			screwedmessage = " 你差点就成功了."
 		if(50 to 74)//25 to 49 = no extra text
-			screwedmessage = " This is hard to get right in these conditions..."
+			screwedmessage = " 在这种情况下很难做得好..."
 		if(75 to 99)
-			screwedmessage = " This is practically impossible in these conditions..."
+			screwedmessage = " 在这种情况下几乎是不可能的..."
 
 	display_results(
 		user,
 		target,
-		span_warning("You screw up![screwedmessage]"),
-		span_warning("[user] screws up!"),
-		span_notice("[user] finishes."), TRUE) //By default the patient will notice if the wrong thing has been cut
+		span_warning("你搞砸了![screwedmessage]"),
+		span_warning("[user]搞砸了!"),
+		span_notice("[user]结束工作了."), TRUE) //By default the patient will notice if the wrong thing has been cut
 	return FALSE
 
 /datum/surgery_step/proc/play_failure_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -296,7 +296,7 @@
 		if(temp)
 			var/chemname = temp.name
 			chems += chemname
-	return english_list(chems, and_text = require_all_chems ? " and " : " or ")
+	return english_list(chems, and_text = require_all_chems ? "和" : "或")
 
 // Check if we are entitled to morbid bonuses
 /datum/surgery_step/proc/check_morbid_curiosity(mob/user, obj/item/tool, datum/surgery/surgery)
@@ -312,15 +312,15 @@
 /datum/surgery_step/proc/display_results(mob/user, mob/living/target, self_message, detailed_message, vague_message, target_detailed = FALSE)
 	user.visible_message(detailed_message, self_message, vision_distance = 1, ignored_mobs = target_detailed ? null : target)
 	if(!target_detailed)
-		var/you_feel = pick("a brief pain", "your body tense up", "an unnerving sensation")
+		var/you_feel = pick("短暂的疼痛", "身体紧绷", "一种令人不安的感觉")
 		if(!vague_message)
 			if(detailed_message)
 				stack_trace("DIDN'T GET PASSED A VAGUE MESSAGE.")
 				vague_message = detailed_message
 			else
 				stack_trace("NO MESSAGES TO SEND TO TARGET!")
-				vague_message = span_notice("You feel [you_feel] as you are operated on.")
-		target.show_message(vague_message, MSG_VISUAL, span_notice("You feel [you_feel] as you are operated on."))
+				vague_message = span_notice("你在接受手术时感到[you_feel].")
+		target.show_message(vague_message, MSG_VISUAL, span_notice("你在接受手术时感到[you_feel]."))
 /**
  * Sends a pain message to the target, including a chance of screaming.
  *
@@ -335,7 +335,7 @@
 			target.add_mood_event("mild_surgery", /datum/mood_event/mild_surgery) // SKYRAT EDIT ADDITION - Adds mood effects to surgeries
 			if(!pain_message)
 				return
-			to_chat(target, span_notice("You feel a dull, numb sensation as your body is surgically operated on."))
+			to_chat(target, span_notice("你感到一种迟钝、麻木的感觉，身体正在接受手术."))
 		// SKYRAT EDIT ADDITION START
 		else if(mechanical_surgery == TRUE) //robots can't benefit from numbing agents like most but have no reason not to sleep - their debuff falls in-between
 			target.add_mood_event("robot_surgery", /datum/mood_event/robot_surgery)

@@ -9,7 +9,7 @@
 	/// Reference to the limb we're inside of
 	var/obj/item/bodypart/bodypart_owner
 	/// The cached info about the blood this organ belongs to
-	var/list/blood_dna_info = list("Synthetic DNA" = "O+") // not every organ spawns inside a person
+	var/list/blood_dna_info = list("合成DNA" = "O+") // not every organ spawns inside a person
 	/// The body zone this organ is supposed to inhabit.
 	var/zone = BODY_ZONE_CHEST
 	/**
@@ -62,7 +62,7 @@
 	/// Status Effects that are given to the holder of the organ.
 	var/list/organ_effects
 	/// String displayed when the organ has decayed.
-	var/failing_desc = "has decayed for too long, and has turned a sickly color. It probably won't work without repairs."
+	var/failing_desc = "已经腐烂太久了，已经变成了病态的颜色. 如果不修复，它可能无法工作"
 
 // Players can look at prefs before atoms SS init, and without this
 // they would not be able to see external organs, such as moth wings.
@@ -145,17 +145,17 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 /obj/item/organ/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It should be inserted in the [parse_zone(zone)].")
+	. += span_notice("它应该被添加到[parse_zone(zone)].")
 
 	if(organ_flags & ORGAN_FAILING)
-		. += span_warning("[src] [failing_desc]")
+		. += span_warning("[src][failing_desc]")
 		return
 
 	if(damage > high_threshold)
 		if(IS_ROBOTIC_ORGAN(src))
-			. += span_warning("[src] seems to be malfunctioning.")
+			. += span_warning("[src]似乎故障了.")
 			return
-		. += span_warning("[src] is starting to look discolored.")
+		. += span_warning("[src]开始变色了.")
 
 ///Used as callbacks by object pooling
 /obj/item/organ/proc/exit_wardrobe()
@@ -320,19 +320,19 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 /// Called by medical scanners to get a simple summary of how healthy the organ is. Returns an empty string if things are fine.
 /obj/item/organ/proc/get_status_text(advanced)
 	if(advanced && (organ_flags & ORGAN_PROMINENT))
-		return "<font color='#cc3333'>Harmful Foreign Body</font>"
+		return "<font color='#cc3333'>有害异物</font>"
 
 	if(owner.has_reagent(/datum/reagent/inverse/technetium))
-		return "<font color='#E42426'>[round((damage/maxHealth)*100, 1)]% damaged.</font>"
+		return "<font color='#E42426'>[round((damage/maxHealth)*100, 1)]%受损.</font>"
 
 	if(organ_flags & ORGAN_FAILING)
-		return "<font color='#cc3333'>Non-Functional</font>"
+		return "<font color='#cc3333'>失去功能</font>"
 
 	if(damage > high_threshold)
-		return "<font color='#ff9933'>Severely Damaged</font>"
+		return "<font color='#ff9933'>严重受损</font>"
 
 	if (damage > low_threshold)
-		return "<font color='#ffcc33'>Mildly Damaged</font>"
+		return "<font color='#ffcc33'>中度受损</font>"
 
 	return ""
 

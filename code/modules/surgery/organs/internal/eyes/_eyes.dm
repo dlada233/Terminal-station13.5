@@ -1,7 +1,7 @@
 /obj/item/organ/internal/eyes
 	name = BODY_ZONE_PRECISE_EYES
 	icon_state = "eyes"
-	desc = "I see you!"
+	desc = "我看见你了!"
 	visual = TRUE
 	zone = BODY_ZONE_PRECISE_EYES
 	slot = ORGAN_SLOT_EYES
@@ -13,12 +13,12 @@
 	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD //threshold at 30
 	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD //threshold at 20
 
-	low_threshold_passed = "<span class='info'>Distant objects become somewhat less tangible.</span>"
-	high_threshold_passed = "<span class='info'>Everything starts to look a lot less clear.</span>"
-	now_failing = "<span class='warning'>Darkness envelopes you, as your eyes go blind!</span>"
-	now_fixed = "<span class='info'>Color and shapes are once again perceivable.</span>"
-	high_threshold_cleared = "<span class='info'>Your vision functions passably once more.</span>"
-	low_threshold_cleared = "<span class='info'>Your vision is cleared of any ailment.</span>"
+	low_threshold_passed = "<span class='info'>远处的物体变得有些模糊.</span>"
+	high_threshold_passed = "<span class='info'>周围的一切开始变得模糊不清.</span>"
+	now_failing = "<span class='warning'>黑暗将你包围，你的双眼失明了!</span>"
+	now_fixed = "<span class='info'>色彩和形状再次变得可感知.</span>"
+	high_threshold_cleared = "<span class='info'>你的视力再次恢复到可用水平.</span>"
+	low_threshold_cleared = "<span class='info'>你的视力已完全恢复，没有任何疾病.</span>"
 
 	/// Sight flags this eye pair imparts on its user.
 	var/sight_flags = NONE
@@ -272,19 +272,19 @@
 
 /obj/item/organ/internal/eyes/night_vision/mushroom
 	name = "fung-eye-菌眼"
-	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
+	desc = "尽管外表看起来毫无生气，但蘑菇人的眼睛实际上非常先进."
 	low_light_cutoff = list(0, 15, 20)
 	medium_light_cutoff = list(0, 20, 35)
 	high_light_cutoff = list(0, 40, 50)
 
 /obj/item/organ/internal/eyes/zombie
 	name = "undead eyes-不死眼"
-	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
+	desc = "有些违背常理的是，这些半腐烂的眼睛实际上拥有比活人更优越的视力."
 	color_cutoffs = list(25, 35, 5)
 
 /obj/item/organ/internal/eyes/alien
 	name = "alien eyes-异星眼睛"
-	desc = "It turned out they had them after all!"
+	desc = "事实证明，他们终究还是拥有它!"
 	sight_flags = SEE_MOBS
 	color_cutoffs = list(25, 5, 42)
 
@@ -292,7 +292,7 @@
 	name = "resonating crystal-谐振晶体"
 	icon_state = "adamantine_cords"
 	eye_icon_state = null
-	desc = "Golems somehow measure external light levels and detect nearby ore using this sensitive mineral lattice."
+	desc = "石人使用这种敏感的矿物晶格来测量外部光线强度并探测附近的矿石."
 	color = COLOR_GOLEM_GRAY
 	visual = FALSE
 	organ_flags = ORGAN_MINERAL
@@ -301,8 +301,8 @@
 
 /// Send an ore detection pulse on a cooldown
 /datum/action/cooldown/golem_ore_sight
-	name = "Ore Resonance"
-	desc = "Causes nearby ores to vibrate, revealing their location."
+	name = "矿石共鸣"
+	desc = "使附近的矿石产生振动，从而揭示其位置."
 	button_icon = 'icons/obj/devices/scanner.dmi'
 	button_icon_state = "manual_mining"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -317,9 +317,9 @@
 /obj/item/organ/internal/eyes/robotic
 	name = "robotic eyes-机械眼"
 	icon_state = "cybernetic_eyeballs"
-	desc = "Your vision is augmented."
+	desc = "你的视力得到了增强."
 	organ_flags = ORGAN_ROBOTIC
-	failing_desc = "seems to be broken."
+	failing_desc = "似乎坏了."
 
 /obj/item/organ/internal/eyes/robotic/emp_act(severity)
 	. = ..()
@@ -327,12 +327,12 @@
 		return
 	if(prob(10 * severity))
 		return
-	to_chat(owner, span_warning("Static obfuscates your vision!"))
+	to_chat(owner, span_warning("静电干扰了你的视线!"))
 	owner.flash_act(visual = 1)
 
 /obj/item/organ/internal/eyes/robotic/basic
 	name = "basic robotic eyes-基础机械眼"
-	desc = "A pair of basic cybernetic eyes that restore vision, but at some vulnerability to light."
+	desc = "一对基本的机械眼睛，可以恢复视力，但对光线有一定的脆弱性."
 	eye_color_left = "5500ff"
 	eye_color_right = "5500ff"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
@@ -343,7 +343,7 @@
 		return
 	if(prob(10 * severity))
 		apply_organ_damage(20 * severity)
-		to_chat(owner, span_warning("Your eyes start to fizzle in their sockets!"))
+		to_chat(owner, span_warning("你的眼睛开始在眼眶里噼啪作响!"))
 		do_sparks(2, TRUE, owner)
 		owner.emote("scream")
 
@@ -364,7 +364,7 @@
 
 /obj/item/organ/internal/eyes/robotic/thermals
 	name = "thermal eyes-热成像眼"
-	desc = "这对电子眼球会带给你热视觉.带有缝状竖瞳."
+	desc = "这对电子眼球会带给你热视觉. 带有缝状竖瞳."
 	eye_color_left = "FC0"
 	eye_color_right = "FC0"
 	// We're gonna downshift green and blue a bit so darkness looks yellow
@@ -374,7 +374,7 @@
 
 /obj/item/organ/internal/eyes/robotic/flashlight
 	name = "flashlight eyes-灯泡眼"
-	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
+	desc = "这是用铁丝连接在一起的两个手电筒，你为什么会把这些放进别人的脑袋里?"
 	eye_color_left ="fee5a3"
 	eye_color_right ="fee5a3"
 	icon = 'icons/obj/lighting.dmi'
@@ -420,8 +420,8 @@
 #define UPDATE_EYES_RIGHT 2
 
 /obj/item/organ/internal/eyes/robotic/glow
-	name = "High Luminosity Eyes"
-	desc = "Special glowing eyes, used by snowflakes who want to be special."
+	name = "高亮发光眼"
+	desc = "特殊的发光眼睛，供那些想要与众不同的雪花们使用."
 	eye_color_left = "000"
 	eye_color_right = "000"
 	actions_types = list(/datum/action/item_action/organ_action/use, /datum/action/item_action/organ_action/toggle)
@@ -518,8 +518,8 @@
 		if("pick_color")
 			var/new_color = input(
 				usr,
-				"Choose eye color color:",
-				"High Luminosity Eyes Menu",
+				"选择眼睛颜色:",
+				"高亮发光眼菜单",
 				light_color_string
 			) as color|null
 			if(new_color)
@@ -683,7 +683,7 @@
 
 /obj/item/organ/internal/eyes/moth
 	name = "moth eyes-蛾眼"
-	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
+	desc = "这些眼睛似乎对强光有更高的敏感性，但在低光环境下的视力并未提升."
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-moth"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
@@ -692,7 +692,7 @@
 	name = "robotic moth eyes-机械蛾眼"
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-cybermoth"
-	desc = "Your vision is augmented. Much like actual moth eyes, very sensitive to bright lights."
+	desc = "你的视力得到了增强，就像真正的蛾眼一样，对强光非常敏感."
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/basic/moth
@@ -705,7 +705,7 @@
 	name = "robotic eyes-X光机械蛾眼"
 	eye_icon_state = "motheyes"
 	icon_state = "eyeballs-cybermoth"
-	desc = "These cybernetic imitation moth eyes will give you X-ray vision. Blinking is futile. Much like actual moth eyes, very sensitive to bright lights."
+	desc = "这些仿生蛾眼将赋予你X光透视能力，眨眼是徒劳的，就像真正的蛾眼一样，对强光非常敏感."
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/shield/moth
@@ -714,11 +714,11 @@
 	icon_state = "eyeballs-cybermoth"
 
 /obj/item/organ/internal/eyes/robotic/glow/moth
-	name = "High Luminosity Moth Eyes"
+	name = "High Luminosity Moth Eyes-高亮蛾眼"
 	eye_icon_state = "motheyes"
 	base_eye_state = "eyes_mothglow"
 	icon_state = "eyeballs-cybermoth"
-	desc = "Special glowing eyes, to be one with the lamp. Much like actual moth eyes, very sensitive to bright lights."
+	desc = "特殊的发光眼睛，仿佛与灯光融为一体，和真正的蛾眼一样，对强光非常敏感."
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 
 /obj/item/organ/internal/eyes/robotic/thermals/moth //we inherit flash weakness from thermals
@@ -727,21 +727,21 @@
 	icon_state = "eyeballs-cybermoth"
 
 /obj/item/organ/internal/eyes/snail
-	name = "snail eyes"
-	desc = "These eyes seem to have a large range, but might be cumbersome with glasses."
+	name = "snail eyes-蜗牛眼"
+	desc = "这些眼睛似乎拥有广阔的视野，但戴眼镜可能会不太方便."
 	eye_icon_state = "snail_eyes"
 	icon_state = "snail_eyeballs"
 	eyes_layer = ABOVE_BODY_FRONT_HEAD_LAYER //SKYRAT EDIT - Roundstart Snails
 
 /obj/item/organ/internal/eyes/jelly
-	name = "jelly eyes"
-	desc = "These eyes are made of a soft jelly. Unlike all other eyes, though, there are three of them."
+	name = "jelly eyes-凝胶眼"
+	desc = "这些眼睛是由柔软的果冻制成的，与其他眼睛不同的是，它们有三只."
 	eye_icon_state = "jelleyes"
 	icon_state = "eyeballs-jelly"
 
 /obj/item/organ/internal/eyes/night_vision/maintenance_adapted
-	name = "adapted eyes"
-	desc = "These red eyes look like two foggy marbles. They give off a particularly worrying glow in the dark."
+	name = "adapted eyes-适应眼"
+	desc = "这两只红色的眼睛看起来像两颗朦胧的弹珠，它们在黑暗中会发出特别令人担忧的光芒."
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 	eye_color_left = "f00"
 	eye_color_right = "f00"
@@ -758,7 +758,7 @@
 
 /obj/item/organ/internal/eyes/night_vision/maintenance_adapted/on_life(seconds_per_tick, times_fired)
 	if(!owner.is_blind() && isturf(owner.loc) && owner.has_light_nearby(light_amount=0.5)) //we allow a little more than usual so we can produce light from the adapted eyes
-		to_chat(owner, span_danger("Your eyes! They burn in the light!"))
+		to_chat(owner, span_danger("你的眼睛! 它们在光中燃烧!"))
 		apply_organ_damage(10) //blind quickly
 		playsound(owner, 'sound/machines/grill/grillsizzle.ogg', 50)
 	else

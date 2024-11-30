@@ -1,6 +1,6 @@
 /obj/item/bodypart/head
 	name = BODY_ZONE_HEAD
-	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
+	desc = "如果不为乐趣而活，那就毫无意义，你的大脑会变聪明，但思维会变僵硬."
 	icon = 'icons/mob/human/bodyparts.dmi'
 	icon_state = "default_human_head"
 	max_damage = LIMB_MAX_HP_CORE
@@ -17,7 +17,7 @@
 	scars_covered_by_clothes = FALSE
 	grind_results = null
 	is_dimorphic = TRUE
-	unarmed_attack_verbs = list("bite", "chomp")
+	unarmed_attack_verbs = list("撕咬", "啃咬")
 	unarmed_attack_effect = ATTACK_EFFECT_BITE
 	unarmed_attack_sound = 'sound/weapons/bite.ogg'
 	unarmed_miss_sound = 'sound/weapons/bite.ogg'
@@ -113,29 +113,29 @@
 	if(show_organs_on_examine && IS_ORGANIC_LIMB(src))
 		var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
 		if(!brain)
-			. += span_info("The brain has been removed from [src].")
+			. += span_info("大脑已从[src]中取出.")
 		else if(brain.suicided || (brain.brainmob && HAS_TRAIT(brain.brainmob, TRAIT_SUICIDED)))
-			. += span_info("There's a miserable expression on [real_name]'s face; they must have really hated life. There's no hope of recovery.")
+			. += span_info("[real_name]的脸上露出悲惨表情；此人一定对生活心灰意冷，已经没有任何恢复的希望了.")
 		else if(brain.brainmob)
 			if(brain.brainmob?.health <= HEALTH_THRESHOLD_DEAD)
-				. += span_info("It's leaking some kind of... clear fluid? The brain inside must be in pretty bad shape.")
+				. += span_info("它正在泄漏某种...清澈的液体？里面的大脑一定状况很糟.")
 			if(brain.brainmob.key || brain.brainmob.get_ghost(FALSE, TRUE))
-				. += span_info("Its muscles are twitching slightly... It seems to have some life still in it.")
+				. += span_info("它的肌肉在微微抽搐...它似乎还残留着一丝生命.")
 			else
-				. += span_info("It's completely lifeless. Perhaps there'll be a chance for them later.")
+				. += span_info("它完全没有生命迹象了，但在将来或许复活希望尚存.")
 		else if(brain?.decoy_override)
-			. += span_info("It's completely lifeless. Perhaps there'll be a chance for them later.")
+			. += span_info("它完全没有生命迹象了，但在将来或许复活希望尚存.")
 		else
-			. += span_info("It's completely lifeless.")
+			. += span_info("它完全没有生命迹象了.")
 
 		if(!(locate(/obj/item/organ/internal/eyes) in src))
-			. += span_info("[real_name]'s eyes have been removed.")
+			. += span_info("[real_name]的眼睛已被摘除.")
 
 		if(!(locate(/obj/item/organ/internal/ears) in src))
-			. += span_info("[real_name]'s ears have been removed.")
+			. += span_info("[real_name]的耳朵已被摘除.")
 
 		if(!(locate(/obj/item/organ/internal/tongue) in src))
-			. += span_info("[real_name]'s tongue has been removed.")
+			. += span_info("[real_name]的舌头已被摘除.")
 
 /obj/item/bodypart/head/can_dismember(obj/item/item)
 	if (!can_dismember)
@@ -148,10 +148,10 @@
 
 /obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
 	if(user)
-		user.visible_message(span_warning("[user] saws [src] open and pulls out a brain!"), span_notice("You saw [src] open and pull out a brain."))
+		user.visible_message(span_warning("[user]锯开[src]并拽出一颗大脑!"), span_notice("你锯开[src]并拽出一颗大脑."))
 	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
 	if(brain && violent_removal && prob(90)) //ghetto surgery can damage the brain.
-		to_chat(user, span_warning("[brain] was damaged in the process!"))
+		to_chat(user, span_warning("[brain]在过程中受到了伤害!"))
 		brain.set_organ_damage(brain.maxHealth)
 
 	update_limb()
@@ -161,7 +161,7 @@
 	. = ..()
 	if(!isnull(owner))
 		if(HAS_TRAIT(owner, TRAIT_HUSK))
-			real_name = "Unknown"
+			real_name = "未知"
 		else
 			real_name = owner.real_name
 	update_hair_and_lips(dropping_limb, is_creating)
@@ -230,7 +230,7 @@
 	AddElement(/datum/element/toy_talk)
 
 /obj/item/bodypart/head/GetVoice()
-	return "The head of [real_name]"
+	return "[real_name]头颅"
 
 /obj/item/bodypart/head/monkey
 	icon = 'icons/mob/human/species/monkey/bodyparts.dmi'

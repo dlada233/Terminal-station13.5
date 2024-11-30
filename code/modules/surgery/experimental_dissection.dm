@@ -2,8 +2,8 @@
 #define BASE_HUMAN_REWARD 500
 
 /datum/surgery/advanced/experimental_dissection
-	name = "Experimental Dissection"
-	desc = "A surgical procedure which analyzes the biology of a corpse, and automatically adds new findings to the research database."
+	name = "实验性解刨"
+	desc = "一种分析尸体生物学特征并自动将新发现添加到研究数据库的外科手术."
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,
@@ -25,7 +25,7 @@
 	return .
 
 /datum/surgery_step/experimental_dissection
-	name = "dissection"
+	name = "解剖"
 	implements = list(
 		/obj/item/autopsy_scanner = 100,
 		TOOL_SCALPEL = 60,
@@ -36,11 +36,11 @@
 	silicons_obey_prob = TRUE
 
 /datum/surgery_step/experimental_dissection/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("<span class='notice'>[user] starts dissecting [target].</span>", "<span class='notice'>You start dissecting [target].</span>")
+	user.visible_message("<span class='notice'>[user]开始解剖[target].</span>", "<span class='notice'>你开始解剖[target].</span>")
 
 /datum/surgery_step/experimental_dissection/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/points_earned = check_value(target)
-	user.visible_message("<span class='notice'>[user] dissects [target], discovering [points_earned] point\s of data!</span>", "<span class='notice'>You dissect [target], finding [points_earned] point\s worth of discoveries, you also write a few notes.</span>")
+	user.visible_message("<span class='notice'>[user]解剖了[target]，发现了[points_earned]点数据!</span>", "<span class='notice'>你解刨了[target]，找到了价值[points_earned]点的发现，并记下了几笔笔记.</span>")
 
 	var/obj/item/research_notes/the_dossier = new /obj/item/research_notes(user.loc, points_earned, "biology")
 	if(!user.put_in_hands(the_dossier) && istype(user.get_inactive_held_item(), /obj/item/research_notes))
@@ -54,8 +54,8 @@
 /datum/surgery_step/experimental_dissection/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/points_earned = round(check_value(target) * 0.01)
 	user.visible_message(
-		"<span class='notice'>[user] dissects [target]!</span>",
-		"<span class='notice'>You dissect [target], but do not find anything particularly interesting.</span>",
+		"<span class='notice'>[user]解刨了[target]!</span>",
+		"<span class='notice'>你解刨了[target]，但没有发现任何特别有趣的东西.</span>",
 	)
 
 	var/obj/item/research_notes/the_dossier = new /obj/item/research_notes(user.loc, points_earned, "biology")
@@ -93,8 +93,8 @@
 #undef BASE_HUMAN_REWARD
 
 /obj/item/research_notes
-	name = "research notes"
-	desc = "Valuable scientific data. Use it in an ancient research server to turn it in."
+	name = "研究笔记"
+	desc = "宝贵的科学数据，在一个古老的研究服务器上用它来上交."
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paper"
 	w_class = WEIGHT_CLASS_SMALL
@@ -115,7 +115,7 @@
 
 /obj/item/research_notes/examine(mob/user)
 	. = ..()
-	. += span_notice("It is worth [value] research points.")
+	. += span_notice("它价值[value]点科研点数.")
 
 /obj/item/research_notes/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(istype(attacking_item, /obj/item/research_notes))
@@ -129,16 +129,16 @@
 /// proc that changes name and icon depending on value
 /obj/item/research_notes/proc/change_vol()
 	if(value >= 10000)
-		name = "revolutionary discovery in the field of [origin_type]"
+		name = "[origin_type]领域的革命性发现"
 		icon_state = "docs_verified"
 	else if(value >= 2500)
-		name = "essay about [origin_type]"
+		name = "关于[origin_type]的文章"
 		icon_state = "paper_words"
 	else if(value >= 100)
-		name = "notes of [origin_type]"
+		name = "关于[origin_type]的笔记"
 		icon_state = "paperslip_words"
 	else
-		name = "fragmentary data of [origin_type]"
+		name = "关于[origin_type]的零碎数据"
 		icon_state = "scrap"
 
 ///proc when you slap research notes into another one, it applies a bonus if they are of different origin (only applied once)
@@ -147,7 +147,7 @@
 	value = value + new_paper.value
 	if(origin_type != new_paper.origin_type && !mixed)
 		value += bonus * 0.3
-		origin_type = "[origin_type] and [new_paper.origin_type]"
+		origin_type = "[origin_type]和[new_paper.origin_type]"
 		mixed = TRUE
 	change_vol()
 	qdel(new_paper)

@@ -1,7 +1,7 @@
 /obj/item/organ/internal/stomach/golem
-	name = "silicate grinder"
+	name = "硅酸盐研磨器"
 	icon_state = "stomach-p"
-	desc = "A rocklike organ which grinds and processes nutrition from minerals."
+	desc = "一个岩石般的器官，用于研磨并处理来自矿物质的营养."
 	color = COLOR_GOLEM_GRAY
 	organ_flags = ORGAN_MINERAL
 	organ_traits = list(TRAIT_ROCK_EATER)
@@ -26,7 +26,7 @@
 	SIGNAL_HANDLER
 	if(istype(eating, /obj/item/food/golem_food))
 		return
-	source.balloon_alert(source, "minerals only!")
+	source.balloon_alert(source, "仅限矿物质!")
 	return COMSIG_CARBON_BLOCK_EAT
 
 /// Golem stomach cannot process nutriment except from minerals
@@ -61,22 +61,22 @@
 	alert_type = /atom/movable/screen/alert/status_effect/golem_statued
 
 /atom/movable/screen/alert/status_effect/golem_statued
-	name = "Statued"
-	desc = "You no longer have the energy to move your body!"
+	name = "石化"
+	desc = "你已经没有力气移动身体了!"
 	icon_state = "golem_statued"
 
 /datum/status_effect/golem_statued/on_apply()
 	. = ..()
 	if (!.)
 		return FALSE
-	owner.visible_message(span_warning("[owner] siezes up and becomes as rigid as a statue!"), span_warning("Your limbs fall still. You no longer have enough energy to move!"))
+	owner.visible_message(span_warning("[owner]突然僵住，变得像雕像一样僵硬!"), span_warning("你的四肢无法动弹。你已经没有足够的力气移动了!"))
 	owner.add_traits(list(TRAIT_IMMOBILIZED, TRAIT_FORCED_STANDING, TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED), TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
 /datum/status_effect/golem_statued/get_examine_text()
-	return span_warning("[owner.p_They()] [owner.p_are()] as still as a statue!")
+	return span_warning("这个石人像雕像一样一动不动!")
 
 /datum/status_effect/golem_statued/on_remove()
-	owner.visible_message(span_notice("[owner] slowly stirs back into motion!"), span_notice("You have gathered enough strength to move your body once more."))
+	owner.visible_message(span_notice("[owner]开始慢慢恢复动作!"), span_notice("你已经积攒了足够的力量，可以再次移动身体了."))
 	owner.remove_traits(list(TRAIT_IMMOBILIZED, TRAIT_FORCED_STANDING, TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED), TRAIT_STATUS_EFFECT(id))
 	return ..()

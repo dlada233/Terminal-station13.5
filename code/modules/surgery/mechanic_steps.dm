@@ -1,6 +1,6 @@
 //open shell
 /datum/surgery_step/mechanic_open
-	name = "unscrew shell (screwdriver)"
+	name = "拧开外壳 (螺丝刀)"
 	implements = list(
 		TOOL_SCREWDRIVER = 100,
 		TOOL_SCALPEL = 75, // med borgs could try to unscrew shell with scalpel
@@ -14,11 +14,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to unscrew the shell of [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-		span_notice("[user] begins to unscrew the shell of [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-		span_notice("[user] begins to unscrew the shell of [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+		span_notice("你开始用螺丝刀拧开[target]的[target.parse_zone_with_bodypart(target_zone)]的外壳..."),
+		span_notice("[user]开始用螺丝刀拧开[target]的[target.parse_zone_with_bodypart(target_zone)]的外壳."),
+		span_notice("[user]开始用螺丝刀拧开[target]的[target.parse_zone_with_bodypart(target_zone)]的外壳."),
 	)
-	display_pain(target, "You can feel your [target.parse_zone_with_bodypart(target_zone)] grow numb as the sensory panel is unscrewed.", TRUE)
+	display_pain(target, "你能感觉到[target.parse_zone_with_bodypart(target_zone)]随着传感面板被拧开而逐渐麻木.", TRUE)
 
 /datum/surgery_step/mechanic_open/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
@@ -30,7 +30,7 @@
 
 //close shell
 /datum/surgery_step/mechanic_close
-	name = "screw shell (screwdriver)"
+	name = "拧紧外壳 (螺丝刀)"
 	implements = list(
 		TOOL_SCREWDRIVER = 100,
 		TOOL_SCALPEL = 75,
@@ -44,11 +44,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to screw the shell of [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-		span_notice("[user] begins to screw the shell of [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-		span_notice("[user] begins to screw the shell of [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+		span_notice("你开始用螺丝刀拧紧[target]的[target.parse_zone_with_bodypart(target_zone)]的外壳..."),
+		span_notice("[user]开始用螺丝刀拧紧[target]的[target.parse_zone_with_bodypart(target_zone)]的外壳."),
+		span_notice("[user]开始用螺丝刀拧紧[target]的[target.parse_zone_with_bodypart(target_zone)]的外壳."),
 	)
-	display_pain(target, "You feel the faint pricks of sensation return as your [target.parse_zone_with_bodypart(target_zone)]'s panel is screwed in.", TRUE)
+	display_pain(target, "你感觉到[target.parse_zone_with_bodypart(target_zone)]的面板被拧紧时，微弱的刺痛感回来了.", TRUE)
 
 /datum/surgery_step/mechanic_close/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
@@ -60,7 +60,7 @@
 
 //prepare electronics
 /datum/surgery_step/prepare_electronics
-	name = "prepare electronics (multitool)"
+	name = "准备电子设备 (多功能工具)"
 	implements = list(
 		TOOL_MULTITOOL = 100,
 		TOOL_HEMOSTAT = 10) // try to reboot internal controllers via short circuit with some conductor
@@ -72,15 +72,15 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to prepare electronics in [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-		span_notice("[user] begins to prepare electronics in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-		span_notice("[user] begins to prepare electronics in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+		span_notice("你开始准备[target]的[target.parse_zone_with_bodypart(target_zone)]中的电子设备..."),
+		span_notice("[user]开始准备[target]的[target.parse_zone_with_bodypart(target_zone)]中的电子设备."),
+		span_notice("[user]开始准备[target]的[target.parse_zone_with_bodypart(target_zone)]中的电子设备."),
 	)
-	display_pain(target, "You can feel a faint buzz in your [target.parse_zone_with_bodypart(target_zone)] as the electronics reboot.", TRUE)
+	display_pain(target, "你能感觉到[target.parse_zone_with_bodypart(target_zone)]中有微弱的嗡嗡声，电子设备正在重启.", TRUE)
 
 //unwrench
 /datum/surgery_step/mechanic_unwrench
-	name = "unwrench bolts (wrench)"
+	name = "拧松螺栓 (扳手)"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
@@ -91,11 +91,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to unwrench some bolts in [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-		span_notice("[user] begins to unwrench some bolts in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-		span_notice("[user] begins to unwrench some bolts in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+		span_notice("你开始用扳手拧松[target]的[target.parse_zone_with_bodypart(target_zone)]的一些螺栓..."),
+		span_notice("[user]开始用扳手拧松[target]的[target.parse_zone_with_bodypart(target_zone)]的一些螺栓."),
+		span_notice("[user]开始用扳手拧松[target]的[target.parse_zone_with_bodypart(target_zone)]的一些螺栓."),
 	)
-	display_pain(target, "You feel a jostle in your [target.parse_zone_with_bodypart(target_zone)] as the bolts begin to loosen.", TRUE)
+	display_pain(target, "你感到[target.parse_zone_with_bodypart(target_zone)]里一阵晃动，螺栓开始松动.", TRUE)
 
 /datum/surgery_step/mechanic_unwrench/tool_check(mob/user, obj/item/tool)
 	if(tool.usesound)
@@ -105,7 +105,7 @@
 
 //wrench
 /datum/surgery_step/mechanic_wrench
-	name = "wrench bolts (wrench)"
+	name = "拧紧螺栓 (扳手)"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
@@ -116,11 +116,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to wrench some bolts in [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-		span_notice("[user] begins to wrench some bolts in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-		span_notice("[user] begins to wrench some bolts in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+		span_notice("你开始用扳手拧紧[target]的[target.parse_zone_with_bodypart(target_zone)]的一些螺栓..."),
+		span_notice("[user]开始用扳手拧紧[target]的[target.parse_zone_with_bodypart(target_zone)]的一些螺栓."),
+		span_notice("[user]开始用扳手拧紧[target]的[target.parse_zone_with_bodypart(target_zone)]的一些螺栓."),
 	)
-	display_pain(target, "You feel a jostle in your [target.parse_zone_with_bodypart(target_zone)] as the bolts begin to tighten.", TRUE)
+	display_pain(target, "你感到[target.parse_zone_with_bodypart(target_zone)]里一阵晃动，螺栓开始拧紧.", TRUE)
 
 /datum/surgery_step/mechanic_wrench/tool_check(mob/user, obj/item/tool)
 	if(tool.usesound)
@@ -130,7 +130,7 @@
 
 //open hatch
 /datum/surgery_step/open_hatch
-	name = "open the hatch (hand)"
+	name = "打开舱口 (手)"
 	accept_hand = TRUE
 	time = 10
 	preop_sound = 'sound/items/ratchet.ogg'
@@ -140,11 +140,11 @@
 	display_results(
 		user,
 		target,
-		span_notice("You begin to open the hatch holders in [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
-		span_notice("[user] begins to open the hatch holders in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
-		span_notice("[user] begins to open the hatch holders in [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+		span_notice("你开始打开[target]的[target.parse_zone_with_bodypart(target_zone)]的舱口支架..."),
+		span_notice("[user]开始打开[target]的[target.parse_zone_with_bodypart(target_zone)]的舱口支架."),
+		span_notice("[user]开始打开[target]的[target.parse_zone_with_bodypart(target_zone)]的舱口支架."),
 	)
-	display_pain(target, "The last faint pricks of tactile sensation fade from your [target.parse_zone_with_bodypart(target_zone)] as the hatch is opened.", TRUE)
+	display_pain(target, "[target.parse_zone_with_bodypart(target_zone)]里最后微弱的触觉感觉随着舱口的打开而消失.", TRUE)
 
 /datum/surgery_step/open_hatch/tool_check(mob/user, obj/item/tool)
 	if(tool.usesound)

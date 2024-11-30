@@ -1,7 +1,7 @@
 /obj/item/organ/internal/ears
 	name = "ears-耳朵"
 	icon_state = "ears"
-	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
+	desc = "耳朵分为三个部分：内耳、中耳和外耳，通常情况下，只有其中一个部分是可见的."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EARS
 	visual = FALSE
@@ -30,7 +30,7 @@
 /obj/item/organ/internal/ears/on_life(seconds_per_tick, times_fired)
 	// only inform when things got worse, needs to happen before we heal
 	if((damage > low_threshold && prev_damage < low_threshold) || (damage > high_threshold && prev_damage < high_threshold))
-		to_chat(owner, span_warning("The ringing in your ears grows louder, blocking out any external noises for a moment."))
+		to_chat(owner, span_warning("你耳朵里的嗡嗡声变得更响了，暂时遮蔽了所有外界噪音."))
 
 	. = ..()
 	// if we have non-damage related deafness like mutations, quirks or clothing (earmuffs), don't bother processing here.
@@ -169,18 +169,18 @@
 
 /obj/item/organ/internal/ears/penguin/on_mob_insert(mob/living/carbon/human/ear_owner)
 	. = ..()
-	to_chat(ear_owner, span_notice("You suddenly feel like you've lost your balance."))
+	to_chat(ear_owner, span_notice("你突然感觉自己失去了平衡."))
 	ear_owner.AddElementTrait(TRAIT_WADDLING, ORGAN_TRAIT, /datum/element/waddling)
 
 /obj/item/organ/internal/ears/penguin/on_mob_remove(mob/living/carbon/human/ear_owner)
 	. = ..()
-	to_chat(ear_owner, span_notice("Your sense of balance comes back to you."))
+	to_chat(ear_owner, span_notice("你恢复了平衡."))
 	REMOVE_TRAIT(ear_owner, TRAIT_WADDLING, ORGAN_TRAIT)
 
 /obj/item/organ/internal/ears/cybernetic
 	name = "basic cybernetic ears-初级电子耳"
 	icon_state = "ears-c"
-	desc = "A basic cybernetic organ designed to mimic the operation of ears."
+	desc = "这是一种基础型机械器官，设计用于模拟耳朵的工作机制."
 	damage_multiplier = 0.9
 	organ_flags = ORGAN_ROBOTIC
 	failing_desc = "似乎坏掉了."
@@ -188,7 +188,7 @@
 /obj/item/organ/internal/ears/cybernetic/upgraded
 	name = "cybernetic ears-电子耳"
 	icon_state = "ears-c-u"
-	desc =  "An advanced cybernetic ear, surpassing the performance of organic ears."
+	desc =  "一种高级机械耳，性能超越有机耳."
 	damage_multiplier = 0.5
 
 /obj/item/organ/internal/ears/cybernetic/whisper

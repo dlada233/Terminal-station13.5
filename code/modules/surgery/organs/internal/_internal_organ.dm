@@ -19,7 +19,7 @@
 
 	if((organ_flags & ORGAN_VITAL) && !special && !(organ_owner.status_flags & GODMODE))
 		if(organ_owner.stat != DEAD)
-			organ_owner.investigate_log("has been killed by losing a vital organ ([src]).", INVESTIGATE_DEATHS)
+			organ_owner.investigate_log("因为重要器官缺失而死([src]).", INVESTIGATE_DEATHS)
 		organ_owner.death()
 
 	START_PROCESSING(SSobj, src)
