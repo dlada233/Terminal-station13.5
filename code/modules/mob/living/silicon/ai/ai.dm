@@ -1132,18 +1132,18 @@
 		end_multicam()
 
 /mob/living/silicon/ai/up()
-	set name = "Move Upwards"
-	set category = "IC"
+	set name = "向上移动"
+	set category = "IC.动作"
 
 	if(eyeobj.zMove(UP, z_move_flags = ZMOVE_FEEDBACK))
-		to_chat(src, span_notice("You move upwards."))
+		to_chat(src, span_notice("你移动到了上方."))
 
 /mob/living/silicon/ai/down()
-	set name = "Move Down"
-	set category = "IC"
+	set name = "向下移动"
+	set category = "IC.动作"
 
 	if(eyeobj.zMove(DOWN, z_move_flags = ZMOVE_FEEDBACK))
-		to_chat(src, span_notice("You move down."))
+		to_chat(src, span_notice("你移动到了下方."))
 
 /// Proc to hook behavior to the changes of the value of [aiRestorePowerRoutine].
 /mob/living/silicon/ai/proc/setAiRestorePowerRoutine(new_value)

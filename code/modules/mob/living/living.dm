@@ -511,8 +511,8 @@
 	update_pull_hud_icon()
 
 /mob/living/verb/stop_pulling1()
-	set name = "Stop Pulling"
-	set category = "IC"
+	set name = "停止拖拽"
+	set category = "IC.动作"
 	stop_pulling()
 
 //same as above
@@ -598,14 +598,14 @@
 // MOB PROCS //END
 
 /mob/living/proc/mob_sleep()
-	set name = "Sleep"
-	set category = "IC"
+	set name = "睡觉"
+	set category = "IC.动作"
 
 	if(IsSleeping())
-		to_chat(src, span_warning("You are already sleeping!"))
+		to_chat(src, span_warning("你已经睡着了!"))
 		return
 	else
-		if(tgui_alert(usr, "You sure you want to sleep for a while?", "Sleep", list("Yes", "No")) == "Yes")
+		if(tgui_alert(usr, "你确定你想要睡一会吗?", "睡觉", list("Yes", "No")) == "Yes")
 			SetSleeping(400) //Short nap
 
 
@@ -656,8 +656,8 @@
 		return account
 
 /mob/living/proc/toggle_resting()
-	set name = "Rest"
-	set category = "IC"
+	set name = "休息"
+	set category = "IC.动作"
 
 	set_resting(!resting, FALSE)
 
@@ -674,21 +674,21 @@
 	if(new_resting)
 		if(body_position == LYING_DOWN)
 			if(!silent)
-				to_chat(src, span_notice("You will now try to stay lying down on the floor."))
+				to_chat(src, span_notice("你现在试着躺在地上."))
 		else if(HAS_TRAIT(src, TRAIT_FORCED_STANDING) || (buckled && buckled.buckle_lying != NO_BUCKLE_LYING))
 			if(!silent)
-				to_chat(src, span_notice("You will now lay down as soon as you are able to."))
+				to_chat(src, span_notice("你现在随时能躺下."))
 		else
 			if(!silent)
-				to_chat(src, span_notice("You lay down."))
+				to_chat(src, span_notice("你躺下了."))
 			set_lying_down()
 	else
 		if(body_position == STANDING_UP)
 			if(!silent)
-				to_chat(src, span_notice("You will now try to remain standing up."))
+				to_chat(src, span_notice("你现在试着站起来."))
 		else if(HAS_TRAIT(src, TRAIT_FLOORED) || (buckled && buckled.buckle_lying != NO_BUCKLE_LYING))
 			if(!silent)
-				to_chat(src, span_notice("You will now stand up as soon as you are able to."))
+				to_chat(src, span_notice("你现在随时能站起来."))
 		else
 			/*if(!silent) SKYRAT EDIT REMOVAL
 				to_chat(src, "<span class='notice'>You stand up.</span>")*/
@@ -717,21 +717,21 @@
 			get_up_speed = GET_UP_SLOW
 	if(!instant)
 		if(get_up_speed == GET_UP_SLOW) //Slow getups are easily noticable
-			visible_message(span_notice("[src] weakly attempts to stand up."), span_notice("You weakly attempt to stand up."))
+			visible_message(span_notice("[src]虚弱地试图站起来."), span_notice("你虚弱地试图站起来."))
 			if(!do_after(src, 1 SECONDS, src, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM), extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob/living, rest_checks_callback)), interaction_key = DOAFTER_SOURCE_GETTING_UP, hidden = TRUE))
 				if(!body_position == STANDING_UP)
-					visible_message(span_warning("[src] fails to stand up."), span_warning("You fail to stand up."))
+					visible_message(span_warning("[src]没能站起来."), span_warning("你没能站起来."))
 				return
 		else
 			if(!do_after(src, 1 SECONDS, src, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM), extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob/living, rest_checks_callback)), interaction_key = DOAFTER_SOURCE_GETTING_UP, hidden = TRUE))
 				return
 	if(pulledby && pulledby.grab_state)
-		to_chat(src, span_warning("You fail to stand up, you're restrained!"))
+		to_chat(src, span_warning("你没能站起来，你被束缚住了!"))
 	// SKYRAT EDIT ADDITION END
 		return
 	if(resting || body_position == STANDING_UP || HAS_TRAIT(src, TRAIT_FLOORED))
 		return
-	to_chat(src, span_notice("You stand up.")) // SKYRAT EDIT ADDITION
+	to_chat(src, span_notice("你站起来了.")) // SKYRAT EDIT ADDITION
 	set_body_position(STANDING_UP)
 	set_lying_angle(0)
 
@@ -1189,8 +1189,8 @@
 	return TRUE
 
 /mob/living/verb/resist()
-	set name = "Resist"
-	set category = "IC"
+	set name = "挣脱"
+	set category = "IC.动作"
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_resist)))
 
@@ -1203,7 +1203,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_RESIST, src)
 	//resisting grabs (as if it helps anyone...)
 	if(!HAS_TRAIT(src, TRAIT_RESTRAINED) && pulledby)
-		log_combat(src, pulledby, "resisted grab")
+		log_combat(src, pulledby, "挣脱抓握")
 		resist_grab()
 		return
 
@@ -1254,25 +1254,25 @@
 			//SKYRAT EDIT ADDITION
 			// Akula break-out flavor
 			if(HAS_TRAIT(src, TRAIT_SLIPPERY))
-				visible_message(span_cyan("[src] slips free of [pulledby]'s grip!"), \
-								span_cyan("You slip free of [pulledby]'s grip!"), null, null, pulledby)
-				to_chat(pulledby, span_cyan("[src] slips free of your grip!"))
+				visible_message(span_cyan("[src]从[pulledby]的抓握中滑出来了!"), \
+								span_cyan("你从[pulledby]的抓握中滑出来了!"), null, null, pulledby)
+				to_chat(pulledby, span_cyan("[src]从你的抓握中滑出来了!"))
 				playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -1)
 				log_combat(pulledby, src, "broke grab")
 				pulledby.stop_pulling()
 				return FALSE
 			//SKYRAT EDIT END
-			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
-							span_danger("You break free of [pulledby]'s grip!"), null, null, pulledby)
-			to_chat(pulledby, span_warning("[src] breaks free of your grip!"))
+			visible_message(span_danger("[src]挣脱了[pulledby]的抓握控制!"), \
+							span_danger("你挣脱了[pulledby]的抓握控制!"), null, null, pulledby)
+			to_chat(pulledby, span_warning("[src]挣脱了你的抓握控制!"))
 			log_combat(pulledby, src, "broke grab")
 			pulledby.stop_pulling()
 			return FALSE
 		else
 			adjustStaminaLoss(rand(10,15))//failure to escape still imparts a pretty serious penalty //SKYRAT EDIT CHANGE: //adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty
-			visible_message("<span class='danger'>[src] struggles as they fail to break free of [pulledby]'s grip!</span>", \
-							"<span class='warning'>You struggle as you fail to break free of [pulledby]'s grip!</span>", null, null, pulledby)
-			to_chat(pulledby, "<span class='danger'>[src] struggles as they fail to break free of your grip!</span>")
+			visible_message("<span class='danger'>[src]试图挣扎，但未能逃离[pulledby]的抓握控制!</span>", \
+							"<span class='warning'>你试图挣扎，但未能逃离[pulledby]的抓握控制!</span>", null, null, pulledby)
+			to_chat(pulledby, "<span class='danger'>[src]试图挣扎，但未能逃离你的抓握控制!</span>")
 		if(moving_resist && client) //we resisted by trying to move
 			client.move_delay = world.time + 4 SECONDS
 	else
@@ -1393,7 +1393,7 @@
 		CRASH("Missing target arg for can_perform_action")
 
 	if(stat != CONSCIOUS)
-		to_chat(src, span_warning("You are not conscious enough for this action!"))
+		to_chat(src, span_warning("你的意识不够清醒来做这件事!"))
 		return FALSE
 
 	if(!(interaction_flags_atom & INTERACT_ATOM_IGNORE_INCAPACITATED))
@@ -1404,71 +1404,71 @@
 			ignore_flags |= IGNORE_GRAB
 
 		if(incapacitated(ignore_flags))
-			to_chat(src, span_warning("You are incapacitated at the moment!"))
+			to_chat(src, span_warning("你现在无能为力!"))
 			return FALSE
 
 	// If the MOBILITY_UI bitflag is not set it indicates the mob's hands are cutoff, blocked, or handcuffed
 	// Note - AI's and borgs have the MOBILITY_UI bitflag set even though they don't have hands
 	// Also if it is not set, the mob could be incapcitated, knocked out, unconscious, asleep, EMP'd, etc.
 	if(!(mobility_flags & MOBILITY_UI) && !(action_bitflags & ALLOW_RESTING))
-		to_chat(src, span_warning("You don't have the mobility for this!"))
+		to_chat(src, span_warning("你没有足够的行动能力!"))
 		return FALSE
 
 	// NEED_HANDS is already checked by MOBILITY_UI for humans so this is for silicons
 	if((action_bitflags & NEED_HANDS))
 		if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
-			to_chat(src, span_warning("You hands are blocked for this action!"))
+			to_chat(src, span_warning("你的手被困住了，无法做这个动作!"))
 			return FALSE
 		if(!can_hold_items(isitem(target) ? target : null)) // almost redundant if it weren't for mobs
-			to_chat(src, span_warning("You don't have the hands for this action!"))
+			to_chat(src, span_warning("你没有手来做这个动作!"))
 			return FALSE
 
 	if(!(action_bitflags & BYPASS_ADJACENCY) && ((action_bitflags & NOT_INSIDE_TARGET) || !recursive_loc_check(src, target)) && !CanReach(target))
 		if(HAS_SILICON_ACCESS(src) && !ispAI(src))
 			if(!(action_bitflags & ALLOW_SILICON_REACH)) // silicons can ignore range checks (except pAIs)
 				if(!(action_bitflags & SILENT_ADJACENCY))
-					to_chat(src, span_warning("You are too far away!"))
+					to_chat(src, span_warning("你离得太远了!"))
 				return FALSE
 		else // just a normal carbon mob
 			if((action_bitflags & FORBID_TELEKINESIS_REACH))
 				if(!(action_bitflags & SILENT_ADJACENCY))
-					to_chat(src, span_warning("You are too far away!"))
+					to_chat(src, span_warning("你离得太远了!"))
 				return FALSE
 
 			var/datum/dna/mob_DNA = has_dna()
 			if(!mob_DNA || !mob_DNA.check_mutation(/datum/mutation/human/telekinesis) || !tkMaxRangeCheck(src, target))
 				if(!(action_bitflags & SILENT_ADJACENCY))
-					to_chat(src, span_warning("You are too far away!"))
+					to_chat(src, span_warning("你离得太远了!"))
 				return FALSE
 
 	if((action_bitflags & NEED_VENTCRAWL) && !HAS_TRAIT(src, TRAIT_VENTCRAWLER_NUDE) && !HAS_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS))
-		to_chat(src, span_warning("You wouldn't fit!"))
+		to_chat(src, span_warning("你不适合这个!"))
 		return FALSE
 
 	if((action_bitflags & NEED_DEXTERITY) && !ISADVANCEDTOOLUSER(src))
-		to_chat(src, span_warning("You don't have the dexterity to do this!"))
+		to_chat(src, span_warning("你不够灵活!"))
 		return FALSE
 
 	if((action_bitflags & NEED_LITERACY) && !is_literate())
-		to_chat(src, span_warning("You can't comprehend any of this!"))
+		to_chat(src, span_warning("你根本无法理解这个!"))
 		return FALSE
 
 	if((action_bitflags & NEED_LIGHT) && !has_light_nearby() && !has_nightvision())
-		to_chat(src, span_warning("You need more light to do this!"))
+		to_chat(src, span_warning("你需要光亮来行动!"))
 		return FALSE
 
 	if((action_bitflags & NEED_GRAVITY) && !has_gravity())
-		to_chat(src, span_warning("You need gravity to do this!"))
+		to_chat(src, span_warning("你需要重力来行动!"))
 		return FALSE
 
 	return TRUE
 
 /mob/living/proc/can_use_guns(obj/item/G)//actually used for more than guns!
 	if(G.trigger_guard == TRIGGER_GUARD_NONE)
-		to_chat(src, span_warning("You are unable to fire this!"))
+		to_chat(src, span_warning("你无法开火!"))
 		return FALSE
 	if(G.trigger_guard != TRIGGER_GUARD_ALLOW_ALL && (!ISADVANCEDTOOLUSER(src) && !HAS_TRAIT(src, TRAIT_GUN_NATURAL)))
-		to_chat(src, span_warning("You try to fire [G], but can't use the trigger!"))
+		to_chat(src, span_warning("你试着射击[G]，但是扣动不了扳机!"))
 		return FALSE
 	return TRUE
 
@@ -1641,7 +1641,7 @@
 	if(!new_mob)
 		return
 
-	to_chat(src, span_hypnophrase(span_big("Your form morphs into that of a [what_to_randomize]!")))
+	to_chat(src, span_hypnophrase(span_big("你变成了一个[what_to_randomize]!")))
 
 	// And of course, make sure they get policy for being transformed
 	var/poly_msg = get_policy(POLICY_POLYMORPH)
@@ -1662,8 +1662,8 @@
 
 	// Valid polymorph types unlock the Lepton.
 	if((change_flags & (WABBAJACK|MIRROR_MAGIC|MIRROR_PRIDE|RACE_SWAP)) && (SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_WABBAJACK] != TRUE))
-		to_chat(new_mob, span_revennotice("You have the strangest feeling, for a moment. A fragile, dizzying memory wanders into your mind.. all you can make out is-"))
-		to_chat(new_mob, span_hypnophrase("You sleep so it may wake. You wake so it may sleep. It wakes. Do not sleep."))
+		to_chat(new_mob, span_revennotice("你有一刻感到无比奇异，一个脆弱而令人昏厥的记忆悄然浮现在你的脑海中...你所能分辨出的只是-"))
+		to_chat(new_mob, span_hypnophrase("你入睡是为了让它醒来，你醒来是为了让它沉睡，心念一起，眠途杳然."))
 		SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_WABBAJACK] = TRUE
 
 	qdel(src)
@@ -1844,12 +1844,12 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/knockOver(mob/living/carbon/C)
 	if(C.key) //save us from monkey hordes
 		C.visible_message("<span class='warning'>[pick( \
-						"[C] dives out of [src]'s way!", \
-						"[C] stumbles over [src]!", \
-						"[C] jumps out of [src]'s path!", \
-						"[C] trips over [src] and falls!", \
-						"[C] topples over [src]!", \
-						"[C] leaps out of [src]'s way!")]</span>")
+						"[C]出现在了[src]的路上!", \
+						"[C]绊倒了[src]!", \
+						"[C]突然跳到了[src]的路上!", \
+						"[C]绊倒了[src]并摔倒了!", \
+						"[C]绊倒了[src]!", \
+						"[C]突然出现在了[src]的路上!")]</span>")
 	C.Paralyze(40)
 
 /mob/living/can_be_pulled()
@@ -1918,7 +1918,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 /mob/living/proc/mob_pickup(mob/living/user)
 	var/obj/item/clothing/head/mob_holder/holder = new(get_turf(src), src, held_state, head_icon, held_lh, held_rh, worn_slot_flags)
-	user.visible_message(span_warning("[user] scoops up [src]!"))
+	user.visible_message(span_warning("[user]抓取[src]!"))
 	user.put_in_hands(holder)
 
 /mob/living/proc/set_name()
@@ -1931,15 +1931,15 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(!ishuman(user))
 		return FALSE
 	if(!user.get_empty_held_indexes())
-		to_chat(user, span_warning("Your hands are full!"))
+		to_chat(user, span_warning("你的手已经拿满了!"))
 		return FALSE
 	if(buckled)
-		to_chat(user, span_warning("[src] is buckled to something!"))
+		to_chat(user, span_warning("[src]被什么东西扣住了!"))
 		return FALSE
 	if(!instant)
-		user.visible_message(span_warning("[user] starts trying to scoop up [src]!"), \
-						span_danger("You start trying to scoop up [src]..."), null, null, src)
-		to_chat(src, span_userdanger("[user] starts trying to scoop you up!"))
+		user.visible_message(span_warning("[user]开始尝试抓取[src]!"), \
+						span_danger("你开始尝试抓取[src]..."), null, null, src)
+		to_chat(src, span_userdanger("[user]开始尝试抓取你!"))
 		if(!do_after(user, 2 SECONDS, target = src))
 			return FALSE
 	mob_pickup(user)
@@ -2037,13 +2037,13 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPEECH_IMPEDIMENT, "Impede Speech (Slurring, stuttering, etc)")
-	VV_DROPDOWN_OPTION(VV_HK_ADD_MOOD, "Add Mood Event")
-	VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOOD, "Remove Mood Event")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_HALLUCINATION, "Give Hallucination")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_DELUSION_HALLUCINATION, "Give Delusion Hallucination")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_GUARDIAN_SPIRIT, "Give Guardian Spirit")
-	VV_DROPDOWN_OPTION(VV_HK_ADMIN_RENAME, "Force Change Name")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPEECH_IMPEDIMENT, "语言障碍 (口齿不清，结巴等)")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_MOOD, "添加心情事件")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOOD, "移除心情事件")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_HALLUCINATION, "给予幻觉")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DELUSION_HALLUCINATION, "给予妄想幻觉")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_GUARDIAN_SPIRIT, "给予守护灵")
+	VV_DROPDOWN_OPTION(VV_HK_ADMIN_RENAME, "强制改名")
 
 /mob/living/vv_do_topic(list/href_list)
 	. = ..()
@@ -2086,12 +2086,12 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			return
 
 		var/old_name = real_name
-		var/new_name = sanitize_name(tgui_input_text(usr, "Enter the new name.", "Admin Rename", real_name))
+		var/new_name = sanitize_name(tgui_input_text(usr, "输入新名称.", "管理员重命名", real_name))
 		if(!new_name || new_name == real_name)
 			return
 
 		fully_replace_character_name(real_name, new_name)
-		var/replace_preferences = !isnull(client) && (tgui_alert(usr, "Would you like to update the client's preference with the new name?", "Pref Overwrite", list("Yes", "No")) == "Yes")
+		var/replace_preferences = !isnull(client) && (tgui_alert(usr, "你想用新名称更新用户的首选项设置吗?", "Pref覆盖", list("Yes", "No")) == "Yes")
 		if(replace_preferences)
 			client.prefs.write_preference(GLOB.preference_entries[/datum/preference/name/real_name], new_name)
 
@@ -2220,9 +2220,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	var/turf/ceiling = get_step_multiz(src, UP)
 	if(!ceiling) //We are at the highest z-level.
 		if (prob(0.1))
-			to_chat(src, span_warning("You gaze out into the infinite vastness of deep space, for a moment, you have the impulse to continue travelling, out there, out into the deep beyond, before your conciousness reasserts itself and you decide to stay within travelling distance of the station."))
+			to_chat(src, span_warning("你凝视着深邃宇宙的无限广袤，那一刻，你冲动地想要继续前行，前往那遥远的深空，但随后你的意识重新占据主导，你决定还是留在距离空间站航行距离可及的范围之内."))
 			return
-		to_chat(src, span_warning("There's nothing interesting up there."))
+		to_chat(src, span_warning("那里没有什么有意思的."))
 		return
 	else if(!istransparentturf(ceiling)) //There is no turf we can look through above us
 		var/turf/front_hole = get_step(ceiling, dir)
@@ -2234,7 +2234,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 					ceiling = checkhole
 					break
 		if(!istransparentturf(ceiling))
-			to_chat(src, span_warning("You can't see through the floor above you."))
+			to_chat(src, span_warning("你看不透顶上的天花板."))
 			return
 
 	looking_vertically = TRUE
@@ -2271,7 +2271,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	var/turf/floor = get_turf(src)
 	var/turf/lower_level = get_step_multiz(floor, DOWN)
 	if(!lower_level) //We are at the lowest z-level.
-		to_chat(src, span_warning("You can't see through the floor below you."))
+		to_chat(src, span_warning("你看不透脚下的地板."))
 		return
 	else if(!istransparentturf(floor)) //There is no turf we can look through below us
 		var/turf/front_hole = get_step(floor, dir)
@@ -2286,7 +2286,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 					lower_level = get_step_multiz(checkhole, DOWN)
 					break
 		if(!istransparentturf(floor))
-			to_chat(src, span_warning("You can't see through the floor below you."))
+			to_chat(src, span_warning("你看不透脚下的地板."))
 			return
 
 	looking_vertically = TRUE
@@ -2576,20 +2576,20 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 	if(isplatingturf(loc))
 		var/turf/open/floor/smashed_plating = loc
-		visible_message(span_danger("[src] is thrown violently into [smashed_plating], smashing through it and punching straight through!"),
-				span_userdanger("You're thrown violently into [smashed_plating], smashing through it and punching straight through!"))
+		visible_message(span_danger("[src]被猛烈地扔向[smashed_plating]，将其撞破并直接穿了过去!"),
+				span_userdanger("你被猛烈地扔向[smashed_plating]，将其撞破并直接穿了过去!"))
 		apply_damage(rand(5,20), BRUTE, BODY_ZONE_CHEST)
 		smashed_plating.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
 
 	for(var/obj/structure/lattice/lattice in loc)
-		visible_message(span_danger("[src] is thrown violently into [lattice], smashing through it and punching straight through!"),
-			span_userdanger("You're thrown violently into [lattice], smashing through it and punching straight through!"))
+		visible_message(span_danger("[src]被猛烈地扔向[lattice]，将其撞破并直接穿了过去!"),
+			span_userdanger("你被猛烈地扔向[lattice]，将其撞破并直接穿了过去!"))
 		apply_damage(rand(5,10), BRUTE, BODY_ZONE_CHEST)
 		lattice.deconstruct(FALSE)
 
 /// Prints an ominous message if something bad is going to happen to you
 /mob/living/proc/ominous_nosebleed()
-	to_chat(src, span_warning("You feel a bit nauseous for just a moment."))
+	to_chat(src, span_warning("有那么一会你感到有点恶心."))
 
 /**
  * Proc used by different station pets such as Ian and Poly so that some of their data can persist between rounds.
@@ -2617,11 +2617,11 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 		impediments[initial(possible.id)] = possible
 
-	var/chosen = tgui_input_list(admin, "What speech impediment?", "Impede Speech", impediments)
+	var/chosen = tgui_input_list(admin, "什么样的语言障碍?", "语言障碍", impediments)
 	if(!chosen || !ispath(impediments[chosen], /datum/status_effect/speech) || QDELETED(src) || !check_rights(NONE))
 		return
 
-	var/duration = tgui_input_number(admin, "How long should it last (in seconds)? Max is infinite duration.", "Duration", 0, INFINITY, 0 SECONDS)
+	var/duration = tgui_input_number(admin, "它会持续多长时间(单位为秒)？Max是无限持续时间", "持续时间", 0, INFINITY, 0 SECONDS)
 	if(!isnum(duration) || duration <= 0 || QDELETED(src) || !check_rights(NONE))
 		return
 
@@ -2633,7 +2633,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 	var/list/mood_events = typesof(/datum/mood_event)
 
-	var/chosen = tgui_input_list(admin, "What mood event?", "Add Mood Event", mood_events)
+	var/chosen = tgui_input_list(admin, "什么样的心情事件?", "添加心情事件", mood_events)
 	if (!chosen || QDELETED(src) || !check_rights(NONE))
 		return
 
@@ -2649,7 +2649,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		mood_events[event] = category
 
 
-	var/datum/mood_event/chosen = tgui_input_list(admin, "What mood event?", "Remove Mood Event", mood_events)
+	var/datum/mood_event/chosen = tgui_input_list(admin, "什么样的心情事件?", "移除心情事件", mood_events)
 	if (!chosen || QDELETED(src) || !check_rights(NONE))
 		return
 
@@ -2683,13 +2683,13 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	revive(HEAL_ALL)
 	befriend(reviver)
 	faction = (malfunctioning) ? list("[REF(reviver)]") : list(FACTION_NEUTRAL)
-	var/lazarus_policy = get_policy(ROLE_LAZARUS_GOOD) || "The lazarus injector has brought you back to life! You are now friendly to everyone."
+	var/lazarus_policy = get_policy(ROLE_LAZARUS_GOOD) || "拉撒路注射器让你起死回生了！你现在对每个人都是友好的!"
 	if (malfunctioning)
 		reviver.log_message("has revived mob [key_name(src)] with a malfunctioning lazarus injector.", LOG_GAME)
 		if(!isnull(src.mind))
 			src.mind.enslave_mind_to_creator(reviver)
-		to_chat(src, span_userdanger("Serve [reviver.real_name], and assist [reviver.p_them()] in completing [reviver.p_their()] goals at any cost."))
-		lazarus_policy = get_policy(ROLE_LAZARUS_BAD) || "You have been revived by a malfunctioning lazarus injector! You are now enslaved by whoever revived you."
+		to_chat(src, span_userdanger("为[reviver.real_name]服务，不惜一切代价协助其完成目标."))
+		lazarus_policy = get_policy(ROLE_LAZARUS_BAD) || "你被一台故障的拉撒路注射器复活了！你现在被复活你的人所奴役."
 	to_chat(src, span_boldnotice(lazarus_policy))
 
 /// Proc for giving a mob a new 'friend', generally used for AI control and targeting. Returns false if already friends.
@@ -2726,7 +2726,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 		if(cargo_account) //Just in case
 			cargo_account.adjust_money(-min(ransom_price, cargo_account.account_balance)) //Not so much, especially for competent cargo. Plus this can't be mass-triggered like it has been done with contractors
-		priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. As is policy we've taken a portion of the station's funds to offset the overall cost.", "Nanotrasen Asset Protection", has_important_message = TRUE)
+		priority_announce("你们的一名员工被敌对组织绑架了 - 我们不得不支付赎金来赎回人质. 按照规定，我们会空间站的资金中划拨一部分来抵消整体费用.", "纳米传讯资产保护", has_important_message = TRUE)
 
 	///The price should be high enough that the contractor can't just buy 'em back with their cut alone.
 	var/datum/market_item/hostage/market_item = new(src, black_market_price || ransom_price)
@@ -2741,12 +2741,12 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(!admin || !check_rights(NONE))
 		return
 
-	var/chosen = select_hallucination_type(admin, "What hallucination do you want to give to [src]?", "Give Hallucination")
+	var/chosen = select_hallucination_type(admin, "你想给予[src]什么幻觉?", "施加幻觉")
 	if(!chosen || QDELETED(src) || !check_rights(NONE))
 		return
 
 	if(!cause_hallucination(chosen, "admin forced by [key_name_admin(admin)]"))
-		to_chat(admin, "That hallucination ([chosen]) could not be run - it may be invalid with this type of mob or has no effects.")
+		to_chat(admin, "此幻觉([chosen])无法运行 - 它可能与此类型的mob无效.")
 		return
 
 	message_admins("[key_name_admin(admin)] gave [ADMIN_LOOKUPFLW(src)] a hallucination. (Type: [chosen])")
@@ -2773,27 +2773,27 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	var/del_mob = FALSE
 	var/mob/old_mob
 	var/list/possible_players = list("Poll Ghosts") + sort_list(GLOB.clients)
-	var/client/guardian_client = tgui_input_list(admin, "Pick the player to put in control.", "Guardian Controller", possible_players)
+	var/client/guardian_client = tgui_input_list(admin, "选择玩家进行控制.", "守护灵控制者", possible_players)
 	if(isnull(guardian_client))
 		return
 	else if(guardian_client == "Poll Ghosts")
-		var/mob/chosen_one = SSpolling.poll_ghost_candidates("Do you want to play as an admin created [span_notice("Guardian Spirit")] of [span_danger(real_name)]?", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_HOLOPARASITE, alert_pic = mutable_appearance('icons/mob/nonhuman-player/guardian.dmi', "magicexample"), jump_target = src, role_name_text = "guardian spirit", amount_to_pick = 1)
+		var/mob/chosen_one = SSpolling.poll_ghost_candidates("你想扮演由管理员创建的[span_danger(real_name)]的[span_notice("守护灵")]吗?", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_HOLOPARASITE, alert_pic = mutable_appearance('icons/mob/nonhuman-player/guardian.dmi', "magicexample"), jump_target = src, role_name_text = "守护灵", amount_to_pick = 1)
 		if(chosen_one)
 			guardian_client = chosen_one.client
 		else
-			tgui_alert(admin, "No ghost candidates.", "Guardian Controller")
+			tgui_alert(admin, "无鬼魂志愿者.", "守护灵控制者")
 			return
 	else
 		old_mob = guardian_client.mob
-		if(isobserver(old_mob) || tgui_alert(admin, "Do you want to delete [guardian_client]'s old mob?", "Guardian Controller", list("Yes"," No")) == "Yes")
+		if(isobserver(old_mob) || tgui_alert(admin, "你想要删除[guardian_client]的旧mob吗?", "守护灵控制者", list("Yes"," No")) == "Yes")
 			del_mob = TRUE
-	var/picked_type = tgui_input_list(admin, "Pick the guardian type.", "Guardian Controller", subtypesof(/mob/living/basic/guardian))
-	var/picked_theme = tgui_input_list(admin, "Pick the guardian theme.", "Guardian Controller", list(GUARDIAN_THEME_TECH, GUARDIAN_THEME_MAGIC, GUARDIAN_THEME_CARP, GUARDIAN_THEME_MINER, "Random"))
+	var/picked_type = tgui_input_list(admin, "选取守护灵类型.", "守护灵控制者", subtypesof(/mob/living/basic/guardian))
+	var/picked_theme = tgui_input_list(admin, "选取守护灵主题.", "守护灵控制者", list(GUARDIAN_THEME_TECH, GUARDIAN_THEME_MAGIC, GUARDIAN_THEME_CARP, GUARDIAN_THEME_MINER, "Random"))
 	if(picked_theme == "Random")
 		picked_theme = null //holopara code handles not having a theme by giving a random one
-	var/picked_name = tgui_input_text(admin, "Name the guardian, leave empty to let player name it.", "Guardian Controller")
-	var/picked_color = input(admin, "Set the guardian's color, cancel to let player set it.", "Guardian Controller", "#ffffff") as color|null
-	if(tgui_alert(admin, "Confirm creation.", "Guardian Controller", list("Yes", "No")) != "Yes")
+	var/picked_name = tgui_input_text(admin, "命名守护灵，留空就让玩家自主命名.", "守护灵控制者")
+	var/picked_color = input(admin, "设置守护灵颜色，取消让玩家控制.", "守护灵控制者", "#ffffff") as color|null
+	if(tgui_alert(admin, "确认创建.", "守护灵控制者", list("Yes", "No")) != "Yes")
 		return
 	var/mob/living/basic/guardian/summoned_guardian = new picked_type(src, picked_theme)
 	summoned_guardian.set_summoner(src, different_person = TRUE)
@@ -2810,8 +2810,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	BLACKBOX_LOG_ADMIN_VERB("Give Guardian Spirit")
 
 /mob/living/verb/lookup()
-	set name = "Look Up"
-	set category = "IC"
+	set name = "向上看"
+	set category = "IC.动作"
 
 	if(looking_vertically)
 		end_look_up()
@@ -2819,8 +2819,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		look_up()
 
 /mob/living/verb/lookdown()
-	set name = "Look Down"
-	set category = "IC"
+	set name = "向下看"
+	set category = "IC.动作"
 
 	if(looking_vertically)
 		end_look_down()
@@ -2854,7 +2854,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /// Create a report string about how strong this person looks, generated in a somewhat arbitrary fashion
 /mob/living/proc/compare_fitness(mob/living/scouter)
 	if (HAS_TRAIT(src, TRAIT_UNKNOWN))
-		return span_warning("It's impossible to tell whether this person lifts.")
+		return span_warning("无法判断这个人体格如何.")
 
 	var/our_fitness_level = calculate_fitness()
 	var/their_fitness_level = scouter.calculate_fitness()
@@ -2863,6 +2863,6 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 	if (comparative_fitness > 2)
 		scouter.set_jitter_if_lower(comparative_fitness SECONDS)
-		return "[span_notice("You'd estimate [p_their()] fitness level at about...")] [span_boldwarning("What?!? [our_fitness_level]???")]"
+		return "[span_notice("你正在评估这个人的健身水平...")] [span_boldwarning("什么?!? [our_fitness_level]???")]"
 
-	return span_notice("You'd estimate [p_their()] fitness level at about [our_fitness_level]. [comparative_fitness <= 0.33 ? "Pathetic." : ""]")
+	return span_notice("你评估这个人的健身水平大约为[our_fitness_level]. [comparative_fitness <= 0.33 ? "只能以悲剧来形容." : ""]")

@@ -1,6 +1,6 @@
 /datum/quirk/item_quirk/spiritual
 	name = "Spiritual-心诚则灵"
-	desc = "你心中怀有一种精神信仰，无论是对上帝、自然万物还是宇宙的神秘法则.你从圣洁之人的存在中获得慰藉，并坚信你的祈祷比别人更特别.处在教堂里会让你心情愉悦."
+	desc = "你心中怀有一种精神信仰，无论是对上帝、自然万物还是宇宙的神秘法则. 你从圣洁之人的存在中获得慰藉，并坚信你的祈祷比别人更特别. 处在教堂里会让你心情愉悦."
 	icon = FA_ICON_BIBLE
 	value = 2 /// SKYRAT EDIT - Quirk Rebalance - Original: value = 4
 	mob_trait = TRAIT_SPIRITUAL

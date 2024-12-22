@@ -24,11 +24,11 @@
 ///returns nothing with an alert instead of the message if it contains something in the ic filter, and sanitizes normally if the name is fine. It returns nothing so it backs out of the input the same way as if you had entered nothing.
 /proc/sanitize_name(target, allow_numbers = FALSE, cap_after_symbols = TRUE)
 	if(is_ic_filtered(target) || is_soft_ic_filtered(target))
-		tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
+		tgui_alert(usr, "您不能使用IC聊天中禁止使用的单词作为名称")
 		return ""
 	var/result = reject_bad_name(target, allow_numbers = allow_numbers, strict = TRUE, cap_after_symbols = cap_after_symbols)
 	if(!result)
-		tgui_alert(usr, "Invalid name.")
+		tgui_alert(usr, "不可用名称.")
 		return ""
 	return sanitize(result)
 
@@ -834,31 +834,31 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		return
 	switch(number)
 		if(1)
-			return "first"
+			return "第一"
 		if(2)
-			return "second"
+			return "第二"
 		if(3)
-			return "third"
+			return "第三"
 		if(4)
-			return "fourth"
+			return "第四"
 		if(5)
-			return "fifth"
+			return "第五"
 		if(6)
-			return "sixth"
+			return "第六"
 		if(7)
-			return "seventh"
+			return "第七"
 		if(8)
-			return "eighth"
+			return "第八"
 		if(9)
-			return "ninth"
+			return "第九"
 		if(10)
-			return "tenth"
+			return "第十"
 		if(11)
-			return "eleventh"
+			return "第十一"
 		if(12)
-			return "twelfth"
+			return "第十二"
 		else
-			return "[number]\th"
+			return "第[number]"
 
 /**
  * Takes a 1, 2 or 3 digit number and returns it in words. Don't call this directly, use convert_integer_to_words() instead.
@@ -1161,17 +1161,17 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /proc/weight_class_to_text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
-			. = "tiny"
+			. = "微型"
 		if(WEIGHT_CLASS_SMALL)
-			. = "small"
+			. = "小型"
 		if(WEIGHT_CLASS_NORMAL)
-			. = "normal-sized"
+			. = "中型"
 		if(WEIGHT_CLASS_BULKY)
-			. = "bulky"
+			. = "大型"
 		if(WEIGHT_CLASS_HUGE)
-			. = "huge"
+			. = "超大型"
 		if(WEIGHT_CLASS_GIGANTIC)
-			. = "gigantic"
+			. = "巨型"
 		else
 			. = ""
 

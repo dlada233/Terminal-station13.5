@@ -13,8 +13,8 @@
 		to_chat(src, span_warning("You can't cum right now!"))
 
 /mob/living/verb/reflexes_verb()
-    set name = "Toggle Reflexes"
-    set category = "IC"
+    set name = "切换反应"
+    set category = "IC.展示"
     if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))
         ADD_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
         to_chat(src, span_notice("[get_reflexes_gain_text()]"))
@@ -23,16 +23,16 @@
         to_chat(src, span_notice("[get_reflexes_lose_text()]"))
 
 /mob/living/proc/get_reflexes_gain_text()
-	return "You don't feel like being touched right now."
+	return "你现在不想被触碰."
 
 /mob/living/proc/get_reflexes_lose_text()
-	return "You'll allow yourself to be touched now."
+	return "你现在不介意被触碰."
 
 /mob/living/silicon/get_reflexes_gain_text()
-	return "Our systems will disallow platonic contact."
+	return "我们的系统现在不允许被触碰."
 
 /mob/living/silicon/get_reflexes_lose_text()
-	return "Our systems will allow platonic contact."
+	return "我们的系统现在允许被触碰."
 
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
@@ -62,33 +62,33 @@
 	return TRUE
 
 /mob/living/carbon/human/verb/lick(mob/living/carbon/human/target in get_adjacent_humans())
-	set name = "Lick"
-	set category = "IC"
+	set name = "舔"
+	set category = "IC.动作"
 
 	if(!istype(target))
 		return FALSE
 
 	var/taste = target?.dna?.features["taste"]
 	if(!taste)
-		to_chat(src, span_warning("[target] doesn't seem to have a taste."))
+		to_chat(src, span_warning("[target]似乎没有味道."))
 		return FALSE
 
-	to_chat(src, span_notice("[target] tastes like [taste]."))
-	to_chat(target, span_notice("[src] licks you."))
+	to_chat(src, span_notice("[target]味道像[taste]."))
+	to_chat(target, span_notice("[src]舔了你一口."))
 
 /mob/living/carbon/human/verb/smell(mob/living/carbon/human/target in get_adjacent_humans())
-	set name = "Smell"
-	set category = "IC"
+	set name = "闻"
+	set category = "IC.动作"
 
 	if(!istype(target))
 		return FALSE
 
 	var/smell = target?.dna?.features["smell"]
 	if(!smell)
-		to_chat(src, span_warning("[target] doesn't seem to have a smell."))
+		to_chat(src, span_warning("[target]似乎没有气味."))
 		return FALSE
 
-	to_chat(src, span_notice("[target] smells like [smell]."))
+	to_chat(src, span_notice("[target]闻起来像[smell]."))
 
 /// Returns a list containing all of the humans adjacent to the user.
 /mob/living/proc/get_adjacent_humans()

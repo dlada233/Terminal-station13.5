@@ -1,7 +1,7 @@
 /mob/dead/observer/verb/show_notificationprefs()
-	set category = "Ghost"
-	set name = "Notification preferences"
-	set desc = "Notification preferences"
+	set category = "幽灵"
+	set name = "消息通知设置"
+	set desc = "消息通知设置"
 
 	var/datum/notificationpanel/panel = new(usr)
 

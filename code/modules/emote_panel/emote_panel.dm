@@ -55,8 +55,8 @@
 	return GLOB.always_state
 
 /mob/living/verb/emote_panel()
-	set name = "感情面板"
-	set category = "IC"
+	set name = "表情菜单"
+	set category = "IC.动作"
 
 	var/static/datum/emote_panel/emote_panel
 	if(isnull(emote_panel))

@@ -72,20 +72,20 @@
 	race = /datum/species/skrell
 
 /mob/living/carbon/human/verb/toggle_undies()
-	set category = "IC"
-	set name = "Toggle underwear visibility"
-	set desc = "Allows you to toggle which underwear should show or be hidden. Underwear will obscure genitals."
+	set category = "IC.展示"
+	set name = "显示/隐藏 内衣"
+	set desc = "允许你调整各个部位的内衣是否显示."
 
 	if(stat != CONSCIOUS)
-		to_chat(usr, span_warning("You can't toggle underwear visibility right now..."))
+		to_chat(usr, span_warning("你此时无法切换内衣显示..."))
 		return
 
-	var/underwear_button = underwear_visibility & UNDERWEAR_HIDE_UNDIES ? "Show underwear" : "Hide underwear"
-	var/undershirt_button = underwear_visibility & UNDERWEAR_HIDE_SHIRT ? "Show shirt" : "Hide shirt"
-	var/socks_button = underwear_visibility & UNDERWEAR_HIDE_SOCKS ? "Show socks" : "Hide socks"
-	var/bra_button = underwear_visibility & UNDERWEAR_HIDE_BRA ? "Show bra" : "Hide bra"
+	var/underwear_button = underwear_visibility & UNDERWEAR_HIDE_UNDIES ? "显示内裤" : "隐藏内裤"
+	var/undershirt_button = underwear_visibility & UNDERWEAR_HIDE_SHIRT ? "显示贴身衫" : "隐藏贴身衫"
+	var/socks_button = underwear_visibility & UNDERWEAR_HIDE_SOCKS ? "显示袜子" : "隐藏袜子"
+	var/bra_button = underwear_visibility & UNDERWEAR_HIDE_BRA ? "显示文胸" : "隐藏文胸"
 	var/list/choice_list = list("[underwear_button]" = "underwear", "[bra_button]" = "bra", "[undershirt_button]" = "shirt", "[socks_button]" = "socks","show all" = "show", "Hide all" = "hide")
-	var/picked_visibility = input(src, "Choose visibility setting", "Show/Hide underwear") as null|anything in choice_list
+	var/picked_visibility = input(src, "可见性设置", "显示/隐藏 内衣") as null|anything in choice_list
 	if(picked_visibility)
 		var/picked_choice = choice_list[picked_visibility]
 		switch(picked_choice)
@@ -111,9 +111,9 @@
 			dna.species.spec_revival(src)
 
 /mob/living/carbon/human/verb/toggle_mutant_part_visibility()
-	set category = "IC"
-	set name = "Show/Hide Mutant Parts"
-	set desc = "Allows you to choose to try and hide your mutant bodyparts under your clothes."
+	set category = "IC.展示"
+	set name = "显示/隐藏 突变部位"
+	set desc = "允许你将你的突变部位藏在衣服下."
 
 	mutant_part_visibility()
 
@@ -134,12 +134,12 @@
 
 	// Stat check
 	if(stat != CONSCIOUS)
-		to_chat(usr, span_warning("You can't do this right now..."))
+		to_chat(usr, span_warning("你此时无法执行此动作..."))
 		return
 
 	// Only show the 'reveal all' button if we are already hiding something
 	if(try_hide_mutant_parts)
-		LAZYOR(available_selection, "reveal all")
+		LAZYOR(available_selection, "显示全部")
 	// Lets build our parts list
 	for(var/organ_slot in total_selection)
 		if(get_organ_slot(organ_slot))
@@ -147,7 +147,7 @@
 
 	// If this proc is called with the 'quick_toggle' flag, we skip the rest
 	if(quick_toggle)
-		if("reveal all" in available_selection)
+		if("显示全部" in available_selection)
 			LAZYNULL(try_hide_mutant_parts)
 		else
 			for(var/part in available_selection)
@@ -159,7 +159,7 @@
 	if(re_do && (length(available_selection) == 1))
 		return
 	// If 'reveal all' is our only option just do it
-	if(!re_do && (("reveal all" in available_selection) && (length(available_selection) == 1)))
+	if(!re_do && (("显示全部" in available_selection) && (length(available_selection) == 1)))
 		LAZYNULL(try_hide_mutant_parts)
 		update_mutant_bodyparts()
 		return
@@ -181,17 +181,17 @@
 		return
 
 	// Choice to action
-	if(pick == "reveal all")
-		to_chat(usr, span_notice("You are no longer trying to hide your mutant parts."))
+	if(pick == "显示全部")
+		to_chat(usr, span_notice("你不再隐藏突变部位."))
 		LAZYNULL(try_hide_mutant_parts)
 		update_mutant_bodyparts()
 		return
 
 	else if(pick in try_hide_mutant_parts)
-		to_chat(usr, span_notice("You are no longer trying to hide your [pick]."))
+		to_chat(usr, span_notice("你不再隐藏[pick]."))
 		LAZYREMOVE(try_hide_mutant_parts, pick)
 	else
-		to_chat(usr, span_notice("You are now trying to hide your [pick]."))
+		to_chat(usr, span_notice("你隐藏了[pick]."))
 		LAZYOR(try_hide_mutant_parts, pick)
 	update_mutant_bodyparts()
 	// automatically re-do the menu after making a selection
@@ -203,44 +203,44 @@
 #define MAX_TIME 36000 // 10 hours
 
 /mob/living/carbon/human/verb/acting()
-	set category = "IC"
-	set name = "Feign Impairment"
-	set desc = "Pretend to be impaired for a defined duration."
+	set category = "IC.展示"
+	set name = "假装状态"
+	set desc = "在一定时间内假装某种状态."
 
 	if(stat != CONSCIOUS)
-		to_chat(usr, span_warning("You can't do this right now..."))
+		to_chat(usr, span_warning("现在不可以做这个..."))
 		return
 
-	var/static/list/choices = list("drunkenness", "stuttering", "jittering")
-	var/impairment = tgui_input_list(src, "Select an impairment to perform:", "Impairments", choices)
+	var/static/list/choices = list("醉醉酒酒(Drunk)", "口吃", "紧张")
+	var/impairment = tgui_input_list(src, "选择要伪装的状态:", "假装状态", choices)
 	if(!impairment)
 		return
 
-	var/duration = tgui_input_number(src, "How long would you like to feign [impairment] for?", "Duration in seconds", DEFAULT_TIME, MAX_TIME)
+	var/duration = tgui_input_number(src, "假装[impairment]多长时间?", "持续秒数", DEFAULT_TIME, MAX_TIME)
 	switch(impairment)
-		if("drunkenness")
+		if("醉酒醉酒(Drunk)")
 			var/mob/living/living_user = usr
 			if(istype(living_user))
 				living_user.add_mood_event("drunk", /datum/mood_event/drunk)
 			set_slurring_if_lower(duration SECONDS)
-		if("stuttering")
+		if("口吃")
 			set_stutter_if_lower(duration SECONDS)
-		if("jittering")
+		if("紧张")
 			set_jitter_if_lower(duration SECONDS)
 
 	if(duration)
 		addtimer(CALLBACK(src, PROC_REF(acting_expiry), impairment), duration SECONDS)
-		to_chat(src, "You are now feigning [impairment].")
+		to_chat(src, "你现在假装[impairment].")
 
 /mob/living/carbon/human/proc/acting_expiry(impairment)
 	if(impairment)
 		// Procs when fake impairment duration ends, useful for calling extra events to wrap up too
-		if(impairment == "drunkenness")
+		if(impairment == "醉酒")
 			var/mob/living/living_user = usr
 			if(istype(living_user))
 				living_user.clear_mood_event("drunk")
 		// Notify the user
-		to_chat(src, "You are no longer feigning [impairment].")
+		to_chat(src, "你不再[impairment].")
 
 #undef DEFAULT_TIME
 #undef MAX_TIME

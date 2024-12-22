@@ -9,7 +9,7 @@
  * Allows the heretic to sacrifice living heart targets.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice
-	name = "漫宿的心跳"
+	name = "漫宿的心跳-Mansus"
 	desc = "你可以将处于濒死（或更糟）状态的献祭目标送到嬗变符文上，从而献祭给漫宿.如果你没有献祭目标，站在嬗变符文上使用该技能来获得一个."
 	required_atoms = list(/mob/living/carbon/human = 1)
 	cost = 0

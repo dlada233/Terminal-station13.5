@@ -9,17 +9,17 @@
 	var/list/navigation_images = list()
 
 /mob/living/verb/navigate()
-	set name = "Navigate"
-	set category = "IC"
+	set name = "导航"
+	set category = "IC.信息"
 
 	if(incapacitated())
 		return
 	if(length(client.navigation_images))
 		addtimer(CALLBACK(src, PROC_REF(cut_navigation)), world.tick_lag)
-		balloon_alert(src, "navigation path removed")
+		balloon_alert(src, "导航路径移除")
 		return
 	if(!COOLDOWN_FINISHED(src, navigate_cooldown))
-		balloon_alert(src, "navigation on cooldown!")
+		balloon_alert(src, "导航路径冷却中!")
 		return
 	addtimer(CALLBACK(src, PROC_REF(create_navigation)), world.tick_lag)
 
@@ -33,15 +33,15 @@
 
 	if(!is_reserved_level(z)) //don't let us path to nearest staircase or ladder on shuttles in transit
 		if(z > 1)
-			destination_list["Nearest Way Down"] = DOWN
+			destination_list["Nearest Way Down-最近的向下路线"] = DOWN
 		if(z < world.maxz)
-			destination_list["Nearest Way Up"] = UP
+			destination_list["Nearest Way Up-最近的向上路线"] = UP
 
 	if(!length(destination_list))
-		balloon_alert(src, "no navigation signals!")
+		balloon_alert(src, "没有导航信号!")
 		return
 
-	var/platform_code = tgui_input_list(src, "Select a location", "Navigate", sort_list(destination_list))
+	var/platform_code = tgui_input_list(src, "选择目的地(请参照英文名称)", "导航", sort_list(destination_list))
 	var/navigate_target = destination_list[platform_code]
 
 	if(isnull(navigate_target))
@@ -54,7 +54,7 @@
 		var/new_target = find_nearest_stair_or_ladder(navigate_target)
 
 		if(!new_target)
-			balloon_alert(src, "can't find ladder or staircase going [navigate_target == UP ? "up" : "down"]!")
+			balloon_alert(src, "找不到楼梯或梯子，通往[navigate_target == UP ? "上方" : "下方"]!")
 			return
 
 		navigate_target = new_target
@@ -65,7 +65,7 @@
 
 	var/list/path = get_path_to(src, navigate_target, MAX_NAVIGATE_RANGE, mintargetdist = 1, access = get_access(), skip_first = FALSE)
 	if(!length(path))
-		balloon_alert(src, "no valid path with current access!")
+		balloon_alert(src, "当前没有可用路线!")
 		return
 	path |= get_turf(navigate_target)
 	for(var/i in 1 to length(path))
@@ -92,7 +92,7 @@
 		animate(path_image, 0.5 SECONDS, alpha = 150)
 	addtimer(CALLBACK(src, PROC_REF(shine_navigation)), 0.5 SECONDS)
 	RegisterSignal(src, COMSIG_LIVING_DEATH, PROC_REF(cut_navigation))
-	balloon_alert(src, "navigation path created")
+	balloon_alert(src, "导航路线已创建")
 
 /mob/living/proc/shine_navigation()
 	for(var/i in 1 to length(client.navigation_images))

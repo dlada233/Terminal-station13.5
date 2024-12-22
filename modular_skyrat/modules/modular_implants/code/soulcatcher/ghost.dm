@@ -1,5 +1,5 @@
 /datum/action/innate/join_soulcatcher
-	name = "Enter Soulcatcher"
+	name = "进入灵魂捕捉"
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
@@ -14,8 +14,8 @@
 	joining_soul.join_soulcatcher()
 
 /mob/dead/observer/verb/join_soulcatcher()
-	set name = "Enter Soulcatcher"
-	set category = "Ghost"
+	set name = "进入灵魂捕捉"
+	set category = "幽灵"
 
 	var/list/joinable_soulcatchers = list()
 	var/list/rooms_to_join = list()

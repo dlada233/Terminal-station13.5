@@ -15,9 +15,9 @@
 /datum/brain_trauma/severe/death_consequences
 	name = DEATH_CONSEQUENCES_QUIRK_NAME
 	desc = DEATH_CONSEQUENCES_QUIRK_DESC
-	scan_desc = "death degradation"
-	gain_text = span_warning("For a brief moment, you completely disassociate.")
-	lose_text = span_notice("You feel like you have a firm grasp on your consciousness again!")
+	scan_desc = "死亡性机能衰退"
+	gain_text = span_warning("有那么一瞬间，你感觉与身体断开了联系.")
+	lose_text = span_notice("你觉得你又牢牢地抓住了意识!")
 	random_gain = FALSE
 
 	/// The current degradation we are currently at. Generally speaking, things get worse the higher this is. Can never go below 0.
@@ -101,28 +101,28 @@
 	/// Contains nested assoc lists of (DEGRADATION_LEVEL_DEFINE -> list((message -> weight), ...)) where ... is a indefinite number of message -> weight pairs.
 	var/static/list/degradation_messages = list(
 		DEGRADATION_LEVEL_LOW = list(
-			span_warning("Your body aches a little.") = 10,
-			span_warning("You feel a little detached from yourself.") = 10,
-			span_warning("You feel a little tired.") = 10,
+			span_warning("你的身体有点疼.") = 10,
+			span_warning("你感觉有点脱离自我.") = 10,
+			span_warning("你感觉有点累.") = 10,
 		),
 		DEGRADATION_LEVEL_MEDIUM = list(
-			span_danger("Your whole body aches...") = 10,
-			span_danger("You're starting to feel disassociated from yourself...") = 10,
-			span_danger("You're having a little difficulty thinking...") = 10,
+			span_danger("你全身疼痛...") = 10,
+			span_danger("你感觉自己正在与身体脱节...") = 10,
+			span_danger("你感觉思考变得困难...") = 10,
 		),
 		DEGRADATION_LEVEL_HIGH = list(
-			span_bolddanger("Your entire body throbs!") = 10,
-			span_bolddanger("You feel like you're losing your grip on yourself!") = 10,
-			span_bolddanger("Your consciousness feels as fragile as a sheet of glass!") = 10,
-			span_bolddanger("You feel exhausted in every single possible way!") = 10,
+			span_bolddanger("你全身颤抖!") = 10,
+			span_bolddanger("你觉得正在失去对自己的控制!") = 10,
+			span_bolddanger("你的意识就像一块那样脆弱!") = 10,
+			span_bolddanger("你感觉精疲力尽!") = 10,
 		),
 		DEGRADATION_LEVEL_CRITICAL = list(
-			span_revenwarning("<b>Everything hurts... It hurts so bad...</b>") = 10,
-			span_revenwarning("<b>It's so hard to think... It's so hard... So hard...</b>") = 10,
-			span_revenwarning("<b>Your body feels alien, like you don't belong in it...</b>") = 10,
-			span_revenwarning("<b>... Who am I?</b>") = 1,
-			span_revenwarning("<b>... Where am I?</b>") = 1,
-			span_revenwarning("<b>... What am I?</b>") = 1,
+			span_revenwarning("<b>哪里都在疼...快要不行了...</b>") = 10,
+			span_revenwarning("<b>思考不了...太困难...太过辛苦...</b>") = 10,
+			span_revenwarning("<b>你感觉到身体很陌生，好像你不属于它...</b>") = 10,
+			span_revenwarning("<b>... 我是谁?</b>") = 1,
+			span_revenwarning("<b>... 我在哪?</b>") = 1,
+			span_revenwarning("<b>... 我是什么?</b>") = 1,
 		)
 	)
 
@@ -168,8 +168,8 @@
 
 		adjust_degradation(base_degradation_on_death)
 		if (!final_death_delivered) // already sends a very spooky message if they permadie
-			var/visible_message = span_revenwarning("[owner] writhes for a brief moment, before going limp. You get the sense that you might want to <b>prevent them from dying again...</b>")
-			var/self_message = span_revenwarning("As your mind reels from the shock of death, you feel the ethereal tether that binds you to your body strain...")
+			var/visible_message = span_revenwarning("[owner]短暂地挣扎了一下，随后便瘫软下来. 你感觉到自己可能需要<b>阻止这个人再次死去...</b>")
+			var/self_message = span_revenwarning("当你的心智因死亡的冲击而天旋地转时，你感受到了将你与身体相连的虚幻纽带正在承受巨大的压力...")
 
 			var/mob/dead/observer/ghost = owner.get_ghost()
 			var/mob/self_message_target = (ghost ? ghost : owner)
@@ -374,48 +374,43 @@
 	var/log_message
 
 	if (owner.stat == DEAD)
-		visible_message = span_revenwarning("The air around [owner] seems to ripple for a moment.")
-		self_message = span_revendanger("The metaphorical \"tether\" binding you to your body finally gives way. You try holding on, but you soon find yourself \
-		falling into a deep, dark abyss...")
-		log_message = "has been permanently ghosted by their resonance instability quirk."
+		visible_message=span_revenwarning("围绕[owner]的空气似乎瞬间产生了涟漪.")
+		self_message=span_revendanger("将你束缚在身体上的虚幻“纽带”终于断裂了，你试图抓住它，但很快就发现自己正坠入一个深邃、黑暗的无底深渊...")
+		log_message="由于共振不稳定特质，已被永久变为幽灵."
 	else
 		if (force_death_if_permakilled) // kill them - a violent and painful end
-			visible_message = span_revenwarning("[owner] suddenly lets out a harrowing gasp and falls to one knee, clutching their head! The remainder of their \
-			body goes limp soon after, failing to stand back up.")
+			visible_message = span_revenwarning("[owner]突然发出一声骇人的喘息，跪倒在地，双手抱头！他的身体其余部分很快就瘫软下来，再也无法站起.")
 			owner.death(gibbed = FALSE)
-			log_message = "has been permanently killed by their resonance instability quirk."
+			log_message = "由于共振不稳定特质，已被永久杀死."
 		else // ghostize them - they simply stop thinking, forever
-			visible_message = span_revenwarning("[owner] jerkily arches their head upwards, untensing and going slackjawed with dilated pupils. They \
-			cease all action and simply stand there, swaying.")
+			visible_message = span_revenwarning("[owner]的头猛地向上仰起，然后松弛下来，张着嘴，瞳孔放大，停止了所有动作，只是站在那里，摇摇晃晃.")
 			owner.ghostize(can_reenter_corpse = FALSE)
-			log_message = "has been permanently ghosted by their resonance instability quirk."
+			log_message = "由于共振不稳定特质，已被永久变为幽灵."
 
-		self_message = span_revendanger("Your mind suddenly clouds, and you lose control of all thought and function. You try to squeeze your eyes shut, but you forget \
-		where they are only a split second later. You drift away from yourself, further and further, until it's impossible to return...")
+		self_message = span_revendanger("你的思维突然变得混乱，你失去了对所有思考和机能的控制. 你试图紧闭双眼，但仅仅一秒后你就忘记了它们的位置. 你离自己越来越远，直到再也无法返回...")
 
 	var/mob/dead/observer/owner_ghost = owner.get_ghost()
 	var/mob/self_message_target = (owner_ghost ? owner_ghost : owner) // if youre ghosted, you still get the message
 
-	visible_message += span_revenwarning(" <b>You sense something terrible has happened.</b>") // append crucial info and context clues
-	self_message += span_danger(" You have been killed by your death degradation, which prevents you from returning to your body or even being revived. \
-	You may roleplay this however you wish - this death may be temporary, permanent - you may or may not appear in soulcatchers - it's all up to you.")
+	visible_message += span_revenwarning(" <b>你感觉到发生了可怕的事情.</b>") // append crucial info and context clues
+	self_message += span_danger(" 你已被死亡衰退所杀死，这使你无法回到你的身体，甚至无法被复活. 你可以根据自己的意愿来扮演这个角色，一切由你决定.")
 
 	owner.investigate_log(log_message)
 	owner.visible_message(visible_message, ignored_mobs = self_message_target) // finally, send it
-	owner.balloon_alert_to_viewers("something terrible has happened...")
+	owner.balloon_alert_to_viewers("发生了可怕的事情...")
 	to_chat(self_message_target, self_message)
 
 /// Returns a short-ish string containing an href to [get_specific_data].
 /datum/brain_trauma/severe/death_consequences/proc/get_health_analyzer_link_text(mob/user)
-	var/message = span_bolddanger("\nSubject suffers from death degradation disorder.")
+	var/message = span_bolddanger("\n对象患有死亡性机能衰退.")
 	if (final_death_delivered)
-		message += span_purple("<i>\nNeural patterns are equivalent to the consciousness zero-point. Subject has likely succumbed.</i>")
+		message += span_purple("<i>\n神经模式与意识零点无差别，对象可能已经衰退至死亡.</i>")
 		return message
 
-	message += span_danger("\nCurrent degradation/max: [span_blue("<b>[current_degradation]</b>")]/<b>[max_degradation]</b>.")
-	message += span_notice("\n<a href='?src=[REF(src)];[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA]=1'>View degradation specifics?</a>")
+	message += span_danger("\n当前衰退值/最大值: [span_blue("<b>[current_degradation]</b>")]/<b>[max_degradation]</b>.")
+	message += span_notice("\n<a href='?src=[REF(src)];[DEATH_CONSEQUENCES_SHOW_HEALTH_ANALYZER_DATA]=1'>浏览衰退详情?</a>")
 	if (permakill_if_at_max_degradation)
-		message += span_revenwarning("\n\n<b><i>SUBJECT WILL BE PERMANENTLY KILLED IF DEGRADATION REACHES MAXIMUM!</i></b>")
+		message += span_revenwarning("\n\n<b><i>如果衰退达到最大值，对象将永久死亡!</i></b>")
 
 	if (user)
 		if (isnull(time_til_scan_expires[user]))
@@ -437,36 +432,36 @@
 		if (world.time <= time_til_scan_expires[usr])
 			to_chat(usr, examine_block(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 		else
-			to_chat(usr, span_warning("Your scan has expired! Try scanning again!"))
+			to_chat(usr, span_warning("你的扫描已过期! 请尝试再次扫描!"))
 
 /// Returns a large string intended to show specifics of how this degradation work.
 /datum/brain_trauma/severe/death_consequences/proc/get_specific_data()
-	var/message = span_bolddanger("Subject suffers from death degradation disorder.")
+	var/message = span_bolddanger("对象患有死亡性机能衰退.")
 	if (final_death_delivered)
-		message += span_purple("<i>\nNeural patterns are equivalent to the consciousness zero-point. Subject has likely succumbed.</i>")
+		message += span_purple("<i>\n神经模式与意识零点无差别，对象可能已经衰退至死亡.</i>")
 		return message
 
 	var/owner_organic = (owner.dna.species.reagent_flags & PROCESS_ORGANIC)
-	message += span_danger("\nCurrent degradation/max: [span_blue("<b>[current_degradation]</b>")]/<b>[max_degradation]</b>.")
+	message += span_danger("\n当前衰退值/最大值: [span_blue("<b>[current_degradation]</b>")]/<b>[max_degradation]</b>.")
 	if (base_degradation_reduction_per_second_while_alive)
-		message += span_danger("\nWhile alive, subject will recover from degradation at a rate of [span_blue("[base_degradation_reduction_per_second_while_alive] per second")].")
+		message += span_danger("\n当对象保持存活，能以每秒[span_blue("[base_degradation_reduction_per_second_while_alive]的速度恢复衰退.")].")
 	if (base_degradation_per_second_while_dead)
-		message += span_danger("\nWhile dead, subject will suffer degradation at a rate of [span_bolddanger("[base_degradation_per_second_while_dead] per second")].")
+		message += span_danger("\n当对象死亡，将以每秒[span_bolddanger("[base_degradation_per_second_while_dead]的速度遭受衰退")].")
 		if (owner_organic && formaldehyde_death_degradation_mult != 1)
-			message += span_danger(" In such an event, formaldehyde will alter the degradation by <b>[span_blue("[formaldehyde_death_degradation_mult]")]</b>x.")
+			message += span_danger(" 在此情况下，甲醛将以<b>[span_blue("[formaldehyde_death_degradation_mult]")]</b>倍的速度改变衰退.")
 		if (stasis_passive_degradation_multiplier < 1)
-			message += span_danger(" Stasis may be effective in slowing (or even stopping) degradation.")
+			message += span_danger(" 静滞状态将有效减缓(甚至停止)衰退.")
 	if (base_degradation_on_death)
-		message += span_danger("\nDeath will incur a <b>[base_degradation_on_death]</b> degradation penalty.")
+		message += span_danger("\n死亡将产生<b>[base_degradation_on_death]</b>的基本衰退.")
 	if (owner_organic && rezadone_degradation_decrease)
-		message += span_danger("\nRezadone of purity at or above <i>[DEATH_CONSEQUENCES_REZADONE_MINIMUM_PURITY]</i>% will reduce degradation by [span_blue("[rezadone_degradation_decrease]")] per second when metabolized.")
+		message += span_danger("\n纯度在<i>[DEATH_CONSEQUENCES_REZADONE_MINIMUM_PURITY]</i>%或以上的生物酮(Rezadone)将以每秒[span_blue("[rezadone_degradation_decrease]")]的速度减少衰退.")
 	if (eigenstasium_degradation_decrease)
-		message += span_danger("\nEigenstasium will reduce degradation by [span_blue("[eigenstasium_degradation_decrease]")] per second when present.")
+		message += span_danger("\n本征态波动液(Eigenstasium)将以每秒[span_blue("[eigenstasium_degradation_decrease]")]的速度减少衰退.")
 
-	message += span_danger("\nAll degradation reduction can be [span_blue("expedited")] by [span_blue("resting, sleeping, or being buckled to something comfortable")].")
+	message += span_danger("\n所有的衰退减少都可以通过[span_blue("休息、睡眠或坐在舒适的东西上")]来[span_blue("加快")].")
 
 	if (permakill_if_at_max_degradation)
-		message += span_revenwarning("\n\n<b><i>SUBJECT WILL BE PERMANENTLY KILLED IF DEGRADATION REACHES MAXIMUM!</i></b>")
+		message += span_revenwarning("\n\n<b><i>如果衰退达到最大值，对象将永久死亡!</i></b>")
 
 	return message
 

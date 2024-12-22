@@ -615,7 +615,7 @@
  */
 /mob/verb/examinate(atom/examinify as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "检视"
-	set category = "IC"
+	set category = "IC.动作"
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
 
@@ -1560,8 +1560,8 @@
 
 ///Show the language menu for this mob
 /mob/verb/open_language_menu_verb()
-	set name = "打开语言菜单"
-	set category = "IC"
+	set name = "语言菜单"
+	set category = "IC.信息"
 
 	get_language_holder().open_language_menu(usr)
 
@@ -1685,12 +1685,12 @@
 ///Shows a tgui window with memories
 /mob/verb/memory()
 	set name = "记忆"
-	set category = "IC"
-	set desc = "View your character's memories."
+	set category = "IC.信息"
+	set desc = "浏览你的角色记忆."
 	if(!mind)
-		var/fail_message = "You have no mind!"
+		var/fail_message = "你没有心智!"
 		if(isobserver(src))
-			fail_message += " You have to be in the current round at some point to have one."
+			fail_message += " 你必须在当前回合的某个时刻拥有."
 		to_chat(src, span_warning(fail_message))
 		return
 	if(!mind.memory_panel)
@@ -1738,7 +1738,7 @@
 	return data
 
 /mob/verb/view_skills()
-	set category = "IC"
+	set category = "IC.信息"
 	set name = "浏览技能"
 
 	mind?.print_levels(src)

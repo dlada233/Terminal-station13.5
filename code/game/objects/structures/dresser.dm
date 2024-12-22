@@ -34,27 +34,27 @@
 		to_chat(dressing_human, span_warning("你根本不会穿贴身衣物."))
 		return
 
-	var/choice = tgui_input_list(user, "内裤，胸罩，贴身衫，或者袜子?", "更衣", list("内裤", "内裤颜色", "胸罩", "胸罩颜色", "贴身衫", "贴身衫颜色", "袜子", "袜子颜色")) //SKYRAT EDIT ADDITION - Colorable Undershirt/Socks/Bra
+	var/choice = tgui_input_list(user, "内裤，胸罩，贴身衫，或者袜子?", "更衣", list("裤内裤", "裤内裤颜色", "胸文胸", "胸文胸颜色", "贴身衫", "贴身衫颜色", "袜 袜子", "袜 袜子颜色")) //SKYRAT EDIT ADDITION - Colorable Undershirt/Socks/Bra
 	if(isnull(choice))
 		return
 
 	if(!Adjacent(user))
 		return
 	switch(choice)
-		if("内裤")
-			var/new_undies = tgui_input_list(user, "选择你的内裤", "更换", SSaccessories.underwear_list)
+		if("裤内裤")
+			var/new_undies = tgui_input_list(user, "选择你的内裤", "更衣", SSaccessories.underwear_list)
 			if(new_undies)
 				dressing_human.underwear = new_undies
-		if("内裤颜色")
+		if("裤内裤颜色")
 			var/new_underwear_color = input(dressing_human, "选择你的内裤颜色", "内裤颜色", dressing_human.underwear_color) as color|null
 			if(new_underwear_color)
 				dressing_human.underwear_color = sanitize_hexcolor(new_underwear_color)
 		if("贴身衫")
-			var/new_undershirt = tgui_input_list(user, "选择你的贴身衫", "更换", SSaccessories.undershirt_list)
+			var/new_undershirt = tgui_input_list(user, "选择你的贴身衫", "更衣", SSaccessories.undershirt_list)
 			if(new_undershirt)
 				dressing_human.undershirt = new_undershirt
-		if("袜子")
-			var/new_socks = tgui_input_list(user, "选择你的袜子", "更换", SSaccessories.socks_list)
+		if("袜 袜子")
+			var/new_socks = tgui_input_list(user, "选择你的袜子", "更衣", SSaccessories.socks_list)
 			if(new_socks)
 				dressing_human.socks = new_socks
 		//SKYRAT EDIT ADDITION BEGIN - Colorable Undershirt/Socks/Bras
@@ -62,18 +62,18 @@
 			var/new_undershirt_color = input(dressing_human, "选择你的贴身衫颜色", "贴身衫颜色", dressing_human.undershirt_color) as color|null
 			if(new_undershirt_color)
 				dressing_human.undershirt_color = sanitize_hexcolor(new_undershirt_color)
-		if("袜子颜色")
+		if("袜 袜子颜色")
 			var/new_socks_color = input(dressing_human, "选择你的袜子颜色", "袜子颜色", dressing_human.socks_color) as color|null
 			if(new_socks_color)
 				dressing_human.socks_color = sanitize_hexcolor(new_socks_color)
 
-		if("胸罩")
-			var/new_bra = tgui_input_list(user, "选择你的胸罩", "更换", SSaccessories.bra_list)
+		if("胸文胸")
+			var/new_bra = tgui_input_list(user, "选择你的文胸", "更衣", SSaccessories.bra_list)
 			if(new_bra)
 				dressing_human.bra = new_bra
 
-		if("胸罩颜色")
-			var/new_bra_color = input(dressing_human, "选择你的胸罩颜色", "胸罩颜色", dressing_human.bra_color) as color|null
+		if("胸文胸颜色")
+			var/new_bra_color = input(dressing_human, "选择你的文胸颜色", "文胸颜色", dressing_human.bra_color) as color|null
 			if(new_bra_color)
 				dressing_human.bra_color = sanitize_hexcolor(new_bra_color)
 

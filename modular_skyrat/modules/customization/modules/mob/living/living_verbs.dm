@@ -6,15 +6,15 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	return temporary_flavor_text_indicator
 
 /mob/living/verb/set_temporary_flavor()
-	set category = "IC"
-	set name = "Set Temporary Flavor Text"
-	set desc = "Allows you to set a temporary flavor text."
+	set category = "IC.展示"
+	set name = "设置临时描述文本"
+	set desc = "允许你设置临时性的描述文本."
 
 	if(stat != CONSCIOUS)
-		to_chat(usr, span_warning("You can't set your temporary flavor text now..."))
+		to_chat(usr, span_warning("你现在不能设置你的临时性的描述文本..."))
 		return
 
-	var/msg = tgui_input_text(usr, "Set the temporary flavor text in your 'examine' verb. This is for describing what people can tell by looking at your character.", "Temporary Flavor Text", temporary_flavor_text, max_length = MAX_FLAVOR_LEN, multiline = TRUE)
+	var/msg = tgui_input_text(usr, "在'检查'中会显示的临时文本，这是用来描述人们从你的角色中可以看出什么别的东西.", "临时性描述文本", temporary_flavor_text, max_length = MAX_FLAVOR_LEN, multiline = TRUE)
 	if(msg == null)
 		return
 

@@ -7,39 +7,39 @@
 #define MOB_LAYER_SHIFT_MAX 4.05
 
 /mob/living/verb/shift_layer_up()
-	set name = "Shift Layer Upwards"
-	set category = "IC"
+	set name = "上移图层"
+	set category = "IC.展示"
 
 	if(incapacitated())
-		to_chat(src, span_warning("You can't do that right now!"))
+		to_chat(src, span_warning("你现在无法这样做!"))
 		return FALSE
 
 	if(layer >= MOB_LAYER_SHIFT_MAX)
-		to_chat(src, span_warning("You cannot increase your layer priority any further."))
+		to_chat(src, span_warning("已无法继续增加图层优先级."))
 		return FALSE
 
 	layer = min(((layer * MOB_LAYER_MULTIPLIER) + MOB_LAYER_SHIFT_INCREMENT) / MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_MAX)
 	var/layer_priority = round(layer * MOB_LAYER_MULTIPLIER - MOB_LAYER * MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_INCREMENT) // Just for text feedback
-	to_chat(src, span_notice("Your layer priority is now [layer_priority]."))
+	to_chat(src, span_notice("你的图层优先级为[layer_priority]."))
 
 	return TRUE
 
 
 /mob/living/verb/shift_layer_down()
-	set name = "Shift Layer Downwards"
-	set category = "IC"
+	set name = "下移图层"
+	set category = "IC.展示"
 
 	if(incapacitated())
-		to_chat(src, span_warning("You can't do that right now!"))
+		to_chat(src, span_warning("你现在无法这样做!"))
 		return FALSE
 
 	if(layer <= MOB_LAYER_SHIFT_MIN)
-		to_chat(src, span_warning("You cannot decrease your layer priority any further."))
+		to_chat(src, span_warning("已无法继续增加图层优先级."))
 		return FALSE
 
 	layer = max(((layer * MOB_LAYER_MULTIPLIER) - MOB_LAYER_SHIFT_INCREMENT) / MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_MIN)
 	var/layer_priority = round(layer * MOB_LAYER_MULTIPLIER - MOB_LAYER * MOB_LAYER_MULTIPLIER, MOB_LAYER_SHIFT_INCREMENT) // Just for text feedback
-	to_chat(src, span_notice("Your layer priority is now [layer_priority]."))
+	to_chat(src, span_notice("你的图层优先级为[layer_priority]."))
 
 	return TRUE
 
@@ -53,7 +53,7 @@
 
 /datum/emote/living/shift_layer_up/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't change layer at this time."))
+		to_chat(user, span_warning("当前无法改变图层."))
 		return FALSE
 
 	var/mob/living/layer_shifter = user
@@ -70,7 +70,7 @@
 
 /datum/emote/living/shift_layer_down/run_emote(mob/user, params, type_override, intentional)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't change layer at this time."))
+		to_chat(user, span_warning("当前无法改变图层."))
 		return FALSE
 
 	var/mob/living/layer_shifter = user

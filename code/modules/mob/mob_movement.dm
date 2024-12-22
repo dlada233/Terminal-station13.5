@@ -157,7 +157,7 @@
 		return TRUE
 	else if(HAS_TRAIT(mob, TRAIT_RESTRAINED))
 		COOLDOWN_START(src, move_delay, 1 SECONDS)
-		to_chat(src, span_warning("You're restrained! You can't move!"))
+		to_chat(src, span_warning("你被束缚了，无法移动!"))
 		return TRUE
 	return mob.resist_grab(TRUE)
 
@@ -233,17 +233,17 @@
 			if(stepTurf)
 				var/obj/effect/decal/cleanable/food/salt/salt = locate() in stepTurf
 				if(salt)
-					to_chat(L, span_warning("[salt] bars your passage!"))
+					to_chat(L, span_warning("[salt]妨碍你的通行!"))
 					if(isrevenant(L))
 						var/mob/living/basic/revenant/ghostie = L
 						ghostie.apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
 						ghostie.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 					return
 				if(stepTurf.turf_flags & NOJAUNT)
-					to_chat(L, span_warning("Some strange aura is blocking the way."))
+					to_chat(L, span_warning("某种奇怪的气场挡住了去路."))
 					return
 				if(locate(/obj/effect/blessing) in stepTurf)
-					to_chat(L, span_warning("Holy energies block your path!"))
+					to_chat(L, span_warning("神圣的能量阻挡了你的道路!"))
 					return
 
 				L.forceMove(stepTurf)
@@ -279,7 +279,7 @@
 	if(backup.newtonian_move(REVERSE_DIR(movement_dir), instant = TRUE)) //You're pushing off something movable, so it moves
 		// We set it down here so future calls to Process_Spacemove by the same pair in the same tick don't lead to fucky
 		backup.last_pushoff = world.time
-		to_chat(src, span_info("You push off of [backup] to propel yourself."))
+		to_chat(src, span_info("你蹬开[backup]来借力移动."))
 	return TRUE
 
 /**
@@ -369,7 +369,7 @@
 
 ///Hidden verb to cycle through head zone with repeated presses, head - eyes - mouth. Bound to 8
 /client/verb/body_toggle_head()
-	set name = "body-toggle-head"
+	set name = "身体-头部器官选项隐藏"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -389,7 +389,7 @@
 
 ///Hidden verb to target the head, unbound by default.
 /client/verb/body_head()
-	set name = "body-head"
+	set name = "身体-头部"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -400,7 +400,7 @@
 
 ///Hidden verb to target the eyes, bound to 7
 /client/verb/body_eyes()
-	set name = "body-eyes"
+	set name = "身体-双眼"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -411,7 +411,7 @@
 
 ///Hidden verb to target the mouth, bound to 9
 /client/verb/body_mouth()
-	set name = "body-mouth"
+	set name = "身体-嘴部"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -422,7 +422,7 @@
 
 ///Hidden verb to target the right arm, bound to 4
 /client/verb/body_r_arm()
-	set name = "body-r-arm"
+	set name = "身体-右臂"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -433,7 +433,7 @@
 
 ///Hidden verb to target the chest, bound to 5
 /client/verb/body_chest()
-	set name = "body-chest"
+	set name = "身体-胸部"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -444,7 +444,7 @@
 
 ///Hidden verb to target the left arm, bound to 6
 /client/verb/body_l_arm()
-	set name = "body-l-arm"
+	set name = "身体-左臂"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -455,7 +455,7 @@
 
 ///Hidden verb to target the right leg, bound to 1
 /client/verb/body_r_leg()
-	set name = "body-r-leg"
+	set name = "身体-右腿"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -466,7 +466,7 @@
 
 ///Hidden verb to target the groin, bound to 2
 /client/verb/body_groin()
-	set name = "body-groin"
+	set name = "身体-腹股沟"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -477,7 +477,7 @@
 
 ///Hidden verb to target the left leg, bound to 3
 /client/verb/body_l_leg()
-	set name = "body-l-leg"
+	set name = "身体-左腿"
 	set hidden = TRUE
 
 	if(!check_has_body_select())
@@ -488,7 +488,7 @@
 
 ///Verb to toggle the walk or run status
 /client/verb/toggle_walk_run()
-	set name = "toggle-walk-run"
+	set name = "切换步态(行走-奔跑)"
 	set hidden = TRUE
 	set instant = TRUE
 	if(isliving(mob))
@@ -506,7 +506,7 @@
 	else
 		//SKYRAT EDIT ADDITION BEGIN - GUNPOINT
 		if (HAS_TRAIT(src,TRAIT_NORUNNING))
-			to_chat(src, "You find yourself unable to run.")
+			to_chat(src, "你发现自己无法奔跑.")
 			return FALSE
 		//SKYRAT EDIT ADDITION END
 		move_intent = MOVE_INTENT_RUN
@@ -519,8 +519,8 @@
 
 ///Moves a mob upwards in z level
 /mob/verb/up()
-	set name = "Move Upwards"
-	set category = "IC"
+	set name = "向上移动"
+	set category = "IC.动作"
 
 	if(remote_control)
 		return remote_control.relaymove(src, UP)
@@ -529,7 +529,7 @@
 	var/turf/above_turf = GET_TURF_ABOVE(current_turf)
 
 	if(!above_turf)
-		to_chat(src, span_warning("There's nowhere to go in that direction!"))
+		to_chat(src, span_warning("没有通往那个方向的路!"))
 		return
 
 	if(ismovable(loc)) //Inside an object, tell it we moved
@@ -540,20 +540,20 @@
 
 	if(can_z_move(DOWN, above_turf, current_turf, ZMOVE_FALL_FLAGS|ventcrawling_flag)) //Will we fall down if we go up?
 		if(buckled)
-			to_chat(src, span_warning("[buckled] is is not capable of flight."))
+			to_chat(src, span_warning("[buckled]无法飞行."))
 		else
-			to_chat(src, span_warning("You are not Superman."))
+			to_chat(src, span_warning("你不是超人."))
 		return
-	balloon_alert(src, "moving up...")
+	balloon_alert(src, "移动到上方...")
 	if(!do_after(src, 1 SECONDS, hidden = TRUE))
 		return
 	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
-		to_chat(src, span_notice("You move upwards."))
+		to_chat(src, span_notice("你移动到了上方."))
 
 ///Moves a mob down a z level
 /mob/verb/down()
-	set name = "Move Down"
-	set category = "IC"
+	set name = "向下移动"
+	set category = "IC.动作"
 
 	if(remote_control)
 		return remote_control.relaymove(src, DOWN)
@@ -562,7 +562,7 @@
 	var/turf/below_turf = GET_TURF_BELOW(current_turf)
 
 	if(!below_turf)
-		to_chat(src, span_warning("There's nowhere to go in that direction!"))
+		to_chat(src, span_warning("没有通往那个方向的路!"))
 		return
 
 	if(ismovable(loc)) //Inside an object, tell it we moved
@@ -570,11 +570,11 @@
 		return loc_atom.relaymove(src, DOWN)
 
 	var/ventcrawling_flag = HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) ? ZMOVE_VENTCRAWLING : 0
-	balloon_alert(src, "moving down...")
+	balloon_alert(src, "移动到下方...")
 	if(!do_after(src, 1 SECONDS, hidden = TRUE))
 		return
 	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
-		to_chat(src, span_notice("You move down."))
+		to_chat(src, span_notice("你移动到下方."))
 	return FALSE
 
 /mob/abstract_move(atom/destination)
