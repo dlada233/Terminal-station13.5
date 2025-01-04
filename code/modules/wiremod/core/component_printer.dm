@@ -1,6 +1,6 @@
 /// Component printer, creates components for integrated circuits.
 /obj/machinery/component_printer
-	name = "component printer"
+	name = "组件打印机"
 	desc = "Produces components for the creation of integrated circuits."
 	icon = 'icons/obj/machines/wiremod_fab.dmi'
 	icon_state = "fab-idle"
@@ -219,7 +219,7 @@
 	return data
 
 /obj/machinery/debug_component_printer
-	name = "debug component printer"
+	name = "debug 组件打印机"
 	desc = "Produces components for the creation of integrated circuits."
 	icon = 'icons/obj/machines/wiremod_fab.dmi'
 	icon_state = "fab-idle"
@@ -299,7 +299,7 @@
 
 /// Module duplicator, allows you to save and recreate module components.
 /obj/machinery/module_duplicator
-	name = "module duplicator"
+	name = "模块复印机"
 	desc = "Allows you to duplicate module components so that you don't have to recreate them. Scan a module component over this machine to add it as an entry."
 	icon = 'icons/obj/machines/wiremod_fab.dmi'
 	icon_state = "module-fab-idle"

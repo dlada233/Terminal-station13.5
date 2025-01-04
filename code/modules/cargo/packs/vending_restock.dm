@@ -2,7 +2,7 @@
 	group = "自动售货机补货单元"
 
 /datum/supply_pack/vending/bartending
-	name = "Booze-o-mat and Coffee 补货单元"
+	name = "波露酒市&咖啡 补货单元"
 	desc = "Bring on the booze and coffee vending machine refills."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/boozeomat,
@@ -27,14 +27,14 @@
 	crate_name = "dinnerware 补货单元"
 
 /datum/supply_pack/vending/science/modularpc
-	name = "Deluxe Silicate Selections Restock"
-	desc = "What's a computer? Contains a Deluxe Silicate Selections restocking unit."
+	name = "硅晶豪华货机 补货单元"
+	desc = "What's a computer? Contains a 硅晶豪华货机 restocking unit."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/modularpc)
 	crate_name = "computer 补货单元"
 
 /datum/supply_pack/vending/engivend
-	name = "EngiVend 补货单元"
+	name = "工程百货 补货单元"
 	desc = "The engineers are out of metal foam grenades? This should help."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/engivend)
@@ -49,9 +49,9 @@
 	crate_type = /obj/structure/closet/crate
 
 /datum/supply_pack/vending/hydro_refills
-	name = "Hydroponics Vending Machines Refills"
+	name = "水培 补货单元"
 	desc = "When the clown takes all the banana seeds. \
-		Contains a NutriMax refill and a MegaSeed Servitor refill."
+		Contains a 营养满满 refill and a 超级种子助手 refill."
 	cost = CARGO_CRATE_VALUE * 4
 	crate_type = /obj/structure/closet/crate
 	contains = list(/obj/item/vending_refill/hydroseeds,
@@ -71,9 +71,9 @@
 	crate_name = "unlabeled 补货单元"
 
 /datum/supply_pack/vending/medical
-	name = "Medical Vending Crate"
-	desc = "Contains one NanoMed Plus refill, one NanoDrug Plus refill, \
-		and one wall-mounted NanoMed refill."
+	name = "医药 补货单元"
+	desc = "Contains one 纳米药房Plus refill, one 纳米药房 refill, \
+		and one wall-mounted 纳米药房 refill."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/vending_refill/medical,
 					/obj/item/vending_refill/drugs,
@@ -90,13 +90,13 @@
 	crate_name = "\improper PTech 补货单元"
 
 /datum/supply_pack/vending/sectech
-	name = "SecTech 补货单元"
+	name = "安保科技 补货单元"
 	desc = "Officer Paul bought all the donuts? Then refill the security \
 		vendor with this crate."
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/vending_refill/security)
-	crate_name = "\improper SecTech 补货单元"
+	crate_name = "\improper 安保科技 补货单元"
 	crate_type = /obj/structure/closet/crate/secure/gear
 
 /datum/supply_pack/vending/snack
@@ -116,31 +116,31 @@
 	crate_name = "soft drinks 补货单元"
 
 /datum/supply_pack/vending/vendomat
-	name = "Part-Mart & YouTool 补货单元"
+	name = "电子百货 & 油Tool 补货单元"
 	desc = "More tools for your IED testing facility."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/assist,
 					/obj/item/vending_refill/youtool,
 				)
-	crate_name = "\improper Part-Mart & YouTool 补货单元"
+	crate_name = "\improper 电子百货 & 油Tool 补货单元"
 
 /datum/supply_pack/vending/clothesmate
-	name = "ClothesMate 补货单元"
+	name = "衣侣 补货单元"
 	desc = "Out of cowboy boots? Buy this crate."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/clothing)
-	crate_name = "\improper ClothesMate 补货单元"
+	crate_name = "\improper 衣侣 补货单元"
 
 
 /// Clothing Vending Restocks
 
 /datum/supply_pack/vending/wardrobes/autodrobe
-	name = "Autodrobe 补货单元"
-	desc = "Autodrobe missing your favorite dress? Solve that issue today \
-		with this autodrobe refill."
+	name = "红衣铺 补货单元"
+	desc = "红衣铺 missing your favorite dress? Solve that issue today \
+		with this 红衣铺 refill."
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/autodrobe)
-	crate_name = "autodrobe 补货单元"
+	crate_name = "红衣铺 补货单元"
 
 /datum/supply_pack/vending/wardrobes/cargo
 	name = "Cargo Wardrobe 补货单元"

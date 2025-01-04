@@ -257,7 +257,7 @@
 	. = ..()
 	if(!electronics)
 		. += span_notice("You can attach [EXAMINE_HINT("airlock electronics")] to give it access restrictions.")
-	. += span_notice("[src] can be finalized using [EXAMINE_HINT("10 glass sheets")], or turned into a Vend-A-Tray using a [EXAMINE_HINT("card reader")].")
+	. += span_notice("[src] can be finalized using [EXAMINE_HINT("10 glass sheets")], or turned into a 售货托盘 using a [EXAMINE_HINT("card reader")].")
 
 /obj/structure/displaycase_chassis/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()

@@ -593,7 +593,7 @@
 	build_path = /obj/machinery/computer/shuttle/pod
 
 /obj/item/circuitboard/computer/exoscanner_console
-	name = "扫描阵列 Control Console"
+	name = "扫描阵列控制终端"
 	build_path = /obj/machinery/computer/exoscanner_control
 
 /obj/item/circuitboard/computer/exodrone_console

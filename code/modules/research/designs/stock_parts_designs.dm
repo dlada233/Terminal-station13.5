@@ -388,7 +388,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/water_recycler
-	name = "Water Recycler"
+	name = "水回收器"
 	desc = "A small hydrostatic reclaimer, it takes moisture out of the air and returns it back to the source."
 	id = "w-recycler"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE

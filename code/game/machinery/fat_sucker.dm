@@ -47,8 +47,8 @@
 /obj/machinery/fat_sucker/examine(mob/user)
 	. = ..()
 	. += {"[span_notice("Alt加左键打开安全设置面板.")]
-				[span_notice("每次启动移除[bite_size]营养单位.")]
-				[span_notice("每块肉需要[nutrient_to_meat]营养单位.")]"}
+			[span_notice("每次启动移除[bite_size]营养单位.")]
+			[span_notice("每块肉需要[nutrient_to_meat]营养单位.")]"}
 
 /obj/machinery/fat_sucker/close_machine(mob/user, density_to_set = TRUE)
 	if(panel_open)

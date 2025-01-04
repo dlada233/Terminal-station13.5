@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	var/obj/item/radio/radio
 	///If an emergency has been called by this device. Acts as both a cooldown and lets the responder know where it the emergency was triggered from
 	var/emergency
-	/// If ore redemption machines will send an update when it receives new ores.
+	/// If 矿石精炼回收机 will send an update when it receives new ores.
 	var/receive_ore_updates = FALSE
 	/// Did we error in the last mail?
 	var/has_mail_send_error = FALSE

@@ -372,7 +372,7 @@
 
 /datum/supply_pack/organic/combomeal
 	name = "Burger Combo Crate"
-	desc = "We value our customers at the Greasy Griddle, so much so that we're willing to deliver -just for you.- Contains two combo meals, consisting of a Burger, Fries, and pack of chicken nuggets!"
+	desc = "We value our customers at the Greasy 煎锅, so much so that we're willing to deliver -just for you.- Contains two combo meals, consisting of a Burger, Fries, and pack of chicken nuggets!"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/food/burger/cheese,
@@ -750,7 +750,7 @@
 	contains = list(/obj/item/vending_refill/lustwish)
 
 /datum/supply_pack/vending/barber
-	name = "Fab-O-Vend Supply Crate"
-	desc = "Contains a single restock for the Fab-O-Vend, great for those who are indecisive about their looks."
+	name = "绝伦造型 补货箱"
+	desc = "Contains a single restock for the 绝伦造型, great for those who are indecisive about their looks."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/barbervend)

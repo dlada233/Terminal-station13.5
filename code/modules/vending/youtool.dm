@@ -1,6 +1,6 @@
 /obj/machinery/vending/tool
-	name = "\improper YouTool"
-	desc = "Tools for tools."
+	name = "\improper 油Tool"
+	desc = "工具的工具."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 	panel_type = "panel11"
@@ -35,5 +35,5 @@
 	payment_department = ACCOUNT_ENG
 
 /obj/item/vending_refill/youtool
-	machine_name = "YouTool"
+	machine_name = "油Tool"
 	icon_state = "refill_engi"

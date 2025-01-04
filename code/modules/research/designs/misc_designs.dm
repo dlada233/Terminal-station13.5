@@ -155,7 +155,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/portaseeder
-	name = "Portable Seed Extractor"
+	name = "便携式种子提取机"
 	desc = "For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant."
 	id = "portaseeder"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -973,7 +973,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/oven_tray
-	name = "Oven Tray"
+	name = "烤箱托盘"
 	desc = "Gotta shove something in!"
 	id = "oven_tray"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
@@ -1034,7 +1034,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
-// Coffeemaker Stuff
+// 咖啡机 Stuff
 
 /datum/design/coffeepot
 	name = "Coffeepot"

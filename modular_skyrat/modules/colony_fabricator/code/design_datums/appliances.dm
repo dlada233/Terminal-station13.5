@@ -211,7 +211,7 @@
 // Really, its just a microwave
 
 /datum/design/macrowave
-	name = "Microwave Oven"
+	name = "微波烤箱"
 	id = "macrowave"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -247,7 +247,7 @@
 // Griddles that fit on top of any regular table
 
 /datum/design/tabletop_griddle
-	name = "Tabletop Griddle"
+	name = "桌面煎锅"
 	id = "tabletop_griddle"
 	build_type = COLONY_FABRICATOR
 	materials = list(

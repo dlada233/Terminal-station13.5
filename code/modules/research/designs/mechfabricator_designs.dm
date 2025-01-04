@@ -2288,7 +2288,7 @@
 	)
 
 /datum/design/module/mod_microwave_beam
-	name = "Microwave Beam Module"
+	name = "微波 Beam Module"
 	id = "mod_microwave_beam"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,

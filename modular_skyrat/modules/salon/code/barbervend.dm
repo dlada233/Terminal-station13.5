@@ -1,11 +1,11 @@
 /obj/machinery/vending/barbervend
-	name = "Fab-O-Vend"
-	desc = "It would seem it vends dyes, and other stuff to make you pretty."
+	name = "绝伦造型"
+	desc = "它出售染料和其他东西来让你变得漂亮."
 	icon = 'modular_skyrat/modules/salon/icons/vendor.dmi'
 	icon_state = "barbervend"
-	product_slogans = "Spread the colour, like butter, onto toast... Onto their hair.; Sometimes, I dream about dyes...; Paint 'em up and call me Mr. Painter.; Look brother, I'm a vendomat, I solve practical problems."
-	product_ads = "Cut 'em all!; To sheds!; Hair be gone!; Prettify!; Beautify!"
-	vend_reply = "Come again!; Buy another!; Dont you love your new look?"
+	product_slogans = "有时我把颜色像黄油一样涂抹在烤面包上...也涂抹在他们的头发上.; 有时我会梦见染料...; 把他们涂得五彩斑斓，然后叫我“画家先生”.; 看吧兄弟，我是个贩卖创意的人，我解决实际问题."
+	product_ads = "切断所有一切!; 剃光!; 天下无毛!; 靓丽!; 美丽!"
+	vend_reply = "欢迎再来!; 还有其他的好货!; 喜欢新造型吗?"
 	req_access = list(ACCESS_BARBER)
 	refill_canister = /obj/item/vending_refill/barbervend
 	products = list(
@@ -32,5 +32,5 @@
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/barbervend
-	machine_name = "barber vend resupply"
+	machine_name = "理发店售货机再补给"
 	icon_state = "refill_snack" //generic item refill because there isnt one sprited yet.

@@ -1,13 +1,13 @@
 /obj/machinery/vending/boozeomat
-	name = "\improper Booze-O-Mat"
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
+	name = "\improper 波露酒市"
+	desc = "一项技术奇迹，据说能在你提出要求的瞬间调制出想要的任何饮品."
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	panel_type = "panel22"
 
 	product_categories = list(
 		list(
-			"name" = "Alcoholic",
+			"name" = "酒精",
 			"icon" = "wine-bottle",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/bottle/curacao = 5,
@@ -41,7 +41,7 @@
 		),
 
 		list(
-			"name" = "Non-Alcoholic",
+			"name" = "不含酒精",
 			"icon" = "bottle-water",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/ice = 10,
@@ -60,7 +60,7 @@
 		),
 
 		list(
-			"name" = "Glassware",
+			"name" = "玻璃器皿",
 			"icon" = "wine-glass",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/drinkingglass = 30,
@@ -83,8 +83,8 @@
 		/obj/item/reagent_containers/cup/glass/bottle/bitters = 5,
 	)
 
-	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
-	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	product_slogans = "我希望没人要我来泡该死的茶...;酒是人类的好朋友. 你会抛弃朋友吗?;非常乐意为您服务!;这个站点难道没人口渴吗?"
+	product_ads = "喝呀!;豪饮对你有益!;酒是人类最好的朋友.;非常乐意为您服务!;想来杯冰啤酒吗?;没什么能像酒一样治愈你!;喝一口吧!;来一口吧!;来一口啤酒吧!;啤酒对你有益!;只提供优质酒精!;自2053以来的最好的酒!;获奖葡萄酒!;最大酒精度!;人爱啤酒.;为进步干杯!"
 	req_access = list(ACCESS_BAR)
 	refill_canister = /obj/item/vending_refill/boozeomat
 	default_price = PAYCHECK_CREW * 0.9
@@ -93,7 +93,7 @@
 	light_mask = "boozeomat-light-mask"
 
 /obj/machinery/vending/boozeomat/all_access
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one. This model appears to have no access restrictions."
+	desc = "一项技术奇迹，据说能在你提出要求的瞬间调制出想要的任何饮品. 这一台看起来解除了权限限制."
 	req_access = null
 
 /obj/machinery/vending/boozeomat/syndicate_access
@@ -102,5 +102,5 @@
 	initial_language_holder = /datum/language_holder/syndicate
 
 /obj/item/vending_refill/boozeomat
-	machine_name = "Booze-O-Mat"
+	machine_name = "波露酒市"
 	icon_state = "refill_booze"

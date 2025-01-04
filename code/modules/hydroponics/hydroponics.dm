@@ -1,6 +1,6 @@
 
 /obj/machinery/hydroponics
-	name = "hydroponics tray"
+	name = "水培托盘"
 	desc = "A basin used to grow plants in."
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "hydrotray"
@@ -153,7 +153,7 @@
 	return NONE
 
 /obj/machinery/hydroponics/constructable
-	name = "hydroponics tray"
+	name = "水培托盘"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "hydrotray3"
 

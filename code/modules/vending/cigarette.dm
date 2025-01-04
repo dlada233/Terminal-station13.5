@@ -1,8 +1,8 @@
 /obj/machinery/vending/cigarette
-	name = "\improper ShadyCigs Deluxe"
-	desc = "If you want to get cancer, might as well do it in style."
-	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
-	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
+	name = "\improper 奢华隐影烟品"
+	desc = "如果你想患上癌症，不妨患得酷一点."
+	product_slogans = "太空烟草的味道和普通香烟一样好.;拿工具箱也不换.;抽!;别相信健康报告 - 吸在当下!"
+	product_ads = "也许对你并不有害!;不要相信专家!;它对你有好处!;别离开，买更多!;抽!;尼古丁的天堂.;自2150年以来最好的烟草.;获奖的烟草."
 	icon_state = "cigs"
 	panel_type = "panel5"
 	products = list(
@@ -49,10 +49,10 @@
 	initial_language_holder = /datum/language_holder/syndicate
 
 /obj/machinery/vending/cigarette/beach //Used in the lavaland_biodome_beach.dmm ruin
-	name = "\improper ShadyCigs Ultra"
-	desc = "Now with extra premium products!"
-	product_ads = "Probably not bad for you!;Dope will get you through times of no money better than money will get you through times of no dope!;It's good for you!"
-	product_slogans = "Turn on, tune in, drop out!;Better living through chemistry!;Toke!;Don't forget to keep a smile on your lips and a song in your heart!"
+	name = "\improper 超奢华隐影烟品"
+	desc = "现有更多特别商品!"
+	product_ads = "也许对你并不有害!;没钱时有烟抽，比有钱时没烟抽更好!;它对你有好处!"
+	product_slogans = "拨开! 填入! 吐出!;化学让生活更美好!;嘬!;别忘了嘴上挂着微笑，心里唱着歌!"
 	products = list(
 		/obj/item/storage/fancy/cigarettes = 5,
 		/obj/item/storage/fancy/cigarettes/cigpack_uplift = 3,
@@ -72,7 +72,7 @@
 	initial_language_holder = /datum/language_holder/beachbum
 
 /obj/item/vending_refill/cigarette
-	machine_name = "ShadyCigs Deluxe"
+	machine_name = "奢华隐影烟品"
 	icon_state = "refill_smoke"
 
 /obj/machinery/vending/cigarette/pre_throw(obj/item/I)

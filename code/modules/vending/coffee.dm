@@ -1,7 +1,7 @@
 /obj/machinery/vending/coffee
-	name = "\improper Solar's Best Hot Drinks"
-	desc = "A vending machine which dispenses hot drinks."
-	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
+	name = "\improper 最佳热饮"
+	desc = "出售热饮的贩卖机."
+	product_ads = "来一杯吧!;喝一杯吧!;有益身体健康!;何不来杯热咖啡?;我很想喝杯咖啡!;全银河最好的咖啡豆.;只给你最好的咖啡.;无与伦比的美味咖啡.;我爱咖啡，你呢?;咖啡助你工作!;喝点茶吧.;我们希望你也是最佳!;试试我们的新可可!;管理阴谋"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	panel_type = "panel9"
@@ -21,5 +21,5 @@
 	light_color = COLOR_DARK_MODERATE_ORANGE
 
 /obj/item/vending_refill/coffee
-	machine_name = "Solar's Best Hot Drinks"
+	machine_name = "最佳热饮"
 	icon_state = "refill_joe"

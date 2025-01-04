@@ -1,15 +1,15 @@
 /obj/machinery/vending/deforest_medvend
-	name = "\improper DeForest Med-Vend"
-	desc = "A vending machine providing a selection of medical supplies."
+	name = "\improper 德森医疗货机"
+	desc = "提供精选医疗用品的自动售货机."
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/vendor.dmi'
 	icon_state = "medvend"
 	panel_type = "panel15"
 	light_mask = "medvend-light-mask"
 	light_color = LIGHT_COLOR_LIGHT_CYAN
-	product_slogans = "Medical care at regulation-mandated reasonable prices!;DeForest is not liable for accidents due to supply misuse!"
+	product_slogans = "法规规定的合理价格的医疗服务!;德森不对因供应不当而发生的事故负责!"
 	product_categories = list(
 		list(
-			"name" = "First Aid",
+			"name" = "急救用品",
 			"icon" = "notes-medical",
 			"products" = list(
 				/obj/item/stack/medical/ointment/red_sun = 4,
@@ -32,7 +32,7 @@
 			),
 		),
 		list(
-			"name" = "Autoinjectors",
+			"name" = "自动注射器",
 			"icon" = "syringe",
 			"products" = list(
 				/obj/item/reagent_containers/hypospray/medipen/deforest/occuisate = 3,
@@ -68,5 +68,5 @@
 	onstation_override = 1 // No freebies if this spawns on the interlink
 
 /obj/item/vending_refill/medical_deforest
-	machine_name = "DeForest Med-Vend"
+	machine_name = "德森医疗货机"
 	icon_state = "refill_medical"

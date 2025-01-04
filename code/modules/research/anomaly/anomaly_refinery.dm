@@ -11,7 +11,7 @@
  * Uses the standard ordnance/tank explosion scaling to compress raw anomaly cores into completed ones. The required explosion radius increases as more cores of that type are created.
  */
 /obj/machinery/research/anomaly_refinery
-	name = "anomaly refinery"
+	name = "异常精炼器"
 	desc = "An advanced machine capable of implosion-compressing raw anomaly cores into finished artifacts. Also equipped with state of the art bomb prediction software."
 	circuit = /obj/item/circuitboard/machine/anomaly_refinery
 	icon = 'icons/obj/machines/research.dmi'
@@ -168,7 +168,7 @@
 
 /**
  * Ejects a live TTV.
- * Triggered by attempting to operate an emagged anomaly refinery.
+ * Triggered by attempting to operate an emagged 异常精炼器.
  */
 /obj/machinery/research/anomaly_refinery/proc/error_test()
 	message_admins("[src] was emagged and ejected a TTV.")

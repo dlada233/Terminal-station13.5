@@ -5,8 +5,8 @@
 	wanted_types = list(/obj/machinery/power/emitter = TRUE)
 
 /datum/bounty/item/engineering/hydro_tray
-	name = "Hydroponics Tray"
-	description = "The lab technicians are trying to figure out how to lower the power drain of hydroponics trays, but we fried our last one. Mind building one for us?"
+	name = "水培托盘"
+	description = "The lab technicians are trying to figure out how to lower the power drain of 水培托盘, but we fried our last one. Mind building one for us?"
 	reward = CARGO_CRATE_VALUE * 4
 	wanted_types = list(/obj/machinery/hydroponics/constructable = TRUE)
 

@@ -182,9 +182,9 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/plain/synth, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
 /obj/item/food/meat/slab/meatproduct
-	name = "肉制品"
+	name = "制成肉"
 	icon_state = "meatproduct"
-	desc = "通过回收和化学加工而出的肉制品。"
+	desc = "通过回收和化学加工而出的制成肉。"
 	tastes = list("调味添加剂" = 2, "变性淀粉" = 2, "天然和人造染料" = 1, "丁酸" = 1)
 	foodtypes = RAW | MEAT
 	starting_reagent_purity = 0.3
@@ -580,7 +580,7 @@
 	foodtypes = MEAT | GORE
 
 /obj/item/food/meat/steak/meatproduct
-	name = "热加工肉制品"
+	name = "热加工制成肉"
 	icon_state = "meatproductsteak"
 	tastes = list("调味添加剂" = 2, "可疑的柔和口感" = 2, "天然和人造染料" = 2, "乳化剂" = 1)
 

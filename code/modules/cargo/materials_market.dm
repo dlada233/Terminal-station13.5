@@ -1,10 +1,10 @@
 /// The maximum number of stacks you can place in 1 order
 #define MAX_STACK_LIMIT 10
 /// The order rank for all galactic material market orders
-#define GALATIC_MATERIAL_ORDER "Galactic Materials Market"
+#define GALATIC_MATERIAL_ORDER "银河材料市场"
 
 /obj/machinery/materials_market
-	name = "galactic materials market"
+	name = "银河材料市场"
 	desc = "This machine allows the user to buy and sell sheets of minerals \
 		across the system. Prices are known to fluxuate quite often,\
 		sometimes even within the same minute. All transactions are final."

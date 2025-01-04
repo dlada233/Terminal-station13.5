@@ -288,7 +288,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 		return
 
 	if(!recycler)
-		to_chat(owner, span_warning("There is no connected monkey recycler. Use a multitool to link one."))
+		to_chat(owner, span_warning("There is no connected 猴子回收机. Use a multitool to link one."))
 		return
 
 	for(var/mob/living/carbon/human/target_mob in remote_eye.loc)
@@ -451,7 +451,7 @@ Due to keyboard shortcuts, the second one is not necessarily the remote eye's lo
 	var/obj/machinery/computer/camera_advanced/xenobio/xeno_console = remote_eye.origin
 
 	if(!xeno_console.connected_recycler)
-		to_chat(user, span_warning("There is no connected monkey recycler. Use a multitool to link one."))
+		to_chat(user, span_warning("There is no connected 猴子回收机. Use a multitool to link one."))
 		return
 
 	if(!xeno_console.validate_area(user, remote_eye, target_mob.loc))

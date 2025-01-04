@@ -1,11 +1,11 @@
 /obj/machinery/vending/access/command
-	name = "\improper Command Outfitting Station"
-	desc = "A vending machine for specialised clothing for members of Command."
-	product_ads = "File paperwork in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
+	name = "\improper 指挥衣装站"
+	desc = "向指挥部成员出售衣装的自动售货机."
+	product_ads = "有格调的进行文书工作!;红色能掩盖你的血迹!;你有时尚的权利!;现在你可以成为你一直想成为的时尚警察了!"
 	icon = 'modular_skyrat/modules/command_vendor/icons/vending.dmi'
 	icon_state = "commdrobe"
 	light_mask = "wardrobe-light-mask"
-	vend_reply = "Thank you for using the CommDrobe!"
+	vend_reply = "感谢使用指挥衣装站"
 	auto_build_products = TRUE
 	payment_department = ACCOUNT_CMD
 
@@ -14,7 +14,7 @@
 	light_color = COLOR_COMMAND_BLUE
 
 /obj/item/vending_refill/wardrobe/comm_wardrobe
-	machine_name = "CommDrobe"
+	machine_name = "指挥衣铺"
 
 /obj/machinery/vending/access/command/build_access_list(list/access_lists)
 	access_lists["[ACCESS_CAPTAIN]"] = list(

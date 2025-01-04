@@ -1,6 +1,6 @@
 /obj/item/quantum_keycard
 	name = "quantum keycard"
-	desc = "A keycard able to link to a quantum pad's particle signature, allowing other quantum pads to travel there instead of their linked pad."
+	desc = "A keycard able to link to a 量子传送平台's particle signature, allowing other 量子传送平台s to travel there instead of their linked pad."
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "quantum_keycard_gags"
 	greyscale_config = /datum/greyscale_config/quantum_keycard
@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	obj_flags = UNIQUE_RENAME
 	interaction_flags_click = NEED_DEXTERITY|ALLOW_RESTING
-	/// The linked quantum pad
+	/// The linked 量子传送平台
 	var/obj/machinery/quantumpad/qpad
 
 	/// where the pad is located and what color the card will become
@@ -32,7 +32,7 @@
 /obj/item/quantum_keycard/examine(mob/user)
 	. = ..()
 	if(qpad)
-		. += "It's currently linked to a quantum pad."
+		. += "It's currently linked to a 量子传送平台."
 
 		var/area_name = get_area_name(qpad)
 		if(area_name)
@@ -40,7 +40,7 @@
 
 		. += span_notice("Alt-click to unlink the keycard.")
 	else
-		. += span_notice("Insert [src] into an active quantum pad to link it.")
+		. += span_notice("Insert [src] into an active 量子传送平台 to link it.")
 
 /obj/item/quantum_keycard/click_alt(mob/living/user)
 	to_chat(user, span_notice("You start pressing [src]'s unlink button..."))

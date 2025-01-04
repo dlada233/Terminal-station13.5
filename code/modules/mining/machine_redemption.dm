@@ -2,7 +2,7 @@
 //Turns all the various mining machines into a single unit to speed up mining and establish a point system
 
 /obj/machinery/mineral/ore_redemption
-	name = "ore redemption machine"
+	name = "矿石精炼回收机"
 	desc = "A machine that accepts ore and instantly transforms it into workable material sheets. Points for ore are generated based on type and can be redeemed at a mining equipment vendor."
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "ore_redemption"
@@ -143,9 +143,9 @@
 
 	var/datum/signal/subspace/messaging/rc/signal = new(src, list(
 		"ore_update" = TRUE,
-		"sender_department" = "Ore Redemption Machine",
+		"sender_department" = "矿石精炼回收机",
 		"message" = message,
-		"verified" = "Ore Redemption Machine",
+		"verified" = "矿石精炼回收机",
 		"priority" = REQ_NORMAL_MESSAGE_PRIORITY,
 		"appended_list" = appended_list,
 	))
@@ -250,9 +250,9 @@
 	if (!mat_container)
 		data["disconnected"] = "Local mineral storage is unavailable"
 	else if (!materials.silo && requires_silo)
-		data["disconnected"] = "No ore silo connection is available; storing locally"
+		data["disconnected"] = "No 矿石筒仓 connection is available; storing locally"
 	else if (!materials.check_z_level() && requires_silo)
-		data["disconnected"] = "Unable to connect to ore silo, too far away"
+		data["disconnected"] = "Unable to connect to 矿石筒仓, too far away"
 	else if (materials.on_hold())
 		data["disconnected"] = "Mineral withdrawal is on hold"
 

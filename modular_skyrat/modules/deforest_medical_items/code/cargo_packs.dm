@@ -53,9 +53,9 @@
 	)
 
 /datum/supply_pack/medical/deforest_vendor_refill
-	name = "DeForest Med-Vend Resupply Crate"
-	crate_name = "\improper DeForest Med-Vend resupply crate"
-	desc = "Contains a restocking canister for DeForest Med-Vendors."
+	name = "德森医疗货机 补货箱"
+	crate_name = "\improper 德森医疗货机 补货箱"
+	desc = "Contains a restocking canister for 德森医疗货机."
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(

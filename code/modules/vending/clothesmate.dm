@@ -1,14 +1,14 @@
 /obj/machinery/vending/clothing
-	name = "ClothesMate"
-	desc = "A vending machine for clothing."
+	name = "衣侣"
+	desc = "专售衣物."
 	icon_state = "clothes"
 	icon_deny = "clothes-deny"
 	panel_type = "panel15"
-	product_slogans = "Dress for success!;Prepare to look swagalicious!;Look at all this swag!;Why leave style up to fate? Use the ClothesMate!"
-	vend_reply = "Thank you for using the ClothesMate!"
+	product_slogans = "穿出成功人士味!;准备好闪闪发光吧!;看看这些靓货!别任凭命运摆布你的衣领! 光顾红衣铺!"
+	vend_reply = "感谢光顾衣侣!"
 	product_categories = list(
 		list(
-			"name" = "Head",
+			"name" = "头饰",
 			"icon" = "hat-cowboy",
 			"products" = list(
 				/obj/item/clothing/head/wig/natural = 4,
@@ -42,7 +42,7 @@
 		),
 
 		list(
-			"name" = "Accessories",
+			"name" = "装饰",
 			"icon" = "glasses",
 			"products" = list(
 				/obj/item/clothing/accessory/pride = 15,
@@ -62,7 +62,7 @@
 		),
 
 		list(
-			"name" = "Under",
+			"name" = "内衬",
 			"icon" = "shirt",
 			"products" = list(
 				/obj/item/clothing/under/pants/slacks = 5,
@@ -89,7 +89,7 @@
 		),
 
 		list(
-			"name" = "Suits & Skirts",
+			"name" = "套服 & 裙子",
 			"icon" = "vest",
 			"products" = list(
 				/obj/item/clothing/suit/toggle/jacket/sweater = 4,
@@ -132,7 +132,7 @@
 		),
 
 		list(
-			"name" = "Shoes",
+			"name" = "鞋子",
 			"icon" = "socks",
 			"products" = list(
 				/obj/item/clothing/shoes/sneakers/black = 4,
@@ -148,7 +148,7 @@
 		),
 
 		list(
-			"name" = "Special",
+			"name" = "特别",
 			"icon" = "star",
 			"products" = list(
 				/obj/item/clothing/head/costume/football_helmet = 6,
@@ -221,5 +221,5 @@
 	light_color = LIGHT_COLOR_ELECTRIC_GREEN
 
 /obj/item/vending_refill/clothing
-	machine_name = "ClothesMate"
+	machine_name = "衣侣"
 	icon_state = "refill_clothes"

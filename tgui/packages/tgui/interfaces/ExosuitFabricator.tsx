@@ -29,7 +29,7 @@ export const ExosuitFabricator = (props) => {
   }
 
   return (
-    <Window title="外骨骼制造机" width={1100} height={600}>
+    <Window title="外骨骼工厂" width={1100} height={600}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>

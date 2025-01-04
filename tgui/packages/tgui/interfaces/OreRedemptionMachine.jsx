@@ -31,7 +31,7 @@ export const OreRedemptionMachine = (props) => {
       : materials.filter((material) => material && material.category === tab);
 
   return (
-    <Window title="矿石回收机" width={435} height={500}>
+    <Window title="矿石精炼回收机" width={435} height={500}>
       <Window.Content>
         <Stack fill vertical>
           <Section>

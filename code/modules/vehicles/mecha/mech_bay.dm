@@ -1,5 +1,5 @@
 /obj/machinery/mech_bay_recharge_port
-	name = "mech bay power port"
+	name = "机甲充电端口"
 	desc = "This port recharges a mech's internal power cell."
 	icon = 'icons/obj/machines/mech_bay.dmi'
 	icon_state = "recharge_port"

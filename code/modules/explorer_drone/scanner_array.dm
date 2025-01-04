@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	deltimer(scan_timer)
 
 /obj/machinery/computer/exoscanner_control
-	name = "扫描阵列 control console"
+	name = "扫描阵列控制终端"
 	desc = "Controls 扫描阵列s to initiate scans for exodrones."
 	circuit = /obj/item/circuitboard/computer/exoscanner_console
 	/// If scan was interrupted show a popup until dismissed.

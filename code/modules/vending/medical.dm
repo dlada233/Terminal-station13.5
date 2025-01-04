@@ -1,10 +1,10 @@
 /obj/machinery/vending/medical
-	name = "\improper NanoMed Plus"
-	desc = "Medical drug dispenser."
+	name = "\improper 纳米药房Plus"
+	desc = "医疗药物贩卖机."
 	icon_state = "med"
 	icon_deny = "med-deny"
 	panel_type = "panel11"
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
+	product_ads = "悬壶济世!;你最好的医疗用品.;只出售最好的工具.;天然化学物质!;这些药品可以救命.;你不想来点什么吗?;砰!"
 	req_access = list(ACCESS_MEDICAL)
 	products = list(
 		/obj/item/stack/medical/gauze = 8,
@@ -42,11 +42,11 @@
 	light_mask = "med-light-mask"
 
 /obj/item/vending_refill/medical
-	machine_name = "NanoMed Plus"
+	machine_name = "纳米药房Plus"
 	icon_state = "refill_medical"
 
 /obj/machinery/vending/medical/syndicate_access
-	name = "\improper SyndiMed Plus"
+	name = "\improper 辛迪药房Plus"
 	req_access = list(ACCESS_SYNDICATE)
 	initial_language_holder = /datum/language_holder/syndicate
 
@@ -69,12 +69,12 @@
 	)
 //Created out of a necessity to get these dumb chems out of the medical tools vendor.
 /obj/machinery/vending/drugs
-	name = "\improper NanoDrug Plus"
-	desc = "Medical drugs dispenser."
+	name = "\improper 纳米药房Plus"
+	desc = "医疗药物贩卖机."
 	icon_state = "drug"
 	icon_deny = "drug-deny"
 	panel_type = "panel11"
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
+	product_ads = "悬壶济世!;你最好的医疗用品.;只出售最好的工具.;天然化学物质!;这些药品可以救命.;你不想来点什么吗?;砰!"
 	req_access = list(ACCESS_MEDICAL)
 	products = list(
 		/obj/item/reagent_containers/pill/patch/libital = 5,
@@ -110,5 +110,5 @@
 	refill_canister = /obj/item/vending_refill/drugs
 
 /obj/item/vending_refill/drugs
-	machine_name = "NanoDrug Plus"
+	machine_name = "纳米药房Plus"
 	icon_state = "refill_medical"

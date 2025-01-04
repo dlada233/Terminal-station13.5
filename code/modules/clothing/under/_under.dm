@@ -86,7 +86,7 @@
 		changed = TRUE
 
 	if(can_adjust && adjusted != DIGITIGRADE_STYLE)
-		context[SCREENTIP_CONTEXT_ALT_LMB] =  "Wear [adjusted == ALT_STYLE ? "normally" : "casually"]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] =  "[adjusted == ALT_STYLE ? "正式地" : "随意地"]穿戴"
 		changed = TRUE
 
 	return changed ? CONTEXTUAL_SCREENTIP_SET : .
@@ -107,7 +107,7 @@
 /obj/item/clothing/under/attackby(obj/item/attacking_item, mob/user, params)
 	if(has_sensor == BROKEN_SENSORS && istype(attacking_item, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/cabling = attacking_item
-		to_chat(user, span_notice("You repair the suit sensors on [src] with [cabling]."))
+		to_chat(user, span_notice("你修好了[src]用[cabling]."))
 		cabling.use(1)
 		has_sensor = HAS_SENSORS
 		return TRUE
@@ -144,13 +144,13 @@
 		has_sensor = BROKEN_SENSORS
 		if(ismob(loc))
 			var/mob/M = loc
-			to_chat(M,span_warning("[src]'s sensors short out!"))
+			to_chat(M,span_warning("[src]的传感器短路了!"))
 
 	else
 		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
 		if(ismob(loc))
 			var/mob/M = loc
-			to_chat(M,span_warning("The sensors on the [src] change rapidly!"))
+			to_chat(M,span_warning("[src]上的传感器快速更改了!"))
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/ooman = loc
@@ -283,23 +283,23 @@
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
 	if(can_adjust)
-		. += "Alt-click on [src] to wear it [adjusted == ALT_STYLE ? "normally" : "casually"]."
+		. += "Alt加左键[src]来更[adjusted == ALT_STYLE ? "正式地" : "随意地"]穿戴."
 	if(has_sensor == BROKEN_SENSORS)
-		. += "Its sensors appear to be shorted out. You could repair it with some cabling."
+		. += "它的传感器似乎短路了. 你可以用电缆修理它."
 	else if(has_sensor > NO_SENSORS)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				. += "Its sensors appear to be disabled."
+				. += "它的传感器已经被关闭了."
 			if(SENSOR_LIVING)
-				. += "Its binary life sensors appear to be enabled."
+				. += "它的传感器只显示生死信息."
 			if(SENSOR_VITALS)
-				. += "Its vital tracker appears to be enabled."
+				. += "它的传感器显示详细数据."
 			if(SENSOR_COORDS)
-				. += "Its vital tracker and tracking beacon appear to be enabled."
+				. += "它的传感器显示详细数据并上传位置坐标."
 	if(LAZYLEN(attached_accessories))
 		var/list/accessories = list_accessories_with_icon(user)
-		. += "It has [english_list(accessories)] attached."
-		. += "Alt-Right-Click to remove [attached_accessories[1]]."
+		. += "它有[english_list(accessories)]连接."
+		. += "Alt加右键来移除[attached_accessories[1]]."
 
 /// Helper to list out all accessories with an icon besides it, for use in examine
 /obj/item/clothing/under/proc/list_accessories_with_icon(mob/user)
@@ -310,15 +310,15 @@
 	return all_accessories
 
 /obj/item/clothing/under/verb/toggle()
-	set name = "Adjust Suit Sensors"
-	set category = "物件"
+	set name = "调整服装传感器"
+	set category = "IC.展示"
 	set src in usr
 	var/mob/user_mob = usr
 	if(!can_toggle_sensors(user_mob))
 		return
 
-	var/list/modes = list("Off", "Binary vitals", "Exact vitals", "Tracking beacon")
-	var/switchMode = tgui_input_list(user_mob, "Select a sensor mode", "Suit Sensors", modes, modes[sensor_mode + 1])
+	var/list/modes = list("关", "基本信息", "额 额外信息", "追踪 位置追踪")
+	var/switchMode = tgui_input_list(user_mob, "选择传感模式", "服装传感器", modes, modes[sensor_mode + 1])
 	if(isnull(switchMode))
 		return
 	if(!can_toggle_sensors(user_mob))
@@ -328,13 +328,13 @@
 	if (loc == user_mob)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				to_chat(user_mob, span_notice("You disable your suit's remote sensing equipment."))
+				to_chat(user_mob, span_notice("你关闭了服装的传感设备."))
 			if(SENSOR_LIVING)
-				to_chat(user_mob, span_notice("Your suit will now only report whether you are alive or dead."))
+				to_chat(user_mob, span_notice("你的服装现在只上报你是否死亡."))
 			if(SENSOR_VITALS)
-				to_chat(user_mob, span_notice("Your suit will now only report your exact vital lifesigns."))
+				to_chat(user_mob, span_notice("你的服装现在会上报你确切的生命体征."))
 			if(SENSOR_COORDS)
-				to_chat(user_mob, span_notice("Your suit will now report your exact vital lifesigns as well as your coordinate position."))
+				to_chat(user_mob, span_notice("你的服装现在会上报你确切的生命体征以及坐标位置"))
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
@@ -346,7 +346,7 @@
 		return CLICK_ACTION_BLOCKING
 
 	sensor_mode = SENSOR_COORDS
-	balloon_alert(user, "set to tracking")
+	balloon_alert(user, "设置至追踪")
 	return CLICK_ACTION_SUCCESS
 
 /// Checks if the toggler is allowed to toggle suit sensors currently
@@ -354,25 +354,25 @@
 	if(!can_use(toggler) || toggler.stat == DEAD) //make sure they didn't hold the window open.
 		return FALSE
 	if(get_dist(toggler, src) > 1)
-		balloon_alert(toggler, "too far!")
+		balloon_alert(toggler, "太远了!")
 		return FALSE
 
 	switch(has_sensor)
 		if(LOCKED_SENSORS)
-			balloon_alert(toggler, "sensor controls locked!")
+			balloon_alert(toggler, "传感器控制锁定!")
 			return FALSE
 		if(BROKEN_SENSORS)
-			balloon_alert(toggler, "sensors shorted!")
+			balloon_alert(toggler, "传感器短路了!")
 			return FALSE
 		if(NO_SENSORS)
-			balloon_alert(toggler, "no sensors to ajdust!")
+			balloon_alert(toggler, "无传感器可调整!")
 			return FALSE
 
 	return TRUE
 
 /obj/item/clothing/under/click_alt(mob/user)
 	if(!can_adjust)
-		balloon_alert(user, "can't be adjusted!")
+		balloon_alert(user, "无法被调整!")
 		return CLICK_ACTION_BLOCKING
 	if(!can_use(user))
 		return NONE
@@ -381,17 +381,17 @@
 
 /obj/item/clothing/under/click_alt_secondary(mob/user)
 	if(!LAZYLEN(attached_accessories))
-		balloon_alert(user, "no accessories to remove!")
+		balloon_alert(user, "无附件可移除!")
 		return
 	pop_accessory(user)
 
 /obj/item/clothing/under/verb/jumpsuit_adjust()
-	set name = "Adjust Jumpsuit Style"
+	set name = "调整连身衣样式"
 	set category = null
 	set src in usr
 
 	if(!can_adjust)
-		balloon_alert(usr, "can't be adjusted!")
+		balloon_alert(usr, "无法被调整!")
 		return
 	if(!can_use(usr))
 		return
@@ -399,9 +399,9 @@
 
 /obj/item/clothing/under/proc/rolldown()
 	if(toggle_jumpsuit_adjust())
-		to_chat(usr, span_notice("You adjust the suit to wear it more casually."))
+		to_chat(usr, span_notice("你把衣服整理得更加随意."))
 	else
-		to_chat(usr, span_notice("You adjust the suit back to normal."))
+		to_chat(usr, span_notice("你把衣服整理得更加正式."))
 
 	update_appearance()
 

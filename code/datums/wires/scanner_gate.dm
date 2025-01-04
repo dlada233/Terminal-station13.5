@@ -1,6 +1,6 @@
 /datum/wires/scanner_gate
 	holder_type = /obj/machinery/scanner_gate
-	proper_name = "Scanner Gate"
+	proper_name = "扫描门"
 	wires = list(WIRE_ACCEPT, WIRE_DENY, WIRE_DISABLE)
 
 /datum/wires/scanner_gate/on_pulse(wire, user)
@@ -17,6 +17,6 @@
 /datum/wires/scanner_gate/get_status()
 	var/obj/machinery/scanner_gate/scanner = holder
 	. = list()
-	. += "The Green light is [scanner.light_pass ? "on" : "off"]."
-	. += "The Red light is [scanner.light_fail ? "on" : "off"]."
-	. += "The Purple light is [scanner.ignore_signals ? "on" : "off"]."
+	. += "绿灯是 [scanner.light_pass ? "亮" : "关"]的."
+	. += "红灯是 [scanner.light_fail ? "亮" : "关"]的."
+	. += "紫灯是 [scanner.ignore_signals ? "亮" : "关"]的."

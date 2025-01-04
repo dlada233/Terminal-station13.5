@@ -6,7 +6,7 @@
 #define BIOGEN_REAGENT_PURITY 0.3
 
 /obj/machinery/biogenerator
-	name = "biogenerator"
+	name = "有机合成机"
 	desc = "Converts plants into biomass, which can be used to construct useful items."
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogenerator"

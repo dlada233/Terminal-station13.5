@@ -364,7 +364,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/exoscanner_console
-	name = "扫描阵列 Control Console Board"
+	name = "扫描阵列控制终端电路板"
 	desc = "Allows for the construction of circuit boards used to build a new 扫描阵列 control console."
 	id = "exoscanner_console"
 	build_type = IMPRINTER

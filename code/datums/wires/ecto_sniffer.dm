@@ -1,5 +1,5 @@
 /datum/wires/ecto_sniffer
-	proper_name = "Ectoscopic Sniffer"
+	proper_name = "探灵仪"
 	randomize = TRUE //Only one wire don't need blueprints
 	holder_type = /obj/machinery/ecto_sniffer
 

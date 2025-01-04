@@ -20,17 +20,17 @@
 		new vendor_refill(target_crate)
 
 /obj/machinery/vending/imported
-	name = "NT Sustenance Supplier"
-	desc = "A vending machine serving up only the finest of human college student food."
+	name = "NT食品特供"
+	desc = "出售人类食物的自动贩卖机."
 	icon = 'modular_skyrat/modules/imported_vendors/icons/imported_vendors.dmi'
 	icon_state = "nt_food"
 	panel_type = "panel15"
 	light_mask = "nt_food-light-mask"
 	light_color = LIGHT_COLOR_LIGHT_CYAN
-	product_slogans = "Caution, contents may be selling hot!;Look at these low prices!;Hungry? Me too- Wait, no, you didn't hear that!"
+	product_slogans = "注意! 商品正在热销!;瞧瞧这实惠的价格!;饿了吗? 我也是- 等等，不，我收回前言!"
 	product_categories = list(
 		list(
-			"name" = "Snacks",
+			"name" = "小食",
 			"icon" = "cookie",
 			"products" = list(
 				/obj/item/food/peanuts/random = 6,
@@ -45,7 +45,7 @@
 			),
 		),
 		list(
-			"name" = "Meals",
+			"name" = "正餐",
 			"icon" = "pizza-slice",
 			"products" = list(
 				/obj/item/storage/box/foodpack/nt = 6,
@@ -64,18 +64,18 @@
 	payment_department = NO_FREEBIES
 
 /obj/item/vending_refill/snack/imported
-	machine_name = "NT Sustenance Supplier"
+	machine_name = "NT食品特供"
 
 /obj/machinery/vending/imported/yangyu
-	name = "Fudobenda"
-	desc = "A vendor selling traditional Sol eastern foods of dubious quality."
+	name = "富登料亭"
+	desc = "出售传统日料的自动售货机."
 	icon_state = "yangyu_food"
 	light_mask = "yangyu_food-light-mask"
 	light_color = LIGHT_COLOR_FLARE
-	product_slogans = "Fresh farmed space carp from local space!;Imitation lobstrocity sushi choices availible!;Made with traditional recipes and care!"
+	product_slogans = "新鲜鲤鱼来自本地太空养殖!;仿龙虾寿司可供选择!;依据传统工艺精心制作!"
 	product_categories = list(
 		list(
-			"name" = "Snacks",
+			"name" = "小食",
 			"icon" = "cookie",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/dry_ramen/prepared = 6,
@@ -90,7 +90,7 @@
 			),
 		),
 		list(
-			"name" = "Meals",
+			"name" = "正餐",
 			"icon" = "pizza-slice",
 			"products" = list(
 				/obj/item/storage/box/foodpack/yangyu = 6,
@@ -116,22 +116,22 @@
 
 /obj/machinery/vending/imported/yangyu/examine_more(mob/user)
 	. = ..()
-	. += span_notice("Someone appears to have written <i>\"Don't trust the sushi!\"</i> in marker on the side of the vendor.")
+	. += span_notice("似乎有人在贩卖机一侧写下了<i>\"不要相信寿司!\"</i>的话语.")
 	return .
 
 /obj/item/vending_refill/snack/imported/yangyu
-	machine_name = "Fudobenda"
+	machine_name = "富登料亭"
 
 /obj/machinery/vending/imported/mothic
-	name = "Nomad Fleet Ration Chit Exchange"
-	desc = "One of the Nomad Fleet's own ration vendors; in spite of the name engraved into it, it's been fitted to accept credits."
+	name = "游牧舰队口粮贸易机"
+	desc = "游牧舰队上的自动贩卖机之一，尽管刻有舰队名字，但已经被改造成了可以接受信用点支付."
 	icon_state = "moth_food"
 	light_mask = "moth_food-light-mask"
 	light_color = LIGHT_COLOR_HALOGEN
-	product_slogans = "Support the fleet, conserve rations today!;Some options in reduced portion and cost!;Do your part to keep the fleet flying!"
+	product_slogans = "你要支援舰队，那就兑换口粮!;物美价廉的完美选择!;为舰队远行尽一份你自己的力量!"
 	product_categories = list(
 		list(
-			"name" = "Snacks",
+			"name" = "小食",
 			"icon" = "cookie",
 			"products" = list(
 				/obj/item/food/vendor_snacks/mothmallow = 6,
@@ -146,7 +146,7 @@
 			),
 		),
 		list(
-			"name" = "Meals",
+			"name" = "正餐",
 			"icon" = "pizza-slice",
 			"products" = list(
 				/obj/item/storage/box/foodpack/moth = 6,
@@ -171,18 +171,18 @@
 		)
 
 /obj/item/vending_refill/snack/imported/mothic
-	machine_name = "Nomad Fleet Ration Chit Exchange"
+	machine_name = "游牧舰队口粮贸易机"
 
 /obj/machinery/vending/imported/tiziran
-	name = "Tiziran Imported Delicacies"
-	desc = "A vendor serving a fine collection of what is very likely knock-offs of popular Tiziran brands."
+	name = "缇兹兰美食专卖"
+	desc = "一台出售可能来自缇兹兰的热门美食的售货机"
 	icon_state = "tizira_food"
 	light_mask = "tizira_food-light-mask"
 	light_color = LIGHT_COLOR_FIRE
-	product_slogans = "Real imports from the capital itself, we promise!;Rare selections of salt water catch!;Moonfish glaze included with all meat options!"
+	product_slogans = "我们承诺食材均来自首都本地，货真价实!;精选稀有海水捕捞鱼类!;所有肉类菜品均附赠月鱼酱汁!"
 	product_categories = list(
 		list(
-			"name" = "Snacks",
+			"name" = "小食",
 			"icon" = "cookie",
 			"products" = list(
 				/obj/item/food/chips/shrimp = 6,
@@ -196,7 +196,7 @@
 			),
 		),
 		list(
-			"name" = "Meals",
+			"name" = "主餐",
 			"icon" = "pizza-slice",
 			"products" = list(
 				/obj/item/storage/box/foodpack/tizira = 6,
@@ -221,4 +221,4 @@
 		)
 
 /obj/item/vending_refill/snack/imported/tiziran
-	machine_name = "Tiziran Imported Delicacies"
+	machine_name = "缇兹兰美食专卖"

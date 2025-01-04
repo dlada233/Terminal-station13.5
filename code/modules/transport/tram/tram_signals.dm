@@ -1,6 +1,6 @@
 /// Pedestrian crossing signal for tram
 /obj/machinery/transport/crossing_signal
-	name = "crossing signal"
+	name = "交通信号灯"
 	desc = "Indicates to pedestrians if it's safe to cross the tracks. Connects to sensors down the track."
 	icon = 'icons/obj/tram/crossing_signal.dmi'
 	icon_state = "crossing-inbound"
@@ -68,7 +68,7 @@
 	pixel_y = 20
 
 /obj/machinery/static_signal
-	name = "crossing signal"
+	name = "交通信号灯"
 	desc = "Indicates to pedestrians if it's safe to cross the tracks."
 	icon = 'icons/obj/tram/crossing_signal.dmi'
 	icon_state = "crossing-inbound"
@@ -468,7 +468,7 @@
 	. += emissive_appearance(icon, "[base_icon_state]-s0", offset_spokesman = src, alpha = src.alpha)
 
 /obj/machinery/transport/guideway_sensor
-	name = "guideway sensor"
+	name = "轨道传感器"
 	icon = 'icons/obj/tram/tram_sensor.dmi'
 	icon_state = "sensor-base"
 	desc = "Uses an infrared beam to detect passing trams. Works when paired with a sensor on the other side of the track."

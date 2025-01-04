@@ -1,15 +1,15 @@
 /obj/machinery/vending/autodrobe
-	name = "\improper AutoDrobe"
-	desc = "A vending machine for costumes."
+	name = "\improper 红衣铺"
+	desc = "出售各类时尚服饰."
 	icon_state = "theater"
 	icon_deny = "theater-deny"
 	panel_type = "panel16"
 	req_access = list(ACCESS_THEATRE)
-	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
-	vend_reply = "Thank you for using AutoDrobe!"
+	product_slogans = "穿出成功人士味!;穿好戴好!;打扮时间到!;别任凭命运摆布你的衣领! 光顾红衣铺!"
+	vend_reply = "感谢光顾红衣铺!"
 	product_categories = list(
 		list(
-			"name" = "Costumes",
+			"name" = "服装",
 			"icon" = "mask",
 			"products" = list(
 				/obj/item/clothing/under/costume/gladiator = 1,
@@ -63,7 +63,7 @@
 			),
 		),
 		list(
-			"name" = "Supernatural",
+			"name" = "幻想风",
 			"icon" = "hand-sparkles",
 			"products" = list(
 				/obj/item/clothing/suit/costume/imperium_monk = 1,
@@ -84,7 +84,7 @@
 			),
 		),
 		list(
-			"name" = "Entertainers",
+			"name" = "演艺风",
 			"icon" = "masks-theater",
 			"products" = list(
 				/obj/item/clothing/under/rank/civilian/clown/blue = 1,
@@ -112,7 +112,7 @@
 			),
 		),
 		list(
-			"name" = "Fancy",
+			"name" = "故事风",
 			"icon" = "user-tie",
 			"products" = list(
 				/obj/item/clothing/under/rank/captain/suit = 1,
@@ -137,7 +137,7 @@
 			),
 		),
 		list(
-			"name" = "Animals",
+			"name" = "动物风",
 			"icon" = "paw",
 			"products" = list(
 				/obj/item/clothing/head/costume/kitty = 1,
@@ -161,7 +161,7 @@
 			),
 		),
 		list(
-			"name" = "Service",
+			"name" = "服侍风",
 			"icon" = "kitchen-set",
 			"products" = list(
 				/obj/item/clothing/under/costume/buttondown/slacks/service = 1,
@@ -180,7 +180,7 @@
 			),
 		),
 		list(
-			"name" = "Other",
+			"name" = "其他",
 			"icon" = "star",
 			"products" = list(
 				/obj/item/clothing/head/wig/random = 3,
@@ -242,9 +242,9 @@
 	light_mask="theater-light-mask"
 
 /obj/machinery/vending/autodrobe/all_access
-	desc = "A vending machine for costumes. This model appears to have no access restrictions."
+	desc = "出售服装的自动贩卖机. 这一台没有任何购买限制."
 	req_access = null
 
 /obj/item/vending_refill/autodrobe
-	machine_name = "AutoDrobe"
+	machine_name = "红衣铺"
 	icon_state = "refill_costume"

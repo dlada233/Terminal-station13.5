@@ -1,5 +1,5 @@
 /obj/machinery/botpad
-	name = "机器人台"
+	name = "机器人平台"
 	desc = "轨道机甲发射台的轻量化版本，可以发射机器人，需要远程连接才能运行."
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "botpad"

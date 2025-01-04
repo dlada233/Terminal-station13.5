@@ -7,7 +7,7 @@
 
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 
-	name = "Temperature control unit"
+	name = "温控单元"
 	desc = "Heats or cools gas in connected pipes."
 
 	density = TRUE
@@ -342,7 +342,7 @@
 	if(target_temperature == initial(target_temperature))
 		target_temperature = min_temperature
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom
-	name = "Cold room temperature control unit"
+	name = "冷库温控单元"
 	icon_state = "thermo_base_1"
 	greyscale_colors = COLOR_CYAN
 

@@ -4,7 +4,7 @@
  * When upgraded, it can hold more boulders and process more at once.
  */
 /obj/machinery/bouldertech/refinery
-	name = "boulder refinery"
+	name = "巨石精炼机"
 	desc = "BR for short. Accepts boulders and refines non-metallic ores into sheets using internal chemicals."
 	icon_state = "stacker"
 	circuit = /obj/item/circuitboard/machine/refinery
@@ -42,7 +42,7 @@
  * When upgraded, it can hold more boulders and process more at once.
  */
 /obj/machinery/bouldertech/refinery/smelter
-	name = "boulder smelter"
+	name = "巨石冶炼炉"
 	desc = "BS for short. Accept boulders and refines metallic ores into sheets."
 	icon_state = "smelter"
 	light_system = OVERLAY_LIGHT

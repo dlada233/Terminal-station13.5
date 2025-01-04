@@ -112,7 +112,7 @@
 
 /datum/experiment/ordnance/gaseous/nitrous_oxide
 	name = "Nitrous Oxide-一氧化二氮 Gas Shells"
-	description = "The delivery of N2O into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a Tank Compressor. Publish the data in a paper."
+	description = "The delivery of N2O into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a 空气压缩机. Publish the data in a paper."
 	gain = list(10,40)
 	target_amount = list(200,600)
 	experiment_proper = TRUE
@@ -120,7 +120,7 @@
 
 /datum/experiment/ordnance/gaseous/plasma
 	name = "Plasma Gas Shells"
-	description = "The delivery of Plasma gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a Tank Compressor. Publish the data in a paper."
+	description = "The delivery of Plasma gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a 空气压缩机. Publish the data in a paper."
 	gain = list(10,40)
 	target_amount = list(200,600)
 	experiment_proper = TRUE
@@ -128,7 +128,7 @@
 
 /datum/experiment/ordnance/gaseous/bz
 	name = "BZ Gas Shells"
-	description = "The delivery of BZ gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a Tank Compressor. Publish the data in a paper."
+	description = "The delivery of BZ gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a 空气压缩机. Publish the data in a paper."
 	gain = list(10,30,60)
 	target_amount = list(50,125,400)
 	experiment_proper = TRUE
@@ -136,7 +136,7 @@
 
 /datum/experiment/ordnance/gaseous/noblium
 	name = "Hypernoblium-超铌 Gas Shells"
-	description = "The delivery of Hypernoblium-超铌 gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a Tank Compressor. Publish the data in a paper."
+	description = "The delivery of Hypernoblium-超铌 gas into an area of operation might prove useful. Pack the specified gas into a tank and burst it using a 空气压缩机. Publish the data in a paper."
 	gain = list(10,40,80)
 	target_amount = list(15,55,250)
 	experiment_proper = TRUE
@@ -418,7 +418,7 @@
 /datum/experiment/scanning/people/skillchip
 	name = "Human Field Research: Skill Chip Implants"
 	description = "Before sticking programmed circuits into human brain, we need to know how it handles simple ones. Scan a live person with a skill chip implant in their brain."
-	performance_hint = "Perform a skill chip implantation with a skill station."
+	performance_hint = "Perform a skill chip implantation with a 技能软件站."
 	required_traits_desc = "skill chip implant"
 
 /datum/experiment/scanning/people/skillchip/is_valid_scan_target(mob/living/carbon/human/check, datum/component/experiment_handler/experiment_handler)

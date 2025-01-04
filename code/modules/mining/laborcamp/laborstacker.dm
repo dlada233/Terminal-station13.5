@@ -180,6 +180,6 @@
 		return
 	say("ID: [prisoner_id.registered_name].")
 	say("Points Collected: [prisoner_id.points] / [prisoner_id.goal].")
-	say("Collect points by bringing smelted minerals to the Labor Shuttle stacking machine. Reach your quota to earn your release.")
+	say("Collect points by bringing smelted minerals to the Labor Shuttle 堆垛机. Reach your quota to earn your release.")
 
 #undef SHEET_POINT_VALUE

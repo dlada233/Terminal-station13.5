@@ -3,7 +3,7 @@
 #define SIGNIFICANT_AMOUNT_OF_MOLES 10
 
 /obj/machinery/atmospherics/components/binary/tank_compressor
-	name = "Tank Compressor"
+	name = "空气压缩机"
 	desc = "Heavy duty shielded air compressor designed to pressurize tanks above the safe limit."
 	circuit = /obj/item/circuitboard/machine/tank_compressor
 	icon = 'icons/obj/machines/research.dmi'

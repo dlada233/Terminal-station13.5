@@ -12,7 +12,7 @@
 #define SERVER_NOMINAL_TEXT "Nominal"
 
 /obj/machinery/rnd/server
-	name = "\improper R&D Server"
+	name = "\improper R&D 服务器"
 	desc = "A computer system running a deep neural network that processes arbitrary information to produce data useable in the development of new technologies. In layman's terms, it makes research points."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"

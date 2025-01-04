@@ -79,7 +79,7 @@
 				balloon_alert(user, "data uploaded from buffer")
 				return TRUE
 		else
-			balloon_alert(user, "no quantum pad data found!")
+			balloon_alert(user, "no 量子传送平台 data found!")
 			return TRUE
 
 	else if(istype(I, /obj/item/quantum_keycard))

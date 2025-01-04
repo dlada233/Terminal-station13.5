@@ -342,7 +342,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 
 /// Exploration drone launcher
 /obj/machinery/exodrone_launcher
-	name = "exploration drone launcher"
+	name = "探索无人机发射台"
 	desc = "A launch pad designed to send exploration drones into the great beyond."
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "launcher"

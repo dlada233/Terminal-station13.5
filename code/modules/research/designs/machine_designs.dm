@@ -1,8 +1,8 @@
 ////////////////////////////////////////
-//////////////MISC Boards///////////////
+//////////////MISC电路板s///////////////
 ////////////////////////////////////////
 /datum/design/board/electrolyzer
-	name = "Electrolyzer Board"
+	name = "Electrolyzer电路板"
 	desc = "The circuit board for an electrolyzer."
 	id = "electrolyzer"
 	build_path = /obj/item/circuitboard/machine/electrolyzer
@@ -12,7 +12,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/smes
-	name = "SMES Board"
+	name = "SMES电路板"
 	desc = "The circuit board for a SMES."
 	id = "smes"
 	build_path = /obj/item/circuitboard/machine/smes
@@ -22,7 +22,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/announcement_system
-	name = "Automated Announcement System Board"
+	name = "Automated Announcement System电路板"
 	desc = "The circuit board for an automated announcement system."
 	id = "automated_announcement"
 	build_path = /obj/item/circuitboard/machine/announcement_system
@@ -32,7 +32,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/turbine_computer
-	name = "Turbine Power Console Board"
+	name = "Turbine Power Console电路板"
 	desc = "The circuit board for a turbine power console."
 	id = "power_turbine_console"
 	build_path = /obj/item/circuitboard/computer/turbine_computer
@@ -42,7 +42,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/emitter
-	name = "Emitter Board"
+	name = "Emitter电路板"
 	desc = "The circuit board for an emitter."
 	id = "emitter"
 	build_path = /obj/item/circuitboard/machine/emitter
@@ -52,7 +52,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/mass_driver
-	name = "Mass Driver Board"
+	name = "Mass Driver电路板"
 	desc = "The circuit board for a mass driver."
 	id = "mass_driver"
 	build_path = /obj/item/circuitboard/machine/mass_driver
@@ -62,7 +62,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/turbine_compressor
-	name = "Turbine Compressor Board"
+	name = "Turbine Compressor电路板"
 	desc = "The circuit board for a turbine compressor."
 	id = "turbine_compressor"
 	build_path = /obj/item/circuitboard/machine/turbine_compressor
@@ -72,7 +72,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/turbine_rotor
-	name = "Turbine Rotor Board"
+	name = "Turbine Rotor电路板"
 	desc = "The circuit board for a turbine rotor."
 	id = "turbine_rotor"
 	build_path = /obj/item/circuitboard/machine/turbine_rotor
@@ -82,7 +82,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/turbine_stator
-	name = "Turbine Stator Board"
+	name = "Turbine Stator电路板"
 	desc = "The circuit board for a turbine stator."
 	id = "turbine_stator"
 	build_path = /obj/item/circuitboard/machine/turbine_stator
@@ -92,7 +92,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/thermomachine
-	name = "Thermomachine Board"
+	name = "Thermomachine电路板"
 	desc = "The circuit board for a thermomachine."
 	id = "thermomachine"
 	build_path = /obj/item/circuitboard/machine/thermomachine
@@ -102,7 +102,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/space_heater
-	name = "Space Heater Board"
+	name = "太空加热器电路板"
 	desc = "The circuit board for a space heater."
 	id = "space_heater"
 	build_path = /obj/item/circuitboard/machine/space_heater
@@ -112,7 +112,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/teleport_station
-	name = "Teleportation Station Board"
+	name = "Teleportation Station电路板"
 	desc = "The circuit board for a teleportation station."
 	id = "tele_station"
 	build_type = IMPRINTER
@@ -123,7 +123,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/teleport_hub
-	name = "Teleportation Hub Board"
+	name = "Teleportation Hub电路板"
 	desc = "The circuit board for a teleportation hub."
 	id = "tele_hub"
 	build_type = IMPRINTER
@@ -134,7 +134,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/quantumpad
-	name = "Quantum Pad Board"
+	name = "量子传送平台电路板"
 	desc = "The circuit board for a quantum telepad."
 	id = "quantumpad"
 	build_type = IMPRINTER
@@ -156,7 +156,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/launchpad
-	name = "Bluespace Launchpad Board"
+	name = "Bluespace Launchpad电路板"
 	desc = "The circuit board for a bluespace Launchpad."
 	id = "launchpad"
 	build_type = IMPRINTER
@@ -167,7 +167,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/launchpad_console
-	name = "Bluespace Launchpad Console Board"
+	name = "Bluespace Launchpad Console电路板"
 	desc = "The circuit board for a bluespace launchpad Console."
 	id = "launchpad_console"
 	build_type = IMPRINTER
@@ -178,7 +178,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/modular_shield_generator
-	name = "Modular Shield Generator Board"
+	name = "Modular Shield Generator电路板"
 	desc = "The circuit board for a modular shield generator."
 	id = "modular_shield_generator"
 	build_path = /obj/item/circuitboard/machine/modular_shield_generator
@@ -188,7 +188,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/modular_shield_node
-	name = "Modular Shield Node Board"
+	name = "Modular Shield Node电路板"
 	desc = "The circuit board for a modular shield node."
 	id = "modular_shield_node"
 	build_path = /obj/item/circuitboard/machine/modular_shield_node
@@ -198,7 +198,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/modular_shield_relay
-	name = "Modular Shield Relay Board"
+	name = "Modular Shield Relay电路板"
 	desc = "The circuit board for a modular shield relay."
 	id = "modular_shield_relay"
 	build_path = /obj/item/circuitboard/machine/modular_shield_relay
@@ -208,7 +208,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/modular_shield_charger
-	name = "Modular Shield Charger Board"
+	name = "Modular Shield Charger电路板"
 	desc = "The circuit board for a modular shield charger."
 	id = "modular_shield_charger"
 	build_path = /obj/item/circuitboard/machine/modular_shield_charger
@@ -218,7 +218,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/modular_shield_well
-	name = "Modular Shield Well Board"
+	name = "Modular Shield Well电路板"
 	desc = "The circuit board for a modular shield well."
 	id = "modular_shield_well"
 	build_path = /obj/item/circuitboard/machine/modular_shield_well
@@ -228,7 +228,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/teleconsole
-	name = "Teleporter Console Board"
+	name = "Teleporter Console电路板"
 	desc = "Allows for the construction of circuit boards used to build a teleporter control console."
 	id = "teleconsole"
 	build_type = IMPRINTER
@@ -239,7 +239,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/cryotube
-	name = "Cryotube Board"
+	name = "Cryotube电路板"
 	desc = "The circuit board for a cryotube."
 	id = "cryotube"
 	build_path = /obj/item/circuitboard/machine/cryo_tube
@@ -249,7 +249,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/chem_dispenser
-	name = "Portable Chem Dispenser Board"
+	name = "便携式化合分配机电路板"
 	desc = "The circuit board for a portable chem dispenser."
 	id = "chem_dispenser"
 	build_path = /obj/item/circuitboard/machine/chem_dispenser
@@ -259,8 +259,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/chem_master
-	name = "Chem Master Board"
-	desc = "The circuit board for a Chem Master 3000."
+	name = "化学大师电路板"
+	desc = "The circuit board for a 化学大师 3000."
 	id = "chem_master"
 	build_path = /obj/item/circuitboard/machine/chem_master
 	category = list(
@@ -269,7 +269,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/chem_heater
-	name = "Chemical Heater Board"
+	name = "化学加热器电路板"
 	desc = "The circuit board for a chemical heater."
 	id = "chem_heater"
 	build_path = /obj/item/circuitboard/machine/chem_heater
@@ -279,8 +279,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/chem_mass_spec
-	name = "High-Performance Liquid Chromatography Board"
-	desc = "The circuit board for a High-Performance Liquid Chromatography (Machine Board"
+	name = "高效液相色谱仪电路板"
+	desc = "The circuit board for a 高效液相色谱仪 (机器电路板)"
 	id = "chem_mass_spec"
 	build_path = /obj/item/circuitboard/machine/chem_mass_spec
 	category = list(
@@ -289,7 +289,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/smoke_machine
-	name = "Smoke Machine Board"
+	name = "Smoke Machine电路板"
 	desc = "The circuit board for a smoke machine."
 	id = "smoke_machine"
 	build_path = /obj/item/circuitboard/machine/smoke_machine
@@ -299,8 +299,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/reagentgrinder
-	name = "All-In-One Grinder Board"
-	desc = "The circuit board for an All-In-One Grinder."
+	name = "一体化研磨机电路板"
+	desc = "The circuit board for an 一体化研磨机."
 	id = "reagentgrinder"
 	build_path = /obj/item/circuitboard/machine/reagentgrinder
 	category = list(
@@ -309,8 +309,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/hypnochair
-	name = "Enhanced Interrogation Chamber Board"
-	desc = "Allows for the construction of circuit boards used to build an Enhanced Interrogation Chamber."
+	name = "强化审讯室电路板"
+	desc = "Allows for the construction of circuit boards used to build an 强化审讯室."
 	id = "hypnochair"
 	build_path = /obj/item/circuitboard/machine/hypnochair
 	category = list(
@@ -319,7 +319,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/photobooth
-	name = "Photobooth Board"
+	name = "Photobooth电路板"
 	desc = "The circuit board for a photobooth."
 	id = "photobooth"
 	build_path = /obj/item/circuitboard/machine/photobooth
@@ -329,7 +329,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/security_photobooth
-	name = "Security Photobooth Board"
+	name = "Security Photobooth电路板"
 	desc = "The circuit board for a security photobooth."
 	id = "security_photobooth"
 	build_path = /obj/item/circuitboard/machine/photobooth/security
@@ -339,7 +339,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/biogenerator
-	name = "Biogenerator Board"
+	name = "有机合成机电路板"
 	desc = "The circuit board for a biogenerator."
 	id = "biogenerator"
 	build_path = /obj/item/circuitboard/machine/biogenerator
@@ -349,7 +349,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/hydroponics
-	name = "Hydroponics Tray Board"
+	name = "水培托盘电路板"
 	desc = "The circuit board for a hydroponics tray."
 	id = "hydro_tray"
 	build_path = /obj/item/circuitboard/machine/hydroponics
@@ -359,7 +359,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/destructive_analyzer
-	name = "解构分析仪 Board"
+	name = "解构分析仪电路板"
 	desc = "The circuit board for a 解构分析仪."
 	id = "destructive_analyzer"
 	build_path = /obj/item/circuitboard/machine/destructive_analyzer
@@ -369,7 +369,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/experimentor
-	name = "E.X.P.E.R.I-MENTOR Board"
+	name = "E.X.P.E.R.I-MENTOR电路板"
 	desc = "The circuit board for an E.X.P.E.R.I-MENTOR."
 	id = "experimentor"
 	build_path = /obj/item/circuitboard/machine/experimentor
@@ -379,7 +379,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/protolathe
-	name = "Protolathe Board"
+	name = "原型车床电路板"
 	desc = "The circuit board for a protolathe."
 	id = "protolathe"
 	build_type = IMPRINTER
@@ -390,7 +390,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/protolathe/offstation
-	name = "Ancient Protolathe Board"
+	name = "古代原型车床电路板"
 	desc = "The circuit board for an ancient protolathe."
 	id = "protolathe_offstation"
 	build_type = AWAY_IMPRINTER
@@ -401,8 +401,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/circuit_imprinter
-	name = "Circuit Imprinter Board"
-	desc = "The circuit board for a circuit imprinter."
+	name = "电路压印机电路板"
+	desc = "The circuit board for a 电路压印机."
 	id = "circuit_imprinter"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/machine/circuit_imprinter
@@ -412,8 +412,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/circuit_imprinter/offstation
-	name = "Ancient Circuit Imprinter Board"
-	desc = "The circuit board for an ancient circuit imprinter."
+	name = "古代电路压印机电路板"
+	desc = "The circuit board for an ancient 电路压印机."
 	id = "circuit_imprinter_offstation"
 	build_type = AWAY_IMPRINTER
 	build_path = /obj/item/circuitboard/machine/circuit_imprinter/offstation
@@ -423,7 +423,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/rdservercontrol
-	name = "R&D Server Control Console Board"
+	name = "R&D Server Control Console电路板"
 	desc = "The circuit board for an R&D Server Control Console."
 	id = "rdservercontrol"
 	build_path = /obj/item/circuitboard/computer/rdservercontrol
@@ -433,7 +433,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/rdserver
-	name = "R&D Server Board"
+	name = "R&D服务器电路板"
 	desc = "The circuit board for an R&D Server."
 	id = "rdserver"
 	build_path = /obj/item/circuitboard/machine/rdserver
@@ -443,7 +443,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/mechfab
-	name = "Exosuit Fabricator Board"
+	name = "外骨骼工厂电路板"
 	desc = "The circuit board for an Exosuit Fabricator."
 	id = "mechfab"
 	build_path = /obj/item/circuitboard/machine/mechfab
@@ -453,7 +453,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/cyborgrecharger
-	name = "Cyborg Recharger Board"
+	name = "Cyborg Recharger电路板"
 	desc = "The circuit board for a Cyborg Recharger."
 	id = "cyborgrecharger"
 	build_path = /obj/item/circuitboard/machine/cyborgrecharger
@@ -463,7 +463,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/mech_recharger
-	name = "Mechbay Recharger Board"
+	name = "Mechbay Recharger电路板"
 	desc = "The circuit board for a Mechbay Recharger."
 	id = "mech_recharger"
 	build_path = /obj/item/circuitboard/machine/mech_recharger
@@ -473,7 +473,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/dnascanner
-	name = "DNA Scanner Board"
+	name = "DNA Scanner电路板"
 	desc = "The circuit board for a DNA Scanner."
 	id = "dnascanner"
 	build_path = /obj/item/circuitboard/machine/dnascanner
@@ -483,7 +483,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/dnainfuser
-	name = "DNA Infuser Board"
+	name = "DNA Infuser电路板"
 	desc = "The circuit board for a DNA Infuser."
 	id = "dnainfuser"
 	build_path = /obj/item/circuitboard/machine/dna_infuser
@@ -493,7 +493,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/scan_console
-	name = "DNA Console Board"
+	name = "DNA Console电路板"
 	desc = "Allows for the construction of circuit boards used to build a new DNA console."
 	id = "scan_console"
 	build_path = /obj/item/circuitboard/computer/scan_consolenew
@@ -503,8 +503,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/destructive_scanner
-	name = "Destructive Scanner Board"
-	desc = "The circuit board for an experimental destructive scanner."
+	name = "破坏扫描仪电路板"
+	desc = "The circuit board for an 实验性破坏扫描仪."
 	id = "destructive_scanner"
 	build_path = /obj/item/circuitboard/machine/destructive_scanner
 	category = list(
@@ -513,7 +513,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/doppler_array
-	name = "Tachyon-Doppler Research Array Board"
+	name = "Tachyon-Doppler Research Array电路板"
 	desc = "The circuit board for a tachyon-doppler research array"
 	id = "doppler_array"
 	build_path = /obj/item/circuitboard/machine/doppler_array
@@ -523,8 +523,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/anomaly_refinery
-	name = "Anomaly Refinery Board"
-	desc = "The circuit board for an anomaly refinery"
+	name = "异常精炼器电路板"
+	desc = "The circuit board for an 异常精炼器"
 	id = "anomaly_refinery"
 	build_path = /obj/item/circuitboard/machine/anomaly_refinery
 	category = list(
@@ -533,8 +533,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/tank_compressor
-	name = "Tank Compressor Board"
-	desc = "The circuit board for a tank compressor"
+	name = "空气压缩机电路板"
+	desc = "The circuit board for a 空气压缩机"
 	id = "tank_compressor"
 	build_path = /obj/item/circuitboard/machine/tank_compressor
 	category = list(
@@ -543,7 +543,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/microwave
-	name = "Microwave Board"
+	name = "微波炉电路板"
 	desc = "The circuit board for a microwave."
 	id = "microwave"
 	build_path = /obj/item/circuitboard/machine/microwave
@@ -553,7 +553,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/microwave_engineering
-	name = "Wireless Microwave Board"
+	name = "无线微波炉电路板"
 	desc = "The circuit board for a cell-powered microwave."
 	id = "microwave_engineering"
 	build_path = /obj/item/circuitboard/machine/microwave/engineering
@@ -563,7 +563,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/gibber
-	name = "Gibber Board"
+	name = "Gibber电路板"
 	desc = "The circuit board for a gibber."
 	id = "gibber"
 	build_path = /obj/item/circuitboard/machine/gibber
@@ -573,7 +573,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/smartfridge
-	name = "Smartfridge Board"
+	name = "智能冰箱电路板"
 	desc = "The circuit board for a smartfridge."
 	id = "smartfridge"
 	build_path = /obj/item/circuitboard/machine/smartfridge
@@ -583,8 +583,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/monkey_recycler
-	name = "Monkey Recycler Board"
-	desc = "The circuit board for a monkey recycler."
+	name = "猴子回收机电路板"
+	desc = "The circuit board for a 猴子回收机."
 	id = "monkey_recycler"
 	build_path = /obj/item/circuitboard/machine/monkey_recycler
 	category = list(
@@ -593,7 +593,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/seed_extractor
-	name = "Seed Extractor Board"
+	name = "种子提取机电路板"
 	desc = "The circuit board for a seed extractor."
 	id = "seed_extractor"
 	build_path = /obj/item/circuitboard/machine/seed_extractor
@@ -603,7 +603,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/processor
-	name = "Food/Slime Processor Board"
+	name = "食品/史莱姆加工机电路板"
 	desc = "The circuit board for a processing unit. Screwdriver the circuit to switch between food (default) or slime processing."
 	id = "processor"
 	build_path = /obj/item/circuitboard/machine/processor
@@ -613,7 +613,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/soda_dispenser
-	name = "Portable Soda Dispenser Board"
+	name = "便携式软饮料分配机电路板"
 	desc = "The circuit board for a portable soda dispenser."
 	id = "soda_dispenser"
 	build_path = /obj/item/circuitboard/machine/chem_dispenser/drinks
@@ -623,7 +623,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/beer_dispenser
-	name = "Portable Booze Dispenser Board"
+	name = "便携式酒精分配机电路板"
 	desc = "The circuit board for a portable booze dispenser."
 	id = "beer_dispenser"
 	build_path = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
@@ -633,7 +633,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/recycler
-	name = "Recycler Board"
+	name = "回收粉碎机电路板"
 	desc = "The circuit board for a recycler."
 	id = "recycler"
 	build_path = /obj/item/circuitboard/machine/recycler
@@ -643,7 +643,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/scanner_gate
-	name = "Scanner Gate Board"
+	name = "Scanner Gate电路板"
 	desc = "The circuit board for a scanner gate."
 	id = "scanner_gate"
 	build_path = /obj/item/circuitboard/machine/scanner_gate
@@ -653,7 +653,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/holopad
-	name = "AI Holopad Board"
+	name = "AI Holopad电路板"
 	desc = "The circuit board for a holopad."
 	id = "holopad"
 	build_path = /obj/item/circuitboard/machine/holopad
@@ -663,7 +663,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/autolathe
-	name = "Autolathe Board"
+	name = "Autolathe电路板"
 	desc = "The circuit board for an autolathe."
 	id = "autolathe"
 	build_path = /obj/item/circuitboard/machine/autolathe
@@ -673,7 +673,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/recharger
-	name = "Weapon Recharger Board"
+	name = "Weapon Recharger电路板"
 	desc = "The circuit board for a Weapon Recharger."
 	id = "recharger"
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =SHEET_MATERIAL_AMOUNT)
@@ -684,7 +684,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/vendor
-	name = "Vendor Board"
+	name = "Vendor电路板"
 	desc = "The circuit board for a Vendor."
 	id = "vendor"
 	build_path = /obj/item/circuitboard/machine/vendor
@@ -694,8 +694,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/ore_redemption
-	name = "Ore Redemption Machine Board"
-	desc = "The circuit board for an Ore Redemption machine."
+	name = "矿石精炼回收机电路板"
+	desc = "The circuit board for an 矿石精炼回收机."
 	id = "ore_redemption"
 	build_path = /obj/item/circuitboard/machine/ore_redemption
 	category = list(
@@ -704,7 +704,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/mining_equipment_vendor
-	name = "Mining Rewards Vendor Board"
+	name = "Mining Rewards Vendor电路板"
 	desc = "The circuit board for a Mining Rewards Vendor."
 	id = "mining_equipment_vendor"
 	build_path = /obj/item/circuitboard/computer/order_console/mining
@@ -724,7 +724,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/tesla_coil
-	name = "Tesla Coil Board"
+	name = "Tesla Coil电路板"
 	desc = "The circuit board for a tesla coil."
 	id = "tesla_coil"
 	build_path = /obj/item/circuitboard/machine/tesla_coil
@@ -734,7 +734,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/grounding_rod
-	name = "Grounding Rod Board"
+	name = "Grounding Rod电路板"
 	desc = "The circuit board for a grounding rod."
 	id = "grounding_rod"
 	build_path = /obj/item/circuitboard/machine/grounding_rod
@@ -744,7 +744,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/ntnet_relay
-	name = "NTNet Relay Board"
+	name = "NTNet Relay电路板"
 	desc = "The circuit board for a wireless network relay."
 	id = "ntnet_relay"
 	build_path = /obj/item/circuitboard/machine/ntnet_relay
@@ -754,8 +754,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/crossing_signal
-	name = "Crossing Signal Board"
-	desc = "The circuit board for a tram crossing signal."
+	name = "交通信号灯电路板"
+	desc = "The circuit board for a tram 交通信号灯."
 	id = "crossing_signal"
 	build_path = /obj/item/circuitboard/machine/crossing_signal
 	category = list(
@@ -764,7 +764,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/guideway_sensor
-	name = "Guideway Sensor Board"
+	name = "轨道传感器电路板"
 	desc = "The circuit board for a tram proximity sensor."
 	id = "guideway_sensor"
 	build_path = /obj/item/circuitboard/machine/guideway_sensor
@@ -774,7 +774,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/limbgrower
-	name = "Limb Grower Board"
+	name = "肢体培养机电路板"
 	desc = "The circuit board for a limb grower."
 	id = "limbgrower"
 	build_path = /obj/item/circuitboard/machine/limbgrower
@@ -784,7 +784,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/harvester
-	name = "Organ Harvester Board"
+	name = "Organ Harvester电路板"
 	desc = "The circuit board for an organ harvester."
 	id = "harvester"
 	build_path = /obj/item/circuitboard/machine/harvester
@@ -794,8 +794,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/deepfryer
-	name = "Deep Fryer Board"
-	desc = "The circuit board for a Deep Fryer."
+	name = "油炸锅电路板"
+	desc = "The circuit board for a 油炸锅."
 	id = "deepfryer"
 	build_path = /obj/item/circuitboard/machine/deep_fryer
 	category = list(
@@ -804,8 +804,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/griddle
-	name = "Griddle Board"
-	desc = "The circuit board for a Griddle."
+	name = "煎锅电路板"
+	desc = "The circuit board for a 煎锅."
 	id = "griddle"
 	build_path = /obj/item/circuitboard/machine/griddle
 	category = list(
@@ -814,8 +814,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/oven
-	name = "Oven Board"
-	desc = "The circuit board for a Oven."
+	name = "烤箱电路板"
+	desc = "The circuit board for a 烤箱."
 	id = "oven"
 	build_path = /obj/item/circuitboard/machine/oven
 	category = list(
@@ -824,8 +824,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/stove
-	name = "Stove Board"
-	desc = "The circuit board for a Stove."
+	name = "炉子电路板"
+	desc = "The circuit board for a 炉子."
 	id = "stove"
 	build_path = /obj/item/circuitboard/machine/stove
 	category = list(
@@ -834,8 +834,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/range
-	name = "Range Board"
-	desc = "The circuit board for a Range, which is both an Oven and a Stove."
+	name = "Range电路板"
+	desc = "The circuit board for a Range, which is both an 烤箱 and a Stove."
 	id = "range"
 	build_path = /obj/item/circuitboard/machine/range
 	category = list(
@@ -844,7 +844,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/donksofttoyvendor
-	name = "Donksoft Toy Vendor Board"
+	name = "Donksoft Toy Vendor电路板"
 	desc = "The circuit board for a Donksoft Toy Vendor."
 	id = "donksofttoyvendor"
 	build_path = /obj/item/circuitboard/machine/vending/donksofttoyvendor
@@ -854,7 +854,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/cell_charger
-	name = "Cell Charger Board"
+	name = "Cell Charger电路板"
 	desc = "The circuit board for a cell charger."
 	id = "cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger
@@ -864,7 +864,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/dish_drive
-	name = "Dish Drive Board"
+	name = "清盘机电路板"
 	desc = "The circuit board for a dish drive."
 	id = "dish_drive"
 	build_path = /obj/item/circuitboard/machine/dish_drive
@@ -874,8 +874,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/stacking_unit_console
-	name = "Stacking Machine Console Board"
-	desc = "The circuit board for a Stacking Machine Console."
+	name = "堆垛机终端电路板"
+	desc = "The circuit board for a 堆垛机终端."
 	id = "stack_console"
 	build_path = /obj/item/circuitboard/machine/stacking_unit_console
 	category = list(
@@ -884,8 +884,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/stacking_machine
-	name = "Stacking Machine Board"
-	desc = "The circuit board for a Stacking Machine."
+	name = "堆垛机电路板"
+	desc = "The circuit board for a 堆垛机."
 	id = "stack_machine"
 	build_path = /obj/item/circuitboard/machine/stacking_machine
 	category = list(
@@ -894,8 +894,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/ore_silo
-	name = "Ore Silo Board"
-	desc = "The circuit board for an ore silo."
+	name = "矿石筒仓电路板"
+	desc = "The circuit board for an 矿石筒仓."
 	id = "ore_silo"
 	build_path = /obj/item/circuitboard/machine/ore_silo
 	category = list(
@@ -904,7 +904,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/fat_sucker
-	name = "Lipid Extractor Board"
+	name = "Lipid Extractor电路板"
 	desc = "The circuit board for a lipid extractor."
 	id = "fat_sucker"
 	build_path = /obj/item/circuitboard/machine/fat_sucker
@@ -914,7 +914,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/stasis
-	name = "Lifeform Stasis Unit Board"
+	name = "Lifeform Stasis Unit电路板"
 	desc = "The circuit board for a stasis unit."
 	id = "stasis"
 	build_path = /obj/item/circuitboard/machine/stasis
@@ -924,7 +924,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/medical_kiosk
-	name = "Medical Kiosk Board"
+	name = "Medical Kiosk电路板"
 	desc = "The circuit board for a Medical Kiosk."
 	id = "medical_kiosk"
 	build_path = /obj/item/circuitboard/machine/medical_kiosk
@@ -934,7 +934,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/medipen_refiller
-	name = "Medipen Refiller Board"
+	name = "Medipen Refiller电路板"
 	desc = "The circuit board for a Medipen Refiller."
 	id = "medipen_refiller"
 	build_path = /obj/item/circuitboard/machine/medipen_refiller
@@ -944,7 +944,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/plumbing_receiver
-	name = "Chemical Recipient Board"
+	name = "Chemical Recipient电路板"
 	desc = "The circuit board for a Chemical Recipient."
 	id = "plumbing_receiver"
 	build_path = /obj/item/circuitboard/machine/plumbing_receiver
@@ -954,8 +954,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/sheetifier
-	name = "Sheet-meister 2000 Board"
-	desc = "The circuit board for a Sheet-meister 2000."
+	name = "板材压造大师 2000电路板"
+	desc = "The circuit board for a 板材压造大师 2000."
 	id = "sheetifier"
 	build_path = /obj/item/circuitboard/machine/sheetifier
 	category = list(
@@ -964,8 +964,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/restaurant_portal
-	name = "Restaurant Portal Board"
-	desc = "The circuit board for a restaurant portal"
+	name = "餐厅传送门电路板"
+	desc = "The circuit board for a 餐厅传送门"
 	id = "restaurant_portal"
 	build_path = /obj/item/circuitboard/machine/restaurant_portal
 	category = list(
@@ -974,7 +974,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/vendatray
-	name = "Vend-a-Tray Board"
+	name = "Vend-a-Tray电路板"
 	desc = "The circuit board for a Vend-a-Tray."
 	id = "vendatray"
 	build_path = /obj/item/circuitboard/machine/vendatray
@@ -984,7 +984,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/bountypad
-	name = "Civilian Bounty Pad Board"
+	name = "Civilian Bounty Pad电路板"
 	desc = "The circuit board for a Civilian Bounty Pad."
 	id = "bounty_pad"
 	build_path = /obj/item/circuitboard/machine/bountypad
@@ -994,8 +994,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/skill_station
-	name = "Skill Station Board"
-	desc = "The circuit board for Skill station."
+	name = "技能软件站电路板"
+	desc = "The circuit board for 技能软件站."
 	id = "skill_station"
 	build_path = /obj/item/circuitboard/machine/skill_station
 	category = list(
@@ -1016,7 +1016,7 @@
 //Hypertorus fusion reactor designs
 
 /datum/design/board/HFR_core
-	name = "HFR Core Board"
+	name = "HFR Core电路板"
 	desc = "The circuit board for an HFR Core."
 	id = "HFR_core"
 	build_path = /obj/item/circuitboard/machine/HFR_core
@@ -1026,7 +1026,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/HFR_fuel_input
-	name = "HFR Fuel Input Board"
+	name = "HFR Fuel Input电路板"
 	desc = "The circuit board for an HFR fuel input."
 	id = "HFR_fuel_input"
 	build_path = /obj/item/circuitboard/machine/HFR_fuel_input
@@ -1036,7 +1036,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/HFR_waste_output
-	name = "HFR Waste Output Board"
+	name = "HFR Waste Output电路板"
 	desc = "The circuit board for an HFR waste output."
 	id = "HFR_waste_output"
 	build_path = /obj/item/circuitboard/machine/HFR_waste_output
@@ -1046,7 +1046,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/HFR_moderator_input
-	name = "HFR Moderator Input Board"
+	name = "HFR Moderator Input电路板"
 	desc = "The circuit board for an HFR moderator input."
 	id = "HFR_moderator_input"
 	build_path = /obj/item/circuitboard/machine/HFR_moderator_input
@@ -1056,7 +1056,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/HFR_corner
-	name = "HFR Corner Board"
+	name = "HFR Corner电路板"
 	desc = "The circuit board for an HFR corner."
 	id = "HFR_corner"
 	build_path = /obj/item/circuitboard/machine/HFR_corner
@@ -1066,7 +1066,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/HFR_interface
-	name = "HFR Interface Board"
+	name = "HFR Interface电路板"
 	desc = "The circuit board for an HFR interface."
 	id = "HFR_interface"
 	build_path = /obj/item/circuitboard/machine/HFR_interface
@@ -1076,7 +1076,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/crystallizer
-	name = "Crystallizer Board"
+	name = "结晶仪电路板"
 	desc = "The circuit board for a crystallizer."
 	id = "crystallizer"
 	build_path = /obj/item/circuitboard/machine/crystallizer
@@ -1086,7 +1086,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/exoscanner
-	name = "扫描阵列 Board"
+	name = "扫描阵列电路板"
 	desc = "The circuit board for 扫描阵列."
 	id = "exoscanner"
 	build_path = /obj/item/circuitboard/machine/exoscanner
@@ -1096,7 +1096,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/exodrone_launcher
-	name = "Exploration Drone Launcher Board"
+	name = "探索无人机发射台电路板"
 	desc = "The circuit board for exodrone launcher."
 	id = "exodrone_launcher"
 	build_path = /obj/item/circuitboard/machine/exodrone_launcher
@@ -1106,8 +1106,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/component_printer
-	name = "Component Printer Board"
-	desc = "The circuit board for a component printer"
+	name = "组件打印机电路板"
+	desc = "The circuit board for a 组件打印机"
 	id = "component_printer"
 	build_path = /obj/item/circuitboard/machine/component_printer
 	category = list(
@@ -1116,8 +1116,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/module_printer
-	name = "Module Duplicator Board"
-	desc = "The circuit board for a module duplicator"
+	name = "模块复印机电路板"
+	desc = "The circuit board for a 模块复印机"
 	id = "module_duplicator"
 	build_path = /obj/item/circuitboard/machine/module_duplicator
 	category = list(
@@ -1126,8 +1126,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/coffeemaker
-	name = "Coffeemaker Board"
-	desc = "The circuit board for a coffeemaker."
+	name = "咖啡机电路板"
+	desc = "The circuit board for 咖啡机."
 	id = "coffeemaker"
 	build_path = /obj/item/circuitboard/machine/coffeemaker
 	category = list(
@@ -1136,7 +1136,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/navbeacon
-	name = "Machine Design (Bot Navigational Beacon)"
+	name = "机器设计图 (机器人导航信标)"
 	desc = "The circuit board for a beacon that aids bot navigation."
 	id = "botnavbeacon"
 	build_path = /obj/item/circuitboard/machine/navbeacon
@@ -1146,7 +1146,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/fishing_portal_generator
-	name = "Fishing Portal Generator Board"
+	name = "传送钓鱼机电路板"
 	desc = "The circuit board for the fishing portal generator"
 	id = "fishing_portal_generator"
 	build_path = /obj/item/circuitboard/machine/fishing_portal_generator
@@ -1156,7 +1156,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/brm
-	name = "Boulder Retrieval Matrix"
+	name = "巨石检索矩阵"
 	id = "brm"
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
@@ -1169,8 +1169,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/flatpacker
-	name = "Flatpacker Machine Board"
-	desc = "The circuit board for a Flatpacker."
+	name = "封装机电路板"
+	desc = "The circuit board for 封装机."
 	id = "flatpacker"
 	build_path = /obj/item/circuitboard/machine/flatpacker
 	category = list(

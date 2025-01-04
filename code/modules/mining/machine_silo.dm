@@ -1,5 +1,5 @@
 /obj/machinery/ore_silo
-	name = "ore silo"
+	name = "矿石筒仓"
 	desc = "An all-in-one bluespace storage and transmission system for the station's mineral distribution needs."
 	icon = 'icons/obj/machines/ore_silo.dmi'
 	icon_state = "silo"

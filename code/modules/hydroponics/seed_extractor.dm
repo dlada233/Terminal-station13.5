@@ -42,7 +42,7 @@
 	return seeds
 
 /obj/machinery/seed_extractor
-	name = "seed extractor"
+	name = "种子提取机"
 	desc = "Extracts and bags seeds from produce."
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "sextractor"

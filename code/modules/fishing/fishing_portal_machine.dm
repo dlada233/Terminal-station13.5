@@ -1,5 +1,5 @@
 /obj/machinery/fishing_portal_generator
-	name = "fish-porter 3000"
+	name = "钓鱼台 3000"
 	desc = "Fishing anywhere, anytime... anyway what was I talking about?"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "portal"

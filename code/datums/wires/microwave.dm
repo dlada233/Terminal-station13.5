@@ -1,6 +1,6 @@
 /datum/wires/microwave
 	holder_type = /obj/machinery/microwave
-	proper_name = "Microwave"
+	proper_name = "微波炉"
 
 /datum/wires/microwave/New(atom/holder)
 	wires = list(

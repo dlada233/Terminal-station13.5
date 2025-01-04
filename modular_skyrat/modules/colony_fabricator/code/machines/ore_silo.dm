@@ -17,7 +17,7 @@
 
 // Item for deploying ore silos
 /obj/item/flatpacked_machine/ore_silo
-	name = "flat-packed ore silo"
+	name = "flat-packed 矿石筒仓"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/ore_silo.dmi'
 	icon_state = "ore_silo"
 	type_to_deploy = /obj/machinery/ore_silo/colony_lathe

@@ -1,10 +1,10 @@
 /**********************Mineral stacking unit console**************************/
 
 /obj/machinery/mineral/stacking_unit_console
-	name = "stacking machine console"
+	name = "堆垛机终端"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
-	desc = "Controls a stacking machine... in theory."
+	desc = "Controls a 堆垛机... in theory."
 	density = FALSE
 	circuit = /obj/item/circuitboard/machine/stacking_unit_console
 	/// Connected stacking machine
@@ -89,7 +89,7 @@
 
 
 /obj/machinery/mineral/stacking_machine
-	name = "stacking machine"
+	name = "堆垛机"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "stacker"
 	desc = "A machine that automatically stacks acquired materials. Controlled by a nearby console."

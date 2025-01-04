@@ -10,7 +10,7 @@
 #define TURF_BLOCKED_BY_BOULDER -1
 
 /obj/machinery/brm
-	name = "boulder retrieval matrix"
+	name = "巨石检索矩阵"
 	desc = "A teleportation matrix used to retrieve boulders excavated by mining NODEs from ore vents."
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "brm"

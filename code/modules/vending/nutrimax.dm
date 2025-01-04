@@ -1,8 +1,8 @@
 /obj/machinery/vending/hydronutrients
-	name = "\improper NutriMax"
-	desc = "A plant nutrients vendor."
-	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
-	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
+	name = "\improper 肥力满满"
+	desc = "植物营养品贩卖机."
+	product_slogans = "很高兴不用再全天然自然施肥了?;现在臭味减少了50%!;植物也值得我们关爱!"
+	product_ads = "我们爱植物!;难道你不想拥有一些吗?;我们拥有史上最绿的拇指.;我们喜欢大植物.;柔软的土壤..."
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
 	panel_type = "panel2"
@@ -30,5 +30,5 @@
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/hydronutrients
-	machine_name = "NutriMax"
+	machine_name = "肥力满满"
 	icon_state = "refill_plant"

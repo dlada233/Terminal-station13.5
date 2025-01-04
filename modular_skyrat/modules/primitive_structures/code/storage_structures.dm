@@ -40,7 +40,7 @@
 	cutting_tool = /obj/item/crowbar
 
 /obj/machinery/smartfridge/wooden
-	name = "Debug Wooden Smartfridge"
+	name = "Debug Wooden 智能冰箱"
 	desc = "You shouldn't be seeing this!"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
 	icon_state = "producebin"

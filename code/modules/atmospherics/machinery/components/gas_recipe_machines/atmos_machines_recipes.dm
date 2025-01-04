@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	var/list/products
 
 /datum/gas_recipe/crystallizer
-	machine_type = "Crystallizer"
+	machine_type = "结晶仪"
 
 /datum/gas_recipe/crystallizer/hypern_crystalium
 	id = "hyper_crystalium"

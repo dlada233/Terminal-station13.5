@@ -156,7 +156,7 @@
 		robot_customer.ai_controller.set_blackboard_key(BB_CUSTOMER_LEAVING, TRUE) //LEAVEEEEEE
 
 /obj/machinery/restaurant_portal
-	name = "restaurant portal"
+	name = "餐厅传送门"
 	desc = "A robot-only gate into the wonders of Space Station cuisine!"
 	icon = 'icons/obj/machines/restaurant_portal.dmi'
 	icon_state = "portal"

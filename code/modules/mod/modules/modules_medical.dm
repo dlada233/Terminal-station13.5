@@ -299,7 +299,7 @@
 	name = "MOD thread ripper module"
 	desc = "A custom-built module integrated with the suit's wrist. The thread ripper is built from \
 		recent technology dating back to the start of 2562, after an attempt by a well-known Nanotrasen researcher to \
-		expand on the rapid-tailoring technology found in Autodrobes. Rather than being capable of creating \
+		expand on the rapid-tailoring technology found in 红衣铺. Rather than being capable of creating \
 		any fabric pattern under the suns, the thread ripper is capable of rapid disassembly of them. \
 		Anything from kevlar-weave, to leather, to durathread can be quickly pulled open to the wearer's specification \
 		and sewn back together, a development commonly utilized by Medical workers to obtain easy access for \

@@ -207,7 +207,7 @@
 // Ore silo except it beeps
 
 /datum/design/flatpack_ore_silo
-	name = "Flat-Packed Ore Silo"
+	name = "Flat-Packed 矿石筒仓"
 	desc = "An all-in-one materials management solution. Connects resource-using machines \
 		through a network of distrobution systems."
 	id = "flatpack_ore_silo"

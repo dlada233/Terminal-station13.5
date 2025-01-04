@@ -114,7 +114,7 @@
 	mappath = "_maps/templates/holodeck_skatepark.dmm"
 
 /datum/map_template/holodeck/microwave
-	name = "Holodeck - Microwave Paradise"
+	name = "Holodeck - 微波炉 Paradise"
 	template_id = "holodeck_microwave"
 	description = "benis"
 	mappath = "_maps/templates/holodeck_microwave.dmm"

@@ -1,5 +1,5 @@
 /datum/wires/shieldwallgen
-	proper_name = "Shield Wall Generator"
+	proper_name = "护盾墙发生器"
 	randomize = TRUE
 	holder_type = /obj/machinery/power/shieldwallgen
 

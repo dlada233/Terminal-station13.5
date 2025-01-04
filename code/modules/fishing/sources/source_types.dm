@@ -328,7 +328,7 @@
 #define RANDOM_SEED "Random seed"
 
 /datum/fish_source/hydro_tray
-	catalog_description = "Hydroponics trays"
+	catalog_description = "水培托盘"
 	fish_table = list(
 		FISHING_DUD = 25,
 		/obj/item/food/grown/grass = 25,

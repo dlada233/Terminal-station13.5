@@ -246,7 +246,7 @@
 	data["selected_recipes"] = list(list("name" = "Nothing", "id" = ""))
 	for(var/path in GLOB.gas_recipe_meta)
 		var/datum/gas_recipe/recipe = GLOB.gas_recipe_meta[path]
-		if(recipe.machine_type != "Crystallizer")
+		if(recipe.machine_type != "结晶仪")
 			continue
 		data["selected_recipes"] += list(list("name" = recipe.name, "id" = recipe.id))
 	return data

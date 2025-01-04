@@ -95,8 +95,8 @@
  * overridden here and in /mob/dead/observer for different point span classes and sanity checks
  */
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
-	set category = "物件"
+	set name = "指向"
+	set category = "IC.动作"
 
 	if(istype(A, /obj/effect/temp_visual/point))
 		return FALSE

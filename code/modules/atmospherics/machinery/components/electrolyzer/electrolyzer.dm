@@ -7,7 +7,7 @@
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	icon_state = "electrolyzer-off"
-	name = "space electrolyzer"
+	name = "太空电解机"
 	desc = "Thanks to the fast and dynamic response of our electrolyzers, on-site hydrogen-氢气 production is guaranteed. Warranty void if used by clowns"
 	max_integrity = 250
 	armor_type = /datum/armor/machinery_electrolyzer

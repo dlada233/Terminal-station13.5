@@ -65,7 +65,7 @@
 
 /// Cryo cell
 /obj/machinery/cryo_cell
-	name = "cryo cell"
+	name = "低温修复仓"
 	icon = 'icons/obj/medical/cryogenics.dmi'
 	icon_state = "pod-off"
 	density = TRUE
